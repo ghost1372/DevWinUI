@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>8.0.0</Version>
+    <Version>8.0.0-Preview1</Version>
     <AssemblyName>$(BaseNamespace).ContextMenu</AssemblyName>
     <PackageId>$(BaseNamespace).ContextMenu</PackageId>
-    <Description></Description>
-    <PackageTags></PackageTags>
+    <Description>Create a New Context Menu Item for Windows 11/10 working with WinUI, WPF And all platforms that support .NET 8, 9 and package identity</Description>
+    <PackageTags>winui WindDevUI WinDevUIContextMenu contextmenu contextmenuextensions wpf packaged winform winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell WinUICommunity</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="ContextMenuCustomHost.dll">

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>$(DebugTargetFramework)</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
     <RootNamespace>$(BaseNamespace)Gallery</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;ARM64</Platforms>
@@ -14,7 +14,7 @@
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
-	  <Version>8.0.0</Version>
+	  <Version>8.0.0-Preview1</Version>
 
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006</NoWarn>

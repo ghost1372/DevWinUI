@@ -10,7 +10,6 @@
     <CommunityToolkitMediaVersion>8.2.241112-preview1</CommunityToolkitMediaVersion>
     <Win2dVersion>1.3.0</Win2dVersion>
     <DebugTargetFramework>net9.0-windows10.0.19041.0</DebugTargetFramework>
-    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
     <NoWarn>WMC1506;WMC0001;CA1416;CS8632;CS0067;CS0078;CS0649;CS0414;NU1903;NU1902</NoWarn>
 
     <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
@@ -32,7 +31,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Authors>DevWinUI</Authors>
+    <Authors>Mahdi Hosseini</Authors>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug' And '$(MSBuildProjectName)' != $(GalleryAppName)">True</GeneratePackageOnBuild>
@@ -44,7 +43,7 @@
 
   <!-- The NuGet versions of dependencies to build against. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241106002" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   
