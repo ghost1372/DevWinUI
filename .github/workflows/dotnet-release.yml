@@ -8,8 +8,8 @@ permissions:
 
 env:
   # Configuring Project
-  PROJECT_PATH: dev/WucGalleryApp/WucGalleryApp.csproj
-  APP_NAME: WucGalleryApp
+  PROJECT_PATH: dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj
+  APP_NAME: DevWinUIGallery
 
   # Check Tag
   CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG: false
@@ -168,14 +168,3 @@ jobs:
           makeLatest: ${{ env.MAKE_LATEST }}
           allowUpdates: ${{ env.ALLOW_UPDATES }}
           artifactErrorsFailBuild: ${{ env.ARTIFACT_ERRORS_FAIL_BUILD }}
-
-
-
-      # - uses: softprops/action-gh-release@v1
-      #   with:
-      #     name: v${{ env.APP_VERSION }}
-      #     tag_name: v${{ env.APP_VERSION }}
-      #     body_path: CHANGELOG.md
-      #     prerelease: ${{ env.PUBLISH_PRE_RELEASE }}
-      #     files: |
-      #       ${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-*.zip
