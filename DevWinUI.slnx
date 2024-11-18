@@ -1,5 +1,5 @@
 <Solution>
-  <Folder Name="/Solution Items/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
+  <Folder Name="/Solution Items/" Id="33905DB2-64FA-4677-9694-9064DC5A0372">
     <File Path=".github/workflows/dotnet-release.yml" />
     <File Path="AppData.Schema.json" />
     <File Path="Clean-obj-bin.bat" />
@@ -11,6 +11,14 @@
   </Folder>
   <Folder Name="/VSIX_Extension/" Id="55c3cdfc-dabe-4658-ada9-aa32a6371d9b">
     <Project Path="VSIX/DevWinUI_Template/DevWinUI_Template/DevWinUI_Template.csproj" Id="84913ae7-791a-451d-b4c6-c2c93207d9ff" />
+  </Folder>
+  <Folder Name="/VSIX_Extension/Templates/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp-Blank-UnitTest/WinUIApp-Blank-UnitTest.csproj" Id="b8948970-c773-4711-9839-ba3a311a2f2a" />
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp-Blank/WinUIApp-Blank.csproj" Id="aaf6a3c7-a34b-440c-a31b-04a6e07cb344" />
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp-MVVM-NavigationView/WinUIApp-MVVM-NavigationView.csproj" Id="0e3decea-492d-4ff6-b77e-4e68e6affa90" />
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp-MVVM/WinUIApp-MVVM.csproj" Id="df24dc85-9ed7-4697-85a0-ad2bed5e7916" />
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp-NavigationView/WinUIApp-NavigationView.csproj" Id="4c1692ff-c0b8-49fb-948d-090160e0e63a" />
+    <Project Path="VSIX/DevWinUI_Template/WinUIApp/WinUIApp.csproj" Id="d9c038b7-6a62-4945-a030-4ac7597f53ca" />
   </Folder>
   <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
   <Project Path="dev/DevWinUI.Controls/DevWinUI.Controls.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
