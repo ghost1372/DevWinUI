@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="$safeprojectname$.Views.AppUpdateSettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:$safeprojectname$"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:$safeprojectname$.Views"
+      dev:BreadcrumbNavigator.IsHeaderVisible="True"
+      mc:Ignorable="d">
+    <ScrollView Margin="{ThemeResource ContentPageMargin}"
+                VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="5">
+            <dev:SettingsCard Header="{x:Bind CurrentVersion, Mode=OneWay}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Update.png}">
+                <dev:SettingsCard.Description>
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="5">
+                        <TextBlock Style="{StaticResource SecondaryTextStyle}"
+                                   Text="Last Update Check" />
+                        <TextBlock x:Name="TxtLastUpdateCheck"
+                                   FlowDirection="LeftToRight"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                    </StackPanel>
+                </dev:SettingsCard.Description>
+                <StackPanel Orientation="Horizontal"
+                            Spacing="10">
+                    <ProgressRing x:Name="PrgLoading"
+                                  IsActive="False" />
+                    <Button x:Name="BtnCheckUpdate"
+                            MinWidth="{StaticResource SettingActionControlMinWidth}"
+                            Click="{x:Bind CheckForUpdateAsync}"
+                            Content="Check for New Version"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                </StackPanel>
+            </dev:SettingsCard>
+
+            <dev:SettingsCard x:Name="StatusCard"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}">
+                <dev:SettingsCard.Description>
+                    <HyperlinkButton x:Name="BtnReleaseNote"
+                                     Padding="5,0"
+                                     Click="{x:Bind GetReleaseNotesAsync}"
+                                     Content="Release Note" />
+                </dev:SettingsCard.Description>
+                <StackPanel VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="10">
+                    <Button x:Name="BtnDownloadUpdate"
+                            MinWidth="{StaticResource SettingActionControlMinWidth}"
+                            Click="{x:Bind GoToUpdateAsync}"
+                            Content="Download Update" />
+                </StackPanel>
+            </dev:SettingsCard>
+        </StackPanel>
+    </ScrollView>
+</Page>
+

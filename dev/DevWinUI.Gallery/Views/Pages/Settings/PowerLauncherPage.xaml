@@ -1,0 +1,148 @@
+﻿<Page x:Class="DevWinUIGallery.Views.PowerLauncherPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <dev:SettingsPageControl ModuleDescription="A quick launcher that has additional capabilities without sacrificing performance."
+                             ModuleImageSource="ms-appx:///Assets/Modules/PowerLauncher.png"
+                             ModuleTitle="Demo Run"
+                             SecondaryLinksHeader="Attribution">
+        <dev:SettingsPageControl.ModuleContent>
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
+                        Orientation="Vertical">
+                <dev:SettingsCard Header="Enable PowerToys Run"
+                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/powerToysRun.png}">
+                    <ToggleSwitch />
+                </dev:SettingsCard>
+                <InfoBar Title="The system administrator is forcing this setting."
+                         IsClosable="False"
+                         IsOpen="True"
+                         Severity="Informational" />
+
+                <dev:SimpleSettingsGroup Header="Shortcut">
+                    <dev:SettingsExpander Description="Customize the keyboard shortcut to activate this module"
+                                          Header="Activation shortcut"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xEDA7;}"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <dev:CheckBoxWithDescriptionControl Description="Try this if there are issues with the shortcut (PowerToys Run might not get focus when triggered from an elevated window)"
+                                                                    Header="Use centralized keyboard hook" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Ignore shortcuts in fullscreen mode" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Position &amp; appearance">
+                    <dev:SettingsExpander Description="If multiple monitors are in use, PowerToys Run can be launched on the desired monitor"
+                                          Header="Preferred monitor position"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xec48;}"
+                                          IsExpanded="True">
+                        <ToggleSwitch />
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard Description="Affects the plugins that make the UI wait for their results by this amount. Recommended: 30-50 ms."
+                                              Header="Immediate plugins">
+                                <NumberBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                           LargeChange="50"
+                                           Maximum="500"
+                                           Minimum="0"
+                                           SmallChange="10"
+                                           SpinButtonPlacementMode="Compact" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard Description="Affects the plugins that execute in the background by this amount. Recommended: 100-150 ms."
+                                              Header="Background execution plugins">
+                                <NumberBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                           LargeChange="50"
+                                           Maximum="1000"
+                                           Minimum="0"
+                                           SmallChange="10"
+                                           SpinButtonPlacementMode="Compact" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Position &amp; appearance">
+                    <dev:SettingsCard Description="If multiple monitors are in use, PowerToys Run can be launched on the desired monitor"
+                                      Header="Preferred monitor position"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xe78b;}">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Run_Radio_Position_Cursor" />
+                            <ComboBoxItem Content="Run_Radio_Position_Primary_Monitor" />
+                            <ComboBoxItem Content="Run_Radio_Position_Focus" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+
+                    <dev:SettingsCard Header="App theme"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE790;}">
+                        <dev:SettingsCard.Description>
+                            <HyperlinkButton Content="Windows color settings" />
+                        </dev:SettingsCard.Description>
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Dark" />
+                            <ComboBoxItem Content="Light" />
+                            <ComboBoxItem Content="Default" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Plugins">
+                    <InfoBar Title="PowerToys Run can't provide any results without plugins"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="Enable at least one plugin to get started"
+                             Severity="Informational">
+                        <InfoBar.ActionButton>
+                            <HyperlinkButton Content="Learn more about conflicting activation commands" />
+                        </InfoBar.ActionButton>
+                    </InfoBar>
+
+                    <dev:SettingsCard Description="You can include or remove each plugin from the global results, change the direct activation phrase and configure additional options"
+                                      Header="Plugins"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xEA86;}">
+                        <AutoSuggestBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                        PlaceholderText="Search this list"
+                                        QueryIcon="Find" />
+                    </dev:SettingsCard>
+                    <InfoBar Title="PowerToys Run can't provide any results without plugins"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="Enable at least one plugin to get started"
+                             Severity="Error" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing Width="20"
+                                      Height="20"
+                                      Margin="18,18"
+                                      IsActive="True" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{ThemeResource SecondaryTextStyle}"
+                                   Text="Plugins are loading..." />
+                    </StackPanel>
+                </dev:SimpleSettingsGroup>
+            </StackPanel>
+        </dev:SettingsPageControl.ModuleContent>
+        <dev:SettingsPageControl.PrimaryLinks>
+            <dev:PageLink Link="https://aka.ms/PowerToysOverview_PowerToysRun"
+                          Text="Learn more about Demo Run" />
+        </dev:SettingsPageControl.PrimaryLinks>
+        <dev:SettingsPageControl.SecondaryLinks>
+            <dev:PageLink Link="https://github.com/Wox-launcher/Wox/"
+                          Text="Wox" />
+            <dev:PageLink Link="https://github.com/betsegaw/windowwalker/"
+                          Text="Beta Tadele's Window Walker" />
+        </dev:SettingsPageControl.SecondaryLinks>
+    </dev:SettingsPageControl>
+</Page>

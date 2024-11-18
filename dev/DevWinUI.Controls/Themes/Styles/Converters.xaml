@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <local:ValidationEnabledConverter x:Name="CanValidateConverter" />
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"
+                                     FalseValue="Collapsed"
+                                     TrueValue="Visible" />
+    <local:GridLengthConverter x:Key="GridLengthConverter" />
+    <local:CornerRadiusSplitConverter x:Key="CornerRadiusSplitConverter" />
+    <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
+    <local:WaveProgressBarValueToPercentConverter x:Key="WaveProgressBarValueToPercentConverter" />
+    <local:StringToBrushConverter x:Key="StringToBrushConverter" />
+    <local:WidthToHalfHeightConverter x:Key="WidthToHalfHeightConverter" />
+    <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
+    <local:NullToVisibilityConverter x:Key="nullToVisibilityConverter" />
+    <local:EmptyStringToVisibilityConverter x:Key="emptyStringToVisibilityConverter" />
+    <local:StringToUriConverter x:Key="StringToUriConverter" />
+</ResourceDictionary>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.OptionsPageControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <dev:OptionsPageControl x:Name="OptionsPage"
+                            Margin="50"
+                            BarMinWidth="{x:Bind OptionsBarMinWidth.Value, Mode=OneWay}"
+                            FooterHeader="{x:Bind PageFooterHeader.Text, Mode=OneWay}"
+                            FooterVisibility="{x:Bind PageFooterVisibility.IsOn, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                            IsBarEnabled="{x:Bind IsOptionsBarEnabled.IsOn, Mode=OneWay}"
+                            IsFooterEnabled="{x:Bind IsPageFooterEnabled.IsOn, Mode=OneWay}"
+                            IsFooterExpanded="{x:Bind IsPageFooterExpanded.IsOn, Mode=OneWay}"
+                            PaneMinWidth="{x:Bind OptionsPaneMinWidth.Value, Mode=OneWay}"
+                            PaneVisibility="{x:Bind OptionsPaneVisibility.IsOn, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+        <dev:OptionsPageControl.Content>
+            <Page>
+                <TextBlock FontSize="48"
+                           Text="Page" />
+            </Page>
+        </dev:OptionsPageControl.Content>
+        <dev:OptionsPageControl.Pane>
+            <StackPanel>
+                <NumberBox x:Name="OptionsPaneMinWidth"
+                           Header="Options Pane Min Width"
+                           Minimum="286"
+                           SpinButtonPlacementMode="Inline"
+                           Value="286" />
+                <NumberBox x:Name="OptionsBarMinWidth"
+                           Header="OptionsBar Min Width"
+                           Minimum="32"
+                           SpinButtonPlacementMode="Inline"
+                           Value="32" />
+                <ToggleSwitch x:Name="IsOptionsBarEnabled"
+                              Header="Is OptionsBar Enabled"
+                              IsOn="True" />
+                <ToggleSwitch x:Name="IsPageFooterEnabled"
+                              Header="IsPage Footer Enabled"
+                              IsOn="True" />
+                <ToggleSwitch x:Name="IsPageFooterExpanded"
+                              Header="IsPage Footer Expanded"
+                              IsOn="True" />
+                <ToggleSwitch x:Name="PageFooterVisibility"
+                              Header="Page Footer Visibility"
+                              IsOn="True" />
+                <ToggleSwitch x:Name="OptionsPaneVisibility"
+                              Header="Options Pane Visibility"
+                              IsOn="True" />
+                <TextBox x:Name="PageFooterHeader"
+                         PlaceholderText="Page Footer Header" />
+            </StackPanel>
+        </dev:OptionsPageControl.Pane>
+        <dev:OptionsPageControl.Bar>
+            <StackPanel>
+                <Button Width="32"
+                        Height="32"
+                        Padding="4"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource SubtleButtonStyle}"
+                        ToolTipService.ToolTip="Toggle theme">
+                    <Button.Content>
+                        <FontIcon FontSize="16"
+                                  Glyph="&#xE793;" />
+                    </Button.Content>
+                </Button>
+
+                <Button Width="32"
+                        Height="32"
+                        Padding="4"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource SubtleButtonStyle}"
+                        ToolTipService.ToolTip="Toggle right-to-left">
+                    <Button.Content>
+                        <FontIcon FontSize="16"
+                                  Glyph="&#xE1A0;" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </dev:OptionsPageControl.Bar>
+        <dev:OptionsPageControl.BarFooter>
+            <StackPanel>
+                <Button Width="32"
+                        Height="32"
+                        Padding="0,0,0,2"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource AccentButtonStyle}"
+                        ToolTipService.ToolTip="View code">
+                    <Button.Content>
+                        <PathIcon VerticalAlignment="Center"
+                                  Data="{StaticResource CodeIcon}" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </dev:OptionsPageControl.BarFooter>
+        <dev:OptionsPageControl.Footer>
+            <Page>
+                <TextBlock FontSize="48"
+                           Text="Footer" />
+            </Page>
+        </dev:OptionsPageControl.Footer>
+    </dev:OptionsPageControl>
+</Page>

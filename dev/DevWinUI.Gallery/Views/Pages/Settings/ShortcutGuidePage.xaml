@@ -1,0 +1,84 @@
+﻿<Page x:Class="DevWinUIGallery.Views.ShortcutGuidePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <dev:SettingsPageControl ModuleDescription="Shows a help overlay with Windows shortcuts when the Windows key is pressed."
+                             ModuleImageSource="ms-appx:///Assets/Modules/ShortcutGuide.png"
+                             ModuleTitle="Shortcut Guide">
+        <dev:SettingsPageControl.ModuleContent>
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
+                        Orientation="Vertical">
+                <dev:SettingsCard Header="Enable Shortcut Guide"
+                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/shortcutGuide.png}">
+                    <ToggleSwitch />
+                </dev:SettingsCard>
+
+                <dev:KeyVisual HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               AutomationProperties.AccessibilityView="Raw"
+                               Content="Ctrl+F5"
+                               IsTabStop="False"
+                               VisualType="SmallOutline" />
+                <dev:ShortcutWithTextLabelControl x:Name="HotkeyMicVidControl"
+                                                  Text="to toggle both your microphone and video" />
+                <dev:ShortcutWithTextLabelControl x:Name="HotkeyMicControl"
+                                                  Text="to toggle your microphone" />
+                <dev:ShortcutWithTextLabelControl x:Name="HotkeyVidControl"
+                                                  Text="to toggle your microphone" />
+                <Button Click="Button_Click"
+                        Content="Open Shortcut Dialog" />
+                <dev:SimpleSettingsGroup Header="Appearance &amp; behavior">
+                    <dev:SettingsCard Header="Choose a mode"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE790;}">
+                        <dev:SettingsCard.Description>
+                            <HyperlinkButton Content="Windows color settings" />
+                        </dev:SettingsCard.Description>
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Dark" />
+                            <ComboBoxItem Content="Light" />
+                            <ComboBoxItem Content="Default" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+
+                    <dev:SettingsCard Header="Opacity of background">
+                        <Slider MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                Maximum="100"
+                                Minimum="0" />
+                    </dev:SettingsCard>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Excluded apps">
+                    <dev:SettingsExpander Description="Turns off Shortcut Guide when these applications have focus - add one application name per line"
+                                          Header="Exclude apps"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xECE4;}"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard HorizontalContentAlignment="Stretch"
+                                              ContentAlignment="Vertical">
+                                <TextBox MinWidth="240"
+                                         MinHeight="160"
+                                         AcceptsReturn="True"
+                                         PlaceholderText="Example: outlook.exe"
+                                         ScrollViewer.IsVerticalRailEnabled="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                         ScrollViewer.VerticalScrollMode="Enabled"
+                                         TextWrapping="Wrap" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+            </StackPanel>
+        </dev:SettingsPageControl.ModuleContent>
+        <dev:SettingsPageControl.PrimaryLinks>
+            <dev:PageLink Link="https://aka.ms/PowerToysOverview_ShortcutGuide"
+                          Text="Learn more about Shortcut Guide" />
+        </dev:SettingsPageControl.PrimaryLinks>
+    </dev:SettingsPageControl>
+</Page>

@@ -1,0 +1,41 @@
+﻿<dev:SettingsExpander Margin="20"
+                        Description="The SettingsExpander can use ItemsSource to define its Items."
+                        Header="Settings Expander with ItemsSource"
+                        ItemsSource="{x:Bind MyDataSet}">
+    <dev:SettingsExpander.HeaderIcon>
+        <FontIcon Glyph="&#xEA37;" />
+    </dev:SettingsExpander.HeaderIcon>
+    <dev:SettingsExpander.ItemTemplate>
+        <DataTemplate x:DataType="local:MyDataModel">
+            <dev:SettingsCard Description="{x:Bind Info}"
+                                Header="{x:Bind Name}">
+                <HyperlinkButton Content="{x:Bind LinkDescription}"
+                                    NavigateUri="{x:Bind Url}" />
+            </dev:SettingsCard>
+        </DataTemplate>
+    </dev:SettingsExpander.ItemTemplate>
+    <dev:SettingsExpander.ItemsHeader>
+        <InfoBar Title="This is the ItemsHeader"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    IsIconVisible="False"
+                    IsOpen="True"
+                    Severity="Success">
+            <InfoBar.ActionButton>
+                <HyperlinkButton Content="It can host custom content" />
+            </InfoBar.ActionButton>
+        </InfoBar>
+    </dev:SettingsExpander.ItemsHeader>
+    <dev:SettingsExpander.ItemsFooter>
+        <InfoBar Title="This is the ItemsFooter"
+                    BorderThickness="0"
+                    CornerRadius="0,0,4,4"
+                    IsIconVisible="False"
+                    IsOpen="True"
+                    Severity="Informational">
+            <InfoBar.ActionButton>
+                <HyperlinkButton Content="It can host custom content" />
+            </InfoBar.ActionButton>
+        </InfoBar>
+    </dev:SettingsExpander.ItemsFooter>
+</dev:SettingsExpander>

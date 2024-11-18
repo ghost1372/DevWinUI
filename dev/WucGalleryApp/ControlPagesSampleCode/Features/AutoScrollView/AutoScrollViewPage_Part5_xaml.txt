@@ -1,9 +1,0 @@
-﻿<wuc:AutoScrollView x:Name="AutoScrollHoverEffectView"
-                    Margin="0,20"
-                    PointerCanceled="AutoScrollHoverEffectView_PointerCanceled"
-                    PointerEntered="AutoScrollHoverEffectView_PointerEntered"
-                    PointerExited="AutoScrollHoverEffectView_PointerExited"
-                    IsPlaying="False">
-    <TextBlock Text="Long Text"
-               TextTrimming="CharacterEllipsis" />
-</wuc:AutoScrollView>

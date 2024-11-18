@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ShieldPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/shield">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Shield Status="Controls" Subject="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="10">
+                        <dev:Shield Click="Shield_Click"
+                                    Status="Controls"
+                                    Subject="DevWinUI" />
+                        <dev:Shield Click="Shield_Click"
+                                    Status="Core"
+                                    Subject="DevWinUI"
+                                    Color="Green" />
+                        <dev:Shield Click="Shield_Click"
+                                    Status="LandingPage"
+                                    Subject="DevWinUI"
+                                    Color="Orange" />
+                        <dev:Shield Click="Shield_Click"
+                                    Status="Github"
+                                    Color="Violet">
+                            <dev:Shield.Subject>
+                                <Viewbox Margin="2">
+                                    <PathIcon Data="{StaticResource GitHubIcon}" />
+                                </Viewbox>
+                            </dev:Shield.Subject>
+                        </dev:Shield>
+                        <dev:Shield Click="Shield_Click"
+                                    Subject="Github"
+                                    Color="Violet">
+                            <dev:Shield.Status>
+                                <Viewbox>
+                                    <PathIcon Margin="2"
+                                              Data="{StaticResource GitHubIcon}" />
+                                </Viewbox>
+                            </dev:Shield.Status>
+                        </dev:Shield>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="10">
+                        <dev:Shield Status="passing"
+                                    Subject="build"
+                                    Color="LimeGreen" />
+                        <dev:Shield Status="vs2022"
+                                    Subject="IDE" />
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

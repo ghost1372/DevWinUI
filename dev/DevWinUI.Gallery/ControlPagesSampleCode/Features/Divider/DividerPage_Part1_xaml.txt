@@ -1,0 +1,25 @@
+﻿<StackPanel Margin="10"
+            Spacing="10">
+    <dev:Divider />
+    <dev:Divider Content="Title" />
+    <dev:Divider ContentPadding="0">
+        <Button Content="More" />
+    </dev:Divider>
+    <dev:Divider LineStroke="{ThemeResource AccentAAFillColorDefaultBrush}"
+                    LineStrokeThickness="2" />
+    <dev:Divider LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                    LineStrokeThickness="2" />
+
+    <dev:Divider LineStrokeDashArray="2,2" />
+    <dev:Divider Content="Title"
+                    LineStrokeDashArray="2,2"
+                    LineStrokeThickness="2" />
+    <dev:Divider Content="Title"
+                    LineStroke="{ThemeResource AccentAAFillColorDefaultBrush}"
+                    LineStrokeDashArray="2,2"
+                    LineStrokeThickness="2" />
+    <dev:Divider Content="Title"
+                    LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                    LineStrokeDashArray="2,2"
+                    LineStrokeThickness="2" />
+</StackPanel>

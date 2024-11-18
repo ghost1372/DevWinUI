@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+	<Name>WinUI 3 App - Blank</Name>
+	<Description>Creates a new Blank WinUI 3 App without DevWinUI Packages and Configs</Description>
+    <Icon>WinUIApp.ico</Icon>
+    <TemplateID>WinUIApp-Blank-{8217C719-97BA-4482-A019-26B4C2EF8469}</TemplateID>
+    <TemplateGroupID>WinRT-Managed</TemplateGroupID>
+    <ProjectType>CSharp</ProjectType>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <CreateInPlace>true</CreateInPlace>
+    <PreviewImage>WinUIApp.png</PreviewImage>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <LanguageTag>csharp</LanguageTag>
+    <LanguageTag>XAML</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>WinUI</ProjectTypeTag>
+	<ProjectTypeTag>DevWinUI</ProjectTypeTag>
+  </TemplateData>
+  <TemplateContent PreferedSolutionConfiguration="Debug|x86">
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+	  <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">Properties\launchSettings.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-arm64.pubxml">Properties\PublishProfiles\win-arm64.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-x64.pubxml">Properties\PublishProfiles\win-x64.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-x86.pubxml">Properties\PublishProfiles\win-x86.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="app.manifest">app.manifest</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="GlobalUsings.cs">GlobalUsings.cs</ProjectItem>
+      
+	  <Folder Name="Assets\Store" TargetFolderName="Assets\Store">
+        <ProjectItem ReplaceParameters="false" TargetFileName="SplashScreen.scale-200.png">SplashScreen.scale-200.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="LockScreenLogo.scale-200.png">LockScreenLogo.scale-200.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Square150x150Logo.scale-200.png">Square150x150Logo.scale-200.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Square44x44Logo.scale-200.png">Square44x44Logo.scale-200.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Square44x44Logo.targetsize-24_altform-unplated.png">Square44x44Logo.targetsize-24_altform-unplated.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="StoreLogo.png">StoreLogo.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Wide310x150Logo.scale-200.png">Wide310x150Logo.scale-200.png</ProjectItem>
+      </Folder>
+		
+	  <Folder Name="Assets" TargetFolderName="Assets">
+	    <ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.ico">AppIcon.ico</ProjectItem>
+	    <ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.png">AppIcon.png</ProjectItem>
+      </Folder>
+
+	  <Folder Name="Themes" TargetFolderName="Themes">
+		<ProjectItem ReplaceParameters="true" TargetFileName="Styles.xaml">Styles.xaml</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="ThemeResources.xaml">ThemeResources.xaml</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Fonts.xaml">Fonts.xaml</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Converters.xaml">Converters.xaml</ProjectItem>
+	  </Folder>
+		
+	  <Folder Name="Views" TargetFolderName="Views">
+		<ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
+	  </Folder>
+    </Project>
+	<CustomParameters>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools"/>
+	</CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <!-- Generates Publisher name for appxmanifest -->
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.UpdatePublisherInManifestWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+	<Assembly>DevWinUI_Template, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=28a2cf0c04de937a</Assembly>
+	<FullClassName>DevWinUI_Template.WinUIAppBlankWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            $HeaderCoverLight$
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            $HeaderCoverDark$
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            $HeaderCoverDark$
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

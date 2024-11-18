@@ -1,6 +1,0 @@
-﻿<wuc:AutoScrollView Margin="0,20"
-                    IsPlaying="True"
-                    ScrollingPixelsPreSecond="200">
-    <TextBlock Text="Long Text"
-               TextTrimming="None" />
-</wuc:AutoScrollView>

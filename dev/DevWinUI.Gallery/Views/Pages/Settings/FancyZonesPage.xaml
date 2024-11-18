@@ -1,0 +1,226 @@
+﻿<Page x:Class="DevWinUIGallery.Views.FancyZonesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <dev:SettingsPageControl ModuleDescription="Create window layouts to help make multi-tasking easy."
+                             ModuleImageSource="ms-appx:///Assets/Modules/FancyZones.png"
+                             ModuleTitle="FancyZones">
+        <dev:SettingsPageControl.ModuleContent>
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
+                        Orientation="Vertical">
+                <dev:SettingsCard Header="Enable FancyZones"
+                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/fancyZones.png}">
+                    <ToggleSwitch />
+                </dev:SettingsCard>
+                <InfoBar Title="The system administrator is forcing this setting."
+                         IsClosable="False"
+                         IsOpen="True"
+                         Severity="Informational" />
+
+                <dev:SimpleSettingsGroup Header="Editor">
+                    <dev:SettingsCard ActionIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                FontSize=14,
+                                                                Glyph=&#xE8A7;}"
+                                      Description="Set and manage your layouts"
+                                      Header="Launch layout editor"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xEB3C;}"
+                                      IsClickEnabled="True" />
+
+                    <dev:SettingsCard Description="Customize the shortcut to activate this module"
+                                      Header="Activation shortcut"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xEDA7;}" />
+
+                    <dev:SettingsCard Description="When using multiple displays"
+                                      Header="Launch editor on the display"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xe7b5;}">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="With active focus" />
+                            <ComboBoxItem Content="Where the mouse pointer is" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+                </dev:SimpleSettingsGroup>
+
+
+                <dev:SimpleSettingsGroup Header="Zones">
+                    <dev:SettingsExpander Description="Manage how zones behave when using FancyZones"
+                                          Header="Zone behavior"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Hold Shift key to activate zones while dragging" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Use a non-primary mouse button to toggle zone activation" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Show zones on all monitors while dragging a window" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <dev:CheckBoxWithDescriptionControl Content="Allow zones to span across monitors" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard Header="When multiple zones overlap">
+                                <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                          SelectedIndex="0">
+                                    <ComboBoxItem Content="Activate the smallest zone by area" />
+                                    <ComboBoxItem Content="Activate the largest zone by area" />
+                                    <ComboBoxItem Content="Split the overlapped area into multiple activation targets" />
+                                    <ComboBoxItem Content="Activate the zone whose center is closest to the cursor" />
+                                </ComboBox>
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+
+                    <dev:SettingsExpander Description="Customize the way zones look"
+                                          Header="Zone appearance"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xEB3C;}"
+                                          IsExpanded="True">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Custom colors" />
+                            <ComboBoxItem Content="Windows default" />
+                        </ComboBox>
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Show zone number" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard Header="Opacity">
+                                <Slider MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                        Maximum="100"
+                                        Minimum="0" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Windows">
+
+                    <dev:SettingsExpander Description="Manage how windows behave when using FancyZones"
+                                          Header="&gt;Window behavior"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Keep windows in their zones when the screen resolution changes" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="During zone layout changes, windows assigned to a zone will match new size/positions" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Move newly created windows to their last known zone" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Move newly created windows to the current active monitor (Experimental)" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Restore the original size of windows when unsnapping" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Make dragged window transparent" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <dev:CheckBoxWithDescriptionControl Margin="0,0,0,6"
+                                                                    Description="This setting can affect all popup windows including notifications"
+                                                                    Header="Allow popup windows snapping" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Allow child windows snapping" />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Disable round corners when window is snapped" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+
+                    <dev:SettingsExpander Description="This overrides the Windows Snap shortcut (Win + arrow) to move windows between zones"
+                                          Header="Override Windows Snap"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xE90C;}"
+                                          IsExpanded="True">
+                        <ToggleSwitch />
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard Header="Move windows based on">
+                                <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                          MinHeight="56"
+                                          SelectedIndex="0">
+                                    <ComboBoxItem>
+                                        <StackPanel Orientation="Vertical"
+                                                    Spacing="4">
+                                            <dev:IsEnabledTextBlock Text="Zone index" />
+                                            <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                       Style="{StaticResource SecondaryTextStyle}">
+                                                <Run Text="Windows key +  or " />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <StackPanel Orientation="Vertical"
+                                                    Spacing="4">
+                                            <dev:IsEnabledTextBlock Text="Relative position" />
+                                            <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                       Style="{StaticResource SecondaryTextStyle}">
+                                                <Run Text="Windows key +    or " />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </ComboBoxItem>
+                                </ComboBox>
+                            </dev:SettingsCard>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Move windows between zones across all monitors" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Layouts">
+                    <dev:SettingsExpander Description="Layout-specific shortcuts can be configured in the editor"
+                                          Header="Enable quick layout switch"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xEDA7;}">
+                        <ToggleSwitch />
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard ContentAlignment="Left">
+                                <CheckBox Content="Flash zones when switching layout" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Excluded apps">
+
+                    <dev:SettingsExpander Description="Excludes an application from snapping to zones and will only react to Windows Snap - add one application name per line"
+                                          Header="Excluded apps"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xECE4;}"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard HorizontalContentAlignment="Stretch"
+                                              ContentAlignment="Vertical">
+                                <TextBox MinWidth="240"
+                                         MinHeight="160"
+                                         AcceptsReturn="True"
+                                         PlaceholderText="&gt;Example: outlook.exe"
+                                         ScrollViewer.IsVerticalRailEnabled="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                         ScrollViewer.VerticalScrollMode="Enabled"
+                                         TextWrapping="Wrap" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+            </StackPanel>
+        </dev:SettingsPageControl.ModuleContent>
+
+        <dev:SettingsPageControl.PrimaryLinks>
+            <dev:PageLink Link="https://aka.ms/PowerToysOverview_FancyZones"
+                          Text="Learn more about FancyZones" />
+        </dev:SettingsPageControl.PrimaryLinks>
+    </dev:SettingsPageControl>
+</Page>

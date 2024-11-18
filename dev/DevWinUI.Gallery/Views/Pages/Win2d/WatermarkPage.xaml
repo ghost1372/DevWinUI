@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WatermarkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/watermark"
+                                  DocType="Controls"
+                                  HeaderText="Example 1">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Watermark Mark="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txtMark"
+                                 Header="Mark"
+                                 PlaceholderText="Mark"
+                                 Text="DevWinUI" />
+                        <NumberBox x:Name="nbHorizSpace"
+                                   Header="HorizontalSpacing"
+                                   Minimum="0"
+                                   SpinButtonPlacementMode="Inline"
+                                   ValueChanged="nbHorizSpace_ValueChanged"
+                                   Value="5" />
+                        <NumberBox x:Name="nbVerSpace"
+                                   Header="VerticalSpacing"
+                                   Minimum="0"
+                                   SpinButtonPlacementMode="Inline"
+                                   ValueChanged="nbVerSpace_ValueChanged"
+                                   Value="5" />
+                        <Slider x:Name="Angle"
+                                Header="Angle"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="15" />
+                        <Slider x:Name="CenterPointX"
+                                Header="CenterPointX"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="0" />
+                        <Slider x:Name="CenterPointY"
+                                Header="CenterPointY"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="0" />
+                        <ToggleSwitch x:Name="UseScale"
+                                      IsOn="True" />
+                        <Slider x:Name="MarkScale"
+                                Header="MarkScale"
+                                Value="1" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Watermark x:Name="watermark1"
+                               Angle="{x:Bind Angle.Value, Mode=OneWay}"
+                               CenterPointX="{x:Bind CenterPointX.Value, Mode=OneWay}"
+                               CenterPointY="{x:Bind CenterPointY.Value, Mode=OneWay}"
+                               Mark="{x:Bind txtMark.Text, Mode=OneWay}"
+                               MarkScale="{x:Bind MarkScale.Value, Mode=OneWay}"
+                               UseScale="{x:Bind UseScale.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/watermark"
+                                  DocType="Controls"
+                                  HeaderText="Example 2">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Watermark MarkImage="ms-appx:///Assets/Cover.png" IsImage="True" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="nbHorizSpace2"
+                                   Header="HorizontalSpacing"
+                                   Minimum="0"
+                                   SpinButtonPlacementMode="Inline"
+                                   ValueChanged="nbHorizSpace2_ValueChanged"
+                                   Value="5" />
+                        <NumberBox x:Name="nbVerSpace2"
+                                   Header="VerticalSpacing"
+                                   Minimum="0"
+                                   SpinButtonPlacementMode="Inline"
+                                   ValueChanged="nbVerSpace2_ValueChanged"
+                                   Value="5" />
+                        <Slider x:Name="Angle2"
+                                Header="Angle"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="15" />
+                        <Slider x:Name="CenterPointX2"
+                                Header="CenterPointX"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="0" />
+                        <Slider x:Name="CenterPointY2"
+                                Header="CenterPointY"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="0" />
+                        <ToggleSwitch x:Name="UseScale2"
+                                      IsOn="True" />
+                        <Slider x:Name="MarkScale2"
+                                Header="MarkScale"
+                                StepFrequency="0.1"
+                                Value="1" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Watermark x:Name="watermark2"
+                               Angle="{x:Bind Angle2.Value, Mode=OneWay}"
+                               CenterPointX="{x:Bind CenterPointX2.Value, Mode=OneWay}"
+                               CenterPointY="{x:Bind CenterPointY2.Value, Mode=OneWay}"
+                               IsImage="True"
+                               MarkImage="https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/dev/DevWinUI.Gallery/Assets/icon.png"
+                               MarkScale="{x:Bind MarkScale2.Value, Mode=OneWay}"
+                               UseScale="{x:Bind UseScale2.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

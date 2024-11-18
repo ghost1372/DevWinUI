@@ -1,0 +1,10 @@
+﻿<ToggleButton MaxWidth="150"
+              Margin="0,20"
+              Padding="0,5,0,6"
+              IsChecked="True">
+    <dev:AutoScrollView Padding="11,0"
+                        IsPlaying="True">
+        <TextBlock Text="Long Text"
+                   TextTrimming="CharacterEllipsis" />
+    </dev:AutoScrollView>
+</ToggleButton>

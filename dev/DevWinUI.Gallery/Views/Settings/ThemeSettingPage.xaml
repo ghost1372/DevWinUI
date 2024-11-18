@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ThemeSettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      dev:BreadcrumbNavigator.IsHeaderVisible="True"
+      mc:Ignorable="d">
+    <ScrollView Margin="{ThemeResource ContentPageMargin}"
+                VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="5">
+            <dev:SettingsCard Description="Select the theme that suits your mood and preference. You can choose from dark, light, or system themes."
+                              Header="App theme"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/theme.png}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                    <ComboBoxItem Content="Light"
+                                  Tag="Light" />
+                    <ComboBoxItem Content="Dark"
+                                  Tag="Dark" />
+                    <ComboBoxItem Content="Default"
+                                  Tag="Default" />
+                </ComboBox>
+            </dev:SettingsCard>
+            <dev:SettingsCard Description="Change the appearance of the backdrop material behind your app. You can choose from mica, acrylic, or transparent options."
+                              Header="Material"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/backdrop.png}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                    <ComboBoxItem Content="None"
+                                  Tag="None" />
+                    <ComboBoxItem Content="Mica"
+                                  Tag="Mica" />
+                    <ComboBoxItem Content="Mica Alt"
+                                  Tag="MicaAlt" />
+                    <ComboBoxItem Content="Desktop Acrylic"
+                                  Tag="DesktopAcrylic" />
+                    <ComboBoxItem Content="Acrylic Base"
+                                  Tag="AcrylicBase" />
+                    <ComboBoxItem Content="Acrylic Thin"
+                                  Tag="AcrylicThin" />
+                    <ComboBoxItem Content="Transparent"
+                                  Tag="Transparent" />
+                </ComboBox>
+            </dev:SettingsCard>
+            <dev:SettingsCard ActionIcon="{dev:BitmapIcon Source=Assets/Fluent/external.png}"
+                              Description="Sync your app’s color with your Windows accent color. You can open the Windows accent color setting by clicking this card."
+                              Header="Accent color"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/color.png}"
+                              IsClickEnabled="True"
+                              LaunchUri="ms-settings:colors" />
+
+            <!--<dev:SettingsExpander Description="Add tint to your window to make your experience more personalized."
+                                          Header="TintColor"
+                                          HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/tint.png}"
+                                          IsEnabled="False">
+                <Button Padding="0">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="24"
+                                        Height="24"
+                                        Margin="4"
+                                        Background="Gray"
+                                        CornerRadius="4">
+                            <Grid>
+                                <PathIcon Data="M0 6 L0 0 L6 0 L6 6 L12 6 L12 0 L18 0 L18 6 L12 6 L12 12 L18 12 L18 6 L24 6 L24 12 L18 12 L18 18 L24 18 L24 24 L6 24 L6 18 L0 18 L0 12 L6 12 L6 18 L12 18 L12 24 L18 24 L18 18 L12 18 L12 12 L6 12 L6 6 Z"
+                                                  Foreground="LightGray" />
+                                <Rectangle x:Name="TintBox" />
+                            </Grid>
+                        </Border>
+                        <FontIcon Margin="8,4,10,4"
+                                          FontSize="12"
+                                          Glyph="&#xE70D;" />
+                    </StackPanel>
+                    <Button.Flyout>
+                        <Flyout>
+                            <ColorPicker ColorChanged="ColorPicker_ColorChanged"
+                                                 IsAlphaEnabled="True"
+                                                 IsMoreButtonVisible="True" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <dev:SettingsExpander.ItemsHeader>
+                    <dev:SettingsCard>
+                        <dev:SettingsCard.Description>
+                            <dev:ColorPalette Margin="5,5,0,0"
+                                                      HorizontalAlignment="Left"
+                                                      ItemWidth="32"
+                                                      Palette="Rectangle"
+                                                      ShowHeader="False"
+                                                      Color="NormalLarge" />
+                        </dev:SettingsCard.Description>
+                    </dev:SettingsCard>
+                </dev:SettingsExpander.ItemsHeader>
+            </dev:SettingsExpander>-->
+        </StackPanel>
+    </ScrollView>
+</Page>
+

@@ -1,0 +1,8 @@
+﻿<StackPanel MinWidth="340"
+        dev:Growl.GrowlParent="True" />
+
+<!-- if you want to use Token -->
+
+<StackPanel MinWidth="340"
+        dev:Growl.GrowlParent="True"
+        dev:Growl.Token="Test" />

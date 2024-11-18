@@ -1,4 +1,0 @@
-﻿<wuc:AutoScrollView IsPlaying="True">
-    <TextBlock Text="Long Text"
-               TextTrimming="None" />
-</wuc:AutoScrollView>

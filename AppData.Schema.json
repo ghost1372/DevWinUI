@@ -49,7 +49,7 @@
           },
           "IsSpecialSection": {
             "type": "boolean",
-            "description": "Not used, leave as default",
+            "description": "Indicates that this section is not a regular section but is added to the navigation differently",
             "default": true
           },
           "HideGroup": {
@@ -256,137 +256,13 @@
                       "description": "Not used, leave as default"
                     },
                     "description": "Array of names of related items"
-                  },
-                  "Items": {
-                    "type": "array",
-                    "description": "Items that will appear in the NavigationView and GridView",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "UniqueId": {
-                          "type": "string",
-                          "description": "Unique identifier of the item, typically refers to the full page type, e.g., 'AppNameSpace.Views.BlankPage'"
-                        },
-                        "SectionId": {
-                          "type": "string",
-                          "description": "Globally section id of this item"
-                        },
-                        "Title": {
-                          "type": "string",
-                          "description": "Displayed in both the NavigationViewItem and the GridView Item on the LandingPage"
-                        },
-                        "SecondaryTitle": {
-                          "type": "string",
-                          "description": "Not used, leave as default"
-                        },
-                        "Parameter": {
-                          "type": "string",
-                          "description": "Specify a parameter if there are multiple pages with the same UniqueId"
-                        },
-                        "ApiNamespace": {
-                          "type": "string",
-                          "description": "Not used, leave as default"
-                        },
-                        "Subtitle": {
-                          "type": "string",
-                          "description": "Only shown in the GridView Item on the LandingPage"
-                        },
-                        "Description": {
-                          "type": "string",
-                          "description": "Not used, leave as default"
-                        },
-                        "ImagePath": {
-                          "type": "string",
-                          "description": "Used as an image for both GridView and NavigationView items, with the format: 'ms-appx:///Assets/Icon.png'."
-                        },
-                        "IconGlyph": {
-                          "type": "string",
-                          "description": "If specified, this will be used in the NavigationViewItem instead of ImagePath. Format can be a Unicode string like 'E709' or an icon glyph itself."
-                        },
-                        "BadgeString": {
-                          "type": "string",
-                          "description": "Not used, leave as default"
-                        },
-                        "Content": {
-                          "type": "string",
-                          "description": "Not used, leave as default"
-                        },
-                        "IsNew": {
-                          "type": "boolean",
-                          "default": true,
-                          "description": "Indicates if this item is newly added and shows a dot on the overview card in the GridView"
-                        },
-                        "IsUpdated": {
-                          "type": "boolean",
-                          "default": true,
-                          "description": "Indicates if this item is updated and shows a dot on the overview card in the GridView"
-                        },
-                        "IsPreview": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "Indicates if this item is in a preview state"
-                        },
-                        "HideItem": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "If true, the item is hidden from the GridView"
-                        },
-                        "HideNavigationViewItem": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "If true, the item is hidden from the NavigationView"
-                        },
-                        "IncludedInBuild": {
-                          "type": "boolean",
-                          "default": true,
-                          "description": "Indicates if this item is included in the build"
-                        },
-                        "IsNavigationViewItemHeader": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "Indicates if this is a NavigationViewItemHeader"
-                        },
-                        "UsexUid": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "Indicates whether to use a Uid for localization"
-                        },
-                        "Links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "Title": {
-                                "type": "string",
-                                "description": "Not used, leave as default"
-                              },
-                              "Uri": {
-                                "type": "string",
-                                "description": "Not used, leave as default"
-                              }
-                            },
-                            "required": [ "Title", "Uri" ]
-                          },
-                          "description": "Not used, leave as default"
-                        },
-                        "Extra": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "Not used, leave as default"
-                          },
-                          "description": "Array of names of related items"
-                        }
-                      },
-                      "required": [ "UniqueId", "Title", "ImagePath" ]
-                    }
                   }
                 },
-                "required": [ "UniqueId", "Title", "ImagePath" ]
+                "required": [ "UniqueId", "Title" ]
               }
             }
           },
-        "required": [ "UniqueId", "Title", "ImagePath", "Items" ]
+        "required": [ "UniqueId", "Title", "Items" ]
       }
     }
   }

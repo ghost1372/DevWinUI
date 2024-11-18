@@ -1,9 +1,0 @@
-﻿<StackPanel>
-    <Button HorizontalAlignment="Center"
-            Command="{x:Bind Vm.ItemInvokedCommand}"
-            Content="Click Here" />
-    <TextBlock Margin="20"
-                HorizontalAlignment="Center"
-                FontSize="64"
-                Text="{x:Bind Vm.MyText, Mode=TwoWay}" />
-</StackPanel>

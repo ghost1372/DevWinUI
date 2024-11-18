@@ -1,7 +1,0 @@
-﻿<wuc:SettingsGroup Description="Make sure OneDrive is installed on your PC so you can see your storage details here"
-                   Header="Cloud storage"
-                   HeaderIcon="{wuc:BitmapIcon Source=Assets/Fluent/oneDrive.png}">
-    <wuc:SettingsGroup.Content>
-        <Button Content="Install OneDrive" />
-    </wuc:SettingsGroup.Content>
-</wuc:SettingsGroup>

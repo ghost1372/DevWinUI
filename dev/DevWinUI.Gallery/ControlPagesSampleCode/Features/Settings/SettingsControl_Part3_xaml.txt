@@ -1,0 +1,52 @@
+﻿<StackPanel Margin="10"
+            Spacing="10">
+    <TextBlock Margin="1,0,0,4"
+                Style="{StaticResource BodyStrongTextBlockStyle}"
+                Text="Group of settings" />
+    <dev:SettingsCard x:Name="settingsCard2"
+                        Description="This is a default card, with the Header, HeaderIcon, Description and Content set."
+                        Header="This is the Header"
+                        IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
+        <dev:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE799;" />
+        </dev:SettingsCard.HeaderIcon>
+        <ComboBox SelectedIndex="0">
+            <ComboBoxItem>Option 1</ComboBoxItem>
+            <ComboBoxItem>Option 2</ComboBoxItem>
+            <ComboBoxItem>Option 3</ComboBoxItem>
+        </ComboBox>
+    </dev:SettingsCard>
+
+    <dev:SettingsCard Description="You can use a FontIcon, SymbolIcon or BitmapIcon to set the cards HeaderIcon."
+                        Header="Icon options"
+                        IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
+        <dev:SettingsCard.HeaderIcon>
+            <BitmapIcon ShowAsMonochrome="False"
+                        UriSource="ms-appx:///Assets/Fluent/logo.png" />
+        </dev:SettingsCard.HeaderIcon>
+        <ToggleSwitch />
+    </dev:SettingsCard>
+
+    <dev:SettingsCard Header="A card with custom objects as its Description"
+                        IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
+        <dev:SettingsCard.Description>
+            <HyperlinkButton Content="Learn more about Phone Link" />
+        </dev:SettingsCard.Description>
+        <Button Content="Open Phone Link"
+                Style="{StaticResource AccentButtonStyle}" />
+    </dev:SettingsCard>
+
+    <dev:SettingsCard Description="When resizing a SettingsCard, the Content will wrap vertically. You can override this breakpoint by setting the SettingsCardWrapThreshold resource. For edge cases, you can also hide the icon by setting SettingsCardWrapNoIconThreshold."
+                        Header="Adaptive layouts"
+                        IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
+        <dev:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE745;" />
+        </dev:SettingsCard.HeaderIcon>
+        <dev:SettingsCard.Resources>
+            <x:Double x:Key="SettingsCardWrapThreshold">800</x:Double>
+            <x:Double x:Key="SettingsCardWrapNoIconThreshold">600</x:Double>
+        </dev:SettingsCard.Resources>
+        <Button Content="This control will wrap vertically!"
+                Style="{StaticResource AccentButtonStyle}" />
+    </dev:SettingsCard>
+</StackPanel>

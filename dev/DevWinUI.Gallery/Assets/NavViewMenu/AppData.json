@@ -1,0 +1,372 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/AppData.Schema.json",
+  "Groups": [
+    {
+      "UniqueId": "Win2dFeatures",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Features (Win2D)",
+      "ImagePath": "ms-appx:///Assets/Fluent/canvas.png",
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.TiledImageBrushPage",
+          "Title": "TiledImageBrush",
+          "Subtitle": "TiledImageBrush",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/watermark.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OutlineTextControlPage",
+          "Title": "OutlineTextControl",
+          "Subtitle": "OutlineTextControl",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/frame.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WatermarkPage",
+          "Title": "Watermark",
+          "Subtitle": "Watermark a Text or Image",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/watermark.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
+          "Title": "Blur Animation Helper",
+          "Subtitle": "Blur Animation Helper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextMorphEffectPage",
+          "Title": "Text Morph Effect",
+          "Subtitle": "Text Morhp Effect",
+          "ImagePath": "ms-appx:///Assets/Fluent/morph.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextGlitchEffectPage",
+          "Title": "Text Glitch Effect",
+          "Subtitle": "Text Glitch Effect",
+          "ImagePath": "ms-appx:///Assets/Fluent/styles.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextBlockStrokeViewPage",
+          "Title": "TextBlock Stroke View",
+          "Subtitle": "TextBlock Stroke View",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/autoSuggestBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ParticlePage",
+          "Title": "Particle",
+          "Subtitle": "Particle",
+          "ImagePath": "ms-appx:///Assets/Fluent/particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
+          "Title": "WaveCircle",
+          "Subtitle": "WaveCircle",
+          "ImagePath": "ms-appx:///Assets/Fluent/canvas.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BubblePage",
+          "Title": "Bubble",
+          "Subtitle": "Bubble",
+          "ImagePath": "ms-appx:///Assets/Fluent/canvas.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GooeyPage",
+          "Title": "Gooey",
+          "Subtitle": "Gooey",
+          "ImagePath": "ms-appx:///Assets/Fluent/gooey.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "Features",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Features",
+      "ImagePath": "ms-appx:///Assets/icon.png",
+      "IsSpecialSection": false,
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.TileControlPage",
+          "Title": "TileControl",
+          "Subtitle": "TileControl",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/commandBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PinBoxPage",
+          "Title": "PinBox",
+          "Subtitle": "PinBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/passwordBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SelectorBarSegmentedPage",
+          "Title": "SelectorBarSegmented",
+          "Subtitle": "SelectorBarSegmented",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/segmented.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorfulShimmingEffectPage",
+          "Title": "ColorfulShimmingEffect",
+          "Subtitle": "ColorfulShimmingEffect",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/morph.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LongShadowTextBlockPage",
+          "Title": "LongShadowTextBlock",
+          "Subtitle": "LongShadowTextBlock",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/morph.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
+          "Title": "CredentialHelper",
+          "Subtitle": "CredentialHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/contentDialog.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
+          "Title": "CompositionHelper",
+          "Subtitle": "CompositionHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FlipSidePage",
+          "Title": "FlipSide",
+          "Subtitle": "FlipSide",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/autoScrollView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PagerControlPage",
+          "Title": "PagerControl",
+          "Subtitle": "PagerControl",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/pagerControl.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.AutoScrollViewPage",
+          "Title": "AutoScrollView",
+          "Subtitle": "AutoScrollView",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/autoScrollView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OpacityMaskViewPage",
+          "Title": "OpacityMaskView",
+          "Subtitle": "OpacityMaskView",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ProgressBarPage",
+          "Title": "Progress",
+          "Subtitle": "ProgressRing, WaveProgressBar",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/progressBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DividerPage",
+          "Title": "Divider",
+          "Subtitle": "Divider",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/divider.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ShieldPage",
+          "Title": "Shield",
+          "Subtitle": "Shield",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/shield.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GravatarPage",
+          "Title": "Gravatar",
+          "Subtitle": "Gravatar",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/gravatar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GrowlPage",
+          "Title": "Growl",
+          "Subtitle": "Growl",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/frame.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OptionsPageControlPage",
+          "Title": "OptionsPageControl",
+          "Subtitle": "A page with options",
+          "ImagePath": "ms-appx:///Assets/Fluent/optionsPageControl.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
+          "Title": "Rainbow Frame",
+          "Subtitle": "A window with Rainbow Frame",
+          "ImagePath": "ms-appx:///Assets/Fluent/frame.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerPage",
+          "Title": "File And Folder Picker",
+          "Subtitle": "File And Folder Picker",
+          "ImagePath": "ms-appx:///Assets/Fluent/commandBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StylesPage",
+          "Title": "Styles",
+          "Subtitle": "Styles",
+          "ImagePath": "ms-appx:///Assets/Fluent/styles.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SwitchPresenterPage",
+          "Title": "SwitchPresenter",
+          "Subtitle": "SwitchPresenter",
+          "ImagePath": "ms-appx:///Assets/Fluent/switchPresenter.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ValidationPage",
+          "Title": "Validation",
+          "Subtitle": "Validation",
+          "ImagePath": "ms-appx:///Assets/Fluent/behaviors.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
+          "Title": "Extension",
+          "Subtitle": "Extension",
+          "ImagePath": "ms-appx:///Assets/Fluent/extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
+          "Title": "ThemeManager",
+          "Subtitle": "Change Application Theme and Material Easily",
+          "ImagePath": "ms-appx:///Assets/Fluent/theme.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
+          "Title": "Check Update",
+          "Subtitle": "Check Application Update from Github",
+          "ImagePath": "ms-appx:///Assets/Fluent/update.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage",
+          "Title": "Inline AutoComplete TextBox",
+          "Subtitle": "Inline AutoComplete TextBox",
+          "ImagePath": "ms-appx:///Assets/Fluent/autoSuggestBox.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "LandingPages",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "LandingPages",
+      "SecondaryTitle": "",
+      "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png",
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.AllLandingsPage",
+          "Title": "AllLandingPage",
+          "Subtitle": "Show All Available options from Json file",
+          "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.HomeLandingsPage",
+          "Title": "HomeLandingPage",
+          "Subtitle": "Show Simple Landing Page",
+          "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "Settings Control",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Settings Control",
+      "ImagePath": "ms-appx:///Assets/Fluent/settingsControl.png",
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.SettingsGroup",
+          "Title": "SettingsGroup Sample",
+          "Subtitle": "SettingsGroup Sample",
+          "ImagePath": "ms-appx:///Assets/Fluent/settingsControl.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SettingsControls",
+          "Title": "SettingsControl Sample",
+          "Subtitle": "SettingsControl Sample",
+          "ImagePath": "ms-appx:///Assets/Fluent/settingsControl.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GeneralPage",
+          "Title": "General",
+          "Subtitle": "General Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/general.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OobePage",
+          "Title": "Oobe",
+          "Subtitle": "Oobe Page",
+          "ImagePath": "ms-appx:///Assets/Fluent/powerToys.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.AwakePage",
+          "Title": "Awake",
+          "Subtitle": "Awake Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/awake.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorPickerPage",
+          "Title": "Color Picker",
+          "Subtitle": "Color Picker Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/colorPicker.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FancyZonesPage",
+          "Title": "Fancy Zones",
+          "Subtitle": "Fancy Zones Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/fancyZones.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PowerPreviewPage",
+          "Title": "Power Preview",
+          "Subtitle": "Power Preview Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/fileExplorerPreview.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ImageResizerPage",
+          "Title": "Image Resizer",
+          "Subtitle": "Image Resizer Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/imageResizer.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.KeyboardManagerPage",
+          "Title": "Keyboard Manager",
+          "Subtitle": "Keyboard Manager Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/keyboardManager.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PowerRenamePage",
+          "Title": "Power Rename",
+          "Subtitle": "Power Rename Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/powerRename.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PowerLauncherPage",
+          "Title": "Power Launcher",
+          "Subtitle": "Power Launcher Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/powerToysRun.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ShortcutGuidePage",
+          "Title": "Shortcut Guide",
+          "Subtitle": "Shortcut Guide Settings for SettingsControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/shortcutGuide.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+﻿<dev:SettingsGroup Description="Recent and commonly used settings"
+                   Header="Recommended settings">
+    <dev:SettingsGroup.Items>
+        <dev:SettingsCard Header="Installed apps"
+                            HeaderIcon="{dev:SymbolIcon Symbol=AllApps}"
+                            IsClickEnabled="True" />
+        <dev:SettingsCard Header="Taskbar"
+                            HeaderIcon="{dev:SymbolIcon Symbol=More}"
+                            IsClickEnabled="True" />
+        <dev:SettingsCard Header="Display"
+                            HeaderIcon="{dev:SymbolIcon Symbol=Mail}"
+                            IsClickEnabled="True" />
+    </dev:SettingsGroup.Items>
+</dev:SettingsGroup>

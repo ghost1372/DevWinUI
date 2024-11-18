@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.TextGlitchEffectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/textGlitchEffect"
+                                  DocType="Controls"
+                                  HeaderText="Example 1">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:TextGlitchEffect Text="Text" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txt"
+                                 Header="Text"
+                                 PlaceholderText="Text"
+                                 Text="DevWinUI" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:TextGlitchEffect MinHeight="110"
+                                      Background="{ThemeResource SystemAltMediumHighColor}"
+                                      Text="{x:Bind txt.Text, Mode=OneWay}" />
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/textGlitchEffect"
+                                  DocType="Controls"
+                                  HeaderText="Example 2">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:TextGlitchEffect2 Text="Text" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txt2"
+                                 Header="Text"
+                                 PlaceholderText="Text"
+                                 Text="DevWinUI" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:TextGlitchEffect2 MinHeight="150"
+                                       Text="{x:Bind txt2.Text, Mode=OneWay}" />
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/textGlitchEffect"
+                                  DocType="Controls"
+                                  HeaderText="Example 3">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:TextGlitchEffect3 Delimiter="," Text="Text,Effect,Relax" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txt3"
+                                 Header="Text"
+                                 PlaceholderText="Text"
+                                 Text="Text,Effect,Relax" />
+
+                        <TextBox x:Name="txt4"
+                                 Header="Delimiter"
+                                 PlaceholderText="Delimiter"
+                                 Text="," />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:TextGlitchEffect3 MinHeight="110"
+                                       Delimiter="{x:Bind txt4.Text, Mode=OneWay}"
+                                       Text="{x:Bind txt3.Text, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

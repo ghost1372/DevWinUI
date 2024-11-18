@@ -1,0 +1,74 @@
+﻿<Page x:Class="DevWinUIGallery.Views.HomeLandingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="landingPages/mainLandingPage"
+                                  DocType="Controls"
+                                  XamlSource="LandingsPage/HomeLandingsPage_xaml.txt">
+                <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
+                                     HeaderOverlayImage="{ThemeResource HeaderCover}"
+                                     HeaderSubtitleText="Windows App SDK 1.6+"
+                                     HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
+                                     JsonNavigationViewService="{x:Bind local:App.Current.GetJsonNavigationViewService}">
+                    <dev:MainLandingPage.HeaderContent>
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="10">
+                            <dev:HeaderTile Title="Documentation Center"
+                                            Description="Learn how to work with controls and styles."
+                                            Link="https://Ghost1372.github.io/DevWinUI">
+                                <dev:HeaderTile.Source>
+                                    <Image Source="/Assets/HomeHeaderTiles/Header-WinUIGallery.png" />
+                                </dev:HeaderTile.Source>
+                            </dev:HeaderTile>
+                            <dev:HeaderTile Title="Controls"
+                                            Description="Experience WinUI 3 quickly and easily with the help of Components, Everything you need to develop an application is gathered in one place."
+                                            Link="https://Ghost1372.github.io/DevWinUIControls">
+                                <dev:HeaderTile.Source>
+                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                </dev:HeaderTile.Source>
+                            </dev:HeaderTile>
+                            <dev:HeaderTile Title="Core"
+                                            Description="Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place."
+                                            Link="https://Ghost1372.github.io/DevWinUI">
+                                <dev:HeaderTile.Source>
+                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                </dev:HeaderTile.Source>
+                            </dev:HeaderTile>
+                            <dev:HeaderTile Title="ContextMenu"
+                                            Description="add a new ContextMenu for Windows 11/10."
+                                            Link="https://Ghost1372.github.io/DevWinUI">
+                                <dev:HeaderTile.Source>
+                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                </dev:HeaderTile.Source>
+                            </dev:HeaderTile>
+                        </StackPanel>
+                    </dev:MainLandingPage.HeaderContent>
+
+                    <dev:MainLandingPage.FooterContent>
+                        <StackPanel>
+                            <TextBlock x:Name="LearnMore"
+                                       Margin="0,0,0,12"
+                                       Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Text="Learn More" />
+                            <HyperlinkButton Content="Developer Center"
+                                             NavigateUri="https://developer.microsoft.com/en-us/windows/" />
+                            <HyperlinkButton Content="App Code Samples"
+                                             NavigateUri="https://docs.microsoft.com/en-us/windows/apps/get-started/samples" />
+                            <HyperlinkButton Content="Windows Template Studio"
+                                             NavigateUri="https://github.com/microsoft/WindowsTemplateStudio" />
+                        </StackPanel>
+                    </dev:MainLandingPage.FooterContent>
+                </dev:MainLandingPage>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

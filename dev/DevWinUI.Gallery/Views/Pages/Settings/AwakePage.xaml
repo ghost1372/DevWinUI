@@ -1,0 +1,101 @@
+﻿<Page x:Class="DevWinUIGallery.Views.AwakePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <dev:SettingsPageControl IsTabStop="False"
+                             ModuleDescription="A convenient way to keep your PC awake on-demand."
+                             ModuleImageSource="ms-appx:///Assets/Modules/Awake.png"
+                             ModuleTitle="Awake"
+                             SecondaryLinksHeader="Attribution">
+        <dev:SettingsPageControl.ModuleContent>
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
+                        Orientation="Vertical">
+                <dev:SettingsCard Header="Enable Awake"
+                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/awake.png}">
+                    <ToggleSwitch OffContent="Off"
+                                  OnContent="On" />
+                </dev:SettingsCard>
+                <InfoBar Title="The system administrator is forcing this setting."
+                         IsClosable="False"
+                         IsOpen="True"
+                         Severity="Informational" />
+
+                <dev:SimpleSettingsGroup Header="Behavior">
+
+                    <dev:SettingsCard Description="Manage the state of your device when Awake is active"
+                                      Header="Mode"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE945;}">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Keep using the selected power plan" />
+                            <ComboBoxItem Content="Keep awake indefinitely" />
+                            <ComboBoxItem Content="Keep awake for a time interval" />
+                            <ComboBoxItem Content="Keep awake until expiration" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+
+                    <dev:SettingsExpander Description="Keep custom awake state until a specific date and time"
+                                          Header="End date and time"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xEC92;}"
+                                          IsExpanded="True">
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard Header="End date">
+                                <DatePicker />
+                            </dev:SettingsCard>
+                            <dev:SettingsCard Header="End time">
+                                <TimePicker ClockIdentifier="24HourClock" />
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+
+                    <dev:SettingsCard Header="Interval before returning to the previous awakeness state"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE916;}">
+
+                        <StackPanel MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                    Orientation="Horizontal">
+                            <NumberBox Width="96"
+                                       HorizontalAlignment="Left"
+                                       Header="Hours"
+                                       LargeChange="5"
+                                       Minimum="0"
+                                       SmallChange="1"
+                                       SpinButtonPlacementMode="Compact" />
+                            <NumberBox Width="96"
+                                       Margin="8,0,0,0"
+                                       HorizontalAlignment="Left"
+                                       Header="Minutes"
+                                       LargeChange="5"
+                                       Maximum="60"
+                                       Minimum="0"
+                                       SmallChange="1"
+                                       SpinButtonPlacementMode="Compact" />
+                        </StackPanel>
+                    </dev:SettingsCard>
+
+                    <dev:SettingsCard Description="This setting is only available when keeping the PC awake"
+                                      Header="Keep screen on"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE7F4;}">
+                        <ToggleSwitch />
+                    </dev:SettingsCard>
+                </dev:SimpleSettingsGroup>
+            </StackPanel>
+        </dev:SettingsPageControl.ModuleContent>
+
+        <dev:SettingsPageControl.PrimaryLinks>
+            <dev:PageLink Link="https://aka.ms/PowerToysOverview_Awake"
+                          Text="Learn more about Awake" />
+        </dev:SettingsPageControl.PrimaryLinks>
+        <dev:SettingsPageControl.SecondaryLinks>
+            <dev:PageLink Link="https://Awake.den.dev"
+                          Text="Den Delimarsky's Awake" />
+        </dev:SettingsPageControl.SecondaryLinks>
+    </dev:SettingsPageControl>
+</Page>

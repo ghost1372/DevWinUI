@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>8.0.0</Version>
+    <AssemblyName>$(BaseNamespace).ContextMenu</AssemblyName>
+    <PackageId>$(BaseNamespace).ContextMenu</PackageId>
+    <Description></Description>
+    <PackageTags></PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="ContextMenuCustomHost.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

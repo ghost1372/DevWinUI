@@ -1,0 +1,77 @@
+﻿<Page x:Class="DevWinUI_Template.LibrariesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+      Title="LibrariesPage"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/iNKORE.UI.WPF.Modern;component/Themes/Styles/Expander.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <ScrollViewer Margin="5"
+                  VerticalAlignment="Top">
+        <StackPanel>
+            <Separator Margin="0,10,0,5"
+                       HorizontalAlignment="Stretch" />
+            <Expander HorizontalAlignment="Stretch"
+                      Header="DevWinUI"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="DevWinUIPanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+
+            <Expander Margin="0,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      Header="General"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="GeneralPanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+
+            <Expander Margin="0,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      Header="EntityFramework Core"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="EFCorePanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+
+            <Expander Margin="0,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      Header="CommunityToolkit"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="CommunityToolkitPanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+
+            <Expander Margin="0,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      Header="MVVM"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="MVVMPanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+
+            <Expander Margin="0,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      Header="Log"
+                      IsExpanded="False"
+                      Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
+                <StackPanel x:Name="LogPanel"
+                            Margin="0,0,10,0" />
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

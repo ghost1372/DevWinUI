@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>$DotNetVersion$-windows10.0.$TargetFrameworkVersion$.0</TargetFramework>
+	<TargetPlatformMinVersion>10.0.$MinimumTargetPlatform$.0</TargetPlatformMinVersion>
+	<RootNamespace>$safeprojectname$</RootNamespace>
+	<ApplicationManifest>app.manifest</ApplicationManifest>
+	<Platforms>$Platforms$</Platforms>
+	<RuntimeIdentifiers>$RuntimeIdentifiers$</RuntimeIdentifiers>
+	<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+	<UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>$Nullable$</Nullable>
+    <TrimMode>$TrimMode$</TrimMode>
+    <ImplicitUsings>true</ImplicitUsings>
+	<LangVersion>Latest</LangVersion>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	<WindowsPackageType>$WindowsPackageType$</WindowsPackageType>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+	<Version>1.0.0</Version>
+
+	<!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+	<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+	<PublishAot>$PublishAot$</PublishAot>
+	<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="T4Templates\NavigationPageMappings.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NavigationPageMappings.cs</LastGenOutput>
+    </None>
+    <Compile Update="T4Templates\NavigationPageMappings.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NavigationPageMappings.tt</DependentUpon>
+    </Compile>
+    <None Update="T4Templates\BreadcrumbPageMappings.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>
+    </None>
+    <Compile Update="T4Templates\BreadcrumbPageMappings.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BreadcrumbPageMappings.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="Assets\**\*">
+	  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!-- 
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+	<ProjectCapability Include="Msix"/>
+  </ItemGroup>
+
+  <!-- 
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if 
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+	<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+<Target Name="TransformAllT4Templates" BeforeTargets="BeforeBuild">
+  <ItemGroup>
+    <!-- This picks up all T4 templates in the project -->
+    <T4Template Include="**\*.tt" />
+  </ItemGroup>
+
+  <!-- Check if TextTransform.exe exists before running -->
+  <Exec Command="if exist &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;%(T4Template.FullPath)&quot;" Condition="Exists('$(DevEnvDir)TextTransform.exe')" />
+</Target>
+</Project>

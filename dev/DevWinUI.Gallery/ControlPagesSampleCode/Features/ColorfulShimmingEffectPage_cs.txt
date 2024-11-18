@@ -1,0 +1,17 @@
+﻿<dev:ColorfulShimmingEffect>
+    <dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
+        <dev:ColorfulShimmingEffectItem DelayTimeSpan="0"
+                                        DurationTimeSpan="0:0:10"
+                                        Z="50.0"
+                                        Color="Yellow" />
+        <dev:ColorfulShimmingEffectItem DelayTimeSpan="0:0:0.25"
+                                        DurationTimeSpan="0:0:10"
+                                        Z="50.0"
+                                        Color="Green" />
+    </dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
+    <TextBlock HorizontalAlignment="Center"
+                FontSize="140"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="DevWinUI" />
+</dev:ColorfulShimmingEffect>

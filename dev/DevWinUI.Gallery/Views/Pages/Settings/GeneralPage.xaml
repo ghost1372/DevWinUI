@@ -1,0 +1,192 @@
+﻿<Page x:Class="DevWinUIGallery.Views.GeneralPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:dev="using:DevWinUI">
+
+    <dev:SettingsPageControl ModuleDescription="Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity. Made with 💗 by Microsoft and the PowerToys community."
+                             ModuleImageSource="ms-appx:///Assets/Modules/PT.png"
+                             ModuleTitle="General"
+                             SecondaryLinksHeader="Related information">
+        <dev:SettingsPageControl.ModuleContent>
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
+                        Orientation="Vertical">
+                <dev:SimpleSettingsGroup Margin="0,-32,0,0"
+                                         Header="Version">
+                    <dev:SettingsCard Header="PowerToys V1.0"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE895;}">
+                        <dev:SettingsCard.Description>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Style="{StaticResource SecondaryTextStyle}">
+                                    <Run Text="Last checked: " />
+                                    <Run Text="2023/04/27" />
+                                </TextBlock>
+                                <HyperlinkButton Margin="0,2,0,0"
+                                                 Content="Release Notes"
+                                                 FontWeight="SemiBold" />
+                            </StackPanel>
+                        </dev:SettingsCard.Description>
+
+                        <Button HorizontalAlignment="Right"
+                                Content="Check for Update" />
+                    </dev:SettingsCard>
+                    <InfoBar Title="PowerToys is up to date"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Severity="Success" />
+
+                    <dev:SettingsCard Margin="0,-6,0,0"
+                                      Description="Except on metered connections"
+                                      Header="Download updates automatically">
+                        <ToggleSwitch />
+                    </dev:SettingsCard>
+                    <InfoBar Title="The system administrator has disabled the automatic download of updates."
+                             IsClosable="False"
+                             IsOpen="True"
+                             Severity="Informational" />
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Appearance &amp; behavior"
+                                         IsEnabled="True">
+                    <dev:SettingsCard Header="App theme"
+                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                Glyph=&#xE790;}">
+                        <dev:SettingsCard.Description>
+                            <HyperlinkButton Content="Windows color settings" />
+                        </dev:SettingsCard.Description>
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Dark" />
+                            <ComboBoxItem Content="Light" />
+                            <ComboBoxItem Content="Default" />
+                        </ComboBox>
+                    </dev:SettingsCard>
+
+                    <dev:SettingsCard Description="PowerToys will launch automatically"
+                                      Header="Run at startup">
+                        <ToggleSwitch />
+                    </dev:SettingsCard>
+                </dev:SimpleSettingsGroup>
+
+                <dev:SimpleSettingsGroup Header="Backup &amp; restore"
+                                         Visibility="Visible">
+                    <dev:SettingsExpander Description="PowerToys will restart automatically if needed"
+                                          Header="Backup and restore your settings"
+                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
+                                                                    Glyph=&#xE777;}">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8">
+                            <Button Content="Backup" />
+                            <Button Content="Restore" />
+                        </StackPanel>
+                        <dev:SettingsExpander.Items>
+                            <dev:SettingsCard Header="Location">
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                    <TextBlock x:Name="pathTextBlock"
+                                               Width="350"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                               IsTextSelectionEnabled="True"
+                                               TextAlignment="Right"
+                                               TextTrimming="CharacterEllipsis" />
+                                    <Button Content="&#xe8da;"
+                                            FontFamily="{ThemeResource SymbolThemeFontFamily}">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip>
+                                                <TextBlock Text="Select folder" />
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                            </dev:SettingsCard>
+                            <dev:SettingsCard HorizontalContentAlignment="Left"
+                                              ContentAlignment="Vertical"
+                                              Header="Backup information">
+                                <dev:SettingsCard.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="12" />
+                                    </Style>
+                                </dev:SettingsCard.Resources>
+                                <Grid Margin="0,0,0,6"
+                                      ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Status:" />
+                                    <TextBlock Grid.Column="1"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                        <Run />
+                                        <Hyperlink TextDecorations="Underline">
+                                            <Run Text="Refresh" />
+                                        </Hyperlink>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="1"
+                                               Text="File name:" />
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="1"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+                                    <TextBlock Grid.Row="2"
+                                               Text="Source machine:" />
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="1"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Grid.Row="3"
+                                               Text="Created at:" />
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="1"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </Grid>
+                            </dev:SettingsCard>
+                        </dev:SettingsExpander.Items>
+                    </dev:SettingsExpander>
+                </dev:SimpleSettingsGroup>
+                <InfoBar Title="Result"
+                         IsClosable="False"
+                         IsOpen="True" />
+                <dev:SimpleSettingsGroup Header="Experimentation"
+                                         Visibility="Visible">
+                    <dev:SettingsCard Description="Note: Only Windows Insider builds may be selected for experimentation"
+                                      Header="Allow experimentation with new features">
+                        <dev:SettingsCard.HeaderIcon>
+                            <PathIcon Data="M1859 1758q14 23 21 47t7 51q0 40-15 75t-41 61-61 41-75 15H354q-40 0-75-15t-61-41-41-61-15-75q0-27 6-51t21-47l569-992q10-14 10-34V128H640V0h768v128h-128v604q0 19 10 35l569 991zM896 732q0 53-27 99l-331 577h972l-331-577q-27-46-27-99V128H896v604zm799 1188q26 0 44-19t19-45q0-10-2-17t-8-16l-164-287H464l-165 287q-9 15-9 33 0 26 18 45t46 19h1341z" />
+                        </dev:SettingsCard.HeaderIcon>
+                        <ToggleSwitch />
+                    </dev:SettingsCard>
+                    <InfoBar Title="The system administrator has disabled experimentation."
+                             IsClosable="False"
+                             IsOpen="True"
+                             Severity="Informational" />
+                </dev:SimpleSettingsGroup>
+            </StackPanel>
+        </dev:SettingsPageControl.ModuleContent>
+        <dev:SettingsPageControl.PrimaryLinks>
+            <dev:PageLink Link="https://aka.ms/powertoys"
+                          Text="Documentation" />
+            <dev:PageLink Link="https://aka.ms/powertoys"
+                          Text="GitHub repository" />
+            <dev:PageLink Link="https://aka.ms/powerToysReportBug"
+                          Text="Report a bug" />
+            <dev:PageLink Link="https://aka.ms/powerToysRequestFeature"
+                          Text="Request a feature" />
+        </dev:SettingsPageControl.PrimaryLinks>
+        <dev:SettingsPageControl.SecondaryLinks>
+            <dev:PageLink Link="http://go.microsoft.com/fwlink/?LinkId=521839"
+                          Text="Privacy statement" />
+            <dev:PageLink Link="https://github.com/microsoft/PowerToys/blob/master/NOTICE.md"
+                          Text="Open-source notice" />
+        </dev:SettingsPageControl.SecondaryLinks>
+    </dev:SettingsPageControl>
+</Page>

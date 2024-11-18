@@ -1,0 +1,64 @@
+﻿<dev:SettingsExpander x:Name="settingsCard"
+                        Description="The SettingsExpander has the same properties as a Card, and you can set SettingsCard as part of the Items collection."
+                        Header="SettingsExpander"
+                        IsExpanded="{x:Bind IsCardExpanded, Mode=OneWay}">
+    <dev:SettingsExpander.HeaderIcon>
+        <FontIcon Glyph="&#xE91B;" />
+    </dev:SettingsExpander.HeaderIcon>
+    <ComboBox SelectedIndex="0">
+        <ComboBoxItem>Option 1</ComboBoxItem>
+        <ComboBoxItem>Option 2</ComboBoxItem>
+        <ComboBoxItem>Option 3</ComboBoxItem>
+    </ComboBox>
+
+    <dev:SettingsExpander.Items>
+        <dev:SettingsCard Header="A basic SettingsCard within an SettingsExpander">
+            <Button Content="Button" />
+        </dev:SettingsCard>
+        <dev:SettingsCard Description="SettingsCard within an Expander can be made clickable too!"
+                            Header="This item can be clicked"
+                            IsClickEnabled="True" />
+
+        <dev:SettingsCard ContentAlignment="Left">
+            <CheckBox Content="Here the ContentAlignment is set to Left. This is great for e.g. CheckBoxes or RadioButtons." />
+        </dev:SettingsCard>
+
+        <dev:SettingsCard HorizontalContentAlignment="Left"
+                            ContentAlignment="Vertical"
+                            Description="You can also align your content vertically. Make sure to set the HorizontalAlignment to Left when you do!"
+                            Header="Vertically aligned">
+            <GridView SelectedIndex="1">
+                <GridViewItem>
+                    <Border Width="64"
+                            Height="64"
+                            Background="#0078D4"
+                            CornerRadius="4" />
+                </GridViewItem>
+                <GridViewItem>
+                    <Border Width="64"
+                            Height="64"
+                            Background="#005EB7"
+                            CornerRadius="4" />
+                </GridViewItem>
+                <GridViewItem>
+                    <Border Width="64"
+                            Height="64"
+                            Background="#003D92"
+                            CornerRadius="4" />
+                </GridViewItem>
+                <GridViewItem>
+                    <Border Width="64"
+                            Height="64"
+                            Background="#001968"
+                            CornerRadius="4" />
+                </GridViewItem>
+            </GridView>
+        </dev:SettingsCard>
+        <dev:SettingsCard Description="You can override the Left indention of a SettingsCard by overriding the SettingsCardLeftIndention"
+                            Header="Customization">
+            <dev:SettingsCard.Resources>
+                <x:Double x:Key="SettingsCardLeftIndention">40</x:Double>
+            </dev:SettingsCard.Resources>
+        </dev:SettingsCard>
+    </dev:SettingsExpander.Items>
+</dev:SettingsExpander>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.FlipSidePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/flipSide">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:FlipSide IsFlipped="True" &gt; #nl#
+                        &lt;dev:FlipSide.Side1&gt; #nl#
+                        &lt;TextBlock Text="Side 1" /&gt; #nl#
+                        &lt;/dev:FlipSide.Side1&gt; #nl#
+                        &lt;dev:FlipSide.Side2&gt; #nl#
+                        &lt;TextBlock Text="Side 2" /&gt; #nl#
+                        &lt;/dev:FlipSide.Side2&gt; #nl#
+                        &lt;/dev:FlipSide &gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="tg"
+                                      Header="IsFlipped" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
+                    <dev:FlipSide.Side1>
+                        <Grid Background="Red">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="Side 1" />
+                        </Grid>
+                    </dev:FlipSide.Side1>
+                    <dev:FlipSide.Side2>
+                        <Grid Background="Blue">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="Side 2" />
+                        </Grid>
+                    </dev:FlipSide.Side2>
+                </dev:FlipSide>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

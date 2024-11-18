@@ -1,0 +1,43 @@
+﻿<StackPanel Margin="10"
+            Spacing="10">
+    <dev:Divider HorizontalContentAlignment="Left"
+                    Content="Title" />
+    <dev:Divider HorizontalContentAlignment="Right"
+                    Content="Title"
+                    ContentPadding="10,0" />
+    <StackPanel Orientation="Horizontal">
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+    </StackPanel>
+    <StackPanel Margin="0,16,0,0"
+                Orientation="Horizontal">
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        LineStrokeThickness="2"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        LineStrokeThickness="2"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+    </StackPanel>
+    <StackPanel Margin="0,16,0,0"
+                Orientation="Horizontal">
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        LineStroke="{ThemeResource AccentAAFillColorTertiaryBrush}"
+                        LineStrokeThickness="2"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+        <dev:Divider MaxHeight="16"
+                        LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                        LineStrokeThickness="2"
+                        Orientation="Vertical" />
+        <Button Content="Button" />
+    </StackPanel>
+</StackPanel>

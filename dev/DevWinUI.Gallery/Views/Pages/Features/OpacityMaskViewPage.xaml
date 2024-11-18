@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.OpacityMaskViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <Storyboard x:Name="EffectButtonAnimation"
+                    Duration="0:0:1.5">
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                          Storyboard.TargetName="Stop1"
+                                          Storyboard.TargetProperty="Color"
+                                          Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0"
+                                     Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5"
+                                     Value="#FFFFFFFF" />
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                          Storyboard.TargetName="Stop2"
+                                          Storyboard.TargetProperty="Color"
+                                          Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0"
+                                     Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5"
+                                     Value="#FFFFFFFF" />
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                          Storyboard.TargetName="Stop5"
+                                          Storyboard.TargetProperty="Color"
+                                          Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0"
+                                     Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5"
+                                     Value="#FFFFFFFF" />
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                          Storyboard.TargetName="Stop6"
+                                          Storyboard.TargetProperty="Color"
+                                          Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0"
+                                     Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25"
+                                     Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5"
+                                     Value="#FFFFFFFF" />
+            </ColorAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                           Storyboard.TargetName="Stop2"
+                                           Storyboard.TargetProperty="Offset"
+                                           Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0"
+                                        Value="-0.4" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
+                                      Value="-0.4" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                           Storyboard.TargetName="Stop3"
+                                           Storyboard.TargetProperty="Offset"
+                                           Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0"
+                                        Value="-0.3" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
+                                      Value="-0.3" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
+                                      Value="1.1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                           Storyboard.TargetName="Stop4"
+                                           Storyboard.TargetProperty="Offset"
+                                           Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0"
+                                        Value="-0.25" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
+                                      Value="-0.25" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
+                                      Value="1.15" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                           Storyboard.TargetName="Stop5"
+                                           Storyboard.TargetProperty="Offset"
+                                           Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0"
+                                        Value="-0.15" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
+                                      Value="-0.15" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
+                                      Value="1.25" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/opacityMaskView"
+                                  HeaderText="OpacityMaskView"
+                                  XamlSource="Features/OpacityMaskView/OpacityMaskViewPage_Part1_xaml.txt">
+                <dev:OpacityMaskView MaxHeight="500"
+                                     Margin="0,20"
+                                     Padding="0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                    <dev:OpacityMaskView.OpacityMask>
+                        <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#00FFFFFF" />
+                            <GradientStop Offset="0.05" Color="#00FFFFFF" />
+                            <GradientStop Offset="0.25" Color="#FFFFFFFF" />
+                            <GradientStop Offset="0.55" Color="#FFFFFFFF" />
+                            <GradientStop Offset="0.95" Color="#00FFFFFF" />
+                            <GradientStop Offset="1" Color="#00FFFFFF" />
+                        </LinearGradientBrush>
+                    </dev:OpacityMaskView.OpacityMask>
+                    <Image Source="http://e0.ifengimg.com/03/2019/0116/4520E55BB546CF6D7F295FB28A2A205B598BD5EC_size554_w1228_h1842.jpeg"
+                           Stretch="Uniform" />
+                </dev:OpacityMaskView>
+            </local:ControlExample>
+
+            <local:ControlExample CSharpSource="Features/OpacityMaskView/OpacityMaskViewPage_cs.txt"
+                                  DocPage="controls/opacityMaskView"
+                                  HeaderText="EffectButton"
+                                  XamlSource="Features/OpacityMaskView/OpacityMaskViewPage_Part2_xaml.txt">
+                <dev:OpacityMaskView Margin="0,20"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                    <dev:OpacityMaskView.OpacityMask>
+                        <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0,0.2" EndPoint="1,0.8">
+                            <GradientStop x:Name="Stop1" Offset="-1" Color="#FFFFFFFF" />
+                            <GradientStop x:Name="Stop2" Offset="-0.4" Color="#FFFFFFFF" />
+                            <GradientStop x:Name="Stop3" Offset="-0.3" Color="#FFFFFFFF" />
+                            <GradientStop x:Name="Stop4" Offset="-0.25" Color="#FFFFFFFF" />
+                            <GradientStop x:Name="Stop5" Offset="-0.15" Color="#FFFFFFFF" />
+                            <GradientStop x:Name="Stop6" Offset="2" Color="#FFFFFFFF" />
+                        </LinearGradientBrush>
+                    </dev:OpacityMaskView.OpacityMask>
+                    <Button Height="36"
+                            Click="Button_Click"
+                            Content="This is a Button" />
+                </dev:OpacityMaskView>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

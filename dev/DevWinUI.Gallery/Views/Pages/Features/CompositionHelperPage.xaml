@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CompositionHelperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="helpers/compositionHelper"
+                                  DocType="Core"
+                                  HeaderText="MakeLongShadow">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        CompositionHelper.MakeLongShadow(188, 0.3f, TextBlockElement, ShadowElement, Color.FromArgb(255, 250, 110, 93));
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;Grid&gt; #nl#
+                        &lt;Rectangle x:Name="ShadowElement" / &gt; #nl#
+                        &lt;TextBlock x:Name="TextBlockElement" FontSize="148" FontWeight="Bold" Text="00:10:15" /&gt; #nl#
+                        &lt;/Grid &gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+
+                <Grid Background="DarkRed">
+                    <Rectangle x:Name="ShadowElement" />
+                    <TextBlock x:Name="TextBlockElement"
+                               FontSize="148"
+                               FontWeight="Bold"
+                               Foreground="Orange"
+                               Text="00:10:15" />
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

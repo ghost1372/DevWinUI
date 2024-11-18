@@ -1,8 +1,0 @@
-﻿<StackPanel MinWidth="340"
-        wuc:Growl.GrowlParent="True" />
-
-<!-- if you want to use Token -->
-
-<StackPanel MinWidth="340"
-        wuc:Growl.GrowlParent="True"
-        wuc:Growl.Token="Test" />

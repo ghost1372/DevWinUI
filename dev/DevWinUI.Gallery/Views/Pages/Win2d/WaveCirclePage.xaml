@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WaveCirclePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/waveCircle"
+                                  DocType="Controls">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:WaveCircle IsAnimate="True" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="tgAnimate"
+                                      Header="IsAnimate"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="tgReverse"
+                                      Header="Reverse"
+                                      IsOn="False" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:WaveCircle ColorBrush="{ThemeResource SystemAccentColor}"
+                                IsAnimate="{x:Bind tgAnimate.IsOn, Mode=OneWay}"
+                                IsReverseAnimation="{x:Bind tgReverse.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

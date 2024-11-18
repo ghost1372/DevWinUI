@@ -1,0 +1,47 @@
+﻿<Page x:Class="DevWinUIGallery.Views.CheckUpdatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <InfoBar Title="First you must create a new release tag in github repository, tag version must be in this format : 1.0.0.0 now we can check for update with github username and github repository"
+                     IsClosable="False"
+                     IsOpen="True"
+                     Severity="Warning" />
+            <local:ControlExample CSharpSource="Features/CheckUpdatePage_cs.txt"
+                                  DocPage="helpers/updateHelper"
+                                  DocType="Core">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button HorizontalAlignment="Stretch"
+                                Click="Button_Click"
+                                Content="Check for Update" />
+                        <TextBox Name="txtUser"
+                                 PlaceholderText="Github Username: Ghost1372" />
+                        <TextBox Name="txtRepo"
+                                 PlaceholderText="Github Repository: DevWinUI" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <TextBlock Name="txtReleaseUrl"
+                               TextWrapping="Wrap" />
+                    <TextBlock Name="txtCreatedAt"
+                               TextWrapping="Wrap" />
+                    <TextBlock Name="txtPublishedAt"
+                               TextWrapping="Wrap" />
+                    <TextBlock Name="txtIsPreRelease"
+                               TextWrapping="Wrap" />
+                    <TextBlock Name="txtTagName"
+                               TextWrapping="Wrap" />
+                    <TextBlock Name="txtChangelog"
+                               TextWrapping="Wrap" />
+                    <ListView Name="listView" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,82 @@
+﻿<StackPanel Margin="10"
+            Spacing="10">
+    <TextBlock Text="Section 1" />
+    <dev:SettingsCard Description="This is a default card, with the Header, HeaderIcon, Description and Content set"
+                        Header="This is the Header">
+        <dev:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE125;" />
+        </dev:SettingsCard.HeaderIcon>
+        <ToggleSwitch IsOn="True" />
+    </dev:SettingsCard>
+
+    <dev:SettingsExpander Description="The SettingsExpander has the same properties as a SettingsCard"
+                            Header="SettingsExpander">
+        <dev:SettingsExpander.HeaderIcon>
+            <FontIcon Glyph="&#xE91B;" />
+        </dev:SettingsExpander.HeaderIcon>
+        <Button Content="Content"
+                Style="{StaticResource AccentButtonStyle}" />
+
+        <dev:SettingsExpander.Items>
+            <dev:SettingsCard Header="A basic SettingsCard within an SettingsExpander">
+                <Button Content="Button" />
+            </dev:SettingsCard>
+            <dev:SettingsCard Description="SettingsCard within an Expander can be made clickable too!"
+                                Header="This item can be clicked"
+                                IsClickEnabled="True" />
+
+            <dev:SettingsCard ContentAlignment="Left">
+                <CheckBox Content="Here the ContentAlignment is set to Left. This is great for e.g. CheckBoxes or RadioButtons" />
+            </dev:SettingsCard>
+        </dev:SettingsExpander.Items>
+    </dev:SettingsExpander>
+
+    <TextBlock Text="Section 2" />
+    <dev:SettingsCard Description="Another card to show grouping of cards"
+                        Header="Another SettingsCard">
+        <dev:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE799;" />
+        </dev:SettingsCard.HeaderIcon>
+        <ComboBox SelectedIndex="0">
+            <ComboBoxItem>Option 1</ComboBoxItem>
+            <ComboBoxItem>Option 2</ComboBoxItem>
+            <ComboBoxItem>Option 3</ComboBoxItem>
+        </ComboBox>
+    </dev:SettingsCard>
+
+    <dev:SettingsCard Description="Another card to show grouping of cards"
+                        Header="Yet another SettingsCard">
+        <dev:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE29B;" />
+        </dev:SettingsCard.HeaderIcon>
+        <Button Content="Content" />
+    </dev:SettingsCard>
+
+    <!--  Example 'About' section  -->
+    <TextBlock Text="About" />
+
+    <dev:SettingsExpander Description="© 2023. All rights reserved."
+                            Header="Community Toolkit Gallery">
+        <dev:SettingsExpander.HeaderIcon>
+            <BitmapIcon ShowAsMonochrome="False"
+                        UriSource="ms-appx:///Assets/Fluent/logo.png" />
+        </dev:SettingsExpander.HeaderIcon>
+        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    IsTextSelectionEnabled="True"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    Text="Version 1.0.0.0" />
+        <dev:SettingsExpander.Items>
+            <dev:SettingsCard HorizontalContentAlignment="Left"
+                                ContentAlignment="Left">
+                <StackPanel Margin="-12,0,0,0"
+                            Orientation="Vertical">
+                    <HyperlinkButton Content="Link 1" />
+                    <HyperlinkButton Content="Link 2" />
+                    <HyperlinkButton Content="Link 3" />
+                </StackPanel>
+            </dev:SettingsCard>
+        </dev:SettingsExpander.Items>
+    </dev:SettingsExpander>
+    <HyperlinkButton Margin="0,8,0,0"
+                        Content="Send feedback" />
+</StackPanel>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.PinBoxPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+
+            <local:ControlExample DocPage="controls/pinBox">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:PinBox /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <dev:PinBox x:Name="pinBox"
+                                HorizontalAlignment="{x:Bind GetHorizontalAlignment(cmbHorizontalAlignment.SelectedIndex), Mode=OneWay}"
+                                Description="{x:Bind txtDesc.Text, Mode=OneWay}"
+                                FocusMode="{x:Bind GetFocusMode(cmbFocusMode.SelectedIndex), Mode=OneWay}"
+                                Header="{x:Bind txtHeader.Text, Mode=OneWay}"
+                                Orientation="{x:Bind GetOrientation(cmbOrientation.SelectedIndex), Mode=OneWay}"
+                                PasswordChar="{x:Bind txtPassChar.Text, Mode=OneWay}"
+                                PasswordRevealMode="{x:Bind GetPasswordRevealMode(cmbPassReveal.SelectedIndex), Mode=OneWay}"
+                                PlaceholderText="{x:Bind txtPlaceholder.Text, Mode=OneWay}"
+                                ShowError="{x:Bind tgShowError.IsOn, Mode=OneWay}"
+                                ShowSuccess="{x:Bind tgShowSuccess.IsOn, Mode=OneWay}" />
+                </StackPanel>
+
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txtHeader"
+                                 Header="Header"
+                                 PlaceholderText="Header" />
+                        <TextBox x:Name="txtDesc"
+                                 Header="Description"
+                                 PlaceholderText="Description" />
+                        <TextBox x:Name="txtPassChar"
+                                 Header="Password Char"
+                                 PlaceholderText="Password Char"
+                                 Text="●" />
+                        <TextBox x:Name="txtPlaceholder"
+                                 Header="Placeholder Text"
+                                 PlaceholderText="Placeholder Text" />
+
+                        <NumberBox Header="Password Length"
+                                   Minimum="1"
+                                   SpinButtonPlacementMode="Inline"
+                                   ValueChanged="NumberBox_ValueChanged"
+                                   Value="4" />
+
+                        <Slider Maximum="100"
+                                Minimum="0"
+                                StepFrequency="1"
+                                ValueChanged="Slider_ValueChanged"
+                                Value="12" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="20">
+                            <ComboBox x:Name="cmbOrientation"
+                                      Header="Orientation"
+                                      SelectedIndex="1">
+                                <ComboBoxItem Content="Vertical" />
+                                <ComboBoxItem Content="Horizontal" />
+                            </ComboBox>
+
+                            <ComboBox x:Name="cmbHorizontalAlignment"
+                                      Header="Horizontal Alignment"
+                                      SelectedIndex="1">
+                                <ComboBoxItem Content="Left" />
+                                <ComboBoxItem Content="Center" />
+                                <ComboBoxItem Content="Right" />
+                                <ComboBoxItem Content="Stretch" />
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="20">
+                            <ComboBox x:Name="cmbFocusMode"
+                                      Header="Focus Mode"
+                                      SelectedIndex="1">
+                                <ComboBoxItem Content="Normal" />
+                                <ComboBoxItem Content="Complete" />
+                            </ComboBox>
+
+                            <ComboBox x:Name="cmbPassReveal"
+                                      Header="Password Reveal Mode"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="Hidden" />
+                                <ComboBoxItem Content="Peek" />
+                                <ComboBoxItem Content="Visible" />
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="10">
+                            <ToggleSwitch x:Name="tgShowSuccess"
+                                          Header="Show Success" />
+                            <ToggleSwitch x:Name="tgShowError"
+                                          Header="Show Error" />
+                        </StackPanel>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

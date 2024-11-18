@@ -1,0 +1,123 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(DebugTargetFramework)</TargetFramework>
+    <RootNamespace>$(BaseNamespace)Gallery</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <EnableMsixTooling>true</EnableMsixTooling>
+	<TrimMode>partial</TrimMode>
+	<ImplicitUsings>true</ImplicitUsings>
+	<LangVersion>Latest</LangVersion>
+	<IsAotCompatible>True</IsAotCompatible>
+	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	<WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
+	<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+	<Version>8.0.0</Version>
+
+	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	<NoWarn>NU1903;NU1902;CS8632;WMC1506</NoWarn>
+	<!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+	<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+	<GITHUB_ACTIONS>false</GITHUB_ACTIONS>
+  </PropertyGroup>
+  <ItemGroup>
+	<Content Include="ControlPagesSampleCode\**\*">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<None Include="Assets\**\*">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Pages\Features\TileControlPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ColorCode.Core" Version="2.0.15" />
+	<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview2" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+	<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+	<PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
+	<PackageReference Include="nucs.JsonSettings.AutosaveGenerator" Version="2.0.4" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevWinUI.ContextMenu\DevWinUI.ContextMenu.csproj" />
+    <ProjectReference Include="..\DevWinUI.Controls\DevWinUI.Controls.csproj" />
+    <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="T4Templates\NavigationPageMappings.tt">
+	  <Generator>TextTemplatingFileGenerator</Generator>
+	  <LastGenOutput>NavigationPageMappings.cs</LastGenOutput>
+	</None>
+	<Compile Update="T4Templates\NavigationPageMappings.cs">
+	  <DesignTime>True</DesignTime>
+	  <AutoGen>True</AutoGen>
+	  <DependentUpon>NavigationPageMappings.tt</DependentUpon>
+	</Compile>
+	<None Update="T4Templates\SampleNavigationPageMappings.tt">
+	  <Generator>TextTemplatingFileGenerator</Generator>
+	  <LastGenOutput>SampleNavigationPageMappings.cs</LastGenOutput>
+	</None>
+	<Compile Update="T4Templates\SampleNavigationPageMappings.cs">
+	  <DesignTime>True</DesignTime>
+	  <AutoGen>True</AutoGen>
+	  <DependentUpon>SampleNavigationPageMappings.tt</DependentUpon>
+	</Compile>
+	<None Update="T4Templates\BreadcrumbPageMappings.tt">
+	  <Generator>TextTemplatingFileGenerator</Generator>
+	  <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>
+	</None>
+	<Page Update="Views\Pages\Features\TileControlPage.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Compile Update="T4Templates\BreadcrumbPageMappings.cs">
+	  <DesignTime>True</DesignTime>
+	  <AutoGen>True</AutoGen>
+	  <DependentUpon>BreadcrumbPageMappings.tt</DependentUpon>
+	</Compile>
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+  </PropertyGroup>
+
+  <Target Name="TransformAllT4Templates" BeforeTargets="BeforeBuild">
+	<ItemGroup>
+		<!-- This picks up all T4 templates in the project -->
+		<T4Template Include="**\*.tt" />
+	</ItemGroup>
+
+	<!-- Check if TextTransform.exe exists before running -->
+	<Exec Command="if exist &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;%(T4Template.FullPath)&quot;" Condition="Exists('$(DevEnvDir)TextTransform.exe')" />
+  </Target>
+</Project>

@@ -1,0 +1,13 @@
+﻿<dev:SettingsGroup Description="Manage, add, and remove devices"
+                    Header="Bluetooth devices">
+    <dev:SettingsGroup.Items>
+        <dev:SettingsCard Description="Discoverable as 'DESKTOP-NJVNLK0'"
+                            Header="Bluetooth"
+                            HeaderIcon="{dev:SymbolIcon Symbol=DisconnectDrive}" />
+        <dev:SettingsCard Description="Not connected"
+                            Header="KA"
+                            HeaderIcon="{dev:SymbolIcon Symbol=Mute}" />
+        <dev:SettingsCard Header="View all devices"
+                            IsClickEnabled="True" />
+    </dev:SettingsGroup.Items>
+</dev:SettingsGroup>

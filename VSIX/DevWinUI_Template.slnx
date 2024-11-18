@@ -1,0 +1,37 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="arm64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Templates/">
+    <Project Path="DevWinUI_Template/WinUIApp-Blank-UnitTest/WinUIApp-Blank-UnitTest.csproj" Id="b8948970-c773-4711-9839-ba3a311a2f2a">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="DevWinUI_Template/WinUIApp-Blank/WinUIApp-Blank.csproj" Id="aaf6a3c7-a34b-440c-a31b-04a6e07cb344">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="DevWinUI_Template/WinUIApp-MVVM-NavigationView/WinUIApp-MVVM-NavigationView.csproj" Id="0e3decea-492d-4ff6-b77e-4e68e6affa90">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="DevWinUI_Template/WinUIApp-MVVM/WinUIApp-MVVM.csproj" Id="df24dc85-9ed7-4697-85a0-ad2bed5e7916">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="DevWinUI_Template/WinUIApp-NavigationView/WinUIApp-NavigationView.csproj" Id="4c1692ff-c0b8-49fb-948d-090160e0e63a">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="DevWinUI_Template/WinUIApp/WinUIApp.csproj" Id="d9c038b7-6a62-4945-a030-4ac7597f53ca">
+      <Platform Solution="*|arm64" Project="arm64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+  </Folder>
+  <Project Path="DevWinUI_Template/DevWinUI_Template/DevWinUI_Template.csproj" Id="84913ae7-791a-451d-b4c6-c2c93207d9ff">
+    <Platform Solution="*|arm64" Project="arm64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+</Solution>

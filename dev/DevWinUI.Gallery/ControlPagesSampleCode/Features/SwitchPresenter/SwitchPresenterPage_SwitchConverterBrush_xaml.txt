@@ -1,0 +1,27 @@
+﻿<Page.Resources>
+<enum:CheckStatus x:Key="MyChecks">Warning</enum:CheckStatus>
+<dev:SwitchConverter x:Key="StatusToColorSwitchConverter"
+                     TargetType="enum:CheckStatus">
+    <!--  Note: These are reused from the controls namespace from SwitchPresenter  -->
+    <dev:Case Content="{ThemeResource SystemFillColorSuccessBrush}"
+              Value="Success" />
+    <dev:Case Content="{ThemeResource SystemFillColorCautionBrush}"
+              Value="Warning" />
+    <dev:Case Content="{ThemeResource SystemFillColorCriticalBrush}"
+              Value="Error" />
+</dev:SwitchConverter>
+</Page.Resources>
+
+<StackPanel Spacing="8">
+    <ComboBox x:Name="StatusPicker"
+              Header="Pick a status"
+              SelectedIndex="0">
+        <x:String>Success</x:String>
+        <x:String>Warning</x:String>
+        <x:String>Error</x:String>
+    </ComboBox>
+    <TextBlock Text="This is it, this is the demo:" />
+    <TextBlock FontWeight="SemiBold"
+               Foreground="{x:Bind StatusPicker.SelectedItem, Converter={StaticResource StatusToColorSwitchConverter}, Mode=OneWay}"
+               Text="{x:Bind StatusPicker.SelectedItem, Mode=OneWay}" />
+</StackPanel>

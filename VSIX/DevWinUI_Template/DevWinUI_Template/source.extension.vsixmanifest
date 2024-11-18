@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.0" Language="en-US" Publisher="Mahdi Hosseini" />
+		<DisplayName>DevWinUI Templates for WinUI</DisplayName>
+		<Description xml:space="preserve">DevWinUI  Project Template, help you quickly create a new WinUI 3 App with DevWinUI  and MVVM Packages. We prepare your project with the following features: NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).
+We also always use the latest version of WindowsAppSDK. 
+Jump right into coding your project, and let us prepare project for you.</Description>
+		<MoreInfo>https://github.com/Ghost1372/DevWinUI</MoreInfo>
+		<GettingStartedGuide>https://github.com/Ghost1372/DevWinUI</GettingStartedGuide>
+		<ReleaseNotes>https://github.com/Ghost1372/DevWinUI</ReleaseNotes>
+		<Icon>Assets\WinUIApp.png</Icon>
+		<PreviewImage>Assets\Preview.png</PreviewImage>
+		<Tags>WindowsAppSDK, WinAppSDK, WinUI, DevWinUI, XAML, C#, Managed, winui3, winui 3, wasdk, windows app sdk, windowsappsdk, winuicommunity, settingsui, components, titlebar, navigationview, theme, mvvm, template, winui</Tags>
+		<Preview>true</Preview>
+	</Metadata>
+	<Installation>
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Pro">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
+			<ProductArchitecture>arm64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Pro">
+			<ProductArchitecture>arm64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
+			<ProductArchitecture>arm64</ProductArchitecture>
+		</InstallationTarget>
+	</Installation>
+	<Dependencies>
+		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+	</Dependencies>
+	<Prerequisites>
+		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+		<Prerequisite Id="Microsoft.NetCore.Component.Runtime.8.0" Version="[17.0, 18.0)" DisplayName=".NET 8.0 Runtime (Long Term Support)" />
+		<Prerequisite Id="Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs" Version="[17.0, 18.0)" DisplayName="Windows App SDK C# Templates" />
+		<Prerequisite Id="Microsoft.VisualStudio.Component.Windows11SDK.22621" Version="[17.0, 18.0)" DisplayName="Windows 11 SDK (10.0.22621.0)" />
+	</Prerequisites>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp-Blank" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp-Blank;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp-Blank-UnitTest" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp-Blank-UnitTest;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp-MVVM" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp-MVVM;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp-MVVM-NavigationView" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp-MVVM-NavigationView;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="WinUIApp-NavigationView" TargetVersion="[17.0, 18.0)" d:TargetPath="|WinUIApp-NavigationView;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+		<Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="%CurrentProject%" TargetVersion="[17.0, 18.0)" Path="|%CurrentProject%|" AssemblyName="|%CurrentProject%;AssemblyName|" />
+	</Assets>
+</PackageManifest>

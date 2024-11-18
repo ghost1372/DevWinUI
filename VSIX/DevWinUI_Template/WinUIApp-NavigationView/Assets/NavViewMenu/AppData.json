@@ -1,0 +1,22 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/AppData.Schema.json",
+  "Groups": [
+    {
+      "UniqueId": "$safeprojectname$",
+      "Title": "$safeprojectname$",
+      "ImagePath": "ms-appx:///Assets/AppIcon.png",
+      "IsSpecialSection": false,
+      "ShowItemsWithoutGroup": true,
+      "IsExpanded": false,
+      "Items": [
+        {
+          "UniqueId": "$safeprojectname$.Views.HomeLandingPage",
+          "Title": "$safeprojectname$",
+          "Subtitle": "$safeprojectname$",
+          "ImagePath": "ms-appx:///Assets/AppIcon.png",
+          "HideItem": true
+        }
+      ]
+    }
+  ]
+}

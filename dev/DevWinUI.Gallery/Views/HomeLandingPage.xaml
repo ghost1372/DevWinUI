@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.HomeLandingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
+                         HeaderOverlayImage="{ThemeResource HeaderCover}"
+                         HeaderSubtitleText="Windows App SDK 1.7+"
+                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
+                         JsonNavigationViewService="{x:Bind local:App.Current.GetJsonNavigationViewService}" />
+</Page>
+

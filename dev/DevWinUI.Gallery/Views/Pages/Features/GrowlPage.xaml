@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.GrowlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part1_cs.txt"
+                                  DocPage="controls/growl"
+                                  HeaderText="In-App Growl"
+                                  XamlSource="Features/Growl/GrowlPage_xaml.txt">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel MinWidth="340"
+                                dev:Growl.GrowlParent="True" />
+                    <StackPanel MinWidth="340"
+                                dev:Growl.GrowlParent="True"
+                                dev:Growl.Token="Test" />
+                </StackPanel>
+                <local:ControlExample.Pane>
+                    <StackPanel Margin="10"
+                                Spacing="10">
+                        <Button x:Name="btnGrowl"
+                                Click="btnGrowl_Click"
+                                Content="Growl (Without Token)" />
+                        <Button x:Name="btnGrowlInfo"
+                                Click="btnGrowlInfo_Click"
+                                Content="Growl with GrowlInfo (Without Token)" />
+                        <Button x:Name="btnGrowlToken"
+                                Click="btnGrowlToken_Click"
+                                Content="Growl (with Token)" />
+                        <Button x:Name="btnGrowlInfoToken"
+                                Click="btnGrowlInfoToken_Click"
+                                Content="Growl with GrowlInfo (with Token)" />
+                        <Button x:Name="btnGrowlClearAll"
+                                Click="btnGrowlClearAll_Click"
+                                Content="Clear All" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+            <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part2_cs.txt"
+                                  DocPage="controls/growl"
+                                  HeaderText="Growl Global">
+                <StackPanel Orientation="Horizontal">
+                    <InfoBar Title="Growl will be shown outside the app"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Severity="Informational" />
+                </StackPanel>
+                <local:ControlExample.Pane>
+                    <StackPanel Margin="10"
+                                Spacing="10">
+                        <Button x:Name="btnGrowlGlobal"
+                                Click="btnGrowlGlobal_Click"
+                                Content="Growl Global" />
+                        <Button x:Name="btnGrowlInfoGlobal"
+                                Click="btnGrowlInfoGlobal_Click"
+                                Content="Growl Global with GrowlInfo" />
+                        <Button x:Name="btnClearGlobalAll"
+                                Click="btnClearGlobalAll_Click"
+                                Content="Clear All" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

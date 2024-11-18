@@ -1,3 +1,0 @@
-﻿<wuc:InlineAutoCompleteTextBox IsSuggestionCaseSensitive="False"
-                               PlaceholderText="Enter your text here..."
-                               SuggestionsSource="{x:Bind DemoSuggestions, Mode=OneWay}" />

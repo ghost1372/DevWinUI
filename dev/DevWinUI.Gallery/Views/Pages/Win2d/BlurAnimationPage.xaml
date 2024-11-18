@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BlurAnimationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="helpers/blurAnimationHelper"
+                                  DocType="Controls"
+                                  HeaderText="Example 1">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        BlurAnimationHelper.StartBlurAnimation(grd, 0, 8, TimeSpan.FromSeconds(0.3));
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="slFrom1"
+                                Header="Blur From"
+                                Value="0" />
+                        <Slider x:Name="slTo1"
+                                Header="Blur To"
+                                Value="8" />
+                        <Slider x:Name="slDuration1"
+                                Header="Duration"
+                                Value="0.2" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid>
+                    <Grid Name="grd">
+                        <Image Source="{ThemeResource HeaderCover}" />
+                    </Grid>
+                    <Button x:Name="btnLogin"
+                            Margin="10,0"
+                            Content="Login"
+                            PointerEntered="btnLogin_PointerEntered"
+                            PointerExited="btnLogin_PointerExited" />
+
+                </Grid>
+            </local:ControlExample>
+            <local:ControlExample DocPage="helpers/blurAnimationHelper"
+                                  DocType="Controls"
+                                  HeaderText="Example 2">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        BlurAnimationHelper.StartBlurAnimation(grd, 0, 15, TimeSpan.FromSeconds(1));
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="slFrom2"
+                                Header="Blur From"
+                                Value="0" />
+                        <Slider x:Name="slTo2"
+                                Header="Blur To"
+                                Value="15" />
+                        <Slider x:Name="slDuration2"
+                                Header="Duration"
+                                Value="1" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid>
+                    <Grid Name="grd2"
+                          Grid.Column="1">
+                        <Image Source="{ThemeResource HeaderCover}" />
+                    </Grid>
+
+                    <Button x:Name="btnRegister"
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Content="Register"
+                            PointerEntered="btnRegister_PointerEntered"
+                            PointerExited="btnRegister_PointerExited" />
+
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

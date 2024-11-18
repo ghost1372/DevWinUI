@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.FileAndFolderPickerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Features/FileAndFolderPicker/FileAndFolderPickerPage_Part1_cs.txt"
+                                  DocPage="helpers/fileAndFolderPickerHelper/#PickSaveFileAsync"
+                                  DocType="Core"
+                                  HeaderText="PickSaveFileAsync">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <Button x:Name="btnPickSaveFileAsync"
+                            Click="btnPickSaveFileAsync_Click"
+                            Content="PickSaveFileAsync" />
+                    <TextBlock x:Name="txtRes1"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </local:ControlExample>
+
+            <local:ControlExample CSharpSource="Features/FileAndFolderPicker/FileAndFolderPickerPage_Part2_cs.txt"
+                                  DocPage="helpers/fileAndFolderPickerHelper/#PickMultipleFilesAsync"
+                                  DocType="Core"
+                                  HeaderText="PickMultipleFilesAsync">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <Button x:Name="btnPickMultipleFilesAsync"
+                            Click="btnPickMultipleFilesAsync_Click"
+                            Content="PickMultipleFilesAsync" />
+                    <TextBlock x:Name="txtRes2"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </local:ControlExample>
+            <local:ControlExample CSharpSource="Features/FileAndFolderPicker/FileAndFolderPickerPage_Part3_cs.txt"
+                                  DocPage="helpers/fileAndFolderPickerHelper/#PickSingleFileAsync"
+                                  DocType="Core"
+                                  HeaderText="PickSingleFileAsync">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <Button x:Name="btnPickSingleFileAsync"
+                            Click="btnPickSingleFileAsync_Click"
+                            Content="PickSingleFileAsync" />
+                    <TextBlock x:Name="txtRes3"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </local:ControlExample>
+            <local:ControlExample CSharpSource="Features/FileAndFolderPicker/FileAndFolderPickerPage_Part4_cs.txt"
+                                  DocPage="helpers/fileAndFolderPickerHelper/#PickSingleFolderAsync"
+                                  DocType="Core"
+                                  HeaderText="PickSingleFolderAsync">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <Button x:Name="btnPickSingleFolderAsync"
+                            Click="btnPickSingleFolderAsync_Click"
+                            Content="PickSingleFolderAsync" />
+                    <TextBlock x:Name="txtRes4"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

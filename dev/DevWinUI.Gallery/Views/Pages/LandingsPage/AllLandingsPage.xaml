@@ -1,0 +1,24 @@
+﻿<Page x:Class="DevWinUIGallery.Views.AllLandingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="landingPages/allLandingPage"
+                                  DocType="Controls"
+                                  XamlSource="LandingsPage/AllLandingsPage_xaml.txt">
+                <dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}"
+                                    HeaderOverlayImage="{ThemeResource HeaderCover}"
+                                    HeaderSubtitleText="Windows App SDK 1.6+"
+                                    HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
+                                    JsonNavigationViewService="{x:Bind local:App.Current.GetJsonNavigationViewService}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

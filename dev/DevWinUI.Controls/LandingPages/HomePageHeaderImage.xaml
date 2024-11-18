@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="DevWinUI.HomePageHeaderImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:DevWinUI"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="using:CommunityToolkit.WinUI"
+             Loaded="OnLoaded"
+             Loading="OnLoading"
+             Unloaded="OnUnloaded"
+             mc:Ignorable="d">
+
+    <Grid>
+        <Grid x:Name="ImageGrid"
+              Background="{ThemeResource BackgroundGradient}"
+              Opacity="0">
+
+            <local:TileControl x:Name="HeroTile"
+                               toolkit:VisualExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
+                               ImageLoaded="HeroTile_ImageLoaded"
+                               ImageSource="{x:Bind HeaderImage, Converter={StaticResource StringToUriConverter}, Mode=OneWay}"
+                               Visibility="Collapsed" />
+
+            <local:TileControl x:Name="HeroOverlayTile"
+                               toolkit:VisualExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
+                               ImageLoaded="HeroTile_ImageLoaded"
+                               ImageSource="{x:Bind HeaderOverlayImage, Converter={StaticResource StringToUriConverter}, Mode=OneWay}"
+                               Opacity="{x:Bind OverlayOpacity, Mode=OneWay}"
+                               Visibility="Collapsed" />
+
+            <local:ImageEx x:Name="HeroImage"
+                           toolkit:VisualExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
+                           EnableLazyLoading="{x:Bind EnableLazyLoading, Mode=OneWay}"
+                           ImageExOpened="OnImageOpened"
+                           IsCacheEnabled="{x:Bind IsCacheEnabled, Mode=OneWay}"
+                           LazyLoadingThreshold="{x:Bind LazyLoadingThreshold, Mode=OneWay}"
+                           PlaceholderSource="{x:Bind PlaceholderSource, Mode=OneWay}"
+                           Source="{x:Bind HeaderImage, Mode=OneWay}"
+                           Stretch="{x:Bind Stretch, Mode=OneWay}" />
+
+            <local:ImageEx x:Name="HeroOverlayImage"
+                           toolkit:VisualExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
+                           EnableLazyLoading="{x:Bind EnableLazyLoading, Mode=OneWay}"
+                           IsCacheEnabled="{x:Bind IsCacheEnabled, Mode=OneWay}"
+                           LazyLoadingThreshold="{x:Bind LazyLoadingThreshold, Mode=OneWay}"
+                           Opacity="{x:Bind OverlayOpacity, Mode=OneWay}"
+                           PlaceholderSource="{x:Bind PlaceholderSource, Mode=OneWay}"
+                           Source="{x:Bind HeaderOverlayImage, Mode=OneWay}"
+                           Stretch="{x:Bind Stretch, Mode=OneWay}" />
+        </Grid>
+        <Rectangle x:Name="ImageGridSurfaceRec"
+                   Fill="Transparent" />
+    </Grid>
+</UserControl>

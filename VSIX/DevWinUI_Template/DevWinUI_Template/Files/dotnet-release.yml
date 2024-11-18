@@ -1,0 +1,181 @@
+name: GitHub Release Publisher
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  # Configuring Project
+  PROJECT_PATH: YOUR_FOLDER/YOUR_APP_NAME.csproj
+  APP_NAME: YOUR_APP_NAME
+  
+  # Check Tag
+  CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG: false
+  
+  # Custom Nuget Source
+  IS_COMMUNITY_TOOLKIT_NUGET_SOURCE_ENABLED: false
+  IS_CUSTOM_NUGET_SOURCE_ENABLED: false
+  CUSTOM_NUGET_SOURCES: '' # Example ('https://api.nuget.org/v3/index.json, https://api.nuget.org/v2/index.json,...')
+
+  # Configuring Dotnet Build Commands
+  PUBLISH_OUTPUT_FOLDER: Publish
+  PUBLISH_SELF_CONTAINED: false
+  PUBLISH_SINGLE_FILE: false
+  PUBLISH_READY_TO_RUN: false
+  PUBLISH_AOT: false
+  PUBLISH_TRIMMED: false
+  PUBLISH_TRIM_MODE: partial # or full
+
+  # Configuring GitHub Release
+  IS_PRE_RELEASE: false
+  SKIP_IF_RELEASE_EXIST: true
+  MAKE_LATEST: true
+  ALLOW_UPDATES: false
+  ARTIFACT_ERRORS_FAIL_BUILD: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    outputs: # For accessing them from 'release' job
+      app-version: ${{ steps.get-version.outputs.version }}
+      IS_PRE_RELEASE: ${{ env.IS_PRE_RELEASE }}
+    strategy:
+      matrix:
+        platform: [x64, x86, arm64] # Change platform if you want to build only a specific platform
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - uses: actions/setup-dotnet@v4
+      with:
+       dotnet-version: | 
+         8.x.x
+         9.x.x
+
+    # Add CommunityToolkit Labs and Main nuget sources
+    - run: |
+        nuget sources add -name CommunityToolkit-Labs -source https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json
+        nuget sources add -name CommunityToolkit-Main -source https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-MainLatest/nuget/v3/index.json
+      if: contains(env.IS_COMMUNITY_TOOLKIT_NUGET_SOURCE_ENABLED, 'true')
+
+    # Add Custom nuget sources
+    - run: |
+        $sources = $env:CUSTOM_NUGET_SOURCES -split ','
+        $trimmedSources = $sources | ForEach-Object { $_.Trim() }
+        $prefix = "CUSTOM_SOURCES_"
+        for ($i = 0; $i -lt $trimmedSources.Length; $i++) {
+          $sourceName = "${prefix}$($i + 1)"
+          nuget sources add -name $sourceName -source $trimmedSources[$i]
+        }
+      if: contains(env.IS_CUSTOM_NUGET_SOURCE_ENABLED, 'true')
+
+    # Reading version tag from the csproj file.
+    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+      id: get-version
+      with:
+        proj-path: ${{ env.PROJECT_PATH }}
+        
+    # Building with configured commands
+    - run: |
+        $runtimeIdentifier = "${{ matrix.platform }}"
+        dotnet publish ${{ env.PROJECT_PATH }} -c Release -r win-$($runtimeIdentifier.ToLower()) /p:GITHUB_ACTIONS=true -p:Platform=${{ matrix.platform }} --self-contained ${{ env.PUBLISH_SELF_CONTAINED }} -p:PublishSingleFile=${{ env.PUBLISH_SINGLE_FILE }} -p:PublishReadyToRun=${{ env.PUBLISH_READY_TO_RUN }} -p:PublishTrimmed=${{ env.PUBLISH_TRIMMED }} -p:TrimMode=${{ env.PUBLISH_TRIM_MODE }} -p:PublishAot=${{ env.PUBLISH_AOT }} --output ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
+
+    # Zipping folder and all files
+    - uses: vimtor/action-zip@v1.2
+      with:
+        files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
+        recursive: true
+        dest: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.version }}-${{ matrix.platform }}.zip
+
+    # Uploading all zip files to access them in the 'release' job
+    - uses: actions/upload-artifact@v4
+      with:
+        name: artifacts-${{ matrix.platform }}
+        path: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.version }}-${{ matrix.platform }}.zip
+
+    # Checking version suffix for words like [alpha, beta, preview, and experiment]. Marking the release as a pre-release if any exists.
+    - run: |
+        # Define the list of strings
+        $list = @("beta", "alpha", "preview", "experiment")
+
+        # Define the suffix variable
+        $suffix = "${{ steps.get-version.outputs.version-suffix }}"
+
+        foreach ($item in $list) {
+          # Convert both strings to lower case for case-insensitive comparison
+          if ($suffix.ToLower().StartsWith($item.ToLower())) {
+            echo "IS_PRE_RELEASE=true" >> $env:GITHUB_ENV
+            break
+          }
+        }
+
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      # Read some variables from the 'build' job
+      APP_VERSION: ${{ needs.build.outputs.app-version }}
+      IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Downloading all zip files into the GitHub root directory (uploaded in 'build' job)
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      # Configuring git to create a tag
+      - run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+
+          TAG_NAME="v${{ env.APP_VERSION }}"
+          if [[ "${{ env.CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG }}" == "true" ]]; then
+              git fetch --tags
+              if [[ $(git tag -l "$TAG_NAME") ]]; then
+                  echo "Tag found (already exist). Skipping to the next step"
+              else
+                  echo "Tag not found, creating new tag"
+                  git tag "$TAG_NAME"
+                  git push origin "$TAG_NAME"
+              fi
+          else
+              echo "Creating new tag"
+              git tag "$TAG_NAME"
+              git push origin "$TAG_NAME"
+          fi  
+          
+      # Installing a package for generating a changelog file
+      - run: npm install -g auto-changelog  
+      - run: auto-changelog --tag-pattern .+ --commit-limit false --starting-version v${{ env.APP_VERSION }} --ending-version v${{ env.APP_VERSION }} --hide-credit  
+      
+      # Creating a Release in GitHub
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-*.zip"
+          bodyFile: "CHANGELOG.md"
+          name: v${{ env.APP_VERSION }}
+          tag: v${{ env.APP_VERSION }}
+          prerelease: ${{ env.IS_PRE_RELEASE }}
+          skipIfReleaseExists: ${{ env.SKIP_IF_RELEASE_EXIST }}
+          makeLatest: ${{ env.MAKE_LATEST }}
+          allowUpdates: ${{ env.ALLOW_UPDATES }}
+          artifactErrorsFailBuild: ${{ env.ARTIFACT_ERRORS_FAIL_BUILD }}
+
+
+
+      # - uses: softprops/action-gh-release@v1
+      #   with:
+      #     name: v${{ env.APP_VERSION }}
+      #     tag_name: v${{ env.APP_VERSION }}
+      #     body_path: CHANGELOG.md
+      #     prerelease: ${{ env.PUBLISH_PRE_RELEASE }}
+      #     files: |
+      #       ${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-*.zip

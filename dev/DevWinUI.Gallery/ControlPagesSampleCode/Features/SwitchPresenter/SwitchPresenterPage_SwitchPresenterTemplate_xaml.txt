@@ -1,0 +1,43 @@
+﻿<StackPanel>
+    <ComboBox x:Name="Lookup"
+              Margin="0,0,0,8"
+              Header="Look up reservation"
+              SelectedIndex="0">
+        <x:String>Confirmation Code</x:String>
+        <x:String>E-ticket number</x:String>
+        <x:String>Mileage Plan number</x:String>
+    </ComboBox>
+    <!--  SwitchPresenter binds to a value  -->
+    <dev:SwitchPresenter Value="{x:Bind Lookup.SelectedItem, Mode=OneWay}">
+        <!--  We define a common UI template for the data we want to display  -->
+        <dev:SwitchPresenter.ContentTemplate>
+            <DataTemplate x:DataType="dev:TemplateInformation">
+                <StackPanel>
+                    <TextBox Name="CodeValidator"
+                             dev:TextBoxExtensions.Regex="{x:Bind Regex, Mode=OneWay}"
+                             Header="{x:Bind Header, Mode=OneWay}"
+                             PlaceholderText="{x:Bind PlaceholderText, Mode=OneWay}" />
+                    <TextBlock Text="Thanks for entering a valid code!"
+                               Visibility="{Binding (dev:TextBoxExtensions.IsValid), ElementName=CodeValidator}" />
+                </StackPanel>
+            </DataTemplate>
+        </dev:SwitchPresenter.ContentTemplate>
+        <!--  And use the value to transform our data into an object we'll use as the context for our UI  -->
+        <dev:Case IsDefault="True"
+                  Value="Confirmation Code">
+            <dev:TemplateInformation Header="Confirmation code"
+                                     PlaceholderText="6 letters"
+                                     Regex="^[a-zA-Z]{6}$" />
+        </dev:Case>
+        <dev:Case Value="E-ticket number">
+            <dev:TemplateInformation Header="E-ticket number"
+                                     PlaceholderText="10 or 13 numbers"
+                                     Regex="(^\d{10}$)|(^\d{13}$)" />
+        </dev:Case>
+        <dev:Case Value="Mileage Plan number">
+            <dev:TemplateInformation Header="Mileage Plan #"
+                                     PlaceholderText="Mileage Plan (12 digits)"
+                                     Regex="(^\d{12}$)" />
+        </dev:Case>
+    </dev:SwitchPresenter>
+</StackPanel>

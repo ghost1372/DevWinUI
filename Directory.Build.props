@@ -1,49 +1,54 @@
 ﻿<Project>
-  <PropertyGroup Condition="'$(MSBuildProjectName)' != 'WucGalleryApp'">
+  <PropertyGroup>
+    <GalleryAppName>DevWinUI.Gallery</GalleryAppName>
+    <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
+    <BaseNamespace>DevWinUI</BaseNamespace>
+
+    <!-- The NuGet package version -->
+    <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
+    <CsWin32Version>0.3.106</CsWin32Version>
+    <CommunityToolkitMediaVersion>8.2.241112-preview1</CommunityToolkitMediaVersion>
+    <Win2dVersion>1.3.0</Win2dVersion>
+    <DebugTargetFramework>net9.0-windows10.0.19041.0</DebugTargetFramework>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <NoWarn>WMC1506;WMC0001;CA1416;CS8632;CS0067;CS0078;CS0649;CS0414;NU1903;NU1902</NoWarn>
+
+    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
+
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-    <OutputPath>$(SolutionDir)Output\</OutputPath>
-    <NoWarn>WMC1506;WMC0001;CA1416;CS8632;CS0067;CS0078;CS0649;CS0414;NU1903;NU1902</NoWarn>
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) != $(GalleryAppName) ">net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) != $(GalleryAppName)">$(DebugTargetFramework)</TargetFrameworks>
+    <EnableMsixTooling Condition="'$(GITHUB_ACTIONS)' == 'true' And '$(MSBuildProjectName)' != $(ContextMenuLibName)">true</EnableMsixTooling>
+    <UseWinUI Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">true</UseWinUI>
+    <RootNamespace>$(BaseNamespace)</RootNamespace>
+
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>Latest</LangVersion>
     <IsAotCompatible>true</IsAotCompatible>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 
-<!--<CsWinRTAotWarningLevel Condition="'$(IsAotCompatible)' == 'true'">2</CsWinRTAotWarningLevel>-->
-    
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' ">net8.0-windows10.0.19041.0;net8.0-windows10.0.26100.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' ">net8.0-windows10.0.19041.0</TargetFrameworks>
-
-    <EnableMsixTooling Condition="'$(GITHUB_ACTIONS)' == 'true' And '$(MSBuildProjectName)' != 'ContextMenuExtensions'">true</EnableMsixTooling>
-    <UseWinUI Condition="'$(MSBuildProjectName)' != 'ContextMenuExtensions'">true</UseWinUI>
-
-    <!-- The NuGet package version -->
-    <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
-    <CsWin32Version>0.3.106</CsWin32Version>
-    <CommunityToolkitMediaVersion>8.0.240109</CommunityToolkitMediaVersion>
-    <Win2dVersion>1.3.0</Win2dVersion>
-
     <!-- The NuGet package options -->
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Authors>WinUICommunity</Authors>
+    <Authors>DevWinUI</Authors>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Copyright>Copyright (c) 2021-2024 Mahdi Hosseini</Copyright>
-    <PackageProjectUrl>https://github.com/WinUICommunity/WinUICommunity</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/WinUICommunity/WinUICommunity</RepositoryUrl>
-    <PackageReleaseNotes>https://github.com/WinUICommunity/WinUICommunity/releases</PackageReleaseNotes>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug' And '$(MSBuildProjectName)' != $(GalleryAppName)">True</GeneratePackageOnBuild>
+    <Copyright>Copyright (c) 2021-2025 Mahdi Hosseini</Copyright>
+    <PackageProjectUrl>https://github.com/ghost1372/DevWinUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ghost1372/DevWinUI</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/ghost1372/DevWinUI/releases</PackageReleaseNotes>
   </PropertyGroup>
-  
+
   <!-- The NuGet versions of dependencies to build against. -->
-  <ItemGroup Condition="'$(MSBuildProjectName)' != 'ContextMenuExtensions'">
+  <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241106002" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(MSBuildProjectName)' != 'WucGalleryApp'">
+  <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
     <None Include="Assets\icon.png" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="README.md" Pack="true" PackagePath="" />

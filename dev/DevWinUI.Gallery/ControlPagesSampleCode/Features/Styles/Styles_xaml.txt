@@ -1,0 +1,17 @@
+﻿<TextBlock Style="{StaticResource OobeSubtitleStyle}"
+            Text="OobeSubtitleStyle" />
+<TextBlock Style="{StaticResource SecondaryTextStyle}"
+            Text="SecondaryTextStyle" />
+<HyperlinkButton Content="HyperlinkButtonStyle"
+                    Style="{ThemeResource HyperlinkButtonStyle}" />
+<Button Content="TextButtonStyle"
+        Style="{ThemeResource TextButtonStyle}" />
+<InfoBar Title="Title"
+            IsClosable="False"
+            IsOpen="True"
+            Message="Message"
+            Severity="Informational">
+    <InfoBar.Resources>
+        <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/InfoBarInformationalColor.xaml" />
+    </InfoBar.Resources>
+</InfoBar>

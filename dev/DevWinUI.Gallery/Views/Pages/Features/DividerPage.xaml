@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DividerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/divider"
+                                  HeaderText="Example 1"
+                                  XamlSource="Features/Divider/DividerPage_Part1_xaml.txt">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <dev:Divider />
+                    <dev:Divider Content="Title" />
+                    <dev:Divider ContentPadding="0">
+                        <Button Content="More" />
+                    </dev:Divider>
+                    <dev:Divider LineStroke="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                 LineStrokeThickness="2" />
+                    <dev:Divider LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                                 LineStrokeThickness="2" />
+
+                    <dev:Divider LineStrokeDashArray="2,2" />
+                    <dev:Divider Content="Title"
+                                 LineStrokeDashArray="2,2"
+                                 LineStrokeThickness="2" />
+                    <dev:Divider Content="Title"
+                                 LineStroke="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                 LineStrokeDashArray="2,2"
+                                 LineStrokeThickness="2" />
+                    <dev:Divider Content="Title"
+                                 LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                                 LineStrokeDashArray="2,2"
+                                 LineStrokeThickness="2" />
+                </StackPanel>
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/divider"
+                                  HeaderText="Example 2"
+                                  XamlSource="Features/Divider/DividerPage_Part2_xaml.txt">
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <dev:Divider HorizontalContentAlignment="Left"
+                                 Content="Title" />
+                    <dev:Divider HorizontalContentAlignment="Right"
+                                 Content="Title"
+                                 ContentPadding="10,0" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                    </StackPanel>
+                    <StackPanel Margin="0,16,0,0"
+                                Orientation="Horizontal">
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     LineStrokeThickness="2"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     LineStrokeThickness="2"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                    </StackPanel>
+                    <StackPanel Margin="0,16,0,0"
+                                Orientation="Horizontal">
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     LineStroke="{ThemeResource AccentAAFillColorTertiaryBrush}"
+                                     LineStrokeThickness="2"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                        <dev:Divider MaxHeight="16"
+                                     LineStroke="{ThemeResource SystemFillColorCriticalBrush}"
+                                     LineStrokeThickness="2"
+                                     Orientation="Vertical" />
+                        <Button Content="Button" />
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

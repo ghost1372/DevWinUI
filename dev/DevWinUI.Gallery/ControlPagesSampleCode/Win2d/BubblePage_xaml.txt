@@ -1,0 +1,17 @@
+﻿<StackPanel Orientation="Horizontal"
+            Spacing="10">
+    <dev:BubbleProgressButton x:Name="LikeButton"
+                                Content="{dev:FontIcon GlyphName=Like}"
+                                GestureRecognizerHolding="OnGestureRecognizerHolding"
+                                GestureRecognizerTapped="OnGestureRecognizerTapped" />
+    <dev:BubbleProgressButton x:Name="CoinButton"
+                                Content="{dev:FontIcon GlyphName=ButtonA}"
+                                GestureRecognizerHolding="OnGestureRecognizerHolding"
+                                GestureRecognizerTapped="OnGestureRecognizerTapped"
+                                Value="{Binding ElementName=LikeButton, Path=Value}" />
+    <dev:BubbleProgressButton x:Name="FavoriteButton"
+                                Content="{dev:FontIcon GlyphName=Favicon}"
+                                GestureRecognizerHolding="OnGestureRecognizerHolding"
+                                GestureRecognizerTapped="OnGestureRecognizerTapped"
+                                Value="{Binding ElementName=LikeButton, Path=Value}" />
+</StackPanel>
