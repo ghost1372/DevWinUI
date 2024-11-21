@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>8.0.0-Preview1</Version>
+    <Version>$(LibraryMajorVersion).0.0$(PreviewBuildSuffix)</Version>
     <PackageId>$(BaseNamespace).Controls</PackageId>
     <AssemblyName>$(BaseNamespace).Controls</AssemblyName>
     <Description>

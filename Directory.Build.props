@@ -4,6 +4,12 @@
     <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
     <BaseNamespace>DevWinUI</BaseNamespace>
 
+    <!-- Version -->
+    <LibraryMajorVersion>8</LibraryMajorVersion>
+    <PreviewLabel>-Preview2</PreviewLabel>
+    <IsPreviewBuild>true</IsPreviewBuild>
+    <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
+
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
     <CsWin32Version>0.3.106</CsWin32Version>
