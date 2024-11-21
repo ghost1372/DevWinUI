@@ -84,6 +84,8 @@ namespace DevWinUI_Template
         {
             List<Library> list = new()
             {
+                new Library("ComputeSharp.WinUI", true),
+                new Library("ComputeSharp.D2D1.WinUI", true),
                 new Library("Config.Net"),
                 new Library("messagepack"),
                 new Library("NotifyIconEx"),
