@@ -49,7 +49,7 @@
 
   <!-- The NuGet versions of dependencies to build against. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.241114004-experimental1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   

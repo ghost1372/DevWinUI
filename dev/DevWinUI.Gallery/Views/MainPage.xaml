@@ -8,15 +8,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <Grid RowDefinitions="Auto, *">
-        <!--<dev:TitleBar x:Name="AppTitleBar"
-                      Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                      BackRequested="AppTitleBar_BackRequested"
-                      IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/icon.png}"
-                      IsBackButtonVisible="True"
-                      IsPaneToggleButtonVisible="True"
-                      PaneToggleRequested="AppTitleBar_PaneToggleRequested"
-                      Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <dev:TitleBar.Content>
+        <TitleBar x:Name="AppTitleBar"
+                  Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
+                  BackRequested="AppTitleBar_BackRequested"
+                  IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/icon.png}"
+                  IsBackButtonVisible="True"
+                  IsPaneToggleButtonVisible="True"
+                  PaneToggleRequested="AppTitleBar_PaneToggleRequested"
+                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+            <TitleBar.Content>
                 <AutoSuggestBox x:Name="HeaderAutoSuggestBox"
                                 MinWidth="320"
                                 VerticalAlignment="Center"
@@ -24,8 +24,8 @@
                                 QueryIcon="Find"
                                 QuerySubmitted="OnQuerySubmitted"
                                 TextChanged="OnTextChanged" />
-            </dev:TitleBar.Content>
-            <dev:TitleBar.Footer>
+            </TitleBar.Content>
+            <TitleBar.Footer>
                 <Button x:Name="ThemeButton"
                         Height="32"
                         Margin="0,0,4,0"
@@ -34,21 +34,12 @@
                                                FontSize=16}"
                         Style="{ThemeResource SubtleButtonStyle}"
                         ToolTipService.ToolTip="Toggle Theme" />
-            </dev:TitleBar.Footer>
-        </dev:TitleBar>-->
+            </TitleBar.Footer>
+        </TitleBar>
         <NavigationView x:Name="NavView"
                         Grid.Row="1"
                         IsBackButtonVisible="Collapsed"
                         IsPaneToggleButtonVisible="False">
-            <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox x:Name="HeaderAutoSuggestBox"
-                                MinWidth="320"
-                                VerticalAlignment="Center"
-                                PlaceholderText="Search"
-                                QueryIcon="Find"
-                                QuerySubmitted="OnQuerySubmitted"
-                                TextChanged="OnTextChanged" />
-            </NavigationView.AutoSuggestBox>
             <NavigationView.Header>
                 <dev:BreadcrumbNavigator x:Name="JsonBreadCrumbNavigator" />
             </NavigationView.Header>

@@ -2,6 +2,18 @@
   "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/AppData.Schema.json",
   "Groups": [
     {
+      "UniqueId": "DevWinUIGallery.Views.HomeLandingPage",
+      "ShowItemsWithoutGroup": true,
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.HomeLandingPage",
+          "Title": "Home",
+          "HideItem": true,
+          "ImagePath": "ms-appx:///Assets/icon.png"
+        }
+      ]
+    },
+    {
       "UniqueId": "Win2dFeatures",
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Features (Win2D)",

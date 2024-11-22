@@ -199,6 +199,8 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
 
     public void EnsureNavigationSelection(string id)
     {
+        bool foundSelection = false;
+
         foreach (object rawGroup in this.AllMenuItems)
         {
             if (rawGroup is NavigationViewItem group)
@@ -213,6 +215,7 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
                     {
                         group.IsExpanded = true;
                     }
+                    foundSelection = true;
                     return;
                 }
 
@@ -220,14 +223,20 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
                 {
                     foreach (object rawItem in group.MenuItems)
                     {
-                        EnsureNavigationSelectionBase(rawItem, id, group);
+                        foundSelection = EnsureNavigationSelectionBase(rawItem, id, group) || foundSelection;
                     }
                 }
             }
         }
+
+        // If no matching selection is found, unselect any previously selected item
+        if (!foundSelection)
+        {
+            _navigationView.SelectedItem = null;
+        }
     }
 
-    private void EnsureNavigationSelectionBase(object rawItem, string id, NavigationViewItem parentGroup)
+    private bool EnsureNavigationSelectionBase(object rawItem, string id, NavigationViewItem parentGroup)
     {
         if (rawItem is NavigationViewItem item)
         {
@@ -241,17 +250,21 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
                 {
                     parentGroup.IsExpanded = true;
                 }
-                return;
+                return true;
             }
 
             if (item.MenuItems.Count > 0)
             {
                 foreach (var rawInnerItem in item.MenuItems)
                 {
-                    EnsureNavigationSelectionBase(rawInnerItem, id, parentGroup);
+                    if (EnsureNavigationSelectionBase(rawInnerItem, id, parentGroup))
+                    {
+                        return true;
+                    }
                 }
             }
         }
+        return false;
     }
 
 }
