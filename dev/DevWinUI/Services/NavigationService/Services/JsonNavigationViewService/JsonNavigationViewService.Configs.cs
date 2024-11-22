@@ -11,8 +11,10 @@ public partial class JsonNavigationViewService
         await DataSource.Instance.GetGroupsAsync();
 
         AddNavigationMenuItems(orderItems);
+
+        EnsureNavigationSelection(_defaultPage?.ToString());
     }
-    
+
     private void ConfigAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string autoSuggestBoxNotFoundString = null, string autoSuggestBoxNotFoundImagePath = null)
     {
         _autoSuggestBox = autoSuggestBox;
@@ -48,7 +50,6 @@ public partial class JsonNavigationViewService
     private void ConfigDefaultPage(Type DefaultPage)
     {
         _defaultPage = DefaultPage;
-        SetDefaultPage(_defaultPage);
     }
 
     private void ConfigSettingsPage(Type SettingsPage)

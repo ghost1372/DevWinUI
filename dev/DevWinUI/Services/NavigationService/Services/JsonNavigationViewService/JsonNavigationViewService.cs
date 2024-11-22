@@ -30,14 +30,39 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
     {
         _navigationView.IsBackEnabled = CanGoBack;
 
-        if (e.SourcePageType == _settingsPage)
+        if (_isBackNavigation)
         {
-            _navigationView.SelectedItem = SettingsItem;
+            if (e.SourcePageType == _settingsPage)
+            {
+                _navigationView.SelectedItem = SettingsItem;
+            }
+            else
+            {
+                if (e.Parameter is DataItem dataItem)
+                {
+                    if (!string.IsNullOrEmpty(dataItem.UniqueId))
+                    {
+                        if (dataItem.UniqueId.Equals(_defaultPage?.ToString()))
+                        {
+                            EnsureNavigationSelection(_defaultPage?.ToString());
+                        }
+                        else
+                        {
+                            EnsureNavigationSelection(dataItem.UniqueId);
+                        }
+                    }
+                }
+                else if (e.Parameter is DataGroup dataGroup)
+                {
+                    if (!string.IsNullOrEmpty(dataGroup.UniqueId))
+                    {
+                        EnsureNavigationSelection(dataGroup.UniqueId);
+                    }
+                }
+            }
         }
-        else if (e.SourcePageType != null)
-        {
-            // TODO: Update selected NavigationView item
-        }
+
+        _isBackNavigation = false; // Reset after navigation is handled
     }
     public void Reset()
     {
@@ -109,42 +134,6 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
             }
         }
     }
-    
-    private void UpdateSelectedNavigationViewItem(Type currentPageType)
-    {
-        // Traverse and find the matching NavigationViewItem
-        NavigationViewItem selectedItem = FindNavigationViewItem(_navigationView.MenuItems, currentPageType)
-                                          ?? FindNavigationViewItem(_navigationView.FooterMenuItems, currentPageType);
-
-        // Update the NavigationView selected item
-        if (selectedItem != null)
-        {
-            _navigationView.SelectedItem = selectedItem;
-        }
-    }
-
-    private NavigationViewItem? FindNavigationViewItem(IEnumerable<object> items, Type currentPageType)
-    {
-        foreach (var item in items)
-        {
-            if (item is NavigationViewItem navItem)
-            {
-                // Check if the item's uniqueId matches the current page type
-                if (navItem.Tag != null && navItem.Tag is string uniqueId && _pageKeyToTypeMap.TryGetValue(uniqueId, out var type) && type == currentPageType)
-                {
-                    return navItem;
-                }
-
-                // Recursively check sub-items
-                var childItem = FindNavigationViewItem(navItem.MenuItems, currentPageType);
-                if (childItem != null)
-                {
-                    return childItem;
-                }
-            }
-        }
-        return null;
-    }
 
     private void OnAutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {
@@ -187,11 +176,16 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
 
     public IEnumerable<DataItem> SearchNavigationViewItems(IEnumerable<DataItem> items, string query)
     {
-        query = query.Trim()?.ToLowerInvariant();
+        if (string.IsNullOrWhiteSpace(query))
+            yield break;
+
+        query = query.Trim();
 
         foreach (var item in items)
         {
-            if (item.Title.ToLowerInvariant().Contains(query) && item.UniqueId != null)
+            if (!string.IsNullOrEmpty(item.Title)
+                && item.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
+                && item.UniqueId != null)
             {
                 yield return item;
             }
@@ -202,4 +196,62 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
     }
+
+    public void EnsureNavigationSelection(string id)
+    {
+        foreach (object rawGroup in this.AllMenuItems)
+        {
+            if (rawGroup is NavigationViewItem group)
+            {
+                if ((string)group.Tag == id)
+                {
+                    group.IsSelected = true;
+                    _navigationView.SelectedItem = group;
+
+                    // Only expand if it's back navigation
+                    if (_isBackNavigation)
+                    {
+                        group.IsExpanded = true;
+                    }
+                    return;
+                }
+
+                if (group.MenuItems.Count > 0)
+                {
+                    foreach (object rawItem in group.MenuItems)
+                    {
+                        EnsureNavigationSelectionBase(rawItem, id, group);
+                    }
+                }
+            }
+        }
+    }
+
+    private void EnsureNavigationSelectionBase(object rawItem, string id, NavigationViewItem parentGroup)
+    {
+        if (rawItem is NavigationViewItem item)
+        {
+            if ((string)item.Tag == id)
+            {
+                _navigationView.SelectedItem = item;
+                item.IsSelected = true;
+
+                // Only expand the parent group if it's back navigation
+                if (_isBackNavigation)
+                {
+                    parentGroup.IsExpanded = true;
+                }
+                return;
+            }
+
+            if (item.MenuItems.Count > 0)
+            {
+                foreach (var rawInnerItem in item.MenuItems)
+                {
+                    EnsureNavigationSelectionBase(rawInnerItem, id, parentGroup);
+                }
+            }
+        }
+    }
+
 }

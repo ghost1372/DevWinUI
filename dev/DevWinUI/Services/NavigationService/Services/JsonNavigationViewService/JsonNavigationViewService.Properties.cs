@@ -11,6 +11,7 @@ public partial class JsonNavigationViewService
     private AutoSuggestBox? _autoSuggestBox;
     public IList<object>? MenuItems => _navigationView?.MenuItems;
     public IList<object>? FooterMenuItems => _navigationView?.FooterMenuItems;
+    private IList<object>? AllMenuItems => MenuItems.Concat(FooterMenuItems).ToList();
     public object? SettingsItem => _navigationView?.SettingsItem;
     public ResourceManager ResourceManager { get; set; }
     public ResourceContext ResourceContext { get; set; }
@@ -28,4 +29,5 @@ public partial class JsonNavigationViewService
     public event NavigatedEventHandler? FrameNavigated;
 
     public Window Window { get; set; }
+    private bool _isBackNavigation = false;
 }

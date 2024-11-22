@@ -96,13 +96,7 @@ public partial class JsonNavigationViewService : IJsonNavigationViewService
             }
         }
     }
-    private void ConfigPages()
-    {
-        if (GetPageType(DefaultPageKey) != null)
-        {
-            NavigateTo(DefaultPageKey);
-        }
-    }
+
     private IEnumerable<DataGroup> GetOrderedDataGroups(OrderItemsType orderItems)
     {
         switch (orderItems)
