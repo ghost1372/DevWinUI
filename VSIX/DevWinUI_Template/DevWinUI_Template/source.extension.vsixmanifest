@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
 		<Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.0" Language="en-US" Publisher="Mahdi Hosseini" />
@@ -9,7 +9,7 @@ Jump right into coding your project, and let us prepare project for you.</Descri
 		<MoreInfo>https://github.com/Ghost1372/DevWinUI</MoreInfo>
 		<GettingStartedGuide>https://github.com/Ghost1372/DevWinUI</GettingStartedGuide>
 		<ReleaseNotes>https://github.com/Ghost1372/DevWinUI</ReleaseNotes>
-		<Icon>Assets\WinUIApp.png</Icon>
+		<Icon>Assets\AppIcon.png</Icon>
 		<PreviewImage>Assets\Preview.png</PreviewImage>
 		<Tags>WindowsAppSDK, WinAppSDK, WinUI, DevWinUI, XAML, C#, Managed, winui3, winui 3, wasdk, windows app sdk, windowsappsdk, winuicommunity, settingsui, components, titlebar, navigationview, theme, mvvm, template, winui</Tags>
 		<Preview>true</Preview>

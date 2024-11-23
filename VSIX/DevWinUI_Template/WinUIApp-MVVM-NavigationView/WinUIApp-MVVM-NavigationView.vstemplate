@@ -15,7 +15,7 @@
 	<NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
 	<TargetPlatformName>Windows</TargetPlatformName>
 	<CreateInPlace>true</CreateInPlace>
-	<PreviewImage>WinUIApp.png</PreviewImage>
+	<PreviewImage>AppIcon.png</PreviewImage>
 	<PromptForSaveOnCreation>true</PromptForSaveOnCreation>
 	<LanguageTag>csharp</LanguageTag>
 	<LanguageTag>XAML</LanguageTag>
