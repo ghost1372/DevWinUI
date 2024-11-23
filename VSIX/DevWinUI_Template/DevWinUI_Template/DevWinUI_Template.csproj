@@ -147,8 +147,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AppIcon.ico" />
+    <Content Include="Assets\AppIcon.png" />
     <Content Include="Assets\Preview.png" />
-    <Content Include="Assets\WinUIApp.png" />
     <!--<ExtensionDependencies Condition=" '$(ExcludeRestorePackageImports)' != 'true' " Include="$(PkgNuget_VisualStudio)\**\NuGet.VisualStudio.dll" />-->
     <!--<Content Include="@(ExtensionDependencies)">
       <VSIXSubPath>.</VSIXSubPath>
