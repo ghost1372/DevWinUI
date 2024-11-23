@@ -23,7 +23,7 @@ public sealed partial class MainPage : Page
                 .ConfigureSectionPage(typeof(DemoSectionPage))
                 .ConfigureAutoSuggestBox(HeaderAutoSuggestBox)
                 .ConfigureTitleBar(AppTitleBar)
-                .ConfigureBreadcrumbBar(JsonBreadCrumbNavigator, BreadcrumbPageMappings.PageDictionary);
+                .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
         }
     }
 

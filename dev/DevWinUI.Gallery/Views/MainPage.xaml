@@ -39,7 +39,7 @@
                         IsBackButtonVisible="Collapsed"
                         IsPaneToggleButtonVisible="False">
             <NavigationView.Header>
-                <dev:BreadcrumbNavigator x:Name="JsonBreadCrumbNavigator" />
+                <dev:BreadcrumbNavigator x:Name="BreadCrumbNav" />
             </NavigationView.Header>
             <Frame x:Name="NavFrame" />
         </NavigationView>
