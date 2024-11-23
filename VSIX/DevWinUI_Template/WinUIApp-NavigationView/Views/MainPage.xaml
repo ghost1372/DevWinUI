@@ -38,8 +38,7 @@
             <NavigationView.Header>
                 <dev:BreadcrumbNavigator x:Name="BreadCrumbNav" />
             </NavigationView.Header>
-            <Frame x:Name="NavFrame"
-                   Navigated="NavFrame_Navigated" />
+            <Frame x:Name="NavFrame" />
         </NavigationView>
     </Grid>
 </Page>

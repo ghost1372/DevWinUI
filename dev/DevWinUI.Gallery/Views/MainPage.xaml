@@ -41,8 +41,7 @@
             <NavigationView.Header>
                 <dev:BreadcrumbNavigator x:Name="JsonBreadCrumbNavigator" />
             </NavigationView.Header>
-            <Frame x:Name="NavFrame"
-                   Navigated="NavFrame_Navigated" />
+            <Frame x:Name="NavFrame" />
         </NavigationView>
     </Grid>
 </Page>
