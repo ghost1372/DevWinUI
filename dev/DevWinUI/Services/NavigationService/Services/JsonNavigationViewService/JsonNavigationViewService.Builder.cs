@@ -119,6 +119,12 @@ public partial class JsonNavigationViewService
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, headerVisibilityOptions, allowDuplication);
         return this;
     }
+    public JsonNavigationViewService ConfigureTitleBar(TitleBar titleBar)
+    {
+        EnsureInitialized();
+        ConfigTitleBar(titleBar);
+        return this;
+    }
 
     private void EnsureInitialized()
     {

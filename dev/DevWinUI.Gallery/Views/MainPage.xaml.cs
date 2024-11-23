@@ -4,7 +4,6 @@ public sealed partial class MainPage : Page
 {
     public MainViewModel ViewModel { get; }
     internal static MainPage Instance { get; private set; }
-    private JsonNavigationViewService NavService;
     public MainPage()
     {
         ViewModel = App.GetService<MainViewModel>();
@@ -14,7 +13,7 @@ public sealed partial class MainPage : Page
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
 
-        NavService = App.GetService<IJsonNavigationViewService>() as JsonNavigationViewService;
+        var NavService = App.GetService<IJsonNavigationViewService>() as JsonNavigationViewService;
         if (NavService != null)
         {
             NavService
@@ -24,23 +23,9 @@ public sealed partial class MainPage : Page
                 .ConfigureSettingsPage(typeof(SettingsPage))
                 .ConfigureSectionPage(typeof(DemoSectionPage))
                 .ConfigureAutoSuggestBox(HeaderAutoSuggestBox)
+                .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(JsonBreadCrumbNavigator, BreadcrumbPageMappings.PageDictionary);
         }
-    }
-
-    private void AppTitleBar_BackRequested(TitleBar sender, object args)
-    {
-        NavService?.GoBack();
-    }
-
-    private void AppTitleBar_PaneToggleRequested(TitleBar sender, object args)
-    {
-        NavView.IsPaneOpen = !NavView.IsPaneOpen;
-    }
-
-    private void NavFrame_Navigated(object sender, NavigationEventArgs e)
-    {
-        AppTitleBar.IsBackButtonVisible = NavFrame.CanGoBack;
     }
 
     private void ThemeButton_Click(object sender, RoutedEventArgs e)

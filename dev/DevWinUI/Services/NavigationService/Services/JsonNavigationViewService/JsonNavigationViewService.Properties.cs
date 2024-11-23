@@ -30,4 +30,6 @@ public partial class JsonNavigationViewService
 
     public Window Window { get; set; }
     private bool _isBackNavigation = false;
+    private bool _isTitlebarConfigured;
+    private TitleBar _titleBar;
 }

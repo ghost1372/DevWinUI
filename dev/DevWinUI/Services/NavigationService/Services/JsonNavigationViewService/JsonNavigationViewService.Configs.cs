@@ -113,4 +113,25 @@ public partial class JsonNavigationViewService
         breadcrumbBar.HeaderVisibilityOptions = headerVisibilityOptions;
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, allowDuplication);
     }
+
+    private void ConfigTitleBar(TitleBar titleBar)
+    {
+        _titleBar = titleBar;
+        titleBar.BackRequested -= OnBackRequested;
+        titleBar.BackRequested += OnBackRequested;
+        titleBar.PaneToggleRequested -= OnPaneToggleRequested;
+        titleBar.PaneToggleRequested += OnPaneToggleRequested;
+        _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+        _isTitlebarConfigured = true;
+    }
+
+    private void OnPaneToggleRequested(TitleBar sender, object args)
+    {
+        _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+    }
+
+    private void OnBackRequested(TitleBar sender, object args)
+    {
+        GoBack();
+    }
 }

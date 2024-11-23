@@ -30,6 +30,11 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
     {
         _navigationView.IsBackEnabled = CanGoBack;
 
+        if (_isTitlebarConfigured)
+        {
+            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+        }
+
         if (_isBackNavigation)
         {
             if (e.SourcePageType == _settingsPage)
@@ -266,5 +271,4 @@ public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationV
         }
         return false;
     }
-
 }
