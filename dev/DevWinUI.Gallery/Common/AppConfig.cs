@@ -1,5 +1,4 @@
-﻿using Nucs.JsonSettings;
-using Nucs.JsonSettings.Examples;
+﻿using Nucs.JsonSettings.Examples;
 using Nucs.JsonSettings.Modulation;
 
 namespace DevWinUIGallery.Common;

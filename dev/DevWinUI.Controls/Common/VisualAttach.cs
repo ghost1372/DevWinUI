@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Hosting;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public static partial class VisualAttach
 {
     public static readonly DependencyProperty IsBindCenterPointProperty =
