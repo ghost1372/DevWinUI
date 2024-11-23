@@ -13,6 +13,7 @@ public partial class NavigationPageMappings
 {
     public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>
     {
+        {"DevWinUIGallery.Views.HomeLandingPage", typeof(DevWinUIGallery.Views.HomeLandingPage)},
         {"DevWinUIGallery.Views.TiledImageBrushPage", typeof(DevWinUIGallery.Views.TiledImageBrushPage)},
         {"DevWinUIGallery.Views.OutlineTextControlPage", typeof(DevWinUIGallery.Views.OutlineTextControlPage)},
         {"DevWinUIGallery.Views.WatermarkPage", typeof(DevWinUIGallery.Views.WatermarkPage)},
