@@ -21,6 +21,8 @@
 
 // Define JSON file path variable for easy adjustment
 <# string JSON_FILE_PATH = "AppData.json"; #>
+using System;
+using System.Collections.Generic;
 
 namespace $T4_NAMESPACE$;
 public partial class NavigationPageMappings
