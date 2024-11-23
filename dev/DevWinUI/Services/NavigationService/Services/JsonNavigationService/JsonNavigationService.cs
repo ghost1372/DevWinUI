@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public partial class JsonNavigationViewService : PageServiceEx, IJsonNavigationViewService
+public partial class JsonNavigationService : PageServiceEx, IJsonNavigationService
 {
     private void InitializeBase(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages)
     {

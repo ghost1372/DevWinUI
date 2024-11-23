@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Media.Animation;
 
 namespace DevWinUI;
-public partial class JsonNavigationViewService : IJsonNavigationViewService
+public partial class JsonNavigationService : IJsonNavigationService
 {
     public Frame? Frame
     {

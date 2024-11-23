@@ -100,18 +100,18 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
     }
     internal void Navigate(object sender, RoutedEventArgs e)
     {
-        if (JsonNavigationViewService != null)
+        if (JsonNavigationService != null)
         {
             var args = (ItemClickEventArgs)e;
             var item = (DataItem)args.ClickedItem;
 
-            JsonNavigationViewService.NavigateTo(item.UniqueId, item);
+            JsonNavigationService.NavigateTo(item.UniqueId, item);
         }
     }
-    public IJsonNavigationViewService JsonNavigationViewService
+    public IJsonNavigationService JsonNavigationService
     {
-        get { return (IJsonNavigationViewService)GetValue(JsonNavigationViewServiceProperty); }
-        set { SetValue(JsonNavigationViewServiceProperty, value); }
+        get { return (IJsonNavigationService)GetValue(JsonNavigationServiceProperty); }
+        set { SetValue(JsonNavigationServiceProperty, value); }
     }
 
     public ImageSource PlaceholderSource
@@ -246,7 +246,7 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
     public static readonly DependencyProperty IsCacheEnabledProperty = DependencyProperty.Register(nameof(IsCacheEnabled), typeof(bool), typeof(ItemsPageBase), new PropertyMetadata(true));
     public static readonly DependencyProperty HeaderImageProperty = DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
     public static readonly DependencyProperty HeaderOverlayImageProperty = DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
-    public static readonly DependencyProperty JsonNavigationViewServiceProperty = DependencyProperty.Register(nameof(JsonNavigationViewService), typeof(IJsonNavigationViewService), typeof(ItemsPageBase), new PropertyMetadata(null));
+    public static readonly DependencyProperty JsonNavigationServiceProperty = DependencyProperty.Register(nameof(JsonNavigationService), typeof(IJsonNavigationService), typeof(ItemsPageBase), new PropertyMetadata(null));
     
     private static void OnIsTileImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

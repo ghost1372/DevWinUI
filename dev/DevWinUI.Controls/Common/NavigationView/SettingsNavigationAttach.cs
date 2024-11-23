@@ -15,23 +15,23 @@ public partial class SettingsNavigationAttach
     public static readonly DependencyProperty SlideNavigationTransitionInfoProperty =
         DependencyProperty.RegisterAttached("SlideNavigationTransitionInfo", typeof(SlideNavigationTransitionInfo), typeof(SettingsNavigationAttach), new PropertyMetadata(new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight }));
 
-    public static IJsonNavigationViewService GetJsonNavigationViewService(DependencyObject obj)
+    public static IJsonNavigationService GetJsonNavigationService(DependencyObject obj)
     {
-        return (IJsonNavigationViewService)obj.GetValue(JsonNavigationViewServiceProperty);
+        return (IJsonNavigationService)obj.GetValue(JsonNavigationServiceProperty);
     }
 
-    public static void SetJsonNavigationViewService(DependencyObject obj, IJsonNavigationViewService value)
+    public static void SetJsonNavigationService(DependencyObject obj, IJsonNavigationService value)
     {
-        obj.SetValue(JsonNavigationViewServiceProperty, value);
+        obj.SetValue(JsonNavigationServiceProperty, value);
     }
 
-    public static readonly DependencyProperty JsonNavigationViewServiceProperty =
-        DependencyProperty.RegisterAttached("JsonNavigationViewService", typeof(IJsonNavigationViewService), typeof(SettingsNavigationAttach),
-        new PropertyMetadata(null, OnJsonNavigationViewServiceChanged));
+    public static readonly DependencyProperty JsonNavigationServiceProperty =
+        DependencyProperty.RegisterAttached("JsonNavigationService", typeof(IJsonNavigationService), typeof(SettingsNavigationAttach),
+        new PropertyMetadata(null, OnJsonNavigationServiceChanged));
 
-    private static void OnJsonNavigationViewServiceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnJsonNavigationServiceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (e.NewValue is IJsonNavigationViewService jsonNavigationService)
+        if (e.NewValue is IJsonNavigationService jsonNavigationService)
         {
             if (d is Panel panel)
             {

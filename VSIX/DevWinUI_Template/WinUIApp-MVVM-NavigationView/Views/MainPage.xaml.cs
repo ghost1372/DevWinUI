@@ -10,31 +10,14 @@ public sealed partial class MainPage : Page
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
 
-        var navService = App.GetService<IJsonNavigationViewService>() as JsonNavigationViewService;
+        var navService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
         if (navService != null)
         {
             navService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
                 .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")$ConfigDefaultPages$
+                .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
         }
-    }
-
-    private void AppTitleBar_BackRequested(TitleBar sender, object args)
-    {
-        if (NavFrame.CanGoBack)
-        {
-            NavFrame.GoBack();
-        }
-    }
-
-    private void AppTitleBar_PaneToggleRequested(TitleBar sender, object args)
-    {
-        NavView.IsPaneOpen = !NavView.IsPaneOpen;
-    }
-
-    private void NavFrame_Navigated(object sender, NavigationEventArgs e)
-    {
-        AppTitleBar.IsBackButtonVisible = NavFrame.CanGoBack;
     }
 
     private void ThemeButton_Click(object sender, RoutedEventArgs e)

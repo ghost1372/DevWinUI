@@ -45,7 +45,7 @@ void ProcessItems(JsonElement items, List<string> xamlPages)
             if (!string.IsNullOrEmpty(xamlClass))
             {
 #>
-        {"<#= uniqueId + parameter #>", typeof(<#= xamlClass #>)},
+        {"<#= uniqueId #>", typeof(<#= xamlClass #>)},
 <#
             }
         }
@@ -57,7 +57,7 @@ void ProcessItems(JsonElement items, List<string> xamlPages)
             if (!string.IsNullOrEmpty(xamlClass))
             {
 #>
-        {"<#= uniqueId + parameter #>", typeof(<#= xamlClass #>)},
+        {"<#= uniqueId #>", typeof(<#= xamlClass #>)},
 <#
             }
         }

@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public interface IJsonNavigationViewService
+public interface IJsonNavigationService
 {
     void UnregisterEvents();
 

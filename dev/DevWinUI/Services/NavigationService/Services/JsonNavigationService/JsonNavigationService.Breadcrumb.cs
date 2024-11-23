@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Media.Animation;
 
 namespace DevWinUI;
-public partial class JsonNavigationViewService
+public partial class JsonNavigationService
 {
     private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
     {

@@ -5,7 +5,7 @@ public partial class App : Application
     public static Window MainWindow = Window.Current;
     public IServiceProvider Services { get; }
     public new static App Current => (App)Application.Current;
-    public IJsonNavigationViewService GetJsonNavigationViewService => GetService<IJsonNavigationViewService>();
+    public IJsonNavigationService GetJsonNavigationService => GetService<IJsonNavigationService>();
     public IThemeService GetThemeService => GetService<IThemeService>();
 
     public static T GetService<T>() where T : class
@@ -28,7 +28,7 @@ public partial class App : Application
     {
         var services = new ServiceCollection();
         services.AddSingleton<IThemeService, ThemeService>();
-        services.AddSingleton<IJsonNavigationViewService, JsonNavigationViewService>();
+        services.AddSingleton<IJsonNavigationService, JsonNavigationService>();
 
         services.AddTransient<MainViewModel>();
         services.AddTransient<GeneralSettingViewModel>();

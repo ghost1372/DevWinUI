@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace DevWinUI;
 
-public partial class JsonNavigationViewService
+public partial class JsonNavigationService
 {
     private async void ConfigJsonBase(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
     {

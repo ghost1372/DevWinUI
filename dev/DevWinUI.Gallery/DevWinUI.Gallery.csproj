@@ -71,15 +71,6 @@
 	  <AutoGen>True</AutoGen>
 	  <DependentUpon>NavigationPageMappings.tt</DependentUpon>
 	</Compile>
-	<None Update="T4Templates\SampleNavigationPageMappings.tt">
-	  <Generator>TextTemplatingFileGenerator</Generator>
-	  <LastGenOutput>SampleNavigationPageMappings.cs</LastGenOutput>
-	</None>
-	<Compile Update="T4Templates\SampleNavigationPageMappings.cs">
-	  <DesignTime>True</DesignTime>
-	  <AutoGen>True</AutoGen>
-	  <DependentUpon>SampleNavigationPageMappings.tt</DependentUpon>
-	</Compile>
 	<None Update="T4Templates\BreadcrumbPageMappings.tt">
 	  <Generator>TextTemplatingFileGenerator</Generator>
 	  <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>

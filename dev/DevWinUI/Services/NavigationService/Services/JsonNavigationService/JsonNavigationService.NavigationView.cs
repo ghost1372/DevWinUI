@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Automation;
 
 namespace DevWinUI;
-public partial class JsonNavigationViewService : IJsonNavigationViewService
+public partial class JsonNavigationService : IJsonNavigationService
 {
     private void AddNavigationMenuItems()
     {

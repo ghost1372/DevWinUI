@@ -11,6 +11,6 @@
                         HeaderOverlayImage="{ThemeResource HeaderCover}"
                         HeaderSubtitleText="{x:Bind dev:ProcessInfoHelper.Version}"
                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                        JsonNavigationViewService="{x:Bind local:App.Current.GetNavigationService}" />
+                        JsonNavigationService="{x:Bind local:App.Current.GetNavigationService}" />
 </Page>
 

@@ -13,6 +13,6 @@
                          HeaderOverlayImage="{ThemeResource HeaderCover}"
                          HeaderSubtitleText="Windows App SDK 1.7+"
                          HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
-                         JsonNavigationViewService="{x:Bind local:App.Current.GetJsonNavigationViewService}" />
+                         JsonNavigationService="{x:Bind local:App.Current.GetJsonNavigationService}" />
 </Page>
 

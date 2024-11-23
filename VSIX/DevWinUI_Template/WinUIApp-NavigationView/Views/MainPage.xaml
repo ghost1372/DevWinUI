@@ -10,11 +10,9 @@
     <Grid RowDefinitions="Auto, *">
         <TitleBar x:Name="AppTitleBar"
                   Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                  BackRequested="AppTitleBar_BackRequested"
                   IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
-                  PaneToggleRequested="AppTitleBar_PaneToggleRequested"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
             <TitleBar.Content>
                 <AutoSuggestBox MinWidth="320"

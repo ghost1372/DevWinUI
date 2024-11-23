@@ -13,11 +13,10 @@ public sealed partial class MainPage : Page
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
 
-        var NavService = App.GetService<IJsonNavigationViewService>() as JsonNavigationViewService;
+        var NavService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
         if (NavService != null)
         {
-            NavService
-                .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
+            NavService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
                 .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
                 .ConfigureDefaultPage(typeof(HomeLandingPage))
                 .ConfigureSettingsPage(typeof(SettingsPage))

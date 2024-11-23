@@ -14,7 +14,7 @@
                 VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
-                    dev:SettingsNavigationAttach.JsonNavigationViewService="{x:Bind local:App.Current.GetNavigationService}"
+                    dev:SettingsNavigationAttach.JsonNavigationService="{x:Bind local:App.Current.GetNavigationService}"
                     Spacing="5">
             $SettingsCards$
         </StackPanel>

@@ -4,15 +4,15 @@ public partial class App : Application
 {
     public static Window MainWindow = Window.Current;
     public IThemeService ThemeService { get; set; }
-    public IJsonNavigationViewService NavigationService { get; set; }
+    public IJsonNavigationService NavigationService { get; set; }
     public new static App Current => (App)Application.Current;
-    public IJsonNavigationViewService GetNavigationService => NavigationService;
+    public IJsonNavigationService GetNavigationService => NavigationService;
     public IThemeService GetThemeService => ThemeService;
 
     public App()
     {
         this.InitializeComponent();
-        NavigationService = new JsonNavigationViewService();
+        NavigationService = new JsonNavigationService();
     }
 
     protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)

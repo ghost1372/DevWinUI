@@ -2,10 +2,10 @@
 
 namespace DevWinUI;
 
-public partial class JsonNavigationViewService
+public partial class JsonNavigationService
 {
     private bool _isInitialized;
-    public JsonNavigationViewService Initialize(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages)
+    public JsonNavigationService Initialize(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages)
     {
         InitializeBase(navigationView, frame, pages);
 
@@ -14,35 +14,35 @@ public partial class JsonNavigationViewService
         return this; // Enable chaining
     }
     
-    public JsonNavigationViewService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, pathType, orderItems);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureJsonFile(string jsonFilePath)
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems)
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureJsonFile(string jsonFilePath, PathType pathType)
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureDefaultPage(Type defaultPage)
+    public JsonNavigationService ConfigureDefaultPage(Type defaultPage)
     {
         EnsureInitialized();
         ConfigDefaultPage(defaultPage);
@@ -50,76 +50,76 @@ public partial class JsonNavigationViewService
         return this;
     }
 
-    public JsonNavigationViewService ConfigureSettingsPage(Type settingsPage)
+    public JsonNavigationService ConfigureSettingsPage(Type settingsPage)
     {
         EnsureInitialized();
         ConfigSettingsPage(settingsPage);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureSectionPage(Type sectionPage)
+    public JsonNavigationService ConfigureSectionPage(Type sectionPage)
     {
         EnsureInitialized();
         ConfigSectionPage(sectionPage);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string notFoundString = null, string notFoundImagePath = null)
+    public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string notFoundString = null, string notFoundImagePath = null)
     {
         EnsureInitialized();
         ConfigAutoSuggestBox(autoSuggestBox, useItemTemplate, notFoundString, notFoundImagePath);
         return this;
     }
     
-    public JsonNavigationViewService ConfigureLocalizer()
+    public JsonNavigationService ConfigureLocalizer()
     {
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         ConfigLocalizerBase(resourceManager, resourceManager.CreateResourceContext());
         return this;
     }
-    public JsonNavigationViewService ConfigureLocalizer(ResourceManager resourceManager)
+    public JsonNavigationService ConfigureLocalizer(ResourceManager resourceManager)
     {
         EnsureInitialized();
         ConfigLocalizerBase(resourceManager, resourceManager.CreateResourceContext());
         return this;
     }
 
-    public JsonNavigationViewService ConfigureLocalizer(ResourceManager resourceManager, ResourceContext resourceContext)
+    public JsonNavigationService ConfigureLocalizer(ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
         ConfigLocalizerBase(resourceManager, resourceContext);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
         EnsureInitialized();
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
     {
         EnsureInitialized();
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, headerVisibilityOptions);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, bool allowDuplication)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, bool allowDuplication)
     {
         EnsureInitialized();
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, allowDuplication);
         return this;
     }
 
-    public JsonNavigationViewService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, bool allowDuplication)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, bool allowDuplication)
     {
         EnsureInitialized();
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, headerVisibilityOptions, allowDuplication);
         return this;
     }
-    public JsonNavigationViewService ConfigureTitleBar(TitleBar titleBar)
+    public JsonNavigationService ConfigureTitleBar(TitleBar titleBar)
     {
         EnsureInitialized();
         ConfigTitleBar(titleBar);

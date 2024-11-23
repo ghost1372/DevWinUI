@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public partial class JsonNavigationViewService
+public partial class JsonNavigationService
 {
     private bool _useBreadcrumbBar;
     private bool _allowDuplication;
