@@ -18,9 +18,14 @@ internal partial class StringToUriConverter : IValueConverter
                 return new Uri($"ms-appx:///{uri}");
             }
 
+            if (string.IsNullOrEmpty(uri))
+            {
+                return new Uri(uriString: "ms-appx:///Assets/NOT_FOUND_IMAGE.png");
+            }
+
             return new Uri(uri);
         }
-        return new Uri("ms-appx:///Assets/NOT_FOUND_IMAGE.png");
+        return new Uri(uriString: "ms-appx:///Assets/NOT_FOUND_IMAGE.png");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
