@@ -31,9 +31,6 @@
 	  </None>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\Pages\Features\TileControlPage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +72,6 @@
 	  <Generator>TextTemplatingFileGenerator</Generator>
 	  <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>
 	</None>
-	<Page Update="Views\Pages\Features\TileControlPage.xaml">
-	  <Generator>MSBuild:Compile</Generator>
-	</Page>
 	<Compile Update="T4Templates\BreadcrumbPageMappings.cs">
 	  <DesignTime>True</DesignTime>
 	  <AutoGen>True</AutoGen>
