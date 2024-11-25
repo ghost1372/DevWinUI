@@ -109,11 +109,11 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (orderby != null)
         {
-            Items = Items?.OrderBy(orderby);
+            Items = Items?.OrderBy(orderby).ToList();
         }
         else
         {
-            Items = Items?.OrderBy(i => i.Title);
+            Items = Items?.OrderBy(i => i.Title).ToList();
         }
     }
 
@@ -121,11 +121,11 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (orderByDescending != null)
         {
-            Items = Items?.OrderByDescending(orderByDescending);
+            Items = Items?.OrderByDescending(orderByDescending).ToList();
         }
         else
         {
-            Items = Items?.OrderByDescending(i => i.Title);
+            Items = Items?.OrderByDescending(i => i.Title).ToList();
         }
     }
 }
