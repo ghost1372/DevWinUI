@@ -3825,7 +3825,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="PART_RootGrid" Grid.Row="0" MinHeight="{ThemeResource SettingsCardMinHeight}" Padding="{ThemeResource SettingsCardPadding}" Background="{ThemeResource SettingsCardBackground}" BackgroundSizing="InnerBorderEdge" BorderBrush="{ThemeResource SettingsCardBorderBrush}" BorderThickness="{ThemeResource SettingsCardBorderThickness}" CornerRadius="{Binding Items.Count, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource Bool2CornerRadiusConverter}}">
+            <Grid x:Name="PART_RootGrid" Grid.Row="0" MinHeight="{ThemeResource SettingsCardMinHeight}" Padding="{ThemeResource SettingsCardPadding}" Background="{ThemeResource SettingsCardBackground}" BackgroundSizing="InnerBorderEdge" BorderBrush="{ThemeResource SettingsCardBorderBrush}" BorderThickness="{ThemeResource SettingsCardBorderThickness}">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

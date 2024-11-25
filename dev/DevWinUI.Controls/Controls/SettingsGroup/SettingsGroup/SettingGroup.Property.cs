@@ -4,6 +4,18 @@ using System.ComponentModel;
 namespace DevWinUI;
 public partial class SettingsGroup : Control
 {
+    internal CornerRadius RootGridCornerRadius
+    {
+        get { return (CornerRadius)GetValue(RootGridCornerRadiusProperty); }
+        set { SetValue(RootGridCornerRadiusProperty, value); }
+    }
+
+    internal static readonly DependencyProperty RootGridCornerRadiusProperty =
+        DependencyProperty.Register(nameof(RootGridCornerRadius), typeof(CornerRadius), typeof(SettingsGroup), new PropertyMetadata(new CornerRadius(0)));
+    private CornerRadius GetRootGridCornerRadius()
+    {
+        return (CornerRadius)new Bool2CornerRadiusConverter().Convert(Items?.Count, null, null, null);
+    }
     public ObservableCollection<object> Items
     {
         get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
@@ -25,13 +37,10 @@ public partial class SettingsGroup : Control
     {
         if (_itemsRepeater is not null)
         {
-            Bool2CornerRadiusConverter bool2CornerRadiusConverter = new Bool2CornerRadiusConverter();
-            var cornerRadius = bool2CornerRadiusConverter.Convert(Items.Count, null, null, null);
-
+            RootGridCornerRadius = GetRootGridCornerRadius();
             if (_rootGrid != null)
             {
-                _rootGrid.CornerRadius = (CornerRadius)cornerRadius;
-
+                _rootGrid.CornerRadius = GetRootGridCornerRadius();
             }
 
             foreach (var item in Items)

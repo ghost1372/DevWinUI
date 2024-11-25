@@ -57,6 +57,7 @@ public partial class SettingsGroup : Control
         OnHeaderChanged();
         OnDescriptionChanged();
         OnContentChanged();
+        RootGridCornerRadius = GetRootGridCornerRadius();
         base.OnApplyTemplate();
     }
 

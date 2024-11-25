@@ -52,8 +52,7 @@
                               Background="{ThemeResource SettingsCardBackground}"
                               BackgroundSizing="InnerBorderEdge"
                               BorderBrush="{ThemeResource SettingsCardBorderBrush}"
-                              BorderThickness="{ThemeResource SettingsCardBorderThickness}"
-                              CornerRadius="{Binding Items.Count, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource Bool2CornerRadiusConverter}}">
+                              BorderThickness="{ThemeResource SettingsCardBorderThickness}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
