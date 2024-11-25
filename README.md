@@ -388,9 +388,6 @@ Install-Package DevWinUI.ContextMenu
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/Shortcut.png)
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/Shortcut_Dialog_Error.png)
 
-### TabViewItem Style
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/TabViewItemRounded.png)
-
 ### Taskbar Helper
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/TaskbarError.png)
 
