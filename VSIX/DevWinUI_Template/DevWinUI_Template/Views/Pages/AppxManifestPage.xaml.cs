@@ -3,45 +3,44 @@ using System.Windows;
 using System.Windows.Controls;
 using DevWinUI_Template.WizardUI;
 
-namespace DevWinUI_Template
+namespace DevWinUI_Template;
+
+public partial class AppxManifestPage : Page
 {
-    public partial class AppxManifestPage : Page
+    public AppxManifestPage()
     {
-        public AppxManifestPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void Toggled(object sender, RoutedEventArgs e)
-        {
-            var optionUC = sender as OptionUC;
-            AddOrRemoveElement(optionUC);
-        }
+    private void Toggled(object sender, RoutedEventArgs e)
+    {
+        var optionUC = sender as OptionUCNoExpander;
+        AddOrRemoveElement(optionUC);
+    }
 
-        private void AddOrRemoveElement(OptionUC optionUC)
+    private void AddOrRemoveElement(OptionUCNoExpander optionUC)
+    {
+        try
         {
-            try
+            string keyValue = optionUC.Tag.ToString();
+            if (optionUC.IsOn)
             {
-                string keyValue = optionUC.Tag.ToString();
-                if (optionUC.IsOn)
+                WizardConfig.UnvirtualizedResources.TryGetValue(keyValue, out var valueExist);
+                if (!string.IsNullOrEmpty(valueExist))
                 {
-                    WizardConfig.UnvirtualizedResources.TryGetValue(keyValue, out var valueExist);
-                    if (!string.IsNullOrEmpty(valueExist))
-                    {
-                        WizardConfig.UnvirtualizedResources.Remove(keyValue);
-                    }
-                    WizardConfig.MinimumTargetPlatform = WizardConfig.MinimumTargetPlatformDefault;
+                    WizardConfig.UnvirtualizedResources.Remove(keyValue);
                 }
-                else
-                {
-                    WizardConfig.UnvirtualizedResources.AddIfNotExists(keyValue, $"    <{keyValue}>disabled</{keyValue}>");
-                    WizardConfig.MinimumTargetPlatform = "18362";
-                }
+                WizardConfig.MinimumTargetPlatform = WizardConfig.MinimumTargetPlatformDefault;
             }
-            catch (Exception)
+            else
             {
-
+                WizardConfig.UnvirtualizedResources.AddIfNotExists(keyValue, $"    <{keyValue}>disabled</{keyValue}>");
+                WizardConfig.MinimumTargetPlatform = "18362";
             }
+        }
+        catch (Exception)
+        {
+
         }
     }
 }

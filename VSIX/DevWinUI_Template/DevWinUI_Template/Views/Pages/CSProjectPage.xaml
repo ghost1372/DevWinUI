@@ -1,55 +1,36 @@
-﻿<Page
-    x:Class="DevWinUI_Template.CSProjectPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:DevWinUI_Template"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    Title="CSProjectPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d">
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/iNKORE.UI.WPF.Modern;component/Themes/Styles/Expander.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-    <ScrollViewer Margin="5" VerticalAlignment="Top">
+﻿<Page x:Class="DevWinUI_Template.CSProjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="CSProjectPage"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <ScrollViewer Margin="5"
+                  VerticalAlignment="Top">
         <StackPanel>
-            <Separator Margin="0,10,0,5" HorizontalAlignment="Stretch" />
-            <ui:InfoBar
-                Title="Options will be added into CSProject file."
-                Margin="0,5"
-                IsClosable="False"
-                IsOpen="True"
-                Severity="Informational" />
-            <Expander
-                HorizontalAlignment="Stretch"
-                Header="Publish"
-                IsExpanded="True"
-                Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
-                <StackPanel>
-                    <local:OptionUC
-                        x:Name="OUAOT"
-                        Title="1. PublishAot"
-                        InfoBarMessage="Native AOT apps have faster startup time and smaller memory footprints. These apps can run on machines that don't have the .NET runtime installed."
-                        InfoBarTitle="Publishing your app as Native AOT produces an app that's self-contained and that has been ahead-of-time (AOT) compiled to native code."
-                        OffContent="False"
-                        OnContent="True"
-                        Toggled="OUAOT_Toggled" />
-                    <local:OptionUC
-                        x:Name="TrimModeOption"
-                        Title="2. TrimMode"
-                        InfoBarTitle="This property will produce a trimmed app on self-contained publish. It also turns off trim-incompatible features and shows trim compatibility warnings during build."
-                        OffContent="partial"
-                        OnContent="full"
-                        Toggled="TrimModeOption_Toggled" />
-
-                </StackPanel>
-            </Expander>
+            <ui:InfoBar Title="Options will be added into CSProject file."
+                        Margin="0,5"
+                        IsClosable="False"
+                        IsOpen="True"
+                        Severity="Informational" />
+            <Separator Margin="0,5,0,5"
+                       HorizontalAlignment="Stretch" />
+            <local:OptionUCNoExpander x:Name="OUAOT"
+                                      Title="1. PublishAot"
+                                      Description="Publishing your app as Native AOT produces an app that's self-contained and that has been ahead-of-time (AOT) compiled to native code."
+                                      OffContent="False"
+                                      OnContent="True"
+                                      Toggled="OUAOT_Toggled" />
+            <local:OptionUCNoExpander x:Name="TrimModeOption"
+                                      Title="2. TrimMode"
+                                      Description="This property will produce a trimmed app on self-contained publish. It also turns off trim-incompatible features and shows trim compatibility warnings during build."
+                                      OffContent="partial"
+                                      OnContent="full"
+                                      Toggled="TrimModeOption_Toggled" />
         </StackPanel>
     </ScrollViewer>
 

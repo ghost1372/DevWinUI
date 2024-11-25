@@ -3,91 +3,90 @@ using System.Windows;
 using System.Windows.Controls;
 using DevWinUI_Template.WizardUI;
 
-namespace DevWinUI_Template
+namespace DevWinUI_Template;
+
+public partial class CSProjectPage : Page
 {
-    public partial class CSProjectPage : Page
+    public CSProjectPage()
     {
-        public CSProjectPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void Toggled(object sender, RoutedEventArgs e)
-        {
-            var optionUC = sender as OptionUC;
-            AddOrRemoveElement(optionUC);
-        }
+    private void Toggled(object sender, RoutedEventArgs e)
+    {
+        var optionUC = sender as OptionUCNoExpander;
+        AddOrRemoveElement(optionUC);
+    }
 
-        private void AddOrRemoveElement(OptionUC optionUC)
+    private void AddOrRemoveElement(OptionUCNoExpander optionUC)
+    {
+        try
         {
-            try
+            string keyValue = optionUC.Tag.ToString();
+            if (optionUC.IsOn)
             {
-                string keyValue = optionUC.Tag.ToString();
-                if (optionUC.IsOn)
-                {
-                    WizardConfig.CSProjectElements.AddIfNotExists(keyValue, $"<{keyValue}>true</{keyValue}>");
-                }
-                else
-                {
-                    WizardConfig.CSProjectElements.TryGetValue(keyValue, out var valueExist);
-                    if (!string.IsNullOrEmpty(valueExist))
-                    {
-                        WizardConfig.CSProjectElements.Remove(keyValue);
-                    }
-                }
+                WizardConfig.CSProjectElements.AddIfNotExists(keyValue, $"<{keyValue}>true</{keyValue}>");
             }
-            catch (Exception)
+            else
             {
-
-            }
-        }
-
-        private void AddOrUpdateElementWithOnOffContent(OptionUC optionUC)
-        {
-            try
-            {
-                var key = optionUC.Tag.ToString();
-                var onValue = optionUC.OnContent;
-                var offValue = optionUC.OffContent;
-
-                WizardConfig.CSProjectElements.TryGetValue(key, out var valueExist);
+                WizardConfig.CSProjectElements.TryGetValue(keyValue, out var valueExist);
                 if (!string.IsNullOrEmpty(valueExist))
                 {
-                    if (optionUC.IsOn)
-                    {
-                        WizardConfig.CSProjectElements.Update(key, $"<{key}>{onValue}</{key}>");
-                    }
-                    else
-                    {
-                        WizardConfig.CSProjectElements.Update(key, $"<{key}>{offValue}</{key}>");
-                    }
+                    WizardConfig.CSProjectElements.Remove(keyValue);
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+
+    private void AddOrUpdateElementWithOnOffContent(OptionUCNoExpander optionUC)
+    {
+        try
+        {
+            var key = optionUC.Tag.ToString();
+            var onValue = optionUC.OnContent;
+            var offValue = optionUC.OffContent;
+
+            WizardConfig.CSProjectElements.TryGetValue(key, out var valueExist);
+            if (!string.IsNullOrEmpty(valueExist))
+            {
+                if (optionUC.IsOn)
+                {
+                    WizardConfig.CSProjectElements.Update(key, $"<{key}>{onValue}</{key}>");
                 }
                 else
                 {
-                    if (optionUC.IsOn)
-                    {
-                        WizardConfig.CSProjectElements.AddIfNotExists(key, $"<{key}>{onValue}</{key}>");
-                    }
-                    else
-                    {
-                        WizardConfig.CSProjectElements.AddIfNotExists(key, $"<{key}>{offValue}</{key}>");
-                    }
+                    WizardConfig.CSProjectElements.Update(key, $"<{key}>{offValue}</{key}>");
                 }
             }
-            catch (Exception)
+            else
             {
-
+                if (optionUC.IsOn)
+                {
+                    WizardConfig.CSProjectElements.AddIfNotExists(key, $"<{key}>{onValue}</{key}>");
+                }
+                else
+                {
+                    WizardConfig.CSProjectElements.AddIfNotExists(key, $"<{key}>{offValue}</{key}>");
+                }
             }
         }
-
-        private void TrimModeOption_Toggled(object sender, RoutedEventArgs e)
+        catch (Exception)
         {
-            WizardConfig.TrimMode = TrimModeOption.IsOn ? TrimModeOption.OnContent : TrimModeOption.OffContent;
-        }
 
-        private void OUAOT_Toggled(object sender, RoutedEventArgs e)
-        {
-            WizardConfig.PublishAot = OUAOT.IsOn;
         }
+    }
+
+    private void TrimModeOption_Toggled(object sender, RoutedEventArgs e)
+    {
+        WizardConfig.TrimMode = TrimModeOption.IsOn ? TrimModeOption.OnContent : TrimModeOption.OffContent;
+    }
+
+    private void OUAOT_Toggled(object sender, RoutedEventArgs e)
+    {
+        WizardConfig.PublishAot = OUAOT.IsOn;
     }
 }

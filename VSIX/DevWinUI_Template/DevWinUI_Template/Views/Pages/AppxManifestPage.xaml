@@ -1,57 +1,38 @@
-﻿<Page
-    x:Class="DevWinUI_Template.AppxManifestPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:DevWinUI_Template"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    Title="AppxManifestPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d">
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/iNKORE.UI.WPF.Modern;component/Themes/Styles/Expander.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-    <ScrollViewer Margin="5" VerticalAlignment="Top">
+﻿<Page x:Class="DevWinUI_Template.AppxManifestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="AppxManifestPage"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <ScrollViewer Margin="5"
+                  VerticalAlignment="Top">
         <StackPanel>
-            <Separator Margin="0,10,0,5" HorizontalAlignment="Stretch" />
-            <ui:InfoBar
-                Title="Options will be added into Package.appxmanifest file."
-                Margin="0,5"
-                IsClosable="False"
-                IsOpen="True"
-                Severity="Informational" />
-            <Expander
-                HorizontalAlignment="Stretch"
-                Header="Unvirtualized Resources"
-                IsExpanded="True"
-                Style="{StaticResource {x:Static ui:ThemeKeys.ExpanderCardStyleKey}}">
-                <StackPanel>
-                    <local:OptionUC
-                        Title="1. RegistryWriteVirtualization"
-                        InfoBarMessage="Minimum OS Version Windows 10 version 1903 (Build 18362)"
-                        InfoBarTitle="Indicates whether virtualization for the registry is enabled for your desktop application. If disabled, other apps can read or write the same registry entries as your application."
-                        IsOn="True"
-                        OffContent="disabled"
-                        OnContent="Default(enabled)"
-                        Tag="desktop6:RegistryWriteVirtualization"
-                        Toggled="Toggled" />
-                    <local:OptionUC
-                        Title="2. FileSystemWriteVirtualization"
-                        InfoBarMessage="Minimum OS Version Windows 10 version 1903 (Build 18362)"
-                        InfoBarTitle="Indicates whether virtualization for the file system is enabled for your desktop application. If disabled, other apps can read or write the same file system entries as your application."
-                        IsOn="True"
-                        OffContent="disabled"
-                        OnContent="Default(enabled)"
-                        Tag="desktop6:FileSystemWriteVirtualization"
-                        Toggled="Toggled" />
-                </StackPanel>
-            </Expander>
+            <ui:InfoBar Title="Options will be added into Package.appxmanifest file."
+                        Margin="0,5"
+                        IsClosable="False"
+                        IsOpen="True"
+                        Severity="Informational" />
+            <Separator Margin="0,5,0,5"
+                       HorizontalAlignment="Stretch" />
+            <local:OptionUCNoExpander Title="RegistryWriteVirtualization"
+                                      Description="Indicates whether virtualization for the registry is enabled for your desktop application. If disabled, other apps can read or write the same registry entries as your application."
+                                      IsOn="True"
+                                      OffContent="disabled"
+                                      OnContent="Default(enabled)"
+                                      Tag="desktop6:RegistryWriteVirtualization"
+                                      Toggled="Toggled" />
+            <local:OptionUCNoExpander Title="FileSystemWriteVirtualization"
+                                      Description="Indicates whether virtualization for the file system is enabled for your desktop application. If disabled, other apps can read or write the same file system entries as your application."
+                                      IsOn="True"
+                                      OffContent="disabled"
+                                      OnContent="Default(enabled)"
+                                      Tag="desktop6:FileSystemWriteVirtualization"
+                                      Toggled="Toggled" />
         </StackPanel>
     </ScrollViewer>
 </Page>
