@@ -24,7 +24,7 @@
                     </x:String>
                 </local:ControlExample.Xaml>
 
-                <Rectangle>
+                <Rectangle Height="400">
                     <Rectangle.Fill>
                         <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
                     </Rectangle.Fill>
