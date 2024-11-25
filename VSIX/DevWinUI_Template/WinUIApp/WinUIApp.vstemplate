@@ -3,7 +3,7 @@
   <TemplateData>
 	<Name>WinUI 3 App</Name>
 	<Description>Creates a new WinUI 3 App with DevWinUI Packages and Custom TitleBar</Description>
-    <Icon>WinUIApp.ico</Icon>
+    <Icon>Assets/AppIcon.ico</Icon>
     <TemplateID>WinUIApp-{07E96C59-27D7-497F-B096-08922AC9C65F}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
@@ -15,7 +15,7 @@
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <TargetPlatformName>Windows</TargetPlatformName>
     <CreateInPlace>true</CreateInPlace>
-    <PreviewImage>AppIcon.png</PreviewImage>
+    <PreviewImage>Assets/AppIcon.png</PreviewImage>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <LanguageTag>csharp</LanguageTag>
     <LanguageTag>XAML</LanguageTag>

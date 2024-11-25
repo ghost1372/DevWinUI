@@ -3,7 +3,7 @@
   <TemplateData>
 	<Name>WinUI 3 App - Blank</Name>
 	<Description>Creates a new Blank WinUI 3 App without DevWinUI Packages and Configs</Description>
-    <Icon>WinUIApp.ico</Icon>
+    <Icon>Assets/AppIcon.ico</Icon>
     <TemplateID>WinUIApp-Blank-{8217C719-97BA-4482-A019-26B4C2EF8469}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
@@ -15,7 +15,7 @@
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <TargetPlatformName>Windows</TargetPlatformName>
     <CreateInPlace>true</CreateInPlace>
-    <PreviewImage>AppIcon.png</PreviewImage>
+    <PreviewImage>Assets/AppIcon.png</PreviewImage>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <LanguageTag>csharp</LanguageTag>
     <LanguageTag>XAML</LanguageTag>

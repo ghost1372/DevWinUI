@@ -70,8 +70,6 @@
     <Content Include="Assets\Store\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Store\StoreLogo.png" />
     <Content Include="Assets\Store\Wide310x150Logo.scale-200.png" />
-    <Content Include="WinUIApp.ico" />
-    <Content Include="WinUIApp.png" />
     <VSTemplate Include="WinUIApp-Blank-UnitTest.vstemplate" />
   </ItemGroup>
   <ItemGroup>

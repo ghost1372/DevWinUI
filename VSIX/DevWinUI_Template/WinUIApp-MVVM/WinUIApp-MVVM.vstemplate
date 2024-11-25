@@ -3,7 +3,7 @@
   <TemplateData>
 	<Name>WinUI 3 App - MVVM</Name>
 	<Description>Creates a new WinUI 3 App with DevWinUI, MVVM Packages and Custom TitleBar</Description>
-    <Icon>WinUIApp.ico</Icon>
+    <Icon>Assets/AppIcon.ico</Icon>
     <TemplateID>WinUIApp-MVVM-{22A41A5C-0D49-49C8-81C1-E3E34C7916AB}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
@@ -15,7 +15,7 @@
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <TargetPlatformName>Windows</TargetPlatformName>
     <CreateInPlace>true</CreateInPlace>
-    <PreviewImage>AppIcon.png</PreviewImage>
+    <PreviewImage>Assets/AppIcon.png</PreviewImage>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <LanguageTag>csharp</LanguageTag>
     <LanguageTag>XAML</LanguageTag>

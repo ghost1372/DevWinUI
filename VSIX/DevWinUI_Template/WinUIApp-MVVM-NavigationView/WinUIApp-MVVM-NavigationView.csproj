@@ -83,8 +83,6 @@
     <Content Include="Assets\Store\Wide310x150Logo.scale-200.png" />
     <Content Include="T4Templates\BreadcrumbPageMappings.tt" />
     <Content Include="T4Templates\NavigationPageMappings.tt" />
-    <Content Include="WinUIApp.ico" />
-    <Content Include="WinUIApp.png" />
     <VSTemplate Include="WinUIApp-MVVM-NavigationView.vstemplate" />
   </ItemGroup>
   <ItemGroup>
