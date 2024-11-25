@@ -20,7 +20,7 @@
     <Project Path="VSIX/DevWinUI_Template/WinUIApp/WinUIApp.csproj" Id="d9c038b7-6a62-4945-a030-4ac7597f53ca" />
   </Folder>
   <Folder Name="/Workflows/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
-    <File Path=".github/workflows/dotnet-release.yml" />
+    <File Path=".github/workflows/publish-release.yml" />
   </Folder>
   <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
   <Project Path="dev/DevWinUI.Controls/DevWinUI.Controls.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
