@@ -1,4 +1,5 @@
-﻿<p align="center">
+﻿# 🌟 Welcome to DevWinUI! 🌟
+<p align="center">
 <img alt="IDE-version" src="https://img.shields.io/badge/2022-Version?logo=visual%20studio&label=Visual%20Studio&color=blue"/>
 <a href="https://www.nuget.org/profiles/DevWinUI">
  <img alt="Packages" src="https://img.shields.io/badge/Packages-%20?logo=nuget&label=Nuget&color=blue"/>
@@ -34,15 +35,23 @@
 ---
 
 # 🚀 DevWinUI 🚀
-Welcome to DevWinUI! your go-to toolkit for building WinUI 3 applications with ease. Whether you’re a seasoned developer or just starting out, we’ve got you covered! 🎉
+Your ultimate toolkit for building WinUI 3 applications effortlessly. Whether you're a seasoned developer or taking your first steps into app development, DevWinUI has everything you need to bring your ideas to life! 🎉
 
-DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3, the modern native UI platform for Windows 10+. With DevWinUI, you can:
+DevWinUI empowers you with a robust collection of tools, including custom classes, controls, styles, and utilities tailored for WinUI 3, the modern UI framework for Windows 10 and beyond.
 
-- ✨ Create a WinUI 3 app in less than a minute with the built-in project templates and scaffolding tools.
-- ✨ Customize the appearance of your app with various themes, such as rainbow, dark, light, and more.
-- ✨ Enhance your UI with custom controls.
-- ✨ Leverage the power of Win2D, a DirectX-based graphics library for WinUI, to create stunning effects, such as particle, gooey, watermark, etc.
-- ✨ Simplify common tasks, such as navigation, theme, update, etc. with the helper classes and extensions.
+## Why Choose DevWinUI?
+### 🚀 Get Started Quickly:
+Kickstart your project in under a minute with built-in templates and scaffolding tools.
+### 🎨 Tailor Your App’s Look:
+Customize themes effortlessly — from classic light and dark modes to vibrant rainbow palettes.
+### 🧩 Elevate Your UI:
+Add flair with custom controls designed to enhance user experience.
+### ✨ Unlock Stunning Visuals:
+Use Win2D, a DirectX-based graphics library, to create mesmerizing effects like particle systems, gooey animations, watermarks, and more.
+### 🔧 Simplify Development:
+Streamline common tasks like navigation, theme management, and app updates with helper classes and extensions.
+
+DevWinUI is your gateway to creating visually stunning, user-friendly, and feature-rich apps on WinUI 3. Let's build something amazing together! 🚀
 
 ### 📚 Explore Our Documentation! 📚
 > [!TIP]
@@ -62,30 +71,59 @@ DevWinUI is a collection of useful classes, controls, styles, and codes for WinU
 
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)
 
+### ⚙️ Compile Source Code
+
+> [!TIP]
+> Please confirm that your development environment meets the requirements before compiling.
+
+#### 1. 🖥️ Visual Studio 2022 
+Ensure that your installation includes the appropriate workloads:  
+- On the `Workloads` tab of the Visual Studio installation dialog box, select:  
+  - **.NET Desktop Development**  
+  - **Windows Application Development**  
+- Ensure the **Windows 11 SDK (10.0.19041.0)** is installed.
+
+#### 2. 🛠️ .NET SDKs  
+- Ensure .NET versions `8.x` and `9.x` are installed.
+
+#### 3. 📂 Solution Format  
+- This project uses the **SLNX format** for solutions, a new format introduced in Visual Studio Preview 17.11.  
+- ⚠️ **Note:** You currently need the latest Visual Studio 2022 Preview version.
+
+Make sure your environment matches these requirements to avoid any issues during compilation.
+
+
+### ⚠️ Nightly Build
+
+**nightly build** of the Gallery App generated automatically by GitHub Actions.
+
+#### Important Notes:
+- This build may contain experimental features or untested changes.
+- Stability and performance are not guaranteed.
+- The app is provided as-is and should be used **only for testing purposes**.
+- For production use, please download the latest **stable release**.
+
+### Want the Nightly Build?
+If you would like to test the nightly build:
+1. Visit the [GitHub Actions page](https://github.com/ghost1372/DevWinUI/actions).
+2. Download the zipped Gallery App from the latest successful workflow run. (`artifacts-[platform].zip`)
+
 ### 🧑‍💻 Contributing 🧑‍💻
 Found a bug? Want to contribute? We’d love your input!
 Happy coding! 🖥️💡
 
-### Compile source code
-
-> [!TIP]
-> Please confirm that your development environment meets the requirements before compiling.
-- Visual Studio 2022 On the `Workloads` tab of the installation dialog box, select as appropriate:
-- select .NET Desktop Development
-- select Windows application development
-- make sure `Windows 11 SDK (10.0.19041.0)`.
-- .Net `8.x` and `9.x`
+### Feedback and Issues
+If you encounter any issues or have feedback, please report them [here](https://github.com/ghost1372/DevWinUI/issues). Your input helps improve the app!
 
 ---
 
 ## 🔥 DevWinUI 🔥
- Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place. Helpers, Extensions...
-
 ### ⚡ What’s Inside? ⚡
  - ✨ Converter
  - ✨ Extensions
  - ✨ Helpers
  - ✨ NavigationService
+ - ✨ JsonNavigationService
  - ✨ RainbowFrame
  - ✨ ThemeService
  - ✨ PickCredential
@@ -104,9 +142,6 @@ Install-Package DevWinUI
 ---
 
 ## 🔥 DevWinUI.Controls 🔥
-Experience WinUI 3 quickly and easily with the help of DevWinUI.Controls, Everything you need to develop an application is gathered in one place.
-DevWinUI.Controls Includes custom controls and styles.
-
 ### ⚡ What’s Inside? ⚡
 - ✨ BreadcrumbNavigator
 - ✨ PinBox
@@ -191,7 +226,7 @@ Install-Package DevWinUI.ContextMenu
 
 ---
 
-## 🥷 [Project Templates](https://github.com/Ghost1372/DevWinUI) 🥷
+## 🥷 Project Templates 🥷
 
 > [!TIP]
 > 🔥 Create a new project easily with your custom options, you can use our project templates and wizard! 
