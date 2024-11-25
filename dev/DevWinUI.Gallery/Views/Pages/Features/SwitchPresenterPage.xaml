@@ -239,8 +239,7 @@
                 <local:ControlExample.Pane>
                     <ComboBox x:Name="AnimalPicker"
                               Header="Pick an Animal"
-                              ItemsSource="{dev:EnumValues Type=enum:Animal}"
-                              SelectedIndex="0" />
+                              ItemsSource="{x:Bind Items, Mode=OneWay}" />
                 </local:ControlExample.Pane>
                 <StackPanel>
                     <dev:SwitchPresenter Padding="16"

@@ -36,7 +36,7 @@
                 <StackPanel Margin="10"
                             Spacing="10">
                     <ComboBox MinWidth="200"
-                              ItemsSource="{dev:EnumValues Type=enum:Animal}"
+                              ItemsSource="{x:Bind Items, Mode=OneWay}"
                               SelectedIndex="0" />
                 </StackPanel>
             </local:ControlExample>
