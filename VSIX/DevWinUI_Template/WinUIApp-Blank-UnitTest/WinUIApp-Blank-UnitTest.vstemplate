@@ -3,7 +3,7 @@
   <TemplateData>
 	<Name>WinUI 3 MSTest - (Unit Test)</Name>
 	<Description>Creates a new Blank WinUI 3 App that contains MSTest unit test without DevWinUI Packages and Configs</Description>
-    <Icon>Assets/AppIcon.ico</Icon>
+    <Icon>TemplateIcon.ico</Icon>
     <TemplateID>WinUIApp-Blank-UnitTest-{BECD9E2D-FD3A-435B-8DE1-DC6F12E707FF}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
@@ -15,7 +15,7 @@
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <TargetPlatformName>Windows</TargetPlatformName>
     <CreateInPlace>true</CreateInPlace>
-    <PreviewImage>Assets/AppIcon.png</PreviewImage>
+    <PreviewImage>TemplateIcon.png</PreviewImage>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <LanguageTag>csharp</LanguageTag>
     <LanguageTag>XAML</LanguageTag>

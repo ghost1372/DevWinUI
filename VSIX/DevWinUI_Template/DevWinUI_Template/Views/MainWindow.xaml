@@ -359,7 +359,6 @@
         </ui:NavigationView>
 
         <ui:TitleBar Title="DevWinUI Wizard"
-                     Grid.Row="0"
-                     Icon="pack://application:,,,/Assets/AppIcon.png" />
+                     Grid.Row="0" />
     </Grid>
 </ui:FluentWindow>

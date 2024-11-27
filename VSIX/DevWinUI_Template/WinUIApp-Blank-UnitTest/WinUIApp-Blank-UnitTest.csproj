@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.manifest" />
+    <Content Include="TemplateIcon.png" />
     <Content Include="Assets\AppIcon.ico" />
     <Content Include="Assets\AppIcon.png" />
     <Content Include="Package-managed.appxmanifest">
@@ -70,6 +71,7 @@
     <Content Include="Assets\Store\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Store\StoreLogo.png" />
     <Content Include="Assets\Store\Wide310x150Logo.scale-200.png" />
+    <Content Include="TemplateIcon.ico" />
     <VSTemplate Include="WinUIApp-Blank-UnitTest.vstemplate" />
   </ItemGroup>
   <ItemGroup>
