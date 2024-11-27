@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
-using DevWinUI_Template.WizardUI;
 using System;
 using Wpf.Ui.Controls;
 
