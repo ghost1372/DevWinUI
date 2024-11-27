@@ -28,6 +28,10 @@ public partial class MainWindow : FluentWindow
         {
             Source = new System.Uri("/DevWinUI_Template;component/Views/TextBlockStyle.xaml", UriKind.RelativeOrAbsolute)
         });
+        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+        {
+            Source = new System.Uri("/DevWinUI_Template;component/Controls/SettingsControl.xaml", UriKind.RelativeOrAbsolute)
+        });
         InitializeComponent();
         Loaded += MainWindowWizard_Loaded;
     }

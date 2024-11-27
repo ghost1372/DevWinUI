@@ -11,12 +11,10 @@
         <CheckBox x:Name="LibraryCheckBox"
                   Checked="CheckBox_Checked"
                   Unchecked="CheckBox_Unchecked" />
-        <!--<TextBlock
-            Margin="-85,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
-            Style="{StaticResource BaseTextBlockStyle}"
-            Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:LibraryOptionUC}}" />-->
+        <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+                   Style="{StaticResource BaseTextBlockStyle}"
+                   Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:LibraryOptionUC}}" />
     </StackPanel>
 </UserControl>

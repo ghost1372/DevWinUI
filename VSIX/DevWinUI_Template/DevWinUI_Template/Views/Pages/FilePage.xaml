@@ -21,21 +21,33 @@
             <Separator Margin="0,5,0,5"
                        HorizontalAlignment="Stretch" />
             <StackPanel>
-                <local:OptionUCNoExpander x:Name="tgGithubWorkflow"
-                                          Title="Add Github Action (Workflow) yml file"
-                                          Description="(File Path: ProjectFolder/.github/workflows/dotnet-release.yml) This option allows you to add a yml (github action) file in your project. "
-                                          IsOn="False"
-                                          Toggled="tgGithubWorkflow_Toggled" />
-                <local:OptionUCNoExpander x:Name="tgEditorConfig"
-                                          Title="Add .editorConfig File"
-                                          Description="EditorConfig is a file format and collection of text editor plugins for maintaining consistent coding styles between different editors and IDEs."
-                                          IsOn="True"
-                                          Toggled="tgEditorConfig_Toggled" />
-                <local:OptionUCNoExpander x:Name="tgXamlStyler"
-                                          Title="Add settings.xamlstyler File"
-                                          Description="Config file for XamlStyler Extension which can format your XAML source code. you need to install XamlStyler vsix file on your visual studio"
-                                          IsOn="False"
-                                          Toggled="tgXamlStyler_Toggled" />
+                <local:SettingsControl x:Name="tgGithubWorkflow"
+                                       Title="Add Github Action (Workflow) yml file"
+                                       Description="Add a yml file in your project. (ProjectFolder/.github/workflows/dotnet-release.yml) "
+                                       IsOn="False"
+                                       Toggled="tgGithubWorkflow_Toggled">
+                    <local:SettingsControl.Icon>
+                        <ui:SymbolIcon Symbol="BroadActivityFeed24" />
+                    </local:SettingsControl.Icon>
+                </local:SettingsControl>
+                <local:SettingsControl x:Name="tgEditorConfig"
+                                       Title="Add .editorConfig File"
+                                       Description="Maintaining consistent coding styles between different editors and IDEs."
+                                       IsOn="True"
+                                       Toggled="tgEditorConfig_Toggled">
+                    <local:SettingsControl.Icon>
+                        <ui:SymbolIcon Symbol="EditSettings24" />
+                    </local:SettingsControl.Icon>
+                </local:SettingsControl>
+                <local:SettingsControl x:Name="tgXamlStyler"
+                                       Title="Add settings.xamlstyler File"
+                                       Description="Config file for XamlStyler Extension which can format your XAML source code."
+                                       IsOn="False"
+                                       Toggled="tgXamlStyler_Toggled">
+                    <local:SettingsControl.Icon>
+                        <ui:SymbolIcon Symbol="StyleGuide24" />
+                    </local:SettingsControl.Icon>
+                </local:SettingsControl>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

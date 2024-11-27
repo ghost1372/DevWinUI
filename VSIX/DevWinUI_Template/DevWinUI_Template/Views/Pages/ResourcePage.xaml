@@ -1,34 +1,54 @@
 ﻿<Page x:Class="DevWinUI_Template.ResourcePage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DevWinUI_Template"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <ScrollViewer Margin="5" VerticalAlignment="Top">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <ScrollViewer Margin="5"
+                  VerticalAlignment="Top">
         <StackPanel>
-            <Separator Margin="0,10,0,10" HorizontalAlignment="Stretch" />
-            <local:OptionUCNoExpander
-            x:Name="tgDicColor"
-            Title="1. Add ThemeResources.xaml Dictionary"
-            IsOn="False"
-            Toggled="tgDicColor_Toggled" />
-            <local:OptionUCNoExpander
-            x:Name="tgDicStyle"
-            Title="2. Add Styles.xaml Dictionary"
-            IsOn="False"
-            Toggled="tgDicStyle_Toggled" />
-            <local:OptionUCNoExpander
-            x:Name="tgDicFont"
-            Title="3. Add Fonts.xaml Dictionary"
-            IsOn="False"
-            Toggled="tgDicFont_Toggled" />
-            <local:OptionUCNoExpander
-            x:Name="tgDicConverter"
-            Title="4. Add Converters.xaml Dictionary"
-            IsOn="False"
-            Toggled="tgDicConverter_Toggled" />
+            <Separator Margin="0,10,0,10"
+                       HorizontalAlignment="Stretch" />
+            <local:SettingsControl x:Name="tgDicColor"
+                                   Title="Add ThemeResources.xaml Dictionary"
+                                   Description="define reusable resources like colors and brushes for consistent theming across your application."
+                                   IsOn="False"
+                                   Toggled="tgDicColor_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="DarkTheme24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgDicStyle"
+                                   Title="Add Styles.xaml Dictionary"
+                                   Description="define and organize reusable styles for controls and UI elements"
+                                   IsOn="False"
+                                   Toggled="tgDicStyle_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="DataTreemap24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgDicFont"
+                                   Title="Add Fonts.xaml Dictionary"
+                                   Description="manage font families, sizes, and weights in one centralized location"
+                                   IsOn="False"
+                                   Toggled="tgDicFont_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="TextFont24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgDicConverter"
+                                   Title="Add Converters.xaml Dictionary"
+                                   Description="Creates a Converters.xaml file to store value converters for data binding"
+                                   IsOn="False"
+                                   Toggled="tgDicConverter_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="ConvertRange24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
         </StackPanel>
     </ScrollViewer>
 </Page>

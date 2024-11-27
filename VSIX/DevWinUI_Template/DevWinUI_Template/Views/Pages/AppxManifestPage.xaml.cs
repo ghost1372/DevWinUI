@@ -14,11 +14,11 @@ public partial class AppxManifestPage : Page
 
     private void Toggled(object sender, RoutedEventArgs e)
     {
-        var optionUC = sender as OptionUCNoExpander;
+        var optionUC = sender as SettingsControl;
         AddOrRemoveElement(optionUC);
     }
 
-    private void AddOrRemoveElement(OptionUCNoExpander optionUC)
+    private void AddOrRemoveElement(SettingsControl optionUC)
     {
         try
         {

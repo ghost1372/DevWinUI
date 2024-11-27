@@ -57,47 +57,63 @@
             </StackPanel>
             <Separator Margin="0,5,0,5"
                        HorizontalAlignment="Stretch" />
-            <local:OptionUCNoExpander Title="Version Mechanism">
-                <local:OptionUCNoExpander.Item>
-                    <ComboBox MinWidth="250"
-                              HorizontalAlignment="Left"
-                              SelectedIndex="0"
-                              SelectionChanged="cmbVersionMechanism_SelectionChanged">
-                        <ComboBoxItem Content="Use Latest Stable Version"
-                                      Tag="Stable"
-                                      ToolTip="Latest Stable version will be install" />
-                        <ComboBoxItem Content="Use Latest PreRelease Version"
-                                      Tag="PreRelease"
-                                      ToolTip="The latest stable version will always be installed" />
-                    </ComboBox>
-                </local:OptionUCNoExpander.Item>
-            </local:OptionUCNoExpander>
-            <local:OptionUCNoExpander x:Name="tgUnPackaged"
-                                      Title="UnPackaged App"
-                                      Description=""
-                                      Toggled="tgUnPackaged_Toggled" />
-            <local:OptionUCNoExpander x:Name="tgNullable"
-                                      Title="Nullable"
-                                      OffContent="disable"
-                                      OnContent="enable"
-                                      Toggled="tgNullable_Toggled" />
-            <local:OptionUCNoExpander x:Name="tgJsonSettings"
-                                      Title="Add Json Settings"
-                                      Description="AppConfig.cs and AppHelper.cs classes will be added and you can save and restore app settings in json file."
-                                      IsOn="True"
-                                      Toggled="tgJsonSettings_Toggled" />
-            <local:OptionUC x:Name="tgSolutionFolder"
-                            Title="Add Empty Solution Folder"
-                            Description="This option allows you to include an empty solution folder in your project. "
-                            IsOn="True"
-                            Toggled="tgSolutionFolder_Toggled">
-                <local:OptionUC.Item>
-                    <TextBox Margin="10,0"
-                             IsEnabled="{Binding ElementName=tgSolutionFolder, Path=IsOn}"
-                             Text="Solution Items"
-                             TextChanged="txtSolutionFolderName_TextChanged" />
-                </local:OptionUC.Item>
-            </local:OptionUC>
+            <local:SettingsControl Title="Version Mechanism"
+                                   Description="Install NuGet packages from stable or prerelease versions.">
+                <ComboBox MinWidth="250"
+                          HorizontalAlignment="Left"
+                          SelectedIndex="0"
+                          SelectionChanged="cmbVersionMechanism_SelectionChanged">
+                    <ComboBoxItem Content="Use Latest Stable Version"
+                                  Tag="Stable"
+                                  ToolTip="Latest Stable version will be install" />
+                    <ComboBoxItem Content="Use Latest PreRelease Version"
+                                  Tag="PreRelease"
+                                  ToolTip="The latest stable version will always be installed" />
+                </ComboBox>
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="Dock20" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgUnPackaged"
+                                   Title="UnPackaged App"
+                                   Description="Create an unpackaged executable (EXE) that runs without an MSIX container."
+                                   Toggled="tgUnPackaged_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="Box24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgNullable"
+                                   Title="Nullable"
+                                   Description="Enable or disable nullable reference types in your project"
+                                   OffContent="disable"
+                                   OnContent="enable"
+                                   Toggled="tgNullable_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="SlideHide24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControl x:Name="tgJsonSettings"
+                                   Title="Add Json Settings"
+                                   Description="Save and restore app settings in json file."
+                                   IsOn="True"
+                                   Toggled="tgJsonSettings_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="Settings24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
+            <local:SettingsControlWithExpander x:Name="tgSolutionFolder"
+                                               Title="Add Empty Solution Folder"
+                                               Description="This option allows you to include an empty solution folder in your project. "
+                                               IsOn="True"
+                                               Toggled="tgSolutionFolder_Toggled">
+                <TextBox Margin="10,0"
+                         IsEnabled="{Binding ElementName=tgSolutionFolder, Path=IsOn}"
+                         Text="Solution Items"
+                         TextChanged="txtSolutionFolderName_TextChanged" />
+                <local:SettingsControlWithExpander.Icon>
+                    <ui:SymbolIcon Symbol="Folder24" />
+                </local:SettingsControlWithExpander.Icon>
+            </local:SettingsControlWithExpander>
 
         </StackPanel>
     </Grid>

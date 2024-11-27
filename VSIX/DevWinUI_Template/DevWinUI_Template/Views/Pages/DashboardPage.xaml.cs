@@ -32,20 +32,20 @@ public partial class DashboardPage : Page
         var cmbVersionMechanism = sender as ComboBox;
         WizardConfig.UsePreReleaseVersion = cmbVersionMechanism.SelectedIndex != 0;
 
-        //if (LibrariesPage.Instance != null)
-        //{
-        //    LibrariesPage.Instance.CreateBoxes();
-        //}
+        if (LibrariesPage.Instance != null)
+        {
+            LibrariesPage.Instance.CreateBoxes();
+        }
     }
 
     private void cmbNetVersion_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         WizardConfig.DotNetVersion = (cmbNetVersion.SelectedItem as ComboBoxItem).Tag.ToString();
 
-        //if (LibrariesPage.Instance != null)
-        //{
-        //    LibrariesPage.Instance.CreateBoxes();
-        //}
+        if (LibrariesPage.Instance != null)
+        {
+            LibrariesPage.Instance.CreateBoxes();
+        }
     }
 
     private void btnCreate_Click(object sender, RoutedEventArgs e)

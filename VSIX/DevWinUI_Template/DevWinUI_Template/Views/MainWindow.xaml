@@ -303,37 +303,38 @@
                         <ui:SymbolIcon Symbol="Home24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Data"
+                <ui:NavigationViewItem Content="Library"
+                                       NavigationCacheMode="Enabled"
+                                       TargetPageType="{x:Type pages:LibrariesPage}">
+
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Library24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Files"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:FilePage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                        <ui:SymbolIcon Symbol="AppsAddIn24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="AppxManifestPage"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:AppxManifestPage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="CSProjectPage"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:CSProjectPage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="PagesPage"
+                <ui:NavigationViewItem Content="Pages"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:PagesPage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                        <ui:SymbolIcon Symbol="PageFit24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="ResourcePage"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:ResourcePage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Manifest"
+                                       NavigationCacheMode="Enabled"
+                                       TargetPageType="{x:Type pages:AppxManifestPage}">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="DataHistogram24" />
                     </ui:NavigationViewItem.Icon>

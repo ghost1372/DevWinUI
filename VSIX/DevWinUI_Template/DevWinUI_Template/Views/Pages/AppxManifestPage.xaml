@@ -19,20 +19,40 @@
                         Severity="Informational" />
             <Separator Margin="0,5,0,5"
                        HorizontalAlignment="Stretch" />
-            <local:OptionUCNoExpander Title="RegistryWriteVirtualization"
-                                      Description="Indicates whether virtualization for the registry is enabled for your desktop application. If disabled, other apps can read or write the same registry entries as your application."
-                                      IsOn="True"
-                                      OffContent="disabled"
-                                      OnContent="Default(enabled)"
-                                      Tag="desktop6:RegistryWriteVirtualization"
-                                      Toggled="Toggled" />
-            <local:OptionUCNoExpander Title="FileSystemWriteVirtualization"
-                                      Description="Indicates whether virtualization for the file system is enabled for your desktop application. If disabled, other apps can read or write the same file system entries as your application."
-                                      IsOn="True"
-                                      OffContent="disabled"
-                                      OnContent="Default(enabled)"
-                                      Tag="desktop6:FileSystemWriteVirtualization"
-                                      Toggled="Toggled" />
+            <local:SettingsControlWithExpander Title="RegistryWriteVirtualization"
+                                               Description="Indicates whether virtualization for the registry is enabled for your desktop application."
+                                               IsExpanded="True"
+                                               IsOn="True"
+                                               OffContent="disabled"
+                                               OnContent="Default(enabled)"
+                                               Tag="desktop6:RegistryWriteVirtualization"
+                                               Toggled="Toggled">
+                <local:SettingsControlWithExpander.Icon>
+                    <ui:SymbolIcon Symbol="VirtualNetwork20" />
+                </local:SettingsControlWithExpander.Icon>
+                <ui:InfoBar Title="If disabled, other apps can read or write the same registry entries as your application."
+                            Margin="5,0"
+                            IsClosable="False"
+                            IsOpen="True"
+                            Severity="Warning" />
+            </local:SettingsControlWithExpander>
+            <local:SettingsControlWithExpander Title="FileSystemWriteVirtualization"
+                                               Description="Indicates whether virtualization for the file system is enabled for your desktop application."
+                                               IsExpanded="True"
+                                               IsOn="True"
+                                               OffContent="disabled"
+                                               OnContent="Default(enabled)"
+                                               Tag="desktop6:FileSystemWriteVirtualization"
+                                               Toggled="Toggled">
+                <local:SettingsControlWithExpander.Icon>
+                    <ui:SymbolIcon Symbol="AppGeneric24" />
+                </local:SettingsControlWithExpander.Icon>
+                <ui:InfoBar Title="If disabled, other apps can read or write the same file system entries as your application."
+                            Margin="5,0"
+                            IsClosable="False"
+                            IsOpen="True"
+                            Severity="Warning" />
+            </local:SettingsControlWithExpander>
         </StackPanel>
     </ScrollViewer>
 </Page>

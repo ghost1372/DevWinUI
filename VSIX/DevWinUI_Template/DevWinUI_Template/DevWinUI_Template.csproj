@@ -65,6 +65,8 @@
     <Compile Include="Common\PreDefinedLibrary.cs" />
     <Compile Include="Common\VSDocumentHelper.cs" />
     <Compile Include="Common\WizardConfig.cs" />
+    <Compile Include="Controls\SettingsControl.cs" />
+    <Compile Include="Controls\SettingsControlWithExpander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DevWinUI_TemplatePackage.cs" />
     <Compile Include="TemplateWizard\SharedWizard.cs" />
@@ -80,14 +82,14 @@
     <Compile Include="Views\Pages\AppxManifestPage.xaml.cs">
       <DependentUpon>AppxManifestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\CSProjectPage.xaml.cs">
-      <DependentUpon>CSProjectPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\FilePage.xaml.cs">
       <DependentUpon>FilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\LibrariesPage.xaml.cs">
+      <DependentUpon>LibrariesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\PagesPage.xaml.cs">
       <DependentUpon>PagesPage.xaml</DependentUpon>
@@ -97,12 +99,6 @@
     </Compile>
     <Compile Include="Views\UserControls\LibraryOptionUC.xaml.cs">
       <DependentUpon>LibraryOptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\OptionUC.xaml.cs">
-      <DependentUpon>OptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\OptionUCNoExpander.xaml.cs">
-      <DependentUpon>OptionUCNoExpander.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +151,10 @@
     </Content>-->
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\SettingsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,7 +163,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\CSProjectPage.xaml">
+    <Page Include="Views\Pages\LibrariesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -188,14 +188,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\LibraryOptionUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\OptionUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\OptionUCNoExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
