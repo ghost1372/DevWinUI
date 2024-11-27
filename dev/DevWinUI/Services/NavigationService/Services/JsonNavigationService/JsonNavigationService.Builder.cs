@@ -64,10 +64,16 @@ public partial class JsonNavigationService
         return this;
     }
 
-    public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string notFoundString = null, string notFoundImagePath = null)
+    public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate, string notFoundString, string notFoundImagePath)
     {
         EnsureInitialized();
         ConfigAutoSuggestBox(autoSuggestBox, useItemTemplate, notFoundString, notFoundImagePath);
+        return this;
+    }
+    public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox)
+    {
+        EnsureInitialized();
+        ConfigAutoSuggestBox(autoSuggestBox, true, null, null);
         return this;
     }
     

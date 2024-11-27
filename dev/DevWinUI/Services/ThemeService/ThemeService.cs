@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 public partial class ThemeService : IThemeService
 {
-    public readonly string ConfigFilePath = "CoreAppConfigV7.0.0.json";
+    public readonly string ConfigFilePath = "CoreAppConfigV8.0.0.json";
     public event IThemeService.ActualThemeChangedEventHandler ActualThemeChanged;
     private bool changeThemeWithoutSave = false;
     private bool useAutoSave;
@@ -10,9 +10,9 @@ public partial class ThemeService : IThemeService
     public ThemeService() { }
     public ThemeService(Window window)
     {
-        Initialize(window);
-        ConfigElementTheme();
-        ConfigBackdrop();
+        InitializeBase(window);
+        ConfigElementThemeBase(ElementTheme.Default, false);
+        ConfigBackdropBase(BackdropType.Mica, false);
     }
     public ElementTheme ActualTheme
     {
@@ -87,14 +87,14 @@ public partial class ThemeService : IThemeService
         }
     }
 
-    public void AutoInitialize(Window window)
+    private void AutoInitializeBase(Window window)
     {
-        Initialize(window);
-        ConfigElementTheme();
-        ConfigBackdrop();
+        InitializeBase(window);
+        ConfigElementThemeBase(ElementTheme.Default, false);
+        ConfigBackdropBase(BackdropType.Mica, false);
     }
 
-    public void Initialize(Window window, bool useAutoSave = true, string filename = null)
+    private void InitializeBase(Window window, bool useAutoSave = true, string filename = null)
     {
         if (window == null)
         {

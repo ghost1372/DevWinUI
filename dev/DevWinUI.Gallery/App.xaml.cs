@@ -49,7 +49,7 @@ public partial class App : Application
 
         if (GetThemeService != null)
         {
-            GetThemeService.AutoInitialize(MainWindow);
+            GetThemeService.AutoInitialize(MainWindow).EnableRequestedTheme();
         }
         
         rootFrame.Navigate(typeof(MainPage));

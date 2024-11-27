@@ -1,7 +1,10 @@
-﻿namespace DevWinUI;
+﻿using WinRT.Interop;
+using WinRT;
+
+namespace DevWinUI;
 public partial class ThemeService
 {
-    public void ConfigBackdrop(BackdropType backdropType = BackdropType.Mica, bool force = false)
+    private void ConfigBackdropBase(BackdropType backdropType, bool force)
     {
         if (Window == null)
         {
@@ -23,7 +26,7 @@ public partial class ThemeService
         }
     }
 
-    public void ConfigTintColor(Color color, bool force)
+    private void ConfigTintColorBase(Color color, bool force)
     {
         if (useAutoSave && GlobalData.Config != null && GlobalData.Config.IsBackdropTintColorFirstRun)
         {
@@ -36,7 +39,7 @@ public partial class ThemeService
 
         SetBackdropTintColor(tintColor);
     }
-    public void ConfigTintColor()
+    private void ConfigTintColorBase()
     {
         var systemBackdrop = Window.SystemBackdrop;
         if (systemBackdrop != null)
@@ -46,14 +49,14 @@ public partial class ThemeService
                 switch (GetBackdropType())
                 {
                     case BackdropType.Mica:
-                        ConfigTintColor(MicaSystemBackdrop.Default_TintColor_Dark, false);
+                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
                         break;
                     case BackdropType.MicaAlt:
-                        ConfigTintColor(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
+                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
                         break;
                     case BackdropType.AcrylicThin:
                     case BackdropType.AcrylicBase:
-                        ConfigTintColor(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
+                        ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
                         break;
                 }
             }
@@ -62,21 +65,21 @@ public partial class ThemeService
                 switch (GetBackdropType())
                 {
                     case BackdropType.Mica:
-                        ConfigTintColor(MicaSystemBackdrop.Default_TintColor_Light, false);
+                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
                         break;
                     case BackdropType.MicaAlt:
-                        ConfigTintColor(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
+                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
                         break;
                     case BackdropType.AcrylicThin:
                     case BackdropType.AcrylicBase:
-                        ConfigTintColor(AcrylicSystemBackdrop.Default_TintColor_Light, false);
+                        ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
                         break;
                 }
             }
 
         }
     }
-    public void ConfigFallbackColor(Color color, bool force)
+    private void ConfigFallbackColorBase(Color color, bool force)
     {
         if (useAutoSave && GlobalData.Config != null && GlobalData.Config.IsBackdropFallBackColorFirstRun)
         {
@@ -90,7 +93,7 @@ public partial class ThemeService
         SetBackdropFallbackColor(tintColor);
     }
 
-    public void ConfigFallbackColor()
+    private void ConfigFallbackColorBase()
     {
         var systemBackdrop = Window.SystemBackdrop;
         if (systemBackdrop != null)
@@ -100,11 +103,11 @@ public partial class ThemeService
                 switch (GetBackdropType())
                 {
                     case BackdropType.MicaAlt:
-                        ConfigFallbackColor(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
+                        ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
                         break;
                     case BackdropType.AcrylicThin:
                     case BackdropType.AcrylicBase:
-                        ConfigFallbackColor(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
+                        ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
                         break;
                 }
             }
@@ -113,17 +116,17 @@ public partial class ThemeService
                 switch (GetBackdropType())
                 {
                     case BackdropType.MicaAlt:
-                        ConfigFallbackColor(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
+                        ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
                         break;
                     case BackdropType.AcrylicThin:
                     case BackdropType.AcrylicBase:
-                        ConfigFallbackColor(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
+                        ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
                         break;
                 }
             }
         }
     }
-    public void ConfigElementTheme(ElementTheme elementTheme = ElementTheme.Default, bool force = false)
+    private void ConfigElementThemeBase(ElementTheme elementTheme, bool force)
     {
         if (useAutoSave && GlobalData.Config != null && GlobalData.Config.IsThemeFirstRun)
         {
@@ -139,6 +142,33 @@ public partial class ThemeService
         else
         {
             SetElementTheme(elementTheme);
+        }
+    }
+
+    private void EnableRequestedThemeBase()
+    {
+        try
+        {
+            unsafe
+            {
+                *(bool*)(((IWinRTObject)this).NativeObject.As<IUnknownVftbl>(IID).ThisPtr + 0x118U) = true;
+            }
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    private static ref readonly Guid IID
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get
+        {
+            return ref Unsafe.As<byte, Guid>(ref MemoryMarshal.GetReference((ReadOnlySpan<byte>)new byte[16]
+            {
+            231, 244, 168, 6, 70, 17, 175, 85, 130, 13,
+            235, 213, 86, 67, 176, 33
+            }));
         }
     }
 }

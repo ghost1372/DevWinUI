@@ -5,15 +5,6 @@ public interface IThemeService
     event ActualThemeChangedEventHandler ActualThemeChanged;
 
     Window Window { get; set; }
-    void AutoInitialize(Window window);
-    void Initialize(Window window, bool useAutoSave = true, string filename = null);
-    void ConfigBackdrop(BackdropType backdropType = BackdropType.Mica, bool force = false);
-    void ConfigTintColor(Color color, bool force = false);
-    void ConfigTintColor();
-    void ConfigFallbackColor(Color color, bool force = false);
-    void ConfigFallbackColor();
-    void ConfigElementTheme(ElementTheme elementTheme = ElementTheme.Default, bool force = false);
-
     SystemBackdrop GetSystemBackdrop();
     SystemBackdrop GetSystemBackdrop(BackdropType backdropType);
     BackdropType GetBackdropType();
@@ -40,4 +31,23 @@ public interface IThemeService
     void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel);
     void UpdateCaptionButtons();
     void UpdateCaptionButtons(Window window);
+
+    ThemeService AutoInitialize(Window window);
+    ThemeService Initialize(Window window, bool useAutoSave, string filename);
+    ThemeService Initialize(Window window, bool useAutoSave);
+    ThemeService Initialize(Window window, string filename);
+    ThemeService Initialize(Window window);
+    ThemeService ConfigureBackdrop(BackdropType backdropType, bool force);
+    ThemeService ConfigureBackdrop(BackdropType backdropType);
+    ThemeService ConfigureBackdrop();
+    ThemeService ConfigureTintColor(Color color, bool force);
+    ThemeService ConfigureTintColor(Color color);
+    ThemeService ConfigureTintColor();
+    ThemeService ConfigureFallbackColor(Color color, bool force);
+    ThemeService ConfigureFallbackColor(Color color);
+    ThemeService ConfigureFallbackColor();
+    ThemeService ConfigureElementTheme(ElementTheme elementTheme, bool force);
+    ThemeService ConfigureElementTheme(ElementTheme elementTheme);
+    ThemeService ConfigureElementTheme();
+    ThemeService EnableRequestedTheme();
 }
