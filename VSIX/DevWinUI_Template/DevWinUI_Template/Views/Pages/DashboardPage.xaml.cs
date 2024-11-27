@@ -45,26 +45,6 @@ public partial class DashboardPage : Page
         }
     }
 
-    private void btnCreate_Click(object sender, RoutedEventArgs e)
-    {
-//        DialogResult = true;
-
-  //      Close();
-    }
-
-    private void btnCancel_Click(object sender, RoutedEventArgs e)
-    {
-        Cancel();
-    }
-
-    private void Cancel()
-    {
-        Resources?.Clear();
-        Application.Current?.Resources?.Clear();
-        //DialogResult = false;
-    }
-
-
     private void cmbTargetFrameworkVersion_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         WizardConfig.TargetFrameworkVersion = (cmbTargetFrameworkVersion.SelectedItem as ComboBoxItem).Tag.ToString();

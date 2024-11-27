@@ -290,9 +290,24 @@
                            Grid.Row="1"
                            ItemTemplate="{DynamicResource LeftCompactNavigationViewItemTemplate2}">
             <ui:NavigationView.Header>
-                <ui:BreadcrumbBar Margin="42,32,0,0"
-                                  FontSize="28"
-                                  FontWeight="DemiBold" />
+                <StackPanel>
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                        <ui:Button MinWidth="200"
+                                   Margin="10,0"
+                                   Click="btnCancel_Click"
+                                   Content="Cancel [Esc]"
+                                   IsCancel="True" />
+                        <ui:Button MinWidth="200"
+                                   Appearance="Primary"
+                                   Click="btnCreate_Click"
+                                   Content="Create Project [Enter]"
+                                   Foreground="WhiteSmoke"
+                                   IsDefault="True" />
+                    </StackPanel>
+                    <Separator />
+                </StackPanel>
             </ui:NavigationView.Header>
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Content="Dashboard"
@@ -318,25 +333,26 @@
                         <ui:SymbolIcon Symbol="AppsAddIn24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Pages"
+                <ui:NavigationViewItem x:Name="NviPage"
+                                       Content="Pages"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:PagesPage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="PageFit24" />
+                        <ui:SymbolIcon Symbol="Document24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="ResourcePage"
+                <ui:NavigationViewItem Content="XAML Resources"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:ResourcePage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                        <ui:SymbolIcon Symbol="ChannelShare24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Manifest"
+                <ui:NavigationViewItem Content="AppxManifest"
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:AppxManifestPage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                        <ui:SymbolIcon Symbol="VirtualNetwork20" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
@@ -347,191 +363,3 @@
                      Icon="pack://application:,,,/Assets/AppIcon.png" />
     </Grid>
 </ui:FluentWindow>
-<!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Margin="10,0"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"
-                       Text="DevWinUI Wizard" />
-        </Grid>
-
-        <ui:NavigationView x:Name="NavigationView"
-                           Grid.Row="1"
-                           Margin="0,10,0,0"
-                           IsBackButtonVisible="Collapsed"
-                           IsPaneToggleButtonVisible="False"
-                           OpenPaneLength="240"
-                           PaneDisplayMode="Left"
-                           SelectionChanged="NavigationView_SelectionChanged">
-            <ui:NavigationView.Header>
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
-                    <Grid Margin="-50,-35,5,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:InfoBar Title="Windows App SDK"
-                                    BorderThickness="1,1,0,1"
-                                    CornerRadius="4,0,0,4"
-                                    IsClosable="False"
-                                    IsOpen="True"
-                                    Message="Latest Stable"
-                                    Severity="Success" />
-                        <ui:InfoBar Title="Build Tools"
-                                    Grid.Column="1"
-                                    BorderThickness="0,1,1,1"
-                                    CornerRadius="0,4,4,0"
-                                    IsClosable="False"
-                                    IsOpen="True"
-                                    Message="Latest Stable"
-                                    Severity="Success" />
-                    </Grid>
-                    <ComboBox x:Name="cmbVersionMechanism"
-                              MinWidth="250"
-                              Margin="-50,10,5,0"
-                              HorizontalAlignment="Left"
-                              SelectedIndex="0"
-                              SelectionChanged="cmbVersionMechanism_SelectionChanged">
-                        <ComboBoxItem Content="Use Latest Stable Version"
-                                      Tag="Stable"
-                                      ToolTip="Latest Stable version will be install" />
-                        <ComboBoxItem Content="Use Latest PreRelease Version"
-                                      Tag="PreRelease"
-                                      ToolTip="The latest stable version will always be installed" />
-                    </ComboBox>
-                    <StackPanel Margin="-50,10,5,0"
-                                Orientation="Horizontal">
-                        <TextBlock Margin="5,5"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Text="TargetFramework" />
-                        <ComboBox x:Name="cmbNetVersion"
-                                  MinWidth="250"
-                                  SelectedIndex="0"
-                                  SelectionChanged="cmbNetVersion_SelectionChanged"
-                                  ToolTip="Choose .Net Version">
-                            <ComboBoxItem Content=".Net 9.0 (Recommended)"
-                                          Tag="net9.0"
-                                          ToolTip=".Net 9.0 will be used." />
-                            <ComboBoxItem Content=".Net 8.0"
-                                          Tag="net8.0"
-                                          ToolTip=".Net 8.0 will be used." />
-                        </ComboBox>
-                        <ComboBox x:Name="cmbTargetFrameworkVersion"
-                                  MinWidth="250"
-                                  Margin="5,0"
-                                  SelectedIndex="0"
-                                  SelectionChanged="cmbTargetFrameworkVersion_SelectionChanged"
-                                  ToolTip="Choose TargetFramework Version">
-                            <ComboBoxItem Content="26100 (Recommended)"
-                                          Tag="26100"
-                                          ToolTip="26100" />
-                            <ComboBoxItem Content="22621"
-                                          Tag="22621"
-                                          ToolTip="22621" />
-                            <ComboBoxItem Content="22000"
-                                          Tag="22000"
-                                          ToolTip="22000" />
-                            <ComboBoxItem Content="19041"
-                                          Tag="19041"
-                                          ToolTip="19041" />
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Margin="-50,10,5,0"
-                                Orientation="Horizontal">
-                        <TextBlock Margin="5,5"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Text="UnPackaged Mode" />
-                        <ui:ToggleSwitch x:Name="tgUnPackaged"
-                                         Toggled="tgUnPackaged_Toggled" />
-
-                        <TextBlock Margin="5,5"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Text="Nullable" />
-                        <ui:ToggleSwitch x:Name="tgNullable"
-                                         OffContent="disable"
-                                         OnContent="enable"
-                                         Toggled="tgNullable_Toggled" />
-                    </StackPanel>
-
-                </StackPanel>
-            </ui:NavigationView.Header>
-
-            <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Platform"
-                                       IsSelected="True"
-                                       Tag="PlatformPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Bookmarks" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Files"
-                                       Tag="FilePage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="OpenFile" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="CSProject"
-                                       Tag="CSProjectPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Tag" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="AppxManifest"
-                                       Tag="AppxManifestPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Permissions" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Resource Dictionary"
-                                       Tag="ResourcePage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="List" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Libraries"
-                                       Tag="LibrariesPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Library" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="nviPage"
-                                       Content="Pages"
-                                       Tag="PagesPages">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Document" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-            </ui:NavigationView.MenuItems>
-
-            <ui:Frame x:Name="frame" />
-        </ui:NavigationView>
-        <StatusBar Grid.Row="2"
-                   Padding="5"
-                   HorizontalAlignment="Stretch"
-                   HorizontalContentAlignment="Right"
-                   Background="Transparent">
-            <Button MinWidth="200"
-                    Margin="10,0"
-                    Click="btnCancel_Click"
-                    Content="Cancel [Esc]"
-                    IsCancel="True" />
-            <Button MinWidth="200"
-                    Click="btnCreate_Click"
-                    Content="Create Project [Enter]"
-                    IsDefault="True"
-                    Style="{StaticResource AccentButtonStyle}" />
-        </StatusBar>
-    </Grid>-->
-<!--</>-->
