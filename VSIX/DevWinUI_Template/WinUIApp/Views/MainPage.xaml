@@ -8,11 +8,11 @@
       mc:Ignorable="d">
     <Grid RowDefinitions="Auto, *">
         <TitleBar x:Name="AppTitleBar"
-                      Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                      IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
-                      Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}" />
+                  Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
+                  IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
+                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}" />
         <StackPanel Grid.Row="1">
-            
+
         </StackPanel>
     </Grid>
 </Page>

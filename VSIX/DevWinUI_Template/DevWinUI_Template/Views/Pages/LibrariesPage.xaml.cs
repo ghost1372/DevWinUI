@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using DevWinUI_Template.WizardUI;
 
 namespace DevWinUI_Template;
@@ -7,14 +9,26 @@ namespace DevWinUI_Template;
 public partial class LibrariesPage : Page
 {
     public static LibrariesPage Instance { get; private set; }
+    List<Library> items = new List<Library>();
+
     public LibrariesPage()
     {
         InitializeComponent();
         Instance = this;
         CreateBoxes();
-    }
 
-    public void CreateBoxes(List<Library> libraries, Panel panel)
+        lvLibraries.ItemsSource = items;
+
+        CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvLibraries.ItemsSource);
+        PropertyGroupDescription groupDescription = new PropertyGroupDescription("Group");
+        view.GroupDescriptions.Add(groupDescription);
+        UpdateHeader();
+    }
+    private void UpdateHeader()
+    {
+        LibraryColumn.Header = $"Library Name     |       {WizardConfig.LibraryDic?.Count} Item(s) selected";
+    }
+    public void CreateBoxes(List<Library> libraries)
     {
         foreach (var lib in libraries)
         {
@@ -31,49 +45,67 @@ public partial class LibrariesPage : Page
                 lib.IncludePreRelease = WizardConfig.UsePreReleaseVersion;
             }
 
-            var option = new LibraryOptionUC();
+            var option = new Library();
 
             if (string.IsNullOrEmpty(libVersion2))
             {
-                option.Title = lib.Name;
+                option.Name = lib.Name;
             }
             else
             {
-                option.Title = $"{lib.Name} - {libVersion2}";
+                option.Name = $"{lib.Name} - {libVersion2}";
             }
 
-            option.Checked += (s, e) =>
-            {
-                WizardConfig.LibraryDic.AddIfNotExists(lib.Name, new Library(lib.Name, lib.IncludePreRelease));
-            };
+            option.Group = lib.Group;
+            option.Net9Version = lib.Net9Version;
+            option.IncludePreRelease = lib.IncludePreRelease;
+            option.Version = lib.Version;
 
-            option.Unchecked += (s, e) =>
+            items.Add(option);
+        }
+    }
+    private void CheckBox_Checked(object sender, RoutedEventArgs e)
+    {
+        if (sender is CheckBox checkBox && checkBox.DataContext is Library lib)
+        {
+            WizardConfig.LibraryDic.AddIfNotExists(lib.Name, new Library
             {
-                WizardConfig.LibraryDic.Remove(lib.Name);
-            };
+                Name = lib.Name,
+                Group = lib.Group,
+                IncludePreRelease = lib.IncludePreRelease,
+                Version = lib.Version,
+                Net9Version = lib.Net9Version
+            });
+            UpdateHeader();
+        }
+    }
 
-            panel.Children.Add(option);
+    private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+    {
+        if (sender is CheckBox checkBox && checkBox.DataContext is Library lib)
+        {
+            WizardConfig.LibraryDic.Remove(lib.Name);
+            UpdateHeader();
         }
     }
 
     public void CreateBoxes()
     {
-        if (DevWinUIPanel != null)
-        {
-            WizardConfig.LibraryDic = new();
-            DevWinUIPanel.Children.Clear();
-            GeneralPanel.Children.Clear();
-            EFCorePanel.Children.Clear();
-            CommunityToolkitPanel.Children.Clear();
-            MVVMPanel.Children.Clear();
-            LogPanel.Children.Clear();
+        items.Clear();
+        WizardConfig.LibraryDic = new();
+        CreateBoxes(PreDefinedLibrary.InitDevWinUI());
+        CreateBoxes(PreDefinedLibrary.InitUseful());
+        CreateBoxes(PreDefinedLibrary.InitEFCore());
+        CreateBoxes(PreDefinedLibrary.InitCommunityToolkit());
+        CreateBoxes(PreDefinedLibrary.InitMVVM());
+        CreateBoxes(PreDefinedLibrary.InitLog());
+    }
 
-            CreateBoxes(PreDefinedLibrary.InitDevWinUI(), DevWinUIPanel);
-            CreateBoxes(PreDefinedLibrary.InitUseful(), GeneralPanel);
-            CreateBoxes(PreDefinedLibrary.InitEFCore(), EFCorePanel);
-            CreateBoxes(PreDefinedLibrary.InitCommunityToolkit(), CommunityToolkitPanel);
-            CreateBoxes(PreDefinedLibrary.InitMVVM(), MVVMPanel);
-            CreateBoxes(PreDefinedLibrary.InitLog(), LogPanel);
+    private void lvUsers_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (sender is Grid grid && grid.Children[0] is CheckBox check)
+        {
+            check.IsChecked = !check.IsChecked;
         }
     }
 }

@@ -2,52 +2,92 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="LibrariesPage"
       d:DesignHeight="450"
       d:DesignWidth="800"
       mc:Ignorable="d">
-    <ScrollViewer Margin="30,0,30,20"
-                  VerticalAlignment="Top">
-        <StackPanel>
-            <Separator Margin="0,10,0,5"
-                       HorizontalAlignment="Stretch" />
-            <ui:CardExpander HorizontalAlignment="Stretch"
-                             Header="DevWinUI">
-                <StackPanel x:Name="DevWinUIPanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-            <ui:CardExpander Margin="0,5,0,0"
-                             HorizontalAlignment="Stretch"
-                             Header="General">
-                <StackPanel x:Name="GeneralPanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-            <ui:CardExpander Margin="0,5,0,0"
-                             HorizontalAlignment="Stretch"
-                             Header="EntityFramework Core">
-                <StackPanel x:Name="EFCorePanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-            <ui:CardExpander Margin="0,5,0,0"
-                             HorizontalAlignment="Stretch"
-                             Header="CommunityToolkit">
-                <StackPanel x:Name="CommunityToolkitPanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-            <ui:CardExpander Margin="0,5,0,0"
-                             HorizontalAlignment="Stretch"
-                             Header="MVVM">
-                <StackPanel x:Name="MVVMPanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-            <ui:CardExpander Margin="0,5,0,0"
-                             HorizontalAlignment="Stretch"
-                             Header="Log">
-                <StackPanel x:Name="LogPanel"
-                            Margin="0,0,10,0" />
-            </ui:CardExpander>
-        </StackPanel>
-    </ScrollViewer>
+    <Page.Resources>
+        <local:WidthAdjustConverter x:Key="WidthAdjustConverter" />
+    </Page.Resources>
+
+    <ui:ListView Name="lvLibraries"
+                 Margin="10,10,0,10"
+                 BorderThickness="0">
+        <ui:ListView.ItemContainerStyle>
+            <Style BasedOn="{StaticResource ListViewItemStyle}"
+                   TargetType="ui:ListViewItem">
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            </Style>
+        </ui:ListView.ItemContainerStyle>
+        <ui:ListView.View>
+            <ui:GridView>
+                <ui:GridViewColumn x:Name="LibraryColumn"
+                                   Header="Library Name">
+                    <ui:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  MouseLeftButtonDown="lvUsers_MouseLeftButtonDown">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Checked="CheckBox_Checked"
+                                          DataContext="{Binding}"
+                                          IsChecked="{Binding IsSelected}"
+                                          Unchecked="CheckBox_Unchecked" />
+                                <TextBlock Grid.Column="1"
+                                           Width="{Binding ElementName=lvLibraries, Path=ActualWidth, Converter={StaticResource WidthAdjustConverter}}"
+                                           Margin="5,5,0,0"
+                                           HorizontalAlignment="Left"
+                                           Text="{Binding Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ui:GridViewColumn.CellTemplate>
+                </ui:GridViewColumn>
+            </ui:GridView>
+        </ui:ListView.View>
+        <ui:ListView.GroupStyle>
+            <GroupStyle>
+                <GroupStyle.ContainerStyle>
+                    <Style TargetType="{x:Type GroupItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Expander IsExpanded="True">
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Bottom"
+                                                           FontSize="22"
+                                                           FontWeight="Bold"
+                                                           Foreground="{DynamicResource TextControlForeground}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock Margin="10,0,0,0"
+                                                           VerticalAlignment="Bottom"
+                                                           FontSize="22"
+                                                           FontStyle="Italic"
+                                                           FontWeight="Bold"
+                                                           Foreground="{DynamicResource AccentButtonBackground}"
+                                                           Text="{Binding ItemCount}" />
+                                                <TextBlock VerticalAlignment="Bottom"
+                                                           FontSize="22"
+                                                           FontStyle="Italic"
+                                                           Foreground="{DynamicResource TextControlForegroundDisabled}"
+                                                           Text=" item(s)" />
+                                            </StackPanel>
+                                        </Expander.Header>
+                                        <ItemsPresenter />
+                                    </Expander>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </GroupStyle.ContainerStyle>
+            </GroupStyle>
+        </ui:ListView.GroupStyle>
+    </ui:ListView>
 </Page>

@@ -1,166 +1,191 @@
 ﻿using System.Collections.Generic;
 
-namespace DevWinUI_Template
+namespace DevWinUI_Template;
+
+public enum Group
 {
-    public class Library
+    None,
+    General,
+    DevWinUI,
+    CommunityToolkit,
+    EntityFrameworkCore,
+    Test,
+    Log,
+    MVVM
+}
+public class Library
+{
+    public string Name { get; set; }
+    public Group Group { get; set; }
+    public string Version { get; set; }
+    public string Net9Version { get; set; }
+    public bool IncludePreRelease { get; set; }
+    public bool IsSelected { get; set; }
+    public Library()
     {
-        public string Name { get; set; }
-        public string Version { get; set; }
-        public string Net9Version { get; set; }
-        public bool IncludePreRelease { get; set; }
-
-        public Library(string name, string version, string net9Version, bool includePreRelease = false)
-        {
-            Name = name;
-            Net9Version = net9Version;
-            Version = version;
-            IncludePreRelease = includePreRelease;
-        }
-
-        public Library(string name, bool includePreRelease = false)
-        {
-            Name = name;
-            IncludePreRelease = includePreRelease;
-            Net9Version = null;
-            Version = null;
-        }
+        
+    }
+    public Library(string name, string version, string net9Version, Group group, bool includePreRelease = false)
+    {
+        Name = name;
+        Group = group;
+        Net9Version = net9Version;
+        Version = version;
+        IncludePreRelease = includePreRelease;
     }
 
-    public static class PreDefinedLibrary
+    public Library(string name, Group group, bool includePreRelease = false)
     {
-        public static List<Library> InitCommunityToolkit()
-        {
-            List<Library> list = new()
-            {
-                new Library("CommunityToolkit.HighPerformance"),
-                new Library("CommunityToolkit.Common"),
-                new Library("CommunityToolkit.WinUI.Behaviors"),
-                new Library("CommunityToolkit.WinUI.Extensions"),
-                new Library("CommunityToolkit.WinUI.Helpers"),
-                new Library("CommunityToolkit.WinUI.Triggers"),
-                new Library("CommunityToolkit.WinUI.Converters"),
-                new Library("CommunityToolkit.WinUI.Animations"),
-                new Library("CommunityToolkit.WinUI.Media"),
-                new Library("CommunityToolkit.WinUI.Collections"),
-                new Library("CommunityToolkit.WinUI.Lottie"),
-                new Library("CommunityToolkit.WinUI.Controls.Segmented"),
-                new Library("CommunityToolkit.WinUI.Controls.Primitives"),
-                new Library("CommunityToolkit.WinUI.Controls.Sizers"),
-                new Library("CommunityToolkit.WinUI.Controls.HeaderedControls"),
-                new Library("CommunityToolkit.WinUI.Controls.RangeSelector"),
-                new Library("CommunityToolkit.WinUI.Controls.ImageCropper"  ),
-                new Library("CommunityToolkit.WinUI.Controls.RichSuggestBox"),
-                new Library("CommunityToolkit.WinUI.Controls.RadialGauge"),
-                new Library("CommunityToolkit.WinUI.Controls.CameraPreview"),
-                new Library("CommunityToolkit.WinUI.Controls.TokenizingTextBox"),
-                new Library("CommunityToolkit.WinUI.Controls.LayoutTransformControl"),
-                new Library("CommunityToolkit.WinUI.Controls.ColorPicker"),
-                new Library("CommunityToolkit.WinUI.Controls.TabbedCommandBar"),
-                new Library("CommunityToolkit.WinUI.Controls.SettingsControls")
-            };
-            return list;
-        }
+        Name = name;
+        Group= group;
+        IncludePreRelease = includePreRelease;
+        Net9Version = null;
+        Version = null;
+    }
+    public Library(string name, bool includePreRelease = false)
+    {
+        Name = name;
+        Group= Group.None;
+        IncludePreRelease = includePreRelease;
+        Net9Version = null;
+        Version = null;
+    }
+}
 
-        public static List<Library> InitEFCore()
+public static class PreDefinedLibrary
+{
+    public static List<Library> InitCommunityToolkit()
+    {
+        List<Library> list = new()
         {
-            List<Library> list = new()
-            {
-                new Library("Microsoft.EntityFrameworkCore"),
-                new Library("Microsoft.EntityFrameworkCore.Sqlite"),
-                new Library("Microsoft.EntityFrameworkCore.SqlServer"),
-                new Library("Microsoft.EntityFrameworkCore.Cosmos"),
-                new Library("Microsoft.EntityFrameworkCore.InMemory"),
-                new Library("Microsoft.EntityFrameworkCore.Relational"),
-                new Library("Microsoft.EntityFrameworkCore.Abstractions"),
-                new Library("Microsoft.EntityFrameworkCore.Analyzers"),
-                new Library("Microsoft.EntityFrameworkCore.Design"),
-                new Library("Microsoft.EntityFrameworkCore.Proxies"),
-                new Library("Microsoft.EntityFrameworkCore.Tools")
-            };
-            return list;
-        }
+            new Library("CommunityToolkit.HighPerformance", Group.CommunityToolkit),
+            new Library("CommunityToolkit.Common", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Behaviors", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Extensions", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Helpers", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Triggers", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Converters", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Animations", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Media", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Collections", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Lottie", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.Segmented", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.Primitives", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.Sizers", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.HeaderedControls", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.RangeSelector", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.ImageCropper", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.RichSuggestBox", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.RadialGauge", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.CameraPreview", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.TokenizingTextBox", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.LayoutTransformControl", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.ColorPicker", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.TabbedCommandBar", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.SettingsControls", Group.CommunityToolkit)
+        };
+        return list;
+    }
 
-        public static List<Library> InitUseful()
+    public static List<Library> InitEFCore()
+    {
+        List<Library> list = new()
         {
-            List<Library> list = new()
-            {
-                new Library("ComputeSharp.WinUI", true),
-                new Library("ComputeSharp.D2D1.WinUI", true),
-                new Library("Config.Net"),
-                new Library("messagepack"),
-                new Library("NotifyIconEx"),
-                new Library("Ulid"),
-                new Library("TenMica", true),
-                new Library("WinUI.TableView"),
-                new Library("Microsoft.Windows.CsWinRT"),
-                new Library("Microsoft.Windows.CsWin32"),
-                new Library("WinUIEx"),
-                new Library("Microsoft.Graphics.Win2D"),
-                new Library("Newtonsoft.Json"),
-                new Library("HtmlAgilityPack"),
-                new Library("Downloader"),
-                new Library("Microsoft.Win32.Registry"),
-                new Library("YamlDotNet"),
-                new Library("System.Drawing.Common"),
-                new Library("System.Management"),
-                new Library("SharpCompress"),
-                new Library("RestSharp"),
-                new Library("Vanara.Windows.Shell"),
-                new Library("protobuf-net"),
-                new Library("protobuf-net.Core"),
-                new Library("Humanizer.Core"),
-                new Library("LiveChartsCore.SkiaSharpView.WinUI", true),
-            };
-            return list;
-        }
+            new Library("Microsoft.EntityFrameworkCore", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Sqlite", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.SqlServer", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Cosmos", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.InMemory", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Relational", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Abstractions", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Analyzers", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Design", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Proxies", Group.EntityFrameworkCore),
+            new Library("Microsoft.EntityFrameworkCore.Tools", Group.EntityFrameworkCore)
+        };
+        return list;
+    }
 
-        public static List<Library> InitTest()
+    public static List<Library> InitUseful()
+    {
+        List<Library> list = new()
         {
-            List<Library> list = new()
-            {
-                new Library("MSTest.TestAdapter"),
-                new Library("MSTest.TestFramework"),
-                new Library("Microsoft.TestPlatform.TestHost")
-            };
-            return list;
-        }
-        public static List<Library> InitDevWinUI()
-        {
-            List<Library> list = new()
-            {
-                new Library(Constants.DevWinUI_Core),
-                new Library(Constants.DevWinUI_Controls),
-                new Library(Constants.DevWinUI_ContextMenu)
-            };
-            return list;
-        }
+            new Library("ComputeSharp.WinUI", Group.General, true),
+            new Library("ComputeSharp.D2D1.WinUI", Group.General, true),
+            new Library("Config.Net", Group.General),
+            new Library("messagepack", Group.General),
+            new Library("NotifyIconEx", Group.General),
+            new Library("Ulid", Group.General),
+            new Library("TenMica", Group.General, true),
+            new Library("WinUI.TableView", Group.General),
+            new Library("Microsoft.Windows.CsWinRT", Group.General),
+            new Library("Microsoft.Windows.CsWin32", Group.General),
+            new Library("WinUIEx", Group.General),
+            new Library("Microsoft.Graphics.Win2D", Group.General),
+            new Library("Newtonsoft.Json", Group.General),
+            new Library("HtmlAgilityPack", Group.General),
+            new Library("Downloader", Group.General),
+            new Library("Microsoft.Win32.Registry", Group.General),
+            new Library("YamlDotNet", Group.General),
+            new Library("System.Drawing.Common", Group.General),
+            new Library("System.Management", Group.General),
+            new Library("SharpCompress", Group.General),
+            new Library("RestSharp", Group.General),
+            new Library("Vanara.Windows.Shell", Group.General),
+            new Library("protobuf-net", Group.General),
+            new Library("protobuf-net.Core", Group.General),
+            new Library("Humanizer.Core", Group.General),
+            new Library("LiveChartsCore.SkiaSharpView.WinUI", Group.General, true),
+        };
+        return list;
+    }
 
-        public static List<Library> InitLog()
+    public static List<Library> InitTest()
+    {
+        List<Library> list = new()
         {
-            List<Library> list = new()
-            {
-                new Library("Serilog"),
-                new Library("Serilog.Sinks.File"),
-                new Library("Serilog.Sinks.Debug"),
-                new Library("Serilog.Sinks.Console"),
-                new Library("log4net"),
-                new Library("NLog")
-            };
-            return list;
-        }
+            new Library("MSTest.TestAdapter", Group.Test),
+            new Library("MSTest.TestFramework", Group.Test),
+            new Library("Microsoft.TestPlatform.TestHost", Group.Test)
+        };
+        return list;
+    }
+    public static List<Library> InitDevWinUI()
+    {
+        List<Library> list = new()
+        {
+            new Library(Constants.DevWinUI_Core, Group.DevWinUI),
+            new Library(Constants.DevWinUI_Controls, Group.DevWinUI),
+            new Library(Constants.DevWinUI_ContextMenu, Group.DevWinUI)
+        };
+        return list;
+    }
 
-        public static List<Library> InitMVVM()
+    public static List<Library> InitLog()
+    {
+        List<Library> list = new()
         {
-            List<Library> list = new()
-            {
-                new Library("CommunityToolkit.Mvvm"),
-                new Library("Microsoft.Xaml.Behaviors.WinUI.Managed"),
-                new Library("Microsoft.Extensions.Hosting"),
-                new Library("Microsoft.Extensions.DependencyInjection"),
-                new Library("Microsoft.Extensions.Logging"),
-                new Library("Microsoft.Extensions.Configuration")
-            };
-            return list;
-        }
+            new Library("Serilog", Group.Log),
+            new Library("Serilog.Sinks.File", Group.Log),
+            new Library("Serilog.Sinks.Debug", Group.Log),
+            new Library("Serilog.Sinks.Console", Group.Log),
+            new Library("log4net", Group.Log),
+            new Library("NLog", Group.Log)
+        };
+        return list;
+    }
+
+    public static List<Library> InitMVVM()
+    {
+        List<Library> list = new()
+        {
+            new Library("CommunityToolkit.Mvvm", Group.MVVM),
+            new Library("Microsoft.Xaml.Behaviors.WinUI.Managed", Group.MVVM),
+            new Library("Microsoft.Extensions.Hosting", Group.MVVM),
+            new Library("Microsoft.Extensions.DependencyInjection", Group.MVVM),
+            new Library("Microsoft.Extensions.Logging", Group.MVVM),
+            new Library("Microsoft.Extensions.Configuration", Group.MVVM)
+        };
+        return list;
     }
 }
