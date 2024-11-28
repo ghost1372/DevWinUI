@@ -7,7 +7,7 @@ public sealed partial class MainPage : Page
         this.InitializeComponent();
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
-        App.Current.GetNavigationService()
+        App.Current.GetNavService()
             .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
             .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")$ConfigDefaultPages$
             .ConfigureTitleBar(AppTitleBar)

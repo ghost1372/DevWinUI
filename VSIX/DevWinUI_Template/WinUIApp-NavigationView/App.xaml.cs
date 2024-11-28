@@ -6,7 +6,7 @@ public partial class App : Application
     public IThemeService ThemeService { get; set; }
     public IJsonNavigationService NavigationService { get; set; }
     public new static App Current => (App)Application.Current;
-    public IJsonNavigationService GetNavigationService => NavigationService;
+    public IJsonNavigationService GetNavService => NavigationService;
     public IThemeService GetThemeService => ThemeService;
 
     public App()

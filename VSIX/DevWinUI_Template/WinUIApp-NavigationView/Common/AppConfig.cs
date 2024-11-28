@@ -1,5 +1,4 @@
-﻿using Nucs.JsonSettings;
-using Nucs.JsonSettings.Modulation;
+﻿using Nucs.JsonSettings.Modulation;
 using Nucs.JsonSettings.Examples;
 
 namespace $safeprojectname$.Common;
