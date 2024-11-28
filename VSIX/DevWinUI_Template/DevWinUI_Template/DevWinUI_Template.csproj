@@ -65,9 +65,10 @@
     <Compile Include="Common\PreDefinedLibrary.cs" />
     <Compile Include="Common\VSDocumentHelper.cs" />
     <Compile Include="Common\WizardConfig.cs" />
+    <Compile Include="Controls\SettingsControl.cs" />
+    <Compile Include="Controls\SettingsControlWithExpander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DevWinUI_TemplatePackage.cs" />
-    <Compile Include="Styles\CardControl\CardControl.cs" />
     <Compile Include="TemplateWizard\SharedWizard.cs" />
     <Compile Include="TemplateWizard\WinUIAppBlankUnitTestWizard.cs" />
     <Compile Include="TemplateWizard\WinUIAppBlankWizard.cs" />
@@ -81,8 +82,8 @@
     <Compile Include="Views\Pages\AppxManifestPage.xaml.cs">
       <DependentUpon>AppxManifestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\CSProjectPage.xaml.cs">
-      <DependentUpon>CSProjectPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\FilePage.xaml.cs">
       <DependentUpon>FilePage.xaml</DependentUpon>
@@ -90,23 +91,14 @@
     <Compile Include="Views\Pages\LibrariesPage.xaml.cs">
       <DependentUpon>LibrariesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\PagesPages.xaml.cs">
-      <DependentUpon>PagesPages.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\PlatformPage.xaml.cs">
-      <DependentUpon>PlatformPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\PagesPage.xaml.cs">
+      <DependentUpon>PagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ResourcePage.xaml.cs">
       <DependentUpon>ResourcePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\LibraryOptionUC.xaml.cs">
       <DependentUpon>LibraryOptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\OptionUC.xaml.cs">
-      <DependentUpon>OptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\OptionUCNoExpander.xaml.cs">
-      <DependentUpon>OptionUCNoExpander.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +120,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.30" />
     <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
     <PackageReference Include="Microsoft.VisualStudio.SDK" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -145,10 +136,14 @@
       <PrivateAssets>all</PrivateAssets>
       <Version>17.10.2185</Version>
     </PackageReference>
+    <PackageReference Include="WPF-UI">
+      <Version>4.0.0-rc.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppIcon.ico" />
     <Content Include="Assets\AppIcon.png" />
+    <Resource Include="Assets\AppTitleBar.png" />
     <Content Include="Assets\Preview.png" />
     <!--<ExtensionDependencies Condition=" '$(ExcludeRestorePackageImports)' != 'true' " Include="$(PkgNuget_VisualStudio)\**\NuGet.VisualStudio.dll" />-->
     <!--<Content Include="@(ExtensionDependencies)">
@@ -157,11 +152,7 @@
     </Content>-->
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\CardControl\CardControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\ThemeResources.xaml">
+    <Page Include="Controls\SettingsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -173,39 +164,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\CSProjectPage.xaml">
+    <Page Include="Views\Pages\LibrariesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\PagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ResourcePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\DashboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\FilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\LibrariesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\PagesPages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\PlatformPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\ResourcePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\UserControls\LibraryOptionUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\OptionUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\OptionUCNoExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

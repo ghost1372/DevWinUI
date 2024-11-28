@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.manifest" />
+    <Content Include="TemplateIcon.ico" />
+    <Content Include="TemplateIcon.png" />
     <Content Include="Assets\AppIcon.ico" />
     <Content Include="Assets\AppIcon.png" />
     <Content Include="Package-managed.appxmanifest">

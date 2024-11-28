@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.manifest" />
+    <Content Include="TemplateIcon.ico" />
+    <Content Include="TemplateIcon.png" />
     <Content Include="Assets\Cover\CoverDark.png" />
     <Content Include="Assets\Cover\CoverLight.png" />
     <Content Include="Assets\Fluent\Backdrop.png" />
