@@ -143,6 +143,7 @@
   <ItemGroup>
     <Content Include="Assets\AppIcon.ico" />
     <Content Include="Assets\AppIcon.png" />
+    <Resource Include="Assets\AppTitleBar.png" />
     <Content Include="Assets\Preview.png" />
     <!--<ExtensionDependencies Condition=" '$(ExcludeRestorePackageImports)' != 'true' " Include="$(PkgNuget_VisualStudio)\**\NuGet.VisualStudio.dll" />-->
     <!--<Content Include="@(ExtensionDependencies)">

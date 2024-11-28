@@ -288,6 +288,7 @@
 
         <ui:NavigationView x:Name="RootNavigation"
                            Grid.Row="1"
+                           IsBackButtonVisible="Collapsed"
                            ItemTemplate="{DynamicResource LeftCompactNavigationViewItemTemplate2}">
             <ui:NavigationView.Header>
                 <StackPanel>
@@ -358,7 +359,12 @@
             </ui:NavigationView.MenuItems>
         </ui:NavigationView>
 
-        <ui:TitleBar Title="DevWinUI Wizard"
-                     Grid.Row="0" />
+        <ui:TitleBar x:Name="AppTitleBar"
+                     Title="DevWinUI Wizard"
+                     Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
     </Grid>
 </ui:FluentWindow>
