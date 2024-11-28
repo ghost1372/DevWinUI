@@ -2,7 +2,7 @@
 
 namespace $safeprojectname$.Common;
 
-public static class LoggerSetup
+public static partial class LoggerSetup
 {
     public static ILogger Logger { get; private set; }
 
