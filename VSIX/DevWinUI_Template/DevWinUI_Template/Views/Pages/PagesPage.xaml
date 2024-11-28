@@ -14,7 +14,7 @@
             <Separator Margin="0,10,0,5"
                        HorizontalAlignment="Stretch" />
             <local:SettingsControl x:Name="tgHomePage"
-                                   Title="1. Add Home Landing Page"
+                                   Title="Add Home Landing Page"
                                    Description="Will create a landing page for your application's home screen. "
                                    Toggled="tgHomePage_Toggled">
                 <local:SettingsControl.Icon>
@@ -22,7 +22,7 @@
                 </local:SettingsControl.Icon>
             </local:SettingsControl>
             <local:SettingsControl x:Name="tgSettingsPage"
-                                   Title="2. Add SettingsPage"
+                                   Title="Add SettingsPage"
                                    Description="Will create a settings page with a BreadCrumbBar for your application"
                                    Toggled="tgSettingsPage_Toggled">
                 <local:SettingsControl.Icon>

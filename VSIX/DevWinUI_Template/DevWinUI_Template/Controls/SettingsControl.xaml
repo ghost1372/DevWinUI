@@ -37,7 +37,7 @@
                                                  Margin="0,0,16,0"
                                                  VerticalAlignment="Center"
                                                  Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
-                                                 IsChecked="{TemplateBinding IsOn}"
+                                                 IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOn, Mode=TwoWay}"
                                                  OffContent="Off"
                                                  OnContent="On" />
                             </Grid>
@@ -75,7 +75,7 @@
                             <ContentControl x:Name="PART_Content"
                                             Content="{TemplateBinding Item}" />
                             <ui:ToggleSwitch x:Name="PART_ToggleSwitch"
-                                             IsChecked="{TemplateBinding IsOn}"
+                                             IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOn, Mode=TwoWay}"
                                              OffContent="Off"
                                              OnContent="On" />
                         </Grid>

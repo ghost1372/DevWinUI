@@ -11,8 +11,6 @@
     <ScrollViewer Margin="5"
                   VerticalAlignment="Top">
         <StackPanel>
-            <Separator Margin="0,10,0,10"
-                       HorizontalAlignment="Stretch" />
             <local:SettingsControl x:Name="tgDicColor"
                                    Title="Add ThemeResources.xaml Dictionary"
                                    Description="define reusable resources like colors and brushes for consistent theming across your application."
