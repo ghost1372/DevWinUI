@@ -100,9 +100,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Files\.editorconfig" />
-    <None Include="Files\dotnet-release.yml" />
-    <None Include="Files\settings.xamlstyler" />
+    <Content Include="Files\.editorconfig">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Files\dotnet-release.yml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Files\settings.xamlstyler">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="key.snk" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
