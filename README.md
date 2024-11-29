@@ -5,7 +5,7 @@
  <img alt="Packages" src="https://img.shields.io/badge/Packages-%20?logo=nuget&label=Nuget&color=blue"/>
 </a>
 <br>
-<img alt="build" src="https://img.shields.io/github/actions/workflow/status/Ghost1372/DevWinUI/dotnet-release.yml?logo=github"/>
+<img alt="build" src="https://img.shields.io/github/actions/workflow/status/Ghost1372/DevWinUI/publish-release.yml?logo=github"/>
 <img alt="releaseDate" src="https://img.shields.io/github/release-date/Ghost1372/DevWinUI?logo=github&link=https%3A%2F%2Fgithub.com%2FGhost1372%2FDevWinUI%2Freleases"/>
 <a href="https://Ghost1372.github.io/DevWinUI/">
  <img alt="Docs" src="https://img.shields.io/badge/See Here-Version?logo=markdown&label=Document&color=red&link=https%3A%2F%2FGhost1372.github.io%2FDevWinUI%2F"/>
