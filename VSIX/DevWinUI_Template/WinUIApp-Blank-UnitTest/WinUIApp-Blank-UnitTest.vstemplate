@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI 3 MSTest - (Unit Test)</Name>
-	<Description>Creates a new Blank WinUI 3 App that contains MSTest unit test without DevWinUI Packages and Configs</Description>
+	<Name>WinUI Unit Test App</Name>
+	<Description>A project to create unit test app for WinUI 3 apps using MSTest.</Description>
     <Icon>TemplateIcon.ico</Icon>
     <TemplateID>WinUIApp-Blank-UnitTest-{BECD9E2D-FD3A-435B-8DE1-DC6F12E707FF}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>

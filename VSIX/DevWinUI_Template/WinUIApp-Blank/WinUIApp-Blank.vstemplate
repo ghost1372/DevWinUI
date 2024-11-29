@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI 3 App - Blank</Name>
-	<Description>Creates a new Blank WinUI 3 App without DevWinUI Packages and Configs</Description>
+	<Name>WinUI Blank App</Name>
+	<Description>Creates a new Blank WinUI 3 App without DevWinUI Packages.</Description>
     <Icon>TemplateIcon.ico</Icon>
     <TemplateID>WinUIApp-Blank-{8217C719-97BA-4482-A019-26B4C2EF8469}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>

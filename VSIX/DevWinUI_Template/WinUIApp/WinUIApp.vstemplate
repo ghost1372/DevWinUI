@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI 3 App</Name>
-	<Description>Creates a new WinUI 3 App with DevWinUI Packages and Custom TitleBar</Description>
+	<Name>WinUI App</Name>
+	<Description>Creates a new WinUI 3 App with DevWinUI Packages.</Description>
     <Icon>TemplateIcon.ico</Icon>
     <TemplateID>WinUIApp-{07E96C59-27D7-497F-B096-08922AC9C65F}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>

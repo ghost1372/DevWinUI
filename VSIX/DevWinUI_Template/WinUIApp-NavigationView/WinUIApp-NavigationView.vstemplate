@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI 3 App - NavigationView</Name>
-	<Description>Creates a new WinUI 3 App with DevWinUI Packages, NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).</Description>
+	<Name>WinUI App (NavigationView)</Name>
+	<Description>Creates a new WinUI 3 App with DevWinUI Packages and NavigationView.</Description>
 	<Icon>TemplateIcon.ico</Icon>
 	<TemplateID>WinUIApp-NavigationView-{4171FCC2-74F0-4402-A8E3-04D38730C092}</TemplateID>
 	<TemplateGroupID>WinRT-Managed</TemplateGroupID>

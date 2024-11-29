@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI 3 App - MVVM + NavigationView</Name>
-	<Description>Creates a new WinUI 3 App with DevWinUI, MVVM Packages, NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).</Description>
+	<Name>WinUI App (MVVM + NavigationView)</Name>
+	<Description>Creates a new WinUI 3 App with DevWinUI, MVVM Packages and NavigationView.</Description>
 	<Icon>TemplateIcon.ico</Icon>
 	<TemplateID>WinUIApp-MVVM-NavigationView-{F8D06623-1F58-4E3F-98F6-15178E4BB860}</TemplateID>
 	<TemplateGroupID>WinRT-Managed</TemplateGroupID>
