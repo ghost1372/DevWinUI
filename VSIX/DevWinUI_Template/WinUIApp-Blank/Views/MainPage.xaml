@@ -5,15 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:$safeprojectname$"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
     <Grid RowDefinitions="Auto, *">
         <TitleBar x:Name="AppTitleBar"
                   Title="$safeprojectname$"
-                  IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
-                  Subtitle="1.0.0" />
+                  Subtitle="1.0.0">
+            <TitleBar.IconSource>
+                <BitmapIconSource ShowAsMonochrome="False"
+                                  UriSource="ms-appx:///Assets/AppIcon.png" />
+            </TitleBar.IconSource>
+        </TitleBar>
         <StackPanel Grid.Row="1">
-            
+
         </StackPanel>
     </Grid>
 </Page>

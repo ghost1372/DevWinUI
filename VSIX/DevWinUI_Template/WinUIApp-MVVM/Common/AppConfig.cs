@@ -3,6 +3,7 @@ using Nucs.JsonSettings.Examples;
 
 namespace $safeprojectname$.Common;
 
+
 [GenerateAutoSaveOnChange]
 public partial class AppConfig : NotifiyingJsonSettings, IVersionable
 {

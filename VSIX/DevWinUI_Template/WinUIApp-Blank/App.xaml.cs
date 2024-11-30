@@ -18,6 +18,7 @@ public partial class App : Application
             MainWindow.Content = rootFrame = new Frame();
         }
 
+        MainWindow.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
         rootFrame.Navigate(typeof(MainPage));
         MainWindow.Activate();
     }
