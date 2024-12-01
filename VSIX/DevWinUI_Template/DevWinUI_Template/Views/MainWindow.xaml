@@ -276,7 +276,6 @@
                     </MultiTrigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>
-
         </ResourceDictionary>
     </ui:FluentWindow.Resources>
 
@@ -299,13 +298,23 @@
                                    Margin="10,0"
                                    Click="btnCancel_Click"
                                    Content="Cancel [Esc]"
-                                   IsCancel="True" />
+                                   Cursor="Hand"
+                                   IsCancel="True">
+                            <ui:Button.Icon>
+                                <ui:SymbolIcon Symbol="Dismiss24" />
+                            </ui:Button.Icon>
+                        </ui:Button>
                         <ui:Button MinWidth="200"
                                    Appearance="Primary"
                                    Click="btnCreate_Click"
                                    Content="Create Project [Enter]"
+                                   Cursor="Hand"
                                    Foreground="WhiteSmoke"
-                                   IsDefault="True" />
+                                   IsDefault="True">
+                            <ui:Button.Icon>
+                                <ui:SymbolIcon Symbol="New24" />
+                            </ui:Button.Icon>
+                        </ui:Button>
                     </StackPanel>
                     <Separator />
                 </StackPanel>
@@ -339,7 +348,7 @@
                                        NavigationCacheMode="Enabled"
                                        TargetPageType="{x:Type pages:PagesPage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Document24" />
+                        <ui:SymbolIcon Symbol="TabDesktopNewPage20" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="XAML Resources"

@@ -15,15 +15,15 @@ public partial class MainWindow : FluentWindow
         });
         Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
         {
-            Source = new System.Uri("pack://application:,,,/Wpf.Ui;component/Resources/Wpf.Ui.xaml", UriKind.RelativeOrAbsolute)
+            Source = new System.Uri("/DevWinUI_Template;component/Theme/Generic.xaml", UriKind.RelativeOrAbsolute)
         });
         Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
         {
-            Source = new System.Uri("/DevWinUI_Template;component/Views/TextBlockStyle.xaml", UriKind.RelativeOrAbsolute)
+            Source = new System.Uri("/DevWinUI_Template;component/Theme/TextBlockStyle.xaml", UriKind.RelativeOrAbsolute)
         });
         Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
         {
-            Source = new System.Uri("/DevWinUI_Template;component/Controls/SettingsControl.xaml", UriKind.RelativeOrAbsolute)
+            Source = new System.Uri("/DevWinUI_Template;component/Theme/Controls/SettingsControl.xaml", UriKind.RelativeOrAbsolute)
         });
         InitializeComponent();
         Loaded += MainWindowWizard_Loaded;

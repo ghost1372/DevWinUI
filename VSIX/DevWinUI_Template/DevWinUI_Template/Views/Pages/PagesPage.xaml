@@ -18,7 +18,7 @@
                                    Description="Will create a landing page for your application's home screen. "
                                    Toggled="tgHomePage_Toggled">
                 <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="Home24" />
+                    <ui:SymbolIcon Symbol="ChannelAdd24" />
                 </local:SettingsControl.Icon>
             </local:SettingsControl>
             <local:SettingsControl x:Name="tgSettingsPage"
@@ -26,7 +26,7 @@
                                    Description="Will create a settings page with a BreadCrumbBar for your application"
                                    Toggled="tgSettingsPage_Toggled">
                 <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="Settings24" />
+                    <ui:SymbolIcon Symbol="CubeAdd20" />
                 </local:SettingsControl.Icon>
             </local:SettingsControl>
             <local:SettingsControl x:Name="tgGeneralSettingPage"

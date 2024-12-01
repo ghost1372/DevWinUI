@@ -66,8 +66,6 @@
     <Compile Include="Common\VSDocumentHelper.cs" />
     <Compile Include="Common\WidthAdjustConverter.cs" />
     <Compile Include="Common\WizardConfig.cs" />
-    <Compile Include="Controls\SettingsControl.cs" />
-    <Compile Include="Controls\SettingsControlWithExpander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DevWinUI_TemplatePackage.cs" />
     <Compile Include="TemplateWizard\SharedWizard.cs" />
@@ -77,6 +75,8 @@
     <Compile Include="TemplateWizard\WinUIAppMVVMWizard.cs" />
     <Compile Include="TemplateWizard\WinUIAppNavigationWizard.cs" />
     <Compile Include="TemplateWizard\WinUIAppWizard.cs" />
+    <Compile Include="Theme\Controls\SettingsControl.cs" />
+    <Compile Include="Theme\Controls\SettingsControlWithExpander.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -127,10 +127,10 @@
     <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
     <PackageReference Include="Microsoft.VisualStudio.SDK" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <Version>17.4.33103.184</Version>
+      <Version>17.3.32804.24</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
-      <Version>17.10.40170</Version>
+      <Version>17.5.33428.366</Version>
     </PackageReference>
     <PackageReference Include="NuGet.VisualStudio" GeneratePathProperty="true">
       <Version>17.12.1</Version>
@@ -138,7 +138,7 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-      <Version>17.10.2185</Version>
+      <Version>17.9.3174</Version>
     </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>4.0.0-rc.2</Version>
@@ -162,7 +162,15 @@
     </Content>-->
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\SettingsControl.xaml">
+    <Page Include="Theme\Controls\SettingsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Theme\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Theme\TextBlockStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -185,10 +193,6 @@
     <Page Include="Views\Pages\ResourcePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TextBlockStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Pages\DashboardPage.xaml">
       <SubType>Designer</SubType>
