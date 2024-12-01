@@ -127,10 +127,10 @@
     <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
     <PackageReference Include="Microsoft.VisualStudio.SDK" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <Version>17.3.32804.24</Version>
+      <Version>17.4.33103.184</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
-      <Version>17.5.33428.366</Version>
+      <Version>17.10.40170</Version>
     </PackageReference>
     <PackageReference Include="NuGet.VisualStudio" GeneratePathProperty="true">
       <Version>17.12.1</Version>
@@ -138,7 +138,7 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-      <Version>17.9.3174</Version>
+      <Version>17.10.2185</Version>
     </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>4.0.0-rc.2</Version>
