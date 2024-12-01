@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-
-using EnvDTE;
-
-using Microsoft.VisualStudio.TemplateWizard;
 using DevWinUI_Template.WizardUI;
+using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace DevWinUI_Template
 {
@@ -42,8 +40,8 @@ namespace DevWinUI_Template
                 return false;
             }
 
-            if (!WizardConfig.UseJsonSettings && 
-                (filePath.Contains("AppConfig") || 
+            if (!WizardConfig.UseJsonSettings &&
+                (filePath.Contains("AppConfig") ||
                 filePath.Contains("AppHelper")))
             {
                 return false;
@@ -57,8 +55,8 @@ namespace DevWinUI_Template
             {
                 return false;
             }
-            else if (!WizardImplementation.UseDebugLogger && 
-                !WizardImplementation.UseFileLogger && 
+            else if (!WizardImplementation.UseDebugLogger &&
+                !WizardImplementation.UseFileLogger &&
                 filePath.Contains("LoggerSetup"))
             {
                 return false;

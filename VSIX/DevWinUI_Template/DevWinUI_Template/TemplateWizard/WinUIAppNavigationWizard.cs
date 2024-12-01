@@ -1,7 +1,7 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.TemplateWizard;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DevWinUI_Template.WizardUI;
+using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace DevWinUI_Template
 {
@@ -40,16 +40,16 @@ namespace DevWinUI_Template
                 return false;
             }
 
-            if (!WizardConfig.UseHomeLandingPage && 
+            if (!WizardConfig.UseHomeLandingPage &&
                 filePath.Contains("HomeLanding"))
             {
                 return false;
             }
-            else if (!WizardConfig.UseSettingsPage && 
-                (filePath.Contains("SettingsPage.xaml") || 
-                filePath.Contains("AboutUsSettingPage") || 
-                filePath.Contains("ThemeSettingPage") || 
-                filePath.Contains("GeneralSettingPage") || 
+            else if (!WizardConfig.UseSettingsPage &&
+                (filePath.Contains("SettingsPage.xaml") ||
+                filePath.Contains("AboutUsSettingPage") ||
+                filePath.Contains("ThemeSettingPage") ||
+                filePath.Contains("GeneralSettingPage") ||
                 filePath.Contains("AppUpdateSettingPage") ||
                 filePath.Contains("Backdrop.png") ||
                 filePath.Contains("Tint.png") ||
@@ -63,7 +63,7 @@ namespace DevWinUI_Template
             {
                 return false;
             }
-            else if (WizardConfig.UseSettingsPage && 
+            else if (WizardConfig.UseSettingsPage &&
                 !WizardConfig.UseAboutPage &&
                 (filePath.Contains("AboutUsSettingPage") ||
                 filePath.Contains("Info.png")))
@@ -96,13 +96,13 @@ namespace DevWinUI_Template
                 return false;
             }
             else if (!WizardConfig.UseJsonSettings &&
-                (filePath.Contains("AppConfig") || 
+                (filePath.Contains("AppConfig") ||
                 filePath.Contains("AppHelper")))
             {
                 return false;
             }
-            else if (!WizardConfig.UseHomeLandingPage && 
-                !WizardConfig.UseColorsDic && 
+            else if (!WizardConfig.UseHomeLandingPage &&
+                !WizardConfig.UseColorsDic &&
                 filePath.Contains("ThemeResources.xaml"))
             {
                 return false;
@@ -116,8 +116,8 @@ namespace DevWinUI_Template
             {
                 return false;
             }
-            else if (!WizardImplementation.UseDebugLogger && 
-                !WizardImplementation.UseFileLogger && 
+            else if (!WizardImplementation.UseDebugLogger &&
+                !WizardImplementation.UseFileLogger &&
                 filePath.Contains("LoggerSetup"))
             {
                 return false;

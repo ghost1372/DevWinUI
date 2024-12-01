@@ -10,7 +10,7 @@ namespace DevWinUI_Template
         public GlobalUsingOption(Dictionary<string, string> replacementsDictionary, string safeProjectName, bool fileLogger, bool debugLogger)
         {
             StringBuilder outputBuilder = new StringBuilder();
-            
+
             if (WizardConfig.UseJsonSettings)
             {
                 outputBuilder.AppendLine(Environment.NewLine + $"global using static {safeProjectName}.Common.AppHelper;");

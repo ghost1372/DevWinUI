@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.Shell;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
 namespace DevWinUI_Template

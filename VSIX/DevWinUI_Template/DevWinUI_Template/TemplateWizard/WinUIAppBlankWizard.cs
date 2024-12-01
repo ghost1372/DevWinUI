@@ -1,7 +1,7 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.TemplateWizard;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DevWinUI_Template.WizardUI;
+using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace DevWinUI_Template
 {

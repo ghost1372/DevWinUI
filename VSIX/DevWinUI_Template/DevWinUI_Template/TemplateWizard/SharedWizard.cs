@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevWinUI_Template.Options;
+using DevWinUI_Template.WizardUI;
 using EnvDTE;
-
 using EnvDTE80;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
@@ -13,8 +14,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 using NuGet.VisualStudio;
-using DevWinUI_Template.Options;
-using DevWinUI_Template.WizardUI;
 
 namespace DevWinUI_Template
 {
@@ -120,10 +119,10 @@ namespace DevWinUI_Template
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             _dte = automationObject as _DTE;
-            
+
             var inputForm = new MainWindow();
             var result = inputForm.ShowDialog();
-            
+
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             if (result.HasValue && result.Value)
@@ -134,7 +133,7 @@ namespace DevWinUI_Template
                 VSIXRootFolderPath = vsix.VSIXRootFolder;
 
                 _shouldAddProjectItem = true;
-                
+
                 AddEditorConfigFile();
 
                 // Add Base Library Versions
@@ -143,7 +142,7 @@ namespace DevWinUI_Template
                 replacementsDictionary.Add("$MinimumTargetPlatform$", WizardConfig.MinimumTargetPlatform.ToString());
                 replacementsDictionary.Add("$Platforms$", WizardConfig.Platforms.ToString());
                 replacementsDictionary.Add("$RuntimeIdentifiers$", WizardConfig.RuntimeIdentifiers.ToString());
-                
+
                 replacementsDictionary.Add("$Nullable$", WizardConfig.Nullable);
                 replacementsDictionary.Add("$TrimMode$", WizardConfig.TrimMode);
                 replacementsDictionary.Add("$PublishAot$", WizardConfig.PublishAot.ToString());
@@ -619,7 +618,7 @@ namespace DevWinUI_Template
                 }
             }
         }
-        
+
         private void SaveAllProjects()
         {
             ThreadHelper.ThrowIfNotOnUIThread("SaveAllProjects must be called on the UI thread.");

@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using System;
-using Wpf.Ui.Controls;
+﻿using System;
+using System.Windows;
 using DevWinUI_Template.WizardUI;
+using Wpf.Ui.Controls;
 
 namespace DevWinUI_Template;
 
@@ -34,9 +34,9 @@ public partial class MainWindow : FluentWindow
         try
         {
             Wpf.Ui.Appearance.SystemThemeWatcher.Watch(
-                this,                                    
-                Wpf.Ui.Controls.WindowBackdropType.Mica, 
-                true                                     
+                this,
+                Wpf.Ui.Controls.WindowBackdropType.Mica,
+                true
             );
         }
         catch (Exception)

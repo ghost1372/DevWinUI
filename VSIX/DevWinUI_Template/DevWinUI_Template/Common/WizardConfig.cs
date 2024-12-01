@@ -19,7 +19,7 @@ namespace DevWinUI_Template.WizardUI
         public static string SolutionFolderName = "Solution Items";
         public static string TrimMode = "partial";
         public static string Nullable = "disable";
-        
+
         public static bool UseGithubWorkflowFile;
         public static bool UseXamlStylerFile;
 

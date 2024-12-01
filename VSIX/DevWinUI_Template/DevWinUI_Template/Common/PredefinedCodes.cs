@@ -41,7 +41,7 @@ if (menuService != null)
     await menuService.SaveAsync(menu);
 }
 """";
-        
+
         public static readonly string SettingsCardCommentCode =
 """
 <!-- <dev:SettingsCard Description="Your Description"

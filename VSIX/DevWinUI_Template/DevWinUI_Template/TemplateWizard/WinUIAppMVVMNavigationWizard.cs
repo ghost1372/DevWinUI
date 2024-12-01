@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-
-using EnvDTE;
-
-using Microsoft.VisualStudio.TemplateWizard;
 using DevWinUI_Template.WizardUI;
+using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace DevWinUI_Template
 {
@@ -109,13 +107,13 @@ namespace DevWinUI_Template
             {
                 return false;
             }
-            else if (!WizardConfig.UseHomeLandingPage && 
-                !WizardConfig.UseColorsDic && 
+            else if (!WizardConfig.UseHomeLandingPage &&
+                !WizardConfig.UseColorsDic &&
                 filePath.Contains("ThemeResources.xaml"))
             {
                 return false;
             }
-            else if (filePath.Contains("Resources") && 
+            else if (filePath.Contains("Resources") &&
                 !filePath.Contains("ThemeResources"))
             {
                 return false;
@@ -124,8 +122,8 @@ namespace DevWinUI_Template
             {
                 return false;
             }
-            else if (!WizardImplementation.UseDebugLogger && 
-                !WizardImplementation.UseFileLogger && 
+            else if (!WizardImplementation.UseDebugLogger &&
+                !WizardImplementation.UseFileLogger &&
                 filePath.Contains("LoggerSetup"))
             {
                 return false;

@@ -23,7 +23,7 @@ public class Library
     public bool IsSelected { get; set; }
     public Library()
     {
-        
+
     }
     public Library(string name, string version, string net9Version, Group group, bool includePreRelease = false)
     {
@@ -37,7 +37,7 @@ public class Library
     public Library(string name, Group group, bool includePreRelease = false)
     {
         Name = name;
-        Group= group;
+        Group = group;
         IncludePreRelease = includePreRelease;
         Net9Version = null;
         Version = null;
@@ -45,7 +45,7 @@ public class Library
     public Library(string name, bool includePreRelease = false)
     {
         Name = name;
-        Group= Group.None;
+        Group = Group.None;
         IncludePreRelease = includePreRelease;
         Net9Version = null;
         Version = null;
