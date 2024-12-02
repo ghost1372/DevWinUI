@@ -81,17 +81,16 @@ Ensure that your installation includes the appropriate workloads:
 - On the `Workloads` tab of the Visual Studio installation dialog box, select:  
   - **.NET Desktop Development**  
   - **Windows Application Development**  
-- Ensure the **Windows 11 SDK (10.0.19041.0)** is installed.
 
 #### 2. 🛠️ .NET SDKs  
 - Ensure .NET versions `8.x` and `9.x` are installed.
 
 #### 3. 📂 Solution Format  
-- This project uses the **SLNX format** for solutions, a new format introduced in Visual Studio Preview 17.11.  
-- ⚠️ **Note:** You currently need the latest Visual Studio 2022 Preview version.
+- This project uses the new **SLNX format** for solutions.
+- ⚠️ **Note:** This feature is currently in preview and you need to enable it from **Tools -> Manage Preview Features**.
+![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SLNX.png)
 
 Make sure your environment matches these requirements to avoid any issues during compilation.
-
 
 ### ⚠️ Nightly Build
 
