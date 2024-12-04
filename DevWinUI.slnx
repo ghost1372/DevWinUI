@@ -7,6 +7,7 @@
     <File Path="Policy" />
     <File Path="README.md" />
     <File Path="settings.xamlstyler" />
+    <File Path="ThirdPartyNotices.txt" />
   </Folder>
   <Folder Name="/VSIX_Extension/" Id="55c3cdfc-dabe-4658-ada9-aa32a6371d9b">
     <Project Path="VSIX/DevWinUI_Template/DevWinUI_Template/DevWinUI_Template.csproj" Id="84913ae7-791a-451d-b4c6-c2c93207d9ff" />
