@@ -10,7 +10,7 @@ public sealed partial class AcrylicSystemBackdrop : SystemBackdrop
     public readonly static Color Default_FallbackColor_Light = Color.FromArgb(0xff, 0xd3, 0xd3, 0xd3);
 
     public readonly DesktopAcrylicKind Kind;
-    private DesktopAcrylicController acrylicController;
+    internal DesktopAcrylicController acrylicController;
 
     public SystemBackdropConfiguration BackdropConfiguration { get; private set; }
 

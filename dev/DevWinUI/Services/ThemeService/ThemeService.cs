@@ -161,4 +161,32 @@ public partial class ThemeService : IThemeService
             element.RequestedTheme = ElementTheme.Light;
         }
     }
+
+    public void ResetBackdropProperties()
+    {
+        var backdrop = GetSystemBackdrop();
+        if (backdrop != null)
+        {
+            if (backdrop is MicaSystemBackdrop mica)
+            {
+                mica.micaController.ResetProperties();
+                if (useAutoSave && GlobalData.Config != null)
+                {
+                    GlobalData.Config.BackdropFallBackColor = mica.micaController.FallbackColor;
+                    GlobalData.Config.BackdropTintColor = mica.micaController.TintColor;
+                    GlobalData.Save();
+                }
+            }
+            else if (backdrop is AcrylicSystemBackdrop acrylic)
+            {
+                acrylic.acrylicController.ResetProperties();
+                if (useAutoSave && GlobalData.Config != null)
+                {
+                    GlobalData.Config.BackdropFallBackColor = acrylic.acrylicController.FallbackColor;
+                    GlobalData.Config.BackdropTintColor = acrylic.acrylicController.TintColor;
+                    GlobalData.Save();
+                }
+            }
+        }
+    }
 }

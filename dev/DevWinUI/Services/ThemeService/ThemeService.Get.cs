@@ -7,6 +7,21 @@ public partial class ThemeService
     {
         return RootTheme;
     }
+    public ApplicationTheme GetApplicationTheme()
+    {
+        switch (RootTheme)
+        {
+            default:
+            case ElementTheme.Default:
+                return Application.Current.RequestedTheme == ApplicationTheme.Dark
+                ? ApplicationTheme.Dark
+                : ApplicationTheme.Light;
+            case ElementTheme.Light:
+                return ApplicationTheme.Light;
+            case ElementTheme.Dark:
+                return ApplicationTheme.Dark;
+        }
+    }
 
     public ElementTheme GetActualTheme()
     {

@@ -10,6 +10,7 @@ public interface IThemeService
     BackdropType GetBackdropType();
     BackdropType GetBackdropType(SystemBackdrop systemBackdrop);
     ElementTheme GetElementTheme();
+    ApplicationTheme GetApplicationTheme();
     ElementTheme GetActualTheme();
 
     void SetBackdropType(BackdropType backdropType);
@@ -31,6 +32,7 @@ public interface IThemeService
     void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel);
     void UpdateCaptionButtons();
     void UpdateCaptionButtons(Window window);
+    void ResetBackdropProperties();
 
     ThemeService AutoInitialize(Window window);
     ThemeService Initialize(Window window, bool useAutoSave, string filename);
