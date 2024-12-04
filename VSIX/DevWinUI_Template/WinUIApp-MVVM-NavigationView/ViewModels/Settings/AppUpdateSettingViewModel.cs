@@ -98,6 +98,6 @@ public partial class AppUpdateSettingViewModel : ObservableObject
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
-        await dialog.ShowAsyncQueue();
+        await dialog.ShowAsync();
     }
 }

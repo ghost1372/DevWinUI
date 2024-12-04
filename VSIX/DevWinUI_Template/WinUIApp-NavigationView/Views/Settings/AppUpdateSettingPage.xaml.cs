@@ -85,7 +85,7 @@ public sealed partial class AppUpdateSettingPage : Page
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
-        await dialog.ShowAsyncQueue();
+        await dialog.ShowAsync();
     }
 }
 
