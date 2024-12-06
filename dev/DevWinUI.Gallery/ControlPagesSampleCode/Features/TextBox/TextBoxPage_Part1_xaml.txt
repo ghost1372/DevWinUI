@@ -1,0 +1,5 @@
+﻿<dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
+    <dev:TextBox.Content>
+        <Button Content="&#xE895;" />
+    </dev:TextBox.Content>
+</dev:TextBox>

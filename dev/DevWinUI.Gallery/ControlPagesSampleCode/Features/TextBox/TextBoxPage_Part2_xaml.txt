@@ -1,0 +1,10 @@
+﻿<dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
+    <dev:TextBox.Content>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="&#xE896;" />
+            <Button>
+                <FontIcon Glyph="&#xE895;" />
+            </Button>
+        </StackPanel>
+    </dev:TextBox.Content>
+</dev:TextBox>

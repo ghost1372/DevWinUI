@@ -23,28 +23,24 @@
           "UniqueId": "DevWinUIGallery.Views.TiledImageBrushPage",
           "Title": "TiledImageBrush",
           "Subtitle": "TiledImageBrush",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/watermark.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OutlineTextControlPage",
           "Title": "OutlineTextControl",
           "Subtitle": "OutlineTextControl",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/frame.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WatermarkPage",
           "Title": "Watermark",
           "Subtitle": "Watermark a Text or Image",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/watermark.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
           "Title": "Blur Animation Helper",
           "Subtitle": "Blur Animation Helper",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
         },
         {
@@ -63,7 +59,6 @@
           "UniqueId": "DevWinUIGallery.Views.TextBlockStrokeViewPage",
           "Title": "TextBlock Stroke View",
           "Subtitle": "TextBlock Stroke View",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/autoSuggestBox.png"
         },
         {
@@ -100,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TextBoxPage",
+          "Title": "TextBox",
+          "Subtitle": "TextBox with Content",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TokenizingTextBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.TileControlPage",
           "Title": "TileControl",
           "Subtitle": "TileControl",
@@ -124,91 +126,78 @@
           "UniqueId": "DevWinUIGallery.Views.ColorfulShimmingEffectPage",
           "Title": "ColorfulShimmingEffect",
           "Subtitle": "ColorfulShimmingEffect",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/morph.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LongShadowTextBlockPage",
           "Title": "LongShadowTextBlock",
           "Subtitle": "LongShadowTextBlock",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/morph.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
           "Title": "CredentialHelper",
           "Subtitle": "CredentialHelper",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/contentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
           "Title": "CompositionHelper",
           "Subtitle": "CompositionHelper",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipSidePage",
           "Title": "FlipSide",
           "Subtitle": "FlipSide",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/autoScrollView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.PagerControlPage",
           "Title": "PagerControl",
           "Subtitle": "PagerControl",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/pagerControl.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AutoScrollViewPage",
           "Title": "AutoScrollView",
           "Subtitle": "AutoScrollView",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/autoScrollView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OpacityMaskViewPage",
           "Title": "OpacityMaskView",
           "Subtitle": "OpacityMaskView",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/backdrop.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressBarPage",
           "Title": "Progress",
           "Subtitle": "ProgressRing, WaveProgressBar",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/progressBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DividerPage",
           "Title": "Divider",
           "Subtitle": "Divider",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/divider.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ShieldPage",
           "Title": "Shield",
           "Subtitle": "Shield",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/shield.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GravatarPage",
           "Title": "Gravatar",
           "Subtitle": "Gravatar",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/gravatar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GrowlPage",
           "Title": "Growl",
           "Subtitle": "Growl",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/frame.png"
         },
         {
