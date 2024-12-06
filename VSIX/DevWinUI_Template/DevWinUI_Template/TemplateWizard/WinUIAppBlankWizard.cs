@@ -3,63 +3,62 @@ using DevWinUI_Template.WizardUI;
 using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
 
-namespace DevWinUI_Template
+namespace DevWinUI_Template;
+
+public class WinUIAppBlankWizard : IWizard
 {
-    public class WinUIAppBlankWizard : IWizard
+    SharedWizard WizardImplementation;
+
+    public void BeforeOpeningFile(ProjectItem projectItem)
     {
-        SharedWizard WizardImplementation;
+    }
 
-        public void BeforeOpeningFile(ProjectItem projectItem)
+    public void ProjectFinishedGenerating(Project project)
+    {
+        WizardImplementation.ProjectFinishedGenerating(project);
+    }
+
+    public void ProjectItemFinishedGenerating(ProjectItem projectItem)
+    {
+    }
+
+    public void RunFinished()
+    {
+        WizardImplementation.RunFinished();
+    }
+
+    public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
+    {
+        WizardImplementation = new SharedWizard();
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-Blank", false, false, false, true);
+    }
+
+    public bool ShouldAddProjectItem(string filePath)
+    {
+        if (!WizardImplementation.ShouldAddProjectItem())
         {
+            return false;
         }
 
-        public void ProjectFinishedGenerating(Project project)
+        else if (!WizardConfig.UseColorsDic && filePath.Contains("ThemeResources.xaml"))
         {
-            WizardImplementation.ProjectFinishedGenerating(project);
+            return false;
         }
-
-        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
+        else if (!WizardConfig.UseStylesDic && filePath.Contains("Styles.xaml"))
         {
+            return false;
         }
-
-        public void RunFinished()
+        else if (!WizardConfig.UseConvertersDic && filePath.Contains("Converters.xaml"))
         {
-            WizardImplementation.RunFinished();
+            return false;
         }
-
-        public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
+        else if (!WizardConfig.UseFontsDic && filePath.Contains("Fonts.xaml"))
         {
-            WizardImplementation = new SharedWizard();
-            WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-Blank", false, false, false, true);
+            return false;
         }
-
-        public bool ShouldAddProjectItem(string filePath)
+        else
         {
-            if (!WizardImplementation.ShouldAddProjectItem())
-            {
-                return false;
-            }
-
-            else if (!WizardConfig.UseColorsDic && filePath.Contains("ThemeResources.xaml"))
-            {
-                return false;
-            }
-            else if (!WizardConfig.UseStylesDic && filePath.Contains("Styles.xaml"))
-            {
-                return false;
-            }
-            else if (!WizardConfig.UseConvertersDic && filePath.Contains("Converters.xaml"))
-            {
-                return false;
-            }
-            else if (!WizardConfig.UseFontsDic && filePath.Contains("Fonts.xaml"))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return true;
         }
     }
 }

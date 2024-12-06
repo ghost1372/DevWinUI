@@ -1,8 +1,8 @@
-﻿namespace DevWinUI_Template
+﻿namespace DevWinUI_Template;
+
+public static class PredefinedCodes
 {
-    public static class PredefinedCodes
-    {
-        public static string Windows11ContextMenuInitializer =
+    public static string Windows11ContextMenuInitializer =
 """"
 ContextMenuItem menu = new ContextMenuItem
 {
@@ -20,7 +20,7 @@ ContextMenuItem menu = new ContextMenuItem
 ContextMenuService menuService = new ContextMenuService();
 await menuService.SaveAsync(menu);
 """";
-        public static string Windows11ContextMenuMVVMInitializer =
+    public static string Windows11ContextMenuMVVMInitializer =
 """"
 var menuService = GetService<ContextMenuService>();
 if (menuService != null)
@@ -42,7 +42,7 @@ if (menuService != null)
 }
 """";
 
-        public static readonly string SettingsCardCommentCode =
+    public static readonly string SettingsCardCommentCode =
 """
 <!-- <dev:SettingsCard Description="Your Description"
                               Header="Your Header"
@@ -51,7 +51,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:MySettingPage" /> -->
 """;
 
-        public static readonly string SettingsCardMVVMCommentCode =
+    public static readonly string SettingsCardMVVMCommentCode =
 """
 <!-- <dev:SettingsCard Description="Your Description"
                               Header="Your Header"
@@ -59,7 +59,7 @@ if (menuService != null)
                               IsClickEnabled="True"
                               dev:NavigationHelperEx.NavigateToSetting="views:MySettingPage" /> -->
 """;
-        public static readonly string AboutSettingCode =
+    public static readonly string AboutSettingCode =
 """
 <dev:SettingsCard Description="About $safeprojectname$ and Developer"
                               Header="About us"
@@ -67,7 +67,7 @@ if (menuService != null)
                               IsClickEnabled="True"
                               dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage" />
 """;
-        public static readonly string AboutSettingMVVMCode =
+    public static readonly string AboutSettingMVVMCode =
 """
 <dev:SettingsCard Description="About $safeprojectname$ and Developer"
                               Header="About us"
@@ -76,7 +76,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage" />
 """;
 
-        public static readonly string AppUpdateSettingCode =
+    public static readonly string AppUpdateSettingCode =
 """
 <dev:SettingsCard Description="Check for Updates"
                               Header="Update App"
@@ -85,7 +85,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage" />
 """;
 
-        public static readonly string AppUpdateSettingMVVMCode =
+    public static readonly string AppUpdateSettingMVVMCode =
 """
 <dev:SettingsCard Description="Check for Updates"
                               Header="Update App"
@@ -94,7 +94,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage" />
 """;
 
-        public static readonly string GeneralSettingCode =
+    public static readonly string GeneralSettingCode =
 """
 <dev:SettingsCard Description="Change your app Settings"
                               Header="General"
@@ -103,7 +103,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
 """;
 
-        public static readonly string GeneralSettingMVVMCode =
+    public static readonly string GeneralSettingMVVMCode =
 """
 <dev:SettingsCard Description="Change your app Settings"
                               Header="General"
@@ -112,7 +112,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
 """;
 
-        public static readonly string ThemeSettingCode =
+    public static readonly string ThemeSettingCode =
 """
 <dev:SettingsCard Description="Explore the different ways to customize the appearance and behavior of your app. You can change the material, theme, accent, and more options to suit your style and preference."
                               Header="Appearance &amp; behavior"
@@ -121,7 +121,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage" />
 """;
 
-        public static readonly string ThemeSettingMVVMCode =
+    public static readonly string ThemeSettingMVVMCode =
 """
 <dev:SettingsCard Description="Explore the different ways to customize the appearance and behavior of your app. You can change the material, theme, accent, and more options to suit your style and preference."
                               Header="Appearance &amp; behavior"
@@ -130,7 +130,7 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage" />
 """;
 
-        public static readonly string DeveloperModeSettingCode =
+    public static readonly string DeveloperModeSettingCode =
 """
             <dev:SettingsCard Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
                               Header="Developer Mode (Restart Required)"
@@ -138,7 +138,7 @@ if (menuService != null)
                 <ToggleSwitch />
             </dev:SettingsCard>
 """;
-        public static readonly string DeveloperModeSettingCode2 =
+    public static readonly string DeveloperModeSettingCode2 =
 """
             <dev:SettingsExpander Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
                                   Header="Developer Mode (Restart Required)"
@@ -152,7 +152,7 @@ if (menuService != null)
                 </dev:SettingsExpander.ItemsHeader>
             </dev:SettingsExpander>
 """;
-        public static readonly string GoToLogPathEvent =
+    public static readonly string GoToLogPathEvent =
 """"
         private async void NavigateToLogPath_Click(object sender, RoutedEventArgs e)
         {
@@ -164,5 +164,4 @@ if (menuService != null)
             }
         }
 """";
-    }
 }

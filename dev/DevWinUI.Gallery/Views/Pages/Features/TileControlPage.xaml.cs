@@ -1,10 +1,9 @@
-namespace DevWinUIGallery.Views
+﻿namespace DevWinUIGallery.Views;
+
+public sealed partial class TileControlPage : Page
 {
-    public sealed partial class TileControlPage : Page
+    public TileControlPage()
     {
-        public TileControlPage()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }
