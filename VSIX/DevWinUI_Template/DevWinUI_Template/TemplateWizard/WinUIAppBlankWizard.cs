@@ -30,7 +30,7 @@ public class WinUIAppBlankWizard : IWizard
     public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
     {
         WizardImplementation = new SharedWizard();
-        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-Blank", false, false, false, true);
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, new TemplateConfig { IsBlank = true , TemplateType = TemplateType.WinUIApp_Blank });
     }
 
     public bool ShouldAddProjectItem(string filePath)

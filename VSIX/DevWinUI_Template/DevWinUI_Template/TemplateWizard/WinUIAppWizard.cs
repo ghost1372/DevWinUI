@@ -30,7 +30,7 @@ public class WinUIAppWizard : IWizard
     public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
     {
         WizardImplementation = new SharedWizard();
-        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp", false);
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, new TemplateConfig { TemplateType = TemplateType.WinUIApp });
     }
 
     public bool ShouldAddProjectItem(string filePath)

@@ -30,7 +30,7 @@ public class WinUIAppBlankUnitTestWizard : IWizard
     public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
     {
         WizardImplementation = new SharedWizard();
-        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-Blank-UnitTest", false, false, false, true, true);
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, new TemplateConfig { IsBlank = true, IsTest = true, TemplateType = TemplateType.WinUIApp_Blank_UnitTest });
     }
 
     public bool ShouldAddProjectItem(string filePath)

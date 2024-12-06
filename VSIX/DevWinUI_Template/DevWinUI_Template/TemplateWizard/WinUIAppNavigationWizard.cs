@@ -30,7 +30,7 @@ public class WinUIAppNavigationWizard : IWizard
     public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
     {
         WizardImplementation = new SharedWizard();
-        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-NavigationView", true, false, true);
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, new TemplateConfig { HasPages = true, HasNavigationView = true, TemplateType = TemplateType.WinUIApp_NavigationView });
     }
 
     public bool ShouldAddProjectItem(string filePath)

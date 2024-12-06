@@ -30,7 +30,7 @@ public class WinUIAppMVVMNavigationWizard : IWizard
     public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
     {
         WizardImplementation = new SharedWizard();
-        WizardImplementation.RunStarted(automationObject, replacementsDictionary, "WinUIApp-MVVM-NavigationView", true, true, true);
+        WizardImplementation.RunStarted(automationObject, replacementsDictionary, new TemplateConfig { HasPages = true, IsMVVM = true, HasNavigationView = true, TemplateType = TemplateType.WinUIApp_MVVM_NavigationView });
     }
 
     public bool ShouldAddProjectItem(string filePath)
