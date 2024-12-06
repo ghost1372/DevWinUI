@@ -11,9 +11,12 @@ public partial class DashboardPage : Page
         InitializeComponent();
         DataContext = this;
 
-        WizardConfig.UseEditorConfigFile = true;
-        WizardConfig.UseJsonSettings = true;
-        WizardConfig.UseSolutionFolder = true;
+        if (!WizardConfig.IsBlank)
+        {
+            WizardConfig.UseEditorConfigFile = true;
+            WizardConfig.UseJsonSettings = true;
+            WizardConfig.UseSolutionFolder = true;
+        }
 
         Loaded += DashboardPage_Loaded;
     }
@@ -24,7 +27,11 @@ public partial class DashboardPage : Page
         {
             if (tgJsonSettings != null)
             {
-                tgJsonSettings.IsEnabled = false;
+                tgJsonSettings.IsOn = false;
+            }
+            if (tgSolutionFolder != null)
+            {
+                tgSolutionFolder.IsOn = false;
             }
         }
     }
