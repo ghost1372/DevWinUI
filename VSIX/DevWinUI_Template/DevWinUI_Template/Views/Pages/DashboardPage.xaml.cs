@@ -10,6 +10,11 @@ public partial class DashboardPage : Page
     {
         InitializeComponent();
         DataContext = this;
+
+        WizardConfig.UseEditorConfigFile = true;
+        WizardConfig.UseJsonSettings = true;
+        WizardConfig.UseSolutionFolder = true;
+
         Loaded += DashboardPage_Loaded;
     }
 

@@ -23,10 +23,10 @@ public static class WizardConfig
     public static bool UseGithubWorkflowFile;
     public static bool UseXamlStylerFile;
 
-    public static bool UseEditorConfigFile = true;
-    public static bool UseJsonSettings = true;
-    public static bool UseSolutionFolder = true;
-    public static bool PublishAot = false;
+    public static bool UseEditorConfigFile;
+    public static bool UseJsonSettings;
+    public static bool UseSolutionFolder;
+    public static bool PublishAot;
 
     public static bool IsUnPackagedMode;
     public static bool IsBlank;
