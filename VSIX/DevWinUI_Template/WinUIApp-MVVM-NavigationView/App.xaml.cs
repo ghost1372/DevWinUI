@@ -46,7 +46,8 @@ public partial class App : Application
 
         if (GetThemeService != null)
         {
-            GetThemeService.AutoInitialize(MainWindow);
+            GetThemeService.AutoInitialize(MainWindow)
+                .ConfigureTintColor();
         }$Windows11ContextMenuMVVMInitializer$
 
         rootFrame.Navigate(typeof(MainPage));
