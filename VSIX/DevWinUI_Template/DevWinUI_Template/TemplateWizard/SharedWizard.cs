@@ -120,297 +120,294 @@ public class SharedWizard
 
         _dte = automationObject as _DTE;
 
-        if (!templateConfig.IsBlank)
+        var inputForm = new MainWindow();
+        var result = inputForm.ShowDialog();
+
+        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+        if (result.HasValue && result.Value)
         {
-            var inputForm = new MainWindow();
-            var result = inputForm.ShowDialog();
+            var vsix = await GetVSIXPathAsync(templateConfig.TemplateType.ToString());
+            VSTemplateFilePath = vsix.VSTemplatePath;
+            ProjectTemplatesFolderPath = vsix.ProjectTemplatesFolder;
+            VSIXRootFolderPath = vsix.VSIXRootFolder;
 
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            _shouldAddProjectItem = true;
 
-            if (result.HasValue && result.Value)
+            AddEditorConfigFile();
+
+            // Add Base Library Versions
+            replacementsDictionary.Add("$DotNetVersion$", WizardConfig.DotNetVersion.ToString());
+            replacementsDictionary.Add("$TargetFrameworkVersion$", WizardConfig.TargetFrameworkVersion.ToString());
+            replacementsDictionary.Add("$MinimumTargetPlatform$", WizardConfig.MinimumTargetPlatform.ToString());
+            replacementsDictionary.Add("$Platforms$", WizardConfig.Platforms.ToString());
+            replacementsDictionary.Add("$RuntimeIdentifiers$", WizardConfig.RuntimeIdentifiers.ToString());
+
+            replacementsDictionary.Add("$Nullable$", WizardConfig.Nullable);
+            replacementsDictionary.Add("$TrimMode$", WizardConfig.TrimMode);
+            replacementsDictionary.Add("$PublishAot$", WizardConfig.PublishAot.ToString());
+
+            replacementsDictionary.Add("$AddJsonSettings$", WizardConfig.UseJsonSettings.ToString());
+            replacementsDictionary.Add("$AddEditorConfig$", WizardConfig.UseEditorConfigFile.ToString());
+            replacementsDictionary.Add("$AddSolutionFolder$", WizardConfig.UseSolutionFolder.ToString());
+            replacementsDictionary.Add("$AddHomeLandingPage$", WizardConfig.UseHomeLandingPage.ToString());
+            replacementsDictionary.Add("$AddSettingsPage$", WizardConfig.UseSettingsPage.ToString());
+            replacementsDictionary.Add("$AddGeneralSettingPage$", WizardConfig.UseGeneralSettingPage.ToString());
+            replacementsDictionary.Add("$AddThemeSettingPage$", WizardConfig.UseThemeSettingPage.ToString());
+            replacementsDictionary.Add("$AddAppUpdatePage$", WizardConfig.UseAppUpdatePage.ToString());
+            replacementsDictionary.Add("$AddAboutPage$", WizardConfig.UseAboutPage.ToString());
+            replacementsDictionary.Add("$T4_NAMESPACE$", SafeProjectName);
+
+            var libs = WizardConfig.LibraryDic;
+
+            #region Libs
+            // Assuming package list is passed via a custom parameter in the .vstemplate file
+            if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
             {
-                var vsix = await GetVSIXPathAsync(templateConfig.TemplateType.ToString());
-                VSTemplateFilePath = vsix.VSTemplatePath;
-                ProjectTemplatesFolderPath = vsix.ProjectTemplatesFolder;
-                VSIXRootFolderPath = vsix.VSIXRootFolder;
-
-                _shouldAddProjectItem = true;
-
-                AddEditorConfigFile();
-
-                // Add Base Library Versions
-                replacementsDictionary.Add("$DotNetVersion$", WizardConfig.DotNetVersion.ToString());
-                replacementsDictionary.Add("$TargetFrameworkVersion$", WizardConfig.TargetFrameworkVersion.ToString());
-                replacementsDictionary.Add("$MinimumTargetPlatform$", WizardConfig.MinimumTargetPlatform.ToString());
-                replacementsDictionary.Add("$Platforms$", WizardConfig.Platforms.ToString());
-                replacementsDictionary.Add("$RuntimeIdentifiers$", WizardConfig.RuntimeIdentifiers.ToString());
-
-                replacementsDictionary.Add("$Nullable$", WizardConfig.Nullable);
-                replacementsDictionary.Add("$TrimMode$", WizardConfig.TrimMode);
-                replacementsDictionary.Add("$PublishAot$", WizardConfig.PublishAot.ToString());
-
-                replacementsDictionary.Add("$AddJsonSettings$", WizardConfig.UseJsonSettings.ToString());
-                replacementsDictionary.Add("$AddEditorConfig$", WizardConfig.UseEditorConfigFile.ToString());
-                replacementsDictionary.Add("$AddSolutionFolder$", WizardConfig.UseSolutionFolder.ToString());
-                replacementsDictionary.Add("$AddHomeLandingPage$", WizardConfig.UseHomeLandingPage.ToString());
-                replacementsDictionary.Add("$AddSettingsPage$", WizardConfig.UseSettingsPage.ToString());
-                replacementsDictionary.Add("$AddGeneralSettingPage$", WizardConfig.UseGeneralSettingPage.ToString());
-                replacementsDictionary.Add("$AddThemeSettingPage$", WizardConfig.UseThemeSettingPage.ToString());
-                replacementsDictionary.Add("$AddAppUpdatePage$", WizardConfig.UseAppUpdatePage.ToString());
-                replacementsDictionary.Add("$AddAboutPage$", WizardConfig.UseAboutPage.ToString());
-                replacementsDictionary.Add("$T4_NAMESPACE$", SafeProjectName);
-
-                var libs = WizardConfig.LibraryDic;
-
-                #region Libs
-                // Assuming package list is passed via a custom parameter in the .vstemplate file
-                if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
+                _nuGetPackages = new();
+                var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
+                foreach (var baseItem in basePackages)
                 {
-                    _nuGetPackages = new();
-                    var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
-                    foreach (var baseItem in basePackages)
-                    {
-                        _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
-                    }
-
-                    foreach (var lib in libs.Values)
-                    {
-                        _nuGetPackages.Add(new Library(lib.Name, lib.IncludePreRelease));
-                    }
-
-                    if (WizardConfig.UseJsonSettings && !templateConfig.IsBlank && !templateConfig.IsTest)
-                    {
-                        _nuGetPackages.Add(new Library("nucs.JsonSettings", WizardConfig.UsePreReleaseVersion));
-                        _nuGetPackages.Add(new Library("nucs.JsonSettings.AutoSaveGenerator", WizardConfig.UsePreReleaseVersion));
-                    }
-
-                    _nuGetPackages = _nuGetPackages.Distinct().ToList();
-                }
-                #endregion
-
-                #region CSProjectElements
-                // Add CSProjectElements
-                if (WizardConfig.CSProjectElements != null && WizardConfig.CSProjectElements.Count > 0)
-                {
-                    StringBuilder sb = new StringBuilder();
-
-                    foreach (var entity in WizardConfig.CSProjectElements)
-                    {
-                        sb.AppendLine($"{entity.Value}");
-                    }
-
-                    replacementsDictionary.Add("$CustomCSProjectElement$", Environment.NewLine + $"{sb.ToString().Trim()}");
-                }
-                else
-                {
-                    replacementsDictionary.Add("$CustomCSProjectElement$", "");
+                    _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
                 }
 
-                #endregion
-
-                #region AppxManifest
-                if (WizardConfig.UnvirtualizedResources != null && WizardConfig.UnvirtualizedResources.Count > 0)
+                foreach (var lib in libs.Values)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    _nuGetPackages.Add(new Library(lib.Name, lib.IncludePreRelease));
+                }
 
-                    foreach (var entity in WizardConfig.UnvirtualizedResources)
-                    {
-                        sb.AppendLine($"{entity.Value}");
-                    }
+                if (WizardConfig.UseJsonSettings && !templateConfig.IsBlank && !templateConfig.IsTest)
+                {
+                    _nuGetPackages.Add(new Library("nucs.JsonSettings", WizardConfig.UsePreReleaseVersion));
+                    _nuGetPackages.Add(new Library("nucs.JsonSettings.AutoSaveGenerator", WizardConfig.UsePreReleaseVersion));
+                }
 
-                    replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", Environment.NewLine + "    <rescap:Capability Name=\"unvirtualizedResources\" />");
-                    replacementsDictionary.Add("$UnvirtualizedResources$", Environment.NewLine + $"{sb.ToString().Trim()}");
-                    replacementsDictionary.Add("$AppxManifestDesktop6$", Environment.NewLine + "  xmlns:desktop6=\"http://schemas.microsoft.com/appx/manifest/desktop/windows10/6\"");
+                _nuGetPackages = _nuGetPackages.Distinct().ToList();
+            }
+            #endregion
+
+            #region CSProjectElements
+            // Add CSProjectElements
+            if (WizardConfig.CSProjectElements != null && WizardConfig.CSProjectElements.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var entity in WizardConfig.CSProjectElements)
+                {
+                    sb.AppendLine($"{entity.Value}");
+                }
+
+                replacementsDictionary.Add("$CustomCSProjectElement$", Environment.NewLine + $"{sb.ToString().Trim()}");
+            }
+            else
+            {
+                replacementsDictionary.Add("$CustomCSProjectElement$", "");
+            }
+
+            #endregion
+
+            #region AppxManifest
+            if (WizardConfig.UnvirtualizedResources != null && WizardConfig.UnvirtualizedResources.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var entity in WizardConfig.UnvirtualizedResources)
+                {
+                    sb.AppendLine($"{entity.Value}");
+                }
+
+                replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", Environment.NewLine + "    <rescap:Capability Name=\"unvirtualizedResources\" />");
+                replacementsDictionary.Add("$UnvirtualizedResources$", Environment.NewLine + $"{sb.ToString().Trim()}");
+                replacementsDictionary.Add("$AppxManifestDesktop6$", Environment.NewLine + "  xmlns:desktop6=\"http://schemas.microsoft.com/appx/manifest/desktop/windows10/6\"");
+            }
+            else
+            {
+                replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", "");
+                replacementsDictionary.Add("$UnvirtualizedResources$", "");
+                replacementsDictionary.Add("$AppxManifestDesktop6$", "");
+            }
+            #endregion
+
+            #region Add Xaml Dictionary if User Use Extra Lib
+            #region Blank
+
+            if (templateConfig.IsBlank)
+            {
+                if (libs != null && libs.ContainsKey(Constants.DevWinUI_Controls))
+                {
+                    replacementsDictionary.Add("$DevWinUI.Controls$", Environment.NewLine + Constants.DevWinUI_Controls_Xaml);
                 }
                 else
                 {
-                    replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", "");
-                    replacementsDictionary.Add("$UnvirtualizedResources$", "");
-                    replacementsDictionary.Add("$AppxManifestDesktop6$", "");
+                    replacementsDictionary.Add("$DevWinUI.Controls$", "");
                 }
-                #endregion
+            }
 
-                #region Add Xaml Dictionary if User Use Extra Lib
-                #region Blank
+            #endregion
 
-                if (templateConfig.IsBlank)
+            if (libs != null && libs.ContainsKey(Constants.DevWinUI_ContextMenu))
+            {
+                WizardConfig.UseWindow11ContextMenu = true;
+                replacementsDictionary.Add("$CLSID$", Guid.NewGuid().ToString());
+                var windows11ContextMenu = PredefinedCodes.Windows11ContextMenuInitializer;
+                var windows11ContextMenuMVVM = PredefinedCodes.Windows11ContextMenuMVVMInitializer;
+                windows11ContextMenu = windows11ContextMenu.Replace("$projectname$", ProjectName);
+                windows11ContextMenuMVVM = windows11ContextMenuMVVM.Replace("$projectname$", ProjectName);
+                replacementsDictionary.Add("$Windows11ContextMenuInitializer$", Environment.NewLine + windows11ContextMenu);
+                replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", Environment.NewLine + Environment.NewLine + windows11ContextMenuMVVM);
+            }
+            else
+            {
+                WizardConfig.UseWindow11ContextMenu = false;
+                replacementsDictionary.Add("$CLSID$", "");
+                replacementsDictionary.Add("$Windows11ContextMenuInitializer$", "");
+                replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", "");
+            }
+
+            #endregion
+
+            #region IsUnPackaged
+            if (WizardConfig.IsUnPackagedMode)
+            {
+                replacementsDictionary.Add("$WindowsPackageType$", "None");
+            }
+            else
+            {
+                replacementsDictionary.Add("$WindowsPackageType$", "MSIX");
+            }
+            #endregion
+
+            if (templateConfig.HasNavigationView)
+            {
+                new ColorsDicOption().ConfigColorsDic(replacementsDictionary, WizardConfig.UseHomeLandingPage);
+            }
+
+            // Add Xaml Dictionary
+            new DictionaryOption().ConfigDictionary(replacementsDictionary, templateConfig.HasNavigationView, WizardConfig.UseHomeLandingPage, WizardConfig.UseColorsDic, WizardConfig.UseStylesDic, WizardConfig.UseConvertersDic, WizardConfig.UseFontsDic);
+
+            #region Codes
+            var configCodes = new ConfigCodes(WizardConfig.UseAboutPage, WizardConfig.UseAppUpdatePage, WizardConfig.UseGeneralSettingPage, WizardConfig.UseHomeLandingPage, WizardConfig.UseSettingsPage, WizardConfig.UseThemeSettingPage, WizardConfig.UseDeveloperModeSetting, WizardConfig.UseJsonSettings, WizardConfig.UseWindow11ContextMenu);
+
+            if (templateConfig.IsMVVM)
+            {
+                configCodes.ConfigAllMVVM(SafeProjectName);
+            }
+            else
+            {
+                configCodes.ConfigAll(SafeProjectName);
+            }
+
+            configCodes.ConfigGeneral();
+
+            var configs = configCodes.GetConfigJson();
+            var services = configCodes.GetServices();
+            var settingsCards = configCodes.GetSettingsPageOptions();
+            var generalSettingsCards = configCodes.GetGeneralSettingsPageOptions();
+
+            if (configCodes.ConfigJsonDic.Count > 0)
+            {
+                replacementsDictionary.Add("$ConfigDefaultPages$", Environment.NewLine + configs);
+            }
+            else
+            {
+                replacementsDictionary.Add("$ConfigDefaultPages$", "");
+            }
+
+            if (configCodes.ServiceDic.Count > 0)
+            {
+                replacementsDictionary.Add("$Services$", Environment.NewLine + services);
+            }
+            else
+            {
+                replacementsDictionary.Add("$Services$", "");
+            }
+
+            replacementsDictionary.Add("$SettingsCards$", settingsCards);
+
+            #endregion
+
+            #region Serilog
+            var serilog = new SerilogOption();
+            serilog.ConfigSerilog(replacementsDictionary, libs, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
+            UseFileLogger = serilog.UseFileLogger;
+            UseDebugLogger = serilog.UseDebugLogger;
+
+            if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
+            {
+                replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", generalSettingsCards);
+
+                if (WizardConfig.UseJsonSettings && WizardConfig.UseDeveloperModeSetting && WizardConfig.UseSettingsPage && WizardConfig.UseGeneralSettingPage)
                 {
-                    if (libs != null && libs.ContainsKey(Constants.DevWinUI_Controls))
-                    {
-                        replacementsDictionary.Add("$DevWinUI.Controls$", Environment.NewLine + Constants.DevWinUI_Controls_Xaml);
-                    }
-                    else
-                    {
-                        replacementsDictionary.Add("$DevWinUI.Controls$", "");
-                    }
-                }
-
-                #endregion
-
-                if (libs != null && libs.ContainsKey(Constants.DevWinUI_ContextMenu))
-                {
-                    WizardConfig.UseWindow11ContextMenu = true;
-                    replacementsDictionary.Add("$CLSID$", Guid.NewGuid().ToString());
-                    var windows11ContextMenu = PredefinedCodes.Windows11ContextMenuInitializer;
-                    var windows11ContextMenuMVVM = PredefinedCodes.Windows11ContextMenuMVVMInitializer;
-                    windows11ContextMenu = windows11ContextMenu.Replace("$projectname$", ProjectName);
-                    windows11ContextMenuMVVM = windows11ContextMenuMVVM.Replace("$projectname$", ProjectName);
-                    replacementsDictionary.Add("$Windows11ContextMenuInitializer$", Environment.NewLine + windows11ContextMenu);
-                    replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", Environment.NewLine + Environment.NewLine + windows11ContextMenuMVVM);
-                }
-                else
-                {
-                    WizardConfig.UseWindow11ContextMenu = false;
-                    replacementsDictionary.Add("$CLSID$", "");
-                    replacementsDictionary.Add("$Windows11ContextMenuInitializer$", "");
-                    replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", "");
-                }
-
-                #endregion
-
-                #region IsUnPackaged
-                if (WizardConfig.IsUnPackagedMode)
-                {
-                    replacementsDictionary.Add("$WindowsPackageType$", "None");
-                }
-                else
-                {
-                    replacementsDictionary.Add("$WindowsPackageType$", "MSIX");
-                }
-                #endregion
-
-                if (templateConfig.HasNavigationView)
-                {
-                    new ColorsDicOption().ConfigColorsDic(replacementsDictionary, WizardConfig.UseHomeLandingPage);
-                }
-
-                // Add Xaml Dictionary
-                new DictionaryOption().ConfigDictionary(replacementsDictionary, templateConfig.HasNavigationView, WizardConfig.UseHomeLandingPage, WizardConfig.UseColorsDic, WizardConfig.UseStylesDic, WizardConfig.UseConvertersDic, WizardConfig.UseFontsDic);
-
-                #region Codes
-                var configCodes = new ConfigCodes(WizardConfig.UseAboutPage, WizardConfig.UseAppUpdatePage, WizardConfig.UseGeneralSettingPage, WizardConfig.UseHomeLandingPage, WizardConfig.UseSettingsPage, WizardConfig.UseThemeSettingPage, WizardConfig.UseDeveloperModeSetting, WizardConfig.UseJsonSettings, WizardConfig.UseWindow11ContextMenu);
-
-                if (templateConfig.IsMVVM)
-                {
-                    configCodes.ConfigAllMVVM(SafeProjectName);
-                }
-                else
-                {
-                    configCodes.ConfigAll(SafeProjectName);
-                }
-
-                configCodes.ConfigGeneral();
-
-                var configs = configCodes.GetConfigJson();
-                var services = configCodes.GetServices();
-                var settingsCards = configCodes.GetSettingsPageOptions();
-                var generalSettingsCards = configCodes.GetGeneralSettingsPageOptions();
-
-                if (configCodes.ConfigJsonDic.Count > 0)
-                {
-                    replacementsDictionary.Add("$ConfigDefaultPages$", Environment.NewLine + configs);
-                }
-                else
-                {
-                    replacementsDictionary.Add("$ConfigDefaultPages$", "");
-                }
-
-                if (configCodes.ServiceDic.Count > 0)
-                {
-                    replacementsDictionary.Add("$Services$", Environment.NewLine + services);
-                }
-                else
-                {
-                    replacementsDictionary.Add("$Services$", "");
-                }
-
-                replacementsDictionary.Add("$SettingsCards$", settingsCards);
-
-                #endregion
-
-                #region Serilog
-                var serilog = new SerilogOption();
-                serilog.ConfigSerilog(replacementsDictionary, libs, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
-                UseFileLogger = serilog.UseFileLogger;
-                UseDebugLogger = serilog.UseDebugLogger;
-
-                if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
-                {
-                    replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", generalSettingsCards);
-
-                    if (WizardConfig.UseJsonSettings && WizardConfig.UseDeveloperModeSetting && WizardConfig.UseSettingsPage && WizardConfig.UseGeneralSettingPage)
-                    {
-                        replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", Environment.NewLine + Environment.NewLine + PredefinedCodes.GoToLogPathEvent);
-                        replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "public bool useDeveloperMode { get; set; }");
-                    }
-                    else
-                    {
-                        replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", "");
-                        replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", "");
-                    }
+                    replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", Environment.NewLine + Environment.NewLine + PredefinedCodes.GoToLogPathEvent);
+                    replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "public bool useDeveloperMode { get; set; }");
                 }
                 else
                 {
                     replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", "");
-                    replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", "");
                     replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", "");
                 }
-                #endregion
-
-                #region Json Settings
-                if (WizardConfig.UseJsonSettings)
-                {
-                    if (templateConfig.IsMVVM)
-                    {
-                        replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", Environment.NewLine + """LastUpdateCheck = Settings.LastUpdateCheck;""");
-                        replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
-                    }
-                    else
-                    {
-                        replacementsDictionary.Add("$AppUpdateGetDateTime$", Environment.NewLine + Environment.NewLine + """TxtLastUpdateCheck.Text = Settings.LastUpdateCheck;""");
-                        replacementsDictionary.Add("$AppUpdateSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
-                    }
-
-                    replacementsDictionary.Add("$AppConfigFilePath$", Environment.NewLine + """public static readonly string AppConfigPath = Path.Combine(RootDirectoryPath, "AppConfig.json");""");
-
-                    if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
-                    {
-                        replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """public string lastUpdateCheck { get; set; }""");
-                    }
-                    else
-                    {
-                        replacementsDictionary.Add("$AppUpdateConfig$", "");
-                    }
-                }
-                else
-                {
-                    replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", "");
-                    replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", "");
-                    replacementsDictionary.Add("$AppConfigFilePath$", "");
-                    replacementsDictionary.Add("$AppUpdateConfig$", "");
-                }
-                #endregion
-
-
-                if (WizardConfig.UseWindow11ContextMenu)
-                {
-                    replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "async ");
-                }
-                else
-                {
-                    replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "");
-                }
-
-                new GlobalUsingOption(replacementsDictionary, SafeProjectName, UseFileLogger, UseDebugLogger);
-
-                WizardConfig.LibraryDic?.Clear();
-                WizardConfig.CSProjectElements?.Clear();
             }
             else
             {
-                inputForm.Close();
-                throw new WizardBackoutException();
+                replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", "");
+                replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", "");
+                replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", "");
             }
+            #endregion
+
+            #region Json Settings
+            if (WizardConfig.UseJsonSettings)
+            {
+                if (templateConfig.IsMVVM)
+                {
+                    replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", Environment.NewLine + """LastUpdateCheck = Settings.LastUpdateCheck;""");
+                    replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
+                }
+                else
+                {
+                    replacementsDictionary.Add("$AppUpdateGetDateTime$", Environment.NewLine + Environment.NewLine + """TxtLastUpdateCheck.Text = Settings.LastUpdateCheck;""");
+                    replacementsDictionary.Add("$AppUpdateSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
+                }
+
+                replacementsDictionary.Add("$AppConfigFilePath$", Environment.NewLine + """public static readonly string AppConfigPath = Path.Combine(RootDirectoryPath, "AppConfig.json");""");
+
+                if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
+                {
+                    replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """public string lastUpdateCheck { get; set; }""");
+                }
+                else
+                {
+                    replacementsDictionary.Add("$AppUpdateConfig$", "");
+                }
+            }
+            else
+            {
+                replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", "");
+                replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", "");
+                replacementsDictionary.Add("$AppConfigFilePath$", "");
+                replacementsDictionary.Add("$AppUpdateConfig$", "");
+            }
+            #endregion
+
+
+            if (WizardConfig.UseWindow11ContextMenu)
+            {
+                replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "async ");
+            }
+            else
+            {
+                replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "");
+            }
+
+            new GlobalUsingOption(replacementsDictionary, SafeProjectName, UseFileLogger, UseDebugLogger);
+
+            WizardConfig.LibraryDic?.Clear();
+            WizardConfig.CSProjectElements?.Clear();
+        }
+        else
+        {
+            inputForm.Close();
+            throw new WizardBackoutException();
         }
     }
 
