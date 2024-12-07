@@ -39,11 +39,8 @@ internal partial class SpriteVisualPool : DependencyObject, IDisposable
         this.compositor = CompositionTarget.GetCompositorForCurrentThread();
 
         items = new Queue<SpriteVisual>();
-#if NET6_0
-        clearTimer = new System.Timers.Timer(60000);
-#else
+
         clearTimer = new System.Timers.Timer(TimeSpan.FromMinutes(1));
-#endif
         clearTimer.AutoReset = false;
         clearTimer.Elapsed += ClearTimer_Elapsed;
         this.maximumRetained = maximumRetained;
