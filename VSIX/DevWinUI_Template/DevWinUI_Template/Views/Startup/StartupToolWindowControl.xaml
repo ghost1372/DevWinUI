@@ -15,7 +15,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Theme/Light.xaml" />
-                <ResourceDictionary Source="/DevWinUI_Template;component/Theme/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Controls/HyperlinkButton/HyperlinkButton.xaml" />
                 <ResourceDictionary Source="/DevWinUI_Template;component/Theme/TextBlockStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
