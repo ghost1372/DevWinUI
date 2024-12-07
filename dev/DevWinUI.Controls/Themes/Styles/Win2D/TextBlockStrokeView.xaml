@@ -122,6 +122,7 @@
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Padding" Value="2" />
+        <Setter Property="StrokeBrush" Value="#FFFF0000" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextBlockStrokeView">
