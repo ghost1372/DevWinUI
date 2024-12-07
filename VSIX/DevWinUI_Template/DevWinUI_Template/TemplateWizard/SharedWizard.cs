@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevWinUI_Template.Options;
+using DevWinUI_Template.Views.Startup;
 using DevWinUI_Template.WizardUI;
 using EnvDTE;
 using EnvDTE80;
@@ -72,8 +73,41 @@ public class SharedWizard
             doc.Close();
         }
     }
+
+    private async void OpenStartupToolWindow()
+    {
+        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+        IVsShell shell = (IVsShell)Package.GetGlobalService(typeof(SVsShell));
+        if (shell != null)
+        {
+            Guid packageGuid = new Guid(DevWinUI_TemplatePackage.PackageGuidString);
+            IVsPackage package;
+            shell.LoadPackage(ref packageGuid, out package);
+
+            if (package != null)
+            {
+                ToolWindowPane window = ((DevWinUI_TemplatePackage)package).FindToolWindow(typeof(StartupToolWindow), 0, true);
+                if ((null == window) || (null == window.Frame))
+                {
+                    throw new NotSupportedException("Cannot create tool window");
+                }
+
+                IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
+
+                // Ensure that the window docks in the central document area
+                windowFrame.SetProperty((int)__VSFPROPID.VSFPROPID_FrameMode, (int)VSFRAMEMODE.VSFM_MdiChild);
+
+                // Show the window
+                Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+            }
+        }
+    }
+
     private void OnSolutionRestoreFinished(IReadOnlyList<string> projects)
     {
+        OpenStartupToolWindow();
+
         // Debouncing prevents multiple rapid executions of 'InstallNuGetPackageAsync'
         // during solution restore.
         if (_nugetProjectUpdateEvents == null)

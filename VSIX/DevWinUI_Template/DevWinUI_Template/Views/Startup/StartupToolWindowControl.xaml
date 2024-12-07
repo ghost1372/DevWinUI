@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="DevWinUI_Template.Views.Startup.StartupToolWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Name="DevWinUI"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Theme/Light.xaml" />
+                <ResourceDictionary Source="/DevWinUI_Template;component/Theme/Generic.xaml" />
+                <ResourceDictionary Source="/DevWinUI_Template;component/Theme/TextBlockStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.ColumnSpan="3"
+                        HorizontalAlignment="Center">
+                <TextBlock Margin="10"
+                           FontWeight="Thin"
+                           Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
+                           Style="{StaticResource DisplayTextBlockStyle}"
+                           Text="Welcome to DevWinUI!" />
+                <TextBlock FontSize="16"
+                           Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           Text="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3. Create a WinUI 3 app in less than a minute with the built-in project templates and scaffolding tools."
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center">
+                <ui:ImageIcon Width="96"
+                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Text="Documentation" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="DevWinUI"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://ghost1372.github.io/DevWinUI/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="DevWinUI.Controls"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://ghost1372.github.io/DevWinUIControls/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="DevWinUI.ContextMenu"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                <ui:ImageIcon Width="96"
+                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Text="GalleryApp" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Source Code"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Microsoft Store"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center">
+                <ui:ImageIcon Width="96"
+                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Text="More" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Source Code"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Microsoft Store"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

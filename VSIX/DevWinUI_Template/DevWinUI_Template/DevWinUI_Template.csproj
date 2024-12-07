@@ -99,6 +99,10 @@
     <Compile Include="Views\Pages\ResourcePage.xaml.cs">
       <DependentUpon>ResourcePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Startup\StartupToolWindow.cs" />
+    <Compile Include="Views\Startup\StartupToolWindowControl.xaml.cs">
+      <DependentUpon>StartupToolWindowControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\.editorconfig">
@@ -202,6 +206,10 @@
     <Page Include="Views\Pages\FilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Startup\StartupToolWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

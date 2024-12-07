@@ -26,6 +26,7 @@ namespace DevWinUI_Template;
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(DevWinUI_TemplatePackage.PackageGuidString)]
 [ProvideBindingPath]
+[ProvideToolWindow(typeof(DevWinUI_Template.Views.Startup.StartupToolWindow))]
 public sealed class DevWinUI_TemplatePackage : AsyncPackage
 {
     /// <summary>
