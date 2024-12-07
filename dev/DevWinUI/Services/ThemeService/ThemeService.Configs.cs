@@ -6,7 +6,7 @@ public partial class ThemeService
 {
     private void ConfigBackdropBase(BackdropType backdropType, bool force)
     {
-        if (Window == null)
+        if (WindowHelper.ActiveWindows.Count == 0)
         {
             return;
         }
@@ -20,9 +20,9 @@ public partial class ThemeService
 
         if (backdropType != BackdropType.None)
         {
-            var systemBackdrop = GetSystemBackdropFromLocalConfig(backdropType, force);
+            backdropType = GetSystemBackdropFromLocalConfig(backdropType, force);
 
-            SetWindowSystemBackdrop(systemBackdrop);
+            SetWindowSystemBackdrop(backdropType);
         }
     }
 
@@ -41,42 +41,45 @@ public partial class ThemeService
     }
     private void ConfigTintColorBase()
     {
-        var systemBackdrop = Window.SystemBackdrop;
-        if (systemBackdrop != null)
+        foreach (var window in WindowHelper.ActiveWindows)
         {
-            if (IsDarkTheme())
+            var systemBackdrop = window.SystemBackdrop;
+            if (systemBackdrop != null)
             {
-                switch (GetBackdropType())
+                if (IsDarkTheme())
                 {
-                    case BackdropType.Mica:
-                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
-                        break;
-                    case BackdropType.MicaAlt:
-                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
-                        break;
-                    case BackdropType.AcrylicThin:
-                    case BackdropType.AcrylicBase:
-                        ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
-                        break;
+                    switch (GetBackdropType())
+                    {
+                        case BackdropType.Mica:
+                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
+                            break;
+                        case BackdropType.MicaAlt:
+                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
+                            break;
+                        case BackdropType.AcrylicThin:
+                        case BackdropType.AcrylicBase:
+                            ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                switch (GetBackdropType())
+                else
                 {
-                    case BackdropType.Mica:
-                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
-                        break;
-                    case BackdropType.MicaAlt:
-                        ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
-                        break;
-                    case BackdropType.AcrylicThin:
-                    case BackdropType.AcrylicBase:
-                        ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
-                        break;
+                    switch (GetBackdropType())
+                    {
+                        case BackdropType.Mica:
+                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
+                            break;
+                        case BackdropType.MicaAlt:
+                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
+                            break;
+                        case BackdropType.AcrylicThin:
+                        case BackdropType.AcrylicBase:
+                            ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
+                            break;
+                    }
                 }
-            }
 
+            }
         }
     }
     private void ConfigFallbackColorBase(Color color, bool force)
@@ -95,33 +98,36 @@ public partial class ThemeService
 
     private void ConfigFallbackColorBase()
     {
-        var systemBackdrop = Window.SystemBackdrop;
-        if (systemBackdrop != null)
+        foreach (var window in WindowHelper.ActiveWindows)
         {
-            if (IsDarkTheme())
+            var systemBackdrop = window.SystemBackdrop;
+            if (systemBackdrop != null)
             {
-                switch (GetBackdropType())
+                if (IsDarkTheme())
                 {
-                    case BackdropType.MicaAlt:
-                        ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
-                        break;
-                    case BackdropType.AcrylicThin:
-                    case BackdropType.AcrylicBase:
-                        ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
-                        break;
+                    switch (GetBackdropType())
+                    {
+                        case BackdropType.MicaAlt:
+                            ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
+                            break;
+                        case BackdropType.AcrylicThin:
+                        case BackdropType.AcrylicBase:
+                            ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                switch (GetBackdropType())
+                else
                 {
-                    case BackdropType.MicaAlt:
-                        ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
-                        break;
-                    case BackdropType.AcrylicThin:
-                    case BackdropType.AcrylicBase:
-                        ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
-                        break;
+                    switch (GetBackdropType())
+                    {
+                        case BackdropType.MicaAlt:
+                            ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
+                            break;
+                        case BackdropType.AcrylicThin:
+                        case BackdropType.AcrylicBase:
+                            ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
+                            break;
+                    }
                 }
             }
         }

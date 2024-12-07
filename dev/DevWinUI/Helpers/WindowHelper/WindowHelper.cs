@@ -5,6 +5,35 @@ namespace DevWinUI;
 
 public partial class WindowHelper
 {
+    internal static List<Win32Window> processWindowList = new List<Win32Window>();
+    internal static Process currentProcess;
+    internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
+    public static List<Window> ActiveWindows { get { return _activeWindows; } }
+    private static List<Window> _activeWindows = new List<Window>();
+
+    public static void TrackWindow(Window window)
+    {
+        window.Closed += (sender, args) =>
+        {
+            _activeWindows.Remove(window);
+        };
+
+        _activeWindows.AddIfNotExists(window);
+    }
+    public static Window GetWindowForElement(UIElement element)
+    {
+        if (element.XamlRoot != null)
+        {
+            foreach (Window window in _activeWindows)
+            {
+                if (element.XamlRoot == window.Content.XamlRoot)
+                {
+                    return window;
+                }
+            }
+        }
+        return null;
+    }
     public static void SwitchToThisWindow(Window window)
     {
         if (window != null)
@@ -54,7 +83,6 @@ public partial class WindowHelper
             }
         }
     }
-    internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
     public static IReadOnlyList<Win32Window> GetTopLevelWindows()
     {
         unsafe
@@ -74,8 +102,7 @@ public partial class WindowHelper
             }
         }
     }
-    internal static List<Win32Window> processWindowList = new List<Win32Window>();
-    internal static Process currentProcess;
+    
     public static IReadOnlyList<Win32Window> GetProcessWindowList()
     {
         unsafe

@@ -4,7 +4,6 @@ public interface IThemeService
     delegate void ActualThemeChangedEventHandler(FrameworkElement sender, object args);
     event ActualThemeChangedEventHandler ActualThemeChanged;
 
-    Window Window { get; set; }
     SystemBackdrop GetSystemBackdrop();
     SystemBackdrop GetSystemBackdrop(BackdropType backdropType);
     BackdropType GetBackdropType();

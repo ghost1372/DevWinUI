@@ -5,7 +5,58 @@ public partial class ThemeService : IThemeService
     public event IThemeService.ActualThemeChangedEventHandler ActualThemeChanged;
     private bool changeThemeWithoutSave = false;
     private bool useAutoSave;
-    public Window Window { get; set; }
+    public ElementTheme ActualTheme
+    {
+        get
+        {
+            foreach (Window window in WindowHelper.ActiveWindows)
+            {
+                if (window.Content is FrameworkElement rootElement)
+                {
+                    if (rootElement.RequestedTheme != ElementTheme.Default)
+                    {
+                        return rootElement.RequestedTheme;
+                    }
+                }
+            }
+
+            return GeneralHelper.GetEnum<ElementTheme>(Application.Current.RequestedTheme.ToString());
+        }
+    }
+    public ElementTheme RootTheme
+    {
+        get
+        {
+            foreach (Window window in WindowHelper.ActiveWindows)
+            {
+                if (window.Content is FrameworkElement rootElement)
+                {
+                    return rootElement.RequestedTheme;
+                }
+            }
+
+            return ElementTheme.Default;
+        }
+        set
+        {
+            foreach (Window window in WindowHelper.ActiveWindows)
+            {
+                if (window.Content is FrameworkElement rootElement)
+                {
+                    rootElement.RequestedTheme = value;
+                }
+            }
+
+            if (!changeThemeWithoutSave)
+            {
+                if (this.useAutoSave && GlobalData.Config != null)
+                {
+                    GlobalData.Config.ElementTheme = value;
+                    GlobalData.Save();
+                }
+            }
+        }
+    }
 
     public ThemeService() { }
     public ThemeService(Window window)
@@ -14,23 +65,65 @@ public partial class ThemeService : IThemeService
         ConfigElementThemeBase(ElementTheme.Default, false);
         ConfigBackdropBase(BackdropType.Mica, false);
     }
-    public ElementTheme ActualTheme
+    private void AutoInitializeBase(Window window)
     {
-        get
+        InitializeBase(window);
+        ConfigElementThemeBase(ElementTheme.Default, false);
+        ConfigBackdropBase(BackdropType.Mica, false);
+    }
+
+    private void InitializeBase(Window window, bool useAutoSave = true, string filename = null)
+    {
+        if (window == null)
         {
-            if (Window != null && Window.Content is FrameworkElement element)
+            return;
+        }
+
+        WindowHelper.TrackWindow(window);
+
+        foreach (var windowItem in WindowHelper.ActiveWindows)
+        {
+            if (windowItem.Content is FrameworkElement element)
             {
-                if (element.RequestedTheme != ElementTheme.Default)
-                {
-                    return element.RequestedTheme;
-                }
+                GeneralHelper.SetPreferredAppMode(element.ActualTheme);
+                element.ActualThemeChanged -= OnActualThemeChanged;
+                element.ActualThemeChanged += OnActualThemeChanged;
             }
-            return GeneralHelper.GetEnum<ElementTheme>(Application.Current.RequestedTheme.ToString());
+        }
+
+        string RootPath = Path.Combine(PathHelper.GetAppDataFolderPath(), ProcessInfoHelper.ProductNameAndVersion);
+        string AppConfigPath = Path.Combine(RootPath, ConfigFilePath);
+
+        this.useAutoSave = useAutoSave;
+
+        if (useAutoSave)
+        {
+            if (!string.IsNullOrEmpty(filename))
+            {
+                AppConfigPath = filename;
+            }
+
+            GlobalData.SavePath = AppConfigPath;
+            if (!Directory.Exists(RootPath))
+            {
+                Directory.CreateDirectory(RootPath);
+            }
+            GlobalData.Init();
         }
     }
+
+    private void OnActualThemeChanged(FrameworkElement sender, object args)
+    {
+        GeneralHelper.SetPreferredAppMode(sender.ActualTheme);
+        ActualThemeChanged?.Invoke(sender, args);
+    }
+
     public void UpdateCaptionButtons()
     {
-        UpdateCaptionButtons(Window);
+        foreach (var window in WindowHelper.ActiveWindows)
+        {
+            UpdateCaptionButtons(window);
+        }
     }
 
     public void UpdateCaptionButtons(Window window)
@@ -63,77 +156,6 @@ public partial class ThemeService : IThemeService
         window.AppWindow.TitleBar.ButtonHoverForegroundColor = buttonHoverForegroundColor;
 
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = buttonHoverBackgroundColor;
-    }
-    public ElementTheme RootTheme
-    {
-        get
-        {
-            return Window != null && Window.Content is FrameworkElement element ? element.RequestedTheme : ElementTheme.Default;
-        }
-        set
-        {
-            if (Window != null && Window.Content is FrameworkElement element)
-            {
-                element.RequestedTheme = value;
-            }
-            if (!changeThemeWithoutSave)
-            {
-                if (this.useAutoSave && GlobalData.Config != null)
-                {
-                    GlobalData.Config.ElementTheme = value;
-                    GlobalData.Save();
-                }
-            }
-        }
-    }
-
-    private void AutoInitializeBase(Window window)
-    {
-        InitializeBase(window);
-        ConfigElementThemeBase(ElementTheme.Default, false);
-        ConfigBackdropBase(BackdropType.Mica, false);
-    }
-
-    private void InitializeBase(Window window, bool useAutoSave = true, string filename = null)
-    {
-        if (window == null)
-        {
-            return;
-        }
-
-        Window = window;
-
-        if (Window.Content is FrameworkElement element)
-        {
-            GeneralHelper.SetPreferredAppMode(element.ActualTheme);
-            element.ActualThemeChanged += OnActualThemeChanged;
-        }
-
-        string RootPath = Path.Combine(PathHelper.GetAppDataFolderPath(), ProcessInfoHelper.ProductNameAndVersion);
-        string AppConfigPath = Path.Combine(RootPath, ConfigFilePath);
-
-        this.useAutoSave = useAutoSave;
-
-        if (useAutoSave)
-        {
-            if (!string.IsNullOrEmpty(filename))
-            {
-                AppConfigPath = filename;
-            }
-
-            GlobalData.SavePath = AppConfigPath;
-            if (!Directory.Exists(RootPath))
-            {
-                Directory.CreateDirectory(RootPath);
-            }
-            GlobalData.Init();
-        }
-    }
-
-    private void OnActualThemeChanged(FrameworkElement sender, object args)
-    {
-        GeneralHelper.SetPreferredAppMode(sender.ActualTheme);
-        ActualThemeChanged?.Invoke(sender, args);
     }
     
     public bool IsDarkTheme()

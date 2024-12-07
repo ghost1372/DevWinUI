@@ -30,7 +30,7 @@ public partial class ThemeService
 
     public SystemBackdrop GetSystemBackdrop()
     {
-        return Window.SystemBackdrop;
+        return WindowHelper.ActiveWindows[0].SystemBackdrop;
     }
 
     public SystemBackdrop GetSystemBackdrop(BackdropType backdropType)
@@ -58,7 +58,7 @@ public partial class ThemeService
 
     public BackdropType GetBackdropType()
     {
-        return GetBackdropType(Window.SystemBackdrop);
+        return GetBackdropType(WindowHelper.ActiveWindows[0].SystemBackdrop);
     }
 
     public BackdropType GetBackdropType(SystemBackdrop systemBackdrop)
@@ -85,7 +85,7 @@ public partial class ThemeService
         }
     }
 
-    private SystemBackdrop GetSystemBackdropFromLocalConfig(BackdropType backdropType, bool ForceBackdrop)
+    private BackdropType GetSystemBackdropFromLocalConfig(BackdropType backdropType, bool ForceBackdrop)
     {
         BackdropType currentBackdrop = backdropType;
         if (this.useAutoSave && GlobalData.Config != null)
@@ -93,7 +93,7 @@ public partial class ThemeService
             currentBackdrop = GlobalData.Config.BackdropType;
         }
 
-        return ForceBackdrop ? GetSystemBackdrop(backdropType) : GetSystemBackdrop(currentBackdrop);
+        return ForceBackdrop ? backdropType : currentBackdrop;
     }
 
     private Color GetBackdropTintColorFromLocalConfig(Color color, bool ForceTintColor)
