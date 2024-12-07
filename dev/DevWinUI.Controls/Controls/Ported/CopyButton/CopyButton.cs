@@ -1,4 +1,7 @@
-﻿namespace DevWinUI;
+﻿// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace DevWinUI;
 public sealed partial class CopyButton : Button
 {
     public CopyButton()
