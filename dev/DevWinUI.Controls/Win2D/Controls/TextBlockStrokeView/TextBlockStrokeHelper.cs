@@ -117,10 +117,10 @@ internal partial class TextBlockStrokeHelper : IDisposable
         {
             Mode = CanvasComposite.DestinationOut,
             Sources =
-            {
-                new CompositionEffectSourceParameter("visualSurface"),
-                transform2dEffect
-            },
+                {
+                    new CompositionEffectSourceParameter("visualSurface"),
+                    transform2dEffect
+                },
         };
 
         using var alphaMaskEffect = new AlphaMaskEffect()
