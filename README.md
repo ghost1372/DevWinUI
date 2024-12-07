@@ -32,6 +32,12 @@
 |<a href="https://link.trustwallet.com/send?coin=0&address=bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a">Bitcoin</a>|bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a|
 |<a href="https://link.trustwallet.com/send?coin=60&address=0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C">ETH</a>|0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C|
 
+## 📜 Licensing and Attribution 📜
+This library includes code and components derived from various open-source projects. Efforts have been made to respect and comply with their respective licenses.
+A detailed list can be found in the [ThirdPartyNotices.txt](ThirdPartyNotices.txt) file included in this repository.
+
+🙏 **A heartfelt thanks to the open-source projects and their communities for making this work possible.**
+
 ---
 
 # 🚀 DevWinUI 🚀
@@ -234,13 +240,6 @@ Install-Package DevWinUI.ContextMenu
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Templates/Demo.png)
 
 ![DevWinUITemplates](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Templates/1.png)
-
-## 📜 Licensing and Attribution 📜
-This library includes code and components derived from various open-source projects. Efforts have been made to respect and comply with their respective licenses.
-A detailed list can be found in the [ThirdPartyNotices.txt](ThirdPartyNotices.txt) file included in this repository.
-
-🙏 **A heartfelt thanks to the open-source projects and their communities for making this work possible.**
-
 
 ---
 
