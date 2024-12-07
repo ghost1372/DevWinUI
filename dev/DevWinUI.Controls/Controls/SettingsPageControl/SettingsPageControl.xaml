@@ -13,8 +13,6 @@
                                            FalseValue="Collapsed"
                                            GreaterThan="0"
                                            TrueValue="Visible" />
-        <Thickness x:Key="InfoBarIconMargin">6,16,16,16</Thickness>
-        <Thickness x:Key="InfoBarContentRootPadding">16,0,0,0</Thickness>
     </UserControl.Resources>
 
     <Grid Padding="20,0,0,0"
@@ -44,7 +42,6 @@
         </VisualStateManager.VisualStateGroups>
         <TextBlock x:Name="Header"
                    MaxWidth="{StaticResource PageMaxWidth}"
-                   Margin="0,44,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"
                    AutomationProperties.HeadingLevel="1"
