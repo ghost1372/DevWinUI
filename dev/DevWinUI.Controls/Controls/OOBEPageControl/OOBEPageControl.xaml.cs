@@ -7,7 +7,7 @@ public sealed partial class OOBEPageControl : UserControl
 {
     public OOBEPageControl()
     {
-        InitializeComponent();
+        this.InitializeComponent();
         if (string.IsNullOrEmpty(HeroImage))
         {
             HeroImage = "ms-appx:///nothing.png";
@@ -16,8 +16,8 @@ public sealed partial class OOBEPageControl : UserControl
 
     public string Title
     {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
+        get { return (string)GetValue(TitleProperty); }
+        set { SetValue(TitleProperty, value); }
     }
 
     public string Description
@@ -34,13 +34,14 @@ public sealed partial class OOBEPageControl : UserControl
 
     public double HeroImageHeight
     {
-        get => (double)GetValue(HeroImageHeightProperty);
-        set => SetValue(HeroImageHeightProperty, value);
+        get { return (double)GetValue(HeroImageHeightProperty); }
+        set { SetValue(HeroImageHeightProperty, value); }
     }
+
     public object PageContent
     {
-        get => (object)GetValue(PageContentProperty);
-        set => SetValue(PageContentProperty, value);
+        get { return (object)GetValue(PageContentProperty); }
+        set { SetValue(PageContentProperty, value); }
     }
 
     public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageControl), new PropertyMetadata(default(string)));
