@@ -22,7 +22,7 @@
                         IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
         <dev:SettingsCard.HeaderIcon>
             <BitmapIcon ShowAsMonochrome="False"
-                        UriSource="ms-appx:///Assets/Fluent/logo.png" />
+                        UriSource="ms-appx:///Assets/Fluent/Logo.png" />
         </dev:SettingsCard.HeaderIcon>
         <ToggleSwitch />
     </dev:SettingsCard>

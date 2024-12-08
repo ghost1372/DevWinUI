@@ -19,12 +19,12 @@
             <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage"
                               Description="Change your app Settings"
                               Header="General"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/settings.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Settings.png}"
                               IsClickEnabled="True" />
             <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage"
                               Description="Explore the different ways to customize the appearance and behavior of your app. You can change the material, theme, accent, and more options to suit your style and preference."
                               Header="Appearance &amp; behavior"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/theme.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}"
                               IsClickEnabled="True" />
             <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage"
                               Description="Check for Updates"
@@ -34,7 +34,7 @@
             <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage"
                               Description="About WucGalleryApp and Developer"
                               Header="About us"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/info.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"
                               IsClickEnabled="True" />
 
         </StackPanel>

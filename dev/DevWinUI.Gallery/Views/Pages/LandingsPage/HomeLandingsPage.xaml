@@ -25,28 +25,28 @@
                                             Description="Learn how to work with controls and styles."
                                             Link="https://Ghost1372.github.io/DevWinUI">
                                 <dev:HeaderTile.Source>
-                                    <Image Source="/Assets/HomeHeaderTiles/Header-WinUIGallery.png" />
+                                    <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>
                             </dev:HeaderTile>
                             <dev:HeaderTile Title="Controls"
                                             Description="Experience WinUI 3 quickly and easily with the help of Components, Everything you need to develop an application is gathered in one place."
                                             Link="https://Ghost1372.github.io/DevWinUIControls">
                                 <dev:HeaderTile.Source>
-                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                    <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>
                             </dev:HeaderTile>
                             <dev:HeaderTile Title="Core"
                                             Description="Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place."
                                             Link="https://Ghost1372.github.io/DevWinUI">
                                 <dev:HeaderTile.Source>
-                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                    <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>
                             </dev:HeaderTile>
                             <dev:HeaderTile Title="ContextMenu"
                                             Description="add a new ContextMenu for Windows 11/10."
                                             Link="https://Ghost1372.github.io/DevWinUI">
                                 <dev:HeaderTile.Source>
-                                    <Image Source="/Assets/HomeHeaderTiles/icon.png" />
+                                    <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>
                             </dev:HeaderTile>
                         </StackPanel>

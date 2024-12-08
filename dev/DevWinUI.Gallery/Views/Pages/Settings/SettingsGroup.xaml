@@ -34,7 +34,7 @@
                                   XamlSource="Features/Settings/SettingsGroup_Part2_xaml.txt">
                 <dev:SettingsGroup Description="Make sure OneDrive is installed on your PC so you can see your storage details here"
                                    Header="Cloud storage"
-                                   HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/oneDrive.png}">
+                                   HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/OneDrive.png}">
                     <dev:SettingsGroup.Content>
                         <Button Content="Install OneDrive" />
                     </dev:SettingsGroup.Content>

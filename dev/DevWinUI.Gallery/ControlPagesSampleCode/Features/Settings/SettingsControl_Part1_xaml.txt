@@ -59,7 +59,7 @@
                             Header="Community Toolkit Gallery">
         <dev:SettingsExpander.HeaderIcon>
             <BitmapIcon ShowAsMonochrome="False"
-                        UriSource="ms-appx:///Assets/Fluent/logo.png" />
+                        UriSource="ms-appx:///Assets/Fluent/Logo.png" />
         </dev:SettingsExpander.HeaderIcon>
         <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                     IsTextSelectionEnabled="True"

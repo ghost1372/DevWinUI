@@ -38,7 +38,7 @@
             </dev:SettingsCard>
 
             <dev:SettingsCard Header="{x:Bind ViewModel.LoadingStatus, Mode=OneWay}"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/info.png}">
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}">
                 <dev:SettingsCard.Description>
                     <HyperlinkButton Padding="5,0"
                                      Command="{x:Bind ViewModel.GetReleaseNotesCommand}"

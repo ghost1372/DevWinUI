@@ -18,7 +18,7 @@
                     Spacing="5">
             <dev:SettingsCard Description="Select the theme that suits your mood and preference. You can choose from dark, light, or system themes."
                               Header="App theme"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/theme.png}">
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}">
                 <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
                     <ComboBoxItem Content="Light"
                                   Tag="Light" />
@@ -30,7 +30,7 @@
             </dev:SettingsCard>
             <dev:SettingsCard Description="Change the appearance of the backdrop material behind your app. You can choose from mica, acrylic, or transparent options."
                               Header="Material"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/backdrop.png}">
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Acrylic.png}">
                 <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
                     <ComboBoxItem Content="None"
                                   Tag="None" />
@@ -48,16 +48,16 @@
                                   Tag="Transparent" />
                 </ComboBox>
             </dev:SettingsCard>
-            <dev:SettingsCard ActionIcon="{dev:BitmapIcon Source=Assets/Fluent/external.png}"
+            <dev:SettingsCard ActionIcon="{dev:BitmapIcon Source=Assets/Fluent/External.png}"
                               Description="Sync your app’s color with your Windows accent color. You can open the Windows accent color setting by clicking this card."
                               Header="Accent color"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/color.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Color.png}"
                               IsClickEnabled="True"
                               LaunchUri="ms-settings:colors" />
 
             <dev:SettingsExpander Description="Add tint to your window to make your experience more personalized."
                                   Header="TintColor"
-                                  HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/tint.png}">
+                                  HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Tint.png}">
                 <Button Padding="0">
                     <StackPanel Orientation="Horizontal">
                         <Border Width="24"
