@@ -14,6 +14,7 @@ public static partial class UpdateHelper
         if (string.IsNullOrEmpty(repository))
             throw new ArgumentNullException(nameof(repository));
 
+        var notFoundUpdate = new UpdateInfo { IsExistNewVersion = false };
         using var client = new HttpClient();
         client.DefaultRequestHeaders.Add("User-Agent", username);
 
@@ -23,7 +24,7 @@ public static partial class UpdateHelper
         if (response.StatusCode == HttpStatusCode.NotFound)
         {
             // No releases found, return null for both stable and pre-release
-            return (null, null);
+            return (notFoundUpdate, notFoundUpdate);
         }
 
         response.EnsureSuccessStatusCode();
@@ -33,7 +34,7 @@ public static partial class UpdateHelper
 
         if (releases == null || releases?.Count == 0)
         {
-            return (null, null);
+            return (notFoundUpdate, notFoundUpdate);
         }
 
         if (currentVersion == null)
