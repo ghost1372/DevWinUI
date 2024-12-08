@@ -32,12 +32,19 @@ public sealed partial class AppUpdateSettingPage : Page
                 string repo = "";
                 TxtLastUpdateCheck.Text = DateTime.Now.ToShortDateString();$AppUpdateSetDateTime$
                 var update = await UpdateHelper.CheckUpdateAsync(username, repo, new Version(ProcessInfoHelper.Version));
-                if (update.IsExistNewVersion)
+                if (update.StableRelease.IsExistNewVersion)
                 {
                     BtnReleaseNote.Visibility = Visibility.Visible;
                     BtnDownloadUpdate.Visibility = Visibility.Visible;
-                    ChangeLog = update.Changelog;
-                    StatusCard.Header = $"We found a new version {update.TagName} Created at {update.CreatedAt} and Published at {update.PublishedAt}";
+                    ChangeLog = update.StableRelease.Changelog;
+                    StatusCard.Header = $"We found a new version {update.StableRelease.TagName} Created at {update.StableRelease.CreatedAt} and Published at {update.StableRelease.PublishedAt}";
+                }
+                else if (update.PreRelease.IsExistNewVersion)
+                {
+                    BtnReleaseNote.Visibility = Visibility.Visible;
+                    BtnDownloadUpdate.Visibility = Visibility.Visible;
+                    ChangeLog = update.PreRelease.Changelog;
+                    StatusCard.Header = $"We found a new version {update.PreRelease.TagName} Created at {update.PreRelease.CreatedAt} and Published at {update.PreRelease.PublishedAt}";
                 }
                 else
                 {
