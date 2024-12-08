@@ -45,11 +45,17 @@ public partial class AppUpdateSettingViewModel : ObservableObject
                 LastUpdateCheck = DateTime.Now.ToShortDateString();
                 Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();
                 var update = await UpdateHelper.CheckUpdateAsync(username, repo, new Version(ProcessInfoHelper.Version));
-                if (update.IsExistNewVersion)
+                if (update.StableRelease.IsExistNewVersion)
                 {
                     IsUpdateAvailable = true;
-                    ChangeLog = update.Changelog;
-                    LoadingStatus = $"We found a new version {update.TagName} Created at {update.CreatedAt} and Published at {update.PublishedAt}";
+                    ChangeLog = update.StableRelease.Changelog;
+                    LoadingStatus = $"We found a new version {update.StableRelease.TagName} Created at {update.StableRelease.CreatedAt} and Published at {update.StableRelease.PublishedAt}";
+                }
+                else if (update.PreRelease.IsExistNewVersion)
+                {
+                    IsUpdateAvailable = true;
+                    ChangeLog = update.PreRelease.Changelog;
+                    LoadingStatus = $"We found a new PreRelease Version {update.PreRelease.TagName} Created at {update.PreRelease.CreatedAt} and Published at {update.PreRelease.PublishedAt}";
                 }
                 else
                 {

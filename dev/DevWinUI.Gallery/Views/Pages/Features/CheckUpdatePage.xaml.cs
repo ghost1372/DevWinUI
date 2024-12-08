@@ -15,20 +15,33 @@ public sealed partial class CheckUpdatePage : Page
             txtRepo.Text = "DevWinUI";
         }
         var ver = await UpdateHelper.CheckUpdateAsync(txtUser.Text, txtRepo.Text);
-        if (ver.IsExistNewVersion)
+        if (ver.StableRelease.IsExistNewVersion)
         {
-            // Update App
-            foreach (var item in ver.Assets)
+            foreach (var item in ver.StableRelease.Assets)
             {
                 listView.Items.Add($"{item.Url}{Environment.NewLine}Size: {item.Size}");
             }
-            txtChangelog.Text = $"Changelog: {ver.Changelog}";
-        }
+            txtChangelog.Text = $"Changelog: {ver.StableRelease.Changelog}";
 
-        txtReleaseUrl.Text = $"Release Url: {ver.HtmlUrl}";
-        txtCreatedAt.Text = $"Created At: {ver.CreatedAt}";
-        txtPublishedAt.Text = $"Published At {ver.PublishedAt}";
-        txtIsPreRelease.Text = $"Is PreRelease: {ver.IsPreRelease}";
-        txtTagName.Text = $"Tag Name: {ver.TagName}";
+            txtReleaseUrl.Text = $"Release Url: {ver.StableRelease.HtmlUrl}";
+            txtCreatedAt.Text = $"Created At: {ver.StableRelease.CreatedAt}";
+            txtPublishedAt.Text = $"Published At {ver.StableRelease.PublishedAt}";
+            txtIsPreRelease.Text = $"Is PreRelease: {ver.StableRelease.IsPreRelease}";
+            txtTagName.Text = $"Tag Name: {ver.StableRelease.TagName}";
+        }
+        else if (ver.PreRelease.IsExistNewVersion)
+        {
+            foreach (var item in ver.PreRelease.Assets)
+            {
+                listView.Items.Add($"{item.Url}{Environment.NewLine}Size: {item.Size}");
+            }
+            txtChangelog.Text = $"Changelog: {ver.PreRelease.Changelog}";
+
+            txtReleaseUrl.Text = $"Release Url: {ver.PreRelease.HtmlUrl}";
+            txtCreatedAt.Text = $"Created At: {ver.PreRelease.CreatedAt}";
+            txtPublishedAt.Text = $"Published At {ver.PreRelease.PublishedAt}";
+            txtIsPreRelease.Text = $"Is PreRelease: {ver.PreRelease.IsPreRelease}";
+            txtTagName.Text = $"Tag Name: {ver.PreRelease.TagName}";
+        }
     }
 }

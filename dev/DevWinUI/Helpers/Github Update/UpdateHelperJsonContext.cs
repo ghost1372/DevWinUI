@@ -3,7 +3,7 @@
 namespace DevWinUI;
 
 [JsonSourceGenerationOptions()]
-[JsonSerializable(typeof(UpdateInfo))]
+[JsonSerializable(typeof(List<UpdateInfo>))]
 internal partial class UpdateHelperJsonContext : JsonSerializerContext
 {
 }
