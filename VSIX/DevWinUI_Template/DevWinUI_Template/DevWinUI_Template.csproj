@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Extensions\DictionaryExtension.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\NugetClientHelper.cs" />
     <Compile Include="Common\Options\ColorsDicOption.cs" />
     <Compile Include="Common\Options\ConfigCodes.cs" />
