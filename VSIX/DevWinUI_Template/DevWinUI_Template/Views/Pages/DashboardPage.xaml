@@ -54,7 +54,8 @@
                    HorizontalAlignment="Stretch" />
         <local:SettingsControl Title="Version Mechanism"
                                Description="Install NuGet packages from stable or prerelease versions.">
-            <ComboBox MinWidth="250"
+            <ComboBox x:Name="CmbVersion"
+                      MinWidth="250"
                       HorizontalAlignment="Left"
                       SelectedIndex="0"
                       SelectionChanged="cmbVersionMechanism_SelectionChanged">

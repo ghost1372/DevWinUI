@@ -4,7 +4,7 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"$AppxManifestDesktop6$
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
   <Identity
@@ -17,7 +17,7 @@
   <Properties>
     <DisplayName>$projectname$</DisplayName>
     <PublisherDisplayName>$XmlEscapedPublisher$</PublisherDisplayName>
-    <Logo>Assets\Store\StoreLogo.png</Logo>$UnvirtualizedResources$
+    <Logo>Assets\Store\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -46,6 +46,6 @@
   </Applications>
 
   <Capabilities>
-    <rescap:Capability Name="runFullTrust" />$UnvirtualizedResourcesCapability$
+    <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>

@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
 using DevWinUI_Template.WizardUI;
 
 namespace DevWinUI_Template;
@@ -34,8 +38,32 @@ public partial class DashboardPage : Page
                 tgSolutionFolder.IsOn = false;
             }
         }
-    }
 
+        if (IsPreviewVSIX())
+        {
+            CmbVersion.SelectedIndex = 1;
+        }
+    }
+    private bool IsPreviewVSIX()
+    {
+        var asm = Assembly.GetExecutingAssembly();
+        var asmDir = Path.GetDirectoryName(asm.Location);
+        var manifestPath = Path.Combine(asmDir, "extension.vsixmanifest");
+        bool isPreview = false;
+        if (File.Exists(manifestPath))
+        {
+            var doc = new XmlDocument();
+            doc.Load(manifestPath);
+            var metaData = doc.DocumentElement.ChildNodes.Cast<XmlElement>().FirstOrDefault(x => x.Name == "Metadata");
+            var identity = metaData.ChildNodes.Cast<XmlElement>().FirstOrDefault(x => x.Name == "Preview");
+            var value = identity?.InnerText;
+            if (!string.IsNullOrEmpty(value))
+            {
+                isPreview = value.ToLower().Equals("true");
+            }
+        }
+        return isPreview;
+    }
     private void cmbVersionMechanism_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbVersionMechanism = sender as ComboBox;

@@ -53,13 +53,6 @@
 	    <ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.ico">AppIcon.ico</ProjectItem>
 	    <ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.png">AppIcon.png</ProjectItem>
       </Folder>
-
-	  <Folder Name="Themes" TargetFolderName="Themes">
-		<ProjectItem ReplaceParameters="true" TargetFileName="Styles.xaml">Styles.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="ThemeResources.xaml">ThemeResources.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="Fonts.xaml">Fonts.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="Converters.xaml">Converters.xaml</ProjectItem>
-	  </Folder>
 		
 	  <Folder Name="Views" TargetFolderName="Views">
 		<ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
