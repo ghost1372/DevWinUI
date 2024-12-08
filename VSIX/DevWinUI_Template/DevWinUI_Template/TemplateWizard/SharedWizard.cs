@@ -156,6 +156,11 @@ public class SharedWizard
 
         if (templateConfig.IsBlank || templateConfig.IsTest)
         {
+            if (Helper.IsPreviewVSIX())
+            {
+                WizardConfig.UsePreReleaseVersion = true;
+            }
+
             AddReplacementsDictionary(replacementsDictionary);
             _shouldAddProjectItem = true;
             return;
