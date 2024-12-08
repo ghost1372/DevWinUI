@@ -148,6 +148,7 @@ Install-Package DevWinUI
 
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
+- ✨ TextBox
 - ✨ BreadcrumbNavigator
 - ✨ PinBox
 - ✨ SelectorBarSegmented
@@ -244,6 +245,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### TextBox
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBox.png)
 
 ### BreadcrumbNavigator
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BreadcrumbNavigator.gif)
