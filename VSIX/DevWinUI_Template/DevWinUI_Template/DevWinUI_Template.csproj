@@ -106,6 +106,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\header.png" />
+    <Resource Include="Assets\store.png" />
+    <Resource Include="Assets\WASDK.png" />
+    <Resource Include="Assets\GalleryApp.png" />
     <Content Include="Files\.editorconfig">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

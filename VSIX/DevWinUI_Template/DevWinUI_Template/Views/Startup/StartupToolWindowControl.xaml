@@ -6,8 +6,6 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              Name="DevWinUI"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d">
@@ -29,10 +27,18 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="20" />
                 <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.ColumnSpan="3"
+            <Viewbox Grid.Column="2"
+                     Height="130"
+                     Margin="10,0,10,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top">
+                <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/header.png" />
+            </Viewbox>
+            <StackPanel Grid.ColumnSpan="2"
                         HorizontalAlignment="Center">
                 <TextBlock Margin="10"
                            FontWeight="Thin"
@@ -42,14 +48,14 @@
                 <TextBlock FontSize="16"
                            Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Text="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3. Create a WinUI 3 app in less than a minute with the built-in project templates and scaffolding tools."
+                           Text="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3 apps."
                            TextWrapping="Wrap" />
             </StackPanel>
 
             <StackPanel Grid.Row="2"
                         Grid.Column="0"
                         HorizontalAlignment="Center">
-                <ui:ImageIcon Width="96"
+                <ui:ImageIcon Width="72"
                               Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
                 <TextBlock HorizontalAlignment="Center"
                            Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
@@ -59,59 +65,118 @@
                                     Content="DevWinUI"
                                     Cursor="Hand"
                                     FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Link24}"
                                     NavigateUri="https://ghost1372.github.io/DevWinUI/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
                                     Content="DevWinUI.Controls"
                                     Cursor="Hand"
                                     FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Link24}"
                                     NavigateUri="https://ghost1372.github.io/DevWinUIControls/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
                                     Content="DevWinUI.ContextMenu"
                                     Cursor="Hand"
                                     FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Link24}"
                                     NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" />
             </StackPanel>
 
             <StackPanel Grid.Row="2"
                         Grid.Column="1"
                         HorizontalAlignment="Center">
-                <ui:ImageIcon Width="96"
-                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                <ui:ImageIcon Width="72"
+                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/GalleryApp.png" />
                 <TextBlock HorizontalAlignment="Center"
                            Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
                            Style="{StaticResource TitleTextBlockStyle}"
-                           Text="GalleryApp" />
+                           Text="DevWinUI Gallery App" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
                                     Content="Source Code"
                                     Cursor="Hand"
                                     FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Code24}"
                                     NavigateUri="https://github.com/ghost1372/DevWinUI/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Latest Build"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon WindowApps24}"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/releases/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="Nightly Build"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon WindowApps24}"
+                                    NavigateUri="https://github.com/ghost1372/DevWinUI/actions/" />
+                <ui:HyperlinkButton x:Name="MSStoreHyperLink"
+                                    HorizontalAlignment="Center"
                                     Content="Microsoft Store"
                                     Cursor="Hand"
                                     FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon WindowApps24}"
                                     NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+                <Viewbox Width="160"
+                         Margin="0,5,0,0"
+                         Cursor="Hand">
+                    <ui:ImageIcon PreviewMouseLeftButtonDown="ImageIcon_PreviewMouseLeftButtonDown"
+                                  Source="pack://application:,,,/DevWinUI_Template;component/Assets/store.png" />
+                </Viewbox>
             </StackPanel>
+
             <StackPanel Grid.Row="2"
                         Grid.Column="2"
                         HorizontalAlignment="Center">
-                <ui:ImageIcon Width="96"
-                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                <ui:ImageIcon Width="72"
+                              Source="pack://application:,,,/DevWinUI_Template;component/Assets/WASDK.png" />
                 <TextBlock HorizontalAlignment="Center"
                            Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Text="More" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
-                                    Content="Source Code"
+                                    Content="WinUI/WASDK Release notes"
                                     Cursor="Hand"
                                     FontWeight="Bold"
-                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+                                    Icon="{ui:SymbolIcon Note24}"
+                                    NavigateUri="https://learn.microsoft.com/windows/apps/windows-app-sdk/release-channels" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
-                                    Content="Microsoft Store"
+                                    Content="WinUI/WASDK Documentation"
                                     Cursor="Hand"
                                     FontWeight="Bold"
-                                    NavigateUri="https://github.com/ghost1372/DevWinUI/" />
+                                    Icon="{ui:SymbolIcon Document24}"
+                                    NavigateUri="https://learn.microsoft.com/windows/apps/desktop" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="WindowsAppSDK Source Code"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Code24}"
+                                    NavigateUri="https://github.com/microsoft/WindowsAppSDK" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="WindowsAppSDK Samples"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Code24}"
+                                    NavigateUri="https://github.com/microsoft/WindowsAppSDK-Samples" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="WinUI 3 Source Code"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Code24}"
+                                    NavigateUri="https://github.com/microsoft/Microsoft-UI-Xaml" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="WinUI Gallery"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon WindowApps24}"
+                                    NavigateUri="https://github.com/microsoft/WinUI-Gallery" />
             </StackPanel>
+
+            <ui:InfoBar Title="Developer"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="3"
+                        IsClosable="False"
+                        IsOpen="True"
+                        Message="Mahdi Hosseini"
+                        Severity="Success" />
         </Grid>
     </ScrollViewer>
 </UserControl>
