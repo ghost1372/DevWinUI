@@ -154,19 +154,6 @@ public class SharedWizard
 
         _dte = automationObject as _DTE;
 
-        #region Libs
-        // Assuming package list is passed via a custom parameter in the .vstemplate file
-        if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
-        {
-            _nuGetPackages = new();
-            var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
-            foreach (var baseItem in basePackages)
-            {
-                _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
-            }
-        }
-        #endregion
-
         if (templateConfig.IsBlank || templateConfig.IsTest)
         {
             AddReplacementsDictionary(replacementsDictionary);
@@ -455,6 +442,19 @@ public class SharedWizard
         {
             replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "");
         }
+
+        #region Libs
+        // Assuming package list is passed via a custom parameter in the .vstemplate file
+        if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
+        {
+            _nuGetPackages = new();
+            var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
+            foreach (var baseItem in basePackages)
+            {
+                _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
+            }
+        }
+        #endregion
     }
     public bool ShouldAddProjectItem()
     {
@@ -638,7 +638,17 @@ public class SharedWizard
                     }
                     else
                     {
-                        await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, packageId.IncludePreRelease, false));
+                        try
+                        {
+                            await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, packageId.IncludePreRelease, false));
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            if (!packageId.IncludePreRelease)
+                            {
+                                await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, true, false));
+                            }
+                        }
                     }
                 }
                 else
