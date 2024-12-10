@@ -98,7 +98,7 @@ if (menuService != null)
 """
 <dev:SettingsCard Description="Change your app Settings"
                               Header="General"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Settings.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/General.png}"
                               IsClickEnabled="True"
                               dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
 """;
@@ -107,7 +107,7 @@ if (menuService != null)
 """
 <dev:SettingsCard Description="Change your app Settings"
                               Header="General"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Settings.png}"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/General.png}"
                               IsClickEnabled="True"
                               dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
 """;

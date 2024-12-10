@@ -53,7 +53,7 @@
 		<ProjectItem ReplaceParameters="false" TargetFileName="External.png">External.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="Info.png">Info.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="Theme.png">Theme.png</ProjectItem>
-		<ProjectItem ReplaceParameters="false" TargetFileName="Settings.png">Settings.png</ProjectItem>
+		<ProjectItem ReplaceParameters="false" TargetFileName="General.png">General.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="Update.png">Update.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="DevMode.png">DevMode.png</ProjectItem>
 	  </Folder>

@@ -59,7 +59,7 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             filePath.Contains("Tint.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Info.png") ||
-            filePath.Contains("Settings.png") ||
+            filePath.Contains("General.png") ||
             filePath.Contains("Theme.png") ||
             filePath.Contains("DevMode.png") ||
             filePath.Contains("Update.png")))
@@ -89,7 +89,7 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             !WizardConfig.UseGeneralSettingPage &&
             (filePath.Contains("GeneralSettingPage") ||
             filePath.Contains("GeneralSettingViewModel") ||
-            filePath.Contains("Settings.png")))
+            filePath.Contains("General.png")))
         {
             return false;
         }

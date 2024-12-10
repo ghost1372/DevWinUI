@@ -62,7 +62,7 @@
     <Content Include="Assets\Fluent\DevMode.png" />
     <Content Include="Assets\Fluent\External.png" />
     <Content Include="Assets\Fluent\Info.png" />
-    <Content Include="Assets\Fluent\Settings.png" />
+    <Content Include="Assets\Fluent\General.png" />
     <Content Include="Assets\Fluent\Theme.png" />
     <Content Include="Assets\Fluent\Tint.png" />
     <Content Include="Assets\Fluent\Update.png" />

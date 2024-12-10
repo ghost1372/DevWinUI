@@ -56,7 +56,7 @@ public class WinUIAppNavigationWizard : IWizard
             filePath.Contains("Color.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Info.png") ||
-            filePath.Contains("Settings.png") ||
+            filePath.Contains("General.png") ||
             filePath.Contains("Theme.png") ||
             filePath.Contains("DevMode.png") ||
             filePath.Contains("Update.png")))
@@ -84,7 +84,7 @@ public class WinUIAppNavigationWizard : IWizard
         else if (WizardConfig.UseSettingsPage &&
             !WizardConfig.UseGeneralSettingPage &&
             (filePath.Contains("GeneralSettingPage") ||
-            filePath.Contains("Settings.png")))
+            filePath.Contains("General.png")))
         {
             return false;
         }
