@@ -43,7 +43,6 @@ jobs:
     runs-on: windows-latest
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     outputs: # For accessing them from 'release' job
-      app-version: ${{ steps.get-version.outputs.version }}
       IS_PRE_RELEASE: ${{ env.IS_PRE_RELEASE }}
     strategy:
       matrix:
@@ -100,9 +99,9 @@ jobs:
         }
 
         # Export variables
-        echo "VERSION=$version" >> $env:GITHUB_ENV
-        echo "VERSION_PREFIX=$prefix" >> $env:GITHUB_ENV
-        echo "VERSION_SUFFIX=$suffix" >> $env:GITHUB_ENV
+        echo "::set-output name=VERSION::$version"
+        echo "::set-output name=VERSION_PREFIX::$prefix"
+        echo "::set-output name=VERSION_SUFFIX::$suffix"
 
 
     # Building with configured commands
@@ -115,13 +114,13 @@ jobs:
       with:
         files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
         recursive: true
-        dest: ${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.platform }}.zip
+        dest: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.VERSION }}-${{ matrix.platform }}.zip
 
     # Uploading all zip files to access them in the 'release' job
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts-${{ matrix.platform }}
-        path: ${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.platform }}.zip
+        path: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.VERSION }}-${{ matrix.platform }}.zip
 
     # Checking version suffix for words like [alpha, beta, preview, and experiment]. Marking the release as a pre-release if any exists.
     - run: |
@@ -129,7 +128,7 @@ jobs:
         $list = @("beta", "alpha", "preview", "experiment")
 
         # Define the suffix variable
-        $suffix = "${{ env.VERSION_SUFFIX }}"
+        $suffix = "${{ steps.get-version.outputs.VERSION_SUFFIX }}"
 
         foreach ($item in $list) {
           # Convert both strings to lower case for case-insensitive comparison
@@ -146,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Read some variables from the 'build' job
-      APP_VERSION: ${{ env.VERSION }}
+      APP_VERSION: ${{ steps.get-version.outputs.VERSION }}
       IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
     steps:
       - uses: actions/checkout@v4
