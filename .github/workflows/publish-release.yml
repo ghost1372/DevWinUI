@@ -47,6 +47,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     outputs: # For accessing them from 'release' job
       IS_PRE_RELEASE: ${{ env.IS_PRE_RELEASE }}
+      APP_VERSION 
     strategy:
       matrix:
         platform: [x64] # Change platform if you want to build only a specific platform
@@ -152,7 +153,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Read some variables from the 'build' job
-      APP_VERSION: ${{ steps.get-version.outputs.VERSION }}
+      APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
     steps:
       - uses: actions/checkout@v4
