@@ -80,6 +80,9 @@ jobs:
         }
       if: contains(env.IS_CUSTOM_NUGET_SOURCE_ENABLED, 'true')
 
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+  
     - name: Run MSBuild to Get Version
       id: get-version
       run: |
