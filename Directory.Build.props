@@ -58,4 +58,7 @@
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+  <Target Name="GetVersion">
+    <Message Text="$(Version)" Importance="High" />
+  </Target>
 </Project>
