@@ -6,7 +6,7 @@
 
     <!-- Version -->
     <LibraryMajorVersion>8</LibraryMajorVersion>
-    <PreviewLabel>-Preview3</PreviewLabel>
+    <PreviewLabel>-Preview4</PreviewLabel>
     <IsPreviewBuild>true</IsPreviewBuild>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
 

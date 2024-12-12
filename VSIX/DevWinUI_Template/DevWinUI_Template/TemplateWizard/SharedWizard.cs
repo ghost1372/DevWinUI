@@ -309,7 +309,17 @@ public class SharedWizard
 
             if (configCodes.ConfigJsonDic.Count > 0)
             {
-                replacementsDictionary.Add("$ConfigDefaultPages$", Environment.NewLine + configs);
+                string[] lines = configs.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
+                // Reapply consistent indentation
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    lines[i] = "                " + lines[i].Trim();
+                }
+
+                // Join the lines back together
+                configs = string.Join("\n", lines);
+                replacementsDictionary.Add("$ConfigDefaultPages$", "\n" + configs);
             }
             else
             {
