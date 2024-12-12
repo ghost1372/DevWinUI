@@ -13,7 +13,10 @@ env:
   # Configuring Project
   PROJECT_PATH: dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj
   APP_NAME: DevWinUIGallery
-
+  APP_VERSION: ''
+  APP_VERSION_SUFFIX: ''
+  APP_VERSION_PREFIX: ''
+  
   # Check Tag
   CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG: false
   
@@ -76,19 +79,18 @@ jobs:
         }
       if: contains(env.IS_CUSTOM_NUGET_SOURCE_ENABLED, 'true')
 
-    # Reading version tag from the csproj file.
     - name: Run MSBuild to Get Version
       id: get-version
       run: |
         # Run MSBuild and capture raw version output
         $output = & msbuild ${{ env.PROJECT_PATH }} /t:GetVersion /v:m 2>&1
         Write-Output "MSBuild Output: $output"
-
+    
         # Extract the version string (assumes the last line contains the version)
         $lines = $output -split "`n"
         $version = $lines[-1].Trim()
         Write-Output "Extracted Version: $version"
-
+    
         # Parse the version into prefix and suffix
         if ($version -match '^([^-]+)-(.+)$') {
           $prefix = $Matches[1]
@@ -97,12 +99,17 @@ jobs:
           $prefix = $version
           $suffix = ""
         }
-
-        # Export variables
-        echo "::set-output name=VERSION::$version"
-        echo "::set-output name=VERSION_PREFIX::$prefix"
-        echo "::set-output name=VERSION_SUFFIX::$suffix"
-
+    
+        # Export environment variables
+        Write-Output "APP_VERSION=$version" >> $GITHUB_ENV
+        Write-Output "APP_VERSION_PREFIX=$prefix" >> $GITHUB_ENV
+        Write-Output "APP_VERSION_SUFFIX=$suffix" >> $GITHUB_ENV
+    
+    - name: Verify Environment Variables
+      run: |
+        echo "APP_VERSION=${{ env.APP_VERSION }}"
+        echo "APP_VERSION_PREFIX=${{ env.APP_VERSION_PREFIX }}"
+        echo "APP_VERSION_SUFFIX=${{ env.APP_VERSION_SUFFIX }}"
 
     # Building with configured commands
     - run: |
@@ -114,13 +121,13 @@ jobs:
       with:
         files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
         recursive: true
-        dest: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.VERSION }}-${{ matrix.platform }}.zip
+        dest: ${{ env.APP_NAME }}-v{{ env.APP_VERSION }}-${{ matrix.platform }}.zip
 
     # Uploading all zip files to access them in the 'release' job
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts-${{ matrix.platform }}
-        path: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.VERSION }}-${{ matrix.platform }}.zip
+        path: ${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-${{ matrix.platform }}.zip
 
     # Checking version suffix for words like [alpha, beta, preview, and experiment]. Marking the release as a pre-release if any exists.
     - run: |
@@ -128,7 +135,7 @@ jobs:
         $list = @("beta", "alpha", "preview", "experiment")
 
         # Define the suffix variable
-        $suffix = "${{ steps.get-version.outputs.VERSION_SUFFIX }}"
+        $suffix = "${{ env.APP_VERSION_SUFFIX }}"
 
         foreach ($item in $list) {
           # Convert both strings to lower case for case-insensitive comparison
