@@ -78,10 +78,32 @@ jobs:
       if: contains(env.IS_CUSTOM_NUGET_SOURCE_ENABLED, 'true')
 
     # Reading version tag from the csproj file.
-    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+    - name: Run MSBuild to Get Version
       id: get-version
-      with:
-        proj-path: ${{ env.PROJECT_PATH }}
+      run: |
+        # Run MSBuild and capture raw version output
+        $output = & msbuild ${{ env.PROJECT_PATH }} /t:GetVersion /v:m 2>&1
+        Write-Output "MSBuild Output: $output"
+
+        # Extract the version string (assumes the last line contains the version)
+        $lines = $output -split "`n"
+        $version = $lines[-1].Trim()
+        Write-Output "Extracted Version: $version"
+
+        # Parse the version into prefix and suffix
+        if ($version -match '^([^-]+)-(.+)$') {
+          $prefix = $Matches[1]
+          $suffix = $Matches[2]
+        } else {
+          $prefix = $version
+          $suffix = ""
+        }
+
+        # Export variables
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "VERSION_PREFIX=$prefix" >> $env:GITHUB_ENV
+        echo "VERSION_SUFFIX=$suffix" >> $env:GITHUB_ENV
+
 
     # Building with configured commands
     - run: |
@@ -93,13 +115,13 @@ jobs:
       with:
         files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
         recursive: true
-        dest: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.version }}-${{ matrix.platform }}.zip
+        dest: ${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.platform }}.zip
 
     # Uploading all zip files to access them in the 'release' job
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts-${{ matrix.platform }}
-        path: ${{ env.APP_NAME }}-v${{ steps.get-version.outputs.version }}-${{ matrix.platform }}.zip
+        path: ${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.platform }}.zip
 
     # Checking version suffix for words like [alpha, beta, preview, and experiment]. Marking the release as a pre-release if any exists.
     - run: |
@@ -107,7 +129,7 @@ jobs:
         $list = @("beta", "alpha", "preview", "experiment")
 
         # Define the suffix variable
-        $suffix = "${{ steps.get-version.outputs.version-suffix }}"
+        $suffix = "${{ env.VERSION_SUFFIX }}"
 
         foreach ($item in $list) {
           # Convert both strings to lower case for case-insensitive comparison
@@ -124,7 +146,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Read some variables from the 'build' job
-      APP_VERSION: ${{ needs.build.outputs.app-version }}
+      APP_VERSION: ${{ env.VERSION }}
       IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
     steps:
       - uses: actions/checkout@v4
