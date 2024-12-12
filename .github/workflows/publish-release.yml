@@ -47,7 +47,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     outputs: # For accessing them from 'release' job
       IS_PRE_RELEASE: ${{ env.IS_PRE_RELEASE }}
-      APP_VERSION 
+      APP_VERSION: ${{ env.APP_VERSION }} 
     strategy:
       matrix:
         platform: [x64] # Change platform if you want to build only a specific platform
