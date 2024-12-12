@@ -10,7 +10,7 @@ internal partial class StringToUriConverter : IValueConverter
         {
             if (uri.StartsWith("ms-appx:///"))
             {
-                return uri;
+                return new Uri(uri);
             }
             if (uri.StartsWith("/"))
             {
