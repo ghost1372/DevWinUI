@@ -11,12 +11,19 @@ permissions:
 
 env:
   # Configuring Project
-  PROJECT_PATH: dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj
+  DEVWINUI_GALLERY_PROJECT_PATH: dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj
+  VSIX_CSPROJ_PATH: VSIX/DevWinUI_Template/DevWinUI_Template/DevWinUI_Template.csproj
+  VSIX_PROJECT_PATH: VSIX/DevWinUI_Template/DevWinUI_Template
+  VSIX_MANIFEST_PATH: VSIX/DevWinUI_Template/DevWinUI_Template/source.extension.vsixmanifest
+  VSIX_OUTPUT_PATH: VSIX/DevWinUI_Template/DevWinUI_Template/bin/Release
+  VSIX_OUTPUT_BASE_NAME: DevWinUI
   APP_NAME: DevWinUIGallery
   APP_VERSION: ''
   APP_VERSION_SUFFIX: ''
   APP_VERSION_PREFIX: ''
-  
+  VSIX_VERSION: ''
+  VSIX_IS_PREVIEW: ''
+
   # Check Tag
   CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG: false
   
@@ -56,12 +63,17 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        
+
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
             8.x.x
             9.x.x
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+      with:
+        vs-prerelease: true    
 
     # Add CommunityToolkit Labs and Main nuget sources
     - run: |
@@ -80,21 +92,19 @@ jobs:
         }
       if: contains(env.IS_CUSTOM_NUGET_SOURCE_ENABLED, 'true')
 
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
-  
     - name: Run MSBuild to Get Version
       id: get-version
+      shell: pwsh
       run: |
         # Run MSBuild and capture raw version output
-        $output = & msbuild ${{ env.PROJECT_PATH }} /t:GetVersion /v:m 2>&1
+        $output = & msbuild "${{ env.DEVWINUI_GALLERY_PROJECT_PATH }}" /t:GetVersion /v:m 2>&1
         Write-Output "MSBuild Output: $output"
-    
+
         # Extract the version string (assumes the last line contains the version)
         $lines = $output -split "`n"
         $version = $lines[-1].Trim()
         Write-Output "Extracted Version: $version"
-    
+
         # Parse the version into prefix and suffix
         if ($version -match '^([^-]+)-(.+)$') {
           $prefix = $Matches[1]
@@ -103,11 +113,11 @@ jobs:
           $prefix = $version
           $suffix = ""
         }
-    
-        # Export environment variables
-        Write-Output "APP_VERSION=$version" >> $GITHUB_ENV
-        Write-Output "APP_VERSION_PREFIX=$prefix" >> $GITHUB_ENV
-        Write-Output "APP_VERSION_SUFFIX=$suffix" >> $GITHUB_ENV
+
+        # Set environment variables
+        Write-Output "APP_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+        Write-Output "APP_VERSION_PREFIX=$prefix" | Out-File -FilePath $env:GITHUB_ENV -Append
+        Write-Output "APP_VERSION_SUFFIX=$suffix" | Out-File -FilePath $env:GITHUB_ENV -Append
     
     - name: Verify Environment Variables
       run: |
@@ -118,14 +128,36 @@ jobs:
     # Building with configured commands
     - run: |
         $runtimeIdentifier = "${{ matrix.platform }}"
-        dotnet publish ${{ env.PROJECT_PATH }} -c Release -r win-$($runtimeIdentifier.ToLower()) /p:GITHUB_ACTIONS=true -p:Platform=${{ matrix.platform }} --self-contained ${{ env.PUBLISH_SELF_CONTAINED }} -p:PublishSingleFile=${{ env.PUBLISH_SINGLE_FILE }} -p:PublishReadyToRun=${{ env.PUBLISH_READY_TO_RUN }} -p:PublishTrimmed=${{ env.PUBLISH_TRIMMED }} -p:TrimMode=${{ env.PUBLISH_TRIM_MODE }} -p:PublishAot=${{ env.PUBLISH_AOT }} --output ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
+        dotnet publish ${{ env.DEVWINUI_GALLERY_PROJECT_PATH }} -c Release -r win-$($runtimeIdentifier.ToLower()) /p:GITHUB_ACTIONS=true -p:Platform=${{ matrix.platform }} --self-contained ${{ env.PUBLISH_SELF_CONTAINED }} -p:PublishSingleFile=${{ env.PUBLISH_SINGLE_FILE }} -p:PublishReadyToRun=${{ env.PUBLISH_READY_TO_RUN }} -p:PublishTrimmed=${{ env.PUBLISH_TRIMMED }} -p:TrimMode=${{ env.PUBLISH_TRIM_MODE }} -p:PublishAot=${{ env.PUBLISH_AOT }} --output ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
 
     # Zipping folder and all files
     - uses: vimtor/action-zip@v1.2
       with:
         files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
         recursive: true
-        dest: ${{ env.APP_NAME }}-v{{ env.APP_VERSION }}-${{ matrix.platform }}.zip
+        dest: ${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-${{ matrix.platform }}.zip
+
+    # Get VSIX Version from source.extension.vsixmanifest
+    - name: Get VSIX Version
+      run: |
+        [xml]$xml = Get-Content ${{ env.VSIX_MANIFEST_PATH }}
+        $vsixVersion = $xml.PackageManifest.Metadata.Identity.Version
+        $isVSIXPreview = $xml.PackageManifest.Metadata.Preview
+        if (-not $isVSIXPreview) {
+            # Default value if <Preview> tag is missing
+            $isVSIXPreview = ""
+        } elseif ($isVSIXPreview -eq "true") {
+            # Set property value to "preview" if <Preview> tag exists and is true
+            $isVSIXPreview = "-Preview"
+        }
+
+        Write-Output "VSIX_VERSION=$vsixVersion" | Out-File -FilePath $env:GITHUB_ENV -Append
+        Write-Output "VSIX_IS_PREVIEW=$isVSIXPreview" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+    - name: Verify Environment Variables
+      run: |
+        echo "VSIX_VERSION=${{ env.VSIX_VERSION }}"
+        echo "VSIX_IS_PREVIEW=${{ env.VSIX_IS_PREVIEW }}"
 
     # Uploading all zip files to access them in the 'release' job
     - uses: actions/upload-artifact@v4
