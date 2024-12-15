@@ -248,7 +248,7 @@ Install-Package DevWinUI.ContextMenu
 ## 🕰️ History 🕰️
 
 ### ProgressButton
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.png)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.gif)
 
 ### TextBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBox.png)
