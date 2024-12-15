@@ -5,4 +5,12 @@ public static partial class Extensions
     {
         return ColorHelper.GetSolidColorBrush(hex);
     }
+    public static void FormatRichTextBlock(this string textWithHTMLFormatting, RichTextBlock richTextBlock)
+    {
+        RichTextFormatterHelper.FormatRichTextBlock(textWithHTMLFormatting, richTextBlock);
+    }
+    public static void FormatTextBlock(this string textWithHTMLFormatting, TextBlock textBlock)
+    {
+        RichTextFormatterHelper.FormatTextBlock(textWithHTMLFormatting, textBlock);
+    }
 }

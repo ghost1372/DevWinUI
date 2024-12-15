@@ -95,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
+          "Title": "RichTextFormatter",
+          "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
           "Title": "ProgressButton",
           "Subtitle": "ProgressButton",

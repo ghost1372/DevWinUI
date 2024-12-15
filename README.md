@@ -124,6 +124,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
+ - ✨ RichTextFormatter
  - ✨ Converter
  - ✨ Extensions
  - ✨ Helpers
@@ -249,6 +250,9 @@ Install-Package DevWinUI.ContextMenu
 
 ### ProgressButton
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.gif)
+
+### RichTextFormatter Helper
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RichTextFormatter.png)
 
 ### TextBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBox.png)

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.RichTextFormatterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="helpers/richTextFormatter"
+                                  HeaderText="TextBlock">
+                <local:ControlExample.CSharp>
+                    <x:String>RichTextFormatterHelper.FormatTextBlock(text, textBlock);</x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="Txt"
+                                 Header="Input"
+                                 PlaceholderText="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular"
+                                 Text="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular"
+                                 TextChanged="Txt_TextChanged" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <TextBlock x:Name="txtBlock" />
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="helpers/richTextFormatter"
+                                  HeaderText="RichTextBlock">
+                <local:ControlExample.CSharp>
+                    <x:String>RichTextFormatterHelper.FormatRichTextBlock(text, richTextBlock);</x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="Txt2"
+                                 Header="Input"
+                                 PlaceholderText="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular"
+                                 Text="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular"
+                                 TextChanged="Txt2_TextChanged" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <RichTextBlock x:Name="txtRichBlock" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
