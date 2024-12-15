@@ -148,6 +148,7 @@ Install-Package DevWinUI
 
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
+- ✨ ProgressButton
 - ✨ TextBox
 - ✨ BreadcrumbNavigator
 - ✨ PinBox
@@ -245,6 +246,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ProgressButton
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.png)
 
 ### TextBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBox.png)

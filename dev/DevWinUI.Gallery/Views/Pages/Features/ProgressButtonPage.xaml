@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ProgressButtonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/progressButton"
+                                  HeaderText="ProgressButton">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ProgressButton CheckedContent="Downloading..." Content="Click Here" IsIndeterminateProgressRing="true" ProgressRingVisibility="Visible" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="CheckedContentTextBox"
+                                 Header="Checked Content"
+                                 PlaceholderText="Downloading..."
+                                 Text="Downloading..." />
+                        <ToggleSwitch x:Name="IsIndeterminateTG"
+                                      Header="IsIndeterminate"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="ShowErrorTG"
+                                      Header="ShowError" />
+                        <ToggleSwitch x:Name="ShowPausedTG"
+                                      Header="ShowPaused" />
+                        <ToggleSwitch x:Name="ProgressRingVisibilityTG"
+                                      Header="ProgressRingVisibility"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="IsIndeterminateProgressRingTG"
+                                      Header="IsIndeterminateProgressRing"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:ProgressButton Width="200"
+                                        Checked="ProgressButton_Checked"
+                                        CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}"
+                                        Content="Click Here"
+                                        Unchecked="ProgressButton_Checked" />
+                    <dev:ProgressButton Width="200"
+                                        Checked="ProgressButton_Checked"
+                                        CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}"
+                                        Content="Click Here"
+                                        IsIndeterminateProgressRing="{x:Bind IsIndeterminateProgressRingTG.IsOn, Mode=OneWay}"
+                                        ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Unchecked="ProgressButton_Checked" />
+                    <dev:ProgressButton Width="200"
+                                        CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}"
+                                        Content="Click Here"
+                                        IsIndeterminateProgressRing="True"
+                                        ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <dev:ProgressButton Width="200"
+                                        CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}"
+                                        Content="Click Here"
+                                        IsIndeterminate="{x:Bind IsIndeterminateTG.IsOn, Mode=OneWay}"
+                                        ShowError="{x:Bind ShowErrorTG.IsOn, Mode=OneWay}"
+                                        ShowPaused="{x:Bind ShowPausedTG.IsOn, Mode=OneWay}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

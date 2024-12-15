@@ -95,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
+          "Title": "ProgressButton",
+          "Subtitle": "ProgressButton",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ToggleButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.TextBoxPage",
           "Title": "TextBox",
           "Subtitle": "TextBox with Content",
