@@ -3,17 +3,27 @@ public static partial class ColorHelper
 {
     public static Color GetColorFromHex(string hexColor)
     {
-        if (hexColor.Length == 7) // 6-digit hex color
+        hexColor = hexColor.Replace("#", string.Empty);
+        byte a = 255;
+        byte r = 0;
+        byte g = 0;
+        byte b = 0;
+
+        if (hexColor.Length == 8)
         {
-            hexColor = hexColor.Insert(1, "FF"); // insert FF as alpha value
+            a = Convert.ToByte(hexColor.Substring(0, 2), 16);
+            r = Convert.ToByte(hexColor.Substring(2, 2), 16);
+            g = Convert.ToByte(hexColor.Substring(4, 2), 16);
+            b = Convert.ToByte(hexColor.Substring(6, 2), 16);
         }
-        return
-            Color.FromArgb(
-              Convert.ToByte(hexColor.Substring(1, 2), 16),
-                Convert.ToByte(hexColor.Substring(3, 2), 16),
-                Convert.ToByte(hexColor.Substring(5, 2), 16),
-                Convert.ToByte(hexColor.Substring(7, 2), 16)
-            );
+        else if (hexColor.Length == 6)
+        {
+            r = Convert.ToByte(hexColor.Substring(0, 2), 16);
+            g = Convert.ToByte(hexColor.Substring(2, 2), 16);
+            b = Convert.ToByte(hexColor.Substring(4, 2), 16);
+        }
+
+        return Color.FromArgb(a, r, g, b);
     }
     public static uint ColorToUInt(Color color)
     {
