@@ -178,8 +178,14 @@ public sealed partial class FlipSide : Control
         }
         else
         {
-            s1Visual.RotationAngleInDegrees = f1;
-            s2Visual.RotationAngleInDegrees = f2;
+            if (s1Visual != null)
+            {
+                s1Visual.RotationAngleInDegrees = f1;
+            }
+            if (s2Visual != null)
+            {
+                s2Visual.RotationAngleInDegrees = f2;
+            }
         }
     }
 
