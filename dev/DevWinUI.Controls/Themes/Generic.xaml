@@ -116,6 +116,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
+      <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
@@ -177,6 +179,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
@@ -238,6 +242,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
@@ -5345,12 +5351,12 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style TargetType="local:WaveProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="WaveFill" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
-    <Setter Property="Background" Value="{ThemeResource CardStrokeColorDefaultSolidBrush}" />
+    <Setter Property="Background" Value="{ThemeResource WaveProgressBarBackground}" />
     <Setter Property="WaveStroke" Value="{ThemeResource AccentAAFillColorSecondaryBrush}" />
     <Setter Property="Width" Value="100" />
     <Setter Property="WaveThickness" Value="2" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource WaveProgressBarBorderBrush}" />
     <Setter Property="Text" Value="{Binding Value, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource WaveProgressBarValueToPercentConverter}}" />
     <Setter Property="Template">
       <Setter.Value>
