@@ -1,0 +1,103 @@
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
+
+namespace DevWinUI;
+[TemplatePart(Name = nameof(PART_Root), Type = typeof(Grid))]
+[TemplatePart(Name = nameof(PART_ConfirmButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(PART_CalendarWithClockView), Type = typeof(CalendarWithClock))]
+public partial class DateTimePicker : DateTimeBase
+{
+    private readonly string PART_Root = "PART_Root";
+    private readonly string PART_ConfirmButton = "PART_ConfirmButton";
+    private readonly string PART_CalendarWithClockView = "PART_CalendarWithClockView";
+    private Grid rootGrid;
+    private Button confirmButton;
+    private CalendarWithClock calendarWithClock;
+
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        rootGrid = GetTemplateChild(nameof(PART_Root)) as Grid;
+        confirmButton = GetTemplateChild(nameof(PART_ConfirmButton)) as Button;
+        calendarWithClock = GetTemplateChild(nameof(PART_CalendarWithClockView)) as CalendarWithClock;
+
+        if (rootGrid != null)
+        {
+            rootGrid.PointerEntered -= OnPointerEntered;
+            rootGrid.PointerEntered += OnPointerEntered;
+            rootGrid.PointerExited -= OnPointerExited;
+            rootGrid.PointerExited += OnPointerExited;
+            rootGrid.PointerReleased -= OnPointerReleased;
+            rootGrid.PointerReleased += OnPointerReleased;
+            rootGrid.PointerPressed -= OnPointerPressed;
+            rootGrid.PointerPressed += OnPointerPressed;
+        }
+
+        if (confirmButton != null)
+        {
+            confirmButton.Click -= OnConfirmButton;
+            confirmButton.Click += OnConfirmButton;
+        }
+
+        if (calendarWithClock != null)
+        {
+            calendarWithClock.SelectedTime = SelectedTime;
+            calendarWithClock.SelectedDate = SelectedDate;
+        }
+    }
+
+    private void OnConfirmButton(object sender, RoutedEventArgs e)
+    {
+        FlyoutBase.GetAttachedFlyout(rootGrid).Hide();
+    }
+
+    private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
+    {
+        VisualStateManager.GoToState(this, "PointerOver", true);
+    }
+
+    private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        VisualStateManager.GoToState(this, "Pressed", true);
+    }
+
+    private void OnPointerReleased(object sender, PointerRoutedEventArgs e)
+    {
+        VisualStateManager.GoToState(this, "Normal", true);
+        FlyoutBase flyout = FlyoutBase.GetAttachedFlyout(rootGrid);
+
+        if (flyout != null)
+        {
+            flyout.Closed -= Flyout_Closed;
+            flyout.Closed += Flyout_Closed;
+            FlyoutBase.ShowAttachedFlyout(rootGrid);
+        }
+    }
+
+    private void Flyout_Closed(object sender, object e)
+    {
+        UpdatePlaceholder();
+    }
+
+    private void OnPointerExited(object sender, PointerRoutedEventArgs e)
+    {
+        VisualStateManager.GoToState(this, "Normal", true);
+    }
+
+    private void UpdateSelectedTime()
+    {
+        calendarWithClock.SelectedTime = SelectedTime;
+        UpdatePlaceholder();
+    }
+
+    private void UpdateSelectedDate()
+    {
+        calendarWithClock.SelectedDate = SelectedDate;
+        UpdatePlaceholder();
+    }
+
+    private void UpdatePlaceholder()
+    {
+        PlaceholderText = $"{calendarWithClock.SelectedDateTime}";
+    }
+}
