@@ -5,7 +5,7 @@ namespace DevWinUI;
 [TemplatePart(Name = PART_Panel, Type = typeof(UniformGrid))]
 public partial class PinBox : Control
 {
-    private readonly string PART_Panel = "PART_Panel";
+    private const string PART_Panel = "PART_Panel";
     private UniformGrid _uniformGrid;
     private List<SecureString> _passwordList;
     private long _foregroundPropertyToken;
