@@ -2,7 +2,9 @@
 using DayOfWeek = Windows.Globalization.DayOfWeek;
 
 namespace DevWinUI;
-public partial class DateTimeBase : Control
+
+[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+public abstract partial class DateTimeBase : Control
 {
     public static TimeSpan? TimeNow => new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
 
