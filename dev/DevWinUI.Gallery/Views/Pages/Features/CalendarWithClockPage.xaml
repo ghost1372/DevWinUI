@@ -1,14 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Page
-    x:Class="DevWinUIGallery.Views.CalendarWithClockPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DevWinUIGallery.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CalendarWithClockPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
-    <Grid>
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/calendarWithClock"
+                                  HeaderText="CalendarWithClock">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:CalendarWithClock /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <RadioButtons x:Name="RBDisplayMode"
+                                      Header="TimePicker DisplayMode"
+                                      SelectedIndex="2">
+                            <RadioButton Checked="RadioButton_Checked"
+                                         Content="Left"
+                                         Tag="Left"
+                                         Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked"
+                                         Content="Top"
+                                         Tag="Top"
+                                         Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked"
+                                         Content="Right"
+                                         Tag="Right"
+                                         Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked"
+                                         Content="Bottom"
+                                         Tag="Bottom"
+                                         Unchecked="RadioButton_Checked" />
+                        </RadioButtons>
 
-    </Grid>
+                        <Button Click="Button_Click"
+                                Content="Get Selected Date and Time" />
+                        <TextBlock x:Name="TxtDateTime" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:CalendarWithClock x:Name="CalendarWithClockSample" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

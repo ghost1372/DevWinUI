@@ -6,4 +6,11 @@ public sealed partial class DateTimePickerPage : Page
     {
         this.InitializeComponent();
     }
+
+    private void RadioButton_Checked(object sender, RoutedEventArgs e)
+    {
+        var tag = (sender as RadioButton).Tag;
+        var displayMode = GeneralHelper.GetEnum<TimePickerDisplayMode>(tag?.ToString());
+        DateTimePickerSample.TimePickerDisplayMode = displayMode;
+    }
 }
