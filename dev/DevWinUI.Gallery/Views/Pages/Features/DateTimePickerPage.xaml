@@ -39,8 +39,8 @@
                                          Tag="Bottom"
                                          Unchecked="RadioButton_Checked" />
                         </RadioButtons>
-                        <ToggleSwitch x:Name="IsConfirmButtonShow"
-                                      Header="IsConfirmButtonShow"
+                        <ToggleSwitch x:Name="ShowConfirmButton"
+                                      Header="ShowConfirmButton"
                                       IsOn="True" />
                         <TextBox x:Name="TxtConfirm"
                                  Header="Confirm Button Content"
@@ -53,7 +53,7 @@
                                     ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}"
                                     Description="Choose your Date and Time from CalendarView and TimePicker"
                                     Header="Select a Date and Time"
-                                    IsConfirmButtonShow="{x:Bind IsConfirmButtonShow.IsOn, Mode=OneWay}" />
+                                    ShowConfirmButton="{x:Bind ShowConfirmButton.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

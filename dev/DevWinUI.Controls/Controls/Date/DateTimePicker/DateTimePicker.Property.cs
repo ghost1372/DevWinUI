@@ -101,14 +101,14 @@ public partial class DateTimePicker
     public static readonly DependencyProperty ConfirmButtonStyleProperty =
         DependencyProperty.Register(nameof(ConfirmButtonStyle), typeof(Style), typeof(DateTimePicker), new PropertyMetadata(default(Style)));
 
-    public bool IsConfirmButtonShow
+    public bool ShowConfirmButton
     {
-        get { return (bool)GetValue(IsConfirmButtonShowProperty); }
-        set { SetValue(IsConfirmButtonShowProperty, value); }
+        get { return (bool)GetValue(ShowConfirmButtonProperty); }
+        set { SetValue(ShowConfirmButtonProperty, value); }
     }
 
-    public static readonly DependencyProperty IsConfirmButtonShowProperty =
-        DependencyProperty.Register(nameof(IsConfirmButtonShow), typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true));
+    public static readonly DependencyProperty ShowConfirmButtonProperty =
+        DependencyProperty.Register(nameof(ShowConfirmButton), typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true));
 
     public TimeSpan? SelectedTime
     {
