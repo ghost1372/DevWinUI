@@ -95,6 +95,20 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DateTimePickerPage",
+          "Title": "DateTimePicker",
+          "Subtitle": "Pick a Date and Time with CalendarWithClock",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/DatePicker.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CalendarWithClockPage",
+          "Title": "CalendarWithClock",
+          "Subtitle": "A CalendarView with a TimePicker/Clock",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
           "Title": "RichTextFormatter",
           "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
