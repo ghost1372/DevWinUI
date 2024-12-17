@@ -18,7 +18,7 @@
         <Setter Property="CalendarViewBorderThickness" Value="0" />
         <Setter Property="ConfirmButtonContent" Value="Confirm" />
         <Setter Property="ConfirmButtonStyle" Value="{StaticResource AccentButtonStyle}" />
-        <Setter Property="IsConfirmButtonShow" Value="True" />
+        <Setter Property="ShowConfirmButton" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DateTimePicker">
