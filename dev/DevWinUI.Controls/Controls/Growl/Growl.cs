@@ -1,11 +1,11 @@
 ﻿namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_ConfirmButton), Type = typeof(Button))]
-[TemplatePart(Name = nameof(PART_CloseButton), Type = typeof(Button))]
+[TemplatePart(Name = PART_ConfirmButton, Type = typeof(Button))]
+[TemplatePart(Name = PART_CloseButton, Type = typeof(Button))]
 public partial class Growl : InfoBar
 {
-    private string PART_ConfirmButton = "PART_ConfirmButton";
-    private string PART_CloseButton = "PART_CloseButton";
+    private const string PART_ConfirmButton = "PART_ConfirmButton";
+    private const string PART_CloseButton = "PART_CloseButton";
     private Button _confirmButton;
     private Button _closeButton;
 

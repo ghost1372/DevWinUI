@@ -3,13 +3,13 @@ using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_ShadowElement), Type = typeof(Rectangle))]
-[TemplatePart(Name = nameof(PART_TextBlock), Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_ShadowElement, Type = typeof(Rectangle))]
+[TemplatePart(Name = PART_TextBlock, Type = typeof(ContentPresenter))]
 [ContentProperty(Name = nameof(TextBlock))]
 public partial class LongShadowTextBlock : Control
 {
-    private string PART_ShadowElement = "PART_ShadowElement";
-    private string PART_TextBlock = "PART_TextBlock";
+    private const string PART_ShadowElement = "PART_ShadowElement";
+    private const string PART_TextBlock = "PART_TextBlock";
     private Rectangle _shadowElement;
     private long _textblockTextChanged;
     public TextBlock TextBlock

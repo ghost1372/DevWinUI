@@ -1,10 +1,10 @@
 ﻿
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_ItemsView), Type = typeof(ItemsView))]
+[TemplatePart(Name = PART_ItemsView, Type = typeof(ItemsView))]
 public partial class SelectorBarSegmented : SelectorBar
 {
-    private string PART_ItemsView = "PART_ItemsView";
+    private const string PART_ItemsView = "PART_ItemsView";
     private ItemsView _ItemsView { get; set; }
 
     private IEnumerable<object> _backupItems;

@@ -3,11 +3,11 @@ using Windows.Foundation;
 
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_Canvas), Type = typeof(CanvasControl))]
+[TemplatePart(Name = PART_Canvas, Type = typeof(CanvasControl))]
 [ContentProperty(Name = nameof(Mark))]
 public partial class Watermark : Control
 {
-    private string PART_Canvas = "PART_Canvas";
+    private const string PART_Canvas = "PART_Canvas";
     private CanvasControl _Canvas;
     private CanvasBitmap _canvasBitmap;
 

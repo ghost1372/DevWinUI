@@ -2,13 +2,13 @@
 
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_FooterExpander), Type = typeof(Expander))]
-[TemplatePart(Name = nameof(PART_HeaderTextPresenter), Type = typeof(TextBlock))]
+[TemplatePart(Name = PART_FooterExpander, Type = typeof(Expander))]
+[TemplatePart(Name = PART_HeaderTextPresenter, Type = typeof(TextBlock))]
 [ContentProperty(Name = nameof(Content))]
 public partial class OptionsPageControl : Control
 {
-    private string PART_FooterExpander = "PART_FooterExpander";
-    private string PART_HeaderTextPresenter = "PART_HeaderTextPresenter";
+    private const string PART_FooterExpander = "PART_FooterExpander";
+    private const string PART_HeaderTextPresenter = "PART_HeaderTextPresenter";
     private Expander _footerExpander;
     private TextBlock _headerTextBlock;
 

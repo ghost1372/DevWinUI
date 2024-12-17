@@ -40,7 +40,7 @@ public partial class OpacityMaskView : RedirectVisualView
     }
 
     public static readonly DependencyProperty OpacityMaskProperty =
-        DependencyProperty.Register("OpacityMask", typeof(Brush), typeof(OpacityMaskView), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), OnOpacityMaskPropertyChanged));
+        DependencyProperty.Register(nameof(OpacityMask), typeof(Brush), typeof(OpacityMaskView), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), OnOpacityMaskPropertyChanged));
 
     private static void OnOpacityMaskPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

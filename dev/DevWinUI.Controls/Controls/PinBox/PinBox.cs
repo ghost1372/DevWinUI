@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_Panel), Type = typeof(UniformGrid))]
+[TemplatePart(Name = PART_Panel, Type = typeof(UniformGrid))]
 public partial class PinBox : Control
 {
     private readonly string PART_Panel = "PART_Panel";
@@ -18,7 +18,7 @@ public partial class PinBox : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _uniformGrid = GetTemplateChild(nameof(PART_Panel)) as UniformGrid;
+        _uniformGrid = GetTemplateChild(PART_Panel) as UniformGrid;
         UpdateOrientation(Orientation);
         CreatePinBoxes(PasswordLength);
         UpdatePinBoxes(GetPassword(), PasswordLength);

@@ -2,16 +2,19 @@
 using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
-[TemplatePart(Name = nameof(PART_Root), Type = typeof(Grid))]
-[TemplatePart(Name = nameof(PART_ConfirmButton), Type = typeof(Button))]
-[TemplatePart(Name = nameof(PART_CalendarWithClockView), Type = typeof(CalendarWithClock))]
+
+[TemplatePart(Name = HeaderContentPresenter, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = DescriptionPresenter, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_Root, Type = typeof(Grid))]
+[TemplatePart(Name = PART_ConfirmButton, Type = typeof(Button))]
+[TemplatePart(Name = PART_CalendarWithClockView, Type = typeof(CalendarWithClock))]
 public partial class DateTimePicker : DateTimeBase
 {
-    private readonly string HeaderContentPresenter = "HeaderContentPresenter";
-    private readonly string DescriptionPresenter = "DescriptionPresenter";
-    private readonly string PART_Root = "PART_Root";
-    private readonly string PART_ConfirmButton = "PART_ConfirmButton";
-    private readonly string PART_CalendarWithClockView = "PART_CalendarWithClockView";
+    private const string HeaderContentPresenter = "HeaderContentPresenter";
+    private const string DescriptionPresenter = "DescriptionPresenter";
+    private const string PART_Root = "PART_Root";
+    private const string PART_ConfirmButton = "PART_ConfirmButton";
+    private const string PART_CalendarWithClockView = "PART_CalendarWithClockView";
     private ContentPresenter headerContentPresenter;
     private ContentPresenter descriptionContentPresenter;
     private Grid rootGrid;
@@ -28,9 +31,9 @@ public partial class DateTimePicker : DateTimeBase
         UpdateHeaderVisibility();
         UpdateDescriptionVisibility();
 
-        rootGrid = GetTemplateChild(nameof(PART_Root)) as Grid;
-        confirmButton = GetTemplateChild(nameof(PART_ConfirmButton)) as Button;
-        calendarWithClock = GetTemplateChild(nameof(PART_CalendarWithClockView)) as CalendarWithClock;
+        rootGrid = GetTemplateChild(PART_Root) as Grid;
+        confirmButton = GetTemplateChild(PART_ConfirmButton) as Button;
+        calendarWithClock = GetTemplateChild(PART_CalendarWithClockView) as CalendarWithClock;
 
         if (rootGrid != null)
         {

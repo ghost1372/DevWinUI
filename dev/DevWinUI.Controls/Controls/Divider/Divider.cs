@@ -2,21 +2,21 @@
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
-[TemplatePart(Name = nameof(PART_ColumnStart), Type = typeof(ColumnDefinition))]
-[TemplatePart(Name = nameof(PART_ColumnEnd), Type = typeof(ColumnDefinition))]
-[TemplatePart(Name = nameof(PART_StretchLine), Type = typeof(Line))]
-[TemplatePart(Name = nameof(PART_LeftLine), Type = typeof(Line))]
-[TemplatePart(Name = nameof(PART_RightLine), Type = typeof(Line))]
-[TemplatePart(Name = nameof(PART_Content), Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_ColumnStart, Type = typeof(ColumnDefinition))]
+[TemplatePart(Name = PART_ColumnEnd, Type = typeof(ColumnDefinition))]
+[TemplatePart(Name = PART_StretchLine, Type = typeof(Line))]
+[TemplatePart(Name = PART_LeftLine, Type = typeof(Line))]
+[TemplatePart(Name = PART_RightLine, Type = typeof(Line))]
+[TemplatePart(Name = PART_Content, Type = typeof(ContentPresenter))]
 [ContentProperty(Name = nameof(Content))]
 public partial class Divider : Control
 {
-    private string PART_ColumnStart = "PART_ColumnStart";
-    private string PART_ColumnEnd = "PART_ColumnEnd";
-    private string PART_StretchLine = "PART_StretchLine";
-    private string PART_LeftLine = "PART_LeftLine";
-    private string PART_RightLine = "PART_RightLine";
-    private string PART_Content = "PART_Content";
+    private const string PART_ColumnStart = "PART_ColumnStart";
+    private const string PART_ColumnEnd = "PART_ColumnEnd";
+    private const string PART_StretchLine = "PART_StretchLine";
+    private const string PART_LeftLine = "PART_LeftLine";
+    private const string PART_RightLine = "PART_RightLine";
+    private const string PART_Content = "PART_Content";
 
     private ColumnDefinition _PART_ColumnStart;
     private ColumnDefinition _PART_ColumnEnd;
@@ -35,7 +35,7 @@ public partial class Divider : Control
     }
 
     public static readonly DependencyProperty ContentPaddingProperty =
-        DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(Divider), new PropertyMetadata(new Thickness(24,0,24,0)));
+        DependencyProperty.Register(nameof(ContentPadding), typeof(Thickness), typeof(Divider), new PropertyMetadata(new Thickness(24,0,24,0)));
 
     public object Content
     {
@@ -99,7 +99,7 @@ public partial class Divider : Control
     }
 
     public static readonly DependencyProperty LineStrokeDashArrayProperty =
-        DependencyProperty.Register("LineStrokeDashArray", typeof(DoubleCollection), typeof(Divider), new PropertyMetadata(default(DoubleCollection)));
+        DependencyProperty.Register(nameof(LineStrokeDashArray), typeof(DoubleCollection), typeof(Divider), new PropertyMetadata(default(DoubleCollection)));
 
     protected override void OnApplyTemplate()
     {

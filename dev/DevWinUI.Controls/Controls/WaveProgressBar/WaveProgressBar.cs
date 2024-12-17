@@ -23,7 +23,7 @@ public partial class WaveProgressBar : Control
     }
 
     public static readonly DependencyProperty MinimumProperty =
-        DependencyProperty.Register("Minimum", typeof(double), typeof(WaveProgressBar), new PropertyMetadata(0.0, OnMinimumChanged));
+        DependencyProperty.Register(nameof(Minimum), typeof(double), typeof(WaveProgressBar), new PropertyMetadata(0.0, OnMinimumChanged));
 
     public double Maximum
     {
@@ -32,7 +32,7 @@ public partial class WaveProgressBar : Control
     }
 
     public static readonly DependencyProperty MaximumProperty =
-        DependencyProperty.Register("Maximum", typeof(double), typeof(WaveProgressBar), new PropertyMetadata(100.0, OnMaximumChanged));
+        DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(WaveProgressBar), new PropertyMetadata(100.0, OnMaximumChanged));
 
     public double Value
     {
@@ -41,7 +41,7 @@ public partial class WaveProgressBar : Control
     }
 
     public static readonly DependencyProperty ValueProperty =
-        DependencyProperty.Register("Value", typeof(double), typeof(WaveProgressBar), new PropertyMetadata(0.0, OnValueChanged));
+        DependencyProperty.Register(nameof(Value), typeof(double), typeof(WaveProgressBar), new PropertyMetadata(0.0, OnValueChanged));
 
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

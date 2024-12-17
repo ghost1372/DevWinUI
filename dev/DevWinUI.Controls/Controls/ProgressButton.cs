@@ -2,10 +2,10 @@
 
 namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_ProgressBar), Type = typeof(ProgressBar))]
+[TemplatePart(Name = PART_ProgressBar, Type = typeof(ProgressBar))]
 public partial class ProgressButton : ToggleButton
 {
-    private readonly string PART_ProgressBar = "PART_ProgressBar";
+    private const string PART_ProgressBar = "PART_ProgressBar";
     private ProgressBar progressBar;
 
     public SolidColorBrush ProgressBackground
@@ -121,7 +121,7 @@ public partial class ProgressButton : ToggleButton
         base.OnApplyTemplate();
 
         SizeChanged += ProgressButton_SizeChanged;
-        progressBar = GetTemplateChild(nameof(PART_ProgressBar)) as ProgressBar;
+        progressBar = GetTemplateChild(PART_ProgressBar) as ProgressBar;
         if (progressBar != null)
         {
             progressBar.MinHeight = ActualHeight;

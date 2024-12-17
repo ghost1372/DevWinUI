@@ -1,12 +1,13 @@
 ﻿namespace DevWinUI;
-[TemplatePart(Name = nameof(PART_CalendarView), Type = typeof(CalendarView))]
-[TemplatePart(Name = nameof(PART_TimePicker), Type = typeof(TimePicker))]
-[TemplatePart(Name = nameof(PART_Root), Type = typeof(Grid))]
+
+[TemplatePart(Name = PART_CalendarView, Type = typeof(CalendarView))]
+[TemplatePart(Name = PART_TimePicker, Type = typeof(TimePicker))]
+[TemplatePart(Name = PART_Root, Type = typeof(Grid))]
 public partial class CalendarWithClock : DateTimeBase
 {
-    private readonly string PART_CalendarView = "PART_CalendarView";
-    private readonly string PART_TimePicker = "PART_TimePicker";
-    private readonly string PART_Root = "PART_Root";
+    private const string PART_CalendarView = "PART_CalendarView";
+    private const string PART_TimePicker = "PART_TimePicker";
+    private const string PART_Root = "PART_Root";
     private CalendarView calendarView;
     private TimePicker timePicker;
     private Grid rootGrid;
@@ -29,9 +30,9 @@ public partial class CalendarWithClock : DateTimeBase
     {
         base.OnApplyTemplate();
 
-        rootGrid = GetTemplateChild(nameof(PART_Root)) as Grid;
-        timePicker = GetTemplateChild(nameof(PART_TimePicker)) as TimePicker;
-        calendarView = GetTemplateChild(nameof(PART_CalendarView)) as CalendarView;
+        rootGrid = GetTemplateChild(PART_Root) as Grid;
+        timePicker = GetTemplateChild(PART_TimePicker) as TimePicker;
+        calendarView = GetTemplateChild(PART_CalendarView) as CalendarView;
         if (calendarView != null)
         {
             calendarView.SelectedDatesChanged -= OnCalendarViewSelectedDatesChanged;

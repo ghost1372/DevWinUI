@@ -1,6 +1,13 @@
 ﻿namespace DevWinUI;
+
+[TemplatePart(Name = PART_Side1Content, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_Side2Content, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_LayoutRoot, Type = typeof(Grid))]
 public sealed partial class FlipSide : Control
 {
+    private const string PART_Side1Content = "Side1Content";
+    private const string PART_Side2Content = "Side2Content";
+    private const string PART_LayoutRoot = "LayoutRoot";
     public static readonly DependencyProperty IsFlippedProperty =
         DependencyProperty.Register(nameof(IsFlipped), typeof(bool), typeof(FlipSide), new PropertyMetadata(false, (s, a) =>
         {
@@ -100,9 +107,9 @@ public sealed partial class FlipSide : Control
     {
         base.OnApplyTemplate();
 
-        Side1Content = GetTemplateChild("Side1Content") as ContentPresenter;
-        Side2Content = GetTemplateChild("Side2Content") as ContentPresenter;
-        LayoutRoot = GetTemplateChild("LayoutRoot") as Grid;
+        Side1Content = GetTemplateChild(PART_Side1Content) as ContentPresenter;
+        Side2Content = GetTemplateChild(PART_Side2Content) as ContentPresenter;
+        LayoutRoot = GetTemplateChild(PART_LayoutRoot) as Grid;
 
         InitComposition();
     }

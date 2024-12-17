@@ -10,15 +10,15 @@ public partial class LoadingIndicator : Control
     internal const string TemplateBorderName = "PART_Border";
 
     public static readonly DependencyProperty SpeedRatioProperty =
-        DependencyProperty.Register("SpeedRatio", typeof(double), typeof(LoadingIndicator), new PropertyMetadata(1d,
+        DependencyProperty.Register(nameof(SpeedRatio), typeof(double), typeof(LoadingIndicator), new PropertyMetadata(1d,
             OnSpeedRatioChanged));
 
     public static readonly DependencyProperty IsActiveProperty =
-        DependencyProperty.Register("IsActive", typeof(bool), typeof(LoadingIndicator), new PropertyMetadata(true,
+        DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(LoadingIndicator), new PropertyMetadata(true,
             OnIsActiveChanged));
 
     public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
-        "Mode", typeof(LoadingIndicatorMode), typeof(LoadingIndicator),
+        nameof(Mode), typeof(LoadingIndicatorMode), typeof(LoadingIndicator),
         new PropertyMetadata(default(LoadingIndicatorMode), OnModeChanged));
 
     private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

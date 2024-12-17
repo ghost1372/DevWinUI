@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_RootGrid), Type = typeof(Grid))]
+[TemplatePart(Name = PART_RootGrid, Type = typeof(Grid))]
 public partial class IndeterminateProgressBar : Control
 {
     private Dictionary<int, KeyFrameDetails> _keyFrameMap = null;
@@ -8,7 +8,7 @@ public partial class IndeterminateProgressBar : Control
     private Storyboard storyBoard;
     private bool isStoryboardRunning;
     private long _visibilityPropertyToken;
-    private string PART_RootGrid = "PART_RootGrid";
+    private const string PART_RootGrid = "PART_RootGrid";
     private Grid rootGrid;
 
     private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
