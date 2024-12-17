@@ -12,10 +12,10 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample DocPage="controls/calendarWithClock"
-                                  HeaderText="CalendarWithClock">
+            <local:ControlExample DocPage="controls/dateTimePicker"
+                                  HeaderText="DateTimePicker">
                 <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:CalendarWithClock /&gt;</x:String>
+                    <x:String>&lt;dev:DateTimePicker /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
@@ -49,6 +49,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:DateTimePicker x:Name="DateTimePickerSample"
+                                    VerticalAlignment="Top"
                                     ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}"
                                     Description="Choose your Date and Time from CalendarView and TimePicker"
                                     Header="Select a Date and Time"

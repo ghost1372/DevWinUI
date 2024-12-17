@@ -7,9 +7,13 @@ namespace DevWinUI;
 [TemplatePart(Name = nameof(PART_CalendarWithClockView), Type = typeof(CalendarWithClock))]
 public partial class DateTimePicker : DateTimeBase
 {
+    private readonly string HeaderContentPresenter = "HeaderContentPresenter";
+    private readonly string DescriptionPresenter = "DescriptionPresenter";
     private readonly string PART_Root = "PART_Root";
     private readonly string PART_ConfirmButton = "PART_ConfirmButton";
     private readonly string PART_CalendarWithClockView = "PART_CalendarWithClockView";
+    private ContentPresenter headerContentPresenter;
+    private ContentPresenter descriptionContentPresenter;
     private Grid rootGrid;
     private Button confirmButton;
     private CalendarWithClock calendarWithClock;
@@ -17,6 +21,13 @@ public partial class DateTimePicker : DateTimeBase
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        headerContentPresenter = GetTemplateChild(nameof(HeaderContentPresenter)) as ContentPresenter;
+        descriptionContentPresenter = GetTemplateChild(nameof(DescriptionPresenter)) as ContentPresenter;
+
+        UpdateHeaderVisibility();
+        UpdateDescriptionVisibility();
+
         rootGrid = GetTemplateChild(nameof(PART_Root)) as Grid;
         confirmButton = GetTemplateChild(nameof(PART_ConfirmButton)) as Button;
         calendarWithClock = GetTemplateChild(nameof(PART_CalendarWithClockView)) as CalendarWithClock;
@@ -99,5 +110,25 @@ public partial class DateTimePicker : DateTimeBase
     private void UpdatePlaceholder()
     {
         PlaceholderText = $"{calendarWithClock.SelectedDateTime}";
+    }
+
+    private void UpdateHeaderVisibility()
+    {
+        if (headerContentPresenter != null)
+        {
+            headerContentPresenter.Visibility = Header == null
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+        }
+    }
+
+    private void UpdateDescriptionVisibility()
+    {
+        if (descriptionContentPresenter != null)
+        {
+            descriptionContentPresenter.Visibility = Description == null
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+        }
     }
 }

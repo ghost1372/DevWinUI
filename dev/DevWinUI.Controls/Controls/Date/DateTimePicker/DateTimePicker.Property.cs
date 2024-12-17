@@ -50,7 +50,15 @@ public partial class DateTimePicker
     }
 
     public static readonly DependencyProperty DescriptionProperty =
-        DependencyProperty.Register(nameof(Description), typeof(object), typeof(DateTimePicker), new PropertyMetadata(default(object)));
+        DependencyProperty.Register(nameof(Description), typeof(object), typeof(DateTimePicker), new PropertyMetadata(default(object), OnDescriptionChanged));
+    private static void OnDescriptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (DateTimePicker)d;
+        if (ctl != null)
+        {
+            ctl.UpdateDescriptionVisibility();
+        }
+    }
     public object Header
     {
         get { return (object)GetValue(HeaderProperty); }
@@ -58,7 +66,15 @@ public partial class DateTimePicker
     }
 
     public static readonly DependencyProperty HeaderProperty =
-        DependencyProperty.Register(nameof(Header), typeof(object), typeof(DateTimePicker), new PropertyMetadata(default(object)));
+        DependencyProperty.Register(nameof(Header), typeof(object), typeof(DateTimePicker), new PropertyMetadata(default(object), OnHeaderChanged));
+    private static void OnHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (DateTimePicker)d;
+        if (ctl != null)
+        {
+            ctl.UpdateHeaderVisibility();
+        }
+    }
     public DataTemplate HeaderTemplate
     {
         get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
