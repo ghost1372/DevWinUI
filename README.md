@@ -149,6 +149,10 @@ Install-Package DevWinUI
 
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
+
+- ✨ DateTimePicker
+- ✨ CalendarWithClock
+- ✨ CalendarView Style
 - ✨ ProgressButton
 - ✨ TextBox
 - ✨ BreadcrumbNavigator
@@ -247,6 +251,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### DateTimePicker
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DateTimePicker.gif)
+
+### CalendarWithClock
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CalendarWithClock.gif)
 
 ### ProgressButton
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.gif)
