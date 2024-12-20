@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="ClockBackground"
+                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="ClockTitleForeground"
+                            ResourceKey="TextFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackground"
+                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ClockBackground"
+                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="ClockTitleForeground"
+                            ResourceKey="TextFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackground"
+                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ClockBackground"
+                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="ClockTitleForeground"
+                            ResourceKey="TextFillColorInverseBrush" />
+            <StaticResource x:Key="ClockCircleBackground"
+                            ResourceKey="CardStrokeColorDefaultSolidBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style TargetType="local:Clock">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="8,0" />
+        <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+        <Setter Property="Background" Value="{ThemeResource ClockBackground}" />
+        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackground}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+        <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+        <Setter Property="CenterPointStroke" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+        <Setter Property="CenterPointFill" Value="White" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="ClockHeight" Value="250" />
+        <Setter Property="ClockWidth" Value="250" />
+        <Setter Property="Diameter" Value="130" />
+        <Setter Property="OffsetAngle" Value="-60" />
+        <Setter Property="CenterPointHeight" Value="8" />
+        <Setter Property="CenterPointWidth" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Clock">
+                    <Grid Margin="0,4,0,8"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Name="PART_BorderTitle"
+                                    Grid.ColumnSpan="3"
+                                    Margin="4"
+                                    Background="{TemplateBinding TitleBorderBackground}"
+                                    CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
+                                <TextBlock x:Name="PART_TimeStr"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           Foreground="{ThemeResource ClockTitleForeground}" />
+                            </Border>
+                            <Viewbox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     Width="{TemplateBinding ClockWidth}"
+                                     Height="{TemplateBinding ClockHeight}"
+                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid Name="PART_Grid"
+                                      Margin="10">
+                                    <Border Width="178"
+                                            Height="178"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Background="{TemplateBinding ClockBackground}"
+                                            CornerRadius="90" />
+
+                                    <!--  Numbers Panel  -->
+                                    <local:CirclePanel x:Name="PART_PanelNum"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Diameter="{TemplateBinding Diameter}"
+                                                       KeepVertical="True"
+                                                       OffsetAngle="{TemplateBinding OffsetAngle}" />
+
+                                    <!--  Minute Hand  -->
+                                    <Line x:Name="PART_MinuteHand"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Stroke="{TemplateBinding MinuteHandBackground}"
+                                          StrokeThickness="2"
+                                          X1="0"
+                                          X2="0"
+                                          Y1="0"
+                                          Y2="-55" />
+
+                                    <!--  Center Ellipse  -->
+                                    <Ellipse Width="{TemplateBinding CenterPointWidth}"
+                                             Height="{TemplateBinding CenterPointHeight}"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Fill="{TemplateBinding CenterPointFill}"
+                                             Stroke="{TemplateBinding CenterPointStroke}"
+                                             StrokeThickness="2" />
+                                </Grid>
+                            </Viewbox>
+
+                            <local:ClockRadioButton x:Name="PART_ButtonAm"
+                                                    Grid.RowSpan="3"
+                                                    Grid.ColumnSpan="3"
+                                                    Width="35"
+                                                    Height="35"
+                                                    Margin="-30,0,0,10"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Bottom"
+                                                    Content="Am"
+                                                    IsChecked="True" />
+                            <local:ClockRadioButton x:Name="PART_ButtonPm"
+                                                    Grid.RowSpan="3"
+                                                    Grid.ColumnSpan="3"
+                                                    Width="35"
+                                                    Height="35"
+                                                    Margin="0,0,-30,10"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"
+                                                    Content="Pm" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
