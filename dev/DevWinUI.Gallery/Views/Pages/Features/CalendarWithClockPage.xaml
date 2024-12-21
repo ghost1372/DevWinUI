@@ -19,6 +19,25 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGShowAccentBorderOnHeader"
+                                      Header="ShowAccentBorderOnHeader"
+                                      IsOn="True" />
+
+                        <Button Click="Button_Click"
+                                Content="Get Selected Date and Time" />
+                        <TextBlock x:Name="TxtDateTime" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:CalendarWithClock x:Name="CalendarWithClockSample"
+                                       ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/calendarWithClock"
+                                  HeaderText="CalendarWithClock">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:CalendarWithClock ClockMode="TimePicker" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
                         <RadioButtons x:Name="RBDisplayMode"
                                       Header="TimePicker DisplayMode"
                                       SelectedIndex="2">
@@ -40,12 +59,13 @@
                                          Unchecked="RadioButton_Checked" />
                         </RadioButtons>
 
-                        <Button Click="Button_Click"
+                        <Button Click="Button_Click_1"
                                 Content="Get Selected Date and Time" />
-                        <TextBlock x:Name="TxtDateTime" />
+                        <TextBlock x:Name="TxtDateTime2" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CalendarWithClock x:Name="CalendarWithClockSample" />
+                <dev:CalendarWithClock x:Name="CalendarWithClockSample2"
+                                       ClockMode="TimePicker" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

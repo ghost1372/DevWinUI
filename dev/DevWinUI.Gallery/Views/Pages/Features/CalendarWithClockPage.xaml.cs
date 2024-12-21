@@ -16,6 +16,11 @@ public sealed partial class CalendarWithClockPage : Page
     {
         var tag = (sender as RadioButton).Tag;
         var displayMode = GeneralHelper.GetEnum<TimePickerDisplayMode>(tag?.ToString());
-        CalendarWithClockSample.TimePickerDisplayMode = displayMode;
+        CalendarWithClockSample2.TimePickerDisplayMode = displayMode;
+    }
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        TxtDateTime2.Text = CalendarWithClockSample2.SelectedDateTime;
     }
 }
