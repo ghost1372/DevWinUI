@@ -25,6 +25,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.WaveCirclePage", typeof(DevWinUIGallery.Views.WaveCirclePage)},
         {"DevWinUIGallery.Views.BubblePage", typeof(DevWinUIGallery.Views.BubblePage)},
         {"DevWinUIGallery.Views.GooeyPage", typeof(DevWinUIGallery.Views.GooeyPage)},
+        {"DevWinUIGallery.Views.CirclePanelPage", typeof(DevWinUIGallery.Views.CirclePanelPage)},
         {"DevWinUIGallery.Views.ClockPage", typeof(DevWinUIGallery.Views.ClockPage)},
         {"DevWinUIGallery.Views.DateTimePickerPage", typeof(DevWinUIGallery.Views.DateTimePickerPage)},
         {"DevWinUIGallery.Views.CalendarWithClockPage", typeof(DevWinUIGallery.Views.CalendarWithClockPage)},

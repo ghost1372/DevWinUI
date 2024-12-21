@@ -95,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CirclePanelPage",
+          "Title": "CirclePanel",
+          "Subtitle": "CirclePanel",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RadioButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ClockPage",
           "Title": "Clock",
           "Subtitle": "Analog Clock",
