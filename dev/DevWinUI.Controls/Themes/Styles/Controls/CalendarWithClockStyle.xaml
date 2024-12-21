@@ -22,6 +22,8 @@
         <Setter Property="CalendarViewBorderThickness" Value="1" />
         <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
         <Setter Property="ClockMode" Value="AnalogClock" />
+        <Setter Property="CalendarViewCornerRadius" Value="4,0,0,4" />
+        <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
         <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
     </Style>
 
@@ -123,7 +125,7 @@
                           Margin="{TemplateBinding CalendarViewMargin}"
                           BorderThickness="{TemplateBinding CalendarViewBorderThickness}"
                           CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
-                          CornerRadius="4,0,0,4"
+                          CornerRadius="{TemplateBinding CalendarViewCornerRadius}"
                           DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}"
                           DisplayMode="{TemplateBinding DisplayMode}"
                           FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
@@ -137,7 +139,7 @@
                          Grid.Column="1"
                          Margin="{TemplateBinding ClockMargin}"
                          BorderThickness="{TemplateBinding ClockBorderThickness}"
-                         CornerRadius="0,4,4,0" />
+                         ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
         </Grid>
     </ControlTemplate>
 

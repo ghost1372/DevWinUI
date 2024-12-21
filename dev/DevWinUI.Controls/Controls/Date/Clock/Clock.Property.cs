@@ -1,6 +1,14 @@
 ﻿namespace DevWinUI;
 public partial class Clock
 {
+    public static readonly DependencyProperty ClockCornerRadiusProperty =
+        DependencyProperty.Register(nameof(ClockCornerRadius), typeof(CornerRadius), typeof(Clock), new PropertyMetadata(new CornerRadius(0)));
+    public CornerRadius ClockCornerRadius
+    {
+        get { return (CornerRadius)GetValue(ClockCornerRadiusProperty); }
+        set { SetValue(ClockCornerRadiusProperty, value); }
+    }
+
     public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
        nameof(SelectedTime), typeof(DateTime), typeof(Clock), new PropertyMetadata(DateTime.Now, OnSelectedTimeChanged));
     public DateTime SelectedTime

@@ -438,7 +438,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Margin" Value="8,0" />
     <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
     <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
-    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
     <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
     <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
     <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
@@ -459,7 +459,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:Clock">
           <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
-            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding ClockCornerRadius}" />
             <Grid>
               <Grid.RowDefinitions>
                 <RowDefinition Height="53" />
@@ -3378,8 +3378,8 @@ Themes\Styles\Win2D\Watermark.xaml
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
       <Border x:Name="Background" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
-      <CalendarView x:Name="PART_CalendarView" Grid.Column="0" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="4,0,0,4" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" />
-      <local:Clock x:Name="PART_Clock" Grid.Column="1" Margin="{TemplateBinding ClockMargin}" BorderThickness="{TemplateBinding ClockBorderThickness}" CornerRadius="0,4,4,0" />
+      <CalendarView x:Name="PART_CalendarView" Grid.Column="0" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="{TemplateBinding CalendarViewCornerRadius}" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" />
+      <local:Clock x:Name="PART_Clock" Grid.Column="1" Margin="{TemplateBinding ClockMargin}" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
     </Grid>
   </ControlTemplate>
   <ControlTemplate x:Key="CalendarWithTimePickerTemplate" TargetType="local:CalendarWithClock">
@@ -6201,6 +6201,8 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="CalendarViewBorderThickness" Value="1" />
     <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
     <Setter Property="ClockMode" Value="AnalogClock" />
+    <Setter Property="CalendarViewCornerRadius" Value="4,0,0,4" />
+    <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
     <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
   </Style>
   <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">

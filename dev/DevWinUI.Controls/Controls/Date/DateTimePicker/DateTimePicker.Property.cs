@@ -153,7 +153,16 @@ public partial class DateTimePicker
     }
 
     public static readonly DependencyProperty ShowConfirmButtonProperty =
-        DependencyProperty.Register(nameof(ShowConfirmButton), typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(ShowConfirmButton), typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true, OnShowConfirmButtonChanged));
+
+    private static void OnShowConfirmButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (DateTimePicker)d;
+        if (ctl != null)
+        {
+            ctl.UpdateTemplate();
+        }
+    }
 
     public TimeSpan? SelectedTime
     {

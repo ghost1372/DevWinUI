@@ -160,11 +160,23 @@ public partial class DateTimePicker : DateTimeBase
             {
                 FlyoutBorderThickness = new Thickness(1);
                 FlyoutCornerRadius = new CornerRadius(4);
+                calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 4);
+                calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 4, 0);
             }
             else
             {
                 FlyoutBorderThickness = new Thickness(0);
                 FlyoutCornerRadius = new CornerRadius(0);
+                if (ShowConfirmButton)
+                {
+                    calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 0);
+                    calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 0, 0);
+                }
+                else
+                {
+                    calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 4);
+                    calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 4, 0);
+                }
             }
         }
     }

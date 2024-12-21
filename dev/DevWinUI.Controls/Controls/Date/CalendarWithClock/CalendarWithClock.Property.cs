@@ -1,6 +1,24 @@
 ﻿namespace DevWinUI;
 public partial class CalendarWithClock
 {
+    public CornerRadius ClockCornerRadius
+    {
+        get { return (CornerRadius)GetValue(ClockCornerRadiusProperty); }
+        set { SetValue(ClockCornerRadiusProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockCornerRadiusProperty =
+        DependencyProperty.Register(nameof(ClockCornerRadius), typeof(CornerRadius), typeof(CalendarWithClock), new PropertyMetadata(new CornerRadius(0, 4, 4, 0)));
+
+    public CornerRadius CalendarViewCornerRadius
+    {
+        get { return (CornerRadius)GetValue(CalendarViewCornerRadiusProperty); }
+        set { SetValue(CalendarViewCornerRadiusProperty, value); }
+    }
+
+    public static readonly DependencyProperty CalendarViewCornerRadiusProperty =
+        DependencyProperty.Register(nameof(CalendarViewCornerRadius), typeof(CornerRadius), typeof(CalendarWithClock), new PropertyMetadata(new CornerRadius(4, 0, 0, 4)));
+
     public ClockMode ClockMode
     {
         get { return (ClockMode)GetValue(ClockModeProperty); }

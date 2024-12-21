@@ -34,7 +34,7 @@
         <Setter Property="Margin" Value="8,0" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
         <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
         <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
@@ -59,7 +59,7 @@
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}" />
+                                CornerRadius="{TemplateBinding ClockCornerRadius}" />
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="53" />
