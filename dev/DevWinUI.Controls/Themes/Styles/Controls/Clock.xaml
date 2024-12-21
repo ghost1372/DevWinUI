@@ -4,42 +4,42 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="ClockBackground"
-                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
             <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimary" />
+                            ResourceKey="TextFillColorPrimaryBrush" />
             <StaticResource x:Key="ClockCircleBackground"
-                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+                            ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="CalendarWithClockHeaderBackground"
+                            ResourceKey="SystemAccentColor" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="ClockBackground"
-                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
             <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimary" />
+                            ResourceKey="TextFillColorPrimaryBrush" />
             <StaticResource x:Key="ClockCircleBackground"
-                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+                            ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="CalendarWithClockHeaderBackground"
+                            ResourceKey="SystemAccentColor" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="ClockBackground"
-                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
             <StaticResource x:Key="ClockTitleForeground"
                             ResourceKey="TextFillColorInverseBrush" />
             <StaticResource x:Key="ClockCircleBackground"
-                            ResourceKey="CardStrokeColorDefaultSolidBrush" />
+                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+            <StaticResource x:Key="CalendarWithClockHeaderBackground"
+                            ResourceKey="SystemAccentColor" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
     <Style TargetType="local:Clock">
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Margin" Value="8,0" />
-        <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
-        <Setter Property="Background" Value="{ThemeResource ClockBackground}" />
-        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackground}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
+        <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
-        <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
-        <Setter Property="CenterPointStroke" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+        <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+        <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+        <Setter Property="CenterPointStroke" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackground}" />
         <Setter Property="CenterPointFill" Value="White" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -49,20 +49,20 @@
         <Setter Property="OffsetAngle" Value="-60" />
         <Setter Property="CenterPointHeight" Value="8" />
         <Setter Property="CenterPointWidth" Value="8" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="HeaderMargin" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Clock">
-                    <Grid Margin="0,4,0,8"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
-
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
+                                <RowDefinition Height="53" />
                                 <RowDefinition />
                                 <RowDefinition Height="40" />
                             </Grid.RowDefinitions>
@@ -73,7 +73,7 @@
                             </Grid.ColumnDefinitions>
                             <Border Name="PART_BorderTitle"
                                     Grid.ColumnSpan="3"
-                                    Margin="4"
+                                    Margin="{TemplateBinding HeaderMargin}"
                                     Background="{TemplateBinding TitleBorderBackground}"
                                     CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
                                 <TextBlock x:Name="PART_TimeStr"

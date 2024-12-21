@@ -133,4 +133,12 @@ public partial class Clock
         get => (double)GetValue(DiameterProperty);
         set => SetValue(DiameterProperty, value);
     }
+
+    public static readonly DependencyProperty HeaderMarginProperty =
+        DependencyProperty.Register(nameof(HeaderMargin), typeof(Thickness), typeof(Clock), new PropertyMetadata(new Thickness(4)));
+    public Thickness HeaderMargin
+    {
+        get { return (Thickness)GetValue(HeaderMarginProperty); }
+        set { SetValue(HeaderMarginProperty, value); }
+    }
 }
