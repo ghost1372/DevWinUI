@@ -32,6 +32,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:DateTimePicker x:Name="DateTimePickerSample"
+                                    HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
                                     ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}"
                                     Description="Choose your Date and Time from CalendarView and Clock"
@@ -76,6 +77,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:DateTimePicker x:Name="DateTimePickerSample2"
+                                    HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
                                     ClockMode="TimePicker"
                                     ConfirmButtonContent="{x:Bind TxtConfirm2.Text, Mode=OneWay}"

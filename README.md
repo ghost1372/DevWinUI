@@ -152,6 +152,8 @@ Install-Package DevWinUI
 
 - ✨ DateTimePicker
 - ✨ CalendarWithClock
+- ✨ Clock
+- ✨ CirclePanel
 - ✨ CalendarView Style
 - ✨ ProgressButton
 - ✨ TextBox
@@ -257,6 +259,9 @@ Install-Package DevWinUI.ContextMenu
 
 ### CalendarWithClock
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CalendarWithClock.gif)
+
+### Clock
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Clock.gif)
 
 ### ProgressButton
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressButton.gif)

@@ -95,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ClockPage",
+          "Title": "Clock",
+          "Subtitle": "Analog Clock",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DateTimePickerPage",
           "Title": "DateTimePicker",
           "Subtitle": "Pick a Date and Time with CalendarWithClock",
