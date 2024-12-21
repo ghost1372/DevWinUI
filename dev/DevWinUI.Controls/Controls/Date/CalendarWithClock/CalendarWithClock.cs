@@ -63,9 +63,40 @@ public partial class CalendarWithClock : DateTimeBase
             timePicker.SelectedTimeChanged += OnTimePickerSelectedTimeChanged;
             timePicker.SelectedTime = SelectedTime;
         }
+
+        if (clock != null)
+        {
+            clock.SelectedTimeChanged -= OnClockSelectedTimeChanged;
+            clock.SelectedTimeChanged += OnClockSelectedTimeChanged;
+        }
+
         UpdateCalendarView();
         UpdateGridRowsAndColumns(TimePickerDisplayMode);
         OnShowAccentBorderOnHeader(ShowAccentBorderOnHeader);
+    }
+
+    private void OnClockSelectedTimeChanged(object sender, DateTime e)
+    {
+        if (!isUpdating && clock.SelectedTime is DateTime selectedTime)
+        {
+            try
+            {
+                isUpdating = true;
+
+                // Update SelectedTime
+                SelectedTime = new TimeSpan(selectedTime.Hour, selectedTime.Minute, selectedTime.Second);
+
+                // Update SelectedDate with new time while preserving the date and time zone offset
+                SelectedDate = new DateTimeOffset(
+                    SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
+                    selectedTime.Hour, selectedTime.Minute, selectedTime.Second,
+                    SelectedDate.Offset);
+            }
+            finally
+            {
+                isUpdating = false;
+            }
+        }
     }
 
     private void OnCalendarViewSelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
