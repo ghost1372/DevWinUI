@@ -11,6 +11,6 @@ public sealed partial class DateTimePickerPage : Page
     {
         var tag = (sender as RadioButton).Tag;
         var displayMode = GeneralHelper.GetEnum<TimePickerDisplayMode>(tag?.ToString());
-        DateTimePickerSample.TimePickerDisplayMode = displayMode;
+        DateTimePickerSample2.TimePickerDisplayMode = displayMode;
     }
 }

@@ -13,9 +13,36 @@
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
             <local:ControlExample DocPage="controls/dateTimePicker"
-                                  HeaderText="DateTimePicker">
+                                  HeaderText="DateTimePicker with Analog Clock">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:DateTimePicker /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGShowAccentBorderOnHeader"
+                                      Header="ShowAccentBorderOnHeader"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="ShowConfirmButton"
+                                      Header="ShowConfirmButton"
+                                      IsOn="True" />
+                        <TextBox x:Name="TxtConfirm"
+                                 Header="Confirm Button Content"
+                                 PlaceholderText="Confirm"
+                                 Text="Confirm" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:DateTimePicker x:Name="DateTimePickerSample"
+                                    VerticalAlignment="Top"
+                                    ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}"
+                                    Description="Choose your Date and Time from CalendarView and Clock"
+                                    Header="Select a Date and Time"
+                                    ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}"
+                                    ShowConfirmButton="{x:Bind ShowConfirmButton.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/dateTimePicker"
+                                  HeaderText="DateTimePicker with TimePicker">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:DateTimePicker ClockMode="TimePicker" /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
@@ -39,21 +66,22 @@
                                          Tag="Bottom"
                                          Unchecked="RadioButton_Checked" />
                         </RadioButtons>
-                        <ToggleSwitch x:Name="ShowConfirmButton"
+                        <ToggleSwitch x:Name="ShowConfirmButton2"
                                       Header="ShowConfirmButton"
                                       IsOn="True" />
-                        <TextBox x:Name="TxtConfirm"
+                        <TextBox x:Name="TxtConfirm2"
                                  Header="Confirm Button Content"
                                  PlaceholderText="Confirm"
                                  Text="Confirm" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:DateTimePicker x:Name="DateTimePickerSample"
+                <dev:DateTimePicker x:Name="DateTimePickerSample2"
                                     VerticalAlignment="Top"
-                                    ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}"
+                                    ClockMode="TimePicker"
+                                    ConfirmButtonContent="{x:Bind TxtConfirm2.Text, Mode=OneWay}"
                                     Description="Choose your Date and Time from CalendarView and TimePicker"
                                     Header="Select a Date and Time"
-                                    ShowConfirmButton="{x:Bind ShowConfirmButton.IsOn, Mode=OneWay}" />
+                                    ShowConfirmButton="{x:Bind ShowConfirmButton2.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -13,7 +13,7 @@
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
             <local:ControlExample DocPage="controls/calendarWithClock"
-                                  HeaderText="CalendarWithClock">
+                                  HeaderText="CalendarWithClock [Analog Clock]">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CalendarWithClock /&gt;</x:String>
                 </local:ControlExample.Xaml>
@@ -32,7 +32,7 @@
                                        ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" />
             </local:ControlExample>
             <local:ControlExample DocPage="controls/calendarWithClock"
-                                  HeaderText="CalendarWithClock">
+                                  HeaderText="CalendarWithClock [TimePicker]">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CalendarWithClock ClockMode="TimePicker" /&gt;</x:String>
                 </local:ControlExample.Xaml>
