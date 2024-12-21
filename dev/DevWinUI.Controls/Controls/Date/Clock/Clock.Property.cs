@@ -1,8 +1,6 @@
 ﻿namespace DevWinUI;
 public partial class Clock
 {
-    public event EventHandler<DateTime> SelectedTimeChanged;
-    
     public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
        nameof(SelectedTime), typeof(DateTime), typeof(Clock), new PropertyMetadata(DateTime.Now, OnSelectedTimeChanged));
     public DateTime SelectedTime

@@ -19,6 +19,12 @@
         <Setter Property="ConfirmButtonContent" Value="Confirm" />
         <Setter Property="ConfirmButtonStyle" Value="{StaticResource AccentButtonStyle}" />
         <Setter Property="ShowConfirmButton" Value="True" />
+        <Setter Property="ShowAccentBorderOnHeader" Value="True" />
+        <Setter Property="ClockMode" Value="AnalogClock" />
+        <Setter Property="CalendarViewMargin" Value="0" />
+        <Setter Property="TimePickerMargin" Value="5,5" />
+        <Setter Property="ClockMargin" Value="0" />
+        <Setter Property="ClockBorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DateTimePicker">
@@ -157,8 +163,9 @@
                                         <Setter Property="MaxHeight" Value="Infinity" />
                                         <Setter Property="MaxWidth" Value="Infinity" />
                                         <Setter Property="Padding" Value="0" />
-                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="BorderThickness" Value="1" />
                                         <Setter Property="IsDefaultShadowEnabled" Value="True" />
+                                        <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
                                         <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
@@ -196,6 +203,9 @@
                                                              CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
                                                              CalendarViewBorderThickness="{TemplateBinding CalendarViewBorderThickness}"
                                                              CalendarViewStyle="{TemplateBinding CalendarViewStyle}"
+                                                             ClockBorderThickness="{TemplateBinding ClockBorderThickness}"
+                                                             ClockMargin="{TemplateBinding ClockMargin}"
+                                                             ClockMode="{TemplateBinding ClockMode}"
                                                              CornerRadius="0"
                                                              DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}"
                                                              DisplayMode="{TemplateBinding DisplayMode}"
@@ -205,6 +215,7 @@
                                                              IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
                                                              MaxDate="{TemplateBinding MaxDate}"
                                                              MinDate="{TemplateBinding MinDate}"
+                                                             ShowAccentBorderOnHeader="{TemplateBinding ShowAccentBorderOnHeader}"
                                                              TimePickerDisplayMode="{TemplateBinding TimePickerDisplayMode}"
                                                              TimePickerMargin="{TemplateBinding TimePickerMargin}" />
 

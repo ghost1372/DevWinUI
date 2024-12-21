@@ -19,6 +19,9 @@ public partial class Clock : Control
     private const string ElementPanelNum = "PART_PanelNum";
     private const string ElementTimeStr = "PART_TimeStr";
     private const string ElementGrid = "PART_Grid";
+
+    public event EventHandler<DateTime> SelectedTimeChanged;
+
     private ClockRadioButton _buttonAm;
 
     private ClockRadioButton _buttonPm;

@@ -13,6 +13,9 @@ public partial class CalendarWithClock : DateTimeBase
     private const string PART_TimePicker = "PART_TimePicker";
     private const string PART_Clock = "PART_Clock";
     private const string PART_Root = "PART_Root";
+
+    public event EventHandler<DateTimeOffset> SelectedTimeChanged;
+
     private CalendarView calendarView;
     private TimePicker timePicker;
     private Clock clock;
@@ -91,6 +94,8 @@ public partial class CalendarWithClock : DateTimeBase
                     SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
                     selectedTime.Hour, selectedTime.Minute, selectedTime.Second,
                     SelectedDate.Offset);
+
+                SelectedTimeChanged?.Invoke(this, SelectedDate);
             }
             finally
             {
@@ -110,6 +115,8 @@ public partial class CalendarWithClock : DateTimeBase
                     selectedDate.Year, selectedDate.Month, selectedDate.Day,
                     SelectedTime?.Hours ?? 0, SelectedTime?.Minutes ?? 0, SelectedTime?.Seconds ?? 0,
                     selectedDate.Offset);
+
+                SelectedTimeChanged?.Invoke(this, SelectedDate);
             }
             finally
             {
@@ -134,6 +141,8 @@ public partial class CalendarWithClock : DateTimeBase
                     SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
                     selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds,
                     SelectedDate.Offset);
+
+                SelectedTimeChanged?.Invoke(this, SelectedDate);
             }
             finally
             {
@@ -297,5 +306,20 @@ public partial class CalendarWithClock : DateTimeBase
             clock.HeaderMargin = new Thickness(4);
             calendarView.BorderThickness = new Thickness(1);
         }
+    }
+
+    public Clock GetClock()
+    {
+        return clock;
+    }
+
+    public TimePicker GetTimePicker()
+    {
+        return timePicker;
+    }
+
+    public CalendarView GetCalendarView()
+    {
+        return calendarView;
     }
 }
