@@ -4,28 +4,27 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimaryBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <StaticResource x:Key="TextOnAccentForegroundBrush"
+                            ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimaryBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="SystemColorHighlightColorBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorInverseBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <StaticResource x:Key="TextOnAccentForegroundBrush"
+                            ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="CardBackgroundFillColorSecondaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -36,10 +35,10 @@
         <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
         <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="CenterPointStroke" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackground}" />
+        <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
         <Setter Property="CenterPointFill" Value="White" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -80,7 +79,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            FontSize="20"
-                                           Foreground="{ThemeResource ClockTitleForeground}" />
+                                           Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
                             </Border>
                             <Viewbox Grid.Row="1"
                                      Grid.Column="0"

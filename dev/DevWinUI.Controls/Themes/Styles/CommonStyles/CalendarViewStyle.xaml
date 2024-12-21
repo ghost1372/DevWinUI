@@ -53,23 +53,27 @@
                                                               Foreground="{TemplateBinding Foreground}">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForeground}" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
                                                         <VisualState x:Name="PointerOver">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPointerOver}" />
                                                                 <Setter Target="Text.BorderBrush" Value="{ThemeResource CalendarViewNavigationButtonBorderBrushPointerOver}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundPointerOver}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPointerOver}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Pressed">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPressed}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundPressed}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPressed}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Disabled">
                                                             <VisualState.Setters>
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundDisabled}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundDisabled}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -107,23 +111,27 @@
                                                               CornerRadius="{TemplateBinding CornerRadius}">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForeground}" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
                                                         <VisualState x:Name="PointerOver">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPointerOver}" />
                                                                 <Setter Target="Text.BorderBrush" Value="{ThemeResource CalendarViewNavigationButtonBorderBrushPointerOver}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundPointerOver}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPointerOver}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Pressed">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPressed}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundPressed}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPressed}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Disabled">
                                                             <VisualState.Setters>
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundDisabled}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundDisabled}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -578,7 +586,7 @@
                                 <Border x:Name="PART_HeaderBorder"
                                         Grid.ColumnSpan="3"
                                         Margin="4,4,0,4"
-                                        Background="{ThemeResource CalendarWithClockHeaderBackground}"
+                                        Background="{ThemeResource SysemAccentControlBackgroundBrush}"
                                         CornerRadius="8,0,0,8"
                                         Visibility="Collapsed" />
                                 <Button x:Name="HeaderButton"

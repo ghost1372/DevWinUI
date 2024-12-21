@@ -155,12 +155,12 @@
                              Color="{ThemeResource ControlStrokeColorDefault}" />
             <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
                              Color="{ThemeResource ControlStrokeColorDefault}" />
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorInverseBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <StaticResource x:Key="TextOnAccentForegroundBrush"
+                            ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="CardBackgroundFillColorSecondaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="AccentAAFillColorDefaultBrush" />
             <StaticResource x:Key="ProgressForeground"
                             ResourceKey="ControlAAFillColorDefaultBrush" />
             <StaticResource x:Key="SelectorBarSegmentedBackground"
@@ -284,12 +284,12 @@
                              Color="{ThemeResource ControlStrokeColorDefault}" />
             <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
                              Color="{ThemeResource ControlStrokeColorDefault}" />
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimaryBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <StaticResource x:Key="TextOnAccentForegroundBrush"
+                            ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="AccentAAFillColorDefaultBrush" />
             <StaticResource x:Key="ProgressForeground"
                             ResourceKey="CardStrokeColorDefaultSolidBrush" />
             <StaticResource x:Key="SelectorBarSegmentedBackground"
@@ -413,12 +413,11 @@
                              Color="{ThemeResource SystemColorButtonTextColor}" />
             <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
                              Color="{ThemeResource SystemColorButtonTextColor}" />
-            <StaticResource x:Key="ClockTitleForeground"
-                            ResourceKey="TextFillColorPrimaryBrush" />
-            <StaticResource x:Key="ClockCircleBackground"
+            <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
+            <StaticResource x:Key="ClockCircleBackgroundBrush"
                             ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="CalendarWithClockHeaderBackground"
-                            ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
+                            ResourceKey="SystemColorHighlightColorBrush" />
             <StaticResource x:Key="ProgressForeground"
                             ResourceKey="CardStrokeColorDefaultSolidBrush" />
             <StaticResource x:Key="SelectorBarSegmentedBackground"
@@ -685,10 +684,10 @@
         <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
         <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="TitleBorderBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="MinuteHandBackground" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="CenterPointStroke" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackground}" />
+        <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
         <Setter Property="CenterPointFill" Value="White" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -729,7 +728,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            FontSize="20"
-                                           Foreground="{ThemeResource ClockTitleForeground}" />
+                                           Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
                             </Border>
                             <Viewbox Grid.Row="1"
                                      Grid.Column="0"
@@ -820,12 +819,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemAccentColor}" />
+                                                                    Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="White" />
+                                                                    Value="{ThemeResource AccentButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -4189,23 +4188,27 @@
                                                               Foreground="{TemplateBinding Foreground}">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForeground}" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
                                                         <VisualState x:Name="PointerOver">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPointerOver}" />
                                                                 <Setter Target="Text.BorderBrush" Value="{ThemeResource CalendarViewNavigationButtonBorderBrushPointerOver}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundPointerOver}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPointerOver}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Pressed">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPressed}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundPressed}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPressed}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Disabled">
                                                             <VisualState.Setters>
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewHeaderNavigationButtonForegroundDisabled}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundDisabled}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -4243,23 +4246,27 @@
                                                               CornerRadius="{TemplateBinding CornerRadius}">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForeground}" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
                                                         <VisualState x:Name="PointerOver">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPointerOver}" />
                                                                 <Setter Target="Text.BorderBrush" Value="{ThemeResource CalendarViewNavigationButtonBorderBrushPointerOver}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundPointerOver}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPointerOver}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Pressed">
                                                             <VisualState.Setters>
                                                                 <Setter Target="Text.Background" Value="{ThemeResource CalendarViewNavigationButtonBackgroundPressed}" />
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundPressed}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundPressed}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                         <VisualState x:Name="Disabled">
                                                             <VisualState.Setters>
-                                                                <Setter Target="Text.Foreground" Value="{ThemeResource CalendarViewNavigationButtonForegroundDisabled}" />
+                                                                <Setter Target="Text.Foreground" Value="{ThemeResource AccentButtonForegroundDisabled}" />
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -4714,7 +4721,7 @@
                                 <Border x:Name="PART_HeaderBorder"
                                         Grid.ColumnSpan="3"
                                         Margin="4,4,0,4"
-                                        Background="{ThemeResource CalendarWithClockHeaderBackground}"
+                                        Background="{ThemeResource SysemAccentControlBackgroundBrush}"
                                         CornerRadius="8,0,0,8"
                                         Visibility="Collapsed" />
                                 <Button x:Name="HeaderButton"

@@ -24,12 +24,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemAccentColor}" />
+                                                                    Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="White" />
+                                                                    Value="{ThemeResource AccentButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
