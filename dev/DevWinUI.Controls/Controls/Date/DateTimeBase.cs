@@ -100,6 +100,15 @@ public abstract partial class DateTimeBase : Control
     public static readonly DependencyProperty TimePickerMarginProperty =
         DependencyProperty.Register(nameof(TimePickerMargin), typeof(Thickness), typeof(DateTimeBase), new PropertyMetadata(new Thickness(5)));
 
+    public Thickness ClockMargin
+    {
+        get { return (Thickness)GetValue(ClockMarginProperty); }
+        set { SetValue(ClockMarginProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockMarginProperty =
+        DependencyProperty.Register(nameof(ClockMargin), typeof(Thickness), typeof(DateTimeBase), new PropertyMetadata(new Thickness(5)));
+
     public Style CalendarViewStyle
     {
         get { return (Style)GetValue(CalendarViewStyleProperty); }
@@ -117,4 +126,13 @@ public abstract partial class DateTimeBase : Control
 
     public static readonly DependencyProperty CalendarViewBorderThicknessProperty =
         DependencyProperty.Register(nameof(CalendarViewBorderThickness), typeof(Thickness), typeof(DateTimeBase), new PropertyMetadata(new Thickness(1)));
+
+    public Thickness ClockBorderThickness
+    {
+        get { return (Thickness)GetValue(ClockBorderThicknessProperty); }
+        set { SetValue(ClockBorderThicknessProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockBorderThicknessProperty =
+        DependencyProperty.Register(nameof(ClockBorderThickness), typeof(Thickness), typeof(DateTimeBase), new PropertyMetadata(new Thickness(1)));
 }

@@ -2,14 +2,20 @@
 
 [TemplatePart(Name = PART_CalendarView, Type = typeof(CalendarView))]
 [TemplatePart(Name = PART_TimePicker, Type = typeof(TimePicker))]
+[TemplatePart(Name = PART_Clock, Type = typeof(Clock))]
 [TemplatePart(Name = PART_Root, Type = typeof(Grid))]
 public partial class CalendarWithClock : DateTimeBase
 {
+    public ControlTemplate? TimePickerTemplate { get; set; }
+    public ControlTemplate? AnalogClockTemplate { get; set; }
+
     private const string PART_CalendarView = "PART_CalendarView";
     private const string PART_TimePicker = "PART_TimePicker";
+    private const string PART_Clock = "PART_Clock";
     private const string PART_Root = "PART_Root";
     private CalendarView calendarView;
     private TimePicker timePicker;
+    private Clock clock;
     private Grid rootGrid;
     private bool isUpdating;
     public string SelectedDateFormatted
@@ -26,12 +32,24 @@ public partial class CalendarWithClock : DateTimeBase
             return $"{SelectedDateFormatted} - {SelectedTime?.ToString(@"hh\:mm\:ss")}";
         }
     }
+
+    public CalendarWithClock()
+    {
+        if (Application.Current.Resources["CalendarWithTimePickerTemplate"] is ControlTemplate timePickerTemplate)
+            TimePickerTemplate = timePickerTemplate;
+
+        if (Application.Current.Resources["CalendarWithAnalogClockTemplate"] is ControlTemplate analogClockTemplate)
+            AnalogClockTemplate = analogClockTemplate;
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        UpdateTemplate();
+
         rootGrid = GetTemplateChild(PART_Root) as Grid;
         timePicker = GetTemplateChild(PART_TimePicker) as TimePicker;
+        clock = GetTemplateChild(PART_Clock) as Clock;
         calendarView = GetTemplateChild(PART_CalendarView) as CalendarView;
         if (calendarView != null)
         {
@@ -47,6 +65,7 @@ public partial class CalendarWithClock : DateTimeBase
         }
         UpdateCalendarView();
         UpdateGridRowsAndColumns(TimePickerDisplayMode);
+        OnShowAccentBorderOnHeader(ShowAccentBorderOnHeader);
     }
 
     private void OnCalendarViewSelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
@@ -129,6 +148,11 @@ public partial class CalendarWithClock : DateTimeBase
 
     private void UpdateGridRowsAndColumns(TimePickerDisplayMode displayMode)
     {
+        if (timePicker == null)
+        {
+            return;
+        }
+
         if (rootGrid != null)
         {
             switch (displayMode)
@@ -208,6 +232,39 @@ public partial class CalendarWithClock : DateTimeBase
 
                     break;
             }
+        }
+    }
+    private void UpdateTemplate()
+    {
+        // Dynamically apply the correct ControlTemplate based on ClockMode
+        Template = ClockMode switch
+        {
+            ClockMode.TimePicker => TimePickerTemplate,
+            ClockMode.AnalogClock => AnalogClockTemplate,
+            _ => Template
+        };
+    }
+
+    private void OnShowAccentBorderOnHeader(bool showBorder)
+    {
+        if (clock == null || calendarView == null)
+        {
+            return;
+        }
+
+        CalendarViewAttach.SetShowBorder(calendarView, showBorder);
+
+        if (showBorder)
+        {
+            clock.TitleBorderCornerRadius = new CornerRadius(0, 8, 8, 0);
+            clock.HeaderMargin = new Thickness(0, 5, 4, 4);
+            calendarView.BorderThickness = new Thickness(1, 1, 0, 1);
+        }
+        else
+        {
+            clock.TitleBorderCornerRadius = new CornerRadius(8);
+            clock.HeaderMargin = new Thickness(4);
+            calendarView.BorderThickness = new Thickness(1);
         }
     }
 }
