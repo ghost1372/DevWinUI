@@ -15,6 +15,10 @@ public partial class DateTimePicker : DateTimeBase
     private const string PART_Root = "PART_Root";
     private const string PART_ConfirmButton = "PART_ConfirmButton";
     private const string PART_CalendarWithClockView = "PART_CalendarWithClockView";
+
+    public event EventHandler<RoutedEventArgs> ConfirmClick;
+    public event EventHandler<DateTimeOffset> SelectedTimeChanged;
+
     private ContentPresenter headerContentPresenter;
     private ContentPresenter descriptionContentPresenter;
     private Grid rootGrid;
@@ -57,12 +61,25 @@ public partial class DateTimePicker : DateTimeBase
         {
             calendarWithClock.SelectedTime = SelectedTime;
             calendarWithClock.SelectedDate = SelectedDate;
+            calendarWithClock.SelectedTimeChanged -= CalendarWithClock_SelectedTimeChanged;
+            calendarWithClock.SelectedTimeChanged += CalendarWithClock_SelectedTimeChanged;
         }
+
+        UpdateTemplate();
+    }
+
+    private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
+    {
+        SelectedTimeChanged?.Invoke(this, e);
     }
 
     private void OnConfirmButton(object sender, RoutedEventArgs e)
     {
-        FlyoutBase.GetAttachedFlyout(rootGrid).Hide();
+        ConfirmClick?.Invoke(this, e);
+        if (rootGrid != null)
+        {
+            FlyoutBase.GetAttachedFlyout(rootGrid).Hide();
+        }
     }
 
     private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
@@ -133,5 +150,27 @@ public partial class DateTimePicker : DateTimeBase
                 ? Visibility.Collapsed
                 : Visibility.Visible;
         }
+    }
+
+    private void UpdateTemplate()
+    {
+        if (calendarWithClock != null)
+        {
+            if (ClockMode == ClockMode.TimePicker)
+            {
+                FlyoutBorderThickness = new Thickness(1);
+                FlyoutCornerRadius = new CornerRadius(4);
+            }
+            else
+            {
+                FlyoutBorderThickness = new Thickness(0);
+                FlyoutCornerRadius = new CornerRadius(0);
+            }
+        }
+    }
+
+    public CalendarWithClock GetCalendarWithClock()
+    {
+        return calendarWithClock;
     }
 }

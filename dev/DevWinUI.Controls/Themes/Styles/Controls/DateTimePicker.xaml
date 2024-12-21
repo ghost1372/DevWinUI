@@ -24,7 +24,7 @@
         <Setter Property="CalendarViewMargin" Value="0" />
         <Setter Property="TimePickerMargin" Value="5,5" />
         <Setter Property="ClockMargin" Value="0" />
-        <Setter Property="ClockBorderThickness" Value="0" />
+        <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DateTimePicker">
@@ -163,10 +163,10 @@
                                         <Setter Property="MaxHeight" Value="Infinity" />
                                         <Setter Property="MaxWidth" Value="Infinity" />
                                         <Setter Property="Padding" Value="0" />
-                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="BorderThickness" Value="0" />
                                         <Setter Property="IsDefaultShadowEnabled" Value="True" />
                                         <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
-                                        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+                                        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="FlyoutPresenter">
@@ -185,7 +185,9 @@
                                         </Setter>
                                     </Style>
                                 </Flyout.FlyoutPresenterStyle>
-                                <Grid>
+                                <Grid BorderBrush="{ThemeResource CalendarDatePickerBorderBrush}"
+                                      BorderThickness="{TemplateBinding FlyoutBorderThickness}"
+                                      CornerRadius="{ThemeResource ControlCornerRadius}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
@@ -196,7 +198,7 @@
                                             Content="{TemplateBinding ConfirmButtonContent}"
                                             CornerRadius="0,0,4,4"
                                             Style="{TemplateBinding ConfirmButtonStyle}"
-                                            Visibility="{Binding IsConfirmButtonShow, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                            Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                                     <local:CalendarWithClock x:Name="PART_CalendarWithClockView"
                                                              Margin="{TemplateBinding CalendarViewMargin}"
                                                              BorderThickness="{TemplateBinding Padding}"

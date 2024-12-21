@@ -1,6 +1,51 @@
 ﻿namespace DevWinUI;
 public partial class DateTimePicker
 {
+    internal CornerRadius FlyoutCornerRadius
+    {
+        get { return (CornerRadius)GetValue(FlyoutCornerRadiusProperty); }
+        set { SetValue(FlyoutCornerRadiusProperty, value); }
+    }
+
+    internal static readonly DependencyProperty FlyoutCornerRadiusProperty =
+        DependencyProperty.Register(nameof(FlyoutCornerRadius), typeof(CornerRadius), typeof(DateTimePicker), new PropertyMetadata(new CornerRadius(0)));
+
+    internal Thickness FlyoutBorderThickness
+    {
+        get { return (Thickness)GetValue(FlyoutBorderThicknessProperty); }
+        set { SetValue(FlyoutBorderThicknessProperty, value); }
+    }
+
+    internal static readonly DependencyProperty FlyoutBorderThicknessProperty =
+        DependencyProperty.Register(nameof(FlyoutBorderThickness), typeof(Thickness), typeof(DateTimePicker), new PropertyMetadata(new Thickness(0)));
+
+    public bool ShowAccentBorderOnHeader
+    {
+        get { return (bool)GetValue(ShowAccentBorderOnHeaderProperty); }
+        set { SetValue(ShowAccentBorderOnHeaderProperty, value); }
+    }
+
+    public static readonly DependencyProperty ShowAccentBorderOnHeaderProperty =
+        DependencyProperty.Register(nameof(ShowAccentBorderOnHeader), typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true));
+
+    public ClockMode ClockMode
+    {
+        get { return (ClockMode)GetValue(ClockModeProperty); }
+        set { SetValue(ClockModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockModeProperty =
+        DependencyProperty.Register(nameof(ClockMode), typeof(ClockMode), typeof(DateTimePicker), new PropertyMetadata(ClockMode.AnalogClock, OnClockModeChanged));
+
+    private static void OnClockModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (DateTimePicker)d;
+        if (ctl != null)
+        {
+            ctl.UpdateTemplate();
+        }
+    }
+
     public DateTimeOffset SelectedDate
     {
         get { return (DateTimeOffset)GetValue(SelectedDateProperty); }
