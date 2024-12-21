@@ -6,4 +6,9 @@ public sealed partial class ClockPage : Page
     {
         this.InitializeComponent();
     }
+
+    private void Clock_SelectedTimeChanged(object sender, DateTime e)
+    {
+        Txt.Text = e.ToLongTimeString();
+    }
 }

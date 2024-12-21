@@ -17,7 +17,11 @@
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:Clock /&gt;</x:String>
                 </local:ControlExample.Xaml>
-                <dev:Clock />
+                <local:ControlExample.Pane>
+                    <TextBlock x:Name="Txt" />
+                </local:ControlExample.Pane>
+                <dev:Clock HorizontalAlignment="Left"
+                           SelectedTimeChanged="Clock_SelectedTimeChanged" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
