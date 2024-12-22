@@ -21,7 +21,6 @@ public partial class App : Application
     public App()
     {
         Services = ConfigureServices();
-        Application.Current.RequestedTheme = GetThemeService.GetApplicationTheme();
         this.InitializeComponent();
     }
 
@@ -51,7 +50,6 @@ public partial class App : Application
         if (GetThemeService != null)
         {
             GetThemeService.AutoInitialize(MainWindow)
-                .EnableRequestedTheme()
                 .ConfigureTintColor();
         }
         
