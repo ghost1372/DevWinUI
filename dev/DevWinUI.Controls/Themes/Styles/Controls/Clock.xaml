@@ -61,7 +61,7 @@
                                 CornerRadius="{TemplateBinding ClockCornerRadius}" />
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="53" />
+                                <RowDefinition Height="49.5" />
                                 <RowDefinition />
                                 <RowDefinition Height="40" />
                             </Grid.RowDefinitions>
