@@ -1,10 +1,18 @@
 ﻿using System.Globalization;
+using System.Security.Principal;
 using System.Web;
 using Microsoft.UI.Input;
 
 namespace DevWinUI;
 public partial class GeneralHelper
 {
+    public static bool IsAppRunningAsAdmin()
+    {
+        var identity = WindowsIdentity.GetCurrent();
+        var principal = new WindowsPrincipal(identity);
+        return principal.IsInRole(WindowsBuiltInRole.Administrator);
+    }
+
     public static void ChangeCursor(UIElement uiElement, InputCursor cursor)
     {
         Type type = typeof(UIElement);
