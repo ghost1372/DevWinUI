@@ -95,6 +95,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TransitioningContentControlPage",
+          "Title": "TransitioningContentControl",
+          "Subtitle": "TransitioningContentControl",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CirclePanelPage",
           "Title": "CirclePanel",
           "Subtitle": "CirclePanel",

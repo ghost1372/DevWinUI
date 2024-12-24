@@ -150,6 +150,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ TransitioningContentControl
 - ✨ DateTimePicker
 - ✨ CalendarWithClock
 - ✨ Clock
@@ -253,6 +254,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### TransitioningContentControl
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TransitioningContentControl.gif)
 
 ### DateTimePicker
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DateTimePicker.gif)
