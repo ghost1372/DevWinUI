@@ -41,14 +41,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            var currentItem = (NavigationViewItem)_navigationView.SelectedItem;
-            var currentTag = currentItem?.Tag?.ToString();
-            if (string.IsNullOrEmpty(currentTag))
-            {
-                return;
-            }
-
-            if (e.Parameter is BaseDataInfo dataInfo && dataInfo != null)
+            if (_navigationView.SelectedItem is NavigationViewItem currentItem && currentItem.Tag is string currentTag && !string.IsNullOrEmpty(currentTag) && e.Parameter is BaseDataInfo dataInfo)
             {
                 if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataInfo.UniqueId))
                 {
@@ -88,15 +81,13 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            var selectedItem = args.SelectedItemContainer as NavigationViewItem;
-            var dataInfo = selectedItem.DataContext as BaseDataInfo;
-            if (_sectionPage != null && !string.IsNullOrEmpty(dataInfo?.SectionId))
+            if (args.SelectedItemContainer is NavigationViewItem selectedItem && selectedItem.DataContext is BaseDataInfo dataInfo)
             {
-                NavigateTo(SectionPageKey, dataInfo);
-            }
-            else
-            {
-                NavigateTo(dataInfo?.UniqueId, dataInfo);
+                var targetKey = !string.IsNullOrEmpty(dataInfo.SectionId) && _sectionPage != null
+                                ? SectionPageKey
+                                : dataInfo.UniqueId;
+
+                NavigateTo(targetKey, dataInfo);
             }
         }
     }
