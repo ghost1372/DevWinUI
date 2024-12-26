@@ -29,7 +29,6 @@ public partial class JsonNavigationService
     public event NavigatedEventHandler? FrameNavigated;
 
     public Window Window { get; set; }
-    private bool _isBackNavigation = false;
     private bool _isTitlebarConfigured;
     private TitleBar _titleBar;
 }

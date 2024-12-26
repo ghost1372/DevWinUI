@@ -46,7 +46,6 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         ConfigDefaultPage(defaultPage);
-        NavigateTo(_defaultPage, new DataItem { UniqueId = _defaultPage?.ToString() });
         return this;
     }
 

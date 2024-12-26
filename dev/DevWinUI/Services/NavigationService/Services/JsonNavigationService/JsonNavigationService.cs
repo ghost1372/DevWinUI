@@ -14,8 +14,8 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
         _navigationView.BackRequested -= OnBackRequested;
         _navigationView.BackRequested += OnBackRequested;
-        _navigationView.ItemInvoked -= OnItemInvoked;
-        _navigationView.ItemInvoked += OnItemInvoked;
+        _navigationView.SelectionChanged -= OnSelectionChanged;
+        _navigationView.SelectionChanged += OnSelectionChanged;
 
         var settingItem = (NavigationViewItem)SettingsItem;
         if (settingItem != null)
@@ -35,39 +35,40 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             _titleBar.IsBackButtonVisible = _frame.CanGoBack;
         }
 
-        if (_isBackNavigation)
+        if (e.SourcePageType == _settingsPage)
         {
-            if (e.SourcePageType == _settingsPage)
+            _navigationView.SelectedItem = SettingsItem;
+        }
+        else
+        {
+            var currentItem = (NavigationViewItem)_navigationView.SelectedItem;
+            var currentTag = currentItem?.Tag?.ToString();
+            if (string.IsNullOrEmpty(currentTag))
             {
-                _navigationView.SelectedItem = SettingsItem;
+                return;
             }
-            else
+
+            if (e.Parameter is DataItem dataItem)
             {
-                if (e.Parameter is DataItem dataItem)
+                if (!string.IsNullOrEmpty(dataItem.UniqueId))
                 {
-                    if (!string.IsNullOrEmpty(dataItem.UniqueId))
+                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataItem.UniqueId))
                     {
-                        if (dataItem.UniqueId.Equals(_defaultPage?.ToString()))
-                        {
-                            EnsureNavigationSelection(_defaultPage?.ToString());
-                        }
-                        else
-                        {
-                            EnsureNavigationSelection(dataItem.UniqueId);
-                        }
+                        EnsureNavigationSelection(dataItem.UniqueId);
                     }
                 }
-                else if (e.Parameter is DataGroup dataGroup)
+            }
+            else if (e.Parameter is DataGroup dataGroup)
+            {
+                if (!string.IsNullOrEmpty(dataGroup.UniqueId))
                 {
-                    if (!string.IsNullOrEmpty(dataGroup.UniqueId))
+                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataGroup.UniqueId))
                     {
                         EnsureNavigationSelection(dataGroup.UniqueId);
                     }
                 }
             }
         }
-
-        _isBackNavigation = false; // Reset after navigation is handled
     }
     public void Reset()
     {
@@ -76,7 +77,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             _navigationView.MenuItems?.Clear();
             _navigationView.FooterMenuItems?.Clear();
             _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.ItemInvoked -= OnItemInvoked;
+            _navigationView.SelectionChanged -= OnSelectionChanged;
         }
 
         _pageKeyToTypeMap?.Clear();
@@ -85,26 +86,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         _navigationView = null;
         Frame = null;
     }
-    private IconElement GetAnimatedSettingsIcon()
-    {
-        var animatedIcon = new AnimatedIcon();
-        animatedIcon.Source = new AnimatedSettingsVisualSource();
-        animatedIcon.FallbackIconSource = new FontIconSource() { Glyph = "\uE713" };
-        return animatedIcon;
-    }
-    public void UnregisterEvents()
-    {
-        if (_navigationView != null)
-        {
-            _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.ItemInvoked -= OnItemInvoked;
-        }
-    }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => GoBack();
-    private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    private void OnSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
-        if (args.IsSettingsInvoked)
+        if (args.IsSettingsSelected)
         {
             if (GetPageType(SettingsPageKey) != null)
             {
@@ -119,7 +104,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            var selectedItem = args.InvokedItemContainer as NavigationViewItem;
+            var selectedItem = args.SelectedItemContainer as NavigationViewItem;
 
             if (_sectionPage != null && selectedItem.DataContext is DataGroup itemGroup && !string.IsNullOrEmpty(itemGroup.SectionId))
             {
@@ -139,6 +124,24 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
         }
     }
+
+    private IconElement GetAnimatedSettingsIcon()
+    {
+        var animatedIcon = new AnimatedIcon();
+        animatedIcon.Source = new AnimatedSettingsVisualSource();
+        animatedIcon.FallbackIconSource = new FontIconSource() { Glyph = "\uE713" };
+        return animatedIcon;
+    }
+    public void UnregisterEvents()
+    {
+        if (_navigationView != null)
+        {
+            _navigationView.BackRequested -= OnBackRequested;
+            _navigationView.SelectionChanged -= OnSelectionChanged;
+        }
+    }
+
+    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => GoBack();
 
     private void OnAutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {
@@ -201,11 +204,8 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
     }
-
     public void EnsureNavigationSelection(string id)
     {
-        bool foundSelection = false;
-
         foreach (object rawGroup in this.AllMenuItems)
         {
             if (rawGroup is NavigationViewItem group)
@@ -215,12 +215,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                     group.IsSelected = true;
                     _navigationView.SelectedItem = group;
 
-                    // Only expand if it's back navigation
-                    if (_isBackNavigation)
-                    {
-                        group.IsExpanded = true;
-                    }
-                    foundSelection = true;
+                    group.IsExpanded = true;
                     return;
                 }
 
@@ -228,16 +223,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 {
                     foreach (object rawItem in group.MenuItems)
                     {
-                        foundSelection = EnsureNavigationSelectionBase(rawItem, id, group) || foundSelection;
+                        EnsureNavigationSelectionBase(rawItem, id, group);
                     }
                 }
             }
-        }
-
-        // If no matching selection is found, unselect any previously selected item
-        if (!foundSelection)
-        {
-            _navigationView.SelectedItem = null;
         }
     }
 
@@ -250,11 +239,8 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 _navigationView.SelectedItem = item;
                 item.IsSelected = true;
 
-                // Only expand the parent group if it's back navigation
-                if (_isBackNavigation)
-                {
-                    parentGroup.IsExpanded = true;
-                }
+                parentGroup.IsExpanded = true;
+
                 return true;
             }
 

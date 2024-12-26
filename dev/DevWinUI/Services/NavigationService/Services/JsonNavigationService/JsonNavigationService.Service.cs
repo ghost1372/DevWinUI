@@ -48,8 +48,6 @@ public partial class JsonNavigationService : IJsonNavigationService
     {
         if (CanGoBack)
         {
-            _isBackNavigation = true;
-
             var frameContentBeforeNavigationAOTSafe = _frame?.Content;
 
             _frame.GoBack();
