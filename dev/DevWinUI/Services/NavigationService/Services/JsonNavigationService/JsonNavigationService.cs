@@ -48,23 +48,13 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 return;
             }
 
-            if (e.Parameter is DataItem dataItem)
+            if (e.Parameter is BaseDataInfo dataInfo)
             {
-                if (!string.IsNullOrEmpty(dataItem.UniqueId))
+                if (!string.IsNullOrEmpty(dataInfo.UniqueId))
                 {
-                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataItem.UniqueId))
+                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataInfo.UniqueId))
                     {
-                        EnsureNavigationSelection(dataItem.UniqueId);
-                    }
-                }
-            }
-            else if (e.Parameter is DataGroup dataGroup)
-            {
-                if (!string.IsNullOrEmpty(dataGroup.UniqueId))
-                {
-                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataGroup.UniqueId))
-                    {
-                        EnsureNavigationSelection(dataGroup.UniqueId);
+                        EnsureNavigationSelection(dataInfo.UniqueId);
                     }
                 }
             }
@@ -91,36 +81,25 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         if (args.IsSettingsSelected)
         {
-            if (GetPageType(SettingsPageKey) != null)
+            string pageTitle = string.Empty;
+            var item = SettingsItem as NavigationViewItem;
+            if (item != null && item.Content != null)
             {
-                string pageTitle = string.Empty;
-                var item = SettingsItem as NavigationViewItem;
-                if (item != null && item.Content != null)
-                {
-                    pageTitle = item.Content?.ToString();
-                }
-                NavigateTo(SettingsPageKey, pageTitle);
+                pageTitle = item.Content?.ToString();
             }
+            NavigateTo(SettingsPageKey, pageTitle);
         }
         else
         {
             var selectedItem = args.SelectedItemContainer as NavigationViewItem;
-
-            if (_sectionPage != null && selectedItem.DataContext is DataGroup itemGroup && !string.IsNullOrEmpty(itemGroup.SectionId))
+            var dataInfo = selectedItem.DataContext as BaseDataInfo;
+            if (_sectionPage != null && !string.IsNullOrEmpty(dataInfo?.SectionId))
             {
-                NavigateTo(SectionPageKey, itemGroup);
-            }
-            else if (_sectionPage != null && selectedItem.DataContext is DataItem item && !string.IsNullOrEmpty(item.SectionId))
-            {
-                NavigateTo(SectionPageKey, item);
+                NavigateTo(SectionPageKey, dataInfo);
             }
             else
             {
-                if (selectedItem?.GetValue(NavigationHelperEx.NavigateToProperty) is string pageKey)
-                {
-                    var dataItem = selectedItem?.DataContext as DataItem;
-                    NavigateTo(pageKey, dataItem);
-                }
+                NavigateTo(dataInfo?.UniqueId, dataInfo);
             }
         }
     }

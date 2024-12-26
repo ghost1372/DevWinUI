@@ -238,19 +238,15 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         {
             pageTitle = pageTitleAttached;
         }
-        else
+        else if (currentPageParameter != null)
         {
-            if (currentPageParameter != null && currentPageParameter is string value)
+            if (currentPageParameter is string value)
             {
                 pageTitle = value;
             }
-            else if (currentPageParameter != null && currentPageParameter is DataItem dataItem)
+            else if (currentPageParameter is BaseDataInfo dataInfo)
             {
-                pageTitle = dataItem.Title;
-            }
-            else if (currentPageParameter != null && currentPageParameter is DataGroup dataGroup)
-            {
-                pageTitle = dataGroup.Title;
+                pageTitle = dataInfo.Title;
             }
         }
 
