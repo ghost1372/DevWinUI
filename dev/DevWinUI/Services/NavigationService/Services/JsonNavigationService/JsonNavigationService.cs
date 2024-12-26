@@ -48,14 +48,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 return;
             }
 
-            if (e.Parameter is BaseDataInfo dataInfo)
+            if (e.Parameter is BaseDataInfo dataInfo && dataInfo != null)
             {
-                if (!string.IsNullOrEmpty(dataInfo.UniqueId))
+                if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataInfo.UniqueId))
                 {
-                    if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataInfo.UniqueId))
-                    {
-                        EnsureNavigationSelection(dataInfo.UniqueId);
-                    }
+                    EnsureNavigationSelection(dataInfo.UniqueId);
                 }
             }
         }
