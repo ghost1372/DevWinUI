@@ -10,8 +10,6 @@ public interface IJsonNavigationService
     event NavigatedEventHandler FrameNavigated;
     IList<object>? MenuItems { get; }
     object? SettingsItem { get; }
-    IEnumerable<DataItem> SearchNavigationViewItems(IEnumerable<DataItem> items, string query);
-
     bool CanGoBack { get; }
     Frame? Frame { get; set; }
     Window? Window { get; set; }

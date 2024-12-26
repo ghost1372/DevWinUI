@@ -145,11 +145,14 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private void OnAutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {
-        if (args.ChosenSuggestion != null)
+        if (args.ChosenSuggestion != null && args.ChosenSuggestion is DataItem infoDataItem)
         {
-            if (args.ChosenSuggestion is DataItem)
+            var hasChangedSelection = EnsureItemIsVisibleInNavigation(infoDataItem.Title);
+
+            // In case the menu selection has changed, it means that it has triggered
+            // the selection changed event, that will navigate to the page already
+            if (!hasChangedSelection)
             {
-                var infoDataItem = args.ChosenSuggestion as DataItem;
                 NavigateTo(infoDataItem.UniqueId, infoDataItem);
             }
         }
@@ -157,45 +160,53 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private void OnAutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
     {
-        var matches = SearchNavigationViewItems(DataSource.Instance.Groups.SelectMany(group => group.Items), sender.Text);
-
-        if (matches.Any())
+        if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
         {
-            foreach (var item in matches)
+            var suggestions = new List<DataItem>();
+
+            var querySplit = sender.Text.Split(" ");
+            foreach (var group in DataSource.Instance.Groups)
             {
-                if (string.IsNullOrEmpty(item.ImagePath))
+                var matchingItems = group.Items.Where(
+                    item =>
+                    {
+                        // Idea: check for every word entered (separated by space) if it is in the name, 
+                        // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button"
+                        // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words
+                        bool flag = item.IncludedInBuild;
+                        foreach (string queryToken in querySplit)
+                        {
+                            // Check if token is not in string
+                            if (item.Title.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
+                            {
+                                // Token is not in string, so we ignore this item.
+                                flag = false;
+                            }
+                        }
+                        return flag;
+                    });
+                foreach (var item in matchingItems)
                 {
-                    item.ImagePath = _autoSuggestBoxNotFoundImagePath;
+                    if (string.IsNullOrEmpty(item.ImagePath))
+                    {
+                        item.ImagePath = _autoSuggestBoxNotFoundImagePath;
+                    }
+                    suggestions.Add(item);
                 }
             }
-            _autoSuggestBox.ItemsSource = matches.OrderByDescending(i => i.Title.StartsWith(sender.Text.ToLowerInvariant())).ThenBy(i => i.Title);
-        }
-        else
-        {
-            var noResultsItem = new DataItem();
-            noResultsItem.Title = _autoSuggestBoxNotFoundString;
-            noResultsItem.ImagePath = _autoSuggestBoxNotFoundImagePath;
-
-            var noResultsList = new List<DataItem>();
-            noResultsList.Add(noResultsItem);
-            _autoSuggestBox.ItemsSource = noResultsList;
-        }
-    }
-
-    public IEnumerable<DataItem> SearchNavigationViewItems(IEnumerable<DataItem> items, string query)
-    {
-        if (string.IsNullOrWhiteSpace(query))
-            yield break;
-
-        query = query.Trim();
-
-        foreach (var item in items)
-        {
-            if (!string.IsNullOrEmpty(item.Title)
-                && item.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
-                && item.UniqueId != null)
+            if (suggestions.Count > 0)
             {
-                yield return item;
+                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title);
+            }
+            else
+            {
+                var noResultsItem = new DataItem();
+                noResultsItem.Title = _autoSuggestBoxNotFoundString;
+                noResultsItem.ImagePath = _autoSuggestBoxNotFoundImagePath;
+
+                var noResultsList = new List<DataItem>();
+                noResultsList.Add(noResultsItem);
+                _autoSuggestBox.ItemsSource = noResultsList;
             }
         }
     }
@@ -256,5 +267,72 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
         }
         return false;
+    }
+
+    public bool EnsureItemIsVisibleInNavigation(string name)
+    {
+        bool changedSelection = false;
+        foreach (object rawItem in this.AllMenuItems)
+        {
+            // Check if we encountered the separator
+            if (!(rawItem is NavigationViewItem))
+            {
+                // Skipping this item
+                continue;
+            }
+
+            var item = rawItem as NavigationViewItem;
+
+            // Check if we are this category
+            if ((string)item.Content == name)
+            {
+                _navigationView.SelectedItem = item;
+                changedSelection = true;
+            }
+            // We are not :/
+            else
+            {
+                // Maybe one of our items is?
+                if (item.MenuItems.Count != 0)
+                {
+                    foreach (NavigationViewItem child in item.MenuItems)
+                    {
+                        if ((string)child.Content == name)
+                        {
+                            // We are the item corresponding to the selected one, update selection!
+
+                            // Deal with differences in displaymodes
+                            if (_navigationView.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
+                            {
+                                // In Topmode, the child is not visible, so set parent as selected
+                                // Everything else does not work unfortunately
+                                _navigationView.SelectedItem = item;
+                                item.StartBringIntoView();
+                            }
+                            else
+                            {
+                                // Expand so we animate
+                                item.IsExpanded = true;
+                                // Ensure parent is expanded so we actually show the selection indicator
+                                _navigationView.UpdateLayout();
+                                // Set selected item
+                                _navigationView.SelectedItem = child;
+                                child.StartBringIntoView();
+                            }
+                            // Set to true to also skip out of outer for loop
+                            changedSelection = true;
+                            // Break out of child iteration for loop
+                            break;
+                        }
+                    }
+                }
+            }
+            // We updated selection, break here!
+            if (changedSelection)
+            {
+                break;
+            }
+        }
+        return changedSelection;
     }
 }

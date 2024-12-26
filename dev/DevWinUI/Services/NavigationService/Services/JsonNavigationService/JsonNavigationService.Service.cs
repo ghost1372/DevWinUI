@@ -90,7 +90,7 @@ public partial class JsonNavigationService : IJsonNavigationService
                 _mainBreadcrumb.AddNewItem(pageType, null, parameter, parameter, _allowDuplication, null);
             }
 
-            var frameContentBeforeNavigationAOTSafe = _frame?.Content;
+            var frameContentBeforeNavigationAOTSafe = _frame.Content;
 
             var navigated = _frame.Navigate(pageType, parameter, transitionInfo);
             if (navigated)
