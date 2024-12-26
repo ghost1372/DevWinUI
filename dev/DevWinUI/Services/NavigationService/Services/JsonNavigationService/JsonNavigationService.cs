@@ -85,7 +85,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             var item = SettingsItem as NavigationViewItem;
             if (item != null && item.Content != null)
             {
-                pageTitle = item.Content?.ToString();
+                pageTitle = item.Content.ToString();
             }
             NavigateTo(SettingsPageKey, pageTitle);
         }
