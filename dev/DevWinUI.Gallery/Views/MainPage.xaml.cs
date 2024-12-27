@@ -17,10 +17,10 @@ public sealed partial class MainPage : Page
         if (NavService != null)
         {
             NavService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
-                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
                 .ConfigureDefaultPage(typeof(HomeLandingPage))
                 .ConfigureSettingsPage(typeof(SettingsPage))
                 .ConfigureSectionPage(typeof(DemoSectionPage))
+                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
                 .ConfigureAutoSuggestBox(HeaderAutoSuggestBox)
                 .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
