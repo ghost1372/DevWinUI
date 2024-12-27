@@ -25,8 +25,6 @@ public partial class JsonNavigationService : IJsonNavigationService
                 itemGroup.Icon = icon;
             }
 
-            NavigationHelperEx.SetNavigateTo(itemGroup, group.UniqueId);
-
             AutomationProperties.SetName(itemGroup, GetLocalizedText(group.Title, group.UsexUid));
             AutomationProperties.SetAutomationId(itemGroup, group.UniqueId);
 
@@ -46,8 +44,6 @@ public partial class JsonNavigationService : IJsonNavigationService
                 {
                     itemInGroup.Icon = iconInGroup;
                 }
-
-                NavigationHelperEx.SetNavigateTo(itemInGroup, item.UniqueId);
 
                 AutomationProperties.SetName(itemInGroup, GetLocalizedText(item.Title, item.UsexUid));
                 AutomationProperties.SetAutomationId(itemInGroup, item.UniqueId);
