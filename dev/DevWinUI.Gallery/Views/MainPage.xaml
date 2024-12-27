@@ -21,7 +21,13 @@
                                 PlaceholderText="Search"
                                 QueryIcon="Find"
                                 QuerySubmitted="OnQuerySubmitted"
-                                TextChanged="OnTextChanged" />
+                                TextChanged="OnTextChanged">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F"
+                                             Invoked="KeyboardAccelerator_Invoked"
+                                             Modifiers="Control" />
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
             </TitleBar.Content>
             <TitleBar.Footer>
                 <Button x:Name="ThemeButton"

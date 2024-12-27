@@ -41,5 +41,10 @@ public sealed partial class MainPage : Page
     {
         AutoSuggestBoxHelper.OnITitleBarAutoSuggestBoxQuerySubmittedEvent(sender, args, NavFrame);
     }
+
+    private void KeyboardAccelerator_Invoked(Microsoft.UI.Xaml.Input.KeyboardAccelerator sender, Microsoft.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
+    {
+        HeaderAutoSuggestBox.Focus(FocusState.Programmatic);
+    }
 }
 
