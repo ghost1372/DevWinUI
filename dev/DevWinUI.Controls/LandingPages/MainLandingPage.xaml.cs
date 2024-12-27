@@ -121,6 +121,12 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         this.InitializeComponent();
         Instance = this;
+        Loading -= MainLandingPage_Loading;
+        Loading += MainLandingPage_Loading;
+    }
+
+    private void MainLandingPage_Loading(FrameworkElement sender, object args)
+    {
         if (CanExecuteInternalCommand)
         {
             GetData();

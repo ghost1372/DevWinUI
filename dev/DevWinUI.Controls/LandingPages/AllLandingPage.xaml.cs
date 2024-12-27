@@ -38,12 +38,18 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         this.InitializeComponent();
         Instance = this;
+        Loading -= AllLandingPage_Loading;
+        Loading += AllLandingPage_Loading;
+        ToggleFullScreen(UseFullScreenHeaderImage);
+    }
+
+    private void AllLandingPage_Loading(FrameworkElement sender, object args)
+    {
         if (CanExecuteInternalCommand)
         {
             GetData();
             OrderBy(i => i.Title);
         }
-        ToggleFullScreen(UseFullScreenHeaderImage);
     }
 
     public void GetData()
