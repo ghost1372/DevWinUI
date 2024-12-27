@@ -12,10 +12,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         this.Frame = frame ?? throw new ArgumentNullException(nameof(frame));
         this._pageKeyToTypeMap = pages ?? throw new ArgumentNullException(nameof(pages));
 
-        _navigationView.BackRequested -= OnBackRequested;
-        _navigationView.BackRequested += OnBackRequested;
-        _navigationView.SelectionChanged -= OnSelectionChanged;
-        _navigationView.SelectionChanged += OnSelectionChanged;
+        _navigationView.BackRequested -= OnNavigationViewBackRequested;
+        _navigationView.BackRequested += OnNavigationViewBackRequested;
+        _navigationView.SelectionChanged -= OnNavigationViewSelectionChanged;
+        _navigationView.SelectionChanged += OnNavigationViewSelectionChanged;
 
         var settingItem = (NavigationViewItem)SettingsItem;
         if (settingItem != null)
@@ -26,6 +26,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         FrameNavigated -= OnNavigated;
         FrameNavigated += OnNavigated;
     }
+
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
         _navigationView.IsBackEnabled = CanGoBack;
@@ -56,8 +57,8 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         {
             _navigationView.MenuItems?.Clear();
             _navigationView.FooterMenuItems?.Clear();
-            _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.SelectionChanged -= OnSelectionChanged;
+            _navigationView.BackRequested -= OnNavigationViewBackRequested;
+            _navigationView.SelectionChanged -= OnNavigationViewSelectionChanged;
         }
 
         _pageKeyToTypeMap?.Clear();
@@ -67,7 +68,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         Frame = null;
     }
 
-    private void OnSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.IsSettingsSelected)
         {
@@ -103,12 +104,12 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         if (_navigationView != null)
         {
-            _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.SelectionChanged -= OnSelectionChanged;
+            _navigationView.BackRequested -= OnNavigationViewBackRequested;
+            _navigationView.SelectionChanged -= OnNavigationViewSelectionChanged;
         }
     }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => GoBack();
+    private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => GoBack();
 
     private void OnAutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {

@@ -8,11 +8,9 @@ public partial class JsonNavigationService
     private async void ConfigJsonBase(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
     {
         JsonFilePath = jsonFilePath;
-        await DataSource.Instance.GetGroupsAsync();
+        await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
         AddNavigationMenuItems(orderItems);
-
-        EnsureNavigationSelection(_defaultPage?.ToString());
     }
 
     private void ConfigAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string autoSuggestBoxNotFoundString = null, string autoSuggestBoxNotFoundImagePath = null)

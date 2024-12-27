@@ -20,21 +20,24 @@ public partial class JsonNavigationService
         ConfigJsonBase(jsonFilePath, pathType, orderItems);
         return this;
     }
-
+    public JsonNavigationService ConfigureJsonFile()
+    {
+        EnsureInitialized();
+        ConfigJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
+        return this;
+    }
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
-
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems)
     {
         EnsureInitialized();
         ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
     }
-
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType)
     {
         EnsureInitialized();

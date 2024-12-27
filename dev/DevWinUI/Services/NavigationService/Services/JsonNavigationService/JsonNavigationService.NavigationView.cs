@@ -91,6 +91,8 @@ public partial class JsonNavigationService : IJsonNavigationService
                 }
             }
         }
+
+        EnsureNavigationSelection(_defaultPage?.ToString());
     }
 
     private IEnumerable<DataGroup> GetOrderedDataGroups(OrderItemsType orderItems)

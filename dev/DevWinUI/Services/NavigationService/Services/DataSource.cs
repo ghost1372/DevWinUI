@@ -56,19 +56,6 @@ public sealed class DataSource
 
         return _instance.Groups;
     }
-
-    /// <summary>
-    /// Load Assets\NavViewMenu\AppData.json
-    /// </summary>
-    /// <returns></returns>
-    public async Task<IEnumerable<DataGroup>> GetGroupsAsync()
-    {
-        _jsonFilePath = @"Assets\NavViewMenu\AppData.json";
-        _pathType = PathType.Relative;
-        await _instance.GetControlInfoDataAsync();
-
-        return _instance.Groups;
-    }
     
     public static async Task<DataGroup> GetGroupAsync(string uniqueId)
     {
