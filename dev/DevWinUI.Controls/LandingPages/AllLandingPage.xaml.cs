@@ -38,19 +38,12 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         this.InitializeComponent();
         Instance = this;
-        Loaded -= AllLandingPage_Loaded;
-        Loaded += AllLandingPage_Loaded;
-
-        ToggleFullScreen(UseFullScreenHeaderImage);
-    }
-
-    private void AllLandingPage_Loaded(object sender, RoutedEventArgs e)
-    {
         if (CanExecuteInternalCommand)
         {
             GetData();
             OrderBy(i => i.Title);
         }
+        ToggleFullScreen(UseFullScreenHeaderImage);
     }
 
     public void GetData()
@@ -59,20 +52,27 @@ public sealed partial class AllLandingPage : ItemsPageBase
     }
     public void GetData(ResourceManager resourceManager)
     {
-        var allItems = new List<DataItem>();
-
-        foreach (var group in DataSource.Instance.Groups.Where(g => !g.IsSpecialSection && !g.HideGroup))
-        {
-            foreach (var item in group.Items.Where(i => !i.HideItem))
-            {
-                // Recursively add the items, including nested ones
-                AddLocalizedItemsRecursively(item, allItems, resourceManager);
-            }
-        }
+        var allItems = DataSource.Instance.Groups
+            .Where(group => !group.HideGroup && !group.IsSpecialSection)
+            .SelectMany(group => group.Items)
+            .Where(item => !item.HideItem)
+            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
+            .ToList();
 
         Items = allItems;
     }
-    
+    private IEnumerable<DataItem> GetLocalizedItemsRecursively(DataItem currentItem, ResourceManager resourceManager)
+    {
+        LocalizeItem(currentItem, resourceManager);
+        yield return currentItem;
+    }
+    private void LocalizeItem(DataItem item, ResourceManager resourceManager)
+    {
+        item.Title = Helper.GetLocalizedText(item.Title, item.UsexUid, resourceManager);
+        item.SecondaryTitle = Helper.GetLocalizedText(item.SecondaryTitle, item.UsexUid, resourceManager);
+        item.Subtitle = Helper.GetLocalizedText(item.Subtitle, item.UsexUid, resourceManager);
+        item.Description = Helper.GetLocalizedText(item.Description, item.UsexUid, resourceManager);
+    }
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
         await GetDataAsync(jsonFilePath, new ResourceManager(), pathType);
@@ -81,28 +81,14 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
-        var allItems = new List<DataItem>();
-
-        foreach (var group in DataSource.Instance.Groups.Where(g => !g.IsSpecialSection && !g.HideGroup))
-        {
-            foreach (var item in group.Items.Where(i => !i.HideItem))
-            {
-                // Recursively add the items, including nested ones
-                AddLocalizedItemsRecursively(item, allItems, resourceManager);
-            }
-        }
+        var allItems = DataSource.Instance.Groups
+            .Where(group => !group.HideGroup && !group.IsSpecialSection)
+            .SelectMany(group => group.Items)
+            .Where(item => !item.HideItem)
+            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
+            .ToList();
 
         Items = allItems;
-    }
-
-    private void AddLocalizedItemsRecursively(DataItem currentItem, List<DataItem> allItems, ResourceManager resourceManager)
-    {
-        currentItem.Title = Helper.GetLocalizedText(currentItem.Title, currentItem.UsexUid, resourceManager);
-        currentItem.SecondaryTitle = Helper.GetLocalizedText(currentItem.SecondaryTitle, currentItem.UsexUid, resourceManager);
-        currentItem.Subtitle = Helper.GetLocalizedText(currentItem.Subtitle, currentItem.UsexUid, resourceManager);
-        currentItem.Description = Helper.GetLocalizedText(currentItem.Description, currentItem.UsexUid, resourceManager);
-
-        allItems.Add(currentItem);
     }
  
     public void OrderBy(Func<DataItem, object> orderby = null)

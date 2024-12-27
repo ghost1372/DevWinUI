@@ -121,13 +121,6 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         this.InitializeComponent();
         Instance = this;
-
-        Loaded -= MainLandingPage_Loaded;
-        Loaded += MainLandingPage_Loaded;
-    }
-
-    private void MainLandingPage_Loaded(object sender, RoutedEventArgs e)
-    {
         if (CanExecuteInternalCommand)
         {
             GetData();
@@ -142,19 +135,29 @@ public sealed partial class MainLandingPage : ItemsPageBase
 
     public void GetData(ResourceManager resourceManager)
     {
-        var allItems = new List<DataItem>();
-
-        foreach (var group in DataSource.Instance.Groups.Where(g => !g.HideGroup))
-        {
-            foreach (var item in group.Items.Where(i => i.BadgeString != null && !i.HideItem))
-            {
-                // Recursively add the items, including nested ones
-                AddLocalizedItemsRecursively(item, allItems, resourceManager);
-            }
-        }
+        var allItems = DataSource.Instance.Groups
+            .Where(group => !group.HideGroup)
+            .SelectMany(group => group.Items)
+            .Where(item => item.BadgeString != null && !item.HideItem)
+            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
+            .ToList();
 
         Items = allItems;
+
         GetCollectionViewSource().Source = FormatData();
+    }
+    private IEnumerable<DataItem> GetLocalizedItemsRecursively(DataItem currentItem, ResourceManager resourceManager)
+    {
+        LocalizeItem(currentItem, resourceManager);
+        yield return currentItem;
+    }
+
+    private void LocalizeItem(DataItem item, ResourceManager resourceManager)
+    {
+        item.Title = Helper.GetLocalizedText(item.Title, item.UsexUid, resourceManager);
+        item.SecondaryTitle = Helper.GetLocalizedText(item.SecondaryTitle, item.UsexUid, resourceManager);
+        item.Subtitle = Helper.GetLocalizedText(item.Subtitle, item.UsexUid, resourceManager);
+        item.Description = Helper.GetLocalizedText(item.Description, item.UsexUid, resourceManager);
     }
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
@@ -164,31 +167,17 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
-        var allItems = new List<DataItem>();
-
-        foreach (var group in DataSource.Instance.Groups.Where(g => !g.HideGroup))
-        {
-            foreach (var item in group.Items.Where(i => i.BadgeString != null && !i.HideItem))
-            {
-                // Recursively add the items, including nested ones
-                AddLocalizedItemsRecursively(item, allItems, resourceManager);
-            }
-        }
+        var allItems = DataSource.Instance.Groups
+            .Where(group => !group.HideGroup)
+            .SelectMany(group => group.Items)
+            .Where(item => item.BadgeString != null && !item.HideItem)
+            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
+            .ToList();
 
         Items = allItems;
         GetCollectionViewSource().Source = FormatData();
     }
 
-    private void AddLocalizedItemsRecursively(DataItem currentItem, List<DataItem> allItems, ResourceManager resourceManager)
-    {
-        currentItem.Title = Helper.GetLocalizedText(currentItem.Title, currentItem.UsexUid, resourceManager);
-        currentItem.SecondaryTitle = Helper.GetLocalizedText(currentItem.SecondaryTitle, currentItem.UsexUid, resourceManager);
-        currentItem.Subtitle = Helper.GetLocalizedText(currentItem.Subtitle, currentItem.UsexUid, resourceManager);
-        currentItem.Description = Helper.GetLocalizedText(currentItem.Description, currentItem.UsexUid, resourceManager);
-
-        allItems.Add(currentItem);
-    }
-    
     public void OrderBy(Func<DataItem, object> orderby = null)
     {
         if (orderby != null)
