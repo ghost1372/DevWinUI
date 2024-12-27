@@ -8,8 +8,8 @@ public sealed partial class MainPage : Page
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
         App.Current.NavService
-            .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
-            .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")$ConfigDefaultPages$
+            .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)$ConfigDefaultPages$
+            .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
             .ConfigureTitleBar(AppTitleBar)
             .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
     }

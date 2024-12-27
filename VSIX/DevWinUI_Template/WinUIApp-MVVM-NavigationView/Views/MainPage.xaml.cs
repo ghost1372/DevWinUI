@@ -13,8 +13,8 @@ public sealed partial class MainPage : Page
         var navService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
         if (navService != null)
         {
-            navService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
-                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")$ConfigDefaultPages$
+            navService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)$ConfigDefaultPages$
+                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
                 .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
         }
