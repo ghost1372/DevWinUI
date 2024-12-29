@@ -19,6 +19,7 @@ Themes\Styles\Controls\CalendarWithClockStyle.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
+Themes\Styles\Controls\CompareSlider.xaml
 Themes\Styles\Controls\CopyButton.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\Divider.xaml
@@ -3673,6 +3674,111 @@ Themes\Styles\Win2D\Watermark.xaml
       <TimePicker x:Name="PART_TimePicker" Grid.Column="1" Margin="{TemplateBinding TimePickerMargin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
     </Grid>
   </ControlTemplate>
+  <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Background" Value="{ThemeResource SliderThumbBackground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Thumb">
+          <Border Margin="-2" Background="{ThemeResource SliderOuterThumbBackground}" BorderBrush="{ThemeResource SliderThumbBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{ThemeResource SliderThumbCornerRadius}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                  <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                      <!--  0.86 is relative scale from 14px to 12px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="0.86" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                      <!--  0.86 is relative scale from 14px to 12px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="0.86" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                      <!--  1.167 is relative scale from 12px to 14px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="1.167" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                      <!--  1.167 is relative scale from 12px to 14px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="1.167" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                      <!--  0.71 is relative scale from 14px to 10px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="0.71" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                      <!--  0.71 is relative scale from 14px to 10px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="0.71" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                      <!--  1.167 is relative scale from 12px to 14px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="1.167" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SliderInnerThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                      <!--  1.167 is relative scale from 12px to 14px  -->
+                      <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="1.167" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Ellipse x:Name="SliderInnerThumb" Width="{ThemeResource SliderInnerThumbWidth}" Height="{ThemeResource SliderInnerThumbHeight}" Fill="{TemplateBinding Background}" RenderTransformOrigin="0.5, 0.5">
+              <Ellipse.RenderTransform>
+                <CompositeTransform />
+              </Ellipse.RenderTransform>
+            </Ellipse>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <ControlTemplate x:Key="HorizontalTemplate" TargetType="local:CompareSlider">
+    <Grid Padding="16,0,16,0">
+      <Grid HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+        <Border CornerRadius="{TemplateBinding CornerRadius}">
+          <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+        </Border>
+        <Border CornerRadius="{TemplateBinding CornerRadius}">
+          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <Rectangle.Fill>
+              <ImageBrush AlignmentX="Left" AlignmentY="Center" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+          </Rectangle>
+        </Border>
+        <Line x:Name="PART_Line" Stretch="Fill" Stroke="{ThemeResource ControlAAFillColorDefaultBrush}" StrokeDashArray="2" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="2" Style="{TemplateBinding LineStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" Y2="1" />
+      </Grid>
+      <Thumb x:Name="PART_Thumb" Width="18" Height="18" Style="{TemplateBinding ThumbStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="VerticalTemplate" TargetType="local:CompareSlider">
+    <Grid Padding="0,16,0,16" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <Grid BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+        <Border CornerRadius="{TemplateBinding CornerRadius}">
+          <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+        </Border>
+        <Border CornerRadius="{TemplateBinding CornerRadius}">
+          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Rectangle.Fill>
+              <ImageBrush AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+          </Rectangle>
+        </Border>
+        <Line x:Name="PART_Line" Stretch="Fill" Stroke="{ThemeResource ControlAAFillColorDefaultBrush}" StrokeDashArray="2" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="2" Style="{TemplateBinding LineStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" X2="1" />
+      </Grid>
+      <Thumb x:Name="PART_Thumb" Width="18" Height="18" Style="{TemplateBinding ThumbStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Grid>
+  </ControlTemplate>
   <Style x:Key="DefaultCopyButtonStyle" TargetType="local:CopyButton">
     <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -6419,6 +6525,14 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="CalendarViewCornerRadius" Value="4,0,0,4" />
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
     <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
+  </Style>
+  <Style TargetType="local:CompareSlider">
+    <Setter Property="Template" Value="{StaticResource HorizontalTemplate}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="ThumbStyle" Value="{StaticResource SliderThumbStyle}" />
+    <Setter Property="ShowLineAndThumb" Value="True" />
   </Style>
   <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">
     <Setter Property="Content" Value="" />

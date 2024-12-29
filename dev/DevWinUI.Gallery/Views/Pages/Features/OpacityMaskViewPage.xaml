@@ -132,7 +132,7 @@
                             <GradientStop Offset="1" Color="#00FFFFFF" />
                         </LinearGradientBrush>
                     </dev:OpacityMaskView.OpacityMask>
-                    <Image Source="http://e0.ifengimg.com/03/2019/0116/4520E55BB546CF6D7F295FB28A2A205B598BD5EC_size554_w1228_h1842.jpeg"
+                    <Image Source="ms-appx:///Assets/Others/Girl.jpg"
                            Stretch="Uniform" />
                 </dev:OpacityMaskView>
             </local:ControlExample>
