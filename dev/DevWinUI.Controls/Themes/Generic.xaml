@@ -54,6 +54,7 @@ Themes\Styles\Win2D\GooeyButton.xaml
 Themes\Styles\Win2D\GooeyButtonItem.xaml
 Themes\Styles\Win2D\GooeyEffect.xaml
 Themes\Styles\Win2D\GooeyFooterEffect.xaml
+Themes\Styles\Win2D\Hatch.xaml
 Themes\Styles\Win2D\Particle.xaml
 Themes\Styles\Win2D\TextBlockStrokeView.xaml
 Themes\Styles\Win2D\TextGlitchEffect.xaml
@@ -1722,6 +1723,23 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:GooeyFooterEffect">
           <win2d:CanvasControl x:Name="PART_Canvas" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:Hatch">
+    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Hatch">
+          <Grid BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <win2d:CanvasControl x:Name="PART_Canvas" />
+            <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

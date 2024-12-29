@@ -198,6 +198,7 @@ Install-Package DevWinUI
 - ✨ Border Style
 - ✨ Subtle Button Style
 #### 🔥 Win2D 🔥
+- ✨ Hatch
 - ✨ TiledImageBrush
 - ✨ OutlineTextControl
 - ✨ WaveCircle
@@ -255,6 +256,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Hatch
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Hatch.gif)
 
 ### CompareSlider
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompareSlider.gif)
