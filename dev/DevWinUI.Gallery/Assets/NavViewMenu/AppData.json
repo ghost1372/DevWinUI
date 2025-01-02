@@ -111,7 +111,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.HoneycombPanelPage",
           "Title": "HoneycombPanel",
-          "Subtitle": "HoneycombPanelPage",
+          "Subtitle": "A container that allows child elements to present a honeycomb layout.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
         },
