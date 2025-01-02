@@ -102,6 +102,20 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.FlexPanelPage",
+          "Title": "FlexPanel",
+          "Subtitle": "FlexPanel",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.HoneycombPanelPage",
+          "Title": "HoneycombPanel",
+          "Subtitle": "HoneycombPanelPage",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ElementGroupPage",
           "Title": "ElementGroup",
           "Subtitle": "Group any Element",

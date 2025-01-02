@@ -13,7 +13,7 @@
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
             <local:ControlExample DocPage="controls/elementGroup"
-                                  XamlSource="Features/ElementGroup_xaml.txt">
+                                  XamlSource="Features/ElementGroupPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <ComboBox x:Name="CmbOrientation"
                               Header="Orientation"

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.HoneycombPanelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/honeycombPanel"
+                                  XamlSource="Features/HoneycombPanelPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button x:Name="BtnAdd"
+                                Click="BtnAdd_Click"
+                                Content="Add Item" />
+                        <Button x:Name="BtnRemove"
+                                Click="BtnRemove_Click"
+                                Content="Remove Item" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ListView ItemsSource="{x:Bind PictureList, Mode=OneWay}"
+                          SelectionMode="None">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dev:HoneycombPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

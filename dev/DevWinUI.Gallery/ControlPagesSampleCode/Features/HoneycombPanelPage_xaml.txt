@@ -1,0 +1,8 @@
+﻿<ListView ItemsSource="{x:Bind PictureList, Mode=OneWay}"
+            SelectionMode="None">
+    <ListView.ItemsPanel>
+        <ItemsPanelTemplate>
+            <dev:HoneycombPanel />
+        </ItemsPanelTemplate>
+    </ListView.ItemsPanel>
+</ListView>
