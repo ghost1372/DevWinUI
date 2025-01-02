@@ -102,6 +102,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ElementGroupPage",
+          "Title": "ElementGroup",
+          "Subtitle": "Group any Element",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/VariableSizedWrapGrid.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CompareSliderPage",
           "Title": "CompareSlider",
           "Subtitle": "Comapre Two Images (Before/After)",

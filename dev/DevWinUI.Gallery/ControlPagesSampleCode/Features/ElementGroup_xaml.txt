@@ -1,0 +1,10 @@
+﻿<dev:ElementGroup>
+    <Button HorizontalAlignment="Stretch"
+            Content="Button" />
+    <Button HorizontalAlignment="Stretch"
+            Content="Button" />
+    <Button HorizontalAlignment="Stretch"
+            Content="Button" />
+    <Button HorizontalAlignment="Stretch"
+            Content="Button" />
+</dev:ElementGroup>

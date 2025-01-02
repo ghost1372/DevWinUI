@@ -26,6 +26,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.WaveCirclePage", typeof(DevWinUIGallery.Views.WaveCirclePage)},
         {"DevWinUIGallery.Views.BubblePage", typeof(DevWinUIGallery.Views.BubblePage)},
         {"DevWinUIGallery.Views.GooeyPage", typeof(DevWinUIGallery.Views.GooeyPage)},
+        {"DevWinUIGallery.Views.ElementGroupPage", typeof(DevWinUIGallery.Views.ElementGroupPage)},
         {"DevWinUIGallery.Views.CompareSliderPage", typeof(DevWinUIGallery.Views.CompareSliderPage)},
         {"DevWinUIGallery.Views.TransitioningContentControlPage", typeof(DevWinUIGallery.Views.TransitioningContentControlPage)},
         {"DevWinUIGallery.Views.CirclePanelPage", typeof(DevWinUIGallery.Views.CirclePanelPage)},

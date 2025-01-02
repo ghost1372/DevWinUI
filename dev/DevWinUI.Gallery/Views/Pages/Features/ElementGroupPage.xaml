@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ElementGroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/elementGroup"
+                                  XamlSource="Features/ElementGroup_xaml.txt">
+                <local:ControlExample.Pane>
+                    <ComboBox x:Name="CmbOrientation"
+                              Header="Orientation"
+                              SelectedIndex="0"
+                              SelectionChanged="CmbOrientation_SelectionChanged">
+                        <ComboBoxItem Content="Horizontal"
+                                      Tag="Horizontal" />
+                        <ComboBoxItem Content="Vertical"
+                                      Tag="Vertical" />
+                    </ComboBox>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:ElementGroup x:Name="ElementGroupSample">
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                    </dev:ElementGroup>
+
+                    <dev:ElementGroup x:Name="ElementGroupSample2">
+                        <Button Height="32"
+                                HorizontalAlignment="Stretch">
+                            <SymbolIcon Symbol="Clock" />
+                        </Button>
+                        <TextBox Height="30"
+                                 HorizontalAlignment="Stretch"
+                                 BorderBrush="{ThemeResource ControlElevationBorderBrush}"
+                                 PlaceholderText="TextBox" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                    </dev:ElementGroup>
+
+                    <dev:ElementGroup x:Name="ElementGroupSample3">
+                        <TextBox Height="30"
+                                 HorizontalAlignment="Stretch"
+                                 BorderBrush="{ThemeResource ControlElevationBorderBrush}"
+                                 PlaceholderText="TextBox" />
+                        <Button HorizontalAlignment="Stretch"
+                                Content="Button" />
+                        <ToggleButton HorizontalAlignment="Stretch"
+                                      Content="ToggleButton" />
+                    </dev:ElementGroup>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
