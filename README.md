@@ -150,7 +150,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
-- ✨ FlexPanelPage
+- ✨ FlexPanel
 - ✨ HoneycombPanel
 - ✨ ElementGroup
 - ✨ CompareSlider
