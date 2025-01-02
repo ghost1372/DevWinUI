@@ -102,6 +102,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
+          "Title": "GoToTop",
+          "Subtitle": "GoToTop",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ScrollView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.FlexPanelPage",
           "Title": "FlexPanel",
           "Subtitle": "FlexPanel",
