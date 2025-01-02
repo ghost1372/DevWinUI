@@ -194,7 +194,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                     group.IsSelected = true;
                     _navigationView.SelectedItem = group;
 
-                    group.IsExpanded = true;
+                    if (group.MenuItems.Count > 0)
+                    {
+                        group.IsExpanded = true;
+                    }
                     return;
                 }
 
@@ -218,8 +221,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 _navigationView.SelectedItem = item;
                 item.IsSelected = true;
 
-                parentGroup.IsExpanded = true;
-
+                if (parentGroup.MenuItems.Count > 0)
+                {
+                    parentGroup.IsExpanded = true;
+                }
                 return true;
             }
 
@@ -280,7 +285,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                             else
                             {
                                 // Expand so we animate
-                                item.IsExpanded = true;
+                                if (item.MenuItems.Count > 0)
+                                {
+                                    item.IsExpanded = true;
+                                }
                                 // Ensure parent is expanded so we actually show the selection indicator
                                 _navigationView.UpdateLayout();
                                 // Set selected item
