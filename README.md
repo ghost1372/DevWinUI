@@ -150,6 +150,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ FlexPanelPage
+- ✨ HoneycombPanel
 - ✨ ElementGroup
 - ✨ CompareSlider
 - ✨ TransitioningContentControl
@@ -257,6 +259,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### FlexPanel
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlexPanel.gif)
+
+### HoneycombPanel
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/HoneycombPanel.gif)
 
 ### ElementGroup
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ElementGroup.gif)
