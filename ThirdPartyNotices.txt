@@ -24,6 +24,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+#############################################################################
+
 WinUI-Gallery
 Repository: https://github.com/microsoft/WinUI-Gallery
 License: MIT License
@@ -47,6 +49,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+#############################################################################
 
 CommunityToolkit
 Repository: https://github.com/CommunityToolkit/Windows
@@ -72,10 +76,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+#############################################################################
+
 ContextMenuForWindows11
 Repository: https://github.com/ikas-mc/ContextMenuForWindows11
-License: LGPL-3.0 License
-Copyright (c) Microsoft Corporation and Contributors
+
+ContextMenuCustomHost.dll
+License: LGPL-3.0
+Permission to use ContextMenuCustomHost.dll under LGPL-3.0 was granted by the author in GitHub issue https://github.com/ikas-mc/ContextMenuForWindows11/issues/186#issuecomment-2570055607
+
+Service Classes
+License: None specified for these files
+As per the author’s permission, the service classes have been copied and are used directly within this project. Permission was granted in GitHub issue https://github.com/ikas-mc/ContextMenuForWindows11/issues/186#issuecomment-2570055607
 
 LGPL-3.0 License:
  GNU LESSER GENERAL PUBLIC LICENSE
@@ -244,10 +256,11 @@ apply, that proxy's public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.
 
+#############################################################################
+
 HandyControl and HandyControls
 Repository: https://github.com/HandyOrg/HandyControl, https://github.com/ghost1372/HandyControls 
 License: MIT License
-Copyright (c) Microsoft Corporation and Contributors
 
 MIT License:
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -267,11 +280,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+#############################################################################
 
 AK.Toolkit (Only AutoCompleteTextBox)
 Repository: https://github.com/AndrewKeepCoding/AK.Toolkit
 License: MIT License
-Copyright (c) Microsoft Corporation and Contributors
 
 MIT License:
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -292,10 +306,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+#############################################################################
+
 CoolControls.WinUI3
 Repository: https://github.com/cnbluefire/CoolControls.WinUI3
 License: MIT License
-Copyright (c) Microsoft Corporation and Contributors
 
 MIT License:
 Permission is hereby granted, free of charge, to any person obtaining a copy
