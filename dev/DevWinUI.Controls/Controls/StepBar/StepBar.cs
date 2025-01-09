@@ -3,6 +3,7 @@
 namespace DevWinUI;
 
 [ContentProperty(Name = nameof(Items))]
+[StyleTypedProperty(Property = nameof(ItemContainerStyle), StyleTargetType = typeof(StepBarItem))]
 [TemplatePart(Name = ElementProgressBar, Type = typeof(ProgressBar))]
 public partial class StepBar : ItemsControl
 {
@@ -20,7 +21,7 @@ public partial class StepBar : ItemsControl
     private Style? VerticalItemContainerStyle { get; set; }
     private ItemsPanelTemplate HorizontalItemsPanelTemplate { get; set; }
     private ItemsPanelTemplate VerticalItemsPanelTemplate { get; set; }
-    
+    public event EventHandler<int> StepChanged;
     private int _oriStepIndex = -1;
     private void UpdateTemplate()
     {
@@ -190,6 +191,7 @@ public partial class StepBar : ItemsControl
                 stepBarItem.Index = i + 1;
                 stepBarItem.Orientation = this.Orientation;
                 stepBarItem.HeaderDisplayMode = this.HeaderDisplayMode;
+                stepBarItem.ItemTemplate = ItemTemplate;
             }
         }
 
@@ -246,6 +248,7 @@ public partial class StepBar : ItemsControl
             stepItemSelected.Status = Status;
         }
         SetProgressBarValueWithAnimation(StepIndex);
+        StepChanged?.Invoke(this, StepIndex);
     }
 
     private void SetProgressBarValueWithAnimation(double toValue, int duration = 200)

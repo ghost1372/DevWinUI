@@ -325,6 +325,7 @@
                         <ContentPresenter x:Name="PART_Content"
                                           Margin="0,5,0,0"
                                           HorizontalAlignment="Center"
+                                          ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
                     </StackPanel>
                 </ControlTemplate>
@@ -461,6 +462,7 @@
                                           Margin="5,0,0,0"
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Center"
+                                          ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
                     </StackPanel>
                 </ControlTemplate>
@@ -469,11 +471,11 @@
     </Style>
 
     <ItemsPanelTemplate x:Key="StepBarHorizontalItemsPanelTemplate">
-        <dev:UniformGrid Rows="1" />
+        <local:UniformGrid Rows="1" />
     </ItemsPanelTemplate>
 
     <ItemsPanelTemplate x:Key="StepBarVerticalItemsPanelTemplate">
-        <dev:UniformGrid Columns="1" />
+        <local:UniformGrid Columns="1" />
     </ItemsPanelTemplate>
 
 </ResourceDictionary>
