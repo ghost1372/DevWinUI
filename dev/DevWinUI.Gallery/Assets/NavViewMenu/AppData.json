@@ -102,6 +102,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.StepBarPage",
+          "Title": "StepBar",
+          "Subtitle": "StepBar",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
           "Title": "GoToTop",
           "Subtitle": "GoToTop",

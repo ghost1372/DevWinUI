@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.StepBarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/stepBar"
+                                  XamlSource="Features/StepBar_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button x:Name="BtnNext"
+                                Click="BtnNext_Click"
+                                Content="Next" />
+                        <Button x:Name="BtnPrev"
+                                Click="BtnPrev_Click"
+                                Content="Prev" />
+                        <ComboBox x:Name="Cmb"
+                                  Header="Status"
+                                  SelectedIndex="0"
+                                  SelectionChanged="Cmb_SelectionChanged">
+                            <ComboBoxItem Content="Info"
+                                          Tag="Info" />
+                            <ComboBoxItem Content="Warning"
+                                          Tag="Warning" />
+                            <ComboBoxItem Content="Error"
+                                          Tag="Error" />
+                            <ComboBoxItem Content="Success"
+                                          Tag="Success" />
+                        </ComboBox>
+                        <ComboBox x:Name="CmbOrientation"
+                                  Header="Orientation"
+                                  SelectedIndex="0"
+                                  SelectionChanged="CmbOrientation_SelectionChanged">
+                            <ComboBoxItem Content="Horizontal"
+                                          Tag="Horizontal" />
+                            <ComboBoxItem Content="Vertical"
+                                          Tag="Vertical" />
+                        </ComboBox>
+                        <ComboBox x:Name="CmbHeaderDisplayMode"
+                                  Header="Header Display Mode"
+                                  SelectedIndex="3"
+                                  SelectionChanged="CmbHeaderDisplayMode_SelectionChanged">
+                            <ComboBoxItem Content="Left"
+                                          Tag="Left" />
+                            <ComboBoxItem Content="Right"
+                                          Tag="Right" />
+                            <ComboBoxItem Content="Top"
+                                          Tag="Top" />
+                            <ComboBoxItem Content="Bottom"
+                                          Tag="Bottom" />
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:StepBar x:Name="StepBarSample">
+                    <dev:StepBarItem Content="Register" />
+                    <dev:StepBarItem Content="BasicInfo" />
+                    <dev:StepBarItem Content="UploadFile" />
+                    <dev:StepBarItem Content="Complete" />
+                </dev:StepBar>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

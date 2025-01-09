@@ -1,0 +1,6 @@
+﻿<dev:StepBar>
+    <dev:StepBarItem Content="Register" />
+    <dev:StepBarItem Content="BasicInfo" />
+    <dev:StepBarItem Content="UploadFile" />
+    <dev:StepBarItem Content="Complete" />
+</dev:StepBar>
