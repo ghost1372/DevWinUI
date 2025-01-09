@@ -109,6 +109,13 @@
           "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.LayoutTransformerPage",
+          "Title": "LayoutTransformer",
+          "Subtitle": "Represents a control that applies a layout transformation to its Content.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RepeatButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
           "Title": "GoToTop",
           "Subtitle": "GoToTop",

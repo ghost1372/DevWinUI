@@ -1,0 +1,6 @@
+﻿<dev:LayoutTransformer>
+    <Rectangle Width="200" Height="100" Fill="{ThemeResource SystemFillColorCriticalBrush}" RenderTransformOrigin="0.5,0.5" />
+    <dev:LayoutTransformer.RenderTransform>
+        <RotateTransform Angle="90" />
+    </dev:LayoutTransformer.RenderTransform>
+</dev:LayoutTransformer>

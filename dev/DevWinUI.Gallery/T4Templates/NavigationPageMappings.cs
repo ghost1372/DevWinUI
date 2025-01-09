@@ -27,6 +27,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.BubblePage", typeof(DevWinUIGallery.Views.BubblePage)},
         {"DevWinUIGallery.Views.GooeyPage", typeof(DevWinUIGallery.Views.GooeyPage)},
         {"DevWinUIGallery.Views.StepBarPage", typeof(DevWinUIGallery.Views.StepBarPage)},
+        {"DevWinUIGallery.Views.LayoutTransformerPage", typeof(DevWinUIGallery.Views.LayoutTransformerPage)},
         {"DevWinUIGallery.Views.GoToTopPage", typeof(DevWinUIGallery.Views.GoToTopPage)},
         {"DevWinUIGallery.Views.FlexPanelPage", typeof(DevWinUIGallery.Views.FlexPanelPage)},
         {"DevWinUIGallery.Views.HoneycombPanelPage", typeof(DevWinUIGallery.Views.HoneycombPanelPage)},

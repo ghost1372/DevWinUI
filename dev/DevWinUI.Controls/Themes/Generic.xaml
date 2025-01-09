@@ -1693,6 +1693,12 @@ Themes\Styles\Win2D\Watermark.xaml
       <ItemsPresenter />
     </Grid>
   </ControlTemplate>
+  <ItemsPanelTemplate x:Key="StepBarHorizontalItemsPanelTemplate">
+    <local:UniformGrid Rows="1" />
+  </ItemsPanelTemplate>
+  <ItemsPanelTemplate x:Key="StepBarVerticalItemsPanelTemplate">
+    <local:UniformGrid Columns="1" />
+  </ItemsPanelTemplate>
   <Storyboard x:Key="Right2LeftTransition">
     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" From="50" To="0" Duration="0:0:0.4">
       <DoubleAnimation.EasingFunction>
@@ -5806,7 +5812,7 @@ Themes\Styles\Win2D\Watermark.xaml
             <Border x:Name="PART_Border" Height="40" MinWidth="40" HorizontalAlignment="Center" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
               <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
             </Border>
-            <ContentPresenter x:Name="PART_Content" Margin="0,5,0,0" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+            <ContentPresenter x:Name="PART_Content" Margin="0,5,0,0" HorizontalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>
@@ -5894,7 +5900,7 @@ Themes\Styles\Win2D\Watermark.xaml
             <Border x:Name="PART_Border" Height="40" MinWidth="40" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
               <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
             </Border>
-            <ContentPresenter x:Name="PART_Content" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+            <ContentPresenter x:Name="PART_Content" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>
@@ -6992,6 +6998,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Padding" Value="10" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalStyle}" />
     <Setter Property="Template" Value="{StaticResource StepBarHorizontalControlTemplate}" />
+    <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
   </Style>
   <Style BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox" />
   <Style BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard" />
