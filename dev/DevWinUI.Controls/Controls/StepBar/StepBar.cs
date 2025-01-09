@@ -14,11 +14,13 @@ public partial class StepBar : ItemsControl
     private Border progressBarBorder;
     private Grid rootGridVertical;
     private int ItemsCount => Items.Count;
-    public ControlTemplate? HorizontalTemplate { get; set; }
-    public ControlTemplate? VerticalTemplate { get; set; }
-    public Style? HorizontalItemContainerStyle { get; set; }
-    public Style? VerticalItemContainerStyle { get; set; }
-
+    private ControlTemplate? HorizontalTemplate { get; set; }
+    private ControlTemplate? VerticalTemplate { get; set; }
+    private Style? HorizontalItemContainerStyle { get; set; }
+    private Style? VerticalItemContainerStyle { get; set; }
+    private ItemsPanelTemplate HorizontalItemsPanelTemplate { get; set; }
+    private ItemsPanelTemplate VerticalItemsPanelTemplate { get; set; }
+    
     private int _oriStepIndex = -1;
     private void UpdateTemplate()
     {
@@ -39,16 +41,22 @@ public partial class StepBar : ItemsControl
     public StepBar()
     {
         if (Application.Current.Resources["StepBarHorizontalControlTemplate"] is ControlTemplate horizontalTemplate)
-            HorizontalTemplate = horizontalTemplate;
+            this.HorizontalTemplate = horizontalTemplate;
 
         if (Application.Current.Resources["StepBarVerticalControlTemplate"] is ControlTemplate verticalTemplate)
-            VerticalTemplate = verticalTemplate;
+            this.VerticalTemplate = verticalTemplate;
 
         if (Application.Current.Resources["StepBarItemHorizontalStyle"] is Style horizontalItemContainerStyle)
-            HorizontalItemContainerStyle = horizontalItemContainerStyle;
+            this.HorizontalItemContainerStyle = horizontalItemContainerStyle;
 
         if (Application.Current.Resources["StepBarItemVerticalStyle"] is Style verticalItemContainerStyle)
-            VerticalItemContainerStyle = verticalItemContainerStyle;
+            this.VerticalItemContainerStyle = verticalItemContainerStyle;
+        
+        if (Application.Current.Resources["StepBarHorizontalItemsPanelTemplate"] is ItemsPanelTemplate horizontalItemsPanelTemplate)
+            this.HorizontalItemsPanelTemplate = horizontalItemsPanelTemplate;
+
+        if (Application.Current.Resources["StepBarVerticalItemsPanelTemplate"] is ItemsPanelTemplate verticalItemsPanelTemplate)
+            this.VerticalItemsPanelTemplate = verticalItemsPanelTemplate;
     }
 
     protected override void OnApplyTemplate()
@@ -81,11 +89,11 @@ public partial class StepBar : ItemsControl
 
         if (Orientation == Orientation.Horizontal)
         {
-            ItemsPanel = (ItemsPanelTemplate)XamlReader.Load("<ItemsPanelTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><UniformGrid xmlns='using:DevWinUI' Rows='1'/></ItemsPanelTemplate>");
+            ItemsPanel = HorizontalItemsPanelTemplate;
         }
         else
         {
-            ItemsPanel = (ItemsPanelTemplate)XamlReader.Load("<ItemsPanelTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><UniformGrid xmlns='using:DevWinUI' Columns='1'/></ItemsPanelTemplate>");
+            ItemsPanel = VerticalItemsPanelTemplate;
         }
     }
 
@@ -261,7 +269,7 @@ public partial class StepBar : ItemsControl
         horizontalStoryboard.Children.Add(horizontalAnimation);
         horizontalStoryboard.Begin();
     }
-
+    
     private void UpdateProgressBarVisualStates()
     {
         VisualStateManager.GoToState(this, Status.ToString(), true);

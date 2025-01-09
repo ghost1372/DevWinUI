@@ -36,6 +36,7 @@
         <Setter Property="Padding" Value="10" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalStyle}" />
         <Setter Property="Template" Value="{StaticResource StepBarHorizontalControlTemplate}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
     </Style>
 
     <ControlTemplate x:Key="StepBarHorizontalControlTemplate"
@@ -466,5 +467,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ItemsPanelTemplate x:Key="StepBarHorizontalItemsPanelTemplate">
+        <dev:UniformGrid Rows="1" />
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="StepBarVerticalItemsPanelTemplate">
+        <dev:UniformGrid Columns="1" />
+    </ItemsPanelTemplate>
 
 </ResourceDictionary>
