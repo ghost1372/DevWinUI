@@ -151,6 +151,7 @@ Install-Package DevWinUI
 ### ⚡ What’s Inside? ⚡
 
 - ✨ StepBar
+- ✨ LayoutTransformer
 - ✨ GoToTop
 - ✨ FlexPanel
 - ✨ HoneycombPanel
