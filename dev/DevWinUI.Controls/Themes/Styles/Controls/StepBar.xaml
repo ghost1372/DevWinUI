@@ -210,17 +210,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -230,17 +230,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -250,17 +250,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -270,17 +270,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -290,17 +290,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -346,17 +346,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -366,17 +366,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -386,17 +386,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -406,17 +406,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -426,17 +426,17 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
                                                                        Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
                                                                        Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                                                     Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>

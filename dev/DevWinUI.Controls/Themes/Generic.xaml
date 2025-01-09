@@ -5741,13 +5741,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Waiting">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5755,13 +5755,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Info">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5769,13 +5769,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Warning">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5783,13 +5783,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Error">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5797,13 +5797,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Success">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5829,13 +5829,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Waiting">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5843,13 +5843,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Info">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5857,13 +5857,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Warning">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5871,13 +5871,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Error">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5885,13 +5885,13 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Success">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
