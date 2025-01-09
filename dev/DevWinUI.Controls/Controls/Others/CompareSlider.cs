@@ -115,10 +115,10 @@ public partial class CompareSlider : Control
 
     public CompareSlider()
     {
-        if (Application.Current.Resources["HorizontalTemplate"] is ControlTemplate horizontalTemplate)
+        if (Application.Current.Resources["ComapreSliderHorizontalTemplate"] is ControlTemplate horizontalTemplate)
             HorizontalTemplate = horizontalTemplate;
 
-        if (Application.Current.Resources["VerticalTemplate"] is ControlTemplate verticalTemplate)
+        if (Application.Current.Resources["CompareSliderVerticalTemplate"] is ControlTemplate verticalTemplate)
             VerticalTemplate = verticalTemplate;
     }
 

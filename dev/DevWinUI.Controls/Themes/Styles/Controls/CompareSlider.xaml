@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI">
 
     <Style TargetType="local:CompareSlider">
-        <Setter Property="Template" Value="{StaticResource HorizontalTemplate}" />
+        <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -115,7 +115,7 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="HorizontalTemplate"
+    <ControlTemplate x:Key="ComapreSliderHorizontalTemplate"
                      TargetType="local:CompareSlider">
         <Grid Padding="16,0,16,0">
             <Grid HorizontalAlignment="Center"
@@ -160,7 +160,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="VerticalTemplate"
+    <ControlTemplate x:Key="CompareSliderVerticalTemplate"
                      TargetType="local:CompareSlider">
         <Grid Padding="0,16,0,16"
               HorizontalAlignment="Center"
