@@ -6,7 +6,7 @@
 
     <!-- Version -->
     <LibraryMajorVersion>8</LibraryMajorVersion>
-    <PreviewLabel>-Preview4</PreviewLabel>
+    <PreviewLabel>-Preview5</PreviewLabel>
     <IsPreviewBuild>true</IsPreviewBuild>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
 
@@ -14,7 +14,7 @@
     <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
     <CsWin32Version>0.3.106</CsWin32Version>
     <CommunityToolkitMediaVersion>8.2.241112-preview1</CommunityToolkitMediaVersion>
-    <Win2dVersion>1.3.0</Win2dVersion>
+    <Win2dVersion>1.3.1</Win2dVersion>
     <DebugTargetFramework>net9.0-windows10.0.19041.0</DebugTargetFramework>
     <NoWarn>WMC1506;WMC0001;CA1416;CS8632;CS0067;CS0078;CS0649;CS0414;NU1903;NU1902</NoWarn>
 
@@ -49,7 +49,7 @@
 
   <!-- The NuGet versions of dependencies to build against. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.241114004-experimental1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250109001-experimental2" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   
