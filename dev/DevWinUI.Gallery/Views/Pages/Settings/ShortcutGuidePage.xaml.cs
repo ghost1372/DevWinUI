@@ -14,7 +14,11 @@ public sealed partial class ShortcutGuidePage : Page
     }
     private async void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        c.Keys = new List<object> { "Ctrl", "Alt", "F5" };
+        var c = new ShortcutDialogContentControl
+        {
+            Keys = new List<object> { "Ctrl", "Alt", "F5" }
+        };
+
         shortcutDialog = new ContentDialog
         {
             XamlRoot = Content.XamlRoot,
@@ -30,8 +34,10 @@ public sealed partial class ShortcutGuidePage : Page
         shortcutDialog.PrimaryButtonClick += ShortcutDialog_PrimaryButtonClick;
         shortcutDialog.SecondaryButtonClick += ShortcutDialog_SecondaryButtonClick;
         shortcutDialog.CloseButtonClick += ShortcutDialog_CloseButtonClick;
+
         await shortcutDialog.ShowAsync();
     }
+
 
     private void ShortcutDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {

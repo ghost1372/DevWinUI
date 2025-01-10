@@ -723,7 +723,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:LayoutTransformer">
+  <Style x:Key="DefaultLayoutTransformerStyle" TargetType="local:LayoutTransformer">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -1424,7 +1424,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:LongShadowTextBlock">
+  <Style x:Key="DefaultLongShadowTextBlockStyle" TargetType="local:LongShadowTextBlock">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:LongShadowTextBlock">
@@ -1500,7 +1500,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <x:Double x:Key="PinBoxMinHeight">32</x:Double>
   <x:Double x:Key="PinBoxMinWidth">42</x:Double>
-  <Style TargetType="local:RedirectVisualView">
+  <Style x:Key="DefaultRedirectVisualViewStyle" TargetType="local:RedirectVisualView">
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
@@ -1538,7 +1538,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Thickness x:Key="SelectorBarLeftItemHoverVerticalMargin">3, 1, 3, 3</Thickness>
   <Thickness x:Key="SelectorBarMiddleItemHoverVerticalMargin">3, 1, 3, 1</Thickness>
   <Thickness x:Key="SelectorBarRightItemHoverVerticalMargin">3, 3, 3, 1</Thickness>
-  <Style TargetType="local:SelectorBarSegmented">
+  <Style x:Key="DefaultSelectorBarSegmentedStyle" TargetType="local:SelectorBarSegmented">
     <Setter Property="Background" Value="{ThemeResource SelectorBarSegmentedBackground}" />
     <Setter Property="BorderBrush" Value="{ThemeResource SelectorBarSegmentedBorderBrush}" />
     <Setter Property="BorderThickness" Value="{ThemeResource SelectorBarSegmentedBorderThickness}" />
@@ -1837,7 +1837,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
   </Storyboard>
-  <Style TargetType="local:BubbleView">
+  <Style x:Key="DefaultBubbleViewStyle" TargetType="local:BubbleView">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="Template">
@@ -1851,7 +1851,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:GooeyEffect">
+  <Style x:Key="DefaultGooeyEffectStyle" TargetType="local:GooeyEffect">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:GooeyEffect">
@@ -1860,7 +1860,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:GooeyFooterEffect">
+  <Style x:Key="DefaultGooeyFooterEffectStyle" TargetType="local:GooeyFooterEffect">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:GooeyFooterEffect">
@@ -1869,7 +1869,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Hatch">
+  <Style x:Key="DefaultHatchStyle" TargetType="local:Hatch">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
     <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
@@ -1886,7 +1886,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Particle">
+  <Style x:Key="DefaultParticleStyle" TargetType="local:Particle">
     <Setter Property="LineColor" Value="{ThemeResource SystemBaseMediumLowColor}" />
     <Setter Property="ParticleColor" Value="{ThemeResource SystemBaseLowColor}" />
     <Setter Property="Template">
@@ -1951,7 +1951,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <GradientStop x:Name="Stop5" Offset="-0.15" Color="#FFFFFFFF" />
     <GradientStop x:Name="Stop6" Offset="2" Color="#FFFFFFFF" />
   </LinearGradientBrush>
-  <Style TargetType="local:TextBlockStrokeView">
+  <Style x:Key="DefaultTextBlockStrokeViewStyle" TargetType="local:TextBlockStrokeView">
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -1969,7 +1969,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:TextGlitchEffect">
+  <Style x:Key="DefaultTextGlitchEffectStyle" TargetType="local:TextGlitchEffect">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:TextGlitchEffect">
@@ -1978,7 +1978,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:TextGlitchEffect2">
+  <Style x:Key="DefaultTextGlitchEffect2Style" TargetType="local:TextGlitchEffect2">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:TextGlitchEffect2">
@@ -1987,7 +1987,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:TextGlitchEffect3">
+  <Style x:Key="DefaultTextGlitchEffect3Style" TargetType="local:TextGlitchEffect3">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:TextGlitchEffect3">
@@ -1996,7 +1996,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:TextMorphEffect">
+  <Style x:Key="DefaultTextMorphEffectStyle" TargetType="local:TextMorphEffect">
     <Setter Property="ColorBrush" Value="{ThemeResource SystemBaseMediumHighColor}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -2006,7 +2006,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Watermark">
+  <Style x:Key="DefaultWatermarkStyle" TargetType="local:Watermark">
     <Setter Property="Foreground" Value="{ThemeResource SystemBaseMediumColor}" />
     <Setter Property="ShadowColor" Value="{ThemeResource SystemBaseLowColor}" />
     <Setter Property="Template">
@@ -4769,6 +4769,8 @@ Themes\Styles\Win2D\Watermark.xaml
     <!--<Setter Property="FontSize" Value="9" />-->
     <Setter Property="HorizontalContentAlignment" Value="Center" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
+  <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
   <Style x:Key="PinBoxPasswordBoxStyle" BasedOn="{StaticResource DefaultPasswordBoxStyle}" TargetType="PasswordBox">
     <Setter Property="MinHeight" Value="{ThemeResource PinBoxMinHeight}" />
@@ -4864,7 +4866,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ProgressButton">
+  <Style x:Key="DefaultProgressButtonStyle" TargetType="local:ProgressButton">
     <Setter Property="Background" Value="{ThemeResource ToggleButtonBackground}" />
     <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
     <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForeground}" />
@@ -5072,7 +5074,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ProgressRing">
+  <Style x:Key="DefaultProgressRingStyle" TargetType="local:ProgressRing">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
     <Setter Property="IsHitTestVisible" Value="False" />
@@ -5256,8 +5258,10 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" TargetType="local:RedirectVisualView" />
   <local:SelectorBarSegmentedMarginConverter x:Name="MarginConverter" LeftItemMargin="{StaticResource SelectorBarLeftItemHoverMargin}" MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverMargin}" RightItemMargin="{StaticResource SelectorBarRightItemHoverMargin}" />
   <local:SelectorBarSegmentedMarginConverter x:Name="VerticalMarginConverter" LeftItemMargin="{StaticResource SelectorBarLeftItemHoverVerticalMargin}" MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverVerticalMargin}" RightItemMargin="{StaticResource SelectorBarRightItemHoverVerticalMargin}" />
+  <Style BasedOn="{StaticResource DefaultSelectorBarSegmentedStyle}" TargetType="local:SelectorBarSegmented" />
   <Style x:Key="SelectorBarItemBaseStyle" TargetType="SelectorBarItem">
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
     <Setter Property="Foreground" Value="{ThemeResource SelectorBarItemForeground}" />
@@ -5599,7 +5603,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <local:TextBlockTemplateSelector x:Key="HeaderTemplateSelector" TextBlockTemplate="{StaticResource HeaderTextBlockTemplate}" />
   <local:TextBlockTemplateSelector x:Key="DescriptionTemplateSelector" TextBlockTemplate="{StaticResource DescriptionTextBlockTemplate}" />
-  <Style TargetType="local:SettingsGroup">
+  <Style x:Key="DefaultSettingsGroupStyle" TargetType="local:SettingsGroup">
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -5659,7 +5663,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Shield">
+  <Style x:Key="DefaultShieldStyle" TargetType="local:Shield">
     <Setter Property="BorderBrush" Value="{ThemeResource ShieldBorderBrush}" />
     <Setter Property="Height" Value="20" />
     <Setter Property="BorderThickness" Value="0" />
@@ -5685,7 +5689,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:SimpleSettingsGroup">
+  <Style x:Key="DefaultSimpleSettingsGroupStyle" TargetType="local:SimpleSettingsGroup">
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
@@ -6252,7 +6256,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:WaveProgressBar">
+  <Style x:Key="DefaultWaveProgressBarStyle" TargetType="local:WaveProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="WaveFill" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
     <Setter Property="Background" Value="{ThemeResource WaveProgressBarBackground}" />
@@ -6302,7 +6306,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:BubbleButton">
+  <Style x:Key="DefaultBubbleButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:BubbleButton">
     <Setter Property="BubbleForeground" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -6387,7 +6391,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <Ellipse x:Name="CompletedRectangle" media:Effects.Shadow="{StaticResource attachedShadow}" Fill="{ThemeResource ProgressCompletedBackgroundBrush}" />
     </Grid>
   </ControlTemplate>
-  <Style TargetType="local:BubbleProgressButton">
+  <Style x:Key="DefaultBubbleProgressButtonStyle" TargetType="local:BubbleProgressButton">
     <Setter Property="Background" Value="{ThemeResource ControlFillColorTransparentBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -6460,7 +6464,8 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:GooeyButton">
+  <Style BasedOn="{StaticResource DefaultBubbleViewStyle}" TargetType="local:BubbleView" />
+  <Style x:Key="DefaultGooeyButtonStyle" TargetType="local:GooeyButton">
     <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource GooeyButtonForegroundBrush}" />
     <Setter Property="IsTabStop" Value="False" />
@@ -6523,7 +6528,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:GooeyButtonItem">
+  <Style x:Key="DefaultGooeyButtonItemStyle" TargetType="local:GooeyButtonItem">
     <Setter Property="Background" Value="{ThemeResource GooeyButtonItemBackgroundBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource GooeyButtonItemForegroundBrush}" />
     <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
@@ -6544,6 +6549,16 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultGooeyEffectStyle}" TargetType="local:GooeyEffect" />
+  <Style BasedOn="{StaticResource DefaultGooeyFooterEffectStyle}" TargetType="local:GooeyFooterEffect" />
+  <Style BasedOn="{StaticResource DefaultHatchStyle}" TargetType="local:Hatch" />
+  <Style BasedOn="{StaticResource DefaultParticleStyle}" TargetType="local:Particle" />
+  <Style BasedOn="{StaticResource DefaultTextBlockStrokeViewStyle}" TargetType="local:TextBlockStrokeView" />
+  <Style BasedOn="{StaticResource DefaultTextGlitchEffectStyle}" TargetType="local:TextGlitchEffect" />
+  <Style BasedOn="{StaticResource DefaultTextGlitchEffect2Style}" TargetType="local:TextGlitchEffect2" />
+  <Style BasedOn="{StaticResource DefaultTextGlitchEffect3Style}" TargetType="local:TextGlitchEffect3" />
+  <Style BasedOn="{StaticResource DefaultTextMorphEffectStyle}" TargetType="local:TextMorphEffect" />
+  <Style BasedOn="{StaticResource DefaultWatermarkStyle}" TargetType="local:Watermark" />
   <Style x:Key="DefaultSettingsCardStyle" TargetType="local:SettingsCard">
     <Style.Setters>
       <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
@@ -6961,7 +6976,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
-  <Style TargetType="local:PinBox">
+  <Style x:Key="DefaultPinBoxStyle" TargetType="local:PinBox">
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
     <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />
@@ -7004,7 +7019,12 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:StepBar">
+  <Style BasedOn="{StaticResource DefaultProgressButtonStyle}" TargetType="local:ProgressButton" />
+  <Style BasedOn="{StaticResource DefaultProgressRingStyle}" TargetType="local:ProgressRing" />
+  <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}" TargetType="local:SettingsGroup" />
+  <Style BasedOn="{StaticResource DefaultShieldStyle}" TargetType="local:Shield" />
+  <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" TargetType="local:SimpleSettingsGroup" />
+  <Style x:Key="DefaultStepBarStyle" TargetType="local:StepBar">
     <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
     <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -7015,6 +7035,11 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
   </Style>
   <Style BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox" />
+  <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />
+  <Style BasedOn="{StaticResource DefaultBubbleButtonStyle}" TargetType="local:BubbleButton" />
+  <Style BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}" TargetType="local:BubbleProgressButton" />
+  <Style BasedOn="{StaticResource DefaultGooeyButtonStyle}" TargetType="local:GooeyButton" />
+  <Style BasedOn="{StaticResource DefaultGooeyButtonItemStyle}" TargetType="local:GooeyButtonItem" />
   <Style BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard" />
   <Style x:Key="DefaultSettingsExpanderStyle" TargetType="local:SettingsExpander">
     <Style.Setters>
@@ -7068,5 +7093,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultCalendarWithClockStyle}" TargetType="local:CalendarWithClock" />
   <Style BasedOn="{StaticResource DefaultCompareSliderStyle}" TargetType="local:CompareSlider" />
+  <Style BasedOn="{StaticResource DefaultPinBoxStyle}" TargetType="local:PinBox" />
+  <Style BasedOn="{StaticResource DefaultStepBarStyle}" TargetType="local:StepBar" />
   <Style BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander" />
 </ResourceDictionary>
