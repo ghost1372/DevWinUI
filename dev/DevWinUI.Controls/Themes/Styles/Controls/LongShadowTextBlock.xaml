@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:LongShadowTextBlock">
+    <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}"
+           TargetType="local:LongShadowTextBlock" />
+
+    <Style x:Key="DefaultLongShadowTextBlockStyle"
+           TargetType="local:LongShadowTextBlock">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LongShadowTextBlock">

@@ -4,7 +4,11 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:GooeyFooterEffect">
+    <Style BasedOn="{StaticResource DefaultGooeyFooterEffectStyle}"
+           TargetType="local:GooeyFooterEffect" />
+
+    <Style x:Key="DefaultGooeyFooterEffectStyle"
+           TargetType="local:GooeyFooterEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:GooeyFooterEffect">

@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ProgressRing">
+    <Style BasedOn="{StaticResource DefaultProgressRingStyle}"
+           TargetType="local:ProgressRing" />
+
+    <Style x:Key="DefaultProgressRingStyle"
+           TargetType="local:ProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="IsHitTestVisible" Value="False" />

@@ -25,7 +25,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:GooeyButtonItem">
+    <Style BasedOn="{StaticResource DefaultGooeyButtonItemStyle}"
+           TargetType="local:GooeyButtonItem" />
+
+    <Style x:Key="DefaultGooeyButtonItemStyle"
+           TargetType="local:GooeyButtonItem">
         <Setter Property="Background" Value="{ThemeResource GooeyButtonItemBackgroundBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource GooeyButtonItemForegroundBrush}" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />

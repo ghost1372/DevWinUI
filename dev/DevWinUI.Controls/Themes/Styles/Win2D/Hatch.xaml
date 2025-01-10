@@ -4,7 +4,11 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:Hatch">
+    <Style BasedOn="{StaticResource DefaultHatchStyle}"
+           TargetType="local:Hatch" />
+
+    <Style x:Key="DefaultHatchStyle"
+           TargetType="local:Hatch">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />

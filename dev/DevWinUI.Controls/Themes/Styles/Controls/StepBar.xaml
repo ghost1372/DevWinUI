@@ -28,7 +28,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:StepBar">
+    <Style BasedOn="{StaticResource DefaultStepBarStyle}"
+           TargetType="local:StepBar" />
+
+    <Style x:Key="DefaultStepBarStyle"
+           TargetType="local:StepBar">
         <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />

@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:RedirectVisualView">
+    <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}"
+           TargetType="local:RedirectVisualView" />
+
+    <Style x:Key="DefaultRedirectVisualViewStyle"
+           TargetType="local:RedirectVisualView">
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />

@@ -4,7 +4,11 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:GooeyEffect">
+    <Style BasedOn="{StaticResource DefaultGooeyEffectStyle}"
+           TargetType="local:GooeyEffect" />
+
+    <Style x:Key="DefaultGooeyEffectStyle"
+           TargetType="local:GooeyEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:GooeyEffect">

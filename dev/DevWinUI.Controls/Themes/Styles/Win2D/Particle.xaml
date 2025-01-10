@@ -4,7 +4,11 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:Particle">
+    <Style BasedOn="{StaticResource DefaultParticleStyle}"
+           TargetType="local:Particle" />
+
+    <Style x:Key="DefaultParticleStyle"
+           TargetType="local:Particle">
         <Setter Property="LineColor" Value="{ThemeResource SystemBaseMediumLowColor}" />
         <Setter Property="ParticleColor" Value="{ThemeResource SystemBaseLowColor}" />
         <Setter Property="Template">

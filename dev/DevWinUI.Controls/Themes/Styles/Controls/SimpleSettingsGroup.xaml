@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:SimpleSettingsGroup">
+    <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}"
+           TargetType="local:SimpleSettingsGroup" />
+
+    <Style x:Key="DefaultSimpleSettingsGroupStyle"
+           TargetType="local:SimpleSettingsGroup">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>

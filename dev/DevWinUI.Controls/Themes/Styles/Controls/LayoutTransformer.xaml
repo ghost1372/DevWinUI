@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:LayoutTransformer">
+    <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}"
+           TargetType="local:LayoutTransformer" />
+
+    <Style x:Key="DefaultLayoutTransformerStyle"
+           TargetType="local:LayoutTransformer">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
         <Setter Property="Template">
             <Setter.Value>

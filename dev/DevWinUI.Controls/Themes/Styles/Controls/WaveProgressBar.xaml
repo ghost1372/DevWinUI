@@ -23,7 +23,12 @@
                             ResourceKey="ControlElevationBorderBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-    <Style TargetType="local:WaveProgressBar">
+
+    <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}"
+           TargetType="local:WaveProgressBar" />
+
+    <Style x:Key="DefaultWaveProgressBarStyle"
+           TargetType="local:WaveProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
         <Setter Property="WaveFill" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="Background" Value="{ThemeResource WaveProgressBarBackground}" />

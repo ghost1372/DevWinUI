@@ -22,7 +22,11 @@
     <local:TextBlockTemplateSelector x:Key="DescriptionTemplateSelector"
                                      TextBlockTemplate="{StaticResource DescriptionTextBlockTemplate}" />
 
-    <Style TargetType="local:SettingsGroup">
+    <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}"
+           TargetType="local:SettingsGroup" />
+
+    <Style x:Key="DefaultSettingsGroupStyle"
+           TargetType="local:SettingsGroup">
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />

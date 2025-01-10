@@ -445,7 +445,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="FontWeight" Value="SemiBold" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
   </Style>
-  <Style TargetType="local:Clock">
+  <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Margin" Value="8,0" />
     <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
@@ -505,7 +505,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ClockRadioButton">
+  <Style x:Key="DefaultClockRadioButtonStyle" TargetType="local:ClockRadioButton">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="Width" Value="30" />
     <Setter Property="Height" Value="30" />
@@ -541,7 +541,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ColorfulShimmingEffect">
+  <Style x:Key="DefaultColorfulShimmingEffectStyle" TargetType="local:ColorfulShimmingEffect">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ColorfulShimmingEffect">
@@ -552,7 +552,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:FlipSide">
+  <Style x:Key="DefaultFlipSideStyle" TargetType="local:FlipSide">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Template">
       <Setter.Value>
@@ -581,7 +581,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Gravatar">
+  <Style x:Key="DefaultGravatarStyle" TargetType="local:Gravatar">
     <Setter Property="Width" Value="72" />
     <Setter Property="Height" Value="72" />
     <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
@@ -600,7 +600,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <x:Double x:Key="GrowlWidth">340</x:Double>
-  <Style TargetType="local:ImageEx">
+  <Style x:Key="DefaultImageExStyle" TargetType="local:ImageEx">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{ThemeResource ApplicationForegroundThemeBrush}" />
     <Setter Property="IsTabStop" Value="False" />
@@ -649,7 +649,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <ExponentialEase x:Key="ProgressBarEaseOut" EasingMode="EaseOut" Exponent="2" />
   <ExponentialEase x:Key="ProgressBarEaseIn" EasingMode="EaseIn" Exponent="2" />
-  <Style TargetType="local:IsEnabledTextBlock">
+  <Style x:Key="DefaultIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
     <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="Template">
@@ -3675,7 +3675,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     <Setter Property="FontWeight" Value="Bold" />
   </Style>
-  <Style TargetType="local:BreadcrumbNavigator">
+  <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />
     <Setter Property="ItemTemplate">
@@ -3834,6 +3834,9 @@ Themes\Styles\Win2D\Watermark.xaml
       <TimePicker x:Name="PART_TimePicker" Grid.Column="1" Margin="{TemplateBinding TimePickerMargin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
     </Grid>
   </ControlTemplate>
+  <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
+  <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
+  <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
   <Style x:Key="SliderThumbStyle" TargetType="Thumb">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Background" Value="{ThemeResource SliderThumbBackground}" />
@@ -4080,7 +4083,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:DateTimePicker">
+  <Style x:Key="DefaultDateTimePickerStyle" TargetType="local:DateTimePicker">
     <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
     <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
     <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
@@ -4242,7 +4245,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Divider">
+  <Style x:Key="DefaultDividerStyle" TargetType="local:Divider">
     <Setter Property="Margin" Value="0,24" />
     <Setter Property="LineStroke" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -4265,6 +4268,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultFlipSideStyle}" TargetType="local:FlipSide" />
   <Style x:Key="DefaultFlyoutMenuButtonStyle" TargetType="local:FlyoutMenuButton">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -4326,7 +4330,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:GotoTop">
+  <Style x:Key="DefaultGotoTopStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:GotoTop">
     <Setter Property="Width" Value="50" />
     <Setter Property="Height" Value="50" />
     <Setter Property="CornerRadius" Value="90" />
@@ -4398,7 +4402,8 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Growl">
+  <Style BasedOn="{StaticResource DefaultGravatarStyle}" TargetType="local:Gravatar" />
+  <Style x:Key="DefaultGrowlStyle" TargetType="local:Growl">
     <Setter Property="IsOpen" Value="True" />
     <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
     <Setter Property="Shadow">
@@ -4592,7 +4597,8 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:IndeterminateProgressBar">
+  <Style BasedOn="{StaticResource DefaultImageExStyle}" TargetType="local:ImageEx" />
+  <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
     <Setter Property="DotRadiusX" Value="8" />
     <Setter Property="DotRadiusY" Value="8" />
@@ -4686,10 +4692,12 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="local:InlineAutoCompleteTextBox" />
+  <Style BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" TargetType="local:IsEnabledTextBlock" />
   <Style x:Key="SecondaryIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultTextKeyVisualStyle}" TargetType="local:KeyVisual" />
   <Style x:Key="SmallTextKeyVisualStyle" BasedOn="{StaticResource DefaultTextKeyVisualStyle}" TargetType="local:KeyVisual">
     <Setter Property="MinWidth" Value="40" />
     <Setter Property="Height" Value="36" />
@@ -6912,7 +6920,8 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:CalendarWithClock">
+  <Style BasedOn="{StaticResource DefaultBreadcrumbNavigatorStyle}" TargetType="local:BreadcrumbNavigator" />
+  <Style x:Key="DefaultCalendarWithClockStyle" TargetType="local:CalendarWithClock">
     <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
     <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
     <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
@@ -6935,7 +6944,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
     <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
   </Style>
-  <Style TargetType="local:CompareSlider">
+  <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">
     <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
@@ -6946,7 +6955,12 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">
     <Setter Property="Content" Value="" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
+  <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
   <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
+  <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
+  <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
+  <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
   <Style TargetType="local:PinBox">
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
@@ -7052,5 +7066,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter>
     </Style.Setters>
   </Style>
+  <Style BasedOn="{StaticResource DefaultCalendarWithClockStyle}" TargetType="local:CalendarWithClock" />
+  <Style BasedOn="{StaticResource DefaultCompareSliderStyle}" TargetType="local:CompareSlider" />
   <Style BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander" />
 </ResourceDictionary>

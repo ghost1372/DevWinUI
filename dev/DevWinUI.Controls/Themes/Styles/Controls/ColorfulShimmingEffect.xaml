@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ColorfulShimmingEffect">
+    <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}"
+           TargetType="local:ColorfulShimmingEffect" />
+
+    <Style x:Key="DefaultColorfulShimmingEffectStyle"
+           TargetType="local:ColorfulShimmingEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ColorfulShimmingEffect">

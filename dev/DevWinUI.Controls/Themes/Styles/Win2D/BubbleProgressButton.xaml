@@ -37,7 +37,11 @@
         </Grid>
     </ControlTemplate>
 
-    <Style TargetType="local:BubbleProgressButton">
+    <Style BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}"
+           TargetType="local:BubbleProgressButton" />
+
+    <Style x:Key="DefaultBubbleProgressButtonStyle"
+           TargetType="local:BubbleProgressButton">
         <Setter Property="Background" Value="{ThemeResource ControlFillColorTransparentBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />

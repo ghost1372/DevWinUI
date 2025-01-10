@@ -10,7 +10,11 @@
                      EasingMode="EaseIn"
                      Exponent="2" />
 
-    <Style TargetType="local:IndeterminateProgressBar">
+    <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}"
+           TargetType="local:IndeterminateProgressBar" />
+
+    <Style x:Key="DefaultIndeterminateProgressBarStyle"
+           TargetType="local:IndeterminateProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="DotRadiusX" Value="8" />
         <Setter Property="DotRadiusY" Value="8" />

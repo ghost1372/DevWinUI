@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:BubbleView">
+    <Style BasedOn="{StaticResource DefaultBubbleViewStyle}"
+           TargetType="local:BubbleView" />
+
+    <Style x:Key="DefaultBubbleViewStyle"
+           TargetType="local:BubbleView">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">

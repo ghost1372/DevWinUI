@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:FlipSide">
+    <Style BasedOn="{StaticResource DefaultFlipSideStyle}"
+           TargetType="local:FlipSide" />
+
+    <Style x:Key="DefaultFlipSideStyle"
+           TargetType="local:FlipSide">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>

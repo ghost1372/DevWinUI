@@ -25,7 +25,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:GooeyButton">
+    <Style BasedOn="{StaticResource DefaultGooeyButtonStyle}"
+           TargetType="local:GooeyButton" />
+
+    <Style x:Key="DefaultGooeyButtonStyle"
+           TargetType="local:GooeyButton">
         <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource GooeyButtonForegroundBrush}" />
         <Setter Property="IsTabStop" Value="False" />

@@ -6,7 +6,11 @@
     <x:Double x:Key="PinBoxMinHeight">32</x:Double>
     <x:Double x:Key="PinBoxMinWidth">42</x:Double>
 
-    <Style TargetType="local:PinBox">
+    <Style BasedOn="{StaticResource DefaultPinBoxStyle}"
+           TargetType="local:PinBox" />
+
+    <Style x:Key="DefaultPinBoxStyle"
+           TargetType="local:PinBox">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
         <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />

@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CompareSlider">
+    <Style BasedOn="{StaticResource DefaultCompareSliderStyle}"
+           TargetType="local:CompareSlider" />
+
+    <Style x:Key="DefaultCompareSliderStyle"
+           TargetType="local:CompareSlider">
         <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />

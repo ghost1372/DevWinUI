@@ -115,7 +115,11 @@
         <GradientStop x:Name="Stop6" Offset="2" Color="#FFFFFFFF" />
     </LinearGradientBrush>
 
-    <Style TargetType="local:TextBlockStrokeView">
+    <Style BasedOn="{StaticResource DefaultTextBlockStrokeViewStyle}"
+           TargetType="local:TextBlockStrokeView" />
+
+    <Style x:Key="DefaultTextBlockStrokeViewStyle"
+           TargetType="local:TextBlockStrokeView">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />

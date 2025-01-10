@@ -28,7 +28,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:Clock">
+    <Style BasedOn="{StaticResource DefaultClockStyle}"
+           TargetType="local:Clock" />
+    
+    <Style x:Key="DefaultClockStyle"
+           TargetType="local:Clock">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Margin" Value="8,0" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />

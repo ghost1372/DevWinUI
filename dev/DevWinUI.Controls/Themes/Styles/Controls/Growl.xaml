@@ -5,7 +5,11 @@
 
     <x:Double x:Key="GrowlWidth">340</x:Double>
 
-    <Style TargetType="local:Growl">
+    <Style BasedOn="{StaticResource DefaultGrowlStyle}"
+           TargetType="local:Growl" />
+
+    <Style x:Key="DefaultGrowlStyle"
+           TargetType="local:Growl">
         <Setter Property="IsOpen" Value="True" />
         <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="Shadow">

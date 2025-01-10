@@ -18,7 +18,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:ProgressButton">
+    <Style BasedOn="{StaticResource DefaultProgressButtonStyle}"
+           TargetType="local:ProgressButton" />
+
+    <Style x:Key="DefaultProgressButtonStyle"
+           TargetType="local:ProgressButton">
         <Setter Property="Background" Value="{ThemeResource ToggleButtonBackground}" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
         <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForeground}" />

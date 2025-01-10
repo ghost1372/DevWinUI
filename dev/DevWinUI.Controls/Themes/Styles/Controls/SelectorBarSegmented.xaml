@@ -120,7 +120,11 @@
                                                MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverVerticalMargin}"
                                                RightItemMargin="{StaticResource SelectorBarRightItemHoverVerticalMargin}" />
 
-    <Style TargetType="local:SelectorBarSegmented">
+    <Style BasedOn="{StaticResource DefaultSelectorBarSegmentedStyle}"
+           TargetType="local:SelectorBarSegmented" />
+
+    <Style x:Key="DefaultSelectorBarSegmentedStyle"
+           TargetType="local:SelectorBarSegmented">
         <Setter Property="Background" Value="{ThemeResource SelectorBarSegmentedBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource SelectorBarSegmentedBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource SelectorBarSegmentedBorderThickness}" />

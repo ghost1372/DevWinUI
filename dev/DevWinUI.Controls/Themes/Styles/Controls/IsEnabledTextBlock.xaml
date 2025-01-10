@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:IsEnabledTextBlock">
+    <Style BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}"
+           TargetType="local:IsEnabledTextBlock" />
+
+    <Style x:Key="DefaultIsEnabledTextBlockStyle"
+           TargetType="local:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">

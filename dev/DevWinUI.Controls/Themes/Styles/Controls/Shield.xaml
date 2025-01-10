@@ -6,7 +6,11 @@
     <SolidColorBrush x:Key="ShieldBorderBrush"
                      Color="{ThemeResource CardStrokeColorDefaultBrush}" />
 
-    <Style TargetType="local:Shield">
+    <Style BasedOn="{StaticResource DefaultShieldStyle}"
+           TargetType="local:Shield" />
+
+    <Style x:Key="DefaultShieldStyle"
+           TargetType="local:Shield">
         <Setter Property="BorderBrush" Value="{ThemeResource ShieldBorderBrush}" />
         <Setter Property="Height" Value="20" />
         <Setter Property="BorderThickness" Value="0" />

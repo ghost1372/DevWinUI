@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CalendarWithClock">
+    <Style BasedOn="{StaticResource DefaultCalendarWithClockStyle}"
+           TargetType="local:CalendarWithClock" />
+
+    <Style x:Key="DefaultCalendarWithClockStyle"
+           TargetType="local:CalendarWithClock">
         <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
         <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
