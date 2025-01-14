@@ -256,4 +256,22 @@ public partial class WindowHelper
 
     public static (int, int) GetScreenSize()
             => (PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CXSCREEN), PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CYSCREEN));
+
+    public static void RemoveWindowBorderAndTitleBar(Window window) => RemoveWindowBorderAndTitleBar((nint)window.AppWindow.Id.Value);
+    public static void RemoveWindowBorderAndTitleBar(IntPtr hWnd)
+    {
+        const int WS_BORDER = 0x00800000;
+        const int WS_CAPTION = 0x00C00000;
+        const int WS_THICKFRAME = 0x00040000;
+
+        var style = PInvoke.GetWindowLong(new HWND(hWnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+
+        // Remove border, caption, and thick frame
+        style &= ~WS_BORDER & ~WS_CAPTION & ~WS_THICKFRAME;
+
+        PInvoke.SetWindowLong(new HWND(hWnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE, style);
+
+        // Update the window's appearance
+        PInvoke.SetWindowPos(new HWND(hWnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
+    }
 }
