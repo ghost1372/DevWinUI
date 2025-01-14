@@ -101,6 +101,10 @@ public partial class Divider : Control
     public static readonly DependencyProperty LineStrokeDashArrayProperty =
         DependencyProperty.Register(nameof(LineStrokeDashArray), typeof(DoubleCollection), typeof(Divider), new PropertyMetadata(default(DoubleCollection)));
 
+    public Divider()
+    {
+        this.DefaultStyleKey = typeof(Divider);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

@@ -12,7 +12,7 @@
                      IsClosable="False"
                      IsOpen="True"
                      Severity="Informational" />
-            <InfoBar Title="Dont forget to Initialize `ThemeManager` in your App.cs"
+            <InfoBar Title="Dont forget to Initialize `ThemeService` in your App.cs"
                      IsClosable="False"
                      IsOpen="True"
                      Severity="Warning" />

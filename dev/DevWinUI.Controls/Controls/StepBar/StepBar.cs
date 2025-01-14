@@ -41,6 +41,8 @@ public partial class StepBar : ItemsControl
     }
     public StepBar()
     {
+        this.DefaultStyleKey = typeof(StepBar);
+
         if (Application.Current.Resources["StepBarHorizontalControlTemplate"] is ControlTemplate horizontalTemplate)
             this.HorizontalTemplate = horizontalTemplate;
 

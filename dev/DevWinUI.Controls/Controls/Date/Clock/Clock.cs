@@ -62,6 +62,10 @@ public partial class Clock : Control
             }
         }
     }
+    public Clock()
+    {
+        this.DefaultStyleKey = typeof(Clock);
+    }
     protected override void OnApplyTemplate()
     {
         AppliedTemplate = false;

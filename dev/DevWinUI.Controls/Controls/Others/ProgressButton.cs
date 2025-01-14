@@ -116,6 +116,10 @@ public partial class ProgressButton : ToggleButton
     public static readonly DependencyProperty IsIndeterminateProperty =
         DependencyProperty.Register(nameof(IsIndeterminate), typeof(bool), typeof(ProgressButton), new PropertyMetadata(false));
 
+    public ProgressButton()
+    {
+        this.DefaultStyleKey = typeof(ProgressButton);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

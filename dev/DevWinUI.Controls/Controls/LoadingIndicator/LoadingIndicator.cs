@@ -104,6 +104,8 @@ public partial class LoadingIndicator : Control
 
     public LoadingIndicator()
     {
+        this.DefaultStyleKey = typeof(LoadingIndicator);
+
         SetLoadingIndicatorMode(Mode);
     }
     protected override void OnApplyTemplate()

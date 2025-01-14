@@ -18,6 +18,7 @@ public partial class Growl : InfoBar
 
     public Growl()
     {
+        this.DefaultStyleKey = typeof(Growl);
         Closed += Growl_Closed;
         Closing += Growl_Closing;
         Translation += new Vector3(0, 0, 4);

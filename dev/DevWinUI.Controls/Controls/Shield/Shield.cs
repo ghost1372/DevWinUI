@@ -29,4 +29,9 @@ public partial class Shield : ButtonBase
         get => (Brush)GetValue(ColorProperty);
         set => SetValue(ColorProperty, value);
     }
+
+    public Shield()
+    {
+        this.DefaultStyleKey = typeof(Shield);
+    }
 }

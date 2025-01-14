@@ -87,6 +87,8 @@ public partial class SelectorBarSegmented : SelectorBar
 
     public SelectorBarSegmented()
     {
+        this.DefaultStyleKey = typeof(SelectorBarSegmented);
+
         Style style = new Style(typeof(SelectorBarItem));
         style = Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style;
         Resources.Remove(typeof(SelectorBarItem));

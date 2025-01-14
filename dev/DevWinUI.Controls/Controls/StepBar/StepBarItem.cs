@@ -124,7 +124,10 @@ public partial class StepBarItem : ContentControl
             }
         }
     }
-
+    public StepBarItem()
+    {
+        this.DefaultStyleKey = typeof(StepBarItem);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

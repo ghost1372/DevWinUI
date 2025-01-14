@@ -125,6 +125,11 @@ public partial class IndeterminateProgressBar : Control
         var newTotalDuration = pBar.TotalDuration;
         pBar.OnTotalDurationChanged(oldTotalDuration, newTotalDuration);
     }
+
+    public IndeterminateProgressBar()
+    {
+        this.DefaultStyleKey = typeof(IndeterminateProgressBar);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

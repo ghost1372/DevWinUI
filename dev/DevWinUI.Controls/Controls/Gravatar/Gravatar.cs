@@ -47,4 +47,9 @@ public partial class Gravatar : ContentControl
         get => (ImageSource)GetValue(SourceProperty);
         set => SetValue(SourceProperty, value);
     }
+
+    public Gravatar()
+    {
+        this.DefaultStyleKey = typeof(Gravatar);
+    }
 }

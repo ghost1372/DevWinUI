@@ -115,6 +115,8 @@ public partial class CompareSlider : Control
 
     public CompareSlider()
     {
+        this.DefaultStyleKey = typeof(CompareSlider);
+
         if (Application.Current.Resources["ComapreSliderHorizontalTemplate"] is ControlTemplate horizontalTemplate)
             HorizontalTemplate = horizontalTemplate;
 

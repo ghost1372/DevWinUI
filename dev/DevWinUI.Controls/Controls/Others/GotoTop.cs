@@ -44,6 +44,8 @@ public partial class GotoTop : Button
 
     public GotoTop()
     {
+        this.DefaultStyleKey = typeof(GotoTop);
+
         Loaded += (s, e) => CreateGotoAction(Target);
         Click -= GotoTop_Click;
         Click += GotoTop_Click;

@@ -349,7 +349,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
-          "Title": "ThemeManager",
+          "Title": "ThemeService",
           "Subtitle": "Change Application Theme and Material Easily",
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },

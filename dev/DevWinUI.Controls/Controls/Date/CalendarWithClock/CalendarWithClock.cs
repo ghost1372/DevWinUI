@@ -38,6 +38,8 @@ public partial class CalendarWithClock : DateTimeBase
 
     public CalendarWithClock()
     {
+        this.DefaultStyleKey = typeof(CalendarWithClock);
+
         if (Application.Current.Resources["CalendarWithTimePickerTemplate"] is ControlTemplate timePickerTemplate)
             TimePickerTemplate = timePickerTemplate;
 

@@ -31,6 +31,11 @@ public partial class Hatch : Control
 
     private const string CanvasElement = "PART_Canvas";
     private CanvasControl canvas;
+
+    public Hatch()
+    {
+        this.DefaultStyleKey = typeof(Hatch);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

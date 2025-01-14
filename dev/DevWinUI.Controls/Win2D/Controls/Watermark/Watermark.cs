@@ -31,7 +31,10 @@ public partial class Watermark : Control
         }
     }
 
-    
+    public Watermark()
+    {
+        this.DefaultStyleKey = typeof(Watermark);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

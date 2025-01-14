@@ -17,6 +17,10 @@ public partial class ColorfulShimmingEffect : ContentControl
     public static readonly DependencyProperty ColorfulShimmingEffectItemsProperty =
         DependencyProperty.Register(nameof(ColorfulShimmingEffectItems), typeof(List<ColorfulShimmingEffectItem>), typeof(ColorfulShimmingEffect), new PropertyMetadata(new List<ColorfulShimmingEffectItem>(), OnPointsChanged));
 
+    public ColorfulShimmingEffect()
+    {
+        this.DefaultStyleKey = typeof(ColorfulShimmingEffect);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

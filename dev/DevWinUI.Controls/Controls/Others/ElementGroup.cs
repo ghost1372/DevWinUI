@@ -36,6 +36,8 @@ public partial class ElementGroup : ItemsControl
 
     public ElementGroup()
     {
+        this.DefaultStyleKey = typeof(ElementGroup);
+
         UpdateOrientation();
     }
     protected override void OnApplyTemplate()

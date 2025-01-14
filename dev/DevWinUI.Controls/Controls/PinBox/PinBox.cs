@@ -15,6 +15,10 @@ public partial class PinBox : Control
     private long _contextFlyoutPropertyToken;
     private long _cornerRadiusPropertyToken;
 
+    public PinBox()
+    {
+        this.DefaultStyleKey = typeof(PinBox);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

@@ -77,6 +77,10 @@ public partial class WaveProgressBar : Control
         VisualStateManager.GoToState(this, "Indeterminate", true);
     }
 
+    public WaveProgressBar()
+    {
+        this.DefaultStyleKey = typeof(WaveProgressBar);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

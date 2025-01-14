@@ -75,6 +75,10 @@ public partial class LongShadowTextBlock : Control
         }
     }
 
+    public LongShadowTextBlock()
+    {
+        this.DefaultStyleKey = typeof(LongShadowTextBlock);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

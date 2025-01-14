@@ -25,6 +25,10 @@ public partial class DateTimePicker : DateTimeBase
     private Button confirmButton;
     private CalendarWithClock calendarWithClock;
 
+    public DateTimePicker()
+    {
+        this.DefaultStyleKey = typeof(DateTimePicker);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
