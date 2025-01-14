@@ -5,6 +5,8 @@ using WinRT;
 namespace DevWinUI;
 public partial class TransparentBackdrop : CompositionBrushBackdrop
 {
+    private Windows.Win32.Graphics.Gdi.HBRUSH backgroundBrush = Windows.Win32.Graphics.Gdi.HBRUSH.Null;
+
     private WindowMessageMonitor? monitor;
     private Windows.UI.Composition.CompositionColorBrush? brush;
 
@@ -62,6 +64,9 @@ public partial class TransparentBackdrop : CompositionBrushBackdrop
         backdrop?.Dispose();
         brush?.Dispose();
         brush = null;
+        if (!backgroundBrush.IsNull)
+            PInvoke.DeleteObject(backgroundBrush);
+        backgroundBrush = Windows.Win32.Graphics.Gdi.HBRUSH.Null;
         base.OnTargetDisconnected(disconnectedTarget);
     }
 
@@ -80,14 +85,14 @@ public partial class TransparentBackdrop : CompositionBrushBackdrop
         };
         PInvoke.DwmEnableBlurBehindWindow(new HWND(handle), in dwm);
     }
-
     private bool ClearBackground(nint hwnd, nint hdc)
     {
         if (PInvoke.GetClientRect(new HWND(hwnd), out var rect))
         {
-            var brush = PInvoke.CreateSolidBrush((COLORREF)0);
-            NativeMethods.FillRect(hdc, ref rect, brush);
-            NativeMethods.FillRect(hdc, ref rect, brush);
+            if (backgroundBrush.IsNull)
+                backgroundBrush = PInvoke.CreateSolidBrush(new Windows.Win32.Foundation.COLORREF(0));
+
+            NativeMethods.FillRect(hdc, ref rect, backgroundBrush);
             return true;
         }
         return false;
