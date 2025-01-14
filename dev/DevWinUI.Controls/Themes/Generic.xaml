@@ -4405,7 +4405,10 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGravatarStyle}" TargetType="local:Gravatar" />
   <Style x:Key="DefaultGrowlStyle" TargetType="local:Growl">
     <Setter Property="IsOpen" Value="True" />
-    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+    <Setter Property="Background" Value="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Shadow">
       <Setter.Value>
         <ThemeShadow />
@@ -4415,7 +4418,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate x:Name="Root" TargetType="local:Growl">
-          <Border x:Name="ContentRoot" VerticalAlignment="Top" Background="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+          <Border x:Name="ContentRoot" VerticalAlignment="Top" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="SeverityLevels">
                 <VisualState x:Name="Informational" />
@@ -4533,7 +4536,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 <Button x:Name="PART_ConfirmButton" Grid.Row="2" Margin="5,0" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonText}" Foreground="{ThemeResource SystemAccentColor}" Style="{StaticResource SubtleButtonStyle}" Visibility="{TemplateBinding ShowConfirmButton}" />
                 <Button x:Name="PART_CloseButton" Grid.Row="2" Grid.Column="1" Margin="5,0" HorizontalAlignment="Stretch" Content="{TemplateBinding CloseButtonText}" Foreground="{ThemeResource InfoBarErrorSeverityIconBackground}" Style="{StaticResource SubtleButtonStyle}" Visibility="{TemplateBinding ShowCloseButton}" />
               </Grid>
-              <Button Name="CloseButton" Grid.Column="2" Command="{TemplateBinding CloseButtonCommand}" CommandParameter="{TemplateBinding CloseButtonCommandParameter}" Style="{TemplateBinding CloseButtonStyle}">
+              <Button Name="CloseButton" Grid.Column="2" Margin="5,0,5,0" Command="{TemplateBinding CloseButtonCommand}" CommandParameter="{TemplateBinding CloseButtonCommandParameter}" CornerRadius="{ThemeResource ControlCornerRadius}" Style="{TemplateBinding CloseButtonStyle}">
                 <Button.Resources>
                   <ResourceDictionary>
                     <ResourceDictionary.ThemeDictionaries>

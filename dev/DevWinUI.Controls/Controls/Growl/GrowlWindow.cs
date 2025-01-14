@@ -9,12 +9,11 @@ public partial class GrowlWindow : Window
     public GrowlWindow()
     {
         SystemBackdrop = new TransparentBackdrop();
-
-        ((OverlappedPresenter)AppWindow.Presenter).SetBorderAndTitleBar(false, false);
-        ((OverlappedPresenter)AppWindow.Presenter).IsMinimizable = false;
-        ((OverlappedPresenter)AppWindow.Presenter).IsMaximizable = false;
-        ((OverlappedPresenter)AppWindow.Presenter).IsResizable = false;
+        ExtendsContentIntoTitleBar = true;
+        AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Collapsed;
         AppWindow.IsShownInSwitchers = false;
+
+        WindowHelper.RemoveWindowBorderAndTitleBar(this);
 
         GrowlPanel = new StackPanel
         {
@@ -88,10 +87,5 @@ public partial class GrowlWindow : Window
 
             AppWindow?.MoveAndResize(position);
         }
-    }
-    internal void Init()
-    {
-        WindowHelper.SetWindowCornerRadius(this, NativeValues.DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DONOTROUND);
-        MoveAndResizeWindow();
     }
 }

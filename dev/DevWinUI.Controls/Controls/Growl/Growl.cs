@@ -261,24 +261,10 @@ public partial class Growl : InfoBar
         if (GrowlWindow == null || GrowlWindow.WindowClosed)
         {
             GrowlWindow = new GrowlWindow();
-            GrowlWindow.Init();
+            GrowlWindow.MoveAndResizeWindow();
         }
 
-        switch (growlInfo.Severity)
-        {
-            case InfoBarSeverity.Informational:
-                ctl.Background = Application.Current.Resources["InfoBarInformationalSeverityBackgroundBrush"] as Brush;
-                break;
-            case InfoBarSeverity.Success:
-                ctl.Background = Application.Current.Resources["InfoBarSuccessSeverityBackgroundBrush"] as Brush;
-                break;
-            case InfoBarSeverity.Warning:
-                ctl.Background = Application.Current.Resources["InfoBarWarningSeverityBackgroundBrush"] as Brush;
-                break;
-            case InfoBarSeverity.Error:
-                ctl.Background = Application.Current.Resources["InfoBarErrorSeverityBackgroundBrush"] as Brush;
-                break;
-        }
+        VisualStateManager.GoToState(ctl, growlInfo.Severity.ToString(), true);
 
         SetPanelTransition(GrowlTransition.AddDeleteThemeTransition, GrowlWindow.GrowlPanel);
 
