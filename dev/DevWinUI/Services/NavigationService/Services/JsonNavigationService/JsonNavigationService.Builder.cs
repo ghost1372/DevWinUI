@@ -130,10 +130,15 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureTitleBar(TitleBar titleBar)
     {
         EnsureInitialized();
-        ConfigTitleBar(titleBar);
+        ConfigTitleBar(titleBar, true);
         return this;
     }
-
+    public JsonNavigationService ConfigureTitleBar(TitleBar titleBar, bool autoManageBackButtonVisibility)
+    {
+        EnsureInitialized();
+        ConfigTitleBar(titleBar, autoManageBackButtonVisibility);
+        return this;
+    }
     private void EnsureInitialized()
     {
         if (!_isInitialized)

@@ -31,7 +31,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         _navigationView.IsBackEnabled = CanGoBack;
 
-        if (_isTitlebarConfigured)
+        if (_isTitlebarConfigured && _autoManageBackButtonVisibility)
         {
             _titleBar.IsBackButtonVisible = _frame.CanGoBack;
         }

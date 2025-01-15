@@ -6,6 +6,7 @@ public partial class JsonNavigationService
 {
     private bool _useBreadcrumbBar;
     private bool _allowDuplication;
+    private bool _autoManageBackButtonVisibility;
     private BreadcrumbNavigator _mainBreadcrumb { get; set; }
     private NavigationView? _navigationView;
     private AutoSuggestBox? _autoSuggestBox;

@@ -112,14 +112,19 @@ public partial class JsonNavigationService
         ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, allowDuplication);
     }
 
-    private void ConfigTitleBar(TitleBar titleBar)
+    private void ConfigTitleBar(TitleBar titleBar, bool autoManageBackButtonVisibility)
     {
         _titleBar = titleBar;
         titleBar.BackRequested -= OnBackRequested;
         titleBar.BackRequested += OnBackRequested;
         titleBar.PaneToggleRequested -= OnPaneToggleRequested;
         titleBar.PaneToggleRequested += OnPaneToggleRequested;
-        _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+        _autoManageBackButtonVisibility = autoManageBackButtonVisibility;
+        if (_autoManageBackButtonVisibility)
+        {
+            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+        }
+        
         _isTitlebarConfigured = true;
     }
 
