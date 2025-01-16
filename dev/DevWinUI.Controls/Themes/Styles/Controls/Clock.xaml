@@ -140,7 +140,7 @@
                                                     Margin="-30,0,0,10"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Bottom"
-                                                    Content="Am"
+                                                    Content="am"
                                                     IsChecked="True" />
                             <local:ClockRadioButton x:Name="PART_ButtonPm"
                                                     Grid.RowSpan="3"
@@ -150,7 +150,7 @@
                                                     Margin="0,0,-30,10"
                                                     HorizontalAlignment="Right"
                                                     VerticalAlignment="Bottom"
-                                                    Content="Pm" />
+                                                    Content="pm" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
