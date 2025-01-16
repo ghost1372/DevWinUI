@@ -399,3 +399,4 @@ FodyWeavers.xsd
 # output folder
 /output/
 /src/output/
+/dev/DevWinUI.Controls/DevWinUI.Controls.sln
