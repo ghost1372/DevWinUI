@@ -497,8 +497,8 @@ Themes\Styles\Win2D\Watermark.xaml
                   <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
                 </Grid>
               </Viewbox>
-              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Am" IsChecked="True" />
-              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Pm" />
+              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" />
+              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" />
             </Grid>
           </Grid>
         </ControlTemplate>

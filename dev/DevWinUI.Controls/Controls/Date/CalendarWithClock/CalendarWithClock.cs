@@ -25,10 +25,10 @@ public partial class CalendarWithClock : DateTimeBase
     {
         get
         {
-            return SelectedDate.ToString("dd/MM/yyyy");
+            return SelectedDateTime.ToString("dd/MM/yyyy");
         }
     }
-    public string SelectedDateTime
+    public string SelectedDateTimeString
     {
         get
         {
@@ -92,12 +92,12 @@ public partial class CalendarWithClock : DateTimeBase
                 SelectedTime = new TimeSpan(selectedTime.Hour, selectedTime.Minute, selectedTime.Second);
 
                 // Update SelectedDate with new time while preserving the date and time zone offset
-                SelectedDate = new DateTimeOffset(
-                    SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
+                SelectedDateTime = new DateTimeOffset(
+                    SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     selectedTime.Hour, selectedTime.Minute, selectedTime.Second,
-                    SelectedDate.Offset);
+                    SelectedDateTime.Offset);
 
-                SelectedTimeChanged?.Invoke(this, SelectedDate);
+                SelectedTimeChanged?.Invoke(this, SelectedDateTime);
             }
             finally
             {
@@ -113,12 +113,12 @@ public partial class CalendarWithClock : DateTimeBase
             try
             {
                 isUpdating = true;
-                SelectedDate = new DateTimeOffset(
+                SelectedDateTime = new DateTimeOffset(
                     selectedDate.Year, selectedDate.Month, selectedDate.Day,
                     SelectedTime?.Hours ?? 0, SelectedTime?.Minutes ?? 0, SelectedTime?.Seconds ?? 0,
                     selectedDate.Offset);
 
-                SelectedTimeChanged?.Invoke(this, SelectedDate);
+                SelectedTimeChanged?.Invoke(this, SelectedDateTime);
             }
             finally
             {
@@ -139,12 +139,12 @@ public partial class CalendarWithClock : DateTimeBase
                 SelectedTime = selectedTime;
 
                 // Update SelectedDate with new time while preserving the date and time zone offset
-                SelectedDate = new DateTimeOffset(
-                    SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
+                SelectedDateTime = new DateTimeOffset(
+                    SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds,
-                    SelectedDate.Offset);
+                    SelectedDateTime.Offset);
 
-                SelectedTimeChanged?.Invoke(this, SelectedDate);
+                SelectedTimeChanged?.Invoke(this, SelectedDateTime);
             }
             finally
             {
@@ -160,8 +160,8 @@ public partial class CalendarWithClock : DateTimeBase
             {
                 isUpdating = true;
                 calendarView.SelectedDates.Clear();
-                calendarView.SelectedDates.Add(SelectedDate);
-                calendarView.SetDisplayDate(SelectedDate);
+                calendarView.SelectedDates.Add(SelectedDateTime);
+                calendarView.SetDisplayDate(SelectedDateTime);
             }
             finally
             {
@@ -176,10 +176,10 @@ public partial class CalendarWithClock : DateTimeBase
             try
             {
                 isUpdating = true;
-                SelectedDate = new DateTimeOffset(
-                    SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
+                SelectedDateTime = new DateTimeOffset(
+                    SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     SelectedTime.Value.Hours, SelectedTime.Value.Minutes, SelectedTime.Value.Seconds,
-                    SelectedDate.Offset);
+                    SelectedDateTime.Offset);
             }
             finally
             {
