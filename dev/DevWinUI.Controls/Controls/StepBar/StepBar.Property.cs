@@ -85,4 +85,22 @@ public partial class StepBar
             ctl.UpdateHeaderDisplayMode();
         }
     }
+
+    public bool ShowStepIndex
+    {
+        get { return (bool)GetValue(ShowStepIndexProperty); }
+        set { SetValue(ShowStepIndexProperty, value); }
+    }
+
+    public static readonly DependencyProperty ShowStepIndexProperty =
+        DependencyProperty.Register(nameof(ShowStepIndex), typeof(bool), typeof(StepBar), new PropertyMetadata(true, OnShowStepIndexChanged));
+
+    private static void OnShowStepIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (StepBar)d;
+        if (ctl != null)
+        {
+            ctl.UpdateItems();
+        }
+    }
 }

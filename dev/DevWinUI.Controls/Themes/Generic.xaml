@@ -5825,7 +5825,7 @@ Themes\Styles\Win2D\Watermark.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="PART_Border" Height="40" MinWidth="40" HorizontalAlignment="Center" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
-              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
             </Border>
             <ContentPresenter x:Name="PART_Content" Margin="0,5,0,0" HorizontalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>
@@ -5913,7 +5913,7 @@ Themes\Styles\Win2D\Watermark.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="PART_Border" Height="40" MinWidth="40" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
-              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
             </Border>
             <ContentPresenter x:Name="PART_Content" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>
@@ -7036,6 +7036,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalStyle}" />
     <Setter Property="Template" Value="{StaticResource StepBarHorizontalControlTemplate}" />
     <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
+    <Setter Property="ShowStepIndex" Value="True" />
   </Style>
   <Style BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox" />
   <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />

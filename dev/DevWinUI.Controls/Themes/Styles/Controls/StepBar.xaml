@@ -41,6 +41,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalStyle}" />
         <Setter Property="Template" Value="{StaticResource StepBarHorizontalControlTemplate}" />
         <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
+        <Setter Property="ShowStepIndex" Value="True" />
     </Style>
 
     <ControlTemplate x:Key="StepBarHorizontalControlTemplate"
@@ -324,7 +325,8 @@
                                        VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                        Style="{StaticResource BaseTextBlockStyle}"
-                                       Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                       Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Border>
                         <ContentPresenter x:Name="PART_Content"
                                           Margin="0,5,0,0"
@@ -460,7 +462,8 @@
                                        FlowDirection="LeftToRight"
                                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                        Style="{StaticResource BaseTextBlockStyle}"
-                                       Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                       Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Border>
                         <ContentPresenter x:Name="PART_Content"
                                           Margin="5,0,0,0"

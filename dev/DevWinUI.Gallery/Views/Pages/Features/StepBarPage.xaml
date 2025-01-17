@@ -57,9 +57,13 @@
                             <ComboBoxItem Content="Bottom"
                                           Tag="Bottom" />
                         </ComboBox>
+                        <ToggleSwitch x:Name="TGShowStepIndex"
+                                      Header="Show StepIndex"
+                                      IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:StepBar x:Name="StepBarSample">
+                <dev:StepBar x:Name="StepBarSample"
+                             ShowStepIndex="{x:Bind TGShowStepIndex.IsOn, Mode=OneWay}">
                     <dev:StepBarItem Content="Register" />
                     <dev:StepBarItem Content="BasicInfo" />
                     <dev:StepBarItem Content="UploadFile" />

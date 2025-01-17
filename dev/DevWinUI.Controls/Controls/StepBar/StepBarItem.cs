@@ -7,6 +7,15 @@ public partial class StepBarItem : ContentControl
     private ContentPresenter contentPresenter;
     private Border border;
     private StackPanel panel;
+    internal bool ShowStepIndex
+    {
+        get { return (bool)GetValue(ShowStepIndexProperty); }
+        set { SetValue(ShowStepIndexProperty, value); }
+    }
+
+    internal static readonly DependencyProperty ShowStepIndexProperty =
+        DependencyProperty.Register(nameof(ShowStepIndex), typeof(bool), typeof(StepBarItem), new PropertyMetadata(true));
+
     internal DataTemplate ItemTemplate
     {
         get { return (DataTemplate)GetValue(ItemTemplateProperty); }
