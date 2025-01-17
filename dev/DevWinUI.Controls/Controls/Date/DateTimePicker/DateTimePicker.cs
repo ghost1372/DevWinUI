@@ -64,7 +64,7 @@ public partial class DateTimePicker : DateTimeBase
         if (calendarWithClock != null)
         {
             calendarWithClock.SelectedTime = SelectedTime;
-            calendarWithClock.SelectedDateTime = SelectedDate;
+            calendarWithClock.SelectedDateTime = SelectedDateTime;
             calendarWithClock.SelectedTimeChanged -= CalendarWithClock_SelectedTimeChanged;
             calendarWithClock.SelectedTimeChanged += CalendarWithClock_SelectedTimeChanged;
         }
@@ -74,6 +74,11 @@ public partial class DateTimePicker : DateTimeBase
 
     private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
     {
+        if (calendarWithClock != null)
+        {
+            SelectedDateTime = e;
+            SelectedTime = e.TimeOfDay;
+        }
         SelectedTimeChanged?.Invoke(this, e);
     }
 
@@ -127,7 +132,7 @@ public partial class DateTimePicker : DateTimeBase
 
     private void UpdateSelectedDate()
     {
-        calendarWithClock.SelectedDateTime = SelectedDate;
+        calendarWithClock.SelectedDateTime = SelectedDateTime;
         UpdatePlaceholder();
     }
 

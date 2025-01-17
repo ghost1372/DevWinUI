@@ -91,7 +91,7 @@ public partial class CalendarWithClock : DateTimeBase
                 // Update SelectedTime
                 SelectedTime = new TimeSpan(selectedTime.Hour, selectedTime.Minute, selectedTime.Second);
 
-                // Update SelectedDate with new time while preserving the date and time zone offset
+                // Update SelectedDateTime with new time while preserving the date and time zone offset
                 SelectedDateTime = new DateTimeOffset(
                     SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     selectedTime.Hour, selectedTime.Minute, selectedTime.Second,
@@ -138,7 +138,7 @@ public partial class CalendarWithClock : DateTimeBase
                 // Update SelectedTime
                 SelectedTime = selectedTime;
 
-                // Update SelectedDate with new time while preserving the date and time zone offset
+                // Update SelectedDateTime with new time while preserving the date and time zone offset
                 SelectedDateTime = new DateTimeOffset(
                     SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds,

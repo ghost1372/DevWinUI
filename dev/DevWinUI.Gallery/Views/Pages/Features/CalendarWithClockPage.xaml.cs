@@ -9,7 +9,7 @@ public sealed partial class CalendarWithClockPage : Page
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        TxtDateTime.Text = CalendarWithClockSample.SelectedDateTime;
+        TxtDateTime.Text = CalendarWithClockSample.SelectedDateTimeString;
     }
 
     private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -21,6 +21,6 @@ public sealed partial class CalendarWithClockPage : Page
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        TxtDateTime2.Text = CalendarWithClockSample2.SelectedDateTime;
+        TxtDateTime2.Text = CalendarWithClockSample2.SelectedDateTimeString;
     }
 }

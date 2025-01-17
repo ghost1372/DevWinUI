@@ -29,6 +29,9 @@
                                  Header="Confirm Button Content"
                                  PlaceholderText="Confirm"
                                  Text="Confirm" />
+                        <Button Click="ShowDateTimeForOne"
+        Content="Show Selected DateTime" />
+                        <TextBlock x:Name="TxtDateTime1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:DateTimePicker x:Name="DateTimePickerSample"
@@ -74,6 +77,9 @@
                                  Header="Confirm Button Content"
                                  PlaceholderText="Confirm"
                                  Text="Confirm" />
+                        <Button Click="ShowDateTimeForTwo"
+        Content="Show selected DateTime" />
+                        <TextBlock x:Name="TxtDateTime2" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:DateTimePicker x:Name="DateTimePickerSample2"
