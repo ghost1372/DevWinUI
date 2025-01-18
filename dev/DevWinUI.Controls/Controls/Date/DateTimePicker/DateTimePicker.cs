@@ -24,6 +24,7 @@ public partial class DateTimePicker : DateTimeBase
     private Grid rootGrid;
     private Button confirmButton;
     private CalendarWithClock calendarWithClock;
+    private bool isUpdating;
 
     public DateTimePicker()
     {
@@ -63,23 +64,38 @@ public partial class DateTimePicker : DateTimeBase
 
         if (calendarWithClock != null)
         {
-            calendarWithClock.SelectedTime = SelectedTime;
-            calendarWithClock.SelectedDateTime = SelectedDateTime;
-            calendarWithClock.SelectedTimeChanged -= CalendarWithClock_SelectedTimeChanged;
-            calendarWithClock.SelectedTimeChanged += CalendarWithClock_SelectedTimeChanged;
+            try
+            {
+                isUpdating = true;
+                calendarWithClock.SelectedTime = SelectedTime;
+                calendarWithClock.SelectedDateTime = SelectedDateTime;
+            }
+            finally
+            {
+                calendarWithClock.SelectedTimeChanged -= CalendarWithClock_SelectedTimeChanged;
+                calendarWithClock.SelectedTimeChanged += CalendarWithClock_SelectedTimeChanged;
+                isUpdating = false;
+            }
         }
-
-        UpdateTemplate();
+            UpdateTemplate();
     }
 
     private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
     {
-        if (calendarWithClock != null)
+        if (!isUpdating && calendarWithClock != null)
         {
-            SelectedDateTime = e;
-            SelectedTime = e.TimeOfDay;
+            try
+            {
+                isUpdating = true;
+                SelectedDateTime = e;
+                SelectedTime = e.TimeOfDay;
+                SelectedTimeChanged?.Invoke(this, e);
+            }
+            finally
+            {
+                isUpdating = false;
+            }
         }
-        SelectedTimeChanged?.Invoke(this, e);
     }
 
     private void OnConfirmButton(object sender, RoutedEventArgs e)
@@ -126,14 +142,35 @@ public partial class DateTimePicker : DateTimeBase
 
     private void UpdateSelectedTime()
     {
-        calendarWithClock.SelectedTime = SelectedTime;
-        UpdatePlaceholder();
+        if (!isUpdating && calendarWithClock != null)
+        {
+            try
+            {
+                isUpdating = true;
+                calendarWithClock.SelectedTime = SelectedTime;
+                UpdatePlaceholder();
+            }
+            finally
+            {
+                isUpdating = false;
+            }
+        }
     }
-
     private void UpdateSelectedDate()
     {
-        calendarWithClock.SelectedDateTime = SelectedDateTime;
-        UpdatePlaceholder();
+        if (!isUpdating && calendarWithClock != null)
+        {
+            try
+            {
+                isUpdating = true;
+                calendarWithClock.SelectedDateTime = SelectedDateTime;
+                UpdatePlaceholder();
+            }
+            finally
+            {
+                isUpdating = false;
+            }
+        }
     }
 
     private void UpdatePlaceholder()
