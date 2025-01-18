@@ -194,6 +194,7 @@ public partial class StepBar : ItemsControl
                 stepBarItem.Orientation = this.Orientation;
                 stepBarItem.HeaderDisplayMode = this.HeaderDisplayMode;
                 stepBarItem.ItemTemplate = ItemTemplate;
+                stepBarItem.ShowStepIndex = ShowStepIndex;
             }
         }
 
