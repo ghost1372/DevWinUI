@@ -497,8 +497,8 @@ Themes\Styles\Win2D\Watermark.xaml
                   <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
                 </Grid>
               </Viewbox>
-              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Am" IsChecked="True" />
-              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Pm" />
+              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" />
+              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" />
             </Grid>
           </Grid>
         </ControlTemplate>
@@ -3689,7 +3689,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <ControlTemplate x:Key="CalendarWithAnalogClockTemplate" TargetType="local:CalendarWithClock">
     <Grid x:Name="PART_Root">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition />
+        <ColumnDefinition MinWidth="300" />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <VisualStateManager.VisualStateGroups>
@@ -3754,7 +3754,7 @@ Themes\Styles\Win2D\Watermark.xaml
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
       <Border x:Name="Background" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
-      <CalendarView x:Name="PART_CalendarView" Grid.Column="0" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="{TemplateBinding CalendarViewCornerRadius}" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" />
+      <CalendarView x:Name="PART_CalendarView" Grid.Column="0" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="{TemplateBinding CalendarViewCornerRadius}" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" MinWidth="300" />
       <local:Clock x:Name="PART_Clock" Grid.Column="1" Margin="{TemplateBinding ClockMargin}" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
     </Grid>
   </ControlTemplate>

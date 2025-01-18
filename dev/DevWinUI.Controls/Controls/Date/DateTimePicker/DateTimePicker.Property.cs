@@ -46,13 +46,13 @@ public partial class DateTimePicker
         }
     }
 
-    public DateTimeOffset SelectedDate
+    public DateTimeOffset SelectedDateTime
     {
-        get { return (DateTimeOffset)GetValue(SelectedDateProperty); }
-        set { SetValue(SelectedDateProperty, value); }
+        get { return (DateTimeOffset)GetValue(SelectedDateTimeProperty); }
+        set { SetValue(SelectedDateTimeProperty, value); }
     }
-    public static readonly DependencyProperty SelectedDateProperty =
-        DependencyProperty.Register(nameof(SelectedDate), typeof(DateTimeOffset), typeof(DateTimePicker), new PropertyMetadata(DateTimeOffset.Now, OnSelectedDateChanged));
+    public static readonly DependencyProperty SelectedDateTimeProperty =
+        DependencyProperty.Register(nameof(SelectedDateTime), typeof(DateTimeOffset), typeof(DateTimePicker), new PropertyMetadata(DateTimeOffset.Now, OnSelectedDateChanged));
 
     private static void OnSelectedDateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
