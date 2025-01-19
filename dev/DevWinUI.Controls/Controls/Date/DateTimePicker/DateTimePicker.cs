@@ -77,7 +77,8 @@ public partial class DateTimePicker : DateTimeBase
                 isUpdating = false;
             }
         }
-            UpdateTemplate();
+
+        UpdateTemplate();
     }
 
     private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
