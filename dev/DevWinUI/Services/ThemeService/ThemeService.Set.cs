@@ -1,7 +1,4 @@
-﻿
-using Microsoft.UI.Composition.SystemBackdrops;
-using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml.Media;
+﻿using Microsoft.UI.Dispatching;
 
 namespace DevWinUI;
 public partial class ThemeService
