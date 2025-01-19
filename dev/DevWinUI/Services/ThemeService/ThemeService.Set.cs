@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml.Media;
 
 namespace DevWinUI;
 public partial class ThemeService
@@ -54,51 +55,47 @@ public partial class ThemeService
 
     public void SetBackdropTintColor(Color color)
     {
-        foreach (var window in WindowHelper.ActiveWindows)
+        DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
         {
-            var systemBackdrop = window.SystemBackdrop;
-            if (systemBackdrop != null)
+            foreach (var window in WindowHelper.ActiveWindows)
             {
-                if (systemBackdrop is MicaSystemBackdrop mica)
+                if (window.SystemBackdrop is MicaSystemBackdrop mica)
                 {
                     mica.TintColor = color;
                 }
-                else if (systemBackdrop is AcrylicSystemBackdrop acrylic)
+                else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
                 {
                     acrylic.TintColor = color;
                 }
-
-                if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropTintColor != color)
-                {
-                    GlobalData.Config.BackdropTintColor = color;
-                    GlobalData.Save();
-                }
             }
-        }
+            if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropTintColor != color)
+            {
+                GlobalData.Config.BackdropTintColor = color;
+                GlobalData.Save();
+            }
+        });
     }
 
     public void SetBackdropFallbackColor(Color color)
     {
-        foreach (var window in WindowHelper.ActiveWindows)
+        DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
         {
-            var systemBackdrop = window.SystemBackdrop;
-            if (systemBackdrop != null)
+            foreach (var window in WindowHelper.ActiveWindows)
             {
-                if (systemBackdrop is MicaSystemBackdrop mica)
+                if (window.SystemBackdrop is MicaSystemBackdrop mica)
                 {
                     mica.FallbackColor = color;
                 }
-                else if (systemBackdrop is AcrylicSystemBackdrop acrylic)
+                else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
                 {
                     acrylic.FallbackColor = color;
                 }
-
-                if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropFallBackColor != color)
-                {
-                    GlobalData.Config.BackdropFallBackColor = color;
-                    GlobalData.Save();
-                }
             }
-        }
+            if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropFallBackColor != color)
+            {
+                GlobalData.Config.BackdropFallBackColor = color;
+                GlobalData.Save();
+            }
+        });
     }
 }
