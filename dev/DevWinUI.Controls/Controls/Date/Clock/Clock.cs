@@ -30,19 +30,19 @@ public partial class Clock : Control
 
     private Line _minuteHandLine;
 
-    private ClockRadioButton _currentButton;
+    private ClockRadioButton _selectedHourButton;
 
     private RotateTransform _rotateTransformClock;
 
     private CirclePanel _circlePanel;
 
-    private List<ClockRadioButton> _radioButtonList;
+    private List<ClockRadioButton> _hourButtonList;
 
     private TextBlock _blockTime;
     private Grid _grid;
 
     private int _secValue;
-    protected bool AppliedTemplate;
+    protected bool isTemplateApplied;
     private int SecValue
     {
         get => _secValue;
@@ -68,7 +68,7 @@ public partial class Clock : Control
     }
     protected override void OnApplyTemplate()
     {
-        AppliedTemplate = false;
+        isTemplateApplied = false;
         if (_buttonAm != null)
         {
             _buttonAm.Click -= ButtonAm_OnClick;
@@ -113,30 +113,30 @@ public partial class Clock : Control
         _rotateTransformClock = new RotateTransform();
         _minuteHandLine.RenderTransform = _rotateTransformClock;
 
-        _radioButtonList = new List<ClockRadioButton>();
+        _hourButtonList = new List<ClockRadioButton>();
         for (var i = 0; i < 12; i++)
         {
             var num = i + 1;
-            var button = new ClockRadioButton
+            var hourButton = new ClockRadioButton
             {
                 Num = num,
                 Content = num.ToString()
             };
-            button.Checked -= Button_Checked;
-            button.Checked += Button_Checked;
-            _radioButtonList.Add(button);
-            _circlePanel.Children.Add(button);
+            hourButton.Checked -= HourButton_Checked;
+            hourButton.Checked += HourButton_Checked;
+            _hourButtonList.Add(hourButton);
+            _circlePanel.Children.Add(hourButton);
         }
 
-        AppliedTemplate = true;
-        SelectedTime = DateTime.Now;
+        isTemplateApplied = true;
+        //SelectedTime = DateTime.Now; //Commented out, as the SelectedTime already defaults to DateTime.Now, and this interferes with externally set DateTime.
         Update(SelectedTime);
     }
 
-    private void Button_Checked(object sender, RoutedEventArgs e)
+    private void HourButton_Checked(object sender, RoutedEventArgs e)
     {
-        _currentButton = e.OriginalSource as ClockRadioButton;
-        if (_currentButton != null)
+        _selectedHourButton = e.OriginalSource as ClockRadioButton;
+        if (_selectedHourButton != null)
         {
             Update();
         }
@@ -147,36 +147,43 @@ public partial class Clock : Control
         var pointerPoint = e.GetCurrentPoint(_grid);
         if (pointerPoint.Properties.IsLeftButtonPressed)
         {
-            var position = pointerPoint.Position;
-            var value = ArithmeticHelper.CalAngle(new Point(85, 85), position) + 90;
-            if (value < 0)
+
+            var originalSource = e.OriginalSource as FrameworkElement;
+            if (originalSource is TextBlock) //When clicking on a number, don't move the minute hand.
             {
-                value = value + 360;
+                return;
             }
-            value = value - value % 6;
-            _rotateTransformClock.Angle = value;
+
+            var position = pointerPoint.Position;
+            var minuteAngle = ArithmeticHelper.CalAngle(new Point(85, 85), position) + 90;
+            if (minuteAngle < 0)
+            {
+                minuteAngle = minuteAngle + 360;
+            }
+            minuteAngle = minuteAngle - minuteAngle % 6;
+            _rotateTransformClock.Angle = minuteAngle;
             Update();
         }
     }
 
     private void OnGridPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
-        var value = (int)_rotateTransformClock.Angle;
+        var minuteAngle = (int)_rotateTransformClock.Angle;
         var delta = e.GetCurrentPoint(_grid).Properties.MouseWheelDelta;
 
         if (delta < 0)
         {
-            value += 6;
+            minuteAngle += 6;
         }
         else
         {
-            value -= 6;
+            minuteAngle -= 6;
         }
-        if (value < 0)
+        if (minuteAngle < 0)
         {
-            value = value + 360;
+            minuteAngle = minuteAngle + 360;
         }
-        _rotateTransformClock.Angle = value;
+        _rotateTransformClock.Angle = minuteAngle;
 
         Update();
         e.Handled = true;
@@ -210,18 +217,18 @@ public partial class Clock : Control
 
     private void Update()
     {
-        if (!AppliedTemplate) return;
-        var hValue = _currentButton.Num;
+        if (!isTemplateApplied) return;
+        var hourValue = _selectedHourButton.Num;
         if (_buttonPm.IsChecked == true)
         {
-            hValue += 12;
-            if (hValue == 24) hValue = 12;
+            hourValue += 12;
+            if (hourValue == 24) hourValue = 12;
         }
-        else if (hValue == 12)
+        else if (hourValue == 12)
         {
-            hValue = 0;
+            hourValue = 0;
         }
-        if (hValue == 12 && _buttonAm.IsChecked == true)
+        if (hourValue == 12 && _buttonAm.IsChecked == true)
         {
             _buttonPm.IsChecked = true;
             _buttonAm.IsChecked = false;
@@ -236,11 +243,11 @@ public partial class Clock : Control
 
     internal void Update(DateTime time)
     {
-        if (!AppliedTemplate) return;
-        var h = time.Hour;
-        var m = time.Minute;
+        if (!isTemplateApplied) return;
+        var hour24 = time.Hour;
+        var minutes = time.Minute;
 
-        if (h >= 12)
+        if (hour24 >= 12)
         {
             _buttonPm.IsChecked = true;
             _buttonAm.IsChecked = false;
@@ -251,11 +258,11 @@ public partial class Clock : Control
             _buttonAm.IsChecked = true;
         }
 
-        _rotateTransformClock.Angle = m * 6;
+        _rotateTransformClock.Angle = minutes * 6;
 
-        var hRest = h % 12;
-        if (hRest == 0) hRest = 12;
-        var ctl = _radioButtonList[hRest - 1];
+        var hour12 = hour24 % 12;
+        if (hour12 == 0) hour12 = 12;
+        var ctl = _hourButtonList[hour12 - 1];
         ctl.IsChecked = true;
 
         _secValue = time.Second;
@@ -264,18 +271,19 @@ public partial class Clock : Control
 
     private DateTime GetDisplayTime()
     {
-        var hValue = _currentButton.Num;
+        var hourValue = _selectedHourButton.Num;
+        var minuteValue = (int)Math.Abs(_rotateTransformClock.Angle) % 360 / 6;
         if (_buttonPm.IsChecked == true)
         {
-            hValue += 12;
-            if (hValue == 24) hValue = 12;
+            hourValue += 12;
+            if (hourValue == 24) hourValue = 12;
         }
-        else if (hValue == 12)
+        else if (hourValue == 12)
         {
-            hValue = 0;
+            hourValue = 0;
         }
-        var now = DateTime.Now;
-        return new DateTime(now.Year, now.Month, now.Day, hValue, (int)Math.Abs(_rotateTransformClock.Angle) % 360 / 6, _secValue);
+        var now = DateTime.Now; //Remember, this does not overwrite CalendarWithClock/DateTimePicker's SelectedDateTime, so no need to switch to TimeOnly and break users' apps.
+        return new DateTime(now.Year, now.Month, now.Day, hourValue, minuteValue, _secValue);
     }
 
     private void ButtonAm_OnClick(object sender, RoutedEventArgs e) => Update();
