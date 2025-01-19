@@ -41,44 +41,36 @@ public partial class ThemeService
     }
     private void ConfigTintColorBase()
     {
-        foreach (var window in WindowHelper.ActiveWindows)
+        if (IsDarkTheme())
         {
-            var systemBackdrop = window.SystemBackdrop;
-            if (systemBackdrop != null)
+            switch (GetBackdropType())
             {
-                if (IsDarkTheme())
-                {
-                    switch (GetBackdropType())
-                    {
-                        case BackdropType.Mica:
-                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
-                            break;
-                        case BackdropType.MicaAlt:
-                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
-                            break;
-                        case BackdropType.AcrylicThin:
-                        case BackdropType.AcrylicBase:
-                            ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
-                            break;
-                    }
-                }
-                else
-                {
-                    switch (GetBackdropType())
-                    {
-                        case BackdropType.Mica:
-                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
-                            break;
-                        case BackdropType.MicaAlt:
-                            ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
-                            break;
-                        case BackdropType.AcrylicThin:
-                        case BackdropType.AcrylicBase:
-                            ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
-                            break;
-                    }
-                }
-
+                case BackdropType.Mica:
+                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
+                    break;
+                case BackdropType.MicaAlt:
+                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
+                    break;
+                case BackdropType.AcrylicThin:
+                case BackdropType.AcrylicBase:
+                    ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
+                    break;
+            }
+        }
+        else
+        {
+            switch (GetBackdropType())
+            {
+                case BackdropType.Mica:
+                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
+                    break;
+                case BackdropType.MicaAlt:
+                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
+                    break;
+                case BackdropType.AcrylicThin:
+                case BackdropType.AcrylicBase:
+                    ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
+                    break;
             }
         }
     }
@@ -98,37 +90,30 @@ public partial class ThemeService
 
     private void ConfigFallbackColorBase()
     {
-        foreach (var window in WindowHelper.ActiveWindows)
+        if (IsDarkTheme())
         {
-            var systemBackdrop = window.SystemBackdrop;
-            if (systemBackdrop != null)
+            switch (GetBackdropType())
             {
-                if (IsDarkTheme())
-                {
-                    switch (GetBackdropType())
-                    {
-                        case BackdropType.MicaAlt:
-                            ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
-                            break;
-                        case BackdropType.AcrylicThin:
-                        case BackdropType.AcrylicBase:
-                            ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
-                            break;
-                    }
-                }
-                else
-                {
-                    switch (GetBackdropType())
-                    {
-                        case BackdropType.MicaAlt:
-                            ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
-                            break;
-                        case BackdropType.AcrylicThin:
-                        case BackdropType.AcrylicBase:
-                            ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
-                            break;
-                    }
-                }
+                case BackdropType.MicaAlt:
+                    ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
+                    break;
+                case BackdropType.AcrylicThin:
+                case BackdropType.AcrylicBase:
+                    ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
+                    break;
+            }
+        }
+        else
+        {
+            switch (GetBackdropType())
+            {
+                case BackdropType.MicaAlt:
+                    ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
+                    break;
+                case BackdropType.AcrylicThin:
+                case BackdropType.AcrylicBase:
+                    ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
+                    break;
             }
         }
     }
