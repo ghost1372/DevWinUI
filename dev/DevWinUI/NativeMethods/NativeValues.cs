@@ -18,14 +18,6 @@ public static partial class NativeValues
             ComCtl32 = "comctl32.dll";
     }
 
-    public const int
-        WM_ACTIVATE = 0x0006,
-        WA_ACTIVE = 0x01,
-        WA_INACTIVE = 0x00,
-        WM_USER = 0x0400,
-        WS_EX_LAYOUTLTR = 0x00000000,
-        WS_EX_LAYOUTRTL = 0x00400000;
-
     [StructLayout(LayoutKind.Sequential)]
     internal struct MINMAXINFO
     {
@@ -69,7 +61,14 @@ public static partial class NativeValues
     [Flags]
     internal enum WindowStyle : uint
     {
-        WS_SYSMENU = 0x80000
+        WS_SYSMENU = 0x80000,
+        WS_BORDER = 0x00800000,
+        WS_CAPTION = 0x00C00000,
+        WS_THICKFRAME = 0x00040000,
+        WS_EX_LAYERED = 0x00080000,
+        WS_EX_TRANSPARENT = 0x00000020,
+        WS_EX_LAYOUTLTR = 0x00000000,
+        WS_EX_LAYOUTRTL = 0x00400000
     }
     public enum DWM_WINDOW_CORNER_PREFERENCE
     {
@@ -153,6 +152,8 @@ public static partial class NativeValues
         NIN_BALLOONUSERCLICK = WM_USER + 5,
         NIN_POPUPOPEN = WM_USER + 6,
         NIN_POPUPCLOSE = WM_USER + 7,
+        WA_ACTIVE = 0x01,
+        WA_INACTIVE = 0x00
     }
 
     [StructLayout(LayoutKind.Sequential)]

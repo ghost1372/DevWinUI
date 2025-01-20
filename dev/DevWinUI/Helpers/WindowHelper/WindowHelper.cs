@@ -56,13 +56,13 @@ public partial class WindowHelper
         var hwnd = new HWND(windowHandle);
         if (hwnd == activeWindow)
         {
-            PInvoke.SendMessage(hwnd, NativeValues.WM_ACTIVATE, NativeValues.WA_INACTIVE, IntPtr.Zero);
-            PInvoke.SendMessage(hwnd, NativeValues.WM_ACTIVATE, NativeValues.WA_ACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
         }
         else
         {
-            PInvoke.SendMessage(hwnd, NativeValues.WM_ACTIVATE, NativeValues.WA_ACTIVE, IntPtr.Zero);
-            PInvoke.SendMessage(hwnd, NativeValues.WM_ACTIVATE, NativeValues.WA_INACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
         }
     }
 
@@ -257,20 +257,22 @@ public partial class WindowHelper
             => (PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CXSCREEN), PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CYSCREEN));
 
     public static void RemoveWindowBorderAndTitleBar(Window window) => RemoveWindowBorderAndTitleBar((nint)window.AppWindow.Id.Value);
-    public static void RemoveWindowBorderAndTitleBar(IntPtr hWnd)
+    public static void RemoveWindowBorderAndTitleBar(IntPtr hwnd)
     {
-        const int WS_BORDER = 0x00800000;
-        const int WS_CAPTION = 0x00C00000;
-        const int WS_THICKFRAME = 0x00040000;
-
-        var style = PInvoke.GetWindowLong(new HWND(hWnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+        var style = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 
         // Remove border, caption, and thick frame
-        style &= ~WS_BORDER & ~WS_CAPTION & ~WS_THICKFRAME;
+        style &= ~(int)NativeValues.WindowStyle.WS_BORDER & ~(int)NativeValues.WindowStyle.WS_CAPTION & ~(int)NativeValues.WindowStyle.WS_THICKFRAME;
 
-        PInvoke.SetWindowLong(new HWND(hWnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE, style);
+        PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE, style);
 
         // Update the window's appearance
-        PInvoke.SetWindowPos(new HWND(hWnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
+        PInvoke.SetWindowPos(new HWND(hwnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
+    }
+    public static void MakeTransparentWindowClickThrough(Window window) => MakeTransparentWindowClickThrough((nint)window.AppWindow.Id.Value);
+    public static void MakeTransparentWindowClickThrough(IntPtr hwnd)
+    {
+        var currentStyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+        PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, currentStyle | (int)NativeValues.WindowStyle.WS_EX_LAYERED | (int)NativeValues.WindowStyle.WS_EX_TRANSPARENT);
     }
 }

@@ -135,7 +135,7 @@ public partial class GeneralHelper
     public static void SetApplicationLayoutRTL(IntPtr windowHandle)
     {
         int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
-        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | NativeValues.WS_EX_LAYOUTRTL);
+        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTRTL);
     }
     public static void SetApplicationLayoutRTL(Window window)
     {
@@ -146,7 +146,7 @@ public partial class GeneralHelper
     public static void SetApplicationLayoutLTR(IntPtr windowHandle)
     {
         int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
-        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | NativeValues.WS_EX_LAYOUTLTR);
+        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTLTR);
     }
     public static void SetApplicationLayoutLTR(Window window)
     {
