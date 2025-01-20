@@ -150,7 +150,6 @@ public partial class Clock : Control
         var pointerPoint = e.GetCurrentPoint(_grid);
         if (pointerPoint.Properties.IsLeftButtonPressed)
         {
-
             //When clicking on a number, don't move the minute hand.
             var originalSource = e.OriginalSource as FrameworkElement;
             if (originalSource is TextBlock) 
