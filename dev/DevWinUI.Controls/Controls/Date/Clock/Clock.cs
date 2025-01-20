@@ -129,7 +129,10 @@ public partial class Clock : Control
         }
 
         isTemplateApplied = true;
-        //SelectedTime = DateTime.Now; //Commented out, as the SelectedTime already defaults to DateTime.Now, and this interferes with externally set DateTime.
+
+        //As the SelectedTime already defaults to DateTime.Now, and this interferes with externally set DateTime.
+        //SelectedTime = DateTime.Now;
+
         Update(SelectedTime);
     }
 
@@ -148,8 +151,9 @@ public partial class Clock : Control
         if (pointerPoint.Properties.IsLeftButtonPressed)
         {
 
+            //When clicking on a number, don't move the minute hand.
             var originalSource = e.OriginalSource as FrameworkElement;
-            if (originalSource is TextBlock) //When clicking on a number, don't move the minute hand.
+            if (originalSource is TextBlock) 
             {
                 return;
             }
@@ -282,7 +286,9 @@ public partial class Clock : Control
         {
             hourValue = 0;
         }
-        var now = DateTime.Now; //Remember, this does not overwrite CalendarWithClock/DateTimePicker's SelectedDateTime, so no need to switch to TimeOnly and break users' apps.
+
+        //Remember, this does not overwrite CalendarWithClock/DateTimePicker's SelectedDateTime, so no need to switch to TimeOnly and break users' apps.
+        var now = DateTime.Now;
         return new DateTime(now.Year, now.Month, now.Day, hourValue, minuteValue, _secValue);
     }
 

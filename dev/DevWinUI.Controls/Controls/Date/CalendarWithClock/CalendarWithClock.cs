@@ -25,7 +25,6 @@ public partial class CalendarWithClock : DateTimeBase
     {
         get
         {
-            //return SelectedDateTime.ToString("dd/MM/yyyy");
             return SelectedDateTime.ToString("d");
         }
     }
@@ -33,9 +32,7 @@ public partial class CalendarWithClock : DateTimeBase
     {
         get
         {
-            //return $"{SelectedDateFormatted} - {SelectedTime?.ToString(@"hh\:mm\:ss")}";
             return $"{SelectedDateFormatted} - {SelectedDateTime.TimeOfDay.ToString(@"hh\:mm\:ss")}";
-
         }
     }
 
