@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using WinRT.Interop;
 
 namespace DevWinUI;
@@ -8,23 +9,21 @@ public partial class WindowHelper
     internal static List<Win32Window> processWindowList = new List<Win32Window>();
     internal static Process currentProcess;
     internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
-    public static List<Window> ActiveWindows { get { return _activeWindows; } }
-    private static List<Window> _activeWindows = new List<Window>();
-
+    public static ObservableCollection<Window> ActiveWindows { get;} = new();
     public static void TrackWindow(Window window)
     {
         window.Closed += (sender, args) =>
         {
-            _activeWindows.Remove(window);
+            ActiveWindows.Remove(window);
         };
 
-        _activeWindows.AddIfNotExists(window);
+        ActiveWindows.AddIfNotExists(window);
     }
     public static Window GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
         {
-            foreach (Window window in _activeWindows)
+            foreach (Window window in ActiveWindows)
             {
                 if (element.XamlRoot == window.Content.XamlRoot)
                 {

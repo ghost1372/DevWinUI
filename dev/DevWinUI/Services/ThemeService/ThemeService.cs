@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Collections.Specialized;
+
+namespace DevWinUI;
 public partial class ThemeService : IThemeService
 {
     public readonly string ConfigFilePath = "CoreAppConfigV8.0.0.json";
@@ -80,6 +82,8 @@ public partial class ThemeService : IThemeService
         }
 
         WindowHelper.TrackWindow(window);
+        WindowHelper.ActiveWindows.CollectionChanged -= OnActiveWindowsChanged;
+        WindowHelper.ActiveWindows.CollectionChanged += OnActiveWindowsChanged;
 
         foreach (var windowItem in WindowHelper.ActiveWindows)
         {
@@ -111,7 +115,29 @@ public partial class ThemeService : IThemeService
             GlobalData.Init();
         }
     }
-
+    private void OnActiveWindowsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+        {
+            foreach (Window window in e.NewItems)
+            {
+                InitializeWindowPropertiesOnce(window);
+            }
+        }
+    }
+    private void InitializeWindowPropertiesOnce(Window window)
+    {
+        RootTheme = GetElementTheme();
+        window.SystemBackdrop = GetSystemBackdrop();
+        if (window.SystemBackdrop is MicaSystemBackdrop mica)
+        {
+            mica.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
+        }
+        else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
+        {
+            acrylic.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
+        }
+    }
     private void OnActualThemeChanged(FrameworkElement sender, object args)
     {
         GeneralHelper.SetPreferredAppMode(sender.ActualTheme);

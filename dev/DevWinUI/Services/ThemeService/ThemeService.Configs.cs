@@ -39,22 +39,21 @@ public partial class ThemeService
 
         SetBackdropTintColor(tintColor);
     }
-    private void ConfigTintColorBase()
+    private Color GetDefaultTintColor()
     {
         if (IsDarkTheme())
         {
             switch (GetBackdropType())
             {
                 case BackdropType.Mica:
-                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Dark, false);
-                    break;
+                    return MicaSystemBackdrop.Default_TintColor_Dark;
                 case BackdropType.MicaAlt:
-                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark, false);
-                    break;
+                    return MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark;
                 case BackdropType.AcrylicThin:
                 case BackdropType.AcrylicBase:
-                    ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Dark, false);
-                    break;
+                    return AcrylicSystemBackdrop.Default_TintColor_Dark;
+                default:
+                    return MicaSystemBackdrop.Default_TintColor_Dark;
             }
         }
         else
@@ -62,17 +61,20 @@ public partial class ThemeService
             switch (GetBackdropType())
             {
                 case BackdropType.Mica:
-                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_Light, false);
-                    break;
+                    return MicaSystemBackdrop.Default_TintColor_Light;
                 case BackdropType.MicaAlt:
-                    ConfigTintColorBase(MicaSystemBackdrop.Default_TintColor_MicaAlt_Light, false);
-                    break;
+                    return MicaSystemBackdrop.Default_TintColor_MicaAlt_Light;
                 case BackdropType.AcrylicThin:
                 case BackdropType.AcrylicBase:
-                    ConfigTintColorBase(AcrylicSystemBackdrop.Default_TintColor_Light, false);
-                    break;
+                    return AcrylicSystemBackdrop.Default_TintColor_Light;
+                default:
+                    return MicaSystemBackdrop.Default_TintColor_Light;
             }
         }
+    }
+    private void ConfigTintColorBase()
+    {
+        ConfigTintColorBase(GetDefaultTintColor(), false);
     }
     private void ConfigFallbackColorBase(Color color, bool force)
     {
