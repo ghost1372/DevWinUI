@@ -2,7 +2,7 @@
 
 public sealed partial class WindowMessageEventArgs : EventArgs
 {
-    public WindowMessageEventArgs(IntPtr hwnd, uint messageId, nuint wParam, nint lParam)
+    internal WindowMessageEventArgs(IntPtr hwnd, uint messageId, nuint wParam, nint lParam)
     {
         Message = new Message(hwnd, messageId, wParam, lParam);
     }
