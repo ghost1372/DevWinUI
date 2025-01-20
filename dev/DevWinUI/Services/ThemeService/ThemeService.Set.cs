@@ -1,17 +1,12 @@
-﻿using Microsoft.UI.Dispatching;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class ThemeService
 {
     private void SetWindowSystemBackdrop(BackdropType backdropType)
     {
-        DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
+        foreach (var window in WindowHelper.ActiveWindows)
         {
-            foreach (var window in WindowHelper.ActiveWindows)
-            {
-                window.SystemBackdrop = GetSystemBackdrop(backdropType);
-            }
-        });
+            window.SystemBackdrop = GetSystemBackdrop(backdropType);
+        }
     }
 
     public void SetBackdropType(BackdropType backdropType)
@@ -52,47 +47,41 @@ public partial class ThemeService
 
     public void SetBackdropTintColor(Color color)
     {
-        DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
+        foreach (var window in WindowHelper.ActiveWindows)
         {
-            foreach (var window in WindowHelper.ActiveWindows)
+            if (window.SystemBackdrop is MicaSystemBackdrop mica)
             {
-                if (window.SystemBackdrop is MicaSystemBackdrop mica)
-                {
-                    mica.TintColor = color;
-                }
-                else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
-                {
-                    acrylic.TintColor = color;
-                }
+                mica.TintColor = color;
             }
-            if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropTintColor != color)
+            else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
             {
-                GlobalData.Config.BackdropTintColor = color;
-                GlobalData.Save();
+                acrylic.TintColor = color;
             }
-        });
+        }
+        if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropTintColor != color)
+        {
+            GlobalData.Config.BackdropTintColor = color;
+            GlobalData.Save();
+        }
     }
 
     public void SetBackdropFallbackColor(Color color)
     {
-        DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
+        foreach (var window in WindowHelper.ActiveWindows)
         {
-            foreach (var window in WindowHelper.ActiveWindows)
+            if (window.SystemBackdrop is MicaSystemBackdrop mica)
             {
-                if (window.SystemBackdrop is MicaSystemBackdrop mica)
-                {
-                    mica.FallbackColor = color;
-                }
-                else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
-                {
-                    acrylic.FallbackColor = color;
-                }
+                mica.FallbackColor = color;
             }
-            if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropFallBackColor != color)
+            else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
             {
-                GlobalData.Config.BackdropFallBackColor = color;
-                GlobalData.Save();
+                acrylic.FallbackColor = color;
             }
-        });
+        }
+        if (useAutoSave && GlobalData.Config != null && GlobalData.Config.BackdropFallBackColor != color)
+        {
+            GlobalData.Config.BackdropFallBackColor = color;
+            GlobalData.Save();
+        }
     }
 }
