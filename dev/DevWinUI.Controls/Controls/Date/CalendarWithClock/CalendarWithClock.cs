@@ -25,14 +25,14 @@ public partial class CalendarWithClock : DateTimeBase
     {
         get
         {
-            return SelectedDateTime.ToString("dd/MM/yyyy");
+            return SelectedDateTime.ToString("d");
         }
     }
     public string SelectedDateTimeString
     {
         get
         {
-            return $"{SelectedDateFormatted} - {SelectedTime?.ToString(@"hh\:mm\:ss")}";
+            return $"{SelectedDateFormatted} - {SelectedDateTime.TimeOfDay.ToString(@"hh\:mm\:ss")}";
         }
     }
 
@@ -71,6 +71,11 @@ public partial class CalendarWithClock : DateTimeBase
 
         if (clock != null)
         {
+            if (SelectedDateTime != default)
+            {
+                clock.SelectedTime = SelectedDateTime.DateTime;
+            }
+
             clock.SelectedTimeChanged -= OnClockSelectedTimeChanged;
             clock.SelectedTimeChanged += OnClockSelectedTimeChanged;
         }
@@ -88,14 +93,12 @@ public partial class CalendarWithClock : DateTimeBase
             {
                 isUpdating = true;
 
-                // Update SelectedTime
                 SelectedTime = new TimeSpan(selectedTime.Hour, selectedTime.Minute, selectedTime.Second);
 
-                // Update SelectedDateTime with new time while preserving the date and time zone offset
                 SelectedDateTime = new DateTimeOffset(
-                    SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
-                    selectedTime.Hour, selectedTime.Minute, selectedTime.Second,
-                    SelectedDateTime.Offset);
+                    SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,//original
+                    selectedTime.Hour, selectedTime.Minute, selectedTime.Second,  //just updated.
+                    SelectedDateTime.Offset); //original
 
                 SelectedTimeChanged?.Invoke(this, SelectedDateTime);
             }
@@ -135,10 +138,8 @@ public partial class CalendarWithClock : DateTimeBase
             {
                 isUpdating = true;
 
-                // Update SelectedTime
                 SelectedTime = selectedTime;
 
-                // Update SelectedDateTime with new time while preserving the date and time zone offset
                 SelectedDateTime = new DateTimeOffset(
                     SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day,
                     selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds,
