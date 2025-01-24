@@ -43,6 +43,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressButton">
                     <Grid x:Name="PART_Grid"
+                          Background="{TemplateBinding ProgressBackground}"
                           CornerRadius="{ThemeResource ControlCornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
