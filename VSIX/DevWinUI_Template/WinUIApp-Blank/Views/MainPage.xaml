@@ -6,7 +6,11 @@
       xmlns:local="using:$safeprojectname$"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid RowDefinitions="Auto, *">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar"
                   Title="$safeprojectname$"
                   Subtitle="1.0.0">

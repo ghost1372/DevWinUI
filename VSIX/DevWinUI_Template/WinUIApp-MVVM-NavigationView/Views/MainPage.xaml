@@ -7,7 +7,11 @@
       xmlns:local="using:$safeprojectname$"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid RowDefinitions="Auto, *">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar"
                   Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
                   IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
