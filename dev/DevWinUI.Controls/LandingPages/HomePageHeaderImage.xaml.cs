@@ -1,8 +1,4 @@
-﻿using CommunityToolkit.WinUI;
-using CommunityToolkit.WinUI.Animations;
-
-namespace DevWinUI;
-// ATTRIBUTION: @RykenApps
+﻿namespace DevWinUI;
 public sealed partial class HomePageHeaderImage : UserControl
 {
     public string HeaderImage
@@ -140,9 +136,9 @@ public sealed partial class HomePageHeaderImage : UserControl
 
         _imageGridBottomGradientBrush = _compositor.CreateLinearGradientBrush();
         _imageGridBottomGradientBrush.MappingMode = CompositionMappingMode.Absolute;
-        _imageGridBottomGradientBrush.StartAnimation(_bottomGradientStartPointAnimation);
-        _imageGridBottomGradientBrush.StartAnimation(CreateExpressionAnimation(nameof(CompositionLinearGradientBrush.EndPoint), "Vector2(0.5, Visual.Size.Y)"));
-        _imageGridBottomGradientBrush.CreateColorStopsWithEasingFunction(EasingType.Sine, EasingMode.EaseInOut, 0f, 1f);
+        _imageGridBottomGradientBrush.StartAnimation(nameof(CompositionLinearGradientBrush.StartPoint), _bottomGradientStartPointAnimation);
+        _imageGridBottomGradientBrush.StartAnimation(nameof(CompositionLinearGradientBrush.EndPoint), CreateExpressionAnimation(nameof(CompositionLinearGradientBrush.EndPoint), "Vector2(0.5, Visual.Size.Y)"));
+        _imageGridBottomGradientBrush.CreateColorStopsWithEasingFunction(EasingMode.EaseInOut, 0f, 1f);
 
         var alphaMask = new AlphaMaskEffect
         {
@@ -181,7 +177,7 @@ public sealed partial class HomePageHeaderImage : UserControl
         {
             if (HeroTile.ImageSource == null)
             {
-                HeroTile.GetVisual().Opacity = 0;
+                GetVisual(HeroTile).Opacity = 0;
             }
             else
             {
@@ -192,13 +188,17 @@ public sealed partial class HomePageHeaderImage : UserControl
         {
             if (HeroImage.Source == null)
             {
-                HeroImage.GetVisual().Opacity = 0;
+                GetVisual(HeroImage).Opacity = 0;
             }
             else
             {
                 AnimateImage();
             }
         }
+    }
+    private Visual GetVisual(UIElement element)
+    {
+        return ElementCompositionPreview.GetElementVisual(element);
     }
     private void SetBottomGradientStartPoint()
     {
@@ -214,28 +214,56 @@ public sealed partial class HomePageHeaderImage : UserControl
     {
         if (IsTileImage)
         {
-            AnimationBuilder.Create()
-                        .Opacity(1, 0, duration: TimeSpan.FromMilliseconds(300), easingMode: EasingMode.EaseOut)
-                        .Scale(1, 1.1f, duration: TimeSpan.FromMilliseconds(400), easingMode: EasingMode.EaseOut)
-                        .Start(HeroTile);
-
-            AnimationBuilder.Create()
-            .Opacity(0.5, 0, duration: TimeSpan.FromMilliseconds(300), easingMode: EasingMode.EaseOut)
-            .Scale(1, 1.1f, duration: TimeSpan.FromMilliseconds(400), easingMode: EasingMode.EaseOut)
-            .Start(HeroOverlayTile);
+            StartAnimation(HeroTile, 0, 1);
+            StartAnimation(HeroOverlayTile, 0, 0.5f);
         }
         else
         {
-            AnimationBuilder.Create()
-            .Opacity(1, 0, duration: TimeSpan.FromMilliseconds(300), easingMode: EasingMode.EaseOut)
-            .Scale(1, 1.1f, duration: TimeSpan.FromMilliseconds(400), easingMode: EasingMode.EaseOut)
-            .Start(HeroImage);
-
-            AnimationBuilder.Create()
-                .Opacity(0.5, 0, duration: TimeSpan.FromMilliseconds(300), easingMode: EasingMode.EaseOut)
-                .Scale(1, 1.1f, duration: TimeSpan.FromMilliseconds(400), easingMode: EasingMode.EaseOut)
-                .Start(HeroOverlayImage);
+            StartAnimation(HeroImage, 0, 1);
+            StartAnimation(HeroOverlayImage, 0, 0.5f);
         }
+    }
+
+    private void StartAnimation(UIElement element, float startOpacity = 0f, float endOpacity = 1f, float startScale = 1.1f, float endScale = 1f)
+    {
+        if (element == null) return; // Safety check
+
+        // Set initial values to avoid shrinkage
+        var visual = ElementCompositionPreview.GetElementVisual(element);
+
+        // Set the initial scale and opacity
+        visual.Scale = new Vector3(startScale, startScale, 1f); // Start scaling from startScale
+        visual.Opacity = startOpacity; // Set initial opacity
+
+        // Fix shifting issue by setting the CenterPoint to the right edge
+        visual.CenterPoint = new Vector3((float)element.RenderSize.Width / 2,
+                                          (float)(element.RenderSize.Height / 2), 0);
+
+        // var ss = new ExponentialEase { Exponent = 7, EasingMode = EasingMode.EaseOut };
+
+        // Create easing functions
+        var cubicBezierEasing = _compositor.CreateCubicBezierEasingFunction(
+            new System.Numerics.Vector2(0.1f, 0.9f), // Control points for easing
+            new System.Numerics.Vector2(0.2f, 1.0f)
+        );
+
+        // Opacity Animation with easing applied to keyframe
+        var opacityAnimation = _compositor.CreateScalarKeyFrameAnimation();
+        opacityAnimation.InsertKeyFrame(0f, startOpacity, cubicBezierEasing); // Apply easing to start opacity
+        opacityAnimation.InsertKeyFrame(1f, endOpacity, cubicBezierEasing); // Apply easing to end opacity
+        opacityAnimation.Duration = TimeSpan.FromMilliseconds(300);
+        opacityAnimation.Target = "Opacity";
+
+        // Scale Animation with easing applied to keyframe
+        var scaleAnimation = _compositor.CreateVector3KeyFrameAnimation();
+        scaleAnimation.InsertKeyFrame(0f, new Vector3(startScale, startScale, 1f), cubicBezierEasing); // Apply easing to start scale
+        scaleAnimation.InsertKeyFrame(1f, new Vector3(endScale, endScale, 1f), cubicBezierEasing); // Apply easing to end scale
+        scaleAnimation.Duration = TimeSpan.FromMilliseconds(400);
+        scaleAnimation.Target = "Scale";
+
+        // Start Animations
+        visual.StartAnimation("Opacity", opacityAnimation);
+        visual.StartAnimation("Scale", scaleAnimation);
     }
 
     private ExpressionAnimation CreateExpressionAnimation(string target, string expression)

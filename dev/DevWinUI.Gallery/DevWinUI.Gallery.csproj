@@ -36,8 +36,9 @@
   <ItemGroup>
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
-	  <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.0-preview2" />
+    <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.2.250129-preview2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.0" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
 	  <PackageReference Include="nucs.JsonSettings.AutosaveGenerator" Version="2.0.4" />
   </ItemGroup>

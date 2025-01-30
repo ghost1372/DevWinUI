@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:animations1="using:CommunityToolkit.WinUI.Animations"
-                    xmlns:local="using:DevWinUI"
-                    xmlns:media="using:CommunityToolkit.WinUI">
+                    xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Name="Default">
             <StaticResource x:Key="ProgressCompletedBackgroundBrush"
@@ -25,15 +23,13 @@
                      TargetType="ContentControl">
         <Grid x:Name="CompletedElement"
               Margin="-2">
-            <Grid.Resources>
-                <media:AttachedDropShadow x:Key="attachedShadow"
-                                          BlurRadius="8"
-                                          CastTo="{Binding ElementName=CompletedElement}"
-                                          Color="{ThemeResource SystemAccentColor}" />
-            </Grid.Resources>
+
             <Ellipse x:Name="CompletedRectangle"
-                     media:Effects.Shadow="{StaticResource attachedShadow}"
-                     Fill="{ThemeResource ProgressCompletedBackgroundBrush}" />
+                     Fill="{ThemeResource ProgressCompletedBackgroundBrush}">
+                <Ellipse.Shadow>
+                    <ThemeShadow />
+                </Ellipse.Shadow>
+            </Ellipse>
         </Grid>
     </ControlTemplate>
 
@@ -95,6 +91,32 @@
                                 </VisualState>
                                 <VisualState x:Name="Faulted" />
                             </VisualStateGroup>
+                            <VisualStateGroup x:Name="Animation">
+                                <VisualState x:Name="Hidden">
+                                    <VisualState.Setters>
+                                        <Setter Target="CompletedElement.Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                    <Storyboard>
+                                        <DoubleAnimation EnableDependentAnimation="True"
+                                                         Storyboard.TargetName="CompletedElement"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Visible">
+                                    <VisualState.Setters>
+                                        <Setter Target="CompletedElement.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                    <Storyboard>
+                                        <DoubleAnimation EnableDependentAnimation="True"
+                                                         Storyboard.TargetName="CompletedElement"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.6" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <local:BubbleView x:Name="BubbleView"
                                           HorizontalAlignment="Stretch"
@@ -102,20 +124,8 @@
                                           Foreground="{TemplateBinding BubbleForeground}" />
                         <ContentControl x:Name="CompletedElement"
                                         Template="{StaticResource CompletedTemplate}"
-                                        Visibility="Collapsed">
-                            <animations1:Implicit.HideAnimations>
-                                <animations1:OpacityAnimation DelayBehavior="SetInitialValueBeforeDelay"
-                                                              From="1"
-                                                              To="0"
-                                                              Duration="0:0:0.3" />
-                            </animations1:Implicit.HideAnimations>
-                            <animations1:Implicit.ShowAnimations>
-                                <animations1:OpacityAnimation DelayBehavior="SetInitialValueBeforeDelay"
-                                                              From="0"
-                                                              To="1"
-                                                              Duration="0:0:0.6" />
-                            </animations1:Implicit.ShowAnimations>
-                        </ContentControl>
+                                        Visibility="Collapsed" />
+
                         <Border x:Name="RootBorder"
                                 Margin="{TemplateBinding Padding}"
                                 Background="{TemplateBinding Background}"

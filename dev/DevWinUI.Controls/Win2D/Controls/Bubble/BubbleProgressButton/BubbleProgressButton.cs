@@ -63,6 +63,14 @@ public partial class BubbleProgressButton : RangeBase
     {
         base.OnApplyTemplate();
         UpdateVisualStates(false);
+        Loaded -= BubbleProgressButton_Loaded;
+        Loaded += BubbleProgressButton_Loaded;
+    }
+
+    private void BubbleProgressButton_Loaded(object sender, RoutedEventArgs e)
+    {
+        VisualStateManager.GoToState(this, "Hidden", true);
+        VisualStateManager.GoToState(this, "Visible", true);
     }
 
     protected virtual void OnStateChanged(BubbleProgressState oldValue, BubbleProgressState newValue)

@@ -9,7 +9,6 @@
     <PackageTags>winui winui3 win11 xaml DevWinUI DevWinUI.Controls SettingsUI Components settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard landingPages win2d</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.WinUI.Media" Version="$(CommunityToolkitMediaVersion)" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="$(Win2dVersion)" />
     <PackageReference Include="XAMLTools.MSBuild" Version="$(XAMLToolsVersion)">
       <PrivateAssets>all</PrivateAssets>
