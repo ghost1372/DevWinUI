@@ -4889,7 +4889,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ProgressButton">
-          <Grid x:Name="PART_Grid" CornerRadius="{ThemeResource ControlCornerRadius}">
+          <Grid x:Name="PART_Grid" Background="{TemplateBinding ProgressBackground}" CornerRadius="{ThemeResource ControlCornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Normal" />

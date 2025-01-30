@@ -15,8 +15,4 @@ public static partial class NativeMethods
     [DllImport(ExternDll.User32)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     internal static unsafe extern int FillRect(IntPtr hDC, ref Windows.Win32.Foundation.RECT lprc, Windows.Win32.Graphics.Gdi.HBRUSH hbr);
-
-    // CSWin32 not work for this https://github.com/microsoft/CsWin32/issues/397
-    [DllImport("CoreMessaging.dll")]
-    internal static unsafe extern int CreateDispatcherQueueController(DispatcherQueueOptions options, IntPtr* instance);
 }

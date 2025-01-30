@@ -1,29 +1,24 @@
 ﻿namespace DevWinUI;
-public partial class WindowsSystemDispatcherQueueHelper
+
+public class WindowsSystemDispatcherQueueHelper
 {
-    public IntPtr m_dispatcherQueueController = IntPtr.Zero;
+    private Windows.System.DispatcherQueueController? m_dispatcherQueueController;
+
     public void EnsureWindowsSystemDispatcherQueueController()
     {
-        if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)
+        if (Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread() != null)
         {
-            // one already exists, so we'll just use it.
-            return;
+            return; // A DispatcherQueue already exists.
         }
 
-        if (m_dispatcherQueueController == IntPtr.Zero)
+        if (m_dispatcherQueueController == null)
         {
-            NativeValues.DispatcherQueueOptions options;
-            options.dwSize = Unsafe.SizeOf<NativeValues.DispatcherQueueOptions>();
-            options.threadType = 2;    // DQTYPE_THREAD_CURRENT
-            options.apartmentType = 2; // DQTAT_COM_STA
+            Windows.Win32.System.WinRT.DispatcherQueueOptions options;
+            options.dwSize = (uint)Marshal.SizeOf<Windows.Win32.System.WinRT.DispatcherQueueOptions>();
+            options.threadType = Windows.Win32.System.WinRT.DISPATCHERQUEUE_THREAD_TYPE.DQTYPE_THREAD_CURRENT;    // DQTYPE_THREAD_CURRENT
+            options.apartmentType = Windows.Win32.System.WinRT.DISPATCHERQUEUE_THREAD_APARTMENTTYPE.DQTAT_COM_STA; // DQTAT_COM_STA
 
-            unsafe
-            {
-                IntPtr dispatcherQueueController;
-                NativeMethods.CreateDispatcherQueueController(options, &dispatcherQueueController);
-                m_dispatcherQueueController = dispatcherQueueController;
-            }
+            PInvoke.CreateDispatcherQueueController(options, out m_dispatcherQueueController);
         }
     }
 }
-

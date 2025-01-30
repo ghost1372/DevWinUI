@@ -33,3 +33,4 @@ SetWindowSubclass
 SwitchToThisWindow
 WritePrivateProfileString
 SetWindowPos
+CreateDispatcherQueueController
