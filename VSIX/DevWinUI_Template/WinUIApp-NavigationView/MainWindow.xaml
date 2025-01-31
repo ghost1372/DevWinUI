@@ -18,12 +18,6 @@
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <TitleBar.Content>
-                <AutoSuggestBox MinWidth="320"
-                                VerticalAlignment="Center"
-                                PlaceholderText="Search"
-                                QueryIcon="Find" />
-            </TitleBar.Content>
             <TitleBar.Footer>
                 <Button x:Name="ThemeButton"
                         Height="32"

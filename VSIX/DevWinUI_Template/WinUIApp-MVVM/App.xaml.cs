@@ -37,15 +37,12 @@ public partial class App : Application
     {
         MainWindow = new MainWindow();
 
-        if (ThemeService != null)
-        {
-            ThemeService.AutoInitialize(MainWindow);
-        }$Windows11ContextMenuMVVMInitializer$
-
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
-        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");$ConfigLogger$
+        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");
 
-        MainWindow.Activate();$UnhandeledException$
+        ThemeService.AutoInitialize(MainWindow);
+
+        MainWindow.Activate();$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

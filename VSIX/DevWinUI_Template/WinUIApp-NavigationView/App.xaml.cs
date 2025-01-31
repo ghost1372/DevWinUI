@@ -16,13 +16,13 @@ public partial class App : Application
     protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
     {
         MainWindow = new MainWindow();
-       
-        ThemeService = new ThemeService(MainWindow);
 
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
-        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");$ConfigLogger$
+        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");
 
-        MainWindow.Activate();$Windows11ContextMenuInitializer$$UnhandeledException$
+        ThemeService = new ThemeService(MainWindow);
+
+        MainWindow.Activate();$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

@@ -66,6 +66,7 @@
 	  </Folder>
 		
 	  <Folder Name="Models" TargetFolderName="Models"/>
+	  <Folder Name="Views" TargetFolderName="Views"/>
 		
 	  <Folder Name="Common" TargetFolderName="Common">
 		<ProjectItem ReplaceParameters="true" TargetFileName="AppConfig.cs">AppConfig.cs</ProjectItem>

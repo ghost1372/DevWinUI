@@ -15,12 +15,12 @@ public partial class App : Application
     {
         MainWindow = new MainWindow();
 
+        MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
+        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");
+
         ThemeService = new ThemeService(MainWindow);
 
-        MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
-        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");$ConfigLogger$
-
-        MainWindow.Activate();$Windows11ContextMenuInitializer$$UnhandeledException$
+        MainWindow.Activate();$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

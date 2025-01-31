@@ -14,6 +14,8 @@ public partial class App : Application
     {
         MainWindow = new MainWindow();
 
+        MainWindow.Title = MainWindow.AppWindow.Title = "$safeprojectname$";
+        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");
         MainWindow.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
         MainWindow.Activate();
     }
