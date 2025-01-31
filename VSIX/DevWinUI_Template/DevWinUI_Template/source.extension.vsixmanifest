@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.0.4" Language="en-US" Publisher="Mahdi Hosseini" />
+        <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.0.5" Language="en-US" Publisher="Mahdi Hosseini" />
         <DisplayName>DevWinUI Templates for WinUI</DisplayName>
         <Description xml:space="preserve">DevWinUI  Project Template, help you quickly create a new WinUI 3 App with DevWinUI  and MVVM Packages. We prepare your project with the following features: NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).
 We also always use the latest version of WindowsAppSDK. 
@@ -40,8 +40,8 @@ Jump right into coding your project, and let us prepare project for you.</Descri
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
         <Prerequisite Id="Microsoft.NetCore.Component.Runtime.8.0" Version="[17.0, 18.0)" DisplayName=".NET 8.0 Runtime (Long Term Support)" />
-        <Prerequisite Id="Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs" Version="[17.0, 18.0)" DisplayName="Windows App SDK C# Templates" />
-        <Prerequisite Id="Microsoft.VisualStudio.Component.Windows11SDK.22621" Version="[17.0, 18.0)" DisplayName="Windows 11 SDK (10.0.22621.0)" />
+        <Prerequisite Id="Microsoft.VisualStudio.ComponentGroup.WindowsAppDevelopment.Prerequisites" Version="[17.0, 18.0)" DisplayName=".NET WinUI app development prerequisites" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.WindowsAppSdkSupport.CSharp" Version="[17.0, 18.0)" DisplayName=".NET WinUI app development tools" />
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
