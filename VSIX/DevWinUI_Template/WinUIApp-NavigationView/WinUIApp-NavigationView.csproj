@@ -88,12 +88,12 @@
     <VSTemplate Include="WinUIApp-NavigationView.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainWindow.xaml">
+    <Content Include="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainWindow.xaml.cs" />
+    <Content Include="MainWindow.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GlobalUsings.cs" />

@@ -75,12 +75,12 @@
     <VSTemplate Include="WinUIApp-MVVM.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainWindow.xaml">
+    <Content Include="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainWindow.xaml.cs" />
+    <Content Include="MainWindow.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GlobalUsings.cs" />
@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\AppConfig.cs" />
