@@ -239,8 +239,6 @@ public sealed partial class HomePageHeaderImage : UserControl
         visual.CenterPoint = new Vector3((float)element.RenderSize.Width / 2,
                                           (float)(element.RenderSize.Height / 2), 0);
 
-        // var ss = new ExponentialEase { Exponent = 7, EasingMode = EasingMode.EaseOut };
-
         // Create easing functions
         var cubicBezierEasing = _compositor.CreateCubicBezierEasingFunction(
             new System.Numerics.Vector2(0.1f, 0.9f), // Control points for easing
