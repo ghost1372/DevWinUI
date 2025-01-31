@@ -2,9 +2,10 @@
 
 public partial class App : Application
 {
+    public new static App Current => (App)Application.Current;
     public static Window MainWindow = Window.Current;
     public IServiceProvider Services { get; }
-    public new static App Current => (App)Application.Current;
+    public IThemeService ThemeService => GetService<IThemeService>();
 
     public static T GetService<T>() where T : class
     {
@@ -34,20 +35,12 @@ public partial class App : Application
 
     protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        MainWindow = new Window();
-        
-        if (MainWindow.Content is not Frame rootFrame)
-        {
-            MainWindow.Content = rootFrame = new Frame();
-        }
+        MainWindow = new MainWindow();
 
-        var themeService = GetService<IThemeService>() as ThemeService;
-        if (themeService != null)
+        if (ThemeService != null)
         {
-            themeService.AutoInitialize(MainWindow);
+            ThemeService.AutoInitialize(MainWindow);
         }$Windows11ContextMenuMVVMInitializer$
-
-        rootFrame.Navigate(typeof(MainPage));
 
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
         MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");$ConfigLogger$

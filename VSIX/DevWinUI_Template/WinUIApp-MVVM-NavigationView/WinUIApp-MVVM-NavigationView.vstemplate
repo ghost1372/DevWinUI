@@ -36,7 +36,9 @@
 	  <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.WinContextMenu.appxmanifest</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="GlobalUsings.cs">GlobalUsings.cs</ProjectItem>
-
+	  <ProjectItem ReplaceParameters="true" TargetFileName="MainWindow.xaml">MainWindow.xaml</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="MainWindow.xaml.cs">MainWindow.xaml.cs</ProjectItem>
+		
 	  <Folder Name="Assets" TargetFolderName="Assets">
 		<ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.ico">AppIcon.ico</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="AppIcon.png">AppIcon.png</ProjectItem>
@@ -79,8 +81,6 @@
 	  </Folder>
 		
 	  <Folder Name="Views" TargetFolderName="Views">
-		<ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
 		<ProjectItem ReplaceParameters="true" TargetFileName="HomeLandingPage.xaml">HomeLandingPage.xaml</ProjectItem>
 		<ProjectItem ReplaceParameters="true" TargetFileName="HomeLandingPage.xaml.cs">HomeLandingPage.xaml.cs</ProjectItem>
 		<ProjectItem ReplaceParameters="true" TargetFileName="SettingsPage.xaml">SettingsPage.xaml</ProjectItem>

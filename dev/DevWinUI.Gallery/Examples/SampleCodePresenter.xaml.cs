@@ -184,9 +184,9 @@ public sealed partial class SampleCodePresenter : UserControl
 
     private RichTextBlockFormatter GenerateRichTextFormatter()
     {
-        var formatter = new RichTextBlockFormatter(App.Current.GetThemeService.GetActualTheme());
+        var formatter = new RichTextBlockFormatter(App.Current.ThemeService.GetActualTheme());
 
-        if (App.Current.GetThemeService.IsDarkTheme())
+        if (App.Current.ThemeService.IsDarkTheme())
         {
             UpdateFormatterDarkThemeColors(formatter);
         }

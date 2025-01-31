@@ -17,6 +17,6 @@ public sealed partial class DemoSectionPage : Page
     {
         var args = (ItemClickEventArgs)e;
         var item = (DataItem)args.ClickedItem;
-        App.Current.GetJsonNavigationService.NavigateTo(item.UniqueId);
+        App.Current.NavService.NavigateTo(item.UniqueId);
     }
 }

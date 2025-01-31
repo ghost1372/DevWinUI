@@ -1,14 +1,14 @@
 ﻿namespace $safeprojectname$.Views;
 
-public sealed partial class MainPage : Page
+public sealed partial class MainWindow : Window
 {
     public MainViewModel ViewModel { get; }
-    public MainPage()
+    public MainWindow()
     {
         ViewModel = App.GetService<MainViewModel>();
         this.InitializeComponent();
-        App.MainWindow.ExtendsContentIntoTitleBar = true;
-        App.MainWindow.SetTitleBar(AppTitleBar);
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
     }
 
     private void OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

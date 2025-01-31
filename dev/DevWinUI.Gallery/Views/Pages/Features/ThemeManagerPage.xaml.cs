@@ -9,25 +9,25 @@ public sealed partial class ThemeManagerPage : Page
 
     private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
     {
-        App.Current.GetThemeService.OnThemeRadioButtonChecked(sender);
+        App.Current.ThemeService.OnThemeRadioButtonChecked(sender);
     }
     private void OnBackdropRadioButtonChecked(object sender, RoutedEventArgs e)
     {
-        App.Current.GetThemeService.OnBackdropRadioButtonChecked(sender);
+        App.Current.ThemeService.OnBackdropRadioButtonChecked(sender);
     }
     private void cmbTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        App.Current.GetThemeService.OnThemeComboBoxSelectionChanged(sender);
+        App.Current.ThemeService.OnThemeComboBoxSelectionChanged(sender);
     }
     private void cmbBackdrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        App.Current.GetThemeService.OnBackdropComboBoxSelectionChanged(sender);
+        App.Current.ThemeService.OnBackdropComboBoxSelectionChanged(sender);
     }
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
-        App.Current.GetThemeService.SetThemeRadioButtonDefaultItem(themePanel);
-        App.Current.GetThemeService.SetBackdropRadioButtonDefaultItem(backdropPanel);
-        App.Current.GetThemeService.SetThemeComboBoxDefaultItem(cmbTheme);
-        App.Current.GetThemeService.SetBackdropComboBoxDefaultItem(cmbBackdrop);
+        App.Current.ThemeService.SetThemeRadioButtonDefaultItem(themePanel);
+        App.Current.ThemeService.SetBackdropRadioButtonDefaultItem(backdropPanel);
+        App.Current.ThemeService.SetThemeComboBoxDefaultItem(cmbTheme);
+        App.Current.ThemeService.SetBackdropComboBoxDefaultItem(cmbBackdrop);
     }
 }

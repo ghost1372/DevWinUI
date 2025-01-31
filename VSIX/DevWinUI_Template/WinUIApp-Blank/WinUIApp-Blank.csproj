@@ -75,12 +75,12 @@
     <VSTemplate Include="WinUIApp-Blank.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainPage.xaml">
+    <Content Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MainPage.xaml.cs" />
+    <Content Include="Views\MainWindow.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GlobalUsings.cs" />

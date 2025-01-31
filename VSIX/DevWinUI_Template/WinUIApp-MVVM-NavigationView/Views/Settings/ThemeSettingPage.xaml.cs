@@ -12,7 +12,7 @@ public sealed partial class ThemeSettingPage : Page
     private void OnColorChanged(ColorPicker sender, ColorChangedEventArgs args)
     {
         TintBox.Fill = new SolidColorBrush(args.NewColor);
-        App.Current.GetThemeService.SetBackdropTintColor(args.NewColor);
+        App.Current.ThemeService.SetBackdropTintColor(args.NewColor);
     }
 
     private void OnColorPaletteItemClick(object sender, ItemClickEventArgs e)
@@ -22,11 +22,11 @@ public sealed partial class ThemeSettingPage : Page
         {
             if (color.Hex.Contains("#000000"))
             {
-                App.Current.GetThemeService.ResetBackdropProperties();
+                App.Current.ThemeService.ResetBackdropProperties();
             }
             else
             {
-                App.Current.GetThemeService.SetBackdropTintColor(color.Color);
+                App.Current.ThemeService.SetBackdropTintColor(color.Color);
             }
             TintBox.Fill = new SolidColorBrush(color.Color);
         }

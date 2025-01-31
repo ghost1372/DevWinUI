@@ -1,12 +1,12 @@
 ﻿namespace $safeprojectname$.Views;
 
-public sealed partial class MainPage : Page
+public sealed partial class MainWindow : Window
 {
-    public MainPage()
+    public MainWindow()
     {
         this.InitializeComponent();
-        App.MainWindow.ExtendsContentIntoTitleBar = true;
-        App.MainWindow.SetTitleBar(AppTitleBar);
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
         App.Current.NavService
             .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)$ConfigDefaultPages$
             .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")

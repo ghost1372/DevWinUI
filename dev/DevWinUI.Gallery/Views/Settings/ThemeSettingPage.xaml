@@ -4,8 +4,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:dev="using:DevWinUI"
-      xmlns:i="using:Microsoft.Xaml.Interactivity"
-      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:views="using:DevWinUIGallery.Views"
@@ -19,7 +17,7 @@
             <dev:SettingsCard Description="Select the theme that suits your mood and preference. You can choose from dark, light, or system themes."
                               Header="App theme"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}">
-                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.ThemeService}">
                     <ComboBoxItem Content="Light"
                                   Tag="Light" />
                     <ComboBoxItem Content="Dark"
@@ -31,7 +29,7 @@
             <dev:SettingsCard Description="Change the appearance of the backdrop material behind your app. You can choose from mica, acrylic, or transparent options."
                               Header="Material"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Acrylic.png}">
-                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.ThemeService}">
                     <ComboBoxItem Content="None"
                                   Tag="None" />
                     <ComboBoxItem Content="Mica"

@@ -17,7 +17,7 @@
             <dev:SettingsCard Description="Select the theme that suits your mood and preference. You can choose from dark, light, or system themes."
                               Header="App theme"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}">
-                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.ThemeService}">
                     <ComboBoxItem Content="Light"
                                   Tag="Light" />
                     <ComboBoxItem Content="Dark"
@@ -29,7 +29,7 @@
             <dev:SettingsCard Description="Change the appearance of the backdrop material behind your app. You can choose from mica, acrylic, or transparent options."
                               Header="Material"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Backdrop.png}">
-                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.GetThemeService}">
+                <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.ThemeService}">
                     <ComboBoxItem Content="None"
                                   Tag="None" />
                     <ComboBoxItem Content="Mica"

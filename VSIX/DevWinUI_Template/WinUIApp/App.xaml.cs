@@ -2,9 +2,9 @@
 
 public partial class App : Application
 {
+    public new static App Current => (App)Application.Current;
     public static Window MainWindow = Window.Current;
     public IThemeService ThemeService { get; set; }
-    public new static App Current => (App)Application.Current;
 
     public App()
     {
@@ -13,16 +13,9 @@ public partial class App : Application
 
     protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        MainWindow = new Window();
-
-        if (MainWindow.Content is not Frame rootFrame)
-        {
-            MainWindow.Content = rootFrame = new Frame();
-        }
+        MainWindow = new MainWindow();
 
         ThemeService = new ThemeService(MainWindow);
-
-        rootFrame.Navigate(typeof(MainPage));
 
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
         MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");$ConfigLogger$
