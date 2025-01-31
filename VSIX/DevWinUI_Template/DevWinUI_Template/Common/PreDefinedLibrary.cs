@@ -82,7 +82,8 @@ public static class PreDefinedLibrary
             new Library("CommunityToolkit.WinUI.Controls.LayoutTransformControl", Group.CommunityToolkit),
             new Library("CommunityToolkit.WinUI.Controls.ColorPicker", Group.CommunityToolkit),
             new Library("CommunityToolkit.WinUI.Controls.TabbedCommandBar", Group.CommunityToolkit),
-            new Library("CommunityToolkit.WinUI.Controls.SettingsControls", Group.CommunityToolkit)
+            new Library("CommunityToolkit.WinUI.Controls.SettingsControls", Group.CommunityToolkit),
+            new Library("CommunityToolkit.WinUI.Controls.MetadataControl", Group.CommunityToolkit)
         };
         return list;
     }
@@ -110,6 +111,8 @@ public static class PreDefinedLibrary
     {
         List<Library> list = new()
         {
+            new Library("nucs.JsonSettings", Group.General),
+            new Library("nucs.JsonSettings.AutosaveGenerator", Group.General),
             new Library("ComputeSharp.WinUI", Group.General, true),
             new Library("ComputeSharp.D2D1.WinUI", Group.General, true),
             new Library("Config.Net", Group.General),
