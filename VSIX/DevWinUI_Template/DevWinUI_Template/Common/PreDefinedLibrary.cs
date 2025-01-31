@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DevWinUI_Template;
 
@@ -85,7 +86,7 @@ public static class PreDefinedLibrary
             new Library("CommunityToolkit.WinUI.Controls.SettingsControls", Group.CommunityToolkit),
             new Library("CommunityToolkit.WinUI.Controls.MetadataControl", Group.CommunityToolkit)
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
 
     public static List<Library> InitEFCore()
@@ -104,7 +105,7 @@ public static class PreDefinedLibrary
             new Library("Microsoft.EntityFrameworkCore.Proxies", Group.EntityFrameworkCore),
             new Library("Microsoft.EntityFrameworkCore.Tools", Group.EntityFrameworkCore)
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
 
     public static List<Library> InitUseful()
@@ -140,7 +141,7 @@ public static class PreDefinedLibrary
             new Library("Humanizer.Core", Group.General),
             new Library("LiveChartsCore.SkiaSharpView.WinUI", Group.General, true),
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
 
     public static List<Library> InitTest()
@@ -151,7 +152,7 @@ public static class PreDefinedLibrary
             new Library("MSTest.TestFramework", Group.Test),
             new Library("Microsoft.TestPlatform.TestHost", Group.Test)
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
     public static List<Library> InitDevWinUI()
     {
@@ -175,7 +176,7 @@ public static class PreDefinedLibrary
             new Library("log4net", Group.Log),
             new Library("NLog", Group.Log)
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
 
     public static List<Library> InitMVVM()
@@ -189,6 +190,6 @@ public static class PreDefinedLibrary
             new Library("Microsoft.Extensions.Logging", Group.MVVM),
             new Library("Microsoft.Extensions.Configuration", Group.MVVM)
         };
-        return list;
+        return list.OrderBy(x => x.Name).ToList();
     }
 }
