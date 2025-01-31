@@ -1,17 +1,17 @@
 ﻿namespace DevWinUIGallery.Views;
 
-public sealed partial class MainPage : Page
+public sealed partial class MainWindow : Window
 {
     public MainViewModel ViewModel { get; }
-    internal static MainPage Instance { get; private set; }
-    public MainPage()
+    internal static MainWindow Instance { get; private set; }
+    public MainWindow()
     {
         ViewModel = App.GetService<MainViewModel>();
         this.InitializeComponent();
         Instance = this;
 
-        App.MainWindow.ExtendsContentIntoTitleBar = true;
-        App.MainWindow.SetTitleBar(AppTitleBar);
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
 
         var NavService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
         if (NavService != null)
