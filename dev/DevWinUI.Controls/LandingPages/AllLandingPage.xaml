@@ -34,23 +34,18 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <local:HomePageHeaderImage x:Name="HomePageHeaderImage"
+
+        <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
                                    Grid.RowSpan="3"
-                                   EnableLazyLoading="{x:Bind EnableLazyLoading, Mode=OneWay}"
+                                   CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}"
                                    HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
                                    HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
-                                   IsCacheEnabled="{x:Bind IsCacheEnabled, Mode=OneWay}"
                                    IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
-                                   LazyLoadingThreshold="{x:Bind LazyLoadingThreshold, Mode=OneWay}"
-                                   NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
-                                   OverlayOpacity="{x:Bind OverlayOpacity, Mode=OneWay}"
-                                   PlaceholderSource="{x:Bind PlaceholderSource, Mode=OneWay}"
                                    Stretch="{x:Bind Stretch, Mode=OneWay}" />
 
         <StackPanel x:Name="HeaderPanel"
                     Margin="{x:Bind HeaderContentMargin, Mode=OneWay}"
-                    VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}"
-                    CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}">
+                    VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}">
             <TextBlock x:Name="smallHeaderSubtitleText"
                        FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                        FontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"

@@ -4,11 +4,6 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
-            <LinearGradientBrush x:Name="BackgroundGradient" StartPoint="0.5,0" EndPoint="0.5,1">
-                <GradientStop Offset="0.0" Color="#CED8E4" />
-                <GradientStop Offset="1.0" Color="#D5DBE3" />
-            </LinearGradientBrush>
-
             <SolidColorBrush x:Key="HeaderTextInverseBrush"
                              Color="{ThemeResource TextFillColorInverse}" />
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
@@ -17,20 +12,8 @@
                              Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
                              Color="{ThemeResource TextFillColorInverse}" />
-
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                             Color="{ThemeResource ControlStrokeColorSecondary}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Default">
-            <SolidColorBrush x:Key="BackgroundGradient"
-                             Color="Black" />
-
             <SolidColorBrush x:Key="HeaderTextInverseBrush"
                              Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
@@ -39,19 +22,8 @@
                              Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
                              Color="{ThemeResource TextFillColorInverse}" />
-
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                             Color="{ThemeResource ControlStrokeColorSecondary}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                             Color="{ThemeResource ControlStrokeColorDefault}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <SolidColorBrush x:Key="BackgroundGradient"
-                             Color="Black" />
             <SolidColorBrush x:Key="HeaderTextInverseBrush"
                              Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
@@ -60,14 +32,6 @@
                              Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
                              Color="{ThemeResource TextFillColorInverse}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                             Color="{ThemeResource SystemColorButtonTextColor}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                             Color="{ThemeResource SystemColorButtonTextColor}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                             Color="{ThemeResource SystemColorButtonTextColor}" />
-            <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                             Color="{ThemeResource SystemColorButtonTextColor}" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

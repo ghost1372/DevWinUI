@@ -8,42 +8,54 @@
              Loading="OnLoading"
              Unloaded="OnUnloaded"
              mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <LinearGradientBrush x:Name="BackgroundGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0.0" Color="#CED8E4" />
+                        <GradientStop Offset="1.0" Color="#D5DBE3" />
+                    </LinearGradientBrush>
+                    <x:Double x:Key="ImageOpacity">0.9</x:Double>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="BackgroundGradient"
+                                     Color="#020B20" />
+                    <x:Double x:Key="ImageOpacity">0.8</x:Double>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="BackgroundGradient"
+                                     Color="Black" />
+                    <x:Double x:Key="ImageOpacity">0.8</x:Double>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="0,-10,0,0"
+          CornerRadius="{x:Bind CornerRadius, Mode=OneWay}">
         <Grid x:Name="ImageGrid"
               Background="{ThemeResource BackgroundGradient}"
               Opacity="0">
 
             <local:TileControl x:Name="HeroTile"
-                               local:InternalExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
                                ImageLoaded="HeroTile_ImageLoaded"
                                ImageSource="{x:Bind HeaderImage, Converter={StaticResource StringToUriConverter}, Mode=OneWay}"
+                               Opacity="{ThemeResource ImageOpacity}"
                                Visibility="Collapsed" />
 
             <local:TileControl x:Name="HeroOverlayTile"
-                               local:InternalExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
                                ImageLoaded="HeroTile_ImageLoaded"
                                ImageSource="{x:Bind HeaderOverlayImage, Converter={StaticResource StringToUriConverter}, Mode=OneWay}"
-                               Opacity="{x:Bind OverlayOpacity, Mode=OneWay}"
-                               Visibility="Collapsed" />
+                               Opacity="{ThemeResource ImageOpacity}" />
 
             <local:ImageEx x:Name="HeroImage"
-                           local:InternalExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
-                           EnableLazyLoading="{x:Bind EnableLazyLoading, Mode=OneWay}"
                            ImageExOpened="OnImageOpened"
-                           IsCacheEnabled="{x:Bind IsCacheEnabled, Mode=OneWay}"
-                           LazyLoadingThreshold="{x:Bind LazyLoadingThreshold, Mode=OneWay}"
-                           PlaceholderSource="{x:Bind PlaceholderSource, Mode=OneWay}"
+                           Opacity="{ThemeResource ImageOpacity}"
                            Source="{x:Bind HeaderImage, Mode=OneWay}"
                            Stretch="{x:Bind Stretch, Mode=OneWay}" />
 
             <local:ImageEx x:Name="HeroOverlayImage"
-                           local:InternalExtensions.NormalizedCenterPoint="{x:Bind NormalizedCenterPoint, Mode=OneWay}"
-                           EnableLazyLoading="{x:Bind EnableLazyLoading, Mode=OneWay}"
-                           IsCacheEnabled="{x:Bind IsCacheEnabled, Mode=OneWay}"
-                           LazyLoadingThreshold="{x:Bind LazyLoadingThreshold, Mode=OneWay}"
-                           Opacity="{x:Bind OverlayOpacity, Mode=OneWay}"
-                           PlaceholderSource="{x:Bind PlaceholderSource, Mode=OneWay}"
+                           Opacity="{ThemeResource ImageOpacity}"
                            Source="{x:Bind HeaderOverlayImage, Mode=OneWay}"
                            Stretch="{x:Bind Stretch, Mode=OneWay}" />
         </Grid>

@@ -113,28 +113,6 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
         get { return (IJsonNavigationService)GetValue(JsonNavigationServiceProperty); }
         set { SetValue(JsonNavigationServiceProperty, value); }
     }
-
-    public ImageSource PlaceholderSource
-    {
-        get => (ImageSource)GetValue(PlaceholderSourceProperty);
-        set => SetValue(PlaceholderSourceProperty, value);
-    }
-    public bool IsCacheEnabled
-    {
-        get => (bool)GetValue(IsCacheEnabledProperty);
-        set => SetValue(IsCacheEnabledProperty, value);
-    }
-    public bool EnableLazyLoading
-    {
-        get => (bool)GetValue(EnableLazyLoadingProperty);
-        set => SetValue(EnableLazyLoadingProperty, value);
-    }
-    public double LazyLoadingThreshold
-    {
-        get => (double)GetValue(LazyLoadingThresholdProperty);
-        set => SetValue(LazyLoadingThresholdProperty, value);
-    }
-
     public string HeaderImage
     {
         get => (string)GetValue(HeaderImageProperty);
@@ -156,16 +134,6 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
     {
         get { return (Stretch)GetValue(StretchProperty); }
         set { SetValue(StretchProperty, value); }
-    }
-    public string NormalizedCenterPoint
-    {
-        get { return (string)GetValue(NormalizedCenterPointProperty); }
-        set { SetValue(NormalizedCenterPointProperty, value); }
-    }
-    public double OverlayOpacity
-    {
-        get { return (double)GetValue(OverlayOpacityProperty); }
-        set { SetValue(OverlayOpacityProperty, value); }
     }
 
     public VerticalAlignment HeaderVerticalAlignment
@@ -218,8 +186,6 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
         set => SetValue(HeaderTextProperty, value);
     }
 
-    
-
     public bool IsTileImage
     {
         get { return (bool)GetValue(IsTileImageProperty); }
@@ -236,18 +202,12 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
     public static readonly DependencyProperty HeaderContentMarginProperty = DependencyProperty.Register(nameof(HeaderContentMargin), typeof(Thickness), typeof(ItemsPageBase), new PropertyMetadata(new Thickness(36, 100, 0, 0)));
     public static readonly DependencyProperty HeaderCornerRadiusProperty = DependencyProperty.Register(nameof(HeaderCornerRadius), typeof(CornerRadius), typeof(ItemsPageBase), new PropertyMetadata(new CornerRadius(8, 0, 0, 0)));
     public static readonly DependencyProperty HeaderVerticalAlignmentProperty = DependencyProperty.Register(nameof(HeaderVerticalAlignment), typeof(VerticalAlignment), typeof(ItemsPageBase), new PropertyMetadata(VerticalAlignment.Center));
-    public static readonly DependencyProperty OverlayOpacityProperty = DependencyProperty.Register(nameof(OverlayOpacity), typeof(double), typeof(ItemsPageBase), new PropertyMetadata(0.5));
-    public static readonly DependencyProperty NormalizedCenterPointProperty = DependencyProperty.Register(nameof(NormalizedCenterPoint), typeof(string), typeof(ItemsPageBase), new PropertyMetadata("0.5"));
     public static readonly DependencyProperty StretchProperty = DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(ItemsPageBase), new PropertyMetadata(Stretch.UniformToFill));
     public static readonly DependencyProperty SpaceBetweenHeaderAndGridViewProperty = DependencyProperty.Register(nameof(SpaceBetweenHeaderAndGridView), typeof(GridLength), typeof(ItemsPageBase), new PropertyMetadata(new GridLength(50.0)));
-    public static readonly DependencyProperty LazyLoadingThresholdProperty = DependencyProperty.Register(nameof(LazyLoadingThreshold), typeof(double), typeof(ItemsPageBase), new PropertyMetadata(300.0));
-    public static readonly DependencyProperty EnableLazyLoadingProperty = DependencyProperty.Register(nameof(EnableLazyLoading), typeof(bool), typeof(ItemsPageBase), new PropertyMetadata(true));
-    public static readonly DependencyProperty PlaceholderSourceProperty = DependencyProperty.Register(nameof(PlaceholderSource), typeof(ImageSource), typeof(ItemsPageBase), new PropertyMetadata(default(ImageSource)));
-    public static readonly DependencyProperty IsCacheEnabledProperty = DependencyProperty.Register(nameof(IsCacheEnabled), typeof(bool), typeof(ItemsPageBase), new PropertyMetadata(true));
     public static readonly DependencyProperty HeaderImageProperty = DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
     public static readonly DependencyProperty HeaderOverlayImageProperty = DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
     public static readonly DependencyProperty JsonNavigationServiceProperty = DependencyProperty.Register(nameof(JsonNavigationService), typeof(IJsonNavigationService), typeof(ItemsPageBase), new PropertyMetadata(null));
-    
+
     private static void OnIsTileImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (ItemsPageBase)d;

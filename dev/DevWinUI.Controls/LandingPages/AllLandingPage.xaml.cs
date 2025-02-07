@@ -26,11 +26,11 @@ public sealed partial class AllLandingPage : ItemsPageBase
         {
             if (value)
             {
-                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(HomePageHeaderImage, 3);
+                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(MainHomePageHeaderImage, 3);
             }
             else
             {
-                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(HomePageHeaderImage, 2);
+                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(MainHomePageHeaderImage, 2);
             }
         }
     }

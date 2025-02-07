@@ -11,33 +11,6 @@ public sealed partial class HomePageHeaderImage : UserControl
         get => (string)GetValue(HeaderOverlayImageProperty);
         set => SetValue(HeaderOverlayImageProperty, value);
     }
-    public ImageSource PlaceholderSource
-    {
-        get => (ImageSource)GetValue(PlaceholderSourceProperty);
-        set => SetValue(PlaceholderSourceProperty, value);
-    }
-    public bool IsCacheEnabled
-    {
-        get => (bool)GetValue(IsCacheEnabledProperty);
-        set => SetValue(IsCacheEnabledProperty, value);
-    }
-    public bool EnableLazyLoading
-    {
-        get => (bool)GetValue(EnableLazyLoadingProperty);
-        set => SetValue(EnableLazyLoadingProperty, value);
-    }
-    public double LazyLoadingThreshold
-    {
-        get => (double)GetValue(LazyLoadingThresholdProperty);
-        set => SetValue(LazyLoadingThresholdProperty, value);
-    }
-
-    public double OverlayOpacity
-    {
-        get { return (double)GetValue(OverlayOpacityProperty); }
-        set { SetValue(OverlayOpacityProperty, value); }
-    }
-
     public Stretch Stretch
     {
         get { return (Stretch)GetValue(StretchProperty); }
@@ -55,15 +28,10 @@ public sealed partial class HomePageHeaderImage : UserControl
     }
 
     public static readonly DependencyProperty IsTileImageProperty = DependencyProperty.Register(nameof(IsTileImage), typeof(bool), typeof(HomePageHeaderImage), new PropertyMetadata(false, OnIsTileImageChanged));
-    public static readonly DependencyProperty NormalizedCenterPointProperty = DependencyProperty.Register(nameof(NormalizedCenterPoint), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata("0.5"));
+    public static readonly DependencyProperty NormalizedCenterPointProperty = DependencyProperty.Register(nameof(NormalizedCenterPoint), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata("0.5", OnNormalizedCenterPointChanged));
     public static readonly DependencyProperty StretchProperty = DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(HomePageHeaderImage), new PropertyMetadata(Stretch.UniformToFill));
-    public static readonly DependencyProperty OverlayOpacityProperty = DependencyProperty.Register(nameof(OverlayOpacity), typeof(double), typeof(HomePageHeaderImage), new PropertyMetadata(0.5));
     public static readonly DependencyProperty HeaderImageProperty = DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
     public static readonly DependencyProperty HeaderOverlayImageProperty = DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
-    public static readonly DependencyProperty PlaceholderSourceProperty = DependencyProperty.Register(nameof(PlaceholderSource), typeof(ImageSource), typeof(HomePageHeaderImage), new PropertyMetadata(default(ImageSource)));
-    public static readonly DependencyProperty IsCacheEnabledProperty = DependencyProperty.Register(nameof(IsCacheEnabled), typeof(bool), typeof(HomePageHeaderImage), new PropertyMetadata(true));
-    public static readonly DependencyProperty EnableLazyLoadingProperty = DependencyProperty.Register(nameof(EnableLazyLoading), typeof(bool), typeof(HomePageHeaderImage), new PropertyMetadata(true));
-    public static readonly DependencyProperty LazyLoadingThresholdProperty = DependencyProperty.Register(nameof(LazyLoadingThreshold), typeof(double), typeof(HomePageHeaderImage), new PropertyMetadata(300.0));
 
     private Compositor _compositor;
     private CompositionLinearGradientBrush _imageGridBottomGradientBrush;
@@ -79,6 +47,15 @@ public sealed partial class HomePageHeaderImage : UserControl
     {
         this.InitializeComponent();
     }
+    private static void OnNormalizedCenterPointChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HomePageHeaderImage)d;
+        if (ctl != null)
+        {
+            ctl.UpdateNormalizedCenterPoint();
+        }
+    }
+
     private static void OnHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (HomePageHeaderImage)d;
@@ -205,11 +182,6 @@ public sealed partial class HomePageHeaderImage : UserControl
         _bottomGradientStartPointAnimation?.Properties.InsertScalar(GradientSizeKey, 180);
     }
 
-    private void OnImageOpened(object sender, ImageExOpenedEventArgs e)
-    {
-        AnimateImage();
-    }
-
     private void AnimateImage()
     {
         if (IsTileImage)
@@ -275,5 +247,37 @@ public sealed partial class HomePageHeaderImage : UserControl
     private void HeroTile_ImageLoaded(object sender, EventArgs e)
     {
         AnimateImage();
+    }
+    private void OnImageOpened(object sender, ImageExOpenedEventArgs e)
+    {
+        AnimateImage();
+    }
+
+    private void UpdateNormalizedCenterPoint()
+    {
+        if (IsTileImage)
+        {
+            UpdateNormalizedCenterPoint(HeroTile);
+            UpdateNormalizedCenterPoint(HeroOverlayTile);
+        }
+        else
+        {
+            UpdateNormalizedCenterPoint(HeroImage);
+            UpdateNormalizedCenterPoint(HeroOverlayImage);
+        }
+    }
+
+    private void UpdateNormalizedCenterPoint(FrameworkElement element)
+    {
+        Vector2 center = NormalizedCenterPoint.ToVector2();
+        Visual visual = GetVisual(element);
+        const string expression = "Vector2(this.Target.Size.X * X, this.Target.Size.Y * Y)";
+        ExpressionAnimation animation = visual.Compositor.CreateExpressionAnimation(expression);
+
+        animation.SetScalarParameter("X", center.X);
+        animation.SetScalarParameter("Y", center.Y);
+
+        visual.StopAnimation("CenterPoint.XY");
+        visual.StartAnimation("CenterPoint.XY", animation);
     }
 }

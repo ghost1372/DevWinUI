@@ -35,7 +35,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
         get => (string)GetValue(PreviewGroupTextProperty);
         set => SetValue(PreviewGroupTextProperty, value);
     }
-   
+
     public object HeaderContent
     {
         get => (object)GetValue(HeaderContentProperty);
@@ -95,28 +95,28 @@ public sealed partial class MainLandingPage : ItemsPageBase
 
     private void ToggleFullScreen(bool value)
     {
-        if (HomePageHeaderImage != null)
+        if (MainHomePageHeaderImage != null)
         {
             if (value)
             {
-                HomePageHeaderImage.Height = double.NaN;
+                MainHomePageHeaderImage.Height = double.NaN;
                 if (IsTileImage)
                 {
-                    HomePageHeaderImage.VerticalAlignment = VerticalAlignment.Stretch;
+                    MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Stretch;
                 }
                 else
                 {
-                    HomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
+                    MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
                 }
             }
             else
             {
-                HomePageHeaderImage.Height = HeaderImageHeight;
-                HomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
+                MainHomePageHeaderImage.Height = HeaderImageHeight;
+                MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
             }
         }
     }
-    
+
     public MainLandingPage()
     {
         this.InitializeComponent();

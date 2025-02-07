@@ -37,11 +37,13 @@ public sealed partial class TileGallery : UserControl
     private void ScrollBackBtn_Click(object sender, RoutedEventArgs e)
     {
         scroller.ChangeView(scroller.HorizontalOffset - scroller.ViewportWidth, null, null);
+        ScrollBackBtn.Focus(FocusState.Programmatic);
     }
 
     private void ScrollForwardBtn_Click(object sender, RoutedEventArgs e)
     {
         scroller.ChangeView(scroller.HorizontalOffset + scroller.ViewportWidth, null, null);
+        ScrollBackBtn.Focus(FocusState.Programmatic);
     }
 
     private void scroller_SizeChanged(object sender, SizeChangedEventArgs e)

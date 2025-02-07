@@ -117,33 +117,4 @@ internal static partial class InternalExtensions
                (rect1.Top <= rect2.Bottom) &&
                (rect1.Bottom >= rect2.Top);
     }
-    internal static string GetNormalizedCenterPoint(DependencyObject obj)
-    {
-        return (string)obj.GetValue(NormalizedCenterPointProperty);
-    }
-
-    internal static void SetNormalizedCenterPoint(DependencyObject obj, string value)
-    {
-        obj.SetValue(NormalizedCenterPointProperty, value);
-    }
-
-    internal static readonly DependencyProperty NormalizedCenterPointProperty =
-        DependencyProperty.RegisterAttached("NormalizedCenterPoint", typeof(string), typeof(InternalExtensions), new PropertyMetadata(false, OnNormalizedCenterPointChanged));
-    private static void OnNormalizedCenterPointChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is FrameworkElement element &&
-            e.NewValue is string newValue)
-        {
-            Vector2 center = newValue.ToVector2();
-            Visual visual = ElementCompositionPreview.GetElementVisual(element);
-            const string expression = "Vector2(this.Target.Size.X * X, this.Target.Size.Y * Y)";
-            ExpressionAnimation animation = visual.Compositor.CreateExpressionAnimation(expression);
-
-            animation.SetScalarParameter("X", center.X);
-            animation.SetScalarParameter("Y", center.Y);
-
-            visual.StopAnimation("CenterPoint.XY");
-            visual.StartAnimation("CenterPoint.XY", animation);
-        }
-    }
 }

@@ -10,12 +10,48 @@
     <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
           BorderBrush="{ThemeResource SurfaceStrokeColorFlyoutBrush}"
           CornerRadius="8">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary x:Key="Light">
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
+                                         Color="{ThemeResource ControlStrokeColorSecondary}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Default">
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
+                                         Color="{ThemeResource ControlStrokeColorSecondary}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
+                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="HighContrast">
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
+                                         Color="{ThemeResource SystemColorButtonTextColor}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
+                                         Color="{ThemeResource SystemColorButtonTextColor}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
+                                         Color="{ThemeResource SystemColorButtonTextColor}" />
+                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
+                                         Color="{ThemeResource SystemColorButtonTextColor}" />
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
         <HyperlinkButton Padding="-1"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          HorizontalContentAlignment="Stretch"
                          VerticalContentAlignment="Stretch"
-                         AutomationProperties.LabeledBy="{x:Bind TitleText, Mode=OneWay}"
+                         AutomationProperties.LabeledBy="{Binding ElementName=TitleText}"
                          Click="HyperlinkButton_Click"
                          CornerRadius="{StaticResource OverlayCornerRadius}">
             <Grid Padding="24"
