@@ -10,6 +10,7 @@
       dev:BreadcrumbNavigator.IsHeaderVisible="True"
       mc:Ignorable="d">
     <ScrollView Margin="{ThemeResource ContentPageMargin}"
+                Padding="{ThemeResource ContentPagePadding}"
                 VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
