@@ -7,22 +7,14 @@ public sealed partial class MainLandingPage : ItemsPageBase
 {
     internal static MainLandingPage Instance { get; private set; }
 
-    public static readonly DependencyProperty PreviewGroupTextProperty = DependencyProperty.Register(nameof(PreviewGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Preview"));
-    public static readonly DependencyProperty UpdatedGroupTextProperty = DependencyProperty.Register(nameof(UpdatedGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Recently updated"));
-    public static readonly DependencyProperty NewGroupTextProperty = DependencyProperty.Register(nameof(NewGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Recently added"));
-    public static readonly DependencyProperty HeaderContentProperty = DependencyProperty.Register(nameof(HeaderContent), typeof(object), typeof(MainLandingPage), new PropertyMetadata(null));
-    public static readonly DependencyProperty HeaderMarginProperty = DependencyProperty.Register(nameof(HeaderMargin), typeof(Thickness), typeof(MainLandingPage), new PropertyMetadata(new Thickness(-24, 0, -24, 0)));
-    public static readonly DependencyProperty FooterContentProperty = DependencyProperty.Register(nameof(FooterContent), typeof(object), typeof(MainLandingPage), new PropertyMetadata(null));
-    public static readonly DependencyProperty FooterHeightProperty = DependencyProperty.Register(nameof(FooterHeight), typeof(double), typeof(MainLandingPage), new PropertyMetadata(200.0));
-    public static readonly DependencyProperty FooterMarginProperty = DependencyProperty.Register(nameof(FooterMargin), typeof(Thickness), typeof(MainLandingPage), new PropertyMetadata(new Thickness(16, 34, 48, 0)));
-    public static readonly DependencyProperty HeaderImageHeightProperty = DependencyProperty.Register(nameof(HeaderImageHeight), typeof(double), typeof(MainLandingPage), new PropertyMetadata(300.0, OnHeaderImageHeightChanged));
-    public static readonly DependencyProperty UseFullScreenHeaderImageProperty = DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(MainLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
-
-    public string NewGroupText
+    public string PreviewGroupText
     {
-        get => (string)GetValue(NewGroupTextProperty);
-        set => SetValue(NewGroupTextProperty, value);
+        get => (string)GetValue(PreviewGroupTextProperty);
+        set => SetValue(PreviewGroupTextProperty, value);
     }
+
+    public static readonly DependencyProperty PreviewGroupTextProperty =
+        DependencyProperty.Register(nameof(PreviewGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Preview"));
 
     public string UpdatedGroupText
     {
@@ -30,16 +22,33 @@ public sealed partial class MainLandingPage : ItemsPageBase
         set => SetValue(UpdatedGroupTextProperty, value);
     }
 
-    public string PreviewGroupText
+    public static readonly DependencyProperty UpdatedGroupTextProperty =
+        DependencyProperty.Register(nameof(UpdatedGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Recently updated"));
+
+    public string NewGroupText
     {
-        get => (string)GetValue(PreviewGroupTextProperty);
-        set => SetValue(PreviewGroupTextProperty, value);
+        get => (string)GetValue(NewGroupTextProperty);
+        set => SetValue(NewGroupTextProperty, value);
     }
+
+    public static readonly DependencyProperty NewGroupTextProperty =
+        DependencyProperty.Register(nameof(NewGroupText), typeof(string), typeof(MainLandingPage), new PropertyMetadata("Recently added"));
 
     public object HeaderContent
     {
         get => (object)GetValue(HeaderContentProperty);
         set => SetValue(HeaderContentProperty, value);
+    }
+
+    public static readonly DependencyProperty HeaderContentProperty =
+        DependencyProperty.Register(nameof(HeaderContent), typeof(object), typeof(MainLandingPage), new PropertyMetadata(null, OnHeaderContentChanged));
+    private static void OnHeaderContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (MainLandingPage)d;
+        if (ctl != null)
+        {
+            ctl.UpdateHeaderImageHeight();
+        }
     }
 
     public Thickness HeaderMargin
@@ -48,72 +57,23 @@ public sealed partial class MainLandingPage : ItemsPageBase
         set => SetValue(HeaderMarginProperty, value);
     }
 
-    public object FooterContent
-    {
-        get => (object)GetValue(FooterContentProperty);
-        set => SetValue(FooterContentProperty, value);
-    }
+    public static readonly DependencyProperty HeaderMarginProperty =
+        DependencyProperty.Register(nameof(HeaderMargin), typeof(Thickness), typeof(MainLandingPage), new PropertyMetadata(new Thickness(-24, 0, -24, 0)));
 
-    public double FooterHeight
-    {
-        get => (double)GetValue(FooterHeightProperty);
-        set => SetValue(FooterHeightProperty, value);
-    }
-
-    public Thickness FooterMargin
-    {
-        get => (Thickness)GetValue(FooterMarginProperty);
-        set => SetValue(FooterMarginProperty, value);
-    }
-
-    public double HeaderImageHeight
-    {
-        get => (double)GetValue(HeaderImageHeightProperty);
-        set => SetValue(HeaderImageHeightProperty, value);
-    }
     public bool UseFullScreenHeaderImage
     {
         get { return (bool)GetValue(UseFullScreenHeaderImageProperty); }
         set { SetValue(UseFullScreenHeaderImageProperty, value); }
     }
+
+    public static readonly DependencyProperty UseFullScreenHeaderImageProperty =
+        DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(MainLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
     private static void OnFullScreenHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (MainLandingPage)d;
         if (ctl != null)
         {
             ctl.ToggleFullScreen((bool)e.NewValue);
-        }
-    }
-    private static void OnHeaderImageHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (MainLandingPage)d;
-        if (ctl != null)
-        {
-            ctl.ToggleFullScreen(ctl.UseFullScreenHeaderImage);
-        }
-    }
-
-    private void ToggleFullScreen(bool value)
-    {
-        if (MainHomePageHeaderImage != null)
-        {
-            if (value)
-            {
-                MainHomePageHeaderImage.Height = double.NaN;
-                if (IsTileImage)
-                {
-                    MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Stretch;
-                }
-                else
-                {
-                    MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
-                }
-            }
-            else
-            {
-                MainHomePageHeaderImage.Height = HeaderImageHeight;
-                MainHomePageHeaderImage.VerticalAlignment = VerticalAlignment.Top;
-            }
         }
     }
 
@@ -124,7 +84,22 @@ public sealed partial class MainLandingPage : ItemsPageBase
         Loading -= MainLandingPage_Loading;
         Loading += MainLandingPage_Loading;
     }
+    private void UpdateHeaderImageHeight()
+    {
+        if (HeaderContent == null)
+        {
+            MainHomePageHeaderImage.MinHeight = 0;
+        }
+        else
+        {
+            MainHomePageHeaderImage.MinHeight = 396;
+        }
+    }
 
+    private void ToggleFullScreen(bool value)
+    {
+
+    }
     private void MainLandingPage_Loading(FrameworkElement sender, object args)
     {
         if (CanExecuteInternalCommand)

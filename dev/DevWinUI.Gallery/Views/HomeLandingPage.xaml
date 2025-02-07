@@ -7,7 +7,7 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}"
+    <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
                          HeaderOverlayImage="{ThemeResource HeaderCover}"
                          HeaderSubtitleText="Windows App SDK 1.7+"
                          HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"

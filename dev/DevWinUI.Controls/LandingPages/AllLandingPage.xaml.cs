@@ -4,8 +4,10 @@ namespace DevWinUI;
 public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
-    public static readonly DependencyProperty UseFullScreenHeaderImageProperty = DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(AllLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
 
+    public static readonly DependencyProperty UseFullScreenHeaderImageProperty =
+        DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(AllLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
+    
     public bool UseFullScreenHeaderImage
     {
         get { return (bool)GetValue(UseFullScreenHeaderImageProperty); }
@@ -22,17 +24,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
 
     private void ToggleFullScreen(bool value)
     {
-        if (HeaderPanel != null && itemGridView != null)
-        {
-            if (value)
-            {
-                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(MainHomePageHeaderImage, 3);
-            }
-            else
-            {
-                Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(MainHomePageHeaderImage, 2);
-            }
-        }
+        
     }
     public AllLandingPage()
     {

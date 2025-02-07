@@ -8,9 +8,8 @@
     <!--  This grid acts as a root panel for the page.  -->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="{x:Bind SpaceBetweenHeaderAndGridView, Mode=OneWay}" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <!--  Visual states reflect the application's window size  -->
@@ -35,35 +34,37 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
-                                   Grid.RowSpan="3"
-                                   CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}"
-                                   HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                                   HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
-                                   IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
-                                   Stretch="{x:Bind Stretch, Mode=OneWay}" />
-
-        <StackPanel x:Name="HeaderPanel"
-                    Margin="{x:Bind HeaderContentMargin, Mode=OneWay}"
-                    VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}">
-            <TextBlock x:Name="smallHeaderSubtitleText"
-                       FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                       FontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
-                       Foreground="{x:Bind Foreground, Mode=OneWay}"
-                       Text="{x:Bind HeaderSubtitleText, Mode=OneWay}"
-                       Visibility="{x:Bind HeaderSubtitleText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
-            <TextBlock x:Name="smallHeaderText"
-                       FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                       FontSize="{x:Bind HeaderFontSize, Mode=OneWay}"
-                       Foreground="{x:Bind Foreground, Mode=OneWay}"
-                       Style="{StaticResource TitleLargeTextBlockStyle}"
-                       Text="{x:Bind HeaderText, Mode=OneWay}"
-                       Visibility="{x:Bind HeaderText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
-        </StackPanel>
+        <Grid x:Name="HeaderGrid"
+              CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}">
+            <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
+                                       Grid.RowSpan="2"
+                                       Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
+                                       VerticalAlignment="Top"
+                                       HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
+                                       HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
+                                       IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
+                                       Stretch="{x:Bind Stretch, Mode=OneWay}" />
+            <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
+            <StackPanel Margin="{x:Bind HeaderContentMargin, Mode=OneWay}"
+                        VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}">
+                <TextBlock x:Name="smallHeaderSubtitleText"
+                           FontFamily="{ThemeResource ContentControlThemeFontFamily}"
+                           FontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
+                           Foreground="{x:Bind Foreground, Mode=OneWay}"
+                           Text="{x:Bind HeaderSubtitleText, Mode=OneWay}"
+                           Visibility="{x:Bind HeaderSubtitleText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
+                <TextBlock x:Name="smallHeaderText"
+                           FontFamily="{ThemeResource ContentControlThemeFontFamily}"
+                           FontSize="{x:Bind HeaderFontSize, Mode=OneWay}"
+                           Foreground="{x:Bind Foreground, Mode=OneWay}"
+                           Style="{StaticResource TitleLargeTextBlockStyle}"
+                           Text="{x:Bind HeaderText, Mode=OneWay}"
+                           Visibility="{x:Bind HeaderText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
+            </StackPanel>
+        </Grid>
         <GridView x:Name="itemGridView"
-                  Grid.Row="2"
+                  Grid.Row="1"
                   Padding="{x:Bind GridViewPadding, Mode=OneWay}"
-                  VerticalAlignment="{x:Bind GridViewVerticalAlignment, Mode=OneWay}"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Items In Group"
                   ContainerContentChanging="OnItemGridViewContainerContentChanging"
@@ -74,6 +75,14 @@
                   ItemTemplate="{StaticResource ControlItemTemplate}"
                   ItemsSource="{x:Bind Items, Mode=OneWay}"
                   Loaded="OnItemGridViewLoaded"
-                  SelectionMode="None" />
+                  SelectionMode="None">
+            <GridView.Footer>
+                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}"
+                      VerticalAlignment="Bottom"
+                      Visibility="{x:Bind FooterContent, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}">
+                    <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />
+                </Grid>
+            </GridView.Footer>
+        </GridView>
     </Grid>
 </local:ItemsPageBase>

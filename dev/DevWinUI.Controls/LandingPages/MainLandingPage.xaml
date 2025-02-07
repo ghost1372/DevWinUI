@@ -32,17 +32,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
-                                   Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
-                                   VerticalAlignment="Top"
-                                   CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}"
-                                   HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                                   HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
-                                   IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
-                                   Stretch="{x:Bind Stretch, Mode=OneWay}" />
         <GridView x:Name="itemGridView"
                   Padding="{x:Bind GridViewPadding, Mode=OneWay}"
-                  VerticalAlignment="{x:Bind GridViewVerticalAlignment, Mode=OneWay}"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Items In Group"
                   ContainerContentChanging="OnItemGridViewContainerContentChanging"
@@ -56,15 +47,25 @@
                   SelectionMode="None">
             <GridView.Header>
                 <Grid x:Name="HeaderGrid"
-                      Margin="{x:Bind HeaderMargin, Mode=OneWay}">
+                      Margin="{x:Bind HeaderMargin, Mode=OneWay}"
+                      CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="{x:Bind SpaceBetweenHeaderAndGridView, Mode=OneWay}" />
+                        <RowDefinition Height="204" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+
+                    <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
+                                               Grid.RowSpan="2"
+                                               Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
+                                               VerticalAlignment="Top"
+                                               HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
+                                               HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
+                                               IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
+                                               Stretch="{x:Bind Stretch, Mode=OneWay}" />
                     <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
                     <StackPanel Margin="{x:Bind HeaderContentMargin, Mode=OneWay}"
-                                VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}">
+                                VerticalAlignment="{x:Bind HeaderVerticalAlignment, Mode=OneWay}"
+                                Orientation="Vertical">
                         <TextBlock x:Name="smallHeaderSubtitleText"
                                    FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                    FontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
@@ -82,7 +83,7 @@
 
                     <local:TileGallery x:Name="headerTileGallery"
                                        Grid.Row="1"
-                                       Margin="0,10,0,0"
+                                       Margin="0,0,0,0"
                                        HeaderContent="{x:Bind HeaderContent, Mode=OneWay}"
                                        Visibility="{x:Bind HeaderContent, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
                 </Grid>
@@ -95,17 +96,14 @@
                             <TextBlock x:Name="pageSubtitle"
                                        Margin="4,32,0,0"
                                        AutomationProperties.HeadingLevel="Level1"
-                                       FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                        Style="{StaticResource SubtitleTextBlockStyle}"
                                        Text="{x:Bind Title}" />
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </GridView.GroupStyle>
-
             <GridView.Footer>
-                <Grid Height="{x:Bind FooterHeight, Mode=OneWay}"
-                      Margin="{x:Bind FooterMargin, Mode=OneWay}"
+                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}"
                       VerticalAlignment="Bottom"
                       Visibility="{x:Bind FooterContent, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}">
                     <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />

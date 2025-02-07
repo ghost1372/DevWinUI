@@ -6,20 +6,50 @@ public sealed partial class HomePageHeaderImage : UserControl
         get => (string)GetValue(HeaderImageProperty);
         set => SetValue(HeaderImageProperty, value);
     }
+
+    public static readonly DependencyProperty HeaderImageProperty =
+        DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
+    private static void OnHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HomePageHeaderImage)d;
+        if (ctl != null)
+        {
+            ctl.ToggleTileOrImageEx();
+        }
+    }
     public string HeaderOverlayImage
     {
         get => (string)GetValue(HeaderOverlayImageProperty);
         set => SetValue(HeaderOverlayImageProperty, value);
     }
+
+    public static readonly DependencyProperty HeaderOverlayImageProperty =
+        DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
+
     public Stretch Stretch
     {
         get { return (Stretch)GetValue(StretchProperty); }
         set { SetValue(StretchProperty, value); }
     }
+
+    public static readonly DependencyProperty StretchProperty =
+        DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(HomePageHeaderImage), new PropertyMetadata(Stretch.UniformToFill));
+
     public string NormalizedCenterPoint
     {
         get { return (string)GetValue(NormalizedCenterPointProperty); }
         set { SetValue(NormalizedCenterPointProperty, value); }
+    }
+
+    public static readonly DependencyProperty NormalizedCenterPointProperty =
+        DependencyProperty.Register(nameof(NormalizedCenterPoint), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata("0.5", OnNormalizedCenterPointChanged));
+    private static void OnNormalizedCenterPointChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HomePageHeaderImage)d;
+        if (ctl != null)
+        {
+            ctl.UpdateNormalizedCenterPoint();
+        }
     }
     public bool IsTileImage
     {
@@ -27,11 +57,16 @@ public sealed partial class HomePageHeaderImage : UserControl
         set { SetValue(IsTileImageProperty, value); }
     }
 
-    public static readonly DependencyProperty IsTileImageProperty = DependencyProperty.Register(nameof(IsTileImage), typeof(bool), typeof(HomePageHeaderImage), new PropertyMetadata(false, OnIsTileImageChanged));
-    public static readonly DependencyProperty NormalizedCenterPointProperty = DependencyProperty.Register(nameof(NormalizedCenterPoint), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata("0.5", OnNormalizedCenterPointChanged));
-    public static readonly DependencyProperty StretchProperty = DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(HomePageHeaderImage), new PropertyMetadata(Stretch.UniformToFill));
-    public static readonly DependencyProperty HeaderImageProperty = DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
-    public static readonly DependencyProperty HeaderOverlayImageProperty = DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(HomePageHeaderImage), new PropertyMetadata(default(string), OnHeaderImageChanged));
+    public static readonly DependencyProperty IsTileImageProperty =
+        DependencyProperty.Register(nameof(IsTileImage), typeof(bool), typeof(HomePageHeaderImage), new PropertyMetadata(false, OnIsTileImageChanged));
+    private static void OnIsTileImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HomePageHeaderImage)d;
+        if (ctl != null)
+        {
+            ctl.ToggleTileOrImageEx();
+        }
+    }
 
     private Compositor _compositor;
     private CompositionLinearGradientBrush _imageGridBottomGradientBrush;
@@ -47,31 +82,7 @@ public sealed partial class HomePageHeaderImage : UserControl
     {
         this.InitializeComponent();
     }
-    private static void OnNormalizedCenterPointChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (HomePageHeaderImage)d;
-        if (ctl != null)
-        {
-            ctl.UpdateNormalizedCenterPoint();
-        }
-    }
-
-    private static void OnHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (HomePageHeaderImage)d;
-        if (ctl != null)
-        {
-            ctl.ToggleTileOrImageEx();
-        }
-    }
-    private static void OnIsTileImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (HomePageHeaderImage)d;
-        if (ctl != null)
-        {
-            ctl.ToggleTileOrImageEx();
-        }
-    }
+    
     private void ToggleTileOrImageEx()
     {
         if (IsTileImage)
