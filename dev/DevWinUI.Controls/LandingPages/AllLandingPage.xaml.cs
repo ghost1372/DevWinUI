@@ -5,34 +5,12 @@ public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
 
-    public static readonly DependencyProperty UseFullScreenHeaderImageProperty =
-        DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(AllLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
-    
-    public bool UseFullScreenHeaderImage
-    {
-        get { return (bool)GetValue(UseFullScreenHeaderImageProperty); }
-        set { SetValue(UseFullScreenHeaderImageProperty, value); }
-    }
-    private static void OnFullScreenHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (AllLandingPage)d;
-        if (ctl != null)
-        {
-            ctl.ToggleFullScreen((bool)e.NewValue);
-        }
-    }
-
-    private void ToggleFullScreen(bool value)
-    {
-        
-    }
     public AllLandingPage()
     {
         this.InitializeComponent();
         Instance = this;
         Loading -= AllLandingPage_Loading;
         Loading += AllLandingPage_Loading;
-        ToggleFullScreen(UseFullScreenHeaderImage);
     }
 
     private void AllLandingPage_Loading(FrameworkElement sender, object args)

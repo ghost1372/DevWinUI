@@ -32,6 +32,13 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <local:HomePageHeaderImage x:Name="FullScreenHomePageHeaderImage"
+                                   VerticalAlignment="Top"
+                                   HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
+                                   HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
+                                   IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
+                                   Stretch="{x:Bind Stretch, Mode=OneWay}"
+                                   Visibility="Collapsed" />
         <GridView x:Name="itemGridView"
                   Padding="{x:Bind GridViewPadding, Mode=OneWay}"
                   AutomationProperties.AutomationId="ItemGridView"
@@ -53,6 +60,12 @@
                         <RowDefinition Height="204" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <!--  Keep Space when UseFullScreenHeaderImage Enabled  -->
+                    <Border x:Name="MainBorder"
+                            Grid.RowSpan="2"
+                            Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
+                            VerticalAlignment="Top"
+                            Visibility="Collapsed" />
 
                     <local:HomePageHeaderImage x:Name="MainHomePageHeaderImage"
                                                Grid.RowSpan="2"

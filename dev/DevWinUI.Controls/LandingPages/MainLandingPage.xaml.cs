@@ -89,16 +89,29 @@ public sealed partial class MainLandingPage : ItemsPageBase
         if (HeaderContent == null)
         {
             MainHomePageHeaderImage.MinHeight = 0;
+            MainBorder.MinHeight = 0;
         }
         else
         {
             MainHomePageHeaderImage.MinHeight = 396;
+            MainBorder.MinHeight = 396;
         }
     }
 
     private void ToggleFullScreen(bool value)
     {
-
+        if (value)
+        {
+            FullScreenHomePageHeaderImage.Visibility = Visibility.Visible;
+            MainBorder.Visibility = Visibility.Visible;
+            MainHomePageHeaderImage.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            MainHomePageHeaderImage.Visibility = Visibility.Visible;
+            MainBorder.Visibility = Visibility.Collapsed;
+            FullScreenHomePageHeaderImage.Visibility = Visibility.Collapsed;
+        }
     }
     private void MainLandingPage_Loading(FrameworkElement sender, object args)
     {
