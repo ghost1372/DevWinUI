@@ -34,6 +34,7 @@
         </VisualStateManager.VisualStateGroups>
         <local:HomePageHeaderImage x:Name="FullScreenHomePageHeaderImage"
                                    VerticalAlignment="Top"
+                                   CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}"
                                    HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
                                    HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
                                    IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
