@@ -41,7 +41,20 @@ public partial class PathHelper
         if (forceUnpackagedMode)
             return unpackaged;
 
-        return PackageHelper.IsPackaged ? ApplicationData.Current.LocalFolder.Path : unpackaged;
+        return PackageHelper.IsPackaged ? Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalFolder.Path : unpackaged;
+    }
+
+    public static Microsoft.Windows.Storage.ApplicationData GetApplicationData()
+    {
+        if (PackageHelper.IsPackaged)
+        {
+            return Microsoft.Windows.Storage.ApplicationData.GetDefault();
+        }
+        else
+        {
+            throw new NotImplementedException("Microsoft has not implemented GetForUnpackaged in Microsoft.Windows.Storage.ApplicationData yet.");
+            //return Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
+        }
     }
 
     /// <summary>

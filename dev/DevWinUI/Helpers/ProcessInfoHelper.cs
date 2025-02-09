@@ -13,8 +13,9 @@ public static partial class ProcessInfoHelper
     }
     public static string Version => GetVersion()?.ToString();
     public static string VersionWithPrefix => $"v{Version}";
-    public static string ProductName => _fileVersionInfo?.ProductName;
+    public static string ProductName => _fileVersionInfo?.ProductName ?? "Unknown Product";
     public static string ProductNameAndVersion => $"{ProductName} {VersionWithPrefix}";
+    public static string Publisher => _fileVersionInfo?.CompanyName ?? "Unknown Publisher";
     public static Version GetVersion()
     {
         return new Version(_fileVersionInfo.FileMajorPart, _fileVersionInfo.FileMinorPart, _fileVersionInfo.FileBuildPart, _fileVersionInfo.FilePrivatePart);
