@@ -2,10 +2,64 @@
 using System.Security.Principal;
 using System.Web;
 using Microsoft.UI.Input;
+using Microsoft.Win32;
 
 namespace DevWinUI;
 public partial class GeneralHelper
 {
+    private const string firstRunKey = "IsFirstRun";
+
+    /// <summary>
+    /// Determines whether the application is running for the first time.
+    /// </summary>
+    /// <returns>
+    /// Returns <c>true</c> if this is the first run; otherwise, returns <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    /// - If the application is running as a packaged app, it checks a local setting in `ApplicationData.LocalSettings`.
+    /// - If the application is running as an unpackaged app, it checks a registry key under `HKEY_CURRENT_USER\Software\{Publisher}\{ProductNameAndVersion}`.
+    /// - On the first run, the method updates the respective setting or registry entry to prevent future first-run detections.
+    /// </remarks>
+    public static bool IsFirstRun()
+    {
+        if (PackageHelper.IsPackaged)
+        {
+            var settings = Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalSettings;
+            if (settings.Values.TryGetValue(firstRunKey, out object keyExist) &&
+                keyExist is bool isFirstRun && isFirstRun)
+            {
+                return false;
+            }
+
+            settings.Values[firstRunKey] = true;
+            return true;
+        }
+        else
+        {
+            //Todo: Replace Registry with Microsoft.Windows.Storage.ApplicationData.GetForUnPackaged()
+            return IsFirstRunForUnPackaged();
+        }
+    }
+
+    private static bool IsFirstRunForUnPackaged()
+    {
+        string registryPath = $@"Software\{ProcessInfoHelper.Publisher}\{ProcessInfoHelper.ProductNameAndVersion}";
+        
+        using var key = Registry.CurrentUser.OpenSubKey(registryPath, writable: true) ??
+                        Registry.CurrentUser.CreateSubKey(registryPath);
+
+        if (key == null) return false;
+
+        var value = key.GetValue(firstRunKey);
+        if (value == null || value.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            key.SetValue(firstRunKey, "False", RegistryValueKind.String);
+            return true;
+        }
+
+        return false;
+    }
+
     public static bool IsAppRunningAsAdmin()
     {
         var identity = WindowsIdentity.GetCurrent();
