@@ -59,7 +59,18 @@ public partial class GeneralHelper
 
         return false;
     }
-
+    public static Microsoft.Windows.Storage.ApplicationData GetApplicationData()
+    {
+        if (PackageHelper.IsPackaged)
+        {
+            return Microsoft.Windows.Storage.ApplicationData.GetDefault();
+        }
+        else
+        {
+            throw new NotImplementedException("Microsoft has not implemented GetForUnpackaged in Microsoft.Windows.Storage.ApplicationData yet.");
+            //return Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
+        }
+    }
     public static bool IsAppRunningAsAdmin()
     {
         var identity = WindowsIdentity.GetCurrent();

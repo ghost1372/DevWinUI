@@ -44,19 +44,6 @@ public partial class PathHelper
         return PackageHelper.IsPackaged ? Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalFolder.Path : unpackaged;
     }
 
-    public static Microsoft.Windows.Storage.ApplicationData GetApplicationData()
-    {
-        if (PackageHelper.IsPackaged)
-        {
-            return Microsoft.Windows.Storage.ApplicationData.GetDefault();
-        }
-        else
-        {
-            throw new NotImplementedException("Microsoft has not implemented GetForUnpackaged in Microsoft.Windows.Storage.ApplicationData yet.");
-            //return Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
-        }
-    }
-
     /// <summary>
     /// Use P/Invoke for getting Full Path To Exe
     /// Normal Mode: App/bin/App.exe
