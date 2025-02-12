@@ -35,4 +35,9 @@ public partial class PackageHelper
     {
         return GetPackageDetails().Id.Version;
     }
+
+    public static string GetPackageFamilyName()
+    {
+        return GetPackageDetails().Id.FamilyName;
+    }
 }
