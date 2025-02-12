@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Security.Principal;
 using System.Web;
 using Microsoft.UI.Input;
 using Microsoft.Win32;
@@ -70,12 +69,6 @@ public partial class GeneralHelper
             throw new NotImplementedException("Microsoft has not implemented GetForUnpackaged in Microsoft.Windows.Storage.ApplicationData yet.");
             //return Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
         }
-    }
-    public static bool IsAppRunningAsAdmin()
-    {
-        var identity = WindowsIdentity.GetCurrent();
-        var principal = new WindowsPrincipal(identity);
-        return principal.IsInRole(WindowsBuiltInRole.Administrator);
     }
 
     public static void ChangeCursor(UIElement uiElement, InputCursor cursor)

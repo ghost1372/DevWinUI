@@ -1,4 +1,5 @@
-﻿CreateRectRgn
+﻿CreateDispatcherQueueController
+CreateRectRgn
 CreateSolidBrush
 DefSubclassProc
 DeleteObject
@@ -13,6 +14,7 @@ GetClassName
 GetClientRect
 GetComputerName
 GetCurrentPackageFullName
+GetCurrentProcess
 GetCursorPos
 GetDC
 GetDpiForWindow
@@ -20,17 +22,19 @@ GetModuleFileName
 GetPrivateProfileString
 GetStockObject
 GetSystemMetrics
+GetTokenInformation
 GetWindowLong
 GetWindowText
 GetWindowThreadProcessId
 IsWindowEnabled
 MessageBox
+OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
 SetWindowLong
+SetWindowPos
 SetWindowSubclass
 SwitchToThisWindow
+TOKEN_ELEVATION_TYPE
 WritePrivateProfileString
-SetWindowPos
-CreateDispatcherQueueController
