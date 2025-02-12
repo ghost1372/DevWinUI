@@ -17,6 +17,30 @@ public static partial class StartupHelper
     private static readonly byte[] DisabledBinaryValue = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
     /// <summary>
+    /// This property is intended solely for XAML binding to control app startup. 
+    /// Do not use this property directly in your C# code.
+    /// 
+    /// The property retrieves the value from the <see cref="IsAppStartupWithWindowsEnabledAsync"/> method.
+    /// When setting a value, it calls <see cref="EnableAppStartupWithWindowsAsync"/> or 
+    /// <see cref="DisableAppStartupWithWindowsAsync"/> to enable or disable app startup accordingly.
+    /// </summary>
+    public static bool IsAppStartupWithWindowsForXamlBindingEnabled
+    {
+        get => Task.Run(async () => await IsAppStartupWithWindowsEnabledAsync()).Result;
+        set
+        {
+            if (value)
+            {
+                Task.Run(async () => await EnableAppStartupWithWindowsAsync()).Wait();
+            }
+            else
+            {
+                Task.Run(async () => await DisableAppStartupWithWindowsAsync()).Wait();
+            }
+        }
+    }
+
+    /// <summary>
     /// Set a TaskId for a packaged application.
     /// </summary>
     /// <param name="taskId"></param>
