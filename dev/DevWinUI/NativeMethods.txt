@@ -6,6 +6,7 @@ DeleteObject
 DwmEnableBlurBehindWindow
 DwmExtendFrameIntoClientArea
 DwmSetWindowAttribute
+EnumDisplayMonitors
 EnumWindows
 FillRect
 FindWindowExW
@@ -19,6 +20,7 @@ GetCursorPos
 GetDC
 GetDpiForWindow
 GetModuleFileName
+GetMonitorInfo
 GetPrivateProfileString
 GetStockObject
 GetSystemMetrics
@@ -28,6 +30,8 @@ GetWindowText
 GetWindowThreadProcessId
 IsWindowEnabled
 MessageBox
+MonitorFromWindow
+MONITORINFOEXW
 OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
