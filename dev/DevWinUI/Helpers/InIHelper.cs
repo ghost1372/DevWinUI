@@ -27,10 +27,16 @@ public partial class InIHelper
 
         unsafe
         {
+            uint result;
             fixed (char* pBuffer = buffer)
             {
-                uint result = PInvoke.GetPrivateProfileString(Section ?? GetProductName(), Key, "", new PWSTR(pBuffer), MAX_Length, Path ?? this.Path);
-
+                fixed (char* defaultPtr = "")
+                fixed (char* sectionPtr = Section ?? GetProductName())
+                fixed (char* pathPtr = Path ?? this.Path)
+                fixed (char* keyPtr = Key)
+                {
+                    result = PInvoke.GetPrivateProfileString(sectionPtr, keyPtr, defaultPtr, new PWSTR(pBuffer), MAX_Length, pathPtr);
+                }
                 if (result == 0)
                 {
                     throw new Win32Exception();

@@ -11,16 +11,10 @@ public static partial class CredentialHelper
 
         string computerName = string.Empty;
 
-        unsafe
+        int result = PInvoke.GetComputerName(buffer, ref MAX_Length);
+        if (result > 0)
         {
-            fixed (char* pBuffer = buffer)
-            {
-                int result = PInvoke.GetComputerName(pBuffer, ref MAX_Length);
-                if (result > 0)
-                {
-                    computerName = new string(pBuffer, 0, result);
-                }
-            }
+            computerName = new string(buffer.Slice(0, result));
         }
 
         var options = new CredentialPickerOptions()

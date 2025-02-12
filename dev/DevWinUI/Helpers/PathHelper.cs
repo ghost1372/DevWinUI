@@ -59,7 +59,7 @@ public partial class PathHelper
         {
             fixed (char* pBuffer = buffer)
             {
-                uint result = PInvoke.GetModuleFileName(null, new PWSTR(pBuffer), MAX_Length);
+                uint result = PInvoke.GetModuleFileName(HMODULE.Null, new PWSTR(pBuffer), MAX_Length);
 
                 if (result == 0)
                 {
