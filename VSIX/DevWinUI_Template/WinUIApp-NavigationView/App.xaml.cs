@@ -29,7 +29,7 @@ public partial class App : Application
 
     private $AsyncKeyword$void InitializeApp()
     {
-        $PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
+        $Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

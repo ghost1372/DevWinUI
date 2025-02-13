@@ -174,17 +174,11 @@ if (menuService != null)
         }
 """";
 
-    public static readonly string SetPackagedAppTaskId =
-""""
-        // If you are using UnPackaged app, remove this line and StartupTask from Package.appxmanifest file.
-        StartupHelper.SetTaskIdForPackagedApp("$safeprojectname$StartOnLoginTask");
-"""";
-
     public static readonly string StartupTask =
 """"
       <Extensions>
         <uap5:Extension Category="windows.startupTask">
-          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
+          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="false" DisplayName="$safeprojectname$" />
         </uap5:Extension>
       </Extensions>
 """";
@@ -192,7 +186,7 @@ if (menuService != null)
     public static readonly string StartupTaskInContextMenu =
 """"
         <uap5:Extension Category="windows.startupTask">
-          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
+          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="false" DisplayName="$safeprojectname$" />
         </uap5:Extension>
 """";
 }

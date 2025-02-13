@@ -51,7 +51,7 @@ public partial class App : Application
 
     private $AsyncKeyword$void InitializeApp()
     {
-        $PackagedAppTaskId$$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
+        $Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

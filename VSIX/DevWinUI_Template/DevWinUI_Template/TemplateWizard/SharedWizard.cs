@@ -426,7 +426,6 @@ public class SharedWizard
         if (WizardConfig.IsUnPackagedMode)
         {
             replacementsDictionary.Add("$WindowsPackageType$", "None");
-            replacementsDictionary.Add("$PackagedAppTaskId$", "");
             replacementsDictionary.Add("$UAP5$", "");
             replacementsDictionary.Add("$StartupTask$", "");
         }
@@ -436,8 +435,6 @@ public class SharedWizard
 
             if (WizardConfig.UseGeneralSettingPage && WizardConfig.UseStartupSetting)
             {
-                var content = PredefinedCodes.SetPackagedAppTaskId.Replace("$safeprojectname$", SafeProjectName);
-                replacementsDictionary.Add("$PackagedAppTaskId$", content);
                 replacementsDictionary.Add("$UAP5$", Environment.NewLine + "  xmlns:uap5=\"http://schemas.microsoft.com/appx/manifest/uap/windows10/5\"");
 
                 if (WizardConfig.UseWindow11ContextMenu)
@@ -453,7 +450,6 @@ public class SharedWizard
             }
             else
             {
-                replacementsDictionary.Add("$PackagedAppTaskId$", "");
                 replacementsDictionary.Add("$UAP5$", "");
                 replacementsDictionary.Add("$StartupTask$", "");
             }
