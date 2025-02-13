@@ -6,7 +6,6 @@ namespace DevWinUI;
 public static partial class StartupHelper
 {
     public static string UnPackagedAppStartupTag { get;} = "/onBoot";
-    private static string PackagedAppTaskId { get; set; }
 
     private static readonly string UnPackagedAppRegistryKey = ProcessInfoHelper.ProductName;
 
@@ -41,71 +40,155 @@ public static partial class StartupHelper
     }
 
     /// <summary>
-    /// Set a TaskId for a packaged application.
-    /// </summary>
-    /// <param name="taskId"></param>
-    public static void SetTaskIdForPackagedApp(string taskId)
-    {
-        PackagedAppTaskId = taskId;
-    }
-
-    /// <summary>
     /// Disables the application startup with Windows.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
     /// </summary>
     /// <returns></returns>
     public static async Task<bool> DisableAppStartupWithWindowsAsync()
     {
-        return await SetStartupAsync(false, Registry.CurrentUser);
+        return await SetStartupAsync(false, null, Registry.CurrentUser);
     }
 
     /// <summary>
     /// Disables the application startup with Windows.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
     /// </summary>
     /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
     /// <returns></returns>
     public static async Task<bool> DisableAppStartupWithWindowsAsync(RegistryKey registryKey)
     {
-        return await SetStartupAsync(false, registryKey);
+        return await SetStartupAsync(false, null, registryKey);
+    }
+
+    /// <summary>
+    /// Disables the application startup with Windows.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <returns></returns>
+    public static async Task<bool> DisableAppStartupWithWindowsAsync(string taskId)
+    {
+        return await SetStartupAsync(false, taskId, Registry.CurrentUser);
+    }
+
+    /// <summary>
+    /// Disables the application startup with Windows.
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
+    /// <returns></returns>
+    public static async Task<bool> DisableAppStartupWithWindowsAsync(string taskId, RegistryKey registryKey)
+    {
+        return await SetStartupAsync(false, taskId, registryKey);
     }
 
     /// <summary>
     /// Enables the application startup with Windows.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
     /// </summary>
     /// <returns></returns>
     public static async Task<bool> EnableAppStartupWithWindowsAsync()
     {
-        return await SetStartupAsync(true, Registry.CurrentUser);
+        return await SetStartupAsync(true, null, Registry.CurrentUser);
     }
 
     /// <summary>
     /// Enables the application startup with Windows.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
     /// </summary>
     /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
     /// <returns></returns>
     public static async Task<bool> EnableAppStartupWithWindowsAsync(RegistryKey registryKey)
     {
-        return await SetStartupAsync(true, registryKey);
+        return await SetStartupAsync(true, null, registryKey);
+    }
+
+    /// <summary>
+    /// Enables the application startup with Windows.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <returns></returns>
+    public static async Task<bool> EnableAppStartupWithWindowsAsync(string taskId)
+    {
+        return await SetStartupAsync(true, taskId, Registry.CurrentUser);
+    }
+
+    /// <summary>
+    /// Enables the application startup with Windows.
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
+    /// <returns></returns>
+    public static async Task<bool> EnableAppStartupWithWindowsAsync(string taskId, RegistryKey registryKey)
+    {
+        return await SetStartupAsync(true, taskId, registryKey);
     }
 
     /// <summary>
     /// Checks if the application is configured to run at startup.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
     /// </summary>
     /// <returns></returns>
     public static async Task<bool> IsAppStartupWithWindowsEnabledAsync()
     {
-        return await IsAppStartupWithWindowsEnabledAsync(Registry.CurrentUser);
+        return await IsAppStartupWithWindowsEnabledAsync(null, Registry.CurrentUser);
     }
 
     /// <summary>
     /// Checks if the application is configured to run at startup.
+    /// For Packaged applications, the taskId is automatically used from the first StartupTask defined in Package.appxmanifest file.
     /// </summary>
     /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
     /// <returns></returns>
     public static async Task<bool> IsAppStartupWithWindowsEnabledAsync(RegistryKey registryKey)
     {
+        return await IsAppStartupWithWindowsEnabledAsync(null, registryKey);
+    }
+
+    /// <summary>
+    /// Checks if the application is configured to run at startup.
+    /// For UnPackaged applications, Registry.CurrentUser Will be used
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <returns></returns>
+    public static async Task<bool> IsAppStartupWithWindowsEnabledAsync(string taskId)
+    {
+        return await IsAppStartupWithWindowsEnabledAsync(taskId, Registry.CurrentUser);
+    }
+
+    /// <summary>
+    /// Checks if the application is configured to run at startup.
+    /// </summary>
+    /// <param name="taskId">Set a TaskId for a packaged application.</param>
+    /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
+    /// <returns></returns>
+    public static async Task<bool> IsAppStartupWithWindowsEnabledAsync(string taskId, RegistryKey registryKey)
+    {
         if (PackageHelper.IsPackaged)
         {
-            var startupTask = await StartupTask.GetAsync(PackagedAppTaskId);
+            StartupTask startupTask = null;
+            if (string.IsNullOrEmpty(taskId))
+            {
+                var taskList = await StartupTask.GetForCurrentPackageAsync();
+                if (taskList.Count > 0)
+                {
+                    startupTask = taskList.FirstOrDefault();
+                }
+            }
+            else
+            {
+                startupTask = await StartupTask.GetAsync(taskId);
+            }
+
+            if (startupTask == null)
+            {
+                throw new Exception("Couldn't find a StartupTask in the appx manifest with the input taskId");
+            }
+
             return startupTask.State == StartupTaskState.Enabled || startupTask.State == StartupTaskState.EnabledByPolicy;
         }
         else
@@ -114,11 +197,29 @@ public static partial class StartupHelper
         }
     }
 
-    private static async Task<bool> SetStartupAsync(bool startup, RegistryKey registryKey)
+    private static async Task<bool> SetStartupAsync(bool startup, string taskId, RegistryKey registryKey)
     {
         if (PackageHelper.IsPackaged)
         {
-            var startupTask = await StartupTask.GetAsync(PackagedAppTaskId);
+            StartupTask startupTask = null;
+            if (string.IsNullOrEmpty(taskId))
+            {
+                var taskList = await StartupTask.GetForCurrentPackageAsync();
+                if (taskList.Count > 0)
+                {
+                    startupTask = taskList.FirstOrDefault();
+                }
+            }
+            else
+            {
+                startupTask = await StartupTask.GetAsync(taskId);
+            }
+
+            if (startupTask == null)
+            {
+                throw new Exception("Couldn't find a StartupTask in the appx manifest with the input taskId");
+            }
+
             switch (startupTask.State)
             {
                 case StartupTaskState.Disabled:
