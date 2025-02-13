@@ -191,8 +191,8 @@ if (menuService != null)
 
     public static readonly string StartupTaskInContextMenu =
 """"
-      <uap5:Extension Category="windows.startupTask">
-        <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
-      </uap5:Extension>
+        <uap5:Extension Category="windows.startupTask">
+          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
+        </uap5:Extension>
 """";
 }
