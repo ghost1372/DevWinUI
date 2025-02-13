@@ -198,7 +198,7 @@ if (menuService != null)
 
     public static readonly string InitializeAppMethods =
 """"
-        private $OnLaunchedAsyncKeyword$ void InitializeAppMethods()
+        private $OnLaunchedAsyncKeyword$void InitializeAppMethods()
         {
             $PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
         }
