@@ -408,8 +408,8 @@ public class SharedWizard
             var windows11ContextMenuMVVM = PredefinedCodes.Windows11ContextMenuMVVMInitializer;
             windows11ContextMenu = windows11ContextMenu.Replace("$projectname$", ProjectName);
             windows11ContextMenuMVVM = windows11ContextMenuMVVM.Replace("$projectname$", ProjectName);
-            replacementsDictionary.Add("$Windows11ContextMenuInitializer$", Environment.NewLine + windows11ContextMenu);
-            replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", Environment.NewLine + Environment.NewLine + windows11ContextMenuMVVM);
+            replacementsDictionary.Add("$Windows11ContextMenuInitializer$", windows11ContextMenu);
+            replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", windows11ContextMenuMVVM);
             replacementsDictionary.Add("$AsyncKeyword$", "async ");
         }
         else
