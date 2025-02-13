@@ -18,9 +18,10 @@ public class ConfigCodes
     bool UseSettingsPage;
     bool UseThemeSettingPage;
     bool UseDeveloperModeSetting;
+    bool UseStartupSetting;
     bool UseJsonSetting;
     bool UseContextMenu;
-    public ConfigCodes(bool UseAboutPage, bool UseAppUpdatePage, bool UseGeneralSettingPage, bool UseHomeLandingPage, bool UseSettingsPage, bool UseThemeSettingPage, bool UseDeveloperModeSetting, bool UseJsonSetting, bool useContextMenu)
+    public ConfigCodes(bool UseAboutPage, bool UseAppUpdatePage, bool UseGeneralSettingPage, bool UseHomeLandingPage, bool UseSettingsPage, bool UseThemeSettingPage, bool UseDeveloperModeSetting, bool UseJsonSetting, bool useContextMenu, bool UseStartupSetting)
     {
         this.UseAboutPage = UseAboutPage;
         this.UseAppUpdatePage = UseAppUpdatePage;
@@ -30,6 +31,7 @@ public class ConfigCodes
         this.UseThemeSettingPage = UseThemeSettingPage;
         this.UseDeveloperModeSetting = UseDeveloperModeSetting;
         this.UseJsonSetting = UseJsonSetting;
+        this.UseStartupSetting = UseStartupSetting;
         UseContextMenu = useContextMenu;
     }
 
@@ -214,13 +216,21 @@ public class ConfigCodes
 
     public void ConfigGeneral()
     {
-        if (UseSettingsPage && UseGeneralSettingPage && UseDeveloperModeSetting && !UseJsonSetting)
+        if (UseSettingsPage && UseGeneralSettingPage)
         {
-            GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode);
-        }
-        else if (UseSettingsPage && UseGeneralSettingPage && UseDeveloperModeSetting && UseJsonSetting)
-        {
-            GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode2);
+            if (UseStartupSetting)
+            {
+                GeneralSettingsPageOptionsDic.Add(nameof(UseStartupSetting), Environment.NewLine + PredefinedCodes.StartupAppSettingCode);
+            }
+
+            if (UseDeveloperModeSetting && !UseJsonSetting)
+            {
+                GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode);
+            }
+            else if (UseDeveloperModeSetting && UseJsonSetting)
+            {
+                GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode2);
+            }
         }
     }
 }

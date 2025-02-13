@@ -89,7 +89,8 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             !WizardConfig.UseGeneralSettingPage &&
             (filePath.Contains("GeneralSettingPage") ||
             filePath.Contains("GeneralSettingViewModel") ||
-            filePath.Contains("General.png")))
+            filePath.Contains("General.png") ||
+            filePath.Contains("Startup.png")))
         {
             return false;
         }
@@ -141,6 +142,10 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             return false;
         }
         else if (WizardConfig.UseWindow11ContextMenu && filePath.Contains("Package-managed.appxmanifest"))
+        {
+            return false;
+        }
+        else if (!WizardConfig.UseStartupSetting && filePath.Contains("Startup.png"))
         {
             return false;
         }

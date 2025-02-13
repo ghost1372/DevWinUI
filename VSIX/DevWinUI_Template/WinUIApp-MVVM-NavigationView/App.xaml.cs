@@ -44,7 +44,7 @@ public partial class App : Application
 
         ThemeService.AutoInitialize(MainWindow).ConfigureTintColor();
 
-        MainWindow.Activate();$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
+        MainWindow.Activate();$PackagedAppTaskId$$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

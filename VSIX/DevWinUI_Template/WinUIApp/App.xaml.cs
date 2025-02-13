@@ -21,6 +21,6 @@ public partial class App : Application
         ThemeService = new ThemeService(MainWindow);
 
         MainWindow.Activate();$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
-    }
+    }$InitializeAppMethods$
 }
 

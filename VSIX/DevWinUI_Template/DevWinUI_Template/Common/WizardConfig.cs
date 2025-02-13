@@ -44,4 +44,5 @@ public static class WizardConfig
     public static bool UseConvertersDic;
     public static bool UseFontsDic;
     public static bool UseWindow11ContextMenu;
+    public static bool UseStartupSetting;
 }

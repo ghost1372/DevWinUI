@@ -18,15 +18,15 @@
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <TitleBar.Content>
+            <TitleBar.CenterContent>
                 <AutoSuggestBox MinWidth="320"
                                 VerticalAlignment="Center"
                                 PlaceholderText="Search"
                                 QueryIcon="Find"
                                 QuerySubmitted="OnQuerySubmitted"
                                 TextChanged="OnTextChanged" />
-            </TitleBar.Content>
-            <TitleBar.Footer>
+            </TitleBar.CenterContent>
+            <TitleBar.RightContent>
                 <Button x:Name="ThemeButton"
                         Height="32"
                         Margin="0,0,4,0"
@@ -35,7 +35,7 @@
                                                FontSize=16}"
                         Style="{ThemeResource SubtleButtonStyle}"
                         ToolTipService.ToolTip="Toggle Theme" />
-            </TitleBar.Footer>
+            </TitleBar.RightContent>
         </TitleBar>
         <NavigationView x:Name="NavView"
                         Grid.Row="1"

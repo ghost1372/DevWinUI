@@ -9,7 +9,7 @@
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
-  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"$AppxManifestDesktop6$
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"$AppxManifestDesktop6$$UAP5$
   IgnorableNamespaces="uap rescap">
 
 	<Identity
@@ -72,8 +72,8 @@
 					<uap3:AppExecutionAlias>
 						<desktop:ExecutionAlias Alias="$projectname$.exe"/>
 					</uap3:AppExecutionAlias>
-				</uap3:Extension>
-			</Extensions>
+				</uap3:Extension>$StartupTask$
+      </Extensions>
 		</Application>
 	</Applications>
 

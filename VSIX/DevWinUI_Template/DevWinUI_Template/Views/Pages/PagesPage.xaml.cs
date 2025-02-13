@@ -44,4 +44,9 @@ public partial class PagesPage : Page
     {
         WizardConfig.UseAboutPage = tgAboutSetting.IsOn;
     }
+
+    private void tgStartup_Toggled(object sender, RoutedEventArgs e)
+    {
+        WizardConfig.UseStartupSetting = tgStartup.IsOn;
+    }
 }

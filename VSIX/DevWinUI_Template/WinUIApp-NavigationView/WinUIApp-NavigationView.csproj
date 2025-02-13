@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.manifest" />
+    <Content Include="Assets\Fluent\Startup.png" />
     <Content Include="TemplateIcon.ico" />
     <Content Include="TemplateIcon.png" />
     <Content Include="Assets\AppIcon.ico" />

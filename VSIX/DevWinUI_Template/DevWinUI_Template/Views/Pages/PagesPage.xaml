@@ -39,8 +39,18 @@
                     <ui:SymbolIcon Symbol="AppGeneric24" />
                 </local:SettingsControl.Icon>
             </local:SettingsControl>
+            <local:SettingsControl x:Name="tgStartup"
+                                   Title="A.1: Add Startup app Setting Option"
+                                   Margin="40,0,0,0"
+                                   Description="Will create a Startup app setting in General page"
+                                   IsEnabled="{Binding ElementName=tgGeneralSettingPage, Path=IsOn}"
+                                   Toggled="tgStartup_Toggled">
+                <local:SettingsControl.Icon>
+                    <ui:SymbolIcon Symbol="Window24" />
+                </local:SettingsControl.Icon>
+            </local:SettingsControl>
             <local:SettingsControl x:Name="tgDeveloperMode"
-                                   Title="A.1: Add Developer Mode Setting Option"
+                                   Title="A.2: Add Developer Mode Setting Option"
                                    Margin="40,0,0,0"
                                    Description="Will create a developer mode setting in General page"
                                    IsEnabled="{Binding ElementName=tgGeneralSettingPage, Path=IsOn}"

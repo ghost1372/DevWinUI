@@ -59,6 +59,7 @@
 		<ProjectItem ReplaceParameters="false" TargetFileName="Update.png">Update.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="DevMode.png">DevMode.png</ProjectItem>
 		<ProjectItem ReplaceParameters="false" TargetFileName="Tint.png">Tint.png</ProjectItem>
+		<ProjectItem ReplaceParameters="false" TargetFileName="Startup.png">Startup.png</ProjectItem>
 	  </Folder>
 		
 	  <Folder Name="Assets\Store" TargetFolderName="Assets\Store">

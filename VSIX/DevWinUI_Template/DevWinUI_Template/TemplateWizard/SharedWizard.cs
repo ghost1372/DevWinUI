@@ -289,7 +289,7 @@ public class SharedWizard
             new DictionaryOption().ConfigDictionary(replacementsDictionary, templateConfig.HasNavigationView, WizardConfig.UseHomeLandingPage, WizardConfig.UseColorsDic, WizardConfig.UseStylesDic, WizardConfig.UseConvertersDic, WizardConfig.UseFontsDic);
 
             #region Codes
-            var configCodes = new ConfigCodes(WizardConfig.UseAboutPage, WizardConfig.UseAppUpdatePage, WizardConfig.UseGeneralSettingPage, WizardConfig.UseHomeLandingPage, WizardConfig.UseSettingsPage, WizardConfig.UseThemeSettingPage, WizardConfig.UseDeveloperModeSetting, WizardConfig.UseJsonSettings, WizardConfig.UseWindow11ContextMenu);
+            var configCodes = new ConfigCodes(WizardConfig.UseAboutPage, WizardConfig.UseAppUpdatePage, WizardConfig.UseGeneralSettingPage, WizardConfig.UseHomeLandingPage, WizardConfig.UseSettingsPage, WizardConfig.UseThemeSettingPage, WizardConfig.UseDeveloperModeSetting, WizardConfig.UseJsonSettings, WizardConfig.UseWindow11ContextMenu, WizardConfig.UseStartupSetting);
 
             if (templateConfig.IsMVVM)
             {
@@ -345,14 +345,21 @@ public class SharedWizard
             UseFileLogger = serilog.UseFileLogger;
             UseDebugLogger = serilog.UseDebugLogger;
 
-            if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
+            if (!string.IsNullOrEmpty(generalSettingsCards))
             {
                 replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", generalSettingsCards);
+            }
+            else
+            {
+                replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", "");
+            }
 
+            if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
+            {
                 if (WizardConfig.UseJsonSettings && WizardConfig.UseDeveloperModeSetting && WizardConfig.UseSettingsPage && WizardConfig.UseGeneralSettingPage)
                 {
                     replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", Environment.NewLine + Environment.NewLine + PredefinedCodes.GoToLogPathEvent);
-                    replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "public bool useDeveloperMode { get; set; }");
+                    replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "private bool useDeveloperMode { get; set; }");
                 }
                 else
                 {
@@ -363,7 +370,6 @@ public class SharedWizard
             else
             {
                 replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", "");
-                replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", "");
                 replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", "");
             }
             #endregion
@@ -386,7 +392,7 @@ public class SharedWizard
 
                 if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
                 {
-                    replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """public string lastUpdateCheck { get; set; }""");
+                    replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """private string lastUpdateCheck { get; set; }""");
                 }
                 else
                 {
@@ -442,10 +448,38 @@ public class SharedWizard
         if (WizardConfig.IsUnPackagedMode)
         {
             replacementsDictionary.Add("$WindowsPackageType$", "None");
+            replacementsDictionary.Add("$PackagedAppTaskId$", "");
+            replacementsDictionary.Add("$UAP5$", "");
+            replacementsDictionary.Add("$StartupTask$", "");
         }
         else
         {
             replacementsDictionary.Add("$WindowsPackageType$", "MSIX");
+
+            if (WizardConfig.UseGeneralSettingPage && WizardConfig.UseStartupSetting)
+            {
+                var content = PredefinedCodes.SetPackagedAppTaskId.Replace("$safeprojectname$", SafeProjectName);
+                replacementsDictionary.Add("$PackagedAppTaskId$", Environment.NewLine + content);
+                replacementsDictionary.Add("$UAP5$", Environment.NewLine + "  xmlns:uap5=\"http://schemas.microsoft.com/appx/manifest/uap/windows10/5\"");
+
+                if (WizardConfig.UseWindow11ContextMenu)
+                {
+                    var taskInContextMenuContent = PredefinedCodes.StartupTaskInContextMenu.Replace("$safeprojectname$", SafeProjectName);
+                    replacementsDictionary.Add("$StartupTask$", Environment.NewLine + taskInContextMenuContent);
+                }
+                else
+                {
+                    var taskContent = PredefinedCodes.StartupTask.Replace("$safeprojectname$", SafeProjectName);
+                    replacementsDictionary.Add("$StartupTask$", Environment.NewLine + taskContent);
+                }
+
+            }
+            else
+            {
+                replacementsDictionary.Add("$PackagedAppTaskId$", "");
+                replacementsDictionary.Add("$UAP5$", "");
+                replacementsDictionary.Add("$StartupTask$", "");
+            }
         }
         #endregion
 

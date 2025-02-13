@@ -130,6 +130,15 @@ if (menuService != null)
                               dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage" />
 """;
 
+    public static readonly string StartupAppSettingCode =
+"""
+            <dev:SettingsCard Description="Automatically launch app when you log in to Windows"
+                              Header="Run at startup"
+                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Startup.png}">
+                <ToggleSwitch IsOn="{x:Bind dev:StartupHelper.IsAppStartupWithWindowsForXamlBindingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </dev:SettingsCard>
+""";
+
     public static readonly string DeveloperModeSettingCode =
 """
             <dev:SettingsCard Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
@@ -162,6 +171,36 @@ if (menuService != null)
                 Windows.Storage.StorageFolder folder = await Windows.Storage.StorageFolder.GetFolderFromPathAsync(folderPath);
                 await Windows.System.Launcher.LaunchFolderAsync(folder);
             }
+        }
+"""";
+
+    public static readonly string SetPackagedAppTaskId =
+""""
+        // If you are using UnPackaged app, remove this line and StartupTask from Package.appxmanifest file.
+        StartupHelper.SetTaskIdForPackagedApp("$safeprojectname$StartOnLoginTask");
+"""";
+
+    public static readonly string StartupTask =
+""""
+      <Extensions>
+        <uap5:Extension Category="windows.startupTask">
+          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
+        </uap5:Extension>
+      </Extensions>
+"""";
+
+    public static readonly string StartupTaskInContextMenu =
+""""
+      <uap5:Extension Category="windows.startupTask">
+        <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
+      </uap5:Extension>
+"""";
+
+    public static readonly string InitializeAppMethods =
+""""
+        private $OnLaunchedAsyncKeyword$ void InitializeAppMethods()
+        {
+            $PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
         }
 """";
 }

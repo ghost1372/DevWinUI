@@ -18,7 +18,7 @@
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <TitleBar.Footer>
+            <TitleBar.RightContent>
                 <Button x:Name="ThemeButton"
                         Height="32"
                         Margin="0,0,4,0"
@@ -27,7 +27,7 @@
                                                FontSize=16}"
                         Style="{ThemeResource SubtleButtonStyle}"
                         ToolTipService.ToolTip="Toggle Theme" />
-            </TitleBar.Footer>
+            </TitleBar.RightContent>
         </TitleBar>
         <NavigationView x:Name="NavView"
                         Grid.Row="1"
