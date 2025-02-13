@@ -149,6 +149,7 @@ public class SharedWizard
         _shouldAddProjectItem = false;
         WizardConfig.HasPages = templateConfig.HasPages;
         WizardConfig.IsBlank = templateConfig.IsBlank;
+        WizardConfig.IsMVVM = templateConfig.IsMVVM;
 
         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
@@ -173,7 +174,6 @@ public class SharedWizard
 
         if (result.HasValue && result.Value)
         {
-            AddReplacementsDictionary(replacementsDictionary);
             var vsix = await GetVSIXPathAsync(templateConfig.TemplateType.ToString());
             VSTemplateFilePath = vsix.VSTemplatePath;
             ProjectTemplatesFolderPath = vsix.ProjectTemplatesFolder;
@@ -183,10 +183,21 @@ public class SharedWizard
 
             AddEditorConfigFile();
 
-            var libs = WizardConfig.LibraryDic;
+            AddReplacementsDictionary(replacementsDictionary);
 
             #region Libs
-            foreach (var lib in libs.Values)
+            // Assuming package list is passed via a custom parameter in the .vstemplate file
+            if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
+            {
+                _nuGetPackages = new();
+                var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
+                foreach (var baseItem in basePackages)
+                {
+                    _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
+                }
+            }
+
+            foreach (var lib in WizardConfig.LibraryDic.Values)
             {
                 _nuGetPackages?.Add(new Library(lib.Name, lib.IncludePreRelease));
             }
@@ -198,86 +209,6 @@ public class SharedWizard
             }
 
             _nuGetPackages = _nuGetPackages.Distinct().ToList();
-            #endregion
-
-            #region CSProjectElements
-            // Add CSProjectElements
-            if (WizardConfig.CSProjectElements != null && WizardConfig.CSProjectElements.Count > 0)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                foreach (var entity in WizardConfig.CSProjectElements)
-                {
-                    sb.AppendLine($"{entity.Value}");
-                }
-
-                replacementsDictionary.Add("$CustomCSProjectElement$", Environment.NewLine + $"{sb.ToString().Trim()}");
-            }
-            else
-            {
-                replacementsDictionary.Add("$CustomCSProjectElement$", "");
-            }
-
-            #endregion
-
-            #region AppxManifest
-            if (WizardConfig.UnvirtualizedResources != null && WizardConfig.UnvirtualizedResources.Count > 0)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                foreach (var entity in WizardConfig.UnvirtualizedResources)
-                {
-                    sb.AppendLine($"{entity.Value}");
-                }
-
-                replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", Environment.NewLine + "    <rescap:Capability Name=\"unvirtualizedResources\" />");
-                replacementsDictionary.Add("$UnvirtualizedResources$", Environment.NewLine + $"{sb.ToString().Trim()}");
-                replacementsDictionary.Add("$AppxManifestDesktop6$", Environment.NewLine + "  xmlns:desktop6=\"http://schemas.microsoft.com/appx/manifest/desktop/windows10/6\"");
-            }
-            else
-            {
-                replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", "");
-                replacementsDictionary.Add("$UnvirtualizedResources$", "");
-                replacementsDictionary.Add("$AppxManifestDesktop6$", "");
-            }
-            #endregion
-
-            #region Add Xaml Dictionary if User Use Extra Lib
-            #region Blank
-
-            if (templateConfig.IsBlank)
-            {
-                if (libs != null && libs.ContainsKey(Constants.DevWinUI_Controls))
-                {
-                    replacementsDictionary.Add("$DevWinUI.Controls$", Environment.NewLine + Constants.DevWinUI_Controls_Xaml);
-                }
-                else
-                {
-                    replacementsDictionary.Add("$DevWinUI.Controls$", "");
-                }
-            }
-
-            #endregion
-
-            if (libs != null && libs.ContainsKey(Constants.DevWinUI_ContextMenu))
-            {
-                WizardConfig.UseWindow11ContextMenu = true;
-                replacementsDictionary.Add("$CLSID$", Guid.NewGuid().ToString());
-                var windows11ContextMenu = PredefinedCodes.Windows11ContextMenuInitializer;
-                var windows11ContextMenuMVVM = PredefinedCodes.Windows11ContextMenuMVVMInitializer;
-                windows11ContextMenu = windows11ContextMenu.Replace("$projectname$", ProjectName);
-                windows11ContextMenuMVVM = windows11ContextMenuMVVM.Replace("$projectname$", ProjectName);
-                replacementsDictionary.Add("$Windows11ContextMenuInitializer$", Environment.NewLine + windows11ContextMenu);
-                replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", Environment.NewLine + Environment.NewLine + windows11ContextMenuMVVM);
-            }
-            else
-            {
-                WizardConfig.UseWindow11ContextMenu = false;
-                replacementsDictionary.Add("$CLSID$", "");
-                replacementsDictionary.Add("$Windows11ContextMenuInitializer$", "");
-                replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", "");
-            }
-
             #endregion
 
             if (templateConfig.HasNavigationView)
@@ -341,7 +272,7 @@ public class SharedWizard
 
             #region Serilog
             var serilog = new SerilogOption();
-            serilog.ConfigSerilog(replacementsDictionary, libs, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
+            serilog.ConfigSerilog(replacementsDictionary, WizardConfig.LibraryDic, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
             UseFileLogger = serilog.UseFileLogger;
             UseDebugLogger = serilog.UseDebugLogger;
 
@@ -354,7 +285,7 @@ public class SharedWizard
                 replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", "");
             }
 
-            if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
+            if (WizardConfig.LibraryDic.ContainsKey("Serilog.Sinks.Debug") || WizardConfig.LibraryDic.ContainsKey("Serilog.Sinks.File"))
             {
                 if (WizardConfig.UseJsonSettings && WizardConfig.UseDeveloperModeSetting && WizardConfig.UseSettingsPage && WizardConfig.UseGeneralSettingPage)
                 {
@@ -371,40 +302,6 @@ public class SharedWizard
             {
                 replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", "");
                 replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", "");
-            }
-            #endregion
-
-            #region Json Settings
-            if (WizardConfig.UseJsonSettings)
-            {
-                if (templateConfig.IsMVVM)
-                {
-                    replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", Environment.NewLine + """LastUpdateCheck = Settings.LastUpdateCheck;""");
-                    replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
-                }
-                else
-                {
-                    replacementsDictionary.Add("$AppUpdateGetDateTime$", Environment.NewLine + Environment.NewLine + """TxtLastUpdateCheck.Text = Settings.LastUpdateCheck;""");
-                    replacementsDictionary.Add("$AppUpdateSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
-                }
-
-                replacementsDictionary.Add("$AppConfigFilePath$", Environment.NewLine + """public static readonly string AppConfigPath = Path.Combine(RootDirectoryPath, "AppConfig.json");""");
-
-                if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
-                {
-                    replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """private string lastUpdateCheck { get; set; }""");
-                }
-                else
-                {
-                    replacementsDictionary.Add("$AppUpdateConfig$", "");
-                }
-            }
-            else
-            {
-                replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", "");
-                replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", "");
-                replacementsDictionary.Add("$AppConfigFilePath$", "");
-                replacementsDictionary.Add("$AppUpdateConfig$", "");
             }
             #endregion
 
@@ -444,6 +341,87 @@ public class SharedWizard
         replacementsDictionary.Add("$AddAboutPage$", WizardConfig.UseAboutPage.ToString());
         replacementsDictionary.Add("$T4_NAMESPACE$", SafeProjectName);
 
+        #region CSProjectElements
+        // Add CSProjectElements
+        if (WizardConfig.CSProjectElements != null && WizardConfig.CSProjectElements.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var entity in WizardConfig.CSProjectElements)
+            {
+                sb.AppendLine($"{entity.Value}");
+            }
+
+            replacementsDictionary.Add("$CustomCSProjectElement$", Environment.NewLine + $"{sb.ToString().Trim()}");
+        }
+        else
+        {
+            replacementsDictionary.Add("$CustomCSProjectElement$", "");
+        }
+
+        #endregion
+
+        #region AppxManifest
+        if (WizardConfig.UnvirtualizedResources != null && WizardConfig.UnvirtualizedResources.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var entity in WizardConfig.UnvirtualizedResources)
+            {
+                sb.AppendLine($"{entity.Value}");
+            }
+
+            replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", Environment.NewLine + "    <rescap:Capability Name=\"unvirtualizedResources\" />");
+            replacementsDictionary.Add("$UnvirtualizedResources$", Environment.NewLine + $"{sb.ToString().Trim()}");
+            replacementsDictionary.Add("$AppxManifestDesktop6$", Environment.NewLine + "  xmlns:desktop6=\"http://schemas.microsoft.com/appx/manifest/desktop/windows10/6\"");
+        }
+        else
+        {
+            replacementsDictionary.Add("$UnvirtualizedResourcesCapability$", "");
+            replacementsDictionary.Add("$UnvirtualizedResources$", "");
+            replacementsDictionary.Add("$AppxManifestDesktop6$", "");
+        }
+        #endregion
+
+        #region Blank
+
+        if (WizardConfig.IsBlank)
+        {
+            if (WizardConfig.LibraryDic != null && WizardConfig.LibraryDic.ContainsKey(Constants.DevWinUI_Controls))
+            {
+                replacementsDictionary.Add("$DevWinUI.Controls$", Environment.NewLine + Constants.DevWinUI_Controls_Xaml);
+            }
+            else
+            {
+                replacementsDictionary.Add("$DevWinUI.Controls$", "");
+            }
+        }
+
+        #endregion
+
+        #region Add Xaml Dictionary if User Use Extra Lib
+        if (WizardConfig.LibraryDic != null && WizardConfig.LibraryDic.ContainsKey(Constants.DevWinUI_ContextMenu))
+        {
+            WizardConfig.UseWindow11ContextMenu = true;
+            replacementsDictionary.Add("$CLSID$", Guid.NewGuid().ToString());
+            var windows11ContextMenu = PredefinedCodes.Windows11ContextMenuInitializer;
+            var windows11ContextMenuMVVM = PredefinedCodes.Windows11ContextMenuMVVMInitializer;
+            windows11ContextMenu = windows11ContextMenu.Replace("$projectname$", ProjectName);
+            windows11ContextMenuMVVM = windows11ContextMenuMVVM.Replace("$projectname$", ProjectName);
+            replacementsDictionary.Add("$Windows11ContextMenuInitializer$", Environment.NewLine + windows11ContextMenu);
+            replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", Environment.NewLine + Environment.NewLine + windows11ContextMenuMVVM);
+            replacementsDictionary.Add("$AsyncKeyword$", "async ");
+        }
+        else
+        {
+            WizardConfig.UseWindow11ContextMenu = false;
+            replacementsDictionary.Add("$CLSID$", "");
+            replacementsDictionary.Add("$Windows11ContextMenuInitializer$", "");
+            replacementsDictionary.Add("$Windows11ContextMenuMVVMInitializer$", "");
+            replacementsDictionary.Add("$AsyncKeyword$", "");
+        }
+        #endregion
+
         #region IsUnPackaged
         if (WizardConfig.IsUnPackagedMode)
         {
@@ -459,7 +437,7 @@ public class SharedWizard
             if (WizardConfig.UseGeneralSettingPage && WizardConfig.UseStartupSetting)
             {
                 var content = PredefinedCodes.SetPackagedAppTaskId.Replace("$safeprojectname$", SafeProjectName);
-                replacementsDictionary.Add("$PackagedAppTaskId$", Environment.NewLine + content);
+                replacementsDictionary.Add("$PackagedAppTaskId$", content);
                 replacementsDictionary.Add("$UAP5$", Environment.NewLine + "  xmlns:uap5=\"http://schemas.microsoft.com/appx/manifest/uap/windows10/5\"");
 
                 if (WizardConfig.UseWindow11ContextMenu)
@@ -472,7 +450,6 @@ public class SharedWizard
                     var taskContent = PredefinedCodes.StartupTask.Replace("$safeprojectname$", SafeProjectName);
                     replacementsDictionary.Add("$StartupTask$", Environment.NewLine + taskContent);
                 }
-
             }
             else
             {
@@ -483,25 +460,37 @@ public class SharedWizard
         }
         #endregion
 
-        if (WizardConfig.UseWindow11ContextMenu)
+        #region Json Settings
+        if (WizardConfig.UseJsonSettings)
         {
-            replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "async ");
+            if (WizardConfig.IsMVVM)
+            {
+                replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", Environment.NewLine + """LastUpdateCheck = Settings.LastUpdateCheck;""");
+                replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
+            }
+            else
+            {
+                replacementsDictionary.Add("$AppUpdateGetDateTime$", Environment.NewLine + Environment.NewLine + """TxtLastUpdateCheck.Text = Settings.LastUpdateCheck;""");
+                replacementsDictionary.Add("$AppUpdateSetDateTime$", Environment.NewLine + """Settings.LastUpdateCheck = DateTime.Now.ToShortDateString();""");
+            }
+
+            replacementsDictionary.Add("$AppConfigFilePath$", Environment.NewLine + """public static readonly string AppConfigPath = Path.Combine(RootDirectoryPath, "AppConfig.json");""");
+
+            if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
+            {
+                replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """private string lastUpdateCheck { get; set; }""");
+            }
+            else
+            {
+                replacementsDictionary.Add("$AppUpdateConfig$", "");
+            }
         }
         else
         {
-            replacementsDictionary.Add("$OnLaunchedAsyncKeyword$", "");
-        }
-
-        #region Libs
-        // Assuming package list is passed via a custom parameter in the .vstemplate file
-        if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
-        {
-            _nuGetPackages = new();
-            var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
-            foreach (var baseItem in basePackages)
-            {
-                _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
-            }
+            replacementsDictionary.Add("$AppUpdateMVVMGetDateTime$", "");
+            replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", "");
+            replacementsDictionary.Add("$AppConfigFilePath$", "");
+            replacementsDictionary.Add("$AppUpdateConfig$", "");
         }
         #endregion
     }

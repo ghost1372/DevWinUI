@@ -27,7 +27,7 @@ public partial class App : Application
         InitializeApp();
     }
 
-    private $OnLaunchedAsyncKeyword$void InitializeApp()
+    private $AsyncKeyword$void InitializeApp()
     {
         $PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
