@@ -13,7 +13,7 @@ public partial class App : Application
         NavService = new JsonNavigationService();
     }
 
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
     {
         MainWindow = new MainWindow();
 
@@ -23,6 +23,6 @@ public partial class App : Application
         ThemeService = new ThemeService(MainWindow);
 
         MainWindow.Activate();$PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
-    }$InitializeOtherMethods$
+    }
 }
 
