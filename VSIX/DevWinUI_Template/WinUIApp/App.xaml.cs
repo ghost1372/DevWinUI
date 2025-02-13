@@ -11,7 +11,7 @@ public partial class App : Application
         this.InitializeComponent();
     }
 
-    protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         MainWindow = new MainWindow();
 
@@ -20,7 +20,14 @@ public partial class App : Application
 
         ThemeService = new ThemeService(MainWindow);
 
-        MainWindow.Activate();$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
+        MainWindow.Activate();
+
+        InitializeApp();
+    }
+
+    private $OnLaunchedAsyncKeyword$void InitializeApp()
+    {
+        $Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

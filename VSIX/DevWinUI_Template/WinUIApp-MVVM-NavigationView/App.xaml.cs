@@ -35,7 +35,7 @@ public partial class App : Application
         return services.BuildServiceProvider();
     }
 
-    protected $OnLaunchedAsyncKeyword$override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         MainWindow = new MainWindow();
 
@@ -44,7 +44,14 @@ public partial class App : Application
 
         ThemeService.AutoInitialize(MainWindow).ConfigureTintColor();
 
-        MainWindow.Activate();$PackagedAppTaskId$$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
+        MainWindow.Activate();
+
+        InitializeApp();
+    }
+
+    private $OnLaunchedAsyncKeyword$void InitializeApp()
+    {
+        $PackagedAppTaskId$$Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
 

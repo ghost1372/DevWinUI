@@ -195,12 +195,4 @@ if (menuService != null)
         <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="true" DisplayName="ms-resource:AppDisplayName" />
       </uap5:Extension>
 """";
-
-    public static readonly string InitializeAppMethods =
-""""
-        private $OnLaunchedAsyncKeyword$void InitializeAppMethods()
-        {
-            $PackagedAppTaskId$$Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
-        }
-"""";
 }
