@@ -23,15 +23,6 @@
 
 ---
 
-### 🌟 Support My Work! 🌟
-> [!IMPORTANT]
-> 🌟 I pour my heart and soul into creating useful apps and tools. If you’ve found my work helpful or interesting, consider supporting me by making a donation. 🌟
-
-|Trust Wallet|Address|
-|-|-|
-|<a href="https://link.trustwallet.com/send?coin=0&address=bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a">Bitcoin</a>|bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a|
-|<a href="https://link.trustwallet.com/send?coin=60&address=0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C">ETH</a>|0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C|
-
 ## 📜 Licensing and Attribution 📜
 This library includes code and components derived from various open-source projects. Efforts have been made to respect and comply with their respective licenses.
 A detailed list can be found in the [ThirdPartyNotices.txt](ThirdPartyNotices.txt) file included in this repository.
@@ -86,7 +77,7 @@ DevWinUI is your gateway to creating visually stunning, user-friendly, and featu
 Ensure that your installation includes the appropriate workloads:  
 - On the `Workloads` tab of the Visual Studio installation dialog box, select:  
   - **.NET Desktop Development**  
-  - **Windows Application Development**  
+  - **WinUI Application Development**  
 
 #### 2. 🛠️ .NET SDKs  
 - Ensure .NET versions `8.x` and `9.x` are installed.
@@ -98,17 +89,12 @@ Ensure that your installation includes the appropriate workloads:
 
 Make sure your environment matches these requirements to avoid any issues during compilation.
 
-### ⚠️ Nightly Build
+### ⚠️ Gallery App Nightly Build
 
 **nightly build** of the Gallery App generated automatically by GitHub Actions.
 
-#### Important Notes:
-- This build may contain experimental features or untested changes.
-- Stability and performance are not guaranteed.
-- The app is provided as-is and should be used **only for testing purposes**.
-- For production use, please download the latest **stable release**.
+**This build may contain experimental features or untested changes.**
 
-### Want the Nightly Build?
 If you would like to test the nightly build:
 1. Visit the [GitHub Actions page](https://github.com/ghost1372/DevWinUI/actions).
 2. Download the zipped Gallery App from the latest successful workflow run. (`artifacts-[platform].zip`)
