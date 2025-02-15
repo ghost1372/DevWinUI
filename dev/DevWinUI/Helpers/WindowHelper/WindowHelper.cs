@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Windows.Foundation;
+using Windows.Graphics;
 using WinRT.Interop;
 
 namespace DevWinUI;
@@ -274,5 +276,27 @@ public partial class WindowHelper
     {
         var currentStyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, currentStyle | (int)NativeValues.WindowStyle.WS_EX_LAYERED | (int)NativeValues.WindowStyle.WS_EX_TRANSPARENT);
+    }
+
+    public static void ResizeAndCenterWindowToPercentageOfWorkArea(Window window, double percentage)
+    {
+        // Validate the percentage
+        if (percentage <= 0 || percentage > 100)
+        {
+            throw new ArgumentException("Percentage must be between 1 and 100.", nameof(percentage));
+        }
+
+        Rect maxRect = DisplayMonitorHelper.GetMonitorInfo(window).RectWork;
+
+        // Calculate new dimensions based on the percentage.
+        double scaleFactor = percentage / 100.0;
+        int newWidth = (int)(maxRect.Width * scaleFactor);
+        int newHeight = (int)(maxRect.Height * scaleFactor);
+
+        // Calculate top-left coordinates to center the window inside maxRect.
+        int newX = (int)(maxRect.X + (maxRect.Width - newWidth) / 2.0);
+        int newY = (int)(maxRect.Y + (maxRect.Height - newHeight) / 2.0);
+
+        window.AppWindow.MoveAndResize(new RectInt32(newX, newY, newWidth, newHeight));
     }
 }
