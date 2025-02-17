@@ -47,6 +47,10 @@
             "type": "string",
             "description": "Specify a parameter if there are multiple pages with the same UniqueId"
           },
+          "LocalizeId": {
+            "type": "string",
+            "description": "Specify a Resource Key for Localization, UsexUid should be enabled"
+          },
           "IsSpecialSection": {
             "type": "boolean",
             "description": "Indicates that this section is not a regular section but is added to the navigation differently",
@@ -162,6 +166,10 @@
                   "Parameter": {
                     "type": "string",
                     "description": "Specify a parameter if there are multiple pages with the same UniqueId"
+                  },
+                  "LocalizeId": {
+                    "type": "string",
+                    "description": "Specify a Resource Key for Localization, UsexUid should be enabled"
                   },
                   "ApiNamespace": {
                     "type": "string",

@@ -1,5 +1,4 @@
-﻿using Microsoft.Windows.ApplicationModel.Resources;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace DevWinUI;
 
@@ -65,12 +64,6 @@ public partial class JsonNavigationService
     private void ConfigFontFamilyForGlyph(string fontFamily)
     {
         _fontFamilyForGlyph = fontFamily;
-    }
-
-    private void ConfigLocalizerBase(ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        ResourceManager = resourceManager;
-        ResourceContext = resourceContext;
     }
 
     private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)

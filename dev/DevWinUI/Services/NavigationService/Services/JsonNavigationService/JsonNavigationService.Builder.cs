@@ -13,35 +13,94 @@ public partial class JsonNavigationService
 
         return this; // Enable chaining
     }
-    
-    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
-    {
-        EnsureInitialized();
-        ConfigJsonBase(jsonFilePath, pathType, orderItems);
-        return this;
-    }
+
     public JsonNavigationService ConfigureJsonFile()
     {
         EnsureInitialized();
+        var resourceManager = new ResourceManager();
+        var resourceContext = resourceManager.CreateResourceContext();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
+
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath)
     {
         EnsureInitialized();
+        var resourceManager = new ResourceManager();
+        var resourceContext = resourceManager.CreateResourceContext();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
+
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems)
     {
         EnsureInitialized();
+        var resourceManager = new ResourceManager();
+        var resourceContext = resourceManager.CreateResourceContext();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
     }
+
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType)
     {
         EnsureInitialized();
+        var resourceManager = new ResourceManager();
+        var resourceContext = resourceManager.CreateResourceContext();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
+    {
+        EnsureInitialized();
+        var resourceManager = new ResourceManager();
+        var resourceContext = resourceManager.CreateResourceContext();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(jsonFilePath, pathType, orderItems);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(ResourceManager resourceManager, ResourceContext resourceContext)
+    {
+        EnsureInitialized();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, ResourceManager resourceManager, ResourceContext resourceContext)
+    {
+        EnsureInitialized();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
+    {
+        EnsureInitialized();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, ResourceManager resourceManager, ResourceContext resourceContext)
+    {
+        EnsureInitialized();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
+        return this;
+    }
+
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
+    {
+        EnsureInitialized();
+        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
+        ConfigJsonBase(jsonFilePath, pathType, orderItems);
         return this;
     }
 
@@ -76,27 +135,6 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         ConfigAutoSuggestBox(autoSuggestBox, true, null, null);
-        return this;
-    }
-    
-    public JsonNavigationService ConfigureLocalizer()
-    {
-        EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        ConfigLocalizerBase(resourceManager, resourceManager.CreateResourceContext());
-        return this;
-    }
-    public JsonNavigationService ConfigureLocalizer(ResourceManager resourceManager)
-    {
-        EnsureInitialized();
-        ConfigLocalizerBase(resourceManager, resourceManager.CreateResourceContext());
-        return this;
-    }
-
-    public JsonNavigationService ConfigureLocalizer(ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        ConfigLocalizerBase(resourceManager, resourceContext);
         return this;
     }
 

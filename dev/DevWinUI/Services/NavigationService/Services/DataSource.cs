@@ -97,6 +97,16 @@ public sealed class DataSource
 
         lock (_lock)
         {
+            foreach (var group in controlInfoDataGroup.Groups)
+            {
+                if (group.UsexUid)
+                {
+                    group.Title = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Title);
+                    group.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.SecondaryTitle);
+                    group.Subtitle = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Subtitle);
+                    group.Description = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Description);
+                }
+            }
             controlInfoDataGroup.Groups.SelectMany(g => g.Items).ToList().ForEach(item =>
             {
 #nullable enable
@@ -115,8 +125,15 @@ public sealed class DataSource
 
                 item.BadgeString = badgeString;
 
+                if (item.UsexUid)
+                {
+                    item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title); 
+                    item.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.SecondaryTitle); 
+                    item.Subtitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Subtitle); 
+                    item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description); 
+                }
 #nullable disable
-            });
+                });
 
             foreach (var group in controlInfoDataGroup.Groups)
             {

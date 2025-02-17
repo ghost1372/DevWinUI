@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Data;
-using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
 public sealed partial class MainLandingPage : ItemsPageBase
@@ -124,40 +123,18 @@ public sealed partial class MainLandingPage : ItemsPageBase
 
     public void GetData()
     {
-        GetData(new ResourceManager());
-    }
-
-    public void GetData(ResourceManager resourceManager)
-    {
         var allItems = DataSource.Instance.Groups
             .Where(group => !group.HideGroup)
             .SelectMany(group => group.Items)
             .Where(item => item.BadgeString != null && !item.HideItem)
-            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
             .ToList();
 
         Items = allItems;
 
         GetCollectionViewSource().Source = FormatData();
     }
-    private IEnumerable<DataItem> GetLocalizedItemsRecursively(DataItem currentItem, ResourceManager resourceManager)
-    {
-        LocalizeItem(currentItem, resourceManager);
-        yield return currentItem;
-    }
 
-    private void LocalizeItem(DataItem item, ResourceManager resourceManager)
-    {
-        item.Title = Helper.GetLocalizedText(item.Title, item.UsexUid, resourceManager);
-        item.SecondaryTitle = Helper.GetLocalizedText(item.SecondaryTitle, item.UsexUid, resourceManager);
-        item.Subtitle = Helper.GetLocalizedText(item.Subtitle, item.UsexUid, resourceManager);
-        item.Description = Helper.GetLocalizedText(item.Description, item.UsexUid, resourceManager);
-    }
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
-    {
-        await GetDataAsync(jsonFilePath, new ResourceManager(), pathType);
-    }
-    public async Task GetDataAsync(string jsonFilePath, ResourceManager resourceManager, PathType pathType = PathType.Relative)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
@@ -165,7 +142,6 @@ public sealed partial class MainLandingPage : ItemsPageBase
             .Where(group => !group.HideGroup)
             .SelectMany(group => group.Items)
             .Where(item => item.BadgeString != null && !item.HideItem)
-            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
             .ToList();
 
         Items = allItems;

@@ -10,6 +10,7 @@ public partial class BaseDataInfo
     public string Description { get; set; }
     public string ImagePath { get; set; }
     public string IconGlyph { get; set; }
+    public string LocalizeId { get; set; }
     public bool IsNavigationViewItemHeader { get; set; }
     public bool UsexUid { get; set; }
     public DataInfoBadge DataInfoBadge { get; set; }

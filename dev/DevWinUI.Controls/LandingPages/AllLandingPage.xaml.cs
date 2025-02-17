@@ -1,6 +1,4 @@
-﻿using Microsoft.Windows.ApplicationModel.Resources;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
@@ -24,36 +22,16 @@ public sealed partial class AllLandingPage : ItemsPageBase
 
     public void GetData()
     {
-        GetData(new ResourceManager());
-    }
-    public void GetData(ResourceManager resourceManager)
-    {
         var allItems = DataSource.Instance.Groups
             .Where(group => !group.HideGroup && !group.IsSpecialSection)
             .SelectMany(group => group.Items)
             .Where(item => !item.HideItem)
-            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
             .ToList();
 
         Items = allItems;
     }
-    private IEnumerable<DataItem> GetLocalizedItemsRecursively(DataItem currentItem, ResourceManager resourceManager)
-    {
-        LocalizeItem(currentItem, resourceManager);
-        yield return currentItem;
-    }
-    private void LocalizeItem(DataItem item, ResourceManager resourceManager)
-    {
-        item.Title = Helper.GetLocalizedText(item.Title, item.UsexUid, resourceManager);
-        item.SecondaryTitle = Helper.GetLocalizedText(item.SecondaryTitle, item.UsexUid, resourceManager);
-        item.Subtitle = Helper.GetLocalizedText(item.Subtitle, item.UsexUid, resourceManager);
-        item.Description = Helper.GetLocalizedText(item.Description, item.UsexUid, resourceManager);
-    }
+
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
-    {
-        await GetDataAsync(jsonFilePath, new ResourceManager(), pathType);
-    }
-    public async Task GetDataAsync(string jsonFilePath, ResourceManager resourceManager, PathType pathType = PathType.Relative)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
@@ -61,7 +39,6 @@ public sealed partial class AllLandingPage : ItemsPageBase
             .Where(group => !group.HideGroup && !group.IsSpecialSection)
             .SelectMany(group => group.Items)
             .Where(item => !item.HideItem)
-            .SelectMany(item => GetLocalizedItemsRecursively(item, resourceManager))
             .ToList();
 
         Items = allItems;

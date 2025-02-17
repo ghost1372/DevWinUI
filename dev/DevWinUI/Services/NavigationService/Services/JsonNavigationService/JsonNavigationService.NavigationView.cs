@@ -13,7 +13,7 @@ public partial class JsonNavigationService : IJsonNavigationService
         {
             var itemGroup = new NavigationViewItem()
             {
-                Content = GetLocalizedText(group.Title, group.UsexUid),
+                Content = group.Title,
                 IsExpanded = group.IsExpanded,
                 Tag = group.UniqueId,
                 DataContext = group,
@@ -25,7 +25,7 @@ public partial class JsonNavigationService : IJsonNavigationService
                 itemGroup.Icon = icon;
             }
 
-            AutomationProperties.SetName(itemGroup, GetLocalizedText(group.Title, group.UsexUid));
+            AutomationProperties.SetName(itemGroup, group.Title);
             AutomationProperties.SetAutomationId(itemGroup, group.UniqueId);
 
             foreach (var item in GetOrderedDataItems(group.Items, orderItems).Where(i => !i.HideNavigationViewItem))
@@ -33,7 +33,7 @@ public partial class JsonNavigationService : IJsonNavigationService
                 var itemInGroup = new NavigationViewItem()
                 {
                     IsEnabled = item.IncludedInBuild,
-                    Content = GetLocalizedText(item.Title, item.UsexUid),
+                    Content = item.Title,
                     Tag = item.UniqueId,
                     DataContext = item,
                     InfoBadge = GetInfoBadge(item)
@@ -45,7 +45,7 @@ public partial class JsonNavigationService : IJsonNavigationService
                     itemInGroup.Icon = iconInGroup;
                 }
 
-                AutomationProperties.SetName(itemInGroup, GetLocalizedText(item.Title, item.UsexUid));
+                AutomationProperties.SetName(itemInGroup, item.Title);
                 AutomationProperties.SetAutomationId(itemInGroup, item.UniqueId);
 
                 if (group.ShowItemsWithoutGroup)
@@ -251,28 +251,5 @@ public partial class JsonNavigationService : IJsonNavigationService
         }
 
         return fontIcon;
-    }
-
-    private string GetLocalizedText(string input, bool usexUid)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-
-        try
-        {
-            if (usexUid)
-            {
-                if (ResourceManager != null && ResourceContext != null)
-                {
-                    var candidate = ResourceManager.MainResourceMap.TryGetValue($"Resources/{input}", ResourceContext);
-                    return candidate != null ? candidate.ValueAsString : input;
-                }
-            }
-        }
-        catch (Exception)
-        {
-            return input;
-        }
-        return input;
     }
 }

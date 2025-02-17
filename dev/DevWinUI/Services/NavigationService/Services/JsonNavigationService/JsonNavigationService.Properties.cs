@@ -14,8 +14,6 @@ public partial class JsonNavigationService
     public IList<object>? FooterMenuItems => _navigationView?.FooterMenuItems;
     private IList<object>? AllMenuItems => MenuItems.Concat(FooterMenuItems).ToList();
     public object? SettingsItem => _navigationView?.SettingsItem;
-    public ResourceManager ResourceManager { get; set; }
-    public ResourceContext ResourceContext { get; set; }
 
     private Type _defaultPage;
     private Type _sectionPage;
