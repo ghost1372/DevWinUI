@@ -117,59 +117,112 @@ public sealed partial class MainLandingPage : ItemsPageBase
         if (CanExecuteInternalCommand)
         {
             GetData();
-            OrderBy(i => i.Title);
         }
     }
 
     public void GetData()
     {
+        GetData(true, false, null);
+    }
+    public void GetData(bool useOrder)
+    {
+        GetData(useOrder, false, null);
+    }
+    public void GetData(bool useOrder, bool useOrderByDescending)
+    {
+        GetData(useOrder, useOrderByDescending, null);
+    }
+    private void GetData(bool useOrder, bool useOrderByDescending, Func<DataItem, object> orderby)
+    {
         var allItems = DataSource.Instance.Groups
             .Where(group => !group.HideGroup)
             .SelectMany(group => group.Items)
-            .Where(item => item.BadgeString != null && !item.HideItem)
-            .ToList();
+            .Where(item => item.BadgeString != null && !item.HideItem);
 
-        Items = allItems;
+        if (useOrder)
+        {
+            if (orderby == null)
+            {
+                if (useOrderByDescending)
+                {
+                    Items = allItems.OrderByDescending(i => i.Title).ToList();
+                }
+                else
+                {
+                    Items = allItems.OrderBy(i => i.Title).ToList();
+                }
+            }
+            else
+            {
+                if (useOrderByDescending)
+                {
+                    Items = allItems.OrderByDescending(orderby).ToList();
+                }
+                else
+                {
+                    Items = allItems.OrderBy(orderby).ToList();
+                }
+            }
+        }
+        else
+        {
+            Items = allItems.ToList();
+        }
 
         GetCollectionViewSource().Source = FormatData();
     }
-
-    public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
+    public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder, bool useOrderByDescending, Func<DataItem, object> orderby)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
         var allItems = DataSource.Instance.Groups
             .Where(group => !group.HideGroup)
             .SelectMany(group => group.Items)
-            .Where(item => item.BadgeString != null && !item.HideItem)
-            .ToList();
+            .Where(item => item.BadgeString != null && !item.HideItem);
 
-        Items = allItems;
+        if (useOrder)
+        {
+            if (orderby == null)
+            {
+                if (useOrderByDescending)
+                {
+                    Items = allItems.OrderByDescending(i => i.Title).ToList();
+                }
+                else
+                {
+                    Items = allItems.OrderBy(i => i.Title).ToList();
+                }
+            }
+            else
+            {
+                if (useOrderByDescending)
+                {
+                    Items = allItems.OrderByDescending(orderby).ToList();
+                }
+                else
+                {
+                    Items = allItems.OrderBy(orderby).ToList();
+                }
+            }
+        }
+        else
+        {
+            Items = allItems.ToList();
+        }
+
         GetCollectionViewSource().Source = FormatData();
     }
-
-    public void OrderBy(Func<DataItem, object> orderby = null)
+    public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
-        if (orderby != null)
-        {
-            Items = Items?.OrderBy(orderby)?.ToList();
-        }
-        else
-        {
-            Items = Items?.OrderBy(i => i.Title)?.ToList();
-        }
+        await GetDataAsync(jsonFilePath, pathType, true, false, null);
     }
-
-    public void OrderByDescending(Func<DataItem, object> orderByDescending = null)
+    public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder)
     {
-        if (orderByDescending != null)
-        {
-            Items = Items?.OrderByDescending(orderByDescending)?.ToList();
-        }
-        else
-        {
-            Items = Items?.OrderByDescending(i => i.Title)?.ToList();
-        }
+        await GetDataAsync(jsonFilePath, pathType, useOrder, false, null);
+    }
+    public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder, bool useOrderByDescending)
+    {
+        await GetDataAsync(jsonFilePath, pathType, useOrder, useOrderByDescending, null);
     }
 
     public CollectionViewSource GetCollectionViewSource()
