@@ -4,12 +4,10 @@ using Microsoft.UI.Composition.SystemBackdrops;
 namespace DevWinUI;
 public sealed partial class MicaSystemBackdrop : SystemBackdrop
 {
-    public readonly static Color Default_TintColor_Dark = ColorHelper.GetColorFromHex("#000000");
-    public readonly static Color Default_TintColor_Light = ColorHelper.GetColorFromHex("#000000");
-    public readonly static Color Default_TintColor_MicaAlt_Dark = ColorHelper.GetColorFromHex("#000000");
-    public readonly static Color Default_TintColor_MicaAlt_Light = ColorHelper.GetColorFromHex("#000000");
-    public readonly static Color Default_FallbackColor_MicaAlt_Dark = Color.FromArgb(0xff, 0x20, 0x20, 0x20);
-    public readonly static Color Default_FallbackColor_MicaAlt_Light = Color.FromArgb(0xff, 0xe8, 0xe8, 0xe8);
+    public readonly static Color Default_TintColor_Dark = ColorHelper.GetColorFromHex("#FF202020");
+    public readonly static Color Default_TintColor_Light = ColorHelper.GetColorFromHex("#FFF3F3F3");
+    public readonly static Color Default_TintColor_MicaAlt_Dark = ColorHelper.GetColorFromHex("#FF0A0A0A");
+    public readonly static Color Default_TintColor_MicaAlt_Light = ColorHelper.GetColorFromHex("#FFDADADA");
 
     public readonly MicaKind Kind;
     internal MicaController micaController;

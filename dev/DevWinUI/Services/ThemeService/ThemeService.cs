@@ -132,10 +132,12 @@ public partial class ThemeService : IThemeService
         if (window.SystemBackdrop is MicaSystemBackdrop mica)
         {
             mica.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
+            mica.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultTintColor();
         }
         else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
         {
             acrylic.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
+            acrylic.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultTintColor();
         }
     }
     private void OnActualThemeChanged(FrameworkElement sender, object args)

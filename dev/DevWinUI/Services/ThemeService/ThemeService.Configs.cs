@@ -92,32 +92,7 @@ public partial class ThemeService
 
     private void ConfigFallbackColorBase()
     {
-        if (IsDarkTheme())
-        {
-            switch (GetBackdropType())
-            {
-                case BackdropType.MicaAlt:
-                    ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Dark, false);
-                    break;
-                case BackdropType.AcrylicThin:
-                case BackdropType.AcrylicBase:
-                    ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Dark, false);
-                    break;
-            }
-        }
-        else
-        {
-            switch (GetBackdropType())
-            {
-                case BackdropType.MicaAlt:
-                    ConfigFallbackColorBase(MicaSystemBackdrop.Default_FallbackColor_MicaAlt_Light, false);
-                    break;
-                case BackdropType.AcrylicThin:
-                case BackdropType.AcrylicBase:
-                    ConfigFallbackColorBase(AcrylicSystemBackdrop.Default_FallbackColor_Light, false);
-                    break;
-            }
-        }
+        ConfigFallbackColorBase(GetDefaultTintColor(), false);
     }
     private void ConfigElementThemeBase(ElementTheme elementTheme, bool force)
     {

@@ -4,10 +4,10 @@ using Microsoft.UI.Composition.SystemBackdrops;
 namespace DevWinUI;
 public sealed partial class AcrylicSystemBackdrop : SystemBackdrop
 {
-    public readonly static Color Default_TintColor_Dark = Color.FromArgb(0xff, 0x54, 0x54, 0x54);
-    public readonly static Color Default_TintColor_Light = Color.FromArgb(0xff, 0xd3, 0xd3, 0xd3);
-    public readonly static Color Default_FallbackColor_Dark = Color.FromArgb(0xff, 0x54, 0x54, 0x54);
-    public readonly static Color Default_FallbackColor_Light = Color.FromArgb(0xff, 0xd3, 0xd3, 0xd3);
+    public readonly static Color Default_TintColor_Dark = ColorHelper.GetColorFromHex("#FF202020");
+    public readonly static Color Default_TintColor_Light = ColorHelper.GetColorFromHex("#FFF3F3F3");
+    public readonly static Color Default_TintColor_MicaAlt_Dark = ColorHelper.GetColorFromHex("#FF0A0A0A");
+    public readonly static Color Default_TintColor_MicaAlt_Light = ColorHelper.GetColorFromHex("#FFDADADA");
 
     public readonly DesktopAcrylicKind Kind;
     internal DesktopAcrylicController acrylicController;
