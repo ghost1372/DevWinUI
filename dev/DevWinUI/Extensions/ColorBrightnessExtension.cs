@@ -5,7 +5,7 @@
 /// <code>
 /// <Rectangle Width="40" Height="40">
 ///     <Rectangle.Fill>
-///         <SolidColorBrush Color = "{helpers:ColorBrightness Color=Red, CorrectionFactor=-0.3}" />
+///         <SolidColorBrush Color = "{dev:ColorBrightness Color=Red, CorrectionFactor=-0.3}" />
 ///     </ Rectangle.Fill >
 /// </ Rectangle >
 /// </code>
