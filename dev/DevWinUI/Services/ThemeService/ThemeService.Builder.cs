@@ -62,13 +62,13 @@ public partial class ThemeService
         ConfigBackdropBase(BackdropType.Mica, false);
         return this;
     }
-    public ThemeService ConfigureTintColor(Color color, bool force)
+    public ThemeService ConfigureTintColor(Color? color, bool force)
     {
         EnsureInitialized();
         ConfigTintColorBase(color, force);
         return this;
     }
-    public ThemeService ConfigureTintColor(Color color)
+    public ThemeService ConfigureTintColor(Color? color)
     {
         EnsureInitialized();
         ConfigTintColorBase(color, false);
@@ -80,13 +80,13 @@ public partial class ThemeService
         ConfigTintColorBase();
         return this;
     }
-    public ThemeService ConfigureFallbackColor(Color color, bool force)
+    public ThemeService ConfigureFallbackColor(Color? color, bool force)
     {
         EnsureInitialized();
         ConfigFallbackColorBase(color, force);
         return this;
     }
-    public ThemeService ConfigureFallbackColor(Color color)
+    public ThemeService ConfigureFallbackColor(Color? color)
     {
         EnsureInitialized();
         ConfigFallbackColorBase(color, false);

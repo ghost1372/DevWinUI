@@ -96,9 +96,9 @@ public partial class ThemeService
         return ForceBackdrop ? backdropType : currentBackdrop;
     }
 
-    private Color GetBackdropTintColorFromLocalConfig(Color color, bool ForceTintColor)
+    private Color? GetBackdropTintColorFromLocalConfig(Color? color, bool ForceTintColor)
     {
-        Color tintColor = color;
+        Color? tintColor = color;
         if (this.useAutoSave && GlobalData.Config != null)
         {
             tintColor = GlobalData.Config.BackdropTintColor;
@@ -107,9 +107,9 @@ public partial class ThemeService
         return ForceTintColor ? color : tintColor;
     }
 
-    private Color GetBackdropFallbackColorFromLocalConfig(Color color, bool ForceFallbackColor)
+    private Color? GetBackdropFallbackColorFromLocalConfig(Color? color, bool ForceFallbackColor)
     {
-        Color fallbackColor = color;
+        Color? fallbackColor = color;
         if (this.useAutoSave && GlobalData.Config != null)
         {
             fallbackColor = GlobalData.Config.BackdropFallBackColor;

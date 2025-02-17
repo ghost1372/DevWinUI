@@ -3,7 +3,7 @@
 namespace DevWinUI;
 public partial class ThemeService : IThemeService
 {
-    public readonly string ConfigFilePath = "CoreAppConfigV8.0.0.json";
+    public readonly string ConfigFilePath = "CoreAppConfigV8.1.0.json";
     public event IThemeService.ActualThemeChangedEventHandler ActualThemeChanged;
     private bool changeThemeWithoutSave = false;
     private bool useAutoSave;
@@ -132,12 +132,12 @@ public partial class ThemeService : IThemeService
         if (window.SystemBackdrop is MicaSystemBackdrop mica)
         {
             mica.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
-            mica.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultTintColor();
+            mica.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultFallbackTintColor();
         }
         else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
         {
             acrylic.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
-            acrylic.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultTintColor();
+            acrylic.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultFallbackTintColor();
         }
     }
     private void OnActualThemeChanged(FrameworkElement sender, object args)
@@ -222,8 +222,8 @@ public partial class ThemeService : IThemeService
                 mica.micaController.ResetProperties();
                 if (useAutoSave && GlobalData.Config != null)
                 {
-                    GlobalData.Config.BackdropFallBackColor = mica.micaController.FallbackColor;
-                    GlobalData.Config.BackdropTintColor = mica.micaController.TintColor;
+                    GlobalData.Config.BackdropFallBackColor = null;
+                    GlobalData.Config.BackdropTintColor = null;
                     GlobalData.Save();
                 }
             }
@@ -232,8 +232,8 @@ public partial class ThemeService : IThemeService
                 acrylic.acrylicController.ResetProperties();
                 if (useAutoSave && GlobalData.Config != null)
                 {
-                    GlobalData.Config.BackdropFallBackColor = acrylic.acrylicController.FallbackColor;
-                    GlobalData.Config.BackdropTintColor = acrylic.acrylicController.TintColor;
+                    GlobalData.Config.BackdropFallBackColor = null;
+                    GlobalData.Config.BackdropTintColor = null;
                     GlobalData.Save();
                 }
             }

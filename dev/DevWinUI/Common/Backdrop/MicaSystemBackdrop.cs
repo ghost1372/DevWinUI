@@ -4,26 +4,21 @@ using Microsoft.UI.Composition.SystemBackdrops;
 namespace DevWinUI;
 public sealed partial class MicaSystemBackdrop : SystemBackdrop
 {
-    public readonly static Color Default_TintColor_Dark = ColorHelper.GetColorFromHex("#FF202020");
-    public readonly static Color Default_TintColor_Light = ColorHelper.GetColorFromHex("#FFF3F3F3");
-    public readonly static Color Default_TintColor_MicaAlt_Dark = ColorHelper.GetColorFromHex("#FF0A0A0A");
-    public readonly static Color Default_TintColor_MicaAlt_Light = ColorHelper.GetColorFromHex("#FFDADADA");
-
     public readonly MicaKind Kind;
     internal MicaController micaController;
 
     public SystemBackdropConfiguration BackdropConfiguration { get; private set; }
 
-    private Color tintColor;
-    public Color TintColor
+    private Color? tintColor;
+    public Color? TintColor
     {
         get { return tintColor; }
         set
         {
             tintColor = value;
-            if (micaController != null)
+            if (micaController != null && value != null)
             {
-                micaController.TintColor = value;
+                micaController.TintColor = (Color)value;
             }
         }
     }
@@ -56,16 +51,16 @@ public sealed partial class MicaSystemBackdrop : SystemBackdrop
         }
     }
 
-    private Color fallbackColor;
-    public Color FallbackColor
+    private Color? fallbackColor;
+    public Color? FallbackColor
     {
         get { return fallbackColor; }
         set
         {
             fallbackColor = value;
-            if (micaController != null)
+            if (micaController != null && value != null)
             {
-                micaController.FallbackColor = value;
+                micaController.FallbackColor = (Color)value;
             }
         }
     }

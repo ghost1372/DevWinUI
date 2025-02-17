@@ -26,7 +26,7 @@ public partial class ThemeService
         }
     }
 
-    private void ConfigTintColorBase(Color color, bool force)
+    private void ConfigTintColorBase(Color? color, bool force)
     {
         if (useAutoSave && GlobalData.Config != null && GlobalData.Config.IsBackdropTintColorFirstRun)
         {
@@ -39,44 +39,44 @@ public partial class ThemeService
 
         SetBackdropTintColor(tintColor);
     }
-    private Color GetDefaultTintColor()
+    private Color? GetDefaultTintColor()
     {
-        if (IsDarkTheme())
+        switch (GetBackdropType())
         {
-            switch (GetBackdropType())
-            {
-                case BackdropType.Mica:
-                    return MicaSystemBackdrop.Default_TintColor_Dark;
-                case BackdropType.MicaAlt:
-                    return MicaSystemBackdrop.Default_TintColor_MicaAlt_Dark;
-                case BackdropType.AcrylicThin:
-                case BackdropType.AcrylicBase:
-                    return AcrylicSystemBackdrop.Default_TintColor_Dark;
-                default:
-                    return MicaSystemBackdrop.Default_TintColor_Dark;
-            }
+            case BackdropType.Mica:
+                return new MicaSystemBackdrop().TintColor;
+            case BackdropType.MicaAlt:
+                return new MicaSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt).TintColor;
+            case BackdropType.DesktopAcrylic:
+            case BackdropType.AcrylicBase:
+            case BackdropType.AcrylicThin:
+                return new AcrylicSystemBackdrop().TintColor;
+            default:
+                return null;
         }
-        else
+    }
+
+    private Color? GetDefaultFallbackTintColor()
+    {
+        switch (GetBackdropType())
         {
-            switch (GetBackdropType())
-            {
-                case BackdropType.Mica:
-                    return MicaSystemBackdrop.Default_TintColor_Light;
-                case BackdropType.MicaAlt:
-                    return MicaSystemBackdrop.Default_TintColor_MicaAlt_Light;
-                case BackdropType.AcrylicThin:
-                case BackdropType.AcrylicBase:
-                    return AcrylicSystemBackdrop.Default_TintColor_Light;
-                default:
-                    return MicaSystemBackdrop.Default_TintColor_Light;
-            }
+            case BackdropType.Mica:
+                return new MicaSystemBackdrop().FallbackColor;
+            case BackdropType.MicaAlt:
+                return new MicaSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt).FallbackColor;
+            case BackdropType.DesktopAcrylic:
+            case BackdropType.AcrylicBase:
+            case BackdropType.AcrylicThin:
+                return new AcrylicSystemBackdrop().FallbackColor;
+            default:
+                return null;
         }
     }
     private void ConfigTintColorBase()
     {
         ConfigTintColorBase(GetDefaultTintColor(), false);
     }
-    private void ConfigFallbackColorBase(Color color, bool force)
+    private void ConfigFallbackColorBase(Color? color, bool force)
     {
         if (useAutoSave && GlobalData.Config != null && GlobalData.Config.IsBackdropFallBackColorFirstRun)
         {
@@ -92,7 +92,7 @@ public partial class ThemeService
 
     private void ConfigFallbackColorBase()
     {
-        ConfigFallbackColorBase(GetDefaultTintColor(), false);
+        ConfigFallbackColorBase(GetDefaultFallbackTintColor(), false);
     }
     private void ConfigElementThemeBase(ElementTheme elementTheme, bool force)
     {

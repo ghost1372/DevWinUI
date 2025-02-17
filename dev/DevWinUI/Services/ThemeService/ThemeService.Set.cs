@@ -50,7 +50,7 @@ public partial class ThemeService
         }
     }
 
-    public void SetBackdropTintColor(Color color)
+    public void SetBackdropTintColor(Color? color)
     {
         foreach (var window in WindowHelper.ActiveWindows)
         {
@@ -73,7 +73,7 @@ public partial class ThemeService
         }
     }
 
-    public void SetBackdropFallbackColor(Color color)
+    public void SetBackdropFallbackColor(Color? color)
     {
         foreach (var window in WindowHelper.ActiveWindows)
         {

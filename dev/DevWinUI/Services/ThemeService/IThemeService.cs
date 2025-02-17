@@ -13,8 +13,8 @@ public interface IThemeService
     ElementTheme GetActualTheme();
 
     void SetBackdropType(BackdropType backdropType);
-    void SetBackdropTintColor(Color color);
-    void SetBackdropFallbackColor(Color color);
+    void SetBackdropTintColor(Color? color);
+    void SetBackdropFallbackColor(Color? color);
 
     void SetElementTheme(ElementTheme elementTheme);
     void SetElementThemeWithoutSave(ElementTheme elementTheme);
@@ -41,11 +41,11 @@ public interface IThemeService
     ThemeService ConfigureBackdrop(BackdropType backdropType, bool force);
     ThemeService ConfigureBackdrop(BackdropType backdropType);
     ThemeService ConfigureBackdrop();
-    ThemeService ConfigureTintColor(Color color, bool force);
-    ThemeService ConfigureTintColor(Color color);
+    ThemeService ConfigureTintColor(Color? color, bool force);
+    ThemeService ConfigureTintColor(Color? color);
     ThemeService ConfigureTintColor();
-    ThemeService ConfigureFallbackColor(Color color, bool force);
-    ThemeService ConfigureFallbackColor(Color color);
+    ThemeService ConfigureFallbackColor(Color? color, bool force);
+    ThemeService ConfigureFallbackColor(Color? color);
     ThemeService ConfigureFallbackColor();
     ThemeService ConfigureElementTheme(ElementTheme elementTheme, bool force);
     ThemeService ConfigureElementTheme(ElementTheme elementTheme);
