@@ -45,12 +45,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
-          "Title": "Blur Animation Helper",
-          "Subtitle": "Blur Animation Helper",
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.TextMorphEffectPage",
           "Title": "Text Morph Effect",
           "Subtitle": "Text Morhp Effect",
@@ -186,13 +180,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
-          "Title": "RichTextFormatter",
-          "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
           "Title": "ProgressButton",
           "Subtitle": "ProgressButton",
@@ -238,12 +225,6 @@
           "Title": "LongShadowTextBlock",
           "Subtitle": "LongShadowTextBlock",
           "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
-          "Title": "CredentialHelper",
-          "Subtitle": "CredentialHelper",
-          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
@@ -312,12 +293,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/OptionsPageControl.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
-          "Title": "Rainbow Frame",
-          "Subtitle": "A window with Rainbow Frame",
-          "ImagePath": "ms-appx:///Assets/Fluent/ColorPaletteResources.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerPage",
           "Title": "File And Folder Picker",
           "Subtitle": "File And Folder Picker",
@@ -346,18 +321,6 @@
           "Title": "Extension",
           "Subtitle": "Extension",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
-          "Title": "ThemeService",
-          "Subtitle": "Change Application Theme and Material Easily",
-          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
-          "Title": "Check Update",
-          "Subtitle": "Check Application Update from Github",
-          "ImagePath": "ms-appx:///Assets/Fluent/Update.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage",
@@ -471,6 +434,252 @@
           "Title": "Shortcut Guide",
           "Subtitle": "Shortcut Guide Settings for SettingsControl",
           "ImagePath": "ms-appx:///Assets/Fluent/ShortcutGuide.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "Helpers",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Helpers",
+      "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png",
+      "IsSpecialSection": false,
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizeHelperPage",
+          "Title": "DragMoveAndResizeHelper",
+          "Subtitle": "Move a Window by dragging UIElement",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
+          "Title": "UpdateHelper",
+          "Subtitle": "Check Application Update from Github",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PersianDateTimePage",
+          "Title": "Persian DateTime",
+          "Subtitle": "Persian DateTime",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ResourceHelperPage",
+          "Title": "Resource",
+          "Subtitle": "Resource",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SecurityHelperPage",
+          "Title": "SecurityHelper",
+          "Subtitle": "Hash, Encrypt and Decrypt Files and Strings",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WindowHelperPage",
+          "Title": "WindowHelper",
+          "Subtitle": "Windowing API",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.AutoSuggestBoxHelperPage",
+          "Title": "AutoSuggestBoxHelper",
+          "Subtitle": "AutoSuggestBoxHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorHelperPage",
+          "Title": "ColorHelper",
+          "Subtitle": "ColorHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
+          "Title": "CredentialHelper",
+          "Subtitle": "CredentialHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerHelperPage",
+          "Title": "FileAndFolderPickerHelper",
+          "Subtitle": "FileAndFolderPickerHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FileHelperPage",
+          "Title": "FileHelperPage",
+          "Subtitle": "FileHelperPage",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GeneralHelperPage",
+          "Title": "GeneralHelper",
+          "Subtitle": "GeneralHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.InIHelperPage",
+          "Title": "InIHelperPage",
+          "Subtitle": "InIHelperPage",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.NetworkHelperPage",
+          "Title": "NetworkHelper",
+          "Subtitle": "NetworkHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OSVersionHelperPage",
+          "Title": "OSVersionHelper",
+          "Subtitle": "OSVersionHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PackageHelperPage",
+          "Title": "PackageHelper",
+          "Subtitle": "PackageHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PathHelperPage",
+          "Title": "PathHelper",
+          "Subtitle": "PathHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ProcessInfoHelperPage",
+          "Title": "ProcessInfoHelper",
+          "Subtitle": "ProcessInfoHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RuntimeHelperPage",
+          "Title": "RuntimeHelper",
+          "Subtitle": "RuntimeHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StartupHelperPage",
+          "Title": "StartupHelper",
+          "Subtitle": "StartupHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TaskbarHelperPage",
+          "Title": "TaskbarHelper",
+          "Subtitle": "TaskbarHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.VisualHelperPage",
+          "Title": "VisualHelper",
+          "Subtitle": "VisualHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DisplayMonitorHelperPage",
+          "Title": "DisplayMonitorHelper",
+          "Subtitle": "DisplayMonitorHelper",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
+          "Title": "Blur Animation Helper",
+          "Subtitle": "Blur Animation Helper",
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
+          "Title": "RichTextFormatter",
+          "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "Common",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Common",
+      "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png",
+      "IsSpecialSection": false,
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.BackdropPage",
+          "Title": "Backdrop",
+          "Subtitle": "System Backdrop",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.MessageBoxPage",
+          "Title": "MessageBox",
+          "Subtitle": "Legacy MessageBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.IconElementPage",
+          "Title": "IconElement",
+          "Subtitle": "IconElement",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
+          "Title": "Rainbow Frame",
+          "Subtitle": "A window with Rainbow Frame",
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
+          "Title": "RelativeDate",
+          "Subtitle": "RelativeDate",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorBrightnessExtensionPage",
+          "Title": "ColorBrightness",
+          "Subtitle": "ColorBrightness",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
+          "Title": "ThemeService",
+          "Subtitle": "Change Application Theme and Material Easily",
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ConvertersPage",
+          "Title": "Converters",
+          "Subtitle": "Converters",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         }
       ]
     }
