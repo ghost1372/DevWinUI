@@ -21,7 +21,7 @@ public sealed partial class MainWindow : Window
                 .ConfigureDefaultPage(typeof(HomeLandingPage))
                 .ConfigureSettingsPage(typeof(SettingsPage))
                 .ConfigureSectionPage(typeof(DemoSectionPage))
-                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
+                .ConfigureJsonFile("Assets/NavViewMenu/AppData.json", OrderItemsType.AscendingSubLevel)
                 .ConfigureAutoSuggestBox(HeaderAutoSuggestBox)
                 .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
