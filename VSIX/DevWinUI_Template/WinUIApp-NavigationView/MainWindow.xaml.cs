@@ -1,4 +1,6 @@
-﻿namespace $safeprojectname$.Views;
+﻿using Microsoft.UI.Windowing;
+
+namespace $safeprojectname$.Views;
 
 public sealed partial class MainWindow : Window
 {
@@ -7,6 +9,8 @@ public sealed partial class MainWindow : Window
         this.InitializeComponent();
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
+        AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
+
         App.Current.NavService
             .Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)$ConfigDefaultPages$
             .ConfigureJsonFile("Assets/NavViewMenu/AppData.json")
