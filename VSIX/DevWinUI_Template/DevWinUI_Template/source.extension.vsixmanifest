@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.5.0" Language="en-US" Publisher="Mahdi Hosseini" />
+        <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="11.5.1" Language="en-US" Publisher="Mahdi Hosseini" />
         <DisplayName>DevWinUI Templates for WinUI</DisplayName>
         <Description xml:space="preserve">DevWinUI  Project Template, help you quickly create a new WinUI 3 App with DevWinUI  and MVVM Packages. We prepare your project with the following features: NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).
 We also always use the latest version of WindowsAppSDK. 

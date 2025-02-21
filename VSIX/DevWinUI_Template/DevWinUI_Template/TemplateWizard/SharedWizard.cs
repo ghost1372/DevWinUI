@@ -186,17 +186,6 @@ public class SharedWizard
             AddReplacementsDictionary(replacementsDictionary);
 
             #region Libs
-            // Assuming package list is passed via a custom parameter in the .vstemplate file
-            if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
-            {
-                _nuGetPackages = new();
-                var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
-                foreach (var baseItem in basePackages)
-                {
-                    _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
-                }
-            }
-
             foreach (var lib in WizardConfig.LibraryDic.Values)
             {
                 _nuGetPackages?.Add(new Library(lib.Name, lib.IncludePreRelease));
@@ -487,6 +476,19 @@ public class SharedWizard
             replacementsDictionary.Add("$AppUpdateMVVMSetDateTime$", "");
             replacementsDictionary.Add("$AppConfigFilePath$", "");
             replacementsDictionary.Add("$AppUpdateConfig$", "");
+        }
+        #endregion
+
+        #region Libs
+        // Assuming package list is passed via a custom parameter in the .vstemplate file
+        if (replacementsDictionary.TryGetValue("$NuGetPackages$", out string packages))
+        {
+            _nuGetPackages = new();
+            var basePackages = packages.Split(';').Where(p => !string.IsNullOrEmpty(p));
+            foreach (var baseItem in basePackages)
+            {
+                _nuGetPackages.Add(new Library(baseItem, WizardConfig.UsePreReleaseVersion));
+            }
         }
         #endregion
     }
