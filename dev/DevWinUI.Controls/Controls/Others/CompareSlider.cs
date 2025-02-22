@@ -57,18 +57,19 @@ public partial class CompareSlider : Control
 
     public ImageSource SourceImage
     {
-        get => (ImageSource)GetValue(SourceContentProperty);
-        set => SetValue(SourceContentProperty, value);
+        get => (ImageSource)GetValue(SourceImageProperty);
+        set => SetValue(SourceImageProperty, value);
     }
-    public static readonly DependencyProperty SourceContentProperty =
+
+    public static readonly DependencyProperty SourceImageProperty =
         DependencyProperty.Register(nameof(SourceImage), typeof(ImageSource), typeof(CompareSlider), new PropertyMetadata(default(ImageSource)));
 
     public ImageSource TargetImage
     {
-        get => (ImageSource)GetValue(TargetContentProperty);
-        set => SetValue(TargetContentProperty, value);
+        get => (ImageSource)GetValue(TargetImageProperty);
+        set => SetValue(TargetImageProperty, value);
     }
-    public static readonly DependencyProperty TargetContentProperty =
+    public static readonly DependencyProperty TargetImageProperty =
         DependencyProperty.Register(nameof(TargetImage), typeof(ImageSource), typeof(CompareSlider), new PropertyMetadata(default(ImageSource)));
 
     public Orientation Orientation
