@@ -9,7 +9,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
 	  <TrimMode>partial</TrimMode>
 	  <ImplicitUsings>true</ImplicitUsings>
-	  <LangVersion>Latest</LangVersion>
+	  <LangVersion>preview</LangVersion>
 	  <IsAotCompatible>True</IsAotCompatible>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>

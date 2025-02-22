@@ -1,20 +1,24 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 public sealed partial class SwitchPresenterPage : Page
 {
-    public ObservableCollection<Animal> Items
-    {
-        get { return (ObservableCollection<Animal>)GetValue(ItemsProperty); }
-        set { SetValue(ItemsProperty, value); }
-    }
-
-    public static readonly DependencyProperty ItemsProperty =
-        DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<Animal>), typeof(SwitchPresenterPage), new PropertyMetadata(new ObservableCollection<Animal>(Enum.GetValues<Animal>())));
-
+    public SwitchPresenterViewModel ViewModel { get; }
     public SwitchPresenterPage()
     {
+        ViewModel = App.GetService<SwitchPresenterViewModel>();
         this.InitializeComponent();
+    }
+
+    private void CodeValidator_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        if (sender.Parent is StackPanel stackPanel)
+        {
+            var textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
+            if (textBlock != null)
+            {
+                bool isValid = TextBoxExtensions.GetIsValid(sender);
+                textBlock.Visibility = isValid ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
     }
 }
 

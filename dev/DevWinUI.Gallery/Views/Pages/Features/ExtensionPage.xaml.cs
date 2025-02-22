@@ -1,20 +1,36 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ExtensionPage : Page
 {
-    public ObservableCollection<Animal> Items
-    {
-        get { return (ObservableCollection<Animal>)GetValue(ItemsProperty); }
-        set { SetValue(ItemsProperty, value); }
-    }
-
-    public static readonly DependencyProperty ItemsProperty =
-        DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<Animal>), typeof(ExtensionPage), new PropertyMetadata(new ObservableCollection<Animal>(Enum.GetValues<Animal>())));
-
+    public ExtensionViewModel ViewModel { get; }
     public ExtensionPage()
     {
+        ViewModel = App.GetService<ExtensionViewModel>();
         this.InitializeComponent();
+    }
+
+    private void PhoneNumberValidator_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        ViewModel.IsPhoneNumberValid = TextBoxExtensions.GetIsValid(sender);
+    }
+
+    private void CharactValidator_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        ViewModel.IsCharacterValid = TextBoxExtensions.GetIsValid(sender);
+    }
+
+    private void EmailValidator_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        ViewModel.IsEmailValid = TextBoxExtensions.GetIsValid(sender);
+    }
+
+    private void DecimalValidatorForce_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        ViewModel.IsDecimalValid = TextBoxExtensions.GetIsValid(sender);
+    }
+
+    private void NumberValidatorDynamic_TextChanging(Microsoft.UI.Xaml.Controls.TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        ViewModel.IsNumberValid = TextBoxExtensions.GetIsValid(sender);
     }
 }

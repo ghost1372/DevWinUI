@@ -37,7 +37,7 @@
                                  VerticalAlignment="Bottom"
                                  Animated="True"
                                  AutoHiding="True"
-                                 Target="{Binding ElementName=ScrollViewerSample}" />
+                                 Target="{x:Bind ScrollViewerSample, Mode=OneWay}" />
                 </Grid>
             </local:ControlExample>
             <local:ControlExample DocPage="controls/goToTop"
@@ -65,7 +65,7 @@
                                  VerticalAlignment="Bottom"
                                  Animated="True"
                                  AutoHiding="True"
-                                 Target="{Binding ElementName=ScrollViewSample}" />
+                                 Target="{x:Bind ScrollViewSample, Mode=OneWay}" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>

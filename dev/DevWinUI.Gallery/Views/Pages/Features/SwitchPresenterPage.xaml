@@ -105,9 +105,10 @@
                                     <TextBox Name="CodeValidator"
                                              dev:TextBoxExtensions.Regex="{x:Bind Regex, Mode=OneWay}"
                                              Header="{x:Bind Header, Mode=OneWay}"
-                                             PlaceholderText="{x:Bind PlaceholderText, Mode=OneWay}" />
+                                             PlaceholderText="{x:Bind PlaceholderText, Mode=OneWay}"
+                                             TextChanging="CodeValidator_TextChanging" />
                                     <TextBlock Text="Thanks for entering a valid code!"
-                                               Visibility="{Binding (dev:TextBoxExtensions.IsValid), ElementName=CodeValidator}" />
+                                               Visibility="Collapsed" />
                                 </StackPanel>
                             </DataTemplate>
                         </dev:SwitchPresenter.ContentTemplate>
@@ -179,8 +180,9 @@
                                   HeaderText="Example 1"
                                   XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Part1_xaml.txt">
                 <local:ControlExample.Pane>
-                    <RadioButtons x:Name="radio"
-                                  Header="Options">
+                    <RadioButtons Header="Options"
+                                  SelectedIndex="0"
+                                  SelectedItem="{x:Bind ViewModel.RadioSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <RadioButton Content="Square"
                                      Tag="square" />
                         <RadioButton Content="Circle"
@@ -192,12 +194,11 @@
                 <StackPanel Margin="10"
                             Spacing="10">
                     <dev:SwitchPresenter Grid.Row="1"
-                                         Value="{Binding SelectedItem.Tag, ElementName=radio}">
+                                         Value="{x:Bind ViewModel.RadioSelectedItem.Tag, Mode=OneWay}">
                         <dev:Case Value="square">
                             <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
                                         animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
                                         Style="{StaticResource PanelStyle}">
-
                                 <Border Width="24"
                                         Height="24"
                                         Background="{ThemeResource AccentFillColorDefaultBrush}" />
@@ -239,7 +240,7 @@
                 <local:ControlExample.Pane>
                     <ComboBox x:Name="AnimalPicker"
                               Header="Pick an Animal"
-                              ItemsSource="{x:Bind Items, Mode=OneWay}" />
+                              ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}" />
                 </local:ControlExample.Pane>
                 <StackPanel>
                     <dev:SwitchPresenter Padding="16"

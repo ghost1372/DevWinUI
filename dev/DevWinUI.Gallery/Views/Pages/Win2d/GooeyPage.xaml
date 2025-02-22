@@ -18,21 +18,23 @@
                                   HeaderText="GooeyButton"
                                   XamlSource="Win2d/GooeyPage_xaml.txt">
 
-                <dev:GooeyButton x:Name="gooeyButton"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 Invoked="gooeyButton_Invoked"
-                                 ItemInvoked="gooeyButton_ItemInvoked"
-                                 ItemsSource="{x:Bind strings}">
-                    <dev:GooeyButton.Content>
-                        <SymbolIcon Symbol="Add" />
-                    </dev:GooeyButton.Content>
-                    <dev:GooeyButton.ItemTemplate>
-                        <DataTemplate>
-                            <SymbolIcon Symbol="{Binding}" />
-                        </DataTemplate>
-                    </dev:GooeyButton.ItemTemplate>
-                </dev:GooeyButton>
+                <Grid Height="250">
+                    <dev:GooeyButton x:Name="gooeyButton"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Bottom"
+                                     Invoked="gooeyButton_Invoked"
+                                     ItemInvoked="gooeyButton_ItemInvoked"
+                                     ItemsSource="{x:Bind strings}">
+                        <dev:GooeyButton.Content>
+                            <SymbolIcon Symbol="Add" />
+                        </dev:GooeyButton.Content>
+                        <dev:GooeyButton.ItemTemplate>
+                            <DataTemplate x:DataType="Symbol">
+                                <SymbolIcon Symbol="{x:Bind}" />
+                            </DataTemplate>
+                        </dev:GooeyButton.ItemTemplate>
+                    </dev:GooeyButton>
+                </Grid>
             </local:ControlExample>
 
             <local:ControlExample DocPage="controls/gooey"
