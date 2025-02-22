@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
+          "Title": "ModalWindow",
+          "Subtitle": "ModalWindow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
           "Title": "Hatch",
           "Subtitle": "Hatch",
