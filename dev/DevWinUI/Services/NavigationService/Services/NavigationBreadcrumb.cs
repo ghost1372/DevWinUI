@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 //thanks to https://github.com/microsoft/devhome/blob/main/settings/DevHome.Settings/Models/Breadcrumb.cs#L10
-public class NavigationBreadcrumb
+public partial class NavigationBreadcrumb
 {
     public NavigationBreadcrumb(string label, Type page)
     {
