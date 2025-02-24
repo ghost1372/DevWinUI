@@ -78,7 +78,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
             Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft
         };
 
-        var menuFlyoutItemStyle = Application.Current.Resources["AppTitleBarMenuFlyoutItemStyle"] as Style;
+        var menuFlyoutItemStyle = Application.Current.Resources["ModernSystemMenuFlyoutItemStyle"] as Style;
 
         var restoreItem = new MenuFlyoutItem
         {
