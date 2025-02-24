@@ -258,7 +258,7 @@ Install-Package DevWinUI.ContextMenu
 ### ModalWindow
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModalWindow.gif)
 
-### LegacyMessageBox
+### MessageBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LegacyMessageBox.png)
 
 ### StepBar
