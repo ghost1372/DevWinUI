@@ -110,6 +110,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
+ - ✨ DelegateCommand
  - ✨ RichTextFormatter
  - ✨ Converter
  - ✨ Extensions
