@@ -110,6 +110,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
+ - ✨ ModernSystemMenu
  - ✨ DelegateCommand
  - ✨ RichTextFormatter
  - ✨ Converter
@@ -250,6 +251,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ModernSystemMenu
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModernSystemMenu.png)
 
 ### ModalWindow
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModalWindow.gif)
