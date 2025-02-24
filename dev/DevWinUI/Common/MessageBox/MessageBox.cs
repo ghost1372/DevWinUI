@@ -1,6 +1,12 @@
-﻿namespace DevWinUI;
+﻿using WinRT.Interop;
+
+namespace DevWinUI;
 public static class MessageBox
 {
+    public static MessageBoxResult Show(Window window, string message, string title, MessageBoxStyle messageBoxStyle)
+    {
+        return Show(WindowNative.GetWindowHandle(window), message, title, messageBoxStyle);
+    }
     public static MessageBoxResult Show(IntPtr hwnd, string message, string title, MessageBoxStyle messageBoxStyle)
     {
         Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE mbStyle = 0;
@@ -114,44 +120,81 @@ public static class MessageBox
         }
     }
 
+    public static MessageBoxResult Show(Window window, string message, string title)
+    {
+        return Show(WindowNative.GetWindowHandle(window), message, title);
+    }
     public static MessageBoxResult Show(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok);
     }
+
+    public static MessageBoxResult Show(Window window, string message, MessageBoxStyle messageBoxStyle)
+    {
+        return Show(WindowNative.GetWindowHandle(window), message, messageBoxStyle);
+    }
     public static MessageBoxResult Show(IntPtr hwnd, string message, MessageBoxStyle messageBoxStyle)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, messageBoxStyle);
+    }
+
+    public static MessageBoxResult Show(Window window, string message)
+    {
+        return Show(WindowNative.GetWindowHandle(window), message);
     }
     public static MessageBoxResult Show(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok);
     }
 
+    public static MessageBoxResult ShowInformation(Window window, string message, string title)
+    {
+        return ShowInformation(WindowNative.GetWindowHandle(window), message, title);
+    }
     public static MessageBoxResult ShowInformation(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
     }
-    
+
+    public static MessageBoxResult ShowInformation(Window window, string message)
+    {
+        return ShowInformation(WindowNative.GetWindowHandle(window), message);
+    }
     public static MessageBoxResult ShowInformation(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
     }
 
+    public static MessageBoxResult ShowError(Window window, string message, string title)
+    {
+        return ShowError(WindowNative.GetWindowHandle(window), message, title);
+    }
     public static MessageBoxResult ShowError(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconError);
     }
-
+    public static MessageBoxResult ShowError(Window window, string message)
+    {
+        return ShowError(WindowNative.GetWindowHandle(window), message);
+    }
     public static MessageBoxResult ShowError(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconError);
     }
 
+    public static MessageBoxResult ShowWarning(Window window, string message, string title)
+    {
+        return ShowWarning(WindowNative.GetWindowHandle(window), message, title);
+    }
     public static MessageBoxResult ShowWarning(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconWarning);
     }
 
+    public static MessageBoxResult ShowWarning(Window window, string message)
+    {
+        return ShowWarning(WindowNative.GetWindowHandle(window), message);
+    }
     public static MessageBoxResult ShowWarning(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconWarning);
