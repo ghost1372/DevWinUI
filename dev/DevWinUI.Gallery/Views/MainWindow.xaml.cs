@@ -13,7 +13,9 @@ public sealed partial class MainWindow : Window
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
         AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Tall;
-        
+
+        new ModernSystemMenu(this);
+
         var NavService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
         if (NavService != null)
         {
