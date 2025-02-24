@@ -96,7 +96,7 @@ public partial class TransparentBackdrop : CompositionBrushBackdrop
 
     private void Monitor_WindowMessageReceived(object? sender, WindowMessageEventArgs e)
     {
-        if (e.MessageType == NativeValues.WindowMessage.WM_ERASEBKGND)
+        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_ERASEBKGND)
         {
             if (ClearBackground(e.Message.Hwnd, (nint)e.Message.WParam))
             {

@@ -91,6 +91,7 @@ public static partial class NativeValues
     {
         WM_NCLBUTTONDOWN = 0x00A1,
         WM_NCRBUTTONDOWN = 0x00A4,
+        WM_NCRBUTTONUP = 0x00A5,
         WM_SYSCOMMAND = 0x0112,
         WM_SYSMENU = 0x0313,
         WM_GETMINMAXINFO = 0x0024,

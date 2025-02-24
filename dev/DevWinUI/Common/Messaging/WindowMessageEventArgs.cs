@@ -13,5 +13,5 @@ public sealed partial class WindowMessageEventArgs : EventArgs
 
     public Message Message { get; }
 
-    public NativeValues.WindowMessage MessageType => (NativeValues.WindowMessage)Message.MessageId;
+    public uint MessageType => Message.MessageId;
 }
