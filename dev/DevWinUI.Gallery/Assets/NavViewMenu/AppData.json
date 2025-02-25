@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.LegacyMessageBoxPage",
+          "Title": "MessageBox",
+          "Subtitle": "Legacy MessageBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
           "Title": "Blur Animation Helper",
           "Subtitle": "Blur Animation Helper",
