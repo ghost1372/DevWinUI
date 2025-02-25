@@ -4,9 +4,9 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class CommandPage : Page
 {
-    private ICommand SimpleCommand { get; }
-    private ICommand CommandWithCanExecute { get; }
-    private ICommand CommandWithParameter { get; }
+    private IDelegateCommand SimpleCommand { get; }
+    private IDelegateCommand CommandWithCanExecute { get; }
+    private IDelegateCommand CommandWithParameter { get; }
     public CommandPage()
     {
         this.InitializeComponent();
@@ -33,5 +33,16 @@ public sealed partial class CommandPage : Page
     private void OnSimpleCommand()
     {
         MessageBox.ShowInformation(App.MainWindow, "Command Executed");
+    }
+
+    private void TGCommandWithParameter_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (SimpleCommand != null && CommandWithCanExecute != null && CommandWithParameter != null)
+        {
+            SimpleCommand.RaiseCanExecuteChanged();
+            CommandWithCanExecute.RaiseCanExecuteChanged();
+            CommandWithParameter.RaiseCanExecuteChanged();
+        }
+
     }
 }

@@ -22,7 +22,7 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.CSharp>
                     <x:String>
-                        private ICommand SimpleCommand { get; }#nl#SimpleCommand = DelegateCommand.Create(OnSimpleCommand);#nl#private void OnSimpleCommand()#nl{#nl#}
+                        private IDelegateCommand SimpleCommand { get; }#nl#SimpleCommand = DelegateCommand.Create(OnSimpleCommand);#nl#private void OnSimpleCommand()#nl{#nl#}
                     </x:String>
                 </local:ControlExample.CSharp>
                 <Button Command="{x:Bind SimpleCommand}"
@@ -38,13 +38,14 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.CSharp>
                     <x:String>
-                        private ICommand CommandWithCanExecute { get; }#nl#CommandWithCanExecute = DelegateCommand.Create(OnCommandWithCanExecute, CanExecuteCommandWithCanExecute);#nl#private void OnCommandWithCanExecute()#nl{#nl#}#nl#private bool CanExecuteCommandWithCanExecute()#nl#{#nl#return true;#nl#}
+                        private IDelegateCommand CommandWithCanExecute { get; }#nl#CommandWithCanExecute = DelegateCommand.Create(OnCommandWithCanExecute, CanExecuteCommandWithCanExecute);#nl#private void OnCommandWithCanExecute()#nl{#nl#}#nl#private bool CanExecuteCommandWithCanExecute()#nl#{#nl#return true;#nl#}
                     </x:String>
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <ToggleSwitch x:Name="TGCommandWithCanExecute"
                                   Header="Can Execute Command?"
-                                  IsOn="True" />
+                                  IsOn="True"
+                                  Toggled="TGCommandWithParameter_Toggled" />
                 </local:ControlExample.Pane>
                 <Button Command="{x:Bind CommandWithCanExecute}"
                         Content="Click Me" />
@@ -54,7 +55,7 @@
                                   HeaderText="Command with Parameter">
                 <local:ControlExample.CSharp>
                     <x:String>
-                        private ICommand CommandWithParameter { get; }#nl#CommandWithParameter = DelegateCommand.Create(OnCommandWithParameter, CanExecuteCommandWithParameter);#nl#private void OnCommandWithParameter(object? parameter)#nl{#nl#}#nl#private bool CanExecuteCommandWithParameter(object? parameter)#nl#{#nl#return true;#nl#}
+                        private IDelegateCommand CommandWithParameter { get; }#nl#CommandWithParameter = DelegateCommand.Create(OnCommandWithParameter, CanExecuteCommandWithParameter);#nl#private void OnCommandWithParameter(object? parameter)#nl{#nl#}#nl#private bool CanExecuteCommandWithParameter(object? parameter)#nl#{#nl#return true;#nl#}
                     </x:String>
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Xaml>
@@ -65,7 +66,8 @@
                 <local:ControlExample.Pane>
                     <ToggleSwitch x:Name="TGCommandWithParameter"
                                   Header="Can Execute Command?"
-                                  IsOn="True" />
+                                  IsOn="True"
+                                  Toggled="TGCommandWithParameter_Toggled" />
                 </local:ControlExample.Pane>
                 <Button Command="{x:Bind CommandWithParameter}"
                         CommandParameter="My Parameter"
