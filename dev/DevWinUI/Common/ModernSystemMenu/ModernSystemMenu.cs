@@ -15,9 +15,9 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     private MenuFlyout titleBarMenuFlyout;
     private readonly ContentCoordinateConverter contentCoordinateConverter;
     private readonly OverlappedPresenter overlappedPresenter;
+    private bool isModernSystemMenuEnabled = true;
 
     private bool _isWindowMaximized;
-
     public bool IsWindowMaximized
     {
         get { return _isWindowMaximized; }
@@ -45,6 +45,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     public ModernSystemMenu(Window window)
     {
         this.window = window;
+        ReEnableModernSystemMenu();
 
         RestoreCommand = DelegateCommand.Create(Restore, CanExecuteRestore);
         MoveCommand = DelegateCommand.Create(Move, CanExecuteMove);
@@ -69,6 +70,15 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         this.window.AppWindow.Changed += OnAppWindowChanged;
 
         RegisterWindowMonitor();
+    }
+
+    public void DisableModernSystemMenu()
+    {
+        isModernSystemMenuEnabled = false;
+    }
+    public void ReEnableModernSystemMenu()
+    {
+        isModernSystemMenuEnabled = true;
     }
 
     private void CreateMenuFlyout()
@@ -199,7 +209,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
 
     private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
     {
-        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND)
+        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND && isModernSystemMenuEnabled)
         {
             var sysCommand = e.Message.WParam.ToUInt32() & 0xFFF0;
 
@@ -234,30 +244,33 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
 
     private void OnWindowMessageReceivedNonClient(object sender, WindowMessageEventArgs e)
     {
-        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_NCLBUTTONDOWN)
+        if (isModernSystemMenuEnabled)
         {
-            if (titleBarMenuFlyout.IsOpen)
+            if (e.MessageType == (uint)NativeValues.WindowMessage.WM_NCLBUTTONDOWN)
             {
-                HideMenuFlyout();
-            }
-        }
-        else if (e.MessageType == (uint)NativeValues.WindowMessage.WM_NCRBUTTONUP)
-        {
-            if (e.Message.WParam.ToUInt32() is 2 && window.Content is not null && window.Content.XamlRoot is not null)
-            {
-                PointInt32 screenPoint = new(e.Message.LParam.ToInt32() & 0xFFFF, e.Message.LParam.ToInt32() >> 16);
-                Point localPoint = contentCoordinateConverter.ConvertScreenToLocal(screenPoint);
-
-                FlyoutShowOptions options = new()
+                if (titleBarMenuFlyout.IsOpen)
                 {
-                    ShowMode = FlyoutShowMode.Standard,
-                    Position = OSVersionHelper.IsWindows11_22000_OrGreater ? new Point(localPoint.X / window.Content.XamlRoot.RasterizationScale, localPoint.Y / window.Content.XamlRoot.RasterizationScale) : new Point(localPoint.X, localPoint.Y)
-                };
-
-                ShowMenuFlyout(options);
+                    HideMenuFlyout();
+                }
             }
-            e.Result = 0;
-            e.Handled = true;
+            else if (e.MessageType == (uint)NativeValues.WindowMessage.WM_NCRBUTTONUP)
+            {
+                if (e.Message.WParam.ToUInt32() is 2 && window.Content is not null && window.Content.XamlRoot is not null)
+                {
+                    PointInt32 screenPoint = new(e.Message.LParam.ToInt32() & 0xFFFF, e.Message.LParam.ToInt32() >> 16);
+                    Point localPoint = contentCoordinateConverter.ConvertScreenToLocal(screenPoint);
+
+                    FlyoutShowOptions options = new()
+                    {
+                        ShowMode = FlyoutShowMode.Standard,
+                        Position = OSVersionHelper.IsWindows11_22000_OrGreater ? new Point(localPoint.X / window.Content.XamlRoot.RasterizationScale, localPoint.Y / window.Content.XamlRoot.RasterizationScale) : new Point(localPoint.X, localPoint.Y)
+                    };
+
+                    ShowMenuFlyout(options);
+                }
+                e.Result = 0;
+                e.Handled = true;
+            }
         }
     }
 
