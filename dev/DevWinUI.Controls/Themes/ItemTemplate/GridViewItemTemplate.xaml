@@ -78,7 +78,7 @@
                            VerticalAlignment="Top"
                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                            Style="{StaticResource AttentionIconInfoBadgeStyle}"
-                           Visibility="{x:Bind BadgeString, Converter={StaticResource nullToVisibilityConverter}}" />
+                           Visibility="{x:Bind BadgeString, Converter={StaticResource NullToVisibilityConverter}}" />
             </Grid>
         </UserControl>
     </DataTemplate>

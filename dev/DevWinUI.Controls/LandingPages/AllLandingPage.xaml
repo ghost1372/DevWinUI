@@ -52,14 +52,14 @@
                            FontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
                            Foreground="{x:Bind Foreground, Mode=OneWay}"
                            Text="{x:Bind HeaderSubtitleText, Mode=OneWay}"
-                           Visibility="{x:Bind HeaderSubtitleText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
+                           Visibility="{x:Bind HeaderSubtitleText, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}" />
                 <TextBlock x:Name="smallHeaderText"
                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                            FontSize="{x:Bind HeaderFontSize, Mode=OneWay}"
                            Foreground="{x:Bind Foreground, Mode=OneWay}"
                            Style="{StaticResource TitleLargeTextBlockStyle}"
                            Text="{x:Bind HeaderText, Mode=OneWay}"
-                           Visibility="{x:Bind HeaderText, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}" />
+                           Visibility="{x:Bind HeaderText, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}" />
             </StackPanel>
         </Grid>
         <GridView x:Name="itemGridView"
@@ -79,7 +79,7 @@
             <GridView.Footer>
                 <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}"
                       VerticalAlignment="Bottom"
-                      Visibility="{x:Bind FooterContent, Converter={StaticResource nullToVisibilityConverter}, Mode=OneWay}">
+                      Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
                     <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />
                 </Grid>
             </GridView.Footer>

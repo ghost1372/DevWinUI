@@ -14,7 +14,6 @@
     <local:StringToBrushConverter x:Key="StringToBrushConverter" />
     <local:WidthToHalfHeightConverter x:Key="WidthToHalfHeightConverter" />
     <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
-    <local:NullToVisibilityConverter x:Key="nullToVisibilityConverter" />
-    <local:EmptyStringToVisibilityConverter x:Key="emptyStringToVisibilityConverter" />
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <local:StringToUriConverter x:Key="StringToUriConverter" />
 </ResourceDictionary>
