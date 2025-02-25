@@ -14,43 +14,11 @@
       ]
     },
     {
-      "UniqueId": "Win2dFeatures",
+      "UniqueId": "Common",
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
-      "Title": "Features (Win2D)",
-      "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
+      "Title": "Common",
+      "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
-        {
-          "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
-          "Title": "ModalWindow",
-          "Subtitle": "ModalWindow",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.HatchPage",
-          "Title": "Hatch",
-          "Subtitle": "Hatch",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Grid.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.TiledImageBrushPage",
-          "Title": "TiledImageBrush",
-          "Subtitle": "TiledImageBrush",
-          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.OutlineTextControlPage",
-          "Title": "OutlineTextControl",
-          "Subtitle": "OutlineTextControl",
-          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.WatermarkPage",
-          "Title": "Watermark",
-          "Subtitle": "Watermark a Text or Image",
-          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
-        },
         {
           "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
           "Title": "Blur Animation Helper",
@@ -58,46 +26,58 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.TextMorphEffectPage",
-          "Title": "Text Morph Effect",
-          "Subtitle": "Text Morhp Effect",
-          "ImagePath": "ms-appx:///Assets/Fluent/ConnectedAnimation.png"
+          "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
+          "Title": "RichTextFormatter",
+          "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
+          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.TextGlitchEffectPage",
-          "Title": "Text Glitch Effect",
-          "Subtitle": "Text Glitch Effect",
-          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+          "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
+          "Title": "CredentialHelper",
+          "Subtitle": "CredentialHelper",
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.TextBlockStrokeViewPage",
-          "Title": "TextBlock Stroke View",
-          "Subtitle": "TextBlock Stroke View",
-          "ImagePath": "ms-appx:///Assets/Fluent/AutoSuggestBox.png"
+          "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
+          "Title": "CompositionHelper",
+          "Subtitle": "CompositionHelper",
+          "ImagePath": "ms-appx:///Assets/Fluent/ImplicitTransition.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ParticlePage",
-          "Title": "Particle",
-          "Subtitle": "Particle",
-          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+          "UniqueId": "DevWinUIGallery.Views.ValidationPage",
+          "Title": "Validation",
+          "Subtitle": "Validation",
+          "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
-          "Title": "WaveCircle",
-          "Subtitle": "WaveCircle",
-          "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
+          "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
+          "Title": "Rainbow Frame",
+          "Subtitle": "A window with Rainbow Frame",
+          "ImagePath": "ms-appx:///Assets/Fluent/ColorPaletteResources.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.BubblePage",
-          "Title": "Bubble",
-          "Subtitle": "Bubble",
-          "ImagePath": "ms-appx:///Assets/Fluent/EasingFunction.png"
+          "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
+          "Title": "Extensions",
+          "Subtitle": "Extensions",
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.GooeyPage",
-          "Title": "Gooey",
-          "Subtitle": "Gooey",
-          "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+          "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
+          "Title": "ThemeService",
+          "Subtitle": "Change Application Theme and Material Easily",
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
+          "Title": "Update Helper",
+          "Subtitle": "Check Application Update from Github",
+          "ImagePath": "ms-appx:///Assets/Fluent/Update.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerPage",
+          "Title": "File And Folder Picker Helper",
+          "Subtitle": "File And Folder Picker",
+          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png"
         }
       ]
     },
@@ -108,6 +88,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/RatingControl.png",
       "IsSpecialSection": false,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
+          "Title": "ModalWindow",
+          "Subtitle": "ModalWindow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.StepBarPage",
           "Title": "StepBar",
@@ -193,13 +180,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
-          "Title": "RichTextFormatter",
-          "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
           "Title": "ProgressButton",
           "Subtitle": "ProgressButton",
@@ -245,18 +225,6 @@
           "Title": "LongShadowTextBlock",
           "Subtitle": "LongShadowTextBlock",
           "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
-          "Title": "CredentialHelper",
-          "Subtitle": "CredentialHelper",
-          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
-          "Title": "CompositionHelper",
-          "Subtitle": "CompositionHelper",
-          "ImagePath": "ms-appx:///Assets/Fluent/ImplicitTransition.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipSidePage",
@@ -319,18 +287,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/OptionsPageControl.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
-          "Title": "Rainbow Frame",
-          "Subtitle": "A window with Rainbow Frame",
-          "ImagePath": "ms-appx:///Assets/Fluent/ColorPaletteResources.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerPage",
-          "Title": "File And Folder Picker",
-          "Subtitle": "File And Folder Picker",
-          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.StylesPage",
           "Title": "Styles",
           "Subtitle": "Styles",
@@ -343,34 +299,85 @@
           "ImagePath": "ms-appx:///Assets/Fluent/SwitchPresenter.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ValidationPage",
-          "Title": "Validation",
-          "Subtitle": "Validation",
-          "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
-          "Title": "Extension",
-          "Subtitle": "Extension",
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
-          "Title": "ThemeService",
-          "Subtitle": "Change Application Theme and Material Easily",
-          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
-          "Title": "Check Update",
-          "Subtitle": "Check Application Update from Github",
-          "ImagePath": "ms-appx:///Assets/Fluent/Update.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage",
           "Title": "Inline AutoComplete TextBox",
           "Subtitle": "Inline AutoComplete TextBox",
           "ImagePath": "ms-appx:///Assets/Fluent/HyperlinkButton.png"
+        }
+      ]
+    },
+    {
+      "UniqueId": "Win2dFeatures",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Features (Win2D)",
+      "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.HatchPage",
+          "Title": "Hatch",
+          "Subtitle": "Hatch",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Grid.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TiledImageBrushPage",
+          "Title": "TiledImageBrush",
+          "Subtitle": "TiledImageBrush",
+          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OutlineTextControlPage",
+          "Title": "OutlineTextControl",
+          "Subtitle": "OutlineTextControl",
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WatermarkPage",
+          "Title": "Watermark",
+          "Subtitle": "Watermark a Text or Image",
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextMorphEffectPage",
+          "Title": "Text Morph Effect",
+          "Subtitle": "Text Morhp Effect",
+          "ImagePath": "ms-appx:///Assets/Fluent/ConnectedAnimation.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextGlitchEffectPage",
+          "Title": "Text Glitch Effect",
+          "Subtitle": "Text Glitch Effect",
+          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextBlockStrokeViewPage",
+          "Title": "TextBlock Stroke View",
+          "Subtitle": "TextBlock Stroke View",
+          "ImagePath": "ms-appx:///Assets/Fluent/AutoSuggestBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ParticlePage",
+          "Title": "Particle",
+          "Subtitle": "Particle",
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
+          "Title": "WaveCircle",
+          "Subtitle": "WaveCircle",
+          "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BubblePage",
+          "Title": "Bubble",
+          "Subtitle": "Bubble",
+          "ImagePath": "ms-appx:///Assets/Fluent/EasingFunction.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GooeyPage",
+          "Title": "Gooey",
+          "Subtitle": "Gooey",
+          "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
         }
       ]
     },
