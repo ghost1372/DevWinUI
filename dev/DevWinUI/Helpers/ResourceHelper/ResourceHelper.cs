@@ -4,19 +4,16 @@ namespace DevWinUI;
 
 public partial class ResourceHelper : IResourceHelper
 {
-    public ResourceManager ResourceManager { get; set; }
-    public ResourceContext ResourceContext { get; set; }
+    private ResourceManager resourceManager { get; set; }
 
     public ResourceHelper()
     {
-        ResourceManager = new ResourceManager();
-        ResourceContext = ResourceManager.CreateResourceContext();
+        resourceManager = new ResourceManager();
     }
 
     public ResourceHelper(ResourceManager resourceManager) : this()
     {
-        ResourceManager = resourceManager ?? new ResourceManager();
-        ResourceContext = ResourceManager.CreateResourceContext();
+        this.resourceManager = resourceManager ?? new ResourceManager();
     }
     
     /// <summary>
@@ -47,20 +44,14 @@ public partial class ResourceHelper : IResourceHelper
 
     private string GetStringBase(string key, string language, string filename)
     {
-        var oldLanguage = Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
+        var resourceContext = resourceManager.CreateResourceContext();
         if (!string.IsNullOrEmpty(language))
         {
-            Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+            resourceContext.QualifierValues["Language"] = language;
         }
 
-        var candidate = ResourceManager.MainResourceMap.TryGetValue($"{filename}/{key}", ResourceContext);
+        var candidate = resourceManager.MainResourceMap.TryGetValue($"{filename}/{key}", resourceContext);
         var value = candidate != null ? candidate.ValueAsString : key;
-
-        if (!string.IsNullOrEmpty(language) && !string.IsNullOrEmpty(oldLanguage))
-        {
-            Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = oldLanguage;
-        }
-
         return value;
     }
 
