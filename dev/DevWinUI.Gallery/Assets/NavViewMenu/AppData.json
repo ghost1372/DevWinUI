@@ -20,11 +20,18 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
+          "Title": "RelativeDate",
+          "Subtitle": "RelativeDate",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BackdropPage",
           "Title": "Backdrops",
           "Subtitle": "SystemBackdrops like Transparent, Acrylic, Mica",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CommandPage",

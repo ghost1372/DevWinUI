@@ -14,6 +14,7 @@ public partial class NavigationPageMappings
     public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>
     {
         {"DevWinUIGallery.Views.HomeLandingPage", typeof(DevWinUIGallery.Views.HomeLandingPage)},
+        {"DevWinUIGallery.Views.RelativeDatePage", typeof(DevWinUIGallery.Views.RelativeDatePage)},
         {"DevWinUIGallery.Views.BackdropPage", typeof(DevWinUIGallery.Views.BackdropPage)},
         {"DevWinUIGallery.Views.CommandPage", typeof(DevWinUIGallery.Views.CommandPage)},
         {"DevWinUIGallery.Views.LegacyMessageBoxPage", typeof(DevWinUIGallery.Views.LegacyMessageBoxPage)},

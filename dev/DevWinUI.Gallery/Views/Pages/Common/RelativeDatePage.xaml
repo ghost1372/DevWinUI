@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.RelativeDatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="relativeDate"
+                                  DocType="Core">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        var relativeDate = RelativeDate.Get(dateTime).ToString();
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <DatePicker x:Name="DatePickerSample"
+                                SelectedDateChanged="DatePickerSample_SelectedDateChanged" />
+                </local:ControlExample.Pane>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="10">
+                    <TextBlock x:Name="TextBlockSample"
+                               Style="{ThemeResource TitleTextBlockStyle}" />
+                    <TextBlock x:Name="TextBlockSample2"
+                               Style="{ThemeResource TitleTextBlockStyle}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
