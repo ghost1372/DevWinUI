@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window x:Class="DevWinUIGallery.Views.SampleBackdrop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="using:DevWinUIGallery.Views"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="SampleBackdrop"
+        mc:Ignorable="d">
+
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Spacing="10">
+        <ComboBox x:Name="CmbBackdrop"
+                  MinWidth="200"
+                  SelectedIndex="1"
+                  SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="None"
+                          Tag="None" />
+            <ComboBoxItem Content="Mica"
+                          Tag="Mica" />
+            <ComboBoxItem Content="Mica Alt"
+                          Tag="MicaAlt" />
+            <ComboBoxItem Content="Desktop Acrylic"
+                          Tag="DesktopAcrylic" />
+            <ComboBoxItem Content="Acrylic Base"
+                          Tag="AcrylicBase" />
+            <ComboBoxItem Content="Acrylic Thin"
+                          Tag="AcrylicThin" />
+            <ComboBoxItem Content="Transparent"
+                          Tag="Transparent" />
+        </ComboBox>
+
+        <TextBlock x:Name="SampleTxt"
+                   Style="{ThemeResource BaseTextBlockStyle}" />
+    </StackPanel>
+</Window>
