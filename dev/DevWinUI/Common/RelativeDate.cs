@@ -1,9 +1,7 @@
-﻿using System.Globalization;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 [StructLayout(LayoutKind.Auto)]
-public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IEquatable<RelativeDate>, IFormattable
+public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IEquatable<RelativeDate>
 {
     public readonly ResourceHelper resourceHelper;
     private TimeProvider TimeProvider { get; }
@@ -32,13 +30,12 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
 
     public static RelativeDate Get(DateTimeOffset dateTime, TimeProvider? timeProvider) => new(dateTime.UtcDateTime, timeProvider);
 
-    public override string ToString() => ToString(format: null, formatProvider: null);
+    public override string ToString() => ToString("en-US");
 
-    public string ToString(string? format, IFormatProvider? formatProvider)
+    public string ToString(string language)
     {
         var now = TimeProvider.GetUtcNow().UtcDateTime;
         var delta = now - DateTime;
-        var culture = formatProvider as CultureInfo;
 
         if (delta < TimeSpan.Zero)
         {
@@ -46,94 +43,94 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
             if (delta < TimeSpan.FromMinutes(1))
             {
                 return delta.Seconds <= 1 ?
-                    GetString("InOneSecond", culture) :
-                    GetString("InManySeconds", culture, delta.Seconds);
+                    GetString("InOneSecond", language) :
+                    GetString("InManySeconds", language, delta.Seconds);
             }
 
             if (delta < TimeSpan.FromMinutes(2))
-                return GetString("InAMinute", culture);
+                return GetString("InAMinute", language);
 
             if (delta < TimeSpan.FromMinutes(45))
-                return GetString("InManyMinutes", culture, delta.Minutes);
+                return GetString("InManyMinutes", language, delta.Minutes);
 
             if (delta < TimeSpan.FromMinutes(90))
-                return GetString("InAnHour", culture);
+                return GetString("InAnHour", language);
 
             if (delta < TimeSpan.FromHours(24))
-                return GetString("InManyHours", culture, delta.Hours);
+                return GetString("InManyHours", language, delta.Hours);
 
             if (delta < TimeSpan.FromHours(48))
-                return GetString("Tomorrow", culture);
+                return GetString("Tomorrow", language);
 
             if (delta < TimeSpan.FromDays(30))
-                return GetString("InManyDays", culture, delta.Days);
+                return GetString("InManyDays", language, delta.Days);
 
             if (delta < TimeSpan.FromDays(365)) // We don't care about leap year
             {
                 var months = Convert.ToInt32(Math.Floor((double)delta.Days / 30));
                 return months <= 1 ?
-                    GetString("InOneMonth", culture) :
-                    GetString("InManyMonths", culture, months);
+                    GetString("InOneMonth", language) :
+                    GetString("InManyMonths", language, months);
             }
             else
             {
                 var years = Convert.ToInt32(Math.Floor((double)delta.Days / 365));
                 return years <= 1 ?
-                    GetString("InOneYear", culture) :
-                    GetString("InManyYears", culture, years);
+                    GetString("InOneYear", language) :
+                    GetString("InManyYears", language, years);
             }
         }
 
         if (delta == TimeSpan.Zero)
-            return GetString("Now", culture);
+            return GetString("Now", language);
 
         if (delta < TimeSpan.FromMinutes(1))
         {
             return delta.Seconds <= 1 ?
-                GetString("OneSecondAgo", culture) :
-                GetString("ManySecondsAgo", culture, delta.Seconds);
+                GetString("OneSecondAgo", language) :
+                GetString("ManySecondsAgo", language, delta.Seconds);
         }
 
         if (delta < TimeSpan.FromMinutes(2))
-            return GetString("AMinuteAgo", culture);
+            return GetString("AMinuteAgo", language);
 
         if (delta < TimeSpan.FromMinutes(45))
-            return GetString("ManyMinutesAgo", culture, delta.Minutes);
+            return GetString("ManyMinutesAgo", language, delta.Minutes);
 
         if (delta < TimeSpan.FromMinutes(90))
-            return GetString("AnHourAgo", culture);
+            return GetString("AnHourAgo", language);
 
         if (delta < TimeSpan.FromHours(24))
-            return GetString("ManyHoursAgo", culture, delta.Hours);
+            return GetString("ManyHoursAgo", language, delta.Hours);
 
         if (delta < TimeSpan.FromHours(48))
-            return GetString("Yesterday", culture);
+            return GetString("Yesterday", language);
 
         if (delta < TimeSpan.FromDays(30))
-            return GetString("ManyDaysAgo", culture, delta.Days);
+            return GetString("ManyDaysAgo", language, delta.Days);
 
         if (delta < TimeSpan.FromDays(365)) // We don't care about leap year
         {
             var months = Convert.ToInt32(Math.Floor((double)delta.Days / 30));
             return months <= 1 ?
-                GetString("OneMonthAgo", culture) :
-                GetString("ManyMonthsAgo", culture, months);
+                GetString("OneMonthAgo", language) :
+                GetString("ManyMonthsAgo", language, months);
         }
         else
         {
             var years = Convert.ToInt32(Math.Floor((double)delta.Days / 365));
             return years <= 1 ?
-                GetString("OneYearAgo", culture) :
-                GetString("ManyYearsAgo", culture, years);
+                GetString("OneYearAgo", language) :
+                GetString("ManyYearsAgo", language, years);
         }
     }
-    private string GetString(string key, CultureInfo? cultureInfo)
+    private string GetString(string key, string language)
     {
-        return resourceHelper.GetStringFromResource(key, cultureInfo?.Name, "DevWinUI/Resources");
+        return resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
     }
-    private string GetString(string key, CultureInfo? cultureInfo, int value)
+    private string GetString(string key, string language, int value)
     {
-        var candidate =  resourceHelper.GetStringFromResource(key, cultureInfo?.Name, "DevWinUI/Resources");
+        var candidate =  resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
 
         return candidate != null ? string.Format(candidate, value) : key;
     }

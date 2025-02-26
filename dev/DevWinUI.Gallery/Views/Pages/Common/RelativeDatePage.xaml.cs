@@ -17,7 +17,7 @@ public sealed partial class RelativeDatePage : Page
 
     private void DatePickerSample_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
     {
-        TextBlockSample.Text = RelativeDate.Get(args.NewDate.Value).ToString(format: null, CultureInfo.GetCultureInfo("fa-IR"));
-        TextBlockSample2.Text = RelativeDate.Get(args.NewDate.Value).ToString(format: null, CultureInfo.GetCultureInfo("en-US"));
+        TextBlockSample.Text = RelativeDate.Get(args.NewDate.Value).ToString("fa-IR");
+        TextBlockSample2.Text = RelativeDate.Get(args.NewDate.Value).ToString();
     }
 }
