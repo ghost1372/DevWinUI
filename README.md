@@ -111,7 +111,9 @@ If you encounter any issues or have feedback, please report them [here](https://
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
  - ✨ ModernSystemMenu
+ - ✨ RelativeDate
  - ✨ DelegateCommand
+ - ✨ ColorBrightness
  - ✨ RichTextFormatter
  - ✨ Converter
  - ✨ Extensions
@@ -251,6 +253,15 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### RelativeDate
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RelativeDate.png)
+
+### DelegateCommand
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DelegateCommand.gif)
+
+### ColorBrightness
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorBrightness.png)
 
 ### ModernSystemMenu
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModernSystemMenu.png)
