@@ -112,6 +112,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 ### ⚡ What’s Inside? ⚡
  - ✨ ModernSystemMenu
  - ✨ RelativeDate
+ - ✨ DragMoveAndResize
  - ✨ DelegateCommand
  - ✨ ColorBrightness
  - ✨ RichTextFormatter
@@ -253,6 +254,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### DragMoveAndResize
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DragMoveAndResize.gif)
 
 ### RelativeDate
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RelativeDate.png)
