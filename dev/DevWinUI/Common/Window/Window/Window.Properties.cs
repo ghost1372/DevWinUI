@@ -1,7 +1,4 @@
-﻿using Windows.Graphics;
-using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class Window
 {
     #region Base
@@ -22,7 +19,6 @@ public partial class Window
         set => base.Content = value;
     }
     #endregion
-
 
     #region Only Get Property
     public double RasterizationScale
@@ -72,7 +68,6 @@ public partial class Window
     }
 
     #endregion
-
 
     #region Only Set Property
     public WindowLayoutOption WindowLayout
