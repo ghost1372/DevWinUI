@@ -15,7 +15,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     private MenuFlyout titleBarMenuFlyout;
     private readonly ContentCoordinateConverter contentCoordinateConverter;
     private readonly OverlappedPresenter overlappedPresenter;
-    private bool isModernSystemMenuEnabled = true;
+    public bool IsModernSystemMenuEnabled = true;
 
     private bool _isWindowMaximized;
     public bool IsWindowMaximized
@@ -45,7 +45,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     public ModernSystemMenu(Window window)
     {
         this.window = window;
-        ReEnableModernSystemMenu();
+        IsModernSystemMenuEnabled = true;
 
         RestoreCommand = DelegateCommand.Create(Restore, CanExecuteRestore);
         MoveCommand = DelegateCommand.Create(Move, CanExecuteMove);
@@ -72,15 +72,6 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         RegisterWindowMonitor();
     }
 
-    public void DisableModernSystemMenu()
-    {
-        isModernSystemMenuEnabled = false;
-    }
-    public void ReEnableModernSystemMenu()
-    {
-        isModernSystemMenuEnabled = true;
-    }
-
     private void CreateMenuFlyout()
     {
         titleBarMenuFlyout = new MenuFlyout()
@@ -88,7 +79,11 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
             Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft
         };
 
-        var menuFlyoutItemStyle = Application.Current.Resources["ModernSystemMenuFlyoutItemStyle"] as Style;
+        Style menuFlyoutItemStyle = null;
+        if (Application.Current.Resources.TryGetValue("ModernSystemMenuFlyoutItemStyle", out var styleObj) && styleObj is Style style)
+        {
+            menuFlyoutItemStyle = style;
+        }
 
         var restoreItem = new MenuFlyoutItem
         {
@@ -203,13 +198,13 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         if (inputNonClientPointerSourceHandle != HWND.Null)
         {
             var monitorNonClient = new WindowMessageMonitor(inputNonClientPointerSourceHandle);
-            monitor.WindowMessageReceived += OnWindowMessageReceivedNonClient;
+            monitorNonClient.WindowMessageReceived += OnWindowMessageReceivedNonClient;
         }
     }
 
     private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
     {
-        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND && isModernSystemMenuEnabled)
+        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND && IsModernSystemMenuEnabled)
         {
             var sysCommand = e.Message.WParam.ToUInt32() & 0xFFF0;
 
@@ -244,7 +239,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
 
     private void OnWindowMessageReceivedNonClient(object sender, WindowMessageEventArgs e)
     {
-        if (isModernSystemMenuEnabled)
+        if (IsModernSystemMenuEnabled)
         {
             if (e.MessageType == (uint)NativeValues.WindowMessage.WM_NCLBUTTONDOWN)
             {
