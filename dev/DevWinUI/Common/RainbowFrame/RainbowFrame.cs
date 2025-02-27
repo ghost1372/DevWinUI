@@ -18,6 +18,10 @@ public partial class RainbowFrame : IRainbowFrame
     {
         Initialize(window);
     }
+    public RainbowFrame(IntPtr hwnd)
+    {
+        Initialize(hwnd);
+    }
     public void Initialize(Window window, TimeSpan frameUpdateInterval, int effectSpeed)
     {
         InternalInitialize(window, _hwnd, effectSpeed, frameUpdateInterval);
