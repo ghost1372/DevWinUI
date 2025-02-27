@@ -25,7 +25,7 @@ public partial class ModalWindow : Window
     private void SetOwner(IntPtr parentHwnd)
     {
         IntPtr childHwnd = Win32Interop.GetWindowFromWindowId(AppWindow.Id);
-        NativeMethods.SetWindowLong(childHwnd, -8, parentHwnd);
+        WindowHelper.SetWindowOwner(parentHwnd, childHwnd);
     }
 
     public void ShowParentWindow()

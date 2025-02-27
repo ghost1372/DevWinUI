@@ -21,6 +21,10 @@ public partial class WindowHelper
 
         ActiveWindows.AddIfNotExists(window);
     }
+    public static void RemoveWindowFromTrack(Window window)
+    {
+        ActiveWindows.DeleteIfExists(window);
+    }
     public static Window GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
@@ -71,6 +75,26 @@ public partial class WindowHelper
     public static void SetWindowCornerRadius(Window window, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
     {
         SetWindowCornerRadius(WindowNative.GetWindowHandle(window), cornerPreference);
+    }
+
+    public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(Window window)
+    {
+        var hwnd = WindowNative.GetWindowHandle(window);
+        return GetWindowCornerRadius(hwnd);
+    }
+    public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(IntPtr hwnd)
+    {
+        uint cornerPreference = 0;
+        unsafe
+        {
+            HRESULT result = PInvoke.DwmGetWindowAttribute(new HWND(hwnd), Windows.Win32.Graphics.Dwm.DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE, &cornerPreference, (uint)sizeof(uint));
+            if (result.Succeeded)
+            {
+                return (NativeValues.DWM_WINDOW_CORNER_PREFERENCE)cornerPreference;
+            }
+        }
+
+        return NativeValues.DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DEFAULT;
     }
 
     public static void SetWindowCornerRadius(IntPtr hwnd, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
@@ -298,5 +322,10 @@ public partial class WindowHelper
         int newY = (int)(maxRect.Y + (maxRect.Height - newHeight) / 2.0);
 
         window.AppWindow.MoveAndResize(new RectInt32(newX, newY, newWidth, newHeight));
+    }
+
+    public static void SetWindowOwner(IntPtr parentHwnd, IntPtr childHwnd)
+    {
+        NativeMethods.SetWindowLong(childHwnd, -8, parentHwnd);
     }
 }

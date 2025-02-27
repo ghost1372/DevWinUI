@@ -4,6 +4,7 @@ DefSubclassProc
 DeleteObject
 DwmEnableBlurBehindWindow
 DwmExtendFrameIntoClientArea
+DwmGetWindowAttribute
 DwmSetWindowAttribute
 EnumDisplayMonitors
 EnumWindows
