@@ -1,5 +1,4 @@
-﻿CreateDispatcherQueueController
-CreateRectRgn
+﻿CreateRectRgn
 CreateSolidBrush
 DefSubclassProc
 DeleteObject

@@ -156,4 +156,12 @@ public static partial class NativeValues
         WA_ACTIVE = 0x01,
         WA_INACTIVE = 0x00
     }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DispatcherQueueOptions
+    {
+        internal int dwSize;
+        internal int threadType;
+        internal int apartmentType;
+    }
 }
