@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Windowing;
-using Windows.Graphics;
+﻿using Windows.Graphics;
 using WinRT.Interop;
 
 namespace DevWinUI;
