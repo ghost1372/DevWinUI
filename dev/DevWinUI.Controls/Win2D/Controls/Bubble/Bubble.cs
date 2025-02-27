@@ -1,7 +1,5 @@
 ﻿// https://github.com/cnbluefire
 
-using Windows.Foundation;
-
 namespace DevWinUI;
 
 public partial class Bubble : IDisposable

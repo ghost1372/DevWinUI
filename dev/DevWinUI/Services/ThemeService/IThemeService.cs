@@ -30,14 +30,14 @@ public interface IThemeService
     void OnBackdropRadioButtonChecked(object sender);
     void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel);
     void UpdateCaptionButtons();
-    void UpdateCaptionButtons(Window window);
+    void UpdateCaptionButtons(Microsoft.UI.Xaml.Window window);
     void ResetBackdropProperties();
 
-    ThemeService AutoInitialize(Window window);
-    ThemeService Initialize(Window window, bool useAutoSave, string filename);
-    ThemeService Initialize(Window window, bool useAutoSave);
-    ThemeService Initialize(Window window, string filename);
-    ThemeService Initialize(Window window);
+    ThemeService AutoInitialize(Microsoft.UI.Xaml.Window window);
+    ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave, string filename);
+    ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave);
+    ThemeService Initialize(Microsoft.UI.Xaml.Window window, string filename);
+    ThemeService Initialize(Microsoft.UI.Xaml.Window window);
     ThemeService ConfigureBackdrop(BackdropType backdropType, bool force);
     ThemeService ConfigureBackdrop(BackdropType backdropType);
     ThemeService ConfigureBackdrop();

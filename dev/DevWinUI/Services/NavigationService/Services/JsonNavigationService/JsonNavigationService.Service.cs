@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI.Xaml.Media.Animation;
 
 namespace DevWinUI;
 public partial class JsonNavigationService : IJsonNavigationService
@@ -84,7 +83,7 @@ public partial class JsonNavigationService : IJsonNavigationService
         if (_frame != null && (_frame.CurrentSourcePageType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
             _frame.Tag = clearNavigation;
-            
+
             if (_useBreadcrumbBar)
             {
                 _mainBreadcrumb.AddNewItem(pageType, null, parameter, parameter, _allowDuplication, null);

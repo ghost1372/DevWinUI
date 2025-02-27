@@ -11,7 +11,7 @@ public partial class ThemeService : IThemeService
     {
         get
         {
-            foreach (Window window in WindowHelper.ActiveWindows)
+            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
             {
                 if (window.Content is FrameworkElement rootElement)
                 {
@@ -29,7 +29,7 @@ public partial class ThemeService : IThemeService
     {
         get
         {
-            foreach (Window window in WindowHelper.ActiveWindows)
+            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
             {
                 if (window.Content is FrameworkElement rootElement)
                 {
@@ -41,7 +41,7 @@ public partial class ThemeService : IThemeService
         }
         set
         {
-            foreach (Window window in WindowHelper.ActiveWindows)
+            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
             {
                 if (window.Content is FrameworkElement rootElement)
                 {
@@ -61,20 +61,20 @@ public partial class ThemeService : IThemeService
     }
 
     public ThemeService() { }
-    public ThemeService(Window window)
+    public ThemeService(Microsoft.UI.Xaml.Window window)
     {
         InitializeBase(window);
         ConfigElementThemeBase(ElementTheme.Default, false);
         ConfigBackdropBase(BackdropType.Mica, false);
     }
-    private void AutoInitializeBase(Window window)
+    private void AutoInitializeBase(Microsoft.UI.Xaml.Window window)
     {
         InitializeBase(window);
         ConfigElementThemeBase(ElementTheme.Default, false);
         ConfigBackdropBase(BackdropType.Mica, false);
     }
 
-    private void InitializeBase(Window window, bool useAutoSave = true, string filename = null)
+    private void InitializeBase(Microsoft.UI.Xaml.Window window, bool useAutoSave = true, string filename = null)
     {
         if (window == null)
         {
@@ -119,13 +119,13 @@ public partial class ThemeService : IThemeService
     {
         if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
         {
-            foreach (Window window in e.NewItems)
+            foreach (Microsoft.UI.Xaml.Window window in e.NewItems)
             {
                 InitializeWindowPropertiesOnce(window);
             }
         }
     }
-    private void InitializeWindowPropertiesOnce(Window window)
+    private void InitializeWindowPropertiesOnce(Microsoft.UI.Xaml.Window window)
     {
         RootTheme = GetElementTheme();
         window.SystemBackdrop = GetSystemBackdrop();
@@ -154,7 +154,7 @@ public partial class ThemeService : IThemeService
         }
     }
 
-    public void UpdateCaptionButtons(Window window)
+    public void UpdateCaptionButtons(Microsoft.UI.Xaml.Window window)
     {
         if (window == null)
             return;
@@ -185,7 +185,7 @@ public partial class ThemeService : IThemeService
 
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = buttonHoverBackgroundColor;
     }
-    
+
     public bool IsDarkTheme()
     {
         return RootTheme == ElementTheme.Default
@@ -193,7 +193,7 @@ public partial class ThemeService : IThemeService
             : RootTheme == ElementTheme.Dark;
     }
 
-    public static void ChangeThemeWithoutSave(Window window)
+    public static void ChangeThemeWithoutSave(Microsoft.UI.Xaml.Window window)
     {
         var element = window?.Content as FrameworkElement;
 

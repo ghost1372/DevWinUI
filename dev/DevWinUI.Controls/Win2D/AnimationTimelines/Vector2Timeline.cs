@@ -8,7 +8,7 @@ public partial class Vector2Timeline
         bool autoReverse = true, bool forever = true, EasingFunctionBase easingFunction = null)
     {
         _progresser = new TimelineProgresser(seconds, autoReverse)
-            { EasingFunction = easingFunction, BeginTime = beginTime, Forever = forever };
+        { EasingFunction = easingFunction, BeginTime = beginTime, Forever = forever };
         From = from;
         To = to;
         Duration = new Duration(TimeSpan.FromSeconds(seconds));

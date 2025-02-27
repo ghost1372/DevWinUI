@@ -43,7 +43,7 @@ public partial class GeneralHelper
     private static bool IsFirstRunForUnPackaged()
     {
         string registryPath = $@"Software\{ProcessInfoHelper.Publisher}\{ProcessInfoHelper.ProductNameAndVersion}";
-        
+
         using var key = Registry.CurrentUser.OpenSubKey(registryPath, writable: true) ??
                         Registry.CurrentUser.CreateSubKey(registryPath);
 
@@ -195,7 +195,7 @@ public partial class GeneralHelper
         int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTRTL);
     }
-    public static void SetApplicationLayoutRTL(Window window)
+    public static void SetApplicationLayoutRTL(Microsoft.UI.Xaml.Window window)
     {
         IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         SetApplicationLayoutRTL(hWnd);
@@ -206,7 +206,7 @@ public partial class GeneralHelper
         int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTLTR);
     }
-    public static void SetApplicationLayoutLTR(Window window)
+    public static void SetApplicationLayoutLTR(Microsoft.UI.Xaml.Window window)
     {
         IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         SetApplicationLayoutLTR(hWnd);

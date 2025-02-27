@@ -38,7 +38,7 @@ public partial class Clock
         get => (string)GetValue(TimeFormatProperty);
         set => SetValue(TimeFormatProperty, value);
     }
-    
+
 
     public static readonly DependencyProperty CenterPointFillProperty =
         DependencyProperty.Register(nameof(CenterPointFill), typeof(SolidColorBrush), typeof(Clock), new PropertyMetadata(default(SolidColorBrush)));
@@ -47,7 +47,7 @@ public partial class Clock
         get { return (SolidColorBrush)GetValue(CenterPointFillProperty); }
         set { SetValue(CenterPointFillProperty, value); }
     }
-    
+
 
     public static readonly DependencyProperty CenterPointStrokeProperty =
         DependencyProperty.Register(nameof(CenterPointStroke), typeof(SolidColorBrush), typeof(Clock), new PropertyMetadata(default(SolidColorBrush)));
@@ -105,7 +105,7 @@ public partial class Clock
         get { return (double)GetValue(ClockWidthProperty); }
         set { SetValue(ClockWidthProperty, value); }
     }
-    
+
 
     public static readonly DependencyProperty ClockHeightProperty =
         DependencyProperty.Register(nameof(ClockHeight), typeof(double), typeof(Clock), new PropertyMetadata(250.0));
@@ -122,7 +122,7 @@ public partial class Clock
         get { return (SolidColorBrush)GetValue(ClockBackgroundProperty); }
         set { SetValue(ClockBackgroundProperty, value); }
     }
-    
+
     public static readonly DependencyProperty OffsetAngleProperty = DependencyProperty.Register(
         nameof(OffsetAngle), typeof(double), typeof(Clock), new PropertyMetadata(0.0));
     public double OffsetAngle
@@ -131,7 +131,7 @@ public partial class Clock
         set => SetValue(OffsetAngleProperty, value);
     }
 
-    
+
     public static readonly DependencyProperty DiameterProperty =
         DependencyProperty.Register(nameof(Diameter), typeof(double), typeof(Clock), new PropertyMetadata(170.0));
     public double Diameter

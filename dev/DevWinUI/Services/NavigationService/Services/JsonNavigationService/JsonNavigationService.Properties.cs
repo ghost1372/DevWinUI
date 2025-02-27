@@ -1,6 +1,4 @@
-﻿using Microsoft.Windows.ApplicationModel.Resources;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class JsonNavigationService
 {
@@ -27,7 +25,7 @@ public partial class JsonNavigationService
     private Frame? _frame;
     public event NavigatedEventHandler? FrameNavigated;
 
-    public Window Window { get; set; }
+    public Microsoft.UI.Xaml.Window Window { get; set; }
     private bool _isTitlebarConfigured;
     private TitleBar _titleBar;
 }

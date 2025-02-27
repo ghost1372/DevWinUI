@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public static partial class ResourceDictionaryExtension
 {

@@ -70,7 +70,7 @@ public partial class ProgressButton : ToggleButton
 
     public static readonly DependencyProperty ProgressRingStyleProperty = DependencyProperty.Register(
         nameof(ProgressRingStyle), typeof(Style), typeof(ProgressButton), new PropertyMetadata(default(Style)));
-    
+
     public double Progress
     {
         get { return (double)GetValue(ProgressProperty); }

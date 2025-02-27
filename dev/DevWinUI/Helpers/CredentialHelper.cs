@@ -1,5 +1,5 @@
-﻿using Windows.Security.Credentials.UI;
-using Windows.Security.Credentials;
+﻿using Windows.Security.Credentials;
+using Windows.Security.Credentials.UI;
 
 namespace DevWinUI;
 public static partial class CredentialHelper

@@ -1,8 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using Windows.Foundation;
-using Windows.Graphics;
-using WinRT.Interop;
+﻿using System.Diagnostics;
 
 namespace DevWinUI;
 
@@ -11,8 +7,8 @@ public partial class WindowHelper
     internal static List<Win32Window> processWindowList = new List<Win32Window>();
     internal static Process currentProcess;
     internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
-    public static ObservableCollection<Window> ActiveWindows { get;} = new();
-    public static void TrackWindow(Window window)
+    public static ObservableCollection<Microsoft.UI.Xaml.Window> ActiveWindows { get; } = new();
+    public static void TrackWindow(Microsoft.UI.Xaml.Window window)
     {
         window.Closed += (sender, args) =>
         {
@@ -21,15 +17,15 @@ public partial class WindowHelper
 
         ActiveWindows.AddIfNotExists(window);
     }
-    public static void RemoveWindowFromTrack(Window window)
+    public static void RemoveWindowFromTrack(Microsoft.UI.Xaml.Window window)
     {
         ActiveWindows.DeleteIfExists(window);
     }
-    public static Window GetWindowForElement(UIElement element)
+    public static Microsoft.UI.Xaml.Window GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
         {
-            foreach (Window window in ActiveWindows)
+            foreach (Microsoft.UI.Xaml.Window window in ActiveWindows)
             {
                 if (element.XamlRoot == window.Content.XamlRoot)
                 {
@@ -39,7 +35,7 @@ public partial class WindowHelper
         }
         return null;
     }
-    public static void SwitchToThisWindow(Window window)
+    public static void SwitchToThisWindow(Microsoft.UI.Xaml.Window window)
     {
         if (window != null)
         {
@@ -51,7 +47,7 @@ public partial class WindowHelper
         PInvoke.SwitchToThisWindow(new HWND(windowHandle), true);
     }
 
-    public static void ReActivateWindow(Window window)
+    public static void ReActivateWindow(Microsoft.UI.Xaml.Window window)
     {
         var hwnd = WindowNative.GetWindowHandle(window);
         ReActivateWindow(hwnd);
@@ -72,12 +68,12 @@ public partial class WindowHelper
         }
     }
 
-    public static void SetWindowCornerRadius(Window window, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
+    public static void SetWindowCornerRadius(Microsoft.UI.Xaml.Window window, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
     {
         SetWindowCornerRadius(WindowNative.GetWindowHandle(window), cornerPreference);
     }
 
-    public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(Window window)
+    public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(Microsoft.UI.Xaml.Window window)
     {
         var hwnd = WindowNative.GetWindowHandle(window);
         return GetWindowCornerRadius(hwnd);
@@ -127,7 +123,7 @@ public partial class WindowHelper
             }
         }
     }
-    
+
     public static IReadOnlyList<Win32Window> GetProcessWindowList()
     {
         unsafe
@@ -282,7 +278,7 @@ public partial class WindowHelper
     public static (int, int) GetScreenSize()
             => (PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CXSCREEN), PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CYSCREEN));
 
-    public static void RemoveWindowBorderAndTitleBar(Window window) => RemoveWindowBorderAndTitleBar((nint)window.AppWindow.Id.Value);
+    public static void RemoveWindowBorderAndTitleBar(Microsoft.UI.Xaml.Window window) => RemoveWindowBorderAndTitleBar((nint)window.AppWindow.Id.Value);
     public static void RemoveWindowBorderAndTitleBar(IntPtr hwnd)
     {
         var style = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
@@ -295,14 +291,14 @@ public partial class WindowHelper
         // Update the window's appearance
         PInvoke.SetWindowPos(new HWND(hwnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
     }
-    public static void MakeTransparentWindowClickThrough(Window window) => MakeTransparentWindowClickThrough((nint)window.AppWindow.Id.Value);
+    public static void MakeTransparentWindowClickThrough(Microsoft.UI.Xaml.Window window) => MakeTransparentWindowClickThrough((nint)window.AppWindow.Id.Value);
     public static void MakeTransparentWindowClickThrough(IntPtr hwnd)
     {
         var currentStyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, currentStyle | (int)NativeValues.WindowStyle.WS_EX_LAYERED | (int)NativeValues.WindowStyle.WS_EX_TRANSPARENT);
     }
 
-    public static void ResizeAndCenterWindowToPercentageOfWorkArea(Window window, double percentage)
+    public static void ResizeAndCenterWindowToPercentageOfWorkArea(Microsoft.UI.Xaml.Window window, double percentage)
     {
         // Validate the percentage
         if (percentage <= 0 || percentage > 100)

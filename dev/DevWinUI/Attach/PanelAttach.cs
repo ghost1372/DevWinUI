@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public enum PanelTransitionCollection
 {
@@ -35,7 +33,7 @@ public partial class PanelAttach
     private static void OnChildrenTransitionsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is Panel ctl && ctl != null)
-        { 
+        {
             TransitionCollection transition = new TransitionCollection();
             switch ((PanelTransitionCollection)e.NewValue)
             {

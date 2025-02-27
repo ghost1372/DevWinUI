@@ -108,7 +108,7 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
             JsonNavigationService.NavigateTo(item.UniqueId, item);
         }
     }
-    
+
     protected virtual void OnIsTileImageChanged(DependencyPropertyChangedEventArgs e)
     {
     }

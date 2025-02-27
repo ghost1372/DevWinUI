@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-[TemplatePart(Name = PART_Root, Type =(typeof(StackPanel)))]
+[TemplatePart(Name = PART_Root, Type = (typeof(StackPanel)))]
 [ContentProperty(Name = nameof(Content))]
 public partial class ColorfulShimmingEffect : ContentControl
 {

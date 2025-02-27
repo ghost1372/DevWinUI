@@ -5,7 +5,7 @@ namespace DevWinUI;
 public partial class BubbleProgressButton
 {
     public static readonly DependencyProperty ContentProperty =
-        DependencyProperty.Register(nameof(Content), typeof(object), typeof(BubbleProgressButton),new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(Content), typeof(object), typeof(BubbleProgressButton), new PropertyMetadata(default));
     public object Content
     {
         get => GetValue(ContentProperty);

@@ -101,7 +101,7 @@ public abstract partial class ItemsPageBase
     public static readonly DependencyProperty HeaderTextProperty =
         DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(ItemsPageBase), new PropertyMetadata("All"));
 
-    
+
     public Stretch Stretch
     {
         get { return (Stretch)GetValue(StretchProperty); }
@@ -110,7 +110,7 @@ public abstract partial class ItemsPageBase
 
     public static readonly DependencyProperty StretchProperty =
         DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(ItemsPageBase), new PropertyMetadata(Stretch.UniformToFill));
-    
+
     public Thickness GridViewPadding
     {
         get { return (Thickness)GetValue(GridViewPaddingProperty); }

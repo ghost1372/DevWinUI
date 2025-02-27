@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Data;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class MainLandingPage : ItemsPageBase
 {
     internal static MainLandingPage Instance { get; private set; }

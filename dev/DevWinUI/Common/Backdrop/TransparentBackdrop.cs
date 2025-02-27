@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Composition;
-using Windows.Win32.Graphics.Dwm;
+﻿using Windows.Win32.Graphics.Dwm;
 namespace DevWinUI;
 public partial class TransparentBackdrop : CompositionBrushBackdrop
 {

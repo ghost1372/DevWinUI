@@ -67,7 +67,7 @@ public partial class FileHelper
 
         return s;
     }
-   
+
     public static string GetFileSize(long size)
     {
         string[] sizeSuffixes = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };

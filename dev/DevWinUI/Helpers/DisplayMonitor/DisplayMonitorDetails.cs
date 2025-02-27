@@ -1,6 +1,4 @@
-﻿using Windows.Foundation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class DisplayMonitorDetails
 {
     public string Name { get; set; } = string.Empty;

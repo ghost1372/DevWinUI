@@ -43,7 +43,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
 
         Items = allItems;
     }
- 
+
     public void OrderBy(Func<DataItem, object> orderby = null)
     {
         if (orderby != null)

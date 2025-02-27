@@ -1,11 +1,10 @@
-﻿using System.Numerics;
-using Microsoft.UI.Input;
+﻿using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
 public static partial class DragMoveAndResizeHelper
 {
-    public static void SetDragMove(this Window window, UIElement element)
+    public static void SetDragMove(this Microsoft.UI.Xaml.Window window, UIElement element)
     {
         SetDragMove(window, element, new DragMoveAndResizeInfo(DragMoveAndResizeMode.DragMove));
     }
@@ -16,7 +15,7 @@ public static partial class DragMoveAndResizeHelper
     /// <param name="window"></param>
     /// <param name="element"></param>
     /// <param name="info"></param>
-    public static void SetDragMove(this Window window, UIElement element, DragMoveAndResizeInfo info)
+    public static void SetDragMove(this Microsoft.UI.Xaml.Window window, UIElement element, DragMoveAndResizeInfo info)
     {
         _pointerPressed = (o, e) => RootPointerPressed(o, e, info);
         _pointerMoved = (o, e) => RootPointerMoved(o, e, info, window);
@@ -119,7 +118,7 @@ public static partial class DragMoveAndResizeHelper
         _ = PInvoke.GetCursorPos(out _lastPoint);
     }
 
-    private static void RootPointerMoved(object sender, PointerRoutedEventArgs e, DragMoveAndResizeInfo info, Window window)
+    private static void RootPointerMoved(object sender, PointerRoutedEventArgs e, DragMoveAndResizeInfo info, Microsoft.UI.Xaml.Window window)
     {
         var frameworkElement = sender as FrameworkElement;
         var pointer = e.GetCurrentPoint(frameworkElement);

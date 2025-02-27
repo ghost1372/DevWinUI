@@ -8,7 +8,7 @@ public static partial class SecurityHelper
         using var aes = Aes.Create();
         aes.GenerateKey();
         aes.GenerateIV();
-        return (Key:aes.Key, IV:aes.IV);
+        return (Key: aes.Key, IV: aes.IV);
     }
     private static byte[] EncryptStringAesBase(string plainText, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
@@ -174,7 +174,7 @@ public static partial class SecurityHelper
         return symmetricAlgorithm;
     }
 
-    private static void CryptoFileAESBase(CryptoMode cryptoMode,string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
+    private static void CryptoFileAESBase(CryptoMode cryptoMode, string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
         using FileStream inputStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read);
         using FileStream outputStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write);
@@ -233,7 +233,7 @@ public static partial class SecurityHelper
 
     public static void DecryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV)
     {
-        CryptoFileAESBase(CryptoMode.Decrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, EncodeType.Base64); 
+        CryptoFileAESBase(CryptoMode.Decrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, EncodeType.Base64);
     }
     public static void DecryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, EncodeType encodeType)
     {

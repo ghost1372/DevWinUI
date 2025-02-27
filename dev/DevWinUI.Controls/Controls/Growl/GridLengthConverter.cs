@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Data;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class GridLengthConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)

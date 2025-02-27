@@ -1,6 +1,6 @@
-﻿using Microsoft.UI.Text;
+﻿using System.Text.RegularExpressions;
+using Microsoft.UI.Text;
 using Microsoft.UI.Xaml.Documents;
-using System.Text.RegularExpressions;
 using Windows.UI.Text;
 
 namespace DevWinUI;

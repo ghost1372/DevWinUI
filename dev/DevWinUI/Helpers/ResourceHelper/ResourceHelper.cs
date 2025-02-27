@@ -15,7 +15,7 @@ public partial class ResourceHelper : IResourceHelper
     {
         this.resourceManager = resourceManager ?? new ResourceManager();
     }
-    
+
     /// <summary>
     /// Get All Resources Keys
     /// </summary>

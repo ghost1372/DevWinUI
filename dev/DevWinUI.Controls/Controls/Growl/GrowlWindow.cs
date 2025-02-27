@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Windowing;
 
 namespace DevWinUI;
-public partial class GrowlWindow : Window
+public partial class GrowlWindow : Microsoft.UI.Xaml.Window
 {
     internal Panel GrowlPanel { get; set; }
     internal bool WindowClosed;
@@ -21,7 +21,7 @@ public partial class GrowlWindow : Window
             Spacing = 5,
             Tag = "x"
         };
-        
+
         GrowlPanel.SizeChanged += (sender, args) =>
         {
             MoveAndResizeWindow();

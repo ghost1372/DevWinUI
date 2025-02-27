@@ -58,7 +58,7 @@ public partial class PinBox
     {
         return _uniformGrid.Children.IndexOf(passwordBox);
     }
-    
+
     public List<PasswordBox> GetPinBoxList()
     {
         return _uniformGrid.Children.Cast<PasswordBox>().ToList();

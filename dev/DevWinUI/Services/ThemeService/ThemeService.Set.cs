@@ -31,7 +31,7 @@ public partial class ThemeService
             SetWindowSystemBackdrop(backdropType);
         }
     }
-    
+
     public void SetElementTheme(ElementTheme elementTheme)
     {
         changeThemeWithoutSave = false;

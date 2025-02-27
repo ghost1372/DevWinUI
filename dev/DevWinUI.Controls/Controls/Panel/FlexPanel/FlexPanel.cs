@@ -1,6 +1,4 @@
-﻿using Windows.Foundation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class FlexPanel : Panel
 {
     private UVSize _uvConstraint;

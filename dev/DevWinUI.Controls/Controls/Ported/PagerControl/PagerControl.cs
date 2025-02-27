@@ -4,8 +4,6 @@
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Input;
-using System.Collections.ObjectModel;
-using Windows.Foundation;
 using Windows.System;
 
 namespace DevWinUI;

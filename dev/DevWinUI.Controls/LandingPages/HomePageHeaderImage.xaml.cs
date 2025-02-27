@@ -82,7 +82,7 @@ public sealed partial class HomePageHeaderImage : UserControl
     {
         this.InitializeComponent();
     }
-    
+
     private void ToggleTileOrImageEx()
     {
         if (IsTileImage)

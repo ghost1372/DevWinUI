@@ -1,7 +1,6 @@
 ﻿// https://gist.github.com/lindexi/5e71b24447a36f383493dce0858dd55a
 
 using System.Diagnostics.CodeAnalysis;
-using Windows.Foundation;
 
 namespace DevWinUI;
 [TemplatePart(Name = TransformRootName, Type = typeof(Grid))]

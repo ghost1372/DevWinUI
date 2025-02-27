@@ -1,5 +1,4 @@
-﻿using Windows.Foundation;
-using Windows.Win32.Graphics.Gdi;
+﻿using Windows.Win32.Graphics.Gdi;
 
 namespace DevWinUI;
 

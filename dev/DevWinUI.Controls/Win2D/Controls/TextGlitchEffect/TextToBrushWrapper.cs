@@ -1,8 +1,5 @@
 ﻿// https://github.com/DinoChan
 
-using Windows.Foundation;
-using Windows.Graphics;
-
 namespace DevWinUI;
 
 public partial class TextToBrushWrapper : Control
@@ -164,14 +161,14 @@ public partial class TextToBrushWrapper : Control
                 session.FillRectangle(new Rect(0, 0, width, height), solidColorBrush.Color);
 
             using (var textFormat = new CanvasTextFormat
-                   {
-                       FontSize = (float)FontSize,
-                       Direction = CanvasTextDirection.LeftToRightThenTopToBottom,
-                       VerticalAlignment = CanvasVerticalAlignment.Top,
-                       HorizontalAlignment = CanvasHorizontalAlignment.Center,
-                       FontWeight = FontWeight,
-                       FontFamily = FontFamily.Source
-                   })
+            {
+                FontSize = (float)FontSize,
+                Direction = CanvasTextDirection.LeftToRightThenTopToBottom,
+                VerticalAlignment = CanvasVerticalAlignment.Top,
+                HorizontalAlignment = CanvasHorizontalAlignment.Center,
+                FontWeight = FontWeight,
+                FontFamily = FontFamily.Source
+            })
             {
                 using (var textLayout = new CanvasTextLayout(session, Text, textFormat, width, height))
                 {
@@ -189,11 +186,11 @@ public partial class TextToBrushWrapper : Control
                             }
 
                             using (var blur = new GaussianBlurEffect
-                                   {
-                                       BlurAmount = (float)ShadowBlurAmount,
-                                       Source = bitmap,
-                                       BorderMode = EffectBorderMode.Hard
-                                   })
+                            {
+                                BlurAmount = (float)ShadowBlurAmount,
+                                Source = bitmap,
+                                BorderMode = EffectBorderMode.Hard
+                            })
                             {
                                 session.DrawImage(blur, (float)ShadowOffsetX, (float)ShadowOffsetY);
                             }

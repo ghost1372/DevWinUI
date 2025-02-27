@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI.Xaml.Markup;
-using Windows.Foundation;
 
 namespace DevWinUI;
 
