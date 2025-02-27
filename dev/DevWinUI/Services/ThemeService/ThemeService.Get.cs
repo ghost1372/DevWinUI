@@ -32,8 +32,17 @@ public partial class ThemeService
     {
         return WindowHelper.ActiveWindows[0].SystemBackdrop;
     }
-
     public SystemBackdrop GetSystemBackdrop(BackdropType backdropType)
+    {
+        return CreateSystemBackdrop(backdropType);
+    }
+
+    public static SystemBackdrop GetSystemBackdropFromType(BackdropType backdropType)
+    {
+        return CreateSystemBackdrop(backdropType);
+    }
+
+    private static SystemBackdrop CreateSystemBackdrop(BackdropType backdropType)
     {
         switch (backdropType)
         {
@@ -58,10 +67,19 @@ public partial class ThemeService
 
     public BackdropType GetBackdropType()
     {
-        return GetBackdropType(WindowHelper.ActiveWindows[0].SystemBackdrop);
+        return CreateBackdropType(WindowHelper.ActiveWindows[0].SystemBackdrop);
     }
 
     public BackdropType GetBackdropType(SystemBackdrop systemBackdrop)
+    {
+        return CreateBackdropType(systemBackdrop);
+    }
+
+    public static BackdropType GetBackdropTypeFromSystemBackdrop(SystemBackdrop systemBackdrop)
+    {
+        return CreateBackdropType(systemBackdrop);
+    }
+    private static BackdropType CreateBackdropType(SystemBackdrop systemBackdrop)
     {
         if (systemBackdrop is MicaSystemBackdrop mica)
         {
@@ -84,7 +102,7 @@ public partial class ThemeService
             return BackdropType.None;
         }
     }
-
+    
     private BackdropType GetSystemBackdropFromLocalConfig(BackdropType backdropType, bool ForceBackdrop)
     {
         BackdropType currentBackdrop = backdropType;
