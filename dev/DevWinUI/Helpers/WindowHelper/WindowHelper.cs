@@ -328,4 +328,13 @@ public partial class WindowHelper
     {
         NativeMethods.SetWindowLong(childHwnd, -8, parentHwnd);
     }
+
+    public static IntPtr FindWindow(IntPtr hwnd, string lpszClass)
+    {
+        return PInvoke.FindWindowEx(new HWND(hwnd), HWND.Null, lpszClass, null);
+    }
+    public static bool SetForegroundWindow(IntPtr hwnd)
+    {
+        return PInvoke.SetForegroundWindow(new HWND(hwnd));
+    }
 }

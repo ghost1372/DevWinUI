@@ -36,6 +36,7 @@ OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
+SetForegroundWindow
 SetWindowLong
 SetWindowPos
 SetWindowSubclass
