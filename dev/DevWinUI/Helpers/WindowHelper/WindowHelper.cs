@@ -72,7 +72,17 @@ public partial class WindowHelper
     {
         SetWindowCornerRadius(WindowNative.GetWindowHandle(window), cornerPreference);
     }
-
+    public static void SetWindowCornerRadius(IntPtr hwnd, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
+    {
+        if (OSVersionHelper.IsWindows11_22000_OrGreater)
+        {
+            unsafe
+            {
+                uint preference = (uint)cornerPreference;
+                PInvoke.DwmSetWindowAttribute(new HWND(hwnd), Windows.Win32.Graphics.Dwm.DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE, &preference, sizeof(uint));
+            }
+        }
+    }
     public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(Microsoft.UI.Xaml.Window window)
     {
         var hwnd = WindowNative.GetWindowHandle(window);
@@ -92,18 +102,7 @@ public partial class WindowHelper
 
         return NativeValues.DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DEFAULT;
     }
-
-    public static void SetWindowCornerRadius(IntPtr hwnd, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
-    {
-        if (OSVersionHelper.IsWindows11_22000_OrGreater)
-        {
-            unsafe
-            {
-                uint preference = (uint)cornerPreference;
-                PInvoke.DwmSetWindowAttribute(new HWND(hwnd), Windows.Win32.Graphics.Dwm.DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE, &preference, sizeof(uint));
-            }
-        }
-    }
+    
     public static IReadOnlyList<Win32Window> GetTopLevelWindows()
     {
         unsafe
@@ -320,6 +319,7 @@ public partial class WindowHelper
         window.AppWindow.MoveAndResize(new RectInt32(newX, newY, newWidth, newHeight));
     }
 
+    public static void SetWindowOwner(Microsoft.UI.Xaml.Window parentWindow, Microsoft.UI.Xaml.Window childWindow) => SetWindowOwner(WindowNative.GetWindowHandle(parentWindow), WindowNative.GetWindowHandle(childWindow));
     public static void SetWindowOwner(IntPtr parentHwnd, IntPtr childHwnd)
     {
         NativeMethods.SetWindowLong(childHwnd, -8, parentHwnd);
@@ -329,8 +329,37 @@ public partial class WindowHelper
     {
         return PInvoke.FindWindowEx(new HWND(hwnd), HWND.Null, lpszClass, null);
     }
+    public static bool SetForegroundWindow(Microsoft.UI.Xaml.Window window) => SetForegroundWindow(WindowNative.GetWindowHandle(window));
+
     public static bool SetForegroundWindow(IntPtr hwnd)
     {
         return PInvoke.SetForegroundWindow(new HWND(hwnd));
+    }
+
+    public static bool CenterOnScreen(Microsoft.UI.Xaml.Window window) => CenterOnScreen(WindowNative.GetWindowHandle(window));
+    public static bool CenterOnScreen(Microsoft.UI.Xaml.Window window, double? width, double? height) => CenterOnScreen(WindowNative.GetWindowHandle(window), width, height);
+    public static bool CenterOnScreen(IntPtr hwnd) => CenterOnScreen(hwnd, null, null);
+    public static bool CenterOnScreen(IntPtr hwnd, double? width, double? height)
+    {
+        var monitor = DisplayMonitorHelper.GetMonitorInfo(hwnd);
+        if (monitor is null)
+            return false;
+
+        var dpi = PInvoke.GetDpiForWindow(new HWND(hwnd));
+        if (!PInvoke.GetWindowRect(new HWND(hwnd), out RECT windowRect))
+            return false;
+
+        var scalingFactor = dpi / 96.0;
+        var w = width.HasValue ? (int)(width.Value * scalingFactor) : (windowRect.right - windowRect.left);
+        var h = height.HasValue ? (int)(height.Value * scalingFactor) : (windowRect.bottom - windowRect.top);
+
+        var cx = (monitor.RectMonitor.Left + monitor.RectMonitor.Right) / 2;
+        var cy = (monitor.RectMonitor.Bottom + monitor.RectMonitor.Top) / 2;
+        var left = (int)cx - (w / 2);
+        var top = (int)cy - (h / 2);
+
+        return PInvoke.SetWindowPos(new HWND(hwnd), new HWND(), left, top, w, h,
+            Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOZORDER |
+            Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
     }
 }
