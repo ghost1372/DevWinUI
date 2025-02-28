@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Data;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class NumberToPercentageConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)

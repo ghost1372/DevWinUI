@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Windows.Foundation;
 
 namespace DevWinUI;
 

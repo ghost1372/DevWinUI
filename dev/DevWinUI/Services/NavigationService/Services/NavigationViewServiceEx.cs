@@ -49,7 +49,7 @@ public partial class NavigationViewServiceEx : INavigationViewServiceEx
     public void ConfigAutoSuggestBox(AutoSuggestBox autoSuggestBox, string notFoundString)
     {
         _autoSuggestBox = autoSuggestBox;
-        
+
         if (_autoSuggestBox != null)
         {
             _notFoundString = notFoundString;

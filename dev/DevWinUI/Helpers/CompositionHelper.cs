@@ -1,7 +1,4 @@
-﻿using System.Numerics;
-using Microsoft.UI.Xaml.Hosting;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public static partial class CompositionHelper
 {
     public static void MakeLongShadow(int depth, float opacity, TextBlock textElement, FrameworkElement shadowElement, Color color)

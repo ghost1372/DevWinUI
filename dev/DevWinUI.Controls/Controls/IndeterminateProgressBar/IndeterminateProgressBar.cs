@@ -162,7 +162,7 @@ public partial class IndeterminateProgressBar : Control
             StopAnimation();
         }
     }
-    
+
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
         RestartStoryboardAnimation();
@@ -185,7 +185,7 @@ public partial class IndeterminateProgressBar : Control
         if (isStoryboardRunning)
             RestartStoryboardAnimation();
     }
-    
+
     protected void OnDotHeightChanged(double oldDotHeight, double newDotHeight)
     {
         if (isStoryboardRunning)
@@ -215,7 +215,7 @@ public partial class IndeterminateProgressBar : Control
         if (isActive)
             StartAnimation();
     }
-    
+
     protected void OnDurationBChanged(Duration oldDurationB, Duration newDurationB)
     {
         var isActive = isStoryboardRunning;
@@ -269,7 +269,7 @@ public partial class IndeterminateProgressBar : Control
         storyBoard.Duration = newReverseDuration;
         RestartStoryboardAnimation();
     }
-    
+
     protected void OnTotalDurationChanged(Duration oldTotalDuration, Duration newTotalDuration)
     {
         if ((storyBoard == null) || (Oscillate))

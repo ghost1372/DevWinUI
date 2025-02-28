@@ -1,6 +1,4 @@
-﻿using Windows.Foundation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 [TemplateVisualState(GroupName = GroupActive, Name = StateActive)]
 [TemplateVisualState(GroupName = GroupActive, Name = StateInactive)]

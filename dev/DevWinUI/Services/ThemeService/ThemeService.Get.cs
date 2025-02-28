@@ -102,7 +102,7 @@ public partial class ThemeService
             return BackdropType.None;
         }
     }
-    
+
     private BackdropType GetSystemBackdropFromLocalConfig(BackdropType backdropType, bool ForceBackdrop)
     {
         BackdropType currentBackdrop = backdropType;

@@ -3,4 +3,4 @@
 // See the LICENSE file in the project root for more information.
 namespace DevWinUI;
 
-public record PagerControlSelectedIndexChangedEventArgs(int NewPageIndex, int PreviousPageIndex) {}
+public record PagerControlSelectedIndexChangedEventArgs(int NewPageIndex, int PreviousPageIndex) { }

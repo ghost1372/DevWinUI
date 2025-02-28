@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-using Microsoft.UI.Xaml.Media.Animation;
-
 namespace DevWinUI;
 
 public partial class NavigationServiceEx : INavigationServiceEx
@@ -36,7 +34,7 @@ public partial class NavigationServiceEx : INavigationServiceEx
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
 
-    public Window Window { get; set; }
+    public Microsoft.UI.Xaml.Window Window { get; set; }
 
     public NavigationServiceEx(IPageServiceEx pageService)
     {
@@ -64,14 +62,14 @@ public partial class NavigationServiceEx : INavigationServiceEx
         if (CanGoBack)
         {
             var frameContentBeforeNavigationAOTSafe = _frame?.Content;
-            
+
             _frame.GoBack();
 
             if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
                 viewModel.OnNavigatedFrom();
             }
-           
+
             return true;
         }
 

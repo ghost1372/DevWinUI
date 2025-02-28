@@ -79,7 +79,7 @@ public partial class CompareSlider : Control
     }
     public static readonly DependencyProperty OrientationProperty =
         DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(CompareSlider), new PropertyMetadata(Orientation.Horizontal, OnOrientationChanged));
-    
+
     private static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (CompareSlider)d;

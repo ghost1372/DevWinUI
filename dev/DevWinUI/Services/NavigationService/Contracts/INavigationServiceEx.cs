@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public interface INavigationServiceEx
 {
@@ -16,7 +14,7 @@ public interface INavigationServiceEx
         get; set;
     }
 
-    Window? Window
+    Microsoft.UI.Xaml.Window? Window
     {
         get; set;
     }

@@ -130,7 +130,7 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
     }
     private string GetString(string key, string language, int value)
     {
-        var candidate =  resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
+        var candidate = resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
 
         return candidate != null ? string.Format(candidate, value) : key;
     }

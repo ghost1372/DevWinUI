@@ -62,7 +62,7 @@ public partial class TextGlitchEffect3 : Control
 
         tertiaryWrapper = CreateTextToBrushWrapper(TertiaryForeground, TertiaryBackground, 0, TertiaryShadowColor);
 
-        
+
         if (PrimaryTextToBrushWrapper != null)
         {
             primaryWrapper = PrimaryTextToBrushWrapper;
@@ -113,7 +113,7 @@ public partial class TextGlitchEffect3 : Control
         _storyboard = StartHeightAnimation(secondaryWrapper, new List<(double, double)> { (18, 110), (20, 112.5), (25, 110) }, StoryBoardAnimationDuration, TimeSpan.Zero);
         StartOffseteAnimation(lineVisual, OffsetAnimationDuration, TimeSpan.Zero);
         StartScaleAnimation(redMaskBrush, new List<(float, float)> { (0, 0.01f), (.20f, .73f), (.60f, .14f), (1, .95f) }, PrimaryScaleAnimationDuration, TimeSpan.Zero);
-        StartScaleAnimation(blueMaskBrush,new List<(float, float)> { (0, 1), (.20f, 1), (.35f, .27f), (.50f, .91f), (.60f, .45f), (.70f, .77f), (.80f, .5f), (1, 0) }, SecondaryScaleAnimationDuration, TimeSpan.Zero);
+        StartScaleAnimation(blueMaskBrush, new List<(float, float)> { (0, 1), (.20f, 1), (.35f, .27f), (.50f, .91f), (.60f, .45f), (.70f, .77f), (.80f, .5f), (1, 0) }, SecondaryScaleAnimationDuration, TimeSpan.Zero);
         var index = 0;
         var words = primaryWrapper.Text.Split(Delimiter);
         while (true)
@@ -125,7 +125,7 @@ public partial class TextGlitchEffect3 : Control
             index++;
         }
     }
-    
+
     private async void TextGlitchEffect_Loaded(object sender, RoutedEventArgs e)
     {
         await UpdateTextEffectAsync();

@@ -53,7 +53,7 @@ public partial class GooeyFooterEffect : Control
             ctl._Canvas.Invalidate();
         }
     }
-    
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

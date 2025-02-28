@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class ColorPalette : UserControl
 {
     public CornerRadius RectangleCornerRadius
@@ -73,7 +71,7 @@ public sealed partial class ColorPalette : UserControl
         set => gridView.ItemTemplate = value;
     }
 
-    
+
     private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (ColorPalette)d;
@@ -121,7 +119,7 @@ public sealed partial class ColorPalette : UserControl
         }
         gridView.ItemTemplate = dataTemplate;
     }
-    
+
     public ObservableCollection<ColorPaletteItem> ColorPaletteNormalResources()
     {
         var list = new ObservableCollection<ColorPaletteItem>();

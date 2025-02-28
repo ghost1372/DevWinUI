@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml.Data;
-
+﻿
 namespace DevWinUI;
 internal sealed partial class StringToBrushConverter : IValueConverter
 {

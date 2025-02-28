@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
 
-using Microsoft.UI.Xaml.Data;
-
 namespace DevWinUI;
 
 public sealed partial class ValidationEnabledConverter : IValueConverter

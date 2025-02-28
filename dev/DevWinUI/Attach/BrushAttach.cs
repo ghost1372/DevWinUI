@@ -19,7 +19,8 @@ public static class BrushAttach
     {
         if (d is SolidColorBrush source)
         {
-            source.DispatcherQueue.TryEnqueue(() => {
+            source.DispatcherQueue.TryEnqueue(() =>
+            {
                 if (e.NewValue is double value)
                 {
                     source.Color = value > 1 ? ColorHelper.LightenColor(source.Color, (float)value) : ColorHelper.DarkenColor(source.Color, -(float)value);

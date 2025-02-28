@@ -35,7 +35,7 @@ public partial class Divider : Control
     }
 
     public static readonly DependencyProperty ContentPaddingProperty =
-        DependencyProperty.Register(nameof(ContentPadding), typeof(Thickness), typeof(Divider), new PropertyMetadata(new Thickness(24,0,24,0)));
+        DependencyProperty.Register(nameof(ContentPadding), typeof(Thickness), typeof(Divider), new PropertyMetadata(new Thickness(24, 0, 24, 0)));
 
     public object Content
     {

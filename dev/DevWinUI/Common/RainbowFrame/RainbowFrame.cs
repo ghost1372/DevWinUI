@@ -12,9 +12,9 @@ public partial class RainbowFrame : IRainbowFrame
 
     public RainbowFrame()
     {
-        
+
     }
-    public RainbowFrame(Window window)
+    public RainbowFrame(Microsoft.UI.Xaml.Window window)
     {
         Initialize(window);
     }
@@ -22,7 +22,7 @@ public partial class RainbowFrame : IRainbowFrame
     {
         Initialize(hwnd);
     }
-    public void Initialize(Window window, TimeSpan frameUpdateInterval, int effectSpeed)
+    public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval, int effectSpeed)
     {
         InternalInitialize(window, _hwnd, effectSpeed, frameUpdateInterval);
     }
@@ -32,7 +32,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, effectSpeed, frameUpdateInterval);
     }
 
-    public void Initialize(Window window, TimeSpan frameUpdateInterval)
+    public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval)
     {
         InternalInitialize(window, _hwnd, EffectSpeed, frameUpdateInterval);
     }
@@ -42,7 +42,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, EffectSpeed, frameUpdateInterval);
     }
 
-    public void Initialize(Window window, int effectSpeed)
+    public void Initialize(Microsoft.UI.Xaml.Window window, int effectSpeed)
     {
         InternalInitialize(window, _hwnd, effectSpeed, FrameUpdateInterval);
     }
@@ -52,7 +52,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, effectSpeed, FrameUpdateInterval);
     }
 
-    public void Initialize(Window window)
+    public void Initialize(Microsoft.UI.Xaml.Window window)
     {
         InternalInitialize(window, _hwnd, EffectSpeed, FrameUpdateInterval);
     }
@@ -62,7 +62,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, EffectSpeed, FrameUpdateInterval);
     }
 
-    private void InternalInitialize(Window window, IntPtr hwnd, int effectSpeed, TimeSpan frameUpdateInterval)
+    private void InternalInitialize(Microsoft.UI.Xaml.Window window, IntPtr hwnd, int effectSpeed, TimeSpan frameUpdateInterval)
     {
         if (window != null)
         {

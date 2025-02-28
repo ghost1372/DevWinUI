@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Composition;
-using Microsoft.UI.Composition.SystemBackdrops;
+﻿using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace DevWinUI;
 public sealed partial class AcrylicSystemBackdrop : SystemBackdrop
@@ -67,7 +66,7 @@ public sealed partial class AcrylicSystemBackdrop : SystemBackdrop
 
     public AcrylicSystemBackdrop() : this(DesktopAcrylicKind.Default)
     {
-        
+
     }
     public AcrylicSystemBackdrop(DesktopAcrylicKind desktopAcrylicKind)
     {

@@ -1,6 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json;
 
 namespace DevWinUI;
 
@@ -47,7 +46,7 @@ public sealed class DataSource
     {
         get { return this._groups; }
     }
-    
+
     public async Task<IEnumerable<DataGroup>> GetGroupsAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
         _jsonFilePath = jsonFilePath;
@@ -56,7 +55,7 @@ public sealed class DataSource
 
         return _instance.Groups;
     }
-    
+
     public static async Task<DataGroup> GetGroupAsync(string uniqueId)
     {
         await _instance.GetControlInfoDataAsync();
@@ -65,7 +64,7 @@ public sealed class DataSource
         if (matches.Count() == 1) return matches.First();
         return null;
     }
-    
+
     public static async Task<DataItem> GetItemAsync(string uniqueId)
     {
         await _instance.GetControlInfoDataAsync();
@@ -127,13 +126,13 @@ public sealed class DataSource
 
                 if (item.UsexUid)
                 {
-                    item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title); 
-                    item.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.SecondaryTitle); 
-                    item.Subtitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Subtitle); 
-                    item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description); 
+                    item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title);
+                    item.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.SecondaryTitle);
+                    item.Subtitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Subtitle);
+                    item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description);
                 }
 #nullable disable
-                });
+            });
 
             foreach (var group in controlInfoDataGroup.Groups)
             {

@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Data;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 internal partial class SelectorBarSegmentedMarginConverter : DependencyObject, IValueConverter
 {
     /// <summary>

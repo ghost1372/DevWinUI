@@ -1,6 +1,4 @@
-﻿using Windows.Foundation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 [TemplatePart(Name = nameof(PART_Canvas), Type = typeof(CanvasControl))]
 public partial class Particle : Control
@@ -163,7 +161,7 @@ public partial class Particle : Control
             if (GotLock) ParticleLock.Exit();
         }
     }
-    
+
     private static void DensityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (e.NewValue != e.OldValue)
@@ -183,7 +181,7 @@ public partial class Particle : Control
             }
         }
     }
-    
+
     private static void IsPointerEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (e.NewValue != e.OldValue)
@@ -205,7 +203,7 @@ public partial class Particle : Control
         }
     }
 
-    
+
     private static void IsPausedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (e.NewValue != e.OldValue)

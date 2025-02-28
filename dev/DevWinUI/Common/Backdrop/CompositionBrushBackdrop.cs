@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Composition;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public abstract partial class CompositionBrushBackdrop : SystemBackdrop
 {

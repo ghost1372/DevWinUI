@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class JsonNavigationService
 {
@@ -117,7 +115,7 @@ public partial class JsonNavigationService
         {
             _titleBar.IsBackButtonVisible = _frame.CanGoBack;
         }
-        
+
         _isTitlebarConfigured = true;
     }
 

@@ -1,8 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Media.Animation;
-using Windows.Foundation;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class BreadcrumbNavigator : BreadcrumbBar
 {
     private bool userHasItemClickEvent = false;
@@ -233,7 +229,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
                 clearNavigation = item.Value.ClearNavigation;
             }
         }
-        
+
         if (!string.IsNullOrEmpty(pageTitleAttached))
         {
             pageTitle = pageTitleAttached;

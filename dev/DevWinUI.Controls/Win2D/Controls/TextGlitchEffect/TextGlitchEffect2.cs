@@ -102,7 +102,7 @@ public partial class TextGlitchEffect2 : Control
         ElementCompositionPreview.SetElementChildVisual(_rectangle, containerVisual);
 
         StopAnimation(lineVisual);
-        
+
         _storyboard1 = StartHeightAnimation(primaryWrapper, new List<(double, double)> { (0, 1), (20, 80), (60, 15), (100, 105) }, TimeSpan.FromSeconds(1), TimeSpan.Zero);
         _storyboard2 = StartHeightAnimation(secondaryWrapper, new List<(double, double)> { (0, 110), (20, 112.5), (35, 30), (50, 100), (60, 50), (70, 85), (80, 55), (100, 1) }, TimeSpan.FromSeconds(1.5), TimeSpan.Zero);
         StartOffsetAnimation(lineVisual, TimeSpan.FromSeconds(3), TimeSpan.Zero);

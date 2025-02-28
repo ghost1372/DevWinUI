@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.Windows.ApplicationModel.Resources;
+﻿using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
 
@@ -12,7 +11,7 @@ public interface IJsonNavigationService
     object? SettingsItem { get; }
     bool CanGoBack { get; }
     Frame? Frame { get; set; }
-    Window? Window { get; set; }
+    Microsoft.UI.Xaml.Window? Window { get; set; }
     bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
     bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
     bool GoBack();

@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Data;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class NullToVisibilityConverter : IValueConverter
 {
     public Visibility NullValue { get; set; } = Visibility.Collapsed;

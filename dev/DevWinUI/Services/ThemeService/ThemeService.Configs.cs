@@ -1,5 +1,5 @@
-﻿using WinRT.Interop;
-using WinRT;
+﻿using WinRT;
+using WinRT.Interop;
 
 namespace DevWinUI;
 public partial class ThemeService

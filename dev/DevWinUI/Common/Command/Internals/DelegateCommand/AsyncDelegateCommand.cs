@@ -1,5 +1,5 @@
-﻿using Microsoft.UI.Dispatching;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Dispatching;
 
 namespace DevWinUI;
 

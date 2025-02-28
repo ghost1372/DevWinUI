@@ -1,7 +1,5 @@
 ﻿using Microsoft.UI.Content;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Windows.Foundation;
-using Windows.Graphics;
 
 namespace DevWinUI;
 public partial class ModernSystemMenu : INotifyPropertyChanged
@@ -11,7 +9,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     private const int SC_MOUSEMENU = 0xF090;
     private const int SC_KEYMENU = 0xF100;
 
-    private Window window;
+    private Microsoft.UI.Xaml.Window window;
     private MenuFlyout titleBarMenuFlyout;
     private readonly ContentCoordinateConverter contentCoordinateConverter;
     private readonly OverlappedPresenter overlappedPresenter;
@@ -37,12 +35,12 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         }
     }
 
-    public ModernSystemMenu(Window window, MenuFlyout menuFlyout) : this(window)
+    public ModernSystemMenu(Microsoft.UI.Xaml.Window window, MenuFlyout menuFlyout) : this(window)
     {
         titleBarMenuFlyout = menuFlyout;
     }
 
-    public ModernSystemMenu(Window window)
+    public ModernSystemMenu(Microsoft.UI.Xaml.Window window)
     {
         this.window = window;
         IsModernSystemMenuEnabled = true;

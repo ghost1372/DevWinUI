@@ -5,8 +5,8 @@ namespace DevWinUI;
 
 public enum PagerControlDisplayMode
 {
-	Auto,
-	ComboBox,
-	NumberBox,
-	ButtonPanel,
+    Auto,
+    ComboBox,
+    NumberBox,
+    ButtonPanel,
 }

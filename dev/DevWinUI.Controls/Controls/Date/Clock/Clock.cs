@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
-using Windows.Foundation;
 
 namespace DevWinUI;
 [TemplatePart(Name = ElementButtonAm, Type = typeof(RadioButton))]
@@ -152,7 +151,7 @@ public partial class Clock : Control
         {
             //When clicking on a number, don't move the minute hand.
             var originalSource = e.OriginalSource as FrameworkElement;
-            if (originalSource is TextBlock) 
+            if (originalSource is TextBlock)
             {
                 return;
             }

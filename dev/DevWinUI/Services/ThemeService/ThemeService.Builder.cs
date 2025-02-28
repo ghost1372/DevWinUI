@@ -2,7 +2,7 @@
 public partial class ThemeService
 {
     private bool _isInitialized;
-    public ThemeService AutoInitialize(Window window)
+    public ThemeService AutoInitialize(Microsoft.UI.Xaml.Window window)
     {
         AutoInitializeBase(window);
 
@@ -10,7 +10,7 @@ public partial class ThemeService
 
         return this; // Enable chaining
     }
-    public ThemeService Initialize(Window window, bool useAutoSave, string filename)
+    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave, string filename)
     {
         InitializeBase(window, useAutoSave, filename);
 
@@ -19,7 +19,7 @@ public partial class ThemeService
         return this; // Enable chaining
     }
 
-    public ThemeService Initialize(Window window, bool useAutoSave)
+    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave)
     {
         InitializeBase(window, useAutoSave, null);
 
@@ -27,7 +27,7 @@ public partial class ThemeService
 
         return this; // Enable chaining
     }
-    public ThemeService Initialize(Window window, string filename)
+    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, string filename)
     {
         InitializeBase(window, true, filename);
 
@@ -35,7 +35,7 @@ public partial class ThemeService
 
         return this; // Enable chaining
     }
-    public ThemeService Initialize(Window window)
+    public ThemeService Initialize(Microsoft.UI.Xaml.Window window)
     {
         InitializeBase(window, true, null);
 

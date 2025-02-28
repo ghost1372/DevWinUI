@@ -32,7 +32,7 @@ public static partial class DisplayMonitorHelper
 
         return GetPrimaryMonitorInfo();
     }
-    public static DisplayMonitorDetails GetMonitorInfo(Window? window)
+    public static DisplayMonitorDetails GetMonitorInfo(Microsoft.UI.Xaml.Window? window)
     {
         if (window is not null)
         {

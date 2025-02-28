@@ -1,7 +1,5 @@
-﻿using Microsoft.UI.Windowing;
-
-namespace DevWinUI;
-public partial class ModalWindow : Window
+﻿namespace DevWinUI;
+public partial class ModalWindow : Microsoft.UI.Xaml.Window
 {
     private IntPtr _parentHwnd;
 

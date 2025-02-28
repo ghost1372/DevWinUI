@@ -18,7 +18,7 @@ public partial class TextBox : Microsoft.UI.Xaml.Controls.TextBox
     private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (TextBox)d;
-        if (ctl != null )
+        if (ctl != null)
         {
             ctl.UpdateCursor();
         }

@@ -26,6 +26,7 @@ GetStockObject
 GetSystemMetrics
 GetTokenInformation
 GetWindowLong
+GetWindowRect
 GetWindowText
 GetWindowThreadProcessId
 IsWindowEnabled
@@ -36,6 +37,7 @@ OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
+SetForegroundWindow
 SetWindowLong
 SetWindowPos
 SetWindowSubclass

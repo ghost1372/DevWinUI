@@ -41,6 +41,6 @@ public partial class ColorBrightnessExtension : MarkupExtension
     {
         return CorrectionFactor > 1
             ? ColorHelper.LightenColor(Color, (float)CorrectionFactor)
-            : ColorHelper.DarkenColor(Color, - (float)CorrectionFactor);
+            : ColorHelper.DarkenColor(Color, -(float)CorrectionFactor);
     }
 }

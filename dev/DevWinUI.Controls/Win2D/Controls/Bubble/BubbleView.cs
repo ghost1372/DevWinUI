@@ -1,9 +1,8 @@
 ﻿// https://github.com/cnbluefire
 
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Graphics.Display;
 using Microsoft.UI.Xaml.Shapes;
+using Windows.ApplicationModel;
+using Windows.Graphics.Display;
 
 namespace DevWinUI;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Markup;
+﻿using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 
@@ -22,7 +21,7 @@ public partial class SettingsGroup : Control
     private ContentPresenter _headerPresenter;
     private Grid _rootGrid;
     private SettingsGroup _settingsGroup;
-    
+
     public SettingsGroup()
     {
         DefaultStyleKey = typeof(SettingsGroup);

@@ -1,7 +1,5 @@
 ﻿// https://github.com/DinoChan
 
-using Windows.Foundation;
-
 namespace DevWinUI;
 public partial class WaveCircle : FrameworkElement
 {
@@ -20,7 +18,7 @@ public partial class WaveCircle : FrameworkElement
         get { return (bool)GetValue(IsAnimateProperty); }
         set { SetValue(IsAnimateProperty, value); }
     }
-    
+
     public static readonly DependencyProperty IsReverseAnimationProperty =
         DependencyProperty.Register(nameof(IsReverseAnimation), typeof(bool), typeof(WaveCircle), new PropertyMetadata(false, OnIsReverseAnimationChanged));
 

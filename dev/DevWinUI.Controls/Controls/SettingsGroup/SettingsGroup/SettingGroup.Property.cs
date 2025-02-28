@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace DevWinUI;
 public partial class SettingsGroup : Control
@@ -69,7 +68,7 @@ public partial class SettingsGroup : Control
             settingsExpander.CornerRadius = new CornerRadius(0);
             settingsExpander.BorderThickness = new Thickness(1, 1, 1, 0);
         }
-        
+
         var firstItem = Items.FirstOrDefault();
 
         if (firstItem != null)

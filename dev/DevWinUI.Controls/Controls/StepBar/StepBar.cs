@@ -54,7 +54,7 @@ public partial class StepBar : ItemsControl
 
         if (Application.Current.Resources["StepBarItemVerticalStyle"] is Style verticalItemContainerStyle)
             this.VerticalItemContainerStyle = verticalItemContainerStyle;
-        
+
         if (Application.Current.Resources["StepBarHorizontalItemsPanelTemplate"] is ItemsPanelTemplate horizontalItemsPanelTemplate)
             this.HorizontalItemsPanelTemplate = horizontalItemsPanelTemplate;
 
@@ -275,7 +275,7 @@ public partial class StepBar : ItemsControl
         horizontalStoryboard.Children.Add(horizontalAnimation);
         horizontalStoryboard.Begin();
     }
-    
+
     private void UpdateProgressBarVisualStates()
     {
         VisualStateManager.GoToState(this, Status.ToString(), true);

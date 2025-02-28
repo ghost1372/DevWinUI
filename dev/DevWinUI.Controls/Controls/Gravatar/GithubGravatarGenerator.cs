@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
-using Windows.Foundation;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace DevWinUI;
