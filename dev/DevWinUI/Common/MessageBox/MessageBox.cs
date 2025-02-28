@@ -138,7 +138,7 @@ public static class MessageBox
         return Show(hwnd, message, ProcessInfoHelper.ProductName, messageBoxStyle);
     }
 
-    public static MessageBoxResult Show(Window window, string message)
+    public static MessageBoxResult Show(Microsoft.UI.Xaml.Window window, string message)
     {
         return Show(WindowNative.GetWindowHandle(window), message);
     }

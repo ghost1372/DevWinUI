@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-public partial class Window
+public partial class ModernWindow
 {
     #region Base
     public new AppWindow AppWindow => base.AppWindow;

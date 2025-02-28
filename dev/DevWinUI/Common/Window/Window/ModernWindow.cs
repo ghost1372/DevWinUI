@@ -4,7 +4,7 @@ namespace DevWinUI;
 
 [Experimental]
 [ContentProperty(Name = nameof(Content))]
-public partial class Window : Microsoft.UI.Xaml.Window
+public partial class ModernWindow : Microsoft.UI.Xaml.Window
 {
     private RainbowFrame rainbowFrame;
     private ModernSystemMenu modernSystemMenu;
@@ -17,7 +17,7 @@ public partial class Window : Microsoft.UI.Xaml.Window
     public void SwitchToThisWindow() => WindowHelper.SwitchToThisWindow(Hwnd);
     public void ReActivateWindow() => WindowHelper.ReActivateWindow(Hwnd);
 
-    public Window()
+    public ModernWindow()
     {
         var windowMessageMonitor = new WindowMessageMonitor(Hwnd);
         windowMessageMonitor.WindowMessageReceived += OnWindowMessageReceivedInternal;
