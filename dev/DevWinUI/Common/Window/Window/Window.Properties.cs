@@ -37,10 +37,10 @@ public partial class Window
     {
         get => DisplayMonitorHelper.GetMonitorInfo(Hwnd);
     }
-    public IntPtr Hwnd
-    {
-        get => WindowNative.GetWindowHandle(this);
-    }
+    
+    private IntPtr? hwnd;
+    public IntPtr Hwnd => hwnd ??= WindowNative.GetWindowHandle(this);
+
     public WindowId WindowId
     {
         get => AppWindow.Id;
@@ -222,6 +222,17 @@ public partial class Window
     #endregion
 
     #region Full Property
+    private bool centerOnScreen;
+    public bool CenterOnScreen
+    {
+        get { return centerOnScreen; }
+        set
+        {
+            centerOnScreen = value;
+            WindowHelper.CenterOnScreen(Hwnd);
+        }
+    }
+
     private FrameworkElement titleBar;
     public FrameworkElement TitleBar
     {
