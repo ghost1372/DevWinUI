@@ -15,22 +15,26 @@ public class FolderPicker
     public KnownFolderOption? InitialKnownFolder { get; set; }
     public string? Title { get; set; }
 
+    public string PickSingleFolder(Microsoft.UI.Xaml.Window window) => PickSingleFolder(WindowNative.GetWindowHandle(window));
     public string PickSingleFolder(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, false);
         return folderPaths.Count > 0 ? folderPaths[0] : null;
     }
+    public async Task<StorageFolder?> PickSingleFolderAsync(Microsoft.UI.Xaml.Window window) => await PickSingleFolderAsync(WindowNative.GetWindowHandle(window));
     public async Task<StorageFolder?> PickSingleFolderAsync(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, false);
         return folderPaths.Count > 0 ? await StorageFolder.GetFolderFromPathAsync(folderPaths[0]) : null;
     }
 
+    public List<string> PickMultipleFolders(Microsoft.UI.Xaml.Window window) => PickMultipleFolders(WindowNative.GetWindowHandle(window));
     public List<string> PickMultipleFolders(IntPtr hwnd)
     {
         return OpenFolderDialog(hwnd, true);
     }
 
+    public async Task<List<StorageFolder>> PickMultipleFoldersAsync(Microsoft.UI.Xaml.Window window) => await PickMultipleFoldersAsync(WindowNative.GetWindowHandle(window));
     public async Task<List<StorageFolder>> PickMultipleFoldersAsync(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, true);

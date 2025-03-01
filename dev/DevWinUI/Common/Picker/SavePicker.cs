@@ -1,4 +1,5 @@
-﻿using Windows.Foundation.Metadata;
+﻿using Microsoft.UI.Xaml;
+using Windows.Foundation.Metadata;
 using Windows.Win32.System.Com;
 using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.Shell.Common;
@@ -18,11 +19,13 @@ public class SavePicker
     public Dictionary<string, List<string>> FileTypeChoices { get; set; } = new();
     public bool ShowAllFilesFileType { get; set; } = true;
 
+    public string? PickSaveFile(Microsoft.UI.Xaml.Window window) => PickSaveFile(WindowNative.GetWindowHandle(window));
     public string? PickSaveFile(IntPtr hwnd)
     {
         return SaveFileDialog(hwnd);
     }
 
+    public async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window) => await PickSaveFileAsync(WindowNative.GetWindowHandle(window));
     public async Task<StorageFile> PickSaveFileAsync(IntPtr hwnd)
     {
         var filePath = SaveFileDialog(hwnd);

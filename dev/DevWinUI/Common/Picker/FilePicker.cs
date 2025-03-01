@@ -19,23 +19,27 @@ public class FilePicker
     public Dictionary<string, List<string>> FileTypeChoices { get; set; } = new();
     public bool ShowAllFilesFileType { get; set; } = true;
 
+    public string PickSingleFile(Microsoft.UI.Xaml.Window window) => PickSingleFile(WindowNative.GetWindowHandle(window));
     public string PickSingleFile(IntPtr hwnd)
     {
         var files = OpenFileDialog(hwnd, false);
         return files.Count > 0 ? files[0] : null;
     }
 
+    public async Task<StorageFile?> PickSingleFileAsync(Microsoft.UI.Xaml.Window window) => await PickSingleFileAsync(WindowNative.GetWindowHandle(window));
     public async Task<StorageFile?> PickSingleFileAsync(IntPtr hwnd)
     {
         var files = OpenFileDialog(hwnd, false);
         return files.Count > 0 ? await StorageFile.GetFileFromPathAsync(files[0]) : null;
     }
 
+    public List<string> PickMultipleFiles(Microsoft.UI.Xaml.Window window) => PickMultipleFiles(WindowNative.GetWindowHandle(window));
     public List<string> PickMultipleFiles(IntPtr hwnd)
     {
         return OpenFileDialog(hwnd, true);
     }
 
+    public async Task<List<StorageFile>> PickMultipleFilesAsync(Microsoft.UI.Xaml.Window window) => await PickMultipleFilesAsync(WindowNative.GetWindowHandle(window));
     public async Task<List<StorageFile>> PickMultipleFilesAsync(IntPtr hwnd)
     {
         var filePaths = OpenFileDialog(hwnd, true);
