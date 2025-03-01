@@ -1,4 +1,5 @@
-﻿CreateRectRgn
+﻿CoCreateInstance
+CreateRectRgn
 CreateSolidBrush
 DefSubclassProc
 DeleteObject
@@ -9,6 +10,8 @@ DwmSetWindowAttribute
 EnumDisplayMonitors
 EnumWindows
 FillRect
+FileOpenDialog
+FileSaveDialog
 FindWindowExW
 GetActiveWindow
 GetClassName
@@ -29,6 +32,8 @@ GetWindowLong
 GetWindowRect
 GetWindowText
 GetWindowThreadProcessId
+IFileOpenDialog
+IFileSaveDialog
 IsWindowEnabled
 MessageBox
 MonitorFromWindow
@@ -41,6 +46,7 @@ SetForegroundWindow
 SetWindowLong
 SetWindowPos
 SetWindowSubclass
+SHCreateItemFromParsingName
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
 WritePrivateProfileString

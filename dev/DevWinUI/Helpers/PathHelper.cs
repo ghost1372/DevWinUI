@@ -70,4 +70,25 @@ public partial class PathHelper
             }
         }
     }
+
+    public static string GetKnownFolderPath(KnownFolderOption folder)
+    {
+        return folder switch 
+        {
+            KnownFolderOption.Downloads => Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads",
+            KnownFolderOption.Documents => Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            KnownFolderOption.Videos => Environment.GetFolderPath(Environment.SpecialFolder.MyVideos),
+            KnownFolderOption.Pictures => Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+            KnownFolderOption.Music => Environment.GetFolderPath(Environment.SpecialFolder.MyMusic),
+            _ => string.Empty,
+        };
+    }
+}
+public enum KnownFolderOption
+{
+    Downloads,
+    Documents,
+    Videos,
+    Pictures,
+    Music
 }

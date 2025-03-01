@@ -1,7 +1,8 @@
 ﻿using Windows.Storage.Pickers;
-using WinRT.Interop;
 
 namespace DevWinUI;
+
+[Obsolete("This class is obsolete and will be removed soon. Please use new FilePicker, FolderPicker, and SavePicker instead.")]
 public partial class FileAndFolderPickerHelper
 {
     private static FileSavePicker FileSavePicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
@@ -60,9 +61,9 @@ public partial class FileAndFolderPickerHelper
         return picker;
     }
 
-    private static FolderPicker FolderPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter = null, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    private static Windows.Storage.Pickers.FolderPicker FolderPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter = null, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
-        FolderPicker folderPicker = new();
+        Windows.Storage.Pickers.FolderPicker folderPicker = new();
 
         if (window == null)
         {
