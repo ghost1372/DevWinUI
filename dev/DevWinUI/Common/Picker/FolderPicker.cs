@@ -10,6 +10,7 @@ public class FolderPicker
     public PickerOptions Options { get; set; } = PickerOptions.None;
 
     public string? OkButtonLabel { get; set; }
+    public string? DefaultFileName { get; set; }
     public string? InitialDirectory { get; set; }
     public KnownFolderOption? InitialKnownFolder { get; set; }
     public string? Title { get; set; }
@@ -62,7 +63,7 @@ public class FolderPicker
             {
                 dialog->SetTitle(Title);
             }
-
+            
             if (!string.IsNullOrEmpty(OkButtonLabel))
             {
                 dialog->SetOkButtonLabel(OkButtonLabel);
@@ -79,6 +80,11 @@ public class FolderPicker
                 IShellItem* psi = (IShellItem*)ppv;
 
                 dialog->SetFolder(psi);
+            }
+
+            if (!string.IsNullOrEmpty(DefaultFileName))
+            {
+                dialog->SetFileName(DefaultFileName);
             }
 
             Options |= PickerOptions.FOS_PICKFOLDERS;
