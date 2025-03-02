@@ -110,7 +110,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
- - ✨ Pickers (FilePicker, SavePicker, FolderPicker) which is working in Elevated, Packaged, UnPackaged and AOT apps.
+ - ✨ FilePicker, SavePicker and FolderPicker which is working in Elevated, Packaged, UnPackaged and AOT apps.
  - ✨ ModernSystemMenu
  - ✨ RelativeDate
  - ✨ DragMoveAndResize
@@ -255,6 +255,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Picker (Elevated/AOT/Packaged/UnPackaged Support)
+![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Picker.png)
 
 ### DragMoveAndResize
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DragMoveAndResize.gif)
@@ -473,9 +476,6 @@ Install-Package DevWinUI.ContextMenu
 
 ### Enum Value Extension
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EnumValueEx.png)
-
-### Picker (Elevated/AOT/Packaged/UnPackaged Support)
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Picker.png)
 
 ### TextBox Extension
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBoxEx.png)
