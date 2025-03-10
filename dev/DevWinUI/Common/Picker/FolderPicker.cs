@@ -9,10 +9,10 @@ public class FolderPicker
 {
     public PickerOptions Options { get; set; } = PickerOptions.None;
 
-    public string? OkButtonLabel { get; set; }
-    public string? DefaultFileName { get; set; }
+    public string? CommitButtonText { get; set; }
+    public string? SuggestedFileName { get; set; }
     public string? InitialDirectory { get; set; }
-    public KnownFolderOption? InitialKnownFolder { get; set; }
+    public PickerLocationId SuggestedStartLocation { get; set; } = PickerLocationId.Unspecified;
     public string? Title { get; set; }
 
     public string PickSingleFolder(Microsoft.UI.Xaml.Window window) => PickSingleFolder(WindowNative.GetWindowHandle(window));
@@ -68,14 +68,14 @@ public class FolderPicker
                 dialog->SetTitle(Title);
             }
             
-            if (!string.IsNullOrEmpty(OkButtonLabel))
+            if (!string.IsNullOrEmpty(CommitButtonText))
             {
-                dialog->SetOkButtonLabel(OkButtonLabel);
+                dialog->SetOkButtonLabel(CommitButtonText);
             }
 
-            if (InitialKnownFolder.HasValue)
+            if (SuggestedStartLocation != PickerLocationId.Unspecified)
             {
-                InitialDirectory = PathHelper.GetKnownFolderPath(InitialKnownFolder.Value);
+                InitialDirectory = PathHelper.GetKnownFolderPath(SuggestedStartLocation);
             }
 
             if (!string.IsNullOrEmpty(InitialDirectory))
@@ -86,9 +86,9 @@ public class FolderPicker
                 dialog->SetFolder(psi);
             }
 
-            if (!string.IsNullOrEmpty(DefaultFileName))
+            if (!string.IsNullOrEmpty(SuggestedFileName))
             {
-                dialog->SetFileName(DefaultFileName);
+                dialog->SetFileName(SuggestedFileName);
             }
 
             Options |= PickerOptions.FOS_PICKFOLDERS;
@@ -98,7 +98,7 @@ public class FolderPicker
                 Options |= PickerOptions.FOS_ALLOWMULTISELECT;
             }
             
-            dialog->SetOptions(PickerOptionHelper.MapPickerOptionsToFOS(Options));
+            dialog->SetOptions(PickerHelper.MapPickerOptionsToFOS(Options));
 
             try
             {

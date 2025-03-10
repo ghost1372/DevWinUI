@@ -47,6 +47,7 @@ SetWindowLong
 SetWindowPos
 SetWindowSubclass
 SHCreateItemFromParsingName
+SHGetKnownFolderPath
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
 WritePrivateProfileString

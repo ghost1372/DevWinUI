@@ -1,13 +1,11 @@
 ﻿namespace DevWinUI;
-
-internal static class PickerOptionHelper
+internal unsafe static partial class PickerHelper
 {
     internal static Windows.Win32.UI.Shell.FILEOPENDIALOGOPTIONS MapPickerOptionsToFOS(PickerOptions options)
     {
         return (Windows.Win32.UI.Shell.FILEOPENDIALOGOPTIONS)options;
     }
 }
-
 [Flags]
 public enum PickerOptions : uint
 {

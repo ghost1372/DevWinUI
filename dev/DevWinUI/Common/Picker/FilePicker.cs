@@ -10,14 +10,14 @@ public class FilePicker
 {
     public PickerOptions Options { get; set; } = PickerOptions.None; 
 
-    public string? OkButtonLabel { get; set; }
-    public string? DefaultFileName { get; set; }
-    public string? DefaultFileType { get; set; }
+    public string? CommitButtonText { get; set; }
+    public string? SuggestedFileName { get; set; }
+    public string? DefaultFileExtension { get; set; }
     public string? InitialDirectory { get; set; }
-    public KnownFolderOption? InitialKnownFolder { get; set; }
+    public PickerLocationId SuggestedStartLocation { get; set; } = PickerLocationId.Unspecified;
     public string? Title { get; set; }
     public Dictionary<string, List<string>> FileTypeChoices { get; set; } = new();
-    public bool ShowAllFilesFileType { get; set; } = true;
+    public bool ShowAllFilesOption { get; set; } = true;
 
     public string PickSingleFile(Microsoft.UI.Xaml.Window window) => PickSingleFile(WindowNative.GetWindowHandle(window));
     public string PickSingleFile(IntPtr hwnd)
@@ -73,32 +73,32 @@ public class FilePicker
                 dialog->SetTitle(Title);
             }
             
-            if (!string.IsNullOrEmpty(OkButtonLabel))
+            if (!string.IsNullOrEmpty(CommitButtonText))
             {
-                dialog->SetOkButtonLabel(OkButtonLabel);
+                dialog->SetOkButtonLabel(CommitButtonText);
             }
 
-            if (InitialKnownFolder.HasValue)
+            if (SuggestedStartLocation != PickerLocationId.Unspecified)
             {
-                InitialDirectory = PathHelper.GetKnownFolderPath(InitialKnownFolder.Value);
+                InitialDirectory = PathHelper.GetKnownFolderPath(SuggestedStartLocation);
             }
 
             if (!string.IsNullOrEmpty(InitialDirectory))
             {
                 PInvoke.SHCreateItemFromParsingName(InitialDirectory, null, typeof(IShellItem).GUID, out void* ppv);
                 IShellItem* psi = (IShellItem*)ppv;
-                
+
                 dialog->SetFolder(psi);
             }
 
-            if (!string.IsNullOrEmpty(DefaultFileName))
+            if (!string.IsNullOrEmpty(SuggestedFileName))
             {
-                dialog->SetFileName(DefaultFileName);
+                dialog->SetFileName(SuggestedFileName);
             }
-
+            
             var filters = new List<COMDLG_FILTERSPEC>();
 
-            if (ShowAllFilesFileType)
+            if (ShowAllFilesOption)
             {
                 filters.Add(new COMDLG_FILTERSPEC { pszName = (char*)Marshal.StringToHGlobalUni("All Files (*.*)"), pszSpec = (char*)Marshal.StringToHGlobalUni("*.*") });
             }
@@ -113,9 +113,9 @@ public class FilePicker
 
             dialog->SetFileTypes(filters.ToArray());
 
-            if (!string.IsNullOrEmpty(DefaultFileType) && FileTypeChoices.ContainsKey(DefaultFileType))
+            if (!string.IsNullOrEmpty(DefaultFileExtension) && FileTypeChoices.ContainsKey(DefaultFileExtension))
             {
-                int defaultIndex = new List<string>(FileTypeChoices.Keys).IndexOf(DefaultFileType) + (ShowAllFilesFileType ? 1 : 0);
+                int defaultIndex = new List<string>(FileTypeChoices.Keys).IndexOf(DefaultFileExtension) + (ShowAllFilesOption ? 1 : 0);
                 dialog->SetFileTypeIndex((uint)(defaultIndex + 1));
             }
 
@@ -124,7 +124,7 @@ public class FilePicker
                 Options |= PickerOptions.FOS_ALLOWMULTISELECT;
             }
 
-            dialog->SetOptions(PickerOptionHelper.MapPickerOptionsToFOS(Options));
+            dialog->SetOptions(PickerHelper.MapPickerOptionsToFOS(Options));
 
             try
             {

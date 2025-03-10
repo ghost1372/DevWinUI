@@ -5,7 +5,7 @@ namespace DevWinUI;
 [Obsolete("This class is obsolete and will be removed soon. Please use new FilePicker, FolderPicker, and SavePicker instead.")]
 public partial class FileAndFolderPickerHelper
 {
-    private static FileSavePicker FileSavePicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    private static FileSavePicker FileSavePicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         var savePicker = new FileSavePicker();
         savePicker.SuggestedStartLocation = suggestedStartLocation;
@@ -37,7 +37,7 @@ public partial class FileAndFolderPickerHelper
         return savePicker;
     }
 
-    private static FileOpenPicker FileOpenPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    private static FileOpenPicker FileOpenPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         var picker = new FileOpenPicker();
         picker.ViewMode = pickerViewMode;
@@ -61,7 +61,7 @@ public partial class FileAndFolderPickerHelper
         return picker;
     }
 
-    private static Windows.Storage.Pickers.FolderPicker FolderPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter = null, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    private static Windows.Storage.Pickers.FolderPicker FolderPicker(Microsoft.UI.Xaml.Window window, IntPtr windowHandle, IList<string> fileTypeFilter = null, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         Windows.Storage.Pickers.FolderPicker folderPicker = new();
 
@@ -92,56 +92,56 @@ public partial class FileAndFolderPickerHelper
         return folderPicker;
     }
 
-    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(window, IntPtr.Zero, fileTypeChoices, null, null, suggestedStartLocation).PickSaveFileAsync();
     }
-    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(null, windowHandle, fileTypeChoices, null, null, suggestedStartLocation).PickSaveFileAsync();
     }
 
-    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(window, IntPtr.Zero, fileTypeChoices, suggestedFileName, null, suggestedStartLocation).PickSaveFileAsync();
     }
-    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(null, windowHandle, fileTypeChoices, suggestedFileName, null, suggestedStartLocation).PickSaveFileAsync();
     }
 
-    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(window, IntPtr.Zero, fileTypeChoices, suggestedFileName, defaultFileExtension, suggestedStartLocation).PickSaveFileAsync();
     }
-    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder)
+    public static async Task<StorageFile> PickSaveFileAsync(IntPtr windowHandle, IDictionary<string, IList<string>> fileTypeChoices, string suggestedFileName, string defaultFileExtension, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder)
     {
         return await FileSavePicker(null, windowHandle, fileTypeChoices, suggestedFileName, defaultFileExtension, suggestedStartLocation).PickSaveFileAsync();
     }
 
-    public static async Task<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FileOpenPicker(window, IntPtr.Zero, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickMultipleFilesAsync();
     }
-    public static async Task<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(IntPtr windowHandle, IList<string> fileTypeFilter, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(IntPtr windowHandle, IList<string> fileTypeFilter, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FileOpenPicker(null, windowHandle, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickMultipleFilesAsync();
     }
 
-    public static async Task<StorageFile> PickSingleFileAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<StorageFile> PickSingleFileAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FileOpenPicker(window, IntPtr.Zero, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickSingleFileAsync();
     }
-    public static async Task<StorageFile> PickSingleFileAsync(IntPtr windowHandle, IList<string> fileTypeFilter, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<StorageFile> PickSingleFileAsync(IntPtr windowHandle, IList<string> fileTypeFilter, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FileOpenPicker(null, windowHandle, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickSingleFileAsync();
     }
 
-    public static async Task<StorageFolder> PickSingleFolderAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter = null, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<StorageFolder> PickSingleFolderAsync(Microsoft.UI.Xaml.Window window, IList<string> fileTypeFilter = null, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FolderPicker(window, IntPtr.Zero, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickSingleFolderAsync();
     }
-    public static async Task<StorageFolder> PickSingleFolderAsync(IntPtr windowHandle, IList<string> fileTypeFilter = null, PickerLocationId suggestedStartLocation = PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
+    public static async Task<StorageFolder> PickSingleFolderAsync(IntPtr windowHandle, IList<string> fileTypeFilter = null, Windows.Storage.Pickers.PickerLocationId suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.ComputerFolder, PickerViewMode pickerViewMode = PickerViewMode.Thumbnail)
     {
         return await FolderPicker(null, windowHandle, fileTypeFilter, suggestedStartLocation, pickerViewMode).PickSingleFolderAsync();
     }
