@@ -16,7 +16,7 @@ public class FilePicker
     public string? InitialDirectory { get; set; }
     public PickerLocationId SuggestedStartLocation { get; set; } = PickerLocationId.Unspecified;
     public string? Title { get; set; }
-    public Dictionary<string, List<string>> FileTypeChoices { get; set; } = new();
+    public Dictionary<string, IList<string>> FileTypeChoices { get; set; } = new();
     public bool ShowAllFilesOption { get; set; } = true;
 
     public string PickSingleFile(Microsoft.UI.Xaml.Window window) => PickSingleFile(WindowNative.GetWindowHandle(window));

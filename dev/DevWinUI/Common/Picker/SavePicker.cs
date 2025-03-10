@@ -16,7 +16,7 @@ public class SavePicker
     public string? InitialDirectory { get; set; }
     public PickerLocationId SuggestedStartLocation { get; set; } = PickerLocationId.Unspecified;
     public string? Title { get; set; }
-    public Dictionary<string, List<string>> FileTypeChoices { get; set; } = new();
+    public Dictionary<string, IList<string>> FileTypeChoices { get; set; } = new();
     public bool ShowAllFilesOption { get; set; } = true;
 
     public string? PickSaveFile(Microsoft.UI.Xaml.Window window) => PickSaveFile(WindowNative.GetWindowHandle(window));
