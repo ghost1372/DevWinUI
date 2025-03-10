@@ -8,8 +8,9 @@ namespace DevWinUI;
 [Experimental]
 public class FilePicker
 {
-    public PickerOptions Options { get; set; } = PickerOptions.None; 
+    public PickerOptions Options { get; set; } = PickerOptions.None;
 
+    public bool ShowDetailedExtension { get; set; } = true;
     public string? CommitButtonText { get; set; }
     public string? SuggestedFileName { get; set; }
     public string? DefaultFileExtension { get; set; }
@@ -105,8 +106,14 @@ public class FilePicker
 
             foreach (var kvp in FileTypeChoices)
             {
-                string extensions = string.Join(", ", kvp.Value);
-                string displayName = $"{kvp.Key} ({extensions})";
+                string displayName = kvp.Key;
+
+                if (ShowDetailedExtension)
+                {
+                    string extensions = string.Join(", ", kvp.Value);
+                    displayName = $"{kvp.Key} ({extensions})";
+                }
+
                 string spec = string.Join(";", kvp.Value);
                 filters.Add(new COMDLG_FILTERSPEC { pszName = (char*)Marshal.StringToHGlobalUni(displayName), pszSpec = (char*)Marshal.StringToHGlobalUni(spec) });
             }
