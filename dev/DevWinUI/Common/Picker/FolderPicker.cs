@@ -12,7 +12,7 @@ public class FolderPicker
     public string? CommitButtonText { get; set; }
     public string? SuggestedFileName { get; set; }
     public string? InitialDirectory { get; set; }
-    public PickerLocationId SuggestedStartLocation { get; set; } = PickerLocationId.Unspecified;
+    public Windows.Storage.Pickers.PickerLocationId SuggestedStartLocation { get; set; } = Windows.Storage.Pickers.PickerLocationId.Unspecified;
     public string? Title { get; set; }
 
     public string PickSingleFolder(Microsoft.UI.Xaml.Window window) => PickSingleFolder(WindowNative.GetWindowHandle(window));
@@ -73,7 +73,7 @@ public class FolderPicker
                 dialog->SetOkButtonLabel(CommitButtonText);
             }
 
-            if (SuggestedStartLocation != PickerLocationId.Unspecified)
+            if (SuggestedStartLocation != Windows.Storage.Pickers.PickerLocationId.Unspecified)
             {
                 InitialDirectory = PathHelper.GetKnownFolderPath(SuggestedStartLocation);
             }
