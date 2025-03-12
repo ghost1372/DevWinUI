@@ -4,10 +4,19 @@ namespace DevWinUI;
 
 public static partial class RuntimeHelper
 {
+    /// <summary>
+    /// Checks if the application is packaged or UnPackaged.
+    /// </summary>
+    /// <returns>Returns true if the application is packaged, otherwise false.</returns>
     public static bool IsPackaged()
     {
         return PackageHelper.IsPackaged;
     }
+
+    /// <summary>
+    /// Checks if the current application is running with administrative privileges.
+    /// </summary>
+    /// <returns>Returns true if the application is running as an administrator, otherwise false.</returns>
     public static bool IsAppRunningAsAdmin()
     {
         var identity = WindowsIdentity.GetCurrent();
@@ -15,6 +24,10 @@ public static partial class RuntimeHelper
         return principal.IsInRole(WindowsBuiltInRole.Administrator);
     }
 
+    /// <summary>
+    /// Checks if the current process is running with administrative privileges by examining the user's identity.
+    /// </summary>
+    /// <returns>Returns true if the user belongs to the Builtin Administrators group, otherwise false.</returns>
     public static bool IsCurrentProcessRunningAsAdmin()
     {
         var identity = WindowsIdentity.GetCurrent();
@@ -52,6 +65,10 @@ public static partial class RuntimeHelper
         }
     }
 
+    /// <summary>
+    /// Verifies if the current process is running with administrative privileges. Throws an exception if it is not.
+    /// </summary>
+    /// <exception cref="UnauthorizedAccessException">Thrown when the current process does not have elevated privileges.</exception>
     public static void VerifyCurrentProcessRunningAsAdmin()
     {
         if (!IsCurrentProcessRunningAsAdmin())

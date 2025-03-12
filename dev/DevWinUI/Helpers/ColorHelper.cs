@@ -1,6 +1,11 @@
 ﻿namespace DevWinUI;
 public static partial class ColorHelper
 {
+    /// <summary>
+    /// Converts a hexadecimal color string into a Color object, supporting both 6 and 8 character formats.
+    /// </summary>
+    /// <param name="hexColor">The hexadecimal string representation of a color, which may include an alpha channel.</param>
+    /// <returns>A Color object representing the specified hexadecimal color.</returns>
     public static Color GetColorFromHex(string hexColor)
     {
         hexColor = hexColor.Replace("#", string.Empty);
@@ -25,11 +30,22 @@ public static partial class ColorHelper
 
         return Color.FromArgb(a, r, g, b);
     }
+
+    /// <summary>
+    /// Converts a color represented in RGB format to an unsigned integer value.
+    /// </summary>
+    /// <param name="color">The input color is represented in terms of its red, green, and blue components.</param>
+    /// <returns>An unsigned integer that encodes the color in a specific bit format.</returns>
     public static uint ColorToUInt(Color color)
     {
         return (uint)((color.B << 16) | (color.G << 8) | (color.R << 0));
     }
 
+    /// <summary>
+    /// Converts a color object into its hexadecimal string representation.
+    /// </summary>
+    /// <param name="color">The color object containing alpha, red, green, and blue components.</param>
+    /// <returns>A string formatted as a hexadecimal color code.</returns>
     public static string GetHexFromColor(Color color)
     {
         return string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}",
@@ -39,6 +55,11 @@ public static partial class ColorHelper
                      color.B);
     }
 
+    /// <summary>
+    /// Creates a SolidColorBrush from a hexadecimal color string.
+    /// </summary>
+    /// <param name="hex">The hexadecimal string represents a color, which may include an alpha channel.</param>
+    /// <returns>A SolidColorBrush object representing the specified color.</returns>
     public static SolidColorBrush GetSolidColorBrush(string hex)
     {
         hex = hex.Replace("#", string.Empty);

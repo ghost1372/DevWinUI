@@ -6,6 +6,15 @@ public static partial class UpdateHelper
 {
     private const string GITHUB_API_RELEASES = "https://api.github.com/repos/{0}/{1}/releases";
 
+    /// <summary>
+    /// Checks for updates to a specified repository and returns information about the latest stable and pre-release
+    /// versions.
+    /// </summary>
+    /// <param name="username">Identifies the user or organization that owns the repository.</param>
+    /// <param name="repository">Specifies the name of the repository to check for updates.</param>
+    /// <param name="currentVersion">Represents the current version of the software to compare against available releases.</param>
+    /// <returns>Returns a tuple containing information about the latest stable and pre-release updates.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the username or repository is null or empty.</exception>
     public static async Task<(UpdateInfo StableRelease, UpdateInfo PreRelease)> CheckUpdateAsync(string username, string repository, Version currentVersion = null)
     {
         if (string.IsNullOrEmpty(username))

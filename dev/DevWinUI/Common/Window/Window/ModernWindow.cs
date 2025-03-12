@@ -13,8 +13,20 @@ public partial class ModernWindow : Microsoft.UI.Xaml.Window
     public event WindowMessageEventHandler? WindowMessageReceived;
     public event WindowMessageEventHandler? WindowInputNonClientPointerSourceMessageReceived;
 
+    /// <summary>
+    /// Brings the window to the front of the Z-order, making it the active window.
+    /// </summary>
+    /// <returns>Returns true if the window was successfully brought to the front, otherwise false.</returns>
     public bool BringToFront() => WindowHelper.SetForegroundWindow(Hwnd);
+
+    /// <summary>
+    /// Switches the focus to the current window.
+    /// </summary>
     public void SwitchToThisWindow() => WindowHelper.SwitchToThisWindow(Hwnd);
+
+    /// <summary>
+    /// Reactivates window.
+    /// </summary>
     public void ReActivateWindow() => WindowHelper.ReActivateWindow(Hwnd);
 
     public ModernWindow()

@@ -1,12 +1,27 @@
-﻿using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public static class MessageBox
 {
+    /// <summary>
+    /// Displays a message box with specified options and returns the user's response.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <param name="messageBoxStyle">Determines the style and buttons that will be available in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(Microsoft.UI.Xaml.Window window, string message, string title, MessageBoxStyle messageBoxStyle)
     {
         return Show(WindowNative.GetWindowHandle(window), message, title, messageBoxStyle);
     }
+
+    /// <summary>
+    /// Displays a message box with specified options and returns the user's response.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <param name="messageBoxStyle">Determines the style and buttons that will be available in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(IntPtr hwnd, string message, string title, MessageBoxStyle messageBoxStyle)
     {
         Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE mbStyle = 0;
@@ -120,81 +135,210 @@ public static class MessageBox
         }
     }
 
+    /// <summary>
+    /// Displays a message box with a specified message and title in the context of a given window.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(Microsoft.UI.Xaml.Window window, string message, string title)
     {
         return Show(WindowNative.GetWindowHandle(window), message, title);
     }
+
+    /// <summary>
+    /// Displays a message box with an OK button to the user.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok);
     }
 
+    /// <summary>
+    /// Displays a message box in the specified window with a given message and style.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="messageBoxStyle">Determines the style and buttons that will be available in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(Microsoft.UI.Xaml.Window window, string message, MessageBoxStyle messageBoxStyle)
     {
         return Show(WindowNative.GetWindowHandle(window), message, messageBoxStyle);
     }
+
+    /// <summary>
+    /// Displays a message box with specified text and style. It also includes the product name in the message box.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="messageBoxStyle">Determines the style and buttons that will be available in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(IntPtr hwnd, string message, MessageBoxStyle messageBoxStyle)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, messageBoxStyle);
     }
 
+    /// <summary>
+    /// Displays a message box in the specified window with a given message.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult Show(Microsoft.UI.Xaml.Window window, string message)
     {
         return Show(WindowNative.GetWindowHandle(window), message);
     }
+
+    /// <summary>
+    /// Displays a message box with a specified message and an OK button.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the message box interaction.</returns>
     public static MessageBoxResult Show(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok);
     }
 
+    /// <summary>
+    /// Displays an information message box in the specified window.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the message box interaction.</returns>
     public static MessageBoxResult ShowInformation(Microsoft.UI.Xaml.Window window, string message, string title)
     {
         return ShowInformation(WindowNative.GetWindowHandle(window), message, title);
     }
+
+    /// <summary>
+    /// Displays an information message box with an OK button and an information icon.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowInformation(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
     }
 
+    /// <summary>
+    /// Displays an information message box in the specified window.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowInformation(Microsoft.UI.Xaml.Window window, string message)
     {
         return ShowInformation(WindowNative.GetWindowHandle(window), message);
     }
+
+    /// <summary>
+    /// Displays an information message box to the user with an OK button and an information icon.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowInformation(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
     }
 
+    /// <summary>
+    /// Displays an error message in a message box associated with a specified window.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowError(Microsoft.UI.Xaml.Window window, string message, string title)
     {
         return ShowError(WindowNative.GetWindowHandle(window), message, title);
     }
+
+    /// <summary>
+    /// Displays an error message box with a specified message and title.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowError(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconError);
     }
+
+    /// <summary>
+    /// Displays an error message in a message box associated with a specified window.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the message box interaction.</returns>
     public static MessageBoxResult ShowError(Microsoft.UI.Xaml.Window window, string message)
     {
         return ShowError(WindowNative.GetWindowHandle(window), message);
     }
+
+    /// <summary>
+    /// Displays an error message box to the user with an OK button and an error icon.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowError(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconError);
     }
 
+    /// <summary>
+    /// Displays a warning message box in the specified window. It provides a way to show a message with a title to the
+    /// user.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowWarning(Microsoft.UI.Xaml.Window window, string message, string title)
     {
         return ShowWarning(WindowNative.GetWindowHandle(window), message, title);
     }
+
+    /// <summary>
+    /// Displays a warning message box with an OK button and a warning icon.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <param name="title">Sets the title of the message box window.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowWarning(IntPtr hwnd, string message, string title)
     {
         return Show(hwnd, message, title, MessageBoxStyle.Ok | MessageBoxStyle.IconWarning);
     }
 
+    /// <summary>
+    /// Displays a warning message box in the specified window. It utilizes the window handle to present the message.
+    /// </summary>
+    /// <param name="window">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowWarning(Microsoft.UI.Xaml.Window window, string message)
     {
         return ShowWarning(WindowNative.GetWindowHandle(window), message);
     }
+
+    /// <summary>
+    /// Displays a warning message box to the user with an OK button and a warning icon.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window of the message box.</param>
+    /// <param name="message">Text that will be shown in the message box.</param>
+    /// <returns>Returns the result of the user's interaction with the message box.</returns>
     public static MessageBoxResult ShowWarning(IntPtr hwnd, string message)
     {
         return Show(hwnd, message, ProcessInfoHelper.ProductName, MessageBoxStyle.Ok | MessageBoxStyle.IconWarning);

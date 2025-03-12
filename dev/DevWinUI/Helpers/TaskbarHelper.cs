@@ -48,11 +48,23 @@ public static partial class TaskbarHelper
     private static ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
     private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
 
+    /// <summary>
+    /// Sets the progress state of a specified window in the taskbar if supported.
+    /// </summary>
+    /// <param name="windowHandle">Identifies the window for which the progress state is being set.</param>
+    /// <param name="taskbarState">Specifies the desired progress state to be applied to the window.</param>
     public static void SetProgressState(IntPtr windowHandle, TaskbarStates taskbarState)
     {
         if (taskbarSupported) taskbarInstance.SetProgressState(windowHandle, taskbarState);
     }
 
+    /// <summary>
+    /// Sets the progress value of a taskbar item for a specified window. It updates the visual representation of
+    /// progress in the taskbar.
+    /// </summary>
+    /// <param name="windowHandle">Identifies the window for which the taskbar progress is being set.</param>
+    /// <param name="progressValue">Represents the current progress value to be displayed in the taskbar.</param>
+    /// <param name="progressMax">Indicates the maximum value of progress to determine the completion percentage.</param>
     public static void SetProgressValue(IntPtr windowHandle, double progressValue, double progressMax)
     {
         if (taskbarSupported) taskbarInstance.SetProgressValue(windowHandle, (ulong)progressValue, (ulong)progressMax);

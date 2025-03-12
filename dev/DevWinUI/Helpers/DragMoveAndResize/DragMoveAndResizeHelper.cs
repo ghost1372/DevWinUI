@@ -4,6 +4,11 @@ using Microsoft.UI.Xaml.Input;
 namespace DevWinUI;
 public static partial class DragMoveAndResizeHelper
 {
+    /// <summary>
+    /// Sets up drag movement functionality for a specified window and UI element.
+    /// </summary>
+    /// <param name="window">The window where the drag movement will be applied.</param>
+    /// <param name="element">The UI element that will respond to drag movement actions.</param>
     public static void SetDragMove(this Microsoft.UI.Xaml.Window window, UIElement element)
     {
         SetDragMove(window, element, new DragMoveAndResizeInfo(DragMoveAndResizeMode.DragMove));

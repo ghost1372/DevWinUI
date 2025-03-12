@@ -35,11 +35,20 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Initializes a new instance of the ModernSystemMenu with a specified MenuFlyout.
+    /// </summary>
+    /// <param name="window">The window where the modern system menu will be displayed.</param>
+    /// <param name="menuFlyout">The menu that will be shown as a flyout in the title bar.</param>
     public ModernSystemMenu(Microsoft.UI.Xaml.Window window, MenuFlyout menuFlyout) : this(window)
     {
         titleBarMenuFlyout = menuFlyout;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the ModernSystemMenu.
+    /// </summary>
+    /// <param name="window">The window instance for which the modern system menu is being created.</param>
     public ModernSystemMenu(Microsoft.UI.Xaml.Window window)
     {
         this.window = window;
@@ -122,7 +131,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
             Icon = new FontIcon { Glyph = GeneralHelper.GetGlyph("E922") },
             Command = MaximizeCommand
         };
-        //
+
         var closeItem = new MenuFlyoutItem
         {
             Style = menuFlyoutItemStyle,

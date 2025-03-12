@@ -5,6 +5,9 @@ namespace DevWinUI;
 
 public static partial class StartupHelper
 {
+    /// <summary>
+    /// Represents the startup tag for an unpackaged application. It is set to the string '/onBoot'.
+    /// </summary>
     public static string UnPackagedAppStartupTag { get; } = "/onBoot";
 
     private static readonly string UnPackagedAppRegistryKey = ProcessInfoHelper.ProductName;

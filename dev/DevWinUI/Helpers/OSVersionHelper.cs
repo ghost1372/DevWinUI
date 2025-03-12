@@ -61,6 +61,13 @@ public static partial class OSVersionHelper
     /// </summary>
     public static bool IsWindows11_26100_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 26100, OSVersion.Revision);
 
+    /// <summary>
+    /// Retrieves the operating system version as a Version object, optionally using the registry for the revision
+    /// number.
+    /// </summary>
+    /// <param name="useRegistryForRevision">Determines whether to fetch the revision number from the system registry.</param>
+    /// <returns>Returns a Version object representing the OS version, including major, minor, build, and revision numbers.</returns>
+    /// <exception cref="Win32Exception">Thrown when the call to retrieve the OS version fails.</exception>
     public static Version GetOSVersion(bool useRegistryForRevision = true)
     {
         var osv = new OSVERSIONINFOW

@@ -1,6 +1,12 @@
 ﻿namespace DevWinUI;
 public partial class PathHelper
 {
+    /// <summary>
+    /// Retrieves the file path of a specified file asynchronously based on the given path type.
+    /// </summary>
+    /// <param name="filePath">Specifies the location of the file to be accessed.</param>
+    /// <param name="pathType">Indicates whether the file path is relative or absolute.</param>
+    /// <returns>Returns the path of the file as a string.</returns>
     public static async Task<string> GetFilePath(string filePath, PathType pathType = PathType.Relative)
     {
         var file = await FileHelper.GetStorageFile(filePath, pathType);
@@ -71,6 +77,11 @@ public partial class PathHelper
         }
     }
 
+    /// <summary>
+    /// Retrieves the file system path for a known folder based on the specified location identifier.
+    /// </summary>
+    /// <param name="pickerLocationId">Specifies the location of the known folder to retrieve the path for.</param>
+    /// <returns>Returns the path as a string, or an empty string if the path cannot be retrieved.</returns>
     public static string GetKnownFolderPath(Windows.Storage.Pickers.PickerLocationId pickerLocationId)
     {
         Guid folderId;

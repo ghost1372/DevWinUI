@@ -58,6 +58,12 @@ public partial class GeneralHelper
 
         return false;
     }
+
+    /// <summary>
+    /// Retrieves the application data for a packaged app. If the app is not packaged, an exception is thrown.
+    /// </summary>
+    /// <returns>Returns the default application data for the current app.</returns>
+    /// <exception cref="NotImplementedException">Thrown when attempting to access application data for an unpackaged app, which is not yet implemented.</exception>
     public static Microsoft.Windows.Storage.ApplicationData GetApplicationData()
     {
         if (PackageHelper.IsPackaged)
@@ -71,6 +77,11 @@ public partial class GeneralHelper
         }
     }
 
+    /// <summary>
+    /// Changes the cursor appearance for a specified UI element.
+    /// </summary>
+    /// <param name="uiElement">The visual component whose cursor appearance will be modified.</param>
+    /// <param name="cursor">The new cursor style to be applied to the specified UI element.</param>
     public static void ChangeCursor(UIElement uiElement, InputCursor cursor)
     {
         Type type = typeof(UIElement);
@@ -121,6 +132,12 @@ public partial class GeneralHelper
         return 0.0;
     }
 
+    /// <summary>
+    /// Enables sound for the elements
+    /// mode.
+    /// </summary>
+    /// <param name="elementSoundPlayerState">Specifies the audio state to be set for the element sound player.</param>
+    /// <param name="withSpatial">Determines whether spatial audio is enabled or disabled.</param>
     public static void EnableSound(ElementSoundPlayerState elementSoundPlayerState = ElementSoundPlayerState.On, bool withSpatial = false)
     {
         ElementSoundPlayer.State = elementSoundPlayerState;
@@ -128,6 +145,13 @@ public partial class GeneralHelper
         ElementSoundPlayer.SpatialAudioMode = !withSpatial ? ElementSpatialAudioMode.Off : ElementSpatialAudioMode.On;
     }
 
+    /// <summary>
+    /// Retrieves an enumeration value from a string representation. It requires the generic type to be an enum.
+    /// </summary>
+    /// <typeparam name="TEnum">The generic type must be an enumeration type to convert the string into its corresponding enum value.</typeparam>
+    /// <param name="text">The string representation of the enumeration value to be converted.</param>
+    /// <returns>The corresponding enumeration value of the specified type.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when the generic type parameter is not an enumeration.</exception>
     public static TEnum GetEnum<TEnum>(string text) where TEnum : struct
     {
         return !typeof(TEnum).GetTypeInfo().IsEnum
@@ -146,6 +170,11 @@ public partial class GeneralHelper
         };
     }
 
+    /// <summary>
+    /// Retrieves the corresponding element theme based on the provided index.
+    /// </summary>
+    /// <param name="themeIndex">The index used to determine which theme to return.</param>
+    /// <returns>Returns the element theme associated with the specified index.</returns>
     public static ElementTheme GetElementThemeEnum(int themeIndex)
     {
         return themeIndex switch
@@ -190,28 +219,51 @@ public partial class GeneralHelper
         }
     }
 
-    public static void SetApplicationLayoutRTL(IntPtr windowHandle)
+    /// <summary>
+    /// Sets the application layout to right-to-left for a specified window.
+    /// </summary>
+    /// <param name="hwnd"></param>
+    public static void SetApplicationLayoutRTL(IntPtr hwnd)
     {
-        int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
-        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTRTL);
+        int exstyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+        PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTRTL);
     }
+
+    /// <summary>
+    /// Sets the application layout to right-to-left for a specified window.
+    /// </summary>
+    /// <param name="window"></param>
     public static void SetApplicationLayoutRTL(Microsoft.UI.Xaml.Window window)
     {
         IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         SetApplicationLayoutRTL(hWnd);
     }
 
-    public static void SetApplicationLayoutLTR(IntPtr windowHandle)
+    /// <summary>
+    /// Sets the application layout to left-to-right for a specified window.
+    /// </summary>
+    /// <param name="hwnd"></param>
+    public static void SetApplicationLayoutLTR(IntPtr hwnd)
     {
-        int exstyle = PInvoke.GetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
-        PInvoke.SetWindowLong(new HWND(windowHandle), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTLTR);
+        int exstyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+        PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exstyle | (int)NativeValues.WindowStyle.WS_EX_LAYOUTLTR);
     }
+
+    /// <summary>
+    /// Sets the application layout to left-to-right for the specified window.
+    /// </summary>
+    /// <param name="window"></param>
     public static void SetApplicationLayoutLTR(Microsoft.UI.Xaml.Window window)
     {
         IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         SetApplicationLayoutLTR(hWnd);
     }
 
+    /// <summary>
+    /// Decodes HTML-encoded strings into their plain text representation.
+    /// </summary>
+    /// <param name="text">The input string that may contain HTML-encoded characters.</param>
+    /// <returns>Returns the decoded string if changes were made; otherwise, returns the original string.</returns>
     public static string GetDecodedStringFromHtml(string text)
     {
         if (string.IsNullOrEmpty(text))

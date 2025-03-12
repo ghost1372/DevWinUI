@@ -17,11 +17,21 @@ public enum PanelTransitionCollection
 }
 public partial class PanelAttach
 {
+    /// <summary>
+    /// Retrieves the collection of transitions associated with a specified panel.
+    /// </summary>
+    /// <param name="obj">The dependency object from which to retrieve the transitions.</param>
+    /// <returns>A collection of transitions related to the specified dependency object.</returns>
     public static PanelTransitionCollection GetChildrenTransitions(DependencyObject obj)
     {
         return (PanelTransitionCollection)obj.GetValue(ChildrenTransitionsProperty);
     }
 
+    /// <summary>
+    /// Sets the collection of transitions for the children of a specified panel.
+    /// </summary>
+    /// <param name="obj">The target dependency object whose children will have transitions applied.</param>
+    /// <param name="value">The collection of transitions to be set for the children of the specified dependency object.</param>
     public static void SetChildrenTransitions(DependencyObject obj, PanelTransitionCollection value)
     {
         obj.SetValue(ChildrenTransitionsProperty, value);

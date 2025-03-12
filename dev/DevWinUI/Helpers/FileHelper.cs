@@ -68,6 +68,11 @@ public partial class FileHelper
         return s;
     }
 
+    /// <summary>
+    /// Converts a file size in bytes to a human-readable format with appropriate units.
+    /// </summary>
+    /// <param name="size">The input value represents the size in bytes to be converted.</param>
+    /// <returns>A formatted string that displays the size along with the appropriate unit.</returns>
     public static string GetFileSize(long size)
     {
         string[] sizeSuffixes = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
@@ -91,6 +96,13 @@ public partial class FileHelper
             size < 0 ? "-" : null, normSize, sizeSuffixes[iUnit]);
     }
 
+    /// <summary>
+    /// Retrieves a StorageFile based on the specified file path and path type, supporting both relative and absolute
+    /// paths.
+    /// </summary>
+    /// <param name="filePath">Specifies the location of the file to be retrieved.</param>
+    /// <param name="pathType">Indicates whether the file path is relative to the application or an absolute path.</param>
+    /// <returns>Returns the requested storage file or null if not found.</returns>
     public static async Task<StorageFile> GetStorageFile(string filePath, PathType pathType = PathType.Relative)
     {
         StorageFile file = null;

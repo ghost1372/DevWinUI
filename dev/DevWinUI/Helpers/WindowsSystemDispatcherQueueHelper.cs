@@ -4,6 +4,10 @@ public class WindowsSystemDispatcherQueueHelper
 {
     public IntPtr m_dispatcherQueueController = IntPtr.Zero;
 
+    /// <summary>
+    /// Ensures a Windows system dispatcher queue controller is created if one does not already exist for the current
+    /// thread. Initializes the controller with specific options if necessary.
+    /// </summary>
     public void EnsureWindowsSystemDispatcherQueueController()
     {
         if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)

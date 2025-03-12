@@ -1,6 +1,4 @@
-﻿using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class RainbowFrame : IRainbowFrame
 {
     private uint _defaultColor = 0xFFFFFFFF;
@@ -14,14 +12,17 @@ public partial class RainbowFrame : IRainbowFrame
     {
 
     }
+
     public RainbowFrame(Microsoft.UI.Xaml.Window window)
     {
         Initialize(window);
     }
+
     public RainbowFrame(IntPtr hwnd)
     {
         Initialize(hwnd);
     }
+
     public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval, int effectSpeed)
     {
         InternalInitialize(window, _hwnd, effectSpeed, frameUpdateInterval);
@@ -94,6 +95,10 @@ public partial class RainbowFrame : IRainbowFrame
         InitializeEffectSpeed(effectSpeed);
     }
 
+    /// <summary>
+    /// Resets the frame color to the default color. Stops the frame timer and sets it to null before changing the frame
+    /// color.
+    /// </summary>
     public void ResetFrameColorToDefault()
     {
         _frameTimer?.Stop();
@@ -101,6 +106,10 @@ public partial class RainbowFrame : IRainbowFrame
         ChangeFrameColor(_defaultColor);
     }
 
+    /// <summary>
+    /// Changes the color of a frame and stops any ongoing frame timer. It also resets the frame timer to null.
+    /// </summary>
+    /// <param name="color">Specifies the new color to be applied to the frame.</param>
     public void ChangeFrameColor(Color color)
     {
         _frameTimer?.Stop();
@@ -108,6 +117,10 @@ public partial class RainbowFrame : IRainbowFrame
         ChangeFrameColor(ColorHelper.ColorToUInt(color));
     }
 
+    /// <summary>
+    /// Changes the border color of a window if the operating system is Windows 11 version 22000 or greater.
+    /// </summary>
+    /// <param name="color">Specifies the new border color for the window.</param>
     public void ChangeFrameColor(uint color)
     {
         try
@@ -125,6 +138,9 @@ public partial class RainbowFrame : IRainbowFrame
         }
     }
 
+    /// <summary>
+    /// Initiates a rainbow frame effect by starting a timer that updates the frame color at specified intervals.
+    /// </summary>
     public void StartRainbowFrame()
     {
         _started = DateTimeOffset.Now;
@@ -138,6 +154,9 @@ public partial class RainbowFrame : IRainbowFrame
         _frameTimer.Start();
     }
 
+    /// <summary>
+    /// Stops Timer.
+    /// </summary>
     public void StopRainbowFrame()
     {
         _frameTimer?.Stop();

@@ -7,7 +7,16 @@ public partial class WindowHelper
     internal static List<Win32Window> processWindowList = new List<Win32Window>();
     internal static Process currentProcess;
     internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
+
+    /// <summary>
+    /// Holds a collection of currently active windows in the application.
+    /// </summary>
     public static ObservableCollection<Microsoft.UI.Xaml.Window> ActiveWindows { get; } = new();
+
+    /// <summary>
+    /// Tracks a specified window and removes it from the active list when closed.
+    /// </summary>
+    /// <param name="window">The window to be tracked for its closed event.</param>
     public static void TrackWindow(Microsoft.UI.Xaml.Window window)
     {
         window.Closed += (sender, args) =>
@@ -17,10 +26,16 @@ public partial class WindowHelper
 
         ActiveWindows.AddIfNotExists(window);
     }
+
+    /// <summary>
+    /// Removes a specified window from the active windows list.
+    /// </summary>
+    /// <param name="window">The window to be removed from the active windows collection.</param>
     public static void RemoveWindowFromTrack(Microsoft.UI.Xaml.Window window)
     {
         ActiveWindows.DeleteIfExists(window);
     }
+
     public static Microsoft.UI.Xaml.Window GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
@@ -35,6 +50,11 @@ public partial class WindowHelper
         }
         return null;
     }
+
+    /// <summary>
+    /// Switches the focus to a specified window if it is not null.
+    /// </summary>
+    /// <param name="window">The parameter represents a window that will be focused if it exists.</param>
     public static void SwitchToThisWindow(Microsoft.UI.Xaml.Window window)
     {
         if (window != null)
@@ -42,36 +62,62 @@ public partial class WindowHelper
             SwitchToThisWindow(new HWND(WindowNative.GetWindowHandle(window)));
         }
     }
-    public static void SwitchToThisWindow(IntPtr windowHandle)
+
+    /// <summary>
+    /// Switches the focus to a specified window identified by its handle.
+    /// </summary>
+    /// <param name="hwnd">Identifies the window to which the focus will be switched.</param>
+    public static void SwitchToThisWindow(IntPtr hwnd)
     {
-        PInvoke.SwitchToThisWindow(new HWND(windowHandle), true);
+        PInvoke.SwitchToThisWindow(new HWND(hwnd), true);
     }
 
+    /// <summary>
+    /// Reactivates a specified window.
+    /// </summary>
+    /// <param name="window">The window to be reactivated.</param>
     public static void ReActivateWindow(Microsoft.UI.Xaml.Window window)
     {
         var hwnd = WindowNative.GetWindowHandle(window);
         ReActivateWindow(hwnd);
     }
-    public static void ReActivateWindow(IntPtr windowHandle)
+
+    /// <summary>
+    /// Reactivates a specified window.
+    /// before sending the messages.
+    /// </summary>
+    /// <param name="hwnd"></param>
+    public static void ReActivateWindow(IntPtr hwnd)
     {
         var activeWindow = PInvoke.GetActiveWindow();
-        var hwnd = new HWND(windowHandle);
-        if (hwnd == activeWindow)
+        var handle = new HWND(hwnd);
+        if (handle == activeWindow)
         {
-            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
-            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(handle, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(handle, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
         }
         else
         {
-            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
-            PInvoke.SendMessage(hwnd, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(handle, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_ACTIVE, IntPtr.Zero);
+            PInvoke.SendMessage(handle, (int)NativeValues.WindowMessage.WM_ACTIVATE, (int)NativeValues.WindowMessage.WA_INACTIVE, IntPtr.Zero);
         }
     }
 
+    /// <summary>
+    /// Sets the corner radius of a specified window.
+    /// </summary>
+    /// <param name="window">Specifies the window whose corner radius will be modified.</param>
+    /// <param name="cornerPreference">Indicates the preferred style for the window corners.</param>
     public static void SetWindowCornerRadius(Microsoft.UI.Xaml.Window window, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
     {
         SetWindowCornerRadius(WindowNative.GetWindowHandle(window), cornerPreference);
     }
+
+    /// <summary>
+    /// Sets the corner radius of a specified window.
+    /// </summary>
+    /// <param name="hwnd">Identifies the window for which the corner radius will be set.</param>
+    /// <param name="cornerPreference">Specifies the desired corner style for the window.</param>
     public static void SetWindowCornerRadius(IntPtr hwnd, NativeValues.DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
     {
         if (OSVersionHelper.IsWindows11_22000_OrGreater)
@@ -83,11 +129,23 @@ public partial class WindowHelper
             }
         }
     }
+
+    /// <summary>
+    /// Retrieves the corner radius preference for a specified window.
+    /// </summary>
+    /// <param name="window">The window from which the corner radius preference is obtained.</param>
+    /// <returns>Returns the corner radius preference as a NativeValues.DWM_WINDOW_CORNER_PREFERENCE value.</returns>
     public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(Microsoft.UI.Xaml.Window window)
     {
         var hwnd = WindowNative.GetWindowHandle(window);
         return GetWindowCornerRadius(hwnd);
     }
+
+    /// <summary>
+    /// Retrieves the corner radius preference of a specified window.
+    /// </summary>
+    /// <param name="hwnd">The handle of the window for which the corner radius preference is being retrieved.</param>
+    /// <returns>Returns the corner radius preference or a default value if the retrieval fails.</returns>
     public static NativeValues.DWM_WINDOW_CORNER_PREFERENCE GetWindowCornerRadius(IntPtr hwnd)
     {
         uint cornerPreference = 0;
@@ -102,7 +160,11 @@ public partial class WindowHelper
 
         return NativeValues.DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DEFAULT;
     }
-    
+
+    /// <summary>
+    /// Retrieves a read-only list of all top-level windows currently open in the system.
+    /// </summary>
+    /// <returns>Returns an IReadOnlyList of Win32Window objects representing the top-level windows.</returns>
     public static IReadOnlyList<Win32Window> GetTopLevelWindows()
     {
         unsafe
@@ -123,6 +185,11 @@ public partial class WindowHelper
         }
     }
 
+    /// <summary>
+    /// Retrieves a read-only list of windows associated with the current process. It enumerates all top-level windows
+    /// and filters them by the current process ID.
+    /// </summary>
+    /// <returns>Returns an IReadOnlyList of Win32Window objects representing the windows of the current process.</returns>
     public static IReadOnlyList<Win32Window> GetProcessWindowList()
     {
         unsafe
@@ -148,6 +215,11 @@ public partial class WindowHelper
         }
     }
 
+    /// <summary>
+    /// Retrieves the title text of a specified window.
+    /// </summary>
+    /// <param name="hwnd">Identifies the window from which to retrieve the title text.</param>
+    /// <returns>Returns the title text of the window as a string, or null if the operation fails.</returns>
     public static string GetWindowText(IntPtr hwnd)
     {
         const int MAX_Length = 1024;
@@ -168,6 +240,11 @@ public partial class WindowHelper
         return null;
     }
 
+    /// <summary>
+    /// Retrieves the class name of the window associated with the specified handle.
+    /// </summary>
+    /// <param name="hwnd">The handle of the window for which the class name is being retrieved.</param>
+    /// <returns>Returns the class name as a string or null if the operation fails.</returns>
     public static string GetClassName(IntPtr hwnd)
     {
         const int MAX_Length = 256;
@@ -188,6 +265,10 @@ public partial class WindowHelper
         return null;
     }
 
+    /// <summary>
+    /// Retrieves the current AppWindow using finding MainWindow.
+    /// </summary>
+    /// <returns>An AppWindow instance representing the current window.</returns>
     public static AppWindow GetCurrentAppWindow()
     {
         var tops = GetProcessWindowList();
@@ -199,11 +280,11 @@ public partial class WindowHelper
         return AppWindow.GetFromWindowId(windowId);
     }
 
+
     /// <summary>
-    /// Use XamlRoot
+    /// Retrieves the current AppWindow using XamlRoot method.
     /// </summary>
-    /// <param name="uIElement"></param>
-    /// <returns></returns>
+    /// <returns>An AppWindow instance representing the current window.</returns>
     public static AppWindow GetAppWindow(UIElement uIElement)
     {
         if (uIElement == null)
@@ -215,10 +296,9 @@ public partial class WindowHelper
     }
 
     /// <summary>
-    /// Use Microsoft.UI.Composition.Visual
+    /// Retrieves the current AppWindow using Microsoft.UI.Composition.Visual method.
     /// </summary>
-    /// <param name="uIElement"></param>
-    /// <returns></returns>
+    /// <returns>An AppWindow instance representing the current window.</returns>
     public static AppWindow GetAppWindow2(UIElement uIElement)
     {
         if (uIElement == null)
@@ -237,10 +317,9 @@ public partial class WindowHelper
     }
 
     /// <summary>
-    /// Use XamlRoot
+    /// Retrieves window handle from UIElement using XamlRoot method
     /// </summary>
-    /// <param name="uIElement"></param>
-    /// <returns></returns>
+    /// <returns>Return an IntPtr</returns>
     public static IntPtr GetWindowHandle(UIElement uIElement)
     {
         if (uIElement == null)
@@ -252,10 +331,9 @@ public partial class WindowHelper
     }
 
     /// <summary>
-    /// Use Microsoft.UI.Composition.Visual
+    /// Retrieves window handle from UIElement using Microsoft.UI.Composition.Visual method
     /// </summary>
-    /// <param name="uIElement"></param>
-    /// <returns></returns>
+    /// <returns>Return an IntPtr</returns>
     public static IntPtr GetWindowHandle2(UIElement uIElement)
     {
         if (uIElement == null)
@@ -274,10 +352,23 @@ public partial class WindowHelper
         return IntPtr.Zero;
     }
 
+    /// <summary>
+    /// Retrieves the current screen size.
+    /// </summary>
+    /// <returns>A tuple containing the width and height of the screen.</returns>
     public static (int, int) GetScreenSize()
             => (PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CXSCREEN), PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CYSCREEN));
 
+    /// <summary>
+    /// Removes the border and title bar from a specified window.
+    /// </summary>
+    /// <param name="window">The parameter represents the window from which the border and title bar will be removed.</param>
     public static void RemoveWindowBorderAndTitleBar(Microsoft.UI.Xaml.Window window) => RemoveWindowBorderAndTitleBar((nint)window.AppWindow.Id.Value);
+
+    /// <summary>
+    /// Removes the border and title bar from a specified window.
+    /// </summary>
+    /// <param name="hwnd"></param>
     public static void RemoveWindowBorderAndTitleBar(IntPtr hwnd)
     {
         var style = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
@@ -290,13 +381,29 @@ public partial class WindowHelper
         // Update the window's appearance
         PInvoke.SetWindowPos(new HWND(hwnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
     }
+
+    /// <summary>
+    /// Allows mouse clicks to pass through a transparent window.
+    /// </summary>
+    /// <param name="window">The window to be made click-through.</param>
     public static void MakeTransparentWindowClickThrough(Microsoft.UI.Xaml.Window window) => MakeTransparentWindowClickThrough((nint)window.AppWindow.Id.Value);
+
+    /// <summary>
+    /// Allows mouse clicks to pass through a transparent window.
+    /// </summary>
+    /// <param name="hwnd"></param>
     public static void MakeTransparentWindowClickThrough(IntPtr hwnd)
     {
         var currentStyle = PInvoke.GetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         PInvoke.SetWindowLong(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, currentStyle | (int)NativeValues.WindowStyle.WS_EX_LAYERED | (int)NativeValues.WindowStyle.WS_EX_TRANSPARENT);
     }
 
+    /// <summary>
+    /// Resizes and centers a window based on a specified percentage of the available work area.
+    /// </summary>
+    /// <param name="window">The window to be resized and centered within the available work area.</param>
+    /// <param name="percentage">Indicates the size of the window as a percentage of the work area dimensions.</param>
+    /// <exception cref="ArgumentException">Thrown when the percentage is less than or equal to 0 or greater than 100.</exception>
     public static void ResizeAndCenterWindowToPercentageOfWorkArea(Microsoft.UI.Xaml.Window window, double percentage)
     {
         // Validate the percentage
@@ -319,26 +426,82 @@ public partial class WindowHelper
         window.AppWindow.MoveAndResize(new RectInt32(newX, newY, newWidth, newHeight));
     }
 
+    /// <summary>
+    /// Sets the owner of a child window to a specified parent window.
+    /// </summary>
+    /// <param name="parentWindow">The main window that will own the child window.</param>
+    /// <param name="childWindow">The window that will be owned by the specified parent.</param>
     public static void SetWindowOwner(Microsoft.UI.Xaml.Window parentWindow, Microsoft.UI.Xaml.Window childWindow) => SetWindowOwner(WindowNative.GetWindowHandle(parentWindow), WindowNative.GetWindowHandle(childWindow));
+
+    /// <summary>
+    /// Sets the owner of a child window to a specified parent window.
+    /// </summary>
+    /// <param name="parentHwnd">The main window that will own the child window.</param>
+    /// <param name="childHwnd">The window that will be owned by the specified parent.</param>
     public static void SetWindowOwner(IntPtr parentHwnd, IntPtr childHwnd)
     {
         NativeMethods.SetWindowLong(childHwnd, -8, parentHwnd);
     }
 
+    /// <summary>
+    /// Locates a window by its class name.
+    /// </summary>
+    /// <param name="hwnd">Specifies the handle to the parent window to search within.</param>
+    /// <param name="lpszClass">Defines the class name of the window to be found.</param>
+    /// <returns>Returns the handle to the found window or zero if not found.</returns>
     public static IntPtr FindWindow(IntPtr hwnd, string lpszClass)
     {
         return PInvoke.FindWindowEx(new HWND(hwnd), HWND.Null, lpszClass, null);
     }
+
+    /// <summary>
+    /// Brings the specified window to the front and makes it the active window.
+    /// </summary>
+    /// <param name="window">The window to be activated and brought to the foreground.</param>
+    /// <returns>Returns true if the operation was successful, otherwise false.</returns>
     public static bool SetForegroundWindow(Microsoft.UI.Xaml.Window window) => SetForegroundWindow(WindowNative.GetWindowHandle(window));
 
+    /// <summary>
+    /// Sets the specified window to the foreground, making it the active window. This can bring a window to the front
+    /// of other windows.
+    /// </summary>
+    /// <param name="hwnd"></param>
+    /// <returns>Returns true if the operation was successful, otherwise false.</returns>
     public static bool SetForegroundWindow(IntPtr hwnd)
     {
         return PInvoke.SetForegroundWindow(new HWND(hwnd));
     }
 
+    /// <summary>
+    /// Centers the specified window on the screen.
+    /// </summary>
+    /// <param name="window">The window to be centered on the screen.</param>
+    /// <returns>Returns true if the operation was successful, otherwise false.</returns>
     public static bool CenterOnScreen(Microsoft.UI.Xaml.Window window) => CenterOnScreen(WindowNative.GetWindowHandle(window));
+
+    /// <summary>
+    /// Centers the specified window on the screen.
+    /// </summary>
+    /// <param name="window">The window to be centered on the screen.</param>
+    /// <param name="width">Defines the desired width of the window for centering purposes.</param>
+    /// <param name="height">Defines the desired height of the window for centering purposes.</param>
+    /// <returns>Returns a boolean indicating whether the window was successfully centered.</returns>
     public static bool CenterOnScreen(Microsoft.UI.Xaml.Window window, double? width, double? height) => CenterOnScreen(WindowNative.GetWindowHandle(window), width, height);
+
+    /// <summary>
+    /// Centers the specified window on the screen.
+    /// </summary>
+    /// <param name="hwnd">The handle of the window to be centered on the screen.</param>
+    /// <returns>Returns true if the window was successfully centered.</returns>
     public static bool CenterOnScreen(IntPtr hwnd) => CenterOnScreen(hwnd, null, null);
+
+    /// <summary>
+    /// Centers the specified window on the screen.
+    /// </summary>
+    /// <param name="hwnd">The handle of the window to be centered on the screen.</param>
+    /// <param name="width">Specifies the desired width of the window; if not provided, the current width is used.</param>
+    /// <param name="height">Specifies the desired height of the window; if not provided, the current height is used.</param>
+    /// <returns>Indicates whether the window was successfully repositioned.</returns>
     public static bool CenterOnScreen(IntPtr hwnd, double? width, double? height)
     {
         var monitor = DisplayMonitorHelper.GetMonitorInfo(hwnd);

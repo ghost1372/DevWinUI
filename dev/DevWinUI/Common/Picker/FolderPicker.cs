@@ -15,26 +15,71 @@ public class FolderPicker
     public Windows.Storage.Pickers.PickerLocationId SuggestedStartLocation { get; set; } = Windows.Storage.Pickers.PickerLocationId.Unspecified;
     public string? Title { get; set; }
 
+    /// <summary>
+    /// Picks a single folder.
+    /// </summary>
+    /// <param name="window">Specifies the owner window.</param>
+    /// <returns>Returns the path of the selected folder or null if no folder was selected.</returns>
     public string PickSingleFolder(Microsoft.UI.Xaml.Window window) => PickSingleFolder(WindowNative.GetWindowHandle(window));
+
+    /// <summary>
+    /// Picks a single folder.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window.</param>
+    /// <returns>Returns the path of the selected folder or null if no folder was selected.</returns>
     public string PickSingleFolder(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, false);
         return folderPaths.Count > 0 ? folderPaths[0] : null;
     }
+
+    /// <summary>
+    /// Asynchronously picks a single folder.
+    /// </summary>
+    /// <param name="window">Specifies the owner window.</param>
+    /// <returns>Returns the selected folder as a StorageFolder or null if no folder was selected.</returns>
     public async Task<StorageFolder?> PickSingleFolderAsync(Microsoft.UI.Xaml.Window window) => await PickSingleFolderAsync(WindowNative.GetWindowHandle(window));
+
+    /// <summary>
+    /// Asynchronously picks a single folder.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window.</param>
+    /// <returns>Returns the selected folder as a StorageFolder or null if no folder was selected.</returns>
     public async Task<StorageFolder?> PickSingleFolderAsync(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, false);
         return folderPaths.Count > 0 ? await StorageFolder.GetFolderFromPathAsync(folderPaths[0]) : null;
     }
 
+    /// <summary>
+    /// Picks multiple folders.
+    /// </summary>
+    /// <param name="window">Specifies the owner window.</param>
+    /// <returns>Returns the path of the selected folders or null if no folder was selected.</returns>
     public List<string> PickMultipleFolders(Microsoft.UI.Xaml.Window window) => PickMultipleFolders(WindowNative.GetWindowHandle(window));
+
+    /// <summary>
+    /// Picks multiple folders.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window.</param>
+    /// <returns>Returns the path of the selected folders or null if no folder was selected.</returns>
     public List<string> PickMultipleFolders(IntPtr hwnd)
     {
         return OpenFolderDialog(hwnd, true);
     }
 
+    /// <summary>
+    /// Asynchronously picks multiple folders.
+    /// </summary>
+    /// <param name="window">Specifies the owner window.</param>
+    /// <returns>Returns A list of StorageFolder selected by the user.</returns>
     public async Task<List<StorageFolder>> PickMultipleFoldersAsync(Microsoft.UI.Xaml.Window window) => await PickMultipleFoldersAsync(WindowNative.GetWindowHandle(window));
+
+    /// <summary>
+    /// Asynchronously picks multiple folders.
+    /// </summary>
+    /// <param name="hwnd">Specifies the owner window.</param>
+    /// <returns>Returns A list of StorageFolder selected by the user.</returns>
     public async Task<List<StorageFolder>> PickMultipleFoldersAsync(IntPtr hwnd)
     {
         var folderPaths = OpenFolderDialog(hwnd, true);

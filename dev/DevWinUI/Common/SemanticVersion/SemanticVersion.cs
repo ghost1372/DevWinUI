@@ -184,6 +184,13 @@ public sealed class SemanticVersion : IFormattable, IComparable, IComparable<Sem
     static SemanticVersion ISpanParsable<SemanticVersion>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s);
     static bool ISpanParsable<SemanticVersion>.TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out SemanticVersion result) => TryParse(s, out result);
 
+    /// <summary>
+    /// Parses a string representation of a semantic version into a SemanticVersion.
+    /// </summary>
+    /// <param name="versionString">The string to be parsed into a semantic version format.</param>
+    /// <returns>Returns a SemanticVersion object if the parsing is successful.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the input string is null.</exception>
+    /// <exception cref="ArgumentException">Thrown when the input string is not a valid semantic version.</exception>
     public static SemanticVersion Parse(string versionString)
     {
         if (versionString is null)
@@ -195,6 +202,13 @@ public sealed class SemanticVersion : IFormattable, IComparable, IComparable<Sem
         throw new ArgumentException("The value is not a valid semantic version", nameof(versionString));
     }
 
+    /// <summary>
+    /// Parses a string representation of a semantic version into a SemanticVersion object. Throws an exception if the
+    /// input is invalid.
+    /// </summary>
+    /// <param name="versionString">The input string representing a semantic version that needs to be parsed.</param>
+    /// <returns>A SemanticVersion object that represents the parsed version.</returns>
+    /// <exception cref="ArgumentException">Thrown when the input string does not represent a valid semantic version.</exception>
     public static SemanticVersion Parse(ReadOnlySpan<char> versionString)
     {
         if (TryParse(versionString, out var result))
@@ -203,6 +217,12 @@ public sealed class SemanticVersion : IFormattable, IComparable, IComparable<Sem
         throw new ArgumentException("The value is not a valid semantic version", nameof(versionString));
     }
 
+    /// <summary>
+    /// Parses a version string into a SemanticVersion if valid.
+    /// </summary>
+    /// <param name="versionString">The string representation of the version to be parsed.</param>
+    /// <param name="version">Outputs the parsed SemanticVersion object if parsing is successful.</param>
+    /// <returns>Returns true if the parsing was successful, otherwise false.</returns>
     public static bool TryParse(ReadOnlySpan<char> versionString, [NotNullWhen(returnValue: true)] out SemanticVersion? version)
     {
         // 1.2.3

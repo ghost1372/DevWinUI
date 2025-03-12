@@ -3,6 +3,11 @@
 namespace DevWinUI;
 public static partial class SecurityHelper
 {
+    /// <summary>
+    /// Generates a random AES encryption key and initialization vector (IV). The key and IV are returned as byte
+    /// arrays.
+    /// </summary>
+    /// <returns>Returns a tuple containing the generated AES key and IV.</returns>
     public static (byte[] Key, byte[] IV) GenerateAESKeyAndIV()
     {
         using var aes = Aes.Create();
@@ -30,35 +35,90 @@ public static partial class SecurityHelper
         return encrypted;
     }
 
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the result as a byte array.
+    /// </summary>
+    /// <param name="plainText">The text to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">The key used for the AES encryption process.</param>
+    /// <param name="aes_IV">The initialization vector used to enhance the security of the encryption.</param>
+    /// <returns>A byte array containing the encrypted data.</returns>
     public static byte[] EncryptStringAesToByte(string plainText, string aes_Key, string aes_IV)
     {
         return EncryptStringAesBase(plainText, aes_Key, aes_IV, out _, out _, EncodeType.Hex);
     }
+
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the encrypted data as a byte array.
+    /// </summary>
+    /// <param name="plainText">The input string that needs to be encrypted.</param>
+    /// <param name="aes_Key">Outputs the AES encryption key used for the encryption process.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used in the AES encryption.</param>
+    /// <returns>A byte array containing the encrypted data.</returns>
     public static byte[] EncryptStringAesToByte(string plainText, out string aes_Key, out string aes_IV)
     {
         return EncryptStringAesBase(plainText, null, null, out aes_Key, out aes_IV, EncodeType.Hex);
     }
 
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the result as a byte array.
+    /// </summary>
+    /// <param name="plainText">The text to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">The key used for the AES encryption process.</param>
+    /// <param name="aes_IV">The initialization vector used to enhance the security of the encryption.</param>
+    /// <param name="encodeType">Specifies the encoding format for the encrypted output.</param>
+    /// <returns>A byte array containing the encrypted data.</returns>
     public static byte[] EncryptStringAesToByte(string plainText, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         return EncryptStringAesBase(plainText, aes_Key, aes_IV, out _, out _, encodeType);
     }
+
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the encrypted data as a byte array.
+    /// </summary>
+    /// <param name="plainText">The text to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">Outputs the AES encryption key used for the encryption process.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used in the AES encryption.</param>
+    /// <param name="encodeType">Specifies the encoding type for the output data.</param>
+    /// <returns>Returns the encrypted data as a byte array.</returns>
     public static byte[] EncryptStringAesToByte(string plainText, out string aes_Key, out string aes_IV, EncodeType encodeType)
     {
         return EncryptStringAesBase(plainText, null, null, out aes_Key, out aes_IV, encodeType);
     }
 
+    /// <summary>
+    /// Encrypts a string using AES encryption with a specified key and initialization vector.
+    /// </summary>
+    /// <param name="plainText">The text to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">The key used for encrypting the text securely.</param>
+    /// <param name="aes_IV">The initialization vector that adds randomness to the encryption process.</param>
+    /// <returns>The encrypted string represented in hexadecimal format.</returns>
     public static string EncryptStringAes(string plainText, string aes_Key, string aes_IV)
     {
         var encrypted = EncryptStringAesBase(plainText, aes_Key, aes_IV, out _, out _, EncodeType.Hex);
         return Convert.ToHexString(encrypted);
     }
+
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the encrypted value in hexadecimal format.
+    /// </summary>
+    /// <param name="plainText">The input string that needs to be encrypted.</param>
+    /// <param name="aes_Key">Outputs the AES encryption key used during the encryption process.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used for the AES encryption.</param>
+    /// <returns>The encrypted string represented in hexadecimal format.</returns>
     public static string EncryptStringAes(string plainText, out string aes_Key, out string aes_IV)
     {
         var encrypted = EncryptStringAesBase(plainText, null, null, out aes_Key, out aes_IV, EncodeType.Hex);
         return Convert.ToHexString(encrypted);
     }
 
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the result in a specified encoding format.
+    /// </summary>
+    /// <param name="plainText">The text that needs to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">The key used for the AES encryption process.</param>
+    /// <param name="aes_IV">The initialization vector used to enhance the security of the encryption.</param>
+    /// <param name="encodeType">Specifies the format in which the encrypted string will be returned, either hexadecimal or base64.</param>
+    /// <returns>The encrypted string in the specified encoding format.</returns>
     public static string EncryptStringAes(string plainText, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         var encrypted = EncryptStringAesBase(plainText, aes_Key, aes_IV, out _, out _, encodeType);
@@ -71,6 +131,15 @@ public static partial class SecurityHelper
             return Convert.ToBase64String(encrypted);
         }
     }
+
+    /// <summary>
+    /// Encrypts a string using AES encryption and returns the encrypted result in a specified format.
+    /// </summary>
+    /// <param name="plainText">The text to be encrypted using AES encryption.</param>
+    /// <param name="aes_Key">Outputs the AES encryption key used during the encryption process.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used for the AES encryption.</param>
+    /// <param name="encodeType">Specifies the format for the encrypted output, either hexadecimal or base64.</param>
+    /// <returns>The encrypted string in the specified format.</returns>
     public static string EncryptStringAes(string plainText, out string aes_Key, out string aes_IV, EncodeType encodeType)
     {
         var encrypted = EncryptStringAesBase(plainText, null, null, out aes_Key, out aes_IV, encodeType);
@@ -103,11 +172,26 @@ public static partial class SecurityHelper
         return plaintext;
     }
 
+    /// <summary>
+    /// Decrypts a string that has been encrypted using AES encryption.
+    /// </summary>
+    /// <param name="cipherText">The encrypted text represented in a hexadecimal format.</param>
+    /// <param name="aes_Key">The key used for decrypting the encrypted text.</param>
+    /// <param name="aes_IV">The initialization vector used in the decryption process.</param>
+    /// <returns>The decrypted string resulting from the decryption operation.</returns>
     public static string DecryptStringAes(string cipherText, string aes_Key, string aes_IV)
     {
         return DecryptStringAesBase(Convert.FromHexString(cipherText), aes_Key, aes_IV, out _, out _, EncodeType.Hex);
     }
 
+    /// <summary>
+    /// Decrypts a string using AES encryption based on the provided parameters.
+    /// </summary>
+    /// <param name="cipherText">The encrypted text that needs to be decrypted.</param>
+    /// <param name="aes_Key">The key used for decrypting the encrypted text.</param>
+    /// <param name="aes_IV">The initialization vector used in the decryption process.</param>
+    /// <param name="encodeType">Specifies the encoding format of the encrypted text, either Hex or Base64.</param>
+    /// <returns>The decrypted string resulting from the decryption process.</returns>
     public static string DecryptStringAes(string cipherText, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         if (encodeType == EncodeType.Hex)
@@ -122,11 +206,26 @@ public static partial class SecurityHelper
         }
     }
 
+    /// <summary>
+    /// Decrypts a byte array using AES encryption with a specified key and initialization vector.
+    /// </summary>
+    /// <param name="cipherText">The encrypted data that needs to be decrypted.</param>
+    /// <param name="aes_Key">The key used for decrypting the encrypted data.</param>
+    /// <param name="aes_IV">The initialization vector used in the decryption process.</param>
+    /// <returns>The decrypted string representation of the input data.</returns>
     public static string DecryptStringAes(byte[] cipherText, string aes_Key, string aes_IV)
     {
         return DecryptStringAesBase(cipherText, aes_Key, aes_IV, out _, out _, EncodeType.Hex);
     }
 
+    /// <summary>
+    /// Decrypts a byte array using AES encryption with the provided key and initialization vector.
+    /// </summary>
+    /// <param name="cipherText">The encrypted data that needs to be decrypted.</param>
+    /// <param name="aes_Key">The key used for decrypting the encrypted data.</param>
+    /// <param name="aes_IV">The initialization vector used in the decryption process.</param>
+    /// <param name="encodeType">Specifies the encoding format for the decrypted output.</param>
+    /// <returns>Returns the decrypted string representation of the input data.</returns>
     public static string DecryptStringAes(byte[] cipherText, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         return DecryptStringAesBase(cipherText, aes_Key, aes_IV, out _, out _, encodeType);
@@ -211,30 +310,76 @@ public static partial class SecurityHelper
         inputStream.Close();
     }
 
+    /// <summary>
+    /// Encrypts a file using AES encryption with the specified key and initialization vector.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be encrypted.</param>
+    /// <param name="outputFilePath">Indicates where to save the encrypted file.</param>
+    /// <param name="aes_Key">Provides the key used for the AES encryption process.</param>
+    /// <param name="aes_IV">Supplies the initialization vector for the AES encryption.</param>
     public static void EncryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV)
     {
         CryptoFileAESBase(CryptoMode.Encrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, EncodeType.Base64);
     }
 
+    /// <summary>
+    /// Encrypts a file using AES encryption with specified parameters.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be encrypted.</param>
+    /// <param name="outputFilePath">Indicates where the encrypted file will be saved.</param>
+    /// <param name="aes_Key">Provides the key used for AES encryption.</param>
+    /// <param name="aes_IV">Supplies the initialization vector for the encryption process.</param>
+    /// <param name="encodeType">Determines the encoding type to be used during encryption.</param>
     public static void EncryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         CryptoFileAESBase(CryptoMode.Encrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, encodeType);
     }
 
+    /// <summary>
+    /// Encrypts a file using AES encryption and generates a key and initialization vector for decryption.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be encrypted.</param>
+    /// <param name="outputFilePath">Specifies the path where the encrypted file will be saved.</param>
+    /// <param name="aes_Key">Outputs the AES key used for encrypting the file.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used for the encryption process.</param>
     public static void EncryptFileAES(string inputFilePath, string outputFilePath, out string aes_Key, out string aes_IV)
     {
         CryptoFileAESBase(CryptoMode.Encrypt, inputFilePath, outputFilePath, null, null, out aes_Key, out aes_IV, EncodeType.Base64);
     }
 
+    /// <summary>
+    /// Encrypts a file using AES encryption and generates a key and initialization vector.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be encrypted.</param>
+    /// <param name="outputFilePath">Indicates where to save the encrypted file.</param>
+    /// <param name="aes_Key">Outputs the AES encryption key used during the process.</param>
+    /// <param name="aes_IV">Outputs the initialization vector used for the encryption.</param>
+    /// <param name="encodeType">Determines the encoding type for the encrypted file.</param>
     public static void EncryptFileAES(string inputFilePath, string outputFilePath, out string aes_Key, out string aes_IV, EncodeType encodeType)
     {
         CryptoFileAESBase(CryptoMode.Encrypt, inputFilePath, outputFilePath, null, null, out aes_Key, out aes_IV, encodeType);
     }
 
+    /// <summary>
+    /// Decrypts a file using AES encryption with the specified key and initialization vector.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be decrypted.</param>
+    /// <param name="outputFilePath">Indicates where to save the decrypted file.</param>
+    /// <param name="aes_Key">Represents the key used for the AES decryption process.</param>
+    /// <param name="aes_IV">Defines the initialization vector used in the AES decryption.</param>
     public static void DecryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV)
     {
         CryptoFileAESBase(CryptoMode.Decrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, EncodeType.Base64);
     }
+
+    /// <summary>
+    /// Decrypts a file using AES encryption with the specified parameters.
+    /// </summary>
+    /// <param name="inputFilePath">Specifies the path of the file to be decrypted.</param>
+    /// <param name="outputFilePath">Indicates where to save the decrypted file.</param>
+    /// <param name="aes_Key">Provides the key used for the AES decryption process.</param>
+    /// <param name="aes_IV">Supplies the initialization vector for the AES decryption.</param>
+    /// <param name="encodeType">Defines the encoding type to be used during the decryption.</param>
     public static void DecryptFileAES(string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, EncodeType encodeType)
     {
         CryptoFileAESBase(CryptoMode.Decrypt, inputFilePath, outputFilePath, aes_Key, aes_IV, out _, out _, encodeType);

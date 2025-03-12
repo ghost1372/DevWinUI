@@ -26,6 +26,9 @@ public partial class ModalWindow : Microsoft.UI.Xaml.Window
         WindowHelper.SetWindowOwner(parentHwnd, childHwnd);
     }
 
+    /// <summary>
+    /// Displays the parent window and brings it to the foreground.
+    /// </summary>
     public void ShowParentWindow()
     {
         var windowId = Win32Interop.GetWindowIdFromWindow(_parentHwnd);
