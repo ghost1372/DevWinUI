@@ -7,9 +7,8 @@ public static partial class ProcessInfoHelper
     private static readonly Process _process;
     static ProcessInfoHelper()
     {
-        using var process = Process.GetCurrentProcess();
-        _process = process;
-        _fileVersionInfo = process.MainModule.FileVersionInfo;
+        _process = Process.GetCurrentProcess();
+        _fileVersionInfo = _process.MainModule.FileVersionInfo;
     }
 
     /// <summary>
