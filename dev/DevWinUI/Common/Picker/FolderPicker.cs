@@ -7,6 +7,12 @@ namespace DevWinUI;
 [Experimental]
 public class FolderPicker
 {
+    private IntPtr hwnd;
+    public FolderPicker(IntPtr hwnd)
+    {
+        this.hwnd = hwnd;
+    }
+    public FolderPicker(Microsoft.UI.Xaml.Window window) : this(WindowNative.GetWindowHandle(window)) { }
     public PickerOptions Options { get; set; } = PickerOptions.None;
 
     public string? CommitButtonText { get; set; }
@@ -18,71 +24,39 @@ public class FolderPicker
     /// <summary>
     /// Picks a single folder.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the path of the selected folder or null if no folder was selected.</returns>
-    public string PickSingleFolder(Microsoft.UI.Xaml.Window window) => PickSingleFolder(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Picks a single folder.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the path of the selected folder or null if no folder was selected.</returns>
-    public string PickSingleFolder(IntPtr hwnd)
+    public string PickSingleFolder()
     {
-        var folderPaths = OpenFolderDialog(hwnd, false);
+        var folderPaths = OpenFolderDialog(false);
         return folderPaths.Count > 0 ? folderPaths[0] : null;
     }
 
     /// <summary>
     /// Asynchronously picks a single folder.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the selected folder as a StorageFolder or null if no folder was selected.</returns>
-    public async Task<StorageFolder?> PickSingleFolderAsync(Microsoft.UI.Xaml.Window window) => await PickSingleFolderAsync(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Asynchronously picks a single folder.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the selected folder as a StorageFolder or null if no folder was selected.</returns>
-    public async Task<StorageFolder?> PickSingleFolderAsync(IntPtr hwnd)
+    public async Task<StorageFolder?> PickSingleFolderAsync()
     {
-        var folderPaths = OpenFolderDialog(hwnd, false);
+        var folderPaths = OpenFolderDialog(false);
         return folderPaths.Count > 0 ? await StorageFolder.GetFolderFromPathAsync(folderPaths[0]) : null;
     }
 
     /// <summary>
     /// Picks multiple folders.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the path of the selected folders or null if no folder was selected.</returns>
-    public List<string> PickMultipleFolders(Microsoft.UI.Xaml.Window window) => PickMultipleFolders(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Picks multiple folders.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the path of the selected folders or null if no folder was selected.</returns>
-    public List<string> PickMultipleFolders(IntPtr hwnd)
+    public List<string> PickMultipleFolders()
     {
-        return OpenFolderDialog(hwnd, true);
+        return OpenFolderDialog(true);
     }
 
     /// <summary>
     /// Asynchronously picks multiple folders.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns A list of StorageFolder selected by the user.</returns>
-    public async Task<List<StorageFolder>> PickMultipleFoldersAsync(Microsoft.UI.Xaml.Window window) => await PickMultipleFoldersAsync(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Asynchronously picks multiple folders.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns A list of StorageFolder selected by the user.</returns>
-    public async Task<List<StorageFolder>> PickMultipleFoldersAsync(IntPtr hwnd)
+    public async Task<List<StorageFolder>> PickMultipleFoldersAsync()
     {
-        var folderPaths = OpenFolderDialog(hwnd, true);
+        var folderPaths = OpenFolderDialog(true);
         var storageFolders = new List<StorageFolder>();
         foreach (var path in folderPaths)
         {
@@ -91,7 +65,7 @@ public class FolderPicker
         return storageFolders;
     }
 
-    private unsafe List<string> OpenFolderDialog(IntPtr hwnd, bool allowMultiple)
+    private unsafe List<string> OpenFolderDialog(bool allowMultiple)
     {
         int hr = PInvoke.CoCreateInstance<IFileOpenDialog>(
                             typeof(FileOpenDialog).GUID,

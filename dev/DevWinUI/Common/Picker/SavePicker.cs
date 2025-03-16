@@ -8,6 +8,12 @@ namespace DevWinUI;
 [Experimental]
 public class SavePicker
 {
+    private IntPtr hwnd;
+    public SavePicker(IntPtr hwnd)
+    {
+        this.hwnd = hwnd;
+    }
+    public SavePicker(Microsoft.UI.Xaml.Window window) : this(WindowNative.GetWindowHandle(window)) { }
     public PickerOptions Options { get; set; } = PickerOptions.None;
 
     public bool ShowDetailedExtension { get; set; } = true;
@@ -21,37 +27,21 @@ public class SavePicker
     public bool ShowAllFilesOption { get; set; } = true;
 
     /// <summary>
-    /// Allows the user to select a file location for saving data through a dialog interface.
-    /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
-    /// <returns>Returns the selected file path as a string, or null if the operation is canceled.</returns>
-    public string? PickSaveFile(Microsoft.UI.Xaml.Window window) => PickSaveFile(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
     /// Prompts the user to select a file to save and returns the selected file path as a string.
     /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
     /// <returns>Returns the path of the selected file or null if no file was selected.</returns>
-    public string? PickSaveFile(IntPtr hwnd)
+    public string? PickSaveFile()
     {
-        return SaveFileDialog(hwnd);
+        return SaveFileDialog();
     }
-
-    /// <summary>
-    /// Asynchronously prompts the user to select a file location for saving a file.
-    /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
-    /// <returns>Returns the selected storage file if the user makes a selection.</returns>
-    public async Task<StorageFile> PickSaveFileAsync(Microsoft.UI.Xaml.Window window) => await PickSaveFileAsync(WindowNative.GetWindowHandle(window));
 
     /// <summary>
     /// Asynchronously prompts the user to select a location to save a file and returns the corresponding storage file.
     /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
     /// <returns>Returns the selected storage file or null if no file was chosen.</returns>
-    public async Task<StorageFile> PickSaveFileAsync(IntPtr hwnd)
+    public async Task<StorageFile> PickSaveFileAsync()
     {
-        var filePath = SaveFileDialog(hwnd);
+        var filePath = SaveFileDialog();
         return filePath != null ? await GetStorageFileOrCreateAsync(filePath) : null;
     }
     private async Task<StorageFile> GetStorageFileOrCreateAsync(string filePath)
@@ -72,7 +62,7 @@ public class SavePicker
         }
     }
 
-    private unsafe string? SaveFileDialog(IntPtr hwnd)
+    private unsafe string? SaveFileDialog()
     {
         int hr = PInvoke.CoCreateInstance<IFileSaveDialog>(
                                     typeof(FileSaveDialog).GUID,

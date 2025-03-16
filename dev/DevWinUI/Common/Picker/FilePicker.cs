@@ -8,6 +8,12 @@ namespace DevWinUI;
 [Experimental]
 public class FilePicker
 {
+    private IntPtr hwnd;
+    public FilePicker(IntPtr hwnd)
+    {
+        this.hwnd = hwnd;
+    }
+    public FilePicker(Microsoft.UI.Xaml.Window window) : this(WindowNative.GetWindowHandle(window)) { }
     public PickerOptions Options { get; set; } = PickerOptions.None;
 
     public bool ShowDetailedExtension { get; set; } = true;
@@ -23,71 +29,39 @@ public class FilePicker
     /// <summary>
     /// picks a single file.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the path of the selected file or null if no file was selected.</returns>
-    public string PickSingleFile(Microsoft.UI.Xaml.Window window) => PickSingleFile(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// picks a single file.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the path of the selected file or null if no file was selected.</returns>
-    public string PickSingleFile(IntPtr hwnd)
+    public string PickSingleFile()
     {
-        var files = OpenFileDialog(hwnd, false);
+        var files = OpenFileDialog(false);
         return files.Count > 0 ? files[0] : null;
     }
 
     /// <summary>
     /// Asynchronously picks single file.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the selected file as a StorageFile or null if no file was selected.</returns>
-    public async Task<StorageFile?> PickSingleFileAsync(Microsoft.UI.Xaml.Window window) => await PickSingleFileAsync(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Asynchronously picks single file.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the selected file as a StorageFile or null if no file was selected.</returns>
-    public async Task<StorageFile?> PickSingleFileAsync(IntPtr hwnd)
+    public async Task<StorageFile?> PickSingleFileAsync()
     {
-        var files = OpenFileDialog(hwnd, false);
+        var files = OpenFileDialog(false);
         return files.Count > 0 ? await StorageFile.GetFileFromPathAsync(files[0]) : null;
     }
 
     /// <summary>
     /// picks multiple files.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns the path of the selected files or null if no file was selected.</returns>
-    public List<string> PickMultipleFiles(Microsoft.UI.Xaml.Window window) => PickMultipleFiles(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// picks multiple files.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns the path of the selected files or null if no file was selected.</returns>
-    public List<string> PickMultipleFiles(IntPtr hwnd)
+    public List<string> PickMultipleFiles()
     {
-        return OpenFileDialog(hwnd, true);
+        return OpenFileDialog(true);
     }
 
     /// <summary>
     /// Asynchronously picks multiple files.
     /// </summary>
-    /// <param name="window">Specifies the owner window.</param>
     /// <returns>Returns A list of StorageFile selected by the user.</returns>
-    public async Task<List<StorageFile>> PickMultipleFilesAsync(Microsoft.UI.Xaml.Window window) => await PickMultipleFilesAsync(WindowNative.GetWindowHandle(window));
-
-    /// <summary>
-    /// Asynchronously picks multiple files.
-    /// </summary>
-    /// <param name="hwnd">Specifies the owner window.</param>
-    /// <returns>Returns A list of StorageFile selected by the user.</returns>
-    public async Task<List<StorageFile>> PickMultipleFilesAsync(IntPtr hwnd)
+    public async Task<List<StorageFile>> PickMultipleFilesAsync()
     {
-        var filePaths = OpenFileDialog(hwnd, true);
+        var filePaths = OpenFileDialog(true);
         var storageFiles = new List<StorageFile>();
         foreach (var path in filePaths)
         {
@@ -96,7 +70,7 @@ public class FilePicker
         return storageFiles;
     }
 
-    private unsafe List<string> OpenFileDialog(IntPtr hwnd, bool allowMultiple)
+    private unsafe List<string> OpenFileDialog(bool allowMultiple)
     {
         int hr = PInvoke.CoCreateInstance<IFileOpenDialog>(
                             typeof(FileOpenDialog).GUID,
