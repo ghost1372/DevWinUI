@@ -70,6 +70,17 @@
                 <ui:SymbolIcon Symbol="Dock20" />
             </local:SettingsControl.Icon>
         </local:SettingsControl>
+        <Separator Margin="0,5,0,5"
+                   HorizontalAlignment="Stretch" />
+        <local:SettingsControl x:Name="tgProfileOptimization"
+                               Title="Boost Startup (ProfileOptimization)"
+                               Description="Enables Multicore JIT with the specified profile"
+                               IsOn="True"
+                               Toggled="tgProfileOptimization_Toggled">
+            <local:SettingsControl.Icon>
+                <ui:SymbolIcon Symbol="TopSpeed24" />
+            </local:SettingsControl.Icon>
+        </local:SettingsControl>
         <local:SettingsControl x:Name="tgUnPackaged"
                                Title="UnPackaged App"
                                Description="Create an unpackaged executable (EXE) that runs without an MSIX container."

@@ -18,6 +18,8 @@ public partial class DashboardPage : Page
             WizardConfig.UseSolutionFolder = true;
         }
 
+        WizardConfig.IsProfileOptimization = true;
+
         Loaded += DashboardPage_Loaded;
     }
 
@@ -98,5 +100,10 @@ public partial class DashboardPage : Page
         {
             WizardConfig.SolutionFolderName = WizardConfig.SolutionFolderNameDefault;
         }
+    }
+
+    private void tgProfileOptimization_Toggled(object sender, RoutedEventArgs e)
+    {
+        WizardConfig.IsProfileOptimization = tgProfileOptimization.IsOn;
     }
 }

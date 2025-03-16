@@ -4,11 +4,12 @@ public partial class App : Application
 {
     public new static App Current => (App)Application.Current;
     public static Window MainWindow = Window.Current;
+    public static IntPtr Hwnd => WinRT.Interop.WindowNative.GetWindowHandle(MainWindow);
     public IThemeService ThemeService { get; set; }
 
     public App()
     {
-        this.InitializeComponent();
+        this.InitializeComponent();$BoostStartup$
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

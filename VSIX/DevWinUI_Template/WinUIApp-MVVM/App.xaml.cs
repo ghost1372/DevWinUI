@@ -4,6 +4,7 @@ public partial class App : Application
 {
     public new static App Current => (App)Application.Current;
     public static Window MainWindow = Window.Current;
+    public static IntPtr Hwnd => WinRT.Interop.WindowNative.GetWindowHandle(MainWindow);
     public IServiceProvider Services { get; }
     public IThemeService ThemeService => GetService<IThemeService>();
 
@@ -20,7 +21,7 @@ public partial class App : Application
     public App()
     {
         Services = ConfigureServices();
-        this.InitializeComponent();
+        this.InitializeComponent();$BoostStartup$
     }
 
     private static IServiceProvider ConfigureServices()
