@@ -1,5 +1,0 @@
-﻿var picker = await FileAndFolderPickerHelper.PickSingleFolderAsync(App.MainWindow);
-if (picker != null)
-{
-    txtRes4.Text = picker.Path;
-}

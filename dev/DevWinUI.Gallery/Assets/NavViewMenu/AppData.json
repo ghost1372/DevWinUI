@@ -123,10 +123,11 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Update.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.FileAndFolderPickerPage",
-          "Title": "File And Folder Picker Helper",
-          "Subtitle": "File And Folder Picker",
-          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png"
+          "UniqueId": "DevWinUIGallery.Views.PickersPage",
+          "Title": "Pickers",
+          "Subtitle": "FilePicker, FolderPicker and SavePicker which support elevated, Packaged, UnPackaged and AOT apps",
+          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png",
+          "IsNew": true
         }
       ]
     },

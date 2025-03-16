@@ -1,9 +1,0 @@
-﻿var fileTypeFilter = new List<string> { ".txt", ".rtf" };
-var picker = await FileAndFolderPickerHelper.PickMultipleFilesAsync(App.MainWindow, fileTypeFilter);
-if (picker != null)
-{
-    foreach (var item in picker)
-    {
-        txtRes2.Text = item.Path;
-    }
-}

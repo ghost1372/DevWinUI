@@ -1,7 +1,0 @@
-﻿var ext = new Dictionary<string, IList<string>>();
-ext.Add("Plain Text", new List<string>() { ".txt" });
-var picker = await FileAndFolderPickerHelper.PickSaveFileAsync(App.MainWindow, ext);
-if (picker != null)
-{
-    txtRes1.Text = picker.Path;
-}

@@ -1,6 +1,0 @@
-﻿var fileTypeFilter = new List<string> { ".txt", ".rtf" };
-var picker = await FileAndFolderPickerHelper.PickSingleFileAsync(App.MainWindow, fileTypeFilter);
-if (picker != null)
-{
-    txtRes3.Text = picker.Path;
-}

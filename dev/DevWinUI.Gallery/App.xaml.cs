@@ -31,6 +31,7 @@ public partial class App : Application
         services.AddSingleton<IJsonNavigationService, JsonNavigationService>();
 
         services.AddTransient<MainViewModel>();
+        services.AddTransient<PickerViewModel>();
         services.AddTransient<ExtensionViewModel>();
         services.AddTransient<SwitchPresenterViewModel>();
         services.AddTransient<GeneralSettingViewModel>();

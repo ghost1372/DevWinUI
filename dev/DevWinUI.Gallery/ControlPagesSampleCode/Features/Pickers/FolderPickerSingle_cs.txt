@@ -1,0 +1,6 @@
+﻿var picker = new FolderPicker(WindowNative.GetWindowHandle(App.MainWindow));
+var folder = await picker.PickSingleFolderAsync();
+if (folder != null)
+{
+    txt.Text = folder.Path;
+}

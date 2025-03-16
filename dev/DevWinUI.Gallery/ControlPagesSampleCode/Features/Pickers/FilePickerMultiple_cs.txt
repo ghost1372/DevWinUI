@@ -1,0 +1,14 @@
+﻿var picker = new FilePicker(WindowNative.GetWindowHandle(App.MainWindow));
+picker.FileTypeChoices = new Dictionary<string, IList<string>>
+{
+    { "Images", new List<string> { "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif" } },
+    { "Text Files", new List<string> { "*.txt", "*.md", "*.log" } }
+};
+
+var file = await picker.PickMultipleFilesAsync();
+StringBuilder stringBuilder = new StringBuilder();
+foreach (var item in file)
+{
+    stringBuilder.AppendLine(item.Path.ToString());
+}
+txt.Text = stringBuilder.ToString();

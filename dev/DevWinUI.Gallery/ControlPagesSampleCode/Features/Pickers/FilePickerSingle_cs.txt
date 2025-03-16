@@ -1,0 +1,12 @@
+﻿var picker = new FilePicker(WindowNative.GetWindowHandle(App.MainWindow));
+picker.FileTypeChoices = new Dictionary<string, IList<string>>
+{
+    { "Images", new List<string> { "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif" } },
+    { "Text Files", new List<string> { "*.txt", "*.md", "*.log" } }
+};
+
+var file = await picker.PickSingleFileAsync();
+if (file != null)
+{
+    txt.Text = file.Path;
+}

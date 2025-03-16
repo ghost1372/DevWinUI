@@ -1,0 +1,9 @@
+﻿var picker = new FolderPicker(WindowNative.GetWindowHandle(App.MainWindow));
+var folders = await picker.PickMultipleFoldersAsync();
+
+StringBuilder stringBuilder = new StringBuilder();
+foreach (var item in folders)
+{
+    stringBuilder.AppendLine(item.Path.ToString());
+}
+txt.Text = stringBuilder.ToString();
