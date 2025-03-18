@@ -4,7 +4,6 @@ using Windows.Win32.UI.Shell;
 
 namespace DevWinUI;
 
-[Experimental]
 public class FolderPicker
 {
     private IntPtr hwnd;
