@@ -112,6 +112,7 @@ public static class PreDefinedLibrary
     {
         List<Library> list = new()
         {
+            new Library("WinUI.Dock", Group.General),
             new Library("nucs.JsonSettings", Group.General),
             new Library("nucs.JsonSettings.AutosaveGenerator", Group.General),
             new Library("ComputeSharp.WinUI", Group.General, true),
