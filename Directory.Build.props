@@ -6,8 +6,8 @@
 
     <!-- Version -->
     <LibraryMajorVersion>8</LibraryMajorVersion>
-    <PreviewLabel>-Preview9</PreviewLabel>
-    <IsPreviewBuild>true</IsPreviewBuild>
+    <PreviewLabel></PreviewLabel>
+    <IsPreviewBuild>false</IsPreviewBuild>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
 
     <!-- The NuGet package version -->
@@ -48,7 +48,7 @@
 
   <!-- The NuGet versions of dependencies to build against. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250208002-preview1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   
