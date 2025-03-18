@@ -24,7 +24,7 @@
                             QueryIcon="Find"
                             QuerySubmitted="OnQuerySubmitted"
                             TextChanged="OnTextChanged" />
-            <TitleBar.RightContent>
+            <TitleBar.RightHeader>
                 <Button x:Name="ThemeButton"
                         Height="32"
                         Margin="0,0,4,0"
@@ -33,7 +33,7 @@
                                                FontSize=16}"
                         Style="{ThemeResource SubtleButtonStyle}"
                         ToolTipService.ToolTip="Toggle Theme" />
-            </TitleBar.RightContent>
+            </TitleBar.RightHeader>
         </TitleBar>
         <NavigationView x:Name="NavView"
                         Grid.Row="1"
