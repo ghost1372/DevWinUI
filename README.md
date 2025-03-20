@@ -1,18 +1,31 @@
-﻿# 🌟 Welcome to DevWinUI! 🌟
+﻿<h3 align="center">
+🌟 Welcome to DevWinUI! 🌟
+</3>
+</br>
+
+<h3 align="center">
+  <a href="https://ghost1372.github.io">Documentation</a>
+  <span> · </span>
+  <a href="https://ghost1372.github.io/ReleaseNotes">Release notes</a>
+  <span> · </span>
+  <a href="https://github.com/ghost1372/DevWinUI/tree/main/dev/DevWinUI.Gallery">Samples</a>
+  <span> · </span>
+  <a href="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true
+	&mode=mini">Gallery App (Store)</a>
+</h3>
+
 <p align="center">
-<img alt="IDE-version" src="https://img.shields.io/badge/2022-Version?logo=visual%20studio&label=Visual%20Studio&color=blue"/>
+<img alt="build" src="https://img.shields.io/github/actions/workflow/status/Ghost1372/DevWinUI/publish-release.yml?logo=github"/>
+<img alt="releaseDate" src="https://img.shields.io/github/release-date/Ghost1372/DevWinUI?logo=github&link=https%3A%2F%2Fgithub.com%2FGhost1372%2FDevWinUI%2Freleases"/>
 <a href="https://www.nuget.org/profiles/DevWinUI">
  <img alt="Packages" src="https://img.shields.io/badge/Packages-%20?logo=nuget&label=Nuget&color=blue"/>
 </a>
-<br>
-<img alt="build" src="https://img.shields.io/github/actions/workflow/status/Ghost1372/DevWinUI/publish-release.yml?logo=github"/>
-<img alt="releaseDate" src="https://img.shields.io/github/release-date/Ghost1372/DevWinUI?logo=github&link=https%3A%2F%2Fgithub.com%2FGhost1372%2FDevWinUI%2Freleases"/>
-<a href="https://Ghost1372.github.io/DevWinUI/">
- <img alt="Docs" src="https://img.shields.io/badge/See Here-Version?logo=markdown&label=Document&color=red&link=https%3A%2F%2FGhost1372.github.io%2FDevWinUI%2F"/>
-</a> 
-<img alt="license" src="https://img.shields.io/github/license/Ghost1372/DevWinUI"/>
 </p>
 
+<center>
+
+<div align="center">
+	
 |Packages|Download/Installation|Documentation|
 |:---|:---|:---:|
 |[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/MahdiHosseini.DevWinUITemplates?label=DevWinUI-Templates)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Marketplace](https://img.shields.io/visual-studio-marketplace/d/MahdiHosseini.DevWinUITemplates?logo=visual%20studio&label=DevWinUI-Templates)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://github.com/Ghost1372/DevWinUI)|
@@ -20,6 +33,8 @@
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUI)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.Controls?label=DevWinUI.Controls)](https://www.nuget.org/packages/DevWinUI.Controls)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.Controls?label=DevWinUI.Controls)](https://www.nuget.org/packages/DevWinUI.Controls)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIControls/)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.ContextMenu?label=DevWinUI.ContextMenu)](https://www.nuget.org/packages/DevWinUI.ContextMenu)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.ContextMenu?label=DevWinUI.ContextMenu)](https://www.nuget.org/packages/DevWinUI.ContextMenu)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIContextMenu)|
+
+</div>
 
 ---
 
