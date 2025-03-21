@@ -2,6 +2,16 @@
 public static partial class Extensions
 {
     /// <summary>
+    /// Finds the best contrasting color (black or white)
+    /// </summary>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public static Color ContrastColorBlackWhite(this Color color)
+    {
+        return ColorHelper.ContrastColorBlackWhite(color);
+    }
+
+    /// <summary>
     /// Converts a hexadecimal color string into a SolidColorBrush object.
     /// </summary>
     /// <param name="hex">A string representing a color in hexadecimal format.</param>

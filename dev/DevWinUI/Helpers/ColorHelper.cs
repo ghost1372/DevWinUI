@@ -274,4 +274,15 @@ public static partial class ColorHelper
 
         return saturation;
     }
+
+    /// <summary>
+    /// Finds the best contrasting color (black or white)
+    /// </summary>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public static Color ContrastColorBlackWhite(Color color)
+    {
+        double luma = ((0.299 * color.R) + (0.587 * color.G) + (0.114 * color.B)) / (double)255;
+        return luma > 0.5 ? Colors.Black : Colors.White;
+    }
 }
