@@ -6,7 +6,7 @@ public partial class RainbowFrame : IRainbowFrame
     private DateTimeOffset _started;
     private TimeSpan FrameUpdateInterval = TimeSpan.FromMilliseconds(16);
     private IntPtr _hwnd;
-    private int EffectSpeed = 4;
+    private double EffectSpeed = 4.0;
 
     public RainbowFrame()
     {
@@ -25,19 +25,25 @@ public partial class RainbowFrame : IRainbowFrame
 
     public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval, int effectSpeed)
     {
+        InternalInitialize(window, _hwnd, Convert.ToDouble(effectSpeed), frameUpdateInterval);
+    }
+    public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval, double effectSpeed)
+    {
         InternalInitialize(window, _hwnd, effectSpeed, frameUpdateInterval);
     }
 
     public void Initialize(IntPtr hwnd, TimeSpan frameUpdateInterval, int effectSpeed)
     {
+        InternalInitialize(null, hwnd, Convert.ToDouble(effectSpeed), frameUpdateInterval);
+    }
+    public void Initialize(IntPtr hwnd, TimeSpan frameUpdateInterval, double effectSpeed)
+    {
         InternalInitialize(null, hwnd, effectSpeed, frameUpdateInterval);
     }
-
     public void Initialize(Microsoft.UI.Xaml.Window window, TimeSpan frameUpdateInterval)
     {
         InternalInitialize(window, _hwnd, EffectSpeed, frameUpdateInterval);
     }
-
     public void Initialize(IntPtr hwnd, TimeSpan frameUpdateInterval)
     {
         InternalInitialize(null, hwnd, EffectSpeed, frameUpdateInterval);
@@ -45,10 +51,18 @@ public partial class RainbowFrame : IRainbowFrame
 
     public void Initialize(Microsoft.UI.Xaml.Window window, int effectSpeed)
     {
+        InternalInitialize(window, _hwnd, Convert.ToDouble(effectSpeed), FrameUpdateInterval);
+    }
+    public void Initialize(Microsoft.UI.Xaml.Window window, double effectSpeed)
+    {
         InternalInitialize(window, _hwnd, effectSpeed, FrameUpdateInterval);
     }
 
     public void Initialize(IntPtr hwnd, int effectSpeed)
+    {
+        InternalInitialize(null, hwnd, Convert.ToDouble(effectSpeed), FrameUpdateInterval);
+    }
+    public void Initialize(IntPtr hwnd, double effectSpeed)
     {
         InternalInitialize(null, hwnd, effectSpeed, FrameUpdateInterval);
     }
@@ -63,7 +77,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, EffectSpeed, FrameUpdateInterval);
     }
 
-    private void InternalInitialize(Microsoft.UI.Xaml.Window window, IntPtr hwnd, int effectSpeed, TimeSpan frameUpdateInterval)
+    private void InternalInitialize(Microsoft.UI.Xaml.Window window, IntPtr hwnd, double effectSpeed, TimeSpan frameUpdateInterval)
     {
         if (window != null)
         {
@@ -78,7 +92,7 @@ public partial class RainbowFrame : IRainbowFrame
         FrameUpdateInterval = frameUpdateInterval;
     }
 
-    private void InitializeEffectSpeed(int effectSpeed)
+    private void InitializeEffectSpeed(double effectSpeed)
     {
         if (effectSpeed > 0)
         {
@@ -91,6 +105,15 @@ public partial class RainbowFrame : IRainbowFrame
     /// </summary>
     /// <param name="effectSpeed"></param>
     public void UpdateEffectSpeed(int effectSpeed)
+    {
+        InitializeEffectSpeed(Convert.ToDouble(effectSpeed));
+    }
+
+    /// <summary>
+    /// default value is 4 and effectSpeed should be greater than zero (0)
+    /// </summary>
+    /// <param name="effectSpeed"></param>
+    public void UpdateEffectSpeed(double effectSpeed)
     {
         InitializeEffectSpeed(effectSpeed);
     }
