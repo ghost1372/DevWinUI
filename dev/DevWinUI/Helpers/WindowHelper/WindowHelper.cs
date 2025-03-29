@@ -223,21 +223,9 @@ public partial class WindowHelper
     public static string GetWindowText(IntPtr hwnd)
     {
         const int MAX_Length = 1024;
-        Span<char> buffer = stackalloc char[(int)MAX_Length];
-
-        unsafe
-        {
-            fixed (char* pBuffer = buffer)
-            {
-                int result = PInvoke.GetWindowText(new HWND(hwnd), pBuffer, MAX_Length);
-                if (result > 0)
-                {
-                    string windowText = new string(pBuffer, 0, result);
-                    return windowText;
-                }
-            }
-        }
-        return null;
+        Span<char> buffer = stackalloc char[MAX_Length];
+        int result = PInvoke.GetWindowText(new HWND(hwnd), buffer);
+        return result > 0 ? buffer.Slice(0, (int)result).ToString() : string.Empty;
     }
 
     /// <summary>
