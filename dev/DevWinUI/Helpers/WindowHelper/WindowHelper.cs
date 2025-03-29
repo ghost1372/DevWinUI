@@ -236,21 +236,9 @@ public partial class WindowHelper
     public static string GetClassName(IntPtr hwnd)
     {
         const int MAX_Length = 256;
-        Span<char> buffer = stackalloc char[(int)MAX_Length];
-
-        unsafe
-        {
-            fixed (char* pBuffer = buffer)
-            {
-                int result = PInvoke.GetClassName(new HWND(hwnd), pBuffer, MAX_Length);
-                if (result > 0)
-                {
-                    string className = new string(pBuffer, 0, result);
-                    return className;
-                }
-            }
-        }
-        return null;
+        Span<char> buffer = stackalloc char[MAX_Length];
+        int result = PInvoke.GetClassName(new HWND(hwnd), buffer);
+        return result > 0 ? buffer.Slice(0, (int)result).ToString() : string.Empty;
     }
 
     /// <summary>

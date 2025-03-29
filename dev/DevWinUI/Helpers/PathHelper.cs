@@ -58,23 +58,13 @@ public partial class PathHelper
     /// <returns></returns>
     public static string GetExecutablePathNative()
     {
-        const uint MAX_Length = 255;
-        Span<char> buffer = stackalloc char[(int)MAX_Length];
+        const int MAX_Length = 255;
+        Span<char> buffer = stackalloc char[MAX_Length];
+        var hModule = PInvoke.GetModuleHandle(string.Empty);
+        SafeHandle safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(hModule.DangerousGetHandle(), ownsHandle: false);
 
-        unsafe
-        {
-            fixed (char* pBuffer = buffer)
-            {
-                uint result = PInvoke.GetModuleFileName(HMODULE.Null, new PWSTR(pBuffer), MAX_Length);
-
-                if (result == 0)
-                {
-                    throw new Win32Exception();
-                }
-
-                return new string(pBuffer, 0, (int)result);
-            }
-        }
+        uint result = PInvoke.GetModuleFileName(safeHandle, buffer);
+        return result > 0 ? buffer.Slice(0, (int)result).ToString() : string.Empty;
     }
 
     /// <summary>

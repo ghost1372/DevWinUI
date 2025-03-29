@@ -23,6 +23,7 @@ GetCursorPos
 GetDC
 GetDpiForWindow
 GetModuleFileName
+GetModuleHandle
 GetMonitorInfo
 GetPrivateProfileString
 GetStockObject
