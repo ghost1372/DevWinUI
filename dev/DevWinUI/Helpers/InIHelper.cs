@@ -1,94 +1,111 @@
 ﻿namespace DevWinUI;
-
 public partial class InIHelper
 {
-    internal string Path { get; set; }
+    internal string FilePath { get; }
+
     public InIHelper(string filePath)
     {
-        Path = filePath;
+        if (System.IO.Path.IsPathRooted(filePath))
+            FilePath = filePath;
+        else
+            FilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppContext.BaseDirectory, filePath));
     }
 
-    private string GetProductName()
+    private string GetProductName() => ProcessInfoHelper.ProductName;
+
+    /// <summary>
+    /// Read Data Value From the Ini File
+    /// </summary>
+    /// <param name="key">must be unique</param>
+    /// <returns></returns>
+    public string ReadValue(string key)
     {
-        return ProcessInfoHelper.ProductName;
+        return ReadValue(key, null);
     }
 
     /// <summary>
     /// Read Data Value From the Ini File
     /// </summary>
-    /// <param name="Key">must be unique</param>
-    /// <param name="Section">Optional</param>
-    /// <param name="Path">default is: application startup folder location</param>
+    /// <param name="key">must be unique</param>
+    /// <param name="section"></param>
     /// <returns></returns>
-    public string ReadValue(string Key, string Section = null, string Path = null)
+    public string ReadValue(string key, string section)
     {
-        const uint MAX_Length = 255;
-        Span<char> buffer = stackalloc char[(int)MAX_Length];
+        const int MAX_LENGTH = 255;
+        Span<char> buffer = stackalloc char[MAX_LENGTH];
 
-        unsafe
-        {
-            uint result;
-            fixed (char* pBuffer = buffer)
-            {
-                fixed (char* defaultPtr = "")
-                fixed (char* sectionPtr = Section ?? GetProductName())
-                fixed (char* pathPtr = Path ?? this.Path)
-                fixed (char* keyPtr = Key)
-                {
-                    result = PInvoke.GetPrivateProfileString(sectionPtr, keyPtr, defaultPtr, new PWSTR(pBuffer), MAX_Length, pathPtr);
-                }
-                if (result == 0)
-                {
-                    throw new Win32Exception();
-                }
+        uint result = PInvoke.GetPrivateProfileString(section ?? GetProductName(), key, string.Empty, buffer, FilePath);
 
-                return new string(pBuffer, 0, (int)result);
-            }
-        }
+        return result > 0 ? buffer.Slice(0, (int)result).ToString() : string.Empty;
     }
 
     /// <summary>
     /// Write Data to the INI File
     /// </summary>
-    /// <param name="Key"></param>
-    /// <param name="Value"></param>
-    /// <param name="Section">Optional</param>
-    /// <param name="Path">default is: application startup folder location</param>
-    public void AddValue(string Key, string Value, string Section = null, string Path = null)
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    public bool AddValue(string key, string value)
     {
-        PInvoke.WritePrivateProfileString(Section ?? GetProductName(), Key, Value, Path ?? this.Path);
+        return AddValue(key, value, null);
+    }
+
+    /// <summary>
+    /// Write Data to the INI File
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <param name="section"></param>
+    public bool AddValue(string key, string value, string section)
+    {
+        return PInvoke.WritePrivateProfileString(section ?? GetProductName(), key, value, FilePath);
     }
 
     /// <summary>
     /// Delete Key from INI File
     /// </summary>
-    /// <param name="Key"></param>
-    /// <param name="Section">Optional</param>
-    /// <param name="Path"></param>
-    public void DeleteKey(string Key, string Section = null, string Path = null)
+    /// <param name="key"></param>
+    public bool DeleteKey(string key)
     {
-        AddValue(Key, null, Section ?? GetProductName(), Path ?? this.Path);
+        return DeleteKey(key, null);
+    }
+
+    /// <summary>
+    /// Delete Key from INI File
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="section"></param>
+    public bool DeleteKey(string key, string section)
+    {
+        return AddValue(key, null, section);
     }
 
     /// <summary>
     /// Delete Section from INI File
     /// </summary>
-    /// <param name="Section"></param>
-    /// <param name="Path"></param>
-    public void DeleteSection(string Section = null, string Path = null)
+    /// <param name="section"></param>
+    public bool DeleteSection(string section)
     {
-        AddValue(null, null, Section ?? GetProductName(), Path ?? this.Path);
+        return PInvoke.WritePrivateProfileString(section ?? GetProductName(), null, null, FilePath);
     }
 
     /// <summary>
     /// Check if Key Exist or Not in INI File
     /// </summary>
-    /// <param name="Key"></param>
-    /// <param name="Section">Optional</param>
-    /// <param name="Path"></param>
+    /// <param name="key"></param>
     /// <returns></returns>
-    public bool IsKeyExists(string Key, string Section = null, string Path = null)
+    public bool IsKeyExists(string key)
     {
-        return ReadValue(Key, Section, Path ?? this.Path).Length > 0;
+        return IsKeyExists(key, null);
+    }
+
+    /// <summary>
+    /// Check if Key Exist or Not in INI File
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="section"></param>
+    /// <returns></returns>
+    public bool IsKeyExists(string key, string section)
+    {
+        return !string.IsNullOrEmpty(ReadValue(key, section));
     }
 }
