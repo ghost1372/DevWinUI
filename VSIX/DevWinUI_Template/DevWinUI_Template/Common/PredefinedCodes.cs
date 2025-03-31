@@ -4,26 +4,29 @@ public static class PredefinedCodes
 {
     public static string Windows11ContextMenuInitializer =
 """"
-ContextMenuItem menu = new ContextMenuItem
+if (RuntimeHelper.IsPackaged())
 {
-    Title = "Open $projectname$ Here",
-    Param = @"""{path}""",
-    AcceptFileFlag = (int)FileMatchFlagEnum.All,
-    AcceptDirectoryFlag = (int)(DirectoryMatchFlagEnum.Directory | DirectoryMatchFlagEnum.Background | DirectoryMatchFlagEnum.Desktop),
-    AcceptMultipleFilesFlag = (int)FilesMatchFlagEnum.Each,
-    Index = 0,
-    Enabled = true,
-    Icon = ProcessInfoHelper.GetFileVersionInfo().FileName,
-    Exe = "$projectname$.exe"
-};
+    ContextMenuItem menu = new ContextMenuItem
+    {
+        Title = "Open $projectname$ Here",
+        Param = @"""{path}""",
+        AcceptFileFlag = (int)FileMatchFlagEnum.All,
+        AcceptDirectoryFlag = (int)(DirectoryMatchFlagEnum.Directory | DirectoryMatchFlagEnum.Background | DirectoryMatchFlagEnum.Desktop),
+        AcceptMultipleFilesFlag = (int)FilesMatchFlagEnum.Each,
+        Index = 0,
+        Enabled = true,
+        Icon = ProcessInfoHelper.GetFileVersionInfo().FileName,
+        Exe = "$projectname$.exe"
+    };
 
-ContextMenuService menuService = new ContextMenuService();
-await menuService.SaveAsync(menu);
+    ContextMenuService menuService = new ContextMenuService();
+    await menuService.SaveAsync(menu);
+}
 """";
     public static string Windows11ContextMenuMVVMInitializer =
 """"
 var menuService = GetService<ContextMenuService>();
-if (menuService != null)
+if (menuService != null && RuntimeHelper.IsPackaged())
 {
     ContextMenuItem menu = new ContextMenuItem
     {
