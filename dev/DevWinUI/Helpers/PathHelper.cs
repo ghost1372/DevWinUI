@@ -58,7 +58,7 @@ public partial class PathHelper
     /// <returns></returns>
     public static string GetExecutablePathNative()
     {
-        const int MAX_Length = 255;
+        const int MAX_Length = 1024;
         Span<char> buffer = stackalloc char[MAX_Length];
         var hModule = PInvoke.GetModuleHandle(string.Empty);
         SafeHandle safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(hModule.DangerousGetHandle(), ownsHandle: false);

@@ -31,8 +31,19 @@ public partial class InIHelper
     /// <returns></returns>
     public string ReadValue(string key, string section)
     {
-        const int MAX_LENGTH = 255;
-        Span<char> buffer = stackalloc char[MAX_LENGTH];
+        return ReadValue(key, section, 1024);
+    }
+
+    /// <summary>
+    /// Read Data Value From the Ini File
+    /// </summary>
+    /// <param name="key">must be unique</param>
+    /// <param name="section"></param>
+    /// <param name="maxLength">512 - 1024 chars (~1 KB - 2 KB) → Very safe, 2048 - 4096 chars (~4 KB - 8 KB) → Generally safe, but risky in deep call stacks</param>
+    /// <returns></returns>
+    public string ReadValue(string key, string section, int maxLength)
+    {
+        Span<char> buffer = stackalloc char[maxLength];
 
         uint result = PInvoke.GetPrivateProfileString(section ?? GetProductName(), key, string.Empty, buffer, FilePath);
 
