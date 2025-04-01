@@ -35,7 +35,6 @@ public partial class SettingsNavigationAttach
         {
             if (d is Panel panel)
             {
-                // Optional: Handle the Loaded event to set the default again when the ComboBox is loaded
                 panel.Loaded += (sender, args) =>
                 {
                     var items = panel.Children.Cast<SettingsCard>();
