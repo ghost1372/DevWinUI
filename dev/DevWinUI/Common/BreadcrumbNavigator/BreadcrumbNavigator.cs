@@ -62,6 +62,10 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
     private Frame MainFrame { get; set; }
     private Dictionary<Type, BreadcrumbPageConfig> PageDictionary;
 
+    public void Initialize(Frame frame, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    {
+        Initialize(frame, null, pageDictionary);
+    }
     public void Initialize(Frame frame, NavigationView navigationView, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
         this.MainNavigation = navigationView;
@@ -180,7 +184,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         }
     }
 
-    private void HandleBackRequested(Type sourcePageType)
+    public void HandleBackRequested(Type sourcePageType)
     {
         if (PageDictionary == null)
             return;
