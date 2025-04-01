@@ -21,4 +21,5 @@ public interface INavigationServiceEx
     NavigationServiceEx ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo);
     NavigationServiceEx ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo);
     NavigationServiceEx ConfigureTitleBar(TitleBar titleBar);
+    IDelegateCommand NavigateToCommand { get; }
 }

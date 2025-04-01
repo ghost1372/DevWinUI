@@ -15,24 +15,31 @@
                 VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
-                    dev:SettingsNavigationAttach.JsonNavigationService="{x:Bind local:App.Current.NavService}"
                     Spacing="5">
-            <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage"
+            <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage,
+                                                                         BreadCrumbHeader='General'}"
                               Description="Change your app Settings"
                               Header="General"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Settings.png}"
                               IsClickEnabled="True" />
-            <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage"
+            <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:ThemeSettingPage,
+                                                                         BreadCrumbHeader='Appearance &amp; behavior'}"
                               Description="Explore the different ways to customize the appearance and behavior of your app. You can change the material, theme, accent, and more options to suit your style and preference."
                               Header="Appearance &amp; behavior"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}"
                               IsClickEnabled="True" />
-            <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage"
+            <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AppUpdateSettingPage,
+                                                                         BreadCrumbHeader='Update App'}"
                               Description="Check for Updates"
                               Header="Update App"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/update.png}"
                               IsClickEnabled="True" />
-            <dev:SettingsCard dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage"
+            <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage,
+                                                                         BreadCrumbHeader='About us'}"
                               Description="About WucGalleryApp and Developer"
                               Header="About us"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"

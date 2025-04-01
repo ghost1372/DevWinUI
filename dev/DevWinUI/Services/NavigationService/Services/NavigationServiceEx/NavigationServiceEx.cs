@@ -2,6 +2,19 @@
 
 public partial class NavigationServiceEx : INavigationServiceEx
 {
+    public NavigationServiceEx()
+    {
+        NavigateToCommand = DelegateCommand.Create(OnNavigateToCommand);
+    }
+
+    private void OnNavigateToCommand(object? parameter)
+    {
+        if (parameter is NavigationParameterExtension navigationParameter)
+        {
+            NavigateTo(navigationParameter.PageType, navigationParameter.BreadCrumbHeader, false, navigationParameter.NavigationTransitionInfo);
+        }
+    }
+
     private void InitializeBase(NavigationView navigationView, Frame frame)
     {
         Reset();

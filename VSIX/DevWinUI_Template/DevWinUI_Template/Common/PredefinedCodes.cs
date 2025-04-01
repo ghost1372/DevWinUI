@@ -51,7 +51,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Your Header"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/AppIcon.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:MySettingPage" /> -->
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:MySettingPage, BreadCrumbHeader='My Setting'}" /> -->
 """;
 
     public static readonly string SettingsCardMVVMCommentCode =
@@ -60,7 +61,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Your Header"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/AppIcon.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:MySettingPage" /> -->
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:MySettingPage, BreadCrumbHeader='My Setting'}" /> -->
 """;
     public static readonly string AboutSettingCode =
 """
@@ -68,7 +70,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="About us"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage, BreadCrumbHeader='About us'}" />
 """;
     public static readonly string AboutSettingMVVMCode =
 """
@@ -76,7 +79,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="About us"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:AboutUsSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage, BreadCrumbHeader='About us'}" />
 """;
 
     public static readonly string AppUpdateSettingCode =
@@ -85,7 +89,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Update App"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Update.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AppUpdateSettingPage, BreadCrumbHeader='Update App'}" />
 """;
 
     public static readonly string AppUpdateSettingMVVMCode =
@@ -94,7 +99,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Update App"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Update.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:AppUpdateSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:AppUpdateSettingPage, BreadCrumbHeader='Update App'}" />
 """;
 
     public static readonly string GeneralSettingCode =
@@ -103,7 +109,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="General"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/General.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage, BreadCrumbHeader='General'}" />
 """;
 
     public static readonly string GeneralSettingMVVMCode =
@@ -112,7 +119,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="General"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/General.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:GeneralSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage, BreadCrumbHeader='General'}" />
 """;
 
     public static readonly string ThemeSettingCode =
@@ -121,7 +129,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Appearance &amp; behavior"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:ThemeSettingPage, BreadCrumbHeader='Appearance &amp; behavior'}" />
 """;
 
     public static readonly string ThemeSettingMVVMCode =
@@ -130,7 +139,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
                               Header="Appearance &amp; behavior"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}"
                               IsClickEnabled="True"
-                              dev:NavigationHelperEx.NavigateToSetting="views:ThemeSettingPage" />
+                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
+                              CommandParameter="{dev:NavigationParameter PageType=views:ThemeSettingPage, BreadCrumbHeader='Appearance &amp; behavior'}" />
 """;
 
     public static readonly string StartupAppSettingCode =

@@ -26,4 +26,6 @@ public partial class JsonNavigationService
 
     private bool _isTitlebarConfigured;
     private TitleBar _titleBar;
+
+    public IDelegateCommand NavigateToCommand { get; }
 }

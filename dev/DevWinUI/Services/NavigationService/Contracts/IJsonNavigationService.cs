@@ -38,4 +38,6 @@ public interface IJsonNavigationService
     JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo);
     JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo);
     JsonNavigationService ConfigureTitleBar(TitleBar titleBar);
+
+    IDelegateCommand NavigateToCommand { get; }
 }

@@ -20,4 +20,5 @@ public partial class NavigationServiceEx
 
     private bool _isTitlebarConfigured;
     private TitleBar _titleBar;
+    public IDelegateCommand NavigateToCommand { get; }
 }
