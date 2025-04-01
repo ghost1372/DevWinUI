@@ -1,25 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace DevWinUI;
-
-public partial class NavigationServiceEx : INavigationServiceEx
+public partial class NavigationServiceEx
 {
-    private readonly IPageServiceEx _pageService;
-    private object? _lastParameterUsed;
-    private Frame? _frame;
-
-    public event NavigatedEventHandler? Navigated;
-
     public Frame? Frame
     {
         get
         {
-            if (_frame == null)
-            {
-                _frame = Window?.Content as Frame;
-                RegisterFrameEvents();
-            }
-
             return _frame;
         }
 
@@ -34,18 +21,11 @@ public partial class NavigationServiceEx : INavigationServiceEx
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
 
-    public Microsoft.UI.Xaml.Window Window { get; set; }
-
-    public NavigationServiceEx(IPageServiceEx pageService)
-    {
-        _pageService = pageService;
-    }
-
     private void RegisterFrameEvents()
     {
         if (_frame != null)
         {
-            _frame.Navigated += OnNavigated;
+            _frame.Navigated += OnFrameNavigated;
         }
     }
 
@@ -53,7 +33,7 @@ public partial class NavigationServiceEx : INavigationServiceEx
     {
         if (_frame != null)
         {
-            _frame.Navigated -= OnNavigated;
+            _frame.Navigated -= OnFrameNavigated;
         }
     }
 
@@ -76,12 +56,6 @@ public partial class NavigationServiceEx : INavigationServiceEx
         return false;
     }
 
-    public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
-    {
-        var pageType = _pageService.GetPageType(pageKey);
-        return Navigate(pageType, parameter, clearNavigation, transitionInfo);
-    }
-
     public bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
     {
         return Navigate(pageType, parameter, clearNavigation, transitionInfo);
@@ -94,10 +68,17 @@ public partial class NavigationServiceEx : INavigationServiceEx
             return false;
         }
 
-        if (_frame != null && (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
+        if (_frame != null && (_frame.CurrentSourcePageType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
             _frame.Tag = clearNavigation;
-            var frameContentBeforeNavigationAOTSafe = _frame?.Content;
+
+            if (_useBreadcrumbBar)
+            {
+                _mainBreadcrumb.AddNewItem(pageType, parameter);
+            }
+
+            var frameContentBeforeNavigationAOTSafe = _frame.Content;
+
             var navigated = _frame.Navigate(pageType, parameter, transitionInfo);
             if (navigated)
             {
@@ -114,8 +95,7 @@ public partial class NavigationServiceEx : INavigationServiceEx
 
         return false;
     }
-
-    private void OnNavigated(object sender, NavigationEventArgs e)
+    private void OnFrameNavigated(object sender, NavigationEventArgs e)
     {
         if (sender is Frame frame)
         {
@@ -125,12 +105,13 @@ public partial class NavigationServiceEx : INavigationServiceEx
                 frame.BackStack.Clear();
             }
 
+            // This is AOT Safe
             if (_frame?.Content is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
                 viewModel.OnNavigatedTo(e.Parameter);
             }
 
-            Navigated?.Invoke(sender, e);
+            FrameNavigated?.Invoke(sender, e);
         }
     }
 }
