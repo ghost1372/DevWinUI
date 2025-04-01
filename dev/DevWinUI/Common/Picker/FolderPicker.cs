@@ -1,5 +1,4 @@
-﻿using Windows.Foundation.Metadata;
-using Windows.Win32.System.Com;
+﻿using Windows.Win32.System.Com;
 using Windows.Win32.UI.Shell;
 
 namespace DevWinUI;
@@ -85,7 +84,7 @@ public class FolderPicker
             {
                 dialog->SetTitle(Title);
             }
-            
+
             if (!string.IsNullOrEmpty(CommitButtonText))
             {
                 dialog->SetOkButtonLabel(CommitButtonText);
@@ -115,7 +114,7 @@ public class FolderPicker
             {
                 Options |= PickerOptions.FOS_ALLOWMULTISELECT;
             }
-            
+
             dialog->SetOptions(PickerHelper.MapPickerOptionsToFOS(Options));
 
             try

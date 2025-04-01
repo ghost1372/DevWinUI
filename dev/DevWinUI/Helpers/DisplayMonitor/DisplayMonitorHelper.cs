@@ -1,6 +1,4 @@
-﻿using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public static partial class DisplayMonitorHelper
 {

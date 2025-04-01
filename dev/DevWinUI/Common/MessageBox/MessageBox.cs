@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 public static class MessageBox
-{  
+{
     private static MessageBoxResult ShowBase(IntPtr hwnd, string message, string title, MessageBoxStyle messageBoxStyle)
     {
         Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE mbStyle = 0;
@@ -374,7 +374,7 @@ public static class MessageBox
     {
         return Show(WindowNative.GetWindowHandle(window), message, messageBoxStyle);
     }
-    
+
     /// <summary>
     /// Displays a message box in the specified window with a given message.
     /// </summary>
@@ -397,7 +397,7 @@ public static class MessageBox
     {
         return ShowInformation(WindowNative.GetWindowHandle(window), message, title);
     }
-    
+
     /// <summary>
     /// Displays an information message box in the specified window.
     /// </summary>
@@ -431,7 +431,7 @@ public static class MessageBox
     {
         return ShowError(WindowNative.GetWindowHandle(window), message);
     }
-    
+
     /// <summary>
     /// Displays a warning message box in the specified window. It provides a way to show a message with a title to the
     /// user.

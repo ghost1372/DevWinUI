@@ -24,7 +24,6 @@ public partial class JsonNavigationService
     private Frame? _frame;
     public event NavigatedEventHandler? FrameNavigated;
 
-    public Microsoft.UI.Xaml.Window Window { get; set; }
     private bool _isTitlebarConfigured;
     private TitleBar _titleBar;
 }

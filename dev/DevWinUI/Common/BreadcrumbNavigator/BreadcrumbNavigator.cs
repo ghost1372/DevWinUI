@@ -178,7 +178,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
                             BreadCrumbs?.Add(currentItem);
                         }
                     }
-                    
+
                 }
             }
         }

@@ -37,7 +37,7 @@ public partial class ModernWindow
     {
         get => DisplayMonitorHelper.GetMonitorInfo(Hwnd);
     }
-    
+
     private IntPtr? hwnd;
     public IntPtr Hwnd => hwnd ??= WindowNative.GetWindowHandle(this);
 

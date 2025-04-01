@@ -1,6 +1,4 @@
-﻿using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class WindowMessageMonitor : IDisposable
 {
     private GCHandle? _monitorGCHandle;

@@ -1,6 +1,4 @@
-﻿using WinRT.Interop;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class WndProcHelper
 {
     private IntPtr Handle { get; set; }

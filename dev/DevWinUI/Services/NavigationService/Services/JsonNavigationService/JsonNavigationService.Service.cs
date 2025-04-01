@@ -1,18 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace DevWinUI;
-public partial class JsonNavigationService : IJsonNavigationService
+public partial class JsonNavigationService
 {
     public Frame? Frame
     {
         get
         {
-            if (_frame == null)
-            {
-                _frame = Window?.Content as Frame;
-                RegisterFrameEvents();
-            }
-
             return _frame;
         }
 

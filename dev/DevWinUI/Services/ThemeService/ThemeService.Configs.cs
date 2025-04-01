@@ -1,5 +1,4 @@
 ﻿using WinRT;
-using WinRT.Interop;
 
 namespace DevWinUI;
 public partial class ThemeService

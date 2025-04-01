@@ -13,14 +13,20 @@ public partial class JsonNavigationService
 
         return this; // Enable chaining
     }
+    private async void ConfigureJsonBase(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
+    {
+        JsonFilePath = jsonFilePath;
+        await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
+        AddNavigationMenuItems(orderItems);
+    }
     public JsonNavigationService ConfigureJsonFile()
     {
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -30,7 +36,7 @@ public partial class JsonNavigationService
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -40,7 +46,7 @@ public partial class JsonNavigationService
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
+        ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
     }
 
@@ -50,7 +56,7 @@ public partial class JsonNavigationService
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -60,7 +66,7 @@ public partial class JsonNavigationService
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, pathType, orderItems);
+        ConfigureJsonBase(jsonFilePath, pathType, orderItems);
         return this;
     }
 
@@ -68,7 +74,7 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -76,7 +82,7 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -84,7 +90,7 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, PathType.Relative, orderItems);
+        ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
     }
 
@@ -92,7 +98,7 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
         return this;
     }
 
@@ -100,81 +106,168 @@ public partial class JsonNavigationService
     {
         EnsureInitialized();
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigJsonBase(jsonFilePath, pathType, orderItems);
+        ConfigureJsonBase(jsonFilePath, pathType, orderItems);
         return this;
     }
 
     public JsonNavigationService ConfigureDefaultPage(Type defaultPage)
     {
         EnsureInitialized();
-        ConfigDefaultPage(defaultPage);
+
+        _defaultPage = defaultPage;
+
         return this;
     }
 
     public JsonNavigationService ConfigureSettingsPage(Type settingsPage)
     {
         EnsureInitialized();
-        ConfigSettingsPage(settingsPage);
+
+        _settingsPage = settingsPage;
+        SetSettingsPage(_settingsPage);
+
         return this;
     }
 
     public JsonNavigationService ConfigureSectionPage(Type sectionPage)
     {
         EnsureInitialized();
-        ConfigSectionPage(sectionPage);
+
+        _sectionPage = sectionPage;
+        SetSectionPage(_sectionPage);
+
         return this;
+    }
+    private void ConfigureAutoSuggestBoxBase(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string autoSuggestBoxNotFoundString = null, string autoSuggestBoxNotFoundImagePath = null)
+    {
+        _autoSuggestBox = autoSuggestBox;
+
+        if (_autoSuggestBox != null)
+        {
+            _autoSuggestBoxNotFoundString = autoSuggestBoxNotFoundString;
+            _autoSuggestBoxNotFoundImagePath = autoSuggestBoxNotFoundImagePath;
+
+            if (string.IsNullOrEmpty(_autoSuggestBoxNotFoundString))
+            {
+                _autoSuggestBoxNotFoundString = "No result found";
+            }
+
+            if (string.IsNullOrEmpty(_autoSuggestBoxNotFoundImagePath))
+            {
+                _autoSuggestBoxNotFoundImagePath = "ms-appx:///Assets/icon.png";
+            }
+
+            _autoSuggestBox.TextChanged -= OnAutoSuggestBox_TextChanged;
+            _autoSuggestBox.TextChanged += OnAutoSuggestBox_TextChanged;
+            _autoSuggestBox.QuerySubmitted -= OnAutoSuggestBox_QuerySubmitted;
+            _autoSuggestBox.QuerySubmitted += OnAutoSuggestBox_QuerySubmitted;
+
+            if (useItemTemplate)
+            {
+                _autoSuggestBox.Resources.MergedDictionaries.AddIfNotExists(new InternalAutoSuggestBoxItemTemplate());
+                _autoSuggestBox.ItemTemplate = _autoSuggestBox.Resources["InternalAutoSuggestBoxItemTemplate"] as DataTemplate;
+            }
+        }
     }
 
     public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate, string notFoundString, string notFoundImagePath)
     {
         EnsureInitialized();
-        ConfigAutoSuggestBox(autoSuggestBox, useItemTemplate, notFoundString, notFoundImagePath);
+        ConfigureAutoSuggestBoxBase(autoSuggestBox, useItemTemplate, notFoundString, notFoundImagePath);
         return this;
     }
     public JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox)
     {
         EnsureInitialized();
-        ConfigAutoSuggestBox(autoSuggestBox, true, null, null);
+        ConfigureAutoSuggestBoxBase(autoSuggestBox, true, null, null);
         return this;
     }
+    private void ConfigureBreadcrumbBarBase(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    {
+        _mainBreadcrumb = breadcrumbNavigator;
+        _useBreadcrumbBar = false;
 
+        if (_mainBreadcrumb != null)
+        {
+            _mainBreadcrumb.Visibility = Visibility.Collapsed;
+            _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
+
+            _useBreadcrumbBar = true;
+            _mainBreadcrumb.ChangeBreadcrumbVisibility(false);
+        }
+    }
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary);
+        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
         return this;
     }
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, headerVisibilityOptions);
+        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
+        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
         return this;
     }
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, navigationTransitionInfo);
+        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
+        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
         return this;
     }
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, headerVisibilityOptions, navigationTransitionInfo);
+        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
+        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
+        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
         return this;
+    }
+
+    private void ConfigureTitleBarBase(TitleBar titleBar, bool autoManageBackButtonVisibility)
+    {
+        _titleBar = titleBar;
+        titleBar.BackRequested -= OnBackRequested;
+        titleBar.BackRequested += OnBackRequested;
+        titleBar.PaneToggleRequested -= OnPaneToggleRequested;
+        titleBar.PaneToggleRequested += OnPaneToggleRequested;
+        _autoManageBackButtonVisibility = autoManageBackButtonVisibility;
+        if (_autoManageBackButtonVisibility)
+        {
+            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+        }
+
+        _isTitlebarConfigured = true;
+    }
+    private void OnPaneToggleRequested(TitleBar sender, object args)
+    {
+        _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+    }
+
+    private void OnBackRequested(TitleBar sender, object args)
+    {
+        GoBack();
     }
     public JsonNavigationService ConfigureTitleBar(TitleBar titleBar)
     {
         EnsureInitialized();
-        ConfigTitleBar(titleBar, true);
+        ConfigureTitleBarBase(titleBar, true);
         return this;
     }
     public JsonNavigationService ConfigureTitleBar(TitleBar titleBar, bool autoManageBackButtonVisibility)
     {
         EnsureInitialized();
-        ConfigTitleBar(titleBar, autoManageBackButtonVisibility);
+        ConfigureTitleBarBase(titleBar, autoManageBackButtonVisibility);
+        return this;
+    }
+    public JsonNavigationService ConfigFontFamilyForGlyph(string fontFamily)
+    {
+        EnsureInitialized();
+        _fontFamilyForGlyph = fontFamily;
         return this;
     }
     private void EnsureInitialized()
