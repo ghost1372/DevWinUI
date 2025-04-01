@@ -1,5 +1,7 @@
 ﻿namespace DevWinUI;
 
+[Obsolete("This class is obsolete and will be removed in a future version. Please use NavigateToCommand instead.")]
+
 public partial class SettingsNavigationAttach
 {
     public static SlideNavigationTransitionInfo GetSlideNavigationTransitionInfo(DependencyObject obj)

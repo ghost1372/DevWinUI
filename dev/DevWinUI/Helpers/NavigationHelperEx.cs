@@ -1,4 +1,6 @@
 ﻿namespace DevWinUI;
+
+[Obsolete("This class is obsolete and will be removed in a future version. Please use NavigateToCommand instead.")]
 public partial class NavigationHelperEx
 {
     public static Type GetNavigateToSetting(DependencyObject obj)
