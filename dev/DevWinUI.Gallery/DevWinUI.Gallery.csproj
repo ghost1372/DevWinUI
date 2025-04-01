@@ -17,7 +17,7 @@
 	  <Version>$(LibraryMajorVersion).0.0$(PreviewLabel)</Version>
 
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006</NoWarn>
+	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>
 	  <!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 	  <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 	  <GITHUB_ACTIONS>false</GITHUB_ACTIONS>
