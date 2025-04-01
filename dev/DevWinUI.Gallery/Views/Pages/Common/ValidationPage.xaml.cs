@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections;
 
 namespace DevWinUIGallery.Views;
 public sealed partial class ValidationPage : Page

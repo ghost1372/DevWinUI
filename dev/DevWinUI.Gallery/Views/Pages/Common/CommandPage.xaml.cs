@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class CommandPage : Page
 {

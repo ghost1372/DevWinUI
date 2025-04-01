@@ -22,5 +22,5 @@ public partial class ColorFormatModel : ObservableObject
         Name = name;
         Example = example;
         IsShown = isShown;
-    }    
+    }
 }

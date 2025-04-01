@@ -8,7 +8,7 @@ public partial class ExtensionViewModel : ObservableObject
     public partial ObservableCollection<Animal> Items { get; set; } = new ObservableCollection<Animal>(Enum.GetValues<Animal>());
 
     [ObservableProperty]
-    public partial bool IsCharacterValid {get; set;}
+    public partial bool IsCharacterValid { get; set; }
 
     [ObservableProperty]
     public partial bool IsPhoneNumberValid { get; set; }

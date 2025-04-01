@@ -1,5 +1,4 @@
-﻿using DevWinUI;
-using Microsoft.UI.Xaml.Media.Imaging;
+﻿using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.Views;
 
@@ -23,7 +22,7 @@ public sealed partial class CompareSliderPage : Page
             CompareSlider2.SourceImage = before;
             CompareSlider2.TargetImage = after;
         }
-        else 
+        else
         {
             var before = new BitmapImage(new Uri("ms-appx:///Assets/Others/Girl.jpg"));
             var after = new BitmapImage(new Uri("ms-appx:///Assets/Others/GirlBlur.jpg"));

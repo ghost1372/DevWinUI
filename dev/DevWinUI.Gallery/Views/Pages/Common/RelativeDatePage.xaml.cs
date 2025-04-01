@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class RelativeDatePage : Page
 {

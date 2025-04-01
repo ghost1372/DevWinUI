@@ -133,13 +133,15 @@ public partial class ContextMenuItem : ContextMenuBaseModel
         set => SetProperty(ref _index, value);
     }
 
-    public int ShowWindowFlag { 
-        get => _showWindowFlag; 
-        set => SetProperty(ref _showWindowFlag, value); 
+    public int ShowWindowFlag
+    {
+        get => _showWindowFlag;
+        set => SetProperty(ref _showWindowFlag, value);
     }
 
-    public string WorkingDirectory { 
-        get => _workingDirectory; 
-        set => SetProperty(ref _workingDirectory, value); 
+    public string WorkingDirectory
+    {
+        get => _workingDirectory;
+        set => SetProperty(ref _workingDirectory, value);
     }
 }

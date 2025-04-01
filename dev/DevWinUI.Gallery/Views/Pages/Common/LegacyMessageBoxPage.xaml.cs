@@ -1,6 +1,4 @@
-﻿using DevWinUI;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class LegacyMessageBoxPage : Page
 {

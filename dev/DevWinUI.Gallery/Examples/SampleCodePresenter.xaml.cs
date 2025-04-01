@@ -1,8 +1,8 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using ColorCode;
+using ColorCode.Common;
+using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
-using ColorCode;
-using ColorCode.Common;
 
 namespace DevWinUIGallery;
 public enum SampleCodePresenterType
@@ -167,7 +167,7 @@ public sealed partial class SampleCodePresenter : UserControl
         actualCode = sampleString;
 
         var formatter = GenerateRichTextFormatter();
-        
+
         if (SampleType == SampleCodePresenterType.Inline)
         {
             CodeScrollViewer.Content = new TextBlock() { FontFamily = new FontFamily("Consolas"), Text = actualCode, IsTextSelectionEnabled = true, TextTrimming = TextTrimming.CharacterEllipsis };

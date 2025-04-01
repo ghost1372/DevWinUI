@@ -42,7 +42,7 @@ public partial class DashboardPage : Page
             CmbVersion.SelectedIndex = 1;
         }
     }
-    
+
     private void cmbVersionMechanism_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbVersionMechanism = sender as ComboBox;
