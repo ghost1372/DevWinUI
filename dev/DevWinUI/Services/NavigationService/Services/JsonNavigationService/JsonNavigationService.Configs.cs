@@ -64,43 +64,38 @@ public partial class JsonNavigationService
         _fontFamilyForGlyph = fontFamily;
     }
 
-    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
-        _mainBreadcrumb = breadcrumbBar;
+        _mainBreadcrumb = breadcrumbNavigator;
         _useBreadcrumbBar = false;
 
         if (_mainBreadcrumb != null)
         {
-            _mainBreadcrumb.NavigationView = _navigationView;
-            _mainBreadcrumb.InternalFrame = Frame;
-            _mainBreadcrumb.PageDictionary = pageDictionary;
             _mainBreadcrumb.Visibility = Visibility.Collapsed;
-            _mainBreadcrumb.Initialize();
+            _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
 
-            _mainBreadcrumb.BreadCrumbs = new ObservableCollection<NavigationBreadcrumb>();
             _useBreadcrumbBar = true;
-            _mainBreadcrumb.ItemClicked -= MainBreadcrumb_ItemClicked;
-            _mainBreadcrumb.ItemClicked += MainBreadcrumb_ItemClicked;
             _mainBreadcrumb.ChangeBreadcrumbVisibility(false);
         }
     }
 
-    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
+    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
     {
-        breadcrumbBar.HeaderVisibilityOptions = headerVisibilityOptions;
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary);
+        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary);
     }
 
-    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, bool allowDuplication)
+    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo)
     {
-        _allowDuplication = allowDuplication;
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary);
+        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary);
     }
 
-    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, bool allowDuplication)
+    private void ConfigBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo)
     {
-        breadcrumbBar.HeaderVisibilityOptions = headerVisibilityOptions;
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, allowDuplication);
+        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
+        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary);
     }
 
     private void ConfigTitleBar(TitleBar titleBar, bool autoManageBackButtonVisibility)

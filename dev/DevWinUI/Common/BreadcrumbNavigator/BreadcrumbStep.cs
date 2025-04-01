@@ -1,13 +1,12 @@
 ﻿namespace DevWinUI;
-//thanks to https://github.com/microsoft/devhome/blob/main/settings/DevHome.Settings/Models/Breadcrumb.cs#L10
-public partial class NavigationBreadcrumb
+public partial class BreadcrumbStep
 {
-    public NavigationBreadcrumb(string label, Type page)
+    public BreadcrumbStep(string label, Type page)
     {
         Label = label;
         Page = page;
     }
-    public NavigationBreadcrumb(string label, Type page, object parameter)
+    public BreadcrumbStep(string label, Type page, object parameter)
     {
         Label = label;
         Page = page;

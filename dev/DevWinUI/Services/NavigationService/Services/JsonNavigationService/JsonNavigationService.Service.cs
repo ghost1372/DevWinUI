@@ -86,7 +86,7 @@ public partial class JsonNavigationService : IJsonNavigationService
 
             if (_useBreadcrumbBar)
             {
-                _mainBreadcrumb.AddNewItem(pageType, null, parameter, parameter, _allowDuplication, null);
+                _mainBreadcrumb.AddNewItem(pageType, parameter);
             }
 
             var frameContentBeforeNavigationAOTSafe = _frame.Content;
@@ -115,10 +115,6 @@ public partial class JsonNavigationService : IJsonNavigationService
             if (clearNavigation)
             {
                 frame.BackStack.Clear();
-                if (_useBreadcrumbBar)
-                {
-                    _mainBreadcrumb?.BreadCrumbs?.Clear();
-                }
             }
 
             // This is AOT Safe

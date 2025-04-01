@@ -138,31 +138,31 @@ public partial class JsonNavigationService
         return this;
     }
 
-    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary);
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary);
         return this;
     }
 
-    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, headerVisibilityOptions);
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, headerVisibilityOptions);
         return this;
     }
 
-    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, bool allowDuplication)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, allowDuplication);
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, navigationTransitionInfo);
         return this;
     }
 
-    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, bool allowDuplication)
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo)
     {
         EnsureInitialized();
-        ConfigBreadcrumbBar(breadcrumbBar, pageDictionary, headerVisibilityOptions, allowDuplication);
+        ConfigBreadcrumbBar(breadcrumbNavigator, pageDictionary, headerVisibilityOptions, navigationTransitionInfo);
         return this;
     }
     public JsonNavigationService ConfigureTitleBar(TitleBar titleBar)
