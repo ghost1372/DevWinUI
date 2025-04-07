@@ -1,4 +1,6 @@
 ﻿CoCreateInstance
+CoWaitForMultipleObjects
+CreateEvent
 CreateRectRgn
 CreateSolidBrush
 DefSubclassProc
@@ -43,6 +45,7 @@ OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
+SetEvent
 SetForegroundWindow
 SetWindowLong
 SetWindowPos
