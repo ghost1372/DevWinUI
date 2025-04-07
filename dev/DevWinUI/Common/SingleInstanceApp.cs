@@ -13,6 +13,7 @@ public abstract class SingleInstanceApp
 
     public static int Run(string[] args, string key, Func<SingleInstanceApp> program, Action app)
     {
+        WinRT.ComWrappersSupport.InitializeComWrappers();
         bool isRedirect = HandleRedirection(key, program);
 
         if (!isRedirect)
