@@ -208,6 +208,13 @@ public class SharedWizard
             // Add Xaml Dictionary
             new DictionaryOption().ConfigDictionary(replacementsDictionary, templateConfig.HasNavigationView, WizardConfig.UseHomeLandingPage, WizardConfig.UseColorsDic, WizardConfig.UseStylesDic, WizardConfig.UseConvertersDic, WizardConfig.UseFontsDic);
 
+            #region Serilog
+            var serilog = new SerilogOption();
+            serilog.ConfigSerilog(replacementsDictionary, WizardConfig.LibraryDic, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
+            UseFileLogger = serilog.UseFileLogger;
+            UseDebugLogger = serilog.UseDebugLogger;
+            #endregion
+
             #region Codes
             var configCodes = new ConfigCodes(WizardConfig.UseAboutPage, WizardConfig.UseAppUpdatePage, WizardConfig.UseGeneralSettingPage, WizardConfig.UseHomeLandingPage, WizardConfig.UseSettingsPage, WizardConfig.UseThemeSettingPage, WizardConfig.UseDeveloperModeSetting, WizardConfig.UseJsonSettings, WizardConfig.UseWindow11ContextMenu, WizardConfig.UseStartupSetting);
 
@@ -220,7 +227,7 @@ public class SharedWizard
                 configCodes.ConfigAll(SafeProjectName);
             }
 
-            configCodes.ConfigGeneral();
+            configCodes.ConfigGeneral(UseFileLogger, UseDebugLogger);
 
             var configs = configCodes.GetConfigJson();
             var services = configCodes.GetServices();
@@ -260,11 +267,6 @@ public class SharedWizard
             #endregion
 
             #region Serilog
-            var serilog = new SerilogOption();
-            serilog.ConfigSerilog(replacementsDictionary, WizardConfig.LibraryDic, WizardConfig.UseJsonSettings, WizardConfig.UseDeveloperModeSetting);
-            UseFileLogger = serilog.UseFileLogger;
-            UseDebugLogger = serilog.UseDebugLogger;
-
             if (!string.IsNullOrEmpty(generalSettingsCards))
             {
                 replacementsDictionary.AddIfNotExists("$GeneralSettingsCards$", generalSettingsCards);

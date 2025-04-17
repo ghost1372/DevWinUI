@@ -214,7 +214,7 @@ public class ConfigCodes
         }
     }
 
-    public void ConfigGeneral()
+    public void ConfigGeneral(bool useFileLogger, bool useDebugLogger)
     {
         if (UseSettingsPage && UseGeneralSettingPage)
         {
@@ -222,14 +222,16 @@ public class ConfigCodes
             {
                 GeneralSettingsPageOptionsDic.Add(nameof(UseStartupSetting), Environment.NewLine + PredefinedCodes.StartupAppSettingCode);
             }
-
-            if (UseDeveloperModeSetting && !UseJsonSetting)
+            if (UseDeveloperModeSetting)
             {
-                GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode);
-            }
-            else if (UseDeveloperModeSetting && UseJsonSetting)
-            {
-                GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode2);
+                if (!UseJsonSetting || (!useFileLogger && !useDebugLogger))
+                {
+                    GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode);
+                }
+                else if (UseJsonSetting && (useFileLogger || useDebugLogger))
+                {
+                    GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode2);
+                }
             }
         }
     }
