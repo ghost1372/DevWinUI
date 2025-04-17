@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>$(LibraryMajorVersion).1.0$(PreviewBuildSuffix)</Version>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_MinorVersion).$(DevWinUI_PatchVersion)$(PreviewBuildSuffix)</Version>
     <AssemblyName>$(BaseNamespace)</AssemblyName>
     <PackageId>$(BaseNamespace)</PackageId>
     <Description>Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place. Helpers, Extensions...</Description>

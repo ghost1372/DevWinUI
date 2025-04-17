@@ -14,7 +14,7 @@
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
-	  <Version>$(LibraryMajorVersion).0.0$(PreviewLabel)</Version>
+	  <Version>$(LibraryMajorVersion).$(DevWinUI_Gallery_MinorVersion).$(DevWinUI_Gallery_MinorVersion)$(PreviewBuildSuffix)</Version>
 
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>

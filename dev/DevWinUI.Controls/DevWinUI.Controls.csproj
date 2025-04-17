@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>$(LibraryMajorVersion).1.0$(PreviewBuildSuffix)</Version>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_Controls_MinorVersion).$(DevWinUI_Controls_PatchVersion)$(PreviewBuildSuffix)</Version>
     <PackageId>$(BaseNamespace).Controls</PackageId>
     <AssemblyName>$(BaseNamespace).Controls</AssemblyName>
     <Description>

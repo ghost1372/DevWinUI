@@ -4,12 +4,26 @@
     <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
     <BaseNamespace>DevWinUI</BaseNamespace>
 
-    <!-- Version -->
+    <!-- Major Version -->
     <LibraryMajorVersion>8</LibraryMajorVersion>
-    <PreviewLabel></PreviewLabel>
-    <IsPreviewBuild>false</IsPreviewBuild>
-    <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
 
+    <!-- Minor Version -->
+    <DevWinUI_MinorVersion>2</DevWinUI_MinorVersion>
+    <DevWinUI_Controls_MinorVersion>2</DevWinUI_Controls_MinorVersion>
+    <DevWinUI_ContextMenu_MinorVersion>2</DevWinUI_ContextMenu_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>2</DevWinUI_Gallery_MinorVersion>
+
+    <!-- Patch Version -->
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Controls_PatchVersion>0</DevWinUI_Controls_PatchVersion>
+    <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
+    
+    <!-- -Preview -->
+    <IsPreviewBuild>false</IsPreviewBuild>
+    <PreviewLabel>-Preview</PreviewLabel>
+    <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
+    
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
     <CsWin32Version>0.3.183</CsWin32Version>
@@ -50,7 +64,7 @@
 
   <!-- The NuGet versions of dependencies to build against. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250401001" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
   </ItemGroup>
   

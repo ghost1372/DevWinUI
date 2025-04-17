@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>$(LibraryMajorVersion).1.0$(PreviewBuildSuffix)</Version>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_ContextMenu_MinorVersion).$(DevWinUI_ContextMenu_PatchVersion)$(PreviewBuildSuffix)</Version>
     <AssemblyName>$(BaseNamespace).ContextMenu</AssemblyName>
     <PackageId>$(BaseNamespace).ContextMenu</PackageId>
     <Description>Create a New Context Menu Item for Windows 11/10 working with WinUI, WPF And all platforms that support .NET 8, 9 and package identity</Description>
