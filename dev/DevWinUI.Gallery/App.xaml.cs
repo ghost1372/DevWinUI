@@ -52,6 +52,7 @@ public partial class App : Application
         if (this.ThemeService != null)
         {
             this.ThemeService.AutoInitialize(MainWindow)
+                .AutoUpdateTitleBarCaptionButtonsColor()
                 .ConfigureTintColor();
         }
 

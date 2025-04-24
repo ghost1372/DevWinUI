@@ -51,4 +51,5 @@ public interface IThemeService
     ThemeService ConfigureElementTheme(ElementTheme elementTheme);
     ThemeService ConfigureElementTheme();
     ThemeService EnableRequestedTheme();
+    ThemeService AutoUpdateTitleBarCaptionButtonsColor();
 }

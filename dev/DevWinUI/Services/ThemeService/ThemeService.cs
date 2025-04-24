@@ -7,6 +7,7 @@ public partial class ThemeService : IThemeService
     public event IThemeService.ActualThemeChangedEventHandler ActualThemeChanged;
     private bool changeThemeWithoutSave = false;
     private bool useAutoSave;
+    private bool useAutoUpdateTitleBarCaptionButtonsColor = false;
     public ElementTheme ActualTheme
     {
         get
@@ -143,6 +144,10 @@ public partial class ThemeService : IThemeService
     private void OnActualThemeChanged(FrameworkElement sender, object args)
     {
         GeneralHelper.SetPreferredAppMode(sender.ActualTheme);
+        if (useAutoUpdateTitleBarCaptionButtonsColor)
+        {
+            UpdateCaptionButtons();
+        }
         ActualThemeChanged?.Invoke(sender, args);
     }
 

@@ -127,6 +127,12 @@ public partial class ThemeService
         return this;
     }
 
+    public ThemeService AutoUpdateTitleBarCaptionButtonsColor()
+    {
+        EnsureInitialized();
+        useAutoUpdateTitleBarCaptionButtonsColor = true;
+        return this;
+    }
     private void EnsureInitialized()
     {
         if (!_isInitialized)
