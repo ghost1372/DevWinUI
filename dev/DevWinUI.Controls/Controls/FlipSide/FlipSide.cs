@@ -8,6 +8,12 @@ public sealed partial class FlipSide : Control
     private const string PART_Side1Content = "Side1Content";
     private const string PART_Side2Content = "Side2Content";
     private const string PART_LayoutRoot = "LayoutRoot";
+
+    public bool IsFlipped
+    {
+        get { return (bool)GetValue(IsFlippedProperty); }
+        set { SetValue(IsFlippedProperty, value); }
+    }
     public static readonly DependencyProperty IsFlippedProperty =
         DependencyProperty.Register(nameof(IsFlipped), typeof(bool), typeof(FlipSide), new PropertyMetadata(false, (s, a) =>
         {
@@ -20,12 +26,27 @@ public sealed partial class FlipSide : Control
             }
         }));
 
+    public object Side1
+    {
+        get { return (object)GetValue(Side1Property); }
+        set { SetValue(Side1Property, value); }
+    }
     public static readonly DependencyProperty Side1Property =
         DependencyProperty.Register(nameof(Side1), typeof(object), typeof(FlipSide), new PropertyMetadata(null));
 
+    public object Side2
+    {
+        get { return (object)GetValue(Side2Property); }
+        set { SetValue(Side2Property, value); }
+    }
     public static readonly DependencyProperty Side2Property =
         DependencyProperty.Register(nameof(Side2), typeof(object), typeof(FlipSide), new PropertyMetadata(null));
 
+    public Vector2 Axis
+    {
+        get { return (Vector2)GetValue(AxisProperty); }
+        set { SetValue(AxisProperty, value); }
+    }
     public static readonly DependencyProperty AxisProperty =
         DependencyProperty.Register(nameof(Axis), typeof(Vector2), typeof(FlipSide), new PropertyMetadata(new Vector2(0, 1), (d, e) =>
         {
@@ -37,7 +58,11 @@ public sealed partial class FlipSide : Control
             }
         }));
 
-
+    public FlipOrientationMode FlipOrientation
+    {
+        get { return (FlipOrientationMode)GetValue(FlipOrientationProperty); }
+        set { SetValue(FlipOrientationProperty, value); }
+    }
     public static readonly DependencyProperty FlipOrientationProperty =
         DependencyProperty.Register(nameof(FlipOrientation), typeof(FlipOrientationMode), typeof(FlipSide), new PropertyMetadata(FlipOrientationMode.Horizontal, (d, e) =>
         {
@@ -56,32 +81,31 @@ public sealed partial class FlipSide : Control
             }
         }));
 
-    public bool IsFlipped
+    public float AnimationDampingRatio
     {
-        get { return (bool)GetValue(IsFlippedProperty); }
-        set { SetValue(IsFlippedProperty, value); }
+        get { return (float)GetValue(AnimationDampingRatioProperty); }
+        set { SetValue(AnimationDampingRatioProperty, value); }
     }
 
-    public object Side1
+    public static readonly DependencyProperty AnimationDampingRatioProperty =
+        DependencyProperty.Register(nameof(AnimationDampingRatio), typeof(float), typeof(FlipSide), new PropertyMetadata(0.5f, OnAnimationChanged));
+
+    public TimeSpan AnimationDuration
     {
-        get { return (object)GetValue(Side1Property); }
-        set { SetValue(Side1Property, value); }
+        get { return (TimeSpan)GetValue(AnimationDurationProperty); }
+        set { SetValue(AnimationDurationProperty, value); }
     }
 
-    public object Side2
+    public static readonly DependencyProperty AnimationDurationProperty =
+        DependencyProperty.Register(nameof(AnimationDuration), typeof(TimeSpan), typeof(FlipSide), new PropertyMetadata(TimeSpan.FromMilliseconds(200), OnAnimationChanged));
+
+    private static void OnAnimationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        get { return (object)GetValue(Side2Property); }
-        set { SetValue(Side2Property, value); }
-    }
-    public Vector2 Axis
-    {
-        get { return (Vector2)GetValue(AxisProperty); }
-        set { SetValue(AxisProperty, value); }
-    }
-    public FlipOrientationMode FlipOrientation
-    {
-        get { return (FlipOrientationMode)GetValue(FlipOrientationProperty); }
-        set { SetValue(FlipOrientationProperty, value); }
+        var ctl = (FlipSide)d;
+        if (ctl != null)
+        {
+            ctl.InitComposition();
+        }
     }
 
     private Grid LayoutRoot;
@@ -132,13 +156,13 @@ public sealed partial class FlipSide : Control
         OnIsFlippedChanged();
 
         springAnimation1 = compositor.CreateSpringScalarAnimation();
-        springAnimation1.DampingRatio = 0.5f;
-        springAnimation1.Period = TimeSpan.FromMilliseconds(200);
+        springAnimation1.DampingRatio = AnimationDampingRatio;
+        springAnimation1.Period = AnimationDuration;
         springAnimation1.FinalValue = 180f;
 
         springAnimation2 = compositor.CreateSpringScalarAnimation();
-        springAnimation2.DampingRatio = 0.5f;
-        springAnimation2.Period = TimeSpan.FromMilliseconds(200);
+        springAnimation2.DampingRatio = AnimationDampingRatio;
+        springAnimation2.Period = AnimationDuration;
         springAnimation2.FinalValue = 180f;
 
         UpdateAxis(Side1Content, Axis);
