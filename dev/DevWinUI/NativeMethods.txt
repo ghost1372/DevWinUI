@@ -5,6 +5,7 @@ CreateRectRgn
 CreateSolidBrush
 DefSubclassProc
 DeleteObject
+DestroyWindow
 DwmEnableBlurBehindWindow
 DwmExtendFrameIntoClientArea
 DwmGetWindowAttribute
@@ -15,6 +16,7 @@ FillRect
 FileOpenDialog
 FileSaveDialog
 FindWindowExW
+FindWindow
 GetActiveWindow
 GetClassName
 GetClientRect

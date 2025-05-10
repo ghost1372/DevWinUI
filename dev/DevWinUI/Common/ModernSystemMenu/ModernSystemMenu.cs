@@ -211,35 +211,45 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
 
     private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
     {
-        if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND && IsModernSystemMenuEnabled)
+        if (IsModernSystemMenuEnabled)
         {
-            var sysCommand = e.Message.WParam.ToUInt32() & 0xFFF0;
-
-            if (sysCommand is SC_MOUSEMENU)
+            //Destroy Legacy SystemContextMenu by Clicking on App Icon
+            if (e.MessageType == (uint)NativeValues.WindowMessage.WM_INITMENUPOPUP)
             {
-                FlyoutShowOptions options = new()
-                {
-                    Position = new Point(0, 15),
-                    ShowMode = FlyoutShowMode.Standard
-                };
-
-                ShowMenuFlyout(options);
-
-                e.Result = 0;
-                e.Handled = true;
+                IntPtr hWndMenu = PInvoke.FindWindow("#32768", null);
+                PInvoke.DestroyWindow(new HWND(hWndMenu));
             }
-            else if (sysCommand is SC_KEYMENU)
+
+            if (e.MessageType == (uint)NativeValues.WindowMessage.WM_SYSCOMMAND)
             {
-                FlyoutShowOptions options = new()
+                var sysCommand = e.Message.WParam.ToUInt32() & 0xFFF0;
+
+                if (sysCommand is SC_MOUSEMENU)
                 {
-                    Position = new Point(0, 45),
-                    ShowMode = FlyoutShowMode.Standard
-                };
+                    FlyoutShowOptions options = new()
+                    {
+                        Position = new Point(0, 15),
+                        ShowMode = FlyoutShowMode.Standard
+                    };
 
-                ShowMenuFlyout(options);
+                    ShowMenuFlyout(options);
 
-                e.Result = 0;
-                e.Handled = true;
+                    e.Result = 0;
+                    e.Handled = true;
+                }
+                else if (sysCommand is SC_KEYMENU)
+                {
+                    FlyoutShowOptions options = new()
+                    {
+                        Position = new Point(0, 45),
+                        ShowMode = FlyoutShowMode.Standard
+                    };
+
+                    ShowMenuFlyout(options);
+
+                    e.Result = 0;
+                    e.Handled = true;
+                }
             }
         }
     }

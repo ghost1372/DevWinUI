@@ -154,7 +154,8 @@ public static partial class NativeValues
         NIN_POPUPOPEN = WM_USER + 6,
         NIN_POPUPCLOSE = WM_USER + 7,
         WA_ACTIVE = 0x01,
-        WA_INACTIVE = 0x00
+        WA_INACTIVE = 0x00,
+        WM_INITMENUPOPUP = 0x0117
     }
 
     [StructLayout(LayoutKind.Sequential)]
