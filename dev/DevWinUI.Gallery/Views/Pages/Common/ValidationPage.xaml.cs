@@ -13,13 +13,7 @@ public sealed partial class ValidationPage : Page
     public ValidationPage()
     {
         this.InitializeComponent();
-        Application.Current.UnhandledException += Current_UnhandledException;
         UserInfo = new UserInfo();
-    }
-
-    private void Current_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
-    {
-        File.WriteAllText(@"E:\Store MSIX\HC\v.txt", e.Message);
     }
 }
 
