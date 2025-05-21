@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace DevWinUIGallery.Views;
 public sealed partial class ValidationPage : Page
 {
-    public UserInfo UserInfo { get; } = new();
+    public UserInfo UserInfo { get; }
 
     private void CoolButton_Click(object sender, RoutedEventArgs e)
     {
@@ -14,64 +13,57 @@ public sealed partial class ValidationPage : Page
     public ValidationPage()
     {
         this.InitializeComponent();
+        Application.Current.UnhandledException += Current_UnhandledException;
+        UserInfo = new UserInfo();
+    }
+
+    private void Current_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    {
+        File.WriteAllText(@"E:\Store MSIX\HC\v.txt", e.Message);
     }
 }
 
-public sealed class UserInfo : INotifyDataErrorInfo, INotifyPropertyChanged
+public sealed partial class UserInfo : ObservableObject, INotifyDataErrorInfo
 {
     public UserInfo()
     {
-        ValidateName(_name);
-        ValidateMail(_mail);
+        ValidateName(Name);
+        ValidateMail(Mail);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        => PropertyChanged?.Invoke(this, new(propertyName));
-
-    private string _name = string.Empty;
-    public string Name
+    [ObservableProperty]
+    public partial string Name { get; set; }
+    partial void OnNameChanged(string value)
     {
-        get => _name;
-        set
-        {
-            if (_name != value)
-            {
-                _name = value;
-                ValidateName(_name);
-                OnPropertyChanged();
-            }
-        }
+        ValidateName(value);
     }
 
-    private string _mail = string.Empty;
-    public string Mail
+    [ObservableProperty]
+    public partial string Mail { get; set; }
+    partial void OnMailChanged(string value)
     {
-        get => _mail;
-        set
-        {
-            if (_mail != value)
-            {
-                _mail = value;
-                ValidateMail(_mail);
-                OnPropertyChanged();
-            }
-        }
+        ValidateMail(value);
     }
 
     private void ValidateName(string name)
     {
         var errors = new List<string>(3);
-        if (name.Contains("1", StringComparison.InvariantCulture))
-            errors.Add("Using Jungkook's favorite number is not allowed.");
-
-        if (name.Length == 0)
+        if (string.IsNullOrEmpty(name))
             errors.Add("You'll need a name. I will not accept this.");
-        else if (name.Length > 4)
-            errors.Add("Your name is too long. Make it shorter.");
+        else
+        {
+            if (name.Contains("1", StringComparison.InvariantCulture))
+                errors.Add("Using Jungkook's favorite number is not allowed.");
 
-        if (name.Contains("LPK", StringComparison.InvariantCultureIgnoreCase))
-            errors.Add("Name is forbidden for unknown reasons.");
+            if (name.Length == 0)
+                errors.Add("You'll need a name. I will not accept this.");
+            else if (name.Length > 4)
+                errors.Add("Your name is too long. Make it shorter.");
+
+            if (name.Contains("LPK", StringComparison.InvariantCultureIgnoreCase))
+                errors.Add("Name is forbidden for unknown reasons.");
+        }
+        
 
         SetErrors("Name", errors);
     }
@@ -79,11 +71,16 @@ public sealed class UserInfo : INotifyDataErrorInfo, INotifyPropertyChanged
     private void ValidateMail(string mail)
     {
         var errors = new List<string>(2);
-        if (mail.Contains("1", StringComparison.InvariantCulture))
-            errors.Add("Using Jungkook's favorite number is not allowed.");
-
-        if (!mail.Contains("@", StringComparison.InvariantCultureIgnoreCase))
+        if (string.IsNullOrEmpty(mail))
             errors.Add("Invalid mail.");
+        else
+        {
+            if (mail.Contains("1", StringComparison.InvariantCulture))
+                errors.Add("Using Jungkook's favorite number is not allowed.");
+
+            if (!mail.Contains("@", StringComparison.InvariantCultureIgnoreCase))
+                errors.Add("Invalid mail.");
+        }
 
         SetErrors("Mail", errors);
     }
