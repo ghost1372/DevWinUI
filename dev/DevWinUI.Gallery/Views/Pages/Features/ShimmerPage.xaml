@@ -25,23 +25,30 @@
                                   IsOn="True" />
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="5">
-                    <Border Height="30" Width="300">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="300"
+                            Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Height="30" Width="280">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="280"
+                            Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Height="30" Width="200">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="200"
+                            Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Height="30" Width="150">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="150"
+                            Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Height="30" Width="260">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="260"
+                            Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Height="50" Width="50" CornerRadius="180">
-                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}"/>
+                    <Border Width="50"
+                            Height="50"
+                            CornerRadius="180">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
                 </StackPanel>
             </local:ControlExample>
