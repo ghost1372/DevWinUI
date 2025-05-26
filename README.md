@@ -292,7 +292,7 @@ Install-Package DevWinUI.ContextMenu
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlassAcrylicBorderBrush.png)
 
 ### ComboBox Style
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/SubtleComboBoxStyle.gif)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SubtleComboBoxStyle.gif)
 
 ### Button Style
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AccentDropDownButtonStyle.png)
