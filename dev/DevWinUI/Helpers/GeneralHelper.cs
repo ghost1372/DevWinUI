@@ -2,6 +2,7 @@
 using System.Web;
 using Microsoft.UI.Input;
 using Microsoft.Win32;
+using Windows.Globalization;
 
 namespace DevWinUI;
 public partial class GeneralHelper
@@ -272,5 +273,16 @@ public partial class GeneralHelper
         var decoded = HttpUtility.HtmlDecode(text);
         var result = decoded != text;
         return result ? decoded : text;
+    }
+
+    /// <summary>
+    /// Determines whether the current system's geographic region matches any of the specified privacy-sensitive region codes.
+    /// </summary>
+    /// <param name="privacySensitiveRegions">An array of three-letter ISO 3166 country codes (e.g., "USA", "IRN", "CHN") that are considered privacy-sensitive.</param>
+    /// <returns></returns>
+    public static bool IsPrivacySensitiveRegion(string[] privacySensitiveRegions)
+    {
+        var geographicRegion = new GeographicRegion();
+        return privacySensitiveRegions.Contains(geographicRegion.CodeThreeLetter, StringComparer.OrdinalIgnoreCase);
     }
 }
