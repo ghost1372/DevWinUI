@@ -10,6 +10,7 @@ Controls\Ported\SettingsExpander\SettingsExpander.xaml
 Controls\Ported\TileControl\TileControl.xaml
 Themes\Styles\CommonStyles\Button.xaml
 Themes\Styles\CommonStyles\CalendarViewStyle.xaml
+Themes\Styles\CommonStyles\Colors.xaml
 Themes\Styles\CommonStyles\ComboBox.xaml
 Themes\Styles\CommonStyles\Common.xaml
 Themes\Styles\CommonStyles\Converters.xaml
@@ -101,6 +102,18 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="TextFillColorSecondary" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="TextFillColorDisabled" />
+      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
+        <GradientStop Offset="0" Color="#E6F0FC" />
+        <GradientStop Offset="0.4" Color="#E6F0FC" />
+        <GradientStop Offset="1" Color="#F0F0F7" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+        <GradientStop Offset="0" Color="#3286EE" />
+        <GradientStop Offset="0.5" Color="#C8AEC4" />
+        <GradientStop Offset="1" Color="Transparent" />
+      </LinearGradientBrush>
+      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.6" Color="White" />
       <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
@@ -183,6 +196,17 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="TextFillColorSecondary" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="TextFillColorDisabled" />
+      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
+        <GradientStop Offset="0" Color="#38C8AEC4" />
+        <GradientStop Offset="1" Color="#383286EE" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+        <GradientStop Offset="0" Color="#3286EE" />
+        <GradientStop Offset="0.5" Color="#C8AEC4" />
+        <GradientStop Offset="1" Color="Transparent" />
+      </LinearGradientBrush>
+      <AcrylicBrush x:Key="GlassAcrylicBackground" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Color="{ThemeResource SurfaceStrokeColorDefault}" />
       <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
@@ -265,6 +289,10 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
+      <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
+      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
       <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />

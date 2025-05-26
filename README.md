@@ -274,6 +274,12 @@ Install-Package DevWinUI.ContextMenu
 ### SelectorBar Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TokenViewSelectorBarStyle.gif)
 
+### Colors
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardGradient2Brush.png)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardGradient1Brush.png)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlassAcrylicBackground.png)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlassAcrylicBorderBrush.png)
+
 ### ComboBox Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/SubtleComboBoxStyle.gif)
 

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
+                <GradientStop Offset="0" Color="#38C8AEC4" />
+                <GradientStop Offset="1" Color="#383286EE" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+                <GradientStop Offset="0" Color="#3286EE" />
+                <GradientStop Offset="0.5" Color="#C8AEC4" />
+                <GradientStop Offset="1" Color="Transparent" />
+            </LinearGradientBrush>
+            <AcrylicBrush x:Key="GlassAcrylicBackground" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
+                             Color="{ThemeResource SurfaceStrokeColorDefault}" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
+                <GradientStop Offset="0" Color="#E6F0FC" />
+                <GradientStop Offset="0.4" Color="#E6F0FC" />
+                <GradientStop Offset="1" Color="#F0F0F7" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+                <GradientStop Offset="0" Color="#3286EE" />
+                <GradientStop Offset="0.5" Color="#C8AEC4" />
+                <GradientStop Offset="1" Color="Transparent" />
+            </LinearGradientBrush>
+            <AcrylicBrush x:Key="GlassAcrylicBackground"
+                          TintLuminosityOpacity="0.4"
+                          TintOpacity="0.4" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
+                             Opacity="0.6"
+                             Color="White" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="CardGradient2Brush"
+                             Color="Transparent" />
+            <SolidColorBrush x:Key="CardGradient1Brush"
+                             Color="Transparent" />
+            <AcrylicBrush x:Key="GlassAcrylicBackground"
+                          TintLuminosityOpacity="0.4"
+                          TintOpacity="0.4" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
+                             Opacity="0.8"
+                             Color="White" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
