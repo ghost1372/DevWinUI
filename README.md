@@ -273,7 +273,7 @@ Install-Package DevWinUI.ContextMenu
 
 ## 🕰️ History 🕰️
 
-### NavigationView Style
+### NavigationView MS Store Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/NavigationViewStoreStyle.gif)
 
 ### Shimmer
