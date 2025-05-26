@@ -2,10 +2,6 @@
             Text="OobeSubtitleStyle" />
 <TextBlock Style="{StaticResource SecondaryTextStyle}"
             Text="SecondaryTextStyle" />
-<HyperlinkButton Content="HyperlinkButtonStyle"
-                    Style="{ThemeResource HyperlinkButtonStyle}" />
-<Button Content="TextButtonStyle"
-        Style="{ThemeResource TextButtonStyle}" />
 <InfoBar Title="Title"
             IsClosable="False"
             IsOpen="True"

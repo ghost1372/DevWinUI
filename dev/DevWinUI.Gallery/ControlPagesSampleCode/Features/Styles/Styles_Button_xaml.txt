@@ -1,0 +1,25 @@
+﻿<HyperlinkButton Content="HyperlinkButtonStyle"
+                    Style="{ThemeResource HyperlinkButtonStyle}" />
+<Button Content="TextButtonStyle"
+        Style="{ThemeResource TextButtonStyle}" />
+<DropDownButton Content="Email"
+                Style="{StaticResource AccentDropDownButtonStyle}">
+    <DropDownButton.Flyout>
+        <MenuFlyout Placement="Bottom">
+            <MenuFlyoutItem Text="Send" />
+            <MenuFlyoutItem Text="Reply" />
+            <MenuFlyoutItem Text="Reply All" />
+        </MenuFlyout>
+    </DropDownButton.Flyout>
+</DropDownButton>
+<StackPanel Orientation="Horizontal"
+            Spacing="10">
+    <Button Style="{StaticResource ScrollButtonStyle}">
+        <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
+                    Glyph="&#xedd9;" />
+    </Button>
+    <Button Style="{StaticResource ScrollButtonStyle}">
+        <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
+                    Glyph="&#xEDDA;" />
+    </Button>
+</StackPanel>
