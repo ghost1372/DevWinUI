@@ -271,6 +271,9 @@ Install-Package DevWinUI.ContextMenu
 
 ## 🕰️ History 🕰️
 
+### SelectorBar Style
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TokenViewSelectorBarStyle.gif)
+
 ### Picker (Elevated/AOT/Packaged/UnPackaged Support)
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Picker.png)
 

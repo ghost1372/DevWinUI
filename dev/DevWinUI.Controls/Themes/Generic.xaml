@@ -14,6 +14,7 @@ Themes\Styles\CommonStyles\Common.xaml
 Themes\Styles\CommonStyles\Converters.xaml
 Themes\Styles\CommonStyles\LandingPages.xaml
 Themes\Styles\CommonStyles\ModernSystemMenuStyle.xaml
+Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
@@ -103,6 +104,25 @@ Themes\Styles\Win2D\Watermark.xaml
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
@@ -166,6 +186,25 @@ Themes\Styles\Win2D\Watermark.xaml
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
@@ -229,6 +268,25 @@ Themes\Styles\Win2D\Watermark.xaml
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
@@ -3746,6 +3804,138 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="TokenViewSelectorBarItemStyle" TargetType="SelectorBarItem">
+    <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <Setter Property="Background" Value="{ThemeResource TokenItemBackground}" />
+    <Setter Property="Foreground" Value="{ThemeResource TokenItemForeground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource TokenItemBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource TokenItemBorderThickness}" />
+    <Setter Property="Padding" Value="11,5,11,6" />
+    <Setter Property="CornerRadius" Value="16" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="FocusVisualMargin" Value="{ThemeResource SelectorBarItemFocusVisualMargin}" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="SelectorBarItem">
+          <Grid x:Name="PART_ContainerRoot" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.BackgroundTransition>
+              <BrushTransition Duration="0:0:0.083" />
+            </Grid.BackgroundTransition>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CombinedStates">
+                <VisualState x:Name="UnselectedNormal" />
+                <VisualState x:Name="UnselectedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="UnselectedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedNormal">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="DisabledStates">
+                <VisualState x:Name="Enabled" />
+                <VisualState x:Name="Disabled" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <StackPanel Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
+              <ContentPresenter x:Name="PART_IconVisual" Margin="{ThemeResource SelectorBarItemIconVisualMargin}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                <ContentPresenter.RenderTransform>
+                  <ScaleTransform x:Name="IconTransform" ScaleX="{ThemeResource SelectorBarItemIconScale}" ScaleY="{ThemeResource SelectorBarItemIconScale}" />
+                </ContentPresenter.RenderTransform>
+              </ContentPresenter>
+              <TextBlock x:Name="PART_TextVisual" Margin="{ThemeResource SelectorBarItemTextVisualMargin}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="OobeSubtitleStyle" TargetType="TextBlock">
     <Setter Property="Margin" Value="0,16,0,0" />
     <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
@@ -5027,7 +5217,10 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="Checked">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
@@ -5040,66 +5233,48 @@ Themes\Styles\Win2D\Watermark.xaml
                 <VisualState x:Name="CheckedPointerOver">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundPointerOver}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushPointerOver}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundPointerOver}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <VisualState x:Name="CheckedPressed">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundPressed}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushPressed}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundPressed}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <VisualState x:Name="CheckedDisabled">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundDisabled}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundDisabled}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushDisabled}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
@@ -5157,13 +5332,256 @@ Themes\Styles\Win2D\Watermark.xaml
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
-            <ProgressRing x:Name="PART_ProgressRing" Width="{TemplateBinding ProgressRingSize}" Height="{TemplateBinding ProgressRingSize}" Margin="10,0" HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}" IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}" Style="{TemplateBinding ProgressRingStyle}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
-            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
+            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
               <ContentPresenter.BackgroundTransition>
                 <BrushTransition Duration="0:0:0.083" />
               </ContentPresenter.BackgroundTransition>
             </ContentPresenter>
+            <ProgressRing x:Name="PART_ProgressRing" Width="{TemplateBinding ProgressRingSize}" Height="{TemplateBinding ProgressRingSize}" Margin="10,0" HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}" IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}" Style="{TemplateBinding ProgressRingStyle}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+            <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+            <TextBlock x:Name="CheckedText" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{ThemeResource ToggleButtonForeground}" Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="AccentProgressButtonStyle" TargetType="local:ProgressButton">
+    <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundChecked}" />
+    <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForegroundChecked}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ToggleButtonBorderBrushChecked}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}" />
+    <Setter Property="Padding" Value="{StaticResource ButtonPadding}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="FocusVisualMargin" Value="-3" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="ProgressBackground" Value="Transparent" />
+    <Setter Property="ProgressForeground" Value="#66FFFFFF" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ProgressButton">
+          <Grid x:Name="PART_Grid" Background="{TemplateBinding ProgressBackground}" CornerRadius="{ThemeResource ControlCornerRadius}">
+            <Grid.Resources>
+              <SolidColorBrush x:Key="ProgressForeground" Color="#66FFFFFF" />
+            </Grid.Resources>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundChecked}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundChecked}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushChecked}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedStateBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedStateBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedStateBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedDisabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushCheckedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Content" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedText" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Visibility" Duration="0">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressRing" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding ProgressRingVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Indeterminate">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundIndeterminate}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundIndeterminate}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushIndeterminate}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="IndeterminatePointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundIndeterminatePointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushIndeterminatePointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundIndeterminatePointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="IndeterminatePressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundIndeterminatePressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushIndeterminatePressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundIndeterminatePressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="IndeterminateDisabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBackgroundIndeterminateDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonForegroundIndeterminateDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonBorderBrushIndeterminateDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
+              <ContentPresenter.BackgroundTransition>
+                <BrushTransition Duration="0:0:0.083" />
+              </ContentPresenter.BackgroundTransition>
+            </ContentPresenter>
+            <ProgressRing x:Name="PART_ProgressRing" Width="{TemplateBinding ProgressRingSize}" Height="{TemplateBinding ProgressRingSize}" Margin="10,0" HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}" Background="LightGray" IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}" Style="{TemplateBinding ProgressRingStyle}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+            <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+            <TextBlock x:Name="CheckedText" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{ThemeResource ToggleButtonForegroundChecked}" Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -7028,6 +7446,34 @@ Themes\Styles\Win2D\Watermark.xaml
                 </Border.RenderTransform>
               </Border>
             </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TokenViewSelectorBarStyle" TargetType="SelectorBar">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="TabNavigation" Value="Once" />
+    <Setter Property="Padding" Value="{ThemeResource SelectorBarPadding}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="SelectorBar">
+          <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" ColumnDefinitions="Auto" CornerRadius="{TemplateBinding CornerRadius}" RowDefinitions="Auto">
+            <Grid.Resources>
+              <Style BasedOn="{StaticResource TokenViewSelectorBarItemStyle}" TargetType="SelectorBarItem" />
+            </Grid.Resources>
+            <Grid.ChildrenTransitions>
+              <TransitionCollection>
+                <RepositionThemeTransition />
+              </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <ItemsView x:Name="PART_ItemsView" MaxWidth="{TemplateBinding MaxWidth}" MaxHeight="{TemplateBinding MaxHeight}" Padding="{TemplateBinding Padding}" ItemsSource="{TemplateBinding Items}" TabNavigation="{TemplateBinding TabNavigation}">
+              <ItemsView.Layout>
+                <StackLayout Orientation="Horizontal" Spacing="8" />
+              </ItemsView.Layout>
+            </ItemsView>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
