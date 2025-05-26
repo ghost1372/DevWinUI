@@ -48,6 +48,7 @@ Themes\Styles\Controls\RedirectVisualView.xaml
 Themes\Styles\Controls\SelectorBarSegmented.xaml
 Themes\Styles\Controls\SettingsGroup.xaml
 Themes\Styles\Controls\Shield.xaml
+Themes\Styles\Controls\Shimmer.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\TextBox.xaml
@@ -154,6 +155,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="ShimmerBackground" ResourceKey="ControlAltFillColorTertiaryBrush" />
       <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="ControlStrongStrokeColorDefault" />
       <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
@@ -247,6 +249,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="ShimmerBackground" ResourceKey="ControlAltFillColorTertiaryBrush" />
       <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="ControlStrongStrokeColorDefault" />
       <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
@@ -333,6 +336,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
+      <StaticResource x:Key="ShimmerBackground" ResourceKey="SystemColorWindowColor" />
       <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="SystemColorWindowColor" />
       <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="SystemColorHighlightColor" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
@@ -1647,6 +1651,19 @@ Themes\Styles\Win2D\Watermark.xaml
     <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}" Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding}" />
   </DataTemplate>
   <SolidColorBrush x:Key="ShieldBorderBrush" Color="{ThemeResource CardStrokeColorDefaultBrush}" />
+  <Style TargetType="local:Shimmer">
+    <Setter Property="Background" Value="{ThemeResource ShimmerBackground}" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="MinWidth" Value="40" />
+    <Setter Property="MinHeight" Value="8" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Shimmer">
+          <Border x:Name="Shape" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <ControlTemplate x:Key="StepBarHorizontalControlTemplate" TargetType="local:StepBar">
     <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
       <Grid.Resources>

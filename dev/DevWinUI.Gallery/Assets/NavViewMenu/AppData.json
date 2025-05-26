@@ -23,7 +23,6 @@
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
           "Title": "DragMoveAndResize",
           "Subtitle": "Drag and Move Window by UIElement",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -51,14 +50,12 @@
           "UniqueId": "DevWinUIGallery.Views.BackdropPage",
           "Title": "Backdrops",
           "Subtitle": "SystemBackdrops like Transparent, Acrylic, Mica",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CommandPage",
           "Title": "Delegate Command",
           "Subtitle": "Commands",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -139,10 +136,16 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ShimmerPage",
+          "Title": "Shimmer",
+          "Subtitle": "Construct a beautiful loading effect",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
           "Title": "ModalWindow",
           "Subtitle": "ModalWindow",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
         },
         {
@@ -156,35 +159,30 @@
           "UniqueId": "DevWinUIGallery.Views.LayoutTransformerPage",
           "Title": "LayoutTransformer",
           "Subtitle": "Represents a control that applies a layout transformation to its Content.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RepeatButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
           "Title": "GoToTop",
           "Subtitle": "GoToTop",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ScrollView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlexPanelPage",
           "Title": "FlexPanel",
           "Subtitle": "FlexPanel",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HoneycombPanelPage",
           "Title": "HoneycombPanel",
           "Subtitle": "A container that allows child elements to present a honeycomb layout.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ElementGroupPage",
           "Title": "ElementGroup",
           "Subtitle": "Group any Element",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/VariableSizedWrapGrid.png"
         },
         {
@@ -198,70 +196,60 @@
           "UniqueId": "DevWinUIGallery.Views.TransitioningContentControlPage",
           "Title": "TransitioningContentControl",
           "Subtitle": "TransitioningContentControl",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CirclePanelPage",
           "Title": "CirclePanel",
           "Subtitle": "CirclePanel",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RadioButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ClockPage",
           "Title": "Clock",
           "Subtitle": "Analog Clock",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DateTimePickerPage",
           "Title": "DateTimePicker",
           "Subtitle": "Pick a Date and Time with CalendarWithClock",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/DatePicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CalendarWithClockPage",
           "Title": "CalendarWithClock",
           "Subtitle": "A CalendarView with a TimePicker/Clock",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
           "Title": "ProgressButton",
           "Subtitle": "ProgressButton",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ToggleButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TextBoxPage",
           "Title": "TextBox",
           "Subtitle": "TextBox with Content",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TileControlPage",
           "Title": "TileControl",
           "Subtitle": "TileControl",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.PinBoxPage",
           "Title": "PinBox",
           "Subtitle": "PinBox",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PasswordBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SelectorBarSegmentedPage",
           "Title": "SelectorBarSegmented",
           "Subtitle": "SelectorBarSegmented",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Segmented.png"
         },
         {
@@ -340,6 +328,7 @@
           "UniqueId": "DevWinUIGallery.Views.StylesPage",
           "Title": "Styles",
           "Subtitle": "Styles",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {

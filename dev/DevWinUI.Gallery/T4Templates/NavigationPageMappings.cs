@@ -31,6 +31,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
         {"DevWinUIGallery.Views.PickersPage", typeof(DevWinUIGallery.Views.PickersPage)},
+        {"DevWinUIGallery.Views.ShimmerPage", typeof(DevWinUIGallery.Views.ShimmerPage)},
         {"DevWinUIGallery.Views.ModalWindowPage", typeof(DevWinUIGallery.Views.ModalWindowPage)},
         {"DevWinUIGallery.Views.StepBarPage", typeof(DevWinUIGallery.Views.StepBarPage)},
         {"DevWinUIGallery.Views.LayoutTransformerPage", typeof(DevWinUIGallery.Views.LayoutTransformerPage)},
