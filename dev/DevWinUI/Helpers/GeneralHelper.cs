@@ -187,9 +187,14 @@ public partial class GeneralHelper
         };
     }
 
-    public static Geometry GetGeometry(string key)
+    public static Geometry GetGeometryFromAppResources(string key)
     {
-        return (Geometry)XamlBindingHelper.ConvertValue(typeof(Geometry), (string)Application.Current.Resources[key]);
+        return GetGeometryFromString((string)Application.Current.Resources[key]);
+    }
+
+    public static Geometry GetGeometryFromString(string pathData)
+    {
+        return (Geometry)XamlBindingHelper.ConvertValue(typeof(Geometry), pathData);
     }
 
     /// <summary>
