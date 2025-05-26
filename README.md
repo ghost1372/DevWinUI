@@ -356,9 +356,6 @@ Install-Package DevWinUI.ContextMenu
 ### SelectorBarSegmented
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SelectorBarSegmented.png)
 
-### NavigationViewItem Style
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/NavigationViewItemStyle.gif)
-
 ### ColorfulShimmingEffect
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorfulShimmingEffect.gif)
 

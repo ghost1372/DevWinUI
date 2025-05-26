@@ -184,27 +184,5 @@
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
-        <TabViewItem Header="NavigationViewItem"
-                     IsClosable="False">
-            <TabViewItem.Resources>
-                <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/NavigationViewItemStyle.xaml" />
-            </TabViewItem.Resources>
-            <ScrollViewer>
-                <Grid Margin="10">
-                    <NavigationView PaneDisplayMode="Left">
-                        <NavigationView.MenuItems>
-                            <NavigationViewItem Content="Item 1" />
-                            <NavigationViewItem Content="Item 2" />
-                            <NavigationViewItem Content="Item 3">
-                                <NavigationViewItem.MenuItems>
-                                    <NavigationViewItem Content="Sub Item 1" />
-                                    <NavigationViewItem Content="Sub Item 2" />
-                                </NavigationViewItem.MenuItems>
-                            </NavigationViewItem>
-                        </NavigationView.MenuItems>
-                    </NavigationView>
-                </Grid>
-            </ScrollViewer>
-        </TabViewItem>
     </TabView>
 </Page>
