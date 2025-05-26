@@ -142,7 +142,7 @@ public partial class JsonNavigationService
             }
             if (!hideNavigationViewItemBadge && hasValue)
             {
-                int badgeValue = Convert.ToInt32(dataInfoBadge.BadgeValue);
+                Int32.TryParse(dataInfoBadge.BadgeValue, out int badgeValue);
                 int width = dataInfoBadge.BadgeWidth;
                 int height = dataInfoBadge.BadgeHeight;
 
