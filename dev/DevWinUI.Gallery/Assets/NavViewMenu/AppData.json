@@ -136,6 +136,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.LayeredFontIconsPage",
+          "Title": "LayeredFontIcons",
+          "Subtitle": "Combine Multiple Icons",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Workspaces.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ShimmerPage",
           "Title": "Shimmer",
           "Subtitle": "Construct a beautiful loading effect",

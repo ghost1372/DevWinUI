@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LayeredFontIconsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/layeredFontIcons"
+                                  HeaderText="LayeredFontIcons"
+                                  XamlSource="Features/LayeredFontIconsPage_xaml.txt">
+                <dev:LayeredFontIcons>
+                    <dev:LayeredFontIcons.FontIcons>
+                        <FontIcon Margin="0,0,15,0"
+                                  Glyph="&#xE973;"
+                                  RenderTransformOrigin="0.5,0.5">
+                            <FontIcon.RenderTransform>
+                                <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                            </FontIcon.RenderTransform>
+                        </FontIcon>
+                        <FontIcon Margin="15,0,0,0"
+                                  Glyph="&#xE974;"
+                                  RenderTransformOrigin="0.5,0.5">
+                            <FontIcon.RenderTransform>
+                                <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                            </FontIcon.RenderTransform>
+                        </FontIcon>
+                        <FontIcon Glyph="&#xE949;"
+                                  RenderTransformOrigin="0.5,0.5">
+                            <FontIcon.RenderTransform>
+                                <RotateTransform Angle="-70" />
+                            </FontIcon.RenderTransform>
+                        </FontIcon>
+                    </dev:LayeredFontIcons.FontIcons>
+                </dev:LayeredFontIcons>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -157,6 +157,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ LayeredFontIcons
 - ✨ Shimmer
 - ✨ ModalWindow
 - ✨ StepBar
@@ -280,6 +281,9 @@ Install-Package DevWinUI.ContextMenu
 
 ### SelectorBar Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TokenViewSelectorBarStyle.gif)
+
+### LayeredFontIcons
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LayeredFontIcons.png)
 
 ### Colors
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardGradient2Brush.png)
