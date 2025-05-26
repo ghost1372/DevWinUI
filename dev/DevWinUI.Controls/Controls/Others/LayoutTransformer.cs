@@ -7,6 +7,8 @@ namespace DevWinUI;
 [TemplatePart(Name = PresenterName, Type = typeof(ContentPresenter))]
 public sealed partial class LayoutTransformer : ContentControl
 {
+    private static Size EmptySize => new Size();
+
     /// <summary>
     /// Name of the TransformRoot template part.
     /// </summary>
@@ -64,7 +66,7 @@ public sealed partial class LayoutTransformer : ContentControl
 
     private Matrix _transformation;
 
-    private Size _childActualSize = Size.Empty;
+    private Size _childActualSize = EmptySize;
 
     public LayoutTransformer()
     {
@@ -215,12 +217,12 @@ public sealed partial class LayoutTransformer : ContentControl
         if ((null == _transformRoot) || (null == child))
         {
             // No content, no size
-            return Size.Empty;
+            return EmptySize;
         }
 
         //DiagnosticWriteLine("MeasureOverride < " + availableSize);
         Size measureSize;
-        if (_childActualSize == Size.Empty)
+        if (_childActualSize == EmptySize)
         {
             // Determine the largest size after the transformation
             measureSize = ComputeLargestTransformedSize(availableSize);
@@ -298,7 +300,7 @@ public sealed partial class LayoutTransformer : ContentControl
         //DiagnosticWriteLine("  Child.RenderSize = " + child.RenderSize);
 
         // This is the first opportunity under Silverlight to find out the Child's true DesiredSize
-        if (IsSizeSmaller(finalSizeTransformed, child.RenderSize) && (Size.Empty == _childActualSize))
+        if (IsSizeSmaller(finalSizeTransformed, child.RenderSize) && (EmptySize == _childActualSize))
         {
             // Unfortunately, all the work so far is invalid because the wrong DesiredSize was used
             //DiagnosticWriteLine("  finalSizeTransformed smaller than Child.RenderSize");
@@ -311,7 +313,7 @@ public sealed partial class LayoutTransformer : ContentControl
         else
         {
             // Clear the "need to measure/arrange again" flag
-            _childActualSize = Size.Empty;
+            _childActualSize = EmptySize;
         }
         //DiagnosticWriteLine("  _transformRoot.RenderSize = " + _transformRoot.RenderSize);
 
@@ -331,7 +333,7 @@ public sealed partial class LayoutTransformer : ContentControl
         //DiagnosticWriteLine("  ComputeLargestTransformedSize < " + arrangeBounds);
 
         // Computed largest transformed size
-        Size computedSize = Size.Empty;
+        Size computedSize = EmptySize;
 
         // Detect infinite bounds and constrain the scenario
         bool infiniteWidth = double.IsInfinity(arrangeBounds.Width);
