@@ -34,6 +34,22 @@
                             </SelectorBar>
                         </StackPanel>
                     </local:ControlExample>
+
+                    <local:ControlExample DocPage="styles/#ComboBox"
+                                          HeaderText="ComboBox">
+                        <local:ControlExample.Xaml>
+                            <x:String>
+                                &lt;ComboBox Style="{StaticResource SubtleComboBoxStyle}"/&gt;
+                            </x:String>
+                        </local:ControlExample.Xaml>
+                        <ComboBox Header="SubtleComboBoxStyle"
+                                  Style="{StaticResource SubtleComboBoxStyle}">
+                            <ComboBoxItem Content="Item 1" />
+                            <ComboBoxItem Content="Item 2" />
+                            <ComboBoxItem Content="Item 3" />
+                        </ComboBox>
+                    </local:ControlExample>
+
                     <local:ControlExample DocPage="styles/#Buttons"
                                           HeaderText="Buttons"
                                           XamlSource="Features/Styles/Styles_Button_xaml.txt">
@@ -65,6 +81,7 @@
                             </StackPanel>
                         </StackPanel>
                     </local:ControlExample>
+
                     <local:ControlExample DocPage="styles"
                                           XamlSource="Features/Styles/Styles_xaml.txt">
                         <StackPanel Margin="10"

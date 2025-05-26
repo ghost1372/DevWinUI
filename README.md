@@ -274,6 +274,9 @@ Install-Package DevWinUI.ContextMenu
 ### SelectorBar Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TokenViewSelectorBarStyle.gif)
 
+### ComboBox Style
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/SubtleComboBoxStyle.gif)
+
 ### Button Style
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AccentDropDownButtonStyle.png)
 
