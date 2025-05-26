@@ -17,6 +17,23 @@
                 <StackPanel Margin="10"
                             dev:PanelAttach.ChildrenTransitions="Default"
                             Spacing="10">
+                    <local:ControlExample DocPage="styles/#SelectorBar"
+                                          HeaderText="SelectorBar">
+                        <local:ControlExample.Xaml>
+                            <x:String>
+                                &lt;SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}"/&gt;
+                            </x:String>
+                        </local:ControlExample.Xaml>
+                        <StackPanel Spacing="10">
+                            <InfoBar Title="TokenViewSelectorBarStyle"
+                                     IsClosable="False" />
+                            <SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}">
+                                <SelectorBarItem Text="Recent" />
+                                <SelectorBarItem Text="New" />
+                                <SelectorBarItem Text="Fav" />
+                            </SelectorBar>
+                        </StackPanel>
+                    </local:ControlExample>
                     <local:ControlExample DocPage="styles"
                                           XamlSource="Features/Styles/Styles_xaml.txt">
                         <StackPanel Margin="10"
@@ -32,7 +49,7 @@
                             <InfoBar Title="Title"
                                      IsClosable="False"
                                      IsOpen="True"
-                                     Message="Message"
+                                     Message="&lt;ResourceDictionary Source='ms-appx:///DevWinUI.Controls/Themes/InfoBarInformationalColor.xaml' /&gt;"
                                      Severity="Informational">
                                 <InfoBar.Resources>
                                     <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/InfoBarInformationalColor.xaml" />
