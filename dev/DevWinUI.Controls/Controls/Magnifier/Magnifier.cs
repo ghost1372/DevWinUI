@@ -165,24 +165,24 @@ public partial class Magnifier : Control
         switch (Position)
         {
             case MagnifierPosition.Top:
-                offsetX = -ActualWidth - SourceSize - SourceSize / 2;
-                offsetY = -ActualHeight - ActualHeight - SourceSize;
+                offsetX = -_target.ActualWidth / 2;
+                offsetY = -_target.ActualHeight / 2 - (SourceSize * 2);
                 break;
 
             case MagnifierPosition.Bottom:
-                offsetX = -ActualWidth - SourceSize - SourceSize / 2;
-                offsetY = -ActualHeight + SourceSize;
+                offsetX = -_target.ActualWidth / 2;
+                offsetY = -_target.ActualHeight / 2 + (SourceSize * 2);
                 break;
 
             case MagnifierPosition.Left:
-                offsetX = -ActualWidth - ActualWidth;
-                offsetY = -ActualHeight;
+                offsetX = -_target.ActualWidth / 2 - (SourceSize * 2);
+                offsetY = -_target.ActualHeight / 2;
                 break;
 
             case MagnifierPosition.Right:
             default:
-                offsetX = -ActualWidth;
-                offsetY = -ActualHeight;
+                offsetX = -_target.ActualWidth / 2 + (SourceSize * 2);
+                offsetY = -_target.ActualHeight / 2;
                 break;
         }
 
@@ -190,6 +190,7 @@ public partial class Magnifier : Control
         _translateTransform.Y = _lastPointerPosition.Y + offsetY + VerticalOffset;
         this.Visibility = Visibility.Visible;
     }
+
     private MagnifierPosition GetAdjustedPosition(Point pointerPosition, Size targetSize, Size shapeSize, MagnifierPosition preferredPosition)
     {
         double shapeWidth = shapeSize.Width;
