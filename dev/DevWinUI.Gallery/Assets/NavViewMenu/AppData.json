@@ -136,6 +136,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
+          "Title": "Magnifier",
+          "Subtitle": "Magnifier",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/IconElement.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LayeredFontIconsPage",
           "Title": "LayeredFontIcons",
           "Subtitle": "Combine Multiple Icons",

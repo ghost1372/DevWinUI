@@ -157,6 +157,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Magnifier
 - ✨ LayeredFontIcons
 - ✨ Shimmer
 - ✨ ModalWindow
@@ -272,6 +273,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Magnifier
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Magnifier.gif)
 
 ### NavigationView MS Store Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/NavigationViewStoreStyle.gif)

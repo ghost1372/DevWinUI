@@ -1,0 +1,6 @@
+﻿<Grid>
+    <Image dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}"
+            Source="ms-appx:///Assets/Others/Girl.jpg" />
+
+    <dev:Magnifier x:Name="MyMagnifier" />
+</Grid>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.MagnifierPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/magnifier"
+                                  HeaderText="Magnifier"
+                                  XamlSource="Features/MagnifierPage_xaml.txt">
+                <Grid>
+                    <Image dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}"
+                           Source="ms-appx:///Assets/Others/Girl.jpg" />
+
+                    <dev:Magnifier x:Name="MyMagnifier" />
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
