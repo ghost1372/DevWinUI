@@ -13,7 +13,7 @@ public sealed partial class WindowMessageMonitor : IDisposable
     /// <param name="window">The window to listen to messages for</param>
     public WindowMessageMonitor(Microsoft.UI.Xaml.Window window) : this(WindowNative.GetWindowHandle(window))
     {
-        classid = classidcounter++;
+        
     }
 
     /// <summary>
@@ -22,6 +22,7 @@ public sealed partial class WindowMessageMonitor : IDisposable
     /// <param name="hwnd">The window handle to listen to messages for</param>
     public WindowMessageMonitor(IntPtr hwnd)
     {
+        classid = classidcounter++;
         _hwnd = hwnd;
     }
 
@@ -36,12 +37,15 @@ public sealed partial class WindowMessageMonitor : IDisposable
     /// <summary>
     /// Disposes this instance
     /// </summary>
-    public void Dispose() => Dispose(true);
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
     private void Dispose(bool disposing)
     {
-        if (_NativeMessage != null)
-            RemoveWindowSubclass();
+        RemoveWindowSubclass();
     }
 
     private event EventHandler<WindowMessageEventArgs>? _NativeMessage;
@@ -92,7 +96,7 @@ public sealed partial class WindowMessageMonitor : IDisposable
         lock (_lockObject)
             if (!_monitorGCHandle.HasValue)
             {
-                _monitorGCHandle = GCHandle.Alloc(this);
+                _monitorGCHandle = GCHandle.Alloc(this, GCHandleType.Weak);
                 bool ok = Windows.Win32.PInvoke.SetWindowSubclass(new Windows.Win32.Foundation.HWND(_hwnd), &NewWindowProc, classid, (nuint)GCHandle.ToIntPtr(_monitorGCHandle.Value).ToPointer());
             }
     }
