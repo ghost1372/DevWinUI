@@ -148,6 +148,33 @@
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
+        <TabViewItem Header="General 2"
+                     IsClosable="False">
+            <ScrollViewer>
+                <StackPanel Margin="10"
+                            dev:PanelAttach.ChildrenTransitions="Default"
+                            Spacing="10">
+                    <local:ControlExample DocPage="styles/#InfoBadge"
+                                          HeaderText="StringInfoBadgeStyle">
+                        <local:ControlExample.Xaml>
+                            <x:String>
+                                &lt;InfoBadge Tag="BETA" Style="{StaticResource StringInfoBadgeStyle}"/&gt;
+                            </x:String>
+                        </local:ControlExample.Xaml>
+                        <local:ControlExample.Pane>
+                            <TextBox x:Name="TxtInfoBadge"
+                                     Header="Tag"
+                                     PlaceholderText="BETA, NEW,..."
+                                     Text="BETA" />
+                        </local:ControlExample.Pane>
+                        <InfoBadge Margin="4,0,0,0"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource StringInfoBadgeStyle}"
+                                   Tag="{x:Bind TxtInfoBadge.Text, Mode=OneWay}" />
+                    </local:ControlExample>
+                </StackPanel>
+            </ScrollViewer>
+        </TabViewItem>
         <TabViewItem Header="NavigationView"
                      IsClosable="False">
             <ScrollViewer>
