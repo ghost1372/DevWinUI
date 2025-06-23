@@ -106,8 +106,10 @@ public sealed class DataSource
                     group.Description = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Description);
                 }
             }
-            controlInfoDataGroup.Groups.SelectMany(g => g.Items).ToList().ForEach(item =>
+            controlInfoDataGroup.Groups.SelectMany(group => group.Items.Select(item => new { Group = group, Item = item })).ToList().ForEach(x =>
             {
+                var group = x.Group;
+                var item = x.Item;
 #nullable enable
                 string? badgeString = item switch
                 {
@@ -117,13 +119,23 @@ public sealed class DataSource
                     _ => null
                 };
 
-                if (item.DataInfoBadge != null && item.DataInfoBadge.BadgeStyle == null)
+                if (item.DataInfoBadge == null)
                 {
-                    item.DataInfoBadge.BadgeStyle = "AttentionValueInfoBadgeStyle";
+                    item.DataInfoBadge = new DataInfoBadge();
                 }
 
-                item.BadgeString = badgeString;
+                if (group.UseBuiltInLandingPageInfoBadgeStyle)
+                {
+                    if (string.IsNullOrEmpty(item.DataInfoBadge.LandingPageInfoBadgeStyle) && !string.IsNullOrEmpty(badgeString))
+                    {
+                        item.DataInfoBadge.LandingPageInfoBadgeStyle = group.DefaultBuiltInLandingPageInfoBadgeStyle;
+                    }
+                }
 
+                item.DataInfoBadge.IsLandingPageInfoBadgeHidden = item.DataInfoBadge?.IsLandingPageInfoBadgeHidden == true || string.IsNullOrEmpty(badgeString) ? false : true;
+
+                item.BadgeString = badgeString;
+                
                 if (item.UsexUid)
                 {
                     item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title);
@@ -132,7 +144,7 @@ public sealed class DataSource
                     item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description);
                 }
 #nullable disable
-            });
+    });
 
             foreach (var group in controlInfoDataGroup.Groups)
             {
@@ -143,6 +155,7 @@ public sealed class DataSource
             }
         }
     }
+
     public static async Task<string> LoadText(string filePath, PathType pathType)
     {
         StorageFile file = null;

@@ -16,4 +16,5 @@
     <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
     <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <local:StringToUriConverter x:Key="StringToUriConverter" />
+    <local:StringToStyleConverter x:Key="StringToStyleConverter" />
 </ResourceDictionary>

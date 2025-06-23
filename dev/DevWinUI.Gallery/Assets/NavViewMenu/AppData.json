@@ -18,6 +18,7 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Common",
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
@@ -30,7 +31,10 @@
           "Title": "SemanticVersion",
           "Subtitle": "Parse SemanticVersion",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
+          "DataInfoBadge": {
+            "NavigationViewInfoBadgeStyle": "MyCustomStyle"
+          }
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorBrightnessPage",
@@ -134,6 +138,7 @@
       "Title": "Features",
       "ImagePath": "ms-appx:///Assets/Fluent/RatingControl.png",
       "IsSpecialSection": false,
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
@@ -364,6 +369,7 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
@@ -440,6 +446,7 @@
       "Title": "LandingPages",
       "SecondaryTitle": "",
       "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png",
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.AllLandingsPage",
@@ -460,6 +467,7 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Settings Control",
       "ImagePath": "ms-appx:///Assets/Fluent/StackPanel.png",
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.SettingsGroup",

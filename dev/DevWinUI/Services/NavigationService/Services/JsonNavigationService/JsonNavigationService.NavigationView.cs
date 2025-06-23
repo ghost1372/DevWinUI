@@ -17,7 +17,7 @@ public partial class JsonNavigationService
                 IsExpanded = group.IsExpanded,
                 Tag = group.UniqueId,
                 DataContext = group,
-                InfoBadge = GetInfoBadge(group)
+                InfoBadge = GetInfoBadge(group, null, group.DefaultBuiltInNavigationViewInfoBadgeStyle, group.UseBuiltInNavigationViewInfoBadgeStyle)
             };
             var icon = GetIcon(group.ImagePath, group.IconGlyph);
             if (icon != null)
@@ -36,7 +36,7 @@ public partial class JsonNavigationService
                     Content = item.Title,
                     Tag = item.UniqueId,
                     DataContext = item,
-                    InfoBadge = GetInfoBadge(item)
+                    InfoBadge = GetInfoBadge(item, item.BadgeString, group.DefaultBuiltInNavigationViewInfoBadgeStyle, group.UseBuiltInNavigationViewInfoBadgeStyle)
                 };
 
                 var iconInGroup = GetIcon(item.ImagePath, item.IconGlyph);
@@ -127,92 +127,40 @@ public partial class JsonNavigationService
                 return dataItems;
         }
     }
-    private InfoBadge GetInfoBadge(BaseDataInfo data)
+
+    private InfoBadge GetInfoBadge(BaseDataInfo item, string badgeString, string defaultBuiltInInfoBadgeStyle, bool useBuiltInStyle)
     {
-        var dataInfoBadge = data.DataInfoBadge;
-        if (dataInfoBadge != null)
+        if (item.DataInfoBadge == null)
         {
-            bool hideNavigationViewItemBadge = dataInfoBadge.HideNavigationViewItemBadge;
-            string value = dataInfoBadge.BadgeValue;
-            string style = dataInfoBadge.BadgeStyle;
-            bool hasValue = !string.IsNullOrEmpty(value);
-            if (style != null && (style.Contains("Dot", StringComparison.OrdinalIgnoreCase) || style.Contains("Icon", StringComparison.OrdinalIgnoreCase)))
+            item.DataInfoBadge = new DataInfoBadge();
+        }
+
+        if (useBuiltInStyle)
+        {
+            if (string.IsNullOrEmpty(item.DataInfoBadge.NavigationViewInfoBadgeStyle) && !string.IsNullOrEmpty(badgeString))
             {
-                hasValue = true;
-            }
-            if (!hideNavigationViewItemBadge && hasValue)
-            {
-                Int32.TryParse(dataInfoBadge.BadgeValue, out int badgeValue);
-                int width = dataInfoBadge.BadgeWidth;
-                int height = dataInfoBadge.BadgeHeight;
+                item.DataInfoBadge.NavigationViewInfoBadgeStyle = defaultBuiltInInfoBadgeStyle;
 
-                InfoBadge infoBadge = new()
+                if (string.IsNullOrEmpty(item.DataInfoBadge.InfoBadgeValue))
                 {
-                    Style = Application.Current.Resources[style] as Style
-                };
-                switch (style.ToLower())
-                {
-                    case string s when s.Contains("value"):
-                        infoBadge.Value = badgeValue;
-                        break;
-                    case string s when s.Contains("icon"):
-                        infoBadge.IconSource = GetIconSource(dataInfoBadge);
-                        break;
+                    item.DataInfoBadge.InfoBadgeValue = badgeString.ToUpper();
                 }
-
-                if (width > 0 && height > 0)
-                {
-                    infoBadge.Width = width;
-                    infoBadge.Height = height;
-                }
-
-                return infoBadge;
             }
         }
+
+        var styleKey = item.DataInfoBadge.NavigationViewInfoBadgeStyle;
+        var isHidden = item.DataInfoBadge.IsNavigationViewInfoBadgeHidden;
+
+        if (!string.IsNullOrEmpty(styleKey) && !isHidden)
+        {
+            if (Application.Current.Resources.TryGetValue(styleKey, out var resource) && resource is Style style)
+            {
+                return new InfoBadge { Style = style, Tag = item.DataInfoBadge.InfoBadgeValue };
+            }
+        }
+
         return null;
     }
-
-    private IconSource GetIconSource(DataInfoBadge infoBadge)
-    {
-        string symbol = infoBadge?.BadgeSymbolIcon;
-        string image = infoBadge?.BadgeBitmapIcon;
-        string glyph = infoBadge?.BadgeFontIconGlyph;
-        string fontName = infoBadge?.BadgeFontIconFontName;
-
-        if (!string.IsNullOrEmpty(symbol))
-        {
-            return new SymbolIconSource
-            {
-                Symbol = GeneralHelper.GetEnum<Symbol>(symbol),
-                Foreground = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as Brush,
-            };
-        }
-
-        if (!string.IsNullOrEmpty(image))
-        {
-            return new BitmapIconSource
-            {
-                UriSource = new Uri(image),
-                ShowAsMonochrome = false
-            };
-        }
-
-        if (!string.IsNullOrEmpty(glyph))
-        {
-            var fontIcon = new FontIconSource
-            {
-                Glyph = GeneralHelper.GetGlyph(glyph),
-                Foreground = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as Brush,
-            };
-            if (!string.IsNullOrEmpty(fontName))
-            {
-                fontIcon.FontFamily = new FontFamily(fontName);
-            }
-            return fontIcon;
-        }
-        return null;
-    }
-
     private IconElement GetIcon(string imagePath, string iconGlyph)
     {
         if (string.IsNullOrEmpty(imagePath) && string.IsNullOrEmpty(iconGlyph))

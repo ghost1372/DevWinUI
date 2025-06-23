@@ -72,8 +72,9 @@
                            TextTrimming="CharacterEllipsis" />
                 <InfoBadge Grid.Column="2"
                            VerticalAlignment="Top"
-                           Style="{StaticResource AttentionIconInfoBadgeStyle}"
-                           Visibility="{x:Bind BadgeString, Converter={StaticResource NullToVisibilityConverter}}" />
+                           Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}"
+                           Tag="{x:Bind DataInfoBadge.InfoBadgeValue}"
+                           Visibility="{x:Bind DataInfoBadge.IsLandingPageInfoBadgeHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
             </Grid>
         </Grid>
     </DataTemplate>
