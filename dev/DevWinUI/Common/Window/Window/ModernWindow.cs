@@ -8,7 +8,8 @@ public partial class ModernWindow : Microsoft.UI.Xaml.Window
 {
     private RainbowFrame rainbowFrame;
     private ModernSystemMenu modernSystemMenu;
-
+    private WindowMessageMonitor? mainMonitor;
+    private WindowMessageMonitor? nonClientMonitor;
     public delegate void WindowMessageEventHandler(object? sender, WindowMessageEventArgs e);
     public event WindowMessageEventHandler? WindowMessageReceived;
     public event WindowMessageEventHandler? WindowInputNonClientPointerSourceMessageReceived;
@@ -31,14 +32,14 @@ public partial class ModernWindow : Microsoft.UI.Xaml.Window
 
     public ModernWindow()
     {
-        var windowMessageMonitor = new WindowMessageMonitor(Hwnd);
-        windowMessageMonitor.WindowMessageReceived += OnWindowMessageReceivedInternal;
+        mainMonitor = new WindowMessageMonitor(Hwnd);
+        mainMonitor.WindowMessageReceived += OnWindowMessageReceivedInternal;
 
         var inputNonClientPointerSourceHandle = WindowHelper.FindWindow(Hwnd, "InputNonClientPointerSource");
         if (inputNonClientPointerSourceHandle != IntPtr.Zero)
         {
-            var monitorNonClient = new WindowMessageMonitor(inputNonClientPointerSourceHandle);
-            monitorNonClient.WindowMessageReceived += OnWindowInputNonClientPointerSourceMessageReceivedInternal;
+            nonClientMonitor = new WindowMessageMonitor(inputNonClientPointerSourceHandle);
+            nonClientMonitor.WindowMessageReceived += OnWindowInputNonClientPointerSourceMessageReceivedInternal;
         }
 
         rainbowFrame = new RainbowFrame(Hwnd);

@@ -13,6 +13,9 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
     private MenuFlyout titleBarMenuFlyout;
     private readonly ContentCoordinateConverter contentCoordinateConverter;
     private readonly OverlappedPresenter overlappedPresenter;
+    private WindowMessageMonitor? mainMonitor;
+    private WindowMessageMonitor? nonClientMonitor;
+
     public bool IsModernSystemMenuEnabled = true;
 
     private bool _isWindowMaximized;
@@ -197,15 +200,15 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
 
     private void RegisterWindowMonitor()
     {
-        var monitor = new WindowMessageMonitor(window);
-        monitor.WindowMessageReceived += OnWindowMessageReceived;
+        mainMonitor = new WindowMessageMonitor(window);
+        mainMonitor.WindowMessageReceived += OnWindowMessageReceived;
 
         var inputNonClientPointerSourceHandle = PInvoke.FindWindowEx(new HWND((IntPtr)window.AppWindow.Id.Value), HWND.Null, "InputNonClientPointerSource", null);
 
         if (inputNonClientPointerSourceHandle != HWND.Null)
         {
-            var monitorNonClient = new WindowMessageMonitor(inputNonClientPointerSourceHandle);
-            monitorNonClient.WindowMessageReceived += OnWindowMessageReceivedNonClient;
+            nonClientMonitor = new WindowMessageMonitor(inputNonClientPointerSourceHandle);
+            nonClientMonitor.WindowMessageReceived += OnWindowMessageReceivedNonClient;
         }
     }
 
