@@ -15,7 +15,7 @@ public sealed partial class ShortcutPage : Page
     {
         MainShortcutEditor.UpdatePreviewKeys();
         MainShortcutEditor.CloseContentDialog();
-        TxtResult.Text = "Primary button clicked!" + Environment.NewLine + MainShortcutEditor.Keys.ToString();
+        TxtResult.Text = "Primary button clicked!" + Environment.NewLine + string.Join(" + ", MainShortcutEditor.Keys);
     }
 
     private void OnMainShortcutEditorSecondaryButtonClick(object sender, ContentDialogButtonClickEventArgs e)
