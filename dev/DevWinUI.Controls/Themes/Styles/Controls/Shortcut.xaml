@@ -4,13 +4,8 @@
                     xmlns:local="using:DevWinUI">
 
     <Style TargetType="local:ShortcutEditor">
-        <Setter Property="Icon">
-            <Setter.Value>
-                <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                          FontSize="16"
-                          Glyph="&#xE70F;" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="WarningTitle" Value="Using a single key as a shortcut may interfere with regular typing or system behavior." />
+        <Setter Property="WarningToolTip" Value="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ShortcutEditor">
@@ -42,8 +37,9 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-                                    <!--<ContentControl VerticalContentAlignment="Center"
-                                                    Content="{TemplateBinding Icon}" />-->
+
+                                    <ContentControl VerticalContentAlignment="Center"
+                                                    Content="{TemplateBinding Icon}" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -163,7 +159,6 @@
                                    Margin="8,0,0,0"
                                    VerticalAlignment="Center"
                                    Text="{TemplateBinding Text}" />
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

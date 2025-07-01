@@ -2,7 +2,7 @@
 using Windows.System;
 
 namespace DevWinUI;
-public partial class ShortcutEditor : Control
+public partial class ShortcutEditor : BaseShortcut
 {
     private Shortcut shortcut;
     private ContentDialog contentDialog;
@@ -25,7 +25,7 @@ public partial class ShortcutEditor : Control
 
     public static readonly DependencyProperty IconProperty =
         DependencyProperty.Register(nameof(Icon), typeof(IconElement), typeof(ShortcutEditor), new PropertyMetadata(null));
-
+    
     public new bool IsEnabled
     {
         get { return (bool)GetValue(IsEnabledProperty); }
@@ -44,13 +44,13 @@ public partial class ShortcutEditor : Control
         }
     }
 
-    public List<object> Keys
+    public new List<object> Keys
     {
         get { return (List<object>)GetValue(KeysProperty); }
         set { SetValue(KeysProperty, value); }
     }
 
-    public static readonly DependencyProperty KeysProperty =
+    public static new readonly DependencyProperty KeysProperty =
         DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(ShortcutEditor), new PropertyMetadata(null, OnKeysChanged));
 
     private static void OnKeysChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -70,9 +70,58 @@ public partial class ShortcutEditor : Control
         }
     }
 
+    public string ContentDialogTitle
+    {
+        get { return (string)GetValue(ContentDialogTitleProperty); }
+        set { SetValue(ContentDialogTitleProperty, value); }
+    }
+
+    public static readonly DependencyProperty ContentDialogTitleProperty =
+        DependencyProperty.Register(nameof(ContentDialogTitle), typeof(string), typeof(ShortcutEditor), new PropertyMetadata("Activation shortcut"));
+
+    public string PrimaryButtonText
+    {
+        get { return (string)GetValue(PrimaryButtonTextProperty); }
+        set { SetValue(PrimaryButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty PrimaryButtonTextProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonText), typeof(string), typeof(ShortcutEditor), new PropertyMetadata("Save"));
+
+    public string SecondaryButtonText
+    {
+        get { return (string)GetValue(SecondaryButtonTextProperty); }
+        set { SetValue(SecondaryButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty SecondaryButtonTextProperty =
+        DependencyProperty.Register(nameof(SecondaryButtonText), typeof(string), typeof(ShortcutEditor), new PropertyMetadata("Reset"));
+
+    public string CloseButtonText
+    {
+        get { return (string)GetValue(CloseButtonTextProperty); }
+        set { SetValue(CloseButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty CloseButtonTextProperty =
+        DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(ShortcutEditor), new PropertyMetadata("Cancel"));
+
     public ShortcutEditor()
     {
         OpenDialogCommand = DelegateCommand.Create(OnOpenDialogCommand, CanExecuteOpenDialog);
+        if (Icon == null)
+        {
+            Icon = CreateDefaultIcon();
+        }
+    }
+    private IconElement CreateDefaultIcon()
+    {
+        return new FontIcon
+        {
+            Glyph = GeneralHelper.GetGlyph("E70F"),
+            FontSize = 16,
+            FontFamily = Application.Current.Resources["SymbolThemeFontFamily"] as FontFamily
+        };
     }
     private bool CanExecuteOpenDialog()
     {
@@ -92,14 +141,22 @@ public partial class ShortcutEditor : Control
         shortcut.Keys = null;
         shortcut.Keys = Keys;
 
+        shortcut.InfoTitle = InfoTitle;
+        shortcut.InfoToolTip = InfoToolTip;
+        shortcut.WarningTitle = WarningTitle;
+        shortcut.WarningToolTip = WarningToolTip;
+        shortcut.ErrorTitle = ErrorTitle;
+        shortcut.ErrorToolTip = ErrorToolTip;
+        shortcut.Title = Title;
+
         contentDialog = new ContentDialog
         {
             XamlRoot = XamlRoot,
-            Title = "Activation shortcut",
+            Title = ContentDialogTitle,
             Content = shortcut,
-            PrimaryButtonText = "Save",
-            SecondaryButtonText = "Reset",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = PrimaryButtonText,
+            SecondaryButtonText = SecondaryButtonText,
+            CloseButtonText = CloseButtonText,
             DefaultButton = ContentDialogButton.Primary,
             RequestedTheme = this.ActualTheme
         };
@@ -190,8 +247,6 @@ public partial class ShortcutEditor : Control
         {
             shortcut.IsError = false;
             shortcut.IsWarning = false;
-
-            shortcut.InfoTitle = "Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid.";
             shortcut.IsInfo = true;
             contentDialog.IsPrimaryButtonEnabled = true;
         }
@@ -199,8 +254,6 @@ public partial class ShortcutEditor : Control
         {
             shortcut.IsInfo = false;
             shortcut.IsError = false;
-            shortcut.WarningTitle = "Using a single key as a shortcut may interfere with regular typing or system behavior.";
-            shortcut.WarningToolTip = "It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it.";
             shortcut.IsWarning = true;
             contentDialog.IsPrimaryButtonEnabled = true;
         }
