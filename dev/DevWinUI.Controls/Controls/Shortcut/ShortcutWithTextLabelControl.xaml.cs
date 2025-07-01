@@ -11,7 +11,7 @@ public sealed partial class ShortcutWithTextLabelControl : UserControl
         set => SetValue(TextProperty, value);
     }
 
-    public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(ShortcutWithTextLabelControl), new PropertyMetadata(default(string)));
+    public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(ShortcutWithTextLabelControl), new PropertyMetadata(default(string)));
 
 #pragma warning disable CA2227 // Collection properties should be read only
     public List<object> Keys
@@ -21,7 +21,7 @@ public sealed partial class ShortcutWithTextLabelControl : UserControl
         set => SetValue(KeysProperty, value);
     }
 
-    public static readonly DependencyProperty KeysProperty = DependencyProperty.Register("Keys", typeof(List<object>), typeof(ShortcutWithTextLabelControl), new PropertyMetadata(default(string)));
+    public static readonly DependencyProperty KeysProperty = DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(ShortcutWithTextLabelControl), new PropertyMetadata(default(string)));
 
     public ShortcutWithTextLabelControl()
     {

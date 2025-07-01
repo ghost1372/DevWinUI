@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="Press a combination of keys to change this shortcut" />
+                   Text="{x:Bind Title, Mode=OneWay}" />
 
         <ItemsControl x:Name="KeysControl"
                       Grid.Row="1"
@@ -50,18 +50,18 @@
                     Spacing="8">
             <Grid Height="62">
 
-                <InfoBar Title="Invalid shortcut"
+                <InfoBar Title="{x:Bind ErrorTitle, Mode=OneWay}"
                          IsClosable="False"
                          IsOpen="{x:Bind IsError, Mode=OneWay}"
                          IsTabStop="{x:Bind IsError, Mode=OneWay}"
-                         Severity="Error" />
-
-                <InfoBar Title="Possible shortcut interference with Alt Gr"
+                         Severity="Error"
+                         ToolTipService.ToolTip="{x:Bind ErrorToolTip, Mode=OneWay}" />
+                <InfoBar Title="{x:Bind WarningTitle, Mode=OneWay}"
                          IsClosable="False"
-                         IsOpen="{x:Bind IsWarningAltGr, Mode=OneWay}"
-                         IsTabStop="{x:Bind IsWarningAltGr, Mode=OneWay}"
+                         IsOpen="{x:Bind IsWarning, Mode=OneWay}"
+                         IsTabStop="{x:Bind IsWarning, Mode=OneWay}"
                          Severity="Warning"
-                         ToolTipService.ToolTip="Shortcuts with **Ctrl** and **Alt** may remove functionality from some international keyboards, because **Ctrl** + **Alt** = **Alt Gr** in those keyboards." />
+                         ToolTipService.ToolTip="{x:Bind WarningToolTip, Mode=OneWay}" />
             </Grid>
         </StackPanel>
     </Grid>
