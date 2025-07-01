@@ -1,2 +1,18 @@
 ﻿//Set Default Keys
 MainShortcut.Keys = new List<object>() { "Ctrl", "Alt", "F1" };
+private void OnMainShortcutPrimaryButtonClick(object sender, ContentDialogButtonClickEventArgs e)
+{
+    MainShortcut.UpdatePreviewKeys();
+    MainShortcut.CloseContentDialog();
+    MessageBox.Show("Primary button clicked!", MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
+}
+
+private void OnMainShortcutSecondaryButtonClick(object sender, ContentDialogButtonClickEventArgs e)
+{
+    MessageBox.Show("Scondary button clicked!", MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
+}
+
+private void OnMainShortcutCloseButtonClick(object sender, ContentDialogButtonClickEventArgs e)
+{
+    MessageBox.Show("Close button clicked!", MessageBoxStyle.Ok | MessageBoxStyle.IconInformation);
+}

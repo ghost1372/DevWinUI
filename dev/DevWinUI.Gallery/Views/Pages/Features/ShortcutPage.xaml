@@ -12,10 +12,10 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample CSharpSource="Features/Shortcut/ShortcutEditor_cs.txt"
-                                  DocPage="controls/shortcutEditor"
-                                  HeaderText="ShortcutEditor"
-                                  XamlSource="Features/Shortcut/ShortcutEditor_xaml.txt">
+            <local:ControlExample CSharpSource="Features/Shortcut/Shortcut_cs.txt"
+                                  DocPage="controls/shortcut"
+                                  HeaderText="Shortcut"
+                                  XamlSource="Features/Shortcut/Shortcut_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <TextBox x:Name="TxtPrimaryButton"
@@ -67,24 +67,24 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:ShortcutEditor x:Name="MainShortcutEditor"
-                                        Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        CloseButtonClick="OnMainShortcutEditorCloseButtonClick"
-                                        CloseButtonText="{x:Bind TxtCloseButton.Text, Mode=OneWay}"
-                                        ContentDialogTitle="{x:Bind TxtContentDialogTitle.Text, Mode=OneWay}"
-                                        ErrorTitle="{x:Bind TxtErrorTitle.Text, Mode=OneWay}"
-                                        ErrorToolTip="{x:Bind TxtErrorToolTip.Text, Mode=OneWay}"
-                                        InfoTitle="{x:Bind TxtInfoTitle.Text, Mode=OneWay}"
-                                        InfoToolTip="{x:Bind TxtInfoToolTip.Text, Mode=OneWay}"
-                                        IsEnabled="{x:Bind TGIsEnabled.IsOn, Mode=OneWay}"
-                                        PrimaryButtonClick="OnMainShortcutEditorPrimaryButtonClick"
-                                        PrimaryButtonText="{x:Bind TxtPrimaryButton.Text, Mode=OneWay}"
-                                        SecondaryButtonClick="OnMainShortcutEditorSecondaryButtonClick"
-                                        SecondaryButtonText="{x:Bind TxtSecondaryButton.Text, Mode=OneWay}"
-                                        WarningTitle="{x:Bind TxtWarningTitle.Text, Mode=OneWay}"
-                                        WarningToolTip="{x:Bind TxtWarningToolTip.Text, Mode=OneWay}" />
+                    <dev:Shortcut x:Name="MainShortcut"
+                                  Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  CloseButtonClick="OnMainShortcutCloseButtonClick"
+                                  CloseButtonText="{x:Bind TxtCloseButton.Text, Mode=OneWay}"
+                                  ContentDialogTitle="{x:Bind TxtContentDialogTitle.Text, Mode=OneWay}"
+                                  ErrorTitle="{x:Bind TxtErrorTitle.Text, Mode=OneWay}"
+                                  ErrorToolTip="{x:Bind TxtErrorToolTip.Text, Mode=OneWay}"
+                                  InfoTitle="{x:Bind TxtInfoTitle.Text, Mode=OneWay}"
+                                  InfoToolTip="{x:Bind TxtInfoToolTip.Text, Mode=OneWay}"
+                                  IsEnabled="{x:Bind TGIsEnabled.IsOn, Mode=OneWay}"
+                                  PrimaryButtonClick="OnMainShortcutPrimaryButtonClick"
+                                  PrimaryButtonText="{x:Bind TxtPrimaryButton.Text, Mode=OneWay}"
+                                  SecondaryButtonClick="OnMainShortcutSecondaryButtonClick"
+                                  SecondaryButtonText="{x:Bind TxtSecondaryButton.Text, Mode=OneWay}"
+                                  WarningTitle="{x:Bind TxtWarningTitle.Text, Mode=OneWay}"
+                                  WarningToolTip="{x:Bind TxtWarningToolTip.Text, Mode=OneWay}" />
 
                     <TextBlock x:Name="TxtResult"
                                HorizontalAlignment="Center"
@@ -92,10 +92,10 @@
                 </StackPanel>
             </local:ControlExample>
 
-            <local:ControlExample CSharpSource="Features/Shortcut/Shortcut_cs.txt"
-                                  DocPage="controls/shortcut"
-                                  HeaderText="Shortcut"
-                                  XamlSource="Features/Shortcut/Shortcut_xaml.txt">
+            <local:ControlExample CSharpSource="Features/Shortcut/ShortcutPreview_cs.txt"
+                                  DocPage="controls/shortcutPreview"
+                                  HeaderText="ShortcutPreview"
+                                  XamlSource="Features/Shortcut/ShortcutPreview_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <TextBox x:Name="TxtTitle2"
@@ -137,20 +137,20 @@
                                       IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Shortcut x:Name="MainShortcut"
-                              Title="{x:Bind TxtTitle2.Text, Mode=OneWay}"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              ErrorTitle="{x:Bind TxtErrorTitle2.Text, Mode=OneWay}"
-                              ErrorToolTip="{x:Bind TxtErrorToolTip2.Text, Mode=OneWay}"
-                              InfoTitle="{x:Bind TxtInfoTitle2.Text, Mode=OneWay}"
-                              InfoToolTip="{x:Bind TxtInfoToolTip2.Text, Mode=OneWay}"
-                              IsEnabled="{x:Bind TGIsEnabled2.IsOn, Mode=OneWay}"
-                              IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
-                              IsInfo="{x:Bind TGIsInfo.IsOn, Mode=OneWay}"
-                              IsWarning="{x:Bind TGIsWarning.IsOn, Mode=OneWay}"
-                              WarningTitle="{x:Bind TxtWarningTitle2.Text, Mode=OneWay}"
-                              WarningToolTip="{x:Bind TxtWarningToolTip2.Text, Mode=OneWay}" />
+                <dev:ShortcutPreview x:Name="MainShortcutPreview"
+                                     Title="{x:Bind TxtTitle2.Text, Mode=OneWay}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     ErrorTitle="{x:Bind TxtErrorTitle2.Text, Mode=OneWay}"
+                                     ErrorToolTip="{x:Bind TxtErrorToolTip2.Text, Mode=OneWay}"
+                                     InfoTitle="{x:Bind TxtInfoTitle2.Text, Mode=OneWay}"
+                                     InfoToolTip="{x:Bind TxtInfoToolTip2.Text, Mode=OneWay}"
+                                     IsEnabled="{x:Bind TGIsEnabled2.IsOn, Mode=OneWay}"
+                                     IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
+                                     IsInfo="{x:Bind TGIsInfo.IsOn, Mode=OneWay}"
+                                     IsWarning="{x:Bind TGIsWarning.IsOn, Mode=OneWay}"
+                                     WarningTitle="{x:Bind TxtWarningTitle2.Text, Mode=OneWay}"
+                                     WarningToolTip="{x:Bind TxtWarningToolTip2.Text, Mode=OneWay}" />
             </local:ControlExample>
 
             <local:ControlExample CSharpSource="Features/Shortcut/ShortcutWithTextLabel_cs.txt"

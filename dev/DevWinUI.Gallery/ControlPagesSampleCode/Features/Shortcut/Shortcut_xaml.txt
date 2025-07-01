@@ -1,1 +1,1 @@
-﻿<dev:Shortcut x:Name="MainShortcut" />
+﻿<dev:Shortcut x:Name="MainShortcut" CloseButtonClick="OnMainShortcutCloseButtonClick" PrimaryButtonClick="OnMainShortcutPrimaryButtonClick" SecondaryButtonClick="OnMainShortcutSecondaryButtonClick" />

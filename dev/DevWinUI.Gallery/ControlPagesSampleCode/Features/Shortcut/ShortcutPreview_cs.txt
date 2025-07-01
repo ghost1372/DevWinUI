@@ -1,0 +1,2 @@
+﻿//Set Default Keys
+MainShortcutPreview.Keys = new List<object>() { "Ctrl", "Alt", "F1" };

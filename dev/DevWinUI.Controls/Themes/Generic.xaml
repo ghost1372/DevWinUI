@@ -52,6 +52,7 @@ Themes\Styles\Controls\SelectorBarSegmented.xaml
 Themes\Styles\Controls\SettingsGroup.xaml
 Themes\Styles\Controls\Shield.xaml
 Themes\Styles\Controls\Shimmer.xaml
+Themes\Styles\Controls\Shortcut.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\TextBox.xaml
@@ -1747,6 +1748,101 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:Shimmer">
           <Border x:Name="Shape" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:Shortcut">
+    <Setter Property="WarningTitle" Value="Using a single key as a shortcut may interfere with regular typing or system behavior." />
+    <Setter Property="WarningToolTip" Value="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Shortcut">
+          <Grid HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal">
+              <Button Padding="0" Command="{Binding OpenDialogCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}" CornerRadius="8">
+                <StackPanel Margin="12,6,12,6" Orientation="Horizontal" Spacing="16">
+                  <ItemsControl VerticalAlignment="Center" IsEnabled="{TemplateBinding IsEnabled}" IsTabStop="False" ItemsSource="{TemplateBinding Keys}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="4" />
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <local:KeyVisual VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsTabStop="False" VisualType="Small" />
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <ContentControl VerticalContentAlignment="Center" Content="{TemplateBinding Icon}" />
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:ShortcutPreview">
+    <Setter Property="MinWidth" Value="498" />
+    <Setter Property="MinHeight" Value="220" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ShortcutPreview">
+          <Grid MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition MinHeight="110" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" />
+            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Height="56" Margin="0,64,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal" Spacing="8" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <local:KeyVisual Height="56" AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsError="{Binding Tag, ElementName=KeysItemsControl}" IsTabStop="False" VisualType="Large" />
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel Grid.Row="2" Margin="0,24,0,0" VerticalAlignment="Top" Orientation="Vertical" Spacing="8">
+              <Grid Height="62">
+                <InfoBar IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" />
+                <InfoBar Title="{TemplateBinding ErrorTitle}" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" />
+                <InfoBar Title="{TemplateBinding WarningTitle}" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" />
+              </Grid>
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:ShortcutWithTextLabel">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ShortcutWithTextLabel">
+          <Grid ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ItemsControl VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" IsTabStop="False" ItemsSource="{TemplateBinding Keys}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal" Spacing="4" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <local:KeyVisual VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsTabStop="False" VisualType="SmallOutline" />
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Text="{TemplateBinding Text}" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

@@ -2,7 +2,7 @@
 
 public sealed partial class ShortcutGuidePage : Page
 {
-    private ShortcutEditor c = new ShortcutEditor();
+    private Shortcut c = new Shortcut();
     private ContentDialog shortcutDialog;
     bool canClose = false;
     public ShortcutGuidePage()
@@ -14,7 +14,7 @@ public sealed partial class ShortcutGuidePage : Page
     }
     private async void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var c = new ShortcutEditor
+        var c = new Shortcut
         {
             Keys = new List<object> { "Ctrl", "Alt", "F5" }
         };

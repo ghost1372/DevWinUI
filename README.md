@@ -157,6 +157,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Shortcut
 - ✨ InfoBadge Style
 - ✨ Magnifier
 - ✨ LayeredFontIcons
@@ -274,6 +275,15 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Shortcut
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shortcut.gif)
+
+### ShortcutPreview
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShortcutPreview.png)
+
+### ShortcutWithTextLabel
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShortcutWithTextLabel.png)
 
 ### StringInfoBadge Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StringInfoBadge.png)

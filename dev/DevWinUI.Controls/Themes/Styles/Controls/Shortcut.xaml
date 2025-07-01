@@ -3,12 +3,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ShortcutEditor">
+    <Style TargetType="local:Shortcut">
         <Setter Property="WarningTitle" Value="Using a single key as a shortcut may interfere with regular typing or system behavior." />
         <Setter Property="WarningToolTip" Value="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:ShortcutEditor">
+                <ControlTemplate TargetType="local:Shortcut">
                     <Grid HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">
                             <Button Padding="0"
@@ -49,12 +49,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="local:Shortcut">
+    <Style TargetType="local:ShortcutPreview">
         <Setter Property="MinWidth" Value="498" />
         <Setter Property="MinHeight" Value="220" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Shortcut">
+                <ControlTemplate TargetType="local:ShortcutPreview">
                     <Grid MinWidth="{TemplateBinding MinWidth}"
                           MinHeight="{TemplateBinding MinHeight}">
                         <Grid.RowDefinitions>
