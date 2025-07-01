@@ -47,7 +47,6 @@
           "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
           "Title": "RelativeDate",
           "Subtitle": "RelativeDate",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -66,7 +65,6 @@
           "UniqueId": "DevWinUIGallery.Views.LegacyMessageBoxPage",
           "Title": "MessageBox",
           "Subtitle": "Legacy MessageBox",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -127,8 +125,7 @@
           "UniqueId": "DevWinUIGallery.Views.PickersPage",
           "Title": "Pickers",
           "Subtitle": "FilePicker, FolderPicker and SavePicker which support elevated, Packaged, UnPackaged and AOT apps",
-          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png",
-          "IsNew": true
+          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png"
         }
       ]
     },
@@ -141,6 +138,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ShortcutPage",
+          "Title": "Shortcut",
+          "Subtitle": "Press a combination of keys to change this shortcut",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ToolTip.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
           "Title": "Magnifier",
           "Subtitle": "Magnifier",
@@ -151,7 +155,6 @@
           "UniqueId": "DevWinUIGallery.Views.LayeredFontIconsPage",
           "Title": "LayeredFontIcons",
           "Subtitle": "Combine Multiple Icons",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Workspaces.png"
         },
         {
@@ -171,7 +174,6 @@
           "UniqueId": "DevWinUIGallery.Views.StepBarPage",
           "Title": "StepBar",
           "Subtitle": "StepBar",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
         },
         {
@@ -375,7 +377,6 @@
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
           "Title": "Hatch",
           "Subtitle": "Hatch",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Grid.png"
         },
         {

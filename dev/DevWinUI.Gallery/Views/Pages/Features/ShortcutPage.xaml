@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ShortcutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Features/Shortcut/ShortcutEditor_cs.txt"
+                                  DocPage="controls/shortcutEditor"
+                                  HeaderText="ShortcutEditor"
+                                  XamlSource="Features/Shortcut/ShortcutEditor_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtPrimaryButton"
+                                 Header="Primary Button Text"
+                                 PlaceholderText="Save"
+                                 Text="Save" />
+                        <TextBox x:Name="TxtSecondaryButton"
+                                 Header="Secondary Button Text"
+                                 PlaceholderText="Reset"
+                                 Text="Reset" />
+                        <TextBox x:Name="TxtCloseButton"
+                                 Header="Close Button Text"
+                                 PlaceholderText="Close"
+                                 Text="Cancel" />
+                        <TextBox x:Name="TxtTitle"
+                                 Header="Title"
+                                 PlaceholderText="Press a combination of keys to change this shortcut"
+                                 Text="Press a combination of keys to change this shortcut" />
+                        <TextBox x:Name="TxtInfoTitle"
+                                 Header="Info Title"
+                                 PlaceholderText="Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid."
+                                 Text="Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid." />
+                        <TextBox x:Name="TxtInfoToolTip"
+                                 Header="Info ToolTip"
+                                 PlaceholderText="Info ToolTip..." />
+                        <TextBox x:Name="TxtWarningTitle"
+                                 Header="Warning Title"
+                                 PlaceholderText="Using a single key as a shortcut may interfere with regular typing or system behavior."
+                                 Text="Using a single key as a shortcut may interfere with regular typing or system behavior." />
+                        <TextBox x:Name="TxtWarningToolTip"
+                                 Header="Warning ToolTip"
+                                 PlaceholderText="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it."
+                                 Text="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
+                        <TextBox x:Name="TxtErrorTitle"
+                                 Header="Error Title"
+                                 PlaceholderText="Invalid shortcut"
+                                 Text="Invalid shortcut" />
+                        <TextBox x:Name="TxtErrorToolTip"
+                                 Header="Error ToolTip"
+                                 PlaceholderText="Invalid shortcut"
+                                 Text="Invalid shortcut" />
+                        <TextBox x:Name="TxtContentDialogTitle"
+                                 Header="Content Dialog Title"
+                                 PlaceholderText="Activation shortcut"
+                                 Text="Activation shortcut" />
+                        <ToggleSwitch x:Name="TGIsEnabled"
+                                      Header="IsEnabled"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:ShortcutEditor x:Name="MainShortcutEditor"
+                                        Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        CloseButtonClick="OnMainShortcutEditorCloseButtonClick"
+                                        CloseButtonText="{x:Bind TxtCloseButton.Text, Mode=OneWay}"
+                                        ContentDialogTitle="{x:Bind TxtContentDialogTitle.Text, Mode=OneWay}"
+                                        ErrorTitle="{x:Bind TxtErrorTitle.Text, Mode=OneWay}"
+                                        ErrorToolTip="{x:Bind TxtErrorToolTip.Text, Mode=OneWay}"
+                                        InfoTitle="{x:Bind TxtInfoTitle.Text, Mode=OneWay}"
+                                        InfoToolTip="{x:Bind TxtInfoToolTip.Text, Mode=OneWay}"
+                                        IsEnabled="{x:Bind TGIsEnabled.IsOn, Mode=OneWay}"
+                                        PrimaryButtonClick="OnMainShortcutEditorPrimaryButtonClick"
+                                        PrimaryButtonText="{x:Bind TxtPrimaryButton.Text, Mode=OneWay}"
+                                        SecondaryButtonClick="OnMainShortcutEditorSecondaryButtonClick"
+                                        SecondaryButtonText="{x:Bind TxtSecondaryButton.Text, Mode=OneWay}"
+                                        WarningTitle="{x:Bind TxtWarningTitle.Text, Mode=OneWay}"
+                                        WarningToolTip="{x:Bind TxtWarningToolTip.Text, Mode=OneWay}" />
+
+                    <TextBlock x:Name="TxtResult"
+                               HorizontalAlignment="Center"
+                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                </StackPanel>
+            </local:ControlExample>
+
+            <local:ControlExample CSharpSource="Features/Shortcut/Shortcut_cs.txt"
+                                  DocPage="controls/shortcut"
+                                  HeaderText="Shortcut"
+                                  XamlSource="Features/Shortcut/Shortcut_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTitle2"
+                                 Header="Title"
+                                 PlaceholderText="Press a combination of keys to change this shortcut"
+                                 Text="Press a combination of keys to change this shortcut" />
+                        <ToggleSwitch x:Name="TGIsInfo"
+                                      Header="IsInfo"
+                                      IsOn="True" />
+                        <TextBox x:Name="TxtInfoTitle2"
+                                 Header="Info Title"
+                                 PlaceholderText="Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid."
+                                 Text="Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid." />
+                        <TextBox x:Name="TxtInfoToolTip2"
+                                 Header="Info ToolTip"
+                                 PlaceholderText="Info ToolTip..." />
+                        <ToggleSwitch x:Name="TGIsWarning"
+                                      Header="IsWarning" />
+                        <TextBox x:Name="TxtWarningTitle2"
+                                 Header="Warning Title"
+                                 PlaceholderText="Using a single key as a shortcut may interfere with regular typing or system behavior."
+                                 Text="Using a single key as a shortcut may interfere with regular typing or system behavior." />
+                        <TextBox x:Name="TxtWarningToolTip2"
+                                 Header="Warning ToolTip"
+                                 PlaceholderText="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it."
+                                 Text="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
+                        <ToggleSwitch x:Name="TGIsError"
+                                      Header="IsError" />
+                        <TextBox x:Name="TxtErrorTitle2"
+                                 Header="Error Title"
+                                 PlaceholderText="Invalid shortcut"
+                                 Text="Invalid shortcut" />
+                        <TextBox x:Name="TxtErrorToolTip2"
+                                 Header="Error ToolTip"
+                                 PlaceholderText="Invalid shortcut"
+                                 Text="Invalid shortcut" />
+                        <ToggleSwitch x:Name="TGIsEnabled2"
+                                      Header="IsEnabled"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Shortcut x:Name="MainShortcut"
+                              Title="{x:Bind TxtTitle2.Text, Mode=OneWay}"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              ErrorTitle="{x:Bind TxtErrorTitle2.Text, Mode=OneWay}"
+                              ErrorToolTip="{x:Bind TxtErrorToolTip2.Text, Mode=OneWay}"
+                              InfoTitle="{x:Bind TxtInfoTitle2.Text, Mode=OneWay}"
+                              InfoToolTip="{x:Bind TxtInfoToolTip2.Text, Mode=OneWay}"
+                              IsEnabled="{x:Bind TGIsEnabled2.IsOn, Mode=OneWay}"
+                              IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
+                              IsInfo="{x:Bind TGIsInfo.IsOn, Mode=OneWay}"
+                              IsWarning="{x:Bind TGIsWarning.IsOn, Mode=OneWay}"
+                              WarningTitle="{x:Bind TxtWarningTitle2.Text, Mode=OneWay}"
+                              WarningToolTip="{x:Bind TxtWarningToolTip2.Text, Mode=OneWay}" />
+            </local:ControlExample>
+
+            <local:ControlExample CSharpSource="Features/Shortcut/ShortcutWithTextLabel_cs.txt"
+                                  DocPage="controls/shortcutWithTextLabel"
+                                  HeaderText="ShortcutWithTextLabel"
+                                  XamlSource="Features/Shortcut/ShortcutWithTextLabel_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtText"
+                                 Header="Text"
+                                 PlaceholderText="Press a combination of keys to change this shortcut"
+                                 Text="Press a combination of keys to change this shortcut" />
+                        <ToggleSwitch x:Name="TGIsEnabled3"
+                                      Header="IsEnabled"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ShortcutWithTextLabel x:Name="MainShortcutWithTextLabel"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           IsEnabled="{x:Bind TGIsEnabled3.IsOn, Mode=OneWay}"
+                                           Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

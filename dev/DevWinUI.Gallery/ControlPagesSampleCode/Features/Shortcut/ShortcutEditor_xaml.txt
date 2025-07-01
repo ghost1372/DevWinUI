@@ -1,0 +1,1 @@
+﻿<dev:ShortcutEditor x:Name="MainShortcutEditor" CloseButtonClick="OnMainShortcutEditorCloseButtonClick" PrimaryButtonClick="OnMainShortcutEditorPrimaryButtonClick" SecondaryButtonClick="OnMainShortcutEditorSecondaryButtonClick" />
