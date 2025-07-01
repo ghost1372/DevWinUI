@@ -145,6 +145,12 @@
           "ImagePath": "ms-appx:///Assets/Fluent/shortcutGuide.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.KeyVisualPage",
+          "Title": "KeyVisual",
+          "Subtitle": "KeyVisual",
+          "ImagePath": "ms-appx:///Assets/Fluent/keyboardManager.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
           "Title": "Magnifier",
           "Subtitle": "Magnifier",

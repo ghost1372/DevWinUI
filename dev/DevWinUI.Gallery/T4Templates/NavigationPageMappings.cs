@@ -32,6 +32,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
         {"DevWinUIGallery.Views.PickersPage", typeof(DevWinUIGallery.Views.PickersPage)},
         {"DevWinUIGallery.Views.ShortcutPage", typeof(DevWinUIGallery.Views.ShortcutPage)},
+        {"DevWinUIGallery.Views.KeyVisualPage", typeof(DevWinUIGallery.Views.KeyVisualPage)},
         {"DevWinUIGallery.Views.MagnifierPage", typeof(DevWinUIGallery.Views.MagnifierPage)},
         {"DevWinUIGallery.Views.LayeredFontIconsPage", typeof(DevWinUIGallery.Views.LayeredFontIconsPage)},
         {"DevWinUIGallery.Views.ShimmerPage", typeof(DevWinUIGallery.Views.ShimmerPage)},

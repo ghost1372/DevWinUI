@@ -37,6 +37,7 @@ public partial class App : Application
         services.AddTransient<MainViewModel>();
         services.AddTransient<PickerViewModel>();
         services.AddTransient<ExtensionViewModel>();
+        services.AddTransient<KeyVisualViewModel>();
         services.AddTransient<SwitchPresenterViewModel>();
         services.AddTransient<GeneralSettingViewModel>();
         services.AddTransient<AppUpdateSettingViewModel>();

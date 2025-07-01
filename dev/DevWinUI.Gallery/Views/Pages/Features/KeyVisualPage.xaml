@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.KeyVisualPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/keyVisual"
+                                  HeaderText="KeyVisual">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:KeyVisual Content="Ctrl+F5" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtContent"
+                                 Header="Content"
+                                 PlaceholderText="Win or 92"
+                                 Text="Win" />
+                        <TextBox x:Name="TxtContent2"
+                                 Header="Content"
+                                 PlaceholderText="Ctrl"
+                                 Text="Ctrl" />
+                        <TextBox x:Name="TxtContent3"
+                                 Header="Content"
+                                 PlaceholderText="F5"
+                                 Text="F5" />
+                        <ToggleSwitch x:Name="TGIsError"
+                                      Header="IsError"
+                                      IsOn="False" />
+                        <ComboBox x:Name="VisualTypePicker"
+                                  Header="Pick a VisualType"
+                                  ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
+                                  SelectedIndex="0"
+                                  SelectionChanged="OnSelectionChanged" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <InfoBar Title="Supported VirtualKey"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="8 (Backspace), 13 (Enter), 16 (Shift), 37 (Left), 38 (Up), 39 (Right), 40 (Left), 91 (Windows), 92 (Windows), 160 (Shift), 161 (Shift)"
+                             Severity="Informational" />
+                    <InfoBar Title="Supported VirtualKey"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="Instead of 16, 160, 161 you can use Shift, and instead of 91 and 92 you can use Win"
+                             Severity="Informational" />
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="5">
+                        <dev:KeyVisual x:Name="MainKeyVisual"
+                                       Content="{x:Bind TxtContent.Text, Mode=OneWay}"
+                                       IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
+                                       IsTabStop="False" />
+                        <dev:KeyVisual x:Name="MainKeyVisual2"
+                                       Content="{x:Bind TxtContent2.Text, Mode=OneWay}"
+                                       IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
+                                       IsTabStop="False" />
+                        <dev:KeyVisual x:Name="MainKeyVisual3"
+                                       Content="{x:Bind TxtContent3.Text, Mode=OneWay}"
+                                       IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"
+                                       IsTabStop="False" />
+                    </StackPanel>
+                </StackPanel>
+
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
