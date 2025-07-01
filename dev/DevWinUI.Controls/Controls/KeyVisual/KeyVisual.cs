@@ -84,53 +84,74 @@ public sealed partial class KeyVisual : Control
 
         if (_keyVisual.Content != null)
         {
-            if (_keyVisual.Content.GetType() == typeof(string))
+            object content = _keyVisual.Content;
+            VirtualKey key = content switch
             {
-                _keyVisual.Style = GetStyleSize("TextKeyVisualStyle");
-                _keyVisual._keyPresenter.Content = _keyVisual.Content;
+                string str => GetVirtualKeyFromString(str),
+                VirtualKey vk => vk,
+                _ => (VirtualKey)(int)content
+            };
+
+            if (TryGetIconForKey((int)key, out object iconContent))
+            {
+                _keyVisual.Style = GetStyleSize("IconKeyVisualStyle");
+                _keyVisual._keyPresenter.Content = iconContent;
             }
             else
             {
-                _keyVisual.Style = GetStyleSize("IconKeyVisualStyle");
-
-                switch ((int)_keyVisual.Content)
-                {
-                    /* We can enable other glyphs in the future
-                    case 13: // The Enter key or button.
-                        _keyVisual._keyPresenter.Content = "\uE751"; break;
-
-                    case 8: // The Back key or button.
-                        _keyVisual._keyPresenter.Content = "\uE750"; break;
-
-                    case 16: // The right Shift key or button.
-                    case 160: // The left Shift key or button.
-                    case 161: // The Shift key or button.
-                        _keyVisual._keyPresenter.Content = "\uE752"; break; */
-
-                    case 38: _keyVisual._keyPresenter.Content = "\uE0E4"; break; // The Up Arrow key or button.
-                    case 40: _keyVisual._keyPresenter.Content = "\uE0E5"; break; // The Down Arrow key or button.
-                    case 37: _keyVisual._keyPresenter.Content = "\uE0E2"; break; // The Left Arrow key or button.
-                    case 39: _keyVisual._keyPresenter.Content = "\uE0E3"; break; // The Right Arrow key or button.
-
-                    case 91: // The left Windows key
-                    case 92: // The right Windows key
-                        PathIcon winIcon = XamlReader.Load(@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""M683 1229H0V546h683v683zm819 0H819V546h683v683zm-819 819H0v-683h683v683zm819 0H819v-683h683v683z"" />") as PathIcon;
-                        Viewbox winIconContainer = new Viewbox();
-                        winIconContainer.Child = winIcon;
-                        winIconContainer.HorizontalAlignment = HorizontalAlignment.Center;
-                        winIconContainer.VerticalAlignment = VerticalAlignment.Center;
-
-                        double iconDimensions = GetIconSize();
-                        winIconContainer.Height = iconDimensions;
-                        winIconContainer.Width = iconDimensions;
-                        _keyVisual._keyPresenter.Content = winIconContainer;
-                        break;
-                    default: _keyVisual._keyPresenter.Content = ((VirtualKey)_keyVisual.Content).ToString(); break;
-                }
+                _keyVisual.Style = GetStyleSize("TextKeyVisualStyle");
+                _keyVisual._keyPresenter.Content = content.ToString();
             }
         }
     }
+    private bool TryGetIconForKey(int keyCode, out object content)
+    {
+        content = null;
 
+        switch (keyCode)
+        {
+            case 13: content = "\uE751"; return true; // Enter
+            case 8: content = "\uE750"; return true; // Backspace
+            case 16:
+            case 160:
+            case 161: content = "\uE752"; return true; // Shift
+
+            case 38: content = "\uE0E4"; return true; // Up
+            case 40: content = "\uE0E5"; return true; // Down
+            case 37: content = "\uE0E2"; return true; // Left
+            case 39: content = "\uE0E3"; return true; // Right
+
+            case 91:
+            case 92:
+                PathIcon winIcon = XamlReader.Load(
+                    @"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
+                            Data=""M683 1229H0V546h683v683zm819 0H819V546h683v683zm-819 819H0v-683h683v683zm819 0H819v-683h683v683z"" />") as PathIcon;
+                Viewbox container = new Viewbox
+                {
+                    Child = winIcon,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Width = GetIconSize(),
+                    Height = GetIconSize()
+                };
+                content = container;
+                return true;
+        }
+
+        return false;
+    }
+
+    private VirtualKey GetVirtualKeyFromString(string keyName)
+    {
+        return keyName switch
+        {
+            "Ctrl" => VirtualKey.Control,
+            "Alt" => VirtualKey.Menu,
+            "Shift" => VirtualKey.Shift,
+            "Win" => VirtualKey.LeftWindows, // You can pick one, or add a separate mapping logic
+            _ => Enum.TryParse<VirtualKey>(keyName, out var vk) ? vk : VirtualKey.None
+        };
+    }
     public Style GetStyleSize(string styleName)
     {
         if (VisualType == VisualType.Small)
