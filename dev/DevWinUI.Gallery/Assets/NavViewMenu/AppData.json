@@ -142,7 +142,7 @@
           "Title": "Shortcut",
           "Subtitle": "Press a combination of keys to change this shortcut",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/ToolTip.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/shortcutGuide.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
