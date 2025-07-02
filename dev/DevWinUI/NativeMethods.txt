@@ -24,6 +24,7 @@ GetComputerName
 GetCurrentPackageFullName
 GetCurrentProcess
 GetCursorPos
+GetCurrentThreadId
 GetDC
 GetDpiForWindow
 GetModuleFileName

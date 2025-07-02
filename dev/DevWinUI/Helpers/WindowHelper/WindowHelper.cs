@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Buffers;
+using System.Diagnostics;
 
 namespace DevWinUI;
 
@@ -499,5 +500,44 @@ public partial class WindowHelper
         return PInvoke.SetWindowPos(new HWND(hwnd), new HWND(), left, top, w, h,
             Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOZORDER |
             Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
+    }
+
+    /// <summary>
+    /// Try get all top-level visible window ids.
+    /// </summary>
+    /// <returns></returns>
+    public static unsafe IReadOnlyList<WindowId> TryGetAllWindowIds()
+    {
+        var charArray = ArrayPool<char>.Shared.Rent(256);
+
+        try
+        {
+            fixed (char* ptr = &charArray[0])
+            {
+                nint ptr2 = (nint)ptr;
+                HWND[]? hWndArray = NativeMethods.EnumThreadWindows((_hWnd, _) =>
+                {
+                    var length = PInvoke.GetClassName(_hWnd, (char*)ptr2, 255);
+
+                    if (length > 0)
+                    {
+                        var className = new string((char*)ptr2, 0, length);
+
+                        return className == "Microsoft.UI.Windowing.Window"
+                            || className == "WinUIDesktopWin32WindowClass";
+                    }
+
+                    return false;
+                }, 0);
+
+                return hWndArray?
+                    .Select(c => Win32Interop.GetWindowIdFromWindow(new nint(c.Value)))
+                    .ToArray() ?? Array.Empty<WindowId>();
+            }
+        }
+        finally
+        {
+            ArrayPool<char>.Shared.Return(charArray);
+        }
     }
 }

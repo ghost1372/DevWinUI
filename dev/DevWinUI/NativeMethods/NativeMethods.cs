@@ -42,4 +42,28 @@ public static partial class NativeMethods
 
     [DllImport("CoreMessaging.dll")]
     internal static unsafe extern int CreateDispatcherQueueController(DispatcherQueueOptions options, IntPtr* instance);
+
+    internal static HWND[]? EnumThreadWindows(Func<HWND, nint, bool> predicate, nint lParam)
+    {
+        var list = new List<HWND>();
+        var handler = new WNDENUMPROC((_hWnd, _lParam) =>
+        {
+            try
+            {
+                if (predicate((HWND)_hWnd, _lParam)) list.Add((HWND)_hWnd);
+            }
+            catch { }
+
+            return true;
+        });
+
+        EnumThreadWindows(PInvoke.GetCurrentThreadId(), handler, new LPARAM(lParam));
+        return list.Count != 0 ? list.Distinct().ToArray() : Array.Empty<HWND>();
+    }
+
+    [DllImport("USER32.dll", ExactSpelling = true, PreserveSig = false)]
+    internal static extern bool EnumThreadWindows([In] uint dwThreadId, [In] WNDENUMPROC lpfn, [In] nint lParam);
+
+    [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+    internal delegate bool WNDENUMPROC([In] nint param0, [In] nint param1);
 }
