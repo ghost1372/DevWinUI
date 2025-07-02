@@ -40,7 +40,7 @@
             <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
                               CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage,
                                                                          BreadCrumbHeader='About us'}"
-                              Description="About WucGalleryApp and Developer"
+                              Description="About DevWinUI Gallery and Developer"
                               Header="About us"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"
                               IsClickEnabled="True" />

@@ -240,7 +240,7 @@
                 <local:ControlExample.Pane>
                     <ComboBox x:Name="AnimalPicker"
                               Header="Pick an Animal"
-                              ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}" />
+                              ItemsSource="{x:Bind ViewModel.SwitchPresenterItems, Mode=OneWay}" />
                 </local:ControlExample.Pane>
                 <StackPanel>
                     <dev:SwitchPresenter Padding="16"

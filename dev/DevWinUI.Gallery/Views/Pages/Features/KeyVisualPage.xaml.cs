@@ -2,10 +2,10 @@
 
 public sealed partial class KeyVisualPage : Page
 {
-    public KeyVisualViewModel ViewModel { get;}
+    public BaseViewModel ViewModel { get;}
     public KeyVisualPage()
     {
-        ViewModel = App.GetService<KeyVisualViewModel>();
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 

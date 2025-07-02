@@ -4,22 +4,22 @@ namespace DevWinUIGallery.ViewModels;
 public partial class AppUpdateSettingViewModel : ObservableObject
 {
     [ObservableProperty]
-    public string currentVersion;
+    public partial string CurrentVersion { get; set; }
 
     [ObservableProperty]
-    public string lastUpdateCheck;
+    public partial string LastUpdateCheck { get; set; }
 
     [ObservableProperty]
-    public bool isUpdateAvailable;
+    public partial bool IsUpdateAvailable { get; set; }
 
     [ObservableProperty]
-    public bool isLoading;
+    public partial bool IsLoading { get; set; }
 
     [ObservableProperty]
-    public bool isCheckButtonEnabled = true;
+    public partial bool IsCheckButtonEnabled { get; set; } = true;
 
     [ObservableProperty]
-    public string loadingStatus = "Status";
+    public partial string LoadingStatus { get; set; } = "Status";
 
     private string ChangeLog = string.Empty;
 

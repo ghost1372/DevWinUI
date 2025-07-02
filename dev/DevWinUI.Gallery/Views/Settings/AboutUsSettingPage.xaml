@@ -16,7 +16,7 @@
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="5">
             <dev:SettingsExpander Description="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3. Create a WinUI 3 app in less than a minute with the built-in project templates and scaffolding tools."
-                                  Header="DevWinUIGallery"
+                                  Header="DevWinUI Gallery"
                                   HeaderIcon="{dev:BitmapIcon Source=Assets/icon.png}"
                                   IsExpanded="True">
 

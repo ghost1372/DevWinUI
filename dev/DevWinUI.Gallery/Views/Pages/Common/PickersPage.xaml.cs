@@ -4,10 +4,10 @@ using WinRT.Interop;
 namespace DevWinUIGallery.Views;
 public sealed partial class PickersPage : Page
 {
-    public PickerViewModel ViewModel { get; }
+    public BaseViewModel ViewModel { get; }
     public PickersPage()
     {
-        ViewModel = App.GetService<PickerViewModel>();
+        ViewModel = App.GetService<BaseViewModel>();
         this.InitializeComponent();
     }
 
