@@ -249,8 +249,7 @@ public partial class WindowHelper
     {
         var tops = GetProcessWindowList();
 
-        var firstWinUI3 = tops.FirstOrDefault(w => w.ClassName == "WinUIDesktopWin32WindowClass");
-
+        var firstWinUI3 = tops.FirstOrDefault(w => w.ClassName == "WinUIDesktopWin32WindowClass" || w.ClassName == "Microsoft.UI.Windowing.Window");
         var windowId = Win32Interop.GetWindowIdFromWindow(firstWinUI3.Handle);
 
         return AppWindow.GetFromWindowId(windowId);
