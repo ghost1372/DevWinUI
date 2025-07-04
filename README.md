@@ -157,6 +157,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ OverviewPageHeader
 - ✨ Shortcut
 - ✨ InfoBadge Style
 - ✨ Magnifier
@@ -218,6 +219,7 @@ Install-Package DevWinUI
 - ✨ Brushes
 - ✨ Subtle Button Style
 #### 🔥 Win2D 🔥
+- ✨ BlurEffectManager
 - ✨ Hatch
 - ✨ TiledImageBrush
 - ✨ OutlineTextControl
@@ -276,6 +278,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### OverviewPageHeader
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OverviewPageHeader.png)
 
 ### BlurEffectManager
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectManager.gif)
