@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BlurEffectManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Features/BlurEffectManagerPage_cs.txt"
+                                  DocPage="helpers/blurEffectManager"
+                                  HeaderText="BlurEffectManager">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGIsBlurEnabled"
+                                      Header="IsBlurEnabled"
+                                      IsOn="True"
+                                      Toggled="TGIsBlurEnabled_Toggled" />
+                        <Slider x:Name="TGSlider"
+                                Header="Blur Amount"
+                                Maximum="100"
+                                Minimum="0"
+                                ValueChanged="TGSlider_ValueChanged"
+                                Value="10" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Image x:Name="BackdropImage"
+                       MaxHeight="500"
+                       Source="ms-appx:///Assets/Others/Girl.jpg"
+                       Stretch="Uniform" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
