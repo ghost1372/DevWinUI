@@ -13,7 +13,7 @@
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
             <local:ControlExample CSharpSource="Features/BlurEffectManagerPage_cs.txt"
-                                  DocPage="helpers/blurEffectManager"
+                                  DocPage="common/blurEffectManager"
                                   HeaderText="BlurEffectManager">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
