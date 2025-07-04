@@ -45,37 +45,47 @@ public partial class BlurEffectManager
         if (_compositor == null)
             Initialize();
 
-        if (_blurBrush == null || _blurVisual == null)
+        // Always recreate brush and visual
+        var blurEffect = new GaussianBlurEffect
         {
-            var blurEffect = new GaussianBlurEffect
-            {
-                Name = "Blur",
-                Source = new CompositionEffectSourceParameter("Backdrop"),
-                BlurAmount = blurAmount,
-                BorderMode = effectBorderMode
-            };
+            Name = "Blur",
+            Source = new CompositionEffectSourceParameter("Backdrop"),
+            BlurAmount = blurAmount,
+            BorderMode = effectBorderMode
+        };
 
-            var effectFactory = _compositor.CreateEffectFactory(blurEffect, new[] { "Blur.BlurAmount" });
-            _blurBrush = effectFactory.CreateBrush();
+        var effectFactory = _compositor.CreateEffectFactory(blurEffect, new[] { "Blur.BlurAmount" });
+        _blurBrush = effectFactory.CreateBrush();
 
-            var backdropBrush = _compositor.CreateBackdropBrush();
-            _blurBrush.SetSourceParameter("Backdrop", backdropBrush);
+        var backdropBrush = _compositor.CreateBackdropBrush();
+        _blurBrush.SetSourceParameter("Backdrop", backdropBrush);
 
-            _blurVisual = _compositor.CreateSpriteVisual();
-            _blurVisual.Brush = _blurBrush;
+        _blurVisual = _compositor.CreateSpriteVisual();
+        _blurVisual.Brush = _blurBrush;
 
-            _blurVisual.Size = new System.Numerics.Vector2(
-            (float)_targetElement.ActualWidth,
-            (float)_targetElement.ActualHeight);
+        // Handle possible zero sizes
+        var width = Math.Max(1, _targetElement.ActualWidth);
+        var height = Math.Max(1, _targetElement.ActualHeight);
+        _blurVisual.Size = new System.Numerics.Vector2((float)width, (float)height);
 
-            ElementCompositionPreview.SetElementChildVisual(_targetElement, _blurVisual);
-            _blurBrush.Properties.InsertScalar("Blur.BlurAmount", blurAmount);
-        }
+        ElementCompositionPreview.SetElementChildVisual(_targetElement, _blurVisual);
+        _blurBrush.Properties.InsertScalar("Blur.BlurAmount", blurAmount);
     }
+
 
     public void DisableBlur()
     {
+        if (_blurBrush != null)
+        {
+            _blurBrush.Properties.InsertScalar("Blur.BlurAmount", 0f);
+        }
+
         ElementCompositionPreview.SetElementChildVisual(_targetElement, null);
+
+        _blurBrush?.Dispose();
+        _blurBrush = null;
+
+        _blurVisual?.Dispose();
         _blurVisual = null;
     }
 
