@@ -27,6 +27,7 @@ public static partial class VisualAttach
 
     public static readonly DependencyProperty NormalizedCenterPointProperty =
         DependencyProperty.RegisterAttached("NormalizedCenterPoint", typeof(string), typeof(VisualAttach), new PropertyMetadata(false, OnNormalizedCenterPointChanged));
+
     /// <summary>
     /// Gets the <see cref="Visual.CenterPoint"/> of the <see cref="UIElement"/> normalized between 0.0 and 1.0
     /// is centered even when the visual is resized
@@ -64,5 +65,49 @@ public static partial class VisualAttach
             visual.StopAnimation("CenterPoint.XY");
             visual.StartAnimation("CenterPoint.XY", animation);
         }
+    }
+
+    public static string GetScale(DependencyObject obj)
+    {
+        if (obj is UIElement element)
+        {
+            return GetScaleForElement(element);
+        }
+
+        return (string)obj.GetValue(ScaleProperty);
+    }
+
+    public static void SetScale(DependencyObject obj, string value)
+    {
+        if (obj is UIElement element)
+        {
+            SetScaleForElement(value, element);
+        }
+
+        obj.SetValue(ScaleProperty, value);
+    }
+
+    public static readonly DependencyProperty ScaleProperty =
+            DependencyProperty.RegisterAttached("Scale", typeof(string), typeof(VisualAttach), new PropertyMetadata(null, OnScaleChanged));
+
+
+    private static void OnScaleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (e.NewValue is string str)
+        {
+            SetScale(d, str);
+        }
+    }
+
+    private static string GetScaleForElement(UIElement element)
+    {
+        Visual visual = ElementCompositionPreview.GetElementVisual(element);
+        return visual.Scale.ToString();
+    }
+
+    private static void SetScaleForElement(string value, UIElement element)
+    {
+        Visual visual = ElementCompositionPreview.GetElementVisual(element);
+        visual.Scale = value.ToVector3();
     }
 }

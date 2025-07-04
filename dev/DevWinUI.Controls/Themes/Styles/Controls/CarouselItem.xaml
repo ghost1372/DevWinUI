@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultCarouselItemStyle}"
+           TargetType="local:CarouselItem" />
+
+    <Style x:Key="DefaultCarouselItemStyle"
+           TargetType="local:CarouselItem">
+        <Setter Property="Width" Value="360" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Height" Value="208" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="local:VisualAttach.Scale" Value="0.8" />
+        <Setter Property="local:VisualAttach.NormalizedCenterPoint" Value="0.5, 0.5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CarouselItem">
+                    <Grid>
+                        <Grid x:Name="PART_ShadowHost"
+                              Background="{TemplateBinding Background}"
+                              CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid Padding="0"
+                              AutomationProperties.Name="{TemplateBinding Header}"
+                              CornerRadius="{TemplateBinding CornerRadius}">
+                            <Grid.Lights>
+                                <local:HoverLight />
+                                <local:AmbLight />
+                            </Grid.Lights>
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectedStates">
+                                    <VisualState x:Name="NotSelected" />
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Target="PART_TextPanel.Visibility" Value="Visible" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   AutomationProperties.AccessibilityView="Raw"
+                                   Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Stretch="UniformToFill" />
+
+                            <StackPanel x:Name="PART_TextPanel"
+                                        Padding="12"
+                                        VerticalAlignment="Bottom"
+                                        Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
+                                        Orientation="Vertical"
+                                        Visibility="Collapsed">
+                                <TextBlock FontWeight="SemiBold"
+                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                           Text="{TemplateBinding Header}" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Text="{TemplateBinding Description}"
+                                           TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

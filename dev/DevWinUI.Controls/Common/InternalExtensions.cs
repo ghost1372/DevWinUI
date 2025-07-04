@@ -104,6 +104,48 @@ internal static partial class InternalExtensions
 
         static Vector2 Throw(string text) => throw new FormatException($"Cannot convert \"{text}\" to {nameof(Vector2)}. Use the format \"float, float\"");
     }
+
+    internal static Vector3 ToVector3(this string text)
+    {
+        if (text.Length == 0)
+        {
+            return Vector3.Zero;
+        }
+        else
+        {
+            text = Unbracket(text);
+
+            if (text.IndexOf(',') == -1)
+            {
+                if (float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out float x))
+                {
+                    return new(x);
+                }
+            }
+            else
+            {
+                string[] values = text.Split(',');
+
+                if (values.Length == 3)
+                {
+                    if (float.TryParse(values[0], NumberStyles.Float, CultureInfo.InvariantCulture, out float x) &&
+                        float.TryParse(values[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float y) &&
+                        float.TryParse(values[2], NumberStyles.Float, CultureInfo.InvariantCulture, out float z))
+                    {
+                        return new(x, y, z);
+                    }
+                }
+                else if (values.Length == 2)
+                {
+                    return new(text.ToVector2(), 0);
+                }
+            }
+        }
+
+        return Throw(text);
+
+        static Vector3 Throw(string text) => throw new FormatException($"Cannot convert \"{text}\" to {nameof(Vector3)}. Use the format \"float, float, float\"");
+    }
     internal static bool IntersectsWith(this Rect rect1, Rect rect2)
     {
         if (rect1.IsEmpty || rect2.IsEmpty)

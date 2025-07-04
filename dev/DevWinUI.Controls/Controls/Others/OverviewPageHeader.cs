@@ -9,6 +9,7 @@ public partial class OverviewPageHeader : Control
 
     private ContentPresenter imageContentHolder;
     private StackPanel textPanel;
+
     public object ImageContent
     {
         get => (object)GetValue(ImageContentProperty);
@@ -44,6 +45,11 @@ public partial class OverviewPageHeader : Control
 
     public static readonly DependencyProperty DescriptionProperty =
         DependencyProperty.Register(nameof(Description), typeof(string), typeof(OverviewPageHeader), new PropertyMetadata(defaultValue: null));
+
+    public OverviewPageHeader()
+    {
+        DefaultStyleKey = typeof(OverviewPageHeader);
+    }
 
     protected override void OnApplyTemplate()
     {
