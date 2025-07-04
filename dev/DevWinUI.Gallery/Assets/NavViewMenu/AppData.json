@@ -145,6 +145,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BrushPage",
+          "Title": "Brush",
+          "Subtitle": "Brush",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.OverviewPageHeaderPage",
           "Title": "OverviewPageHeader",
           "Subtitle": "Overview",

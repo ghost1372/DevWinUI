@@ -290,59 +290,6 @@
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
-        <TabViewItem Header="Colors"
-                     IsClosable="False">
-            <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
-                    <local:ControlExample DocPage="colors"
-                                          HeaderText="CardGradient2Brush">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;Border Width="400" Height="200" Background="{ThemeResource CardGradient2Brush}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
-                        <Border Width="400"
-                                Height="200"
-                                Background="{ThemeResource CardGradient2Brush}" />
-                    </local:ControlExample>
-                    <local:ControlExample DocPage="colors"
-                                          HeaderText="CardGradient1Brush">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;Border Width="400" Height="200" Background="{ThemeResource CardGradient1Brush}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
-                        <Border Width="400"
-                                Height="200"
-                                Background="{ThemeResource CardGradient1Brush}" />
-                    </local:ControlExample>
-                    <local:ControlExample DocPage="colors"
-                                          HeaderText="GlassAcrylicBackground">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;Border Width="400" Height="200" Background="{ThemeResource GlassAcrylicBackground}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
-                        <Border Width="400"
-                                Height="200"
-                                Background="{ThemeResource GlassAcrylicBackground}" />
-                    </local:ControlExample>
-                    <local:ControlExample DocPage="colors"
-                                          HeaderText="GlassAcrylicBorderBrush">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;Border Width="400" Height="200" Background="{ThemeResource GlassAcrylicBorderBrush}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
-                        <Border Width="400"
-                                Height="200"
-                                Background="{ThemeResource GlassAcrylicBorderBrush}" />
-                    </local:ControlExample>
-                </StackPanel>
-            </ScrollViewer>
-        </TabViewItem>
         <TabViewItem Header="ListView"
                      IsClosable="False">
             <ScrollViewer>

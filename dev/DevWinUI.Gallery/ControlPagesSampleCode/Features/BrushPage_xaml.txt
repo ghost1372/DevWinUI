@@ -1,0 +1,19 @@
+﻿<Border Height="80" Background="{ThemeResource CardGradient2Brush}">
+
+</Border>
+
+<Border Height="80" Background="{ThemeResource CardGradient1Brush}">
+
+</Border>
+
+<Border Height="80" Background="{ThemeResource GlassAcrylicBackground}">
+
+</Border>
+
+<Border Height="80" Background="{ThemeResource GlassAcrylicBorderBrush}">
+
+</Border>
+
+<Border Height="80" Background="{ThemeResource OverlayRadialGradient}">
+
+</Border>

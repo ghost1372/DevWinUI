@@ -215,6 +215,7 @@ Install-Package DevWinUI
 - ✨ Grid Style
 - ✨ StackPanel Style
 - ✨ Border Style
+- ✨ Brushes
 - ✨ Subtle Button Style
 #### 🔥 Win2D 🔥
 - ✨ Hatch
@@ -276,6 +277,21 @@ Install-Package DevWinUI.ContextMenu
 
 ## 🕰️ History 🕰️
 
+### BlurEffectManager
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectManager.gif)
+
+### Border Styles
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BorderStyle.png)
+
+### Grid Styles
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GridStyle.png)
+
+### StackPanel Styles
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StackPanelStyle.png)
+
+### Brush
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Brushes.png)
+
 ### Shortcut
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shortcut.gif)
 
@@ -302,12 +318,6 @@ Install-Package DevWinUI.ContextMenu
 
 ### LayeredFontIcons
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LayeredFontIcons.png)
-
-### Colors
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardGradient2Brush.png)
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardGradient1Brush.png)
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlassAcrylicBackground.png)
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlassAcrylicBorderBrush.png)
 
 ### ComboBox Style
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SubtleComboBoxStyle.gif)
@@ -514,15 +524,6 @@ Install-Package DevWinUI.ContextMenu
 
 ### Blue InfoBar
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlueInfoBar.png)
-
-### Border Style
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BorderStyle.png)
-
-### StackPanel Style
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StackPanelStyle.png)
-
-### Grid Style
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GridStyle.png)
 
 ### Settings
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/Samples/Setting.png)
