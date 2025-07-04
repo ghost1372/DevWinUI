@@ -1,7 +1,7 @@
-﻿<StackPanel Width="100" Height="100" Style="{ThemeResource StackPanelStyle}">
+﻿<StackPanel Height="80" Style="{ThemeResource StackPanelStyle}">
 
 </StackPanel>
 
-<StackPanel Width="100" Height="100" Style="{ThemeResource CardPanelStyle}">
+<StackPanel Height="80" Style="{ThemeResource CardPanelStyle}">
 
 </StackPanel>

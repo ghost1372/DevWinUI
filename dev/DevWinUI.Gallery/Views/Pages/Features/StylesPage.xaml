@@ -101,15 +101,7 @@
                             </InfoBar>
                         </StackPanel>
                     </local:ControlExample>
-                </StackPanel>
-            </ScrollViewer>
-        </TabViewItem>
-        <TabViewItem Header="General 2"
-                     IsClosable="False">
-            <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
+
                     <local:ControlExample DocPage="styles/#InfoBadge"
                                           HeaderText="StringInfoBadgeStyle">
                         <local:ControlExample.Xaml>
@@ -131,6 +123,7 @@
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
+
         <TabViewItem Header="Panels"
                      IsClosable="False">
             <ScrollViewer>
@@ -142,34 +135,46 @@
                                           XamlSource="Features/Styles/Styles_Border_xaml.txt">
                         <StackPanel Margin="10"
                                     Spacing="10">
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource BorderPanel}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="BorderPanel" />
                             </Border>
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource InfoBorderPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="InfoBorderPanelStyle" />
                             </Border>
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource WarningBorderPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="WarningBorderPanelStyle" />
                             </Border>
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource ErrorBorderPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="ErrorBorderPanelStyle" />
                             </Border>
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource SuccessBorderPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="SuccessBorderPanelStyle" />
                             </Border>
-                            <Border Height="50"
+                            <Border Height="80"
                                     Style="{ThemeResource TokenStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="TokenStyle" />
                             </Border>
                         </StackPanel>
@@ -180,34 +185,39 @@
                                           XamlSource="Features/Styles/Styles_Grid_xaml.txt">
                         <StackPanel Margin="10"
                                     Spacing="10">
-                            <Grid Width="100"
-                                  Height="100"
+                            <Grid Height="80"
                                   Style="{ThemeResource GridPanel}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GridPanel" />
                             </Grid>
-                            <Grid Width="100"
-                                  Height="100"
+                            <Grid Height="80"
                                   Style="{ThemeResource GridCardPanel}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GridCardPanel" />
                             </Grid>
-                            <Grid Width="100"
-                                  Height="100"
+                            <Grid Height="80"
                                   Style="{ThemeResource CardGridStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="CardGridStyle" />
                             </Grid>
-                            <Grid Width="100"
-                                  Height="100"
+                            <Grid Height="80"
                                   Style="{ThemeResource GlassAcrylicGridStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GlassAcrylicGridStyle" />
                             </Grid>
-                            <Grid Width="100"
-                                  Height="100"
+                            <Grid Height="80"
                                   Style="{ThemeResource HeroCardGridStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="HeroCardGridStyle" />
                             </Grid>
                         </StackPanel>
@@ -218,16 +228,18 @@
                                           XamlSource="Features/Styles/Styles_StackPanel_xaml.txt">
                         <StackPanel Margin="10"
                                     Spacing="10">
-                            <StackPanel Width="100"
-                                        Height="100"
+                            <StackPanel Height="80"
                                         Style="{ThemeResource StackPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="StackPanelStyle" />
                             </StackPanel>
-                            <StackPanel Width="100"
-                                        Height="100"
+                            <StackPanel Height="80"
                                         Style="{ThemeResource CardPanelStyle}">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="CardPanelStyle" />
                             </StackPanel>
 

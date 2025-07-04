@@ -18,10 +18,13 @@ Themes\Styles\CommonStyles\InfoBadge.xaml
 Themes\Styles\CommonStyles\LandingPages.xaml
 Themes\Styles\CommonStyles\ModernSystemMenuStyle.xaml
 Themes\Styles\CommonStyles\NavigationView.xaml
+Themes\Styles\CommonStyles\Panel.xaml
 Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
+Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
+Themes\Styles\Controls\CarouselItem.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
@@ -34,6 +37,7 @@ Themes\Styles\Controls\FlyoutMenuButton.xaml
 Themes\Styles\Controls\GoToTop.xaml
 Themes\Styles\Controls\Gravatar.xaml
 Themes\Styles\Controls\Growl.xaml
+Themes\Styles\Controls\HeaderCarousel.xaml
 Themes\Styles\Controls\ImageEx.xaml
 Themes\Styles\Controls\IndeterminateProgressBar.xaml
 Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml
@@ -44,6 +48,7 @@ Themes\Styles\Controls\LoadingIndicator.xaml
 Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\Magnifier.xaml
 Themes\Styles\Controls\OptionsPageControl.xaml
+Themes\Styles\Controls\OverviewPageHeader.xaml
 Themes\Styles\Controls\PinBox.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
@@ -107,6 +112,14 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="TextFillColorSecondary" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="TextFillColorDisabled" />
+      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+        <GradientStop Offset="0" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.05" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.35" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.55" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.95" Color="#00FFFFFF" />
+        <GradientStop Offset="1" Color="#00FFFFFF" />
+      </RadialGradientBrush>
       <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
         <GradientStop Offset="0" Color="#E6F0FC" />
         <GradientStop Offset="0.4" Color="#E6F0FC" />
@@ -218,6 +231,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="TextFillColorSecondary" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="TextFillColorDisabled" />
+      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0.0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.05" Color="#FF000000" />
+        <GradientStop Offset="0.35" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.85" Color="#00000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </RadialGradientBrush>
       <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
         <GradientStop Offset="0" Color="#38C8AEC4" />
         <GradientStop Offset="1" Color="#383286EE" />
@@ -328,6 +350,14 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="SubtleButtonForegroundPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
       <StaticResource x:Key="SubtleButtonForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
       <StaticResource x:Key="SubtleButtonForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.05" Color="#FF000000" />
+        <GradientStop Offset="0.35" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </RadialGradientBrush>
       <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
       <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
       <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
@@ -495,60 +525,31 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="HyperlinkButtonStyle" TargetType="HyperlinkButton" />
+  <ThemeShadow x:Name="ThemeShadow" />
+  <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
   <TransitionCollection x:Key="SettingsCardsAnimations">
     <EntranceThemeTransition FromVerticalOffset="50" />
     <!--  Animates cards when loaded  -->
     <RepositionThemeTransition IsStaggeringEnabled="False" />
     <!--  Smoothly animates individual cards upon whenever Expanders are expanded/collapsed  -->
   </TransitionCollection>
-  <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
   <Style x:Key="ListViewItemSettingStyle" TargetType="ListViewItem">
     <Setter Property="Margin" Value="0,0,0,2" />
     <Setter Property="Padding" Value="0,0,0,0" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
   </Style>
-  <Style x:Key="BorderPanel" TargetType="Border">
-    <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
-    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-    <Setter Property="Background" Value="{ThemeResource NavigationViewContentBackground}" />
-    <Setter Property="BorderBrush" Value="{ThemeResource NavigationViewContentGridBorderBrush}" />
-    <Setter Property="BorderThickness" Value="1" />
-  </Style>
-  <Style x:Key="BaseBorderInfoPanelStyle" TargetType="Border">
-    <Setter Property="BorderBrush" Value="{ThemeResource InfoBarBorderBrush}" />
-    <Setter Property="BorderThickness" Value="{ThemeResource InfoBarBorderThickness}" />
-    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-  </Style>
-  <ThemeShadow x:Name="ThemeShadow" />
-  <Style x:Key="GridPanel" TargetType="Grid">
-    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-    <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}" />
-    <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}" />
-    <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}" />
-    <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}" />
-    <Setter Property="Transitions">
-      <Setter.Value>
-        <TransitionCollection>
-          <ContentThemeTransition VerticalOffset="150" />
-        </TransitionCollection>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  <Style x:Key="GridCardPanel" TargetType="Grid">
-    <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
-    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-    <Setter Property="BorderThickness" Value="1,1,0,0" />
-    <Setter Property="CornerRadius" Value="8" />
-  </Style>
-  <Style x:Key="StackPanelStyle" TargetType="StackPanel">
-    <Setter Property="CornerRadius" Value="8" />
-    <Setter Property="Padding" Value="16" />
-    <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-    <Setter Property="Orientation" Value="Horizontal" />
-    <Setter Property="Spacing" Value="8" />
-  </Style>
+  <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Offset="0.1" Color="#FFFFFF" />
+    <GradientStop Offset="0.3" Color="#E9E9E9" />
+    <GradientStop Offset="0.6" Color="#FDFDFD" />
+    <GradientStop Offset="0.9" Color="#FFFFFF" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="DarkTextGradient" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Offset="0.1" Color="#303030" />
+    <GradientStop Offset="0.3" Color="#4A4A4A" />
+    <GradientStop Offset="0.6" Color="#161515" />
+    <GradientStop Offset="0.9" Color="#303030" />
+  </LinearGradientBrush>
   <local:ValidationEnabledConverter x:Name="CanValidateConverter" />
   <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible" />
   <local:GridLengthConverter x:Key="GridLengthConverter" />
@@ -582,12 +583,104 @@ Themes\Styles\Win2D\Watermark.xaml
   <x:Double x:Key="RailNavigationViewPaneHeaderRowMinHeight">0</x:Double>
   <x:Double x:Key="RailNavigationViewItemOnLeftMinHeight">58</x:Double>
   <x:Double x:Key="RailNavigationViewItemContentPresenterMargin">0</x:Double>
+  <Style x:Key="BorderPanel" TargetType="Border">
+    <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="Background" Value="{ThemeResource NavigationViewContentBackground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource NavigationViewContentGridBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+  <Style x:Key="BaseBorderInfoPanelStyle" TargetType="Border">
+    <Setter Property="BorderBrush" Value="{ThemeResource InfoBarBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource InfoBarBorderThickness}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+  </Style>
+  <Style x:Key="GridPanel" TargetType="Grid">
+    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}" />
+    <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}" />
+    <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}" />
+    <Setter Property="Transitions">
+      <Setter.Value>
+        <TransitionCollection>
+          <ContentThemeTransition VerticalOffset="150" />
+        </TransitionCollection>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="GridCardPanel" TargetType="Grid">
+    <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="BorderThickness" Value="1,1,0,0" />
+    <Setter Property="CornerRadius" Value="8" />
+  </Style>
+  <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="16" />
+    <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Spacing" Value="8" />
+  </Style>
   <x:Double x:Key="SecondaryTextFontSize">12</x:Double>
   <x:Double x:Key="HeaderTextFontSize">12</x:Double>
+  <Style TargetType="local:AnimatedImage">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:AnimatedImage">
+          <Grid>
+            <Image x:Name="PART_BottomImage" Opacity="1" Stretch="UniformToFill" />
+            <Image x:Name="PART_TopImage" Opacity="0" Stretch="UniformToFill" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="BreadcrumbBarItemStyle" TargetType="BreadcrumbBarItem">
     <Setter Property="FontSize" Value="28" />
     <Setter Property="FontWeight" Value="SemiBold" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+  </Style>
+  <Style x:Key="DefaultCarouselItemStyle" TargetType="local:CarouselItem">
+    <Setter Property="Width" Value="360" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+    <Setter Property="Height" Value="208" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="local:VisualAttach.Scale" Value="0.8" />
+    <Setter Property="local:VisualAttach.NormalizedCenterPoint" Value="0.5, 0.5" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:CarouselItem">
+          <Grid>
+            <Grid x:Name="PART_ShadowHost" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+            <Grid Padding="0" AutomationProperties.Name="{TemplateBinding Header}" CornerRadius="{TemplateBinding CornerRadius}">
+              <Grid.Lights>
+                <local:HoverLight />
+                <local:AmbLight />
+              </Grid.Lights>
+              <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="SelectedStates">
+                  <VisualState x:Name="NotSelected" />
+                  <VisualState x:Name="Selected">
+                    <VisualState.Setters>
+                      <Setter Target="PART_TextPanel.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                  </VisualState>
+                </VisualStateGroup>
+              </VisualStateManager.VisualStateGroups>
+              <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}" Stretch="UniformToFill" />
+              <StackPanel x:Name="PART_TextPanel" Padding="12" VerticalAlignment="Bottom" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Orientation="Vertical" Visibility="Collapsed">
+                <TextBlock FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{TemplateBinding Header}" />
+                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextTrimming="CharacterEllipsis" />
+              </StackPanel>
+            </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
   </Style>
   <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
     <Setter Property="BorderThickness" Value="1" />
@@ -744,6 +837,36 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <x:Double x:Key="GrowlWidth">340</x:Double>
+  <Style TargetType="local:HeaderCarousel">
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <StackPanel Padding="64,0,64,0" Orientation="Horizontal" Spacing="-48" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:HeaderCarousel">
+          <Grid x:Name="RootGrid" CornerRadius="8,0,0,0">
+            <local:OpacityMaskView VerticalAlignment="Top" OpacityMask="{ThemeResource OverlayRadialGradient}">
+              <local:AnimatedImage x:Name="PART_BackDropImage" Height="400" ImageUrl="ms-appx:///Assets/BackgroundBlur.png" Visibility="Visible" />
+            </local:OpacityMaskView>
+            <ScrollViewer x:Name="PART_ScrollViewer" Grid.Row="1" Margin="0,24,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
+              <ItemsPresenter x:Name="PART_ItemsPresenter" />
+            </ScrollViewer>
+            <StackPanel Padding="24,12,24,24" HorizontalAlignment="Center" Orientation="Vertical" Spacing="12">
+              <ContentPresenter Content="{TemplateBinding Header}" Visibility="{TemplateBinding HeaderVisibility}" />
+              <Grid RequestedTheme="Light">
+                <Grid Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}" CornerRadius="12" Opacity="0.6" />
+                <ContentPresenter Content="{TemplateBinding SecondaryHeader}" Visibility="{TemplateBinding SecondaryHeaderVisibility}" />
+              </Grid>
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultImageExStyle" TargetType="local:ImageEx">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{ThemeResource ApplicationForegroundThemeBrush}" />
@@ -1580,7 +1703,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Magnifier">
+  <Style x:Key="DefaultMagnifierStyle" TargetType="local:Magnifier">
     <Setter Property="Width" Value="180" />
     <Setter Property="Height" Value="180" />
     <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}" />
@@ -1739,7 +1862,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}" Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding}" />
   </DataTemplate>
   <SolidColorBrush x:Key="ShieldBorderBrush" Color="{ThemeResource CardStrokeColorDefaultBrush}" />
-  <Style TargetType="local:Shimmer">
+  <Style x:Key="DefaultShimmerStyle" TargetType="local:Shimmer">
     <Setter Property="Background" Value="{ThemeResource ShimmerBackground}" />
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="MinWidth" Value="40" />
@@ -1752,7 +1875,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:Shortcut">
+  <Style x:Key="DefaultShortcutStyle" TargetType="local:Shortcut">
     <Setter Property="WarningTitle" Value="Using a single key as a shortcut may interfere with regular typing or system behavior." />
     <Setter Property="WarningToolTip" Value="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
     <Setter Property="Template">
@@ -1783,7 +1906,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ShortcutPreview">
+  <Style x:Key="DefaultShortcutPreview" TargetType="local:ShortcutPreview">
     <Setter Property="MinWidth" Value="498" />
     <Setter Property="MinHeight" Value="220" />
     <Setter Property="Template">
@@ -1820,7 +1943,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:ShortcutWithTextLabel">
+  <Style x:Key="DefaultShortcutWithTextLabel" TargetType="local:ShortcutWithTextLabel">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ShortcutWithTextLabel">
@@ -4148,18 +4271,6 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="local:CheckBoxWithDescriptionControl" />
-  <Style x:Key="InfoBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
-    <Setter Property="Background" Value="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" />
-  </Style>
-  <Style x:Key="WarningBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
-    <Setter Property="Background" Value="{ThemeResource InfoBarWarningSeverityBackgroundBrush}" />
-  </Style>
-  <Style x:Key="ErrorBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
-    <Setter Property="Background" Value="{ThemeResource InfoBarErrorSeverityBackgroundBrush}" />
-  </Style>
-  <Style x:Key="SuccessBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
-    <Setter Property="Background" Value="{ThemeResource InfoBarSuccessSeverityBackgroundBrush}" />
-  </Style>
   <Style x:Key="AppTitleBarMenuFlyoutItemStyle" TargetType="MenuFlyoutItem">
     <Setter Property="Height" Value="28" />
     <Setter Property="Background" Value="{ThemeResource MenuFlyoutItemBackground}" />
@@ -5251,6 +5362,60 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="InfoBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
+    <Setter Property="Background" Value="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" />
+  </Style>
+  <Style x:Key="WarningBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
+    <Setter Property="Background" Value="{ThemeResource InfoBarWarningSeverityBackgroundBrush}" />
+  </Style>
+  <Style x:Key="ErrorBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
+    <Setter Property="Background" Value="{ThemeResource InfoBarErrorSeverityBackgroundBrush}" />
+  </Style>
+  <Style x:Key="SuccessBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
+    <Setter Property="Background" Value="{ThemeResource InfoBarSuccessSeverityBackgroundBrush}" />
+  </Style>
+  <Style x:Key="CardGridStyle" TargetType="Grid">
+    <Style.Setters>
+      <Setter Property="Padding" Value="12" />
+      <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+      <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+    </Style.Setters>
+  </Style>
+  <Style x:Key="CardPanelStyle" TargetType="StackPanel">
+    <Style.Setters>
+      <Setter Property="Padding" Value="12" />
+      <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+      <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+    </Style.Setters>
+  </Style>
+  <Style x:Key="TokenStyle" TargetType="Border">
+    <Style.Setters>
+      <Setter Property="Padding" Value="12" />
+      <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+      <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+    </Style.Setters>
+  </Style>
+  <Style x:Key="GlassAcrylicGridStyle" TargetType="Grid">
+    <Style.Setters>
+      <Setter Property="Padding" Value="12" />
+      <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorBaseBrush}" />
+      <Setter Property="BorderThickness" Value="3" />
+      <Setter Property="BorderBrush" Value="{ThemeResource GlassAcrylicBorderBrush}" />
+      <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+    </Style.Setters>
+  </Style>
+  <Style x:Key="HeroCardGridStyle" BasedOn="{StaticResource CardGridStyle}" TargetType="Grid">
+    <Style.Setters>
+      <Setter Property="Padding" Value="16,12,16,16" />
+      <Setter Property="Background" Value="{ThemeResource CardGradient2Brush}" />
+    </Style.Setters>
+  </Style>
   <Style x:Key="TokenViewSelectorBarItemStyle" TargetType="SelectorBarItem">
     <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
     <Setter Property="Background" Value="{ThemeResource TokenItemBackground}" />
@@ -5563,6 +5728,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <TimePicker x:Name="PART_TimePicker" Grid.Column="1" Margin="{TemplateBinding TimePickerMargin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
     </Grid>
   </ControlTemplate>
+  <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:CarouselItem" />
   <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
@@ -6503,7 +6669,44 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
+  <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
+  <Style TargetType="local:OverviewPageHeader">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:OverviewPageHeader">
+          <Grid x:Name="PART_RootGrid" Background="{TemplateBinding Background}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="LayoutVisualStates">
+                <VisualState x:Name="WideLayout" />
+                <VisualState x:Name="NarrowLayout">
+                  <VisualState.Setters>
+                    <Setter Target="PART_ImageContentHolder.(Grid.Row)" Value="1" />
+                    <Setter Target="PART_ImageContentHolder.(Grid.Column)" Value="0" />
+                    <Setter Target="PART_ImageContentHolder.HorizontalAlignment" Value="Left" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <StackPanel x:Name="PART_TextPanel" Padding="24,16,24,16" Orientation="Vertical">
+              <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{TemplateBinding Title}" />
+              <TextBlock MaxWidth="386" Margin="0,12,0,12" HorizontalAlignment="Left" Text="{TemplateBinding Description}" TextWrapping="Wrap" />
+              <ContentPresenter Content="{TemplateBinding ActionContent}" />
+            </StackPanel>
+            <ContentPresenter x:Name="PART_ImageContentHolder" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Content="{TemplateBinding ImageContent}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="PinBoxPasswordBoxStyle" BasedOn="{StaticResource DefaultPasswordBoxStyle}" TargetType="PasswordBox">
     <Setter Property="MinHeight" Value="{ThemeResource PinBoxMinHeight}" />
     <Setter Property="MinWidth" Value="{ThemeResource PinBoxMinWidth}" />
@@ -7649,6 +7852,10 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultShimmerStyle}" TargetType="local:Shimmer" />
+  <Style BasedOn="{StaticResource DefaultShortcutStyle}" TargetType="local:Shortcut" />
+  <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
+  <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel}" TargetType="local:ShortcutWithTextLabel" />
   <Style x:Key="DefaultSimpleSettingsGroupStyle" TargetType="local:SimpleSettingsGroup">
     <Setter Property="ItemsPanel">
       <Setter.Value>

@@ -159,6 +159,21 @@
                             Content="This is a Button" />
                 </dev:OpacityMaskView>
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/opacityMaskView"
+                                  HeaderText="OverlayRadialGradient">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:OpacityMaskView OpacityMask="{ThemeResource OverlayRadialGradient}" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <dev:OpacityMaskView MaxHeight="500"
+                                     Margin="0,20"
+                                     Padding="0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     OpacityMask="{ThemeResource OverlayRadialGradient}">
+                    <Image Source="ms-appx:///Assets/Others/Girl.jpg"
+                           Stretch="Uniform" />
+                </dev:OpacityMaskView>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

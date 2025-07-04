@@ -1,23 +1,23 @@
-﻿<Border Height="50" Style="{ThemeResource BorderPanel}">
+﻿<Border Height="80" Style="{ThemeResource BorderPanel}">
 
 </Border>
 
-<Border Height="50" Style="{ThemeResource InfoBorderPanelStyle}">
+<Border Height="80" Style="{ThemeResource InfoBorderPanelStyle}">
 
 </Border>
 
-<Border Height="50" Style="{ThemeResource WarningBorderPanelStyle}">
+<Border Height="80" Style="{ThemeResource WarningBorderPanelStyle}">
 
 </Border>
 
-<Border Height="50" Style="{ThemeResource ErrorBorderPanelStyle}">
+<Border Height="80" Style="{ThemeResource ErrorBorderPanelStyle}">
 
 </Border>
 
-<Border Height="50" Style="{ThemeResource SuccessBorderPanelStyle}">
+<Border Height="80" Style="{ThemeResource SuccessBorderPanelStyle}">
 
 </Border>
 
-<Border Height="50" Style="{ThemeResource TokenStyle}">
+<Border Height="80" Style="{ThemeResource TokenStyle}">
 
 </Border>

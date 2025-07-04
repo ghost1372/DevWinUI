@@ -1,21 +1,18 @@
-﻿<Grid Width="100"
-        Height="100"
-        Style="{ThemeResource GridPanel}">
-    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
-                Text="GridPanel" />
+﻿<Grid Height="80" Style="{ThemeResource GridPanel}">
+
 </Grid>
-<Grid Width="100" Height="100" Style="{ThemeResource GridCardPanel}">
+<Grid Height="80" Style="{ThemeResource GridCardPanel}">
     
 </Grid>
 
-<Grid Width="100" Height="100" Style="{ThemeResource CardGridStyle}">
+<Grid Height="80" Style="{ThemeResource CardGridStyle}">
 
 </Grid>
 
-<Grid Width="100" Height="100" Style="{ThemeResource GlassAcrylicGridStyle}">
+<Grid Height="80" Style="{ThemeResource GlassAcrylicGridStyle}">
 
 </Grid>
 
-<Grid Width="100" Height="100" Style="{ThemeResource HeroCardGridStyle}">
+<Grid Height="80" Style="{ThemeResource HeroCardGridStyle}">
 
 </Grid>

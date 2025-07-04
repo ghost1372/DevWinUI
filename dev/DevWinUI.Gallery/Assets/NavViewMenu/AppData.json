@@ -313,6 +313,7 @@
           "UniqueId": "DevWinUIGallery.Views.OpacityMaskViewPage",
           "Title": "OpacityMaskView",
           "Subtitle": "OpacityMaskView",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ThemeTransition.png"
         },
         {
