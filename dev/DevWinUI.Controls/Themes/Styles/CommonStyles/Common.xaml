@@ -2,6 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
+    <ThemeShadow x:Name="ThemeShadow" />
+    <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
+
+    <Style BasedOn="{StaticResource DefaultCheckBoxStyle}"
+           TargetType="local:CheckBoxWithDescriptionControl" />
+
     <TransitionCollection x:Key="SettingsCardsAnimations">
         <EntranceThemeTransition FromVerticalOffset="50" />
         <!--  Animates cards when loaded  -->
@@ -9,93 +15,11 @@
         <!--  Smoothly animates individual cards upon whenever Expanders are expanded/collapsed  -->
     </TransitionCollection>
 
-    <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
-
     <Style x:Key="ListViewItemSettingStyle"
            TargetType="ListViewItem">
         <Setter Property="Margin" Value="0,0,0,2" />
         <Setter Property="Padding" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    </Style>
-
-    <Style BasedOn="{StaticResource DefaultCheckBoxStyle}"
-           TargetType="local:CheckBoxWithDescriptionControl" />
-
-    <Style x:Key="BorderPanel"
-           TargetType="Border">
-        <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="Background" Value="{ThemeResource NavigationViewContentBackground}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource NavigationViewContentGridBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-    </Style>
-
-    <Style x:Key="BaseBorderInfoPanelStyle"
-           TargetType="Border">
-        <Setter Property="BorderBrush" Value="{ThemeResource InfoBarBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{ThemeResource InfoBarBorderThickness}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-    </Style>
-
-    <Style x:Key="InfoBorderPanelStyle"
-           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
-           TargetType="Border">
-        <Setter Property="Background" Value="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" />
-    </Style>
-
-    <Style x:Key="WarningBorderPanelStyle"
-           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
-           TargetType="Border">
-        <Setter Property="Background" Value="{ThemeResource InfoBarWarningSeverityBackgroundBrush}" />
-    </Style>
-
-    <Style x:Key="ErrorBorderPanelStyle"
-           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
-           TargetType="Border">
-        <Setter Property="Background" Value="{ThemeResource InfoBarErrorSeverityBackgroundBrush}" />
-    </Style>
-
-    <Style x:Key="SuccessBorderPanelStyle"
-           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
-           TargetType="Border">
-        <Setter Property="Background" Value="{ThemeResource InfoBarSuccessSeverityBackgroundBrush}" />
-    </Style>
-
-    <ThemeShadow x:Name="ThemeShadow" />
-
-    <Style x:Key="GridPanel"
-           TargetType="Grid">
-        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}" />
-        <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}" />
-        <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}" />
-        <Setter Property="Transitions">
-            <Setter.Value>
-                <TransitionCollection>
-                    <ContentThemeTransition VerticalOffset="150" />
-                </TransitionCollection>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="GridCardPanel"
-           TargetType="Grid">
-        <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-        <Setter Property="BorderThickness" Value="1,1,0,0" />
-        <Setter Property="CornerRadius" Value="8" />
-    </Style>
-
-    <Style x:Key="StackPanelStyle"
-           TargetType="StackPanel">
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Padding" Value="16" />
-        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-        <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="Spacing" Value="8" />
     </Style>
 
     <Style x:Key="AppTitleBarMenuFlyoutItemStyle"
@@ -237,4 +161,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="#FFFFFF" />
+        <GradientStop Offset="0.3" Color="#E9E9E9" />
+        <GradientStop Offset="0.6" Color="#FDFDFD" />
+        <GradientStop Offset="0.9" Color="#FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DarkTextGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="#303030" />
+        <GradientStop Offset="0.3" Color="#4A4A4A" />
+        <GradientStop Offset="0.6" Color="#161515" />
+        <GradientStop Offset="0.9" Color="#303030" />
+    </LinearGradientBrush>
+
 </ResourceDictionary>

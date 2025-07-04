@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style x:Key="BorderPanel"
+           TargetType="Border">
+        <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="Background" Value="{ThemeResource NavigationViewContentBackground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource NavigationViewContentGridBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <Style x:Key="BaseBorderInfoPanelStyle"
+           TargetType="Border">
+        <Setter Property="BorderBrush" Value="{ThemeResource InfoBarBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{ThemeResource InfoBarBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    </Style>
+
+    <Style x:Key="InfoBorderPanelStyle"
+           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
+           TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource InfoBarInformationalSeverityBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="WarningBorderPanelStyle"
+           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
+           TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource InfoBarWarningSeverityBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="ErrorBorderPanelStyle"
+           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
+           TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource InfoBarErrorSeverityBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="SuccessBorderPanelStyle"
+           BasedOn="{StaticResource BaseBorderInfoPanelStyle}"
+           TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource InfoBarSuccessSeverityBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="GridPanel"
+           TargetType="Grid">
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}" />
+        <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}" />
+        <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}" />
+        <Setter Property="Transitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <ContentThemeTransition VerticalOffset="150" />
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GridCardPanel"
+           TargetType="Grid">
+        <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,0,0" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style x:Key="StackPanelStyle"
+           TargetType="StackPanel">
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Spacing" Value="8" />
+    </Style>
+
+    <Style x:Key="CardGridStyle"
+           TargetType="Grid">
+        <Style.Setters>
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+        </Style.Setters>
+    </Style>
+    <Style x:Key="CardPanelStyle"
+           TargetType="StackPanel">
+        <Style.Setters>
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+        </Style.Setters>
+    </Style>
+    <Style x:Key="TokenStyle"
+           TargetType="Border">
+        <Style.Setters>
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+        </Style.Setters>
+    </Style>
+    <Style x:Key="GlassAcrylicGridStyle"
+           TargetType="Grid">
+        <Style.Setters>
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorBaseBrush}" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderBrush" Value="{ThemeResource GlassAcrylicBorderBrush}" />
+            <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+        </Style.Setters>
+    </Style>
+    <Style x:Key="HeroCardGridStyle"
+           BasedOn="{StaticResource CardGridStyle}"
+           TargetType="Grid">
+        <Style.Setters>
+            <Setter Property="Padding" Value="16,12,16,16" />
+            <Setter Property="Background" Value="{ThemeResource CardGradient2Brush}" />
+        </Style.Setters>
+    </Style>
+
+</ResourceDictionary>

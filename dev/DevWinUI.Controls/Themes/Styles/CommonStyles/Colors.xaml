@@ -4,6 +4,15 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
+            <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0.0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+                <GradientStop Offset="0" Color="#FF000000" />
+                <GradientStop Offset="0.05" Color="#FF000000" />
+                <GradientStop Offset="0.35" Color="#FF000000" />
+                <GradientStop Offset="0.55" Color="#FF000000" />
+                <GradientStop Offset="0.85" Color="#00000000" />
+                <GradientStop Offset="0.95" Color="#00000000" />
+                <GradientStop Offset="1" Color="#00000000" />
+            </RadialGradientBrush>
             <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
                 <GradientStop Offset="0" Color="#38C8AEC4" />
                 <GradientStop Offset="1" Color="#383286EE" />
@@ -18,6 +27,14 @@
                              Color="{ThemeResource SurfaceStrokeColorDefault}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
+            <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                <GradientStop Offset="0.05" Color="#FFFFFFFF" />
+                <GradientStop Offset="0.35" Color="#FFFFFFFF" />
+                <GradientStop Offset="0.55" Color="#FFFFFFFF" />
+                <GradientStop Offset="0.95" Color="#00FFFFFF" />
+                <GradientStop Offset="1" Color="#00FFFFFF" />
+            </RadialGradientBrush>
             <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
                 <GradientStop Offset="0" Color="#E6F0FC" />
                 <GradientStop Offset="0.4" Color="#E6F0FC" />
@@ -36,6 +53,14 @@
                              Color="White" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
+            <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
+                <GradientStop Offset="0" Color="#FF000000" />
+                <GradientStop Offset="0.05" Color="#FF000000" />
+                <GradientStop Offset="0.35" Color="#FF000000" />
+                <GradientStop Offset="0.55" Color="#FF000000" />
+                <GradientStop Offset="0.95" Color="#00000000" />
+                <GradientStop Offset="1" Color="#00000000" />
+            </RadialGradientBrush>
             <SolidColorBrush x:Key="CardGradient2Brush"
                              Color="Transparent" />
             <SolidColorBrush x:Key="CardGradient1Brush"
