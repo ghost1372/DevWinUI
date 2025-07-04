@@ -138,6 +138,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.OverviewPageHeaderPage",
+          "Title": "OverviewPageHeader",
+          "Subtitle": "Overview",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ShortcutPage",
           "Title": "Shortcut",
           "Subtitle": "Press a combination of keys to change this shortcut",

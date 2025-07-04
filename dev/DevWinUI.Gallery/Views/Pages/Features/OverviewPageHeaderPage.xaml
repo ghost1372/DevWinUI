@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.OverviewPageHeaderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/overviewPageHeader"
+                                  HeaderText="OverviewPageHeader"
+                                  XamlSource="Features/OverviewPageHeaderPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTitle"
+                                 Header="Title"
+                                 PlaceholderText="Title"
+                                 Text="Overview" />
+                        <TextBox x:Name="TxtDesc"
+                                 Header="Description"
+                                 PlaceholderText="Description"
+                                 Text="Windows AI APIs enable seamless integration of AI capabilities into Windows applications without the need to find, run, or optimize your own machine learning model." />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:OverviewPageHeader Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
+                                        Background="{ThemeResource CardGradient2Brush}"
+                                        Description="{x:Bind TxtDesc.Text}">
+                    <dev:OverviewPageHeader.ActionContent>
+                        <Button AutomationProperties.Name="Learn more about Windows AI APIs">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="8">
+                                    <FontIcon FontSize="16"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              Glyph="&#xE7C3;" />
+                                    <TextBlock Text="Learn more about Windows AI APIs" />
+                                </StackPanel>
+                            </Button.Content>
+
+                        </Button>
+                    </dev:OverviewPageHeader.ActionContent>
+                    <dev:OverviewPageHeader.ImageContent>
+                        <Grid Margin="24,8,24,16">
+                            <Grid Margin="0,62,0,0"
+                                  Padding="16"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                                <Image Width="56"
+                                       Source="ms-appx:///Assets/Svgs/WCRAPI.svg" />
+                            </Grid>
+
+                            <Grid Margin="48,166,0,0"
+                                  Padding="8"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                                <FontIcon FontSize="24"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          Glyph="&#xE8F2;" />
+                            </Grid>
+
+                            <Grid Margin="104,96,0,0"
+                                  Padding="16"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                                <FontIcon FontSize="48"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          Glyph="&#xE7C5;" />
+                            </Grid>
+                            <Grid Margin="104,12,0,0"
+                                  Padding="16"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                                <FontIcon FontSize="36"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          Glyph="&#xE799;" />
+                            </Grid>
+                            <Grid Margin="54,14,0,0"
+                                  Padding="8"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                                <FontIcon FontSize="18"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          Glyph="&#xE7A8;" />
+                            </Grid>
+                        </Grid>
+                    </dev:OverviewPageHeader.ImageContent>
+                </dev:OverviewPageHeader>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
