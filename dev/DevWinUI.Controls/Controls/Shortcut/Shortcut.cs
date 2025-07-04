@@ -108,6 +108,8 @@ public partial class Shortcut : BaseShortcut
 
     public Shortcut()
     {
+        DefaultStyleKey = typeof(Shortcut);
+
         OpenDialogCommand = DelegateCommand.Create(OnOpenDialogCommand, CanExecuteOpenDialog);
         if (Icon == null)
         {

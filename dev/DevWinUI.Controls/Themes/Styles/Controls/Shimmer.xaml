@@ -18,7 +18,11 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:Shimmer">
+    <Style BasedOn="{StaticResource DefaultShimmerStyle}"
+           TargetType="local:Shimmer" />
+
+    <Style x:Key="DefaultShimmerStyle"
+           TargetType="local:Shimmer">
         <Setter Property="Background" Value="{ThemeResource ShimmerBackground}" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="MinWidth" Value="40" />

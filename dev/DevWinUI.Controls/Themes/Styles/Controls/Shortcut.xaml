@@ -3,7 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Shortcut">
+    <Style BasedOn="{StaticResource DefaultShortcutStyle}"
+           TargetType="local:Shortcut" />
+
+    <Style x:Key="DefaultShortcutStyle"
+           TargetType="local:Shortcut">
         <Setter Property="WarningTitle" Value="Using a single key as a shortcut may interfere with regular typing or system behavior." />
         <Setter Property="WarningToolTip" Value="It's recommended to use a modifier key (like Ctrl, Alt, or Win) along with it." />
         <Setter Property="Template">
@@ -49,7 +53,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="local:ShortcutPreview">
+    <Style BasedOn="{StaticResource DefaultShortcutPreview}"
+           TargetType="local:ShortcutPreview" />
+
+    <Style x:Key="DefaultShortcutPreview"
+           TargetType="local:ShortcutPreview">
         <Setter Property="MinWidth" Value="498" />
         <Setter Property="MinHeight" Value="220" />
         <Setter Property="Template">
@@ -126,7 +134,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="local:ShortcutWithTextLabel">
+    <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel}"
+           TargetType="local:ShortcutWithTextLabel" />
+
+    <Style x:Key="DefaultShortcutWithTextLabel"
+           TargetType="local:ShortcutWithTextLabel">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ShortcutWithTextLabel">
