@@ -10,10 +10,10 @@
                     <Grid>
                         <Image x:Name="PART_BottomImage"
                                Opacity="1"
-                               Stretch="UniformToFill" />
+                               Stretch="{TemplateBinding Stretch}" />
                         <Image x:Name="PART_TopImage"
                                Opacity="0"
-                               Stretch="UniformToFill" />
+                               Stretch="{TemplateBinding Stretch}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

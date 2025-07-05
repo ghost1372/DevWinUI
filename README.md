@@ -157,6 +157,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ AnimatedImage
 - ✨ OverviewPageHeader
 - ✨ Shortcut
 - ✨ InfoBadge Style
@@ -278,6 +279,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### AnimatedImage
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimatedImage.gif)
 
 ### OverviewPageHeader
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OverviewPageHeader.png)

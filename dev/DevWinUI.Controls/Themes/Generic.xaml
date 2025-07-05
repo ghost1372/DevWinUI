@@ -631,8 +631,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:AnimatedImage">
           <Grid>
-            <Image x:Name="PART_BottomImage" Opacity="1" Stretch="UniformToFill" />
-            <Image x:Name="PART_TopImage" Opacity="0" Stretch="UniformToFill" />
+            <Image x:Name="PART_BottomImage" Opacity="1" Stretch="{TemplateBinding Stretch}" />
+            <Image x:Name="PART_TopImage" Opacity="0" Stretch="{TemplateBinding Stretch}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

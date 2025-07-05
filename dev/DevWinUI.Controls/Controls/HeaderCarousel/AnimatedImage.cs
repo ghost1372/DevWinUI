@@ -21,6 +21,15 @@ public partial class AnimatedImage : Control
     public static readonly DependencyProperty ImageUrlProperty =
         DependencyProperty.Register(nameof(ImageUrl), typeof(Uri), typeof(AnimatedImage), new PropertyMetadata(null, OnImageUrlChanged));
 
+    public Stretch Stretch
+    {
+        get { return (Stretch)GetValue(StretchProperty); }
+        set { SetValue(StretchProperty, value); }
+    }
+
+    public static readonly DependencyProperty StretchProperty =
+        DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(AnimatedImage), new PropertyMetadata(Stretch.UniformToFill));
+
     public AnimatedImage()
     {
         this.DefaultStyleKey = typeof(AnimatedImage);
@@ -36,6 +45,8 @@ public partial class AnimatedImage : Control
         _topImage = GetTemplateChild(PART_TopImage) as Image;
 
         InitAnimations();
+
+        OnIsImageChanged();
     }
     private static void OnImageUrlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

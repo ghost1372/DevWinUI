@@ -145,6 +145,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AnimatedImagePage",
+          "Title": "AnimatedImage",
+          "Subtitle": "AnimatedImage",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BrushPage",
           "Title": "Brush",
           "Subtitle": "Brush",
