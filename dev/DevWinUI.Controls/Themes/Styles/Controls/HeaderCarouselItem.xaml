@@ -4,10 +4,10 @@
                     xmlns:local="using:DevWinUI">
 
     <Style BasedOn="{StaticResource DefaultCarouselItemStyle}"
-           TargetType="local:CarouselItem" />
+           TargetType="local:HeaderCarouselItem" />
 
     <Style x:Key="DefaultCarouselItemStyle"
-           TargetType="local:CarouselItem">
+           TargetType="local:HeaderCarouselItem">
         <Setter Property="Width" Value="360" />
         <Setter Property="UseSystemFocusVisuals" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />
@@ -17,7 +17,7 @@
         <Setter Property="local:VisualAttach.NormalizedCenterPoint" Value="0.5, 0.5" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:CarouselItem">
+                <ControlTemplate TargetType="local:HeaderCarouselItem">
                     <Grid>
                         <Grid x:Name="PART_ShadowHost"
                               Background="{TemplateBinding Background}"
@@ -44,7 +44,7 @@
                                    VerticalAlignment="Stretch"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Stretch="UniformToFill" />
+                                   Stretch="{TemplateBinding Stretch}" />
 
                             <StackPanel x:Name="PART_TextPanel"
                                         Padding="12"

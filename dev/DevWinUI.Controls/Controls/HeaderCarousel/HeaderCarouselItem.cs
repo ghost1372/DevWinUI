@@ -4,7 +4,7 @@ namespace DevWinUI;
 
 [TemplatePart(Name = nameof(PART_TextPanel), Type = typeof(StackPanel))]
 [TemplatePart(Name = nameof(PART_ShadowHost), Type = typeof(Grid))]
-public partial class CarouselItem : Button
+public partial class HeaderCarouselItem : Button
 {
     private const string PART_TextPanel = "PART_TextPanel";
     private const string PART_ShadowHost = "PART_ShadowHost";
@@ -19,80 +19,9 @@ public partial class CarouselItem : Button
     private Visual visual;
     private Compositor compositor;
 
-    public string ImageUrl
+    public HeaderCarouselItem()
     {
-        get => (string)GetValue(ImageUrlProperty);
-        set => SetValue(ImageUrlProperty, value);
-    }
-
-    public static readonly DependencyProperty ImageUrlProperty =
-        DependencyProperty.Register(nameof(ImageUrl), typeof(string), typeof(CarouselItem), new PropertyMetadata(null));
-
-    public string Header
-    {
-        get => (string)GetValue(HeaderProperty);
-        set => SetValue(HeaderProperty, value);
-    }
-    public static readonly DependencyProperty HeaderProperty =
-        DependencyProperty.Register(nameof(Header), typeof(string), typeof(CarouselItem), new PropertyMetadata(defaultValue: null, (d, e) => ((CarouselItem)d).HeaderChanged((string)e.OldValue, (string)e.NewValue)));
-    protected virtual void HeaderChanged(string oldValue, string newValue)
-    {
-        SetAccessibleName();
-    }
-
-    private void SetAccessibleName()
-    {
-        if (!string.IsNullOrEmpty(Header))
-        {
-            AutomationProperties.SetName(this, Header);
-        }
-    }
-    public string Description
-    {
-        get => (string)GetValue(DescriptionProperty);
-        set => SetValue(DescriptionProperty, value);
-    }
-    public static readonly DependencyProperty DescriptionProperty =
-        DependencyProperty.Register(nameof(Description), typeof(string), typeof(CarouselItem), new PropertyMetadata(defaultValue: null));
-
-    public string Id
-    {
-        get => (string)GetValue(IdProperty);
-        set => SetValue(IdProperty, value);
-    }
-    public static readonly DependencyProperty IdProperty =
-        DependencyProperty.Register(nameof(Id), typeof(string), typeof(CarouselItem), new PropertyMetadata(defaultValue: string.Empty));
-
-    public bool IsSelected
-    {
-        get => (bool)GetValue(IsSelectedProperty);
-        set => SetValue(IsSelectedProperty, value);
-    }
-    public static readonly DependencyProperty IsSelectedProperty =
-        DependencyProperty.Register(nameof(IsSelected), typeof(bool), typeof(CarouselItem), new PropertyMetadata(defaultValue: false, (d, e) => ((CarouselItem)d).IsSelectedChanged((bool)e.OldValue, (bool)e.NewValue)));
-    protected virtual void IsSelectedChanged(object oldValue, object newValue)
-    {
-        OnIsSelectedChanged();
-    }
-    private void OnIsSelectedChanged()
-    {
-        if (IsSelected)
-        {
-            Canvas.SetZIndex(this, 10);
-            VisualStateManager.GoToState(this, "Selected", true);
-            AnimateShowPanel();
-            PlaySelectAnimation();
-        }
-        else
-        {
-            VisualStateManager.GoToState(this, "NotSelected", true);
-            AnimateHidePanel();
-            PlayDeselectAnimation();
-        }
-    }
-    public CarouselItem()
-    {
-        this.DefaultStyleKey = typeof(CarouselItem);
+        this.DefaultStyleKey = typeof(HeaderCarouselItem);
     }
 
     protected override void OnApplyTemplate()
@@ -123,6 +52,29 @@ public partial class CarouselItem : Button
 
         Unloaded -= HeaderTile_Unloaded;
         Unloaded += HeaderTile_Unloaded;
+    }
+    private void SetAccessibleName()
+    {
+        if (!string.IsNullOrEmpty(Header))
+        {
+            AutomationProperties.SetName(this, Header);
+        }
+    }
+    private void OnIsSelectedChanged()
+    {
+        if (IsSelected)
+        {
+            Canvas.SetZIndex(this, 10);
+            VisualStateManager.GoToState(this, "Selected", true);
+            AnimateShowPanel();
+            PlaySelectAnimation();
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "NotSelected", true);
+            AnimateHidePanel();
+            PlayDeselectAnimation();
+        }
     }
     private void InitializeShadow()
     {

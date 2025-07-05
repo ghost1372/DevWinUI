@@ -23,6 +23,7 @@
                             <local:AnimatedImage x:Name="PART_BackDropImage"
                                                  Height="400"
                                                  ImageUrl="ms-appx:///Assets/BackgroundBlur.png"
+                                                 Stretch="{TemplateBinding ImageStretch}"
                                                  Visibility="Visible" />
                         </local:OpacityMaskView>
                         <ScrollViewer x:Name="PART_ScrollViewer"

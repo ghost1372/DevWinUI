@@ -1,90 +1,24 @@
 ﻿namespace DevWinUI;
+
+[TemplatePart(Name = nameof(PART_BackDropImage), Type = typeof(AnimatedImage))]
+[TemplatePart(Name = nameof(PART_ScrollViewer), Type = typeof(ScrollViewer))]
 public partial class HeaderCarousel : ItemsControl
 {
-    private readonly Random random = new();
-    private readonly DispatcherTimer selectionTimer = new() { Interval = TimeSpan.FromMilliseconds(4000) };
-    private readonly DispatcherTimer deselectionTimer = new() { Interval = TimeSpan.FromMilliseconds(3000) };
-    private readonly List<int> numbers = [];
-    private CarouselItem? selectedTile;
-    private int currentIndex;
-
     private const string PART_ScrollViewer = "PART_ScrollViewer";
     private const string PART_BackDropImage = "PART_BackDropImage";
     private ScrollViewer scrollViewer;
-    private AnimatedImage BackDropImage;
-    private BlurEffectManager _blurManager;
+    private AnimatedImage backDropImage;
 
     public event EventHandler<HeaderCarouselEventArgs> ItemClick;
 
-    public object Header
-    {
-        get { return (object)GetValue(HeaderProperty); }
-        set { SetValue(HeaderProperty, value); }
-    }
+    private readonly Random random = new();
+    private DispatcherTimer selectionTimer = new();
+    private readonly DispatcherTimer deselectionTimer = new();
+    private readonly List<int> numbers = [];
+    private HeaderCarouselItem? selectedTile;
+    private int currentIndex;
 
-    public static readonly DependencyProperty HeaderProperty =
-        DependencyProperty.Register(nameof(Header), typeof(object), typeof(HeaderCarousel), new PropertyMetadata(null));
-
-    public object SecondaryHeader
-    {
-        get { return (object)GetValue(SecondaryHeaderProperty); }
-        set { SetValue(SecondaryHeaderProperty, value); }
-    }
-
-    public static readonly DependencyProperty SecondaryHeaderProperty =
-        DependencyProperty.Register(nameof(SecondaryHeader), typeof(object), typeof(HeaderCarousel), new PropertyMetadata(null));
-
-    public Visibility SecondaryHeaderVisibility
-    {
-        get { return (Visibility)GetValue(SecondaryHeaderVisibilityProperty); }
-        set { SetValue(SecondaryHeaderVisibilityProperty, value); }
-    }
-
-    public static readonly DependencyProperty SecondaryHeaderVisibilityProperty =
-        DependencyProperty.Register(nameof(SecondaryHeaderVisibility), typeof(Visibility), typeof(HeaderCarousel), new PropertyMetadata(Visibility.Visible));
-
-    public Visibility HeaderVisibility
-    {
-        get { return (Visibility)GetValue(HeaderVisibilityProperty); }
-        set { SetValue(HeaderVisibilityProperty, value); }
-    }
-
-    public static readonly DependencyProperty HeaderVisibilityProperty =
-        DependencyProperty.Register(nameof(HeaderVisibility), typeof(Visibility), typeof(HeaderCarousel), new PropertyMetadata(Visibility.Visible));
-
-    public bool IsBlurBackground
-    {
-        get { return (bool)GetValue(IsBlurBackgroundProperty); }
-        set { SetValue(IsBlurBackgroundProperty, value); }
-    }
-
-    public static readonly DependencyProperty IsBlurBackgroundProperty =
-        DependencyProperty.Register(nameof(IsBlurBackground), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, OnBlurChanged));
-
-    public double BlurAmount
-    {
-        get { return (double)GetValue(BlurAmountProperty); }
-        set { SetValue(BlurAmountProperty, value); }
-    }
-
-    public static readonly DependencyProperty BlurAmountProperty =
-        DependencyProperty.Register(nameof(BlurAmount), typeof(double), typeof(HeaderCarousel), new PropertyMetadata(100.0, OnBlurChanged));
-
-    private static void OnBlurChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (HeaderCarousel)d;
-        if (ctl != null)
-        {
-            if (ctl._blurManager != null && ctl.IsBlurBackground)
-            {
-                ctl._blurManager.UpdateBlurAmount((float)ctl.BlurAmount);
-            }
-            else
-            {
-                ctl.ApplyBackdropBlur();
-            }
-        }
-    }
+    private BlurEffectManager _blurManager;
 
     public HeaderCarousel()
     {
@@ -95,17 +29,20 @@ public partial class HeaderCarousel : ItemsControl
     {
         base.OnApplyTemplate();
 
+        selectionTimer.Interval = SelectionDuration;
+        deselectionTimer.Interval = DeSelectionDuration;
+
         scrollViewer = GetTemplateChild(PART_ScrollViewer) as ScrollViewer;
-        BackDropImage = GetTemplateChild(PART_BackDropImage) as AnimatedImage;
+        backDropImage = GetTemplateChild(PART_BackDropImage) as AnimatedImage;
 
         Loaded -= HeaderCarousel_Loaded;
         Loaded += HeaderCarousel_Loaded;
         Unloaded -= HeaderCarousel_Unloaded;
         Unloaded += HeaderCarousel_Unloaded;
 
-        if (BackDropImage != null)
+        if (backDropImage != null)
         {
-            _blurManager = new BlurEffectManager(BackDropImage);
+            _blurManager = new BlurEffectManager(backDropImage);
 
             ApplyBackdropBlur();
         }
@@ -115,7 +52,7 @@ public partial class HeaderCarousel : ItemsControl
     {
         if (_blurManager != null)
         {
-            if (IsBlurBackground)
+            if (IsBlurEnabled)
                 _blurManager.EnableBlur((float)BlurAmount);
             else
                 _blurManager.DisableBlur();
@@ -133,7 +70,7 @@ public partial class HeaderCarousel : ItemsControl
 
         selectionTimer.Tick += SelectionTimer_Tick;
         deselectionTimer.Tick += DeselectionTimer_Tick;
-        selectionTimer.Start();
+        selectionTimer?.Start();
     }
     protected override void OnItemsChanged(object e)
     {
@@ -143,7 +80,7 @@ public partial class HeaderCarousel : ItemsControl
     }
     private void SubscribeToEvents()
     {
-        foreach (CarouselItem tile in Items)
+        foreach (HeaderCarouselItem tile in Items)
         {
             tile.PointerEntered -= Tile_PointerEntered;
             tile.PointerEntered += Tile_PointerEntered;
@@ -166,9 +103,9 @@ public partial class HeaderCarousel : ItemsControl
     {
         selectionTimer.Tick -= SelectionTimer_Tick;
         deselectionTimer.Tick -= DeselectionTimer_Tick;
-        selectionTimer.Stop();
-        deselectionTimer.Stop();
-        foreach (CarouselItem tile in Items)
+        selectionTimer?.Stop();
+        deselectionTimer?.Stop();
+        foreach (HeaderCarouselItem tile in Items)
         {
             tile.PointerEntered -= Tile_PointerEntered;
             tile.PointerExited -= Tile_PointerExited;
@@ -180,7 +117,7 @@ public partial class HeaderCarousel : ItemsControl
 
     private void Tile_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is CarouselItem tile)
+        if (sender is HeaderCarouselItem tile)
         {
             tile.PointerExited -= Tile_PointerExited;
             ItemClick?.Invoke(sender, new HeaderCarouselEventArgs { CarouselItem = tile });
@@ -199,7 +136,7 @@ public partial class HeaderCarousel : ItemsControl
             return;
         }
 
-        if (Items[GetNextUniqueRandom()] is CarouselItem tile)
+        if (Items[GetNextUniqueRandom()] is HeaderCarouselItem tile)
         {
             selectedTile = tile;
             var panel = ItemsPanelRoot;
@@ -210,7 +147,7 @@ public partial class HeaderCarousel : ItemsControl
                 scrollViewer.ChangeView(point.X - (scrollViewer.ActualWidth / 2) + (selectedTile.ActualSize.X / 2), null, null);
                 await Task.Delay(500);
                 SetTileVisuals();
-                deselectionTimer.Start();
+                deselectionTimer?.Start();
             }
         }
     }
@@ -264,8 +201,8 @@ public partial class HeaderCarousel : ItemsControl
         if (selectedTile != null)
         {
             selectedTile.IsSelected = true;
-            BackDropImage.ImageUrl = new Uri(selectedTile.ImageUrl);
-            BlurAnimationHelper.ApplyBlurEffect(BackDropImage, 100);
+            backDropImage.ImageUrl = new Uri(selectedTile.ImageUrl);
+            BlurAnimationHelper.ApplyBlurEffect(backDropImage, 100);
             if (selectedTile.Foreground is LinearGradientBrush brush)
             {
                 AnimateTitleGradient(brush);
@@ -302,13 +239,13 @@ public partial class HeaderCarousel : ItemsControl
 
     private void Tile_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
     {
-        ((CarouselItem)sender).IsSelected = false;
+        ((HeaderCarouselItem)sender).IsSelected = false;
         selectionTimer.Start();
     }
 
     private void Tile_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
     {
-        selectedTile = (CarouselItem)sender;
+        selectedTile = (HeaderCarouselItem)sender;
         SelectTile();
     }
 
@@ -318,7 +255,7 @@ public partial class HeaderCarousel : ItemsControl
         selectionTimer.Stop();
         deselectionTimer.Stop();
 
-        foreach (CarouselItem t in Items)
+        foreach (HeaderCarouselItem t in Items)
         {
             t.IsSelected = false;
         }
@@ -330,13 +267,13 @@ public partial class HeaderCarousel : ItemsControl
 
     private void Tile_GotFocus(object sender, RoutedEventArgs e)
     {
-        selectedTile = (CarouselItem)sender;
+        selectedTile = (HeaderCarouselItem)sender;
         SelectTile();
     }
 
     private void Tile_LostFocus(object sender, RoutedEventArgs e)
     {
-        ((CarouselItem)sender).IsSelected = false;
+        ((HeaderCarouselItem)sender).IsSelected = false;
         selectionTimer.Start();
     }
 }
