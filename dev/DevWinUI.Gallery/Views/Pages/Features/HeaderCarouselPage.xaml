@@ -17,6 +17,9 @@
                                   XamlSource="Features/HeaderCarouselPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGIsAutoScrollEnabled"
+                                      Header="IsAutoScrollEnabled"
+                                      IsOn="True" />
                         <ToggleSwitch x:Name="TGIsBlurEnabled"
                                       Header="IsBlurEnabled"
                                       IsOn="True" />
@@ -47,6 +50,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:HeaderCarousel BlurAmount="{x:Bind SliderAmount.Value, Mode=OneWay}"
+                                    IsAutoScrollEnabled="{x:Bind TGIsAutoScrollEnabled.IsOn, Mode=OneWay}"
                                     IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}"
                                     ItemClick="HeaderCarousel_ItemClick">
                     <dev:HeaderCarousel.Header>

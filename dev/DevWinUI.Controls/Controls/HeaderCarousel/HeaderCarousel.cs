@@ -65,12 +65,10 @@ public partial class HeaderCarousel : ItemsControl
 
     private void HeaderCarousel_Loaded(object sender, RoutedEventArgs e)
     {
-        ResetAndShuffle();
-        SelectNextTile();
-
         selectionTimer.Tick += SelectionTimer_Tick;
         deselectionTimer.Tick += DeselectionTimer_Tick;
-        selectionTimer?.Start();
+
+        ApplyAutoScroll();
     }
     protected override void OnItemsChanged(object e)
     {
@@ -275,5 +273,19 @@ public partial class HeaderCarousel : ItemsControl
     {
         ((HeaderCarouselItem)sender).IsSelected = false;
         selectionTimer.Start();
+    }
+
+    private void ApplyAutoScroll()
+    {
+        if (IsAutoScrollEnabled)
+        {
+            ResetAndShuffle();
+            SelectNextTile();
+        }
+        else
+        {
+            selectionTimer?.Stop();
+            deselectionTimer?.Stop();
+        }
     }
 }

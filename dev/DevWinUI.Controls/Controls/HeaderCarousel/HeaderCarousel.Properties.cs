@@ -1,6 +1,24 @@
 ﻿namespace DevWinUI;
 public partial class HeaderCarousel
 {
+    public bool IsAutoScrollEnabled
+    {
+        get { return (bool)GetValue(IsAutoScrollEnabledProperty); }
+        set { SetValue(IsAutoScrollEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsAutoScrollEnabledProperty =
+        DependencyProperty.Register(nameof(IsAutoScrollEnabled), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, OnIsAutoScrollEnabledChanged));
+
+    private static void OnIsAutoScrollEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HeaderCarousel)d;
+        if (ctl != null)
+        {
+            ctl.ApplyAutoScroll();
+        }
+    }
+
     public Stretch ImageStretch
     {
         get { return (Stretch)GetValue(ImageStretchProperty); }
