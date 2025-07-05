@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
 public class HeaderCarouselEventArgs : EventArgs
 {
-    public HeaderCarouselItem CarouselItem { get; set; }
+    public HeaderCarouselItem HeaderCarouselItem { get; set; }
 }

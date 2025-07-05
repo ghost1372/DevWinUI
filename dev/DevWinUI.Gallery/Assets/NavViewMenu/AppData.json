@@ -145,6 +145,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.HeaderCarouselPage",
+          "Title": "HeaderCarousel",
+          "Subtitle": "HeaderCarousel",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.AnimatedImagePage",
           "Title": "AnimatedImage",
           "Subtitle": "AnimatedImage",

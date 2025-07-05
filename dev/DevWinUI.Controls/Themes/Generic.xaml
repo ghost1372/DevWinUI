@@ -24,7 +24,6 @@ Themes\Styles\CommonStyles\TextBlock.xaml
 Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
-Themes\Styles\Controls\CarouselItem.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
@@ -38,6 +37,7 @@ Themes\Styles\Controls\GoToTop.xaml
 Themes\Styles\Controls\Gravatar.xaml
 Themes\Styles\Controls\Growl.xaml
 Themes\Styles\Controls\HeaderCarousel.xaml
+Themes\Styles\Controls\HeaderCarouselItem.xaml
 Themes\Styles\Controls\ImageEx.xaml
 Themes\Styles\Controls\IndeterminateProgressBar.xaml
 Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml
@@ -643,45 +643,6 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="FontWeight" Value="SemiBold" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
   </Style>
-  <Style x:Key="DefaultCarouselItemStyle" TargetType="local:CarouselItem">
-    <Setter Property="Width" Value="360" />
-    <Setter Property="UseSystemFocusVisuals" Value="True" />
-    <Setter Property="UseLayoutRounding" Value="True" />
-    <Setter Property="Height" Value="208" />
-    <Setter Property="CornerRadius" Value="8" />
-    <Setter Property="local:VisualAttach.Scale" Value="0.8" />
-    <Setter Property="local:VisualAttach.NormalizedCenterPoint" Value="0.5, 0.5" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:CarouselItem">
-          <Grid>
-            <Grid x:Name="PART_ShadowHost" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
-            <Grid Padding="0" AutomationProperties.Name="{TemplateBinding Header}" CornerRadius="{TemplateBinding CornerRadius}">
-              <Grid.Lights>
-                <local:HoverLight />
-                <local:AmbLight />
-              </Grid.Lights>
-              <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="SelectedStates">
-                  <VisualState x:Name="NotSelected" />
-                  <VisualState x:Name="Selected">
-                    <VisualState.Setters>
-                      <Setter Target="PART_TextPanel.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                  </VisualState>
-                </VisualStateGroup>
-              </VisualStateManager.VisualStateGroups>
-              <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}" Stretch="UniformToFill" />
-              <StackPanel x:Name="PART_TextPanel" Padding="12" VerticalAlignment="Bottom" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Orientation="Vertical" Visibility="Collapsed">
-                <TextBlock FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{TemplateBinding Header}" />
-                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextTrimming="CharacterEllipsis" />
-              </StackPanel>
-            </Grid>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
   <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Margin" Value="8,0" />
@@ -850,7 +811,7 @@ Themes\Styles\Win2D\Watermark.xaml
         <ControlTemplate TargetType="local:HeaderCarousel">
           <Grid x:Name="RootGrid" CornerRadius="8,0,0,0">
             <local:OpacityMaskView VerticalAlignment="Top" OpacityMask="{ThemeResource OverlayRadialGradient}">
-              <local:AnimatedImage x:Name="PART_BackDropImage" Height="400" ImageUrl="ms-appx:///Assets/BackgroundBlur.png" Visibility="Visible" />
+              <local:AnimatedImage x:Name="PART_BackDropImage" Height="400" ImageUrl="ms-appx:///Assets/BackgroundBlur.png" Stretch="{TemplateBinding ImageStretch}" Visibility="Visible" />
             </local:OpacityMaskView>
             <ScrollViewer x:Name="PART_ScrollViewer" Grid.Row="1" Margin="0,24,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
               <ItemsPresenter x:Name="PART_ItemsPresenter" />
@@ -862,6 +823,45 @@ Themes\Styles\Win2D\Watermark.xaml
                 <ContentPresenter Content="{TemplateBinding SecondaryHeader}" Visibility="{TemplateBinding SecondaryHeaderVisibility}" />
               </Grid>
             </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultCarouselItemStyle" TargetType="local:HeaderCarouselItem">
+    <Setter Property="Width" Value="360" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+    <Setter Property="Height" Value="208" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="local:VisualAttach.Scale" Value="0.8" />
+    <Setter Property="local:VisualAttach.NormalizedCenterPoint" Value="0.5, 0.5" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:HeaderCarouselItem">
+          <Grid>
+            <Grid x:Name="PART_ShadowHost" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+            <Grid Padding="0" AutomationProperties.Name="{TemplateBinding Header}" CornerRadius="{TemplateBinding CornerRadius}">
+              <Grid.Lights>
+                <local:HoverLight />
+                <local:AmbLight />
+              </Grid.Lights>
+              <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="SelectedStates">
+                  <VisualState x:Name="NotSelected" />
+                  <VisualState x:Name="Selected">
+                    <VisualState.Setters>
+                      <Setter Target="PART_TextPanel.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                  </VisualState>
+                </VisualStateGroup>
+              </VisualStateManager.VisualStateGroups>
+              <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
+              <StackPanel x:Name="PART_TextPanel" Padding="12" VerticalAlignment="Bottom" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Orientation="Vertical" Visibility="Collapsed">
+                <TextBlock FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{TemplateBinding Header}" />
+                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextTrimming="CharacterEllipsis" />
+              </StackPanel>
+            </Grid>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -5728,7 +5728,6 @@ Themes\Styles\Win2D\Watermark.xaml
       <TimePicker x:Name="PART_TimePicker" Grid.Column="1" Margin="{TemplateBinding TimePickerMargin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
     </Grid>
   </ControlTemplate>
-  <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:CarouselItem" />
   <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
@@ -6495,6 +6494,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:HeaderCarouselItem" />
   <Style BasedOn="{StaticResource DefaultImageExStyle}" TargetType="local:ImageEx" />
   <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />

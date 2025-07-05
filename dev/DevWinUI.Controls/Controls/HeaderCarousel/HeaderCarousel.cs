@@ -120,7 +120,7 @@ public partial class HeaderCarousel : ItemsControl
         if (sender is HeaderCarouselItem tile)
         {
             tile.PointerExited -= Tile_PointerExited;
-            ItemClick?.Invoke(sender, new HeaderCarouselEventArgs { CarouselItem = tile });
+            ItemClick?.Invoke(sender, new HeaderCarouselEventArgs { HeaderCarouselItem = tile });
         }
     }
 
