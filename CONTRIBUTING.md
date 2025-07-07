@@ -53,6 +53,7 @@ Make sure your environment matches these requirements to avoid issues during com
 
 ## 📦 Repository Structure
 
+```bash
 DevWinUI/
   dev/
     DevWinUI/ # Core (non-XAML) logic
@@ -65,6 +66,7 @@ DevWinUI/
   Output/ # Generated NuGet packages
   Clean-obj-bin.bat # Helper script to clear build artifacts
   Directory.Build.props # Central project configuration
+```
 
 ---
 
