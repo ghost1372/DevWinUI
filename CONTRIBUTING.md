@@ -305,4 +305,4 @@ Avoid using reflection-based logic, or any indirect type access. These break Nat
 - Push and create a pull request
 
 ### Thank you for helping make DevWinUI better! 🌟
-Questions? Open an issue or contact @ghost1372.
+Questions? Open an issue or contact [@ghost1372](https://github.com/ghost1372).
