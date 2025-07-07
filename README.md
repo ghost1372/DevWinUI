@@ -83,26 +83,11 @@ DevWinUI is your gateway to creating visually stunning, user-friendly, and featu
 
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)
 
-### ⚙️ Compile Source Code
+### ⚙️ Build & Contribute
 
-> [!TIP]
-> Please confirm that your development environment meets the requirements before compiling.
+To compile the project, contribute new features, or explore guidelines:
 
-#### 1. 🖥️ Visual Studio 2022 
-Ensure that your installation includes the appropriate workloads:  
-- On the `Workloads` tab of the Visual Studio installation dialog box, select:  
-  - **.NET Desktop Development**  
-  - **WinUI Application Development**  
-
-#### 2. 🛠️ .NET SDKs  
-- Ensure .NET versions `8.x` and `9.x` are installed.
-
-#### 3. 📂 Solution Format  
-- This project uses the new **SLNX format** for solutions.
-- ⚠️ **Note:** This feature is currently in preview and you need to enable it from **Tools -> Manage Preview Features**.
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SLNX.png)
-
-Make sure your environment matches these requirements to avoid any issues during compilation.
+👉 Please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions.
 
 ### ⚠️ Gallery App Nightly Build
 
