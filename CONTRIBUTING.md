@@ -54,26 +54,17 @@ Make sure your environment matches these requirements to avoid issues during com
 ## 📦 Repository Structure
 
 DevWinUI/
+  dev/
+    DevWinUI/ # Core (non-XAML) logic
+    DevWinUI.Controls/ # Custom controls and styles
+      Themes/ # Styles, templates, and resources
 
-├── dev/
-
-│ ├── DevWinUI/ # Core (non-XAML) logic
-
-│ ├── DevWinUI.Controls/ # Custom controls and styles
-
-├ ├── ├── Themes/ # Styles, templates, and resources
-
-│ ├── DevWinUI.ContextMenu/ # Cross-platform context menu logic
-
-│ └── DevWinUI.Gallery/ # Demo app for controls
-
-├── VSIX/ # Source code for Visual Studio item templates
-
-├── Output/ # Generated NuGet packages
-
-├── Clean-obj-bin.bat # Helper script to clear build artifacts
-
-└── Directory.Build.props # Central project configuration
+    DevWinUI.ContextMenu/ # Cross-platform context menu logic
+    DevWinUI.Gallery/ # Demo app for controls
+  VSIX/ # Source code for Visual Studio item templates
+  Output/ # Generated NuGet packages
+  Clean-obj-bin.bat # Helper script to clear build artifacts
+  Directory.Build.props # Central project configuration
 
 ---
 
