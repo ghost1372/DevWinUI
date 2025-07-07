@@ -261,7 +261,7 @@ It also defines:
 - Supported platforms
 - Shared configuration settings
 
-### 🔖 DevWinUI Namespace
+## 🔖 DevWinUI Namespace
 
 In **DevWinUI**, all code (regardless of folder depth or purpose) should use the root namespace:
 
@@ -275,8 +275,8 @@ xmlns:local="using:DevWinUI"
 ```
 Avoid deeper namespaces like DevWinUI.Controls, DevWinUI.Blah, etc.
 
-### 🧼 Code Guidelines
-#### ✂️ Partial Classes
+## 🧼 Code Guidelines
+### ✂️ Partial Classes
 All control and helper classes must be marked as `partial` to support Native `AOT`.
 
 ```cs
@@ -286,10 +286,10 @@ public partial class MyControl : Control
 }
 
 ```
-#### 🚫 Avoid Reflection
+### 🚫 Avoid Reflection
 Avoid using reflection-based logic, or any indirect type access. These break Native AOT compatibility.
 
-### ⚠ Notes
+## ⚠ Notes
 - Do not include ItemGroup Removed/Included/... auto-generated lines in .csproj.
 - Do not touch `Themes/Generic.xaml` — it's generated.
 - Follow folder structure and naming conventions.
@@ -297,12 +297,12 @@ Avoid using reflection-based logic, or any indirect type access. These break Nat
 - Use Single `DevWinUI` namespace.
 - Follow Native AOT recommendations
 
-### 🤝 Ready to Contribute?
+## 🤝 Ready to Contribute?
 - Fork the repository
 - Create a branch:
 - Make your changes
 - Commit with a descriptive message
 - Push and create a pull request
 
-### Thank you for helping make DevWinUI better! 🌟
+## Thank you for helping make DevWinUI better! 🌟
 Questions? Open an issue or contact [@ghost1372](https://github.com/ghost1372).
