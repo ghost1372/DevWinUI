@@ -295,7 +295,7 @@ Avoid using reflection-based logic, or any indirect type access. These break Nat
 - Follow folder structure and naming conventions.
 - Format all XAML using the provided styler configuration.
 - Use Single `DevWinUI` namespace.
-- Follow Native AOT recommended
+- Follow Native AOT recommendations
 
 ### 🤝 Ready to Contribute?
 - Fork the repository
