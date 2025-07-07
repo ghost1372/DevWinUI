@@ -86,8 +86,6 @@ To fix certain Visual Studio issues when switching between `Debug` and `Release`
 
 ## 🚀 Debug and Release Configuration
 
-- DevWinUI uses **`.slnx`** solution format. Make sure it is enabled in **Visual Studio preview features**.
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SLNX.png)
 - **Debug** builds target only `.NET 9` for faster development.
 - **Release** builds target both `.NET 8` and `.NET 9`, and will automatically generate a NuGet package in `Output/`.
 
