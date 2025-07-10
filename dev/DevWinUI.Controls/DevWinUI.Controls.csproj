@@ -29,7 +29,10 @@
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Assets\mask.png">
+    <Content Update="Assets\Mask\TextGlitchMask.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Mask\ForegroundFocusMask.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -34,6 +34,7 @@ Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlyoutMenuButton.xaml
+Themes\Styles\Controls\ForegroundFocusEffects.xaml
 Themes\Styles\Controls\GoToTop.xaml
 Themes\Styles\Controls\Gravatar.xaml
 Themes\Styles\Controls\Growl.xaml
@@ -790,6 +791,15 @@ Themes\Styles\Win2D\Watermark.xaml
             <ContentPresenter x:Name="Side1Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side1}" IsHitTestVisible="True" />
             <ContentPresenter x:Name="Side2Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side2}" IsHitTestVisible="False" />
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultForegroundFocusEffectsStyle" TargetType="local:ForegroundFocusEffects">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ForegroundFocusEffects">
+          <ContentPresenter Content="{TemplateBinding Content}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -1797,7 +1807,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:PerspectiveHost">
+  <Style x:Key="DefaultPerspectiveHostStyle" TargetType="local:PerspectiveHost">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:PerspectiveHost">
@@ -1806,7 +1816,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:PerspectiveZoom">
+  <Style x:Key="DefaultPerspectiveZoomStyle" TargetType="local:PerspectiveZoom">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:PerspectiveZoom">
@@ -6261,6 +6271,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultForegroundFocusEffectsStyle}" TargetType="local:ForegroundFocusEffects" />
   <Style x:Key="DefaultGotoTopStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:GotoTop">
     <Setter Property="Width" Value="50" />
     <Setter Property="Height" Value="50" />
@@ -6744,6 +6755,8 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultPerspectiveHostStyle}" TargetType="local:PerspectiveHost" />
+  <Style BasedOn="{StaticResource DefaultPerspectiveZoomStyle}" TargetType="local:PerspectiveZoom" />
   <Style x:Key="PinBoxPasswordBoxStyle" BasedOn="{StaticResource DefaultPasswordBoxStyle}" TargetType="PasswordBox">
     <Setter Property="MinHeight" Value="{ThemeResource PinBoxMinHeight}" />
     <Setter Property="MinWidth" Value="{ThemeResource PinBoxMinWidth}" />

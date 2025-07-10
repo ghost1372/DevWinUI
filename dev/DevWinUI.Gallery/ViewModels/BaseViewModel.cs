@@ -72,7 +72,7 @@ public partial class BaseViewModel : ObservableObject
 
     #region ForegroundFocusEffect
     [ObservableProperty]
-    public partial ObservableCollection<EffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<EffectTypes>(Enum.GetValues<EffectTypes>());
+    public partial ObservableCollection<ForegroundFocusEffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<ForegroundFocusEffectTypes>(Enum.GetValues<ForegroundFocusEffectTypes>());
 
     #endregion
 

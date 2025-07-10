@@ -1,0 +1,5 @@
+﻿// Apply Effect
+ForegroundFocusEffectsSample.ApplyEffect();
+
+// Remove Effect
+ForegroundFocusEffectsSample.RemoveEffect();

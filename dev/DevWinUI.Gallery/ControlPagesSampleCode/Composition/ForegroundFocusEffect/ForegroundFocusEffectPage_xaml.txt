@@ -1,0 +1,3 @@
+﻿<dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample" Effect="Blur">
+    <Button Content="Test"/>
+</dev:ForegroundFocusEffects>

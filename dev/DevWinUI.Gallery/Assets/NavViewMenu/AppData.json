@@ -416,6 +416,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ForegroundFocusEffectsPage",
+          "Title": "Foreground Focus Effects",
+          "Subtitle": "Use a BackDrop effect to deemphasize background content.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.PerspectiveZoomPage",
           "Title": "Perspective Zoom",
           "Subtitle": "Zoom With Perspective.",

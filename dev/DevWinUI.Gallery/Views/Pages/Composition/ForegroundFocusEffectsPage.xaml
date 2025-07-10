@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ForegroundFocusEffectsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt"
+                                  DocPage="controls/foregroundFocusEffects"
+                                  XamlSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbEffectType"
+                                  Header="Foreground Focus Effect"
+                                  ItemsSource="{x:Bind ViewModel.ForegroundFocusEffectItems, Mode=OneWay}"
+                                  SelectedIndex="0"
+                                  SelectionChanged="ComboBox_SelectionChanged" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample"
+                                            Effect="{x:Bind CmbEffectType.SelectedIndex, Mode=OneWay, Converter={StaticResource IndexToForegroundFocusEffectTypesConverter}}">
+                    <ListView IsItemClickEnabled="True"
+                              ItemClick="OnItemClick"
+                              ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:SampleData">
+                                <Grid>
+                                    <Image Width="140"
+                                           Height="140"
+                                           Source="{x:Bind ImageUrl}"
+                                           Stretch="UniformToFill" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </dev:ForegroundFocusEffects>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
