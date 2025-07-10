@@ -18,7 +18,7 @@ using Windows.Storage;
 
 namespace DevWinUI;
 
-public class DeviceReplacedEventArgs : EventArgs
+public partial class DeviceReplacedEventArgs : EventArgs
 {
     internal DeviceReplacedEventArgs(CompositionGraphicsDevice device, Object drawingLock)
     {
@@ -30,7 +30,7 @@ public class DeviceReplacedEventArgs : EventArgs
     public Object DrawingLock { get; set; }
 }
 
-public class ImageLoader
+public partial class ImageLoader
 {
     private static bool                 _intialized;
     private static ImageLoader          _imageLoader;

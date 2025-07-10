@@ -18,7 +18,7 @@ using Windows.Storage.Streams;
 
 namespace DevWinUI;
 
-public class BitmapDrawer : IContentDrawer
+public partial class BitmapDrawer : IContentDrawer
 {
     readonly Uri _uri;
     LoadTimeEffectHandler _handler;

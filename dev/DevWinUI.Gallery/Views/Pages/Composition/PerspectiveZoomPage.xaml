@@ -37,7 +37,7 @@
 
                     <ListView IsItemClickEnabled="True"
                               ItemClick="OnItemClick"
-                              ItemsSource="{x:Bind ViewModel.SamplePerspectiveData, Mode=OneWay}">
+                              ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal" />

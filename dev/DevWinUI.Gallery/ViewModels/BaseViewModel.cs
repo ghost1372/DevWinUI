@@ -70,9 +70,14 @@ public partial class BaseViewModel : ObservableObject
     }
     #endregion
 
-    #region PerspectiveZoom
+    #region ForegroundFocusEffect
     [ObservableProperty]
-    public partial ObservableCollection<SampleData> SamplePerspectiveData { get; set; } = new ObservableCollection<SampleData>()
+    public partial ObservableCollection<EffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<EffectTypes>(Enum.GetValues<EffectTypes>());
+
+    #endregion
+
+    [ObservableProperty]
+    public partial ObservableCollection<SampleData> SampleImageAndTextData { get; set; } = new ObservableCollection<SampleData>()
     {
         new SampleData("Sample 1", "ms-appx:///Assets/Landscapes/Landscape-1.jpg", "Sample Desc 1"),
         new SampleData("Sample 2", "ms-appx:///Assets/Landscapes/Landscape-2.jpg", "Sample Desc 2"),
@@ -88,6 +93,4 @@ public partial class BaseViewModel : ObservableObject
         new SampleData("Sample 12", "ms-appx:///Assets/Landscapes/Landscape-12.jpg", "Sample Desc 12"),
         new SampleData("Sample 13", "ms-appx:///Assets/Landscapes/Landscape-13.jpg", "Sample Desc 13")
     };
-
-    #endregion
 }

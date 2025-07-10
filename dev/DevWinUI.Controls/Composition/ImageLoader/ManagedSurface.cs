@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace DevWinUI;
 
-public class ManagedSurface
+public partial class ManagedSurface
 {
     private CompositionDrawingSurface   _surface;
     private IContentDrawer               _drawer;

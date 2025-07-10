@@ -14,7 +14,7 @@
 
 namespace DevWinUI;
 
-internal class CircleDrawer : IContentDrawer
+internal partial class CircleDrawer : IContentDrawer
 {
     private float _radius;
     private Color _color;

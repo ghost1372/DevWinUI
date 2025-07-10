@@ -14,7 +14,7 @@
 
 namespace DevWinUI;
 
-public interface IContentDrawer
+public partial interface IContentDrawer
 {
     Task Draw(CompositionGraphicsDevice device, Object drawingLock, CompositionDrawingSurface surface, Size size);
 }
