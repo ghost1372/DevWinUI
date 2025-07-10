@@ -144,6 +144,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ CompositionShadow
+- ✨ CompositionImage
 - ✨ HeaderCarousel
 - ✨ AnimatedImage
 - ✨ OverviewPageHeader
@@ -267,6 +269,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### CompositionShadow
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionShadow.gif)
 
 ### CompositionAnimationController
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionAnimationController.gif)

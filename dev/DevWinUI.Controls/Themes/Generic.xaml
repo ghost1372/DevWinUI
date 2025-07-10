@@ -28,6 +28,7 @@ Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
 Themes\Styles\Controls\CompareSlider.xaml
+Themes\Styles\Controls\CompositionShadow.xaml
 Themes\Styles\Controls\CopyButton.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\Divider.xaml
@@ -746,6 +747,18 @@ Themes\Styles\Win2D\Watermark.xaml
           <StackPanel x:Name="PART_Root">
             <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Content}" />
           </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:CompositionShadow">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:CompositionShadow">
+          <Grid>
+            <Border x:Name="PART_ShadowElement" />
+            <ContentPresenter Content="{TemplateBinding Content}" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

@@ -1,0 +1,16 @@
+﻿<dev:CompositionShadow BlurRadius="6" OffsetX="2" OffsetY="2" ShadowOpacity="0.7">
+    <TextBlock FontSize="30"
+                FontWeight="SemiBold"
+                TextWrapping="Wrap">
+        Here’s a custom control that allows you to apply DropShadows through Markup on XAML Text, Images, or Shapes
+    </TextBlock>
+</dev:CompositionShadow>
+
+<dev:CompositionShadow BlurRadius="10" OffsetX="8" OffsetY="12">
+    <Polygon Fill="Blue"
+                Points="50,0 0,50 50,50" />
+</dev:CompositionShadow>
+
+<dev:CompositionShadow BlurRadius="20">
+	<Image Source="ms-appx:///Assets/Other/Girl.jpg" />
+</dev:CompositionShadow>

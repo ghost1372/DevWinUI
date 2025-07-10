@@ -421,6 +421,13 @@
           "Subtitle": "Play, pause, speed up, slow down, or scrub your animation with the CompositionAnimationController API",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/commandBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CompositionShadowPage",
+          "Title": "Composition Shadow",
+          "Subtitle": "Demonstrates how to apply drop shadows to Xaml elements",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         }
       ]
     },
