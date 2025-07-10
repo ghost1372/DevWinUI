@@ -416,6 +416,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.PerspectiveZoomPage",
+          "Title": "Perspective Zoom",
+          "Subtitle": "Zoom With Perspective.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/IconElement.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CompositionAnimationControllerPage",
           "Title": "Composition Animation Controller",
           "Subtitle": "Play, pause, speed up, slow down, or scrub your animation with the CompositionAnimationController API",

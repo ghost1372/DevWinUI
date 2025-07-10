@@ -50,6 +50,8 @@ Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\Magnifier.xaml
 Themes\Styles\Controls\OptionsPageControl.xaml
 Themes\Styles\Controls\OverviewPageHeader.xaml
+Themes\Styles\Controls\PerspectiveHost.xaml
+Themes\Styles\Controls\PerspectiveZoom.xaml
 Themes\Styles\Controls\PinBox.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
@@ -751,7 +753,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:CompositionShadow">
+  <Style x:Key="DefaultCompositionShadowStyle" TargetType="local:CompositionShadow">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:CompositionShadow">
@@ -1791,6 +1793,26 @@ Themes\Styles\Win2D\Watermark.xaml
               </Expander>
             </Grid>
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:PerspectiveHost">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:PerspectiveHost">
+          <ContentPresenter Content="{TemplateBinding Content}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="local:PerspectiveZoom">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:PerspectiveZoom">
+          <local:PerspectiveHost x:Name="PART_Panel">
+            <ContentPresenter Content="{TemplateBinding Content}" />
+          </local:PerspectiveHost>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -5850,6 +5872,7 @@ Themes\Styles\Win2D\Watermark.xaml
       <Thumb x:Name="PART_Thumb" Width="18" Height="18" Style="{TemplateBinding ThumbStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
     </Grid>
   </ControlTemplate>
+  <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}" TargetType="local:CompositionShadow" />
   <Style x:Key="DefaultCopyButtonStyle" TargetType="local:CopyButton">
     <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />

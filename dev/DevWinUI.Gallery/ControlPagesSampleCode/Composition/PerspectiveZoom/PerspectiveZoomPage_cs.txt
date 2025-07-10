@@ -1,0 +1,7 @@
+﻿private void OnItemClick(object sender, ItemClickEventArgs e)
+{
+    ListView listView = (ListView)sender;
+    ListViewItem listItem = (ListViewItem)listView.ContainerFromItem(e.ClickedItem);
+
+    PerspectiveSample.ToggleZoom(listItem);
+}

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.PerspectiveZoomPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Composition/PerspectiveZoom/PerspectiveZoomPage_cs.txt"
+                                  DocPage="controls/perspectiveZoom"
+                                  XamlSource="Composition/PerspectiveZoom/PerspectiveZoomPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="ZoomFactorSlider"
+                                Header="Zoom Factor"
+                                Maximum="1"
+                                Minimum="0"
+                                TickFrequency="0.1"
+                                Value="0.7" />
+                        <Slider x:Name="AngleSlider"
+                                Header="Angle Rotation"
+                                Maximum="360"
+                                Minimum="0"
+                                Value="45" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:PerspectiveZoom x:Name="PerspectiveSample"
+                                     RotationAngle="{x:Bind AngleSlider.Value, Mode=OneWay}"
+                                     ZoomFactor="{x:Bind ZoomFactorSlider.Value, Mode=OneWay}">
+
+                    <ListView IsItemClickEnabled="True"
+                              ItemClick="OnItemClick"
+                              ItemsSource="{x:Bind ViewModel.SamplePerspectiveData, Mode=OneWay}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:SampleData">
+                                <Grid>
+                                    <Image Width="200"
+                                           Height="120"
+                                           Source="{x:Bind ImageUrl}"
+                                           Stretch="UniformToFill" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </dev:PerspectiveZoom>
+
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

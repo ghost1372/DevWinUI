@@ -1,0 +1,23 @@
+﻿<dev:PerspectiveZoom x:Name="PerspectiveSample" ZoomFactor="0.7">
+    <ListView IsItemClickEnabled="True"
+                ItemClick="OnItemClick"
+                ItemsSource="{x:Bind ViewModel.SamplePerspectiveData, Mode=OneWay}">
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:SampleData">
+                <Grid>
+                    <Image Width="240"
+                            Height="160"
+                            Source="{x:Bind ImageUrl}"
+                            Stretch="UniformToFill" />
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+</dev:PerspectiveZoom>

@@ -3,21 +3,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}"
-           TargetType="local:CompositionShadow" />
+    <Style BasedOn="{StaticResource DefaultPerspectiveZoomStyle}"
+           TargetType="local:PerspectiveZoom" />
 
-    <Style x:Key="DefaultCompositionShadowStyle"
-           TargetType="local:CompositionShadow">
+    <Style x:Key="DefaultPerspectiveZoomStyle"
+           TargetType="local:PerspectiveZoom">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:CompositionShadow">
-                    <Grid>
-                        <Border x:Name="PART_ShadowElement" />
+                <ControlTemplate TargetType="local:PerspectiveZoom">
+                    <local:PerspectiveHost x:Name="PART_Panel">
                         <ContentPresenter Content="{TemplateBinding Content}" />
-                    </Grid>
+                    </local:PerspectiveHost>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

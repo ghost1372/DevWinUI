@@ -144,6 +144,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ PerspectiveZoom
 - ✨ CompositionShadow
 - ✨ CompositionImage
 - ✨ HeaderCarousel
@@ -269,6 +270,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### PerspectiveZoom
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PerspectiveZoom.gif)
 
 ### CompositionShadow
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionShadow.gif)
