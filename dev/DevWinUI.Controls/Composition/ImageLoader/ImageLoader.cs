@@ -94,7 +94,19 @@ public partial class ImageLoader
     {
         get
         {
-            Debug.Assert(_intialized);
+            if (_imageLoader == null)
+            {
+                var compositor = Microsoft.UI.Xaml.Media.CompositionTarget.GetCompositorForCurrentThread();
+                if (compositor != null)
+                {
+                    Initialize(compositor);
+                }
+                else
+                {
+                    throw new InvalidOperationException("ImageLoader not initialized and compositor is not available for the current thread. Call ImageLoader.Initialize() first.");
+                }
+            }
+
             return _imageLoader;
         }
     }

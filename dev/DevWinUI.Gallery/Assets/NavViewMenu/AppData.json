@@ -416,6 +416,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ColorSlideTransitionPage",
+          "Title": "Color Slide Transition",
+          "Subtitle": "Use Visuals and Animations to create a color slide effect during page or state transitions.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorBloomTransitionPage",
+          "Title": "Color Bloom Transition",
+          "Subtitle": "Use Visuals and Animations to create a color bloom effect during page or state transitions.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ForegroundFocusEffectsPage",
           "Title": "Foreground Focus Effects",
           "Subtitle": "Use a BackDrop effect to deemphasize background content.",

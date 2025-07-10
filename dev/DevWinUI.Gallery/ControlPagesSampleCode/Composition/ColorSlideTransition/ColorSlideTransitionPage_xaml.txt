@@ -1,0 +1,26 @@
+﻿<Grid x:Name="MainGrid" SizeChanged="OnSizeChanged" Height="200">
+
+    <Rectangle x:Name="HostForVisual" />
+
+    <StackPanel Orientation="Horizontal" Spacing="10">
+        <AppBarButton x:Name="Pictures"
+                        Background="Orange"
+                        Click="Header_Click"
+                        Icon="Pictures" />
+
+        <AppBarButton x:Name="ContactInfo"
+                        Background="Lavender"
+                        Click="Header_Click"
+                        Icon="ContactInfo" />
+
+        <AppBarButton x:Name="Download"
+                        Background="GreenYellow"
+                        Click="Header_Click"
+                        Icon="Download" />
+
+        <AppBarButton x:Name="Comment"
+                        Background="DeepSkyBlue"
+                        Click="Header_Click"
+                        Icon="Comment" />
+    </StackPanel>
+</Grid>

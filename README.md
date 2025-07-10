@@ -144,6 +144,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ColorSlideController
+- ✨ ColorBloomController
 - ✨ ForegroundFocusEffects
 - ✨ PerspectiveZoom
 - ✨ CompositionShadow
@@ -271,6 +273,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ColorSlideController
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorSlideController.gif)
+
+### ColorBloomController
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorBloomController.gif)
 
 ### ForegroundFocusEffects
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ForegroundFocusEffect.gif)
