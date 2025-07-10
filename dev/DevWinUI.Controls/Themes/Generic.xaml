@@ -626,7 +626,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <x:Double x:Key="SecondaryTextFontSize">12</x:Double>
   <x:Double x:Key="HeaderTextFontSize">12</x:Double>
-  <Style TargetType="local:AnimatedImage">
+  <Style x:Key="DefaultAnimatedImageStyle" TargetType="local:AnimatedImage">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:AnimatedImage">
@@ -5569,6 +5569,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     <Setter Property="FontWeight" Value="Bold" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultAnimatedImageStyle}" TargetType="local:AnimatedImage" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />

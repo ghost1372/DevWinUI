@@ -1,0 +1,39 @@
+﻿<StackPanel Spacing="10">
+    <StackPanel Orientation="Horizontal"
+                Spacing="10">
+        <Button x:Name="PlayButton"
+                Click="PlayPause_Animation">
+            <SymbolIcon x:Name="PlayIcon"
+                        Symbol="Play" />
+        </Button>
+        <Button x:Name="StopButton"
+                Click="Stop_Animation">
+            <SymbolIcon Symbol="Stop" />
+        </Button>
+        <Button x:Name="SpeedUp"
+                Click="SpeedUp_Animation"
+                Content="2.0x" />
+        <Button x:Name="SlowDown"
+                Click="SlowDown_Animation"
+                Content="0.5x" />
+        <Button x:Name="Reverse"
+                Click="Reverse_Animation">
+            <SymbolIcon Symbol="Back" />
+        </Button>
+    </StackPanel>
+
+    <Slider x:Name="slider"
+            Maximum="100"
+            Minimum="0"
+            TickFrequency="25"
+            TickPlacement="BottomRight" />
+</StackPanel>
+
+<Canvas Height="300">
+    <Rectangle x:Name="Rectangle"
+                Canvas.Left="20"
+                Canvas.Top="20"
+                Width="50"
+                Height="50"
+                Fill="Blue" />
+</Canvas>

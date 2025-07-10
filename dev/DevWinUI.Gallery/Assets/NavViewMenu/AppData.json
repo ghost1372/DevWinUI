@@ -409,6 +409,22 @@
       ]
     },
     {
+      "UniqueId": "Composition",
+      "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
+      "Title": "Composition",
+      "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
+      "UseBuiltInNavigationViewInfoBadgeStyle": true,
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.CompositionAnimationControllerPage",
+          "Title": "Composition Animation Controller",
+          "Subtitle": "Play, pause, speed up, slow down, or scrub your animation with the CompositionAnimationController API",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/commandBar.png"
+        }
+      ]
+    },
+    {
       "UniqueId": "Win2dFeatures",
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Features (Win2D)",

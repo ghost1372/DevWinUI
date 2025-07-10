@@ -14,10 +14,17 @@
         </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar"
                   Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                  IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/icon.png}"
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+
+            <!--  Temporary Fix TitleBar Icon  -->
+            <TitleBar.LeftHeader>
+                <BitmapIcon Width="16"
+                            Height="16"
+                            ShowAsMonochrome="False"
+                            UriSource="ms-appx:///Assets/icon.png" />
+            </TitleBar.LeftHeader>
             <AutoSuggestBox x:Name="HeaderAutoSuggestBox"
                             MinWidth="320"
                             VerticalAlignment="Center"
