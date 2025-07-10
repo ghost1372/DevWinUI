@@ -74,7 +74,7 @@ public partial class ForegroundFocusEffects : Control
     }
 
     public static readonly DependencyProperty ApplyEffectDurationProperty =
-        DependencyProperty.Register(nameof(ApplyEffectDuration), typeof(TimeSpan), typeof(ForegroundFocusEffects), new PropertyMetadata(TimeSpan.FromMilliseconds(1500)));
+        DependencyProperty.Register(nameof(ApplyEffectDuration), typeof(TimeSpan), typeof(ForegroundFocusEffects), new PropertyMetadata(TimeSpan.FromMilliseconds(0)));
 
     public TimeSpan RemoveEffectDuration
     {
@@ -83,9 +83,7 @@ public partial class ForegroundFocusEffects : Control
     }
 
     public static readonly DependencyProperty RemoveEffectDurationProperty =
-        DependencyProperty.Register(nameof(RemoveEffectDuration), typeof(TimeSpan), typeof(ForegroundFocusEffects), new PropertyMetadata(TimeSpan.FromMilliseconds(1500)));
-
-
+        DependencyProperty.Register(nameof(RemoveEffectDuration), typeof(TimeSpan), typeof(ForegroundFocusEffects), new PropertyMetadata(TimeSpan.FromMilliseconds(0)));
 
     public TimeSpan ShowAnimationDuration
     {
@@ -407,7 +405,7 @@ public partial class ForegroundFocusEffects : Control
                     Vector2KeyFrameAnimation scaleAnimation = _compositor.CreateVector2KeyFrameAnimation();
                     scaleAnimation.InsertKeyFrame(0f, new Vector2(1.25f, 1.25f));
                     scaleAnimation.InsertKeyFrame(1f, new Vector2(0f, 0f));
-                    scaleAnimation.Duration = ApplyEffectDuration;
+                    scaleAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(2000) : ApplyEffectDuration;
                     brush.StartAnimation("Scale", scaleAnimation);
                     break;
                 }
@@ -417,7 +415,7 @@ public partial class ForegroundFocusEffects : Control
                     ColorKeyFrameAnimation coloAnimation = _compositor.CreateColorKeyFrameAnimation();
                     coloAnimation.InsertKeyFrame(0f, Color.FromArgb(255, 255, 255, 255));
                     coloAnimation.InsertKeyFrame(0f, Color.FromArgb(255, 30, 30, 30));
-                    coloAnimation.Duration = ApplyEffectDuration;
+                    coloAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(4000) : ApplyEffectDuration;
                     brush.StartAnimation("Base.Color", coloAnimation);
                     break;
                 }
@@ -427,7 +425,7 @@ public partial class ForegroundFocusEffects : Control
                     ScalarKeyFrameAnimation rotateAnimation = _compositor.CreateScalarKeyFrameAnimation();
                     rotateAnimation.InsertKeyFrame(0f, 0f);
                     rotateAnimation.InsertKeyFrame(1f, (float)Math.PI);
-                    rotateAnimation.Duration = ApplyEffectDuration;
+                    rotateAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(4000) : ApplyEffectDuration;
                     brush.StartAnimation("Hue.Angle", rotateAnimation);
                     break;
                 }
@@ -443,7 +441,7 @@ public partial class ForegroundFocusEffects : Control
                     colorAnimation.InsertKeyFrame(.80f, Colors.Purple);
                     colorAnimation.InsertKeyFrame(1, Colors.Red);
                     colorAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
-                    colorAnimation.Duration = ApplyEffectDuration;
+                    colorAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(5000) : ApplyEffectDuration;
                     brush.StartAnimation("Base.Color", colorAnimation);
                     break;
                 }
@@ -472,7 +470,7 @@ public partial class ForegroundFocusEffects : Control
                     CompositionSurfaceBrush brush = ((CompositionEffectBrush)_destinationSprite.Brush).GetSourceParameter("SecondSource") as CompositionSurfaceBrush;
                     Vector2KeyFrameAnimation scaleAnimation = _compositor.CreateVector2KeyFrameAnimation();
                     scaleAnimation.InsertKeyFrame(1f, new Vector2(2.0f, 2.0f));
-                    scaleAnimation.Duration = RemoveEffectDuration;
+                    scaleAnimation.Duration = RemoveEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(1000) : RemoveEffectDuration;
                     brush.StartAnimation("Scale", scaleAnimation);
                     break;
                 }
@@ -481,7 +479,7 @@ public partial class ForegroundFocusEffects : Control
                     CompositionEffectBrush brush = (CompositionEffectBrush)_destinationSprite.Brush;
                     ColorKeyFrameAnimation coloAnimation = _compositor.CreateColorKeyFrameAnimation();
                     coloAnimation.InsertKeyFrame(1f, Color.FromArgb(255, 100, 100, 100));
-                    coloAnimation.Duration = RemoveEffectDuration;
+                    coloAnimation.Duration = RemoveEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(1500) : RemoveEffectDuration;
                     brush.StartAnimation("Base.Color", coloAnimation);
                     break;
                 }
@@ -490,7 +488,7 @@ public partial class ForegroundFocusEffects : Control
                     CompositionEffectBrush brush = (CompositionEffectBrush)_destinationSprite.Brush;
                     ScalarKeyFrameAnimation rotateAnimation = _compositor.CreateScalarKeyFrameAnimation();
                     rotateAnimation.InsertKeyFrame(1f, 0f);
-                    rotateAnimation.Duration = RemoveEffectDuration;
+                    rotateAnimation.Duration = RemoveEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(1500) : RemoveEffectDuration;
                     brush.StartAnimation("Hue.Angle", rotateAnimation);
                     break;
                 }

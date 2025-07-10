@@ -36,31 +36,4 @@ public sealed partial class ForegroundFocusEffectsPage : Page
     {
         ForegroundFocusEffectsSample.RemoveEffect();
     }
-
-    private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (CmbEffectType == null)
-        {
-            return;
-        }
-
-        switch ((ForegroundFocusEffectTypes)CmbEffectType.SelectedIndex)
-        {
-            case ForegroundFocusEffectTypes.RainbowBlur:
-                ForegroundFocusEffectsSample.ApplyEffectDuration = TimeSpan.FromMilliseconds(5000);
-                break;
-            case ForegroundFocusEffectTypes.Mask:
-                ForegroundFocusEffectsSample.ApplyEffectDuration = TimeSpan.FromMilliseconds(2000);
-                ForegroundFocusEffectsSample.RemoveEffectDuration = TimeSpan.FromMilliseconds(1000);
-                break;
-            case ForegroundFocusEffectTypes.VividLight:
-                ForegroundFocusEffectsSample.ApplyEffectDuration = TimeSpan.FromMilliseconds(4000);
-                ForegroundFocusEffectsSample.RemoveEffectDuration = TimeSpan.FromMilliseconds(1500);
-                break;
-            case ForegroundFocusEffectTypes.Hue:
-                ForegroundFocusEffectsSample.ApplyEffectDuration = TimeSpan.FromMilliseconds(4000);
-                ForegroundFocusEffectsSample.RemoveEffectDuration = TimeSpan.FromMilliseconds(1500);
-                break;
-        }
-    }
 }

@@ -21,8 +21,7 @@
                         <ComboBox x:Name="CmbEffectType"
                                   Header="Foreground Focus Effect"
                                   ItemsSource="{x:Bind ViewModel.ForegroundFocusEffectItems, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="ComboBox_SelectionChanged" />
+                                  SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample"
