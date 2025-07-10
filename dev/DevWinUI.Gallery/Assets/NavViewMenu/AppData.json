@@ -416,6 +416,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ShimmerTextBlockPage",
+          "Title": "Shimmer TextBlock",
+          "Subtitle": "Target a TextBlock with a Composition Light",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ColorSlideTransitionPage",
           "Title": "Color Slide Transition",
           "Subtitle": "Use Visuals and Animations to create a color slide effect during page or state transitions.",

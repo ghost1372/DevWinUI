@@ -144,6 +144,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ShimmerTextBlock
 - ✨ ColorSlideController
 - ✨ ColorBloomController
 - ✨ ForegroundFocusEffects
@@ -273,6 +274,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ShimmerTextBlock
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShimmerTextBlock.gif)
 
 ### ColorSlideController
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorSlideController.gif)

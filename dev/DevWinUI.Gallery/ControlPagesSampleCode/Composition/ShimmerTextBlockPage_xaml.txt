@@ -1,0 +1,3 @@
+﻿<dev:ShimmerTextBlock>
+    <TextBlock FontSize="72" Text="Loading..." />
+</dev:ShimmerTextBlock>

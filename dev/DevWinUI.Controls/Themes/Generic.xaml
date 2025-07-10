@@ -61,6 +61,7 @@ Themes\Styles\Controls\SelectorBarSegmented.xaml
 Themes\Styles\Controls\SettingsGroup.xaml
 Themes\Styles\Controls\Shield.xaml
 Themes\Styles\Controls\Shimmer.xaml
+Themes\Styles\Controls\ShimmerTextBlock.xaml
 Themes\Styles\Controls\Shortcut.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
 Themes\Styles\Controls\StepBar.xaml
@@ -1916,6 +1917,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:Shimmer">
           <Border x:Name="Shape" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultShimmerTextBlockStyle" TargetType="local:ShimmerTextBlock">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ShimmerTextBlock">
+          <ContentPresenter Content="{TemplateBinding Content}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -7903,6 +7913,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultShimmerStyle}" TargetType="local:Shimmer" />
+  <Style BasedOn="{StaticResource DefaultShimmerTextBlockStyle}" TargetType="local:ShimmerTextBlock" />
   <Style BasedOn="{StaticResource DefaultShortcutStyle}" TargetType="local:Shortcut" />
   <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
   <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel}" TargetType="local:ShortcutWithTextLabel" />
