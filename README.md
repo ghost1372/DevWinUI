@@ -311,6 +311,7 @@ Install-Package DevWinUI.ContextMenu
 
 ### BlurEffectManager
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectManager.gif)
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectManager2.gif)
 
 ### Border Styles
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BorderStyle.png)
