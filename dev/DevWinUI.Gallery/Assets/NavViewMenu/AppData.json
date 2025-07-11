@@ -403,6 +403,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CompositionBrushPage",
+          "Title": "Composition Brush",
+          "Subtitle": "Paint XAML UIElements with CompositionBrushes (and load Surfaces from XAML to CompositionBrushes)",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectControlPage",
           "Title": "Blur Effect Control",
           "Subtitle": "Blur Effect Control",

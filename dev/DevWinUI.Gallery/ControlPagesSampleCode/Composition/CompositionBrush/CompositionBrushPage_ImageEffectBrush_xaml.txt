@@ -1,0 +1,18 @@
+﻿<Grid>
+    <Grid Padding="10">
+        <Path HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0"
+                Stretch="Uniform">
+            <Path.Fill>
+                <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
+            </Path.Fill>
+        </Path>
+    </Grid>
+</Grid>
+
+<Grid>
+    <Grid.Background>
+        <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
+    </Grid.Background>
+</Grid>

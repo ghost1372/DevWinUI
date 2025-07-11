@@ -144,6 +144,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ BlurEffectBrush  
+- ✨ ImageEffectBrush 
 - ✨ BlurEffectControl
 - ✨ AnimatedGradient
 - ✨ ShimmerTextBlock
@@ -276,6 +278,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ImageEffectBrush
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ImageEffectBrush.gif)
+
+### BlurEffectBrush
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectBrush.png)
 
 ### BlurEffectControl
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlurEffectControl.gif)
