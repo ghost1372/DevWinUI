@@ -1,4 +1,5 @@
-﻿using Windows.Graphics.Effects;
+﻿using Microsoft.UI.Xaml.Media.Animation;
+using Windows.Graphics.Effects;
 
 namespace DevWinUI;
 
@@ -311,10 +312,10 @@ public partial class BlurEffectManager : IDisposable
     public CompositionBrush GetBrush() => _blurBrush;
     public Compositor GetCompositor() => _compositor;
 
-    public void AnimateBlur() => AnimateBlur(BlurAmount, TimeSpan.FromMilliseconds(300));
-    public void AnimateBlur(TimeSpan duration) => AnimateBlur(BlurAmount, duration);
+    public void StartBlurAnimation() => StartBlurAnimation(BlurAmount, TimeSpan.FromMilliseconds(300));
+    public void StartBlurAnimation(TimeSpan duration) => StartBlurAnimation(BlurAmount, duration);
 
-    public void AnimateBlur(double targetBlurAmount, TimeSpan duration)
+    public void StartBlurAnimation(double targetBlurAmount, TimeSpan duration)
     {
         if (_blurBrush == null) return;
 
@@ -335,10 +336,10 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
-    public void AnimateBlurReverse() => AnimateBlurReverse(BlurAmount, TimeSpan.FromMilliseconds(300));
-    public void AnimateBlurReverse(TimeSpan duration) => AnimateBlurReverse(BlurAmount, duration);
+    public void StartBlurReverseAnimation() => StartBlurReverseAnimation(BlurAmount, TimeSpan.FromMilliseconds(300));
+    public void StartBlurReverseAnimation(TimeSpan duration) => StartBlurReverseAnimation(BlurAmount, duration);
 
-    public void AnimateBlurReverse(double currentBlurAmount, TimeSpan duration)
+    public void StartBlurReverseAnimation(double currentBlurAmount, TimeSpan duration)
     {
         if (_blurBrush == null) return;
 
@@ -346,7 +347,7 @@ public partial class BlurEffectManager : IDisposable
         blurAnimation.Duration = duration;
         blurAnimation.InsertKeyFrame(0f, (float)currentBlurAmount);
         blurAnimation.InsertKeyFrame(1f, 0f);
-        _blurBrush.Properties.StartAnimation("Blur.BlurAmount", blurAnimation);
+        _blurBrush.Properties.StartAnimation(propertyName: "Blur.BlurAmount", blurAnimation);
 
         if (IsTintEnabled)
         {
@@ -357,7 +358,16 @@ public partial class BlurEffectManager : IDisposable
             _blurBrush.Properties.StartAnimation("Tint.Color", colorAnimation);
         }
     }
+    public void StopBlurAnimation()
+    {
+        if (_blurBrush == null) return;
 
+        _blurBrush.Properties.StopAnimation(propertyName: "Blur.BlurAmount");
+        if (IsTintEnabled)
+        {
+            _blurBrush.Properties.StopAnimation("Tint.Color");
+        }
+    }
     public void Dispose()
     {
         _targetElement.SizeChanged -= OnSizeChanged;
