@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.AnimatedGradientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/animatedGradient">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:AnimatedGradient&gt; &lt;TextBlock Text="About" /&gt; &lt;/dev:AnimatedGradient&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Spacing="10">
+                    <dev:AnimatedGradient HorizontalAlignment="Left"
+                                          ColorScheme="CoolReversed">
+                        <TextBlock FontSize="68"
+                                   Text="About" />
+                    </dev:AnimatedGradient>
+                    <dev:AnimatedGradient ColorScheme="Warm">
+                        <TextBlock FontSize="48"
+                                   Text="Work" />
+                    </dev:AnimatedGradient>
+                    <dev:AnimatedGradient HorizontalAlignment="Left"
+                                          ColorScheme="Cool">
+                        <TextBlock FontSize="72"
+                                   Text="Partners" />
+                    </dev:AnimatedGradient>
+                    <dev:AnimatedGradient ColorScheme="WarmReversed">
+                        <TextBlock FontSize="72"
+                                   Text="Awards" />
+                    </dev:AnimatedGradient>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

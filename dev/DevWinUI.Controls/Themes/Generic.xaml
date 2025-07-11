@@ -21,6 +21,7 @@ Themes\Styles\CommonStyles\NavigationView.xaml
 Themes\Styles\CommonStyles\Panel.xaml
 Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
+Themes\Styles\Controls\AnimatedGradient.xaml
 Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
@@ -631,6 +632,18 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <x:Double x:Key="SecondaryTextFontSize">12</x:Double>
   <x:Double x:Key="HeaderTextFontSize">12</x:Double>
+  <Style x:Key="DefaultAnimatedGradientStyle" TargetType="local:AnimatedGradient">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:AnimatedGradient">
+          <Grid>
+            <Rectangle x:Name="PART_Rectangle" />
+            <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultAnimatedImageStyle" TargetType="local:AnimatedImage">
     <Setter Property="Template">
       <Setter.Value>
@@ -5624,6 +5637,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     <Setter Property="FontWeight" Value="Bold" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultAnimatedGradientStyle}" TargetType="local:AnimatedGradient" />
   <Style BasedOn="{StaticResource DefaultAnimatedImageStyle}" TargetType="local:AnimatedImage" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />

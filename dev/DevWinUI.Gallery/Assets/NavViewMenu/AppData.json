@@ -416,6 +416,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AnimatedGradientPage",
+          "Title": "Animated Gradient",
+          "Subtitle": "Simple visual effect showing linear gradient animations",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ShimmerTextBlockPage",
           "Title": "Shimmer TextBlock",
           "Subtitle": "Target a TextBlock with a Composition Light",
