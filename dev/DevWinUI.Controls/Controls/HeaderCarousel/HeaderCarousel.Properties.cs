@@ -107,7 +107,13 @@ public partial class HeaderCarousel
     }
 
     public static readonly DependencyProperty IsBlurBackgroundProperty =
-        DependencyProperty.Register(nameof(IsBlurEnabled), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, OnBlurChanged));
+        DependencyProperty.Register(nameof(IsBlurEnabled), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, IsBlurEnabledChanged));
+
+    private static void IsBlurEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (HeaderCarousel)d;
+        ctl?.ApplyBackdropBlur();
+    }
 
     public double BlurAmount
     {
@@ -121,16 +127,6 @@ public partial class HeaderCarousel
     private static void OnBlurChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (HeaderCarousel)d;
-        if (ctl != null)
-        {
-            if (ctl._blurManager != null && ctl.IsBlurEnabled)
-            {
-                ctl._blurManager.UpdateBlurAmount((float)ctl.BlurAmount);
-            }
-            else
-            {
-                ctl.ApplyBackdropBlur();
-            }
-        }
+        ctl?.ApplyBackdropBlur();
     }
 }

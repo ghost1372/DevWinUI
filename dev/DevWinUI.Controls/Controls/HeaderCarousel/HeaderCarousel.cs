@@ -47,17 +47,24 @@ public partial class HeaderCarousel : ItemsControl
             ApplyBackdropBlur();
         }
     }
-    
+
     private void ApplyBackdropBlur()
     {
-        if (_blurManager != null)
+        if (_blurManager == null)
+            return;
+
+        if (IsBlurEnabled)
         {
-            if (IsBlurEnabled)
-                _blurManager.EnableBlur((float)BlurAmount);
-            else
-                _blurManager.DisableBlur();
+            _blurManager.BlurAmount = BlurAmount;
+
+            _blurManager.EnableBlur();
+        }
+        else
+        {
+            _blurManager.DisableBlur();
         }
     }
+
     private void HeaderCarousel_Unloaded(object sender, RoutedEventArgs e)
     {
         UnsubscribeToEvents();
@@ -200,7 +207,7 @@ public partial class HeaderCarousel : ItemsControl
         {
             selectedTile.IsSelected = true;
             backDropImage.ImageUrl = new Uri(selectedTile.ImageUrl);
-            BlurAnimationHelper.ApplyBlurEffect(backDropImage, 100);
+            _blurManager.StartBlurAnimation(BlurAmount, TimeSpan.FromMilliseconds(100));
             if (selectedTile.Foreground is LinearGradientBrush brush)
             {
                 AnimateTitleGradient(brush);
