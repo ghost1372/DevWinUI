@@ -14,7 +14,6 @@ public partial class NavigationPageMappings
     public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>
     {
         {"DevWinUIGallery.Views.HomeLandingPage", typeof(DevWinUIGallery.Views.HomeLandingPage)},
-        {"DevWinUIGallery.Views.BlurEffectManagerPage", typeof(DevWinUIGallery.Views.BlurEffectManagerPage)},
         {"DevWinUIGallery.Views.DragMoveAndResizePage", typeof(DevWinUIGallery.Views.DragMoveAndResizePage)},
         {"DevWinUIGallery.Views.SemanticVersionPage", typeof(DevWinUIGallery.Views.SemanticVersionPage)},
         {"DevWinUIGallery.Views.ColorBrightnessPage", typeof(DevWinUIGallery.Views.ColorBrightnessPage)},
@@ -74,6 +73,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.StylesPage", typeof(DevWinUIGallery.Views.StylesPage)},
         {"DevWinUIGallery.Views.SwitchPresenterPage", typeof(DevWinUIGallery.Views.SwitchPresenterPage)},
         {"DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage", typeof(DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage)},
+        {"DevWinUIGallery.Views.BlurEffectManagerPage", typeof(DevWinUIGallery.Views.BlurEffectManagerPage)},
         {"DevWinUIGallery.Views.AnimatedGradientPage", typeof(DevWinUIGallery.Views.AnimatedGradientPage)},
         {"DevWinUIGallery.Views.ShimmerTextBlockPage", typeof(DevWinUIGallery.Views.ShimmerTextBlockPage)},
         {"DevWinUIGallery.Views.ColorSlideTransitionPage", typeof(DevWinUIGallery.Views.ColorSlideTransitionPage)},

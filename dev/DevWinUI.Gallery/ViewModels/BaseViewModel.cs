@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using DevWinUIGallery.Models;
+using Microsoft.Graphics.Canvas.Effects;
 
 namespace DevWinUIGallery.ViewModels;
 
@@ -73,6 +74,18 @@ public partial class BaseViewModel : ObservableObject
     #region ForegroundFocusEffect
     [ObservableProperty]
     public partial ObservableCollection<ForegroundFocusEffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<ForegroundFocusEffectTypes>(Enum.GetValues<ForegroundFocusEffectTypes>());
+
+    #endregion
+
+    #region BlurEffectManager
+    [ObservableProperty]
+    public partial ObservableCollection<BlurSourceType> BlurSourceTypeItems { get; set; } = new ObservableCollection<BlurSourceType>(Enum.GetValues<BlurSourceType>());
+    [ObservableProperty]
+    public partial ObservableCollection<EffectBorderMode> EffectBorderModeItems { get; set; } = new ObservableCollection<EffectBorderMode>(Enum.GetValues<EffectBorderMode>());
+    [ObservableProperty]
+    public partial ObservableCollection<EffectOptimization> EffectOptimizationItems { get; set; } = new ObservableCollection<EffectOptimization>(Enum.GetValues<EffectOptimization>());
+    [ObservableProperty]
+    public partial ObservableCollection<BlendEffectMode> BlendEffectModeItems { get; set; } = new ObservableCollection<BlendEffectMode>(Enum.GetValues<BlendEffectMode>());
 
     #endregion
 

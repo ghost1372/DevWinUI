@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
-using Windows.Graphics.Effects;
+﻿using Windows.Graphics.Effects;
 
 namespace DevWinUI;
 
@@ -7,27 +6,120 @@ public partial class BlurEffectManager : IDisposable
 {
     private readonly FrameworkElement _targetElement;
     private readonly Compositor _compositor;
-
     private SpriteVisual _blurVisual;
     private CompositionEffectBrush _blurBrush;
     private ManagedSurface _noiseSurface;
 
-    private double _blurAmount = 10.0;
+
+    private bool _isTintEnabled = false;
+    public bool IsTintEnabled
+    {
+        get => _isTintEnabled;
+        set
+        {
+            if (_isTintEnabled != value)
+            {
+                _isTintEnabled = value;
+                Refresh();
+            }
+        }
+    }
+
+
+    private BlurTintTarget _tintTarget = BlurTintTarget.Foreground;
+    public BlurTintTarget TintTargetMode
+    {
+        get => _tintTarget;
+        set
+        {
+            if (_tintTarget != value)
+            {
+                _tintTarget = value;
+                Refresh();
+            }
+        }
+    }
+
+
     private Color _tintColor = Colors.Transparent;
-    private bool _useNoise;
-    private bool _isBrushWithTint = false;
+    public Color TintColor
+    {
+        get => _tintColor;
+        set
+        {
+            var corrected = value;
+            corrected.A = 255; // force full opacity
 
-    private EffectBorderMode _borderMode = EffectBorderMode.Hard;
-    private EffectOptimization _optimization = EffectOptimization.Balanced;
-    private BlendEffectMode _blendMode = BlendEffectMode.SoftLight;
-    private BlendEffectMode _noiseBlendMode = BlendEffectMode.Screen;
+            if (_tintColor != corrected)
+            {
+                _tintColor = corrected;
+                if (_blurBrush != null && IsTintEnabled)
+                {
+                    _blurBrush.Properties.InsertColor("Tint.Color", _tintColor);
+                }
+            }
+        }
+    }
+
+
+    private ICompositionSurface _surfaceSource;
+    public ICompositionSurface SurfaceSource
+    {
+        get => _surfaceSource;
+        set
+        {
+            if (_surfaceSource != value)
+            {
+                _surfaceSource = value;
+                Refresh();
+            }
+        }
+    }
+
+    private CompositionSurfaceBrush _surfaceBrushSource;
+    public CompositionSurfaceBrush SurfaceBrushSource
+    {
+        get => _surfaceBrushSource;
+        set
+        {
+            if (_surfaceBrushSource != value)
+            {
+                _surfaceBrushSource = value;
+                Refresh();
+            }
+        }
+    }
+
+    private Visual _visualSource;
+    public Visual VisualSource
+    {
+        get => _visualSource;
+        set
+        {
+            if (_visualSource != value)
+            {
+                _visualSource = value;
+                Refresh();
+            }
+        }
+    }
+
+    private CompositionBrush _customSourceBrush;
+    public CompositionBrush CustomSourceBrush
+    {
+        get => _customSourceBrush;
+        set
+        {
+            if (_customSourceBrush != value)
+            {
+                _customSourceBrush = value;
+                Refresh();
+            }
+        }
+    }
+
+
     private string _noiseUri = "ms-appx:///Assets/Noise/Noise.jpg";
-
-    public ICompositionSurface SurfaceSource { get; set; }
-    public CompositionSurfaceBrush SurfaceBrushSource { get; set; }
-    public Visual VisualSource { get; set; }
-    public CompositionBrush CustomSourceBrush { get; set; }
-
     public string NoiseUri
     {
         get => _noiseUri;
@@ -41,8 +133,9 @@ public partial class BlurEffectManager : IDisposable
             }
         }
     }
-    private BlurSourceType _sourceType = BlurSourceType.Backdrop;
 
+
+    private BlurSourceType _sourceType = BlurSourceType.Backdrop;
     public BlurSourceType SourceType
     {
         get => _sourceType;
@@ -56,6 +149,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private double _blurAmount = 10.0;
     public double BlurAmount
     {
         get => _blurAmount;
@@ -70,34 +165,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
-    private bool IsTintEnabled => _tintColor.A > 0;
 
-    public Color TintColor
-    {
-        get => _tintColor;
-        set
-        {
-            if (_tintColor != value)
-            {
-                bool wasTintEnabled = _isBrushWithTint;
-                _tintColor = value;
-                bool isTintEnabledNow = IsTintEnabled;
-
-                if (_blurBrush != null)
-                {
-                    if (wasTintEnabled != isTintEnabledNow)
-                    {
-                        Refresh();
-                    }
-                    else if (isTintEnabledNow)
-                    {
-                        _blurBrush.Properties.InsertColor("Tint.Color", _tintColor);
-                    }
-                }
-            }
-        }
-    }
-
+    private bool _useNoise;
     public bool UseNoise
     {
         get => _useNoise;
@@ -111,6 +180,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private EffectBorderMode _borderMode = EffectBorderMode.Hard;
     public EffectBorderMode BorderMode
     {
         get => _borderMode;
@@ -124,6 +195,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private EffectOptimization _optimization = EffectOptimization.Balanced;
     public EffectOptimization Optimization
     {
         get => _optimization;
@@ -137,6 +210,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private BlendEffectMode _blendMode = BlendEffectMode.SoftLight;
     public BlendEffectMode BlendMode
     {
         get => _blendMode;
@@ -150,6 +225,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private BlendEffectMode _noiseBlendMode = BlendEffectMode.Screen;
     public BlendEffectMode NoiseBlendMode
     {
         get => _noiseBlendMode;
@@ -163,12 +240,29 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
+
+    private CompositionStretch _noiseStretch = CompositionStretch.UniformToFill;
+    public CompositionStretch NoiseStretch
+    {
+        get => _noiseStretch;
+        set
+        {
+            if (_noiseStretch != value)
+            {
+                _noiseStretch = value;
+                Refresh();
+            }
+        }
+    }
+
+
     public BlurEffectManager(FrameworkElement targetElement)
     {
         _targetElement = targetElement ?? throw new ArgumentNullException(nameof(targetElement));
         var visual = ElementCompositionPreview.GetElementVisual(_targetElement);
         _compositor = visual.Compositor ?? throw new InvalidOperationException("Compositor is not available.");
         _targetElement.SizeChanged += OnSizeChanged;
+        ImageLoader.Initialize(_compositor);
 
         EnableBlur();
     }
@@ -219,24 +313,42 @@ public partial class BlurEffectManager : IDisposable
 
         if (IsTintEnabled)
         {
-            currentEffect = new BlendEffect
+            if (TintTargetMode == BlurTintTarget.Foreground)
             {
-                Background = blurEffect,
-                Foreground = new ColorSourceEffect
+                // Tint color on top of blur (foreground)
+                currentEffect = new BlendEffect
                 {
-                    Name = "Tint",
-                    Color = TintColor
-                },
-                Mode = BlendMode
-            };
+                    Background = blurEffect,
+                    Foreground = new ColorSourceEffect
+                    {
+                        Name = "Tint",
+                        Color = TintColor
+                    },
+                    Mode = BlendMode
+                };
+            }
+            else // Background
+            {
+                // Tint color behind the blur
+                currentEffect = new BlendEffect
+                {
+                    Background = new ColorSourceEffect
+                    {
+                        Name = "Tint",
+                        Color = TintColor
+                    },
+                    Foreground = blurEffect,
+                    Mode = BlendMode
+                };
+            }
         }
 
         if (UseNoise)
         {
             currentEffect = new BlendEffect
             {
-                Background = currentEffect,
-                Foreground = new CompositionEffectSourceParameter("NoiseImage"),
+                Background = new CompositionEffectSourceParameter("NoiseImage"),
+                Foreground = currentEffect,
                 Mode = NoiseBlendMode
             };
         }
@@ -245,7 +357,6 @@ public partial class BlurEffectManager : IDisposable
 
         var brush = effectFactory.CreateBrush();
 
-        // Resolve Source
         switch (SourceType)
         {
             case BlurSourceType.Backdrop:
@@ -281,14 +392,11 @@ public partial class BlurEffectManager : IDisposable
 
         if (UseNoise)
         {
-            ImageLoader.Initialize(_compositor);
             _noiseSurface?.Brush?.Dispose();
             _noiseSurface = ImageLoader.Instance.LoadFromUri(new Uri(NoiseUri));
-            _noiseSurface.Brush.Stretch = CompositionStretch.UniformToFill;
+            _noiseSurface.Brush.Stretch = _noiseStretch;
             brush.SetSourceParameter("NoiseImage", _noiseSurface.Brush);
         }
-
-        _isBrushWithTint = IsTintEnabled;
 
         return brush;
     }
@@ -358,6 +466,7 @@ public partial class BlurEffectManager : IDisposable
             _blurBrush.Properties.StartAnimation("Tint.Color", colorAnimation);
         }
     }
+
     public void StopBlurAnimation()
     {
         if (_blurBrush == null) return;
@@ -368,6 +477,7 @@ public partial class BlurEffectManager : IDisposable
             _blurBrush.Properties.StopAnimation("Tint.Color");
         }
     }
+
     public void Dispose()
     {
         _targetElement.SizeChanged -= OnSizeChanged;

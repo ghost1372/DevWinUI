@@ -1,0 +1,17 @@
+﻿_blurEffectManager = new BlurEffectManager(BackdropImage) { BlurAmount = 0 };
+
+private void BackdropImage_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+{
+    if (_blurEffectManager != null)
+    {
+        _blurEffectManager.StartBlurAnimation(10.0, TimeSpan.FromMilliseconds(3000));
+    }
+}
+
+private void BackdropImage_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+{
+    if (_blurEffectManager != null)
+    {
+        _blurEffectManager.StartBlurReverseAnimation(10.0, TimeSpan.FromMilliseconds(3000));
+    }
+}

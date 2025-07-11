@@ -21,13 +21,6 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
-          "UniqueId": "DevWinUIGallery.Views.BlurEffectManagerPage",
-          "Title": "BlurEffectManager",
-          "Subtitle": "Blur any Element",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
           "Title": "DragMoveAndResize",
           "Subtitle": "Drag and Move Window by UIElement",
@@ -415,6 +408,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.BlurEffectManagerPage",
+          "Title": "BlurEffectManager",
+          "Subtitle": "Blur any Element",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedGradientPage",
           "Title": "Animated Gradient",

@@ -1,5 +1,5 @@
 ﻿var _blurEffectManager = new BlurEffectManager(element);
-_blurEffectManager.EnableBlur(10f);
+_blurEffectManager.EnableBlur();
 
 //_blurEffectManager.DisableBlur();
-//_blurEffectManager.UpdateBlurAmount(70f);
+//_blurEffectManager.BlurAmount = 70.0;
