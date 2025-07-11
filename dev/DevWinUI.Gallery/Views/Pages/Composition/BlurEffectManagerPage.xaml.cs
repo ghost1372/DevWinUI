@@ -51,10 +51,7 @@ public sealed partial class BlurEffectManagerPage : Page
     {
         if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            var corrected = args.NewColor;
-            corrected.A = 255;
-
-            _blurEffectManager.TintColor = corrected;
+            _blurEffectManager.TintColor = args.NewColor;
         }
     }
 

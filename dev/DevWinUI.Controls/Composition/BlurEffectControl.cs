@@ -13,6 +13,68 @@ public partial class BlurEffectControl : Control
     }
 
     #region Dependency Properties
+    public bool IsBlurEnabled
+    {
+        get { return (bool)GetValue(IsBlurEnabledProperty); }
+        set { SetValue(IsBlurEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsBlurEnabledProperty =
+        DependencyProperty.Register(nameof(IsBlurEnabled), typeof(bool), typeof(BlurEffectControl), new PropertyMetadata(true, OnBlurPropertyChanged));
+
+    public bool IsTintEnabled
+    {
+        get { return (bool)GetValue(IsTintEnabledProperty); }
+        set { SetValue(IsTintEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsTintEnabledProperty =
+        DependencyProperty.Register(nameof(IsTintEnabled), typeof(bool), typeof(BlurEffectControl), new PropertyMetadata(false, OnBlurPropertyChanged));
+
+    public BlurTintTarget TintTargetMode
+    {
+        get { return (BlurTintTarget)GetValue(TintTargetModeProperty); }
+        set { SetValue(TintTargetModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty TintTargetModeProperty =
+        DependencyProperty.Register(nameof(TintTargetMode), typeof(BlurTintTarget), typeof(BlurEffectControl), new PropertyMetadata(BlurTintTarget.Foreground, OnBlurPropertyChanged));
+
+    public ICompositionSurface SurfaceSource
+    {
+        get { return (ICompositionSurface)GetValue(SurfaceSourceProperty); }
+        set { SetValue(SurfaceSourceProperty, value); }
+    }
+
+    public static readonly DependencyProperty SurfaceSourceProperty =
+        DependencyProperty.Register(nameof(SurfaceSource), typeof(ICompositionSurface), typeof(BlurEffectControl), new PropertyMetadata(null, OnBlurPropertyChanged));
+
+    public CompositionSurfaceBrush SurfaceBrushSource
+    {
+        get { return (CompositionSurfaceBrush)GetValue(SurfaceBrushSourceProperty); }
+        set { SetValue(SurfaceBrushSourceProperty, value); }
+    }
+
+    public static readonly DependencyProperty SurfaceBrushSourceProperty =
+        DependencyProperty.Register(nameof(SurfaceBrushSource), typeof(CompositionSurfaceBrush), typeof(BlurEffectControl), new PropertyMetadata(null, OnBlurPropertyChanged));
+
+    public Visual VisualSource
+    {
+        get { return (Visual)GetValue(VisualSourceProperty); }
+        set { SetValue(VisualSourceProperty, value); }
+    }
+
+    public static readonly DependencyProperty VisualSourceProperty =
+        DependencyProperty.Register(nameof(VisualSource), typeof(Visual), typeof(BlurEffectControl), new PropertyMetadata(null, OnBlurPropertyChanged));
+
+    public CompositionBrush CustomSourceBrush
+    {
+        get { return (CompositionBrush)GetValue(CustomSourceBrushProperty); }
+        set { SetValue(CustomSourceBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty CustomSourceBrushProperty =
+        DependencyProperty.Register(nameof(CustomSourceBrush), typeof(CompositionBrush), typeof(BlurEffectControl), new PropertyMetadata(null, OnBlurPropertyChanged));
 
     public double BlurAmount
     {
@@ -86,14 +148,23 @@ public partial class BlurEffectControl : Control
     public static readonly DependencyProperty NoiseBlendModeProperty =
         DependencyProperty.Register(nameof(NoiseBlendMode), typeof(BlendEffectMode), typeof(BlurEffectControl), new PropertyMetadata(BlendEffectMode.Screen, OnBlurPropertyChanged));
 
-    public static readonly DependencyProperty SourceTypeProperty =
-        DependencyProperty.Register(nameof(SourceType), typeof(BlurSourceType), typeof(BlurEffectControl), new PropertyMetadata(BlurSourceType.Backdrop, OnBlurPropertyChanged));
-
     public BlurSourceType SourceType
     {
         get => (BlurSourceType)GetValue(SourceTypeProperty);
         set => SetValue(SourceTypeProperty, value);
     }
+    public static readonly DependencyProperty SourceTypeProperty =
+        DependencyProperty.Register(nameof(SourceType), typeof(BlurSourceType), typeof(BlurEffectControl), new PropertyMetadata(BlurSourceType.Backdrop, OnBlurPropertyChanged));
+
+    public CompositionStretch NoiseStretch
+    {
+        get { return (CompositionStretch)GetValue(NoiseStretchProperty); }
+        set { SetValue(NoiseStretchProperty, value); }
+    }
+
+    public static readonly DependencyProperty NoiseStretchProperty =
+        DependencyProperty.Register(nameof(NoiseStretch), typeof(CompositionStretch), typeof(BlurEffectControl), new PropertyMetadata(CompositionStretch.UniformToFill, OnBlurPropertyChanged));
+
     #endregion
 
     private static void OnBlurPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -107,17 +178,30 @@ public partial class BlurEffectControl : Control
         if (_blurManager == null)
             return;
 
-        _blurManager.BlurAmount = BlurAmount;
-        _blurManager.TintColor = TintColor;
-        _blurManager.UseNoise = UseNoise;
-        _blurManager.NoiseUri = NoiseUri;
-        _blurManager.BorderMode = BorderMode;
-        _blurManager.Optimization = Optimization;
-        _blurManager.BlendMode = BlendMode;
-        _blurManager.NoiseBlendMode = NoiseBlendMode;
-        _blurManager.SourceType = SourceType;
+        if (IsBlurEnabled)
+        {
+            _blurManager.IsTintEnabled = IsTintEnabled;
+            _blurManager.TintTargetMode = TintTargetMode;
+            _blurManager.TintColor = TintColor;
+            _blurManager.SurfaceSource = SurfaceSource;
+            _blurManager.SurfaceBrushSource = SurfaceBrushSource;
+            _blurManager.VisualSource = VisualSource;
+            _blurManager.CustomSourceBrush = CustomSourceBrush;
+            _blurManager.NoiseUri = NoiseUri;
+            _blurManager.SourceType = SourceType;
+            _blurManager.BlurAmount = BlurAmount;
+            _blurManager.UseNoise = UseNoise;
+            _blurManager.BorderMode = BorderMode;
+            _blurManager.Optimization = Optimization;
+            _blurManager.BlendMode = BlendMode;
+            _blurManager.NoiseBlendMode = NoiseBlendMode;
 
-        _blurManager.Refresh();
+            _blurManager.Refresh();
+        }
+        else
+        {
+            _blurManager.DisableBlur();
+        }
     }
 
     public BlurEffectManager GetBlurEffectManager() => _blurManager;

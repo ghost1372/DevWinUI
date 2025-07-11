@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.BlurEffectManagerPage"
+<Page x:Class="DevWinUIGallery.Views.BlurEffectControlPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,21 +12,20 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage_cs.txt"
-                                  DocPage="common/blurEffectManager"
-                                  HeaderText="BlurEffectManager">
+            <local:ControlExample DocPage="controls/blurEffectControl">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:BlurEffectControl /&gt;</x:String>
+                </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <ToggleSwitch x:Name="TGIsBlurEnabled"
                                       Header="IsBlurEnabled"
-                                      IsOn="True"
-                                      Toggled="TGIsBlurEnabled_Toggled" />
+                                      IsOn="True" />
                         <Slider x:Name="TGSlider"
                                 Header="Blur Amount"
                                 Maximum="100"
                                 Minimum="0"
-                                ValueChanged="TGSlider_ValueChanged"
-                                Value="10" />
+                                Value="2" />
                         <ComboBox x:Name="CmbBlurSourceType"
                                   Header="Blur Source Type"
                                   ItemsSource="{x:Bind ViewModel.BlurSourceTypeItems, Mode=OneWay}"
@@ -54,14 +53,12 @@
                                   SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
                         <ToggleSwitch x:Name="TGUseNoise"
                                       Header="Use Noise"
-                                      IsOn="False"
-                                      Toggled="TGUseNoise_Toggled" />
+                                      IsOn="False" />
                         <TextBox x:Name="TxtNoiseUri"
                                  Header="Noise Uri"
                                  IsReadOnly="True"
                                  Text="ms-appx:///Assets/Noise/Noise.jpg" />
                         <ColorPicker x:Name="CpTintColor"
-                                     ColorChanged="CpTintColor_ColorChanged"
                                      IsAlphaSliderVisible="False"
                                      IsAlphaTextInputVisible="False"
                                      IsColorChannelTextInputVisible="False"
@@ -72,31 +69,24 @@
                                      Color="Transparent" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Image x:Name="BackdropImage"
-                       MaxHeight="500"
-                       VerticalAlignment="Top"
-                       Source="ms-appx:///Assets/Others/Girl.jpg"
-                       Stretch="Uniform" />
-            </local:ControlExample>
-            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt"
-                                  DocPage="common/blurEffectManager"
-                                  HeaderText="BlurEffectManager">
-                <StackPanel Spacing="10">
-                    <InfoBar Title="Hover over the image to start blur animation; move away to reverse it."
-                             IsClosable="False"
-                             IsOpen="True"
-                             Severity="Informational" />
-                    <Image x:Name="BackdropImage2"
-                           MaxHeight="500"
-                           VerticalAlignment="Top"
-                           PointerEntered="BackdropImage_PointerEntered"
-                           PointerExited="BackdropImage_PointerExited"
-                           Source="ms-appx:///Assets/Others/Girl.jpg"
-                           Stretch="Uniform" />
-                </StackPanel>
-            </local:ControlExample>
 
+                <Grid VerticalAlignment="Top">
+                    <Image Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="72"
+                               Foreground="Black"
+                               Text="DevWinUI"
+                               TextWrapping="Wrap" />
+                    <dev:BlurEffectControl x:Name="BlurEffectControlSample"
+                                           BlurAmount="{x:Bind TGSlider.Value, Mode=OneWay}"
+                                           IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}"
+                                           IsTintEnabled="True"
+                                           NoiseUri="{x:Bind TxtNoiseUri.Text, Mode=OneWay}"
+                                           TintColor="{x:Bind CpTintColor.Color, Mode=OneWay}"
+                                           UseNoise="{x:Bind TGUseNoise.IsOn, Mode=OneWay}" />
+                </Grid>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

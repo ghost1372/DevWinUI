@@ -22,13 +22,13 @@
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
-          "Title": "DragMoveAndResize",
+          "Title": "Drag Move And Resize",
           "Subtitle": "Drag and Move Window by UIElement",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SemanticVersionPage",
-          "Title": "SemanticVersion",
+          "Title": "Semantic Version",
           "Subtitle": "Parse SemanticVersion",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
@@ -38,20 +38,20 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorBrightnessPage",
-          "Title": "ColorBrightness",
+          "Title": "Color Brightness",
           "Subtitle": "ColorBrightness",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
-          "Title": "RelativeDate",
-          "Subtitle": "RelativeDate",
+          "Title": "Relative Date",
+          "Subtitle": "Relative Date",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BackdropPage",
-          "Title": "Backdrops",
+          "Title": "System Backdrops",
           "Subtitle": "SystemBackdrops like Transparent, Acrylic, Mica",
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
@@ -68,27 +68,21 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.BlurAnimationPage",
-          "Title": "Blur Animation Helper",
-          "Subtitle": "Blur Animation Helper",
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
-          "Title": "RichTextFormatter",
+          "Title": "RichText Formatter",
           "Subtitle": "Formats a TextBlock/RichTextBlock using HTML-like formatting codes",
           "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
-          "Title": "CredentialHelper",
-          "Subtitle": "CredentialHelper",
+          "Title": "Credential Helper",
+          "Subtitle": "Credential Helper",
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
-          "Title": "CompositionHelper",
-          "Subtitle": "CompositionHelper",
+          "Title": "Composition Helper",
+          "Subtitle": "Composition Helper",
           "ImagePath": "ms-appx:///Assets/Fluent/ImplicitTransition.png"
         },
         {
@@ -111,7 +105,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
-          "Title": "ThemeService",
+          "Title": "Theme Service",
           "Subtitle": "Change Application Theme and Material Easily",
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
@@ -146,8 +140,8 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedImagePage",
-          "Title": "AnimatedImage",
-          "Subtitle": "AnimatedImage",
+          "Title": "Animated Image",
+          "Subtitle": "Animated Image",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
         },
@@ -187,7 +181,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LayeredFontIconsPage",
-          "Title": "LayeredFontIcons",
+          "Title": "Layered Font Icons",
           "Subtitle": "Combine Multiple Icons",
           "ImagePath": "ms-appx:///Assets/Fluent/Workspaces.png"
         },
@@ -200,8 +194,8 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
-          "Title": "ModalWindow",
-          "Subtitle": "ModalWindow",
+          "Title": "Modal Window",
+          "Subtitle": "Modal Window",
           "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
         },
         {
@@ -212,51 +206,51 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LayoutTransformerPage",
-          "Title": "LayoutTransformer",
+          "Title": "Layout Transformer",
           "Subtitle": "Represents a control that applies a layout transformation to its Content.",
           "ImagePath": "ms-appx:///Assets/Fluent/RepeatButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
-          "Title": "GoToTop",
-          "Subtitle": "GoToTop",
+          "Title": "Go To Top",
+          "Subtitle": "Go To Top",
           "ImagePath": "ms-appx:///Assets/Fluent/ScrollView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlexPanelPage",
-          "Title": "FlexPanel",
-          "Subtitle": "FlexPanel",
+          "Title": "Flex Panel",
+          "Subtitle": "Flex Panel",
           "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HoneycombPanelPage",
-          "Title": "HoneycombPanel",
+          "Title": "Honeycomb Panel",
           "Subtitle": "A container that allows child elements to present a honeycomb layout.",
           "ImagePath": "ms-appx:///Assets/Fluent/RelativePanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ElementGroupPage",
-          "Title": "ElementGroup",
+          "Title": "Element Group",
           "Subtitle": "Group any Element",
           "ImagePath": "ms-appx:///Assets/Fluent/VariableSizedWrapGrid.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompareSliderPage",
-          "Title": "CompareSlider",
+          "Title": "Compare Slider",
           "Subtitle": "Comapre Two Images (Before/After)",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/AppBarSeparator.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TransitioningContentControlPage",
-          "Title": "TransitioningContentControl",
-          "Subtitle": "TransitioningContentControl",
+          "Title": "Transitioning Content Control",
+          "Subtitle": "Transitioning Content Control",
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CirclePanelPage",
-          "Title": "CirclePanel",
-          "Subtitle": "CirclePanel",
+          "Title": "Circle Panel",
+          "Subtitle": "Circle Panel",
           "ImagePath": "ms-appx:///Assets/Fluent/RadioButton.png"
         },
         {
@@ -267,20 +261,20 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DateTimePickerPage",
-          "Title": "DateTimePicker",
+          "Title": "Date Time Picker",
           "Subtitle": "Pick a Date and Time with CalendarWithClock",
           "ImagePath": "ms-appx:///Assets/Fluent/DatePicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CalendarWithClockPage",
-          "Title": "CalendarWithClock",
+          "Title": "Calendar With Clock",
           "Subtitle": "A CalendarView with a TimePicker/Clock",
           "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressButtonPage",
-          "Title": "ProgressButton",
-          "Subtitle": "ProgressButton",
+          "Title": "Progress Button",
+          "Subtitle": "Progress Button",
           "ImagePath": "ms-appx:///Assets/Fluent/ToggleButton.png"
         },
         {
@@ -291,7 +285,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TileControlPage",
-          "Title": "TileControl",
+          "Title": "Tile Control",
           "Subtitle": "TileControl",
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBar.png"
         },
@@ -303,38 +297,38 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SelectorBarSegmentedPage",
-          "Title": "SelectorBarSegmented",
-          "Subtitle": "SelectorBarSegmented",
+          "Title": "SelectorBar Segmented",
+          "Subtitle": "SelectorBar Segmented",
           "ImagePath": "ms-appx:///Assets/Fluent/Segmented.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorfulShimmingEffectPage",
-          "Title": "ColorfulShimmingEffect",
-          "Subtitle": "ColorfulShimmingEffect",
+          "Title": "Colorful Shimming Effect",
+          "Subtitle": "Colorful Shimming Effect",
           "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LongShadowTextBlockPage",
-          "Title": "LongShadowTextBlock",
-          "Subtitle": "LongShadowTextBlock",
+          "Title": "Long Shadow TextBlock",
+          "Subtitle": "Long Shadow TextBlock",
           "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipSidePage",
-          "Title": "FlipSide",
-          "Subtitle": "FlipSide",
+          "Title": "Flip Side",
+          "Subtitle": "Flip Side",
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.PagerControlPage",
-          "Title": "PagerControl",
-          "Subtitle": "PagerControl",
+          "Title": "Pager Control",
+          "Subtitle": "Pager Control",
           "ImagePath": "ms-appx:///Assets/Fluent/PipsPager.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AutoScrollViewPage",
-          "Title": "AutoScrollView",
-          "Subtitle": "AutoScrollView",
+          "Title": "Auto ScrollView",
+          "Subtitle": "Auto ScrollView",
           "ImagePath": "ms-appx:///Assets/Fluent/ScrollViewer.png"
         },
         {
@@ -376,7 +370,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OptionsPageControlPage",
-          "Title": "OptionsPageControl",
+          "Title": "Options Page Control",
           "Subtitle": "A page with options",
           "ImagePath": "ms-appx:///Assets/Fluent/OptionsPageControl.png"
         },
@@ -389,8 +383,8 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SwitchPresenterPage",
-          "Title": "SwitchPresenter",
-          "Subtitle": "SwitchPresenter",
+          "Title": "Switch Presenter",
+          "Subtitle": "Switch Presenter",
           "ImagePath": "ms-appx:///Assets/Fluent/SwitchPresenter.png"
         },
         {
@@ -409,8 +403,15 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BlurEffectControlPage",
+          "Title": "Blur Effect Control",
+          "Subtitle": "Blur Effect Control",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectManagerPage",
-          "Title": "BlurEffectManager",
+          "Title": "Blur Effect Manager",
           "Subtitle": "Blur any Element",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
@@ -488,14 +489,14 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TiledImageBrushPage",
-          "Title": "TiledImageBrush",
-          "Subtitle": "TiledImageBrush",
+          "Title": "Tiled ImageBrush",
+          "Subtitle": "Tiled ImageBrush",
           "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OutlineTextControlPage",
-          "Title": "OutlineTextControl",
-          "Subtitle": "OutlineTextControl",
+          "Title": "Outline Text Control",
+          "Subtitle": "Outline Text Control",
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
         {
@@ -530,8 +531,8 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
-          "Title": "WaveCircle",
-          "Subtitle": "WaveCircle",
+          "Title": "Wave Circle",
+          "Subtitle": "Wave Circle",
           "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
         },
         {
@@ -558,13 +559,13 @@
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.AllLandingsPage",
-          "Title": "AllLandingPage",
+          "Title": "All Landing Page",
           "Subtitle": "Show All Available options from Json file",
           "ImagePath": "ms-appx:///Assets/Fluent/DataGrid.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HomeLandingsPage",
-          "Title": "HomeLandingPage",
+          "Title": "Home Landing Page",
           "Subtitle": "Show Simple Landing Page",
           "ImagePath": "ms-appx:///Assets/Fluent/SplitView.png"
         }
