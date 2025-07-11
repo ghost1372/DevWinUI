@@ -110,7 +110,7 @@ public partial class BlurEffectControl : Control
     }
 
     public static readonly DependencyProperty NoiseUriProperty =
-        DependencyProperty.Register(nameof(NoiseUri), typeof(string), typeof(BlurEffectControl), new PropertyMetadata("ms-appx:///Assets/Other/Noise.jpg", OnBlurPropertyChanged));
+        DependencyProperty.Register(nameof(NoiseUri), typeof(string), typeof(BlurEffectControl), new PropertyMetadata("ms-appx:///Assets/Noise/Noise.jpg", OnBlurPropertyChanged));
 
     public EffectBorderMode BorderMode
     {
