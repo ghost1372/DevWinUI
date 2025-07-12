@@ -69,29 +69,6 @@ public sealed partial class BlurEffectManagerPage : Page
         }
     }
 
-    private void CmbBlurSourceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (_blurEffectManager != null && CmbBlurSourceType != null && TGIsBlurEnabled.IsOn)
-        {
-            switch ((BlurSourceType)CmbBlurSourceType.SelectedIndex)
-            {
-                case BlurSourceType.Surface:
-                    //_blurEffectManager.SurfaceBrushSource = BackdropImage.SurfaceBrush;
-                    var surface = LoadedImageSurface.StartLoadFromUri(BackdropImage.BaseUri);
-                    _blurEffectManager.SurfaceSource = surface;
-                    break;
-                case BlurSourceType.Visual:
-                    Visual visual = ElementCompositionPreview.GetElementVisual(BackdropImage);
-                    _blurEffectManager.VisualSource = visual;
-                    break;
-                case BlurSourceType.Custom:
-                    _blurEffectManager.CustomSourceBrush = _blurEffectManager.GetCompositor().CreateColorBrush(Colors.Green);
-                    break;
-            }
-            _blurEffectManager.SourceType = (BlurSourceType)CmbBlurSourceType.SelectedIndex;
-        }
-    }
-
     private void CmbEffectBorderMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (_blurEffectManager != null && CmbEffectBorderMode != null && TGIsBlurEnabled.IsOn)

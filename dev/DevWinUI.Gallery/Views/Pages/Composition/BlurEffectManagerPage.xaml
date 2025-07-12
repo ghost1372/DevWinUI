@@ -27,11 +27,6 @@
                                 Minimum="0"
                                 ValueChanged="TGSlider_ValueChanged"
                                 Value="10" />
-                        <ComboBox x:Name="CmbBlurSourceType"
-                                  Header="Blur Source Type"
-                                  ItemsSource="{x:Bind ViewModel.BlurSourceTypeItems, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbBlurSourceType_SelectionChanged" />
                         <ComboBox x:Name="CmbEffectBorderMode"
                                   Header="Effect Border Mode"
                                   ItemsSource="{x:Bind ViewModel.EffectBorderModeItems, Mode=OneWay}"
