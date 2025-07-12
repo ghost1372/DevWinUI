@@ -13,5 +13,6 @@ public partial class BaseDataInfo
     public string LocalizeId { get; set; }
     public bool IsNavigationViewItemHeader { get; set; }
     public bool UsexUid { get; set; }
+    public bool HideNavigationViewItemIcon { get; set; }
     public DataInfoBadge DataInfoBadge { get; set; }
 }

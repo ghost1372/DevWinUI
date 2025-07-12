@@ -114,6 +114,11 @@
             "default": false,
             "description": "A boolean value that specifies whether to sort the results in descending order. If set to true, the results will be ordered from highest to lowest. This option only applies when Order is enabled."
           },
+          "HideNavigationViewItemIcon": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, the icon is hidden from the NavigationViewItem"
+          },
           "DataInfoBadge": {
             "type": "object",
             "properties": {
@@ -221,6 +226,11 @@
                   "type": "boolean",
                   "default": false,
                   "description": "If true, the item is hidden from the NavigationView"
+                },
+                "HideNavigationViewItemIcon": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "If true, the icon is hidden from the NavigationViewItem"
                 },
                 "IncludedInBuild": {
                   "type": "boolean",

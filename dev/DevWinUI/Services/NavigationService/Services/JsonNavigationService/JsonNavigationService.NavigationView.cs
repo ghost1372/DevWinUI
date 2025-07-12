@@ -20,7 +20,7 @@ public partial class JsonNavigationService
                 InfoBadge = GetInfoBadge(group, null, group.DefaultBuiltInNavigationViewInfoBadgeStyle, group.UseBuiltInNavigationViewInfoBadgeStyle)
             };
             var icon = GetIcon(group.ImagePath, group.IconGlyph);
-            if (icon != null)
+            if (icon != null && !group.HideNavigationViewItemIcon)
             {
                 itemGroup.Icon = icon;
             }
@@ -40,7 +40,7 @@ public partial class JsonNavigationService
                 };
 
                 var iconInGroup = GetIcon(item.ImagePath, item.IconGlyph);
-                if (iconInGroup != null)
+                if (iconInGroup != null && !item.HideNavigationViewItemIcon)
                 {
                     itemInGroup.Icon = iconInGroup;
                 }
