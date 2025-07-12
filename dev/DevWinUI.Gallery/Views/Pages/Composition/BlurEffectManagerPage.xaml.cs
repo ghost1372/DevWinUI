@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml.Hosting;
+using Microsoft.UI.Xaml.Media;
 
 namespace DevWinUIGallery.Views;
 
@@ -74,12 +75,10 @@ public sealed partial class BlurEffectManagerPage : Page
         {
             switch ((BlurSourceType)CmbBlurSourceType.SelectedIndex)
             {
-                case BlurSourceType.Backdrop:
-                    break;
                 case BlurSourceType.Surface:
-                    _blurEffectManager.SurfaceBrushSource = BackdropImage.SurfaceBrush;
-                    //var surface = LoadedImageSurface.StartLoadFromUri(new Uri(BackdropImage.Source.AbsoluteUri));
-                    //_blurEffectManager.SurfaceSource = surface;
+                    //_blurEffectManager.SurfaceBrushSource = BackdropImage.SurfaceBrush;
+                    var surface = LoadedImageSurface.StartLoadFromUri(BackdropImage.BaseUri);
+                    _blurEffectManager.SurfaceSource = surface;
                     break;
                 case BlurSourceType.Visual:
                     Visual visual = ElementCompositionPreview.GetElementVisual(BackdropImage);

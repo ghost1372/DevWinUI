@@ -18,8 +18,6 @@ public sealed partial class BlurEffectControlPage : Page
         {
             switch ((BlurSourceType)CmbBlurSourceType.SelectedIndex)
             {
-                case BlurSourceType.Backdrop:
-                    break;
                 case BlurSourceType.Surface:
                     BlurEffectControlSample.SurfaceBrushSource = BackdropImage.SurfaceBrush;
                     //var surface = LoadedImageSurface.StartLoadFromUri(new Uri(BackdropImage.Source.AbsoluteUri));

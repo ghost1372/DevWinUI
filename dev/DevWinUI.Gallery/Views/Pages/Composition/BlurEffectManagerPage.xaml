@@ -72,11 +72,11 @@
                                      Color="Transparent" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CompositionImage x:Name="BackdropImage"
-                                      MaxHeight="500"
-                                      VerticalAlignment="Top"
-                                      Source="ms-appx:///Assets/Others/Girl.jpg"
-                                      Stretch="Uniform" />
+                <Image x:Name="BackdropImage"
+                       MaxHeight="500"
+                       VerticalAlignment="Top"
+                       Source="ms-appx:///Assets/Others/Girl.jpg"
+                       Stretch="Uniform" />
             </local:ControlExample>
             <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt"
                                   DocPage="common/blurEffectManager"
