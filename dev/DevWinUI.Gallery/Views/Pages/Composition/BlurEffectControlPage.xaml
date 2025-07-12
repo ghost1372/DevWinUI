@@ -71,7 +71,8 @@
                 </local:ControlExample.Pane>
 
                 <Grid VerticalAlignment="Top">
-                    <Image Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
+                    <dev:CompositionImage x:Name="BackdropImage"
+                                          Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                FontSize="72"
