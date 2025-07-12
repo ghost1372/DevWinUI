@@ -4,9 +4,9 @@
     <PackageId>$(BaseNamespace).Controls</PackageId>
     <AssemblyName>$(BaseNamespace).Controls</AssemblyName>
     <Description>
-      Experience WinUI 3 quickly and easily with the help of DevWinUI.Controls, Everything you need to develop an application is gathered in one place. DevWinUI.Controls Includes custom controls, styles, landingPages and win2d.
+      Experience WinUI 3 quickly and easily with the help of DevWinUI.Controls, Everything you need to develop an application is gathered in one place. DevWinUI.Controls Includes custom controls, styles, landingPages,Compositions and win2d.
     </Description>
-    <PackageTags>winui winui3 win11 xaml DevWinUI DevWinUI.Controls SettingsUI Components settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard landingPages win2d</PackageTags>
+    <PackageTags>winui winui3 win11 xaml DevWinUI DevWinUI.Controls SettingsUI Components settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard landingPages win2d composition</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="$(Win2dVersion)" />
