@@ -403,6 +403,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CompositionImagePage",
+          "Title": "Composition Image",
+          "Subtitle": "Composition Image",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CompositionBrushPage",
           "Title": "Composition Brush",
           "Subtitle": "Paint XAML UIElements with CompositionBrushes (and load Surfaces from XAML to CompositionBrushes)",
