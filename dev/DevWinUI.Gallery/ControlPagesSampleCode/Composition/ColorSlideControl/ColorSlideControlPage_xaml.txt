@@ -1,0 +1,17 @@
+﻿<ColorPicker x:Name="ColorPickerSample"
+                    IsAlphaSliderVisible="False"
+                    IsAlphaTextInputVisible="False"
+                    IsColorChannelTextInputVisible="False"
+                    IsColorPreviewVisible="False"
+                    IsColorSliderVisible="False"
+                    IsHexInputVisible="False"
+                    IsMoreButtonVisible="False"
+                    Color="Red" />
+<Grid Height="200"
+        SizeChanged="OnSizeChanged">
+    <Button x:Name="BtnStart"
+                    Click="OnClick"
+                    Content="Start" />
+    <dev:ColorSlideControl x:Name="ColorSlideSample"
+                            Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
+</Grid>

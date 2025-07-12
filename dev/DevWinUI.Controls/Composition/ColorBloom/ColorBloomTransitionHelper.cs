@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-public partial class ColorBloomTransitionHelper : IDisposable
+internal partial class ColorBloomTransitionHelper : IDisposable
 {
     private UIElement hostForVisual;
     private Compositor _compositor;

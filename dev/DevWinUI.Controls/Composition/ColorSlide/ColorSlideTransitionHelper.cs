@@ -3,7 +3,7 @@
 /// <summary>
 /// A helper class encapsulating the function and visuals for a Color Slide transition animation.
 /// </summary>
-public partial class ColorSlideTransitionHelper
+internal partial class ColorSlideTransitionHelper
 {
     private UIElement hostForVisual;
     private Compositor _compositor;

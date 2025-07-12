@@ -1,0 +1,10 @@
+﻿private void OnClick(object sender, RoutedEventArgs e)
+{
+    var button = (Button)sender;
+    ColorBloomSample.StartTransition(button, this.RenderSize);
+}
+
+private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+{
+    ColorBloomSample.ApplyClipping(e.NewSize);
+}

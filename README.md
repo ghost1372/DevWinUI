@@ -149,8 +149,8 @@ Install-Package DevWinUI
 - ✨ BlurEffectControl
 - ✨ AnimatedGradient
 - ✨ ShimmerTextBlock
-- ✨ ColorSlideController
-- ✨ ColorBloomController
+- ✨ ColorSlideControl
+- ✨ ColorBloomControl
 - ✨ ForegroundFocusEffects
 - ✨ PerspectiveZoom
 - ✨ CompositionShadow
@@ -294,11 +294,11 @@ Install-Package DevWinUI.ContextMenu
 ### ShimmerTextBlock
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShimmerTextBlock.gif)
 
-### ColorSlideController
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorSlideController.gif)
+### ColorSlideControl
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorSlideControl.gif)
 
-### ColorBloomController
-![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorBloomController.gif)
+### ColorBloomControl
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorBloomControl.gif)
 
 ### ForegroundFocusEffects
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ForegroundFocusEffect.gif)

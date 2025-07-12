@@ -438,15 +438,15 @@
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ColorSlideTransitionPage",
-          "Title": "Color Slide Transition",
+          "UniqueId": "DevWinUIGallery.Views.ColorSlideControlPage",
+          "Title": "Color Slide Control",
           "Subtitle": "Use Visuals and Animations to create a color slide effect during page or state transitions.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ColorBloomTransitionPage",
-          "Title": "Color Bloom Transition",
+          "UniqueId": "DevWinUIGallery.Views.ColorBloomControlPage",
+          "Title": "Color Bloom Control",
           "Subtitle": "Use Visuals and Animations to create a color bloom effect during page or state transitions.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"

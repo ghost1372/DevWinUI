@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ColorBloomControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample CSharpSource="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt"
+                                  DocPage="controls/colorBloomControl"
+                                  XamlSource="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <ColorPicker x:Name="ColorPickerSample"
+                                 IsAlphaSliderVisible="False"
+                                 IsAlphaTextInputVisible="False"
+                                 IsColorChannelTextInputVisible="False"
+                                 IsColorPreviewVisible="False"
+                                 IsColorSliderVisible="False"
+                                 IsHexInputVisible="False"
+                                 IsMoreButtonVisible="False"
+                                 Color="Red" />
+                </local:ControlExample.Pane>
+                <Grid Height="200"
+                      VerticalAlignment="Top"
+                      SizeChanged="OnSizeChanged">
+                    <Button x:Name="BtnStart"
+                            Width="170"
+                            Margin="0,0,0,10"
+                            VerticalAlignment="Top"
+                            Click="OnClick"
+                            Content="Start" />
+                    <dev:ColorBloomControl x:Name="ColorBloomSample"
+                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
