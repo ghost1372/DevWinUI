@@ -309,6 +309,9 @@ Install-Package DevWinUI.ContextMenu
 ### CompositionShadow
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionShadow.gif)
 
+### CompositionImage
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionImage.png)
+
 ### CompositionAnimationController
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CompositionAnimationController.gif)
 
