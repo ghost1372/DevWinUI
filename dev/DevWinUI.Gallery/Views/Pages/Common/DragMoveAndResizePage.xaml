@@ -25,13 +25,14 @@
                                   IsOn="True"
                                   Toggled="SampleTG_Toggled" />
                 </local:ControlExample.Pane>
-                <Grid>
-                    <Rectangle x:Name="DragElement"
-                               Width="400"
+                <Grid x:Name="DragElement">
+                    <Rectangle Width="400"
                                Height="200"
                                Fill="{ThemeResource SystemAccentColor}" />
-                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                               Text="Drag And Drop Me!" />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource TitleTextBlockStyle}"
+                               Text="Drag And Move Me!" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>
