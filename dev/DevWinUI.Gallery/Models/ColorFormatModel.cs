@@ -3,19 +3,19 @@
 public partial class ColorFormatModel : ObservableObject
 {
     [ObservableProperty]
-    private string _name;
+    public partial string Name { get; set; }
 
     [ObservableProperty]
-    private string _example;
+    public partial string Example { get; set; }
 
     [ObservableProperty]
-    private bool _isShown;
+    public partial bool IsShown { get; set; }
 
     [ObservableProperty]
-    private bool _canMoveUp = true;
+    public partial bool CanMoveUp { get; set; } = true;
 
     [ObservableProperty]
-    private bool _canMoveDown = true;
+    public partial bool CanMoveDown { get; set; } = true;
 
     public ColorFormatModel(string name, string example, bool isShown)
     {

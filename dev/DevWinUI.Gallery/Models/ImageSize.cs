@@ -3,20 +3,20 @@
 public partial class ImageSize : ObservableObject
 {
     [ObservableProperty]
-    private int _id;
+    public partial int Id { get; set; }
 
     [ObservableProperty]
-    private string _name;
+    public partial string Name { get; set; }
 
     [ObservableProperty]
-    private int _fit;
+    public partial int Fit { get; set; }
 
     [ObservableProperty]
-    private double _height;
+    public partial double Height { get; set; }
 
     [ObservableProperty]
-    private double _width;
+    public partial double Width { get; set; }
 
     [ObservableProperty]
-    private int _unit;
+    public partial int Unit { get; set; }
 }
