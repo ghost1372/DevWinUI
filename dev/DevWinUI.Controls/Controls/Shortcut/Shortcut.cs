@@ -9,7 +9,7 @@ public partial class Shortcut : BaseShortcut
     private const string PART_OpenDialog = "PART_OpenDialog";
     private Button openDialog;
 
-    private Shortcut shortcut;
+    private ShortcutPreview shortcut;
     private ContentDialog contentDialog;
     private bool canCloseDialog = false;
     private List<object> defaultKeys;
@@ -134,7 +134,7 @@ public partial class Shortcut : BaseShortcut
 
     private async void OpenDialog_Click(object sender, RoutedEventArgs e)
     {
-        shortcut = new Shortcut();
+        shortcut = new ShortcutPreview();
         shortcut.Loaded -= OnShortcutDialogLoaded;
         shortcut.Loaded += OnShortcutDialogLoaded;
         shortcut.KeyDown -= OnKeyDown;
@@ -152,7 +152,6 @@ public partial class Shortcut : BaseShortcut
         shortcut.ErrorTitle = ErrorTitle;
         shortcut.ErrorToolTip = ErrorToolTip;
         shortcut.Title = Title;
-
         contentDialog = new ContentDialog
         {
             XamlRoot = XamlRoot,
