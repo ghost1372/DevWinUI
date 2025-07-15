@@ -22,10 +22,6 @@ public partial class App : Application
     {
         Services = ConfigureServices();
         this.InitializeComponent();
-
-        // Enables Multicore JIT with the specified profile
-        System.Runtime.ProfileOptimization.SetProfileRoot(Constants.RootDirectoryPath);
-        System.Runtime.ProfileOptimization.StartProfile("Startup.Profile");
     }
 
     private static IServiceProvider ConfigureServices()

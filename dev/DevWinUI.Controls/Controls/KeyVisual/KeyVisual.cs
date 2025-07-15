@@ -123,9 +123,8 @@ public sealed partial class KeyVisual : Control
 
             case 91:
             case 92:
-                PathIcon winIcon = XamlReader.Load(
-                    @"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
-                            Data=""M683 1229H0V546h683v683zm819 0H819V546h683v683zm-819 819H0v-683h683v683zm819 0H819v-683h683v683z"" />") as PathIcon;
+                var geometry = GeneralHelper.GetGeometryFromString("M683 1229H0V546h683v683zm819 0H819V546h683v683zm-819 819H0v-683h683v683zm819 0H819v-683h683v683z");
+                PathIcon winIcon = new PathIcon{ Data = geometry };
                 Viewbox container = new Viewbox
                 {
                     Child = winIcon,
