@@ -15,8 +15,8 @@
                 <ControlTemplate TargetType="local:Shortcut">
                     <Grid HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">
-                            <Button Padding="0"
-                                    Command="{Binding OpenDialogCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                            <Button x:Name="PART_OpenDialog"
+                                    Padding="0"
                                     CornerRadius="8">
                                 <StackPanel Margin="12,6,12,6"
                                             Orientation="Horizontal"

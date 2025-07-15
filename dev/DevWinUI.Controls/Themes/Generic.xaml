@@ -1951,7 +1951,7 @@ Themes\Styles\Win2D\Watermark.xaml
         <ControlTemplate TargetType="local:Shortcut">
           <Grid HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">
-              <Button Padding="0" Command="{Binding OpenDialogCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}" CornerRadius="8">
+              <Button x:Name="PART_OpenDialog" Padding="0" CornerRadius="8">
                 <StackPanel Margin="12,6,12,6" Orientation="Horizontal" Spacing="16">
                   <ItemsControl VerticalAlignment="Center" IsEnabled="{TemplateBinding IsEnabled}" IsTabStop="False" ItemsSource="{TemplateBinding Keys}">
                     <ItemsControl.ItemsPanel>

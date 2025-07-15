@@ -2,8 +2,13 @@
 using Windows.System;
 
 namespace DevWinUI;
+
+[TemplatePart(Name = nameof(PART_OpenDialog), Type = typeof(Button))]
 public partial class Shortcut : BaseShortcut
 {
+    private const string PART_OpenDialog = "PART_OpenDialog";
+    private Button openDialog;
+
     private Shortcut shortcut;
     private ContentDialog contentDialog;
     private bool canCloseDialog = false;
@@ -15,7 +20,6 @@ public partial class Shortcut : BaseShortcut
     public event EventHandler<ContentDialogButtonClickEventArgs> PrimaryButtonClick;
     public event EventHandler<ContentDialogButtonClickEventArgs> SecondaryButtonClick;
     public event EventHandler<ContentDialogClosingEventArgs> ClosingContentDialog;
-    public IDelegateCommand OpenDialogCommand { get; }
 
     public IconElement Icon
     {
@@ -38,9 +42,9 @@ public partial class Shortcut : BaseShortcut
     private static void OnIsEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (Shortcut)d;
-        if (ctl != null)
+        if (ctl != null && ctl.openDialog != null)
         {
-            ctl.OpenDialogCommand?.RaiseCanExecuteChanged();
+            ctl.openDialog.IsEnabled = (bool)e.NewValue;
         }
     }
 
@@ -110,27 +114,25 @@ public partial class Shortcut : BaseShortcut
     {
         DefaultStyleKey = typeof(Shortcut);
 
-        OpenDialogCommand = DelegateCommand.Create(OnOpenDialogCommand, CanExecuteOpenDialog);
         if (Icon == null)
         {
             Icon = CreateDefaultIcon();
         }
     }
-    private IconElement CreateDefaultIcon()
+
+    protected override void OnApplyTemplate()
     {
-        return new FontIcon
+        base.OnApplyTemplate();
+        openDialog = GetTemplateChild(PART_OpenDialog) as Button;
+
+        if (openDialog != null)
         {
-            Glyph = GeneralHelper.GetGlyph("E70F"),
-            FontSize = 16,
-            FontFamily = Application.Current.Resources["SymbolThemeFontFamily"] as FontFamily
-        };
-    }
-    private bool CanExecuteOpenDialog()
-    {
-        return IsEnabled;
+            openDialog.Click -= OpenDialog_Click;
+            openDialog.Click += OpenDialog_Click;
+        }
     }
 
-    private async void OnOpenDialogCommand()
+    private async void OpenDialog_Click(object sender, RoutedEventArgs e)
     {
         shortcut = new Shortcut();
         shortcut.Loaded -= OnShortcutDialogLoaded;
@@ -169,6 +171,16 @@ public partial class Shortcut : BaseShortcut
         contentDialog.CloseButtonClick += OnCancelContentDialog;
 
         await contentDialog.ShowAsyncQueue();
+    }
+
+    private IconElement CreateDefaultIcon()
+    {
+        return new FontIcon
+        {
+            Glyph = GeneralHelper.GetGlyph("E70F"),
+            FontSize = 16,
+            FontFamily = Application.Current.Resources["SymbolThemeFontFamily"] as FontFamily
+        };
     }
 
     private void OnShortcutDialogLoaded(object sender, RoutedEventArgs e)
