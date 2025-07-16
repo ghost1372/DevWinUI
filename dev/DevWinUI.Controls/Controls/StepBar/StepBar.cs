@@ -51,6 +51,8 @@ public partial class StepBar : ItemsControl
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Grid))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(LayoutTransformer))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(UniformGrid))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ContentPresenter))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StackPanel))]
     public StepBar()
     {
         this.DefaultStyleKey = typeof(StepBar);
