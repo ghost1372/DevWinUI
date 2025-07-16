@@ -43,5 +43,16 @@ public sealed partial class CheckUpdatePage : Page
             txtIsPreRelease.Text = $"Is PreRelease: {ver.PreRelease.IsPreRelease}";
             txtTagName.Text = $"Tag Name: {ver.PreRelease.TagName}";
         }
+        else
+        {
+            listView.Items.Clear();
+            var noUpdate = "There is no new version available.";
+            txtChangelog.Text = noUpdate;
+            txtReleaseUrl.Text = noUpdate;
+            txtCreatedAt.Text = noUpdate;
+            txtPublishedAt.Text = noUpdate;
+            txtIsPreRelease.Text = noUpdate;
+            txtTagName.Text = noUpdate;
+        }
     }
 }
