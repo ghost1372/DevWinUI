@@ -1,4 +1,5 @@
-﻿using Nucs.JsonSettings;
+﻿using System.Diagnostics.CodeAnalysis;
+using Nucs.JsonSettings;
 using Nucs.JsonSettings.Fluent;
 using Nucs.JsonSettings.Modulation;
 using Nucs.JsonSettings.Modulation.Recovery;
@@ -6,6 +7,7 @@ using Nucs.JsonSettings.Modulation.Recovery;
 namespace DevWinUIGallery.Common;
 public static partial class AppHelper
 {
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(AppConfig))]
     public static AppConfig Settings = JsonSettings.Configure<AppConfig>()
                                .WithRecovery(RecoveryAction.RenameAndLoadDefault)
                                .WithVersioning(VersioningResultAction.RenameAndLoadDefault)
