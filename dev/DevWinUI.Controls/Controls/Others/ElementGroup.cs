@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Markup;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 public partial class ElementGroup : ItemsControl
@@ -21,15 +22,16 @@ public partial class ElementGroup : ItemsControl
         }
     }
 
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ItemsPanelTemplate))]
     private void UpdateOrientation()
     {
         if (Orientation == Orientation.Horizontal)
         {
-            ItemsPanel = (ItemsPanelTemplate)XamlReader.Load("<ItemsPanelTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><StackPanel Orientation='Horizontal'/></ItemsPanelTemplate>");
+            ItemsPanel = Application.Current.Resources["ElementGroupHorizontalItemsPanel"] as ItemsPanelTemplate;
         }
         else
         {
-            ItemsPanel = (ItemsPanelTemplate)XamlReader.Load("<ItemsPanelTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><StackPanel Orientation='Vertical'/></ItemsPanelTemplate>");
+            ItemsPanel = Application.Current.Resources["ElementGroupVerticalItemsPanel"] as ItemsPanelTemplate;
         }
         UpdateElements();
     }

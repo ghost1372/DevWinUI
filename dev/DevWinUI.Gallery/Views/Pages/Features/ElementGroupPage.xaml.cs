@@ -1,4 +1,6 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using WinRT;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class ElementGroupPage : Page
 {
@@ -11,7 +13,7 @@ public sealed partial class ElementGroupPage : Page
     {
         if (ElementGroupSample != null && ElementGroupSample2 != null && ElementGroupSample3 != null)
         {
-            var item = CmbOrientation.SelectedItem as ComboBoxItem;
+            var item = CmbOrientation.SelectedItem.As<ComboBoxItem>();
             var orientation = GeneralHelper.GetEnum<Orientation>(item.Tag.ToString());
             ElementGroupSample.Orientation = orientation;
             ElementGroupSample2.Orientation = orientation;
