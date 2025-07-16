@@ -55,12 +55,5 @@ public partial class App : Application
         MainWindow.AppWindow.SetIcon("Assets/icon.ico");
 
         MainWindow.Activate();
-
-        if (Settings.UseDeveloperMode)
-        {
-            ConfigureLogger();
-        }
-
-        UnhandledException += (s, e) => Logger?.Error(e.Exception, "UnhandledException");
     }
 }

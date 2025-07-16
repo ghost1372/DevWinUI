@@ -10,6 +10,5 @@ public partial class AppConfig : NotifiyingJsonSettings, IVersionable
     public Version Version { get; set; } = new Version(8, 5, 0, 0);
 
     public string fileName { get; set; } = Constants.AppConfigPath;
-    private bool useDeveloperMode { get; set; } = true;
     public string lastUpdateCheck { get; set; }
 }
