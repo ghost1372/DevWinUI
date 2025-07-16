@@ -10,3 +10,4 @@ global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Navigation;
 global using static DevWinUIGallery.Common.AppHelper;
+global using static DevWinUIGallery.Common.LoggerSetup;
