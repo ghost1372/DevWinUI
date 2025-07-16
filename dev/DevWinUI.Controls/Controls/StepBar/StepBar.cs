@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Markup;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 
@@ -39,6 +40,17 @@ public partial class StepBar : ItemsControl
             _ => ItemContainerStyle
         };
     }
+
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ItemsPanelTemplate))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ControlTemplate))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Style))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBar))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBarItem))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ProgressBar))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Border))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Grid))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(LayoutTransformer))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(UniformGrid))]
     public StepBar()
     {
         this.DefaultStyleKey = typeof(StepBar);

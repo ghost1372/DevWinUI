@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DevWinUI;
 public partial class StepBarItem : ContentControl
 {
     private const string ContentPresenterElement = "PART_Content";
@@ -133,6 +135,11 @@ public partial class StepBarItem : ContentControl
             }
         }
     }
+
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBarItem))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ContentPresenter))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StackPanel))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Border))]
     public StepBarItem()
     {
         this.DefaultStyleKey = typeof(StepBarItem);

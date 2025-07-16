@@ -1,4 +1,6 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using WinRT;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class StepBarPage : Page
 {
@@ -23,7 +25,7 @@ public sealed partial class StepBarPage : Page
         {
             return;
         }
-        var item = Cmb.SelectedItem as ComboBoxItem;
+        var item = Cmb.SelectedItem.As<ComboBoxItem>();
         if (item != null)
         {
             var status = GeneralHelper.GetEnum<StepStatus>(item.Tag.ToString());
@@ -38,7 +40,7 @@ public sealed partial class StepBarPage : Page
             return;
         }
 
-        var item = CmbOrientation.SelectedItem as ComboBoxItem;
+        var item = CmbOrientation.SelectedItem.As<ComboBoxItem>();
         if (item != null)
         {
             var orientation = GeneralHelper.GetEnum<Orientation>(item.Tag.ToString());
@@ -52,7 +54,7 @@ public sealed partial class StepBarPage : Page
         {
             return;
         }
-        var item = CmbHeaderDisplayMode.SelectedItem as ComboBoxItem;
+        var item = CmbHeaderDisplayMode.SelectedItem.As<ComboBoxItem>();
         if (item != null)
         {
             var headerDisplayMode = GeneralHelper.GetEnum<StepBarHeaderDisplayMode>(item.Tag.ToString());
