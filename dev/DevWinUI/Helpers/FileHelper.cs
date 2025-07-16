@@ -135,4 +135,62 @@ public partial class FileHelper
 
         return file;
     }
+
+    public static Stream? GetFileFromEmbededResources(Assembly assembly, Uri uri)
+    {
+        Stream? stream = null;
+
+        // Convert ms-appx:///Assets/Mask/ForegroundFocusMask.png -> Assets.Mask.ForegroundFocusMask.png
+        var path = uri.AbsolutePath.TrimStart('/');
+        var resourcePath = path.Replace('/', '.');
+
+        string? resourceName = assembly.GetManifestResourceNames()
+                                       .FirstOrDefault(name => name.EndsWith(resourcePath, StringComparison.OrdinalIgnoreCase));
+        if (resourceName != null)
+        {
+            stream = assembly.GetManifestResourceStream(resourceName);
+        }
+        return stream;
+    }
+
+    public static Stream? GetFileFromUri(Uri uri)
+    {
+        try
+        {
+            string? filePath = null;
+
+            if (uri.IsFile)
+            {
+                filePath = uri.LocalPath;
+            }
+            else if (!uri.IsAbsoluteUri)
+            {
+                filePath = Path.Combine(AppContext.BaseDirectory, uri.OriginalString.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            }
+            else if (uri.Scheme.Equals("ms-appx", StringComparison.OrdinalIgnoreCase))
+            {
+                var path = uri.AbsolutePath.TrimStart('/');
+                filePath = Path.Combine(AppContext.BaseDirectory, path.Replace('/', Path.DirectorySeparatorChar));
+            }
+
+            if (filePath != null && File.Exists(filePath))
+            {
+                return File.OpenRead(filePath);
+            }
+        }
+        catch
+        {
+        }
+
+        return null;
+    }
+
+    public static Stream? GetFileFromEmbededResourcesOrUri(Uri uri, Assembly assembly = null)
+    {
+        var stream = GetFileFromEmbededResources(assembly, uri);
+        if (stream != null)
+            return stream;
+
+        return GetFileFromUri(uri);
+    }
 }
