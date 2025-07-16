@@ -177,7 +177,10 @@ public partial class TextGlitchEffect3 : Control
             AlphaMask = new CompositionEffectSourceParameter("Mask")
         };
 
-        var opacityMaskSurface = LoadedImageSurface.StartLoadFromUri(new Uri("ms-appx:///Assets/Mask/TextGlitchMask.png"));
+        var assembly = typeof(TextGlitchEffect3).Assembly;
+        var stream = FileHelper.GetFileFromEmbededResourcesOrUri(new Uri("ms-appx:///Assets/Mask/TextGlitchMask.png"), assembly);
+
+        var opacityMaskSurface = LoadedImageSurface.StartLoadFromStream(stream.AsRandomAccessStream());
         var opacityBrush = Compositor.CreateSurfaceBrush(opacityMaskSurface);
         opacityBrush.Stretch = CompositionStretch.UniformToFill;
 

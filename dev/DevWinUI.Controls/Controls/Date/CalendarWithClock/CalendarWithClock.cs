@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DevWinUI;
 
 [TemplatePart(Name = PART_CalendarView, Type = typeof(CalendarView))]
 [TemplatePart(Name = PART_TimePicker, Type = typeof(TimePicker))]
@@ -36,6 +38,7 @@ public partial class CalendarWithClock : DateTimeBase
         }
     }
 
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ControlTemplate))]
     public CalendarWithClock()
     {
         this.DefaultStyleKey = typeof(CalendarWithClock);

@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls.Primitives;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
@@ -114,6 +115,7 @@ public partial class CompareSlider : Control
 
     private TranslateTransform translateTransform;
 
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ControlTemplate))]
     public CompareSlider()
     {
         this.DefaultStyleKey = typeof(CompareSlider);

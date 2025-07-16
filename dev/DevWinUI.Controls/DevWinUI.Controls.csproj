@@ -26,17 +26,11 @@
     </XAMLCombineItems>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
+    <EmbeddedResource Include="Assets\Mask\ForegroundFocusMask.png" />
+    <EmbeddedResource Include="Assets\Mask\TextGlitchMask.png" />
+    <EmbeddedResource Include="Assets\Noise\Noise.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Assets\Mask\TextGlitchMask.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Mask\ForegroundFocusMask.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Noise\Noise.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
   </ItemGroup>
 </Project>

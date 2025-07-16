@@ -69,7 +69,18 @@ public partial class BitmapDrawer : IContentDrawer
         }
         else
         {
-            canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, _uri);
+            var assembly = typeof(BitmapDrawer).Assembly;
+
+            var stream = FileHelper.GetFileFromEmbededResourcesOrUri(_uri, assembly);
+
+            if (stream != null)
+            {
+                canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, stream.AsRandomAccessStream());
+            }
+            else
+            {
+                canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, _uri);
+            }
         }
 
         var bitmapSize = canvasBitmap.Size;
