@@ -16,17 +16,6 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="5">
-            <dev:SettingsExpander Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
-                                  Header="Developer Mode (Restart Required)"
-                                  HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/DevMode.png}">
-                <ToggleSwitch IsOn="{x:Bind common:AppHelper.Settings.UseDeveloperMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <dev:SettingsExpander.ItemsHeader>
-                    <HyperlinkButton HorizontalAlignment="Stretch"
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavigateToLogPath_Click"
-                                     Content="{x:Bind common:Constants.LogDirectoryPath}" />
-                </dev:SettingsExpander.ItemsHeader>
-            </dev:SettingsExpander>
         </StackPanel>
     </ScrollView>
 </Page>
