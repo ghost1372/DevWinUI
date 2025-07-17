@@ -531,6 +531,12 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="HyperlinkButtonStyle" TargetType="HyperlinkButton" />
+  <ItemsPanelTemplate x:Key="ElementGroupHorizontalItemsPanel">
+    <StackPanel Orientation="Horizontal" />
+  </ItemsPanelTemplate>
+  <ItemsPanelTemplate x:Key="ElementGroupVerticalItemsPanel">
+    <StackPanel Orientation="Vertical" />
+  </ItemsPanelTemplate>
   <ThemeShadow x:Name="ThemeShadow" />
   <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
   <TransitionCollection x:Key="SettingsCardsAnimations">
