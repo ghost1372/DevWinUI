@@ -139,17 +139,23 @@ public partial class HeaderCarouselItem : Button
     {
         if (_textPanel == null) return;
 
+        // Cancel previous animations
+        _textPanelVisual.StopAnimation("Opacity");
+        _textPanelVisual.Properties.StopAnimation("Translation");
+
+        // Ensure initial visual state
+        _textPanelVisual.Opacity = 0;
+        _textPanelVisual.Properties.InsertVector3("Translation", new Vector3(0, 200, 0));
         _textPanel.Visibility = Visibility.Visible;
         _textPanel.Opacity = 1;
-        ElementCompositionPreview.SetIsTranslationEnabled(_textPanel, true);
 
-        // Opacity animation
+        // Fade-in animation
         var fadeIn = _textPanelCompositor.CreateScalarKeyFrameAnimation();
         fadeIn.InsertKeyFrame(1f, 1f);
         fadeIn.Duration = TimeSpan.FromMilliseconds(400);
         _textPanelVisual.StartAnimation("Opacity", fadeIn);
 
-        // Translation animation
+        // Slide-in animation
         var slideIn = _textPanelCompositor.CreateVector3KeyFrameAnimation();
         slideIn.InsertKeyFrame(1f, Vector3.Zero);
         slideIn.Duration = TimeSpan.FromMilliseconds(600);
@@ -158,7 +164,11 @@ public partial class HeaderCarouselItem : Button
 
     private void AnimateHidePanel()
     {
-        if (_textPanel == null) return;
+        if (_textPanel == null || _textPanel.Visibility != Visibility.Visible)
+            return;
+
+        _textPanelVisual.StopAnimation("Opacity");
+        _textPanelVisual.Properties.StopAnimation("Translation");
 
         var fadeOut = _textPanelCompositor.CreateScalarKeyFrameAnimation();
         fadeOut.InsertKeyFrame(1f, 0f);
@@ -171,7 +181,11 @@ public partial class HeaderCarouselItem : Button
         var batch = _textPanelCompositor.CreateScopedBatch(CompositionBatchTypes.Animation);
         batch.Completed += (s, e) =>
         {
-            _textPanel.Visibility = Visibility.Collapsed;
+            // Important: only collapse if still not selected
+            if (!IsSelected && _textPanel != null)
+            {
+                _textPanel.Visibility = Visibility.Collapsed;
+            }
         };
 
         _textPanelVisual.StartAnimation("Opacity", fadeOut);
@@ -182,19 +196,20 @@ public partial class HeaderCarouselItem : Button
 
     private void PlaySelectAnimation()
     {
-        // Animate scale to 1.0
+        visual.StopAnimation("Scale");
+        _dropShadow.StopAnimation(nameof(_dropShadow.Opacity));
+        _dropShadow.StopAnimation(nameof(_dropShadow.BlurRadius));
+
         var scaleAnim = compositor.CreateVector3KeyFrameAnimation();
         scaleAnim.InsertKeyFrame(1f, new Vector3(1f, 1f, 1f));
         scaleAnim.Duration = TimeSpan.FromMilliseconds(600);
         visual.StartAnimation("Scale", scaleAnim);
 
-        // Animate shadow opacity to 0.4
         var opacityAnim = compositor.CreateScalarKeyFrameAnimation();
         opacityAnim.InsertKeyFrame(1f, 0.4f);
         opacityAnim.Duration = TimeSpan.FromMilliseconds(600);
         _dropShadow.StartAnimation(nameof(_dropShadow.Opacity), opacityAnim);
 
-        // Animate shadow blur radius to 24
         var blurAnim = compositor.CreateScalarKeyFrameAnimation();
         blurAnim.InsertKeyFrame(1f, 24f);
         blurAnim.Duration = TimeSpan.FromMilliseconds(600);
@@ -203,6 +218,10 @@ public partial class HeaderCarouselItem : Button
 
     private void PlayDeselectAnimation()
     {
+        visual.StopAnimation("Scale");
+        _dropShadow.StopAnimation(nameof(_dropShadow.Opacity));
+        _dropShadow.StopAnimation(nameof(_dropShadow.BlurRadius));
+
         // Scale animation to 0.8
         var scaleAnim = compositor.CreateVector3KeyFrameAnimation();
         scaleAnim.InsertKeyFrame(1f, new Vector3(0.8f, 0.8f, 1f));

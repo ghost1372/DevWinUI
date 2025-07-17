@@ -22,7 +22,7 @@ public partial class HeaderCarousel : ItemsControl
 
     public HeaderCarousel()
     {
-        DefaultStyleKey = typeof(HeaderCarousel);    
+        DefaultStyleKey = typeof(HeaderCarousel);
     }
 
     protected override void OnApplyTemplate()
@@ -260,20 +260,24 @@ public partial class HeaderCarousel : ItemsControl
         SelectTile();
     }
 
+    private bool _isSelecting = false;
+
     private async void SelectTile()
     {
-        await Task.Delay(100);
-        selectionTimer?.Stop();
-        deselectionTimer?.Stop();
+        if (_isSelecting) return;
+
+        _isSelecting = true;
+        await Task.Delay(100); // debounce small movements
+        selectionTimer.Stop();
+        deselectionTimer.Stop();
 
         foreach (HeaderCarouselItem t in Items)
-        {
             t.IsSelected = false;
-        }
 
-        // Wait for the animation of a potential other tile to finish
-        await Task.Delay(360);
+        await Task.Delay(360); // ensure animations finish
         SetTileVisuals();
+
+        _isSelecting = false;
     }
 
     private void Tile_GotFocus(object sender, RoutedEventArgs e)
