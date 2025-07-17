@@ -72,7 +72,9 @@ public partial class HeaderCarousel : ItemsControl
 
     private void HeaderCarousel_Loaded(object sender, RoutedEventArgs e)
     {
+        selectionTimer.Tick -= SelectionTimer_Tick;
         selectionTimer.Tick += SelectionTimer_Tick;
+        deselectionTimer.Tick -= DeselectionTimer_Tick;
         deselectionTimer.Tick += DeselectionTimer_Tick;
 
         ApplyAutoScroll();
@@ -165,10 +167,10 @@ public partial class HeaderCarousel : ItemsControl
             selectedTile = null;
         }
 
-        deselectionTimer.Stop();
+        deselectionTimer?.Stop();
 
         if (IsAutoScrollEnabled)
-            selectionTimer.Start();
+            selectionTimer?.Start();
     }
 
     private void ResetAndShuffle()
@@ -249,7 +251,7 @@ public partial class HeaderCarousel : ItemsControl
     {
         ((HeaderCarouselItem)sender).IsSelected = false;
         if (IsAutoScrollEnabled)
-            selectionTimer.Start();
+            selectionTimer?.Start();
     }
 
     private void Tile_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -261,8 +263,8 @@ public partial class HeaderCarousel : ItemsControl
     private async void SelectTile()
     {
         await Task.Delay(100);
-        selectionTimer.Stop();
-        deselectionTimer.Stop();
+        selectionTimer?.Stop();
+        deselectionTimer?.Stop();
 
         foreach (HeaderCarouselItem t in Items)
         {
@@ -284,7 +286,7 @@ public partial class HeaderCarousel : ItemsControl
     {
         ((HeaderCarouselItem)sender).IsSelected = false;
         if (IsAutoScrollEnabled)
-            selectionTimer.Start();
+            selectionTimer?.Start();
     }
 
     private void ApplyAutoScroll()
