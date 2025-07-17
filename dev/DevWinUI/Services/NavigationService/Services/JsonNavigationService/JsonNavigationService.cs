@@ -177,7 +177,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
             if (suggestions.Count > 0)
             {
-                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title);
+                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title).ToList();
             }
             else
             {
