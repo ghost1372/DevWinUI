@@ -10,7 +10,7 @@ namespace DevWinUI;
 /// <summary>
 /// AutomationPeer for SettingsCard
 /// </summary>
-public partial class SettingsCardAutomationPeer : FrameworkElementAutomationPeer
+public partial class SettingsCardAutomationPeer : ButtonBaseAutomationPeer
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsCard"/> class.
@@ -67,5 +67,24 @@ public partial class SettingsCardAutomationPeer : FrameworkElementAutomationPeer
         }
 
         return base.GetNameCore();
+    }
+
+    protected override object? GetPatternCore(PatternInterface patternInterface)
+    {
+        if (patternInterface == PatternInterface.Invoke)
+        {
+            if (Owner is SettingsCard settingsCard && settingsCard.IsClickEnabled)
+            {
+                // Only provide Invoke pattern if the card is clickable
+                return this;
+            }
+            else
+            {
+                // Not clickable, do not provide Invoke pattern
+                return null;
+            }
+        }
+
+        return base.GetPatternCore(patternInterface);
     }
 }
