@@ -154,16 +154,16 @@ if (menuService != null && RuntimeHelper.IsPackaged())
 
     public static readonly string DeveloperModeSettingCode =
 """
-            <dev:SettingsCard Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
-                              Header="Developer Mode (Restart Required)"
+            <dev:SettingsCard Description="Help us improve this app by sharing optional diagnostics data to inform bug fixes, performance, and feature enhancements"
+                              Header="Diagnostics &amp; feedback (Restart Required)"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/DevMode.png}">
                 <ToggleSwitch />
             </dev:SettingsCard>
 """;
     public static readonly string DeveloperModeSettingCode2 =
 """
-            <dev:SettingsExpander Description="By activating this option, if an error or crash occurs, its information will be saved in a file called Log{YYYYMMDD}.txt"
-                                  Header="Developer Mode (Restart Required)"
+            <dev:SettingsExpander Description="Help us improve this app by sharing optional diagnostics data to inform bug fixes, performance, and feature enhancements"
+                                  Header="Diagnostics &amp; feedback (Restart Required)"
                                   HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/DevMode.png}">
                 <ToggleSwitch IsOn="{x:Bind common:AppHelper.Settings.UseDeveloperMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <dev:SettingsExpander.ItemsHeader>
