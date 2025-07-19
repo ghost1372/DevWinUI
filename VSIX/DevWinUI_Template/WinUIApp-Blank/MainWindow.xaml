@@ -14,10 +14,13 @@
         <TitleBar x:Name="AppTitleBar"
                   Title="$safeprojectname$"
                   Subtitle="1.0.0">
-            <TitleBar.IconSource>
-                <BitmapIconSource ShowAsMonochrome="False"
-                                  UriSource="ms-appx:///Assets/AppIcon.png" />
-            </TitleBar.IconSource>
+            <!--  Temporary Fix TitleBar Icon  -->
+            <TitleBar.LeftHeader>
+                <BitmapIcon Width="16"
+                            Height="16"
+                            ShowAsMonochrome="False"
+                            UriSource="ms-appx:///Assets/AppIcon.png" />
+            </TitleBar.LeftHeader>
         </TitleBar>
         <StackPanel Grid.Row="1">
 

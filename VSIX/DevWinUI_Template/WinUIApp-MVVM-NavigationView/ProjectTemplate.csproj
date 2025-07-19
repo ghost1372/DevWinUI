@@ -15,7 +15,8 @@
 	<ImplicitUsings>true</ImplicitUsings>
 	<LangVersion>Latest</LangVersion>
 	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-	<IsAotCompatible>$PublishAot$</IsAotCompatible>
+	<IsAotCompatible>true</IsAotCompatible>
+  <CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
 	<WindowsPackageType>$WindowsPackageType$</WindowsPackageType>
 	<ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
 	<Version>1.0.0</Version>

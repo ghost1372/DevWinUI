@@ -68,7 +68,7 @@
 	  </Folder>
     </Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>

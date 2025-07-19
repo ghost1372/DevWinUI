@@ -126,7 +126,7 @@
 	  </Folder>
 	</Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Xaml.Behaviors.WinUI.Managed"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>

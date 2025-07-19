@@ -31,20 +31,14 @@
                               Header="Material"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Backdrop.png}">
                 <ComboBox dev:ThemeServiceAttach.ThemeService="{x:Bind local:App.Current.ThemeService}">
-                    <ComboBoxItem Content="None"
-                                  Tag="None" />
                     <ComboBoxItem Content="Mica"
                                   Tag="Mica" />
                     <ComboBoxItem Content="Mica Alt"
                                   Tag="MicaAlt" />
-                    <ComboBoxItem Content="Desktop Acrylic"
-                                  Tag="DesktopAcrylic" />
                     <ComboBoxItem Content="Acrylic Base"
                                   Tag="AcrylicBase" />
                     <ComboBoxItem Content="Acrylic Thin"
                                   Tag="AcrylicThin" />
-                    <ComboBoxItem Content="Transparent"
-                                  Tag="Transparent" />
                 </ComboBox>
             </dev:SettingsCard>
             <dev:SettingsCard ActionIcon="{dev:BitmapIcon Source=Assets/Fluent/External.png}"

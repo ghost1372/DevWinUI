@@ -14,8 +14,15 @@
         </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar"
                   Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                  IconSource="{dev:BitmapIconSource Source=ms-appx:///Assets/AppIcon.png}"
-                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}" />
+                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+            <!--  Temporary Fix TitleBar Icon  -->
+            <TitleBar.LeftHeader>
+                <BitmapIcon Width="16"
+                            Height="16"
+                            ShowAsMonochrome="False"
+                            UriSource="ms-appx:///Assets/AppIcon.png" />
+            </TitleBar.LeftHeader>
+        </TitleBar>
         <StackPanel Grid.Row="1">
 
         </StackPanel>

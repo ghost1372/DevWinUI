@@ -9,14 +9,16 @@
 	<RuntimeIdentifiers>$RuntimeIdentifiers$</RuntimeIdentifiers>
 	<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 	<UseWinUI>true</UseWinUI>
-    <EnableMsixTooling>true</EnableMsixTooling>
-    <Nullable>$Nullable$</Nullable>
-    <TrimMode>$TrimMode$</TrimMode>
-    <ImplicitUsings>true</ImplicitUsings>
+  <EnableMsixTooling>true</EnableMsixTooling>
+  <Nullable>$Nullable$</Nullable>
+  <TrimMode>$TrimMode$</TrimMode>
+  <ImplicitUsings>true</ImplicitUsings>
 	<LangVersion>Latest</LangVersion>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  <IsAotCompatible>true</IsAotCompatible>
+  <CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
 	<WindowsPackageType>$WindowsPackageType$</WindowsPackageType>
-    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+  <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
 	<Version>1.0.0</Version>
 
 	<!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->

@@ -59,7 +59,7 @@
       </Folder>
     </Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.Windows.SDK.BuildTools;MSTest.TestAdapter;MSTest.TestFramework;Microsoft.TestPlatform.TestHost;Microsoft.WindowsAppSDK"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.Windows.SDK.BuildTools;MSTest.TestAdapter;MSTest.TestFramework;Microsoft.TestPlatform.TestHost;Microsoft.WindowsAppSDK;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>
