@@ -36,7 +36,7 @@ public sealed partial class LayoutTransformer : ContentControl
     /// Identifies the LayoutTransform DependencyProperty.
     /// </summary>
     public static readonly DependencyProperty LayoutTransformProperty = DependencyProperty.Register(
-        "LayoutTransform", typeof(Transform), typeof(LayoutTransformer), new PropertyMetadata(null, LayoutTransformChanged));
+        nameof(LayoutTransform), typeof(Transform), typeof(LayoutTransformer), new PropertyMetadata(null, LayoutTransformChanged));
 
     /// <summary>
     /// Gets the child element being transformed.
