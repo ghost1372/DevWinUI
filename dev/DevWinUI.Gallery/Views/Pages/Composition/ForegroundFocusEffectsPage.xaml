@@ -25,7 +25,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample"
-                                            Effect="{x:Bind CmbEffectType.SelectedIndex, Mode=OneWay, Converter={StaticResource IndexToForegroundFocusEffectTypesConverter}}">
+                                            Effect="{x:Bind ((dev:ForegroundFocusEffectTypes)CmbEffectType.SelectedItem), Mode=OneWay}">
                     <ListView IsItemClickEnabled="True"
                               ItemClick="OnItemClick"
                               ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">

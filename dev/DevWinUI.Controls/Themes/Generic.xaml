@@ -65,6 +65,7 @@ Themes\Styles\Controls\Shimmer.xaml
 Themes\Styles\Controls\ShimmerTextBlock.xaml
 Themes\Styles\Controls\Shortcut.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
+Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\TextBox.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
@@ -7989,6 +7990,48 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultSplitCircleStyle" TargetType="local:SplitCircle">
+    <Setter Property="FirstColor" Value="{ThemeResource SystemFillColorSuccess}" />
+    <Setter Property="SecondColor" Value="{ThemeResource SystemFillColorCritical}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:SplitCircle">
+          <Viewbox Stretch="Fill">
+            <Border Padding="{TemplateBinding Padding}">
+              <Canvas Width="100" Height="100">
+                <!--  First Half  -->
+                <Path x:Name="FirstHalf" Fill="{TemplateBinding FirstColorBrush}">
+                  <Path.Data>
+                    <PathGeometry>
+                      <PathFigure x:Name="PART_FirstFigure" IsClosed="True" StartPoint="50,0">
+                        <ArcSegment x:Name="PART_FirstArc" IsLargeArc="True" Point="50,100" Size="50,50" SweepDirection="Clockwise" />
+                        <LineSegment Point="50,50" />
+                      </PathFigure>
+                    </PathGeometry>
+                  </Path.Data>
+                </Path>
+                <Border Width="100" Height="100" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Canvas.ZIndex="0" CornerRadius="360" Visibility="{Binding ShowMicaLayer, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <!--  Second Half  -->
+                <Path x:Name="SecondHalf" Fill="{TemplateBinding SecondColorBrush}">
+                  <Path.Data>
+                    <PathGeometry>
+                      <PathFigure x:Name="PART_SecondFigure" IsClosed="True" StartPoint="50,0">
+                        <ArcSegment x:Name="PART_SecondArc" IsLargeArc="True" Point="50,100" Size="50,50" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="50,50" />
+                      </PathFigure>
+                    </PathGeometry>
+                  </Path.Data>
+                </Path>
+              </Canvas>
+            </Border>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="StepBarItemHorizontalStyle" TargetType="local:StepBarItem">
     <Setter Property="Margin" Value="10,0" />
     <Setter Property="Template">
@@ -9409,6 +9452,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}" TargetType="local:SettingsGroup" />
   <Style BasedOn="{StaticResource DefaultShieldStyle}" TargetType="local:Shield" />
   <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" TargetType="local:SimpleSettingsGroup" />
+  <Style BasedOn="{StaticResource DefaultSplitCircleStyle}" TargetType="local:SplitCircle" />
   <Style x:Key="DefaultStepBarStyle" TargetType="local:StepBar">
     <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />

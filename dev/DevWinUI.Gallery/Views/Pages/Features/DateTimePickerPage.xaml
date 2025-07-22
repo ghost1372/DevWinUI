@@ -30,7 +30,7 @@
                                  PlaceholderText="Confirm"
                                  Text="Confirm" />
                         <Button Click="ShowDateTimeForOne"
-        Content="Show Selected DateTime" />
+                                Content="Show Selected DateTime" />
                         <TextBlock x:Name="TxtDateTime1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
@@ -78,7 +78,7 @@
                                  PlaceholderText="Confirm"
                                  Text="Confirm" />
                         <Button Click="ShowDateTimeForTwo"
-        Content="Show selected DateTime" />
+                                Content="Show selected DateTime" />
                         <TextBlock x:Name="TxtDateTime2" />
                     </StackPanel>
                 </local:ControlExample.Pane>

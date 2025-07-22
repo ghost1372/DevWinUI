@@ -14,7 +14,7 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample DocPage="animatedImage"
+            <local:ControlExample DocPage="controls/animatedImage"
                                   HeaderText="AnimatedImage">
                 <local:ControlExample.Xaml>
                     <x:String>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SplitCirclePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/splitCircle"
+                                  HeaderText="SplitCircle">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SplitCircle FirstColor="Red" SecondColor="Green" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGShowMica"
+                                      Header="Show Mica Layer"
+                                      IsOn="True" />
+                        <ComboBox x:Name="CmbSplitOrientation"
+                                  Header="Split Orientation"
+                                  ItemsSource="{x:Bind ViewModel.SplitOrientationItems, Mode=OneWay}"
+                                  SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="Orientation">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Orientation="Horizontal"
+                            Spacing="10">
+                    <Viewbox Stretch="Uniform">
+                        <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}"
+                                         SecondColor="{ThemeResource SystemFillColorCaution}"
+                                         ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}"
+                                         SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
+                    </Viewbox>
+                    <Viewbox>
+                        <dev:SplitCircle ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}"
+                                         SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
+                    </Viewbox>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

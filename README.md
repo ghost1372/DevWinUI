@@ -144,7 +144,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
-- ✨ BlurEffectBrush  
+- ✨ SplitCircle
+- ✨ BlurEffectBrush
 - ✨ ImageEffectBrush 
 - ✨ BlurEffectControl
 - ✨ AnimatedGradient
@@ -278,6 +279,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SplitCircle
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SplitCircle.png)
 
 ### ImageEffectBrush
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ImageEffectBrush.gif)

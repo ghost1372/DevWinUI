@@ -89,6 +89,13 @@ public partial class BaseViewModel : ObservableObject
 
     #endregion
 
+    #region SpliCircle
+
+    [ObservableProperty]
+    public partial ObservableCollection<Orientation> SplitOrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
+
+    #endregion
+
     [ObservableProperty]
     public partial ObservableCollection<SampleData> SampleImageAndTextData { get; set; } = new ObservableCollection<SampleData>()
     {
