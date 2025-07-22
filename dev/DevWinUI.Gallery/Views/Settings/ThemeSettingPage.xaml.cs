@@ -14,21 +14,18 @@ public sealed partial class ThemeSettingPage : Page
         App.Current.ThemeService.SetBackdropTintColor(args.NewColor);
     }
 
-    private void ColorPalette_ItemClick(object sender, ItemClickEventArgs e)
+    private void OnColorPaletteColorChanged(object sender, ColorPaletteColorChangedEventArgs e)
     {
-        var color = e.ClickedItem as ColorPaletteItem;
-        if (color != null)
+        if (e.Color.ToString().Contains("#FF000000") || e.Color.ToString().Contains("#000000"))
         {
-            if (color.Hex.Contains("#000000"))
-            {
-                App.Current.ThemeService.ResetBackdropProperties();
-            }
-            else
-            {
-                App.Current.ThemeService.SetBackdropTintColor(color.Color);
-            }
-            TintBox.Fill = new SolidColorBrush(color.Color);
+            App.Current.ThemeService.ResetBackdropProperties();
         }
+        else
+        {
+            App.Current.ThemeService.SetBackdropTintColor(e.Color);
+        }
+
+        TintBox.Fill = new SolidColorBrush(e.Color);
     }
 }
 

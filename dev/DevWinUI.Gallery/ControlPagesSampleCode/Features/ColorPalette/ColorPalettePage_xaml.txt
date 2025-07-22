@@ -1,0 +1,8 @@
+﻿<dev:ColorPalette ColorSet="Custom">
+    <dev:ColorPalette.Colors>
+        <dev:ColorPaletteItem Color="Red"/>
+        <dev:ColorPaletteItem Color="Green"/>
+        <dev:ColorPaletteItem Color="Orange"/>
+        <dev:ColorPaletteItem Color="Blue"/>
+    </dev:ColorPalette.Colors>
+</dev:ColorPalette>

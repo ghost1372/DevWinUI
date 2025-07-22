@@ -96,6 +96,16 @@ public partial class BaseViewModel : ObservableObject
 
     #endregion
 
+    #region ColorPalette
+
+    [ObservableProperty]
+    public partial ObservableCollection<ColorSetType> ColorSetItems { get; set; } = new ObservableCollection<ColorSetType>(Enum.GetValues<ColorSetType>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<ColorItemShape> ColorItemShapeItems { get; set; } = new ObservableCollection<ColorItemShape>(Enum.GetValues<ColorItemShape>());
+
+    #endregion
+
     [ObservableProperty]
     public partial ObservableCollection<SampleData> SampleImageAndTextData { get; set; } = new ObservableCollection<SampleData>()
     {

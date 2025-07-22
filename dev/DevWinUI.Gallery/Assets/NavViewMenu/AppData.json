@@ -132,6 +132,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ColorPalettePage",
+          "Title": "Color Palette",
+          "Subtitle": "Color Palette",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Shape.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SplitCirclePage",
           "Title": "Split Circle",
           "Subtitle": "Circle with 2 different Colors",

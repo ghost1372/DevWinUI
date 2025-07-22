@@ -11,8 +11,6 @@
     <local:CornerRadiusSplitConverter x:Key="CornerRadiusSplitConverter" />
     <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
     <local:WaveProgressBarValueToPercentConverter x:Key="WaveProgressBarValueToPercentConverter" />
-    <local:StringToBrushConverter x:Key="StringToBrushConverter" />
-    <local:WidthToHalfHeightConverter x:Key="WidthToHalfHeightConverter" />
     <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
     <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <local:StringToUriConverter x:Key="StringToUriConverter" />

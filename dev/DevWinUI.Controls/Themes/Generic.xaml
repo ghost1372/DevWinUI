@@ -28,6 +28,8 @@ Themes\Styles\Controls\CalendarWithClockStyle.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
+Themes\Styles\Controls\ColorPalette.xaml
+Themes\Styles\Controls\ColorPaletteItem.xaml
 Themes\Styles\Controls\CompareSlider.xaml
 Themes\Styles\Controls\CompositionShadow.xaml
 Themes\Styles\Controls\CopyButton.xaml
@@ -569,8 +571,6 @@ Themes\Styles\Win2D\Watermark.xaml
   <local:CornerRadiusSplitConverter x:Key="CornerRadiusSplitConverter" />
   <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
   <local:WaveProgressBarValueToPercentConverter x:Key="WaveProgressBarValueToPercentConverter" />
-  <local:StringToBrushConverter x:Key="StringToBrushConverter" />
-  <local:WidthToHalfHeightConverter x:Key="WidthToHalfHeightConverter" />
   <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
   <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <local:StringToUriConverter x:Key="StringToUriConverter" />
@@ -775,6 +775,26 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultColorPaletteStyle" TargetType="local:ColorPalette">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <local:WrapPanel />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <ControlTemplate x:Key="ColorPaletteCircleTemplate" TargetType="local:ColorPaletteItem">
+    <Border Padding="5">
+      <local:SplitCircle Padding="{TemplateBinding Padding}" AutomationProperties.Name="{TemplateBinding InternalColorName}" FirstColor="{TemplateBinding Color}" SecondColor="{TemplateBinding Color}" />
+    </Border>
+  </ControlTemplate>
+  <ControlTemplate x:Key="ColorPaletteRectangleTemplate" TargetType="local:ColorPaletteItem">
+    <Border Padding="{TemplateBinding Padding}">
+      <Border AutomationProperties.Name="{TemplateBinding InternalColorName}" Background="{TemplateBinding ColorBrush}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" />
+    </Border>
+  </ControlTemplate>
   <Style x:Key="DefaultCompositionShadowStyle" TargetType="local:CompositionShadow">
     <Setter Property="Template">
       <Setter.Value>
@@ -5808,6 +5828,34 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
+  <Style BasedOn="{StaticResource DefaultColorPaletteStyle}" TargetType="local:ColorPalette" />
+  <Style x:Key="DefaultColorPaletteItemStyle" TargetType="local:ColorPaletteItem">
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template" Value="{StaticResource ColorPaletteRectangleTemplate}" />
+  </Style>
+  <ControlTemplate x:Key="ColorPaletteTabViewTemplate" TargetType="local:ColorPaletteItem">
+    <Grid Padding="{TemplateBinding Padding}" AutomationProperties.Name="{TemplateBinding InternalColorName}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="16" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <!--  Background  -->
+      <Border Grid.RowSpan="2" Height="66" Background="{TemplateBinding ColorBrush}" CornerRadius="4,4,0,0" />
+      <!--  Tab Bar  -->
+      <StackPanel Orientation="Horizontal">
+        <Border Width="4" Height="1" VerticalAlignment="Bottom" Background="{ThemeResource ControlElevationBorderBrush}" />
+        <Border Width="32" Height="12" VerticalAlignment="Bottom" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="4,4,0,0" />
+        <Border Width="86" Height="1" VerticalAlignment="Bottom" Background="{ThemeResource ControlElevationBorderBrush}" />
+      </StackPanel>
+      <!--  File area  -->
+      <Border Grid.Row="1" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="0,0,0,.5" />
+      <TextBlock Grid.Row="2" Padding="4" HorizontalAlignment="Center" Text="{TemplateBinding InternalColorName}" TextTrimming="CharacterEllipsis" Visibility="{Binding ShowColorName, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Grid>
+  </ControlTemplate>
   <Style x:Key="SliderThumbStyle" TargetType="Thumb">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Background" Value="{ThemeResource SliderThumbBackground}" />
@@ -9387,6 +9435,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
     <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}" TargetType="local:ColorPaletteItem" />
   <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">
     <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />
     <Setter Property="BorderThickness" Value="1" />

@@ -85,13 +85,8 @@
                 <dev:SettingsExpander.ItemsHeader>
                     <dev:SettingsCard>
                         <dev:SettingsCard.Description>
-                            <dev:ColorPalette Margin="5,5,0,0"
-                                              HorizontalAlignment="Left"
-                                              ItemClick="ColorPalette_ItemClick"
-                                              ItemWidth="32"
-                                              Palette="Rectangle"
-                                              ShowHeader="False"
-                                              Color="NormalLarge" />
+                            <dev:ColorPalette ColorChanged="OnColorPaletteColorChanged"
+                                              ColorSet="Extended" />
                         </dev:SettingsCard.Description>
                     </dev:SettingsCard>
                 </dev:SettingsExpander.ItemsHeader>

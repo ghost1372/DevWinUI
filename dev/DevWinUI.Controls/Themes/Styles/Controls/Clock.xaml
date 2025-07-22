@@ -30,7 +30,7 @@
 
     <Style BasedOn="{StaticResource DefaultClockStyle}"
            TargetType="local:Clock" />
-    
+
     <Style x:Key="DefaultClockStyle"
            TargetType="local:Clock">
         <Setter Property="BorderThickness" Value="1" />
