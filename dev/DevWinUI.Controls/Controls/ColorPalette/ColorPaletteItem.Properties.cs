@@ -106,7 +106,7 @@ public partial class ColorPaletteItem
     }
 
     public static readonly DependencyProperty ColorProperty =
-        DependencyProperty.Register(nameof(Color), typeof(Color), typeof(ColorPaletteItem), new PropertyMetadata(null, OnColorChanged));
+        DependencyProperty.Register(nameof(Color), typeof(Color), typeof(ColorPaletteItem), new PropertyMetadata(ColorHelper.GetColorFromHex("#FFFFFF"), OnColorChanged));
 
     private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

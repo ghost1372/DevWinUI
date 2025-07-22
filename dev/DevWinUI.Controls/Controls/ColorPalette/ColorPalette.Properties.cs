@@ -1,6 +1,4 @@
-﻿
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public partial class ColorPalette
 {
     public Color SelectedColor
@@ -10,7 +8,7 @@ public partial class ColorPalette
     }
 
     public static readonly DependencyProperty SelectedColorProperty =
-        DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ColorPalette), new PropertyMetadata(null, OnSelectedColorChanged));
+        DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ColorPalette), new PropertyMetadata(ColorHelper.GetColorFromHex("#FFFFFF"), OnSelectedColorChanged));
 
     private static void OnSelectedColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

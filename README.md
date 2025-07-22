@@ -144,6 +144,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ DropdownColorPicker
 - ✨ ColorPalette
 - ✨ SplitCircle
 - ✨ BlurEffectBrush
@@ -280,6 +281,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### DropdownColorPicker
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DropdownColorPicker.gif)
 
 ### ColorPalette
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorPalette.gif)

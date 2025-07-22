@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}"
+           TargetType="local:DropdownColorPicker" />
+
+    <Style x:Key="DefaultDropdownColorPickerStyle"
+           TargetType="local:DropdownColorPicker">
+        <Setter Property="Background" Value="Gray" />
+        <Setter Property="Foreground" Value="LightGray" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="TintBoxCornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="TintBoxMargin" Value="0" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DropdownColorPicker">
+                    <Button Padding="{TemplateBinding Padding}">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="5">
+                            <Border Width="{TemplateBinding TintBoxWidth}"
+                                    Height="{TemplateBinding TintBoxHeight}"
+                                    Margin="{TemplateBinding TintBoxMargin}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding TintBoxCornerRadius}">
+                                <Grid>
+                                    <PathIcon Data="M0 6 L0 0 L6 0 L6 6 L12 6 L12 0 L18 0 L18 6 L12 6 L12 12 L18 12 L18 6 L24 6 L24 12 L18 12 L18 18 L24 18 L24 24 L6 24 L6 18 L0 18 L0 12 L6 12 L6 18 L12 18 L12 24 L18 24 L18 18 L12 18 L12 12 L6 12 L6 6 Z"
+                                              Foreground="{TemplateBinding Foreground}" />
+                                    <Rectangle x:Name="PART_Rectangle" />
+                                </Grid>
+                            </Border>
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Style="{ThemeResource BaseTextBlockStyle}"
+                                       Text="{Binding Color, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       Visibility="{Binding IsColorCodeVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <AnimatedIcon Width="20"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                <animatedvisuals:AnimatedChevronDownSmallVisualSource />
+                                <AnimatedIcon.FallbackIconSource>
+                                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                    FontSize="14"
+                                                    Glyph="&#xE70D;"
+                                                    IsTextScaleFactorEnabled="False" />
+                                </AnimatedIcon.FallbackIconSource>
+                            </AnimatedIcon>
+                        </StackPanel>
+                        <Button.Flyout>
+                            <Flyout x:Name="PART_Flyout">
+                                <Grid>
+                                    <ColorPicker x:Name="PART_ColorPicker"
+                                                 ColorSpectrumShape="{TemplateBinding ColorSpectrumShape}"
+                                                 IsAlphaEnabled="{TemplateBinding IsAlphaEnabled}"
+                                                 IsAlphaSliderVisible="{TemplateBinding IsAlphaSliderVisible}"
+                                                 IsAlphaTextInputVisible="{TemplateBinding IsAlphaTextInputVisible}"
+                                                 IsColorChannelTextInputVisible="{TemplateBinding IsColorChannelTextInputVisible}"
+                                                 IsColorPreviewVisible="{TemplateBinding IsColorPreviewVisible}"
+                                                 IsColorSliderVisible="{TemplateBinding IsColorSliderVisible}"
+                                                 IsColorSpectrumVisible="{TemplateBinding IsColorSpectrumVisible}"
+                                                 IsHexInputVisible="{TemplateBinding IsHexInputVisible}"
+                                                 IsMoreButtonVisible="{TemplateBinding IsMoreButtonVisible}" />
+                                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                                      Content="{TemplateBinding ColorPalette}" />
+                                </Grid>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

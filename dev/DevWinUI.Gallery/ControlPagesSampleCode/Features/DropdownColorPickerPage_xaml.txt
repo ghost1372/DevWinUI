@@ -1,0 +1,5 @@
+﻿<dev:DropdownColorPicker>
+    <dev:DropdownColorPicker.ColorPalette>
+        <dev:ColorPalette />
+    </dev:DropdownColorPicker.ColorPalette>
+</dev:DropdownColorPicker>

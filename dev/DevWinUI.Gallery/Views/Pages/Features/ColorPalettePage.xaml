@@ -77,7 +77,7 @@
             </local:ControlExample>
             <local:ControlExample DocPage="controls/colorPalette"
                                   HeaderText="Direct Xaml Items"
-                                  XamlSource="Features/ColorPalette/ColorPalettePage_xaml.txt">
+                                  XamlSource="Features/ColorPalettePage_xaml.txt">
                 <dev:ColorPalette ColorSet="Custom">
                     <dev:ColorPalette.Colors>
                         <dev:ColorPaletteItem Color="Red" />

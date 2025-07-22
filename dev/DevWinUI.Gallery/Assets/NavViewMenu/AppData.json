@@ -132,6 +132,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
+          "Title": "Dropdown Color Picker",
+          "Subtitle": "Dropdown Color Picker",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ColorPalettePage",
           "Title": "Color Palette",
           "Subtitle": "Color Palette",
