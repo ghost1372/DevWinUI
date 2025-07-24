@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
+
 [TemplatePart(Name = PART_ColumnStart, Type = typeof(ColumnDefinition))]
 [TemplatePart(Name = PART_ColumnEnd, Type = typeof(ColumnDefinition))]
 [TemplatePart(Name = PART_StretchLine, Type = typeof(Line))]
@@ -175,7 +176,6 @@ public partial class Divider : Control
         }
         if (orientation == Orientation.Vertical)
         {
-            Margin = new Thickness(6, 0, 6, 0);
             _PART_StretchLine.Visibility = Visibility.Visible;
             _PART_LeftLine.Visibility = Visibility.Collapsed;
             _PART_RightLine.Visibility = Visibility.Collapsed;
@@ -183,7 +183,6 @@ public partial class Divider : Control
         }
         else
         {
-            Margin = new Thickness(0, 24, 0, 24);
             _PART_StretchLine.Visibility = Visibility.Collapsed;
             _PART_LeftLine.Visibility = Visibility.Visible;
             _PART_RightLine.Visibility = Visibility.Visible;
