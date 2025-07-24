@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using DevWinUIGallery.Models;
 using Microsoft.Graphics.Canvas.Effects;
+using Microsoft.UI.Xaml.Media;
 
 namespace DevWinUIGallery.ViewModels;
 
@@ -103,6 +104,16 @@ public partial class BaseViewModel : ObservableObject
 
     [ObservableProperty]
     public partial ObservableCollection<ColorItemShape> ColorItemShapeItems { get; set; } = new ObservableCollection<ColorItemShape>(Enum.GetValues<ColorItemShape>());
+
+    #endregion
+
+    #region ArcProgress
+
+    [ObservableProperty]
+    public partial ObservableCollection<ArcProgressFillAnimationState> FillAnimationStateItems { get; set; } = new ObservableCollection<ArcProgressFillAnimationState>(Enum.GetValues<ArcProgressFillAnimationState>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<SweepDirection> SweepDirectionItems { get; set; } = new ObservableCollection<SweepDirection>(Enum.GetValues<SweepDirection>());
 
     #endregion
 

@@ -23,6 +23,7 @@ Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
 Themes\Styles\Controls\AnimatedGradient.xaml
 Themes\Styles\Controls\AnimatedImage.xaml
+Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
 Themes\Styles\Controls\Clock.xaml
@@ -659,6 +660,35 @@ Themes\Styles\Win2D\Watermark.xaml
           <Grid>
             <Image x:Name="PART_BottomImage" Opacity="1" Stretch="{TemplateBinding Stretch}" />
             <Image x:Name="PART_TopImage" Opacity="0" Stretch="{TemplateBinding Stretch}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultArcProgressStyle" TargetType="local:ArcProgress">
+    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Width" Value="72" />
+    <Setter Property="Height" Value="72" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ArcProgress">
+          <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Ellipse x:Name="PART_Elipse" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
+            <Path Fill="{TemplateBinding Foreground}">
+              <Path.Data>
+                <PathGeometry>
+                  <PathGeometry.Figures>
+                    <PathFigure x:Name="PART_PathFigure">
+                      <PathFigure.Segments>
+                        <ArcSegment x:Name="PART_ArcSegment" />
+                        <LineSegment x:Name="PART_LineSegment" />
+                      </PathFigure.Segments>
+                    </PathFigure>
+                  </PathGeometry.Figures>
+                </PathGeometry>
+              </Path.Data>
+            </Path>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -5667,6 +5697,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultAnimatedGradientStyle}" TargetType="local:AnimatedGradient" />
   <Style BasedOn="{StaticResource DefaultAnimatedImageStyle}" TargetType="local:AnimatedImage" />
+  <Style BasedOn="{StaticResource DefaultArcProgressStyle}" TargetType="local:ArcProgress" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />

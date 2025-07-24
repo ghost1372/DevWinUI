@@ -132,6 +132,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ArcProgressPage",
+          "Title": "Arc Progress",
+          "Subtitle": "Arc Progress",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
           "Title": "Dropdown Color Picker",
           "Subtitle": "Dropdown Color Picker",

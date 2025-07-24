@@ -144,6 +144,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ArcProgress
 - ✨ DropdownColorPicker
 - ✨ ColorPalette
 - ✨ SplitCircle
@@ -281,6 +282,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ArcProgress
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ArcProgress.gif)
 
 ### DropdownColorPicker
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DropdownColorPicker.gif)

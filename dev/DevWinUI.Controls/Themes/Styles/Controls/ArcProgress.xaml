@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultArcProgressStyle}"
+           TargetType="local:ArcProgress" />
+
+    <Style x:Key="DefaultArcProgressStyle"
+           TargetType="local:ArcProgress">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Width" Value="72" />
+        <Setter Property="Height" Value="72" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ArcProgress">
+                    <Grid Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
+                        <Ellipse x:Name="PART_Elipse"
+                                 Fill="{TemplateBinding Foreground}"
+                                 Visibility="Collapsed" />
+                        <Path Fill="{TemplateBinding Foreground}">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure x:Name="PART_PathFigure">
+                                            <PathFigure.Segments>
+                                                <ArcSegment x:Name="PART_ArcSegment" />
+                                                <LineSegment x:Name="PART_LineSegment" />
+                                            </PathFigure.Segments>
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
