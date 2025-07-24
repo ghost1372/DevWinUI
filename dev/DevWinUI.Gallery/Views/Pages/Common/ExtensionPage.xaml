@@ -12,6 +12,46 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
+            <local:ControlExample CSharpSource="Features/AnimationExtensions_cs.txt"
+                                  DocPage="extensions/animationExtensions"
+                                  DocType="Core"
+                                  HeaderText="Animation Extensions">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button MinWidth="200"
+                                Click="OnFadeIn"
+                                Content="Fade In" />
+                        <Button MinWidth="200"
+                                Click="OnAnimateWidth"
+                                Content="Animate Width" />
+                        <Button MinWidth="200"
+                                Click="OnAnimateHeight"
+                                Content="Animate Height" />
+                        <Button MinWidth="200"
+                                Click="OnGrow"
+                                Content="Grow" />
+                        <Button MinWidth="200"
+                                Click="OnRotate"
+                                Content="Rotate" />
+                        <Button MinWidth="200"
+                                Click="OnTranslate"
+                                Content="Translate" />
+                        <Button MinWidth="200"
+                                Click="OnSkew"
+                                Content="Skew" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ScrollViewer>
+                    <Grid Name="SampleGrid"
+                          Width="200"
+                          Height="200"
+                          Margin="50,50,0,0"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Background="Red">
+                    </Grid>
+                </ScrollViewer>
+            </local:ControlExample>
             <local:ControlExample DocPage="extensions/enumValueExtension"
                                   DocType="Core"
                                   HeaderText="EnumValuesExtension">

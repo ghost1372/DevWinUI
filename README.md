@@ -111,6 +111,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ AnimationExtensions
  - ✨ CompositionAnimationController
  - ✨ FilePicker, SavePicker and FolderPicker which is working in Elevated, Packaged, UnPackaged and AOT apps.
  - ✨ ModernSystemMenu
@@ -283,6 +284,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### AnimationExtensions
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimationExtensions.gif)
 
 ### FlipToReveal
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlipToReveal.gif)

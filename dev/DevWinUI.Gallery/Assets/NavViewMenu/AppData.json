@@ -101,6 +101,7 @@
           "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
           "Title": "Extensions",
           "Subtitle": "Extensions",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
