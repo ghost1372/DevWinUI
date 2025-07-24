@@ -76,6 +76,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.StylesPage", typeof(DevWinUIGallery.Views.StylesPage)},
         {"DevWinUIGallery.Views.SwitchPresenterPage", typeof(DevWinUIGallery.Views.SwitchPresenterPage)},
         {"DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage", typeof(DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage)},
+        {"DevWinUIGallery.Views.FlipToRevealPage", typeof(DevWinUIGallery.Views.FlipToRevealPage)},
         {"DevWinUIGallery.Views.CompositionImagePage", typeof(DevWinUIGallery.Views.CompositionImagePage)},
         {"DevWinUIGallery.Views.CompositionBrushPage", typeof(DevWinUIGallery.Views.CompositionBrushPage)},
         {"DevWinUIGallery.Views.BlurEffectControlPage", typeof(DevWinUIGallery.Views.BlurEffectControlPage)},

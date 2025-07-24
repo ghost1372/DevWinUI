@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultFlipToRevealStyle}"
+           TargetType="local:FlipToReveal" />
+
+    <Style x:Key="DefaultFlipToRevealStyle"
+           TargetType="local:FlipToReveal">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FlipToReveal">
+                    <Grid x:Name="PART_MainPanel">
+                        <ContentPresenter Content="{TemplateBinding PrimaryContent}" />
+                        <ContentPresenter Content="{TemplateBinding SecondaryContent}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

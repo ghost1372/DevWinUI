@@ -38,6 +38,7 @@ Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\FlipSide.xaml
+Themes\Styles\Controls\FlipToReveal.xaml
 Themes\Styles\Controls\FlyoutMenuButton.xaml
 Themes\Styles\Controls\ForegroundFocusEffects.xaml
 Themes\Styles\Controls\GoToTop.xaml
@@ -862,6 +863,18 @@ Themes\Styles\Win2D\Watermark.xaml
             </VisualStateManager.VisualStateGroups>
             <ContentPresenter x:Name="Side1Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side1}" IsHitTestVisible="True" />
             <ContentPresenter x:Name="Side2Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side2}" IsHitTestVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultFlipToRevealStyle" TargetType="local:FlipToReveal">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:FlipToReveal">
+          <Grid x:Name="PART_MainPanel">
+            <ContentPresenter Content="{TemplateBinding PrimaryContent}" />
+            <ContentPresenter Content="{TemplateBinding SecondaryContent}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -6360,6 +6373,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultFlipSideStyle}" TargetType="local:FlipSide" />
+  <Style BasedOn="{StaticResource DefaultFlipToRevealStyle}" TargetType="local:FlipToReveal" />
   <Style x:Key="DefaultFlyoutMenuButtonStyle" TargetType="local:FlyoutMenuButton">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />

@@ -431,6 +431,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.FlipToRevealPage",
+          "Title": "Flip To Reveal",
+          "Subtitle": "Flip To Reveal",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CompositionImagePage",
           "Title": "Composition Image",
           "Subtitle": "Composition Image",

@@ -144,6 +144,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ FlipToReveal
 - ✨ ArcProgress
 - ✨ DropdownColorPicker
 - ✨ ColorPalette
@@ -282,6 +283,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### FlipToReveal
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlipToReveal.gif)
 
 ### ArcProgress
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ArcProgress.gif)
