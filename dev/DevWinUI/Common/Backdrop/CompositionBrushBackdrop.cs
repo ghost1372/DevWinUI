@@ -1,9 +1,9 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.UI.Dispatching;
+
+namespace DevWinUI;
 
 public abstract partial class CompositionBrushBackdrop : SystemBackdrop
 {
-    private static WindowsSystemDispatcherQueueHelper dispatcherQueueHelper;
-
     static Windows.UI.Composition.Compositor? compositor;
     static object compositorLock = new object();
     internal static Windows.UI.Composition.Compositor Compositor
@@ -16,8 +16,7 @@ public abstract partial class CompositionBrushBackdrop : SystemBackdrop
                 {
                     if (compositor == null)
                     {
-                        dispatcherQueueHelper = new WindowsSystemDispatcherQueueHelper();
-                        dispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController();
+                        DispatcherQueue.GetForCurrentThread().EnsureSystemDispatcherQueue();
                         compositor = new Windows.UI.Composition.Compositor();
                     }
                 }

@@ -157,12 +157,4 @@ public static partial class NativeValues
         WA_INACTIVE = 0x00,
         WM_INITMENUPOPUP = 0x0117
     }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct DispatcherQueueOptions
-    {
-        internal int dwSize;
-        internal int threadType;
-        internal int apartmentType;
-    }
 }

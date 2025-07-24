@@ -40,9 +40,6 @@ public static partial class NativeMethods
         ? SetWindowLongPtr32(hWnd, nIndex, dwNewLong)
         : SetWindowLongPtr64(hWnd, nIndex, dwNewLong);
 
-    [DllImport("CoreMessaging.dll")]
-    internal static unsafe extern int CreateDispatcherQueueController(DispatcherQueueOptions options, IntPtr* instance);
-
     internal static HWND[]? EnumThreadWindows(Func<HWND, nint, bool> predicate, nint lParam)
     {
         var list = new List<HWND>();
