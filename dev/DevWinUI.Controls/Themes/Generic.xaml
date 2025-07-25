@@ -69,6 +69,7 @@ Themes\Styles\Controls\Shield.xaml
 Themes\Styles\Controls\Shimmer.xaml
 Themes\Styles\Controls\ShimmerTextBlock.xaml
 Themes\Styles\Controls\Shortcut.xaml
+Themes\Styles\Controls\ShyHeader.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
 Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\StepBar.xaml
@@ -2104,6 +2105,34 @@ Themes\Styles\Win2D\Watermark.xaml
               </ItemsControl.ItemTemplate>
             </ItemsControl>
             <TextBlock Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Text="{TemplateBinding Text}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultShyHeaderStyle" TargetType="local:ShyHeader">
+    <Setter Property="Height" Value="300" />
+    <Setter Property="BackgroundImageOpacity" Value="0.6" />
+    <Setter Property="OverlayBrush" Value="#BFCFB5C0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ShyHeader">
+          <Grid x:Name="PART_Header" Height="{TemplateBinding Height}" VerticalAlignment="Top">
+            <Rectangle x:Name="PART_BackgroundRectangle">
+              <Rectangle.Fill>
+                <ImageBrush ImageSource="{Binding BackgroundImage, RelativeSource={RelativeSource TemplatedParent}}" Opacity="{TemplateBinding BackgroundImageOpacity}" Stretch="UniformToFill" />
+              </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="PART_OverlayRectangle" Fill="{Binding OverlayBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            <StackPanel x:Name="PART_TextContainer" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
+              <ContentPresenter x:Name="PART_Profile" Margin="10,70,10,10" Content="{TemplateBinding Profile}" />
+              <StackPanel Margin="0,70,0,0" Orientation="Vertical" Spacing="10">
+                <ContentPresenter x:Name="PART_Title" Content="{TemplateBinding Title}" />
+                <ContentPresenter x:Name="PART_Subtitle" Content="{TemplateBinding Subtitle}" />
+                <ContentPresenter x:Name="PART_Description" Content="{TemplateBinding Description}" />
+                <ContentPresenter x:Name="PART_Footer" Content="{TemplateBinding Footer}" />
+              </StackPanel>
+            </StackPanel>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -8071,6 +8100,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultShortcutStyle}" TargetType="local:Shortcut" />
   <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
   <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel}" TargetType="local:ShortcutWithTextLabel" />
+  <Style BasedOn="{StaticResource DefaultShyHeaderStyle}" TargetType="local:ShyHeader" />
   <Style x:Key="DefaultSimpleSettingsGroupStyle" TargetType="local:SimpleSettingsGroup">
     <Setter Property="ItemsPanel">
       <Setter.Value>

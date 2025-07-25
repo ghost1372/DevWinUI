@@ -145,6 +145,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ShyHeader
 - ✨ FlipToReveal
 - ✨ ArcProgress
 - ✨ DropdownColorPicker
@@ -284,6 +285,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ShyHeader
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShyHeader.gif)
 
 ### AnimationExtensions
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimationExtensions.gif)

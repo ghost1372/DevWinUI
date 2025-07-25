@@ -432,6 +432,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ShyHeaderPage",
+          "Title": "Shy Header",
+          "Subtitle": "Shy Header",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.FlipToRevealPage",
           "Title": "Flip To Reveal",
           "Subtitle": "Flip To Reveal",

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ShyHeaderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/shyHeader"
+                                  XamlSource="Composition/ShyHeaderPage_xaml.txt">
+                <GridView Height="400"
+                          ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                    <GridView.Header>
+                        <dev:ShyHeader Title="Lorem Ipsum"
+                                       BackgroundImage="ms-appx:///Assets/Others/Abstract.jpg"
+                                       Description="Lorem ipsum dolor sit amet..."
+                                       Subtitle="dolor sit amet">
+                            <dev:ShyHeader.Profile>
+                                <PersonPicture Width="150"
+                                               Height="150"
+                                               ProfilePicture="ms-appx:///Assets/Others/Profile.png" />
+                            </dev:ShyHeader.Profile>
+                            <dev:ShyHeader.Footer>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Footer Button" />
+                                    <Button Content="Footer Button" />
+                                    <Button Content="Footer Button" />
+                                </StackPanel>
+                            </dev:ShyHeader.Footer>
+                        </dev:ShyHeader>
+                    </GridView.Header>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:SampleData">
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="4"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="{x:Bind ImageUrl}"
+                                   Stretch="UniformToFill" />
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
