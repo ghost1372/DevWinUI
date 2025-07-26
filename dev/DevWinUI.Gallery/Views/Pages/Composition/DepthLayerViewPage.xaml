@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DepthLayerViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/depthLayerView">
+                <dev:DepthLayerView Height="400"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Items="{x:Bind ViewModel.DepthLayerSampleItems, Mode=OneWay}"
+                                    SelectedIndex="{x:Bind ListViewSample.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView x:Name="ListViewSample"
+                              Grid.Row="0"
+                              Margin="0,10"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{x:Bind ViewModel.DepthLayerSampleItems, Mode=OneWay}"
+                              SelectedIndex="2"
+                              SelectionMode="Single">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:DepthLayerSampleData">
+                                <Grid>
+                                    <TextBlock Margin="20,0"
+                                               FontSize="24"
+                                               Text="{x:Bind YearLabel}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </dev:DepthLayerView>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

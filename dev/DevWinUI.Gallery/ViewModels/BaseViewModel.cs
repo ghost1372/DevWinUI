@@ -134,4 +134,15 @@ public partial class BaseViewModel : ObservableObject
         new SampleData("Sample 12", "ms-appx:///Assets/Landscapes/Landscape-12.jpg", "Sample Desc 12"),
         new SampleData("Sample 13", "ms-appx:///Assets/Landscapes/Landscape-13.jpg", "Sample Desc 13")
     };
+
+
+    [ObservableProperty]
+    public partial ObservableCollection<DepthLayerSampleData> DepthLayerSampleItems { get; set; } = new ObservableCollection<DepthLayerSampleData>()
+    {
+        new DepthLayerSampleData(2021,"ms-appx:///Assets/Landscapes/Landscape-1.jpg"),
+        new DepthLayerSampleData(2022,"ms-appx:///Assets/Landscapes/Landscape-2.jpg"),
+        new DepthLayerSampleData(2023,"ms-appx:///Assets/Landscapes/Landscape-3.jpg"),
+        new DepthLayerSampleData(2024,"ms-appx:///Assets/Landscapes/Landscape-4.jpg"),
+        new DepthLayerSampleData(2025,"ms-appx:///Assets/Landscapes/Landscape-5.jpg"),
+    };
 }

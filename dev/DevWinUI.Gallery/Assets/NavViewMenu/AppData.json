@@ -446,6 +446,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DepthLayerViewPage",
+          "Title": "Depth Layer View",
+          "Subtitle": "Depth Layer View",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ShyHeaderPage",
           "Title": "Shy Header",
           "Subtitle": "Shy Header",

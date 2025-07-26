@@ -37,6 +37,7 @@ Themes\Styles\Controls\CompareSlider.xaml
 Themes\Styles\Controls\CompositionShadow.xaml
 Themes\Styles\Controls\CopyButton.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
+Themes\Styles\Controls\DepthLayerView.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\FlipSide.xaml
@@ -868,6 +869,22 @@ Themes\Styles\Win2D\Watermark.xaml
           <Grid>
             <Border x:Name="PART_ShadowElement" />
             <ContentPresenter Content="{TemplateBinding Content}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultDepthLayerViewStyle" TargetType="local:DepthLayerView">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:DepthLayerView">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{TemplateBinding Content}" />
+            <Grid x:Name="PART_CompositionHostPanel" Grid.Row="1" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -6383,6 +6400,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultDepthLayerViewStyle}" TargetType="local:DepthLayerView" />
   <Style x:Key="DefaultDividerStyle" TargetType="local:Divider">
     <Setter Property="Margin" Value="0,24" />
     <Setter Property="LineStroke" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
