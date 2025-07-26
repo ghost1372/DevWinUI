@@ -14,6 +14,39 @@ public partial class PathHelper
         return file.Path;
     }
 
+    public static string GetFilePath(Uri uri)
+    {
+        try
+        {
+            if (uri.IsFile)
+            {
+                return uri.LocalPath;
+            }
+            else if (!uri.IsAbsoluteUri)
+            {
+                return Path.Combine(AppContext.BaseDirectory, uri.OriginalString.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            }
+            else if (uri.Scheme.Equals("ms-appx", StringComparison.OrdinalIgnoreCase))
+            {
+                if (RuntimeHelper.IsPackaged())
+                {
+                    return Path.Combine(AppContext.BaseDirectory, uri.AbsolutePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                }
+                else
+                {
+                    var path = uri.AbsolutePath.TrimStart('/');
+                    return Path.Combine(AppContext.BaseDirectory, path.Replace('/', Path.DirectorySeparatorChar));
+                }
+            }
+
+            return null;
+        }
+        catch
+        {
+        }
+
+        return null;
+    }
     /// <summary>
     /// Return Full Path to Assets folder even if your app is SelfContained/SingleFile
     /// Normal Mode: App/bin/Assets
