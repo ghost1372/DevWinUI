@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.AccordionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/accordion"
+                                  HeaderText="Accordion">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.SampleImageAndTextData}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <dev:Accordion Height="500"
+                               ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                    <dev:Accordion.ItemTemplate>
+                        <DataTemplate x:DataType="model:SampleData">
+                            <Image HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="{x:Bind ImageUrl}"
+                                   Stretch="UniformToFill" />
+                        </DataTemplate>
+                    </dev:Accordion.ItemTemplate>
+                    <dev:Accordion.HeaderTemplate>
+                        <DataTemplate x:DataType="model:SampleData">
+                            <Grid>
+                                <Grid.Background>
+                                    <SolidColorBrush Opacity="0.25"
+                                                     Color="{ThemeResource CardBackgroundFillColorDefault}" />
+                                </Grid.Background>
+                                <TextBlock Margin="0,0,0,4"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource TitleTextBlockStyle}"
+                                           Text="{x:Bind Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dev:Accordion.HeaderTemplate>
+                </dev:Accordion>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

@@ -133,6 +133,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AccordionPage",
+          "Title": "Accordion",
+          "Subtitle": "Accordion",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/StackPanel.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ArcProgressPage",
           "Title": "Arc Progress",
           "Subtitle": "Arc Progress",
