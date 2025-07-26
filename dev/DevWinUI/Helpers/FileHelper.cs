@@ -136,6 +136,48 @@ public partial class FileHelper
         return file;
     }
 
+    /// <summary>
+    /// Retrieves a StorageFile based on the specified file uri
+    /// </summary>
+    /// <param name="uri"></param>
+    /// <returns></returns>
+    public static async Task<StorageFile?> GetStorageFile(Uri uri)
+    {
+        StorageFile file = null;
+        try
+        {
+            if (uri.IsFile)
+            {
+                file = await StorageFile.GetFileFromPathAsync(uri.LocalPath);
+            }
+            else if (!uri.IsAbsoluteUri)
+            {
+                var path = Path.Combine(AppContext.BaseDirectory, uri.OriginalString.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                file = await StorageFile.GetFileFromPathAsync(path);
+            }
+            else if (uri.Scheme.Equals("ms-appx", StringComparison.OrdinalIgnoreCase))
+            {
+                if (RuntimeHelper.IsPackaged())
+                {
+                    file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+                }
+                else
+                {
+                    var path = uri.AbsolutePath.TrimStart('/');
+                    var filePath = Path.Combine(AppContext.BaseDirectory, path.Replace('/', Path.DirectorySeparatorChar));
+                    file = await StorageFile.GetFileFromPathAsync(filePath);
+                }
+            }
+
+            return file;
+        }
+        catch
+        {
+        }
+
+        return file;
+    }
+
     public static Stream? GetFileFromEmbededResources(Assembly assembly, Uri uri)
     {
         Stream? stream = null;
