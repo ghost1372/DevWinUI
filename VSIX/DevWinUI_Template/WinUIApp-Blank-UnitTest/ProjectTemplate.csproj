@@ -9,6 +9,7 @@
 	<RuntimeIdentifiers>$RuntimeIdentifiers$</RuntimeIdentifiers>
 	<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 	<UseWinUI>true</UseWinUI>
+  <WinUISDKReferences>false</WinUISDKReferences>
 	<EnableMsixTooling>true</EnableMsixTooling>
 	<Nullable>$Nullable$</Nullable>
 	<ImplicitUsings>true</ImplicitUsings>
