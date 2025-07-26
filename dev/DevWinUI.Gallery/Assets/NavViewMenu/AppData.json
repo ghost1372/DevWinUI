@@ -133,6 +133,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.GifImagePage",
+          "Title": "Gif Image",
+          "Subtitle": "Gif Image",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.AccordionPage",
           "Title": "Accordion",
           "Subtitle": "Accordion",

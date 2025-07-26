@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.GifImagePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/gifImage"
+                                  HeaderText="GifImage">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:GifImage x:Name="control" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="10">
+                        <AppBarButton Click="OnStop"
+                                      Icon="Stop"
+                                      Label="Stop" />
+                        <AppBarButton Click="OnPlay"
+                                      Icon="Play"
+                                      Label="Play" />
+                        <AppBarButton Click="OnPause"
+                                      Icon="Pause"
+                                      Label="Pause" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:GifImage x:Name="GifImageSample"
+                              AutoPlay="True"
+                              IsLooping="True"
+                              Source="ms-appx:///Assets/Others/CatGif.gif" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

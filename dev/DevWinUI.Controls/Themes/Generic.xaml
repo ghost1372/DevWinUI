@@ -43,6 +43,7 @@ Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlipToReveal.xaml
 Themes\Styles\Controls\FlyoutMenuButton.xaml
 Themes\Styles\Controls\ForegroundFocusEffects.xaml
+Themes\Styles\Controls\GifImage.xaml
 Themes\Styles\Controls\GoToTop.xaml
 Themes\Styles\Controls\Gravatar.xaml
 Themes\Styles\Controls\Growl.xaml
@@ -918,6 +919,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:ForegroundFocusEffects">
           <ContentPresenter Content="{TemplateBinding Content}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultGifImageStyle" TargetType="local:GifImage">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:GifImage">
+          <Image Name="PART_Image" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Stretch="{TemplateBinding Stretch}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -6499,6 +6509,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultForegroundFocusEffectsStyle}" TargetType="local:ForegroundFocusEffects" />
+  <Style BasedOn="{StaticResource DefaultGifImageStyle}" TargetType="local:GifImage" />
   <Style x:Key="DefaultGotoTopStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:GotoTop">
     <Setter Property="Width" Value="50" />
     <Setter Property="Height" Value="50" />
