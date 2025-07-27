@@ -560,6 +560,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ConfettiCannonPage",
+          "Title": "Confetti Cannon",
+          "Subtitle": "Confetti Cannon",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/StandardUICommand.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
           "Title": "Hatch",
           "Subtitle": "Hatch",

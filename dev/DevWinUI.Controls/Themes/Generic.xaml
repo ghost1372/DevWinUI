@@ -875,6 +875,11 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="DefaultDepthLayerViewStyle" TargetType="local:DepthLayerView">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+    <Setter Property="Stretch" Value="Fill" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:DepthLayerView">
@@ -884,7 +889,9 @@ Themes\Styles\Win2D\Watermark.xaml
               <RowDefinition />
             </Grid.RowDefinitions>
             <ContentPresenter Content="{TemplateBinding Content}" />
-            <Grid x:Name="PART_CompositionHostPanel" Grid.Row="1" />
+            <Border Grid.Row="1" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+              <Grid x:Name="PART_CompositionHostPanel" />
+            </Border>
           </Grid>
         </ControlTemplate>
       </Setter.Value>

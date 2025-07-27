@@ -229,6 +229,7 @@ Install-Package DevWinUI
 - ✨ Brushes
 - ✨ Subtle Button Style
 #### 🔥 Win2D 🔥
+- ✨ ConfettiCannon
 - ✨ BlurEffectManager
 - ✨ Hatch
 - ✨ TiledImageBrush
@@ -288,6 +289,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ConfettiCannon
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ConfettiCannon.gif)
 
 ### DepthLayerView
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DepthLayerView.gif)
