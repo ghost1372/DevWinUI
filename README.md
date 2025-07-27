@@ -1,7 +1,7 @@
 ﻿<h3 align="center">
 🌟 Welcome to DevWinUI! 🌟<br>
 🔥 Unleash the power of the gods 🔥<br>
-Summon ancient strength into every control, and build with divine precision.
+Summon ancient strength into every control.
 </3>
 </br>
 
