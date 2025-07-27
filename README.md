@@ -1,5 +1,7 @@
 ﻿<h3 align="center">
-🌟 Welcome to DevWinUI! 🌟
+🌟 Welcome to DevWinUI! 🌟<br>
+🔥 Unleash the power of the gods 🔥<br>
+Summon ancient strength into every control, and build with divine precision.
 </3>
 </br>
 
