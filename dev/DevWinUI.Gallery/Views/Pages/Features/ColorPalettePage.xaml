@@ -30,7 +30,7 @@
                                   MinWidth="200"
                                   Header="Item Shape"
                                   ItemsSource="{x:Bind ViewModel.ColorItemShapeItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
+                                  SelectedIndex="1" />
                         <StackPanel Orientation="Horizontal"
                                     Spacing="5">
                             <NumberBox x:Name="NBWidth"
@@ -69,7 +69,13 @@
                                       ItemWidth="{x:Bind NBWidth.Value, Mode=OneWay}"
                                       ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}"
                                       ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}"
-                                      ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}" />
+                                      ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
+                        <dev:ColorPalette.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <dev:UniformGrid Columns="10"/>
+                            </ItemsPanelTemplate>
+                        </dev:ColorPalette.ItemsPanel>
+                    </dev:ColorPalette>
                     <TextBlock x:Name="TxtResult"
                                HorizontalAlignment="Center"
                                Style="{ThemeResource SubtitleTextBlockStyle}" />
