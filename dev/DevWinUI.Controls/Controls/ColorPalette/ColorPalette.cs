@@ -83,63 +83,201 @@ public partial class ColorPalette : GridView
         new ColorPaletteItem { Color = Windows.UI.Color.FromArgb(255, 132, 117, 69), ColorName = "Tan"},
         new ColorPaletteItem { Color = Windows.UI.Color.FromArgb(255, 126, 115, 95), ColorName = "Saddle Brown" }
     };
-
-    internal readonly ObservableCollection<ColorPaletteItem> ShadeColors = new ObservableCollection<ColorPaletteItem>(
-        GenerateAllColorShades()
-    );
-    private static IEnumerable<ColorPaletteItem> GenerateAllColorShades()
+    internal readonly ObservableCollection<ColorPaletteItem> ShadeColors = new()
     {
-        var baseColors = new ObservableCollection<ColorPaletteItem>
-        {
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FFB71C1C"), ColorName = "Red" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF880E4F"), ColorName = "Pink" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF4A148C"), ColorName = "Purple" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF0D47A1"), ColorName = "Blue" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF006064"), ColorName = "Cyan" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF004D40"), ColorName = "Teal" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF1B5E20"), ColorName = "Green" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF827717"), ColorName = "Lime" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FFF57F17"), ColorName = "Yellow" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FFE65100"), ColorName = "Orange" },
-            new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#FF3E2723"), ColorName = "Brown" },
-            new ColorPaletteItem { Color = Microsoft.UI.Colors.Gray, ColorName = "Gray" },
-        };
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x5F,  G = 0x16, B = 0x16  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x7F,  G = 0x1D, B = 0x1D  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x99,  G = 0x1B, B = 0x1B  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xB9,  G = 0x1C, B = 0x1C  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEF,  G = 0x10, B = 0x10  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEF,  G = 0x34, B = 0x34  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF8,  G = 0x71, B = 0x71  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFC,  G = 0xA5, B = 0xA5  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xCA, B = 0xCA  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xE2, B = 0xE2  }, ColorName = "Red" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x58,  G = 0x20, B = 0x0D  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x7C,  G = 0x2D, B = 0x12  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x9A,  G = 0x34, B = 0x12  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xC2,  G = 0x41, B = 0x0C  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEA,  G = 0x58, B = 0x0C  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF9,  G = 0x73, B = 0x16  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFB,  G = 0x92, B = 0x3C  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFD,  G = 0xBA, B = 0x74  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xD7, B = 0xAA  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFF,  G = 0xED, B = 0xD5  }, ColorName = "Orange" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x5A,  G = 0x27, B = 0x0B  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x78,  G = 0x35, B = 0x0F  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x92,  G = 0x40, B = 0x0E  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xB4,  G = 0x53, B = 0x09  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD9,  G = 0x77, B = 0x06  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF5,  G = 0x9E, B = 0x0B  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFB,  G = 0xBF, B = 0x24  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFC,  G = 0xD3, B = 0x4D  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFD,  G = 0xE6, B = 0x8A  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xF3, B = 0xC7  }, ColorName = "Amber" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x53,  G = 0x2E, B = 0x0D  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x71,  G = 0x3F, B = 0x12  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x85,  G = 0x4D, B = 0x0E  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA1,  G = 0x62, B = 0x07  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xCA,  G = 0x8A, B = 0x04  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEA,  G = 0xB3, B = 0x08  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFA,  G = 0xCC, B = 0x15  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFD,  G = 0xE0, B = 0x47  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xF0, B = 0x8A  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xF9, B = 0xC3  }, ColorName = "Yellow" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x23,  G = 0x35, B = 0x0C  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x36,  G = 0x53, B = 0x14  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x3F,  G = 0x62, B = 0x12  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x4D,  G = 0x7C, B = 0x0F  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x65,  G = 0xA3, B = 0x0D  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x84,  G = 0xCC, B = 0x16  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA3,  G = 0xE6, B = 0x35  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBE,  G = 0xF2, B = 0x64  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD9,  G = 0xF9, B = 0x9D  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEC,  G = 0xFC, B = 0xCB  }, ColorName = "Lime" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0E,  G = 0x3D, B = 0x20  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x14,  G = 0x53, B = 0x2D  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x16,  G = 0x65, B = 0x34  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x15,  G = 0x80, B = 0x3D  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x16,  G = 0xA3, B = 0x4A  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x22,  G = 0xC5, B = 0x5E  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x4A,  G = 0xDE, B = 0x80  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x86,  G = 0xEF, B = 0xAC  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBB,  G = 0xF7, B = 0xD0  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xDC,  G = 0xFC, B = 0xE7  }, ColorName = "Green" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x04,  G = 0x3D, B = 0x2E  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x06,  G = 0x4E, B = 0x3B  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x06,  G = 0x5F, B = 0x46  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x04,  G = 0x78, B = 0x57  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x05,  G = 0x96, B = 0x69  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x10,  G = 0xB9, B = 0x81  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x34,  G = 0xD3, B = 0x99  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x6E,  G = 0xE7, B = 0xB7  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA7,  G = 0xF3, B = 0xD0  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD1,  G = 0xFA, B = 0xE5  }, ColorName = "Emerald" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0F,  G = 0x3D, B = 0x39  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x13,  G = 0x4E, B = 0x4A  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x11,  G = 0x5E, B = 0x59  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0F,  G = 0x76, B = 0x6E  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0D,  G = 0x94, B = 0x88  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x14,  G = 0xB8, B = 0xA6  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x2D,  G = 0xD4, B = 0xBF  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x5E,  G = 0xEA, B = 0xD4  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x99,  G = 0xF6, B = 0xE4  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xCC,  G = 0xFB, B = 0xF1  }, ColorName = "Teal" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x12,  G = 0x41, B = 0x53  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x16,  G = 0x4E, B = 0x63  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x15,  G = 0x5E, B = 0x75  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0E,  G = 0x74, B = 0x90  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x08,  G = 0x91, B = 0xB2  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x06,  G = 0xB6, B = 0xD4  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x22,  G = 0xD3, B = 0xEE  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x67,  G = 0xE8, B = 0xF9  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA5,  G = 0xF3, B = 0xFC  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xCF,  G = 0xFA, B = 0xFE  }, ColorName = "Cyan" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0A,  G = 0x3D, B = 0x5B  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0C,  G = 0x4A, B = 0x6E  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x07,  G = 0x59, B = 0x85  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x03,  G = 0x69, B = 0xA1  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x02,  G = 0x84, B = 0xC7  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0E,  G = 0xA5, B = 0xE9  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x38,  G = 0xBD, B = 0xF8  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x7D,  G = 0xD3, B = 0xFC  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBA,  G = 0xE6, B = 0xFD  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE0,  G = 0xF2, B = 0xFE  }, ColorName = "Light Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x15,  G = 0x29, B = 0x60  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x1E,  G = 0x3A, B = 0x8A  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x1E,  G = 0x40, B = 0xAF  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x1D,  G = 0x4E, B = 0xD8  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x25,  G = 0x63, B = 0xEB  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x3B,  G = 0x82, B = 0xF6  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x60,  G = 0xA5, B = 0xFA  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x93,  G = 0xC5, B = 0xFD  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBF,  G = 0xDB, B = 0xFE  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xDB,  G = 0xEA, B = 0xFE  }, ColorName = "Blue" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x22,  G = 0x20, B = 0x59  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x31,  G = 0x2E, B = 0x81  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x37,  G = 0x30, B = 0xA3  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x43,  G = 0x38, B = 0xCA  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x4F,  G = 0x46, B = 0xE5  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x63,  G = 0x66, B = 0xF1  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x81,  G = 0x8C, B = 0xF8  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA5,  G = 0xB4, B = 0xFC  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xC7,  G = 0xD2, B = 0xFE  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE0,  G = 0xE7, B = 0xFF  }, ColorName = "Indigo" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x31,  G = 0x13, B = 0x61  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x4C,  G = 0x1D, B = 0x95  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x5B,  G = 0x21, B = 0xB6  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x6D,  G = 0x28, B = 0xD9  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x7C,  G = 0x3A, B = 0xED  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x8B,  G = 0x5C, B = 0xF6  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA7,  G = 0x8B, B = 0xFA  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xC4,  G = 0xB5, B = 0xFD  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xDD,  G = 0xD6, B = 0xFE  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xED,  G = 0xE9, B = 0xFE  }, ColorName = "Violet" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x36,  G = 0x11, B = 0x54  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x58,  G = 0x1C, B = 0x87  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x6B,  G = 0x21, B = 0xA8  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x7E,  G = 0x22, B = 0xCE  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x93,  G = 0x33, B = 0xEA  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA8,  G = 0x55, B = 0xF7  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xC0,  G = 0x84, B = 0xFC  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD8,  G = 0xB4, B = 0xFE  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE9,  G = 0xD5, B = 0xFF  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF3,  G = 0xE8, B = 0xFF  }, ColorName = "Purple" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x46,  G = 0x10, B = 0x4A  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x70,  G = 0x1A, B = 0x75  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x86,  G = 0x19, B = 0x8F  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA2,  G = 0x1C, B = 0xAF  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xC0,  G = 0x26, B = 0xD3  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD9,  G = 0x46, B = 0xEF  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE8,  G = 0x79, B = 0xF9  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF0,  G = 0xAB, B = 0xFC  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF5,  G = 0xD0, B = 0xFE  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFA,  G = 0xE8, B = 0xFF  }, ColorName = "Fuchsia" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x5E,  G = 0x11, B = 0x31  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x83,  G = 0x18, B = 0x43  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x9D,  G = 0x17, B = 0x4D  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBE,  G = 0x18, B = 0x5D  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xDB,  G = 0x27, B = 0x77  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xEC,  G = 0x48, B = 0x99  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF4,  G = 0x72, B = 0xB6  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF9,  G = 0xA8, B = 0xD4  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFB,  G = 0xCF, B = 0xE8  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFC,  G = 0xE7, B = 0xF3  }, ColorName = "Pink" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x55,  G = 0x0B, B = 0x22  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x88,  G = 0x13, B = 0x37  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x9F,  G = 0x12, B = 0x39  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xBE,  G = 0x12, B = 0x3C  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE1,  G = 0x1D, B = 0x48  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF4,  G = 0x3F, B = 0x5E  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFB,  G = 0x71, B = 0x85  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFD,  G = 0xA4, B = 0xAF  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFE,  G = 0xCD, B = 0xD3  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFF,  G = 0xE4, B = 0xE6  }, ColorName = "Rose" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x09,  G = 0x0E, B = 0x1A  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x0F,  G = 0x17, B = 0x2A  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x1E,  G = 0x29, B = 0x3B  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x33,  G = 0x41, B = 0x55  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x47,  G = 0x55, B = 0x69  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x64,  G = 0x74, B = 0x8B  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x94,  G = 0xA3, B = 0xB8  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xCB,  G = 0xD5, B = 0xE1  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE2,  G = 0xE8, B = 0xF0  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xF1,  G = 0xF5, B = 0xF9  }, ColorName = "Blue Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x00,  G = 0x00, B = 0x00  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x17,  G = 0x17, B = 0x17  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x26,  G = 0x26, B = 0x26  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x40,  G = 0x40, B = 0x40  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x52,  G = 0x52, B = 0x52  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0x73,  G = 0x73, B = 0x73  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xA3,  G = 0xA3, B = 0xA3  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xD4,  G = 0xD4, B = 0xD4  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xE5,  G = 0xE5, B = 0xE5  }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = new() { A = 0xFF, R = 0xFF,  G = 0xFF, B = 0xFF }, ColorName = "Gray" },
+        new ColorPaletteItem { Color = ColorHelper.GetColorFromHex("#00000000"), ColorName = "Transparent"}
+    };
 
-        foreach (var pair in baseColors)
-        {
-            foreach (var shade in GenerateShades(pair.ColorName, pair.Color, 10))
-            {
-                yield return shade;
-            }
-        }
-        yield return new ColorPaletteItem
-        {
-            Color = Microsoft.UI.Colors.Black,
-            ColorName = "Black"
-        };
-        yield return new ColorPaletteItem
-        {
-            Color = Microsoft.UI.Colors.Transparent,
-            ColorName = "Transparent"
-        };
-    }
-    private static List<ColorPaletteItem> GenerateShades(string baseColorName, Color baseColor, int count = 10)
-    {
-        var list = new List<ColorPaletteItem>();
-
-        for (int i = 0; i < count; i++)
-        {
-            double lightness = 0.0 + (i * (1.0 / (count - 1)));
-            var shadeColor = ColorHelper.LightenColor(baseColor, (float)lightness);
-            list.Add(new ColorPaletteItem
-            {
-                Color = shadeColor,
-                ColorName = $"{baseColorName}-{(i + 1) * 20}" // e.g. Green-100, Green-200
-            });
-        }
-
-        return list;
-    }
     public ColorPalette()
     {
         DefaultStyleKey = typeof(ColorPalette);
