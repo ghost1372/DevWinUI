@@ -21,11 +21,18 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox Header="Title" x:Name="txtTitle" Text="Title" PlaceholderText="Title"/>
-                        <TextBox Header="Content" x:Name="txtContent" Text="Content" PlaceholderText="Content"/>
+                        <TextBox x:Name="txtTitle"
+                                 Header="Title"
+                                 PlaceholderText="Title"
+                                 Text="Title" />
+                        <TextBox x:Name="txtContent"
+                                 Header="Content"
+                                 PlaceholderText="Content"
+                                 Text="Content" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Button Content="Show MessageBox" Click="Button_Click"/>
+                <Button Click="Button_Click"
+                        Content="Show MessageBox" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
