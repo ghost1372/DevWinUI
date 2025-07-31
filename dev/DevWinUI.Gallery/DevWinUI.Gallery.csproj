@@ -12,6 +12,7 @@
 	  <LangVersion>preview</LangVersion>
 	  <IsAotCompatible>True</IsAotCompatible>
     <PublishAot>true</PublishAot>
+    <WinUISDKReferences>false</WinUISDKReferences>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
