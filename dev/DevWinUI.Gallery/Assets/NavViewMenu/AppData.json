@@ -44,17 +44,12 @@
           "UniqueId": "DevWinUIGallery.Views.SemanticVersionPage",
           "Title": "Semantic Version",
           "Subtitle": "Parse SemanticVersion",
-          "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
-          "DataInfoBadge": {
-            "NavigationViewInfoBadgeStyle": "MyCustomStyle"
-          }
+          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorBrightnessPage",
           "Title": "Color Brightness",
           "Subtitle": "ColorBrightness",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -220,13 +215,12 @@
           "UniqueId": "DevWinUIGallery.Views.BrushPage",
           "Title": "Brush",
           "Subtitle": "Brush",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OverviewPageHeaderPage",
-          "Title": "OverviewPageHeader",
-          "Subtitle": "Overview",
+          "Title": "Overview Page Header",
+          "Subtitle": "Overview Page Header",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
         },
@@ -247,7 +241,6 @@
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
           "Title": "Magnifier",
           "Subtitle": "Magnifier",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/IconElement.png"
         },
         {
@@ -309,7 +302,6 @@
           "UniqueId": "DevWinUIGallery.Views.CompareSliderPage",
           "Title": "Compare Slider",
           "Subtitle": "Comapre Two Images (Before/After)",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/AppBarSeparator.png"
         },
         {
@@ -449,7 +441,6 @@
           "UniqueId": "DevWinUIGallery.Views.StylesPage",
           "Title": "Styles",
           "Subtitle": "Styles",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {
