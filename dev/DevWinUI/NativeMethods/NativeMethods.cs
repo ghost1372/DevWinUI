@@ -20,13 +20,11 @@ public static partial class NativeMethods
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     internal static unsafe extern int FillRect(IntPtr hDC, ref Windows.Win32.Foundation.RECT lprc, Windows.Win32.Graphics.Gdi.HBRUSH hbr);
 
-    // Import the 32-bit version of SetWindowLong for modifying window properties.
-    [DllImport("User32.dll", CharSet = CharSet.Auto, EntryPoint = "SetWindowLong")]
-    internal static extern IntPtr SetWindowLongPtr32(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+    [LibraryImport("user32.dll", EntryPoint = "SetWindowLongPtrW")]
+    internal static partial IntPtr SetWindowLong64(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
-    // Import the 64-bit version of SetWindowLongPtr for modifying window properties.
-    [DllImport("User32.dll", CharSet = CharSet.Auto, EntryPoint = "SetWindowLongPtr")]
-    internal static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+    [LibraryImport("user32.dll", EntryPoint = "SetWindowLongW")]
+    internal static partial IntPtr SetWindowLong32(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
     /// <summary>
     /// Sets a new value for a specified window attribute of a given window handle. The method adapts based on the
@@ -37,9 +35,8 @@ public static partial class NativeMethods
     /// <param name="dwNewLong">Represents the new value to be set for the specified window attribute.</param>
     /// <returns>Returns the previous value of the specified window attribute.</returns>
     public static IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong) => IntPtr.Size == 4
-        ? SetWindowLongPtr32(hWnd, nIndex, dwNewLong)
-        : SetWindowLongPtr64(hWnd, nIndex, dwNewLong);
-
+        ? SetWindowLong32(hWnd, nIndex, dwNewLong)
+        : SetWindowLong64(hWnd, nIndex, dwNewLong);
     internal static HWND[]? EnumThreadWindows(Func<HWND, nint, bool> predicate, nint lParam)
     {
         var list = new List<HWND>();
