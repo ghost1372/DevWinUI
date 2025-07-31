@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WindowedContentDialogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/windowedContentDialog"
+                                  HeaderText="WindowedContentDialog">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        WindowedContentDialog dialog = new()#nl#
+                        {#nl#
+                        Title = txtTitle.Text,#nl#
+                        Content = txtContent.Text,#nl#
+                        };#nl#
+                        ContentDialogResult result = await dialog.ShowAsync(true);
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="txtTitle"
+                                 Header="Title"
+                                 PlaceholderText="Title"
+                                 Text="Title" />
+                        <TextBox x:Name="txtContent"
+                                 Header="Content"
+                                 PlaceholderText="Content"
+                                 Text="Content" />
+                        <ToggleSwitch x:Name="TGIsModal"
+                                      Header="Is Modal"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGHasTitleBar"
+                                      Header="Has TitleBar"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <Button Click="Button_Click"
+                            Content="Show ContentDialog" />
+                    <TextBlock x:Name="TxtResult"
+                               Style="{ThemeResource TitleTextBlockStyle}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -21,6 +21,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.WindowedContentDialogPage",
+          "Title": "Windowed Content Dialog",
+          "Subtitle": "Windowed Content Dialog",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.MessageBoxPage",
+          "Title": "MessageBox",
+          "Subtitle": "MessageBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
           "Title": "Drag Move And Resize",
           "Subtitle": "Drag and Move Window by UIElement",
@@ -63,7 +77,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LegacyMessageBoxPage",
-          "Title": "MessageBox",
+          "Title": "Legacy MessageBox",
           "Subtitle": "Legacy MessageBox",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },

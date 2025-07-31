@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.LegacyMessageBoxPage"
+<Page x:Class="DevWinUIGallery.Views.MessageBoxPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,17 +12,20 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample DocPage="messageBox"
-                                  DocType="Core">
+            <local:ControlExample DocPage="controls/messagebox"
+                                  HeaderText="MessageBox">
                 <local:ControlExample.CSharp>
                     <x:String>
-                        LegacyMessageBox.Show(window, "Message", "Title", MessageBoxStyle.IconInformation);
+                        await MessageBox.ShowAsync("Content", "Title");
                     </x:String>
                 </local:ControlExample.CSharp>
-
-                <Button x:Name="BtnMessageBox"
-                        Click="BtnMessageBox_Click"
-                        Content="Show MessageBox" />
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox Header="Title" x:Name="txtTitle" Text="Title" PlaceholderText="Title"/>
+                        <TextBox Header="Content" x:Name="txtContent" Text="Content" PlaceholderText="Content"/>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Button Content="Show MessageBox" Click="Button_Click"/>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

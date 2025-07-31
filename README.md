@@ -147,6 +147,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ WindowedContentDialog
+- ✨ MessageBox
 - ✨ DepthLayerView
 - ✨ GifImage
 - ✨ Accordion
@@ -291,6 +293,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### MessageBox
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MessageBox.png)
+
+### WindowedContentDialog
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WindowedContentDialog.png)
 
 ### ConfettiCannon
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ConfettiCannon.gif)
@@ -442,7 +450,7 @@ Install-Package DevWinUI.ContextMenu
 ### ModalWindow
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModalWindow.gif)
 
-### MessageBox
+### LegacyMessageBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LegacyMessageBox.png)
 
 ### StepBar

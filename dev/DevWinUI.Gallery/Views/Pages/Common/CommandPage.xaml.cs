@@ -18,9 +18,9 @@ public sealed partial class CommandPage : Page
         return TGCommandWithParameter.IsOn;
     }
 
-    private void OnCommandWithParameter(object? parameter)
+    private async void OnCommandWithParameter(object? parameter)
     {
-        LegacyMessageBox.ShowInformation(App.MainWindow, $"Command Executed with Parameter: {parameter}");
+        await MessageBox.ShowAsync($"Command Executed with Parameter: {parameter}");
     }
 
     private bool CanExecuteCommandWithCanExecute()
@@ -28,9 +28,9 @@ public sealed partial class CommandPage : Page
         return TGCommandWithCanExecute.IsOn;
     }
 
-    private void OnSimpleCommand()
+    private async void OnSimpleCommand()
     {
-        LegacyMessageBox.ShowInformation(App.MainWindow, "Command Executed");
+        await MessageBox.ShowAsync("Command Executed");
     }
 
     private void TGCommandWithParameter_Toggled(object sender, RoutedEventArgs e)
@@ -41,6 +41,5 @@ public sealed partial class CommandPage : Page
             CommandWithCanExecute.RaiseCanExecuteChanged();
             CommandWithParameter.RaiseCanExecuteChanged();
         }
-
     }
 }
