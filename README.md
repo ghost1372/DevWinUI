@@ -147,6 +147,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ StorageRing
+- ✨ StorageBar
 - ✨ WindowedContentDialog
 - ✨ MessageBox
 - ✨ DepthLayerView
@@ -293,6 +295,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### StorageBar
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StorageBar.gif)
+
+### StorageRing
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StorageRing.gif)
 
 ### MessageBox
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MessageBox.png)

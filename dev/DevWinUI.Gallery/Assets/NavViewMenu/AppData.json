@@ -147,6 +147,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.StorageRingPage",
+          "Title": "Storage Ring",
+          "Subtitle": "Storage Ring",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StorageBarPage",
+          "Title": "Storage Bar",
+          "Subtitle": "Storage Bar",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.GifImagePage",
           "Title": "Gif Image",
           "Subtitle": "Gif Image",

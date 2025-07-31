@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.StorageBarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/storageBar"
+                                  HeaderText="StorageBar">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:StorageBar Value="25" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SlValue"
+                                Header="Value"
+                                Value="26" />
+                        <Slider x:Name="SlValueBarHeight"
+                                Header="Value Bar Height"
+                                Value="6" />
+                        <Slider x:Name="SlTrackBarHeight"
+                                Header="Track Bar Height"
+                                Value="3" />
+                        <Slider x:Name="SlPercentCaution"
+                                Header="Percent Caution"
+                                Value="75.1" />
+                        <Slider x:Name="SlPercentCritical"
+                                Header="Percent Critical"
+                                Value="89.9" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:StorageBar PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}"
+                                PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}"
+                                TrackBarHeight="{x:Bind SlTrackBarHeight.Value, Mode=OneWay}"
+                                ValueBarHeight="{x:Bind SlValueBarHeight.Value, Mode=OneWay}"
+                                Value="{x:Bind SlValue.Value, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
