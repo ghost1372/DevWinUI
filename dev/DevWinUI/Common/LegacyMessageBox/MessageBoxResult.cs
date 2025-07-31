@@ -1,6 +1,7 @@
 ﻿namespace DevWinUI;
 public enum MessageBoxResult
 {
+    None = 0,
     OK = 1,
     CANCEL = 2,
     ABORT = 3,
