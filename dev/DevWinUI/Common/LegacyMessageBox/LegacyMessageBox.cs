@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-public static class MessageBox
+public static class LegacyMessageBox
 {
     private static MessageBoxResult ShowBase(IntPtr hwnd, string message, string title, MessageBoxStyle messageBoxStyle)
     {

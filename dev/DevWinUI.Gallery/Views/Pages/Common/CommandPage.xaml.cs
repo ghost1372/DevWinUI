@@ -20,7 +20,7 @@ public sealed partial class CommandPage : Page
 
     private void OnCommandWithParameter(object? parameter)
     {
-        MessageBox.ShowInformation(App.MainWindow, $"Command Executed with Parameter: {parameter}");
+        LegacyMessageBox.ShowInformation(App.MainWindow, $"Command Executed with Parameter: {parameter}");
     }
 
     private bool CanExecuteCommandWithCanExecute()
@@ -30,7 +30,7 @@ public sealed partial class CommandPage : Page
 
     private void OnSimpleCommand()
     {
-        MessageBox.ShowInformation(App.MainWindow, "Command Executed");
+        LegacyMessageBox.ShowInformation(App.MainWindow, "Command Executed");
     }
 
     private void TGCommandWithParameter_Toggled(object sender, RoutedEventArgs e)
