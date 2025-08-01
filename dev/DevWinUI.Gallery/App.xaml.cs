@@ -3,6 +3,7 @@
 public partial class App : Application
 {
     public static Window MainWindow = Window.Current;
+    public static IntPtr Hwnd => WinRT.Interop.WindowNative.GetWindowHandle(MainWindow);
     public new static App Current => (App)Application.Current;
     public IServiceProvider Services { get; }
     public IJsonNavigationService NavService => GetService<IJsonNavigationService>();

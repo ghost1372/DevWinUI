@@ -1,4 +1,6 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using Microsoft.UI.Xaml.Input;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class MainWindow : Window
 {
@@ -48,6 +50,11 @@ public sealed partial class MainWindow : Window
     private void KeyboardAccelerator_Invoked(Microsoft.UI.Xaml.Input.KeyboardAccelerator sender, Microsoft.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
     {
         HeaderAutoSuggestBox.Focus(FocusState.Programmatic);
+    }
+
+    private void OnIconPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        AppHelper.PostMessage(App.Hwnd, (uint)NativeValues.WindowMessage.WM_SYSCOMMAND, 0xF090, IntPtr.Zero);
     }
 }
 
