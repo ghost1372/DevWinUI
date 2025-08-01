@@ -235,6 +235,20 @@ public sealed partial class ContentDialogWindow : Window
         }
     }
 
+    private bool _isResizable;
+    public bool IsResizable
+    {
+        get => _isResizable;
+        set
+        {
+            _isResizable = value;
+            if (presenter != null)
+            {
+                presenter.IsResizable = value;
+            }
+        }
+    }
+
     private ContentDialogContent content;
 
     private readonly OverlappedPresenter presenter;

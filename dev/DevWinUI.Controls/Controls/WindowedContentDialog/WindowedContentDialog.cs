@@ -35,6 +35,7 @@ public partial class WindowedContentDialog
     public Window? OwnerWindow { get; set; }
     public bool IsModel { get; set; }
     public bool HasTitleBar { get; set; } = true;
+    public bool IsResizable { get; set; }
 
     /// <summary>
     /// Displays a dialog window and returns the user's selection when it is closed.
@@ -53,8 +54,9 @@ public partial class WindowedContentDialog
         ContentDialogWindow window = new()
         {
             Title = Title ?? string.Empty,
-            HasTitleBar = HasTitleBar,
             Content = Content,
+            HasTitleBar = HasTitleBar,
+            IsResizable = IsResizable,
 
             SystemBackdrop = SystemBackdrop,
             PrimaryButtonText = PrimaryButtonText,
