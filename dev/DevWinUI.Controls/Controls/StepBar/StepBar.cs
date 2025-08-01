@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
@@ -23,6 +24,8 @@ public partial class StepBar : ItemsControl
     private ItemsPanelTemplate HorizontalItemsPanelTemplate { get; set; }
     private ItemsPanelTemplate VerticalItemsPanelTemplate { get; set; }
     public event EventHandler<int> StepChanged;
+    public event EventHandler<StepBarItemClickEventArgs>? ItemClick;
+
     private int _oriStepIndex = -1;
     private void UpdateTemplate()
     {
@@ -313,7 +316,20 @@ public partial class StepBar : ItemsControl
     {
         VisualStateManager.GoToState(this, Status.ToString(), true);
     }
+    private void OnItemTapped(object sender, TappedRoutedEventArgs e)
+    {
+        if (sender is StepBarItem stepBarItem)
+        {
+            int index = ItemContainerGenerator.IndexFromContainer(stepBarItem);
 
+            ItemClick?.Invoke(this, new StepBarItemClickEventArgs(index, stepBarItem));
+
+            if (AutoSelectOnItemClick)
+            {
+                StepIndex = index;
+            }
+        }
+    }
     public void Next() => StepIndex++;
     public void Prev() => StepIndex--;
 }

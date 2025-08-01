@@ -148,4 +148,13 @@ public partial class StepBar
             ctl.UpdateItems();
         }
     }
+
+    public bool AutoSelectOnItemClick
+    {
+        get => (bool)GetValue(AutoSelectOnItemClickProperty);
+        set => SetValue(AutoSelectOnItemClickProperty, value);
+    }
+
+    public static readonly DependencyProperty AutoSelectOnItemClickProperty =
+        DependencyProperty.Register(nameof(AutoSelectOnItemClick), typeof(bool), typeof(StepBar), new PropertyMetadata(false));
 }

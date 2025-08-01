@@ -44,7 +44,7 @@
                         <ComboBox x:Name="CmbHeaderDisplayMode"
                                   Header="Header Display Mode"
                                   ItemsSource="{x:Bind ViewModel.StepBarHeaderDisplayModeItems, Mode=OneWay}"
-                                  SelectedIndex="3" />
+                                  SelectedIndex="1" />
                         <ComboBox x:Name="CmbDisplayMode"
                                   Header="Display Mode"
                                   ItemsSource="{x:Bind ViewModel.StepBarDisplayModeItems, Mode=OneWay}"
@@ -52,9 +52,13 @@
                         <ToggleSwitch x:Name="TGShowStepIndex"
                                       Header="Show StepIndex"
                                       IsOn="True" />
+                        <ToggleSwitch x:Name="TGAutoSelectOnItemClick"
+                                      Header="Auto Select On Item Click"
+                                      IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:StepBar x:Name="StepBarSample"
+                             AutoSelectOnItemClick="{x:Bind TGAutoSelectOnItemClick.IsOn, Mode=OneWay}"
                              DisplayMode="{x:Bind ((dev:StepBarDisplayMode)CmbDisplayMode.SelectedItem), Mode=OneWay}"
                              HeaderDisplayMode="{x:Bind ((dev:StepBarHeaderDisplayMode)CmbHeaderDisplayMode.SelectedItem), Mode=OneWay}"
                              Orientation="{x:Bind ((Orientation)CmbOrientation.SelectedItem), Mode=OneWay}"
