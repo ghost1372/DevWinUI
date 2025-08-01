@@ -16,54 +16,50 @@
                                   XamlSource="Features/StepBar_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button x:Name="BtnNext"
-                                Click="BtnNext_Click"
-                                Content="Next" />
-                        <Button x:Name="BtnPrev"
-                                Click="BtnPrev_Click"
-                                Content="Prev" />
-                        <ComboBox x:Name="Cmb"
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="10">
+                            <Button x:Name="BtnNext"
+                                    MinWidth="120"
+                                    Click="BtnNext_Click"
+                                    Content="Next" />
+                            <Button x:Name="BtnPrev"
+                                    MinWidth="120"
+                                    Click="BtnPrev_Click"
+                                    Content="Prev" />
+                        </StackPanel>
+                        <ComboBox x:Name="CmbStatus"
                                   Header="Status"
-                                  SelectedIndex="0"
-                                  SelectionChanged="Cmb_SelectionChanged">
-                            <ComboBoxItem Content="Info"
-                                          Tag="Info" />
-                            <ComboBoxItem Content="Warning"
-                                          Tag="Warning" />
-                            <ComboBoxItem Content="Error"
-                                          Tag="Error" />
-                            <ComboBoxItem Content="Success"
-                                          Tag="Success" />
-                        </ComboBox>
+                                  ItemsSource="{x:Bind ViewModel.StepStatusItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
                         <ComboBox x:Name="CmbOrientation"
                                   Header="Orientation"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbOrientation_SelectionChanged">
-                            <ComboBoxItem Content="Horizontal"
-                                          Tag="Horizontal" />
-                            <ComboBoxItem Content="Vertical"
-                                          Tag="Vertical" />
+                                  ItemsSource="{x:Bind ViewModel.OrientationItems, Mode=OneWay}"
+                                  SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="Orientation">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                         <ComboBox x:Name="CmbHeaderDisplayMode"
                                   Header="Header Display Mode"
-                                  SelectedIndex="3"
-                                  SelectionChanged="CmbHeaderDisplayMode_SelectionChanged">
-                            <ComboBoxItem Content="Left"
-                                          Tag="Left" />
-                            <ComboBoxItem Content="Right"
-                                          Tag="Right" />
-                            <ComboBoxItem Content="Top"
-                                          Tag="Top" />
-                            <ComboBoxItem Content="Bottom"
-                                          Tag="Bottom" />
-                        </ComboBox>
+                                  ItemsSource="{x:Bind ViewModel.StepBarHeaderDisplayModeItems, Mode=OneWay}"
+                                  SelectedIndex="3" />
+                        <ComboBox x:Name="CmbDisplayMode"
+                                  Header="Display Mode"
+                                  ItemsSource="{x:Bind ViewModel.StepBarDisplayModeItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
                         <ToggleSwitch x:Name="TGShowStepIndex"
                                       Header="Show StepIndex"
                                       IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:StepBar x:Name="StepBarSample"
-                             ShowStepIndex="{x:Bind TGShowStepIndex.IsOn, Mode=OneWay}">
+                             DisplayMode="{x:Bind ((dev:StepBarDisplayMode)CmbDisplayMode.SelectedItem), Mode=OneWay}"
+                             HeaderDisplayMode="{x:Bind ((dev:StepBarHeaderDisplayMode)CmbHeaderDisplayMode.SelectedItem), Mode=OneWay}"
+                             Orientation="{x:Bind ((Orientation)CmbOrientation.SelectedItem), Mode=OneWay}"
+                             ShowStepIndex="{x:Bind TGShowStepIndex.IsOn, Mode=OneWay}"
+                             Status="{x:Bind ((dev:StepStatus)CmbStatus.SelectedItem), Mode=OneWay}">
                     <dev:StepBarItem Content="Register" />
                     <dev:StepBarItem Content="BasicInfo" />
                     <dev:StepBarItem Content="UploadFile" />

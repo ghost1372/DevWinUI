@@ -668,6 +668,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </LinearGradientBrush>
   <local:ValidationEnabledConverter x:Name="CanValidateConverter" />
   <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible" />
+  <local:BoolToVisibilityConverter x:Key="BoolToVisibilityReConverter" FalseValue="Visible" TrueValue="Collapsed" />
   <local:GridLengthConverter x:Key="GridLengthConverter" />
   <local:CornerRadiusSplitConverter x:Key="CornerRadiusSplitConverter" />
   <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
@@ -8710,6 +8711,9 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style x:Key="StepBarItemHorizontalStyle" TargetType="local:StepBarItem">
     <Setter Property="Margin" Value="10,0" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:StepBarItem">
@@ -8728,6 +8732,9 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <!--  Info  -->
@@ -8740,6 +8747,9 @@ Themes\Styles\Win2D\Watermark.xaml
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
@@ -8756,6 +8766,9 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <!--  Error  -->
@@ -8768,6 +8781,9 @@ Themes\Styles\Win2D\Watermark.xaml
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
@@ -8784,12 +8800,20 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border x:Name="PART_Border" Height="40" MinWidth="40" HorizontalAlignment="Center" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
-              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <Border x:Name="PART_Border" Height="40" MinWidth="40" HorizontalAlignment="Center" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="90">
+              <Grid>
+                <Border Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
+                  <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Border>
+                <IconSourceElement x:Name="PART_Icon" Foreground="{ThemeResource TextFillColorPrimaryBrush}" IconSource="{TemplateBinding Icon}" Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+              </Grid>
             </Border>
             <ContentPresenter x:Name="PART_Content" Margin="0,5,0,0" HorizontalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>
@@ -8798,6 +8822,9 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="StepBarItemVerticalStyle" TargetType="local:StepBarItem">
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:StepBarItem">
@@ -8816,6 +8843,9 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <!--  Info  -->
@@ -8828,6 +8858,9 @@ Themes\Styles\Win2D\Watermark.xaml
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
@@ -8844,6 +8877,9 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
                 <!--  Error  -->
@@ -8856,6 +8892,9 @@ Themes\Styles\Win2D\Watermark.xaml
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
@@ -8872,12 +8911,20 @@ Themes\Styles\Win2D\Watermark.xaml
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
                       <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                     </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border x:Name="PART_Border" Height="40" MinWidth="40" Background="{ThemeResource ControlSolidFillColorDefaultBrush}" BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}" BorderThickness="2" CornerRadius="90">
-              <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <Border x:Name="PART_Border" Height="40" MinWidth="40" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="90">
+              <Grid>
+                <Border Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
+                  <TextBlock x:Name="PART_Number" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding ShowStepIndex, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Border>
+                <IconSourceElement x:Name="PART_Icon" Foreground="{ThemeResource TextFillColorPrimaryBrush}" IconSource="{TemplateBinding Icon}" Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+              </Grid>
             </Border>
             <ContentPresenter x:Name="PART_Content" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
           </StackPanel>

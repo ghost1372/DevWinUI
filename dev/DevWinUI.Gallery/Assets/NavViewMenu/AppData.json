@@ -266,6 +266,7 @@
           "UniqueId": "DevWinUIGallery.Views.StepBarPage",
           "Title": "StepBar",
           "Subtitle": "StepBar",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
         },
         {

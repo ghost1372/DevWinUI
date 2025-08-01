@@ -7,6 +7,9 @@ namespace DevWinUIGallery.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {
+    [ObservableProperty]
+    public partial ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
+
     #region SwitchPresenter
     [ObservableProperty]
     public partial RadioButton RadioSelectedItem { get; set; }
@@ -87,13 +90,6 @@ public partial class BaseViewModel : ObservableObject
 
     #endregion
 
-    #region SpliCircle
-
-    [ObservableProperty]
-    public partial ObservableCollection<Orientation> SplitOrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
-
-    #endregion
-
     #region ColorPalette
 
     [ObservableProperty]
@@ -121,6 +117,18 @@ public partial class BaseViewModel : ObservableObject
 
     [ObservableProperty]
     public partial ObservableCollection<MessageBoxDefaultButton> MessageBoxDefaultButtonItems { get; set; } = new ObservableCollection<MessageBoxDefaultButton>(Enum.GetValues<MessageBoxDefaultButton>());
+
+    #endregion
+
+    #region StepBar
+    [ObservableProperty]
+    public partial ObservableCollection<StepBarDisplayMode> StepBarDisplayModeItems { get; set; } = new ObservableCollection<StepBarDisplayMode>(Enum.GetValues<StepBarDisplayMode>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<StepBarHeaderDisplayMode> StepBarHeaderDisplayModeItems { get; set; } = new ObservableCollection<StepBarHeaderDisplayMode>(Enum.GetValues<StepBarHeaderDisplayMode>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<StepStatus> StepStatusItems { get; set; } = new ObservableCollection<StepStatus>(Enum.GetValues<StepStatus>());
 
     #endregion
 
