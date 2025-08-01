@@ -40,6 +40,9 @@
                         <ToggleSwitch x:Name="TGHasTitleBar"
                                       Header="Has TitleBar"
                                       IsOn="True" />
+                        <ToggleSwitch x:Name="TGIsResizable"
+                                      Header="Is Resizable"
+                                      IsOn="False" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">

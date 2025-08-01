@@ -17,7 +17,8 @@ public sealed partial class WindowedContentDialogPage : Page
             SecondaryButtonText = "Secondary  ",
             CloseButtonText = "Close",
             OwnerWindow = MainWindow.Instance,
-            HasTitleBar = TGHasTitleBar.IsOn
+            HasTitleBar = TGHasTitleBar.IsOn,
+            IsResizable = TGIsResizable.IsOn
         };
 
         ContentDialogResult result = await dialog.ShowAsync(TGIsModal.IsOn);
