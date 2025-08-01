@@ -14,7 +14,7 @@
 
 namespace DevWinUI;
 
-internal partial class TextDrawer : IContentDrawer
+public partial class TextDrawer : IContentDrawer
 {
     private string _text;
     private CanvasTextFormat _textFormat;
