@@ -94,18 +94,124 @@ public partial class StepBarItem : ContentControl
             ctl.UpdateHeaderDisplayMode();
         }
     }
+
+    internal IconSource Icon
+    {
+        get { return (IconSource)GetValue(IconProperty); }
+        set { SetValue(IconProperty, value); }
+    }
+
+    internal static readonly DependencyProperty IconProperty =
+        DependencyProperty.Register(nameof(Icon), typeof(IconSource), typeof(StepBarItem), new PropertyMetadata(null));
+
+    public IconSource UnderWayIcon
+    {
+        get { return (IconSource)GetValue(UnderWayIconProperty); }
+        set { SetValue(UnderWayIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty UnderWayIconProperty =
+        DependencyProperty.Register(nameof(UnderWayIcon), typeof(IconSource), typeof(StepBarItem), new PropertyMetadata(null, OnIconChanged));
+
+    public IconSource WaitingIcon
+    {
+        get { return (IconSource)GetValue(WaitingIconProperty); }
+        set { SetValue(WaitingIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty WaitingIconProperty =
+        DependencyProperty.Register(nameof(WaitingIcon), typeof(IconSource), typeof(StepBarItem), new PropertyMetadata(null, OnIconChanged));
+
+    public IconSource CompleteIcon
+    {
+        get { return (IconSource)GetValue(CompleteIconProperty); }
+        set { SetValue(CompleteIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty CompleteIconProperty =
+        DependencyProperty.Register(nameof(CompleteIcon), typeof(IconSource), typeof(StepBarItem), new PropertyMetadata(null, OnIconChanged));
+
+    private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (StepBarItem)d;
+        if (ctl != null)
+        {
+            ctl.UpdateVisualStates();
+        }
+    }
+    internal bool ShowStepIcon
+    {
+        get { return (bool)GetValue(ShowStepIconProperty); }
+        set { SetValue(ShowStepIconProperty, value); }
+    }
+
+    internal static readonly DependencyProperty ShowStepIconProperty =
+        DependencyProperty.Register(nameof(ShowStepIcon), typeof(bool), typeof(StepBarItem), new PropertyMetadata(false));
+
+    public StepBarDisplayMode DisplayMode
+    {
+        get { return (StepBarDisplayMode)GetValue(DisplayModeProperty); }
+        set { SetValue(DisplayModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty DisplayModeProperty =
+        DependencyProperty.Register(nameof(DisplayMode), typeof(StepBarDisplayMode), typeof(StepBarItem), new PropertyMetadata(StepBarDisplayMode.Index, OnDisplayModeChanged));
+
+    private static void OnDisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (StepBarItem)d;
+        if (ctl != null)
+        {
+            switch ((StepBarDisplayMode)e.NewValue)
+            {
+                case StepBarDisplayMode.Index:
+                    ctl.ShowStepIcon = false;
+                    break;
+                case StepBarDisplayMode.Icon:
+                    ctl.ShowStepIcon = true;
+                    break;
+            }
+        }
+    }
+
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBarItem))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ContentPresenter))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StackPanel))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Border))]
+    public StepBarItem()
+    {
+        this.DefaultStyleKey = typeof(StepBarItem);
+    }
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        contentPresenter = GetTemplateChild(ContentPresenterElement) as ContentPresenter;
+        border = GetTemplateChild(BorderElement) as Border;
+        panel = GetTemplateChild(PanelElement) as StackPanel;
+        UpdateHeaderDisplayMode();
+        UpdateVisualStates();
+    }
+
     public void UpdateVisualStates()
     {
-        string visualState = ProgressState switch
+        string visualState = "Waiting";
+        switch (ProgressState)
         {
-            StepProgressState.Waiting => "Waiting",
-            StepProgressState.UnderWay => Status.ToString(),
-            StepProgressState.Complete => Status.ToString(),
-            _ => "Waiting"
-        };
+            case StepProgressState.Complete:
+                visualState = Status.ToString();
+                Icon = CompleteIcon;
+                break;
+            case StepProgressState.Waiting:
+                visualState = "Waiting";
+                Icon = WaitingIcon;
+                break;
+            case StepProgressState.UnderWay:
+                visualState = Status.ToString();
+                Icon = UnderWayIcon;
+                break;
+        }
 
         VisualStateManager.GoToState(this, visualState, true);
-
     }
 
     private void UpdateHeaderDisplayMode()
@@ -134,23 +240,5 @@ public partial class StepBarItem : ContentControl
                     break;
             }
         }
-    }
-
-    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBarItem))]
-    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ContentPresenter))]
-    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StackPanel))]
-    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Border))]
-    public StepBarItem()
-    {
-        this.DefaultStyleKey = typeof(StepBarItem);
-    }
-    protected override void OnApplyTemplate()
-    {
-        base.OnApplyTemplate();
-        contentPresenter = GetTemplateChild(ContentPresenterElement) as ContentPresenter;
-        border = GetTemplateChild(BorderElement) as Border;
-        panel = GetTemplateChild(PanelElement) as StackPanel;
-        UpdateHeaderDisplayMode();
-        UpdateVisualStates();
     }
 }

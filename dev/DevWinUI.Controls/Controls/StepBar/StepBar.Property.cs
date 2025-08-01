@@ -103,4 +103,49 @@ public partial class StepBar
             ctl.UpdateItems();
         }
     }
+
+    public IconSource UnderWayIcon
+    {
+        get { return (IconSource)GetValue(UnderWayIconProperty); }
+        set { SetValue(UnderWayIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty UnderWayIconProperty =
+        DependencyProperty.Register(nameof(UnderWayIcon), typeof(IconSource), typeof(StepBar), new PropertyMetadata(null));
+
+    public IconSource WaitingIcon
+    {
+        get { return (IconSource)GetValue(WaitingIconProperty); }
+        set { SetValue(WaitingIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty WaitingIconProperty =
+        DependencyProperty.Register(nameof(WaitingIcon), typeof(IconSource), typeof(StepBar), new PropertyMetadata(null, OnIconChanged));
+
+    public IconSource CompleteIcon
+    {
+        get { return (IconSource)GetValue(CompleteIconProperty); }
+        set { SetValue(CompleteIconProperty, value); }
+    }
+
+    public static readonly DependencyProperty CompleteIconProperty =
+        DependencyProperty.Register(nameof(CompleteIcon), typeof(IconSource), typeof(StepBar), new PropertyMetadata(null, OnIconChanged));
+
+    public StepBarDisplayMode DisplayMode
+    {
+        get { return (StepBarDisplayMode)GetValue(DisplayModeProperty); }
+        set { SetValue(DisplayModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty DisplayModeProperty =
+        DependencyProperty.Register(nameof(DisplayMode), typeof(StepBarDisplayMode), typeof(StepBar), new PropertyMetadata(StepBarDisplayMode.Index, OnIconChanged));
+
+    private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (StepBar)d;
+        if (ctl != null)
+        {
+            ctl.UpdateItems();
+        }
+    }
 }

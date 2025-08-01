@@ -209,6 +209,17 @@ public partial class StepBar : ItemsControl
                 stepBarItem.HeaderDisplayMode = this.HeaderDisplayMode;
                 stepBarItem.ItemTemplate = ItemTemplate;
                 stepBarItem.ShowStepIndex = ShowStepIndex;
+
+                if (stepBarItem.WaitingIcon is null)
+                    stepBarItem.WaitingIcon = this.WaitingIcon;
+
+                if (stepBarItem.UnderWayIcon is null)
+                    stepBarItem.UnderWayIcon = this.UnderWayIcon;
+
+                if (stepBarItem.CompleteIcon is null)
+                    stepBarItem.CompleteIcon = this.CompleteIcon;
+
+                stepBarItem.DisplayMode = DisplayMode;
             }
         }
 
@@ -261,7 +272,15 @@ public partial class StepBar : ItemsControl
         if (ItemContainerGenerator.ContainerFromIndex(stepIndex) is StepBarItem stepItemSelected)
         {
             UpdateProgressBarVisualStates();
-            stepItemSelected.ProgressState = StepProgressState.UnderWay;
+            if (stepIndex == ItemsCount - 1)
+            {
+                // Last step should be marked as complete
+                stepItemSelected.ProgressState = StepProgressState.Complete;
+            }
+            else
+            {
+                stepItemSelected.ProgressState = StepProgressState.UnderWay;
+            }
             stepItemSelected.Status = Status;
         }
         SetProgressBarValueWithAnimation(StepIndex);
