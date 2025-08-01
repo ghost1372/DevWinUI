@@ -88,11 +88,11 @@ public partial class DropdownColorPicker
 
     public Color Color
     {
-        get { return (Color)GetValue(MyPropertyProperty); }
-        set { SetValue(MyPropertyProperty, value); }
+        get { return (Color)GetValue(ColorProperty); }
+        set { SetValue(ColorProperty, value); }
     }
 
-    public static readonly DependencyProperty MyPropertyProperty =
+    public static readonly DependencyProperty ColorProperty =
         DependencyProperty.Register(nameof(Color), typeof(Color), typeof(DropdownColorPicker), new PropertyMetadata(ColorHelper.GetColorFromHex("#FFFFFF"), OnColorChanged));
 
     private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
