@@ -223,6 +223,8 @@ public partial class StepBar : ItemsControl
                     stepBarItem.CompleteIcon = this.CompleteIcon;
 
                 stepBarItem.DisplayMode = DisplayMode;
+                stepBarItem.Tapped -= OnItemTapped;
+                stepBarItem.Tapped += OnItemTapped;
             }
         }
 
