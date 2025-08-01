@@ -7,6 +7,9 @@
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"
                                      FalseValue="Collapsed"
                                      TrueValue="Visible" />
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityReConverter"
+                                     FalseValue="Visible"
+                                     TrueValue="Collapsed" />
     <local:GridLengthConverter x:Key="GridLengthConverter" />
     <local:CornerRadiusSplitConverter x:Key="CornerRadiusSplitConverter" />
     <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
