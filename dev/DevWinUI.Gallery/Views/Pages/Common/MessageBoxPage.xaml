@@ -29,10 +29,28 @@
                                  Header="Content"
                                  PlaceholderText="Content"
                                  Text="Content" />
+                        <ComboBox x:Name="CmbMessageBoxButtons"
+                                  Header="MessageBox Buttons"
+                                  ItemsSource="{x:Bind ViewModel.MessageBoxButtonItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                        <ComboBox x:Name="CmbMessageBoxDefaultBUtton"
+                                  Header="MessageBox Default Button"
+                                  ItemsSource="{x:Bind ViewModel.MessageBoxDefaultButtonItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                        <ToggleSwitch x:Name="TGIsModal"
+                                      Header="Is Modal"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGHasOwnerWindow"
+                                      Header="Has Owner Window?"
+                                      IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Button Click="Button_Click"
-                        Content="Show MessageBox" />
+                <StackPanel Spacing="10">
+                    <Button Click="OnMessageBox"
+                            Content="Show MessageBox" />
+                    <TextBlock x:Name="TxtResult"
+                               Style="{ThemeResource TitleTextBlockStyle}" />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

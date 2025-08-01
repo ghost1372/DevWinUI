@@ -114,6 +114,16 @@ public partial class BaseViewModel : ObservableObject
 
     #endregion
 
+    #region MessageBox
+
+    [ObservableProperty]
+    public partial ObservableCollection<MessageBoxButtons> MessageBoxButtonItems { get; set; } = new ObservableCollection<MessageBoxButtons>(Enum.GetValues<MessageBoxButtons>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<MessageBoxDefaultButton> MessageBoxDefaultButtonItems { get; set; } = new ObservableCollection<MessageBoxDefaultButton>(Enum.GetValues<MessageBoxDefaultButton>());
+
+    #endregion
+
     [ObservableProperty]
     public partial ObservableCollection<SampleData> SampleImageAndTextData { get; set; } = new ObservableCollection<SampleData>()
     {
