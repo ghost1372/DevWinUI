@@ -204,6 +204,9 @@
     <Style x:Key="StepBarItemHorizontalStyle"
            TargetType="local:StepBarItem">
         <Setter Property="Margin" Value="10,0" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StepBarItem">
@@ -341,9 +344,9 @@
                                 Height="40"
                                 MinWidth="40"
                                 HorizontalAlignment="Center"
-                                Background="{ThemeResource ControlSolidFillColorDefaultBrush}"
-                                BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}"
-                                BorderThickness="2"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="90">
                             <Grid>
                                 <Border Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
@@ -374,6 +377,9 @@
 
     <Style x:Key="StepBarItemVerticalStyle"
            TargetType="local:StepBarItem">
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StepBarItem">
@@ -510,9 +516,9 @@
                         <Border x:Name="PART_Border"
                                 Height="40"
                                 MinWidth="40"
-                                Background="{ThemeResource ControlSolidFillColorDefaultBrush}"
-                                BorderBrush="{ThemeResource StepBarItemInActiveBorderBrush}"
-                                BorderThickness="2"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="90">
                             <Grid>
                                 <Border Visibility="{Binding ShowStepIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">

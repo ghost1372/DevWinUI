@@ -210,13 +210,13 @@ public partial class StepBar : ItemsControl
                 stepBarItem.ItemTemplate = ItemTemplate;
                 stepBarItem.ShowStepIndex = ShowStepIndex;
 
-                if (stepBarItem.WaitingIcon is null)
+                if (stepBarItem.WaitingIcon is null && this.WaitingIcon is not null)
                     stepBarItem.WaitingIcon = this.WaitingIcon;
 
-                if (stepBarItem.UnderWayIcon is null)
+                if (stepBarItem.UnderWayIcon is null && this.UnderWayIcon is not null)
                     stepBarItem.UnderWayIcon = this.UnderWayIcon;
 
-                if (stepBarItem.CompleteIcon is null)
+                if (stepBarItem.CompleteIcon is null && this.CompleteIcon is not null)
                     stepBarItem.CompleteIcon = this.CompleteIcon;
 
                 stepBarItem.DisplayMode = DisplayMode;

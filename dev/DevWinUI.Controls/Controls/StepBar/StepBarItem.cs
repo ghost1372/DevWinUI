@@ -199,15 +199,15 @@ public partial class StepBarItem : ContentControl
         {
             case StepProgressState.Complete:
                 visualState = Status.ToString();
-                Icon = CompleteIcon;
+                Icon = CompleteIcon ?? new FontIconSource() { Glyph = "\uE8FB" };
                 break;
             case StepProgressState.Waiting:
                 visualState = "Waiting";
-                Icon = WaitingIcon;
+                Icon = WaitingIcon ?? new FontIconSource() { Glyph = "\uF16A" };
                 break;
             case StepProgressState.UnderWay:
                 visualState = Status.ToString();
-                Icon = UnderWayIcon;
+                Icon = UnderWayIcon ?? new FontIconSource() { Glyph = "\uE823" };
                 break;
         }
 
