@@ -21,9 +21,6 @@ public partial class BaseViewModel : ObservableObject
     [ObservableProperty]
     public partial ObservableCollection<Windows.Storage.Pickers.PickerLocationId> PickerLocationItems { get; set; } = new ObservableCollection<Windows.Storage.Pickers.PickerLocationId>(Enum.GetValues<Windows.Storage.Pickers.PickerLocationId>());
 
-    [ObservableProperty]
-    public partial object SuggestedStartLocationSelectedItem { get; set; }
-
     #endregion
 
     #region KeyVisual

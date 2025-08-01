@@ -39,8 +39,7 @@
                         <ComboBox x:Name="CmbSavePickerSuggestedStartLocation"
                                   Header="Suggested Start Location"
                                   ItemsSource="{x:Bind ViewModel.PickerLocationItems, Mode=OneWay}"
-                                  SelectedIndex="9"
-                                  SelectedItem="{x:Bind ViewModel.SuggestedStartLocationSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedIndex="9">
 
                         </ComboBox>
                         <ToggleSwitch x:Name="TGSavePickerShowAllFilesOption"
@@ -81,8 +80,7 @@
                         <ComboBox x:Name="CmbFilePickerSingleSuggestedStartLocation"
                                   Header="Suggested Start Location"
                                   ItemsSource="{x:Bind ViewModel.PickerLocationItems, Mode=OneWay}"
-                                  SelectedIndex="9"
-                                  SelectedItem="{x:Bind ViewModel.SuggestedStartLocationSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedIndex="9">
                         </ComboBox>
                         <ToggleSwitch x:Name="TGFilePickerSingleShowAllFilesOption"
                                       Header="Show All Files Option"
@@ -123,8 +121,7 @@
                         <ComboBox x:Name="CmbFilePickerMultipleSuggestedStartLocation"
                                   Header="Suggested Start Location"
                                   ItemsSource="{x:Bind ViewModel.PickerLocationItems, Mode=OneWay}"
-                                  SelectedIndex="9"
-                                  SelectedItem="{x:Bind ViewModel.SuggestedStartLocationSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedIndex="9">
                         </ComboBox>
                         <ToggleSwitch x:Name="TGFilePickerMultipleShowAllFilesOption"
                                       Header="Show All Files Option"
@@ -161,8 +158,7 @@
                         <ComboBox x:Name="CmbFolderPickerSingleSuggestedStartLocation"
                                   Header="Suggested Start Location"
                                   ItemsSource="{x:Bind ViewModel.PickerLocationItems, Mode=OneWay}"
-                                  SelectedIndex="9"
-                                  SelectedItem="{x:Bind ViewModel.SuggestedStartLocationSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedIndex="9">
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>
@@ -196,8 +192,7 @@
                         <ComboBox x:Name="CmbFolderPickerMultipleSuggestedStartLocation"
                                   Header="Suggested Start Location"
                                   ItemsSource="{x:Bind ViewModel.PickerLocationItems, Mode=OneWay}"
-                                  SelectedIndex="9"
-                                  SelectedItem="{x:Bind ViewModel.SuggestedStartLocationSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedIndex="9">
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>

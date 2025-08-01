@@ -27,12 +27,8 @@ public sealed partial class PickersPage : Page
 
         picker.InitialDirectory = txtSavePickerInitialDirectory.Text;
 
-        var locationId = ViewModel.SuggestedStartLocationSelectedItem;
-        if (locationId == null)
-        {
-            locationId = Windows.Storage.Pickers.PickerLocationId.Unspecified;
-        }
-        picker.SuggestedStartLocation = GeneralHelper.GetEnum<Windows.Storage.Pickers.PickerLocationId>(locationId.ToString());
+        var locationId = (Windows.Storage.Pickers.PickerLocationId)CmbSavePickerSuggestedStartLocation.SelectedItem;
+        picker.SuggestedStartLocation = locationId;
 
         var file = await picker.PickSaveFileAsync();
         if (file != null)
@@ -57,13 +53,8 @@ public sealed partial class PickersPage : Page
 
         picker.InitialDirectory = txtFilePickerMultipleInitialDirectory.Text;
 
-        var locationId = ViewModel.SuggestedStartLocationSelectedItem;
-        if (locationId == null)
-        {
-            locationId = Windows.Storage.Pickers.PickerLocationId.Unspecified;
-        }
-        picker.SuggestedStartLocation = GeneralHelper.GetEnum<Windows.Storage.Pickers.PickerLocationId>(locationId.ToString());
-
+        var locationId = (Windows.Storage.Pickers.PickerLocationId)CmbFilePickerMultipleSuggestedStartLocation.SelectedItem;
+        picker.SuggestedStartLocation = locationId;
         var files = await picker.PickMultipleFilesAsync();
         StringBuilder stringBuilder = new StringBuilder();
         foreach (var item in files)
@@ -88,13 +79,8 @@ public sealed partial class PickersPage : Page
         };
         picker.InitialDirectory = txtFilePickerSingleInitialDirectory.Text;
 
-        var locationId = ViewModel.SuggestedStartLocationSelectedItem;
-        if (locationId == null)
-        {
-            locationId = Windows.Storage.Pickers.PickerLocationId.Unspecified;
-        }
-        picker.SuggestedStartLocation = GeneralHelper.GetEnum<Windows.Storage.Pickers.PickerLocationId>(locationId.ToString());
-
+        var locationId = (Windows.Storage.Pickers.PickerLocationId)CmbFilePickerSingleSuggestedStartLocation.SelectedItem;
+        picker.SuggestedStartLocation = locationId;
         var file = await picker.PickSingleFileAsync();
         if (file != null)
         {
@@ -110,13 +96,8 @@ public sealed partial class PickersPage : Page
         picker.CommitButtonText = txtFolderPickerSingleCommitButtonText.Text;
         picker.InitialDirectory = txtFolderPickerSingleInitialDirectory.Text;
 
-        var locationId = ViewModel.SuggestedStartLocationSelectedItem;
-        if (locationId == null)
-        {
-            locationId = Windows.Storage.Pickers.PickerLocationId.Unspecified;
-        }
-        picker.SuggestedStartLocation = GeneralHelper.GetEnum<Windows.Storage.Pickers.PickerLocationId>(locationId.ToString());
-
+        var locationId = (Windows.Storage.Pickers.PickerLocationId)CmbFolderPickerSingleSuggestedStartLocation.SelectedItem;
+        picker.SuggestedStartLocation = locationId;
         var folder = await picker.PickSingleFolderAsync();
         if (folder != null)
         {
@@ -132,13 +113,8 @@ public sealed partial class PickersPage : Page
         picker.CommitButtonText = txtFolderPickerMultipleCommitButtonText.Text;
         picker.InitialDirectory = txtFolderPickerMultipleInitialDirectory.Text;
 
-        var locationId = ViewModel.SuggestedStartLocationSelectedItem;
-        if (locationId == null)
-        {
-            locationId = Windows.Storage.Pickers.PickerLocationId.Unspecified;
-        }
-        picker.SuggestedStartLocation = GeneralHelper.GetEnum<Windows.Storage.Pickers.PickerLocationId>(locationId.ToString());
-
+        var locationId = (Windows.Storage.Pickers.PickerLocationId)CmbFolderPickerMultipleSuggestedStartLocation.SelectedItem;
+        picker.SuggestedStartLocation = locationId;
         var folders = await picker.PickMultipleFoldersAsync();
 
         StringBuilder stringBuilder = new StringBuilder();
