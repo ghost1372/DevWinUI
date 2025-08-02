@@ -20,12 +20,11 @@
 
             <!--  Temporary Fix TitleBar Icon  -->
             <TitleBar.LeftHeader>
-                <BitmapIcon Width="16"
-                            Height="16"
-                            Margin="2,0,14,0"
-                            PointerPressed="OnIconPointerPressed"
-                            ShowAsMonochrome="False"
-                            UriSource="ms-appx:///Assets/icon.png" />
+                <ImageIcon Width="16"
+                           Height="16"
+                           Margin="2,0,14,0"
+                           PointerPressed="OnIconPointerPressed"
+                           Source="ms-appx:///Assets/icon.png" />
             </TitleBar.LeftHeader>
             <AutoSuggestBox x:Name="HeaderAutoSuggestBox"
                             MinWidth="320"
