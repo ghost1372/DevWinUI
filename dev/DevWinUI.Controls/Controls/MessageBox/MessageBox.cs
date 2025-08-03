@@ -2,31 +2,52 @@
 
 public partial class MessageBox
 {
-    public static async Task<MessageBoxResult> ShowAsync(
-        object content,
-        string? title = null)
-        => await ShowAsync(false, null, content, title, MessageBoxButtons.OK);
+    public static async Task<MessageBoxResult> ShowAsync(object content)
+        => await ShowAsync(false, null, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(
-        object content,
-        string? title,
-        MessageBoxButtons buttons,
-        MessageBoxDefaultButton? defaultButton = MessageBoxDefaultButton.Button1)
-        => await ShowAsync(false, null, content, title, buttons, defaultButton);
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title)
+        => await ShowAsync(false, null, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(
-        bool modal,
-        Window owner,
-        object content,
-        string? title = null) 
-        => await ShowAsync(modal, owner, content, title, MessageBoxButtons.OK);
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, false, content, title, buttons, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(
-        bool modal,
-        Window? owner,
-        object? content, string? title,
-        MessageBoxButtons buttons,
-        MessageBoxDefaultButton? defaultButton = MessageBoxDefaultButton.Button1)
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+        => await ShowAsync(false, null, false, content, title, buttons, defaultButton);
+
+    public static async Task<MessageBoxResult> ShowAsync(object content, bool isResizable)
+    => await ShowAsync(false, null, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, bool isResizable)
+        => await ShowAsync(false, null, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, bool isResizable)
+        => await ShowAsync(false, null, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton, bool isResizable)
+        => await ShowAsync(false, null, isResizable, content, title, buttons, defaultButton);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content)
+        => await ShowAsync(modal, owner, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title)
+        => await ShowAsync(modal, owner, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(modal, owner, false, content, title, buttons, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+        => await ShowAsync(modal, owner, false, content, title, buttons, defaultButton);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content)
+    => await ShowAsync(modal, owner, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title)
+        => await ShowAsync(modal, owner, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(modal, owner, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
+
+    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
     {
         FrameworkElement? root = owner?.Content as FrameworkElement;
         WindowedContentDialog dialog = new()
