@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\tools\Assets\Mask\ForegroundFocusMask.png">
-      <LogicalName>Assets.Mask.TextGlitchMask.png</LogicalName>
+      <LogicalName>Assets.Mask.ForegroundFocusMask.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\tools\Assets\Mask\TextGlitchMask.png">
       <LogicalName>Assets.Mask.TextGlitchMask.png</LogicalName>
