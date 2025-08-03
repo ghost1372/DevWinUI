@@ -26,9 +26,15 @@
     </XAMLCombineItems>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\Mask\ForegroundFocusMask.png" />
-    <EmbeddedResource Include="Assets\Mask\TextGlitchMask.png" />
-    <EmbeddedResource Include="Assets\Noise\Noise.jpg" />
+    <EmbeddedResource Include="..\..\tools\Assets\Mask\ForegroundFocusMask.png">
+      <LogicalName>Assets.Mask.TextGlitchMask.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\tools\Assets\Mask\TextGlitchMask.png">
+      <LogicalName>Assets.Mask.TextGlitchMask.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\tools\Assets\Noise\Noise.jpg">
+      <LogicalName>Assets.Noise.Noise.jpg</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
