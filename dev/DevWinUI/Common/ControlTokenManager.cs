@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 public partial class ControlTokenManager<T>(Action<string, T> registerCallback = null, Action<string, T> unregisterCallback = null) where T : FrameworkElement
 {
-    private static readonly Dictionary<string, WeakReference<T>> ControlDict = new();
+    private readonly Dictionary<string, WeakReference<T>> _controlDict = new();
 
     public void Register(string token, T control)
     {
@@ -10,7 +10,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        ControlDict[token] = new WeakReference<T>(control);
+        _controlDict[token] = new WeakReference<T>(control);
         registerCallback?.Invoke(token, control);
     }
 
@@ -21,7 +21,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        if (!ControlDict.TryGetValue(token, out var reference))
+        if (!_controlDict.TryGetValue(token, out var reference))
         {
             return;
         }
@@ -36,7 +36,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        ControlDict.Remove(token);
+        _controlDict.Remove(token);
         unregisterCallback?.Invoke(token, control);
     }
 
@@ -48,7 +48,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
         }
 
         string unregisteredToken = null;
-        foreach (var item in ControlDict)
+        foreach (var item in _controlDict)
         {
             if (!item.Value.TryGetTarget(out var target) || !ReferenceEquals(control, target))
             {
@@ -64,7 +64,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        ControlDict.Remove(unregisteredToken);
+        _controlDict.Remove(unregisteredToken);
         unregisterCallback?.Invoke(unregisteredToken, control);
     }
 
@@ -75,12 +75,12 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        if (!ControlDict.TryGetValue(token, out var reference))
+        if (!_controlDict.TryGetValue(token, out var reference))
         {
             return;
         }
 
-        ControlDict.Remove(token);
+        _controlDict.Remove(token);
 
         if (!reference.TryGetTarget(out var target))
         {
@@ -94,7 +94,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
     {
         control = null;
 
-        if (string.IsNullOrEmpty(token) || !ControlDict.TryGetValue(token, out var reference))
+        if (string.IsNullOrEmpty(token) || !_controlDict.TryGetValue(token, out var reference))
         {
             return false;
         }
