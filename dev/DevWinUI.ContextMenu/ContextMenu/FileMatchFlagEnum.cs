@@ -1,14 +1,14 @@
 ﻿namespace DevWinUI;
 public enum FileMatchFlagEnum
 {
-    [DescriptionAttribute("Off")]
+    [Description("Off")]
     None = 0,
-    [DescriptionAttribute("Extension Like")]
+    [Description("Extension Like")]
     Ext = 1,
-    [DescriptionAttribute("Name Regex")]
+    [Description("Name Regex")]
     Regex = 2,
-    [DescriptionAttribute("Extension")]
+    [Description("Extension")]
     ExtList = 3,
-    [DescriptionAttribute("All")]
-    All = 4,
+    [Description("All")]
+    All = 4
 }

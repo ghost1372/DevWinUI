@@ -4,7 +4,8 @@ namespace DevWinUI;
 
 public partial class ContextMenuItem : ContextMenuBaseModel
 {
-    [JsonIgnore] public StorageFile File { get; set; }
+    [JsonIgnore]
+    public StorageFile File { get; set; }
 
     [JsonIgnore]
     public string FileName

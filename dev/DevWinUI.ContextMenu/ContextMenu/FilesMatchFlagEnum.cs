@@ -1,10 +1,10 @@
 ﻿namespace DevWinUI;
 public enum FilesMatchFlagEnum
 {
-    [DescriptionAttribute("Off")]
+    [Description("Off")]
     None = 0,
-    [DescriptionAttribute("Each")]
+    [Description("Each")]
     Each = 1,
-    [DescriptionAttribute("Join")]
+    [Description("Join")]
     Join = 2,
 }
