@@ -5,7 +5,6 @@ public static partial class EnumItemUtil
 {
     public static IReadOnlyList<EnumItem> GetEnumItems<T>() where T : struct, Enum
     {
-        // No need to check if T is an enum because the generic constraint ensures it's an Enum
         return Enum.GetValues<T>()
             .Select(x => new EnumItem
             {
@@ -14,5 +13,4 @@ public static partial class EnumItemUtil
             })
             .ToImmutableList();
     }
-
 }

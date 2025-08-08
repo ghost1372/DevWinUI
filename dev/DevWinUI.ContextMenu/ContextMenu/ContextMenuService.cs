@@ -13,7 +13,7 @@ public partial class ContextMenuService
         var result = new List<ContextMenuItem>(files.Count);
         foreach (var file in files)
         {
-            if (!file.Name.EndsWith(".json") && !file.Name.EndsWith(".json.disabled"))
+            if (!(IsEnabled(file) || IsDisabled(file)))
             {
                 continue;
             }
@@ -109,6 +109,7 @@ public partial class ContextMenuService
         {
             var item = ConvertMenuFromJson(content);
             item.File = menuFile;
+            item.Enabled = IsEnabled(item);
             return item;
         }
         catch (Exception e)
@@ -160,9 +161,30 @@ public partial class ContextMenuService
         {
             throw new Exception("Menu is null");
         }
-        return item.File?.Name.EndsWith(".json") == true;
-    }
 
+        if (item.File == null)
+        {
+            return true;
+        }
+
+        return IsEnabled(item.File);
+    }
+    private bool IsEnabled(StorageFile file)
+    {
+        if (null == file)
+        {
+            throw new Exception("Menu file is null");
+        }
+        return file.Name.ToLower().EndsWith(".json") == true;
+    }
+    private bool IsDisabled(StorageFile file)
+    {
+        if (null == file)
+        {
+            throw new Exception("Menu file is null");
+        }
+        return file.Name.ToLower().EndsWith(".json.disabled") == true;
+    }
     public async Task<StorageFile> EnableAsync(ContextMenuItem item, bool enabled)
     {
         if (null == item)
@@ -171,21 +193,15 @@ public partial class ContextMenuService
         }
 
         var file = (item?.File) ?? throw new Exception("Menu file is null");
-        var fileName = file.Name;
 
-        if (enabled)
+        var fileName = file.Name;
+        if (enabled && IsDisabled(file))
         {
-            if (fileName.EndsWith(".json.disabled"))
-            {
-                fileName = fileName.Substring(0, fileName.Length - ".disabled".Length);
-            }
+            fileName = Path.GetFileNameWithoutExtension(fileName);
         }
-        else
+        else if (!enabled && IsEnabled(file))
         {
-            if (fileName.EndsWith(".json"))
-            {
-                fileName += ".disabled";
-            }
+            fileName += ".disabled";
         }
 
         if (file.Name != fileName)
@@ -207,7 +223,7 @@ public partial class ContextMenuService
         for (var i = 0; i < files.Count; i++)
         {
             var file = files[i];
-            if (!file.Name.EndsWith(".json"))
+            if (!IsEnabled(file))
             {
                 continue;
             }
@@ -248,7 +264,6 @@ public partial class ContextMenuService
         var json = JsonUtil.Serialize(content);
         return json;
     }
-
     private (bool, string) CheckMenu(ContextMenuItem content)
     {
         if (string.IsNullOrEmpty(content.Title))
