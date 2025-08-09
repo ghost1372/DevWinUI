@@ -39,7 +39,8 @@
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.2.250402" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.0-prerelease.250720.1" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
 	  <PackageReference Include="nucs.JsonSettings.AutosaveGenerator" Version="2.0.4" />
 	  <PackageReference Include="Serilog" Version="4.3.0" />
@@ -83,7 +84,6 @@
 	  <DependentUpon>BreadcrumbPageMappings.tt</DependentUpon>
 	</Compile>
   </ItemGroup>
-
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
     Explorer "Package and Publish" context menu entry to be enabled for this project even if
