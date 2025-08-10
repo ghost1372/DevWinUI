@@ -142,6 +142,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CardPage",
+          "Title": "Card",
+          "Subtitle": "Card",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.StorageRingPage",
           "Title": "Storage Ring",
           "Subtitle": "Storage Ring",
