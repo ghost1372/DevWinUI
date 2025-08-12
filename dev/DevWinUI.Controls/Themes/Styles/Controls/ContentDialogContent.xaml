@@ -5,6 +5,11 @@
 
     <Thickness x:Key="ContentDialogWindowTitlePadding">24,24,24,0</Thickness>
     <Thickness x:Key="ContentDialogWindowContentPadding">24,0,24,24</Thickness>
+    <Color x:Key="ContentDialogWindowCommandSpaceBackground">#20808080</Color>
+    <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush"
+                     Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
+    <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush"
+                     Color="#19000000" />
 
     <Style BasedOn="{StaticResource DefaultContentDialogWindowContentStyle}"
            TargetType="local:ContentDialogContent" />
@@ -23,8 +28,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentDialogContent">
-                    <Border x:Name="Container">
-
+                    <Border x:Name="Container"
+                            RequestedTheme="{TemplateBinding RequestedTheme}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="DialogShowingStates">
                                 <VisualStateGroup.Transitions>
@@ -197,6 +202,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot"
                               Visibility="Collapsed">
+
                             <Border x:Name="BackgroundElement"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
@@ -216,7 +222,7 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid Background="{ThemeResource LayerFillColorDefaultBrush}"
-                                          BorderBrush="{ThemeResource ContentDialogSeparatorBorderBrush}"
+                                          BorderBrush="{StaticResource ContentDialogWindowSeparatorBorderBrush}"
                                           BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -254,12 +260,12 @@
                                         </Border>
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Grid.Row="1"
-                                                      Padding="{ThemeResource ContentDialogWindowContentPadding}"
                                                       HorizontalScrollBarVisibility="Disabled"
                                                       IsTabStop="False"
-                                                      VerticalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Visible"
                                                       ZoomMode="Disabled">
                                             <ContentPresenter x:Name="Content"
+                                                              Padding="{ThemeResource ContentDialogWindowContentPadding}"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               FontFamily="{StaticResource ContentControlThemeFontFamily}"
@@ -273,7 +279,7 @@
                                           Padding="{ThemeResource ContentDialogPadding}"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"
-                                          Background="{TemplateBinding Background}"
+                                          Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}"
                                           XYFocusKeyboardNavigation="Enabled">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition x:Name="PrimaryColumn"

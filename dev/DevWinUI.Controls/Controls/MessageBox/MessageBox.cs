@@ -2,6 +2,9 @@
 
 public partial class MessageBox
 {
+    public static SystemBackdrop? SystemBackdrop { get; set; } = new MicaBackdrop();
+    public static ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
+
     public static async Task<MessageBoxResult> ShowAsync(object content)
         => await ShowAsync(false, null, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
@@ -49,19 +52,40 @@ public partial class MessageBox
 
     public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
     {
-        FrameworkElement? root = owner?.Content as FrameworkElement;
+        ElementTheme theme;
+        if (RequestedTheme is not ElementTheme.Default)
+        {
+            theme = RequestedTheme;
+        }
+        else if (owner is not null)
+        {
+            if (owner.Content is FrameworkElement root)
+            {
+                theme = root.ActualTheme;
+            }
+            else
+            {
+                theme = owner.AppWindow.TitleBar.PreferredTheme switch
+                {
+                    Microsoft.UI.Windowing.TitleBarTheme.UseDefaultAppMode => ElementTheme.Default,
+                    Microsoft.UI.Windowing.TitleBarTheme.Light => ElementTheme.Light,
+                    Microsoft.UI.Windowing.TitleBarTheme.Dark => ElementTheme.Dark,
+                    _ => ElementTheme.Default
+                };
+            }
+        }
+        else
+        {
+            theme = ElementTheme.Default;
+        }
+
         WindowedContentDialog dialog = new()
         {
             Title = title ?? string.Empty,
             Content = content,
             OwnerWindow = owner,
-            RequestedTheme = root is not null ? root.ActualTheme : owner is null ? ElementTheme.Default : owner.AppWindow.TitleBar.PreferredTheme switch
-            {
-                Microsoft.UI.Windowing.TitleBarTheme.UseDefaultAppMode => ElementTheme.Default,
-                Microsoft.UI.Windowing.TitleBarTheme.Light => ElementTheme.Light,
-                Microsoft.UI.Windowing.TitleBarTheme.Dark => ElementTheme.Dark,
-                _ => ElementTheme.Default
-            }
+            SystemBackdrop = SystemBackdrop,
+            RequestedTheme = theme
         };
 
         ContentDialogButton contentDialogDefaultButton = defaultButton switch
@@ -77,7 +101,8 @@ public partial class MessageBox
         switch (buttons)
         {
             case MessageBoxButtons.OK:
-                dialog.PrimaryButtonText = "OK";
+                dialog.CloseButtonText = "OK";
+                dialog.DefaultButton = ContentDialogButton.Close;
                 break;
 
             case MessageBoxButtons.OKCancel:

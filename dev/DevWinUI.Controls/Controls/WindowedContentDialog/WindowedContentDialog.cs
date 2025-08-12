@@ -1,4 +1,7 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.UI.Windowing;
+using WinRT;
+
+namespace DevWinUI;
 
 public partial class WindowedContentDialog
 {
@@ -21,21 +24,34 @@ public partial class WindowedContentDialog
     public bool IsPrimaryButtonEnabled { get; set; } = true;
     public bool IsSecondaryButtonEnabled { get; set; } = true;
     public ContentDialogButton DefaultButton { get; set; } = ContentDialogButton.Close;
-
+    public bool CenterInParent { get; set; } = true;
     public Style PrimaryButtonStyle { get; set; } = DefaultButtonStyle;
     public Style SecondaryButtonStyle { get; set; } = DefaultButtonStyle;
     public Style CloseButtonStyle { get; set; } = DefaultButtonStyle;
 
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> PrimaryButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
 
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> SecondaryButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? SecondaryButtonClick;
 
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> CloseButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? CloseButtonClick;
 
     public Window? OwnerWindow { get; set; }
-    public bool IsModel { get; set; }
     public bool HasTitleBar { get; set; } = true;
     public bool IsResizable { get; set; }
+
+    /// <summary>
+    /// Displays a dialog window and returns the user's selection when it is closed.
+    /// <br/>
+    /// No need to worry—once the window is closed, it is no longer part of the visual tree.
+    /// Note: A FrameworkElement cannot be shared across multiple parents.
+    /// If the Content is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().Content`.
+    /// This popup can only be shown once before the Content is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
+    /// </summary>
+    /// <returns>The result of the user's choice.</returns>
+    public async Task<ContentDialogResult> ShowAsync()
+    {
+        return await ShowAsync(true);
+    }
 
     /// <summary>
     /// Displays a dialog window and returns the user's selection when it is closed.
@@ -58,7 +74,6 @@ public partial class WindowedContentDialog
             HasTitleBar = HasTitleBar,
             IsResizable = IsResizable,
 
-            SystemBackdrop = SystemBackdrop,
             PrimaryButtonText = PrimaryButtonText,
             SecondaryButtonText = SecondaryButtonText,
             CloseButtonText = CloseButtonText,
@@ -70,14 +85,36 @@ public partial class WindowedContentDialog
             SecondaryButtonStyle = SecondaryButtonStyle,
             CloseButtonStyle = CloseButtonStyle,
 
-            OwnerWindow = OwnerWindow,
-            IsModal = modal,
+            SystemBackdrop = SystemBackdrop,
             RequestedTheme = RequestedTheme
         };
         window.PrimaryButtonClick += PrimaryButtonClick;
         window.SecondaryButtonClick += SecondaryButtonClick;
         window.CloseButtonClick += CloseButtonClick;
-        return await window.ShowAsync();
+
+        window.SetParent(OwnerWindow, modal, CenterInParent);
+
+        window.Loaded += (window, e) =>
+        {
+            window.AppWindow.Show();
+            if (OwnerWindow?.Content is Control control)
+            {
+                var presenter = window.AppWindow.Presenter.As<OverlappedPresenter>();
+                control.IsEnabled = !presenter.IsModal;
+            }
+        };
+
+        TaskCompletionSource<ContentDialogResult> resultCompletionSource = new();
+        window.Closed += (o, e) =>
+        {
+            resultCompletionSource.SetResult(window.Result);
+            if (OwnerWindow?.Content is Control control)
+            {
+                control.IsEnabled = true;
+            }
+        };
+
+        return await resultCompletionSource.Task;
     }
 
     private static Style DefaultButtonStyle => (Style) Application.Current.Resources["DefaultButtonStyle"];

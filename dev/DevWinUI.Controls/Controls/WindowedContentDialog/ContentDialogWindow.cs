@@ -3,225 +3,214 @@ using WinRT;
 
 namespace DevWinUI;
 
-/// <summary>
-/// Handles the activation behavior of ContentDialog.
-/// <br/>
-/// If the window is not activated before showing the dialog, calling ShowAsync may result in the dialog not being displayed properly.
-/// <br/>
-/// To ensure proper display:
-/// <br/>
-/// Activate the window first; especially in situations where the ContentDialog is being shown immediately after navigation or when the dialog is being shown at startup, ensure the window is active to avoid display issues.
-/// The dialog must be shown only after the window is fully ready; calling ShowAsync too early may cause layout or rendering issues. It's recommended to delay the dialog until the visual tree is fully ready.
-/// </summary>
-public sealed partial class ContentDialogWindow : Window
+public partial class ContentDialogWindow : Window
 {
-    public ContentDialogWindow() : base()
+    public ContentDialogWindow()
     {
         ExtendsContentIntoTitleBar = true;
+        _presenter = AppWindow.Presenter.As<OverlappedPresenter>();
+        _presenter.IsMinimizable = false;
+        _presenter.IsMaximizable = false;
+
+        AppWindow.Closing += (appWindow, e) => appWindow.Hide();
         Activated += OnActivated;
-        presenter = AppWindow.Presenter.As<OverlappedPresenter>();
-        presenter.IsMinimizable = false;
-        presenter.IsMaximizable = false;
+        Closed += OnClosed;
 
-        Closed += (o, e) =>
+        _content = new()
         {
-            if (content != null)
-            {
-                content.Content = null;
-            }
-        };
-    }
-
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> PrimaryButtonClick;
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> SecondaryButtonClick;
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs> CloseButtonClick;
-
-    private void OnActivated(object sender, WindowActivatedEventArgs args)
-    {
-        if (args.WindowActivationState is WindowActivationState.Deactivated)
-        {
-            content.AfterLostFocus();
-        }
-        else
-        {
-            content.AfterGotFocus();
-        }
-    }
-
-    /// <summary>
-    /// Displays a dialog and returns the user’s response.
-    /// <br/>
-    /// </summary>
-    /// <param name="modal">Indicates whether the dialog should be modal. If set to true and OwnerWindow is null, the dialog will not function as a modal dialog and will be displayed modelessly.</param>
-    /// <returns>The result of the user's interaction with the dialog.</returns>
-    public async Task<ContentDialogResult> ShowAsync()
-    {
-        AppWindow.TitleBar.PreferredTheme = RequestedTheme switch
-        {
-            ElementTheme.Default => TitleBarTheme.UseDefaultAppMode,
-            ElementTheme.Light => TitleBarTheme.Light,
-            ElementTheme.Dark => TitleBarTheme.Dark,
-            _ => TitleBarTheme.UseDefaultAppMode,
-        };
-
-        content = new ContentDialogContent()
-        {
-            Title = Title,
-            Content = Content,
-
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
 
-            PrimaryButtonText = PrimaryButtonText,
-            SecondaryButtonText = SecondaryButtonText,
-            CloseButtonText = CloseButtonText,
-            DefaultButton = DefaultButton,
-            IsPrimaryButtonEnabled = IsPrimaryButtonEnabled,
-            IsSecondaryButtonEnabled = IsSecondaryButtonEnabled,
-
-            PrimaryButtonStyle = PrimaryButtonStyle,
-            SecondaryButtonStyle = SecondaryButtonStyle,
-            CloseButtonStyle = CloseButtonStyle,
-
-            RequestedTheme = RequestedTheme,
-
-            MinWidth = (double) Application.Current.Resources["ContentDialogMinWidth"],
-            MinHeight = (double) Application.Current.Resources["ContentDialogMinHeight"],
-            MaxWidth = (double) Application.Current.Resources["ContentDialogMaxWidth"],
-            MaxHeight = (double) Application.Current.Resources["ContentDialogMaxHeight"],
+            MinWidth = (double)Application.Current.Resources["ContentDialogMinWidth"],
+            MaxWidth = (double)Application.Current.Resources["ContentDialogMaxWidth"],
+            MaxHeight = (double)Application.Current.Resources["ContentDialogMaxHeight"],
         };
-        content.Loaded += DialogLoaded;
-        content.CloseButtonClick += OnCloseButtonClick;
-        content.PrimaryButtonClick += OnPrimaryButtonClick;
-        content.SecondaryButtonClick += OnSecondaryButtonClick;
-        base.Content = content;
-        using SemaphoreSlim closed = new(0, 1);
-        void ClosedEventHandler(object sender, WindowEventArgs args) => closed.Release();
-        Closed += ClosedEventHandler;
-        await closed.WaitAsync();
-        Closed -= ClosedEventHandler;
-        return Result;
+        _content.Loaded += DialogLoaded;
+        _content.CloseButtonClick += OnCloseButtonClick;
+        _content.PrimaryButtonClick += OnPrimaryButtonClick;
+        _content.SecondaryButtonClick += OnSecondaryButtonClick;
+        base.Content = _content;
     }
 
-    public bool IsModal { get; set; }
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? SecondaryButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? CloseButtonClick;
 
-    private Window _ownerWindow;
-    public Window OwnerWindow
+    public event TypedEventHandler<ContentDialogWindow, EventArgs>? Loaded;
+
+    private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        get => _ownerWindow;
+        if (!_content.IsLoaded)
+            return;
+
+        if (args.WindowActivationState is WindowActivationState.Deactivated)
+        {
+            _content.AfterLostFocus();
+        }
+        else
+        {
+            _content.AfterGotFocus();
+        }
+    }
+
+    private void OnClosed(object sender, WindowEventArgs args)
+    {
+        _parent?.Activate();
+    }
+
+    private void OnParentClosed(object sender, WindowEventArgs args)
+    {
+        if (_parent != null)
+            _parent.Closed -= OnParentClosed;
+
+        _parent = null;
+        DispatcherQueue.TryEnqueue(Close);
+    }
+
+    public void SetParent(Window? parent, bool modal = true, bool center = true)
+    {
+        _center = center;
+
+        if (_parent == parent)
+            return;
+
+        if (_parent != null)
+            _parent.Closed -= OnParentClosed;
+
+        _parent = parent;
+
+        if (_parent != null)
+            _parent.Closed += OnParentClosed;
+
+        IntPtr ownerHwnd = parent is null ? IntPtr.Zero : Win32Interop.GetWindowFromWindowId(parent.AppWindow.Id);
+        IntPtr ownedHwnd = Win32Interop.GetWindowFromWindowId(AppWindow.Id);
+        NativeMethods.SetWindowLong(ownedHwnd, -8, ownerHwnd);
+
+        _presenter.IsModal = parent is not null && modal;
+    }
+
+    private ElementTheme _requestedTheme;
+    public ElementTheme RequestedTheme
+    {
+        get => _content is not null ? _content.RequestedTheme : _requestedTheme;
         set
         {
-            if (_ownerWindow == value || value == null)
-                return;
-
-            _ownerWindow = value;
-
-            IntPtr ownerHwnd = Win32Interop.GetWindowFromWindowId(_ownerWindow.AppWindow.Id);
-            IntPtr ownedHwnd = Win32Interop.GetWindowFromWindowId(AppWindow.Id);
-
-            NativeMethods.SetWindowLong(ownedHwnd, -8, ownerHwnd);
-
-            void OnClosed(object sender, WindowEventArgs args) => _ownerWindow.Activate();
-            Closed += OnClosed;
-
-            _ownerWindow.Closed += (o, e) =>
+            _requestedTheme = value;
+            _content.RequestedTheme = value;
+            AppWindow.TitleBar.PreferredTheme = value switch
             {
-                Closed -= OnClosed;
-                Close();
+                ElementTheme.Light => TitleBarTheme.Light,
+                ElementTheme.Dark => TitleBarTheme.Dark,
+                _ => TitleBarTheme.UseDefaultAppMode,
             };
         }
     }
 
-    public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
-    public Brush Foreground { get; set; } = (Brush) Application.Current.Resources["ApplicationForegroundThemeBrush"];
-    public Brush Background { get; set; }
-    public Brush BorderBrush { get; set; }
-    public Thickness BorderThickness { get; set; }
-    public CornerRadius CornerRadius { get; set; }
-    public FlowDirection FlowDirection { get; set; }
-    public DataTemplate TitleTemplate { get; set; }
-    public DataTemplate ContentTemplate { get; set; }
-    public string PrimaryButtonText { get; set; }
-    public string SecondaryButtonText { get; set; }
-    public string CloseButtonText { get; set; }
-    public bool IsPrimaryButtonEnabled { get; set; }
-    public bool IsSecondaryButtonEnabled { get; set; }
-    public ContentDialogButton DefaultButton { get; set; } = ContentDialogButton.Close;
-    public Style PrimaryButtonStyle { get; set; }
-    public Style SecondaryButtonStyle { get; set; }
-    public Style CloseButtonStyle { get; set; }
+    #region ContentDialogContent properties
+
+    public Brush? Foreground
+    {
+        get => _content.Foreground;
+        set => _content.Foreground = value;
+    }
+
+    public Brush? Background
+    {
+        get => _content.Background;
+        set => _content.Background = value;
+    }
+
+    public Brush? BorderBrush
+    {
+        get => _content.BorderBrush;
+        set => _content.BorderBrush = value;
+    }
+
+    public Thickness BorderThickness
+    {
+        get => _content.BorderThickness;
+        set => _content.BorderThickness = value;
+    }
+
+    public FlowDirection FlowDirection
+    {
+        get => _content.FlowDirection;
+        set => _content.FlowDirection = value;
+    }
+
+    public DataTemplate? TitleTemplate
+    {
+        get => _content.TitleTemplate;
+        set => _content.TitleTemplate = value;
+    }
+
+    public DataTemplate? ContentTemplate
+    {
+        get => _content.ContentTemplate;
+        set => _content.ContentTemplate = value;
+    }
+
+    public string? PrimaryButtonText
+    {
+        get => _content.PrimaryButtonText;
+        set => _content.PrimaryButtonText = value;
+    }
+
+    public string? SecondaryButtonText
+    {
+        get => _content.SecondaryButtonText;
+        set => _content.SecondaryButtonText = value;
+    }
+
+    public string? CloseButtonText
+    {
+        get => _content.CloseButtonText;
+        set => _content.CloseButtonText = value;
+    }
+
+    public bool IsPrimaryButtonEnabled
+    {
+        get => _content.IsPrimaryButtonEnabled;
+        set => _content.IsPrimaryButtonEnabled = value;
+    }
+
+    public bool IsSecondaryButtonEnabled
+    {
+        get => _content.IsSecondaryButtonEnabled;
+        set => _content.IsSecondaryButtonEnabled = value;
+    }
+
+    public ContentDialogButton DefaultButton
+    {
+        get => _content.DefaultButton;
+        set => _content.DefaultButton = value;
+    }
+
+    public Style? PrimaryButtonStyle
+    {
+        get => _content.PrimaryButtonStyle;
+        set => _content.PrimaryButtonStyle = value;
+    }
+
+    public Style? SecondaryButtonStyle
+    {
+        get => _content.SecondaryButtonStyle;
+        set => _content.SecondaryButtonStyle = value;
+    }
+
+    public Style? CloseButtonStyle
+    {
+        get => _content.CloseButtonStyle;
+        set => _content.CloseButtonStyle = value;
+    }
+    #endregion
 
     public ContentDialogResult Result { get; private set; }
 
-    public new object? Content { get; set; }
-
-    /// <summary>
-    /// When the window is activated, if Min/Max Width/Height are set but layout hasn't stabilized yet, it may result in incorrect sizing when showing a ContentDialog.
-    /// This can cause the dialog to appear with improper dimensions if the layout hasn't fully completed or if Max Width/Height haven't been properly applied yet.
-    /// </summary>
-    private void DialogLoaded(object sender, RoutedEventArgs e)
+    public new object? Content
     {
-        AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
-            (int) (content.ActualWidth * content.XamlRoot.RasterizationScale),
-            (int) (content.ActualHeight * content.XamlRoot.RasterizationScale) - 30));
-        content.HorizontalAlignment = HorizontalAlignment.Stretch;
-        content.VerticalAlignment = VerticalAlignment.Stretch;
-        content.MaxHeight = double.PositiveInfinity;
-        content.MaxWidth = double.PositiveInfinity;
-        SetTitleBar(content.TitleArea);
-
-        if (OwnerWindow is null)
-        {
-            presenter.IsModal = false;
-            DisplayArea displayArea = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Primary);
-            AppWindow.Move(new Windows.Graphics.PointInt32(
-                (displayArea.OuterBounds.Width - AppWindow.Size.Width) / 2,
-                (displayArea.OuterBounds.Height - AppWindow.Size.Height) / 2));
-        }
-        else
-        {
-            presenter.IsModal = IsModal;
-            AppWindow.Move(new Windows.Graphics.PointInt32(
-                OwnerWindow.AppWindow.Position.X + (OwnerWindow.AppWindow.Size.Width - AppWindow.Size.Width) / 2,
-                OwnerWindow.AppWindow.Position.Y + (OwnerWindow.AppWindow.Size.Height - AppWindow.Size.Height) / 2));
-        }
-        AppWindow.Show();
-    }
-
-    private void OnCloseButtonClick(object sender, RoutedEventArgs e)
-    {
-        Result = ContentDialogResult.None;
-        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
-        CloseButtonClick?.Invoke(this, args);
-        if (args.Cancel)
-        {
-            return;
-        }
-        Close();
-    }
-
-    private void OnPrimaryButtonClick(object sender, RoutedEventArgs e)
-    {
-        Result = ContentDialogResult.Primary;
-        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
-        PrimaryButtonClick?.Invoke(this, args);
-        if (args.Cancel)
-        {
-            return;
-        }
-        Close();
-    }
-
-    private void OnSecondaryButtonClick(object sender, RoutedEventArgs e)
-    {
-        Result = ContentDialogResult.Secondary;
-        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
-        SecondaryButtonClick?.Invoke(this, args);
-        if (args.Cancel)
-        {
-            return;
-        }
-        Close();
+        get => _content.Content;
+        set => _content.Content = value;
     }
 
     private bool _hasTitleBar = true;
@@ -231,7 +220,7 @@ public sealed partial class ContentDialogWindow : Window
         set
         {
             _hasTitleBar = value;
-            presenter?.SetBorderAndTitleBar(true, value);
+            _presenter?.SetBorderAndTitleBar(true, value);
         }
     }
 
@@ -242,14 +231,102 @@ public sealed partial class ContentDialogWindow : Window
         set
         {
             _isResizable = value;
-            if (presenter != null)
+            if (_presenter != null)
             {
-                presenter.IsResizable = value;
+                _presenter.IsResizable = value;
             }
         }
     }
 
-    private ContentDialogContent content;
+    private void DialogLoaded(object sender, RoutedEventArgs e)
+    {
+        _content.Title = Title;
 
-    private readonly OverlappedPresenter presenter;
+        AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
+            (int)(_content.ActualWidth * _content.XamlRoot.RasterizationScale) + 1,
+            (int)(_content.ActualHeight * _content.XamlRoot.RasterizationScale) + 1));
+        _content.HorizontalAlignment = HorizontalAlignment.Stretch;
+        _content.VerticalAlignment = VerticalAlignment.Stretch;
+        _content.MaxHeight = double.PositiveInfinity;
+        _content.MaxWidth = double.PositiveInfinity;
+        SetTitleBar(_content.TitleArea);
+
+        if (_center)
+        {
+            if (_parent is not null)
+            {
+                AppWindow.Move(new Windows.Graphics.PointInt32(
+                    _parent.AppWindow.Position.X + (_parent.AppWindow.Size.Width - AppWindow.Size.Width) / 2,
+                    _parent.AppWindow.Position.Y + (_parent.AppWindow.Size.Height - AppWindow.Size.Height) / 2));
+            }
+            else
+            {
+                DisplayArea displayArea = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Primary);
+                AppWindow.Move(new Windows.Graphics.PointInt32(
+                    (displayArea.OuterBounds.Width - AppWindow.Size.Width) / 2,
+                    (displayArea.OuterBounds.Height - AppWindow.Size.Height) / 2));
+            }
+        }
+
+        if (SystemBackdrop is null)
+        {
+            Background = RequestedTheme switch
+            {
+                ElementTheme.Light => new SolidColorBrush(Colors.White),
+                ElementTheme.Dark => new SolidColorBrush(Color.FromArgb(0xFF, 0x20, 0x20, 0x20)),
+                _ => null
+            };
+        }
+        if (SystemBackdrop is null || SystemBackdrop is DesktopAcrylicBackdrop)
+        {
+            _content.CommandSpace.Background.Opacity = 1.0;
+        }
+        else
+        {
+            _content.CommandSpace.Background.Opacity = 0.5;
+        }
+
+        Loaded?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnPrimaryButtonClick(object sender, RoutedEventArgs e)
+    {
+        Result = ContentDialogResult.Primary;
+        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
+        PrimaryButtonClick?.Invoke(this, args);
+        AfterCommandBarButtonClick(args);
+    }
+
+    private void OnSecondaryButtonClick(object sender, RoutedEventArgs e)
+    {
+        Result = ContentDialogResult.Secondary;
+        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
+        SecondaryButtonClick?.Invoke(this, args);
+        AfterCommandBarButtonClick(args);
+    }
+
+    private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+    {
+        Result = ContentDialogResult.None;
+        ContentDialogWindowButtonClickEventArgs args = new() { Cancel = false };
+        CloseButtonClick?.Invoke(this, args);
+        AfterCommandBarButtonClick(args);
+    }
+
+    private void AfterCommandBarButtonClick(ContentDialogWindowButtonClickEventArgs args)
+    {
+        if (args.Cancel)
+            return;
+
+        AppWindow.Hide();
+        DispatcherQueue.TryEnqueue(Close);
+    }
+
+    private readonly ContentDialogContent _content;
+
+    private readonly OverlappedPresenter _presenter;
+
+    private Window? _parent;
+
+    private bool _center;
 }

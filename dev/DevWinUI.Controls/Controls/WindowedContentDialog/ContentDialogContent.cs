@@ -7,29 +7,34 @@ internal sealed partial class ContentDialogContent : ContentControl
     public ContentDialogContent() : base()
     {
         DefaultStyleKey = typeof(ContentDialogContent);
+
+        PrimaryButton = null!;
+        SecondaryButton = null!;
+        CloseButton = null!;
+        TitleArea = null!;
     }
 
     private Button PrimaryButton;
     private Button SecondaryButton;
     private Button CloseButton;
 
-    public event RoutedEventHandler PrimaryButtonClick;
-    public event RoutedEventHandler SecondaryButtonClick;
-    public event RoutedEventHandler CloseButtonClick;
+    public event RoutedEventHandler? PrimaryButtonClick;
+    public event RoutedEventHandler? SecondaryButtonClick;
+    public event RoutedEventHandler? CloseButtonClick;
 
     public UIElement TitleArea { get; private set; }
-    private Border Container;
+    public Grid CommandSpace { get; private set; }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        Container = (Border) GetTemplateChild(nameof(Container));
-        TitleArea = (UIElement) GetTemplateChild(nameof(TitleArea));
+        TitleArea = (UIElement)GetTemplateChild(nameof(TitleArea));
+        CommandSpace = (Grid)GetTemplateChild(nameof(CommandSpace));
 
-        PrimaryButton = (Button) GetTemplateChild(nameof(PrimaryButton));
-        SecondaryButton = (Button) GetTemplateChild(nameof(SecondaryButton));
-        CloseButton = (Button) GetTemplateChild(nameof(CloseButton));
+        PrimaryButton = (Button)GetTemplateChild(nameof(PrimaryButton));
+        SecondaryButton = (Button)GetTemplateChild(nameof(SecondaryButton));
+        CloseButton = (Button)GetTemplateChild(nameof(CloseButton));
 
         PrimaryButton.Click += PrimaryButtonClick;
         SecondaryButton.Click += SecondaryButtonClick;
@@ -86,6 +91,10 @@ internal sealed partial class ContentDialogContent : ContentControl
             }
             IsPrimaryButtonEnabled = false;
         }
+        else if (!string.IsNullOrEmpty(CloseButtonText))
+        {
+            VisualStateManager.GoToState(this, "CloseVisible", false);
+        }
         else
         {
             VisualStateManager.GoToState(this, "NoneVisible", false);
@@ -131,7 +140,7 @@ internal sealed partial class ContentDialogContent : ContentControl
 
     public string Title
     {
-        get => (string) GetValue(TitleProperty);
+        get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
     #endregion
@@ -144,9 +153,9 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(default(DataTemplate)));
 
-    public DataTemplate TitleTemplate
+    public DataTemplate? TitleTemplate
     {
-        get => (DataTemplate) GetValue(TitleTemplateProperty);
+        get => (DataTemplate?)GetValue(TitleTemplateProperty);
         set => SetValue(TitleTemplateProperty, value);
     }
     #endregion
@@ -159,9 +168,9 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(default(string)));
 
-    public string PrimaryButtonText
+    public string? PrimaryButtonText
     {
-        get => (string) GetValue(PrimaryButtonTextProperty);
+        get => (string?)GetValue(PrimaryButtonTextProperty);
         set => SetValue(PrimaryButtonTextProperty, value);
     }
     #endregion
@@ -174,9 +183,9 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(default(string)));
 
-    public string SecondaryButtonText
+    public string? SecondaryButtonText
     {
-        get => (string) GetValue(SecondaryButtonTextProperty);
+        get => (string?)GetValue(SecondaryButtonTextProperty);
         set => SetValue(SecondaryButtonTextProperty, value);
     }
     #endregion
@@ -187,11 +196,11 @@ internal sealed partial class ContentDialogContent : ContentControl
             nameof(CloseButtonText),
             typeof(string),
             typeof(ContentDialogContent),
-            new PropertyMetadata("Close"));
+            new PropertyMetadata(default(string)));
 
-    public string CloseButtonText
+    public string? CloseButtonText
     {
-        get => (string) GetValue(CloseButtonTextProperty);
+        get => (string?)GetValue(CloseButtonTextProperty);
         set => SetValue(CloseButtonTextProperty, value);
     }
     #endregion
@@ -206,7 +215,7 @@ internal sealed partial class ContentDialogContent : ContentControl
 
     public bool IsPrimaryButtonEnabled
     {
-        get => (bool) GetValue(IsPrimaryButtonEnabledProperty);
+        get => (bool)GetValue(IsPrimaryButtonEnabledProperty);
         set => SetValue(IsPrimaryButtonEnabledProperty, value);
     }
     #endregion
@@ -221,7 +230,7 @@ internal sealed partial class ContentDialogContent : ContentControl
 
     public bool IsSecondaryButtonEnabled
     {
-        get => (bool) GetValue(IsSecondaryButtonEnabledProperty);
+        get => (bool)GetValue(IsSecondaryButtonEnabledProperty);
         set => SetValue(IsSecondaryButtonEnabledProperty, value);
     }
     #endregion
@@ -236,7 +245,7 @@ internal sealed partial class ContentDialogContent : ContentControl
 
     public ContentDialogButton DefaultButton
     {
-        get => (ContentDialogButton) GetValue(DefaultButtonProperty);
+        get => (ContentDialogButton)GetValue(DefaultButtonProperty);
         set => SetValue(DefaultButtonProperty, value);
     }
     #endregion
@@ -249,9 +258,9 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(DefaultButtonStyle));
 
-    public Style PrimaryButtonStyle
+    public Style? PrimaryButtonStyle
     {
-        get => (Style) GetValue(PrimaryButtonStyleProperty);
+        get => (Style?)GetValue(PrimaryButtonStyleProperty);
         set => SetValue(PrimaryButtonStyleProperty, value);
     }
     #endregion
@@ -264,9 +273,9 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(DefaultButtonStyle));
 
-    public Style SecondaryButtonStyle
+    public Style? SecondaryButtonStyle
     {
-        get => (Style) GetValue(SecondaryButtonStyleProperty);
+        get => (Style?)GetValue(SecondaryButtonStyleProperty);
         set => SetValue(SecondaryButtonStyleProperty, value);
     }
     #endregion
@@ -279,12 +288,12 @@ internal sealed partial class ContentDialogContent : ContentControl
             typeof(ContentDialogContent),
             new PropertyMetadata(DefaultButtonStyle));
 
-    public Style CloseButtonStyle
+    public Style? CloseButtonStyle
     {
-        get => (Style) GetValue(CloseButtonStyleProperty);
+        get => (Style?)GetValue(CloseButtonStyleProperty);
         set => SetValue(CloseButtonStyleProperty, value);
     }
     #endregion
 
-    private static Style DefaultButtonStyle => (Style) Application.Current.Resources["DefaultButtonStyle"];
+    private static Style DefaultButtonStyle => (Style)Application.Current.Resources["DefaultButtonStyle"];
 }

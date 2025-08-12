@@ -1013,6 +1013,8 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Thickness x:Key="ContentDialogWindowTitlePadding">24,24,24,0</Thickness>
   <Thickness x:Key="ContentDialogWindowContentPadding">24,0,24,24</Thickness>
+  <Color x:Key="ContentDialogWindowCommandSpaceBackground">#20808080</Color>
+  <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="#19000000" />
   <Style x:Key="DefaultDepthLayerViewStyle" TargetType="local:DepthLayerView">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="0" />
@@ -6384,6 +6386,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Grid>
   </ControlTemplate>
   <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}" TargetType="local:CompositionShadow" />
+  <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
   <Style x:Key="DefaultContentDialogWindowContentStyle" TargetType="local:ContentDialogContent">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
     <Setter Property="Background" Value="Transparent" />
@@ -6397,7 +6400,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ContentDialogContent">
-          <Border x:Name="Container">
+          <Border x:Name="Container" RequestedTheme="{TemplateBinding RequestedTheme}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DialogShowingStates">
                 <VisualStateGroup.Transitions>
@@ -6550,7 +6553,7 @@ Themes\Styles\Win2D\Watermark.xaml
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
-                  <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource ContentDialogSeparatorBorderBrush}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
+                  <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{StaticResource ContentDialogWindowSeparatorBorderBrush}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
                     <Grid.RowDefinitions>
                       <RowDefinition Height="Auto" />
                       <RowDefinition Height="*" />
@@ -6564,11 +6567,11 @@ Themes\Styles\Win2D\Watermark.xaml
                         </ContentControl.Template>
                       </ContentControl>
                     </Border>
-                    <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" Padding="{ThemeResource ContentDialogWindowContentPadding}" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
-                      <ContentPresenter x:Name="Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
+                    <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Visible" ZoomMode="Disabled">
+                      <ContentPresenter x:Name="Content" Padding="{ThemeResource ContentDialogWindowContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
                     </ScrollViewer>
                   </Grid>
-                  <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{ThemeResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{TemplateBinding Background}" XYFocusKeyboardNavigation="Enabled">
+                  <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{ThemeResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}" XYFocusKeyboardNavigation="Enabled">
                     <Grid.ColumnDefinitions>
                       <ColumnDefinition x:Name="PrimaryColumn" Width="*" />
                       <ColumnDefinition x:Name="FirstSpacer" Width="0" />
