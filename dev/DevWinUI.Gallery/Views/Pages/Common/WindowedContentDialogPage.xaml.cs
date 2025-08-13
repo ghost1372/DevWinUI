@@ -25,7 +25,6 @@ public sealed partial class WindowedContentDialogPage : Page
             OwnerWindow = MainWindow.Instance,
             HasTitleBar = TGHasTitleBar.IsOn,
             IsResizable = TGIsResizable.IsOn,
-            ShowUnderlayBackdrop = TGShowUnderlayBackdrop.IsOn,
             UnderlayBackdrop = popupBackdropType,
             UnderlayBackdropCoverMode = popupCoverMode,
         };

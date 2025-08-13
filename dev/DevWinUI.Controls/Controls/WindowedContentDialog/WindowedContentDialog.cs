@@ -27,7 +27,6 @@ public partial class WindowedContentDialog
     public ContentDialogButton DefaultButton { get; set; } = ContentDialogButton.Close;
     public BackdropType UnderlayBackdrop { get; set; } = BackdropType.Mica;
     public UnderlayCoverMode UnderlayBackdropCoverMode { get; set; } = UnderlayCoverMode.ClientArea;
-    public bool ShowUnderlayBackdrop { get; set; }
 
     public bool CenterInParent { get; set; } = true;
     public Style PrimaryButtonStyle { get; set; } = DefaultButtonStyle;
@@ -97,7 +96,7 @@ public partial class WindowedContentDialog
             RequestedTheme = RequestedTheme
         };
 
-        if (isModal && ShowUnderlayBackdrop && OwnerWindow != null)
+        if (isModal && UnderlayBackdrop != BackdropType.None && OwnerWindow != null)
         {
             int verticalOffset = 0;
             switch (OwnerWindow.AppWindow.TitleBar.PreferredHeightOption)
@@ -125,7 +124,7 @@ public partial class WindowedContentDialog
         window.Loaded += (window, e) =>
         {
             Loaded?.Invoke(window, e);
-            if (isModal && ShowUnderlayBackdrop)
+            if (isModal && UnderlayBackdrop != BackdropType.None)
             {
                 popup.IsOpen = true;
             }

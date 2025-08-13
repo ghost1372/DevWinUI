@@ -27,6 +27,7 @@ public partial class PopupBackdropManager
 
         switch (backdropType)
         {
+            case BackdropType.Transparent:
             case BackdropType.Mica:
                 if (!MicaController.IsSupported()) return false;
                 controller = new MicaController();

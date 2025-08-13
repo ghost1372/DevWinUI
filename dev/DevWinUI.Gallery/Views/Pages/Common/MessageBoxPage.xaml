@@ -43,18 +43,14 @@
                         <ToggleSwitch x:Name="TGHasOwnerWindow"
                                       Header="Has Owner Window?"
                                       IsOn="True" />
-                        <ToggleSwitch x:Name="TGShowUnderlayBackdrop"
-                                      Header="Show Underlay Backdrop"
-                                      IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
-                                      IsOn="False" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
                                   Header="Underlay Backdrop"
-                                  IsEnabled="{x:Bind TGShowUnderlayBackdrop.IsOn, Mode=OneWay}"
+                                  IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
                                   ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayCoverModes"
                                   Header="Underlay Backdrop Cover Mode"
-                                  IsEnabled="{x:Bind TGShowUnderlayBackdrop.IsOn, Mode=OneWay}"
+                                  IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
                                   ItemsSource="{x:Bind ViewModel.PopupCoverModeItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>

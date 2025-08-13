@@ -28,7 +28,6 @@ public sealed partial class MessageBoxPage : Page
             Title = txtTitle.Text?.ToString(),
             Buttons = button,
             DefaultButton = defaultButton,
-            ShowUnderlayBackdrop = TGShowUnderlayBackdrop.IsOn,
             UnderlayBackdropCoverMode = popupCoverMode,
             UnderlayBackdrop = popupBackdropType
         });

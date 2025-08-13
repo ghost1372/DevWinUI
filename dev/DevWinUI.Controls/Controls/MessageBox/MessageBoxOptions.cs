@@ -11,7 +11,6 @@ public partial class MessageBoxOptions
     public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
     public BackdropType UnderlayBackdrop { get; set; } = BackdropType.Mica;
     public UnderlayCoverMode UnderlayBackdropCoverMode { get; set; } = UnderlayCoverMode.ClientArea;
-    public bool ShowUnderlayBackdrop { get; set; }
     public bool IsModal { get; set; }
     public bool IsResizable { get; set; }
     public bool HasTitleBar { get; set; } = true;
