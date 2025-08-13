@@ -10,7 +10,7 @@ public partial class PopupBackdropManager
     private DesktopAcrylicController _acrylicController;
     private SystemBackdropConfiguration _backdropConfig;
 
-    public bool TrySetSystemBackdrop(Popup targetPopup, PopupBackdropType type)
+    public bool TrySetSystemBackdrop(Popup targetPopup, BackdropType backdropType)
     {
         DispatcherQueue.GetForCurrentThread().EnsureSystemDispatcherQueue();
 
@@ -25,21 +25,22 @@ public partial class PopupBackdropManager
         // Determine controller type and optional kind
         object? controller = null;
 
-        switch (type)
+        switch (backdropType)
         {
-            case PopupBackdropType.Mica:
+            case BackdropType.Mica:
                 if (!MicaController.IsSupported()) return false;
                 controller = new MicaController();
                 break;
-            case PopupBackdropType.MicaAlt:
+            case BackdropType.MicaAlt:
                 if (!MicaController.IsSupported()) return false;
                 controller = new MicaController { Kind = MicaKind.BaseAlt };
                 break;
-            case PopupBackdropType.Acrylic:
+            case BackdropType.DesktopAcrylic:
+            case BackdropType.AcrylicBase:
                 if (!DesktopAcrylicController.IsSupported()) return false;
                 controller = new DesktopAcrylicController();
                 break;
-            case PopupBackdropType.AcrylicThin:
+            case BackdropType.AcrylicThin:
                 if (!DesktopAcrylicController.IsSupported()) return false;
                 controller = new DesktopAcrylicController { Kind = DesktopAcrylicKind.Thin };
                 break;
