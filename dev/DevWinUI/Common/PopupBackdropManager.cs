@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using WinRT;
 
 namespace DevWinUI;
-public partial class PopupBackdropManager
+internal partial class PopupBackdropManager
 {
     private MicaController _micaController;
     private DesktopAcrylicController _acrylicController;
