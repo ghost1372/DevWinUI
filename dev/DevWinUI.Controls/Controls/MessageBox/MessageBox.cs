@@ -83,7 +83,7 @@ public partial class MessageBox
             OwnerWindow = options.OwnerWindow,
             SystemBackdrop = options.SystemBackdrop,
             RequestedTheme = theme,
-            ShowBackdropBehindDialog = options.ShowBackdropBehindDialog,
+            ShowUnderlayBackdrop = options.ShowUnderlayBackdrop,
             UnderlayBackdrop = options.UnderlayBackdrop,
             UnderlayBackdropCoverMode = options.UnderlayBackdropCoverMode,
             HasTitleBar = options.HasTitleBar,
