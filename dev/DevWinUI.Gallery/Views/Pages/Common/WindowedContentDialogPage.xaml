@@ -51,7 +51,7 @@
                                   Header="Underlay Backdrop"
                                   IsEnabled="{x:Bind TGShowUnderlayBackdrop.IsOn, Mode=OneWay}"
                                   ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
+                                  SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayCoverModes"
                                   Header="Underlay Backdrop Cover Mode"
                                   IsEnabled="{x:Bind TGShowUnderlayBackdrop.IsOn, Mode=OneWay}"
