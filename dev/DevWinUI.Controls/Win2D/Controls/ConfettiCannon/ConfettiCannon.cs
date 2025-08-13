@@ -10,12 +10,46 @@ public partial class ConfettiCannon : Control
     public event EventHandler AnimationCompleted;
     private bool _isAnimating;
 
+    public bool IsFixedTimeStep
+    {
+        get { return (bool)GetValue(IsFixedTimeStepProperty); }
+        set { SetValue(IsFixedTimeStepProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsFixedTimeStepProperty =
+        DependencyProperty.Register(nameof(IsFixedTimeStep), typeof(bool), typeof(ConfettiCannon), new PropertyMetadata(false, OnIsFixedTimeStepChanged));
+
+    private static void OnIsFixedTimeStepChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (ConfettiCannon)d;
+        if (ctl != null && ctl._canvas != null)
+        {
+            ctl._canvas.IsFixedTimeStep = (bool)e.NewValue;
+        }
+    }
+
+    public Color ClearColor
+    {
+        get { return (Color)GetValue(ClearColorProperty); }
+        set { SetValue(ClearColorProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClearColorProperty =
+        DependencyProperty.Register(nameof(ClearColor), typeof(Color), typeof(ConfettiCannon), new PropertyMetadata(Colors.Transparent, OnClearColorChanged));
+
+    private static void OnClearColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (ConfettiCannon)d;
+        if (ctl != null && ctl._canvas != null)
+        {
+            ctl._canvas.ClearColor = (Color)e.NewValue;
+        }
+    }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
         _canvas = GetTemplateChild(PART_CanvasAnimation) as CanvasAnimatedControl;
-
-        IsHitTestVisible = false;
 
         _canvas.Draw -= OnDraw;
         _canvas.Draw += OnDraw;

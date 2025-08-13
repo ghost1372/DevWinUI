@@ -9,12 +9,14 @@
 
     <Style x:Key="DefaultConfettiCannonStyle"
            TargetType="local:ConfettiCannon">
+        <Setter Property="ClearColor" Value="Transparent" />
+        <Setter Property="IsFixedTimeStep" Value="False" />
+        <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ConfettiCannon">
                     <win2d:CanvasAnimatedControl x:Name="PART_CanvasAnimated"
-                                                 ClearColor="Transparent"
-                                                 IsFixedTimeStep="False" />
+                                                 IsHitTestVisible="{TemplateBinding IsHitTestVisible}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
