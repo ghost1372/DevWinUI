@@ -3,7 +3,7 @@
 namespace DevWinUI;
 public partial class PopupHelper
 {
-    public static Popup CreatePopup(XamlRoot xamlRoot, PopupBackdropType backdropType, PopupCoverMode coverMode, double verticalOffset)
+    public static Popup CreatePopup(XamlRoot xamlRoot, BackdropType backdropType, UnderlayCoverMode coverMode, double verticalOffset)
     {
         var popup = new Popup
         {
@@ -20,7 +20,7 @@ public partial class PopupHelper
             Height = xamlRoot.Size.Height
         };
 
-        if (coverMode == PopupCoverMode.Full)
+        if (coverMode == UnderlayCoverMode.Full)
         {
             overlay.CornerRadius = new CornerRadius(8);
             popup.VerticalOffset = 0;
@@ -45,14 +45,8 @@ public partial class PopupHelper
         return popup;
     }
 }
-public enum PopupBackdropType
-{
-    Mica,
-    MicaAlt,
-    Acrylic,
-    AcrylicThin
-}
-public enum PopupCoverMode
+
+public enum UnderlayCoverMode
 {
     Full,
     ClientArea
