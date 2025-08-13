@@ -1,14 +1,20 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using WinRT;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class WindowedContentDialogPage : Page
 {
+    public BaseViewModel ViewModel { get; }
     public WindowedContentDialogPage()
     {
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
+        var popupBackdropType = CmbPopupBackdrops.SelectedItem.As<DialogBackdropType>();
+        var popupCoverMode = CmbPopupCoverModes.SelectedItem.As<UnderlayCoverMode>();
         WindowedContentDialog dialog = new()
         {
             Title = txtTitle.Text,
@@ -18,7 +24,10 @@ public sealed partial class WindowedContentDialogPage : Page
             CloseButtonText = "CloseButtonText",
             OwnerWindow = MainWindow.Instance,
             HasTitleBar = TGHasTitleBar.IsOn,
-            IsResizable = TGIsResizable.IsOn
+            IsResizable = TGIsResizable.IsOn,
+            ShowBackdropBehindDialog = TGShowBackdropBehindDialog.IsOn,
+            UnderlayBackdrop = popupBackdropType,
+            UnderlayBackdropCoverMode = popupCoverMode,
         };
 
         ContentDialogResult result = await dialog.ShowAsync(TGIsModal.IsOn);

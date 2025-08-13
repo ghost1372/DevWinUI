@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using WinRT;
 
 namespace DevWinUI;
@@ -24,6 +25,10 @@ public partial class WindowedContentDialog
     public bool IsPrimaryButtonEnabled { get; set; } = true;
     public bool IsSecondaryButtonEnabled { get; set; } = true;
     public ContentDialogButton DefaultButton { get; set; } = ContentDialogButton.Close;
+    public BackdropType UnderlayBackdrop { get; set; } = BackdropType.Mica;
+    public UnderlayCoverMode UnderlayBackdropCoverMode { get; set; } = UnderlayCoverMode.ClientArea;
+    public bool ShowBackdropBehindDialog { get; set; }
+
     public bool CenterInParent { get; set; } = true;
     public Style PrimaryButtonStyle { get; set; } = DefaultButtonStyle;
     public Style SecondaryButtonStyle { get; set; } = DefaultButtonStyle;
@@ -34,6 +39,8 @@ public partial class WindowedContentDialog
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? SecondaryButtonClick;
 
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? CloseButtonClick;
+    public event TypedEventHandler<ContentDialogWindow, EventArgs>? Loaded;
+    public event TypedEventHandler<ContentDialogWindow, WindowEventArgs>? Closed;
 
     public Window? OwnerWindow { get; set; }
     public bool HasTitleBar { get; set; } = true;
@@ -61,12 +68,13 @@ public partial class WindowedContentDialog
     /// If the Content is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().Content`.
     /// This popup can only be shown once before the Content is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
     /// </summary>
-    /// <param name="modal">
+    /// <param name="isModal">
     /// Whether to block the owner window. Defaults to true, but has no effect if OwnerWindow is null—will still display as a normal (non-modal) window.
     /// </param>
     /// <returns>The result of the user's choice.</returns>
-    public async Task<ContentDialogResult> ShowAsync(bool modal)
+    public async Task<ContentDialogResult> ShowAsync(bool isModal)
     {
+        Popup popup = null;
         ContentDialogWindow window = new()
         {
             Title = Title ?? string.Empty,
@@ -88,14 +96,39 @@ public partial class WindowedContentDialog
             SystemBackdrop = SystemBackdrop,
             RequestedTheme = RequestedTheme
         };
+
+        if (isModal && ShowBackdropBehindDialog && OwnerWindow != null)
+        {
+            int verticalOffset = 0;
+            switch (OwnerWindow.AppWindow.TitleBar.PreferredHeightOption)
+            {
+                case TitleBarHeightOption.Standard:
+                    verticalOffset = 32;
+                    break;
+                case TitleBarHeightOption.Tall:
+                    verticalOffset = 48;
+                    break;
+                case TitleBarHeightOption.Collapsed:
+                    verticalOffset = 0;
+                    break;
+            }
+
+            popup = PopupHelper.CreatePopup(OwnerWindow.Content.XamlRoot, UnderlayBackdrop, UnderlayBackdropCoverMode, verticalOffset);
+        }
+
         window.PrimaryButtonClick += PrimaryButtonClick;
         window.SecondaryButtonClick += SecondaryButtonClick;
         window.CloseButtonClick += CloseButtonClick;
 
-        window.SetParent(OwnerWindow, modal, CenterInParent);
+        window.SetParent(OwnerWindow, isModal, CenterInParent);
 
         window.Loaded += (window, e) =>
         {
+            Loaded?.Invoke(window, e);
+            if (isModal && ShowBackdropBehindDialog)
+            {
+                popup.IsOpen = true;
+            }
             window.AppWindow.Show();
             if (OwnerWindow?.Content is Control control)
             {
@@ -107,6 +140,11 @@ public partial class WindowedContentDialog
         TaskCompletionSource<ContentDialogResult> resultCompletionSource = new();
         window.Closed += (o, e) =>
         {
+            Closed?.Invoke(window, e);
+            if (isModal && popup != null)
+            {
+                popup.IsOpen = false;
+            }
             resultCompletionSource.SetResult(window.Result);
             if (OwnerWindow?.Content is Control control)
             {

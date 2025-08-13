@@ -10,6 +10,14 @@ public partial class BaseViewModel : ObservableObject
     [ObservableProperty]
     public partial ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
 
+    #region WindowedContentDialog
+    [ObservableProperty]
+    public partial ObservableCollection<DialogBackdropType> PopupBackdropItems { get; set; } = new ObservableCollection<DialogBackdropType>(Enum.GetValues<DialogBackdropType>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<UnderlayCoverMode> PopupCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
+    #endregion
+
     #region SwitchPresenter
     [ObservableProperty]
     public partial RadioButton RadioSelectedItem { get; set; }
