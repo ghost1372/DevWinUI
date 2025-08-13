@@ -6558,9 +6558,6 @@ Themes\Styles\Win2D\Watermark.xaml
             </VisualStateManager.VisualStateGroups>
             <Grid x:Name="LayoutRoot" Visibility="Collapsed">
               <Border x:Name="BackgroundElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BackgroundSizing="InnerBorderEdge" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" FlowDirection="{TemplateBinding FlowDirection}" RenderTransformOrigin="0.5,0.5" TabFocusNavigation="Cycle">
-                <Border.RenderTransform>
-                  <ScaleTransform x:Name="ScaleTransform" />
-                </Border.RenderTransform>
                 <Grid x:Name="DialogSpace">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -6592,9 +6589,9 @@ Themes\Styles\Win2D\Watermark.xaml
                       <ColumnDefinition x:Name="SecondSpacer" Width="{ThemeResource ContentDialogButtonSpacing}" />
                       <ColumnDefinition x:Name="CloseColumn" Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="PrimaryButton" HorizontalAlignment="Stretch" Content="{TemplateBinding PrimaryButtonText}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding PrimaryButtonStyle}" />
-                    <Button x:Name="SecondaryButton" HorizontalAlignment="Stretch" Content="{TemplateBinding SecondaryButtonText}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding SecondaryButtonStyle}" />
-                    <Button x:Name="CloseButton" Grid.Column="4" HorizontalAlignment="Stretch" Content="{TemplateBinding CloseButtonText}" ElementSoundMode="FocusOnly" IsTabStop="True" Style="{TemplateBinding CloseButtonStyle}">
+                    <Button x:Name="PrimaryButton" HorizontalAlignment="Stretch" Content="{TemplateBinding PrimaryButtonText}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding PrimaryButtonStyle}" ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
+                    <Button x:Name="SecondaryButton" HorizontalAlignment="Stretch" Content="{TemplateBinding SecondaryButtonText}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding SecondaryButtonStyle}" ToolTipService.ToolTip="{TemplateBinding SecondaryButtonText}" />
+                    <Button x:Name="CloseButton" Grid.Column="4" HorizontalAlignment="Stretch" Content="{TemplateBinding CloseButtonText}" ElementSoundMode="FocusOnly" IsTabStop="True" Style="{TemplateBinding CloseButtonStyle}" ToolTipService.ToolTip="{TemplateBinding CloseButtonText}">
                       <Button.KeyboardAccelerators>
                         <KeyboardAccelerator Key="Escape" />
                       </Button.KeyboardAccelerators>

@@ -3,6 +3,16 @@ using WinRT;
 
 namespace DevWinUI;
 
+/// <summary>
+/// The window that contains ContentDialogContent.
+/// <br/>
+/// Never show window immediately after construction,
+/// <br/>
+/// because the size and position have not been computed.
+/// Please consider use AppWindow.Show() when handling Loaded event.
+/// Don't use Activate() only,
+/// it will not make window modal even if OverlappedPresenter.IsModal is true.
+/// </summary>
 public partial class ContentDialogWindow : Window
 {
     public ContentDialogWindow()
@@ -16,15 +26,7 @@ public partial class ContentDialogWindow : Window
         Activated += OnActivated;
         Closed += OnClosed;
 
-        _content = new()
-        {
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-
-            MinWidth = (double)Application.Current.Resources["ContentDialogMinWidth"],
-            MaxWidth = (double)Application.Current.Resources["ContentDialogMaxWidth"],
-            MaxHeight = (double)Application.Current.Resources["ContentDialogMaxHeight"],
-        };
+        _content = new();
         _content.Loaded += DialogLoaded;
         _content.CloseButtonClick += OnCloseButtonClick;
         _content.PrimaryButtonClick += OnPrimaryButtonClick;
@@ -67,6 +69,9 @@ public partial class ContentDialogWindow : Window
         DispatcherQueue.TryEnqueue(Close);
     }
 
+    /// <summary>
+    /// Set parent window, whether modal, whether to show at center of parent.
+    /// </summary>
     public void SetParent(Window? parent, bool modal = true, bool center = true)
     {
         _center = center;
@@ -245,10 +250,7 @@ public partial class ContentDialogWindow : Window
         AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
             (int)(_content.ActualWidth * _content.XamlRoot.RasterizationScale) + 1,
             (int)(_content.ActualHeight * _content.XamlRoot.RasterizationScale) + 1));
-        _content.HorizontalAlignment = HorizontalAlignment.Stretch;
-        _content.VerticalAlignment = VerticalAlignment.Stretch;
-        _content.MaxHeight = double.PositiveInfinity;
-        _content.MaxWidth = double.PositiveInfinity;
+        
         SetTitleBar(_content.TitleArea);
 
         if (_center)
@@ -285,6 +287,34 @@ public partial class ContentDialogWindow : Window
         {
             _content.CommandSpace.Background.Opacity = 0.5;
         }
+
+        // When showing accent color in title bar is enabled,
+        // title bar buttons in the default custom title bar in WinUI3
+        // will become white like system title bar.
+        // But there is no accent color background here..
+        switch (_content.ActualTheme)
+        {
+            case ElementTheme.Light:
+                AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                break;
+            case ElementTheme.Dark:
+                AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                break;
+        }
+        ;
+        _content.ActualThemeChanged += (sender, args) =>
+        {
+            switch (sender.ActualTheme)
+            {
+                case ElementTheme.Light:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                    break;
+                case ElementTheme.Dark:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                    break;
+            }
+            ;
+        };
 
         Loaded?.Invoke(this, EventArgs.Empty);
     }

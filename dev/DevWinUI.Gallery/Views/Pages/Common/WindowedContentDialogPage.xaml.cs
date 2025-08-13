@@ -13,9 +13,9 @@ public sealed partial class WindowedContentDialogPage : Page
         {
             Title = txtTitle.Text,
             Content = txtContent.Text,
-            PrimaryButtonText = "Primary",
-            SecondaryButtonText = "Secondary  ",
-            CloseButtonText = "Close",
+            PrimaryButtonText = "PrimaryButtonText",
+            SecondaryButtonText = "SecondaryButtonText",
+            CloseButtonText = "CloseButtonText",
             OwnerWindow = MainWindow.Instance,
             HasTitleBar = TGHasTitleBar.IsOn,
             IsResizable = TGIsResizable.IsOn

@@ -202,7 +202,6 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot"
                               Visibility="Collapsed">
-
                             <Border x:Name="BackgroundElement"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
@@ -213,21 +212,22 @@
                                     FlowDirection="{TemplateBinding FlowDirection}"
                                     RenderTransformOrigin="0.5,0.5"
                                     TabFocusNavigation="Cycle">
-                                <Border.RenderTransform>
-                                    <ScaleTransform x:Name="ScaleTransform" />
-                                </Border.RenderTransform>
+
                                 <Grid x:Name="DialogSpace">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+
                                     <Grid Background="{ThemeResource LayerFillColorDefaultBrush}"
                                           BorderBrush="{StaticResource ContentDialogWindowSeparatorBorderBrush}"
                                           BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
+
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
+
                                         <Border x:Name="TitleArea"
                                                 Grid.Row="0"
                                                 HorizontalAlignment="Stretch"
@@ -258,6 +258,7 @@
                                                 </ContentControl.Template>
                                             </ContentControl>
                                         </Border>
+
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Grid.Row="1"
                                                       HorizontalScrollBarVisibility="Disabled"
@@ -274,6 +275,7 @@
                                                               TextWrapping="Wrap" />
                                         </ScrollViewer>
                                     </Grid>
+
                                     <Grid x:Name="CommandSpace"
                                           Grid.Row="1"
                                           Padding="{ThemeResource ContentDialogPadding}"
@@ -299,21 +301,24 @@
                                                 ElementSoundMode="FocusOnly"
                                                 IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
                                                 IsTabStop="True"
-                                                Style="{TemplateBinding PrimaryButtonStyle}" />
+                                                Style="{TemplateBinding PrimaryButtonStyle}"
+                                                ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
                                         <Button x:Name="SecondaryButton"
                                                 HorizontalAlignment="Stretch"
                                                 Content="{TemplateBinding SecondaryButtonText}"
                                                 ElementSoundMode="FocusOnly"
                                                 IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
                                                 IsTabStop="True"
-                                                Style="{TemplateBinding SecondaryButtonStyle}" />
+                                                Style="{TemplateBinding SecondaryButtonStyle}"
+                                                ToolTipService.ToolTip="{TemplateBinding SecondaryButtonText}" />
                                         <Button x:Name="CloseButton"
                                                 Grid.Column="4"
                                                 HorizontalAlignment="Stretch"
                                                 Content="{TemplateBinding CloseButtonText}"
                                                 ElementSoundMode="FocusOnly"
                                                 IsTabStop="True"
-                                                Style="{TemplateBinding CloseButtonStyle}">
+                                                Style="{TemplateBinding CloseButtonStyle}"
+                                                ToolTipService.ToolTip="{TemplateBinding CloseButtonText}">
                                             <Button.KeyboardAccelerators>
                                                 <KeyboardAccelerator Key="Escape" />
                                             </Button.KeyboardAccelerators>
