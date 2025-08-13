@@ -2,9 +2,6 @@
 
 public partial class MessageBox
 {
-    public static SystemBackdrop? SystemBackdrop { get; set; } = new MicaBackdrop();
-    public static ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
-
     public static async Task<MessageBoxResult> ShowAsync(object content)
         => await ShowAsync(false, null, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
@@ -29,43 +26,43 @@ public partial class MessageBox
     public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton, bool isResizable)
         => await ShowAsync(false, null, isResizable, content, title, buttons, defaultButton);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content)
-        => await ShowAsync(modal, owner, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content)
+        => await ShowAsync(isModal, owner, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title)
-        => await ShowAsync(modal, owner, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title)
+        => await ShowAsync(isModal, owner, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title, MessageBoxButtons buttons)
-        => await ShowAsync(modal, owner, false, content, title, buttons, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, false, content, title, buttons, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
-        => await ShowAsync(modal, owner, false, content, title, buttons, defaultButton);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+        => await ShowAsync(isModal, owner, false, content, title, buttons, defaultButton);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content)
-    => await ShowAsync(modal, owner, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content)
+    => await ShowAsync(isModal, owner, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title)
-        => await ShowAsync(modal, owner, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title)
+        => await ShowAsync(isModal, owner, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons)
-        => await ShowAsync(modal, owner, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
 
-    public static async Task<MessageBoxResult> ShowAsync(bool modal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+    public static async Task<MessageBoxResult> ShowAsync(MessageBoxOptions options)
     {
         ElementTheme theme;
-        if (RequestedTheme is not ElementTheme.Default)
+        if (options.RequestedTheme is not ElementTheme.Default)
         {
-            theme = RequestedTheme;
+            theme = options.RequestedTheme;
         }
-        else if (owner is not null)
+        else if (options.OwnerWindow is not null)
         {
-            if (owner.Content is FrameworkElement root)
+            if (options.OwnerWindow.Content is FrameworkElement root)
             {
                 theme = root.ActualTheme;
             }
             else
             {
-                theme = owner.AppWindow.TitleBar.PreferredTheme switch
+                theme = options.OwnerWindow.AppWindow.TitleBar.PreferredTheme switch
                 {
                     Microsoft.UI.Windowing.TitleBarTheme.UseDefaultAppMode => ElementTheme.Default,
                     Microsoft.UI.Windowing.TitleBarTheme.Light => ElementTheme.Light,
@@ -81,14 +78,20 @@ public partial class MessageBox
 
         WindowedContentDialog dialog = new()
         {
-            Title = title ?? string.Empty,
-            Content = content,
-            OwnerWindow = owner,
-            SystemBackdrop = SystemBackdrop,
-            RequestedTheme = theme
+            Title = options.Title ?? string.Empty,
+            Content = options.Content,
+            OwnerWindow = options.OwnerWindow,
+            SystemBackdrop = options.SystemBackdrop,
+            RequestedTheme = theme,
+            ShowBackdropBehindDialog = options.ShowBackdropBehindDialog,
+            UnderlayBackdrop = options.UnderlayBackdrop,
+            UnderlayBackdropCoverMode = options.UnderlayBackdropCoverMode,
+            HasTitleBar = options.HasTitleBar,
+            FlowDirection = options.FlowDirection,
+            CenterInParent = options.CenterInParent
         };
 
-        ContentDialogButton contentDialogDefaultButton = defaultButton switch
+        ContentDialogButton contentDialogDefaultButton = options.DefaultButton switch
         {
             MessageBoxDefaultButton.Button1 => ContentDialogButton.Primary,
             MessageBoxDefaultButton.Button2 => ContentDialogButton.Secondary,
@@ -98,7 +101,7 @@ public partial class MessageBox
         };
         dialog.DefaultButton = contentDialogDefaultButton;
 
-        switch (buttons)
+        switch (options.Buttons)
         {
             case MessageBoxButtons.OK:
                 dialog.CloseButtonText = "OK";
@@ -140,8 +143,8 @@ public partial class MessageBox
                 break;
         }
 
-        ContentDialogResult result = await dialog.ShowAsync(modal);
-        var results = MessageBoxResultsOf(buttons);
+        ContentDialogResult result = await dialog.ShowAsync(options.IsModal);
+        var results = MessageBoxResultsOf(options.Buttons);
         return results[result switch
         {
             ContentDialogResult.Primary => 0,
@@ -149,6 +152,19 @@ public partial class MessageBox
             ContentDialogResult.None => results.Length - 1,
             _ => throw new ArgumentOutOfRangeException(nameof(result)),
         }];
+    }
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+    {
+        return await ShowAsync(new MessageBoxOptions
+        {
+            IsModal = isModal,
+            OwnerWindow = owner,
+            IsResizable = isResizable,
+            Content = content,
+            Title = title,
+            Buttons = buttons,
+            DefaultButton = defaultButton
+        });
     }
 
     private static readonly MessageBoxResult[][] resultGroups = [

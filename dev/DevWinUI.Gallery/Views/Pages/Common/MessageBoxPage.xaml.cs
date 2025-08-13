@@ -1,4 +1,6 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using WinRT;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class MessageBoxPage : Page
 {
@@ -11,11 +13,25 @@ public sealed partial class MessageBoxPage : Page
 
     private async void OnMessageBox(object sender, RoutedEventArgs e)
     {
+        var popupBackdropType = CmbPopupBackdrops.SelectedItem.As<DialogBackdropType>();
+        var popupCoverMode = CmbPopupCoverModes.SelectedItem.As<UnderlayCoverMode>();
         var button = (MessageBoxButtons)CmbMessageBoxButtons.SelectedItem;
         MessageBoxDefaultButton defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultBUtton.SelectedItem;
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
-        var result = await MessageBox.ShowAsync(TGIsModal.IsOn, ownerWindow, txtContent.Text?.ToString(), txtTitle.Text?.ToString(), button, defaultButton);
+
+        var result = await MessageBox.ShowAsync(new MessageBoxOptions
+        {
+            IsModal = TGIsModal.IsOn,
+            OwnerWindow = ownerWindow,
+            Content = txtContent.Text?.ToString(),
+            Title = txtTitle.Text?.ToString(),
+            Buttons = button,
+            DefaultButton = defaultButton,
+            ShowBackdropBehindDialog = TGShowBackdropBehindDialog.IsOn,
+            UnderlayBackdropCoverMode = popupCoverMode,
+            UnderlayBackdrop = popupBackdropType
+        });
         TxtResult.Text = result.ToString();
     }
 }

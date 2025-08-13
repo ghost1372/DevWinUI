@@ -43,6 +43,20 @@
                         <ToggleSwitch x:Name="TGHasOwnerWindow"
                                       Header="Has Owner Window?"
                                       IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowBackdropBehindDialog"
+                                      Header="Show Backdrop Behind Dialog"
+                                      IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
+                                      IsOn="False" />
+                        <ComboBox x:Name="CmbPopupBackdrops"
+                                  Header="Popup SystemBackdrop Type"
+                                  IsEnabled="{x:Bind TGShowBackdropBehindDialog.IsOn, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ViewModel.PopupBackdropItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                        <ComboBox x:Name="CmbPopupCoverModes"
+                                  Header="Popup Cover Mode"
+                                  IsEnabled="{x:Bind TGShowBackdropBehindDialog.IsOn, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ViewModel.PopupCoverModeItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
