@@ -88,6 +88,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
 Themes\Styles\Win2D\BubbleButton.xaml
 Themes\Styles\Win2D\BubbleProgressButton.xaml
 Themes\Styles\Win2D\BubbleView.xaml
+Themes\Styles\Win2D\ConfettiCannon.xaml
 Themes\Styles\Win2D\GooeyButton.xaml
 Themes\Styles\Win2D\GooeyButtonItem.xaml
 Themes\Styles\Win2D\GooeyEffect.xaml
@@ -2763,6 +2764,15 @@ Themes\Styles\Win2D\Watermark.xaml
             <Rectangle x:Name="ShadowHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             <Rectangle x:Name="BubbleHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultConfettiCannonStyle" TargetType="local:ConfettiCannon">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ConfettiCannon">
+          <win2d:CanvasAnimatedControl x:Name="PART_CanvasAnimated" ClearColor="Transparent" IsFixedTimeStep="False" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -9531,6 +9541,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultBubbleViewStyle}" TargetType="local:BubbleView" />
+  <Style BasedOn="{StaticResource DefaultConfettiCannonStyle}" TargetType="local:ConfettiCannon" />
   <Style x:Key="DefaultGooeyButtonStyle" TargetType="local:GooeyButton">
     <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource GooeyButtonForegroundBrush}" />

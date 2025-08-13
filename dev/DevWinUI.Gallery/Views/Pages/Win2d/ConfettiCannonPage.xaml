@@ -49,7 +49,22 @@
                                 Content="SchoolPride" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:ConfettiCannon x:Name="ConfettiCannonSample" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Spacing="10">
+                        <TextBlock x:Name="TxtStarted"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="TxtCompleted"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    </StackPanel>
+                    <dev:ConfettiCannon x:Name="ConfettiCannonSample"
+                                        Grid.Row="1"
+                                        AnimationCompleted="ConfettiCannonSample_AnimationCompleted"
+                                        AnimationStarted="ConfettiCannonSample_AnimationStarted" />
+                </Grid>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

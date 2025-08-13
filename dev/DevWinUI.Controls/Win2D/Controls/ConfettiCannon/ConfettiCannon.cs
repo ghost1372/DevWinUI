@@ -1,24 +1,27 @@
 ﻿namespace DevWinUI;
 
-public partial class ConfettiCannon : Grid
+[TemplatePart(Name = nameof(PART_CanvasAnimation), Type = typeof(CanvasAnimatedControl))]
+public partial class ConfettiCannon : Control
 {
-    private readonly CanvasAnimatedControl _canvas;
+    private const string PART_CanvasAnimation = "PART_CanvasAnimated";
+    private CanvasAnimatedControl _canvas;
     private readonly ConfettiEngine _engine = new();
+    public event EventHandler AnimationStarted;
+    public event EventHandler AnimationCompleted;
+    private bool _isAnimating;
 
-    public ConfettiCannon()
+    protected override void OnApplyTemplate()
     {
+        base.OnApplyTemplate();
+        _canvas = GetTemplateChild(PART_CanvasAnimation) as CanvasAnimatedControl;
+
         IsHitTestVisible = false;
 
-        _canvas = new CanvasAnimatedControl
-        {
-            ClearColor = Colors.Transparent,
-            IsFixedTimeStep = false
-        };
-
+        _canvas.Draw -= OnDraw;
         _canvas.Draw += OnDraw;
-        _canvas.Update += OnUpdate;
 
-        Children.Add(_canvas);
+        _canvas.Update -= OnUpdate;
+        _canvas.Update += OnUpdate;
 
         Loaded += (_, __) =>
         {
@@ -37,7 +40,23 @@ public partial class ConfettiCannon : Grid
     {
         DispatcherQueue.TryEnqueue(() =>
         {
+            int beforeCount = _engine.ParticleCount;
             _engine?.Update((float)args.Timing.ElapsedTime.TotalSeconds, new Size(ActualWidth, ActualHeight));
+            int afterCount = _engine.ParticleCount;
+
+            // Animation start
+            if (!_isAnimating && afterCount > 0)
+            {
+                _isAnimating = true;
+                AnimationStarted?.Invoke(this, EventArgs.Empty);
+            }
+
+            // Animation complete
+            if (_isAnimating && afterCount == 0)
+            {
+                _isAnimating = false;
+                AnimationCompleted?.Invoke(this, EventArgs.Empty);
+            }
         });
     }
 

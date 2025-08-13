@@ -35,4 +35,15 @@ public sealed partial class ConfettiCannonPage : Page
     {
         ConfettiCannonSample.FireSchoolPride();
     }
+
+    private void ConfettiCannonSample_AnimationCompleted(object sender, EventArgs e)
+    {
+        TxtCompleted.Text = "Completed";
+    }
+
+    private void ConfettiCannonSample_AnimationStarted(object sender, EventArgs e)
+    {
+        TxtStarted.Text = "Started";
+        TxtCompleted.Text = string.Empty;
+    }
 }

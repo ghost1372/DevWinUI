@@ -5,6 +5,7 @@ internal partial class ConfettiEngine
     private readonly Random _random = new();
     private readonly List<ConfettiParticle> _particles = new();
     private Size _lastSize;
+    public int ParticleCount => _particles.Count;
 
     public void Enqueue(ConfettiCannonOptions options)
     {
