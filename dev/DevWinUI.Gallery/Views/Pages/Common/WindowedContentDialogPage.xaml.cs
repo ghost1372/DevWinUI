@@ -13,8 +13,10 @@ public sealed partial class WindowedContentDialogPage : Page
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        var popupBackdropType = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
-        var popupCoverMode = CmbUnderlayCoverModes.SelectedItem.As<UnderlayCoverMode>();
+        var underlay = CmbUnderlayMode.SelectedItem.As<UnderlayMode>();
+        var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
+        var underlayCoverMode = CmbUnderlayCoverModes.SelectedItem.As<UnderlayCoverMode>();
+
         WindowedContentDialog dialog = new()
         {
             Title = txtTitle.Text,
@@ -25,8 +27,12 @@ public sealed partial class WindowedContentDialogPage : Page
             OwnerWindow = MainWindow.Instance,
             HasTitleBar = TGHasTitleBar.IsOn,
             IsResizable = TGIsResizable.IsOn,
-            UnderlayBackdrop = popupBackdropType,
-            UnderlayBackdropCoverMode = popupCoverMode,
+            Underlay = underlay,
+            UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions
+            {
+                CoverMode = underlayCoverMode,
+                Backdrop = underlayBackdrop
+            }
         };
 
         ContentDialogResult result = await dialog.ShowAsync(TGIsModal.IsOn);

@@ -13,8 +13,10 @@ public sealed partial class MessageBoxPage : Page
 
     private async void OnMessageBox(object sender, RoutedEventArgs e)
     {
-        var popupBackdropType = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
-        var popupCoverMode = CmbUnderlayCoverModes.SelectedItem.As<UnderlayCoverMode>();
+        var underlay = CmbUnderlayMode.SelectedItem.As<UnderlayMode>();
+        var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
+        var underlayCoverMode = CmbUnderlayCoverModes.SelectedItem.As<UnderlayCoverMode>();
+
         var button = (MessageBoxButtons)CmbMessageBoxButtons.SelectedItem;
         MessageBoxDefaultButton defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultBUtton.SelectedItem;
 
@@ -28,8 +30,12 @@ public sealed partial class MessageBoxPage : Page
             Title = txtTitle.Text?.ToString(),
             Buttons = button,
             DefaultButton = defaultButton,
-            UnderlayBackdropCoverMode = popupCoverMode,
-            UnderlayBackdrop = popupBackdropType
+            Underlay = underlay,
+            UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions
+            {
+                CoverMode = underlayCoverMode,
+                Backdrop = underlayBackdrop
+            }
         });
         TxtResult.Text = result.ToString();
     }

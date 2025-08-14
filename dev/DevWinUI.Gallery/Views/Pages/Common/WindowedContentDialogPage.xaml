@@ -43,15 +43,17 @@
                         <ToggleSwitch x:Name="TGIsResizable"
                                       Header="Is Resizable"
                                       IsOn="False" />
+                        <ComboBox x:Name="CmbUnderlayMode"
+                                  Header="Underlay Mode"
+                                  ItemsSource="{x:Bind ViewModel.UnderlayModeItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
                                   Header="Underlay Backdrop"
-                                  IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
                                   ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayCoverModes"
-                                  Header="Underlay Backdrop Cover Mode"
-                                  IsEnabled="{x:Bind TGIsModal.IsOn, Mode=OneWay}"
-                                  ItemsSource="{x:Bind ViewModel.PopupCoverModeItems, Mode=OneWay}"
+                                  Header="Underlay Cover Mode"
+                                  ItemsSource="{x:Bind ViewModel.UnderlayCoverModeItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>

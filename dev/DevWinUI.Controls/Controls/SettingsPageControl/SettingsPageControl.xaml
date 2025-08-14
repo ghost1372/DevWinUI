@@ -9,10 +9,6 @@
 
     <UserControl.Resources>
         <x:Double x:Key="PageMaxWidth">1000</x:Double>
-        <local:DoubleToVisibilityConverter x:Name="doubleToVisibilityConverter"
-                                           FalseValue="Collapsed"
-                                           GreaterThan="0"
-                                           TrueValue="Visible" />
     </UserControl.Resources>
 
     <Grid Padding="20,0,0,0"
@@ -123,7 +119,7 @@
                             Grid.Row="2"
                             MaxWidth="{StaticResource PageMaxWidth}"
                             Orientation="Vertical"
-                            Visibility="{x:Bind SecondaryLinks.Count, Converter={StaticResource doubleToVisibilityConverter}}">
+                            Visibility="{x:Bind SecondaryLinks.Count, Converter={StaticResource DoubleToVisibilityConverter}}">
                     <TextBlock Margin="2,8,0,0"
                                AutomationProperties.HeadingLevel="Level2"
                                Style="{ThemeResource BodyStrongTextBlockStyle}"

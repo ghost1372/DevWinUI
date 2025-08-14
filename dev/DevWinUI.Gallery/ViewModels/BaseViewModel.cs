@@ -15,7 +15,10 @@ public partial class BaseViewModel : ObservableObject
 
     #region WindowedContentDialog
     [ObservableProperty]
-    public partial ObservableCollection<UnderlayCoverMode> PopupCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
+    public partial ObservableCollection<UnderlayCoverMode> UnderlayCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<UnderlayMode> UnderlayModeItems { get; set; } = new ObservableCollection<UnderlayMode>(Enum.GetValues<UnderlayMode>());
     #endregion
 
     #region SwitchPresenter
