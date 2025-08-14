@@ -20,6 +20,11 @@ public partial class ColorfulShimmingEffect : ContentControl
     public ColorfulShimmingEffect()
     {
         this.DefaultStyleKey = typeof(ColorfulShimmingEffect);
+
+        if (ColorfulShimmingEffectItems == null)
+        {
+            ColorfulShimmingEffectItems = new List<ColorfulShimmingEffectItem>();
+        }
     }
     protected override void OnApplyTemplate()
     {
