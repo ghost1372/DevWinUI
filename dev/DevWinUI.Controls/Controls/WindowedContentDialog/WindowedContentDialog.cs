@@ -118,129 +118,123 @@ public partial class WindowedContentDialog
         };
         return await resultCompletionSource.Task;
     }
-
     private void SetUnderlay(ContentDialogWindow dialogWindow)
     {
-        if (OwnerWindow == null || OwnerWindow.Content == null || OwnerWindow.Content.XamlRoot == null)
+        if (OwnerWindow?.Content?.XamlRoot == null)
             return;
 
         switch (Underlay)
         {
             case UnderlayMode.SmokeLayer:
-                if (UnderlaySmokeLayer != null && UnderlaySmokeLayer.SmokeLayerKind != WindowedContentDialogSmokeLayerKind.None)
-                {
-                    dialogWindow.Opened += (window, e) =>
-                    {
-                        if (OwnerWindow.Content is Control control)
-                        {
-                            control.IsEnabled = false;
-                        }
-                    };
-                    dialogWindow.Closed += (o, e) =>
-                    {
-                        if (OwnerWindow.Content is Control control)
-                        {
-                            control.IsEnabled = true;
-                        }
-                    };
-
-                    Popup behindOverlayPopup = new()
-                    {
-                        XamlRoot = OwnerWindow.Content.XamlRoot,
-                        RequestedTheme = RequestedTheme
-                    };
-                    if (UnderlaySmokeLayer.SmokeLayerKind is WindowedContentDialogSmokeLayerKind.Darken)
-                    {
-                        behindOverlayPopup.Child = new Border
-                        {
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            VerticalAlignment = VerticalAlignment.Stretch,
-                            Width = OwnerWindow.Content.XamlRoot.Size.Width,
-                            Height = OwnerWindow.Content.XamlRoot.Size.Height,
-                            Opacity = 0.0,
-                            OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
-                            Background = new SolidColorBrush(SmokeFillColor),
-                        };
-
-                        dialogWindow.Loaded += (o, e) =>
-                        {
-                            behindOverlayPopup.IsOpen = true;
-                            behindOverlayPopup.Child.Opacity = 1.0;
-                        };
-                        dialogWindow.Closed += async (o, e) =>
-                        {
-                            behindOverlayPopup.Child.Opacity = 0.0;
-                            await Task.Delay(behindOverlayPopup.Child.OpacityTransition.Duration);
-                            behindOverlayPopup.IsOpen = false;
-                        };
-                    }
-                    else if (UnderlaySmokeLayer.CustomSmokeLayer is not null)
-                    {
-                        behindOverlayPopup.Child = UnderlaySmokeLayer.CustomSmokeLayer;
-
-                        dialogWindow.Loaded += (o, e) =>
-                        {
-                            behindOverlayPopup.IsOpen = true;
-                            behindOverlayPopup.Child.Opacity = 1.0;
-                        };
-                        dialogWindow.Closed += async (o, e) =>
-                        {
-                            behindOverlayPopup.Child.Opacity = 0.0;
-                            await Task.Delay(behindOverlayPopup.Child.OpacityTransition.Duration);
-                            behindOverlayPopup.IsOpen = false;
-                        };
-                    }
-                }
+                HandleSmokeLayer(dialogWindow);
                 break;
+
             case UnderlayMode.SystemBackdrop:
-
-                Popup popup = null;
-
-                if (UnderlaySystemBackdrop != null && UnderlaySystemBackdrop.Backdrop != BackdropType.None)
-                {
-                    int verticalOffset = 0;
-                    switch (OwnerWindow.AppWindow.TitleBar.PreferredHeightOption)
-                    {
-                        case TitleBarHeightOption.Standard:
-                            verticalOffset = 32;
-                            break;
-                        case TitleBarHeightOption.Tall:
-                            verticalOffset = 48;
-                            break;
-                        case TitleBarHeightOption.Collapsed:
-                            verticalOffset = 0;
-                            break;
-                    }
-
-                    popup = PopupHelper.CreatePopup(OwnerWindow.Content.XamlRoot, UnderlaySystemBackdrop.Backdrop, UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full, verticalOffset);
-                    dialogWindow.Opened += (window, e) =>
-                    {
-                        if (OwnerWindow.Content is Control control)
-                        {
-                            control.IsEnabled = false;
-                        }
-                    };
-                    dialogWindow.Closed += (o, e) =>
-                    {
-                        if (OwnerWindow.Content is Control control)
-                        {
-                            control.IsEnabled = true;
-                        }
-                    };
-                    dialogWindow.Loaded += (o, e) =>
-                    {
-                        popup.IsOpen = true;
-                        popup.Child.Opacity = 1.0;
-                    };
-                    dialogWindow.Closed += async (o, e) =>
-                    {
-                        popup.Child.Opacity = 0.0;
-                        await Task.Delay(popup.Child.OpacityTransition.Duration);
-                        popup.IsOpen = false;
-                    };
-                }
+                HandleSystemBackdrop(dialogWindow);
                 break;
         }
+    }
+    private void HandleSmokeLayer(ContentDialogWindow dialogWindow)
+    {
+        if (UnderlaySmokeLayer == null || UnderlaySmokeLayer.SmokeLayerKind == WindowedContentDialogSmokeLayerKind.None)
+            return;
+
+        DisableOwnerEvents(dialogWindow);
+
+        var popup = new Popup
+        {
+            XamlRoot = OwnerWindow.Content.XamlRoot,
+            RequestedTheme = RequestedTheme
+        };
+
+        if (UnderlaySmokeLayer.SmokeLayerKind == WindowedContentDialogSmokeLayerKind.Darken)
+        {
+            popup.Child = new Border
+            {
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                Width = OwnerWindow.Content.XamlRoot.Size.Width,
+                Height = OwnerWindow.Content.XamlRoot.Size.Height,
+                Opacity = 0.0,
+                OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
+                Background = new SolidColorBrush(SmokeFillColor),
+            };
+        }
+        else if (UnderlaySmokeLayer.CustomSmokeLayer != null)
+        {
+            popup.Child = UnderlaySmokeLayer.CustomSmokeLayer;
+        }
+
+        AttachPopupLifecycle(dialogWindow, popup);
+    }
+
+    private void HandleSystemBackdrop(ContentDialogWindow dialogWindow)
+    {
+        if (UnderlaySystemBackdrop == null || UnderlaySystemBackdrop.Backdrop == BackdropType.None)
+            return;
+
+        DisableOwnerEvents(dialogWindow);
+
+        var popup = PopupHelper.CreatePopup(
+            OwnerWindow.Content.XamlRoot,
+            UnderlaySystemBackdrop.Backdrop,
+            UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full,
+            GetTitleBarOffset());
+
+        AttachPopupLifecycle(dialogWindow, popup);
+    }
+
+    private void DisableOwnerEvents(ContentDialogWindow dialogWindow)
+    {
+        dialogWindow.Opened -= DialogWindow_Opened;
+        dialogWindow.Closed -= DialogWindow_Closed;
+
+        dialogWindow.Opened += DialogWindow_Opened;
+        dialogWindow.Closed += DialogWindow_Closed;
+    }
+
+    private void DialogWindow_Opened(ContentDialogWindow sender, EventArgs e)
+    {
+        if (OwnerWindow.Content is Control control)
+            control.IsEnabled = false;
+    }
+
+    private void DialogWindow_Closed(object sender, WindowEventArgs e)
+    {
+        if (OwnerWindow.Content is Control control)
+            control.IsEnabled = true;
+    }
+
+    private void AttachPopupLifecycle(ContentDialogWindow dialogWindow, Popup popup)
+    {
+        dialogWindow.Loaded -= DialogWindow_Loaded;
+        dialogWindow.Closed -= DialogWindow_ClosedPopup;
+
+        dialogWindow.Loaded += DialogWindow_Loaded;
+        dialogWindow.Closed += DialogWindow_ClosedPopup;
+
+        void DialogWindow_Loaded(object sender, EventArgs e)
+        {
+            popup.IsOpen = true;
+            popup.Child.Opacity = 1.0;
+        }
+
+        async void DialogWindow_ClosedPopup(object sender, WindowEventArgs e)
+        {
+            popup.Child.Opacity = 0.0;
+            await Task.Delay(popup.Child.OpacityTransition.Duration);
+            popup.IsOpen = false;
+        }
+    }
+
+    private int GetTitleBarOffset()
+    {
+        return OwnerWindow.AppWindow.TitleBar.PreferredHeightOption switch
+        {
+            TitleBarHeightOption.Standard => 32,
+            TitleBarHeightOption.Tall => 48,
+            _ => 0
+        };
     }
 
     private static Style DefaultButtonStyle => (Style) Application.Current.Resources["DefaultButtonStyle"];
