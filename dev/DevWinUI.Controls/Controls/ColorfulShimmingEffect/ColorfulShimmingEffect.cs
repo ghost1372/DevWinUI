@@ -15,7 +15,7 @@ public partial class ColorfulShimmingEffect : ContentControl
     }
 
     public static readonly DependencyProperty ColorfulShimmingEffectItemsProperty =
-        DependencyProperty.Register(nameof(ColorfulShimmingEffectItems), typeof(List<ColorfulShimmingEffectItem>), typeof(ColorfulShimmingEffect), new PropertyMetadata(new List<ColorfulShimmingEffectItem>(), OnPointsChanged));
+        DependencyProperty.Register(nameof(ColorfulShimmingEffectItems), typeof(List<ColorfulShimmingEffectItem>), typeof(ColorfulShimmingEffect), new PropertyMetadata(null, OnPointsChanged));
 
     public ColorfulShimmingEffect()
     {
@@ -26,7 +26,7 @@ public partial class ColorfulShimmingEffect : ContentControl
         base.OnApplyTemplate();
 
         _rootPanel = GetTemplateChild(PART_Root) as StackPanel;
-        if (ColorfulShimmingEffectItems.Count == 0)
+        if (ColorfulShimmingEffectItems == null || ColorfulShimmingEffectItems.Count == 0)
         {
             ColorfulShimmingEffectItems = new List<ColorfulShimmingEffectItem>
             {
@@ -66,7 +66,7 @@ public partial class ColorfulShimmingEffect : ContentControl
 
     public void ShowShimmingEffect()
     {
-        if (_rootPanel == null || RenderSize.Width == 0)
+        if (_rootPanel == null || RenderSize.Width == 0 || ColorfulShimmingEffectItems == null)
         {
             return;
         }

@@ -18,7 +18,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty KeysProperty =
-        DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(BaseShortcut), new PropertyMetadata(default(string)));
+        DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(BaseShortcut), new PropertyMetadata(null));
 
     public bool IsError
     {

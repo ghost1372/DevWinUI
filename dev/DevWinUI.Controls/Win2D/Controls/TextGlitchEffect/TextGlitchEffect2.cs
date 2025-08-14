@@ -24,6 +24,25 @@ public partial class TextGlitchEffect2 : Control
         }
     }
 
+    public TextGlitchEffect2()
+    {
+        DefaultStyleKey = typeof(TextGlitchEffect2);
+
+        if (PrimaryBackground == null)
+        {
+            PrimaryBackground = new SolidColorBrush(Colors.Black);
+        }
+
+        if (SecondaryBackground == null)
+        {
+            SecondaryBackground = new SolidColorBrush(Colors.Black);
+        }
+
+        if (TertiaryBackground == null)
+        {
+            TertiaryBackground = new SolidColorBrush(Colors.Black);
+        }
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

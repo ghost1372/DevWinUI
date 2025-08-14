@@ -68,7 +68,7 @@ public partial class TextGlitchEffect2
     }
 
     public static readonly DependencyProperty PrimaryBackgroundProperty =
-        DependencyProperty.Register(nameof(PrimaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(new SolidColorBrush(Colors.Black), OnValueChanged));
+        DependencyProperty.Register(nameof(PrimaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(default(SolidColorBrush), OnValueChanged));
     public Brush PrimaryBackground
     {
         get { return (Brush)GetValue(PrimaryBackgroundProperty); }
@@ -76,7 +76,7 @@ public partial class TextGlitchEffect2
     }
 
     public static readonly DependencyProperty SecondaryBackgroundProperty =
-        DependencyProperty.Register(nameof(SecondaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(new SolidColorBrush(Colors.Black), OnValueChanged));
+        DependencyProperty.Register(nameof(SecondaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(default(SolidColorBrush), OnValueChanged));
     public Brush SecondaryBackground
     {
         get { return (Brush)GetValue(SecondaryBackgroundProperty); }
@@ -84,7 +84,7 @@ public partial class TextGlitchEffect2
     }
 
     public static readonly DependencyProperty TertiaryBackgroundProperty =
-        DependencyProperty.Register(nameof(TertiaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(new SolidColorBrush(Colors.Black), OnValueChanged));
+        DependencyProperty.Register(nameof(TertiaryBackground), typeof(Brush), typeof(TextGlitchEffect2), new PropertyMetadata(default(SolidColorBrush), OnValueChanged));
     public Brush TertiaryBackground
     {
         get { return (Brush)GetValue(TertiaryBackgroundProperty); }

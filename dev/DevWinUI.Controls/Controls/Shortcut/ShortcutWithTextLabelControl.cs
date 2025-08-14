@@ -17,7 +17,7 @@ public partial class ShortcutWithTextLabel : Control
     }
 
     public static readonly DependencyProperty KeysProperty =
-        DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(ShortcutWithTextLabel), new PropertyMetadata(default(string)));
+        DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(ShortcutWithTextLabel), new PropertyMetadata(null));
 
     public ShortcutWithTextLabel()
     {
