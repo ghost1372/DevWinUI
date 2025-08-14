@@ -46,7 +46,7 @@
                         <ComboBox x:Name="CmbUnderlayMode"
                                   Header="Underlay Mode"
                                   ItemsSource="{x:Bind ViewModel.UnderlayModeItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
+                                  SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
                                   Header="Underlay Backdrop"
                                   ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
