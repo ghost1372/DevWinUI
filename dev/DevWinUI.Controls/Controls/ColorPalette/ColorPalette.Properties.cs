@@ -55,7 +55,7 @@ public partial class ColorPalette
     }
 
     public static readonly DependencyProperty ColorsProperty =
-        DependencyProperty.Register(nameof(Colors), typeof(ObservableCollection<ColorPaletteItem>), typeof(ColorPalette), new PropertyMetadata(new ObservableCollection<ColorPaletteItem>(), OnColorsChanged));
+        DependencyProperty.Register(nameof(Colors), typeof(ObservableCollection<ColorPaletteItem>), typeof(ColorPalette), new PropertyMetadata(null, OnColorsChanged));
 
     private static void OnColorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

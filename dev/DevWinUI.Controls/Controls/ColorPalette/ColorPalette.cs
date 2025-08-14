@@ -281,6 +281,10 @@ public partial class ColorPalette : GridView
     public ColorPalette()
     {
         DefaultStyleKey = typeof(ColorPalette);
+        if (Colors == null)
+        {
+            Colors = new ObservableCollection<ColorPaletteItem>();
+        }
     }
     protected override void OnApplyTemplate()
     {
@@ -359,6 +363,7 @@ public partial class ColorPalette : GridView
         UpdateShowHexCode();
         UpdateToolTip();
     }
+
     private void UpdateInternalColors()
     {
         foreach (ColorPaletteItem item in Items)

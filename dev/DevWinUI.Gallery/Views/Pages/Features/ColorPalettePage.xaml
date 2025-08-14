@@ -70,9 +70,15 @@
                                       ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}"
                                       ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}"
                                       ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
+                        <dev:ColorPalette.Colors>
+                            <dev:ColorPaletteItem Color="Red" />
+                            <dev:ColorPaletteItem Color="Green" />
+                            <dev:ColorPaletteItem Color="Orange" />
+                            <dev:ColorPaletteItem Color="Blue" />
+                        </dev:ColorPalette.Colors>
                         <dev:ColorPalette.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <dev:UniformGrid Columns="10"/>
+                                <dev:UniformGrid Columns="10" />
                             </ItemsPanelTemplate>
                         </dev:ColorPalette.ItemsPanel>
                     </dev:ColorPalette>
