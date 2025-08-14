@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultOOBEPageControlStyle}"
+           TargetType="local:OOBEPageControl" />
+
+    <Style x:Key="DefaultOOBEPageControlStyle"
+           TargetType="local:OOBEPageControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:OOBEPageControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Image Height="{TemplateBinding HeroImageHeight}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Source="{TemplateBinding HeroImage}"
+                               Stretch="UniformToFill" />
+
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto">
+                            <StackPanel Margin="32,24"
+                                        VerticalAlignment="Top"
+                                        Orientation="Vertical"
+                                        Spacing="12">
+
+                                <TextBlock AutomationProperties.HeadingLevel="Level1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Text="{TemplateBinding Title}" />
+
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Text="{TemplateBinding Description}"
+                                           TextWrapping="Wrap" />
+
+                                <ContentPresenter Margin="0,8"
+                                                  HorizontalAlignment="Stretch"
+                                                  HorizontalContentAlignment="Stretch"
+                                                  Content="{TemplateBinding PageContent}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
