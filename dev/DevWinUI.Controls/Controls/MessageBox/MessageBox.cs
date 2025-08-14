@@ -83,11 +83,12 @@ public partial class MessageBox
             OwnerWindow = options.OwnerWindow,
             SystemBackdrop = options.SystemBackdrop,
             RequestedTheme = theme,
-            UnderlayBackdrop = options.UnderlayBackdrop,
-            UnderlayBackdropCoverMode = options.UnderlayBackdropCoverMode,
+            Underlay = options.Underlay,
+            UnderlaySmokeLayer = options.UnderlaySmokeLayer,
+            UnderlaySystemBackdrop = options.UnderlaySystemBackdrop,
             HasTitleBar = options.HasTitleBar,
             FlowDirection = options.FlowDirection,
-            CenterInParent = options.CenterInParent
+            CenterInParent = options.CenterInParent,
         };
 
         ContentDialogButton contentDialogDefaultButton = options.DefaultButton switch

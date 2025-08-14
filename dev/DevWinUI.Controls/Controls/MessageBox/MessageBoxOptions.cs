@@ -9,11 +9,13 @@ public partial class MessageBoxOptions
     public MessageBoxButtons Buttons { get; set; }
     public MessageBoxDefaultButton? DefaultButton { get; set; }
     public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
-    public BackdropType UnderlayBackdrop { get; set; } = BackdropType.Mica;
-    public UnderlayCoverMode UnderlayBackdropCoverMode { get; set; } = UnderlayCoverMode.ClientArea;
+
+    public UnderlayMode Underlay { get; set; } = UnderlayMode.SmokeLayer;
+    public UnderlaySystemBackdropOptions UnderlaySystemBackdrop { get; set; } = new UnderlaySystemBackdropOptions();
+    public UnderlaySmokeLayerOptions UnderlaySmokeLayer { get; set; } = new UnderlaySmokeLayerOptions();
+
     public bool IsModal { get; set; }
     public bool IsResizable { get; set; }
     public bool HasTitleBar { get; set; } = true;
     public bool CenterInParent { get; set; } = true;
-    
 }

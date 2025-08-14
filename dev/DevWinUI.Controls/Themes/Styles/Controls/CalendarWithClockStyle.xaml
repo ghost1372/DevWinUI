@@ -35,7 +35,7 @@
                      TargetType="local:CalendarWithClock">
         <Grid x:Name="PART_Root">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition MinWidth="300" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <VisualStateManager.VisualStateGroups>
@@ -126,6 +126,7 @@
                     CornerRadius="{TemplateBinding CornerRadius}" />
             <CalendarView x:Name="PART_CalendarView"
                           Grid.Column="0"
+                          MinWidth="300"
                           Margin="{TemplateBinding CalendarViewMargin}"
                           BorderThickness="{TemplateBinding CalendarViewBorderThickness}"
                           CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
@@ -138,8 +139,7 @@
                           IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
                           MaxDate="{TemplateBinding MaxDate}"
                           MinDate="{TemplateBinding MinDate}"
-                          Style="{TemplateBinding CalendarViewStyle}"
-                          MinWidth="300"/>
+                          Style="{TemplateBinding CalendarViewStyle}" />
             <local:Clock x:Name="PART_Clock"
                          Grid.Column="1"
                          Margin="{TemplateBinding ClockMargin}"
