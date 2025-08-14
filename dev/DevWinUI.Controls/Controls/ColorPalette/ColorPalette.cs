@@ -402,9 +402,9 @@ public partial class ColorPalette : GridView
     protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
     {
         base.PrepareContainerForItemOverride(element, item);
-        if (element is GridViewItem gridViewItem && item is ColorPaletteItem colorPaletteItem2)
+        if (element is GridViewItem gridViewItem && item is ColorPaletteItem colorPaletteItem)
         {
-            gridViewItem.IsEnabled = colorPaletteItem2.IsEnabled;
+            gridViewItem.IsEnabled = colorPaletteItem.IsEnabled;
             gridViewItem.MinHeight = 0;
             gridViewItem.MinWidth = 0;
         }
