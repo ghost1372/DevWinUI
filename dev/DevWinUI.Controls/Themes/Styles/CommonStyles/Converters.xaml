@@ -18,4 +18,8 @@
     <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <local:StringToUriConverter x:Key="StringToUriConverter" />
     <local:StringToStyleConverter x:Key="StringToStyleConverter" />
+    <local:DoubleToVisibilityConverter x:Name="DoubleToVisibilityConverter"
+                                       FalseValue="Collapsed"
+                                       GreaterThan="0"
+                                       TrueValue="Visible" />
 </ResourceDictionary>

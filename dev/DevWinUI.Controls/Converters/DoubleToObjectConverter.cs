@@ -10,7 +10,7 @@ namespace DevWinUI;
 /// Otherwise the logic looks for the value to be GreaterThan or LessThan the specified value.
 /// The ConverterParameter can be used to invert the logic.
 /// </summary>
-internal partial class DoubleToObjectConverter : DependencyObject, IValueConverter
+public partial class DoubleToObjectConverter : DependencyObject, IValueConverter
 {
     /// <summary>
     /// Identifies the <see cref="TrueValue"/> property.
