@@ -187,10 +187,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <ContentPresenter Height="{TemplateBinding HeroImageHeight}"
-                              ContentTemplate="{TemplateBinding HeroImageTemplate}">
+            <ContentPresenter ContentTemplate="{TemplateBinding HeroImageTemplate}">
                 <ContentPresenter.Content>
-                    <Image HorizontalAlignment="Center"
+                    <Image Height="{TemplateBinding HeroImageHeight}"
+                           HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                            Stretch="UniformToFill" />

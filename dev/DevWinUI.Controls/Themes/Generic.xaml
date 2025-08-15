@@ -7574,9 +7574,9 @@ Themes\Styles\Win2D\Watermark.xaml
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-      <ContentPresenter Height="{TemplateBinding HeroImageHeight}" ContentTemplate="{TemplateBinding HeroImageTemplate}">
+      <ContentPresenter ContentTemplate="{TemplateBinding HeroImageTemplate}">
         <ContentPresenter.Content>
-          <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
+          <Image Height="{TemplateBinding HeroImageHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
         </ContentPresenter.Content>
       </ContentPresenter>
       <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
