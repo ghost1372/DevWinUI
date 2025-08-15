@@ -52,7 +52,6 @@ public class WinUIAppNavigationWizard : IWizard
             filePath.Contains("GeneralSettingPage") ||
             filePath.Contains("AppUpdateSettingPage") ||
             filePath.Contains("Backdrop.png") ||
-            filePath.Contains("Tint.png") ||
             filePath.Contains("Color.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Info.png") ||
@@ -74,7 +73,6 @@ public class WinUIAppNavigationWizard : IWizard
             !WizardConfig.UseThemeSettingPage &&
             (filePath.Contains("ThemeSettingPage") ||
             filePath.Contains("Backdrop.png") ||
-            filePath.Contains("Tint.png") ||
             filePath.Contains("Color.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Theme.png")))

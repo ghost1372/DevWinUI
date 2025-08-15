@@ -56,7 +56,6 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             filePath.Contains("AppUpdateSettingViewModel") ||
             filePath.Contains("Backdrop.png") ||
             filePath.Contains("Color.png") ||
-            filePath.Contains("Tint.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Info.png") ||
             filePath.Contains("General.png") ||
@@ -79,7 +78,6 @@ public class WinUIAppMVVMNavigationWizard : IWizard
             (filePath.Contains("ThemeSettingPage") ||
             filePath.Contains("Backdrop.png") ||
             filePath.Contains("Color.png") ||
-            filePath.Contains("Tint.png") ||
             filePath.Contains("External.png") ||
             filePath.Contains("Theme.png")))
         {
