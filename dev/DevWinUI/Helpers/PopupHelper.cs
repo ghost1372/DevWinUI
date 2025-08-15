@@ -18,8 +18,7 @@ public partial class PopupHelper
             VerticalAlignment = VerticalAlignment.Stretch,
             Width = xamlRoot.Size.Width,
             Height = isFullCover ? xamlRoot.Size.Height : xamlRoot.Size.Height - verticalOffset,
-            Opacity = 0.0,
-            OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
+            Opacity = 0.0
         };
 
         if (isFullCover)

@@ -158,7 +158,7 @@ public partial class WindowedContentDialog
                 Width = OwnerWindow.Content.XamlRoot.Size.Width,
                 Height = OwnerWindow.Content.XamlRoot.Size.Height,
                 Opacity = 0.0,
-                OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
+                OpacityTransition = UnderlaySmokeLayer.OpacityTransition,
                 Fill = new SolidColorBrush(SmokeFillColor),
             };
 
@@ -172,7 +172,6 @@ public partial class WindowedContentDialog
 
         AttachPopupLifecycle(dialogWindow, popup);
     }
-
     private void HandleSystemBackdrop(ContentDialogWindow dialogWindow)
     {
         if (UnderlaySystemBackdrop == null || UnderlaySystemBackdrop.Backdrop == BackdropType.None)
@@ -187,6 +186,7 @@ public partial class WindowedContentDialog
             GetTitleBarOffset());
 
         backdropLayerCache = popup.Child as Border;
+        backdropLayerCache.OpacityTransition = UnderlaySystemBackdrop.OpacityTransition;
         AttachPopupLifecycle(dialogWindow, popup);
     }
 
