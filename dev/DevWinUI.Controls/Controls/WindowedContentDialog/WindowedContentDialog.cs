@@ -1,10 +1,14 @@
 ﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
 public partial class WindowedContentDialog
 {
+    private Rectangle smokeLayerCache;
+    private Border backdropLayerCache;
     public string? Title { get; set; }
     public object? Content { get; set; }
 
@@ -149,18 +153,19 @@ public partial class WindowedContentDialog
 
         if (UnderlaySmokeLayer.SmokeLayerKind == WindowedContentDialogSmokeLayerKind.Darken)
         {
-            popup.Child = new Border
+            Rectangle darkLayer = new()
             {
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Stretch,
                 Width = OwnerWindow.Content.XamlRoot.Size.Width,
                 Height = OwnerWindow.Content.XamlRoot.Size.Height,
                 Opacity = 0.0,
                 OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
-                Background = new SolidColorBrush(SmokeFillColor),
+                Fill = new SolidColorBrush(SmokeFillColor),
             };
+
+            popup.Child = darkLayer;
+            smokeLayerCache = darkLayer;
         }
-        else if (UnderlaySmokeLayer.CustomSmokeLayer != null)
+        else if (UnderlaySmokeLayer.SmokeLayerKind is WindowedContentDialogSmokeLayerKind.Custom && UnderlaySmokeLayer.CustomSmokeLayer != null)
         {
             popup.Child = UnderlaySmokeLayer.CustomSmokeLayer;
         }
@@ -181,6 +186,7 @@ public partial class WindowedContentDialog
             UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full,
             GetTitleBarOffset());
 
+        backdropLayerCache = popup.Child as Border;
         AttachPopupLifecycle(dialogWindow, popup);
     }
 
@@ -217,16 +223,48 @@ public partial class WindowedContentDialog
         {
             popup.IsOpen = true;
             popup.Child.Opacity = 1.0;
+            OwnerWindow.SizeChanged += OnOwnerWindowSizeChanged;
         }
 
         async void DialogWindow_ClosedPopup(object sender, WindowEventArgs e)
         {
             popup.Child.Opacity = 0.0;
-            await Task.Delay(popup.Child.OpacityTransition.Duration);
+            await Task.Delay(popup.Child.OpacityTransition?.Duration ?? new TimeSpan(0));
             popup.IsOpen = false;
+            popup.Child = null;
+            OwnerWindow.SizeChanged -= OnOwnerWindowSizeChanged;
+        }
+    }
+    private void OnOwnerWindowSizeChanged(object sender, WindowSizeChangedEventArgs args)
+    {
+        switch (Underlay)
+        {
+            case UnderlayMode.SmokeLayer:
+                SizeToWindow(smokeLayerCache, OwnerWindow);
+                break;
+
+            case UnderlayMode.SystemBackdrop:
+                SizeToWindow(backdropLayerCache, OwnerWindow);
+                break;
         }
     }
 
+    private void SizeToWindow(FrameworkElement element, Window window)
+    {
+        element.Width = window.Content.XamlRoot.Size.Width;
+
+        switch (Underlay)
+        {
+            case UnderlayMode.SmokeLayer:
+                element.Height = window.Content.XamlRoot.Size.Height;
+                break;
+
+            case UnderlayMode.SystemBackdrop:
+                element.Height = UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full ? window.Content.XamlRoot.Size.Height : window.Content.XamlRoot.Size.Height - GetTitleBarOffset();
+                break;
+        }
+        
+    }
     private int GetTitleBarOffset()
     {
         return OwnerWindow.AppWindow.TitleBar.PreferredHeightOption switch

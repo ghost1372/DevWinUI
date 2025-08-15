@@ -17,7 +17,7 @@ public partial class PopupHelper
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Stretch,
             Width = xamlRoot.Size.Width,
-            Height = xamlRoot.Size.Height,
+            Height = isFullCover ? xamlRoot.Size.Height : xamlRoot.Size.Height - verticalOffset,
             Opacity = 0.0,
             OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
         };
@@ -25,7 +25,7 @@ public partial class PopupHelper
         if (isFullCover)
         {
             overlay.CornerRadius = new CornerRadius(8);
-            popup.VerticalOffset = 0;
+            popup.Margin = new Thickness(0);
         }
         else
         {
@@ -38,7 +38,7 @@ public partial class PopupHelper
                 overlay.CornerRadius = new CornerRadius(0, 0, 8, 8);
             }
 
-            popup.VerticalOffset = verticalOffset;
+            popup.Margin = new Thickness(0, verticalOffset, 0,0);
         }
 
         new PopupBackdropManager().TrySetSystemBackdrop(popup, backdropType);
