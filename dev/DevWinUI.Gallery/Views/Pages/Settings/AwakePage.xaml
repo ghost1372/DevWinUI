@@ -6,12 +6,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl IsTabStop="False"
-                             ModuleDescription="A convenient way to keep your PC awake on-demand."
-                             ModuleImageSource="ms-appx:///Assets/Modules/Awake.png"
-                             ModuleTitle="Awake"
-                             SecondaryLinksHeader="Attribution">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Awake"
+                      Description="A convenient way to keep your PC awake on-demand."
+                      HeroImage="ms-appx:///Assets/Modules/Awake.png"
+                      IsTabStop="False"
+                      SecondaryLinksHeader="Attribution">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Awake"
@@ -87,15 +87,15 @@
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_Awake"
-                          Text="Learn more about Awake" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="https://Awake.den.dev"
-                          Text="Den Delimarsky's Awake" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake"
+                                  Text="Learn more about Awake" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="https://Awake.den.dev"
+                                  Text="Den Delimarsky's Awake" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

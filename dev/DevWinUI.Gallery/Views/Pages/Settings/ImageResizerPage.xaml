@@ -10,11 +10,11 @@
         <Style BasedOn="{StaticResource ListViewItemSettingStyle}"
                TargetType="ListViewItem" />
     </Page.Resources>
-    <dev:SettingsPageControl ModuleDescription="Lets you resize images by right-clicking."
-                             ModuleImageSource="ms-appx:///Assets/Modules/ImageResizer.png"
-                             ModuleTitle="Image Resizer"
-                             SecondaryLinksHeader="Attribution">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Image Resizer"
+                      Description="Lets you resize images by right-clicking."
+                      HeroImage="ms-appx:///Assets/Modules/ImageResizer.png"
+                      SecondaryLinksHeader="Attribution">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default">
                 <dev:SettingsCard Header="Enable Image Resizer"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/imageResizer.png}">
@@ -235,15 +235,15 @@
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_ImageResizer"
-                          Text="Learn more about Image Resizer" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="https://github.com/bricelam/ImageResizer/"
-                          Text="Brice Lambson's ImageResizer" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ImageResizer"
+                                  Text="Learn more about Image Resizer" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="https://github.com/bricelam/ImageResizer/"
+                                  Text="Brice Lambson's ImageResizer" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

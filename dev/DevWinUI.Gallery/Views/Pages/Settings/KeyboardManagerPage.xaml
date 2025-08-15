@@ -6,10 +6,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl ModuleDescription="Reconfigure your keyboard by remapping keys and shortcuts"
-                             ModuleImageSource="ms-appx:///Assets/Modules/KBM.png"
-                             ModuleTitle="Keyboard Manager">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Keyboard Manager"
+                      Description="Reconfigure your keyboard by remapping keys and shortcuts"
+                      HeroImage="ms-appx:///Assets/Modules/KBM.png">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default">
                 <dev:SettingsCard Header="Enable Keyboard Manager"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/keyboardManager.png}">
@@ -46,10 +46,10 @@
                                       IsClickEnabled="True" />
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_KeyboardManager"
-                          Text="Learn more about Keyboard Manager" />
-        </dev:SettingsPageControl.PrimaryLinks>
-    </dev:SettingsPageControl>
+        </dev:OutOfBoxPage.Content>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_KeyboardManager"
+                                  Text="Learn more about Keyboard Manager" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

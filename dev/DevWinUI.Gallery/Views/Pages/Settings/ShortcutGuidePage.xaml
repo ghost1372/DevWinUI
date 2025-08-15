@@ -6,10 +6,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl ModuleDescription="Shows a help overlay with Windows shortcuts when the Windows key is pressed."
-                             ModuleImageSource="ms-appx:///Assets/Modules/ShortcutGuide.png"
-                             ModuleTitle="Shortcut Guide">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Shortcut Guide"
+                      Description="Shows a help overlay with Windows shortcuts when the Windows key is pressed."
+                      HeroImage="ms-appx:///Assets/Modules/ShortcutGuide.png">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Shortcut Guide"
@@ -75,10 +75,10 @@
                     </dev:SettingsExpander>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_ShortcutGuide"
-                          Text="Learn more about Shortcut Guide" />
-        </dev:SettingsPageControl.PrimaryLinks>
-    </dev:SettingsPageControl>
+        </dev:OutOfBoxPage.Content>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ShortcutGuide"
+                                  Text="Learn more about Shortcut Guide" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

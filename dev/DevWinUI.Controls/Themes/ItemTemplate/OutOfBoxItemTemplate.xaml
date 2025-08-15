@@ -1,0 +1,14 @@
+﻿<ResourceDictionary x:Class="DevWinUI.OutOfBoxItemTemplate"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <DataTemplate x:Key="OutOfBoxLinksItemTemplate"
+                  x:DataType="local:OutOfBoxPageLink">
+        <HyperlinkButton NavigateUri="{x:Bind Link}"
+                         Style="{StaticResource TextButtonStyle}">
+            <TextBlock Text="{x:Bind Text}"
+                       TextWrapping="Wrap" />
+        </HyperlinkButton>
+    </DataTemplate>
+</ResourceDictionary>

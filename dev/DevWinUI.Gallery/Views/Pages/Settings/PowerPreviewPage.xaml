@@ -7,10 +7,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl ModuleDescription="These settings allow you to manage your Windows File Explorer custom preview handlers."
-                             ModuleImageSource="ms-appx:///Assets/Modules/PowerPreview.png"
-                             ModuleTitle="File Explorer">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="File Explorer"
+                      Description="These settings allow you to manage your Windows File Explorer custom preview handlers."
+                      HeroImage="ms-appx:///Assets/Modules/PowerPreview.png">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SimpleSettingsGroup Description="Select the file types which must be rendered in the Preview Pane. Ensure that Preview Pane is open by toggling the view with Alt + P in File Explorer."
@@ -123,11 +123,11 @@
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_FileExplorerAddOns"
-                          Text="Learn more about File Explorer add-ons" />
-        </dev:SettingsPageControl.PrimaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_FileExplorerAddOns"
+                                  Text="Learn more about File Explorer add-ons" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

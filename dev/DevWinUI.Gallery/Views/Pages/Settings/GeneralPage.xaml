@@ -3,11 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:dev="using:DevWinUI">
 
-    <dev:SettingsPageControl ModuleDescription="Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity. Made with 💗 by Microsoft and the PowerToys community."
-                             ModuleImageSource="ms-appx:///Assets/Modules/PT.png"
-                             ModuleTitle="General"
-                             SecondaryLinksHeader="Related information">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="General"
+                      Description="Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity. Made with 💗 by Microsoft and the PowerToys community."
+                      HeroImage="ms-appx:///Assets/Modules/PT.png"
+                      SecondaryLinksHeader="Related information">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SimpleSettingsGroup Margin="0,-32,0,0"
@@ -171,22 +171,22 @@
                              Severity="Informational" />
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/powertoys"
-                          Text="Documentation" />
-            <dev:PageLink Link="https://aka.ms/powertoys"
-                          Text="GitHub repository" />
-            <dev:PageLink Link="https://aka.ms/powerToysReportBug"
-                          Text="Report a bug" />
-            <dev:PageLink Link="https://aka.ms/powerToysRequestFeature"
-                          Text="Request a feature" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="http://go.microsoft.com/fwlink/?LinkId=521839"
-                          Text="Privacy statement" />
-            <dev:PageLink Link="https://github.com/microsoft/PowerToys/blob/master/NOTICE.md"
-                          Text="Open-source notice" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        </dev:OutOfBoxPage.Content>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/powertoys"
+                                  Text="Documentation" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/powertoys"
+                                  Text="GitHub repository" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/powerToysReportBug"
+                                  Text="Report a bug" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/powerToysRequestFeature"
+                                  Text="Request a feature" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="http://go.microsoft.com/fwlink/?LinkId=521839"
+                                  Text="Privacy statement" />
+            <dev:OutOfBoxPageLink Link="https://github.com/microsoft/PowerToys/blob/master/NOTICE.md"
+                                  Text="Open-source notice" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

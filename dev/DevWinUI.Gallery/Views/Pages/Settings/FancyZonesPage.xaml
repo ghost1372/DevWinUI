@@ -6,10 +6,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl ModuleDescription="Create window layouts to help make multi-tasking easy."
-                             ModuleImageSource="ms-appx:///Assets/Modules/FancyZones.png"
-                             ModuleTitle="FancyZones">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="FancyZones"
+                      Description="Create window layouts to help make multi-tasking easy."
+                      HeroImage="ms-appx:///Assets/Modules/FancyZones.png">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable FancyZones"
@@ -216,11 +216,11 @@
                     </dev:SettingsExpander>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_FancyZones"
-                          Text="Learn more about FancyZones" />
-        </dev:SettingsPageControl.PrimaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_FancyZones"
+                                  Text="Learn more about FancyZones" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

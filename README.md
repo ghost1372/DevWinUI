@@ -147,6 +147,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ OutOfBoxPage
 - ✨ Card
 - ✨ StorageRing
 - ✨ StorageBar
@@ -218,7 +219,6 @@ Install-Package DevWinUI
 - ✨ InlineAutoCompleteTextBox
 - ✨ IsEnabledTextBlock
 - ✨ KeyVisual
-- ✨ OOBEPageControl
 - ✨ Shortcut
 - ✨ Validation
 - ✨ WrapPanel
@@ -296,6 +296,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### OutOfBoxPage
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OutOfBoxPage.gif)
 
 ### Card
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Card.png)

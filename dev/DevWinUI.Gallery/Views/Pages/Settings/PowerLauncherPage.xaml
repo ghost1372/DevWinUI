@@ -5,11 +5,11 @@
       xmlns:dev="using:DevWinUI"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <dev:SettingsPageControl ModuleDescription="A quick launcher that has additional capabilities without sacrificing performance."
-                             ModuleImageSource="ms-appx:///Assets/Modules/PowerLauncher.png"
-                             ModuleTitle="Demo Run"
-                             SecondaryLinksHeader="Attribution">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Demo Run"
+                      Description="A quick launcher that has additional capabilities without sacrificing performance."
+                      HeroImage="ms-appx:///Assets/Modules/PowerLauncher.png"
+                      SecondaryLinksHeader="Attribution">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable PowerToys Run"
@@ -133,16 +133,16 @@
                     </StackPanel>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_PowerToysRun"
-                          Text="Learn more about Demo Run" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="https://github.com/Wox-launcher/Wox/"
-                          Text="Wox" />
-            <dev:PageLink Link="https://github.com/betsegaw/windowwalker/"
-                          Text="Beta Tadele's Window Walker" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        </dev:OutOfBoxPage.Content>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_PowerToysRun"
+                                  Text="Learn more about Demo Run" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="https://github.com/Wox-launcher/Wox/"
+                                  Text="Wox" />
+            <dev:OutOfBoxPageLink Link="https://github.com/betsegaw/windowwalker/"
+                                  Text="Beta Tadele's Window Walker" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

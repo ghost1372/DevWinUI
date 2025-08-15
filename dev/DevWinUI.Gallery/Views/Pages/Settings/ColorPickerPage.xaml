@@ -10,11 +10,11 @@
         <Style BasedOn="{StaticResource ListViewItemSettingStyle}"
                TargetType="ListViewItem" />
     </Page.Resources>
-    <dev:SettingsPageControl ModuleDescription="Quick and simple system-wide color picker."
-                             ModuleImageSource="ms-appx:///Assets/Modules/ColorPicker.png"
-                             ModuleTitle="Color Picker"
-                             SecondaryLinksHeader="Attribution">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="Color Picker"
+                      Description="Quick and simple system-wide color picker."
+                      HeroImage="ms-appx:///Assets/Modules/ColorPicker.png"
+                      SecondaryLinksHeader="Attribution">
+        <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Color Picker"
@@ -118,17 +118,17 @@
                     </ListView>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_ColorPicker"
-                          Text="Learn more about Color Picker" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="https://github.com/martinchrzan/ColorPicker/"
-                          Text="Martin Chrzan's Color Picker" />
-            <dev:PageLink Link="https://medium.com/@Niels9001/a-fluent-color-meter-for-powertoys-20407ededf0c"
-                          Text="Niels Laute's UX concept" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ColorPicker"
+                                  Text="Learn more about Color Picker" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="https://github.com/martinchrzan/ColorPicker/"
+                                  Text="Martin Chrzan's Color Picker" />
+            <dev:OutOfBoxPageLink Link="https://medium.com/@Niels9001/a-fluent-color-meter-for-powertoys-20407ededf0c"
+                                  Text="Niels Laute's UX concept" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>

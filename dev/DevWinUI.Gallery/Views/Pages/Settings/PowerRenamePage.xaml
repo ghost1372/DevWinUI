@@ -6,11 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SettingsPageControl ModuleDescription="A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions."
-                             ModuleImageSource="ms-appx:///Assets/Modules/PowerRename.png"
-                             ModuleTitle="PowerRename"
-                             SecondaryLinksHeader="Attribution">
-        <dev:SettingsPageControl.ModuleContent>
+    <dev:OutOfBoxPage Title="PowerRename"
+                      Description="A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions."
+                      HeroImage="ms-appx:///Assets/Modules/PowerRename.png"
+                      SecondaryLinksHeader="Attribution">
+        <dev:OutOfBoxPage.Content>
             <StackPanel x:Name="PowerRenameView"
                         dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
@@ -65,15 +65,15 @@
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
             </StackPanel>
-        </dev:SettingsPageControl.ModuleContent>
+        </dev:OutOfBoxPage.Content>
 
-        <dev:SettingsPageControl.PrimaryLinks>
-            <dev:PageLink Link="https://aka.ms/PowerToysOverview_PowerRename"
-                          Text="Learn more about PowerRename" />
-        </dev:SettingsPageControl.PrimaryLinks>
-        <dev:SettingsPageControl.SecondaryLinks>
-            <dev:PageLink Link="https://github.com/chrdavis/SmartRename"
-                          Text="Chris Davis's SmartRenamer" />
-        </dev:SettingsPageControl.SecondaryLinks>
-    </dev:SettingsPageControl>
+        <dev:OutOfBoxPage.PrimaryLinks>
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_PowerRename"
+                                  Text="Learn more about PowerRename" />
+        </dev:OutOfBoxPage.PrimaryLinks>
+        <dev:OutOfBoxPage.SecondaryLinks>
+            <dev:OutOfBoxPageLink Link="https://github.com/chrdavis/SmartRename"
+                                  Text="Chris Davis's SmartRenamer" />
+        </dev:OutOfBoxPage.SecondaryLinks>
+    </dev:OutOfBoxPage>
 </Page>
