@@ -15,7 +15,12 @@
     <local:LineDashStrokeArrayConverter x:Key="LineDashStrokeArrayConverter" />
     <local:WaveProgressBarValueToPercentConverter x:Key="WaveProgressBarValueToPercentConverter" />
     <local:NumberToPercentageConverter x:Key="NumberToPercentageConverter" />
-    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter"
+                                     NotNullValue="Visible"
+                                     NullValue="Collapsed" />
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityReConverter"
+                                     NotNullValue="Collapsed"
+                                     NullValue="Visible" />
     <local:StringToUriConverter x:Key="StringToUriConverter" />
     <local:StringToStyleConverter x:Key="StringToStyleConverter" />
     <local:DoubleToVisibilityConverter x:Name="DoubleToVisibilityConverter"
