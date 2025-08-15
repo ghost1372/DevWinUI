@@ -36,8 +36,7 @@ internal partial class PopupBackdropManager
                 if (!MicaController.IsSupported()) return false;
                 controller = new MicaController { Kind = MicaKind.BaseAlt };
                 break;
-            case BackdropType.DesktopAcrylic:
-            case BackdropType.AcrylicBase:
+            case BackdropType.Acrylic:
                 if (!DesktopAcrylicController.IsSupported()) return false;
                 controller = new DesktopAcrylicController();
                 break;

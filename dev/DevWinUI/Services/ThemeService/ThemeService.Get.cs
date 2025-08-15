@@ -52,9 +52,7 @@ public partial class ThemeService
                 return new MicaSystemBackdrop(MicaKind.Base);
             case BackdropType.MicaAlt:
                 return new MicaSystemBackdrop(MicaKind.BaseAlt);
-            case BackdropType.DesktopAcrylic:
-                return new DesktopAcrylicBackdrop();
-            case BackdropType.AcrylicBase:
+            case BackdropType.Acrylic:
                 return new AcrylicSystemBackdrop(DesktopAcrylicKind.Base);
             case BackdropType.AcrylicThin:
                 return new AcrylicSystemBackdrop(DesktopAcrylicKind.Thin);
@@ -91,11 +89,7 @@ public partial class ThemeService
         }
         else if (systemBackdrop is AcrylicSystemBackdrop acrylic)
         {
-            return acrylic.Kind == DesktopAcrylicKind.Base ? BackdropType.AcrylicBase : BackdropType.AcrylicThin;
-        }
-        else if (systemBackdrop is DesktopAcrylicBackdrop)
-        {
-            return BackdropType.DesktopAcrylic;
+            return acrylic.Kind == DesktopAcrylicKind.Base ? BackdropType.Acrylic : BackdropType.AcrylicThin;
         }
         else
         {

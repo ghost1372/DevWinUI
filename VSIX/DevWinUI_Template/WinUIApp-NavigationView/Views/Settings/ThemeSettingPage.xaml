@@ -35,8 +35,8 @@
                                   Tag="Mica" />
                     <ComboBoxItem Content="Mica Alt"
                                   Tag="MicaAlt" />
-                    <ComboBoxItem Content="Acrylic Base"
-                                  Tag="AcrylicBase" />
+                    <ComboBoxItem Content="Acrylic"
+                                  Tag="Acrylic" />
                     <ComboBoxItem Content="Acrylic Thin"
                                   Tag="AcrylicThin" />
                 </ComboBox>

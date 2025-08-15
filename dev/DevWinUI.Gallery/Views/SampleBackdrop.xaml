@@ -21,10 +21,8 @@
                           Tag="Mica" />
             <ComboBoxItem Content="Mica Alt"
                           Tag="MicaAlt" />
-            <ComboBoxItem Content="Desktop Acrylic"
-                          Tag="DesktopAcrylic" />
-            <ComboBoxItem Content="Acrylic Base"
-                          Tag="AcrylicBase" />
+            <ComboBoxItem Content="Acrylic"
+                          Tag="Acrylic" />
             <ComboBoxItem Content="Acrylic Thin"
                           Tag="AcrylicThin" />
             <ComboBoxItem Content="Transparent"

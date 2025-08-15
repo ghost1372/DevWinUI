@@ -27,6 +27,7 @@ public partial class ThemeService
         var selectedBackdrop = (cmb?.SelectedItem as ComboBoxItem)?.Tag?.ToString();
         if (selectedBackdrop != null)
         {
+            selectedBackdrop = FixAcrylicBackdropTag(selectedBackdrop);
             ApplyThemeOrBackdrop<BackdropType>(selectedBackdrop);
         }
     }
@@ -34,6 +35,8 @@ public partial class ThemeService
     public void SetBackdropComboBoxDefaultItem(ComboBox backdropComboBox)
     {
         var currentBackdrop = GetBackdropType(GetSystemBackdrop()).ToString();
+
+        currentBackdrop = FixAcrylicBackdropTag(currentBackdrop);
 
         var item = backdropComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentBackdrop);
         if (item != null && (ComboBoxItem)backdropComboBox.SelectedItem != item)
@@ -68,8 +71,10 @@ public partial class ThemeService
     public void OnBackdropRadioButtonChecked(object sender)
     {
         var selectedBackdrop = ((RadioButton)sender)?.Tag?.ToString();
+        
         if (selectedBackdrop != null)
         {
+            selectedBackdrop = FixAcrylicBackdropTag(selectedBackdrop);
             ApplyThemeOrBackdrop<BackdropType>(selectedBackdrop);
         }
     }
@@ -80,6 +85,7 @@ public partial class ThemeService
         var items = BackdropPanel.Children.Cast<RadioButton>();
         if (items != null)
         {
+            currentBackdrop = FixAcrylicBackdropTag(currentBackdrop);
             var selectedItem = items.FirstOrDefault(c => c?.Tag?.ToString() == currentBackdrop);
             if (selectedItem != null)
             {
@@ -101,5 +107,18 @@ public partial class ThemeService
                 SetElementTheme(theme);
             }
         }
+    }
+
+    private string FixAcrylicBackdropTag(string backdropTag)
+    {
+        if (string.IsNullOrEmpty(backdropTag))
+            return backdropTag;
+
+        if (backdropTag.Equals("DesktopAcrylic") || backdropTag.Equals("AcrylicBase"))
+        {
+            backdropTag = "Acrylic";
+        }
+
+        return backdropTag;
     }
 }

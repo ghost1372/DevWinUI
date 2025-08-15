@@ -30,13 +30,9 @@ public sealed partial class SampleBackdrop : Window
                 SystemBackdrop = new MicaSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt);
                 SampleTxt.Text = "window.SystemBackdrop = new MicaSystemBackdrop(MicaKind.BaseAlt);";
                 break;
-            case "DesktopAcrylic":
+            case "Acrylic":
                 SystemBackdrop = new AcrylicSystemBackdrop();
                 SampleTxt.Text = "window.SystemBackdrop = new AcrylicSystemBackdrop();";
-                break;
-            case "AcrylicBase":
-                SystemBackdrop = new AcrylicSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicKind.Base);
-                SampleTxt.Text = "window.SystemBackdrop = new AcrylicSystemBackdrop(DesktopAcrylicKind.Base);";
                 break;
             case "AcrylicThin":
                 SystemBackdrop = new AcrylicSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicKind.Thin);

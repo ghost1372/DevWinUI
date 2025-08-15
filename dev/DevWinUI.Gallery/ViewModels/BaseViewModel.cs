@@ -13,6 +13,9 @@ public partial class BaseViewModel : ObservableObject
     [ObservableProperty]
     public partial ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
 
+    [ObservableProperty]
+    public partial ObservableCollection<ElementTheme> ThemeItems { get; set; } = new ObservableCollection<ElementTheme>(Enum.GetValues<ElementTheme>());
+
     #region WindowedContentDialog
     [ObservableProperty]
     public partial ObservableCollection<UnderlayCoverMode> UnderlayCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());

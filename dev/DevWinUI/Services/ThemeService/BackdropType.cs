@@ -4,8 +4,7 @@ public enum BackdropType
     None,
     Mica,
     MicaAlt,
-    DesktopAcrylic,
+    Acrylic,
     AcrylicThin,
-    AcrylicBase,
     Transparent
 }

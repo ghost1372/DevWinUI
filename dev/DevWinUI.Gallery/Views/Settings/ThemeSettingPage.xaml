@@ -37,10 +37,8 @@
                                   Tag="Mica" />
                     <ComboBoxItem Content="Mica Alt"
                                   Tag="MicaAlt" />
-                    <ComboBoxItem Content="Desktop Acrylic"
-                                  Tag="DesktopAcrylic" />
-                    <ComboBoxItem Content="Acrylic Base"
-                                  Tag="AcrylicBase" />
+                    <ComboBoxItem Content="Acrylic"
+                                  Tag="Acrylic" />
                     <ComboBoxItem Content="Acrylic Thin"
                                   Tag="AcrylicThin" />
                     <ComboBoxItem Content="Transparent"
@@ -57,7 +55,8 @@
             <dev:SettingsExpander Description="Add tint to your window to make your experience more personalized."
                                   Header="TintColor"
                                   HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Tint.png}">
-                <dev:DropdownColorPicker x:Name="MainDropdownColorPicker" ColorChanged="MainDropdownColorPicker_ColorChanged"/>
+                <dev:DropdownColorPicker x:Name="MainDropdownColorPicker"
+                                         ColorChanged="MainDropdownColorPicker_ColorChanged" />
                 <dev:SettingsExpander.ItemsHeader>
                     <dev:SettingsCard>
                         <dev:SettingsCard.Description>

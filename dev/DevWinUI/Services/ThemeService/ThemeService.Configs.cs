@@ -46,8 +46,7 @@ public partial class ThemeService
                 return new MicaSystemBackdrop().TintColor;
             case BackdropType.MicaAlt:
                 return new MicaSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt).TintColor;
-            case BackdropType.DesktopAcrylic:
-            case BackdropType.AcrylicBase:
+            case BackdropType.Acrylic:
             case BackdropType.AcrylicThin:
                 return new AcrylicSystemBackdrop().TintColor;
             default:
@@ -63,8 +62,7 @@ public partial class ThemeService
                 return new MicaSystemBackdrop().FallbackColor;
             case BackdropType.MicaAlt:
                 return new MicaSystemBackdrop(Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt).FallbackColor;
-            case BackdropType.DesktopAcrylic:
-            case BackdropType.AcrylicBase:
+            case BackdropType.Acrylic:
             case BackdropType.AcrylicThin:
                 return new AcrylicSystemBackdrop().FallbackColor;
             default:
