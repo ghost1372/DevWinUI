@@ -118,23 +118,23 @@ public partial class OutOfBoxPage : Control
     public static readonly DependencyProperty SecondaryLinksHeaderTemplateProperty =
         DependencyProperty.Register(nameof(SecondaryLinksHeaderTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
 
-    public Layout PrimaryLinksLayout
+    public ItemsPanelTemplate PrimaryLinkItemsPanelTemplate
     {
-        get { return (Layout)GetValue(PrimaryLinksLayoutProperty); }
-        set { SetValue(PrimaryLinksLayoutProperty, value); }
+        get { return (ItemsPanelTemplate)GetValue(PrimaryLinkItemsPanelTemplateProperty); }
+        set { SetValue(PrimaryLinkItemsPanelTemplateProperty, value); }
     }
 
-    public static readonly DependencyProperty PrimaryLinksLayoutProperty =
-        DependencyProperty.Register(nameof(PrimaryLinksLayout), typeof(Layout), typeof(OutOfBoxPage), new PropertyMetadata(null));
+    public static readonly DependencyProperty PrimaryLinkItemsPanelTemplateProperty =
+        DependencyProperty.Register(nameof(PrimaryLinkItemsPanelTemplate), typeof(ItemsPanelTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
 
-    public Layout SecondaryLinksLayout
+    public ItemsPanelTemplate SecondaryLinkItemsPanelTemplate
     {
-        get { return (Layout)GetValue(SecondaryLinksLayoutProperty); }
-        set { SetValue(SecondaryLinksLayoutProperty, value); }
+        get { return (ItemsPanelTemplate)GetValue(SecondaryLinkItemsPanelTemplateProperty); }
+        set { SetValue(SecondaryLinkItemsPanelTemplateProperty, value); }
     }
 
-    public static readonly DependencyProperty SecondaryLinksLayoutProperty =
-        DependencyProperty.Register(nameof(SecondaryLinksLayout), typeof(Layout), typeof(OutOfBoxPage), new PropertyMetadata(null));
+    public static readonly DependencyProperty SecondaryLinkItemsPanelTemplateProperty =
+        DependencyProperty.Register(nameof(SecondaryLinkItemsPanelTemplate), typeof(ItemsPanelTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
 
     public Thickness SecondaryLinksMargin
     {

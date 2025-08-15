@@ -14,14 +14,18 @@
         <Setter Property="SecondaryLinksMargin" Value="32,0" />
         <Setter Property="PrimaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
         <Setter Property="SecondaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
-        <Setter Property="PrimaryLinksLayout">
+        <Setter Property="PrimaryLinkItemsPanelTemplate">
             <Setter.Value>
-                <UniformGridLayout MinColumnSpacing="10" />
+                <ItemsPanelTemplate>
+                    <local:WrapPanel HorizontalSpacing="10" />
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="SecondaryLinksLayout">
+        <Setter Property="SecondaryLinkItemsPanelTemplate">
             <Setter.Value>
-                <UniformGridLayout MinColumnSpacing="10" />
+                <ItemsPanelTemplate>
+                    <local:WrapPanel HorizontalSpacing="10" />
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
@@ -102,7 +106,7 @@
                                           ContentTemplate="{TemplateBinding HeroImageTemplate}">
                             <ContentPresenter.Content>
                                 <Border MaxWidth="160"
-                                        Margin="32,24"
+                                        Margin="32,24,16,24"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         CornerRadius="4">
@@ -128,13 +132,13 @@
                                 </ContentPresenter.Content>
                             </ContentPresenter>
 
-                            <ItemsRepeater Grid.Row="1"
-                                           Grid.Column="1"
-                                           VerticalAlignment="Top"
-                                           IsTabStop="False"
-                                           ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
-                                           ItemsSource="{TemplateBinding PrimaryLinks}"
-                                           Layout="{TemplateBinding PrimaryLinksLayout}" />
+                            <ItemsControl Grid.Row="1"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Top"
+                                          IsTabStop="False"
+                                          ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
+                                          ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}"
+                                          ItemsSource="{TemplateBinding PrimaryLinks}" />
                         </StackPanel>
                     </Grid>
 
@@ -158,11 +162,11 @@
                             </ContentPresenter.Content>
                         </ContentPresenter>
 
-                        <ItemsRepeater Margin="{TemplateBinding SecondaryLinksMargin}"
-                                       IsTabStop="False"
-                                       ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
-                                       ItemsSource="{TemplateBinding SecondaryLinks}"
-                                       Layout="{TemplateBinding SecondaryLinksLayout}" />
+                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}"
+                                      IsTabStop="False"
+                                      ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
+                                      ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}"
+                                      ItemsSource="{TemplateBinding SecondaryLinks}" />
                     </StackPanel>
                 </Grid>
 
@@ -232,11 +236,11 @@
                                            TextWrapping="Wrap" />
                             </ContentPresenter.Content>
                         </ContentPresenter>
-                        <ItemsRepeater Margin="32,0"
-                                       IsTabStop="False"
-                                       ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
-                                       ItemsSource="{TemplateBinding PrimaryLinks}"
-                                       Layout="{TemplateBinding PrimaryLinksLayout}" />
+                        <ItemsControl Margin="32,0"
+                                      IsTabStop="False"
+                                      ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
+                                      ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}"
+                                      ItemsSource="{TemplateBinding PrimaryLinks}" />
                     </StackPanel>
                     <ContentPresenter Grid.Row="2"
                                       Grid.ColumnSpan="2"
@@ -256,11 +260,11 @@
                                            Text="{TemplateBinding SecondaryLinksHeader}" />
                             </ContentPresenter.Content>
                         </ContentPresenter>
-                        <ItemsRepeater Margin="{TemplateBinding SecondaryLinksMargin}"
-                                       IsTabStop="False"
-                                       ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
-                                       ItemsSource="{TemplateBinding SecondaryLinks}"
-                                       Layout="{TemplateBinding SecondaryLinksLayout}" />
+                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}"
+                                      IsTabStop="False"
+                                      ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
+                                      ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}"
+                                      ItemsSource="{TemplateBinding SecondaryLinks}" />
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

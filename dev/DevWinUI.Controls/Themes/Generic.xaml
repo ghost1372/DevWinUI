@@ -7537,7 +7537,7 @@ Themes\Styles\Win2D\Watermark.xaml
             <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding ActionContent}" />
             <ContentPresenter Grid.Column="0" ContentTemplate="{TemplateBinding HeroImageTemplate}">
               <ContentPresenter.Content>
-                <Border MaxWidth="160" Margin="32,24" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="4">
+                <Border MaxWidth="160" Margin="32,24,16,24" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="4">
                   <Image AutomationProperties.AccessibilityView="Raw">
                     <Image.Source>
                       <BitmapImage UriSource="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
@@ -7552,7 +7552,7 @@ Themes\Styles\Win2D\Watermark.xaml
                   <TextBlock Margin="0,24,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextWrapping="Wrap" />
                 </ContentPresenter.Content>
               </ContentPresenter>
-              <ItemsRepeater Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" Layout="{TemplateBinding PrimaryLinksLayout}" />
+              <ItemsControl Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
             </StackPanel>
           </Grid>
           <ContentPresenter Grid.Row="1" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
@@ -7562,7 +7562,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 <TextBlock Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{TemplateBinding SecondaryLinksHeader}" />
               </ContentPresenter.Content>
             </ContentPresenter>
-            <ItemsRepeater Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" Layout="{TemplateBinding SecondaryLinksLayout}" />
+            <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
           </StackPanel>
         </Grid>
       </ScrollViewer>
@@ -7603,7 +7603,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 <TextBlock Margin="32,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextWrapping="Wrap" />
               </ContentPresenter.Content>
             </ContentPresenter>
-            <ItemsRepeater Margin="32,0" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" Layout="{TemplateBinding PrimaryLinksLayout}" />
+            <ItemsControl Margin="32,0" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
           </StackPanel>
           <ContentPresenter Grid.Row="2" Grid.ColumnSpan="2" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
           <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
@@ -7612,7 +7612,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 <TextBlock Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{TemplateBinding SecondaryLinksHeader}" />
               </ContentPresenter.Content>
             </ContentPresenter>
-            <ItemsRepeater Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" Layout="{TemplateBinding SecondaryLinksLayout}" />
+            <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
           </StackPanel>
         </Grid>
       </ScrollViewer>
@@ -10332,14 +10332,18 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="SecondaryLinksMargin" Value="32,0" />
     <Setter Property="PrimaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
     <Setter Property="SecondaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
-    <Setter Property="PrimaryLinksLayout">
+    <Setter Property="PrimaryLinkItemsPanelTemplate">
       <Setter.Value>
-        <UniformGridLayout MinColumnSpacing="10" />
+        <ItemsPanelTemplate>
+          <local:WrapPanel HorizontalSpacing="10" />
+        </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="SecondaryLinksLayout">
+    <Setter Property="SecondaryLinkItemsPanelTemplate">
       <Setter.Value>
-        <UniformGridLayout MinColumnSpacing="10" />
+        <ItemsPanelTemplate>
+          <local:WrapPanel HorizontalSpacing="10" />
+        </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>
   </Style>
