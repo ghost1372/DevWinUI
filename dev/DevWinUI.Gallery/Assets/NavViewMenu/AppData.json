@@ -142,6 +142,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.OutOfBoxPagePage",
+          "Title": "OutOfBoxPage",
+          "Subtitle": "Out Of Box Page",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CardPage",
           "Title": "Card",
           "Subtitle": "Card",

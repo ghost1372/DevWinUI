@@ -32,6 +32,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
         {"DevWinUIGallery.Views.PickersPage", typeof(DevWinUIGallery.Views.PickersPage)},
+        {"DevWinUIGallery.Views.OutOfBoxPagePage", typeof(DevWinUIGallery.Views.OutOfBoxPagePage)},
         {"DevWinUIGallery.Views.CardPage", typeof(DevWinUIGallery.Views.CardPage)},
         {"DevWinUIGallery.Views.StorageRingPage", typeof(DevWinUIGallery.Views.StorageRingPage)},
         {"DevWinUIGallery.Views.StorageBarPage", typeof(DevWinUIGallery.Views.StorageBarPage)},
