@@ -43,34 +43,7 @@
                                   SecondaryLinksHeader="{x:Bind TxtSecondaryLinksHeader.Text, Mode=OneWay}"
                                   UseTopHeroImage="{x:Bind TGTopHeroImage.IsOn, Mode=OneWay}">
                     <dev:OutOfBoxPage.ActionContent>
-                        <Grid Padding="0,0,4,0"
-                              ColumnSpacing="16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Border Width="20"
-                                    Height="20"
-                                    CornerRadius="10">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
-                                        <GradientStop Offset="0.0" Color="#6FB538" />
-                                        <GradientStop Offset="1.0" Color="#397A24" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <FontIcon AutomationProperties.AccessibilityView="Raw"
-                                          FontSize="11"
-                                          Foreground="White"
-                                          Glyph="&#xE73E;" />
-                            </Border>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock FontWeight="SemiBold"
-                                           Text="You're up to date" />
-                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="Last checked: 25/05/1404" />
-                            </StackPanel>
-                        </Grid>
+                        <dev:CheckUpdateControl />
                     </dev:OutOfBoxPage.ActionContent>
                     <dev:OutOfBoxPage.Content>
                         <StackPanel dev:PanelAttach.ChildrenTransitions="Default"

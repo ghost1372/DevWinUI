@@ -29,6 +29,7 @@ Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
 Themes\Styles\Controls\Card.xaml
+Themes\Styles\Controls\CheckUpdateControl.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
@@ -6265,6 +6266,82 @@ Themes\Styles\Win2D\Watermark.xaml
     </Grid>
   </ControlTemplate>
   <Style BasedOn="{StaticResource DefaultCardStyle}" TargetType="local:Card" />
+  <Style x:Key="DefaultCheckUpdateControlStyle" TargetType="local:CheckUpdateControl">
+    <Setter Property="LastUpdateCheckTitle" Value="Last checked: " />
+    <Setter Property="UpdateNotAvailableTitle" Value="You're up to date" />
+    <Setter Property="UpdateAvailableTitle" Value="Update Available" />
+    <Setter Property="UpdateAvailableVersionTitle" Value="Version" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:CheckUpdateControl">
+          <StackPanel Orientation="Horizontal">
+            <Button x:Name="PART_UpdateAvailableButton" Style="{StaticResource SubtleButtonStyle}" Visibility="{Binding IsUpdateAvailable, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+              <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter ContentTemplate="{TemplateBinding UpdateAvailableIconTemplate}">
+                  <ContentPresenter.Content>
+                    <Border Width="20" Height="20" CornerRadius="10">
+                      <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                          <GradientStop Offset="0.0" Color="#239DE0" />
+                          <GradientStop Offset="1.0" Color="#037CD6" />
+                        </LinearGradientBrush>
+                      </Border.Background>
+                      <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
+                    </Border>
+                  </ContentPresenter.Content>
+                </ContentPresenter>
+                <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding UpdateAvailableTemplate}">
+                  <ContentPresenter.Content>
+                    <StackPanel Orientation="Vertical">
+                      <TextBlock FontWeight="SemiBold" Text="{TemplateBinding UpdateAvailableTitle}" />
+                      <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
+                        <Run Text="{Binding UpdateAvailableVersionTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <Run Text="{Binding UpdateAvailableVersion, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                      </TextBlock>
+                    </StackPanel>
+                  </ContentPresenter.Content>
+                </ContentPresenter>
+              </Grid>
+            </Button>
+            <Grid Padding="0,0,4,0" VerticalAlignment="Center" ColumnSpacing="16" Visibility="{Binding IsUpdateAvailable, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <ContentPresenter ContentTemplate="{TemplateBinding UpdateNotAvailableIconTemplate}">
+                <ContentPresenter.Content>
+                  <Border Width="20" Height="20" CornerRadius="10">
+                    <Border.Background>
+                      <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0.0" Color="#6FB538" />
+                        <GradientStop Offset="1.0" Color="#397A24" />
+                      </LinearGradientBrush>
+                    </Border.Background>
+                    <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
+                  </Border>
+                </ContentPresenter.Content>
+              </ContentPresenter>
+              <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding UpdateNotAvailableTemplate}">
+                <ContentPresenter.Content>
+                  <StackPanel>
+                    <TextBlock FontWeight="SemiBold" Text="{TemplateBinding UpdateNotAvailableTitle}" />
+                    <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
+                      <Run Text="{Binding LastUpdateCheckTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                      <Run Text="{Binding LastUpdateCheckDate, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                    </TextBlock>
+                  </StackPanel>
+                </ContentPresenter.Content>
+              </ContentPresenter>
+            </Grid>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
@@ -6580,8 +6657,8 @@ Themes\Styles\Win2D\Watermark.xaml
                         </ContentControl.Template>
                       </ContentControl>
                     </Border>
-                    <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Visible" ZoomMode="Disabled">
-                      <ContentPresenter x:Name="Content" Padding="{ThemeResource ContentDialogWindowContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
+                    <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                      <ContentPresenter x:Name="ContentArea" Padding="{ThemeResource ContentDialogWindowContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
                     </ScrollViewer>
                   </Grid>
                   <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{ThemeResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}" XYFocusKeyboardNavigation="Enabled">
@@ -10305,6 +10382,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
     <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultCheckUpdateControlStyle}" TargetType="local:CheckUpdateControl" />
   <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}" TargetType="local:ColorPaletteItem" />
   <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">
     <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />

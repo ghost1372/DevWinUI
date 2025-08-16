@@ -142,6 +142,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CheckUpdateControlPage",
+          "Title": "CheckUpdateControl",
+          "Subtitle": "Check Update",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/update.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.OutOfBoxPagePage",
           "Title": "OutOfBoxPage",
           "Subtitle": "Out Of Box Page",

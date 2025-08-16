@@ -147,6 +147,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ CheckUpdateControl
 - ✨ OutOfBoxPage
 - ✨ Card
 - ✨ StorageRing
@@ -296,6 +297,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### CheckUpdateControl
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CheckUpdateControl.gif)
 
 ### OutOfBoxPage
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OutOfBoxPage.gif)
