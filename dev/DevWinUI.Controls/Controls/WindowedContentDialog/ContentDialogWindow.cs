@@ -31,6 +31,27 @@ public partial class ContentDialogWindow : Window
         _content.PrimaryButtonClick += OnPrimaryButtonClick;
         _content.SecondaryButtonClick += OnSecondaryButtonClick;
         base.Content = _content;
+        base.Title = _content.Title;
+
+        // When showing accent color in title bar is enabled,
+        // title bar buttons in the default custom title bar in WinUI3
+        // will become white like system title bar.
+        // But there is no accent color background here.
+        void DetermineTitleBarButtonForegroundColor()
+        {
+            switch (_content.ActualTheme)
+            {
+                case ElementTheme.Light:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                    break;
+                case ElementTheme.Dark:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                    break;
+            }
+            ;
+        }
+        _content.Loaded += (o, e) => DetermineTitleBarButtonForegroundColor();
+        _content.ActualThemeChanged += (sender, args) => DetermineTitleBarButtonForegroundColor();
     }
 
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
@@ -220,6 +241,16 @@ public partial class ContentDialogWindow : Window
         get => _content.CloseButtonStyle;
         set => _content.CloseButtonStyle = value;
     }
+
+    public new string Title
+    {
+        get => _content.Title;
+        set
+        {
+            _content.Title = value;
+            base.Title = value;
+        }
+    }
     #endregion
 
     public ContentDialogResult Result { get; private set; }
@@ -257,12 +288,14 @@ public partial class ContentDialogWindow : Window
 
     private void DialogLoaded(object sender, RoutedEventArgs e)
     {
-        _content.Title = Title;
-
+        // AppWindow.Resize is inaccurate.
+        // AppWindow.ResizeCilent is inaccurate when ExtendsContentInfoTitleBar = false.
+        // AppWindow.ResizeCilent is accurate in width but there is an extra height of title bar (30 DIP) when ExtendsContentInfoTitleBar = true.
+        // No matter whether ExtendsContentInfoTitleBar, the size is the same after use AppWindow.ResizeCilent.
         AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
-            (int)(_content.ActualWidth * _content.XamlRoot.RasterizationScale) + 1,
-            (int)(_content.ActualHeight * _content.XamlRoot.RasterizationScale) + 1));
-        
+            (int)((_content.ActualWidth + 1) * _content.XamlRoot.RasterizationScale),
+            (int)((_content.ActualHeight - 30) * _content.XamlRoot.RasterizationScale)));
+
         SetTitleBar(_content.TitleArea);
 
         if (_center)
@@ -299,34 +332,6 @@ public partial class ContentDialogWindow : Window
         {
             _content.CommandSpace.Background.Opacity = 0.5;
         }
-
-        // When showing accent color in title bar is enabled,
-        // title bar buttons in the default custom title bar in WinUI3
-        // will become white like system title bar.
-        // But there is no accent color background here..
-        switch (_content.ActualTheme)
-        {
-            case ElementTheme.Light:
-                AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
-                break;
-            case ElementTheme.Dark:
-                AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
-                break;
-        }
-        ;
-        _content.ActualThemeChanged += (sender, args) =>
-        {
-            switch (sender.ActualTheme)
-            {
-                case ElementTheme.Light:
-                    AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
-                    break;
-                case ElementTheme.Dark:
-                    AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
-                    break;
-            }
-            ;
-        };
 
         DispatcherQueue.TryEnqueue(() => Loaded?.Invoke(this, EventArgs.Empty));
     }

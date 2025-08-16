@@ -263,9 +263,9 @@
                                                       Grid.Row="1"
                                                       HorizontalScrollBarVisibility="Disabled"
                                                       IsTabStop="False"
-                                                      VerticalScrollBarVisibility="Visible"
+                                                      VerticalScrollBarVisibility="Auto"
                                                       ZoomMode="Disabled">
-                                            <ContentPresenter x:Name="Content"
+                                            <ContentPresenter x:Name="ContentArea"
                                                               Padding="{ThemeResource ContentDialogWindowContentPadding}"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
