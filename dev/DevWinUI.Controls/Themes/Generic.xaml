@@ -62,6 +62,7 @@ Themes\Styles\Controls\LayoutTransformer.xaml
 Themes\Styles\Controls\LoadingIndicator.xaml
 Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\Magnifier.xaml
+Themes\Styles\Controls\MessageBoxHeader.xaml
 Themes\Styles\Controls\OptionsPageControl.xaml
 Themes\Styles\Controls\OutOfBoxPage.xaml
 Themes\Styles\Controls\OverviewPageHeader.xaml
@@ -198,6 +199,22 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemFillColorCriticalBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemFillColorCautionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconBackground" ResourceKey="SystemFillColorCriticalBrush" />
+      <SolidColorBrush x:Key="MessageBoxHeaderWarningSeverityIconBackground" Color="#FCE100" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconBackground" ResourceKey="SystemFillColorSuccessBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityIconForeground" ResourceKey="TextFillColorPrimary" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="ControlAAFillColorDefaultBrush" />
       <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
@@ -347,6 +364,22 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemFillColorCriticalBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemFillColorCautionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconBackground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityIconBackground" ResourceKey="SystemFillColorCautionBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconBackground" ResourceKey="SystemFillColorSuccessBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconForeground" ResourceKey="TextFillColorInverseBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
@@ -488,6 +521,22 @@ Themes\Styles\Win2D\Watermark.xaml
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconBackground" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityIconBackground" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconBackground" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconBackground" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconBackground" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderErrorSeverityIconForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderWarningSeverityIconForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderSuccessSeverityIconForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderInformationalSeverityIconForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="MessageBoxHeaderQuestionalSeverityIconForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="SystemColorButtonFaceColor" />
       <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="SystemColorHighlightColorBrush" />
@@ -1018,8 +1067,8 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Thickness x:Key="ContentDialogWindowTitlePadding">24,24,24,0</Thickness>
   <Thickness x:Key="ContentDialogWindowContentPadding">24,0,24,24</Thickness>
-  <Color x:Key="ContentDialogWindowCommandSpaceBackground">#20808080</Color>
-  <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="#19000000" />
+  <Color x:Key="ContentDialogWindowCommandSpaceBackground">#0F000000</Color>
+  <Color x:Key="ContentDialogWindowSeparatorBorderColor">#19000000</Color>
   <Style x:Key="DefaultDepthLayerViewStyle" TargetType="local:DepthLayerView">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="0" />
@@ -2043,6 +2092,15 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <x:Double x:Key="MessageBoxHeaderIconFontSize">24</x:Double>
+  <Thickness x:Key="MessageBoxHeaderIconMargin">0,0,12,0</Thickness>
+  <x:String x:Key="MessageBoxHeaderIconBackgroundGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderWarningBackgroundGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderInformationalIconGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderQuestionalIconGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderErrorIconGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderWarningIconGlyph"></x:String>
+  <x:String x:Key="MessageBoxHeaderSuccessIconGlyph"></x:String>
   <Style x:Key="DefaultOptionsPageControlStyle" TargetType="local:OptionsPageControl">
     <Setter Property="Template">
       <Setter.Value>
@@ -6480,7 +6538,8 @@ Themes\Styles\Win2D\Watermark.xaml
   </ControlTemplate>
   <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}" TargetType="local:CompositionShadow" />
   <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
-  <Style x:Key="DefaultContentDialogWindowContentStyle" TargetType="local:ContentDialogContent">
+  <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
+  <Style x:Key="DefaultContentDialogContentStyle" TargetType="local:ContentDialogContent">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
@@ -6496,59 +6555,7 @@ Themes\Styles\Win2D\Watermark.xaml
           <Border x:Name="Container" RequestedTheme="{TemplateBinding RequestedTheme}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DialogShowingStates">
-                <VisualStateGroup.Transitions>
-                  <VisualTransition To="DialogHidden">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="IsHitTestVisible">
-                        <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1.0" />
-                        <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="1.05" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1.0" />
-                        <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlFastAnimationDuration}" Value="1.05" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1.0" />
-                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0.0" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition To="DialogShowing">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1.05" />
-                        <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="1.0" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1.05" />
-                        <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="{StaticResource ControlNormalAnimationDuration}" Value="1.0" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.0" />
-                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1.0" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                </VisualStateGroup.Transitions>
                 <VisualState x:Name="DialogHidden" />
-                <VisualState x:Name="DialogShowing">
-                  <VisualState.Setters>
-                    <Setter Target="PrimaryButton.IsTabStop" Value="True" />
-                    <Setter Target="SecondaryButton.IsTabStop" Value="True" />
-                    <Setter Target="CloseButton.IsTabStop" Value="True" />
-                    <Setter Target="LayoutRoot.Visibility" Value="Visible" />
-                    <Setter Target="BackgroundElement.TabFocusNavigation" Value="Cycle" />
-                  </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="DialogShowingWithoutSmokeLayer">
                   <VisualState.Setters>
                     <Setter Target="PrimaryButton.IsTabStop" Value="True" />
@@ -6627,23 +6634,15 @@ Themes\Styles\Win2D\Watermark.xaml
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
-              <VisualStateGroup x:Name="DialogBorderStates">
-                <VisualState x:Name="NoBorder" />
-                <VisualState x:Name="AccentColorBorder">
-                  <VisualState.Setters>
-                    <Setter Target="BackgroundElement.BorderBrush" Value="{ThemeResource SystemControlForegroundAccentBrush}" />
-                  </VisualState.Setters>
-                </VisualState>
-              </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Grid x:Name="LayoutRoot" Visibility="Collapsed">
-              <Border x:Name="BackgroundElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BackgroundSizing="InnerBorderEdge" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" FlowDirection="{TemplateBinding FlowDirection}" RenderTransformOrigin="0.5,0.5" TabFocusNavigation="Cycle">
+              <Border x:Name="BackgroundElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BackgroundSizing="InnerBorderEdge" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" FlowDirection="{TemplateBinding FlowDirection}" TabFocusNavigation="Cycle">
                 <Grid x:Name="DialogSpace">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
-                  <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{StaticResource ContentDialogWindowSeparatorBorderBrush}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
+                  <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}" BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
                     <Grid.RowDefinitions>
                       <RowDefinition Height="Auto" />
                       <RowDefinition Height="*" />
@@ -6658,15 +6657,15 @@ Themes\Styles\Win2D\Watermark.xaml
                       </ContentControl>
                     </Border>
                     <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
-                      <ContentPresenter x:Name="ContentArea" Padding="{ThemeResource ContentDialogWindowContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
+                      <ContentPresenter x:Name="ContentArea" Padding="{StaticResource ContentDialogWindowContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{StaticResource ContentControlThemeFontFamily}" FontSize="{StaticResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
                     </ScrollViewer>
                   </Grid>
-                  <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{ThemeResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}" XYFocusKeyboardNavigation="Enabled">
+                  <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{StaticResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}" XYFocusKeyboardNavigation="Enabled">
                     <Grid.ColumnDefinitions>
                       <ColumnDefinition x:Name="PrimaryColumn" Width="*" />
                       <ColumnDefinition x:Name="FirstSpacer" Width="0" />
                       <ColumnDefinition x:Name="SecondaryColumn" Width="0" />
-                      <ColumnDefinition x:Name="SecondSpacer" Width="{ThemeResource ContentDialogButtonSpacing}" />
+                      <ColumnDefinition x:Name="SecondSpacer" Width="{StaticResource ContentDialogButtonSpacing}" />
                       <ColumnDefinition x:Name="CloseColumn" Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button x:Name="PrimaryButton" HorizontalAlignment="Stretch" Content="{TemplateBinding PrimaryButtonText}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding PrimaryButtonStyle}" ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
@@ -7562,6 +7561,67 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
+  <Style x:Key="DefaultMessageBoxHeaderStyle" TargetType="local:MessageBoxHeader">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:MessageBoxHeader">
+          <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="SeverityLevels">
+                <VisualState x:Name="Informational" />
+                <VisualState x:Name="Questional">
+                  <VisualState.Setters>
+                    <Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxHeaderQuestionalSeverityIconBackground}" />
+                    <Setter Target="StandardIcon.Text" Value="{StaticResource MessageBoxHeaderQuestionalIconGlyph}" />
+                    <Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxHeaderQuestionalSeverityIconForeground}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Error">
+                  <VisualState.Setters>
+                    <Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxHeaderErrorSeverityIconBackground}" />
+                    <Setter Target="StandardIcon.Text" Value="{StaticResource MessageBoxHeaderErrorIconGlyph}" />
+                    <Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxHeaderErrorSeverityIconForeground}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Warning">
+                  <VisualState.Setters>
+                    <Setter Target="IconBackground.Text" Value="{ThemeResource MessageBoxHeaderWarningBackgroundGlyph}" />
+                    <Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxHeaderWarningSeverityIconBackground}" />
+                    <Setter Target="StandardIcon.Text" Value="{StaticResource MessageBoxHeaderWarningIconGlyph}" />
+                    <Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxHeaderWarningSeverityIconForeground}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Success">
+                  <VisualState.Setters>
+                    <Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxHeaderSuccessSeverityIconBackground}" />
+                    <Setter Target="StandardIcon.Text" Value="{StaticResource MessageBoxHeaderSuccessIconGlyph}" />
+                    <Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxHeaderSuccessSeverityIconForeground}" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="IconStates">
+                <VisualState x:Name="StandardIconVisible">
+                  <VisualState.Setters>
+                    <Setter Target="StandardIconArea.Visibility" Value="Visible" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NoIconVisible" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid x:Name="StandardIconArea" Grid.Column="0" VerticalAlignment="Center" Visibility="Collapsed">
+              <TextBlock x:Name="IconBackground" Margin="{StaticResource MessageBoxHeaderIconMargin}" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="{StaticResource MessageBoxHeaderIconFontSize}" Foreground="{ThemeResource MessageBoxHeaderInformationalSeverityIconBackground}" Text="{StaticResource MessageBoxHeaderIconBackgroundGlyph}" />
+              <TextBlock x:Name="StandardIcon" Margin="{StaticResource MessageBoxHeaderIconMargin}" VerticalAlignment="Top" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="{StaticResource MessageBoxHeaderIconFontSize}" Foreground="{ThemeResource MessageBoxHeaderInformationalSeverityIconForeground}" Text="{StaticResource MessageBoxHeaderInformationalIconGlyph}" />
+            </Grid>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
   <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate" TargetType="local:OutOfBoxPage">
     <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
@@ -10392,7 +10452,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ThumbStyle" Value="{StaticResource SliderThumbStyle}" />
     <Setter Property="ShowLineAndThumb" Value="True" />
   </Style>
-  <Style BasedOn="{StaticResource DefaultContentDialogWindowContentStyle}" TargetType="local:ContentDialogContent" />
+  <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}" TargetType="local:ContentDialogContent" />
   <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">
     <Setter Property="Content" Value="" />
   </Style>
@@ -10403,6 +10463,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
+  <Style BasedOn="{StaticResource DefaultMessageBoxHeaderStyle}" TargetType="local:MessageBoxHeader" />
   <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">
     <Setter Property="Template" Value="{StaticResource OutOfBoxLeftHeroImageTemplate}" />
     <Setter Property="UseTopHeroImage" Value="False" />

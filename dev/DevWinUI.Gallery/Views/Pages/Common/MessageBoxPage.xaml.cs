@@ -17,8 +17,9 @@ public sealed partial class MessageBoxPage : Page
         var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
         var underlayCoverMode = CmbUnderlayCoverModes.SelectedItem.As<UnderlayCoverMode>();
 
-        var button = (MessageBoxButtons)CmbMessageBoxButtons.SelectedItem;
-        MessageBoxDefaultButton defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultBUtton.SelectedItem;
+        var button = CmbMessageBoxButtons.SelectedItem.As<MessageBoxButtons>();
+        var defaultButton = CmbMessageBoxDefaultBUtton.SelectedItem.As<MessageBoxDefaultButton>();
+        var image = CmbMessageBoxImage.SelectedItem.As<MessageBoxImage>();
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
 
@@ -29,6 +30,7 @@ public sealed partial class MessageBoxPage : Page
             Content = txtContent.Text?.ToString(),
             Title = txtTitle.Text?.ToString(),
             Buttons = button,
+            Image = image,
             DefaultButton = defaultButton,
             Underlay = underlay,
             UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions

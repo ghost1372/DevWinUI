@@ -18,6 +18,9 @@ public partial class BaseViewModel : ObservableObject
 
     #region WindowedContentDialog
     [ObservableProperty]
+    public partial ObservableCollection<MessageBoxImage> MessageBoxImageItems { get; set; } = new ObservableCollection<MessageBoxImage>(Enum.GetValues<MessageBoxImage>());
+
+    [ObservableProperty]
     public partial ObservableCollection<UnderlayCoverMode> UnderlayCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
 
     [ObservableProperty]

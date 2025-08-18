@@ -9,7 +9,9 @@ public partial class WindowedContentDialog
 {
     private Rectangle smokeLayerCache;
     private Border backdropLayerCache;
-    public string? Title { get; set; }
+
+    public string? WindowTitle { get; set; }
+    public object? Title { get; set; }
     public object? Content { get; set; }
 
     public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
@@ -68,8 +70,8 @@ public partial class WindowedContentDialog
     /// <br/>
     /// No need to worry—once the window is closed, it is no longer part of the visual tree.
     /// Note: A FrameworkElement cannot be shared across multiple parents.
-    /// If the Content is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().Content`.
-    /// This popup can only be shown once before the Content is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
+    /// If the DialogContent is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().DialogContent`.
+    /// This popup can only be shown once before the DialogContent is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
     /// </summary>
     /// <param name="isModal">
     /// Whether to block the owner window. Defaults to true, but has no effect if OwnerWindow is null—will still display as a normal (non-modal) window.
@@ -79,8 +81,9 @@ public partial class WindowedContentDialog
     {
         ContentDialogWindow dialogWindow = new()
         {
-            Title = Title ?? string.Empty,
-            Content = Content,
+            Title = WindowTitle,
+            DialogTitle = Title,
+            DialogContent = Content,
             HasTitleBar = HasTitleBar,
             IsResizable = IsResizable,
 

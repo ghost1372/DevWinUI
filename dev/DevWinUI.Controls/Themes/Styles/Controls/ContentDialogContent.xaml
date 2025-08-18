@@ -3,18 +3,36 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="ContentDialogWindowTopOverlay"
+                            ResourceKey="LayerFillColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ContentDialogWindowTopOverlay"
+                            ResourceKey="LayerFillColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ContentDialogWindowTopOverlay"
+                            ResourceKey="SystemControlTransparentBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <Thickness x:Key="ContentDialogWindowTitlePadding">24,24,24,0</Thickness>
     <Thickness x:Key="ContentDialogWindowContentPadding">24,0,24,24</Thickness>
-    <Color x:Key="ContentDialogWindowCommandSpaceBackground">#20808080</Color>
+    <Color x:Key="ContentDialogWindowCommandSpaceBackground">#0F000000</Color>
+    <Color x:Key="ContentDialogWindowSeparatorBorderColor">#19000000</Color>
     <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush"
                      Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
     <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush"
-                     Color="#19000000" />
+                     Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
 
-    <Style BasedOn="{StaticResource DefaultContentDialogWindowContentStyle}"
+    <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}"
            TargetType="local:ContentDialogContent" />
 
-    <Style x:Key="DefaultContentDialogWindowContentStyle"
+    <Style x:Key="DefaultContentDialogContentStyle"
            TargetType="local:ContentDialogContent">
         <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
         <Setter Property="Background" Value="Transparent" />
@@ -32,87 +50,7 @@
                             RequestedTheme="{TemplateBinding RequestedTheme}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="DialogShowingStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition To="DialogHidden">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                           Storyboard.TargetProperty="IsHitTestVisible">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="False" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="1.0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
-                                                                      Value="1.05" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="1.0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
-                                                                      Value="1.05" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="1.0" />
-                                                <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}"
-                                                                      Value="0.0" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition To="DialogShowing">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="1.05" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="{StaticResource ControlNormalAnimationDuration}"
-                                                                      Value="1.0" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="1.05" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="{StaticResource ControlNormalAnimationDuration}"
-                                                                      Value="1.0" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                        Value="0.0" />
-                                                <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}"
-                                                                      Value="1.0" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="DialogHidden" />
-                                <VisualState x:Name="DialogShowing">
-                                    <VisualState.Setters>
-                                        <Setter Target="PrimaryButton.IsTabStop" Value="True" />
-                                        <Setter Target="SecondaryButton.IsTabStop" Value="True" />
-                                        <Setter Target="CloseButton.IsTabStop" Value="True" />
-                                        <Setter Target="LayoutRoot.Visibility" Value="Visible" />
-                                        <Setter Target="BackgroundElement.TabFocusNavigation" Value="Cycle" />
-                                    </VisualState.Setters>
-                                </VisualState>
                                 <VisualState x:Name="DialogShowingWithoutSmokeLayer">
                                     <VisualState.Setters>
                                         <Setter Target="PrimaryButton.IsTabStop" Value="True" />
@@ -191,14 +129,6 @@
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
-                            <VisualStateGroup x:Name="DialogBorderStates">
-                                <VisualState x:Name="NoBorder" />
-                                <VisualState x:Name="AccentColorBorder">
-                                    <VisualState.Setters>
-                                        <Setter Target="BackgroundElement.BorderBrush" Value="{ThemeResource SystemControlForegroundAccentBrush}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot"
                               Visibility="Collapsed">
@@ -210,24 +140,19 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     FlowDirection="{TemplateBinding FlowDirection}"
-                                    RenderTransformOrigin="0.5,0.5"
                                     TabFocusNavigation="Cycle">
-
                                 <Grid x:Name="DialogSpace">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-
-                                    <Grid Background="{ThemeResource LayerFillColorDefaultBrush}"
-                                          BorderBrush="{StaticResource ContentDialogWindowSeparatorBorderBrush}"
+                                    <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}"
+                                          BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}"
                                           BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
-
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-
                                         <Border x:Name="TitleArea"
                                                 Grid.Row="0"
                                                 HorizontalAlignment="Stretch"
@@ -258,7 +183,6 @@
                                                 </ContentControl.Template>
                                             </ContentControl>
                                         </Border>
-
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Grid.Row="1"
                                                       HorizontalScrollBarVisibility="Disabled"
@@ -266,7 +190,7 @@
                                                       VerticalScrollBarVisibility="Auto"
                                                       ZoomMode="Disabled">
                                             <ContentPresenter x:Name="ContentArea"
-                                                              Padding="{ThemeResource ContentDialogWindowContentPadding}"
+                                                              Padding="{StaticResource ContentDialogWindowContentPadding}"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               FontFamily="{StaticResource ContentControlThemeFontFamily}"
@@ -278,7 +202,7 @@
 
                                     <Grid x:Name="CommandSpace"
                                           Grid.Row="1"
-                                          Padding="{ThemeResource ContentDialogPadding}"
+                                          Padding="{StaticResource ContentDialogPadding}"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"
                                           Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}"
@@ -291,7 +215,7 @@
                                             <ColumnDefinition x:Name="SecondaryColumn"
                                                               Width="0" />
                                             <ColumnDefinition x:Name="SecondSpacer"
-                                                              Width="{ThemeResource ContentDialogButtonSpacing}" />
+                                                              Width="{StaticResource ContentDialogButtonSpacing}" />
                                             <ColumnDefinition x:Name="CloseColumn"
                                                               Width="*" />
                                         </Grid.ColumnDefinitions>
@@ -332,4 +256,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

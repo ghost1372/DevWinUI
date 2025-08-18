@@ -46,6 +46,8 @@ public partial class MessageBox
 
     public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons)
         => await ShowAsync(isModal, owner, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+        => await ShowAsync(isModal, owner, isResizable, content, title, buttons, MessageBoxImage.None, MessageBoxDefaultButton.Button1);
 
     public static async Task<MessageBoxResult> ShowAsync(MessageBoxOptions options)
     {
@@ -78,7 +80,8 @@ public partial class MessageBox
 
         WindowedContentDialog dialog = new()
         {
-            Title = options.Title ?? string.Empty,
+            WindowTitle = options.Title,
+            Title = new MessageBoxHeader { Text = options.Title, Image = options.Image },
             Content = options.Content,
             OwnerWindow = options.OwnerWindow,
             SystemBackdrop = options.SystemBackdrop,
@@ -153,7 +156,7 @@ public partial class MessageBox
             _ => throw new ArgumentOutOfRangeException(nameof(result)),
         }];
     }
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxImage image, MessageBoxDefaultButton? defaultButton)
     {
         return await ShowAsync(new MessageBoxOptions
         {
@@ -163,7 +166,8 @@ public partial class MessageBox
             Content = content,
             Title = title,
             Buttons = buttons,
-            DefaultButton = defaultButton
+            DefaultButton = defaultButton,
+            Image = image
         });
     }
 

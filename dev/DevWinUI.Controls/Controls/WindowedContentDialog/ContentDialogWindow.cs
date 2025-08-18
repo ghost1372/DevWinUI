@@ -31,7 +31,6 @@ public partial class ContentDialogWindow : Window
         _content.PrimaryButtonClick += OnPrimaryButtonClick;
         _content.SecondaryButtonClick += OnSecondaryButtonClick;
         base.Content = _content;
-        base.Title = _content.Title;
 
         // When showing accent color in title bar is enabled,
         // title bar buttons in the default custom title bar in WinUI3
@@ -51,7 +50,7 @@ public partial class ContentDialogWindow : Window
             ;
         }
         _content.Loaded += (o, e) => DetermineTitleBarButtonForegroundColor();
-        _content.ActualThemeChanged += (sender, args) => DetermineTitleBarButtonForegroundColor();
+        _content.ActualThemeChanged += (o, e) => DetermineTitleBarButtonForegroundColor();
     }
 
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
@@ -242,20 +241,16 @@ public partial class ContentDialogWindow : Window
         set => _content.CloseButtonStyle = value;
     }
 
-    public new string Title
+    public object? DialogTitle
     {
         get => _content.Title;
-        set
-        {
-            _content.Title = value;
-            base.Title = value;
-        }
+        set => _content.Title = value;
     }
     #endregion
 
     public ContentDialogResult Result { get; private set; }
 
-    public new object? Content
+    public object? DialogContent
     {
         get => _content.Content;
         set => _content.Content = value;
@@ -293,8 +288,8 @@ public partial class ContentDialogWindow : Window
         // AppWindow.ResizeCilent is accurate in width but there is an extra height of title bar (30 DIP) when ExtendsContentInfoTitleBar = true.
         // No matter whether ExtendsContentInfoTitleBar, the size is the same after use AppWindow.ResizeCilent.
         AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
-            (int)((_content.ActualWidth + 1) * _content.XamlRoot.RasterizationScale),
-            (int)((_content.ActualHeight - 30) * _content.XamlRoot.RasterizationScale)));
+            (int)((_content.ActualWidth + 1) * _content.XamlRoot.RasterizationScale) + 1,
+            (int)((_content.ActualHeight - 30) * _content.XamlRoot.RasterizationScale) + 1));
 
         SetTitleBar(_content.TitleArea);
 
