@@ -21,6 +21,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.PreviewKeyDownHelperPage",
+          "Title": "Preview Key Down Helper",
+          "Subtitle": "Restrict Inputs",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.WindowedContentDialogPage",
           "Title": "Windowed Content Dialog",
           "Subtitle": "Windowed Content Dialog",

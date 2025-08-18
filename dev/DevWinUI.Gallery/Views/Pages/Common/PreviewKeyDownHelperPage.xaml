@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.PreviewKeyDownHelperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="helpers/previewKeyDownHelper"
+                                  DocType="Core">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;TextBox PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersOnly}"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Spacing="10">
+                    <TextBox Header="AcceptNumbersOnly"
+                             PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersOnly}" />
+                    <TextBox Header="AcceptNumbersAndOperators"
+                             PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersAndOperators}" />
+                    <NumberBox Header="AcceptNumbersOnly"
+                               PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersOnly}"
+                               SpinButtonPlacementMode="Inline" />
+                    <NumberBox Header="AcceptNumbersAndOperators"
+                               PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersAndOperators}"
+                               SpinButtonPlacementMode="Inline" />
+                    <TextBox Header="RejectLetters"
+                             PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.RejectLetters}" />
+                    <TextBox Header="AcceptLettersOnly"
+                             PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptLettersOnly}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
