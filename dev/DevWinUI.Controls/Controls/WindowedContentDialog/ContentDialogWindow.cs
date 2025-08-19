@@ -18,9 +18,9 @@ public partial class ContentDialogWindow : Window
     public ContentDialogWindow() : base()
     {
         ExtendsContentIntoTitleBar = true;
-        _presenter = AppWindow.Presenter.As<OverlappedPresenter>();
-        _presenter.IsMinimizable = false;
-        _presenter.IsMaximizable = false;
+        _presenter = OverlappedPresenter.CreateForDialog();
+        _presenter.IsResizable = true;
+        AppWindow.SetPresenter(_presenter);
 
         AppWindow.Closing += (appWindow, e) => OnClosingRequestedBySystem();
         Activated += OnActivated;
@@ -30,7 +30,7 @@ public partial class ContentDialogWindow : Window
         _content.CloseButtonClick += OnCloseButtonClick;
         _content.PrimaryButtonClick += OnPrimaryButtonClick;
         _content.SecondaryButtonClick += OnSecondaryButtonClick;
-        base.Content = _content;
+        Content = _content;
 
         // When showing accent color in title bar is enabled,
         // title bar buttons in the default custom title bar in WinUI3
