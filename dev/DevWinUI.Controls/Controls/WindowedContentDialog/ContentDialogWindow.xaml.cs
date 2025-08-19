@@ -1,22 +1,13 @@
 ﻿using Microsoft.UI.Windowing;
-using WinRT;
 
 namespace DevWinUI;
 
-/// <summary>
-/// The window that contains ContentDialogContent.
-/// <br/>
-/// Never show window immediately after construction,
-/// <br/>
-/// because the size and position have not been computed.
-/// Please consider use use Open() when handling Loaded event.
-/// Don't use Activate() only,
-/// it will not make window modal even if OverlappedPresenter.IsModal is true.
-/// </summary>
-public partial class ContentDialogWindow : Window
+public sealed partial class ContentDialogWindow : Window
 {
     public ContentDialogWindow() : base()
     {
+        InitializeComponent();
+
         ExtendsContentIntoTitleBar = true;
         _presenter = OverlappedPresenter.CreateForDialog();
         _presenter.IsResizable = true;
@@ -25,20 +16,13 @@ public partial class ContentDialogWindow : Window
         AppWindow.Closing += (appWindow, e) => OnClosingRequestedBySystem();
         Activated += OnActivated;
 
-        _content = new();
-        _content.Loaded += DialogLoaded;
-        _content.CloseButtonClick += OnCloseButtonClick;
-        _content.PrimaryButtonClick += OnPrimaryButtonClick;
-        _content.SecondaryButtonClick += OnSecondaryButtonClick;
-        Content = _content;
-
         // When showing accent color in title bar is enabled,
         // title bar buttons in the default custom title bar in WinUI3
         // will become white like system title bar.
         // But there is no accent color background here.
         void DetermineTitleBarButtonForegroundColor()
         {
-            switch (_content.ActualTheme)
+            switch (content.ActualTheme)
             {
                 case ElementTheme.Light:
                     AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
@@ -49,8 +33,8 @@ public partial class ContentDialogWindow : Window
             }
             ;
         }
-        _content.Loaded += (o, e) => DetermineTitleBarButtonForegroundColor();
-        _content.ActualThemeChanged += (o, e) => DetermineTitleBarButtonForegroundColor();
+        content.Loaded += (o, e) => DetermineTitleBarButtonForegroundColor();
+        content.ActualThemeChanged += (o, e) => DetermineTitleBarButtonForegroundColor();
     }
 
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
@@ -61,16 +45,16 @@ public partial class ContentDialogWindow : Window
     public event TypedEventHandler<ContentDialogWindow, EventArgs>? Opened;
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        if (!_content.IsLoaded)
+        if (!content.IsLoaded)
             return;
 
         if (args.WindowActivationState is WindowActivationState.Deactivated)
         {
-            _content.AfterLostFocus();
+            content.AfterLostFocus();
         }
         else
         {
-            _content.AfterGotFocus();
+            content.AfterGotFocus();
         }
     }
 
@@ -129,11 +113,11 @@ public partial class ContentDialogWindow : Window
     private ElementTheme _requestedTheme;
     public ElementTheme RequestedTheme
     {
-        get => _content is not null ? _content.RequestedTheme : _requestedTheme;
+        get => content is not null ? content.RequestedTheme : _requestedTheme;
         set
         {
             _requestedTheme = value;
-            _content.RequestedTheme = value;
+            content.RequestedTheme = value;
             AppWindow.TitleBar.PreferredTheme = value switch
             {
                 ElementTheme.Light => TitleBarTheme.Light,
@@ -147,104 +131,104 @@ public partial class ContentDialogWindow : Window
 
     public Brush? Foreground
     {
-        get => _content.Foreground;
-        set => _content.Foreground = value;
+        get => content.Foreground;
+        set => content.Foreground = value;
     }
 
     public Brush? Background
     {
-        get => _content.Background;
-        set => _content.Background = value;
+        get => content.Background;
+        set => content.Background = value;
     }
 
     public Brush? BorderBrush
     {
-        get => _content.BorderBrush;
-        set => _content.BorderBrush = value;
+        get => content.BorderBrush;
+        set => content.BorderBrush = value;
     }
 
     public Thickness BorderThickness
     {
-        get => _content.BorderThickness;
-        set => _content.BorderThickness = value;
+        get => content.BorderThickness;
+        set => content.BorderThickness = value;
     }
 
     public FlowDirection FlowDirection
     {
-        get => _content.FlowDirection;
-        set => _content.FlowDirection = value;
+        get => content.FlowDirection;
+        set => content.FlowDirection = value;
     }
 
     public DataTemplate? TitleTemplate
     {
-        get => _content.TitleTemplate;
-        set => _content.TitleTemplate = value;
+        get => content.TitleTemplate;
+        set => content.TitleTemplate = value;
     }
 
     public DataTemplate? ContentTemplate
     {
-        get => _content.ContentTemplate;
-        set => _content.ContentTemplate = value;
+        get => content.ContentTemplate;
+        set => content.ContentTemplate = value;
     }
 
     public string? PrimaryButtonText
     {
-        get => _content.PrimaryButtonText;
-        set => _content.PrimaryButtonText = value;
+        get => content.PrimaryButtonText;
+        set => content.PrimaryButtonText = value;
     }
 
     public string? SecondaryButtonText
     {
-        get => _content.SecondaryButtonText;
-        set => _content.SecondaryButtonText = value;
+        get => content.SecondaryButtonText;
+        set => content.SecondaryButtonText = value;
     }
 
     public string? CloseButtonText
     {
-        get => _content.CloseButtonText;
-        set => _content.CloseButtonText = value;
+        get => content.CloseButtonText;
+        set => content.CloseButtonText = value;
     }
 
     public bool IsPrimaryButtonEnabled
     {
-        get => _content.IsPrimaryButtonEnabled;
-        set => _content.IsPrimaryButtonEnabled = value;
+        get => content.IsPrimaryButtonEnabled;
+        set => content.IsPrimaryButtonEnabled = value;
     }
 
     public bool IsSecondaryButtonEnabled
     {
-        get => _content.IsSecondaryButtonEnabled;
-        set => _content.IsSecondaryButtonEnabled = value;
+        get => content.IsSecondaryButtonEnabled;
+        set => content.IsSecondaryButtonEnabled = value;
     }
 
     public ContentDialogButton DefaultButton
     {
-        get => _content.DefaultButton;
-        set => _content.DefaultButton = value;
+        get => content.DefaultButton;
+        set => content.DefaultButton = value;
     }
 
     public Style? PrimaryButtonStyle
     {
-        get => _content.PrimaryButtonStyle;
-        set => _content.PrimaryButtonStyle = value;
+        get => content.PrimaryButtonStyle;
+        set => content.PrimaryButtonStyle = value;
     }
 
     public Style? SecondaryButtonStyle
     {
-        get => _content.SecondaryButtonStyle;
-        set => _content.SecondaryButtonStyle = value;
+        get => content.SecondaryButtonStyle;
+        set => content.SecondaryButtonStyle = value;
     }
 
     public Style? CloseButtonStyle
     {
-        get => _content.CloseButtonStyle;
-        set => _content.CloseButtonStyle = value;
+        get => content.CloseButtonStyle;
+        set => content.CloseButtonStyle = value;
     }
 
     public object? DialogTitle
     {
-        get => _content.Title;
-        set => _content.Title = value;
+        get => content.Title;
+        set => content.Title = value;
     }
     #endregion
 
@@ -252,8 +236,8 @@ public partial class ContentDialogWindow : Window
 
     public object? DialogContent
     {
-        get => _content.Content;
-        set => _content.Content = value;
+        get => content.Content;
+        set => content.Content = value;
     }
 
     private bool _hasTitleBar = true;
@@ -281,17 +265,17 @@ public partial class ContentDialogWindow : Window
         }
     }
 
-    private void DialogLoaded(object sender, RoutedEventArgs e)
+    private void OnContentLoaded(object sender, RoutedEventArgs e)
     {
         // AppWindow.Resize is inaccurate.
         // AppWindow.ResizeCilent is inaccurate when ExtendsContentInfoTitleBar = false.
         // AppWindow.ResizeCilent is accurate in width but there is an extra height of title bar (30 DIP) when ExtendsContentInfoTitleBar = true.
         // No matter whether ExtendsContentInfoTitleBar, the size is the same after use AppWindow.ResizeCilent.
         AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
-            (int)((_content.ActualWidth + 1) * _content.XamlRoot.RasterizationScale) + 1,
-            (int)((_content.ActualHeight - 30) * _content.XamlRoot.RasterizationScale) + 1));
+            (int)((content.DesiredSize.Width + 1) * content.XamlRoot.RasterizationScale) + 1,
+            (int)((content.DesiredSize.Height - 30) * content.XamlRoot.RasterizationScale) + 1));
 
-        SetTitleBar(_content.TitleArea);
+        SetTitleBar(content.TitleArea);
 
         if (_center)
         {
@@ -321,11 +305,11 @@ public partial class ContentDialogWindow : Window
         }
         if (SystemBackdrop is null || SystemBackdrop is DesktopAcrylicBackdrop)
         {
-            _content.CommandSpace.Background.Opacity = 1.0;
+            content.CommandSpace.Background.Opacity = 1.0;
         }
         else
         {
-            _content.CommandSpace.Background.Opacity = 0.5;
+            content.CommandSpace.Background.Opacity = 0.5;
         }
 
         DispatcherQueue.TryEnqueue(() => Loaded?.Invoke(this, EventArgs.Empty));
@@ -369,8 +353,6 @@ public partial class ContentDialogWindow : Window
         OnClosingRequestedByCode();
         DispatcherQueue.TryEnqueue(Close);
     }
-
-    private readonly ContentDialogContent _content;
 
     private readonly OverlappedPresenter _presenter;
 

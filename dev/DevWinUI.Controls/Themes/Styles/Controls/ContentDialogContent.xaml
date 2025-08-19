@@ -43,23 +43,24 @@
         <Setter Property="SecondaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
         <Setter Property="CloseButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
         <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="MinWidth" Value="{StaticResource ContentDialogMinWidth}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentDialogContent">
-                    <Border x:Name="Container"
-                            RequestedTheme="{TemplateBinding RequestedTheme}">
+                    <Border x:Name="BackgroundElement"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="InnerBorderEdge"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            FlowDirection="{TemplateBinding FlowDirection}"
+                            RequestedTheme="{TemplateBinding RequestedTheme}"
+                            TabFocusNavigation="Cycle">
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="DialogShowingStates">
                                 <VisualState x:Name="DialogHidden" />
-                                <VisualState x:Name="DialogShowingWithoutSmokeLayer">
-                                    <VisualState.Setters>
-                                        <Setter Target="PrimaryButton.IsTabStop" Value="True" />
-                                        <Setter Target="SecondaryButton.IsTabStop" Value="True" />
-                                        <Setter Target="CloseButton.IsTabStop" Value="True" />
-                                        <Setter Target="LayoutRoot.Visibility" Value="Visible" />
-                                        <Setter Target="LayoutRoot.Background" Value="{x:Null}" />
-                                    </VisualState.Setters>
-                                </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ButtonsVisibilityStates">
                                 <VisualState x:Name="AllVisible">
@@ -130,126 +131,113 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="LayoutRoot"
-                              Visibility="Collapsed">
-                            <Border x:Name="BackgroundElement"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Background="{TemplateBinding Background}"
-                                    BackgroundSizing="InnerBorderEdge"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    FlowDirection="{TemplateBinding FlowDirection}"
-                                    TabFocusNavigation="Cycle">
-                                <Grid x:Name="DialogSpace">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}"
-                                          BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}"
-                                          BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <Border x:Name="TitleArea"
-                                                Grid.Row="0"
-                                                HorizontalAlignment="Stretch"
-                                                x:FieldModifier="private">
-                                            <ContentControl x:Name="Title"
-                                                            Margin="{ThemeResource ContentDialogTitleMargin}"
-                                                            Padding="{ThemeResource ContentDialogWindowTitlePadding}"
-                                                            HorizontalAlignment="Left"
-                                                            VerticalAlignment="Top"
-                                                            Content="{TemplateBinding Title}"
-                                                            ContentTemplate="{TemplateBinding TitleTemplate}"
-                                                            FontFamily="{StaticResource ContentControlThemeFontFamily}"
-                                                            FontSize="20"
-                                                            FontWeight="SemiBold"
-                                                            Foreground="{TemplateBinding Foreground}"
-                                                            IsTabStop="True">
-                                                <ContentControl.Template>
-                                                    <ControlTemplate TargetType="ContentControl">
-                                                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          Content="{TemplateBinding Content}"
-                                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                                          MaxLines="2"
-                                                                          TextWrapping="Wrap" />
-                                                    </ControlTemplate>
-                                                </ContentControl.Template>
-                                            </ContentControl>
-                                        </Border>
-                                        <ScrollViewer x:Name="ContentScrollViewer"
-                                                      Grid.Row="1"
-                                                      HorizontalScrollBarVisibility="Disabled"
-                                                      IsTabStop="False"
-                                                      VerticalScrollBarVisibility="Auto"
-                                                      ZoomMode="Disabled">
-                                            <ContentPresenter x:Name="ContentArea"
-                                                              Padding="{StaticResource ContentDialogWindowContentPadding}"
-                                                              Content="{TemplateBinding Content}"
-                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                              FontFamily="{StaticResource ContentControlThemeFontFamily}"
-                                                              FontSize="{StaticResource ControlContentThemeFontSize}"
-                                                              Foreground="{TemplateBinding Foreground}"
-                                                              TextWrapping="Wrap" />
-                                        </ScrollViewer>
-                                    </Grid>
+                        <Grid x:Name="DialogSpace">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}"
+                                  BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}"
+                                  BorderThickness="{StaticResource ContentDialogSeparatorThickness}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border x:Name="TitleArea"
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Stretch"
+                                        x:FieldModifier="private">
+                                    <ContentControl x:Name="Title"
+                                                    Margin="{StaticResource ContentDialogTitleMargin}"
+                                                    Padding="{StaticResource ContentDialogWindowTitlePadding}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Content="{TemplateBinding Title}"
+                                                    ContentTemplate="{TemplateBinding TitleTemplate}"
+                                                    FontFamily="{StaticResource ContentControlThemeFontFamily}"
+                                                    FontSize="20"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    IsTabStop="True">
+                                        <ContentControl.Template>
+                                            <ControlTemplate TargetType="ContentControl">
+                                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                  Content="{TemplateBinding Content}"
+                                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                                  MaxLines="2"
+                                                                  TextWrapping="Wrap" />
+                                            </ControlTemplate>
+                                        </ContentControl.Template>
+                                    </ContentControl>
+                                </Border>
+                                <ScrollViewer x:Name="ContentScrollViewer"
+                                              Grid.Row="1"
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              IsTabStop="False"
+                                              VerticalScrollBarVisibility="Auto"
+                                              ZoomMode="Disabled">
+                                    <ContentPresenter x:Name="ContentArea"
+                                                      Padding="{StaticResource ContentDialogWindowContentPadding}"
+                                                      Content="{TemplateBinding Content}"
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                      FontFamily="{StaticResource ContentControlThemeFontFamily}"
+                                                      FontSize="{StaticResource ControlContentThemeFontSize}"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      TextWrapping="Wrap" />
+                                </ScrollViewer>
+                            </Grid>
 
-                                    <Grid x:Name="CommandSpace"
-                                          Grid.Row="1"
-                                          Padding="{StaticResource ContentDialogPadding}"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Bottom"
-                                          Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}"
-                                          XYFocusKeyboardNavigation="Enabled">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition x:Name="PrimaryColumn"
-                                                              Width="*" />
-                                            <ColumnDefinition x:Name="FirstSpacer"
-                                                              Width="0" />
-                                            <ColumnDefinition x:Name="SecondaryColumn"
-                                                              Width="0" />
-                                            <ColumnDefinition x:Name="SecondSpacer"
-                                                              Width="{StaticResource ContentDialogButtonSpacing}" />
-                                            <ColumnDefinition x:Name="CloseColumn"
-                                                              Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button x:Name="PrimaryButton"
-                                                HorizontalAlignment="Stretch"
-                                                Content="{TemplateBinding PrimaryButtonText}"
-                                                ElementSoundMode="FocusOnly"
-                                                IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
-                                                IsTabStop="True"
-                                                Style="{TemplateBinding PrimaryButtonStyle}"
-                                                ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
-                                        <Button x:Name="SecondaryButton"
-                                                HorizontalAlignment="Stretch"
-                                                Content="{TemplateBinding SecondaryButtonText}"
-                                                ElementSoundMode="FocusOnly"
-                                                IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
-                                                IsTabStop="True"
-                                                Style="{TemplateBinding SecondaryButtonStyle}"
-                                                ToolTipService.ToolTip="{TemplateBinding SecondaryButtonText}" />
-                                        <Button x:Name="CloseButton"
-                                                Grid.Column="4"
-                                                HorizontalAlignment="Stretch"
-                                                Content="{TemplateBinding CloseButtonText}"
-                                                ElementSoundMode="FocusOnly"
-                                                IsTabStop="True"
-                                                Style="{TemplateBinding CloseButtonStyle}"
-                                                ToolTipService.ToolTip="{TemplateBinding CloseButtonText}">
-                                            <Button.KeyboardAccelerators>
-                                                <KeyboardAccelerator Key="Escape" />
-                                            </Button.KeyboardAccelerators>
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </Border>
+                            <Grid x:Name="CommandSpace"
+                                  Grid.Row="1"
+                                  Padding="{StaticResource ContentDialogPadding}"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Bottom"
+                                  Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}"
+                                  XYFocusKeyboardNavigation="Enabled">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="PrimaryColumn"
+                                                      Width="*" />
+                                    <ColumnDefinition x:Name="FirstSpacer"
+                                                      Width="0" />
+                                    <ColumnDefinition x:Name="SecondaryColumn"
+                                                      Width="0" />
+                                    <ColumnDefinition x:Name="SecondSpacer"
+                                                      Width="{StaticResource ContentDialogButtonSpacing}" />
+                                    <ColumnDefinition x:Name="CloseColumn"
+                                                      Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="PrimaryButton"
+                                        HorizontalAlignment="Stretch"
+                                        Content="{TemplateBinding PrimaryButtonText}"
+                                        ElementSoundMode="FocusOnly"
+                                        IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
+                                        IsTabStop="True"
+                                        Style="{TemplateBinding PrimaryButtonStyle}"
+                                        ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
+                                <Button x:Name="SecondaryButton"
+                                        HorizontalAlignment="Stretch"
+                                        Content="{TemplateBinding SecondaryButtonText}"
+                                        ElementSoundMode="FocusOnly"
+                                        IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
+                                        IsTabStop="True"
+                                        Style="{TemplateBinding SecondaryButtonStyle}"
+                                        ToolTipService.ToolTip="{TemplateBinding SecondaryButtonText}" />
+                                <Button x:Name="CloseButton"
+                                        Grid.Column="4"
+                                        HorizontalAlignment="Stretch"
+                                        Content="{TemplateBinding CloseButtonText}"
+                                        ElementSoundMode="FocusOnly"
+                                        IsTabStop="True"
+                                        Style="{TemplateBinding CloseButtonStyle}"
+                                        ToolTipService.ToolTip="{TemplateBinding CloseButtonText}">
+                                    <Button.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="Escape" />
+                                    </Button.KeyboardAccelerators>
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>
