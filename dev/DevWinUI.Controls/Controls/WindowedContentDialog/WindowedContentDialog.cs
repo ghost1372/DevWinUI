@@ -215,13 +215,13 @@ public partial class WindowedContentDialog
 
     private void AttachPopupLifecycle(ContentDialogWindow dialogWindow, Popup popup)
     {
-        dialogWindow.Loaded -= DialogWindow_Loaded;
+        dialogWindow.Opened -= OnDialogWindowOpened;
         dialogWindow.Closed -= DialogWindow_ClosedPopup;
 
-        dialogWindow.Loaded += DialogWindow_Loaded;
+        dialogWindow.Opened += OnDialogWindowOpened;
         dialogWindow.Closed += DialogWindow_ClosedPopup;
 
-        void DialogWindow_Loaded(object sender, EventArgs e)
+        void OnDialogWindowOpened(object sender, EventArgs e)
         {
             popup.IsOpen = true;
             popup.Child.Opacity = 1.0;

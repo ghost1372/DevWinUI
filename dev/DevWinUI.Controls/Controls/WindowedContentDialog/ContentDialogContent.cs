@@ -7,6 +7,7 @@ internal sealed partial class ContentDialogContent : ContentControl
     public ContentDialogContent() : base()
     {
         DefaultStyleKey = typeof(ContentDialogContent);
+        Unloaded += (o, e) => needsCustomMeasure = false;
     }
 
     private Button PrimaryButton;
@@ -21,6 +22,14 @@ internal sealed partial class ContentDialogContent : ContentControl
     public Grid DialogSpace { get; private set; }
     public Grid CommandSpace { get; private set; }
 
+    /// <summary>
+    /// Whether customized measurement in MeasureOverride is needed.
+    /// <br/>
+    /// This variable is set to avoid redundant calculations.
+    /// <br/>
+    /// If the first measurement after Loaded is finished, there will be no need for customized measurement until Unloaded.
+    /// </summary>
+    private bool needsCustomMeasure;
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -42,8 +51,10 @@ internal sealed partial class ContentDialogContent : ContentControl
     }
     protected override Size MeasureOverride(Size availableSize)
     {
-        if (IsLoaded)
+        if (needsCustomMeasure)
             return base.MeasureOverride(availableSize);
+
+        needsCustomMeasure = IsLoaded;
 
         int countButtons = 0;
         double buttonLongestWidth = 0.0;

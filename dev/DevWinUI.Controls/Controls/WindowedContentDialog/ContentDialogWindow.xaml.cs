@@ -110,13 +110,11 @@ public sealed partial class ContentDialogWindow : Window
         _presenter.IsModal = parent is not null && modal;
     }
 
-    private ElementTheme _requestedTheme;
     public ElementTheme RequestedTheme
     {
-        get => content is not null ? content.RequestedTheme : _requestedTheme;
+        get => content.RequestedTheme;
         set
         {
-            _requestedTheme = value;
             content.RequestedTheme = value;
             AppWindow.TitleBar.PreferredTheme = value switch
             {
