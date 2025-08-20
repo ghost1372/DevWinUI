@@ -21,17 +21,17 @@ public partial class MessageBoxHeader : Control
         DetermineIconState();
     }
 
-    public MessageBoxImage Image
+    public MessageBoxIcon Icon
     {
-        get => (MessageBoxImage)GetValue(ImageProperty);
-        set => SetValue(ImageProperty, value);
+        get => (MessageBoxIcon)GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
     }
 
-    public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
-        nameof(Image),
-        typeof(MessageBoxImage),
+    public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
+        nameof(Icon),
+        typeof(MessageBoxIcon),
         typeof(MessageBoxHeader),
-        new PropertyMetadata(MessageBoxImage.None, (d, e) =>
+        new PropertyMetadata(MessageBoxIcon.None, (d, e) =>
         {
             MessageBoxHeader self = (MessageBoxHeader)d;
             if (self.IsLoaded)
@@ -43,28 +43,28 @@ public partial class MessageBoxHeader : Control
 
     private void DetermineIconState()
     {
-        switch (Image)
+        switch (Icon)
         {
-            case MessageBoxImage.None:
+            case MessageBoxIcon.None:
                 VisualStateManager.GoToState(this, "NoIconVisible", false);
                 break;
-            case MessageBoxImage.Error:
+            case MessageBoxIcon.Error:
                 VisualStateManager.GoToState(this, "Error", false);
                 VisualStateManager.GoToState(this, "StandardIconVisible", false);
                 break;
-            case MessageBoxImage.Question:
+            case MessageBoxIcon.Question:
                 VisualStateManager.GoToState(this, "Questional", false);
                 VisualStateManager.GoToState(this, "StandardIconVisible", false);
                 break;
-            case MessageBoxImage.Warning:
+            case MessageBoxIcon.Warning:
                 VisualStateManager.GoToState(this, "Warning", false);
                 VisualStateManager.GoToState(this, "StandardIconVisible", false);
                 break;
-            case MessageBoxImage.Information:
+            case MessageBoxIcon.Information:
                 VisualStateManager.GoToState(this, "Informational", false);
                 VisualStateManager.GoToState(this, "StandardIconVisible", false);
                 break;
-            case MessageBoxImage.Success:
+            case MessageBoxIcon.Success:
                 VisualStateManager.GoToState(this, "Success", false);
                 VisualStateManager.GoToState(this, "StandardIconVisible", false);
                 break;

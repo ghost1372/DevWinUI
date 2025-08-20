@@ -9,7 +9,7 @@ public partial class MessageBoxOptions
     public MessageBoxButtons Buttons { get; set; }
     public MessageBoxDefaultButton? DefaultButton { get; set; }
     public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
-    public MessageBoxImage Image { get; set; } = MessageBoxImage.None;
+    public MessageBoxIcon Icon { get; set; } = MessageBoxIcon.None;
     public UnderlayMode Underlay { get; set; } = UnderlayMode.SmokeLayer;
     public UnderlaySystemBackdropOptions UnderlaySystemBackdrop { get; set; } = new UnderlaySystemBackdropOptions();
     public UnderlaySmokeLayerOptions UnderlaySmokeLayer { get; set; } = new UnderlaySmokeLayerOptions();

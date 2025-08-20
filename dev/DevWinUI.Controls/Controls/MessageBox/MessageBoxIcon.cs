@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-public enum MessageBoxImage
+public enum MessageBoxIcon
 {
     None = 0,
     Error = 16,

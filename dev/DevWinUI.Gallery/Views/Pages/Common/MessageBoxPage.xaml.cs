@@ -19,7 +19,7 @@ public sealed partial class MessageBoxPage : Page
 
         var button = CmbMessageBoxButtons.SelectedItem.As<MessageBoxButtons>();
         var defaultButton = CmbMessageBoxDefaultBUtton.SelectedItem.As<MessageBoxDefaultButton>();
-        var image = CmbMessageBoxImage.SelectedItem.As<MessageBoxImage>();
+        var icon = CmbMessageBoxIcon.SelectedItem.As<MessageBoxIcon>();
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
 
@@ -30,7 +30,7 @@ public sealed partial class MessageBoxPage : Page
             Content = txtContent.Text?.ToString(),
             Title = txtTitle.Text?.ToString(),
             Buttons = button,
-            Image = image,
+            Icon = icon,
             DefaultButton = defaultButton,
             Underlay = underlay,
             UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions

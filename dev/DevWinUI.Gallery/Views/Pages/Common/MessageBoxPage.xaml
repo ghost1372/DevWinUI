@@ -37,9 +37,9 @@
                                   Header="MessageBox Default Button"
                                   ItemsSource="{x:Bind ViewModel.MessageBoxDefaultButtonItems, Mode=OneWay}"
                                   SelectedIndex="0" />
-                        <ComboBox x:Name="CmbMessageBoxImage"
-                                  Header="MessageBox Image"
-                                  ItemsSource="{x:Bind ViewModel.MessageBoxImageItems, Mode=OneWay}"
+                        <ComboBox x:Name="CmbMessageBoxIcon"
+                                  Header="MessageBox Icon"
+                                  ItemsSource="{x:Bind ViewModel.MessageBoxIconItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ToggleSwitch x:Name="TGIsModal"
                                       Header="Is Modal"
