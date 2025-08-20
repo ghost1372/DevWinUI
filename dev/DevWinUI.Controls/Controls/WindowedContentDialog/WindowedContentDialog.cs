@@ -172,7 +172,7 @@ public partial class WindowedContentDialog
             popup.Child = UnderlaySmokeLayer.CustomSmokeLayer;
         }
 
-        AttachPopupLifecycle(dialogWindow, popup);
+        AttachPopupLifecycle(dialogWindow, popup, isSmokeLayer: true);
     }
     private void HandleSystemBackdrop(ContentDialogWindow dialogWindow)
     {
@@ -189,7 +189,7 @@ public partial class WindowedContentDialog
 
         backdropLayerCache = popup.Child as Border;
         backdropLayerCache.OpacityTransition = UnderlaySystemBackdrop.OpacityTransition;
-        AttachPopupLifecycle(dialogWindow, popup);
+        AttachPopupLifecycle(dialogWindow, popup, isSmokeLayer: false);
     }
 
     private void DisableOwnerEvents(ContentDialogWindow dialogWindow)
@@ -213,12 +213,20 @@ public partial class WindowedContentDialog
             control.IsEnabled = true;
     }
 
-    private void AttachPopupLifecycle(ContentDialogWindow dialogWindow, Popup popup)
+    private void AttachPopupLifecycle(ContentDialogWindow dialogWindow, Popup popup, bool isSmokeLayer)
     {
-        dialogWindow.Opened -= OnDialogWindowOpened;
-        dialogWindow.Closed -= DialogWindow_ClosedPopup;
+        if (isSmokeLayer)
+        {
+            dialogWindow.Opened -= OnDialogWindowOpened;
+            dialogWindow.Opened += OnDialogWindowOpened;
+        }
+        else
+        {
+            dialogWindow.Loaded -= OnDialogWindowOpened;
+            dialogWindow.Loaded += OnDialogWindowOpened;
+        }
 
-        dialogWindow.Opened += OnDialogWindowOpened;
+        dialogWindow.Closed -= DialogWindow_ClosedPopup;
         dialogWindow.Closed += DialogWindow_ClosedPopup;
 
         void OnDialogWindowOpened(object sender, EventArgs e)
