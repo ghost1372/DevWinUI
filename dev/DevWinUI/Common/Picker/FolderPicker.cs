@@ -3,7 +3,7 @@ using Windows.Win32.UI.Shell;
 
 namespace DevWinUI;
 
-public class FolderPicker
+public partial class FolderPicker
 {
     private IntPtr hwnd;
     public FolderPicker(IntPtr hwnd)

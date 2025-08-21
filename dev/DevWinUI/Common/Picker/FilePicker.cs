@@ -4,7 +4,7 @@ using Windows.Win32.UI.Shell.Common;
 
 namespace DevWinUI;
 
-public class FilePicker
+public partial class FilePicker
 {
     private IntPtr hwnd;
     public FilePicker(IntPtr hwnd)

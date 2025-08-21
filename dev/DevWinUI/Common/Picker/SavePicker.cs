@@ -4,7 +4,7 @@ using Windows.Win32.UI.Shell.Common;
 
 namespace DevWinUI;
 
-public class SavePicker
+public partial class SavePicker
 {
     private IntPtr hwnd;
     public SavePicker(IntPtr hwnd)
