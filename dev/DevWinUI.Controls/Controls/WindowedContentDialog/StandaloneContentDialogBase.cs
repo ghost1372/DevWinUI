@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Windowing;
 
 namespace DevWinUI;
-public abstract class StandaloneContentDialogBase
+public abstract partial class StandaloneContentDialogBase
 {
     public abstract Task<ContentDialogResult> ShowAsync();
 
