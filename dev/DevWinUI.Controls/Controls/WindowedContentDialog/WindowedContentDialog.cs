@@ -4,40 +4,14 @@ using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
-public partial class WindowedContentDialog
+public partial class WindowedContentDialog : StandaloneContentDialogBase
 {
     private Rectangle smokeLayerCache;
     private Border backdropLayerCache;
-
     public string? WindowTitle { get; set; }
-    public object? Title { get; set; }
-    public object? Content { get; set; }
-
-    public ElementTheme RequestedTheme { get; set; } = ElementTheme.Default;
     public SystemBackdrop? SystemBackdrop { get; set; } = new MicaBackdrop();
-    public Brush Foreground { get; set; } = (Brush) Application.Current.Resources["ApplicationForegroundThemeBrush"];
-    public Brush? Background { get; set; }
-    public Brush? BorderBrush { get; set; }
-    public Thickness BorderThickness { get; set; }
-    public FlowDirection FlowDirection { get; set; }
-    public DataTemplate? TitleTemplate { get; set; }
-    public DataTemplate? ContentTemplate { get; set; }
-    public string PrimaryButtonText { get; set; } = string.Empty;
-    public string SecondaryButtonText { get; set; } = string.Empty;
-    public string CloseButtonText { get; set; } = string.Empty;
-    public bool IsPrimaryButtonEnabled { get; set; } = true;
-    public bool IsSecondaryButtonEnabled { get; set; } = true;
-    public ContentDialogButton DefaultButton { get; set; } = ContentDialogButton.Close;
-
-    public UnderlayMode Underlay { get; set; } = UnderlayMode.SmokeLayer;
-    public UnderlaySystemBackdropOptions UnderlaySystemBackdrop { get; set; } = new UnderlaySystemBackdropOptions();
-    public UnderlaySmokeLayerOptions UnderlaySmokeLayer { get; set; } = new UnderlaySmokeLayerOptions();
 
     public bool CenterInParent { get; set; } = true;
-    public Style PrimaryButtonStyle { get; set; } = DefaultButtonStyle;
-    public Style SecondaryButtonStyle { get; set; } = DefaultButtonStyle;
-    public Style CloseButtonStyle { get; set; } = DefaultButtonStyle;
-
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
 
     public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? SecondaryButtonClick;
@@ -49,20 +23,7 @@ public partial class WindowedContentDialog
     public Window? OwnerWindow { get; set; }
     public bool HasTitleBar { get; set; } = true;
     public bool IsResizable { get; set; }
-
-    /// <summary>
-    /// Displays a dialog window and returns the user's selection when it is closed.
-    /// <br/>
-    /// No need to worry—once the window is closed, it is no longer part of the visual tree.
-    /// Note: A FrameworkElement cannot be shared across multiple parents.
-    /// If the Content is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().Content`.
-    /// This popup can only be shown once before the Content is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
-    /// </summary>
-    /// <returns>The result of the user's choice.</returns>
-    public async Task<ContentDialogResult> ShowAsync()
-    {
-        return await ShowAsync(true);
-    }
+    public override Task<ContentDialogResult> ShowAsync() => ShowAsync(isModal: true);
 
     /// <summary>
     /// Displays a dialog window and returns the user's selection when it is closed.
@@ -156,13 +117,11 @@ public partial class WindowedContentDialog
         {
             Rectangle darkLayer = new()
             {
-                Width = OwnerWindow.Content.XamlRoot.Size.Width,
-                Height = OwnerWindow.Content.XamlRoot.Size.Height,
                 Opacity = 0.0,
                 OpacityTransition = UnderlaySmokeLayer.OpacityTransition,
                 Fill = new SolidColorBrush(SmokeFillColor),
             };
-
+            SizeToXamlRoot(darkLayer, OwnerWindow);
             popup.Child = darkLayer;
             smokeLayerCache = darkLayer;
         }
@@ -184,7 +143,7 @@ public partial class WindowedContentDialog
             OwnerWindow.Content.XamlRoot,
             UnderlaySystemBackdrop.Backdrop,
             UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full,
-            GetTitleBarOffset());
+            GetTitleBarOffset(OwnerWindow));
 
         backdropLayerCache = popup.Child as Border;
         backdropLayerCache.OpacityTransition = UnderlaySystemBackdrop.OpacityTransition;
@@ -249,41 +208,12 @@ public partial class WindowedContentDialog
         switch (Underlay)
         {
             case UnderlayMode.SmokeLayer:
-                SizeToWindow(smokeLayerCache, OwnerWindow);
+                SizeToXamlRoot(smokeLayerCache, OwnerWindow);
                 break;
 
             case UnderlayMode.SystemBackdrop:
-                SizeToWindow(backdropLayerCache, OwnerWindow);
+                SizeToXamlRoot(backdropLayerCache, OwnerWindow);
                 break;
         }
     }
-
-    private void SizeToWindow(FrameworkElement element, Window window)
-    {
-        element.Width = window.Content.XamlRoot.Size.Width;
-
-        switch (Underlay)
-        {
-            case UnderlayMode.SmokeLayer:
-                element.Height = window.Content.XamlRoot.Size.Height;
-                break;
-
-            case UnderlayMode.SystemBackdrop:
-                element.Height = UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full ? window.Content.XamlRoot.Size.Height : window.Content.XamlRoot.Size.Height - GetTitleBarOffset();
-                break;
-        }
-        
-    }
-    private int GetTitleBarOffset()
-    {
-        return OwnerWindow.AppWindow.TitleBar.PreferredHeightOption switch
-        {
-            TitleBarHeightOption.Standard => 32,
-            TitleBarHeightOption.Tall => 48,
-            _ => 0
-        };
-    }
-
-    private static Style DefaultButtonStyle => (Style) Application.Current.Resources["DefaultButtonStyle"];
-    private static Color SmokeFillColor => (Color)Application.Current.Resources["SmokeFillColorDefault"];
 }
