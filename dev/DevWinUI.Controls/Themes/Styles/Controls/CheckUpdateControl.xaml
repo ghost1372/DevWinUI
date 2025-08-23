@@ -24,40 +24,41 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <ContentPresenter ContentTemplate="{TemplateBinding UpdateAvailableIconTemplate}">
-                                    <ContentPresenter.Content>
-                                        <Border Width="20"
-                                                Height="20"
-                                                CornerRadius="10">
-                                            <Border.Background>
-                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
-                                                    <GradientStop Offset="0.0" Color="#239DE0" />
-                                                    <GradientStop Offset="1.0" Color="#037CD6" />
-                                                </LinearGradientBrush>
-                                            </Border.Background>
-                                            <FontIcon AutomationProperties.AccessibilityView="Raw"
-                                                      FontSize="11"
-                                                      Foreground="White"
-                                                      Glyph="&#xE895;" />
-                                        </Border>
-                                    </ContentPresenter.Content>
-                                </ContentPresenter>
+                                <ContentPresenter x:Name="PART_UpdateAvailableIconPresenter"
+                                                  Content="{TemplateBinding UpdateAvailableIcon}"
+                                                  Visibility="Collapsed" />
+                                <Border x:Name="PART_UpdateAvailableIconBorder"
+                                        Width="20"
+                                        Height="20"
+                                        CornerRadius="10">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                                            <GradientStop Offset="0.0" Color="#239DE0" />
+                                            <GradientStop Offset="1.0" Color="#037CD6" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <FontIcon AutomationProperties.AccessibilityView="Raw"
+                                              FontSize="11"
+                                              Foreground="White"
+                                              Glyph="&#xE895;" />
+                                </Border>
 
-                                <ContentPresenter Grid.Column="1"
-                                                  ContentTemplate="{TemplateBinding UpdateAvailableTemplate}">
-                                    <ContentPresenter.Content>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock FontWeight="SemiBold"
-                                                       Text="{TemplateBinding UpdateAvailableTitle}" />
-                                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                       Style="{StaticResource CaptionTextBlockStyle}">
-                                                <Run Text="{Binding UpdateAvailableVersionTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                                                <Run Text="{Binding UpdateAvailableVersion, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                                            </TextBlock>
-                                        </StackPanel>
-                                    </ContentPresenter.Content>
-                                </ContentPresenter>
-
+                                <ContentPresenter x:Name="PART_UpdateAvailableTitlePresenter"
+                                                  Grid.Column="1"
+                                                  Content="{TemplateBinding UpdateAvailableTitle}"
+                                                  Visibility="Collapsed" />
+                                <StackPanel x:Name="PART_UpdateAvailableTitleStackPanel"
+                                            Grid.Column="1"
+                                            Orientation="Vertical"
+                                            Visibility="Collapsed">
+                                    <TextBlock FontWeight="SemiBold"
+                                               Text="{Binding UpdateAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                               Style="{StaticResource CaptionTextBlockStyle}">
+                                        <Run Text="{Binding UpdateAvailableVersionTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                        <Run Text="{Binding UpdateAvailableVersion, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </TextBlock>
+                                </StackPanel>
                             </Grid>
                         </Button>
                         <Grid Padding="0,0,4,0"
@@ -68,40 +69,40 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <ContentPresenter ContentTemplate="{TemplateBinding UpdateNotAvailableIconTemplate}">
-                                <ContentPresenter.Content>
-                                    <Border Width="20"
-                                            Height="20"
-                                            CornerRadius="10">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
-                                                <GradientStop Offset="0.0" Color="#6FB538" />
-                                                <GradientStop Offset="1.0" Color="#397A24" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                        <FontIcon AutomationProperties.AccessibilityView="Raw"
-                                                  FontSize="11"
-                                                  Foreground="White"
-                                                  Glyph="&#xE73E;" />
-                                    </Border>
-                                </ContentPresenter.Content>
-                            </ContentPresenter>
+                            <ContentPresenter x:Name="PART_UpdateNotAvailableIconPresenter"
+                                              Content="{TemplateBinding UpdateNotAvailableIcon}"
+                                              Visibility="Collapsed" />
+                            <Border x:Name="PART_UpdateNotAvailableIconBorder"
+                                    Width="20"
+                                    Height="20"
+                                    CornerRadius="10">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="0.0" Color="#6FB538" />
+                                        <GradientStop Offset="1.0" Color="#397A24" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <FontIcon AutomationProperties.AccessibilityView="Raw"
+                                          FontSize="11"
+                                          Foreground="White"
+                                          Glyph="&#xE73E;" />
+                            </Border>
+                            <ContentPresenter x:Name="PART_UpdateNotAvailableTitlePresenter"
+                                              Grid.Column="1"
+                                              Content="{TemplateBinding UpdateNotAvailableTitle}"
+                                              Visibility="Collapsed" />
 
-                            <ContentPresenter Grid.Column="1"
-                                              ContentTemplate="{TemplateBinding UpdateNotAvailableTemplate}">
-                                <ContentPresenter.Content>
-                                    <StackPanel>
-                                        <TextBlock FontWeight="SemiBold"
-                                                   Text="{TemplateBinding UpdateNotAvailableTitle}" />
-                                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                   Style="{StaticResource CaptionTextBlockStyle}">
-                                            <Run Text="{Binding LastUpdateCheckTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                                            <Run Text="{Binding LastUpdateCheckDate, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                                        </TextBlock>
-                                    </StackPanel>
-                                </ContentPresenter.Content>
-                            </ContentPresenter>
-
+                            <StackPanel x:Name="PART_UpdateNotAvailableTitleStackPanel"
+                                        Grid.Column="1"
+                                        Visibility="Collapsed">
+                                <TextBlock FontWeight="SemiBold"
+                                           Text="{Binding UpdateNotAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}">
+                                    <Run Text="{Binding LastUpdateCheckTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    <Run Text="{Binding LastUpdateCheckDate, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                </TextBlock>
+                            </StackPanel>
                         </Grid>
                     </StackPanel>
 

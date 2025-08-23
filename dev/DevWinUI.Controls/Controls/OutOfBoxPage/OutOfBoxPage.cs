@@ -47,21 +47,7 @@ public partial class OutOfBoxPage : Control
         var ctl = (OutOfBoxPage)d;
         if (ctl != null)
         {
-            if (e.NewValue == null)
-            {
-                ctl.titlePresenter.Visibility = Visibility.Collapsed;
-                ctl.titleTextBlock.Visibility = Visibility.Collapsed;
-            }
-            else if (e.NewValue is string)
-            {
-                ctl.titlePresenter.Visibility = Visibility.Collapsed;
-                ctl.titleTextBlock.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ctl.titlePresenter.Visibility = Visibility.Visible;
-                ctl.titleTextBlock.Visibility = Visibility.Collapsed;
-            }
+            ctl.OnTitleChanged();
         }
     }
 
@@ -78,21 +64,7 @@ public partial class OutOfBoxPage : Control
         var ctl = (OutOfBoxPage)d;
         if (ctl != null)
         {
-            if (e.NewValue == null)
-            {
-                ctl.descriptionPresenter.Visibility = Visibility.Collapsed;
-                ctl.descriptionTextBlock.Visibility = Visibility.Collapsed;
-            }
-            else if (e.NewValue is string)
-            {
-                ctl.descriptionPresenter.Visibility = Visibility.Collapsed;
-                ctl.descriptionTextBlock.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ctl.descriptionPresenter.Visibility = Visibility.Visible;
-                ctl.descriptionTextBlock.Visibility = Visibility.Collapsed;
-            }
+            ctl.OnDescriptionChanged();
         }
     }
     public object HeroImage
@@ -107,42 +79,7 @@ public partial class OutOfBoxPage : Control
         var ctl = (OutOfBoxPage)d;
         if (ctl != null)
         {
-            if (e.NewValue == null)
-            {
-                ctl.heroImagePresenter.Visibility = Visibility.Collapsed;
-                if (ctl.UseTopHeroImage)
-                {
-                    ctl.heroImageImage.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    ctl.heroImageBorder.Visibility = Visibility.Collapsed;
-                }
-            }
-            else if (e.NewValue is string || e.NewValue is Uri)
-            {
-                ctl.heroImagePresenter.Visibility = Visibility.Collapsed;
-                if (ctl.UseTopHeroImage)
-                {
-                    ctl.heroImageImage.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    ctl.heroImageBorder.Visibility = Visibility.Visible;
-                }
-            }
-            else
-            {
-                ctl.heroImagePresenter.Visibility = Visibility.Visible;
-                if (ctl.UseTopHeroImage)
-                {
-                    ctl.heroImageImage.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    ctl.heroImageBorder.Visibility = Visibility.Collapsed;
-                }
-            }
+            ctl.OnHeroImageChanged();
         }
     }
     public double HeroImageHeight
@@ -201,21 +138,7 @@ public partial class OutOfBoxPage : Control
         var ctl = (OutOfBoxPage)d;
         if (ctl != null)
         {
-            if (e.NewValue == null)
-            {
-                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
-                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
-            }
-            else if (e.NewValue is string)
-            {
-                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
-                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Visible;
-                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
-            }
+            ctl.OnSecondaryLinksHeaderChanged();
         }
     }
     public ItemsPanelTemplate PrimaryLinkItemsPanelTemplate
@@ -338,5 +261,116 @@ public partial class OutOfBoxPage : Control
         secondaryLinksHeaderTextBlock = GetTemplateChild(PART_SecondaryLinksHeaderTextBlock) as TextBlock;
 
         UpdateTemplate();
+
+        OnTitleChanged();
+        OnDescriptionChanged();
+        OnHeroImageChanged();
+        OnSecondaryLinksHeaderChanged();
+    }
+
+    private void OnTitleChanged()
+    {
+        if (titlePresenter == null || titleTextBlock == null)
+            return;
+
+        if (Title == null)
+        {
+            titlePresenter.Visibility = Visibility.Collapsed;
+            titleTextBlock.Visibility = Visibility.Collapsed;
+        }
+        else if (Title is string)
+        {
+            titlePresenter.Visibility = Visibility.Collapsed;
+            titleTextBlock.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            titlePresenter.Visibility = Visibility.Visible;
+            titleTextBlock.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void OnDescriptionChanged()
+    {
+        if (descriptionPresenter == null || descriptionTextBlock == null)
+            return;
+
+        if (Description == null)
+        {
+            descriptionPresenter.Visibility = Visibility.Collapsed;
+            descriptionTextBlock.Visibility = Visibility.Collapsed;
+        }
+        else if (Description is string)
+        {
+            descriptionPresenter.Visibility = Visibility.Collapsed;
+            descriptionTextBlock.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            descriptionPresenter.Visibility = Visibility.Visible;
+            descriptionTextBlock.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void OnHeroImageChanged()
+    {
+        if (heroImagePresenter == null || (UseTopHeroImage && heroImageImage == null) || (!UseTopHeroImage && heroImageBorder == null))
+            return;
+
+        if (HeroImage == null)
+        {
+            heroImagePresenter.Visibility = Visibility.Collapsed;
+            if (UseTopHeroImage)
+            {
+                heroImageImage.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                heroImageBorder.Visibility = Visibility.Collapsed;
+            }
+        }
+        else if (HeroImage is string || HeroImage is Uri)
+        {
+            heroImagePresenter.Visibility = Visibility.Collapsed;
+            if (UseTopHeroImage)
+            {
+                heroImageImage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                heroImageBorder.Visibility = Visibility.Visible;
+            }
+        }
+        else
+        {
+            heroImagePresenter.Visibility = Visibility.Visible;
+            if (UseTopHeroImage)
+            {
+                heroImageImage.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                heroImageBorder.Visibility = Visibility.Collapsed;
+            }
+        }
+    }
+    private void OnSecondaryLinksHeaderChanged()
+    {
+        if (secondaryLinksHeaderPresenter == null || secondaryLinksHeaderTextBlock == null)
+            return;
+
+        if (SecondaryLinksHeader == null)
+        {
+            secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
+            secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
+        }
+        else if (SecondaryLinksHeader is string)
+        {
+            secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
+            secondaryLinksHeaderTextBlock.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            secondaryLinksHeaderPresenter.Visibility = Visibility.Visible;
+            secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
+        }
     }
 }

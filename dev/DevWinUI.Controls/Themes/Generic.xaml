@@ -6339,30 +6339,24 @@ Themes\Styles\Win2D\Watermark.xaml
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ContentPresenter ContentTemplate="{TemplateBinding UpdateAvailableIconTemplate}">
-                  <ContentPresenter.Content>
-                    <Border Width="20" Height="20" CornerRadius="10">
-                      <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
-                          <GradientStop Offset="0.0" Color="#239DE0" />
-                          <GradientStop Offset="1.0" Color="#037CD6" />
-                        </LinearGradientBrush>
-                      </Border.Background>
-                      <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
-                    </Border>
-                  </ContentPresenter.Content>
-                </ContentPresenter>
-                <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding UpdateAvailableTemplate}">
-                  <ContentPresenter.Content>
-                    <StackPanel Orientation="Vertical">
-                      <TextBlock FontWeight="SemiBold" Text="{TemplateBinding UpdateAvailableTitle}" />
-                      <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
-                        <Run Text="{Binding UpdateAvailableVersionTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        <Run Text="{Binding UpdateAvailableVersion, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                      </TextBlock>
-                    </StackPanel>
-                  </ContentPresenter.Content>
-                </ContentPresenter>
+                <ContentPresenter x:Name="PART_UpdateAvailableIconPresenter" Content="{TemplateBinding UpdateAvailableIcon}" Visibility="Collapsed" />
+                <Border x:Name="PART_UpdateAvailableIconBorder" Width="20" Height="20" CornerRadius="10">
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                      <GradientStop Offset="0.0" Color="#239DE0" />
+                      <GradientStop Offset="1.0" Color="#037CD6" />
+                    </LinearGradientBrush>
+                  </Border.Background>
+                  <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
+                </Border>
+                <ContentPresenter x:Name="PART_UpdateAvailableTitlePresenter" Grid.Column="1" Content="{TemplateBinding UpdateAvailableTitle}" Visibility="Collapsed" />
+                <StackPanel x:Name="PART_UpdateAvailableTitleStackPanel" Grid.Column="1" Orientation="Vertical" Visibility="Collapsed">
+                  <TextBlock FontWeight="SemiBold" Text="{Binding UpdateAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                  <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
+                    <Run Text="{Binding UpdateAvailableVersionTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                    <Run Text="{Binding UpdateAvailableVersion, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                  </TextBlock>
+                </StackPanel>
               </Grid>
             </Button>
             <Grid Padding="0,0,4,0" VerticalAlignment="Center" ColumnSpacing="16" Visibility="{Binding IsUpdateAvailable, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
@@ -6370,30 +6364,24 @@ Themes\Styles\Win2D\Watermark.xaml
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
               </Grid.ColumnDefinitions>
-              <ContentPresenter ContentTemplate="{TemplateBinding UpdateNotAvailableIconTemplate}">
-                <ContentPresenter.Content>
-                  <Border Width="20" Height="20" CornerRadius="10">
-                    <Border.Background>
-                      <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
-                        <GradientStop Offset="0.0" Color="#6FB538" />
-                        <GradientStop Offset="1.0" Color="#397A24" />
-                      </LinearGradientBrush>
-                    </Border.Background>
-                    <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
-                  </Border>
-                </ContentPresenter.Content>
-              </ContentPresenter>
-              <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding UpdateNotAvailableTemplate}">
-                <ContentPresenter.Content>
-                  <StackPanel>
-                    <TextBlock FontWeight="SemiBold" Text="{TemplateBinding UpdateNotAvailableTitle}" />
-                    <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
-                      <Run Text="{Binding LastUpdateCheckTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                      <Run Text="{Binding LastUpdateCheckDate, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                    </TextBlock>
-                  </StackPanel>
-                </ContentPresenter.Content>
-              </ContentPresenter>
+              <ContentPresenter x:Name="PART_UpdateNotAvailableIconPresenter" Content="{TemplateBinding UpdateNotAvailableIcon}" Visibility="Collapsed" />
+              <Border x:Name="PART_UpdateNotAvailableIconBorder" Width="20" Height="20" CornerRadius="10">
+                <Border.Background>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.0" Color="#6FB538" />
+                    <GradientStop Offset="1.0" Color="#397A24" />
+                  </LinearGradientBrush>
+                </Border.Background>
+                <FontIcon AutomationProperties.AccessibilityView="Raw" FontSize="11" Foreground="White" Glyph="" />
+              </Border>
+              <ContentPresenter x:Name="PART_UpdateNotAvailableTitlePresenter" Grid.Column="1" Content="{TemplateBinding UpdateNotAvailableTitle}" Visibility="Collapsed" />
+              <StackPanel x:Name="PART_UpdateNotAvailableTitleStackPanel" Grid.Column="1" Visibility="Collapsed">
+                <TextBlock FontWeight="SemiBold" Text="{Binding UpdateNotAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}">
+                  <Run Text="{Binding LastUpdateCheckTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                  <Run Text="{Binding LastUpdateCheckDate, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                </TextBlock>
+              </StackPanel>
             </Grid>
           </StackPanel>
         </ControlTemplate>
@@ -7637,11 +7625,8 @@ Themes\Styles\Win2D\Watermark.xaml
           </VisualState>
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
-      <ContentPresenter Grid.Row="0" Grid.Column="0" ContentTemplate="{TemplateBinding TitleTemplate}">
-        <ContentPresenter.Content>
-          <TextBlock Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{TemplateBinding Title}" />
-        </ContentPresenter.Content>
-      </ContentPresenter>
+      <ContentPresenter x:Name="PART_TitlePresenter" Grid.Row="0" Grid.Column="0" Content="{TemplateBinding Title}" Visibility="Collapsed" />
+      <TextBlock x:Name="PART_TitleTextBlock" Grid.Row="0" Grid.Column="0" Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
       <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
         <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
           <Grid.RowDefinitions>
@@ -7660,33 +7645,24 @@ Themes\Styles\Win2D\Watermark.xaml
               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding ActionContent}" />
-            <ContentPresenter Grid.Column="0" ContentTemplate="{TemplateBinding HeroImageTemplate}">
-              <ContentPresenter.Content>
-                <Border MaxWidth="160" Margin="32,24,16,24" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="4">
-                  <Image AutomationProperties.AccessibilityView="Raw">
-                    <Image.Source>
-                      <BitmapImage UriSource="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                    </Image.Source>
-                  </Image>
-                </Border>
-              </ContentPresenter.Content>
-            </ContentPresenter>
+            <ContentPresenter x:Name="PART_HeroImagePresenter" Grid.Column="0" Content="{TemplateBinding HeroImage}" Visibility="Collapsed" />
+            <Border x:Name="PART_HeroImageBorder" Grid.Column="0" MaxWidth="160" Margin="32,24,16,24" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="4" Visibility="Collapsed">
+              <Image AutomationProperties.AccessibilityView="Raw">
+                <Image.Source>
+                  <BitmapImage UriSource="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                </Image.Source>
+              </Image>
+            </Border>
             <StackPanel x:Name="DescriptionPanel" Grid.Row="0" Grid.Column="1" Spacing="12">
-              <ContentPresenter ContentTemplate="{TemplateBinding DescriptionTemplate}">
-                <ContentPresenter.Content>
-                  <TextBlock Margin="0,24,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextWrapping="Wrap" />
-                </ContentPresenter.Content>
-              </ContentPresenter>
+              <ContentPresenter x:Name="PART_DescriptionPresenter" Content="{TemplateBinding Description}" Visibility="Collapsed" />
+              <TextBlock x:Name="PART_DescriptionTextBlock" Margin="0,24,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextWrapping="Wrap" Visibility="Collapsed" />
               <ItemsControl Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
             </StackPanel>
           </Grid>
           <ContentPresenter Grid.Row="1" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
           <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ContentPresenter ContentTemplate="{TemplateBinding SecondaryLinksHeaderTemplate}">
-              <ContentPresenter.Content>
-                <TextBlock Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{TemplateBinding SecondaryLinksHeader}" />
-              </ContentPresenter.Content>
-            </ContentPresenter>
+            <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter" Content="{TemplateBinding SecondaryLinksHeader}" Visibility="Collapsed" />
+            <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock" Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
             <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
           </StackPanel>
         </Grid>
@@ -7699,11 +7675,8 @@ Themes\Styles\Win2D\Watermark.xaml
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-      <ContentPresenter ContentTemplate="{TemplateBinding HeroImageTemplate}">
-        <ContentPresenter.Content>
-          <Image Height="{TemplateBinding HeroImageHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
-        </ContentPresenter.Content>
-      </ContentPresenter>
+      <ContentPresenter x:Name="PART_HeroImagePresenter" Content="{TemplateBinding HeroImage}" Visibility="Collapsed" />
+      <Image x:Name="PART_HeroImageImage" Height="{TemplateBinding HeroImageHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
       <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
         <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
           <Grid.ColumnDefinitions>
@@ -7717,26 +7690,17 @@ Themes\Styles\Win2D\Watermark.xaml
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
           <ContentPresenter Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Content="{TemplateBinding ActionContent}" />
-          <ContentPresenter Grid.Row="0" Grid.Column="0" ContentTemplate="{TemplateBinding TitleTemplate}">
-            <ContentPresenter.Content>
-              <TextBlock Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{TemplateBinding Title}" />
-            </ContentPresenter.Content>
-          </ContentPresenter>
+          <ContentPresenter x:Name="PART_TitlePresenter" Grid.Row="0" Grid.Column="0" Content="{TemplateBinding Title}" Visibility="Collapsed" />
+          <TextBlock x:Name="PART_TitleTextBlock" Grid.Row="0" Grid.Column="0" Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">
-            <ContentPresenter ContentTemplate="{TemplateBinding DescriptionTemplate}">
-              <ContentPresenter.Content>
-                <TextBlock Margin="32,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextWrapping="Wrap" />
-              </ContentPresenter.Content>
-            </ContentPresenter>
+            <ContentPresenter x:Name="PART_DescriptionPresenter" Content="{TemplateBinding Description}" Visibility="Collapsed" />
+            <TextBlock x:Name="PART_DescriptionTextBlock" Margin="32,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextWrapping="Wrap" Visibility="Collapsed" />
             <ItemsControl Margin="32,0" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
           </StackPanel>
           <ContentPresenter Grid.Row="2" Grid.ColumnSpan="2" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
           <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
-            <ContentPresenter ContentTemplate="{TemplateBinding SecondaryLinksHeaderTemplate}">
-              <ContentPresenter.Content>
-                <TextBlock Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{TemplateBinding SecondaryLinksHeader}" />
-              </ContentPresenter.Content>
-            </ContentPresenter>
+            <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter" Content="{TemplateBinding SecondaryLinksHeader}" Visibility="Collapsed" />
+            <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock" Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
             <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
           </StackPanel>
         </Grid>
