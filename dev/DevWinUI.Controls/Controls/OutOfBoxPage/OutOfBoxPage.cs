@@ -3,60 +3,148 @@ using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 
+[TemplatePart(Name = nameof(PART_HeroImageImage), Type = typeof(Image))]
+[TemplatePart(Name = nameof(PART_HeroImageBorder), Type = typeof(Border))]
+[TemplatePart(Name = nameof(PART_SecondaryLinksHeaderTextBlock), Type = typeof(TextBlock))]
+[TemplatePart(Name = nameof(PART_DescriptionTextBlock), Type = typeof(TextBlock))]
+[TemplatePart(Name = nameof(PART_TitleTextBlock), Type = typeof(TextBlock))]
+[TemplatePart(Name = nameof(PART_SecondaryLinksHeaderPresenter), Type = typeof(ContentPresenter))]
+[TemplatePart(Name = nameof(PART_DescriptionPresenter), Type = typeof(ContentPresenter))]
+[TemplatePart(Name = nameof(PART_HeroImagePresenter), Type = typeof(ContentPresenter))]
+[TemplatePart(Name = nameof(PART_TitlePresenter), Type = typeof(ContentPresenter))]
 [ContentProperty(Name = nameof(Content))]
 public partial class OutOfBoxPage : Control
 {
-    public string Title
+    private const string PART_TitlePresenter = "PART_TitlePresenter";
+    private const string PART_TitleTextBlock = "PART_TitleTextBlock";
+    private const string PART_HeroImagePresenter = "PART_HeroImagePresenter";
+    private const string PART_HeroImageBorder = "PART_HeroImageBorder";
+    private const string PART_HeroImageImage = "PART_HeroImageImage";
+    private const string PART_DescriptionPresenter = "PART_DescriptionPresenter";
+    private const string PART_DescriptionTextBlock = "PART_DescriptionTextBlock";
+    private const string PART_SecondaryLinksHeaderPresenter = "PART_SecondaryLinksHeaderPresenter";
+    private const string PART_SecondaryLinksHeaderTextBlock = "PART_SecondaryLinksHeaderTextBlock";
+
+    private ContentPresenter titlePresenter;
+    private TextBlock titleTextBlock;
+    private ContentPresenter descriptionPresenter;
+    private TextBlock descriptionTextBlock;
+    private ContentPresenter heroImagePresenter;
+    private Border heroImageBorder;
+    private Image heroImageImage;
+    private ContentPresenter secondaryLinksHeaderPresenter;
+    private TextBlock secondaryLinksHeaderTextBlock;
+    public object Title
     {
-        get { return (string)GetValue(TitleProperty); }
+        get { return (object)GetValue(TitleProperty); }
         set { SetValue(TitleProperty, value); }
     }
     public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register(nameof(Title), typeof(string), typeof(OutOfBoxPage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Title), typeof(object), typeof(OutOfBoxPage), new PropertyMetadata(null, OnTitleChanged));
 
-    public DataTemplate TitleTemplate
+    private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        get { return (DataTemplate)GetValue(TitleTemplateProperty); }
-        set { SetValue(TitleTemplateProperty, value); }
+        var ctl = (OutOfBoxPage)d;
+        if (ctl != null)
+        {
+            if (e.NewValue == null)
+            {
+                ctl.titlePresenter.Visibility = Visibility.Collapsed;
+                ctl.titleTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else if (e.NewValue is string)
+            {
+                ctl.titlePresenter.Visibility = Visibility.Collapsed;
+                ctl.titleTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ctl.titlePresenter.Visibility = Visibility.Visible;
+                ctl.titleTextBlock.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 
-    public static readonly DependencyProperty TitleTemplateProperty =
-        DependencyProperty.Register(nameof(TitleTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
-    public string Description
+    public object Description
     {
-        get => (string)GetValue(DescriptionProperty);
+        get => (object)GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
     public static readonly DependencyProperty DescriptionProperty =
-        DependencyProperty.Register(nameof(Description), typeof(string), typeof(OutOfBoxPage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Description), typeof(object), typeof(OutOfBoxPage), new PropertyMetadata(null, OnDescriptionChanged));
 
-    public DataTemplate DescriptionTemplate
+    private static void OnDescriptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        get { return (DataTemplate)GetValue(DescriptionTemplateProperty); }
-        set { SetValue(DescriptionTemplateProperty, value); }
+        var ctl = (OutOfBoxPage)d;
+        if (ctl != null)
+        {
+            if (e.NewValue == null)
+            {
+                ctl.descriptionPresenter.Visibility = Visibility.Collapsed;
+                ctl.descriptionTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else if (e.NewValue is string)
+            {
+                ctl.descriptionPresenter.Visibility = Visibility.Collapsed;
+                ctl.descriptionTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ctl.descriptionPresenter.Visibility = Visibility.Visible;
+                ctl.descriptionTextBlock.Visibility = Visibility.Collapsed;
+            }
+        }
     }
-
-    public static readonly DependencyProperty DescriptionTemplateProperty =
-        DependencyProperty.Register(nameof(DescriptionTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
-    public string HeroImage
+    public object HeroImage
     {
-        get => (string)GetValue(HeroImageProperty);
+        get => (object)GetValue(HeroImageProperty);
         set => SetValue(HeroImageProperty, value);
     }
     public static readonly DependencyProperty HeroImageProperty =
-        DependencyProperty.Register(nameof(HeroImage), typeof(string), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
-    public DataTemplate HeroImageTemplate
+        DependencyProperty.Register(nameof(HeroImage), typeof(object), typeof(OutOfBoxPage), new PropertyMetadata(null, OnHeroImageChanged));
+    private static void OnHeroImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        get { return (DataTemplate)GetValue(HeroImageTemplateProperty); }
-        set { SetValue(HeroImageTemplateProperty, value); }
+        var ctl = (OutOfBoxPage)d;
+        if (ctl != null)
+        {
+            if (e.NewValue == null)
+            {
+                ctl.heroImagePresenter.Visibility = Visibility.Collapsed;
+                if (ctl.UseTopHeroImage)
+                {
+                    ctl.heroImageImage.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ctl.heroImageBorder.Visibility = Visibility.Collapsed;
+                }
+            }
+            else if (e.NewValue is string || e.NewValue is Uri)
+            {
+                ctl.heroImagePresenter.Visibility = Visibility.Collapsed;
+                if (ctl.UseTopHeroImage)
+                {
+                    ctl.heroImageImage.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ctl.heroImageBorder.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                ctl.heroImagePresenter.Visibility = Visibility.Visible;
+                if (ctl.UseTopHeroImage)
+                {
+                    ctl.heroImageImage.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ctl.heroImageBorder.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
     }
-
-    public static readonly DependencyProperty HeroImageTemplateProperty =
-        DependencyProperty.Register(nameof(HeroImageTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
     public double HeroImageHeight
     {
         get { return (double)GetValue(HeroImageHeightProperty); }
@@ -100,24 +188,36 @@ public partial class OutOfBoxPage : Control
     public static readonly DependencyProperty SecondaryLinksProperty =
         DependencyProperty.Register(nameof(SecondaryLinks), typeof(ObservableCollection<OutOfBoxPageLink>), typeof(OutOfBoxPage), new PropertyMetadata(null));
 
-    public string SecondaryLinksHeader
+    public object SecondaryLinksHeader
     {
-        get { return (string)GetValue(SecondaryLinksHeaderProperty); }
+        get { return (object)GetValue(SecondaryLinksHeaderProperty); }
         set { SetValue(SecondaryLinksHeaderProperty, value); }
     }
 
     public static readonly DependencyProperty SecondaryLinksHeaderProperty =
-        DependencyProperty.Register(nameof(SecondaryLinksHeader), typeof(string), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
-    public DataTemplate SecondaryLinksHeaderTemplate
+        DependencyProperty.Register(nameof(SecondaryLinksHeader), typeof(object), typeof(OutOfBoxPage), new PropertyMetadata(null, OnSecondaryLinksHeaderChanged));
+    private static void OnSecondaryLinksHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        get { return (DataTemplate)GetValue(SecondaryLinksHeaderTemplateProperty); }
-        set { SetValue(SecondaryLinksHeaderTemplateProperty, value); }
+        var ctl = (OutOfBoxPage)d;
+        if (ctl != null)
+        {
+            if (e.NewValue == null)
+            {
+                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
+                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else if (e.NewValue is string)
+            {
+                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Collapsed;
+                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ctl.secondaryLinksHeaderPresenter.Visibility = Visibility.Visible;
+                ctl.secondaryLinksHeaderTextBlock.Visibility = Visibility.Collapsed;
+            }
+        }
     }
-
-    public static readonly DependencyProperty SecondaryLinksHeaderTemplateProperty =
-        DependencyProperty.Register(nameof(SecondaryLinksHeaderTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
-
     public ItemsPanelTemplate PrimaryLinkItemsPanelTemplate
     {
         get { return (ItemsPanelTemplate)GetValue(PrimaryLinkItemsPanelTemplateProperty); }
@@ -226,6 +326,17 @@ public partial class OutOfBoxPage : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        titlePresenter = GetTemplateChild(PART_TitlePresenter) as ContentPresenter;
+        titleTextBlock = GetTemplateChild(PART_TitleTextBlock) as TextBlock;
+        descriptionPresenter = GetTemplateChild(PART_DescriptionPresenter) as ContentPresenter;
+        descriptionTextBlock = GetTemplateChild(PART_DescriptionTextBlock) as TextBlock;
+        heroImagePresenter = GetTemplateChild(PART_HeroImagePresenter) as ContentPresenter;
+        heroImageBorder = GetTemplateChild(PART_HeroImageBorder) as Border;
+        heroImageImage = GetTemplateChild(PART_HeroImageImage) as Image;
+        secondaryLinksHeaderPresenter = GetTemplateChild(PART_SecondaryLinksHeaderPresenter) as ContentPresenter;
+        secondaryLinksHeaderTextBlock = GetTemplateChild(PART_SecondaryLinksHeaderTextBlock) as TextBlock;
+
         UpdateTemplate();
     }
 }
