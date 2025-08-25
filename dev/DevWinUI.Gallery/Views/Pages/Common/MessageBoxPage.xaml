@@ -12,7 +12,7 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample DocPage="controls/messagebox"
+            <local:ControlExample DocPage="controls/messageBox"
                                   HeaderText="MessageBox">
                 <local:ControlExample.CSharp>
                     <x:String>
