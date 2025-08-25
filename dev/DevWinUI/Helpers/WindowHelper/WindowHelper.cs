@@ -20,10 +20,13 @@ public partial class WindowHelper
     /// <param name="window">The window to be tracked for its closed event.</param>
     public static void TrackWindow(Microsoft.UI.Xaml.Window window)
     {
-        window.Closed += (sender, args) =>
+        window.Closed -= RemoveWindow;
+        window.Closed += RemoveWindow;
+
+        void RemoveWindow(object sender, WindowEventArgs e)
         {
             ActiveWindows.Remove(window);
-        };
+        }
 
         ActiveWindows.AddIfNotExists(window);
     }
