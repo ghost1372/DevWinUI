@@ -34,6 +34,9 @@ public partial class SelectorBarSegmented : SelectorBar
     }
     private void UpdateSelectedIndex(int value)
     {
+        if (Items == null || Items.Count == 0)
+            return;
+
         if (value < 0)
         {
             SelectedItem = Items.Where(item => item.IsSelected = true).FirstOrDefault();
@@ -97,13 +100,16 @@ public partial class SelectorBarSegmented : SelectorBar
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
         _ItemsView = GetTemplateChild(PART_ItemsView) as ItemsView;
+
         if (_ItemsView != null)
         {
             _ItemsView.SelectionChanged += _ItemsView_SelectionChanged;
         }
-        UpdateItemsView(Orientation);
 
+        UpdateItemsView(Orientation);
+        UpdateSelectedIndex(SelectedIndex);
     }
 
     private void _ItemsView_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs args)
