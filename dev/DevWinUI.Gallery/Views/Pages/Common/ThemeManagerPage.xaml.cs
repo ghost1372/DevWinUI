@@ -1,4 +1,5 @@
-﻿using WinRT;
+﻿using System.Threading.Tasks;
+using WinRT;
 
 namespace DevWinUIGallery.Views;
 
@@ -21,10 +22,10 @@ public sealed partial class ThemeManagerPage : Page
         var item = sender as RadioButton;
         cmbBackdrop.SelectedItem = GeneralHelper.GetEnum<BackdropType>(item.Tag?.ToString());
     }
-    private void cmbTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void cmbTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var theme = cmbTheme.SelectedItem.As<ElementTheme>();
-        App.Current.ThemeService.SetElementTheme(theme);
+        await App.Current.ThemeService.SetElementThemeAsync(theme);
         foreach (RadioButton item in themePanel.Children)
         {
             if (item.Tag.Equals(theme.ToString()))
@@ -34,10 +35,10 @@ public sealed partial class ThemeManagerPage : Page
             }
         }
     }
-    private void cmbBackdrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void cmbBackdrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var backdrop = cmbBackdrop.SelectedItem.As<BackdropType>();
-        App.Current.ThemeService.SetBackdropType(backdrop);
+        await App.Current.ThemeService.SetBackdropTypeAsync(backdrop);
         foreach (RadioButton item in backdropPanel.Children)
         {
             if (item.Tag.Equals(backdrop.ToString()))

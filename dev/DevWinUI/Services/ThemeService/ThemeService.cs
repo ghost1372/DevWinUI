@@ -1,111 +1,35 @@
 ﻿using System.Collections.Specialized;
+using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace DevWinUI;
-public partial class ThemeService : IThemeService
+public partial class ThemeService : IThemeService, IDisposable
 {
-    public readonly string ConfigFilePath = "CoreAppConfigV8.1.0.json";
-    public event IThemeService.ActualThemeChangedEventHandler ActualThemeChanged;
-    private bool changeThemeWithoutSave = false;
-    private bool useAutoSave;
-    private bool useAutoUpdateTitleBarCaptionButtonsColor = false;
-    public ElementTheme ActualTheme
-    {
-        get
-        {
-            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
-            {
-                if (window.Content is FrameworkElement rootElement)
-                {
-                    if (rootElement.RequestedTheme != ElementTheme.Default)
-                    {
-                        return rootElement.RequestedTheme;
-                    }
-                }
-            }
+    public event EventHandler<ElementTheme>? ThemeChanged;
+    public event EventHandler<BackdropType>? BackdropChanged;
 
-            return GeneralHelper.GetEnum<ElementTheme>(Application.Current.RequestedTheme.ToString());
-        }
-    }
-    public ElementTheme RootTheme
-    {
-        get
-        {
-            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
-            {
-                if (window.Content is FrameworkElement rootElement)
-                {
-                    return rootElement.RequestedTheme;
-                }
-            }
+    private readonly Dictionary<Window, FrameworkElement> _rootElements = new();
+    private TaskCompletionSource<bool>? _initialization;
 
-            return ElementTheme.Default;
-        }
-        set
-        {
-            foreach (Microsoft.UI.Xaml.Window window in WindowHelper.ActiveWindows)
-            {
-                if (window.Content is FrameworkElement rootElement)
-                {
-                    rootElement.RequestedTheme = value;
-                }
-            }
+    private readonly string ConfigFilePath = "CoreAppConfigV9.0.0.json";
 
-            if (!changeThemeWithoutSave)
-            {
-                if (this.useAutoSave && GlobalData.Config != null)
-                {
-                    GlobalData.Config.ElementTheme = value;
-                    GlobalData.Save();
-                }
-            }
-        }
-    }
+    private bool _useAutoSave = true;
+    private bool _isBackdropEnabled = true;
 
+    private ElementTheme _userDefinedTheme = ElementTheme.Default;
+    private BackdropType _userDefinedBackdrop = BackdropType.Mica;
+    private string _userDefinedFileName = null;
     public ThemeService() { }
-    public ThemeService(Microsoft.UI.Xaml.Window window)
+
+    public ThemeService Initialize(Window window)
     {
-        InitializeBase(window);
-        ConfigElementThemeBase(ElementTheme.Default, false);
-        ConfigBackdropBase(BackdropType.Mica, false);
-    }
-    private void AutoInitializeBase(Microsoft.UI.Xaml.Window window)
-    {
-        InitializeBase(window);
-        ConfigElementThemeBase(ElementTheme.Default, false);
-        ConfigBackdropBase(BackdropType.Mica, false);
-    }
-
-    private void InitializeBase(Microsoft.UI.Xaml.Window window, bool useAutoSave = true, string filename = null)
-    {
-        if (window == null)
-        {
-            return;
-        }
-
-        WindowHelper.TrackWindow(window);
-        WindowHelper.ActiveWindows.CollectionChanged -= OnActiveWindowsChanged;
-        WindowHelper.ActiveWindows.CollectionChanged += OnActiveWindowsChanged;
-
-        foreach (var windowItem in WindowHelper.ActiveWindows)
-        {
-            if (windowItem.Content is FrameworkElement element)
-            {
-                GeneralHelper.SetPreferredAppMode(element.ActualTheme);
-                element.ActualThemeChanged -= OnActualThemeChanged;
-                element.ActualThemeChanged += OnActualThemeChanged;
-            }
-        }
-
         string RootPath = Path.Combine(PathHelper.GetAppDataFolderPath(), ProcessInfoHelper.ProductNameAndVersion);
         string AppConfigPath = Path.Combine(RootPath, ConfigFilePath);
 
-        this.useAutoSave = useAutoSave;
-
-        if (useAutoSave)
+        if (_useAutoSave)
         {
-            if (!string.IsNullOrEmpty(filename))
+            if (!string.IsNullOrEmpty(_userDefinedFileName))
             {
-                AppConfigPath = filename;
+                AppConfigPath = _userDefinedFileName;
             }
 
             GlobalData.SavePath = AppConfigPath;
@@ -115,51 +39,186 @@ public partial class ThemeService : IThemeService
             }
             GlobalData.Init();
         }
-    }
-    private void OnActiveWindowsChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+
+        WindowHelper.TrackWindow(window);
+        WindowHelper.ActiveWindows.CollectionChanged -= ActiveWindows_CollectionChanged;
+        WindowHelper.ActiveWindows.CollectionChanged += ActiveWindows_CollectionChanged;
+
+        foreach (var item in WindowHelper.ActiveWindows)
         {
-            foreach (Microsoft.UI.Xaml.Window window in e.NewItems)
+            if (!item.Dispatcher.HasThreadAccess)
+                _ = item.Dispatcher.ExecuteAsync(ct => InitWindow(item.Window, ct));
+            else
+                _ = InitWindow(item.Window, CancellationToken.None);
+        }
+
+        return this;
+    }
+
+    private async void ActiveWindows_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems is not null)
+        {
+            foreach (TrackWindowItem item in e.NewItems)
             {
-                InitializeWindowPropertiesOnce(window);
+                RegisterRootElement(item.Window);
+                await SetElementThemeWithoutSaveAsync(ElementTheme);
+                await SetBackdropTypeWithoutSaveAsync(BackdropType);
+            }
+        }
+        else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems is not null)
+        {
+            foreach (TrackWindowItem item in e.OldItems)
+            {
+                UnregisterRootElement(item.Window);
             }
         }
     }
-    private void InitializeWindowPropertiesOnce(Microsoft.UI.Xaml.Window window)
-    {
-        RootTheme = GetElementTheme();
-        window.SystemBackdrop = GetSystemBackdrop();
-        if (window.SystemBackdrop is MicaSystemBackdrop mica)
-        {
-            mica.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
-            mica.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultFallbackTintColor();
-        }
-        else if (window.SystemBackdrop is AcrylicSystemBackdrop acrylic)
-        {
-            acrylic.TintColor = GlobalData.Config?.BackdropTintColor ?? GetDefaultTintColor();
-            acrylic.FallbackColor = GlobalData.Config?.BackdropFallBackColor ?? GetDefaultFallbackTintColor();
-        }
-    }
-    private void OnActualThemeChanged(FrameworkElement sender, object args)
-    {
-        GeneralHelper.SetPreferredAppMode(sender.ActualTheme);
-        if (useAutoUpdateTitleBarCaptionButtonsColor)
-        {
-            UpdateCaptionButtons();
-        }
-        ActualThemeChanged?.Invoke(sender, args);
-    }
 
-    public void UpdateCaptionButtons()
+    private void UnregisterRootElement(Window window)
     {
-        foreach (var window in WindowHelper.ActiveWindows)
+        if (_rootElements.TryGetValue(window, out var root))
         {
-            UpdateCaptionButtons(window);
+            root.ActualThemeChanged -= ElementThemeChanged;
+            _rootElements.Remove(window);
         }
     }
 
-    public void UpdateCaptionButtons(Microsoft.UI.Xaml.Window window)
+    private void RegisterRootElement(Window window)
+    {
+        if (window.Content is FrameworkElement root)
+        {
+            if (!_rootElements.ContainsKey(window))
+            {
+                root.ActualThemeChanged -= ElementThemeChanged;
+                root.ActualThemeChanged += ElementThemeChanged;
+                _rootElements[window] = root;
+            }
+        }
+    }
+
+    private async ValueTask InitWindow(Window window, CancellationToken ct)
+    {
+        RegisterRootElement(window);
+        await InitializeAsync();
+    }
+
+    public bool IsDark => _rootElements?.Values.FirstOrDefault()?.ActualTheme == ElementTheme.Dark;
+    public ElementTheme ActualTheme => _rootElements.Values.FirstOrDefault().ActualTheme;
+    public ElementTheme ElementTheme => GetInternalElementTheme();
+    public BackdropType BackdropType => GetInternalBackdropType();
+
+    private ElementTheme GetInternalElementTheme()
+    {
+        if (_rootElements?.Values?.FirstOrDefault() != null)
+        {
+            return _rootElements.Values.FirstOrDefault().RequestedTheme;
+        }
+
+        return ElementTheme.Default;
+    }
+    private BackdropType GetInternalBackdropType()
+    {
+        return GetInternalBackdropType(_rootElements?.Keys.FirstOrDefault().SystemBackdrop);
+    }
+
+    private BackdropType GetInternalBackdropType(SystemBackdrop systemBackdrop)
+    {
+        return CreateBackdropType(systemBackdrop);
+    }
+    private static BackdropType CreateBackdropType(SystemBackdrop systemBackdrop)
+    {
+        if (systemBackdrop is MicaSystemBackdrop mica)
+        {
+            return mica.Kind == MicaKind.Base ? BackdropType.Mica : BackdropType.MicaAlt;
+        }
+        else if (systemBackdrop is TransparentBackdrop)
+        {
+            return BackdropType.Transparent;
+        }
+        else if (systemBackdrop is AcrylicSystemBackdrop acrylic)
+        {
+            return acrylic.Kind == (DesktopAcrylicKind.Base | DesktopAcrylicKind.Default) ? BackdropType.Acrylic : BackdropType.AcrylicThin;
+        }
+        else
+        {
+            return BackdropType.None;
+        }
+    }
+    private void ElementThemeChanged(FrameworkElement sender, object args)
+    {
+        ThemeChanged?.Invoke(this, GetInternalElementTheme());
+    }
+
+    private async Task InitializeAsync()
+    {
+        if (_initialization is not null)
+        {
+            await _initialization.Task.ConfigureAwait(false);
+            return;
+        }
+
+        _initialization = new TaskCompletionSource<bool>();
+
+        ElementTheme theme = _useAutoSave ? GetSavedElementTheme() : _userDefinedTheme;
+        BackdropType backdrop = _useAutoSave ? GetSavedBackdropType() : _userDefinedBackdrop;
+
+        var success = await InternalSetElementThemeAsync(theme);
+        var successBackdrop = await InternalSetBackdropTypeAsync(backdrop);
+
+        if (!success)
+        {
+            // If theme not set immediately, wait until any window is loaded
+            foreach (var root in _rootElements.Values)
+            {
+                if (root is FrameworkElement fe)
+                {
+                    async void OnLoaded(object sender, RoutedEventArgs args)
+                    {
+                        fe.Loaded -= OnLoaded;
+                        var themeSet = await InternalSetElementThemeAsync(theme);
+                        CompleteInitialization(themeSet);
+
+                        if (!successBackdrop)
+                        {
+                            var backdropSet = await InternalSetBackdropTypeAsync(backdrop);
+                            CompleteInitialization(backdropSet);
+                        }
+                    }
+
+                    fe.Loaded += OnLoaded;
+                    await _initialization.Task;
+                    return;
+                }
+            }
+
+            CompleteInitialization(false);
+        }
+        else
+        {
+            CompleteInitialization(true);
+        }
+    }
+
+    private void CompleteInitialization(bool success)
+    {
+        var init = _initialization;
+        if (init is null) return;
+        init.TrySetResult(success);
+    }
+
+    public void Dispose()
+    {
+        WindowHelper.ActiveWindows.CollectionChanged -= ActiveWindows_CollectionChanged;
+
+        foreach (var kvp in _rootElements)
+        {
+            kvp.Value.ActualThemeChanged -= ElementThemeChanged;
+        }
+        _rootElements.Clear();
+    }
+
+    private void UpdateCaptionButtons(Microsoft.UI.Xaml.Window window)
     {
         if (window == null)
             return;
@@ -190,58 +249,5 @@ public partial class ThemeService : IThemeService
 
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = buttonHoverBackgroundColor;
     }
-
-    public bool IsDarkTheme()
-    {
-        return RootTheme == ElementTheme.Default
-            ? Application.Current.RequestedTheme == ApplicationTheme.Dark
-            : RootTheme == ElementTheme.Dark;
-    }
-
-    public static void ChangeThemeWithoutSave(Microsoft.UI.Xaml.Window window)
-    {
-        var element = window?.Content as FrameworkElement;
-
-        if (element == null)
-        {
-            return;
-        }
-
-        if (element.ActualTheme == ElementTheme.Light)
-        {
-            element.RequestedTheme = ElementTheme.Dark;
-        }
-        else if (element.ActualTheme == ElementTheme.Dark)
-        {
-            element.RequestedTheme = ElementTheme.Light;
-        }
-    }
-
-    public void ResetBackdropProperties()
-    {
-        var backdrop = GetSystemBackdrop();
-        if (backdrop != null)
-        {
-            if (backdrop is MicaSystemBackdrop mica)
-            {
-                mica.micaController.ResetProperties();
-                if (useAutoSave && GlobalData.Config != null)
-                {
-                    GlobalData.Config.BackdropFallBackColor = null;
-                    GlobalData.Config.BackdropTintColor = null;
-                    GlobalData.Save();
-                }
-            }
-            else if (backdrop is AcrylicSystemBackdrop acrylic)
-            {
-                acrylic.acrylicController.ResetProperties();
-                if (useAutoSave && GlobalData.Config != null)
-                {
-                    GlobalData.Config.BackdropFallBackColor = null;
-                    GlobalData.Config.BackdropTintColor = null;
-                    GlobalData.Save();
-                }
-            }
-        }
-    }
 }
+

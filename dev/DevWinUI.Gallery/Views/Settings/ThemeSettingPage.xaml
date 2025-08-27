@@ -51,21 +51,6 @@
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Color.png}"
                               IsClickEnabled="True"
                               LaunchUri="ms-settings:colors" />
-
-            <dev:SettingsExpander Description="Add tint to your window to make your experience more personalized."
-                                  Header="TintColor"
-                                  HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Tint.png}">
-                <dev:DropdownColorPicker x:Name="MainDropdownColorPicker"
-                                         ColorChanged="MainDropdownColorPicker_ColorChanged" />
-                <dev:SettingsExpander.ItemsHeader>
-                    <dev:SettingsCard>
-                        <dev:SettingsCard.Description>
-                            <dev:ColorPalette ColorChanged="OnColorPaletteColorChanged"
-                                              ColorSet="Extended" />
-                        </dev:SettingsCard.Description>
-                    </dev:SettingsCard>
-                </dev:SettingsExpander.ItemsHeader>
-            </dev:SettingsExpander>
         </StackPanel>
     </ScrollView>
 </Page>

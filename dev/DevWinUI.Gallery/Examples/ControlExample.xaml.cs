@@ -1,4 +1,5 @@
-﻿using Windows.System;
+﻿using System.Threading.Tasks;
+using Windows.System;
 
 namespace DevWinUIGallery;
 public sealed partial class ControlExample : OptionsPageControl
@@ -99,15 +100,15 @@ public sealed partial class ControlExample : OptionsPageControl
         OnDocPageChanged(this, null);
     }
 
-    private void ToggleTheme_Click(object sender, RoutedEventArgs e)
+    private async void ToggleTheme_Click(object sender, RoutedEventArgs e)
     {
         if (ActualTheme == ElementTheme.Dark)
         {
-            App.Current.ThemeService.SetElementThemeWithoutSave(ElementTheme.Light);
+            await App.Current.ThemeService.SetElementThemeWithoutSaveAsync(ElementTheme.Light);
         }
         else
         {
-            App.Current.ThemeService.SetElementThemeWithoutSave(ElementTheme.Dark);
+            await App.Current.ThemeService.SetElementThemeWithoutSaveAsync(ElementTheme.Dark);
         }
     }
     private async void GoToDoc_Click(object sender, RoutedEventArgs e)

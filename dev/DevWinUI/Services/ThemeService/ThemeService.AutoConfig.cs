@@ -13,7 +13,7 @@ public partial class ThemeService
 
     public void SetThemeComboBoxDefaultItem(ComboBox themeComboBox)
     {
-        var currentTheme = RootTheme.ToString();
+        var currentTheme = ElementTheme.ToString();
         var item = themeComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme);
         if (item != null && (ComboBoxItem)themeComboBox.SelectedItem != item)
         {
@@ -34,9 +34,7 @@ public partial class ThemeService
 
     public void SetBackdropComboBoxDefaultItem(ComboBox backdropComboBox)
     {
-        var currentBackdrop = GetBackdropType(GetSystemBackdrop()).ToString();
-
-        currentBackdrop = FixAcrylicBackdropTag(currentBackdrop);
+        var currentBackdrop = FixAcrylicBackdropTag(BackdropType.ToString());
 
         var item = backdropComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentBackdrop);
         if (item != null && (ComboBoxItem)backdropComboBox.SelectedItem != item)
@@ -56,7 +54,7 @@ public partial class ThemeService
 
     public void SetThemeRadioButtonDefaultItem(Panel ThemePanel)
     {
-        var currentTheme = RootTheme.ToString();
+        var currentTheme = ElementTheme.ToString();
         var items = ThemePanel.Children.Cast<RadioButton>();
         if (items != null)
         {
@@ -71,7 +69,7 @@ public partial class ThemeService
     public void OnBackdropRadioButtonChecked(object sender)
     {
         var selectedBackdrop = ((RadioButton)sender)?.Tag?.ToString();
-        
+
         if (selectedBackdrop != null)
         {
             selectedBackdrop = FixAcrylicBackdropTag(selectedBackdrop);
@@ -81,7 +79,7 @@ public partial class ThemeService
 
     public void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel)
     {
-        var currentBackdrop = GetBackdropType(GetSystemBackdrop()).ToString();
+        var currentBackdrop = BackdropType.ToString();
         var items = BackdropPanel.Children.Cast<RadioButton>();
         if (items != null)
         {
@@ -94,17 +92,17 @@ public partial class ThemeService
         }
     }
 
-    private void ApplyThemeOrBackdrop<TEnum>(string text) where TEnum : struct
+    private async void ApplyThemeOrBackdrop<TEnum>(string text) where TEnum : struct
     {
         if (Enum.TryParse(text, out TEnum result) && Enum.IsDefined(typeof(TEnum), result))
         {
             if (result is BackdropType backdrop)
             {
-                SetBackdropType(backdrop);
+                await SetBackdropTypeAsync(backdrop);
             }
             else if (result is ElementTheme theme)
             {
-                SetElementTheme(theme);
+                await SetElementThemeAsync(theme);
             }
         }
     }

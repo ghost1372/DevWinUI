@@ -12,23 +12,31 @@ public partial class WindowHelper
     /// <summary>
     /// Holds a collection of currently active windows in the application.
     /// </summary>
-    public static ObservableCollection<Microsoft.UI.Xaml.Window> ActiveWindows { get; } = new();
+    public static ObservableCollection<TrackWindowItem> ActiveWindows { get; } = new();
 
     /// <summary>
     /// Tracks a specified window and removes it from the active list when closed.
     /// </summary>
     /// <param name="window">The window to be tracked for its closed event.</param>
-    public static void TrackWindow(Microsoft.UI.Xaml.Window window)
+    public static void TrackWindow(Window window)
     {
         window.Closed -= RemoveWindow;
         window.Closed += RemoveWindow;
 
         void RemoveWindow(object sender, WindowEventArgs e)
         {
-            ActiveWindows.Remove(window);
+            var item = ActiveWindows.FirstOrDefault(x => x.Window.Equals(window));
+            if (item != null)
+            {
+                ActiveWindows.Remove(item);
+            }
         }
 
-        ActiveWindows.AddIfNotExists(window);
+        ActiveWindows.AddIfNotExists(new TrackWindowItem
+        {
+            Window = window,
+            Dispatcher = new Dispatcher(window)
+        });
     }
 
     /// <summary>
@@ -37,18 +45,19 @@ public partial class WindowHelper
     /// <param name="window">The window to be removed from the active windows collection.</param>
     public static void RemoveWindowFromTrack(Microsoft.UI.Xaml.Window window)
     {
-        ActiveWindows.DeleteIfExists(window);
+        var item = ActiveWindows.FirstOrDefault(x => x.Window.Equals(window));
+        ActiveWindows.DeleteIfExists(item);
     }
 
     public static Microsoft.UI.Xaml.Window GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
         {
-            foreach (Microsoft.UI.Xaml.Window window in ActiveWindows)
+            foreach (var item in ActiveWindows)
             {
-                if (element.XamlRoot == window.Content.XamlRoot)
+                if (element.XamlRoot == item.Window.Content.XamlRoot)
                 {
-                    return window;
+                    return item.Window;
                 }
             }
         }

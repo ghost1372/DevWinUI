@@ -1,25 +1,25 @@
 ﻿namespace DevWinUI;
+
 public interface IThemeService
 {
-    delegate void ActualThemeChangedEventHandler(FrameworkElement sender, object args);
-    event ActualThemeChangedEventHandler ActualThemeChanged;
+    bool IsDark { get; }
+    ElementTheme ElementTheme { get; }
+    ElementTheme ActualTheme { get; }
+    BackdropType BackdropType { get; }
 
+    Task<bool> SetElementThemeAsync(ElementTheme theme);
+    Task<bool> SetElementThemeWithoutSaveAsync(ElementTheme theme);
+    Task<bool> SetElementThemeWithoutSaveAsync();
+    Task<bool> SetBackdropTypeAsync(BackdropType backdropType);
+    Task<bool> SetBackdropTypeWithoutSaveAsync(BackdropType backdropType);
+    Task<bool> SetBackdropTypeWithoutSaveAsync();
+
+    AcrylicSystemBackdrop GetAcrylicSystemBackdrop();
+    MicaSystemBackdrop GetMicaSystemBackdrop();
     SystemBackdrop GetSystemBackdrop();
-    SystemBackdrop GetSystemBackdrop(BackdropType backdropType);
-    BackdropType GetBackdropType();
-    BackdropType GetBackdropType(SystemBackdrop systemBackdrop);
-    ElementTheme GetElementTheme();
-    ApplicationTheme GetApplicationTheme();
-    ElementTheme GetActualTheme();
 
-    void SetBackdropType(BackdropType backdropType);
-    void SetBackdropTintColor(Color? color);
-    void SetBackdropFallbackColor(Color? color);
-
-    void SetElementTheme(ElementTheme elementTheme);
-    void SetElementThemeWithoutSave(ElementTheme elementTheme);
-
-    bool IsDarkTheme();
+    event EventHandler<ElementTheme> ThemeChanged;
+    event EventHandler<BackdropType> BackdropChanged;
 
     void OnThemeComboBoxSelectionChanged(object sender);
     void SetThemeComboBoxDefaultItem(ComboBox themeComboBox);
@@ -29,27 +29,11 @@ public interface IThemeService
     void SetThemeRadioButtonDefaultItem(Panel ThemePanel);
     void OnBackdropRadioButtonChecked(object sender);
     void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel);
-    void UpdateCaptionButtons();
-    void UpdateCaptionButtons(Microsoft.UI.Xaml.Window window);
-    void ResetBackdropProperties();
-
-    ThemeService AutoInitialize(Microsoft.UI.Xaml.Window window);
-    ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave, string filename);
-    ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave);
-    ThemeService Initialize(Microsoft.UI.Xaml.Window window, string filename);
-    ThemeService Initialize(Microsoft.UI.Xaml.Window window);
-    ThemeService ConfigureBackdrop(BackdropType backdropType, bool force);
+    void Dispose();
+    ThemeService ConfigureAutoSave(bool isEnabled, string? fileName = null);
+    ThemeService ConfigureElementTheme(ElementTheme theme);
     ThemeService ConfigureBackdrop(BackdropType backdropType);
-    ThemeService ConfigureBackdrop();
-    ThemeService ConfigureTintColor(Color? color, bool force);
-    ThemeService ConfigureTintColor(Color? color);
-    ThemeService ConfigureTintColor();
-    ThemeService ConfigureFallbackColor(Color? color, bool force);
-    ThemeService ConfigureFallbackColor(Color? color);
-    ThemeService ConfigureFallbackColor();
-    ThemeService ConfigureElementTheme(ElementTheme elementTheme, bool force);
-    ThemeService ConfigureElementTheme(ElementTheme elementTheme);
-    ThemeService ConfigureElementTheme();
-    ThemeService EnableRequestedTheme();
-    ThemeService AutoUpdateTitleBarCaptionButtonsColor();
+    ThemeService ConfigureBackdrop(BackdropType backdropType, bool isEnabled);
+    ThemeService ConfigureBackdrop(bool isEnabled);
+    ThemeService Initialize(Window window);
 }

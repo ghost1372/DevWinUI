@@ -1,142 +1,33 @@
 ﻿namespace DevWinUI;
 public partial class ThemeService
 {
-    private bool _isInitialized;
-    public ThemeService AutoInitialize(Microsoft.UI.Xaml.Window window)
+    public ThemeService ConfigureAutoSave(bool isEnabled, string? fileName = null)
     {
-        AutoInitializeBase(window);
-
-        _isInitialized = true;
-
-        return this; // Enable chaining
-    }
-    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave, string filename)
-    {
-        InitializeBase(window, useAutoSave, filename);
-
-        _isInitialized = true;
-
-        return this; // Enable chaining
+        _useAutoSave = isEnabled;
+        _userDefinedFileName = fileName;
+        return this;
     }
 
-    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, bool useAutoSave)
+    public ThemeService ConfigureElementTheme(ElementTheme theme)
     {
-        InitializeBase(window, useAutoSave, null);
-
-        _isInitialized = true;
-
-        return this; // Enable chaining
-    }
-    public ThemeService Initialize(Microsoft.UI.Xaml.Window window, string filename)
-    {
-        InitializeBase(window, true, filename);
-
-        _isInitialized = true;
-
-        return this; // Enable chaining
-    }
-    public ThemeService Initialize(Microsoft.UI.Xaml.Window window)
-    {
-        InitializeBase(window, true, null);
-
-        _isInitialized = true;
-
-        return this; // Enable chaining
-    }
-
-    public ThemeService ConfigureBackdrop(BackdropType backdropType, bool force)
-    {
-        EnsureInitialized();
-        ConfigBackdropBase(backdropType, force);
+        _userDefinedTheme = theme;
         return this;
     }
     public ThemeService ConfigureBackdrop(BackdropType backdropType)
     {
-        EnsureInitialized();
-        ConfigBackdropBase(backdropType, false);
+        _userDefinedBackdrop = backdropType;
         return this;
     }
-    public ThemeService ConfigureBackdrop()
+    public ThemeService ConfigureBackdrop(BackdropType backdropType, bool isEnabled)
     {
-        EnsureInitialized();
-        ConfigBackdropBase(BackdropType.Mica, false);
+        _isBackdropEnabled = isEnabled;
+        _userDefinedBackdrop = backdropType;
         return this;
     }
-    public ThemeService ConfigureTintColor(Color? color, bool force)
+    public ThemeService ConfigureBackdrop(bool isEnabled)
     {
-        EnsureInitialized();
-        ConfigTintColorBase(color, force);
+        _isBackdropEnabled = isEnabled;
         return this;
-    }
-    public ThemeService ConfigureTintColor(Color? color)
-    {
-        EnsureInitialized();
-        ConfigTintColorBase(color, false);
-        return this;
-    }
-    public ThemeService ConfigureTintColor()
-    {
-        EnsureInitialized();
-        ConfigTintColorBase();
-        return this;
-    }
-    public ThemeService ConfigureFallbackColor(Color? color, bool force)
-    {
-        EnsureInitialized();
-        ConfigFallbackColorBase(color, force);
-        return this;
-    }
-    public ThemeService ConfigureFallbackColor(Color? color)
-    {
-        EnsureInitialized();
-        ConfigFallbackColorBase(color, false);
-        return this;
-    }
-    public ThemeService ConfigureFallbackColor()
-    {
-        EnsureInitialized();
-        ConfigFallbackColorBase();
-        return this;
-    }
-    public ThemeService ConfigureElementTheme(ElementTheme elementTheme, bool force)
-    {
-        EnsureInitialized();
-        ConfigElementThemeBase(elementTheme, force);
-        return this;
-    }
-    public ThemeService ConfigureElementTheme(ElementTheme elementTheme)
-    {
-        EnsureInitialized();
-        ConfigElementThemeBase(elementTheme, false);
-        return this;
-    }
-    public ThemeService ConfigureElementTheme()
-    {
-        EnsureInitialized();
-        ConfigElementThemeBase(ElementTheme.Default, false);
-        return this;
-    }
-
-    /// <summary>
-    /// This method enables the ability to use the Application.Current.RequestedTheme.
-    /// </summary>
-    /// <returns></returns>
-    public ThemeService EnableRequestedTheme()
-    {
-        EnableRequestedThemeBase();
-        return this;
-    }
-
-    public ThemeService AutoUpdateTitleBarCaptionButtonsColor()
-    {
-        EnsureInitialized();
-        useAutoUpdateTitleBarCaptionButtonsColor = true;
-        return this;
-    }
-    private void EnsureInitialized()
-    {
-        if (!_isInitialized)
-            throw new InvalidOperationException("Service must be initialized before configuration.");
     }
 }
 

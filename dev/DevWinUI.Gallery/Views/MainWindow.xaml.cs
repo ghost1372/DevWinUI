@@ -34,7 +34,7 @@ public sealed partial class MainWindow : Window
 
     private void ThemeButton_Click(object sender, RoutedEventArgs e)
     {
-        ThemeService.ChangeThemeWithoutSave(App.MainWindow);
+        App.Current.ThemeService.SetElementThemeWithoutSaveAsync();
     }
 
     private void OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

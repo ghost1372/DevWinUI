@@ -45,11 +45,7 @@ public partial class App : Application
     {
         MainWindow = new MainWindow();
 
-        if (this.ThemeService != null)
-        {
-            this.ThemeService.AutoInitialize(MainWindow)
-                .AutoUpdateTitleBarCaptionButtonsColor();
-        }
+        this.ThemeService.Initialize(MainWindow);
 
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
         MainWindow.AppWindow.SetIcon("Assets/icon.ico");
