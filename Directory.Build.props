@@ -43,7 +43,7 @@
     <RootNamespace>$(BaseNamespace)</RootNamespace>
 
     <ImplicitUsings>true</ImplicitUsings>
-    <LangVersion>Latest</LangVersion>
+    <LangVersion>Preview</LangVersion>
     <IsAotCompatible>true</IsAotCompatible>
     <CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
