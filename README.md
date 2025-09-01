@@ -113,6 +113,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ AncestorBindingExtension
  - ✨ AnimationExtensions
  - ✨ CompositionAnimationController
  - ✨ FilePicker, SavePicker and FolderPicker which is working in Elevated, Packaged, UnPackaged and AOT apps.
@@ -123,6 +124,7 @@ If you encounter any issues or have feedback, please report them [here](https://
  - ✨ ColorBrightness
  - ✨ RichTextFormatter
  - ✨ Converter
+ - ✨ Markup Extensions
  - ✨ Extensions
  - ✨ Helpers
  - ✨ NavigationService
