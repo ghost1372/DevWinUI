@@ -87,7 +87,6 @@ public partial class MessageBox
             SystemBackdrop = options.SystemBackdrop,
             RequestedTheme = theme,
             Underlay = options.Underlay,
-            UnderlaySmokeLayer = options.UnderlaySmokeLayer,
             UnderlaySystemBackdrop = options.UnderlaySystemBackdrop,
             HasTitleBar = options.HasTitleBar,
             FlowDirection = options.FlowDirection,

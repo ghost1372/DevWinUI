@@ -12,7 +12,6 @@ public partial class MessageBoxOptions
     public MessageBoxIcon Icon { get; set; } = MessageBoxIcon.None;
     public UnderlayMode Underlay { get; set; } = UnderlayMode.SmokeLayer;
     public UnderlaySystemBackdropOptions UnderlaySystemBackdrop { get; set; } = new UnderlaySystemBackdropOptions();
-    public UnderlaySmokeLayerOptions UnderlaySmokeLayer { get; set; } = new UnderlaySmokeLayerOptions();
 
     public bool IsModal { get; set; }
     public bool IsResizable { get; set; }

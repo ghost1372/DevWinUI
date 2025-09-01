@@ -2,34 +2,142 @@
 
 namespace DevWinUI;
 
-internal sealed partial class ContentDialogContent : ContentControl
+[TemplatePart(Name = nameof(PrimaryButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(SecondaryButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(CloseButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(TitleArea), Type = typeof(UIElement))]
+[TemplatePart(Name = nameof(DialogSpace), Type = typeof(Grid))]
+[TemplatePart(Name = nameof(CommandSpace), Type = typeof(Grid))]
+[TemplateVisualState(Name = "AllVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "NoneVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "PrimaryVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "SecondaryVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "CloseVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "PrimaryAndSecondaryVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "PrimaryAndCloseVisible", GroupName = "ButtonsVisibilityStates")]
+[TemplateVisualState(Name = "SecondaryAndCloseVisible", GroupName = "ButtonsVisibilityStates")]
+public partial class ContentDialogContent : ContentControl
 {
     public ContentDialogContent() : base()
     {
         DefaultStyleKey = typeof(ContentDialogContent);
-        Unloaded += (o, e) => needsCustomMeasure = false;
+        Loaded += OnLoaded;
+        Unloaded += (o, e) => isCustomMeasureFinishedAfterLoaded = false;
     }
 
-    private Button PrimaryButton;
-    private Button SecondaryButton;
-    private Button CloseButton;
+    #region properties
+    public object? Title
+    {
+        get { return (object?)GetValue(TitleProperty); }
+        set { SetValue(TitleProperty, value); }
+    }
 
-    public event RoutedEventHandler? PrimaryButtonClick;
-    public event RoutedEventHandler? SecondaryButtonClick;
-    public event RoutedEventHandler? CloseButtonClick;
+    public static readonly DependencyProperty TitleProperty =
+        DependencyProperty.Register(nameof(Title), typeof(object), typeof(ContentDialogContent), new PropertyMetadata(null));
+
+    public DataTemplate? TitleTemplate
+    {
+        get { return (DataTemplate?)GetValue(TitleTemplateProperty); }
+        set { SetValue(TitleTemplateProperty, value); }
+    }
+
+    public static readonly DependencyProperty TitleTemplateProperty =
+        DependencyProperty.Register(nameof(TitleTemplate), typeof(DataTemplate), typeof(ContentDialogContent), new PropertyMetadata(null));
+
+    public string? PrimaryButtonText
+    {
+        get { return (string?)GetValue(PrimaryButtonTextProperty); }
+        set { SetValue(PrimaryButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty PrimaryButtonTextProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonText), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null, OnButtonTextChanged));
+
+    public string? SecondaryButtonText
+    {
+        get { return (string?)GetValue(SecondaryButtonTextProperty); }
+        set { SetValue(SecondaryButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty SecondaryButtonTextProperty =
+        DependencyProperty.Register(nameof(SecondaryButtonText), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null, OnButtonTextChanged));
+
+    public string? CloseButtonText
+    {
+        get { return (string?)GetValue(CloseButtonTextProperty); }
+        set { SetValue(CloseButtonTextProperty, value); }
+    }
+
+    public static readonly DependencyProperty CloseButtonTextProperty =
+        DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null, OnButtonTextChanged));
+
+    public bool IsPrimaryButtonEnabled
+    {
+        get { return (bool)GetValue(IsPrimaryButtonEnabledProperty); }
+        set { SetValue(IsPrimaryButtonEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsPrimaryButtonEnabledProperty =
+        DependencyProperty.Register(nameof(IsPrimaryButtonEnabled), typeof(bool), typeof(ContentDialogContent), new PropertyMetadata(true));
+
+    public bool IsSecondaryButtonEnabled
+    {
+        get { return (bool)GetValue(IsSecondaryButtonEnabledProperty); }
+        set { SetValue(IsSecondaryButtonEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsSecondaryButtonEnabledProperty =
+        DependencyProperty.Register(nameof(IsSecondaryButtonEnabled), typeof(bool), typeof(ContentDialogContent), new PropertyMetadata(true));
+
+    public ContentDialogButton DefaultButton
+    {
+        get { return (ContentDialogButton)GetValue(DefaultButtonProperty); }
+        set { SetValue(DefaultButtonProperty, value); }
+    }
+
+    public static readonly DependencyProperty DefaultButtonProperty =
+        DependencyProperty.Register(nameof(DefaultButton), typeof(ContentDialogButton), typeof(ContentDialogContent), new PropertyMetadata(ContentDialogButton.Close, OnDefaultButtonChanged));
+
+    public Style? PrimaryButtonStyle
+    {
+        get { return (Style?)GetValue(PrimaryButtonStyleProperty); }
+        set { SetValue(PrimaryButtonStyleProperty, value); }
+    }
+
+    public static readonly DependencyProperty PrimaryButtonStyleProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonStyle), typeof(Style), typeof(ContentDialogContent), new PropertyMetadata(DefaultButtonStyle));
+
+    public Style? SecondaryButtonStyle
+    {
+        get { return (Style?)GetValue(SecondaryButtonStyleProperty); }
+        set { SetValue(SecondaryButtonStyleProperty, value); }
+    }
+
+    public static readonly DependencyProperty SecondaryButtonStyleProperty =
+        DependencyProperty.Register(nameof(SecondaryButtonStyle), typeof(Style), typeof(ContentDialogContent), new PropertyMetadata(DefaultButtonStyle));
+
+    public Style? CloseButtonStyle
+    {
+        get { return (Style?)GetValue(CloseButtonStyleProperty); }
+        set { SetValue(CloseButtonStyleProperty, value); }
+    }
+
+    public static readonly DependencyProperty CloseButtonStyleProperty =
+        DependencyProperty.Register(nameof(CloseButtonStyle), typeof(Style), typeof(ContentDialogContent), new PropertyMetadata(DefaultButtonStyle));
+    #endregion
+
+    public event TypedEventHandler<ContentDialogContent, EventArgs>? PrimaryButtonClick;
+    public event TypedEventHandler<ContentDialogContent, EventArgs>? SecondaryButtonClick;
+    public event TypedEventHandler<ContentDialogContent, EventArgs>? CloseButtonClick;
 
     public UIElement TitleArea { get; private set; }
     public Grid DialogSpace { get; private set; }
     public Grid CommandSpace { get; private set; }
 
-    /// <summary>
-    /// Whether customized measurement in MeasureOverride is needed.
-    /// <br/>
-    /// This variable is set to avoid redundant calculations.
-    /// <br/>
-    /// If the first measurement after Loaded is finished, there will be no need for customized measurement until Unloaded.
-    /// </summary>
-    private bool needsCustomMeasure;
+    private Button PrimaryButton;
+    private Button SecondaryButton;
+    private Button CloseButton;
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -42,20 +150,30 @@ internal sealed partial class ContentDialogContent : ContentControl
         SecondaryButton = (Button)GetTemplateChild(nameof(SecondaryButton));
         CloseButton = (Button)GetTemplateChild(nameof(CloseButton));
 
-        PrimaryButton.Click += PrimaryButtonClick;
-        SecondaryButton.Click += SecondaryButtonClick;
-        CloseButton.Click += CloseButtonClick;
+        PrimaryButton.Click += (sender, args) => PrimaryButtonClick?.Invoke(this, EventArgs.Empty);
+        SecondaryButton.Click += (sender, args) => SecondaryButtonClick?.Invoke(this, EventArgs.Empty);
+        CloseButton.Click += (sender, args) => CloseButtonClick?.Invoke(this, EventArgs.Empty);
+    }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
         buttonsVisibilityState = DetermineButtonsVisibilityState();
         defaultButtonState = DetermineDefaultButtonState();
     }
+
+    private bool isCustomMeasureFinishedAfterLoaded;
+
     protected override Size MeasureOverride(Size availableSize)
     {
-        if (needsCustomMeasure)
+        if (isCustomMeasureFinishedAfterLoaded)
             return base.MeasureOverride(availableSize);
 
-        needsCustomMeasure = IsLoaded;
+        isCustomMeasureFinishedAfterLoaded = IsLoaded;
+        return CustomMeasure(availableSize);
+    }
 
+    private Size CustomMeasure(Size availableSize)
+    {
         int countButtons = 0;
         double buttonLongestWidth = 0.0;
         double buttonMaxWidth = (double)Application.Current.Resources["ContentDialogButtonMaxWidth"];
@@ -95,6 +213,26 @@ internal sealed partial class ContentDialogContent : ContentControl
         }
         return desiredSize;
     }
+
+    private static void OnButtonTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ContentDialogContent self = (ContentDialogContent)d;
+        if (self.IsLoaded)
+        {
+            self.buttonsVisibilityState = self.DetermineButtonsVisibilityState();
+            self.isCustomMeasureFinishedAfterLoaded = false;
+        }
+    }
+
+    private static void OnDefaultButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ContentDialogContent self = (ContentDialogContent)d;
+        if (self.IsLoaded)
+        {
+            self.defaultButtonState = self.DetermineDefaultButtonState();
+        }
+    }
+
     public void AfterGotFocus()
     {
         VisualStateManager.GoToState(this, defaultButtonState, false);
@@ -107,6 +245,7 @@ internal sealed partial class ContentDialogContent : ContentControl
 
     private string buttonsVisibilityState = string.Empty;
     private string defaultButtonState = string.Empty;
+
     private string DetermineButtonsVisibilityState()
     {
         if (!string.IsNullOrEmpty(PrimaryButtonText) && !string.IsNullOrEmpty(SecondaryButtonText) && !string.IsNullOrEmpty(CloseButtonText))
@@ -191,170 +330,5 @@ internal sealed partial class ContentDialogContent : ContentControl
         }
     }
 
-    #region Title Property
-    public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register(
-            nameof(Title),
-            typeof(object),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(default(string)));
-
-    public object? Title
-    {
-        get => (object?)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
-    }
-    #endregion
-
-    #region TitleTemplate Property
-    public static readonly DependencyProperty TitleTemplateProperty =
-        DependencyProperty.Register(
-            nameof(TitleTemplate),
-            typeof(DataTemplate),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(default(DataTemplate)));
-
-    public DataTemplate? TitleTemplate
-    {
-        get => (DataTemplate?)GetValue(TitleTemplateProperty);
-        set => SetValue(TitleTemplateProperty, value);
-    }
-    #endregion
-
-    #region PrimaryButtonText Property
-    public static readonly DependencyProperty PrimaryButtonTextProperty =
-        DependencyProperty.Register(
-            nameof(PrimaryButtonText),
-            typeof(string),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(default(string)));
-
-    public string? PrimaryButtonText
-    {
-        get => (string?)GetValue(PrimaryButtonTextProperty);
-        set => SetValue(PrimaryButtonTextProperty, value);
-    }
-    #endregion
-
-    #region SecondaryButtonText Property
-    public static readonly DependencyProperty SecondaryButtonTextProperty =
-        DependencyProperty.Register(
-            nameof(SecondaryButtonText),
-            typeof(string),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(default(string)));
-
-    public string? SecondaryButtonText
-    {
-        get => (string?)GetValue(SecondaryButtonTextProperty);
-        set => SetValue(SecondaryButtonTextProperty, value);
-    }
-    #endregion
-
-    #region CloseButtonText Property
-    public static readonly DependencyProperty CloseButtonTextProperty =
-        DependencyProperty.Register(
-            nameof(CloseButtonText),
-            typeof(string),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(default(string)));
-
-    public string? CloseButtonText
-    {
-        get => (string?)GetValue(CloseButtonTextProperty);
-        set => SetValue(CloseButtonTextProperty, value);
-    }
-    #endregion
-
-    #region IsPrimaryButtonEnabled Property
-    public static readonly DependencyProperty IsPrimaryButtonEnabledProperty =
-        DependencyProperty.Register(
-            nameof(IsPrimaryButtonEnabled),
-            typeof(bool),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(true));
-
-    public bool IsPrimaryButtonEnabled
-    {
-        get => (bool)GetValue(IsPrimaryButtonEnabledProperty);
-        set => SetValue(IsPrimaryButtonEnabledProperty, value);
-    }
-    #endregion
-
-    #region IsSecondaryButtonEnabled Property
-    public static readonly DependencyProperty IsSecondaryButtonEnabledProperty =
-        DependencyProperty.Register(
-            nameof(IsSecondaryButtonEnabled),
-            typeof(bool),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(true));
-
-    public bool IsSecondaryButtonEnabled
-    {
-        get => (bool)GetValue(IsSecondaryButtonEnabledProperty);
-        set => SetValue(IsSecondaryButtonEnabledProperty, value);
-    }
-    #endregion
-
-    #region DefaultButton Property
-    public static readonly DependencyProperty DefaultButtonProperty =
-        DependencyProperty.Register(
-            nameof(DefaultButton),
-            typeof(ContentDialogButton),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(ContentDialogButton.Close));
-
-    public ContentDialogButton DefaultButton
-    {
-        get => (ContentDialogButton)GetValue(DefaultButtonProperty);
-        set => SetValue(DefaultButtonProperty, value);
-    }
-    #endregion
-
-    #region PrimaryButtonStyle Property
-    public static readonly DependencyProperty PrimaryButtonStyleProperty =
-        DependencyProperty.Register(
-            nameof(PrimaryButtonStyle),
-            typeof(Style),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(DefaultButtonStyle));
-
-    public Style? PrimaryButtonStyle
-    {
-        get => (Style?)GetValue(PrimaryButtonStyleProperty);
-        set => SetValue(PrimaryButtonStyleProperty, value);
-    }
-    #endregion
-
-    #region SecondaryButtonStyle Property
-    public static readonly DependencyProperty SecondaryButtonStyleProperty =
-        DependencyProperty.Register(
-            nameof(SecondaryButtonStyle),
-            typeof(Style),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(DefaultButtonStyle));
-
-    public Style? SecondaryButtonStyle
-    {
-        get => (Style?)GetValue(SecondaryButtonStyleProperty);
-        set => SetValue(SecondaryButtonStyleProperty, value);
-    }
-    #endregion
-
-    #region CloseButtonStyle Property
-    public static readonly DependencyProperty CloseButtonStyleProperty =
-        DependencyProperty.Register(
-            nameof(CloseButtonStyle),
-            typeof(Style),
-            typeof(ContentDialogContent),
-            new PropertyMetadata(DefaultButtonStyle));
-
-    public Style? CloseButtonStyle
-    {
-        get => (Style?)GetValue(CloseButtonStyleProperty);
-        set => SetValue(CloseButtonStyleProperty, value);
-    }
-    #endregion
-
-    private static Style DefaultButtonStyle => (Style)Application.Current.Resources["DefaultButtonStyle"];
+    private static Style DefaultButtonStyle => field ??= (Style)Application.Current.Resources["DefaultButtonStyle"];
 }

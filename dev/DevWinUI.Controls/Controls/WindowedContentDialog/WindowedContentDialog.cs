@@ -1,111 +1,443 @@
-﻿using Microsoft.UI.Windowing;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
-public partial class WindowedContentDialog : StandaloneContentDialogBase
+[ContentProperty(Name = nameof(Content))]
+public partial class WindowedContentDialog : Control, IStandaloneContentDialog
 {
     private Rectangle smokeLayerCache;
     private Border backdropLayerCache;
-    public string? WindowTitle { get; set; }
-    public SystemBackdrop? SystemBackdrop { get; set; } = new MicaBackdrop();
+    public WindowedContentDialog()
+    {
+        DefaultStyleKey = typeof(WindowedContentDialog);
+        ContentDialogContent = new ContentDialogContent();
+        InitializeRelayDependencyProperties();
+    }
 
-    public bool CenterInParent { get; set; } = true;
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? PrimaryButtonClick;
+    private void InitializeContentDialogWindow()
+    {
+        ContentDialogWindow = ContentDialogWindow.CreateWithoutComponent();
+        ContentDialogWindow.InitializeComponent(ContentDialogContent);
+        ContentDialogWindow.RequestedTheme = DetermineTheme();
+        ContentDialogWindow.Title = WindowTitle;
+        ContentDialogWindow.SystemBackdrop = SystemBackdrop;
+        ContentDialogWindow.PrimaryButtonClick += (sender, args) => PrimaryButtonClick?.Invoke(this, args);
+        ContentDialogWindow.SecondaryButtonClick += (sender, args) => SecondaryButtonClick?.Invoke(this, args);
+        ContentDialogWindow.CloseButtonClick += (sender, args) => CloseButtonClick?.Invoke(this, args);
+    }
 
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? SecondaryButtonClick;
+    public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? PrimaryButtonClick;
+    public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? SecondaryButtonClick;
+    public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? CloseButtonClick;
 
-    public event TypedEventHandler<ContentDialogWindow, ContentDialogWindowButtonClickEventArgs>? CloseButtonClick;
-    public event TypedEventHandler<ContentDialogWindow, EventArgs>? Loaded;
-    public event TypedEventHandler<ContentDialogWindow, WindowEventArgs>? Closed;
+    #region properties
 
-    public Window? OwnerWindow { get; set; }
-    public bool HasTitleBar { get; set; } = true;
-    public bool IsResizable { get; set; }
-    public override Task<ContentDialogResult> ShowAsync() => ShowAsync(isModal: true);
+    public object? Title
+    {
+        get => (object?)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+        nameof(Title),
+        typeof(object),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.Title = (object?)e.NewValue;
+        })
+    );
+
+    public object? Content
+    {
+        get => (object?)GetValue(ContentProperty);
+        set => SetValue(ContentProperty, value);
+    }
+
+    public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
+        nameof(Content),
+        typeof(object),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.Content = (object?)e.NewValue;
+        })
+    );
+
+    public string? PrimaryButtonText
+    {
+        get => (string?)GetValue(PrimaryButtonTextProperty);
+        set => SetValue(PrimaryButtonTextProperty, value);
+    }
+
+    public static readonly DependencyProperty PrimaryButtonTextProperty = DependencyProperty.Register(
+        nameof(PrimaryButtonText),
+        typeof(string),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.PrimaryButtonText = (string?)e.NewValue;
+        })
+    );
+
+    public string? SecondaryButtonText
+    {
+        get => (string?)GetValue(SecondaryButtonTextProperty);
+        set => SetValue(SecondaryButtonTextProperty, value);
+    }
+
+    public static readonly DependencyProperty SecondaryButtonTextProperty = DependencyProperty.Register(
+        nameof(SecondaryButtonText),
+        typeof(string),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.SecondaryButtonText = (string?)e.NewValue;
+        })
+    );
+
+    public string? CloseButtonText
+    {
+        get => (string?)GetValue(CloseButtonTextProperty);
+        set => SetValue(CloseButtonTextProperty, value);
+    }
+
+    public static readonly DependencyProperty CloseButtonTextProperty = DependencyProperty.Register(
+        nameof(CloseButtonText),
+        typeof(string),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.CloseButtonText = (string?)e.NewValue;
+        })
+    );
+
+    public DataTemplate? TitleTemplate
+    {
+        get => (DataTemplate)GetValue(TitleTemplateProperty);
+        set => SetValue(TitleTemplateProperty, value);
+    }
+
+    public static readonly DependencyProperty TitleTemplateProperty = DependencyProperty.Register(
+        nameof(TitleTemplate),
+        typeof(DataTemplate),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(DataTemplate), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.TitleTemplate = (DataTemplate)e.NewValue;
+        })
+    );
+
+    public DataTemplate? ContentTemplate
+    {
+        get => (DataTemplate)GetValue(ContentTemplateProperty);
+        set => SetValue(ContentTemplateProperty, value);
+    }
+
+    public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register(
+        nameof(ContentTemplate),
+        typeof(DataTemplate),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(DataTemplate), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.ContentTemplate = (DataTemplate)e.NewValue;
+        })
+    );
+
+    public DataTemplateSelector? ContentTemplateSelector
+    {
+        get => (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty);
+        set => SetValue(ContentTemplateSelectorProperty, value);
+    }
+
+    public static readonly DependencyProperty ContentTemplateSelectorProperty = DependencyProperty.Register(
+        nameof(ContentTemplateSelector),
+        typeof(DataTemplateSelector),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(DataTemplateSelector), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.ContentTemplateSelector = (DataTemplateSelector)e.NewValue;
+        })
+    );
+
+    public ContentDialogButton DefaultButton
+    {
+        get => (ContentDialogButton)GetValue(DefaultButtonProperty);
+        set => SetValue(DefaultButtonProperty, value);
+    }
+
+    public static readonly DependencyProperty DefaultButtonProperty = DependencyProperty.Register(
+        nameof(DefaultButton),
+        typeof(ContentDialogButton),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(ContentDialogButton), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.DefaultButton = (ContentDialogButton)e.NewValue;
+        })
+    );
+
+    public bool IsPrimaryButtonEnabled
+    {
+        get => (bool)GetValue(IsPrimaryButtonEnabledProperty);
+        set => SetValue(IsPrimaryButtonEnabledProperty, value);
+    }
+
+    public static readonly DependencyProperty IsPrimaryButtonEnabledProperty = DependencyProperty.Register(
+        nameof(IsPrimaryButtonEnabled),
+        typeof(bool),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(false, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.IsPrimaryButtonEnabled = (bool)e.NewValue;
+        })
+    );
+
+    public bool IsSecondaryButtonEnabled
+    {
+        get => (bool)GetValue(IsSecondaryButtonEnabledProperty);
+        set => SetValue(IsSecondaryButtonEnabledProperty, value);
+    }
+
+    public static readonly DependencyProperty IsSecondaryButtonEnabledProperty = DependencyProperty.Register(
+        nameof(IsSecondaryButtonEnabled),
+        typeof(bool),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(false, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.IsSecondaryButtonEnabled = (bool)e.NewValue;
+        })
+    );
+
+    public Style? PrimaryButtonStyle
+    {
+        get => (Style)GetValue(PrimaryButtonStyleProperty);
+        set => SetValue(PrimaryButtonStyleProperty, value);
+    }
+
+    public static readonly DependencyProperty PrimaryButtonStyleProperty = DependencyProperty.Register(
+        nameof(PrimaryButtonStyle),
+        typeof(Style),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(Style), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.PrimaryButtonStyle = (Style)e.NewValue;
+        })
+    );
+
+    public Style? SecondaryButtonStyle
+    {
+        get => (Style)GetValue(SecondaryButtonStyleProperty);
+        set => SetValue(SecondaryButtonStyleProperty, value);
+    }
+
+    public static readonly DependencyProperty SecondaryButtonStyleProperty = DependencyProperty.Register(
+        nameof(SecondaryButtonStyle),
+        typeof(Style),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(Style), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.SecondaryButtonStyle = (Style)e.NewValue;
+        })
+    );
+
+    public Style? CloseButtonStyle
+    {
+        get => (Style)GetValue(CloseButtonStyleProperty);
+        set => SetValue(CloseButtonStyleProperty, value);
+    }
+
+    public static readonly DependencyProperty CloseButtonStyleProperty = DependencyProperty.Register(
+        nameof(CloseButtonStyle),
+        typeof(Style),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(Style), (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.CloseButtonStyle = (Style)e.NewValue;
+        })
+    );
 
     /// <summary>
-    /// Displays a dialog window and returns the user's selection when it is closed.
+    /// Generated by RelayDependencyPropertyGenerator.
     /// <br/>
-    /// No need to worry—once the window is closed, it is no longer part of the visual tree.
-    /// Note: A FrameworkElement cannot be shared across multiple parents.
-    /// If the DialogContent is a FrameworkElement, it must not already be owned by another parent—for example, using `new MainWindow().DialogContent`.
-    /// This popup can only be shown once before the DialogContent is changed again, because each dialog instance creates a new window, and sharing the same FrameworkElement across multiple windows is not allowed.
+    /// Sync value from target properties to relay dependency properties.
+    /// <br/>
+    /// Please invoke this after target properties object is prepared to be accessed.
     /// </summary>
-    /// <param name="isModal">
-    /// Whether to block the owner window. Defaults to true, but has no effect if OwnerWindow is null—will still display as a normal (non-modal) window.
-    /// </param>
-    /// <returns>The result of the user's choice.</returns>
+    private void InitializeRelayDependencyProperties()
+    {
+        Title = ContentDialogContent.Title;
+
+        Content = ContentDialogContent.Content;
+
+        PrimaryButtonText = ContentDialogContent.PrimaryButtonText;
+
+        SecondaryButtonText = ContentDialogContent.SecondaryButtonText;
+
+        CloseButtonText = ContentDialogContent.CloseButtonText;
+
+        TitleTemplate = ContentDialogContent.TitleTemplate;
+
+        ContentTemplate = ContentDialogContent.ContentTemplate;
+
+        ContentTemplateSelector = ContentDialogContent.ContentTemplateSelector;
+
+        DefaultButton = ContentDialogContent.DefaultButton;
+
+        IsPrimaryButtonEnabled = ContentDialogContent.IsPrimaryButtonEnabled;
+
+        IsSecondaryButtonEnabled = ContentDialogContent.IsSecondaryButtonEnabled;
+
+        PrimaryButtonStyle = ContentDialogContent.PrimaryButtonStyle;
+
+        SecondaryButtonStyle = ContentDialogContent.SecondaryButtonStyle;
+
+        CloseButtonStyle = ContentDialogContent.CloseButtonStyle;
+    }
+    public UnderlayMode Underlay
+    {
+        get { return (UnderlayMode)GetValue(UnderlayProperty); }
+        set { SetValue(UnderlayProperty, value); }
+    }
+
+    public static readonly DependencyProperty UnderlayProperty =
+        DependencyProperty.Register(nameof(Underlay), typeof(UnderlayMode), typeof(WindowedContentDialog), new PropertyMetadata(UnderlayMode.SmokeLayer));
+
+    public UnderlaySystemBackdropOptions UnderlaySystemBackdrop
+    {
+        get { return (UnderlaySystemBackdropOptions)GetValue(UnderlaySystemBackdropProperty); }
+        set { SetValue(UnderlaySystemBackdropProperty, value); }
+    }
+
+    public static readonly DependencyProperty UnderlaySystemBackdropProperty =
+        DependencyProperty.Register(nameof(UnderlaySystemBackdrop), typeof(UnderlaySystemBackdropOptions), typeof(WindowedContentDialog), new PropertyMetadata(new UnderlaySystemBackdropOptions()));
+
+    public string? WindowTitle
+    {
+        get => (string?)GetValue(WindowTitleProperty);
+        set => SetValue(WindowTitleProperty, value);
+    }
+
+    public static readonly DependencyProperty WindowTitleProperty = DependencyProperty.Register(
+        nameof(WindowTitle),
+        typeof(string),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(null)
+    );
+
+    public SystemBackdrop? SystemBackdrop
+    {
+        get => (SystemBackdrop)GetValue(SystemBackdropProperty);
+        set => SetValue(SystemBackdropProperty, value);
+    }
+
+    public static readonly DependencyProperty SystemBackdropProperty = DependencyProperty.Register(
+        nameof(SystemBackdrop),
+        typeof(SystemBackdrop),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(SystemBackdrop))
+    );
+
+    public bool IsResizable
+    {
+        get { return (bool)GetValue(IsResizableProperty); }
+        set { SetValue(IsResizableProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsResizableProperty =
+        DependencyProperty.Register(nameof(IsResizable), typeof(bool), typeof(WindowedContentDialog), new PropertyMetadata(false));
+
+    public bool HasTitleBar
+    {
+        get => (bool)GetValue(HasTitleBarProperty);
+        set => SetValue(HasTitleBarProperty, value);
+    }
+
+    public static readonly DependencyProperty HasTitleBarProperty = DependencyProperty.Register(
+        nameof(HasTitleBar),
+        typeof(bool),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(true)
+    );
+
+    public bool CenterInParent
+    {
+        get => (bool)GetValue(CenterInParentProperty);
+        set => SetValue(CenterInParentProperty, value);
+    }
+
+    public static readonly DependencyProperty CenterInParentProperty = DependencyProperty.Register(
+        nameof(CenterInParent),
+        typeof(bool),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(true)
+    );
+
+    public bool IsModal { get; set; }
+
+    public Window? OwnerWindow { get; set; }
+
+    #endregion
+
+    public ContentDialogResult Result { get; private set; }
+
     public async Task<ContentDialogResult> ShowAsync(bool isModal)
     {
-        ContentDialogWindow dialogWindow = new()
-        {
-            Title = WindowTitle,
-            DialogTitle = Title,
-            DialogContent = Content,
-            HasTitleBar = HasTitleBar,
-            IsResizable = IsResizable,
-
-            PrimaryButtonText = PrimaryButtonText,
-            SecondaryButtonText = SecondaryButtonText,
-            CloseButtonText = CloseButtonText,
-            DefaultButton = DefaultButton,
-            IsPrimaryButtonEnabled = IsPrimaryButtonEnabled,
-            IsSecondaryButtonEnabled = IsSecondaryButtonEnabled,
-
-            PrimaryButtonStyle = PrimaryButtonStyle,
-            SecondaryButtonStyle = SecondaryButtonStyle,
-            CloseButtonStyle = CloseButtonStyle,
-
-            SystemBackdrop = SystemBackdrop,
-            RequestedTheme = RequestedTheme
-        };
-
-        dialogWindow.PrimaryButtonClick += PrimaryButtonClick;
-        dialogWindow.SecondaryButtonClick += SecondaryButtonClick;
-        dialogWindow.CloseButtonClick += CloseButtonClick;
-
-        dialogWindow.SetParent(OwnerWindow, isModal, CenterInParent);
-
-        SetUnderlay(dialogWindow);
-       
-        TaskCompletionSource<ContentDialogResult> resultCompletionSource = new();
-
-        dialogWindow.Loaded += (window, e) =>
-        {
-            Loaded?.Invoke(window, e);
-            window.Open();
-        };
-        dialogWindow.Closed += (o, e) =>
-        {
-            Closed?.Invoke(dialogWindow, e);
-            resultCompletionSource.SetResult(dialogWindow.Result);
-        };
-        return await resultCompletionSource.Task;
+        IsModal = isModal;
+        return await ShowAsync();
     }
-    private void SetUnderlay(ContentDialogWindow dialogWindow)
-    {
-        if (OwnerWindow?.Content?.XamlRoot == null)
-            return;
 
+    public async Task<ContentDialogResult> ShowAsync()
+    {
+        InitializeContentDialogWindow();
+        ContentDialogWindow.SetParent(OwnerWindow, IsModal, CenterInParent);
+        ContentDialogWindow.HasTitleBar = HasTitleBar;
+        ContentDialogWindow.IsResizable = IsResizable;
+
+        SetUnderlay();        
+
+        TaskCompletionSource<ContentDialogResult> resultCompletionSource = new();
+        ContentDialogWindow.Loaded += (window, e) => window.Open();
+        ContentDialogWindow.Closed += (o, e) => resultCompletionSource.SetResult(ContentDialogWindow.Result);
+        Result = await resultCompletionSource.Task;
+        return Result;
+    }
+
+    private void SetUnderlay()
+    {
         switch (Underlay)
         {
             case UnderlayMode.SmokeLayer:
-                HandleSmokeLayer(dialogWindow);
+                HandleSmokeLayer();
                 break;
-
             case UnderlayMode.SystemBackdrop:
-                HandleSystemBackdrop(dialogWindow);
+                HandleSystemBackdrop();
                 break;
         }
     }
-    private void HandleSmokeLayer(ContentDialogWindow dialogWindow)
-    {
-        if (UnderlaySmokeLayer == null || UnderlaySmokeLayer.SmokeLayerKind == WindowedContentDialogSmokeLayerKind.None)
-            return;
 
-        DisableOwnerEvents(dialogWindow);
+    private void HandleSmokeLayer()
+    {
+        if (OwnerWindow?.Content?.XamlRoot == null)
+            return;
 
         var popup = new Popup
         {
@@ -113,31 +445,43 @@ public partial class WindowedContentDialog : StandaloneContentDialogBase
             RequestedTheme = RequestedTheme
         };
 
-        if (UnderlaySmokeLayer.SmokeLayerKind == WindowedContentDialogSmokeLayerKind.Darken)
+        Rectangle darkLayer = new()
         {
-            Rectangle darkLayer = new()
-            {
-                Opacity = 0.0,
-                OpacityTransition = UnderlaySmokeLayer.OpacityTransition,
-                Fill = new SolidColorBrush(SmokeFillColor),
-            };
-            SizeToXamlRoot(darkLayer, OwnerWindow);
-            popup.Child = darkLayer;
-            smokeLayerCache = darkLayer;
-        }
-        else if (UnderlaySmokeLayer.SmokeLayerKind is WindowedContentDialogSmokeLayerKind.Custom && UnderlaySmokeLayer.CustomSmokeLayer != null)
-        {
-            popup.Child = UnderlaySmokeLayer.CustomSmokeLayer;
-        }
+            Opacity = 0.0,
+            OpacityTransition = new ScalarTransition { Duration = TimeSpan.FromSeconds(0.25) },
+            Fill = new SolidColorBrush(SmokeFillColor),
+        };
 
-        AttachPopupLifecycle(dialogWindow, popup, isSmokeLayer: true);
+        SizeToXamlRoot(darkLayer, OwnerWindow);
+        popup.Child = darkLayer;
+        smokeLayerCache = darkLayer;
+
+        ContentDialogWindow.Opened -= DialogOpened;
+        ContentDialogWindow.Opened += DialogOpened;
+
+        ContentDialogWindow.Closed -= DialogClosed;
+        ContentDialogWindow.Closed += DialogClosed;
+
+        void DialogOpened(ContentDialogWindow o, EventArgs e)
+        {
+            popup.IsOpen = true;
+            popup.Child.Opacity = 1.0;
+            OwnerWindow.SizeChanged -= OnOwnerWindowSizeChanged;
+            OwnerWindow.SizeChanged += OnOwnerWindowSizeChanged;
+        }
+        async void DialogClosed(object o, WindowEventArgs e)
+        {
+            popup.Child.Opacity = 0.0;
+            await Task.Delay(popup.Child.OpacityTransition.Duration);
+            popup.IsOpen = false;
+            OwnerWindow.SizeChanged -= OnOwnerWindowSizeChanged;
+        }
     }
-    private void HandleSystemBackdrop(ContentDialogWindow dialogWindow)
-    {
-        if (UnderlaySystemBackdrop == null || UnderlaySystemBackdrop.Backdrop == BackdropType.None)
-            return;
 
-        DisableOwnerEvents(dialogWindow);
+    private void HandleSystemBackdrop()
+    {
+        if (OwnerWindow?.Content?.XamlRoot == null || UnderlaySystemBackdrop == null || UnderlaySystemBackdrop.Backdrop == BackdropType.None)
+            return;
 
         var popup = PopupHelper.CreatePopup(
             OwnerWindow.Content.XamlRoot,
@@ -147,59 +491,27 @@ public partial class WindowedContentDialog : StandaloneContentDialogBase
 
         backdropLayerCache = popup.Child as Border;
         backdropLayerCache.OpacityTransition = UnderlaySystemBackdrop.OpacityTransition;
-        AttachPopupLifecycle(dialogWindow, popup, isSmokeLayer: false);
-    }
 
-    private void DisableOwnerEvents(ContentDialogWindow dialogWindow)
-    {
-        dialogWindow.Opened -= DialogWindow_Opened;
-        dialogWindow.Closed -= DialogWindow_Closed;
+        SizeToXamlRoot(backdropLayerCache, OwnerWindow);
 
-        dialogWindow.Opened += DialogWindow_Opened;
-        dialogWindow.Closed += DialogWindow_Closed;
-    }
+        ContentDialogWindow.Loaded -= DialogLoaded;
+        ContentDialogWindow.Loaded += DialogLoaded;
 
-    private void DialogWindow_Opened(ContentDialogWindow sender, EventArgs e)
-    {
-        if (OwnerWindow.Content is Control control)
-            control.IsEnabled = false;
-    }
+        ContentDialogWindow.Closed -= DialogClosed;
+        ContentDialogWindow.Closed += DialogClosed;
 
-    private void DialogWindow_Closed(object sender, WindowEventArgs e)
-    {
-        if (OwnerWindow.Content is Control control)
-            control.IsEnabled = true;
-    }
-
-    private void AttachPopupLifecycle(ContentDialogWindow dialogWindow, Popup popup, bool isSmokeLayer)
-    {
-        if (isSmokeLayer)
-        {
-            dialogWindow.Opened -= OnDialogWindowOpened;
-            dialogWindow.Opened += OnDialogWindowOpened;
-        }
-        else
-        {
-            dialogWindow.Loaded -= OnDialogWindowOpened;
-            dialogWindow.Loaded += OnDialogWindowOpened;
-        }
-
-        dialogWindow.Closed -= DialogWindow_ClosedPopup;
-        dialogWindow.Closed += DialogWindow_ClosedPopup;
-
-        void OnDialogWindowOpened(object sender, EventArgs e)
+        void DialogLoaded(ContentDialogWindow o, EventArgs e)
         {
             popup.IsOpen = true;
             popup.Child.Opacity = 1.0;
+            OwnerWindow.SizeChanged -= OnOwnerWindowSizeChanged;
             OwnerWindow.SizeChanged += OnOwnerWindowSizeChanged;
         }
-
-        async void DialogWindow_ClosedPopup(object sender, WindowEventArgs e)
+        async void DialogClosed(object o, WindowEventArgs e)
         {
             popup.Child.Opacity = 0.0;
-            await Task.Delay(popup.Child.OpacityTransition?.Duration ?? new TimeSpan(0));
+            await Task.Delay(popup.Child.OpacityTransition.Duration);
             popup.IsOpen = false;
-            popup.Child = null;
             OwnerWindow.SizeChanged -= OnOwnerWindowSizeChanged;
         }
     }
@@ -216,4 +528,50 @@ public partial class WindowedContentDialog : StandaloneContentDialogBase
                 break;
         }
     }
+    /// <summary>
+    /// ElementTheme.Default is treated as following owner window
+    /// </summary>
+    public ElementTheme DetermineTheme()
+    {
+        if (RequestedTheme is not ElementTheme.Default)
+            return RequestedTheme;
+
+        if (OwnerWindow?.Content is FrameworkElement element)
+            return element.ActualTheme;
+
+        return RequestedTheme;
+    }
+
+    protected void SizeToXamlRoot(FrameworkElement element, Window window)
+    {
+        element.Width = window.Content.XamlRoot.Size.Width;
+
+        switch (Underlay)
+        {
+            case UnderlayMode.SmokeLayer:
+                element.Height = window.Content.XamlRoot.Size.Height;
+                break;
+
+            case UnderlayMode.SystemBackdrop:
+                element.Height = UnderlaySystemBackdrop.CoverMode == UnderlayCoverMode.Full ? window.Content.XamlRoot.Size.Height : window.Content.XamlRoot.Size.Height - GetTitleBarOffset(window);
+                break;
+        }
+    }
+
+    public int GetTitleBarOffset(Window window)
+    {
+        return window.AppWindow.TitleBar.PreferredHeightOption switch
+        {
+            TitleBarHeightOption.Standard => 32,
+            TitleBarHeightOption.Tall => 48,
+            _ => 0
+        };
+    }
+
+    [DisallowNull]
+    private ContentDialogContent ContentDialogContent { get; init; }
+    private ContentDialogWindow ContentDialogWindow { get; set; }
+
+    protected static Style DefaultButtonStyle => (Style)Application.Current.Resources["DefaultButtonStyle"];
+    protected static Color SmokeFillColor => (Color)Application.Current.Resources["SmokeFillColorDefault"];
 }

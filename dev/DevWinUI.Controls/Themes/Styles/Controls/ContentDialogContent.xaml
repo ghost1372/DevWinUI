@@ -25,12 +25,11 @@
     <Color x:Key="ContentDialogWindowCommandSpaceBackground">#0F000000</Color>
     <Color x:Key="ContentDialogWindowSeparatorBorderColor">#19000000</Color>
     <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush"
+                     Opacity="0.5"
                      Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
     <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush"
                      Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
 
-    <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}"
-           TargetType="local:ContentDialogContent" />
 
     <Style x:Key="DefaultContentDialogContentStyle"
            TargetType="local:ContentDialogContent">
@@ -244,5 +243,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}"
+           TargetType="local:ContentDialogContent" />
 
 </ResourceDictionary>

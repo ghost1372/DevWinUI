@@ -6525,9 +6525,9 @@ Themes\Styles\Win2D\Watermark.xaml
     </Grid>
   </ControlTemplate>
   <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}" TargetType="local:CompositionShadow" />
-  <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
+  <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Opacity="0.5" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
   <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
-  <Style x:Key="DefaultContentDialogContentStyle" TargetType="local:ContentDialogContent">
+  <Style x:Key="ContentDialogContentDefaultStyle" TargetType="local:ContentDialogContent">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
@@ -6660,6 +6660,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource ContentDialogContentDefaultStyle}" TargetType="local:ContentDialogContent" />
   <Style x:Key="DefaultCopyButtonStyle" TargetType="local:CopyButton">
     <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -7537,7 +7538,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
-  <Style x:Key="DefaultMessageBoxHeaderStyle" TargetType="local:MessageBoxHeader">
+  <Style x:Key="MessageBoxHeaderDefaultStyle" TargetType="local:MessageBoxHeader">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:MessageBoxHeader">
@@ -7598,6 +7599,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource MessageBoxHeaderDefaultStyle}" TargetType="local:MessageBoxHeader" />
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
   <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate" TargetType="local:OutOfBoxPage">
     <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
@@ -10404,7 +10406,6 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ThumbStyle" Value="{StaticResource SliderThumbStyle}" />
     <Setter Property="ShowLineAndThumb" Value="True" />
   </Style>
-  <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}" TargetType="local:ContentDialogContent" />
   <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">
     <Setter Property="Content" Value="" />
   </Style>
@@ -10415,7 +10416,6 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
-  <Style BasedOn="{StaticResource DefaultMessageBoxHeaderStyle}" TargetType="local:MessageBoxHeader" />
   <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">
     <Setter Property="Template" Value="{StaticResource OutOfBoxLeftHeroImageTemplate}" />
     <Setter Property="UseTopHeroImage" Value="False" />
