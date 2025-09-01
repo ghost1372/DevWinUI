@@ -15,6 +15,8 @@ public partial class MessageBoxHeader : Control
     public static readonly DependencyProperty TextProperty =
         DependencyProperty.Register(nameof(Text), typeof(string), typeof(MessageBoxHeader), new PropertyMetadata(null));
 
+
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -23,11 +25,11 @@ public partial class MessageBoxHeader : Control
 
     public MessageBoxIcon Icon
     {
-        get => (MessageBoxIcon)GetValue(IconProperty);
-        set => SetValue(IconProperty, value);
+        get => (MessageBoxIcon)GetValue(ImageProperty);
+        set => SetValue(ImageProperty, value);
     }
 
-    public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
+    public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
         nameof(Icon),
         typeof(MessageBoxIcon),
         typeof(MessageBoxHeader),

@@ -72,6 +72,7 @@ Themes\Styles\Controls\PinBox.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
 Themes\Styles\Controls\RedirectVisualView.xaml
+Themes\Styles\Controls\SelectableTextBlock.xaml
 Themes\Styles\Controls\SelectorBarSegmented.xaml
 Themes\Styles\Controls\SettingsGroup.xaml
 Themes\Styles\Controls\Shield.xaml
@@ -2210,6 +2211,28 @@ Themes\Styles\Win2D\Watermark.xaml
               <Canvas x:Name="ChildHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </Grid>
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultSelectableTextBlockStyle" TargetType="local:SelectableTextBlock">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:SelectableTextBlock">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Border.Resources>
+              <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBackground" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Transparent" />
+              <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBorderBrush" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Transparent" />
+              <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="Transparent" />
+            </Border.Resources>
+            <TextBox MinWidth="0" MinHeight="0" Margin="0" Padding="0" IsReadOnly="True" Text="{TemplateBinding Content}" TextWrapping="{TemplateBinding TextWrapping}" />
+          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -6527,7 +6550,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultCompositionShadowStyle}" TargetType="local:CompositionShadow" />
   <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Opacity="0.5" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
   <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
-  <Style x:Key="ContentDialogContentDefaultStyle" TargetType="local:ContentDialogContent">
+  <Style x:Key="DefaultContentDialogContentStyle" TargetType="local:ContentDialogContent">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
@@ -6660,7 +6683,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style BasedOn="{StaticResource ContentDialogContentDefaultStyle}" TargetType="local:ContentDialogContent" />
+  <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}" TargetType="local:ContentDialogContent" />
   <Style x:Key="DefaultCopyButtonStyle" TargetType="local:CopyButton">
     <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -7538,7 +7561,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
-  <Style x:Key="MessageBoxHeaderDefaultStyle" TargetType="local:MessageBoxHeader">
+  <Style x:Key="DefaultMessageBoxHeaderStyle" TargetType="local:MessageBoxHeader">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:MessageBoxHeader">
@@ -7599,7 +7622,6 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style BasedOn="{StaticResource MessageBoxHeaderDefaultStyle}" TargetType="local:MessageBoxHeader" />
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
   <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate" TargetType="local:OutOfBoxPage">
     <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
@@ -8462,6 +8484,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" TargetType="local:RedirectVisualView" />
+  <Style BasedOn="{StaticResource DefaultSelectableTextBlockStyle}" TargetType="local:SelectableTextBlock" />
   <local:SelectorBarSegmentedMarginConverter x:Name="MarginConverter" LeftItemMargin="{StaticResource SelectorBarLeftItemHoverMargin}" MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverMargin}" RightItemMargin="{StaticResource SelectorBarRightItemHoverMargin}" />
   <local:SelectorBarSegmentedMarginConverter x:Name="VerticalMarginConverter" LeftItemMargin="{StaticResource SelectorBarLeftItemHoverVerticalMargin}" MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverVerticalMargin}" RightItemMargin="{StaticResource SelectorBarRightItemHoverVerticalMargin}" />
   <Style BasedOn="{StaticResource DefaultSelectorBarSegmentedStyle}" TargetType="local:SelectorBarSegmented" />
@@ -10416,6 +10439,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
+  <Style BasedOn="{StaticResource DefaultMessageBoxHeaderStyle}" TargetType="local:MessageBoxHeader" />
   <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">
     <Setter Property="Template" Value="{StaticResource OutOfBoxLeftHeroImageTemplate}" />
     <Setter Property="UseTopHeroImage" Value="False" />

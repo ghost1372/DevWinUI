@@ -1,184 +1,352 @@
 ﻿namespace DevWinUI;
-
-public partial class MessageBox
+public partial class MessageBox : MessageBoxBase
 {
-    public static async Task<MessageBoxResult> ShowAsync(object content)
-        => await ShowAsync(false, null, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title)
-        => await ShowAsync(false, null, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons)
-        => await ShowAsync(false, null, false, content, title, buttons, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
-        => await ShowAsync(false, null, false, content, title, buttons, defaultButton);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, bool isResizable)
-    => await ShowAsync(false, null, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, bool isResizable)
-        => await ShowAsync(false, null, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, bool isResizable)
-        => await ShowAsync(false, null, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(object content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton, bool isResizable)
-        => await ShowAsync(false, null, isResizable, content, title, buttons, defaultButton);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content)
-        => await ShowAsync(isModal, owner, false, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title)
-        => await ShowAsync(isModal, owner, false, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title, MessageBoxButtons buttons)
-        => await ShowAsync(isModal, owner, false, content, title, buttons, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
-        => await ShowAsync(isModal, owner, false, content, title, buttons, defaultButton);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content)
-    => await ShowAsync(isModal, owner, isResizable, content, null, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title)
-        => await ShowAsync(isModal, owner, isResizable, content, title, MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons)
-        => await ShowAsync(isModal, owner, isResizable, content, title, buttons, MessageBoxDefaultButton.Button1);
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton? defaultButton)
-        => await ShowAsync(isModal, owner, isResizable, content, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
-
-    public static async Task<MessageBoxResult> ShowAsync(MessageBoxOptions options)
+    protected MessageBox(bool isModal, Window? owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton, MessageBoxOptions options) : base(message, title, buttons, icon, defaultButton, options)
     {
-        ElementTheme theme;
-        if (options.RequestedTheme is not ElementTheme.Default)
-        {
-            theme = options.RequestedTheme;
-        }
-        else if (options.OwnerWindow is not null)
-        {
-            if (options.OwnerWindow.Content is FrameworkElement root)
-            {
-                theme = root.ActualTheme;
-            }
-            else
-            {
-                theme = options.OwnerWindow.AppWindow.TitleBar.PreferredTheme switch
-                {
-                    Microsoft.UI.Windowing.TitleBarTheme.UseDefaultAppMode => ElementTheme.Default,
-                    Microsoft.UI.Windowing.TitleBarTheme.Light => ElementTheme.Light,
-                    Microsoft.UI.Windowing.TitleBarTheme.Dark => ElementTheme.Dark,
-                    _ => ElementTheme.Default
-                };
-            }
-        }
-        else
-        {
-            theme = ElementTheme.Default;
-        }
-
-        WindowedContentDialog dialog = new()
-        {
-            WindowTitle = options.Title,
-            Title = new MessageBoxHeader { Text = options.Title, Icon = options.Icon },
-            Content = options.Content,
-            OwnerWindow = options.OwnerWindow,
-            SystemBackdrop = options.SystemBackdrop,
-            RequestedTheme = theme,
-            Underlay = options.Underlay,
-            UnderlaySystemBackdrop = options.UnderlaySystemBackdrop,
-            HasTitleBar = options.HasTitleBar,
-            FlowDirection = options.FlowDirection,
-            CenterInParent = options.CenterInParent,
-        };
-
-        ContentDialogButton contentDialogDefaultButton = options.DefaultButton switch
-        {
-            MessageBoxDefaultButton.Button1 => ContentDialogButton.Primary,
-            MessageBoxDefaultButton.Button2 => ContentDialogButton.Secondary,
-            MessageBoxDefaultButton.Button3 => ContentDialogButton.Close,
-            null => ContentDialogButton.None,
-            _ => throw new ArgumentException("MessageBoxDefaultButton defaultButton should be in {Button1=0, Button2=256, Button3=512}")
-        };
-        dialog.DefaultButton = contentDialogDefaultButton;
-
-        switch (options.Buttons)
-        {
-            case MessageBoxButtons.OK:
-                dialog.CloseButtonText = "OK";
-                dialog.DefaultButton = ContentDialogButton.Close;
-                break;
-
-            case MessageBoxButtons.OKCancel:
-                dialog.PrimaryButtonText = "OK";
-                dialog.SecondaryButtonText = "Cancel";
-                break;
-
-            case MessageBoxButtons.YesNo:
-                dialog.PrimaryButtonText = "Yes";
-                dialog.SecondaryButtonText = "No";
-                break;
-
-            case MessageBoxButtons.YesNoCancel:
-                dialog.PrimaryButtonText = "Yes";
-                dialog.SecondaryButtonText = "No";
-                dialog.CloseButtonText = "Cancel";
-                break;
-
-            case MessageBoxButtons.AbortRetryIgnore:
-                dialog.PrimaryButtonText = "Abort";
-                dialog.SecondaryButtonText = "Retry";
-                dialog.CloseButtonText = "Ignore";
-                break;
-
-            case MessageBoxButtons.RetryCancel:
-                dialog.PrimaryButtonText = "Retry";
-                dialog.SecondaryButtonText = "Cancel";
-                break;
-
-            case MessageBoxButtons.CancelTryContinue:
-                dialog.PrimaryButtonText = "Continue";
-                dialog.SecondaryButtonText = "Try again";
-                dialog.CloseButtonText = "Cancel";
-                dialog.DefaultButton = ContentDialogButton.Close;
-                break;
-        }
-
-        ContentDialogResult result = await dialog.ShowAsync(options.IsModal);
-        var results = MessageBoxResultsOf(options.Buttons);
-        return results[result switch
-        {
-            ContentDialogResult.Primary => 0,
-            ContentDialogResult.Secondary => 1,
-            ContentDialogResult.None => results.Length - 1,
-            _ => throw new ArgumentOutOfRangeException(nameof(result)),
-        }];
-    }
-    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, bool isResizable, object? content, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton)
-    {
-        return await ShowAsync(new MessageBoxOptions
-        {
-            IsModal = isModal,
-            OwnerWindow = owner,
-            IsResizable = isResizable,
-            Content = content,
-            Title = title,
-            Buttons = buttons,
-            DefaultButton = defaultButton,
-            Icon = icon
-        });
+        _isModal = isModal;
+        _owner = owner;
+        _options = options;
     }
 
-    private static readonly MessageBoxResult[][] resultGroups = [
-        [MessageBoxResult.OK],
-        [MessageBoxResult.OK, MessageBoxResult.CANCEL],
-        [MessageBoxResult.ABORT, MessageBoxResult.RETRY, MessageBoxResult.IGNORE],
-        [MessageBoxResult.YES, MessageBoxResult.NO, MessageBoxResult.CANCEL],
-        [MessageBoxResult.YES, MessageBoxResult.NO],
-        [MessageBoxResult.RETRY, MessageBoxResult.CANCEL],
-        [MessageBoxResult.CONTINUE, MessageBoxResult.TRYAGAIN, MessageBoxResult.CANCEL]
-    ];
+    protected MessageBox(bool isModal, Window? owner, string? message, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton, MessageBoxOptions options) : base(message, title, buttons, icon, defaultButton, options)
+    {
+        _isModal = isModal;
+        _owner = owner;
+        _options = options;
+    }
 
-    private static MessageBoxResult[] MessageBoxResultsOf(MessageBoxButtons buttons) => resultGroups[(int) buttons];
+    private readonly bool _isModal;
+    private readonly Window? _owner;
+    private readonly MessageBoxOptions _options;
+
+    public static async Task<MessageBoxResult> ShowAsync(object? message)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, object? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message)
+    => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, MessageBoxIcon.None, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(false, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, MessageBoxDefaultButton.Button1, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, MessageBoxDefaultButton.Button1, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(false, null, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, defaultButton, MessageBoxOptions.Default);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, null, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(false, null, message, title, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, null, message, title, buttons, icon, defaultButton, options);
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window owner, string? message, string? title, MessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        => await ShowAsync(isModal, owner, message, title, buttons, icon, defaultButton, options);
+
+    /// <summary>
+    /// Show text messages in a MessageBox with a similar appearance to WinUI 3 ContentDialog.
+    /// </summary>
+    /// <param name="isModal">Whether the MessageBox is a modal window.</param>
+    /// <param name="owner">Owner/Parent window of the MessageBox</param>
+    /// <param name="message">Text message displayed in body area</param>
+    /// <param name="title">Text text displayed in header area</param>
+    /// <param name="buttons">The button combination displayed at the bottom of MessageBox</param>
+    /// <param name="icon">MessageBox icon</param>
+    /// <param name="defaultButton">Which button should be focused initially</param>
+    /// <param name="options">Other style settings like SystemBackdrop.</param>
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, string? message, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton, MessageBoxOptions options)
+        => await new MessageBox(isModal, owner, message, title, buttons, icon, defaultButton, options).ShowAsync();
+    
+    /// <summary>
+    /// Show text messages in a MessageBox with a similar appearance to WinUI 3 ContentDialog.
+    /// </summary>
+    /// <param name="isModal">Whether the MessageBox is a modal window.</param>
+    /// <param name="owner">Owner/Parent window of the MessageBox</param>
+    /// <param name="message">Text object</param>
+    /// <param name="title">Text text displayed in header area</param>
+    /// <param name="buttons">The button combination displayed at the bottom of MessageBox</param>
+    /// <param name="icon">MessageBox icon</param>
+    /// <param name="defaultButton">Which button should be focused initially</param>
+    /// <param name="options">Other style settings like SystemBackdrop.</param>
+    public static async Task<MessageBoxResult> ShowAsync(bool isModal, Window? owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton, MessageBoxOptions options)
+        => await new MessageBox(isModal, owner, message, title, buttons, icon, defaultButton, options).ShowAsync();
+    
+
+    protected override IStandaloneContentDialog CreateDialog() => new WindowedContentDialog
+    {
+        WindowTitle = _title,
+        IsModal = _isModal,
+        OwnerWindow = _owner,
+        SystemBackdrop = _options.SystemBackdrop,
+        CenterInParent = _options.CenterInParent,
+        HasTitleBar = _options.HasTitleBar,
+        IsResizable = _options.IsResizable,
+        Underlay = _options.Underlay,
+        UnderlaySystemBackdrop = _options.UnderlaySystemBackdrop,
+    };
 }

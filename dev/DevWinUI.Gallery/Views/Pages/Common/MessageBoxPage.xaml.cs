@@ -23,22 +23,17 @@ public sealed partial class MessageBoxPage : Page
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
 
-        var result = await MessageBox.ShowAsync(new MessageBoxOptions
+        MessageBoxOptions options = MessageBoxOptions.Default;
+
+        options.Underlay = underlay;
+        options.UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions
         {
-            IsModal = TGIsModal.IsOn,
-            OwnerWindow = ownerWindow,
-            Content = txtContent.Text?.ToString(),
-            Title = txtTitle.Text?.ToString(),
-            Buttons = button,
-            Icon = icon,
-            DefaultButton = defaultButton,
-            Underlay = underlay,
-            UnderlaySystemBackdrop = new UnderlaySystemBackdropOptions
-            {
-                CoverMode = underlayCoverMode,
-                Backdrop = underlayBackdrop
-            }
-        });
+            Backdrop = underlayBackdrop,
+            CoverMode = underlayCoverMode
+        };
+
+        var result = await MessageBox.ShowAsync(TGIsModal.IsOn, ownerWindow, txtContent.Text?.ToString(), txtTitle.Text, button, icon, defaultButton, options);
+        
         TxtResult.Text = result.ToString();
     }
 }
