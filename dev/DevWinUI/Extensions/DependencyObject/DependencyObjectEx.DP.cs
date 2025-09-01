@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class DependencyObjectEx
 {
@@ -109,7 +107,6 @@ public partial class DependencyObjectEx
                 {
                     // DeclaredOnly: Specifies flags that control binding and the way in which the search for members and types is conducted by reflection.
                     // because 'dpInfo.DeclaringType' is the guaranteed type, and we don't want an overridden property from a random base to throw AmbiguousMatchException
-                    // ex: UIElement::Visibility & [droid]UnoViewGroup::Visibility
                     var holderProperty = dpInfo.DeclaringType?.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
                     var propertyType =
                         holderProperty?.PropertyType ??

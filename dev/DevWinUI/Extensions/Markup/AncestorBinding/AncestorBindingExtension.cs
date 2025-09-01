@@ -12,7 +12,6 @@ public partial class AncestorBindingExtension : MarkupExtension
     /// </summary>
     public string? Path { get; set; }
 
-    // note: Type literal are not recognized by Uno's XamlSourceGenerator for Nullable<Type>.
     /// <summary>
     /// Type of ancestor to bind from.
     /// </summary>

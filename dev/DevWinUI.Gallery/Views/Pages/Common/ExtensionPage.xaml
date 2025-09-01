@@ -52,7 +52,7 @@
                     </Grid>
                 </ScrollViewer>
             </local:ControlExample>
-            <local:ControlExample DocPage="extensions/enumValueExtension"
+            <local:ControlExample DocPage="markupExtensions/enumValueExtension"
                                   DocType="Core"
                                   HeaderText="EnumValuesExtension">
                 <local:ControlExample.Xaml>

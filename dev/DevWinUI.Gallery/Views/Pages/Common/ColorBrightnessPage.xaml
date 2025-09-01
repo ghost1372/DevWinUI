@@ -58,7 +58,7 @@
                     </Rectangle>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="extensions/colorBrightnessExtension"
+            <local:ControlExample DocPage="markupExtensions/colorBrightnessExtension"
                                   DocType="Core"
                                   HeaderText="ColorBrightness Markup Extension">
                 <local:ControlExample.Xaml>
