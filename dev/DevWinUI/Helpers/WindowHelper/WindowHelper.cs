@@ -290,17 +290,18 @@ public partial class WindowHelper
     public static AppWindow GetAppWindow2(UIElement uIElement)
     {
         if (uIElement == null)
-        {
             return null;
-        }
 
         Microsoft.UI.Composition.Visual visual = Microsoft.UI.Xaml.Hosting.ElementCompositionPreview.GetElementVisual(uIElement);
-        var ci = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(visual.Compositor);
-        if (ci[0] != null)
+        var compositor = visual.Compositor;
+        var islands = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(compositor);
+        foreach (var island in islands)
         {
-            return AppWindow.GetFromWindowId(ci[0].Environment.AppWindowId);
+            if (island.Environment == uIElement.XamlRoot.ContentIslandEnvironment)
+            {
+                return AppWindow.GetFromWindowId(island.Environment.AppWindowId);
+            }
         }
-
         return null;
     }
 
@@ -325,21 +326,23 @@ public partial class WindowHelper
     public static IntPtr GetWindowHandle2(UIElement uIElement)
     {
         if (uIElement == null)
-        {
             return IntPtr.Zero;
-        }
 
-        Microsoft.UI.Composition.Visual visual = Microsoft.UI.Xaml.Hosting.ElementCompositionPreview.GetElementVisual(uIElement);
-        var ci = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(visual.Compositor);
-        if (ci[0] != null)
+        var visual = Microsoft.UI.Xaml.Hosting.ElementCompositionPreview.GetElementVisual(uIElement);
+        var compositor = visual.Compositor;
+        var islands = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(compositor);
+
+        foreach (var island in islands)
         {
-            return Win32Interop.GetWindowFromWindowId(ci[0].Environment.AppWindowId);
-
+            if (island.Environment == uIElement.XamlRoot.ContentIslandEnvironment)
+            {
+                return Win32Interop.GetWindowFromWindowId(island.Environment.AppWindowId);
+            }
         }
 
         return IntPtr.Zero;
     }
-
+    
     /// <summary>
     /// Retrieves the current screen size.
     /// </summary>
@@ -551,5 +554,61 @@ public partial class WindowHelper
         {
             ArrayPool<char>.Shared.Return(charArray);
         }
+    }
+
+    /// <summary>
+    /// Get All Windows Hwnd using CompositionTarget and ContentIsland
+    /// </summary>
+    /// <returns></returns>
+    public static IReadOnlyList<IntPtr> GetAllWindowHandles()
+    {
+        var compositor = CompositionTarget.GetCompositorForCurrentThread();
+        var islands = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(compositor);
+
+        var result = new List<IntPtr>();
+        foreach (var island in islands)
+        {
+            result.Add(Win32Interop.GetWindowFromWindowId(island.Environment.AppWindowId));
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Get All Windows Id using CompositionTarget and ContentIsland
+    /// </summary>
+    /// <returns></returns>
+    public static IReadOnlyList<WindowId> GetAllWindowIds()
+    {
+        var compositor = CompositionTarget.GetCompositorForCurrentThread();
+        var islands = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(compositor);
+
+        var result = new List<WindowId>();
+        foreach (var island in islands)
+        {
+            result.Add(island.Environment.AppWindowId);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Get All AppWindow using CompositionTarget and ContentIsland
+    /// </summary>
+    /// <returns></returns>
+    public static IReadOnlyList<AppWindow> GetAllAppWindows()
+    {
+        var compositor = CompositionTarget.GetCompositorForCurrentThread();
+        var islands = Microsoft.UI.Content.ContentIsland.FindAllForCompositor(compositor);
+
+        var result = new List<AppWindow>();
+        foreach (var island in islands)
+        {
+            var appWindow = AppWindow.GetFromWindowId(island.Environment.AppWindowId);
+            if (appWindow != null)
+                result.Add(appWindow);
+        }
+
+        return result;
     }
 }
