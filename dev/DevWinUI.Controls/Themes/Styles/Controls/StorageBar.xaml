@@ -11,7 +11,7 @@
             <x:Double x:Key="StorageBarValueHeight">6</x:Double>
             <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
 
-            <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
+            <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
 
             <StaticResource x:Key="StorageBarBackgroundBrush"
                             ResourceKey="ControlFillColorTransparentBrush" />
@@ -42,7 +42,7 @@
             <x:Double x:Key="StorageBarValueHeight">6</x:Double>
             <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
 
-            <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
+            <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
 
             <StaticResource x:Key="StorageBarBackgroundBrush"
                             ResourceKey="SystemControlBackgroundBaseLowBrush" />
@@ -73,7 +73,7 @@
             <x:Double x:Key="StorageBarValueHeight">6</x:Double>
             <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
 
-            <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
+            <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
 
             <StaticResource x:Key="StorageBarBackgroundBrush"
                             ResourceKey="ControlFillColorTransparentBrush" />
