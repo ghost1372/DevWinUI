@@ -3,6 +3,7 @@
 namespace DevWinUI;
 public partial class JsonNavigationService
 {
+    private Frame? _frame;
     public Frame? Frame
     {
         get
@@ -23,17 +24,17 @@ public partial class JsonNavigationService
 
     private void RegisterFrameEvents()
     {
-        if (_frame != null)
+        if (Frame != null)
         {
-            _frame.Navigated += OnFrameNavigated;
+            Frame.Navigated += OnFrameNavigated;
         }
     }
 
     private void UnregisterFrameEvents()
     {
-        if (_frame != null)
+        if (Frame != null)
         {
-            _frame.Navigated -= OnFrameNavigated;
+            Frame.Navigated -= OnFrameNavigated;
         }
     }
 
@@ -41,9 +42,9 @@ public partial class JsonNavigationService
     {
         if (CanGoBack)
         {
-            var frameContentBeforeNavigationAOTSafe = _frame?.Content;
+            var frameContentBeforeNavigationAOTSafe = Frame?.Content;
 
-            _frame.GoBack();
+            Frame.GoBack();
 
             if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
@@ -74,18 +75,18 @@ public partial class JsonNavigationService
             return false;
         }
 
-        if (_frame != null && (_frame.CurrentSourcePageType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
+        if (Frame != null && (Frame.CurrentSourcePageType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
-            _frame.Tag = clearNavigation;
+            Frame.Tag = clearNavigation;
 
             if (_useBreadcrumbBar)
             {
                 _mainBreadcrumb.AddNewItem(pageType, parameter);
             }
 
-            var frameContentBeforeNavigationAOTSafe = _frame.Content;
+            var frameContentBeforeNavigationAOTSafe = Frame.Content;
 
-            var navigated = _frame.Navigate(pageType, parameter, transitionInfo);
+            var navigated = Frame.Navigate(pageType, parameter, transitionInfo);
             if (navigated)
             {
                 _lastParameterUsed = parameter;
@@ -112,7 +113,7 @@ public partial class JsonNavigationService
             }
 
             // This is AOT Safe
-            if (_frame?.Content is Page page && page?.DataContext is INavigationAwareEx viewModel)
+            if (Frame?.Content is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
                 viewModel.OnNavigatedTo(e.Parameter);
             }

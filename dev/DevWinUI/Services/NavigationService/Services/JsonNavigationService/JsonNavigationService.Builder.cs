@@ -260,7 +260,7 @@ public partial class JsonNavigationService
         _autoManageBackButtonVisibility = autoManageBackButtonVisibility;
         if (_autoManageBackButtonVisibility)
         {
-            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+            _titleBar.IsBackButtonVisible = Frame.CanGoBack;
         }
 
         _isTitlebarConfigured = true;

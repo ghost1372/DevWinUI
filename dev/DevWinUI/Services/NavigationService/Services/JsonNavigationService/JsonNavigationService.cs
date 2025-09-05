@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
@@ -20,11 +21,13 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private void InitializeBase(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages)
     {
+        var preservedPages = new Dictionary<string, Type>(pages);
+
         Reset();
 
         _navigationView = navigationView ?? throw new ArgumentNullException(nameof(navigationView));
         this.Frame = frame ?? throw new ArgumentNullException(nameof(frame));
-        this._pageKeyToTypeMap = pages ?? throw new ArgumentNullException(nameof(pages));
+        this._pageKeyToTypeMap = preservedPages ?? throw new ArgumentNullException(nameof(preservedPages));
 
         _navigationView.BackRequested -= OnNavigationViewBackRequested;
         _navigationView.BackRequested += OnNavigationViewBackRequested;
@@ -47,7 +50,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
         if (_isTitlebarConfigured && _autoManageBackButtonVisibility)
         {
-            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+            _titleBar.IsBackButtonVisible = Frame.CanGoBack;
         }
 
         if (e.SourcePageType == _settingsPage)
@@ -84,12 +87,13 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     }
     public void ReInitialize()
     {
-        InitializeBase(_navigationView, _frame, _pageKeyToTypeMap);
+        InitializeBase(_navigationView, Frame, _pageKeyToTypeMap);
 
         InternalLocalizationHelper.InitializeInternalLocalization(_resourceManager, _resourceContext);
 
         ConfigureJsonBase(JsonFilePath, _pathType, _orderItems);
     }
+
     private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.IsSettingsSelected)

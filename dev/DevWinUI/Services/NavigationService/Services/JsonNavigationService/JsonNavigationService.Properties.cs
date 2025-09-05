@@ -27,7 +27,6 @@ public partial class JsonNavigationService
     public string JsonFilePath;
 
     private object? _lastParameterUsed;
-    private Frame? _frame;
     public event NavigatedEventHandler? FrameNavigated;
 
     private bool _isTitlebarConfigured;
