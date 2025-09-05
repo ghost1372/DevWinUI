@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
 
@@ -79,8 +80,16 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         FrameNavigated -= OnNavigated;
         _navigationView = null;
         Frame = null;
+        DataSource.Instance.Groups.Clear();
     }
+    public void ReInitialize()
+    {
+        InitializeBase(_navigationView, _frame, _pageKeyToTypeMap);
 
+        InternalLocalizationHelper.InitializeInternalLocalization(_resourceManager, _resourceContext);
+
+        ConfigureJsonBase(JsonFilePath, _pathType, _orderItems);
+    }
     private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.IsSettingsSelected)

@@ -16,6 +16,8 @@ public partial class JsonNavigationService
     private async void ConfigureJsonBase(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
     {
         JsonFilePath = jsonFilePath;
+        _pathType = pathType;
+        _orderItems = orderItems;
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
         AddNavigationMenuItems(orderItems);
@@ -25,6 +27,8 @@ public partial class JsonNavigationService
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
@@ -35,6 +39,8 @@ public partial class JsonNavigationService
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
@@ -45,6 +51,8 @@ public partial class JsonNavigationService
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
@@ -55,6 +63,8 @@ public partial class JsonNavigationService
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
         return this;
@@ -65,6 +75,8 @@ public partial class JsonNavigationService
         EnsureInitialized();
         var resourceManager = new ResourceManager();
         var resourceContext = resourceManager.CreateResourceContext();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, pathType, orderItems);
         return this;
@@ -73,6 +85,8 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureJsonFile(ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
@@ -81,6 +95,8 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
         return this;
@@ -89,6 +105,8 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
         return this;
@@ -97,6 +115,8 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
         return this;
@@ -105,6 +125,8 @@ public partial class JsonNavigationService
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
     {
         EnsureInitialized();
+        _resourceContext = resourceContext;
+        _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
         ConfigureJsonBase(jsonFilePath, pathType, orderItems);
         return this;

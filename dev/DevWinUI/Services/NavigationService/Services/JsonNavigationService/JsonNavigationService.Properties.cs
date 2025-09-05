@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.Windows.ApplicationModel.Resources;
+
+namespace DevWinUI;
 
 public partial class JsonNavigationService
 {
@@ -18,6 +20,10 @@ public partial class JsonNavigationService
     private string _fontFamilyForGlyph;
     private string _autoSuggestBoxNotFoundString;
     private string _autoSuggestBoxNotFoundImagePath;
+    private OrderItemsType _orderItems;
+    private PathType _pathType;
+    private ResourceManager _resourceManager;
+    private ResourceContext _resourceContext;
     public string JsonFilePath;
 
     private object? _lastParameterUsed;

@@ -16,6 +16,7 @@ public interface IJsonNavigationService
     bool GoBack();
     void GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative);
     void Reset();
+    void ReInitialize();
     void EnsureNavigationSelection(string id);
     JsonNavigationService Initialize(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages);
     JsonNavigationService ConfigureJsonFile();
