@@ -25,7 +25,7 @@ public sealed partial class MainWindow : Window
 
     private async void ThemeButton_Click(object sender, RoutedEventArgs e)
     {
-        await ThemeService.SetElementThemeWithoutSaveAsync();
+        await App.Current.ThemeService.SetElementThemeWithoutSaveAsync();
     }
 
     private void OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
