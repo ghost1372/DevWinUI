@@ -112,6 +112,7 @@ public static class PreDefinedLibrary
     {
         List<Library> list = new()
         {
+            new Library("Microsoft.Windows.SDK.BuildTools.MSIX", Group.General),
             new Library("WinUI.Dock", Group.General),
             new Library("nucs.JsonSettings", Group.General),
             new Library("nucs.JsonSettings.AutosaveGenerator", Group.General),
