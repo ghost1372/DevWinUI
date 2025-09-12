@@ -123,9 +123,6 @@ public partial class PathHelper
             case Microsoft.Windows.Storage.Pickers.PickerLocationId.Downloads:
                 folderId = new Guid("374DE290-123F-4565-9164-39C4925E467B"); // FOLDERID_Downloads
                 break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.HomeGroup:
-                folderId = new Guid("52528A6B-B9E3-4ADD-B60D-588C2DBA842D"); // FOLDERID_HomeGroup
-                break;
             case Microsoft.Windows.Storage.Pickers.PickerLocationId.MusicLibrary:
                 folderId = new Guid("4BD8D571-6D19-48D3-BE97-422220080E43"); // FOLDERID_MusicLibrary
                 break;
