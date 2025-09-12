@@ -1,5 +1,4 @@
-﻿CoCreateInstance
-CoWaitForMultipleObjects
+﻿CoWaitForMultipleObjects
 CreateEvent
 CreateRectRgn
 CreateSolidBrush
@@ -13,8 +12,6 @@ DwmSetWindowAttribute
 EnumDisplayMonitors
 EnumWindows
 FillRect
-FileOpenDialog
-FileSaveDialog
 FindWindowExW
 FindWindow
 GetActiveWindow
@@ -38,8 +35,6 @@ GetWindowLong
 GetWindowRect
 GetWindowText
 GetWindowThreadProcessId
-IFileOpenDialog
-IFileSaveDialog
 IsWindowEnabled
 MessageBox
 MonitorFromWindow
@@ -53,7 +48,6 @@ SetForegroundWindow
 SetWindowLong
 SetWindowPos
 SetWindowSubclass
-SHCreateItemFromParsingName
 SHGetKnownFolderPath
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
