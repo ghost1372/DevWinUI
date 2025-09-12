@@ -22,7 +22,7 @@ public partial class App : Application
     public App()
     {
         Services = ConfigureServices();
-        this.InitializeComponent();$BoostStartup$
+        this.InitializeComponent();
     }
 
     private static IServiceProvider ConfigureServices()

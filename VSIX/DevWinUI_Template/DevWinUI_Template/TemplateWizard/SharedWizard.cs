@@ -332,15 +332,6 @@ public class SharedWizard
         replacementsDictionary.Add("$AddAboutPage$", WizardConfig.UseAboutPage.ToString());
         replacementsDictionary.Add("$T4_NAMESPACE$", SafeProjectName);
 
-        if (WizardConfig.IsProfileOptimization)
-        {
-            replacementsDictionary.Add("$BoostStartup$", Environment.NewLine + Environment.NewLine + PredefinedCodes.ProfileOptimization);
-        }
-        else
-        {
-            replacementsDictionary.Add("$BoostStartup$", "");
-        }
-
         #region CSProjectElements
         // Add CSProjectElements
         if (WizardConfig.CSProjectElements != null && WizardConfig.CSProjectElements.Count > 0)

@@ -202,10 +202,4 @@ if (menuService != null && RuntimeHelper.IsPackaged())
           <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="false" DisplayName="$safeprojectname$" />
         </uap5:Extension>
 """";
-    public static readonly string ProfileOptimization =
-""""
-        // Enables Multicore JIT with the specified profile
-        System.Runtime.ProfileOptimization.SetProfileRoot(Constants.RootDirectoryPath);
-        System.Runtime.ProfileOptimization.StartProfile("Startup.Profile");
-"""";
 }

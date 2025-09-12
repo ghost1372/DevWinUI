@@ -11,7 +11,7 @@ public partial class App : Application
     public App()
     {
         this.InitializeComponent();
-        NavService = new JsonNavigationService();$BoostStartup$
+        NavService = new JsonNavigationService();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

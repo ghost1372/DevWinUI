@@ -32,7 +32,6 @@ public static class WizardConfig
     public static bool IsBlank;
     public static bool HasPages;
     public static bool IsMVVM;
-    public static bool IsProfileOptimization;
     public static bool UseHomeLandingPage;
     public static bool UseSettingsPage;
     public static bool UseGeneralSettingPage;
