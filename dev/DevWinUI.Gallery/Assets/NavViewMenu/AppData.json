@@ -131,12 +131,6 @@
           "Title": "Update Helper",
           "Subtitle": "Check Application Update from Github",
           "ImagePath": "ms-appx:///Assets/Fluent/Update.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.PickersPage",
-          "Title": "Pickers",
-          "Subtitle": "FilePicker, FolderPicker and SavePicker which support elevated, Packaged, UnPackaged and AOT apps",
-          "ImagePath": "ms-appx:///Assets/Fluent/FilePicker.png"
         }
       ]
     },
