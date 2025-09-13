@@ -5,19 +5,19 @@
     <BaseNamespace>DevWinUI</BaseNamespace>
 
     <!-- Major Version -->
-    <LibraryMajorVersion>8</LibraryMajorVersion>
+    <LibraryMajorVersion>9</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>9</DevWinUI_MinorVersion>
-    <DevWinUI_Controls_MinorVersion>9</DevWinUI_Controls_MinorVersion>
-    <DevWinUI_ContextMenu_MinorVersion>9</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>9</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
+    <DevWinUI_Controls_MinorVersion>0</DevWinUI_Controls_MinorVersion>
+    <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>2</DevWinUI_PatchVersion>
-    <DevWinUI_Controls_PatchVersion>2</DevWinUI_Controls_PatchVersion>
-    <DevWinUI_ContextMenu_PatchVersion>1</DevWinUI_ContextMenu_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>2</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Controls_PatchVersion>0</DevWinUI_Controls_PatchVersion>
+    <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
