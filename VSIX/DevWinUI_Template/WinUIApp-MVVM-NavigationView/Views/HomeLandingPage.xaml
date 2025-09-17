@@ -8,7 +8,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}"
-                        HeaderOverlayImage="{ThemeResource HeaderCover}"
                         HeaderSubtitleText="{x:Bind dev:ProcessInfoHelper.Version}"
                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductName}"
                         JsonNavigationService="{x:Bind local:App.Current.NavService}" />

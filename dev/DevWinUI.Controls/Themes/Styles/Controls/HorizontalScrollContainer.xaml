@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}"
+           TargetType="local:HorizontalScrollContainer" />
+
+    <Style x:Key="DefaultHorizontalScrollContainerStyle"
+           TargetType="local:HorizontalScrollContainer">
+        <Setter Property="ScrollBackButtonToolTipText" Value="Scroll left" />
+        <Setter Property="ScrollForwardButtonToolTipText" Value="Scroll right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HorizontalScrollContainer">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_Scroller"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      HorizontalScrollMode="Enabled"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      VerticalScrollMode="Disabled">
+                            <Grid x:Name="ContentGrid"
+                                  Margin="36,0,36,0">
+                                <ContentPresenter Content="{TemplateBinding Source}" />
+                            </Grid>
+                        </ScrollViewer>
+                        <Button x:Name="PART_ScrollBackBtn"
+                                Width="16"
+                                Height="38"
+                                Margin="8,-16,0,0"
+                                AutomationProperties.Name="{TemplateBinding ScrollBackButtonToolTipText}"
+                                Style="{StaticResource ScrollButtonStyle}"
+                                ToolTipService.ToolTip="{TemplateBinding ScrollBackButtonToolTipText}"
+                                Visibility="Collapsed">
+                            <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
+                                      Glyph="&#xedd9;" />
+                        </Button>
+                        <Button x:Name="PART_ScrollForwardBtn"
+                                Width="16"
+                                Height="38"
+                                Margin="0,-16,8,0"
+                                HorizontalAlignment="Right"
+                                AutomationProperties.Name="{TemplateBinding ScrollForwardButtonToolTipText}"
+                                Style="{StaticResource ScrollButtonStyle}"
+                                ToolTipService.ToolTip="{TemplateBinding ScrollForwardButtonToolTipText}">
+                            <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
+                                      Glyph="&#xEDDA;" />
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

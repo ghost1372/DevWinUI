@@ -36,7 +36,6 @@
                                    VerticalAlignment="Top"
                                    CornerRadius="{x:Bind HeaderCornerRadius, Mode=OneWay}"
                                    HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                                   HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
                                    IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
                                    Stretch="{x:Bind Stretch, Mode=OneWay}"
                                    Visibility="Collapsed" />
@@ -73,7 +72,6 @@
                                                Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
                                                VerticalAlignment="Top"
                                                HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                                               HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
                                                IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
                                                Stretch="{x:Bind Stretch, Mode=OneWay}" />
                     <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
@@ -94,12 +92,9 @@
                                    Text="{x:Bind HeaderText, Mode=OneWay}"
                                    Visibility="{x:Bind HeaderText, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}" />
                     </StackPanel>
-
-                    <local:TileGallery x:Name="headerTileGallery"
-                                       Grid.Row="1"
-                                       Margin="0,0,0,0"
-                                       HeaderContent="{x:Bind HeaderContent, Mode=OneWay}"
-                                       Visibility="{x:Bind HeaderContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}" />
+                    <local:HorizontalScrollContainer Grid.Row="1"
+                                                     Source="{x:Bind HeaderContent, Mode=OneWay}"
+                                                     Visibility="{x:Bind HeaderContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}" />
                 </Grid>
             </GridView.Header>
 

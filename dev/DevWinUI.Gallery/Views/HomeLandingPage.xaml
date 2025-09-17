@@ -8,7 +8,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
-                         HeaderOverlayImage="{ThemeResource HeaderCover}"
                          HeaderSubtitleText="Windows App SDK 1.8+"
                          HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
                          JsonNavigationService="{x:Bind local:App.Current.NavService}" />

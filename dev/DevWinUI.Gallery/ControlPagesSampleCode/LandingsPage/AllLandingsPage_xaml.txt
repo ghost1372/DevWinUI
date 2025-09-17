@@ -1,5 +1,4 @@
 ﻿<dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}"
-                                    HeaderOverlayImage="{ThemeResource HeaderCover}"
                                     HeaderSubtitleText="Windows App SDK 1.7+"
                                     HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
                                     JsonNavigationService="{x:Bind local:App.Current.NavService}" />

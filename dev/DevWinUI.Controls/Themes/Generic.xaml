@@ -54,6 +54,9 @@ Themes\Styles\Controls\Gravatar.xaml
 Themes\Styles\Controls\Growl.xaml
 Themes\Styles\Controls\HeaderCarousel.xaml
 Themes\Styles\Controls\HeaderCarouselItem.xaml
+Themes\Styles\Controls\HeaderTile.xaml
+Themes\Styles\Controls\HomePageHeaderImage.xaml
+Themes\Styles\Controls\HorizontalScrollContainer.xaml
 Themes\Styles\Controls\ImageEx.xaml
 Themes\Styles\Controls\IndeterminateProgressBar.xaml
 Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml
@@ -190,6 +193,17 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <LinearGradientBrush x:Name="BackgroundGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0.0" Color="#CED8E4" />
+        <GradientStop Offset="1.0" Color="#D5DBE3" />
+      </LinearGradientBrush>
+      <x:Double x:Key="ImageOpacity">0.9</x:Double>
+      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.75" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.85" Color="#00FFFFFF" />
+        <GradientStop Offset="1" Color="#00FFFFFF" />
+      </LinearGradientBrush>
       <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemFillColorCriticalBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemFillColorCautionBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
@@ -488,6 +502,13 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
+      <SolidColorBrush x:Key="BackgroundGradient" Color="Black" />
+      <x:Double x:Key="ImageOpacity">0.8</x:Double>
+      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+      </LinearGradientBrush>
       <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
@@ -557,6 +578,16 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonItemForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
+    </ResourceDictionary>
+    <ResourceDictionary x:Key="Dark">
+      <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
+      <x:Double x:Key="ImageOpacity">0.8</x:Double>
+      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.75" Color="#FF000000" />
+        <GradientStop Offset="0.85" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
     </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
   <x:Double x:Key="PagerControlNumberPanelButtonWidth">32</x:Double>
@@ -4086,7 +4117,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
     <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
     <Setter Property="BorderBrush" Value="{ThemeResource FlipViewNextPreviousButtonBorderBrush}" />
-    <Setter Property="BorderThickness" Value="{ThemeResource FlipViewButtonBorderThemeThickness}" />
+    <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Center" />
@@ -7414,6 +7445,97 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:HeaderCarouselItem" />
+  <Style x:Key="DefaultHeaderTileStyle" TargetType="local:HeaderTile">
+    <Setter Property="Width" Value="232" />
+    <Setter Property="Height" Value="172" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:HeaderTile">
+          <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource SurfaceStrokeColorFlyoutBrush}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid.Resources>
+              <ResourceDictionary>
+                <ResourceDictionary.ThemeDictionaries>
+                  <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource ControlStrokeColorSecondary}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource ControlStrokeColorDefault}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource ControlStrokeColorDefault}" />
+                  </ResourceDictionary>
+                  <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource ControlStrokeColorSecondary}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource ControlStrokeColorDefault}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource ControlStrokeColorDefault}" />
+                  </ResourceDictionary>
+                  <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource SystemColorButtonTextColor}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource SystemColorButtonTextColor}" />
+                    <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource SystemColorButtonTextColor}" />
+                  </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+              </ResourceDictionary>
+            </Grid.Resources>
+            <HyperlinkButton x:Name="PART_HyperLink" Padding="-1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" AutomationProperties.LabeledBy="{Binding ElementName=TitleText}" CornerRadius="{StaticResource OverlayCornerRadius}">
+              <Grid Padding="24" VerticalAlignment="Stretch" RowSpacing="16">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="36" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <FontIcon Grid.RowSpan="3" Margin="-12" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Glyph="" />
+                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" Content="{TemplateBinding Source}" />
+                <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="4">
+                  <TextBlock x:Name="TitleText" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Title}" />
+                  <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="{TemplateBinding Description}" />
+                </StackPanel>
+              </Grid>
+            </HyperlinkButton>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultHomePageHeaderImageStyle" TargetType="local:HomePageHeaderImage">
+    <Setter Property="Stretch" Value="UniformToFill" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:HomePageHeaderImage">
+          <Grid>
+            <local:OpacityMaskView Grid.RowSpan="3" Height="400" VerticalAlignment="Stretch" OpacityMask="{StaticResource OverlayRadialGradientEx}">
+              <Grid x:Name="ImageGrid" Margin="0,-100,0,0" Background="{ThemeResource BackgroundGradient}">
+                <Image x:Name="PART_HeroImage" Opacity="{ThemeResource ImageOpacity}" Source="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
+                <local:TileControl x:Name="PART_HeroTile" ImageSource="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StringToUriConverter}}" Opacity="{ThemeResource ImageOpacity}" Visibility="Collapsed" />
+              </Grid>
+            </local:OpacityMaskView>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultHorizontalScrollContainerStyle" TargetType="local:HorizontalScrollContainer">
+    <Setter Property="ScrollBackButtonToolTipText" Value="Scroll left" />
+    <Setter Property="ScrollForwardButtonToolTipText" Value="Scroll right" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:HorizontalScrollContainer">
+          <Grid>
+            <ScrollViewer x:Name="PART_Scroller" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled">
+              <Grid x:Name="ContentGrid" Margin="36,0,36,0">
+                <ContentPresenter Content="{TemplateBinding Source}" />
+              </Grid>
+            </ScrollViewer>
+            <Button x:Name="PART_ScrollBackBtn" Width="16" Height="38" Margin="8,-16,0,0" AutomationProperties.Name="{TemplateBinding ScrollBackButtonToolTipText}" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollBackButtonToolTipText}" Visibility="Collapsed">
+              <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
+            </Button>
+            <Button x:Name="PART_ScrollForwardBtn" Width="16" Height="38" Margin="0,-16,8,0" HorizontalAlignment="Right" AutomationProperties.Name="{TemplateBinding ScrollForwardButtonToolTipText}" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollForwardButtonToolTipText}">
+              <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
+            </Button>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultImageExStyle}" TargetType="local:ImageEx" />
   <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
@@ -10466,6 +10588,9 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
+  <Style BasedOn="{StaticResource DefaultHeaderTileStyle}" TargetType="local:HeaderTile" />
+  <Style BasedOn="{StaticResource DefaultHomePageHeaderImageStyle}" TargetType="local:HomePageHeaderImage" />
+  <Style BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}" TargetType="local:HorizontalScrollContainer" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
   <Style BasedOn="{StaticResource DefaultMessageBoxHeaderStyle}" TargetType="local:MessageBoxHeader" />
   <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">

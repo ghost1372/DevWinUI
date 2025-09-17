@@ -29,15 +29,6 @@ public abstract partial class ItemsPageBase
     public static readonly DependencyProperty HeaderImageProperty =
         DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
 
-    public string HeaderOverlayImage
-    {
-        get => (string)GetValue(HeaderOverlayImageProperty);
-        set => SetValue(HeaderOverlayImageProperty, value);
-    }
-
-    public static readonly DependencyProperty HeaderOverlayImageProperty =
-        DependencyProperty.Register(nameof(HeaderOverlayImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
-
     public VerticalAlignment HeaderVerticalAlignment
     {
         get { return (VerticalAlignment)GetValue(HeaderVerticalAlignmentProperty); }

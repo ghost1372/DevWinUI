@@ -41,7 +41,6 @@
                                        Height="{x:Bind HeaderImageHeight, Mode=OneWay}"
                                        VerticalAlignment="Top"
                                        HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                                       HeaderOverlayImage="{x:Bind HeaderOverlayImage, Mode=OneWay}"
                                        IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
                                        Stretch="{x:Bind Stretch, Mode=OneWay}" />
             <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
