@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DigitalSegmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/digitalSegment"
+                                  HeaderText="DigitalSegment">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:DigitalSegment Text="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="Txt"
+                                 Header="Text"
+                                 Text="DevWinUI" />
+                        <NumberBox x:Name="NbSymbolCount"
+                                   Header="Symbol Count"
+                                   Maximum="50"
+                                   Minimum="0"
+                                   Value="15" />
+                        <Slider x:Name="SldAngle"
+                                Header="Angle"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="0" />
+                        <ToggleSwitch x:Name="TGMatrixSquare"
+                                      Header="IsMatrixSquare" />
+                        <ToggleSwitch x:Name="TGScrolling"
+                                      Header="IsScrolling" />
+                        <ToggleSwitch x:Name="TGColonBlink"
+                                      Header="IsColonBlink" />
+                        <ComboBox x:Name="CmbModel"
+                                  Header="Model"
+                                  ItemsSource="{x:Bind AvailableModels, Mode=OneWay}"
+                                  SelectedIndex="{x:Bind ViewModel.DigitalSegmentSelectedModelIndex, Mode=OneWay}"
+                                  SelectedItem="{x:Bind ViewModel.DigitalSegmentSelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="model:DigitalSegmentOption">
+                                    <TextBlock Text="{x:Bind Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:DigitalSegment Angle="{x:Bind SldAngle.Value, Mode=OneWay}"
+                                    IsColonBlink="{x:Bind TGColonBlink.IsOn, Mode=OneWay}"
+                                    IsMatrixSquare="{x:Bind TGMatrixSquare.IsOn, Mode=OneWay}"
+                                    IsScrolling="{x:Bind TGScrolling.IsOn, Mode=OneWay}"
+                                    Model="{x:Bind ViewModel.DigitalSegmentSelectedModel.Value, Mode=OneWay}"
+                                    SymbolCount="{x:Bind ((x:Int32)NbSymbolCount.Value), Mode=OneWay}"
+                                    Text="{x:Bind Txt.Text, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

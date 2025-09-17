@@ -143,6 +143,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SegmentCharPage",
+          "Title": "Segment Char",
+          "Subtitle": "SixteenSegmentChar, FourteenSegmentChar, MatrixSegmentChar",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DigitalSegmentPage",
+          "Title": "Digital Segment",
+          "Subtitle": "A digital segment is a visual element that represents a portion of a character in a segmented display.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CheckUpdateControlPage",
           "Title": "CheckUpdateControl",
           "Subtitle": "Check Update",

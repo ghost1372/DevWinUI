@@ -8,6 +8,12 @@ namespace DevWinUIGallery.ViewModels;
 public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
+    public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
+
+    [ObservableProperty]
+    public partial int DigitalSegmentSelectedModelIndex { get; set; } = 0;
+
+    [ObservableProperty]
     public partial ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
 
     [ObservableProperty]

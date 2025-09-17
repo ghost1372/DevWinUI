@@ -149,7 +149,7 @@ public partial class DigitalSegment
     }
 
     public static readonly DependencyProperty IsColonBlinkProperty =
-        DependencyProperty.Register(nameof(IsColonBlink), typeof(bool), typeof(DigitalSegment), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsColonBlink), typeof(bool), typeof(DigitalSegment), new PropertyMetadata(false, OnRedrawDigits));
 
     public string Text
     {

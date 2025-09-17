@@ -149,6 +149,10 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ DigitalSegment (SixteenSegment, FourteenSegment, Matrix5x7, Matrix5x8, Matrix8x14)
+- ✨ SixteenSegmentChar
+- ✨ FourteenSegmentChar
+- ✨ MatrixXxXSegmentChar(5x7, 5x8, 8x14)
 - ✨ CheckUpdateControl
 - ✨ OutOfBoxPage
 - ✨ Card
@@ -299,6 +303,18 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### DigitalSegment
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DigitalSegment.gif)
+
+### SixteenSegmentChar
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SixteenSegmentChar.gif)
+
+### FourteenSegmentChar
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FourteenSegmentChar.gif)
+
+### MatrixSegmentChar
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MatrixSegmentChar.gif)
 
 ### CheckUpdateControl
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CheckUpdateControl.gif)
