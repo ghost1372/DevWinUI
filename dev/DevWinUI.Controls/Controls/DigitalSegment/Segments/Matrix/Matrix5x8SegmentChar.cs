@@ -8,4 +8,9 @@ public partial class Matrix5x8SegmentChar : MatrixSegmentChar
     protected override string MatrixDefaultPattern => StandardMatrix5x8Pattern.DefaultPattern;
 
     public override SegmentChar Clone() => new Matrix5x8SegmentChar();
+
+    public Matrix5x8SegmentChar()
+    {
+        DefaultStyleKey = typeof(Matrix5x8SegmentChar);
+    }
 }

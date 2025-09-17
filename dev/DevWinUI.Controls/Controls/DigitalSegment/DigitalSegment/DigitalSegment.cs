@@ -8,6 +8,11 @@ public partial class DigitalSegment : Control
     private DispatcherTimer scrollTimer;
     private int scrollIndex = 0;
 
+    public DigitalSegment()
+    {
+        DefaultStyleKey = typeof(DigitalSegment);
+    }
+
     private void UpdateText()
     {
         if(panel == null) return;

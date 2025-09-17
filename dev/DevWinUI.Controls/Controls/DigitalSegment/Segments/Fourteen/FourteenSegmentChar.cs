@@ -8,6 +8,10 @@ public sealed partial class FourteenSegmentChar : SegmentChar
     protected override IReadOnlyDictionary<string, string> PatternTable => StandardFourteenSegmentPattern.Patterns;
     protected override string DefaultPattern => StandardFourteenSegmentPattern.DefaultPattern;
 
+    public FourteenSegmentChar()
+    {
+        DefaultStyleKey = typeof(FourteenSegmentChar);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
