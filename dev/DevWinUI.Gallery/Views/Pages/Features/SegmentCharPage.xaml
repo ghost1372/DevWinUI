@@ -12,7 +12,7 @@
         <StackPanel Margin="10"
                     dev:PanelAttach.ChildrenTransitions="Default"
                     Spacing="10">
-            <local:ControlExample DocPage="controls/sixteenSegmentChar"
+            <local:ControlExample DocPage="controls/segmentChar"
                                   HeaderText="SixteenSegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
@@ -45,7 +45,7 @@
                              IsReadOnly="True" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/fourteenSegmentChar"
+            <local:ControlExample DocPage="controls/segmentChar"
                                   HeaderText="FourteenSegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
@@ -79,7 +79,7 @@
                 </StackPanel>
 
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/matrix8x14SegmentChar"
+            <local:ControlExample DocPage="controls/segmentChar"
                                   HeaderText="Matrix8x14SegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
