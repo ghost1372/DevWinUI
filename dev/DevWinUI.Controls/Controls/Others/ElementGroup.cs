@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 public partial class ElementGroup : ItemsControl
