@@ -55,7 +55,7 @@ Themes\Styles\Controls\Growl.xaml
 Themes\Styles\Controls\HeaderCarousel.xaml
 Themes\Styles\Controls\HeaderCarouselItem.xaml
 Themes\Styles\Controls\HeaderTile.xaml
-Themes\Styles\Controls\HomePageHeaderImage.xaml
+Themes\Styles\Controls\HomePageHeader.xaml
 Themes\Styles\Controls\HorizontalScrollContainer.xaml
 Themes\Styles\Controls\ImageEx.xaml
 Themes\Styles\Controls\IndeterminateProgressBar.xaml
@@ -7496,18 +7496,36 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style x:Key="DefaultHomePageHeaderImageStyle" TargetType="local:HomePageHeaderImage">
+  <Style x:Key="DefaultHomePageHeaderImageStyle" TargetType="local:HomePageHeader">
     <Setter Property="Stretch" Value="UniformToFill" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="local:HomePageHeaderImage">
-          <Grid>
-            <local:OpacityMaskView Grid.RowSpan="3" Height="400" VerticalAlignment="Stretch" OpacityMask="{StaticResource OverlayRadialGradientEx}">
-              <Grid x:Name="ImageGrid" Margin="0,-100,0,0" Background="{ThemeResource BackgroundGradient}">
-                <Image x:Name="PART_HeroImage" Opacity="{ThemeResource ImageOpacity}" Source="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
-                <local:TileControl x:Name="PART_HeroTile" ImageSource="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StringToUriConverter}}" Opacity="{ThemeResource ImageOpacity}" Visibility="Collapsed" />
-              </Grid>
-            </local:OpacityMaskView>
+        <ControlTemplate TargetType="local:HomePageHeader">
+          <Grid x:Name="HeaderGrid" Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <local:OpacityMaskView Grid.RowSpan="3" Height="{TemplateBinding HeaderImageHeight}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" OpacityMask="{StaticResource OverlayRadialGradientEx}">
+                <Grid x:Name="ImageGrid" Margin="0,-100,0,0" Background="{ThemeResource BackgroundGradient}">
+                  <Image x:Name="PART_HeroImage" Opacity="{ThemeResource ImageOpacity}" Source="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
+                  <local:TileControl x:Name="PART_HeroTile" ImageSource="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StringToUriConverter}}" Opacity="{ThemeResource ImageOpacity}" Visibility="Collapsed" />
+                </Grid>
+              </local:OpacityMaskView>
+              <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
+              <StackPanel Margin="36,48,0,0" VerticalAlignment="Center" Orientation="Vertical">
+                <TextBlock x:Name="smallHeaderSubtitleText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderSubtitleFontSize}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding HeaderSubtitleText}" Visibility="{Binding HeaderSubtitleText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+                <TextBlock x:Name="smallHeaderText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderFontSize}" Foreground="{TemplateBinding Foreground}" Style="{StaticResource TitleLargeTextBlockStyle}" Text="{TemplateBinding HeaderText}" Visibility="{Binding HeaderText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+              </StackPanel>
+              <local:HorizontalScrollContainer Grid.Row="2" Margin="0,56,0,0" Source="{TemplateBinding HeaderContent}" Visibility="{Binding HeaderContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+            </Grid>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -10589,7 +10607,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />
   <Style BasedOn="{StaticResource DefaultHeaderTileStyle}" TargetType="local:HeaderTile" />
-  <Style BasedOn="{StaticResource DefaultHomePageHeaderImageStyle}" TargetType="local:HomePageHeaderImage" />
+  <Style BasedOn="{StaticResource DefaultHomePageHeaderImageStyle}" TargetType="local:HomePageHeader" />
   <Style BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}" TargetType="local:HorizontalScrollContainer" />
   <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
   <Style BasedOn="{StaticResource DefaultMessageBoxHeaderStyle}" TargetType="local:MessageBoxHeader" />

@@ -37,41 +37,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
     }
 
     public static readonly DependencyProperty HeaderContentProperty =
-        DependencyProperty.Register(nameof(HeaderContent), typeof(object), typeof(MainLandingPage), new PropertyMetadata(null, OnHeaderContentChanged));
-    private static void OnHeaderContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (MainLandingPage)d;
-        if (ctl != null)
-        {
-            ctl.UpdateHeaderImageHeight();
-        }
-    }
-
-    public Thickness HeaderMargin
-    {
-        get => (Thickness)GetValue(HeaderMarginProperty);
-        set => SetValue(HeaderMarginProperty, value);
-    }
-
-    public static readonly DependencyProperty HeaderMarginProperty =
-        DependencyProperty.Register(nameof(HeaderMargin), typeof(Thickness), typeof(MainLandingPage), new PropertyMetadata(new Thickness(-24, 0, -24, 0)));
-
-    public bool UseFullScreenHeaderImage
-    {
-        get { return (bool)GetValue(UseFullScreenHeaderImageProperty); }
-        set { SetValue(UseFullScreenHeaderImageProperty, value); }
-    }
-
-    public static readonly DependencyProperty UseFullScreenHeaderImageProperty =
-        DependencyProperty.Register(nameof(UseFullScreenHeaderImage), typeof(bool), typeof(MainLandingPage), new PropertyMetadata(false, OnFullScreenHeaderImageChanged));
-    private static void OnFullScreenHeaderImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (MainLandingPage)d;
-        if (ctl != null)
-        {
-            ctl.ToggleFullScreen((bool)e.NewValue);
-        }
-    }
+        DependencyProperty.Register(nameof(HeaderContent), typeof(object), typeof(MainLandingPage), new PropertyMetadata(null));
 
     public MainLandingPage()
     {
@@ -80,35 +46,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
         Loading -= MainLandingPage_Loading;
         Loading += MainLandingPage_Loading;
     }
-    private void UpdateHeaderImageHeight()
-    {
-        if (HeaderContent == null)
-        {
-            MainHomePageHeaderImage.MinHeight = 0;
-            MainBorder.MinHeight = 0;
-        }
-        else
-        {
-            MainHomePageHeaderImage.MinHeight = 396;
-            MainBorder.MinHeight = 396;
-        }
-    }
 
-    private void ToggleFullScreen(bool value)
-    {
-        if (value)
-        {
-            FullScreenHomePageHeaderImage.Visibility = Visibility.Visible;
-            MainBorder.Visibility = Visibility.Visible;
-            MainHomePageHeaderImage.Visibility = Visibility.Collapsed;
-        }
-        else
-        {
-            MainHomePageHeaderImage.Visibility = Visibility.Visible;
-            MainBorder.Visibility = Visibility.Collapsed;
-            FullScreenHomePageHeaderImage.Visibility = Visibility.Collapsed;
-        }
-    }
     private void MainLandingPage_Loading(FrameworkElement sender, object args)
     {
         if (CanExecuteInternalCommand)
@@ -276,10 +214,5 @@ public sealed partial class MainLandingPage : ItemsPageBase
             return groupList;
         }
         return null;
-    }
-
-    protected override bool GetIsNarrowLayoutState()
-    {
-        return LayoutVisualStates.CurrentState == NarrowLayout;
     }
 }

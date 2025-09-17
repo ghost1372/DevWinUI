@@ -6,10 +6,10 @@
                   x:DataType="local:DataItem">
         <Grid x:Name="controlRoot"
               Width="360"
-              Height="86"
+              Height="96"
               Padding="8"
               HorizontalAlignment="Stretch"
-              Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              Background="{ThemeResource ControlFillColorDefaultBrush}"
               BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
               BorderThickness="1"
               ColumnSpacing="16"
@@ -45,9 +45,9 @@
                 </Grid.RowDefinitions>
                 <local:ImageEx x:Name="gridImage"
                                Grid.RowSpan="2"
-                               Width="48"
-                               Margin="8,0,16,0"
-                               VerticalAlignment="Center"
+                               Width="36"
+                               Margin="8,12,16,0"
+                               VerticalAlignment="Top"
                                AutomationProperties.Name="{x:Bind Title}"
                                Source="{x:Bind ImagePath}"
                                Stretch="Uniform" />
@@ -61,7 +61,8 @@
                            Text="{x:Bind Title}"
                            TextLineBounds="TrimToCapHeight"
                            TextWrapping="NoWrap" />
-                <TextBlock Grid.Row="1"
+                <TextBlock x:Name="subtitleText"
+                           Grid.Row="1"
                            Grid.Column="1"
                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                            FontSize="{ThemeResource LandingItemSubtitleFontSize}"
@@ -69,7 +70,14 @@
                            RelativePanel.Below="titleText"
                            Style="{StaticResource CaptionTextBlockStyle}"
                            Text="{x:Bind Subtitle}"
-                           TextTrimming="CharacterEllipsis" />
+                           TextTrimming="WordEllipsis">
+                    <ToolTipService.ToolTip>
+                        <ToolTip Visibility="{Binding ElementName=subtitleText, Path=IsTextTrimmed}">
+                            <TextBlock Text="{x:Bind Subtitle}"
+                                       TextWrapping="Wrap" />
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
+                </TextBlock>
                 <InfoBadge Grid.Column="2"
                            VerticalAlignment="Top"
                            Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}"

@@ -29,33 +29,6 @@ public abstract partial class ItemsPageBase
     public static readonly DependencyProperty HeaderImageProperty =
         DependencyProperty.Register(nameof(HeaderImage), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(default(string)));
 
-    public VerticalAlignment HeaderVerticalAlignment
-    {
-        get { return (VerticalAlignment)GetValue(HeaderVerticalAlignmentProperty); }
-        set { SetValue(HeaderVerticalAlignmentProperty, value); }
-    }
-
-    public static readonly DependencyProperty HeaderVerticalAlignmentProperty =
-        DependencyProperty.Register(nameof(HeaderVerticalAlignment), typeof(VerticalAlignment), typeof(ItemsPageBase), new PropertyMetadata(VerticalAlignment.Top));
-
-    public CornerRadius HeaderCornerRadius
-    {
-        get => (CornerRadius)GetValue(HeaderCornerRadiusProperty);
-        set => SetValue(HeaderCornerRadiusProperty, value);
-    }
-
-    public static readonly DependencyProperty HeaderCornerRadiusProperty =
-        DependencyProperty.Register(nameof(HeaderCornerRadius), typeof(CornerRadius), typeof(ItemsPageBase), new PropertyMetadata(new CornerRadius(8, 0, 0, 0)));
-
-    public Thickness HeaderContentMargin
-    {
-        get { return (Thickness)GetValue(HeaderContentMarginProperty); }
-        set { SetValue(HeaderContentMarginProperty, value); }
-    }
-
-    public static readonly DependencyProperty HeaderContentMarginProperty =
-        DependencyProperty.Register(nameof(HeaderContentMargin), typeof(Thickness), typeof(ItemsPageBase), new PropertyMetadata(new Thickness(36, 100, 0, 0)));
-
     public double HeaderSubtitleFontSize
     {
         get => (double)GetValue(HeaderSubtitleFontSizeProperty);

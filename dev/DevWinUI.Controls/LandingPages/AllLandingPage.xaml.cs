@@ -2,7 +2,6 @@
 public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
-
     public AllLandingPage()
     {
         this.InitializeComponent();
