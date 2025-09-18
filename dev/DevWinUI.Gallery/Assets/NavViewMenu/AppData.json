@@ -24,7 +24,6 @@
           "UniqueId": "DevWinUIGallery.Views.PreviewKeyDownHelperPage",
           "Title": "Preview Key Down Helper",
           "Subtitle": "A helper that intercepts and processes keyboard input during the PreviewKeyDown stage",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBox.png"
         },
         {
@@ -117,7 +116,6 @@
           "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
           "Title": "Extensions",
           "Subtitle": "A utility class containing reusable extension methods that add functionality to existing types without modifying their original definitions.",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -195,70 +193,60 @@
           "UniqueId": "DevWinUIGallery.Views.StorageRingPage",
           "Title": "Storage Ring",
           "Subtitle": "Progress bar controls displaying as a circular ring.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StorageBarPage",
           "Title": "Storage Bar",
           "Subtitle": "Progress bar controls displaying as a horizontal bar.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GifImagePage",
           "Title": "Gif Image",
           "Subtitle": "A control for displaying animated GIFs",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AccordionPage",
           "Title": "Accordion",
           "Subtitle": "organizes content into expandable and collapsible sections",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/StackPanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ArcProgressPage",
           "Title": "Arc Progress",
           "Subtitle": "A circular progress indicator that displays progress as a portion of an arc",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
           "Title": "Dropdown Color Picker",
           "Subtitle": "A color selection control that opens a dropdown palette",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorPalettePage",
           "Title": "Color Palette",
           "Subtitle": "Presents a set of selectable colors, enabling users to quickly choose or apply colors in an interface.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Shape.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SplitCirclePage",
           "Title": "Split Circle",
           "Subtitle": "Circle with 2 different Colors",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/color.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HeaderCarouselPage",
-          "Title": "HeaderCarousel",
-          "Subtitle": "HeaderCarousel",
-          "IsNew": true,
+          "Title": "Header Carousel",
+          "Subtitle": "Header Carousel",
           "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedImagePage",
           "Title": "Animated Image",
           "Subtitle": "Animated Image",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
         },
         {
@@ -271,14 +259,12 @@
           "UniqueId": "DevWinUIGallery.Views.OverviewPageHeaderPage",
           "Title": "Overview Page Header",
           "Subtitle": "Overview Page Header",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Viewbox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ShortcutPage",
           "Title": "Shortcut",
           "Subtitle": "Press a combination of keys to change this shortcut",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/shortcutGuide.png"
         },
         {
@@ -303,7 +289,6 @@
           "UniqueId": "DevWinUIGallery.Views.ShimmerPage",
           "Title": "Shimmer",
           "Subtitle": "Construct a beautiful loading effect",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
@@ -519,56 +504,48 @@
           "UniqueId": "DevWinUIGallery.Views.DepthLayerViewPage",
           "Title": "Depth Layer View",
           "Subtitle": "Depth Layer View",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ShyHeaderPage",
           "Title": "Shy Header",
           "Subtitle": "A header that automatically hides or collapses when scrolling down and reappears when scrolling up.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipToRevealPage",
           "Title": "Flip To Reveal",
           "Subtitle": "A control that flips its content to show alternative information or a “back” view, often with a smooth animation.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionImagePage",
           "Title": "Composition Image",
           "Subtitle": "Composition Image",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionBrushPage",
           "Title": "Composition Brush",
           "Subtitle": "Paint XAML UIElements with CompositionBrushes (and load Surfaces from XAML to CompositionBrushes)",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectControlPage",
           "Title": "Blur Effect Control",
           "Subtitle": "A control that applies a blur effect to its content or background.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectManagerPage",
           "Title": "Blur Effect Manager",
           "Subtitle": "A utility that manages and applies blur effects to elements.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedGradientPage",
           "Title": "Animated Gradient",
           "Subtitle": "Simple visual effect showing linear gradient animations",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
@@ -582,42 +559,36 @@
           "UniqueId": "DevWinUIGallery.Views.ColorSlideControlPage",
           "Title": "Color Slide Control",
           "Subtitle": "Use Visuals and Animations to create a color slide effect during page or state transitions.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorBloomControlPage",
           "Title": "Color Bloom Control",
           "Subtitle": "Use Visuals and Animations to create a color bloom effect during page or state transitions.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ForegroundFocusEffectsPage",
           "Title": "Foreground Focus Effects",
           "Subtitle": "Use a BackDrop effect to deemphasize background content.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.PerspectiveZoomPage",
           "Title": "Perspective Zoom",
           "Subtitle": "Zoom With Perspective.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/IconElement.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionAnimationControllerPage",
           "Title": "Composition Animation Controller",
           "Subtitle": "Play, pause, speed up, slow down, or scrub your animation with the CompositionAnimationController API",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/commandBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionShadowPage",
           "Title": "Composition Shadow",
           "Subtitle": "Demonstrates how to apply drop shadows to Xaml elements",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         }
       ]
