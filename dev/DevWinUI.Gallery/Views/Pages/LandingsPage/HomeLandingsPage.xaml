@@ -14,6 +14,7 @@
                                   DocType="Controls"
                                   XamlSource="LandingsPage/HomeLandingsPage_xaml.txt">
                 <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
+                                     HeaderImageHeight="400"
                                      HeaderSubtitleText="Windows App SDK 1.8+"
                                      HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
                                      JsonNavigationService="{x:Bind local:App.Current.NavService}">
