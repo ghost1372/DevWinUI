@@ -46,13 +46,29 @@
                             <StackPanel Orientation="Horizontal"
                                         Spacing="12">
                                 <dev:HeaderTile Title="Title"
-                                                Description="Description" />
+                                                Description="Description">
+                                    <dev:HeaderTile.Source>
+                                        <Image Source="ms-appx:///Assets/Fluent/Clock.png" />
+                                    </dev:HeaderTile.Source>
+                                </dev:HeaderTile>
                                 <dev:HeaderTile Title="Title"
-                                                Description="Description" />
+                                                Description="Description">
+                                    <dev:HeaderTile.Source>
+                                        <Image Source="ms-appx:///Assets/Fluent/InfoBadge.png" />
+                                    </dev:HeaderTile.Source>
+                                </dev:HeaderTile>
                                 <dev:HeaderTile Title="Title"
-                                                Description="Description" />
+                                                Description="Description">
+                                    <dev:HeaderTile.Source>
+                                        <Image Source="ms-appx:///Assets/Fluent/RatingControl.png" />
+                                    </dev:HeaderTile.Source>
+                                </dev:HeaderTile>
                                 <dev:HeaderTile Title="Title"
-                                                Description="Description" />
+                                                Description="Description">
+                                    <dev:HeaderTile.Source>
+                                        <Image Source="ms-appx:///Assets/Fluent/update.png" />
+                                    </dev:HeaderTile.Source>
+                                </dev:HeaderTile>
                             </StackPanel>
                         </dev:HomePageHeader.HeaderContent>
                     </dev:HomePageHeader>

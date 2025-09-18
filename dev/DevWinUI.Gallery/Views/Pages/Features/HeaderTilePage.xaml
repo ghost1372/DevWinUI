@@ -38,7 +38,11 @@
                             Spacing="10">
                     <dev:HeaderTile Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
                                     Description="{x:Bind TxtDesc.Text, Mode=OneWay}"
-                                    Link="{x:Bind TxtLink.Text, Mode=OneWay}" />
+                                    Link="{x:Bind TxtLink.Text, Mode=OneWay}">
+                        <dev:HeaderTile.Source>
+                            <Image Source="ms-appx:///Assets/icon.png" />
+                        </dev:HeaderTile.Source>
+                    </dev:HeaderTile>
 
                 </StackPanel>
             </local:ControlExample>

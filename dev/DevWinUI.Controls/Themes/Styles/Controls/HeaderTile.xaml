@@ -32,7 +32,7 @@
                                         <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
                                                          Color="{ThemeResource ControlStrokeColorDefault}" />
                                     </ResourceDictionary>
-                                    <ResourceDictionary x:Key="Dark">
+                                    <ResourceDictionary x:Key="Default">
                                         <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
                                                          Color="{ThemeResource ControlStrokeColorDefault}" />
                                         <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
