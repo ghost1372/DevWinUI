@@ -3,13 +3,13 @@
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path="AppData.Schema.json" />
+    <File Path="tools/AppData.Schema.json" />
     <File Path="Clean-obj-bin.bat" />
     <File Path="Directory.Build.props" />
     <File Path="LICENSE" />
     <File Path="Policy" />
     <File Path="README.md" />
-    <File Path="settings.xamlstyler" />
+    <File Path="tools/settings.xamlstyler" />
     <File Path="ThirdPartyNotices.txt" />
   </Folder>
   <Folder Name="/VSIX_Extension/" Id="55c3cdfc-dabe-4658-ada9-aa32a6371d9b">
