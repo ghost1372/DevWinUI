@@ -23,21 +23,21 @@
         {
           "UniqueId": "DevWinUIGallery.Views.PreviewKeyDownHelperPage",
           "Title": "Preview Key Down Helper",
-          "Subtitle": "Restrict Inputs",
+          "Subtitle": "A helper that intercepts and processes keyboard input during the PreviewKeyDown stage",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WindowedContentDialogPage",
           "Title": "Windowed Content Dialog",
-          "Subtitle": "Windowed Content Dialog",
+          "Subtitle": "A dialog control that behaves like ContentDialog but opens in its own window",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MessageBoxPage",
           "Title": "MessageBox",
-          "Subtitle": "MessageBox",
+          "Subtitle": "A simple dialog for displaying messages and prompts with customizable buttons and icons, commonly used for alerts, confirmations, and quick user decisions.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
@@ -50,37 +50,37 @@
         {
           "UniqueId": "DevWinUIGallery.Views.SemanticVersionPage",
           "Title": "Semantic Version",
-          "Subtitle": "Parse SemanticVersion",
+          "Subtitle": "A helper class for parsing, comparing, and managing version numbers based on Semantic Versioning (MAJOR.MINOR.PATCH)",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorBrightnessPage",
           "Title": "Color Brightness",
-          "Subtitle": "ColorBrightness",
+          "Subtitle": "A utility for adjusting or evaluating the brightness level of colors, useful for theme adaptation and contrast handling.",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
           "Title": "Relative Date",
-          "Subtitle": "Relative Date",
+          "Subtitle": "A helper that formats dates into human-readable relative strings (e.g., “just now”, “5 minutes ago”, “yesterday”).",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BackdropPage",
           "Title": "System Backdrops",
-          "Subtitle": "SystemBackdrops like Transparent, Acrylic, Mica",
+          "Subtitle": "Applying system backdrops (like Mica, Acrylic, or Blur) to windows (Transparent, Acrylic, Mica)",
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CommandPage",
           "Title": "Delegate Command",
-          "Subtitle": "Commands",
+          "Subtitle": "An ICommand implementation that binds actions and conditions to UI commands",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LegacyMessageBoxPage",
           "Title": "Legacy MessageBox",
-          "Subtitle": "Legacy MessageBox",
+          "Subtitle": "A classic-style message box that mimics the traditional Windows message dialog",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
         {
@@ -92,19 +92,19 @@
         {
           "UniqueId": "DevWinUIGallery.Views.CredentialHelperPage",
           "Title": "Credential Helper",
-          "Subtitle": "Credential Helper",
+          "Subtitle": "A utility for securely storing, retrieving, and managing user credentials, simplifying authentication tasks in applications.",
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionHelperPage",
           "Title": "Composition Helper",
-          "Subtitle": "Composition Helper",
+          "Subtitle": "A utility class that simplifies working with Microsoft.Windows Composition APIs",
           "ImagePath": "ms-appx:///Assets/Fluent/ImplicitTransition.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ValidationPage",
           "Title": "Validation",
-          "Subtitle": "Validation",
+          "Subtitle": "A helper for checking and enforcing data rules, ensuring input or properties meet required conditions before processing.",
           "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png"
         },
         {
@@ -116,7 +116,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ExtensionPage",
           "Title": "Extensions",
-          "Subtitle": "Extensions",
+          "Subtitle": "A utility class containing reusable extension methods that add functionality to existing types without modifying their original definitions.",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },
@@ -145,21 +145,21 @@
         {
           "UniqueId": "DevWinUIGallery.Views.HomePageHeaderPage",
           "Title": "Home Page Header",
-          "Subtitle": "Home Page Header",
+          "Subtitle": "A control for displaying the main header section of a home page, typically including title, subtitle, and Image.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HeaderTilePage",
           "Title": "Header Tile",
-          "Subtitle": "Header Tile",
+          "Subtitle": "A UI element used to display a compact, interactive header block, often combining an icon, title, and description for quick access or navigation.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SegmentCharPage",
           "Title": "Segment Char",
-          "Subtitle": "SixteenSegmentChar, FourteenSegmentChar, MatrixSegmentChar",
+          "Subtitle": "A base class representing a digital display character, typically used in custom controls to render segments for numbers or letters (like SixteenSegmentChar, FourteenSegmentChar, MatrixSegmentChar)",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
@@ -173,70 +173,70 @@
         {
           "UniqueId": "DevWinUIGallery.Views.CheckUpdateControlPage",
           "Title": "CheckUpdateControl",
-          "Subtitle": "Check Update",
+          "Subtitle": "A control that checks for software updates and notifies the user",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/update.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OutOfBoxPagePage",
           "Title": "OutOfBoxPage",
-          "Subtitle": "Out Of Box Page",
+          "Subtitle": "A page displayed during the initial setup or first launch of an application, guiding users through onboarding, configuration, or feature introduction.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CardPage",
           "Title": "Card",
-          "Subtitle": "Card",
+          "Subtitle": "A versatile container control that groups related content.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StorageRingPage",
           "Title": "Storage Ring",
-          "Subtitle": "Storage Ring",
+          "Subtitle": "Progress bar controls displaying as a circular ring.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StorageBarPage",
           "Title": "Storage Bar",
-          "Subtitle": "Storage Bar",
+          "Subtitle": "Progress bar controls displaying as a horizontal bar.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GifImagePage",
           "Title": "Gif Image",
-          "Subtitle": "Gif Image",
+          "Subtitle": "A control for displaying animated GIFs",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AccordionPage",
           "Title": "Accordion",
-          "Subtitle": "Accordion",
+          "Subtitle": "organizes content into expandable and collapsible sections",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/StackPanel.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ArcProgressPage",
           "Title": "Arc Progress",
-          "Subtitle": "Arc Progress",
+          "Subtitle": "A circular progress indicator that displays progress as a portion of an arc",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
           "Title": "Dropdown Color Picker",
-          "Subtitle": "Dropdown Color Picker",
+          "Subtitle": "A color selection control that opens a dropdown palette",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorPalettePage",
           "Title": "Color Palette",
-          "Subtitle": "Color Palette",
+          "Subtitle": "Presents a set of selectable colors, enabling users to quickly choose or apply colors in an interface.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Shape.png"
         },
@@ -290,7 +290,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.MagnifierPage",
           "Title": "Magnifier",
-          "Subtitle": "Magnifier",
+          "Subtitle": "A control that zooms in on a portion of the UI or content.",
           "ImagePath": "ms-appx:///Assets/Fluent/IconElement.png"
         },
         {
@@ -309,13 +309,13 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ModalWindowPage",
           "Title": "Modal Window",
-          "Subtitle": "Modal Window",
+          "Subtitle": "A window that captures user interaction exclusively until it is closed, typically used for dialogs, alerts, or important prompts.",
           "ImagePath": "ms-appx:///Assets/Fluent/CreateMultipleWindows.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StepBarPage",
           "Title": "StepBar",
-          "Subtitle": "StepBar",
+          "Subtitle": "A control that visually represents progress through a series of steps or stages, often used in wizards, forms, or multi-step processes.",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
         },
@@ -328,7 +328,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
           "Title": "Go To Top",
-          "Subtitle": "Go To Top",
+          "Subtitle": "Scrolls content back to the top of a page or container when triggered.",
           "ImagePath": "ms-appx:///Assets/Fluent/ScrollView.png"
         },
         {
@@ -346,7 +346,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ElementGroupPage",
           "Title": "Element Group",
-          "Subtitle": "Group any Element",
+          "Subtitle": "A container that organizes multiple UI elements together.",
           "ImagePath": "ms-appx:///Assets/Fluent/VariableSizedWrapGrid.png"
         },
         {
@@ -358,7 +358,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.TransitioningContentControlPage",
           "Title": "Transitioning Content Control",
-          "Subtitle": "Transitioning Content Control",
+          "Subtitle": "A control that animates content changes, providing smooth visual transitions when the displayed content is updated",
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
@@ -406,7 +406,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.PinBoxPage",
           "Title": "PinBox",
-          "Subtitle": "PinBox",
+          "Subtitle": "A control for entering or displaying PIN codes, typically splitting input into individual boxes for each digit.",
           "ImagePath": "ms-appx:///Assets/Fluent/PasswordBox.png"
         },
         {
@@ -430,7 +430,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.FlipSidePage",
           "Title": "Flip Side",
-          "Subtitle": "Flip Side",
+          "Subtitle": "A control that allows content to be flipped.",
           "ImagePath": "ms-appx:///Assets/Fluent/PageTransition.png"
         },
         {
@@ -448,7 +448,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.OpacityMaskViewPage",
           "Title": "OpacityMaskView",
-          "Subtitle": "OpacityMaskView",
+          "Subtitle": "A control that applies an opacity mask to its content, enabling gradient fades, shape-based transparency, or custom visual effects.",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ThemeTransition.png"
         },
@@ -461,7 +461,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.DividerPage",
           "Title": "Divider",
-          "Subtitle": "Divider",
+          "Subtitle": "A visual element used to separate content or sections",
           "ImagePath": "ms-appx:///Assets/Fluent/Expander.png"
         },
         {
@@ -525,14 +525,14 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ShyHeaderPage",
           "Title": "Shy Header",
-          "Subtitle": "Shy Header",
+          "Subtitle": "A header that automatically hides or collapses when scrolling down and reappears when scrolling up.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipToRevealPage",
           "Title": "Flip To Reveal",
-          "Subtitle": "Flip To Reveal",
+          "Subtitle": "A control that flips its content to show alternative information or a “back” view, often with a smooth animation.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
         },
@@ -553,14 +553,14 @@
         {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectControlPage",
           "Title": "Blur Effect Control",
-          "Subtitle": "Blur Effect Control",
+          "Subtitle": "A control that applies a blur effect to its content or background.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BlurEffectManagerPage",
           "Title": "Blur Effect Manager",
-          "Subtitle": "Blur any Element",
+          "Subtitle": "A utility that manages and applies blur effects to elements.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
@@ -632,14 +632,14 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ConfettiCannonPage",
           "Title": "Confetti Cannon",
-          "Subtitle": "Confetti Cannon",
+          "Subtitle": "A control that generates animated confetti particles, creating celebratory or festive visual effects.",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/StandardUICommand.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
           "Title": "Hatch",
-          "Subtitle": "Hatch",
+          "Subtitle": "A utility or control that applies patterned fills, such as lines or crosshatches.",
           "ImagePath": "ms-appx:///Assets/Fluent/Grid.png"
         },
         {
