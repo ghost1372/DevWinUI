@@ -15,8 +15,11 @@
         <GradientStop Offset="1" Color="#FF202020" />
     </LinearGradientBrush>
 
-    <!--  Control Template  -->
-    <Style TargetType="local:FlipBlock">
+    <Style BasedOn="{StaticResource DefaultFlipBlockStyle}"
+           TargetType="local:FlipBlock" />
+
+    <Style x:Key="DefaultFlipBlockStyle"
+           TargetType="local:FlipBlock">
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="1" />

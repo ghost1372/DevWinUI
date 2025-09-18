@@ -86,6 +86,7 @@ Themes\Styles\Controls\ShimmerTextBlock.xaml
 Themes\Styles\Controls\Shortcut.xaml
 Themes\Styles\Controls\ShyHeader.xaml
 Themes\Styles\Controls\SimpleSettingsGroup.xaml
+Themes\Styles\Controls\SnowFlakeEffect.xaml
 Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\StorageBar.xaml
@@ -2557,6 +2558,15 @@ Themes\Styles\Win2D\Watermark.xaml
               </StackPanel>
             </StackPanel>
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultSnowFlakeEffectStyle" TargetType="local:SnowFlakeEffect">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:SnowFlakeEffect">
+          <Canvas x:Name="PART_Canvas" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -7169,7 +7179,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:FlipBlock">
+  <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="BorderBrush" Value="Gray" />
     <Setter Property="BorderThickness" Value="1" />
@@ -9247,6 +9257,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultSnowFlakeEffectStyle}" TargetType="local:SnowFlakeEffect" />
   <Style x:Key="DefaultSplitCircleStyle" TargetType="local:SplitCircle">
     <Setter Property="FirstColor" Value="{ThemeResource SystemFillColorSuccess}" />
     <Setter Property="SecondColor" Value="{ThemeResource SystemFillColorCritical}" />
@@ -10709,6 +10720,7 @@ Themes\Styles\Win2D\Watermark.xaml
   <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
   <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
   <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
+  <Style BasedOn="{StaticResource DefaultFlipBlockStyle}" TargetType="local:FlipBlock" />
   <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
   <Style BasedOn="{StaticResource DefaultGotoTopStyle}" TargetType="local:GotoTop" />
   <Style BasedOn="{StaticResource DefaultGrowlStyle}" TargetType="local:Growl" />

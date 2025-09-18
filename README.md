@@ -149,6 +149,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ SnowFlakeEffect
 - ✨ FlipCards
 - ✨ FlipBlock
 - ✨ DigitalSegment (SixteenSegment, FourteenSegment, Matrix5x7, Matrix5x8, Matrix8x14)
@@ -307,6 +308,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SnowFlakeEffect
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnowFlakeEffect.gif)
 
 ### FlipCards
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlipCards.gif)

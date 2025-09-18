@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultSnowFlakeEffectStyle}"
+           TargetType="local:SnowFlakeEffect" />
+
+    <Style x:Key="DefaultSnowFlakeEffectStyle"
+           TargetType="local:SnowFlakeEffect">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SnowFlakeEffect">
+                    <Canvas x:Name="PART_Canvas" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

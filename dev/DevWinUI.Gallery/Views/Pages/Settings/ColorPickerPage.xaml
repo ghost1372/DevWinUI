@@ -12,13 +12,13 @@
     </Page.Resources>
     <dev:OutOfBoxPage Title="Color Picker"
                       Description="Quick and simple system-wide color picker."
-                      HeroImage="ms-appx:///Assets/Modules/ColorPicker.png"
+                      HeroImage="ms-appx:///Assets/Modules/ColorPicker2.png"
                       SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
                         Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Color Picker"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/colorPicker.png}">
+                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/ColorPicker2.png}">
                     <ToggleSwitch />
                 </dev:SettingsCard>
                 <InfoBar Title="The system administrator is forcing this setting."

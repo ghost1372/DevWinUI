@@ -56,13 +56,13 @@
           "UniqueId": "DevWinUIGallery.Views.ColorBrightnessPage",
           "Title": "Color Brightness",
           "Subtitle": "A utility for adjusting or evaluating the brightness level of colors, useful for theme adaptation and contrast handling.",
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Sunny.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RelativeDatePage",
           "Title": "Relative Date",
           "Subtitle": "A helper that formats dates into human-readable relative strings (e.g., “just now”, “5 minutes ago”, “yesterday”).",
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/DatePicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BackdropPage",
@@ -74,13 +74,13 @@
           "UniqueId": "DevWinUIGallery.Views.CommandPage",
           "Title": "Delegate Command",
           "Subtitle": "An ICommand implementation that binds actions and conditions to UI commands",
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Triggers.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LegacyMessageBoxPage",
           "Title": "Legacy MessageBox",
           "Subtitle": "A classic-style message box that mimics the traditional Windows message dialog",
-          "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RichTextFormatterPage",
@@ -122,7 +122,7 @@
           "UniqueId": "DevWinUIGallery.Views.ThemeManagerPage",
           "Title": "Theme Service",
           "Subtitle": "Change Application Theme and Material Easily",
-          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/RadialGradientBrush.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CheckUpdatePage",
@@ -140,6 +140,13 @@
       "IsSpecialSection": false,
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.SnowFlakeEffectPage",
+          "Title": "SnowFlake Effect",
+          "Subtitle": "A visual effect that simulates falling snowflakes, with customizable particle count.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Snowflake.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipCardsPage",
           "Title": "Flip Cards",
@@ -159,7 +166,7 @@
           "Title": "Home Page Header",
           "Subtitle": "A control for displaying the main header section of a home page, typically including title, subtitle, and Image.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HeaderTilePage",
@@ -201,7 +208,7 @@
           "Title": "Card",
           "Subtitle": "A versatile container control that groups related content.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentIsland.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StorageRingPage",
@@ -243,13 +250,13 @@
           "UniqueId": "DevWinUIGallery.Views.ColorPalettePage",
           "Title": "Color Palette",
           "Subtitle": "Presents a set of selectable colors, enabling users to quickly choose or apply colors in an interface.",
-          "ImagePath": "ms-appx:///Assets/Fluent/Shape.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ColorPicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SplitCirclePage",
           "Title": "Split Circle",
           "Subtitle": "Circle with 2 different Colors",
-          "ImagePath": "ms-appx:///Assets/Fluent/color.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HeaderCarouselPage",
@@ -267,7 +274,7 @@
           "UniqueId": "DevWinUIGallery.Views.BrushPage",
           "Title": "Brush",
           "Subtitle": "Brush",
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/RadialGradientBrush.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OverviewPageHeaderPage",
@@ -316,13 +323,13 @@
           "Title": "StepBar",
           "Subtitle": "A control that visually represents progress through a series of steps or stages, often used in wizards, forms, or multi-step processes.",
           "IsUpdated": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/NumberBox.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LayoutTransformerPage",
           "Title": "Layout Transformer",
           "Subtitle": "Represents a control that applies a layout transformation to its Content.",
-          "ImagePath": "ms-appx:///Assets/Fluent/RepeatButton.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/LayoutTransformControl.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GoToTopPage",
@@ -418,7 +425,7 @@
           "UniqueId": "DevWinUIGallery.Views.ColorfulShimmingEffectPage",
           "Title": "Colorful Shimming Effect",
           "Subtitle": "Colorful Shimming Effect",
-          "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LongShadowTextBlockPage",
@@ -449,7 +456,7 @@
           "Title": "OpacityMaskView",
           "Subtitle": "A control that applies an opacity mask to its content, enabling gradient fades, shape-based transparency, or custom visual effects.",
           "IsUpdated": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/ThemeTransition.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressBarPage",
@@ -461,7 +468,7 @@
           "UniqueId": "DevWinUIGallery.Views.DividerPage",
           "Title": "Divider",
           "Subtitle": "A visual element used to separate content or sections",
-          "ImagePath": "ms-appx:///Assets/Fluent/Expander.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ShieldPage",
@@ -530,7 +537,7 @@
           "UniqueId": "DevWinUIGallery.Views.FlipToRevealPage",
           "Title": "Flip To Reveal",
           "Subtitle": "A control that flips its content to show alternative information or a “back” view, often with a smooth animation.",
-          "ImagePath": "ms-appx:///Assets/Fluent/SemanticZoom.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Converters.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionImagePage",
@@ -560,7 +567,7 @@
           "UniqueId": "DevWinUIGallery.Views.AnimatedGradientPage",
           "Title": "Animated Gradient",
           "Subtitle": "Simple visual effect showing linear gradient animations",
-          "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/RadialGradientBrush.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ShimmerTextBlockPage",
@@ -603,7 +610,7 @@
           "UniqueId": "DevWinUIGallery.Views.CompositionShadowPage",
           "Title": "Composition Shadow",
           "Subtitle": "Demonstrates how to apply drop shadows to Xaml elements",
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
         }
       ]
     },
@@ -619,7 +626,7 @@
           "Title": "Confetti Cannon",
           "Subtitle": "A control that generates animated confetti particles, creating celebratory or festive visual effects.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/StandardUICommand.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Confetti.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HatchPage",
@@ -667,13 +674,13 @@
           "UniqueId": "DevWinUIGallery.Views.ParticlePage",
           "Title": "Particle",
           "Subtitle": "Particle",
-          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
           "Title": "Wave Circle",
           "Subtitle": "Wave Circle",
-          "ImagePath": "ms-appx:///Assets/Fluent/InkToolbar.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Wave.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BubblePage",
@@ -752,7 +759,7 @@
           "UniqueId": "DevWinUIGallery.Views.ColorPickerPage",
           "Title": "Color Picker",
           "Subtitle": "Color Picker Settings for SettingsControl",
-          "ImagePath": "ms-appx:///Assets/Fluent/ColorPicker.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ColorPicker2.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FancyZonesPage",
