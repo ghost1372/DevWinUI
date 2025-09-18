@@ -1076,6 +1076,11 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ColonBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
     <Setter Property="ColonForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
     <Setter Property="Angle" Value="-5" />
+    <Setter Property="Model">
+      <Setter.Value>
+        <local:SixteenSegmentChar />
+      </Setter.Value>
+    </Setter>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:DigitalSegment">

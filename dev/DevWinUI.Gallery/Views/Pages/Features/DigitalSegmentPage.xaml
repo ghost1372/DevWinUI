@@ -44,7 +44,7 @@
                         <ComboBox x:Name="CmbModel"
                                   Header="Model"
                                   ItemsSource="{x:Bind AvailableModels, Mode=OneWay}"
-                                  SelectedIndex="{x:Bind ViewModel.DigitalSegmentSelectedModelIndex, Mode=OneWay}"
+                                  Loaded="CmbModel_Loaded"
                                   SelectedItem="{x:Bind ViewModel.DigitalSegmentSelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="model:DigitalSegmentOption">

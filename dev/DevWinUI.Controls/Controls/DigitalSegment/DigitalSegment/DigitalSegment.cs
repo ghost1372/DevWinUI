@@ -15,7 +15,8 @@ public partial class DigitalSegment : Control
 
     private void UpdateText()
     {
-        if(panel == null) return;
+        if(panel == null || Model == null)
+            return;
 
         panel.Children.Clear();
 
@@ -27,11 +28,6 @@ public partial class DigitalSegment : Control
 
             if (!string.IsNullOrEmpty(Text) && i < Text.Length)
                 charToShow = Text[i].ToString();
-
-            if (Model == null)
-            {
-                Model = new SixteenSegmentChar();
-            }
 
             var digit = Model.Clone();
             digit.Angle = this.Angle;

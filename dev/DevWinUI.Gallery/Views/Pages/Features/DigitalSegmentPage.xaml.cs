@@ -20,4 +20,9 @@ public sealed partial class DigitalSegmentPage : Page
         ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
+
+    private void CmbModel_Loaded(object sender, RoutedEventArgs e)
+    {
+        CmbModel?.SelectedIndex = 0;
+    }
 }
