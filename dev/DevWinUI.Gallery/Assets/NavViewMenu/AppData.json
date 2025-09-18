@@ -143,6 +143,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.HomePageHeaderPage",
+          "Title": "Home Page Header",
+          "Subtitle": "Home Page Header",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/GridView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.HeaderTilePage",
+          "Title": "Header Tile",
+          "Subtitle": "Header Tile",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SegmentCharPage",
           "Title": "Segment Char",
           "Subtitle": "SixteenSegmentChar, FourteenSegmentChar, MatrixSegmentChar",

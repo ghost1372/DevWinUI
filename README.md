@@ -154,6 +154,8 @@ Install-Package DevWinUI
 - ✨ FourteenSegmentChar
 - ✨ MatrixXxXSegmentChar(5x7, 5x8, 8x14)
 - ✨ CheckUpdateControl
+- ✨ HeaderTile
+- ✨ HomePageHeader
 - ✨ OutOfBoxPage
 - ✨ Card
 - ✨ StorageRing
@@ -315,6 +317,12 @@ Install-Package DevWinUI.ContextMenu
 
 ### MatrixSegmentChar
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MatrixSegmentChar.gif)
+
+### HomePageHeader
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/HomePageHeader.gif)
+
+### HeaderTile
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/HeaderTile.png)
 
 ### CheckUpdateControl
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CheckUpdateControl.gif)

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.HomePageHeaderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/homePageHeader">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:HomePageHeader HeaderImage="ms-appx:///Assets/Cover.png" HeaderText="Header" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NbHeight"
+                                   Header="Header Image Height"
+                                   Maximum="400"
+                                   Minimum="200"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="400" />
+                        <TextBox x:Name="TxtHeader"
+                                 Header="Header"
+                                 PlaceholderText="Header"
+                                 Text="DevWinUI" />
+                        <TextBox x:Name="TxtHeaderSubtitle"
+                                 Header="Header Subtitle"
+                                 PlaceholderText="Header Subtitle"
+                                 Text="v9.0.0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Margin="10"
+                            Spacing="10">
+                    <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}"
+                                        HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}"
+                                        HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}"
+                                        HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
+                        <dev:HomePageHeader.HeaderContent>
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="12">
+                                <dev:HeaderTile Title="Title"
+                                                Description="Description" />
+                                <dev:HeaderTile Title="Title"
+                                                Description="Description" />
+                                <dev:HeaderTile Title="Title"
+                                                Description="Description" />
+                                <dev:HeaderTile Title="Title"
+                                                Description="Description" />
+                            </StackPanel>
+                        </dev:HomePageHeader.HeaderContent>
+                    </dev:HomePageHeader>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
