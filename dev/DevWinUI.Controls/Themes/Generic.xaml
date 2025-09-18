@@ -198,12 +198,6 @@ Themes\Styles\Win2D\Watermark.xaml
         <GradientStop Offset="1.0" Color="#D5DBE3" />
       </LinearGradientBrush>
       <x:Double x:Key="ImageOpacity">0.9</x:Double>
-      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.75" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.85" Color="#00FFFFFF" />
-        <GradientStop Offset="1" Color="#00FFFFFF" />
-      </LinearGradientBrush>
       <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemFillColorCriticalBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemFillColorCautionBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
@@ -357,6 +351,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
+      <x:Double x:Key="ImageOpacity">0.8</x:Double>
       <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemFillColorCriticalBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemFillColorCautionBackgroundBrush" />
       <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
@@ -504,11 +500,6 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
       <SolidColorBrush x:Key="BackgroundGradient" Color="Black" />
       <x:Double x:Key="ImageOpacity">0.8</x:Double>
-      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0" Color="#FF000000" />
-        <GradientStop Offset="0.55" Color="#FF000000" />
-        <GradientStop Offset="0.95" Color="#00000000" />
-      </LinearGradientBrush>
       <StaticResource x:Key="MessageBoxHeaderErrorSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="MessageBoxHeaderWarningSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="MessageBoxHeaderSuccessSeverityBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
@@ -578,16 +569,6 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonItemForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
-    </ResourceDictionary>
-    <ResourceDictionary x:Key="Dark">
-      <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
-      <x:Double x:Key="ImageOpacity">0.8</x:Double>
-      <LinearGradientBrush x:Key="OverlayRadialGradientEx" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0" Color="#FF000000" />
-        <GradientStop Offset="0.75" Color="#FF000000" />
-        <GradientStop Offset="0.85" Color="#00000000" />
-        <GradientStop Offset="1" Color="#00000000" />
-      </LinearGradientBrush>
     </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
   <x:Double x:Key="PagerControlNumberPanelButtonWidth">32</x:Double>
@@ -7507,7 +7488,7 @@ Themes\Styles\Win2D\Watermark.xaml
               <RowDefinition Height="Auto" />
               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <local:OpacityMaskView Grid.RowSpan="3" Height="{TemplateBinding HeaderImageHeight}" HorizontalAlignment="Stretch" VerticalAlignment="Top" OpacityMask="{StaticResource OverlayRadialGradientEx}">
+            <local:OpacityMaskView Grid.RowSpan="3" Height="{TemplateBinding HeaderImageHeight}" HorizontalAlignment="Stretch" VerticalAlignment="Top" OpacityMask="{ThemeResource OverlayRadialGradient}">
               <Grid x:Name="ImageGrid" Margin="0,-100,0,0" Background="{ThemeResource BackgroundGradient}">
                 <Image x:Name="PART_HeroImage" Opacity="{ThemeResource ImageOpacity}" Source="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
                 <local:TileControl x:Name="PART_HeroTile" ImageSource="{Binding HeaderImage, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StringToUriConverter}}" Opacity="{ThemeResource ImageOpacity}" Visibility="Collapsed" />
