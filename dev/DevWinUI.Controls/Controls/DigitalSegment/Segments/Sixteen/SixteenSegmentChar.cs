@@ -44,10 +44,10 @@ public sealed partial class SixteenSegmentChar : SegmentChar
             ("K", GetTemplateChild("PART_SegmentK") as Path),
             ("L", GetTemplateChild("PART_SegmentL") as Path),
             ("M", GetTemplateChild("PART_SegmentM") as Path),
-            ("DP1", GetTemplateChild("PART_SegmentDP1") as Ellipse),
-            ("DP2", GetTemplateChild("PART_SegmentDP2") as Ellipse),
-            (DigitalSegmentHelper.COLON_TOP_KEY, GetTemplateChild("PART_SegmentColon1") as Ellipse),
-            (DigitalSegmentHelper.COLON_BOTTOM_KEY, GetTemplateChild("PART_SegmentColon2") as Ellipse),
+            ("DP1", GetTemplateChild("PART_SegmentDP1") as Shape),
+            ("DP2", GetTemplateChild("PART_SegmentDP2") as Shape),
+            (DigitalSegmentHelper.COLON_TOP_KEY, GetTemplateChild("PART_SegmentColon1") as Shape),
+            (DigitalSegmentHelper.COLON_BOTTOM_KEY, GetTemplateChild("PART_SegmentColon2") as Shape),
         };
     }
 

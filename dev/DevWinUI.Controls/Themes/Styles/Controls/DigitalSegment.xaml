@@ -39,6 +39,131 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SixteenSegmentChar">
+                    <Grid Width="235"
+                          Height="380"
+                          Margin="10">
+                        <Grid.RenderTransform>
+                            <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
+                        </Grid.RenderTransform>
+                        <Path x:Name="PART_SegmentA1"
+                              Data="F1 M232.5,384.75z M0,0z M38.03,15.87C40.56,15.1 42.9,16.44 45.34,16.5 59.19,16.82 74.59,15.39 88.15,16.44 89.59,16.55 92.04,16.82 93.32,17.27 97.29,18.65 106.16,29.55 110.23,32.56L92.46,49.24 56.03,48.49 29.3,24.96C29.16,24.13,36.96,16.18,38.02,15.86z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentA2"
+                              Data="F1 M232.5,384.75z M0,0z M197.85,18.88L203.25,26.94C202.35,26.99 201.62,27.43 200.99,28.03 192.96,35.67 185.15,44.01 176.61,50.89L140.78,50.75 123.77,34.76 142.14,17.98C160.71,18.29,179.38,17.11,197.84,18.87z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentB"
+                              Data="F1 M232.5,384.75z M0,0z M216.49,38.44L219.05,43 217.54,168.79 216.43,171.47 200.77,185.54C199.41,185.33,184.81,171.73,184.53,170.28L186.02,55.78 209.28,33.27C212.14,32.05,213.89,37.66,216.49,38.44z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentC"
+                              Data="F1 M232.5,384.75z M0,0z M200.78,199.19C203.03,198.61,214.48,209.97,217.5,211.47L218.55,216.23 219.5,344.6C218.92,349.05 212.14,351.81 209.63,355.54 202.64,348.56 194.97,342.2 187.86,335.36 182.93,330.61 185.16,330.43 185.03,324.49 184.25,288.18 185.43,251.85 184.83,215.54 185.5,212.92 199.66,199.48 200.78,199.19z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentD1"
+                              Data="F1 M232.5,384.75z M0,0z M25.5,359.31L54.39,334.61 90.22,334 108.74,349.94C101.89,356.3,96.05,363.93,88.11,369.01L34.89,369.01C33.27,368.7,24.81,360.28,25.5,359.31z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentD2"
+                              Data="F1 M232.5,384.75z M0,0z M198.6,368.87L139.14,368.27C136.69,366.29,120.52,353.15,120.81,351.54L140.06,334.03 176.47,334.01C186.47,341.07,194.5,350.5,203.67,358.57L198.6,368.87z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentE"
+                              Data="F1 M232.5,384.75z M0,0z M29.73,196.92L46.49,213.72 45.8,329.02C45.46,331.59 42.44,333.9 40.52,335.73 35.82,340.22 26.94,349.09 22.13,352.55 21.34,353.12 20.25,354.14 19.24,353.94L10.1,343.99 12.46,216.23C12.55,214.79 12.72,213.46 13.47,212.17 16.3,207.36 26.01,201.66 29.73,196.92z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentF"
+                              Data="F1 M232.5,384.75z M0,0z M22.86,28.63C28.38,33.22 34.2,38.33 39.39,43.4 41.67,45.63 47.67,50.79 48.03,53.49L47.97,168.04 46.93,169.99 28.76,184.84 13.83,171.47 12.71,168.84 13.46,39.26C13.92,35.8,20.46,31.42,22.86,28.63z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentG1"
+                              Data="F1 M232.5,384.75z M0,0z M112.49,190.14L112.03,191.67C103.64,195.16 95.54,202.33 87.51,205.98 85.62,206.84 85.14,207.16 82.91,207.38 73.55,208.29 62.56,206.76 53.03,207.19L35.26,190.5 53.26,174.79C63.8,173.99,74.35,173.16,84.94,173.84L112.49,190.14z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentG2"
+                              Data="F1 M232.5,384.75z M0,0z M195,191.61C188.26,195.64 183.51,203.05 177.23,207.94 166.15,208.26 155.04,208.42 144.05,206.93L120.77,191.25 146.29,174.81 177.98,175.3C182.85,179.36 187.78,183.54 192.4,187.86 193.09,188.5 195.67,190.71 195,191.61z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentH"
+                              Data="F1 M232.5,384.75z M0,0z M51.75,56.14C64.13,66.22,76.03,77.1,87.17,88.53L111.75,183.77C112.06,185.58 110.58,184.92 109.46,184.55 107.79,183.99 92.05,175.47 91.46,174.63L51.74,93.95 51.74,56.15z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentI"
+                              Data="F1 M232.5,384.75z M0,0z M116.24,184.14C114.68,183.14 114.02,180.06 113.47,178.31 107.8,160.38 103.7,141.83 98.33,123.81L99.94,55.97 117.37,40.67 133.86,54.66 133.42,125.3 116.24,184.14z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentJ"
+                              Data="F1 M232.5,384.75z M0,0z M181.5,99.93L143.59,174.37C135.98,178.27 128.86,183.38 121.27,187.28 120.65,187.6 119.69,188.57 119.24,187.5L144.7,91.84 181.5,59.14 181.5,99.94z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentK"
+                              Data="F1 M232.5,384.75z M0,0z M49.5,325.62L49.5,325.62 49.5,284.07 86.65,211.12 111.76,196.5 86.08,292.14 49.5,325.62z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentL"
+                              Data="F1 M232.5,384.75z M0,0z M116.99,202.11L133.32,259.55 132,329.69 130.9,331.63 114.51,344.97 98.57,331.66 97.53,329.71C98.86,308.2 97.01,286.02 98.23,264.57 98.89,252.96 107.47,229.19 111.23,216.92 112.54,212.65 113.96,207.15 115.44,203.15 115.82,202.12 115.17,201.87 117.01,202.1z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentM"
+                              Data="F1 M232.5,384.75z M0,0z M180,326.36L144.4,293.4C137.74,261.24 128.11,229.79 119.98,197.99 119.98,196.99 119.86,196.51 121.11,196.87 123.51,197.57 138.99,205.98 140.28,207.69L180.01,287.8 180.01,326.35z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Ellipse x:Name="PART_SegmentDP2"
+                                 Width="25"
+                                 Height="25"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Bottom"
+                                 Fill="{TemplateBinding SegmentBackground}"
+                                 Stroke="{TemplateBinding Stroke}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Ellipse x:Name="PART_SegmentDP1"
+                                 Width="25"
+                                 Height="25"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Top"
+                                 Fill="{TemplateBinding SegmentBackground}"
+                                 Stroke="{TemplateBinding Stroke}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentColon1"
+                              Data="M116.1,112.4 m-16,0 a16,16 0 1,0 32,0 a16,16 0 1,0 -32,0"
+                              Fill="{TemplateBinding ColonBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+
+                        <Path x:Name="PART_SegmentColon2"
+                              Data="M115.4,273.5 m-16,0 a16,16 0 1,0 32,0 a16,16 0 1,0 -32,0"
+                              Fill="{TemplateBinding ColonBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WideSixteenSegmentCharStyle"
+           BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}"
+           TargetType="local:SixteenSegmentChar">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SixteenSegmentChar">
                     <Grid Width="280"
                           Height="350"
                           Margin="10">
@@ -187,6 +312,114 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:FourteenSegmentChar">
                     <Grid Width="280"
+                          Height="360"
+                          Margin="10">
+                        <Grid.RenderTransform>
+                            <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
+                        </Grid.RenderTransform>
+                        <Path x:Name="PART_SegmentA"
+                              Data="F1 M237,367.5z M0,0z M34.17,38.33L183.56,38.16C187.52,38.95 193.91,44.08 191.43,48.32 190.71,49.55 178.08,62.05 176.46,63.26 175.38,64.06 174.52,65.01 173.04,65.07L44.33,64.53C41.72,63.55 26.87,48.97 26.29,46.59 25.82,44.69 32.27,38.76 34.19,38.33z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentD"
+                              Data="F1 M237,367.5z M0,0z M45.39,310.03L172.28,309.92C174.44,310.25 175.96,311.55 177.58,312.85 179.46,314.35 190.57,325.22 191.43,326.67 193.93,330.92 187.44,336.09 183.56,336.83L34.81,336.77C32.35,336.46 25.8,330.35 26.28,328.39 26.93,325.72 42.42,310.69 45.39,310.02z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentB"
+                              Data="F1 M237,367.5z M0,0z M194.92,50.28C198.49,49.21 203.81,55.37 204.12,58.74 202.3,94.38 206.5,132.67 204.45,168.05 204.33,170.11 203.79,171.58 202.61,173.28 201.97,174.21 194.03,182.24 193.3,182.67 191.47,183.74 190.56,183.74 188.73,182.67 186.18,181.18 177.68,171.76 177.25,168.72L177.16,70.72C176.99,66.94,193.1,50.82,194.91,50.28z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentC"
+                              Data="F1 M237,367.5z M0,0z M189.69,191.74C190.37,191.54 191.03,191.48 191.73,191.58 193.53,191.84 205.13,203.1 204.44,206.46L204.46,315.97C203.3,319.88 198.41,326.72 193.98,324.13 192.67,323.36 181.13,311.62 179.8,309.89 178.47,308.16 177.32,306.51 177.18,304.28L177.27,206.28C177.03,203.37,188.11,192.22,189.7,191.75z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentE"
+                              Data="F1 M237,367.5z M0,0z M26.7,191.74C27.38,191.54 28.04,191.48 28.74,191.58 30.7,191.87 41.81,203.02 41.45,206.46L41.45,304.74C41.31,306.31 40.92,307.15 40.03,308.41 39.08,309.77 25.41,323.47 24.33,324.12 20.67,326.32 14.59,319 14.18,315.49L14.18,206.18C14.02,203.33,25.19,192.18,26.69,191.73z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentF"
+                              Data="F1 M237,367.5z M0,0z M21.47,50.25C22.8,49.87 23.27,50.21 24.34,50.85 25.7,51.66 37.96,64.1 39.27,65.84 40.42,67.37 41.34,68.71 41.49,70.7L41.45,168.51C41.16,171.98 33.16,180.99 30.32,182.65 28.49,183.72 27.58,183.72 25.75,182.65 23.4,181.27 14.52,171.61 14.19,168.78L14.19,59.49C13.73,57.23,20.07,50.65,21.47,50.26z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentI"
+                              Data="F1 M237,367.5z M0,0z M121.49,68.11C122.05,68.28,123,69.92,123.01,70.7L122.93,140.07 109.89,183.37C108.86,183.29 108.7,182.28 108.37,181.54 102.93,169.62 100.65,153.46 95.76,141.02L96.08,69.61C96.25,69.26,97.43,68.1,97.56,68.1L121.48,68.1z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentL"
+                              Data="F1 M237,367.5z M0,0z M97.57,306.87C97.32,306.8,96.25,305.71,96.09,305.36L95.77,233.95C100.66,221.51 102.95,205.35 108.38,193.43 108.72,192.69 108.88,191.68 109.9,191.6L123.03,235.79 123.03,304.28C123.08,305.01,121.86,306.87,121.5,306.87L97.58,306.87z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentJ"
+                              Data="F1 M237,367.5z M0,0z M174.19,71.86L173.83,99.56 140.7,168.18C135.67,175.82 121.45,178.8 114.01,184.11 111.81,184.01 114.52,176.7 114.92,175.3 121.29,153.14 129.63,131.37 136.53,109.36 138.98,104.8 166.84,76.93 171.95,72.97 172.7,72.39 172.9,71.52 174.19,71.86z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentK"
+                              Data="F1 M237,367.5z M0,0z M44.11,278.06L78.92,205.13C80.67,202.84 99.05,193.49 102.64,192.2 103.58,191.86 105.43,190.99 106.18,192L82.14,265.98C70.17,276.22 58.55,292.68 46.37,302.02 45.62,302.6 45.43,303.46 44.12,303.14L44.12,278.07z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentM"
+                              Data="F1 M237,367.5z M0,0z M174.2,303.13C172.9,303.46 172.71,302.59 171.95,302.01 166.97,298.19 138.92,270.06 136.53,265.62L112.88,191.99C112.94,191.1 115.2,191.74 115.9,191.96 120.3,193.35 137.67,202.48 140.13,205.88 149.52,228.29 164.2,250.99 172.83,273.44 174.07,276.67 174.19,277.73 174.19,281.06L174.19,303.14z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentH"
+                              Data="F1 M237,367.5z M0,0z M44.11,72.98L45.61,72.22 82.14,109.01 106.17,182.99 104.64,183.81C96.33,178.91,86.39,175.88,78.92,169.87L44.11,96.94 44.11,72.99z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentG1"
+                              Data="F1 M237,367.5z M0,0z M46.15,173.82C50.81,172.87 72.95,173.05 77.95,173.82 79.72,174.1 82.26,175.28 84,175.99 86.55,177.02 105.4,186.27 105.4,187.49 104.64,188.58 103.53,189.09 102.45,189.76 98.22,192.35 82.79,200.27 78.54,201 73.4,201.89 51,202.15 46.15,201.16 41.95,200.3 34.17,191.15 31.65,187.48 31.65,185.37 43.42,174.36 46.15,173.8z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentG2"
+                              Data="F1 M237,367.5z M0,0z M113.64,188.6C113.38,187.08 114.61,186.48 115.63,185.74 120.42,182.3 138.23,174.03 143.88,173.61 149.88,173.16 168.13,172.81 173.31,174.15 176.51,174.98 187.27,184.91 186.93,188.21 186.73,190.08 175.82,200.37 173.47,200.98 169.56,202 144.84,201.91 140.36,201.15 132.69,199.85 121.74,190.58 113.64,188.59z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentDP2"
+                              Data="F1 M237,367.5z M0,0z M209.89,326.52C228.73,323.35 231.41,350.34 215.52,353.1 196.51,356.41 193.23,329.32 209.89,326.52z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentDP1"
+                              Data="F1 M237,367.5z M0,0z M209.89,21.89C228.39,18.78 231.62,45.67 215.52,48.47 196.51,51.78 193.23,24.69 209.89,21.89z"
+                              Fill="{TemplateBinding SegmentBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentColon1"
+                              Data="M109.5,125.5 m-12,0 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0"
+                              Fill="{TemplateBinding ColonBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                        <Path x:Name="PART_SegmentColon2"
+                              Data="M109.4,249.2 m-12,0 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0"
+                              Fill="{TemplateBinding ColonBackground}"
+                              Stroke="{TemplateBinding Stroke}"
+                              StrokeThickness="{TemplateBinding StrokeThickness}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WideFourteenSegmentCharStyle"
+           BasedOn="{StaticResource DefaultFourteenSegmentCharStyle}"
+           TargetType="local:FourteenSegmentChar">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FourteenSegmentChar">
+                    <Grid Width="280"
                           Height="350"
                           Margin="10">
                         <Grid.RenderTransform>
@@ -302,7 +535,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <Style BasedOn="{StaticResource DefaultMatrix5x7SegmentCharStyle}"
            TargetType="local:Matrix5x7SegmentChar" />
 
