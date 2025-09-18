@@ -104,7 +104,7 @@
           "UniqueId": "DevWinUIGallery.Views.ValidationPage",
           "Title": "Validation",
           "Subtitle": "A helper for checking and enforcing data rules, ensuring input or properties meet required conditions before processing.",
-          "ImagePath": "ms-appx:///Assets/Fluent/Behaviors.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/InputValidation.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RainbowFramePage",
@@ -140,6 +140,20 @@
       "IsSpecialSection": false,
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.FlipCardsPage",
+          "Title": "Flip Cards",
+          "Subtitle": "A container of multiple FlipBlocks to show time, date, or multi-digit values with dynamic flipping animations.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/GridSplitter.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FlipBlockPage",
+          "Title": "Flip Block",
+          "Subtitle": "A single animated panel that “flips” to display a number or character with smooth transitions",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentSizer.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.HomePageHeaderPage",
           "Title": "Home Page Header",
@@ -471,7 +485,7 @@
           "UniqueId": "DevWinUIGallery.Views.OptionsPageControlPage",
           "Title": "Options Page Control",
           "Subtitle": "A page with options",
-          "ImagePath": "ms-appx:///Assets/Fluent/OptionsPageControl.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/StackedNotificationsBehavior.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StylesPage",

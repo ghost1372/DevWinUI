@@ -11,6 +11,9 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<FlipCardsSourceType> FlipCardsSourceItems { get; set; } = new ObservableCollection<FlipCardsSourceType>(Enum.GetValues<FlipCardsSourceType>());
+
+    [ObservableProperty]
     public partial ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
 
     [ObservableProperty]

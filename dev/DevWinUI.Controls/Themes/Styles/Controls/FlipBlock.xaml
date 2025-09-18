@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style x:Key="FlipBlockTextBlockStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="75" />
+    </Style>
+
+    <LinearGradientBrush x:Key="FlipBlockBackgroundGradientBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF404040" />
+        <GradientStop Offset="1" Color="#FF202020" />
+    </LinearGradientBrush>
+
+    <!--  Control Template  -->
+    <Style TargetType="local:FlipBlock">
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FlipBlock">
+                    <Grid Width="50"
+                          Height="80">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="0.5*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Top Block  -->
+                        <Grid x:Name="PART_BlockTop"
+                              Grid.Row="0"
+                              Background="{StaticResource FlipBlockBackgroundGradientBrush}"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              CornerRadius="{TemplateBinding CornerRadius}">
+                            <TextBlock x:Name="PART_TextTop"
+                                       Margin="0,-2,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource FlipBlockTextBlockStyle}" />
+                        </Grid>
+
+                        <!--  Bottom Block  -->
+                        <Grid x:Name="PART_BlockBottom"
+                              Grid.Row="1"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              CornerRadius="{TemplateBinding CornerRadius}">
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#FF202020" />
+                                    <GradientStop Offset="1" Color="#FF404040" />
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <TextBlock x:Name="PART_TextBottom"
+                                       Margin="0,0,0,-4"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Style="{StaticResource FlipBlockTextBlockStyle}" />
+                        </Grid>
+
+                        <!--  Flip Block  -->
+                        <Grid x:Name="PART_BlockFlip"
+                              Background="{StaticResource FlipBlockBackgroundGradientBrush}"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              CornerRadius="{TemplateBinding CornerRadius}"
+                              RenderTransformOrigin="0.5,1">
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+
+                            <TextBlock x:Name="PART_TextFlipTop"
+                                       Margin="0,-2,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource FlipBlockTextBlockStyle}" />
+                            <TextBlock x:Name="PART_TextFlipBottom"
+                                       Margin="0,0,0,-4"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       RenderTransformOrigin="0.5,0.5"
+                                       Style="{StaticResource FlipBlockTextBlockStyle}"
+                                       Visibility="Collapsed">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="-1" />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform Y="40" />
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

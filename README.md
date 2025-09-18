@@ -149,6 +149,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ FlipCards
+- ✨ FlipBlock
 - ✨ DigitalSegment (SixteenSegment, FourteenSegment, Matrix5x7, Matrix5x8, Matrix8x14)
 - ✨ SixteenSegmentChar
 - ✨ FourteenSegmentChar
@@ -305,6 +307,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### FlipCards
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlipCards.gif)
+
+### FlipBlock
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlipBlock.gif)
 
 ### DigitalSegment
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DigitalSegment.gif)
