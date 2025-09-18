@@ -124,6 +124,10 @@ public partial class HomePageHeader : Control
         }
     }
 
+    public HomePageHeader()
+    {
+        DefaultStyleKey = typeof(HomePageHeader);
+    }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
