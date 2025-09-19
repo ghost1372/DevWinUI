@@ -8,7 +8,7 @@
 
     <Style x:Key="DefaultCardStyle"
            TargetType="local:Card">
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="24" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
@@ -44,7 +44,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="16,0,0,0"
+                            <TextBlock Margin="24,0,0,0"
                                        VerticalAlignment="Center"
                                        FontSize="16"
                                        FontWeight="SemiBold"

@@ -94,6 +94,7 @@ Themes\Styles\Controls\StorageRing.xaml
 Themes\Styles\Controls\TextBox.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\Validation.xaml
+Themes\Styles\Controls\WanderingParticles.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
 Themes\Styles\Win2D\BubbleButton.xaml
 Themes\Styles\Win2D\BubbleProgressButton.xaml
@@ -865,7 +866,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
   </Style>
   <Style x:Key="DefaultCardStyle" TargetType="local:Card">
-    <Setter Property="Padding" Value="8" />
+    <Setter Property="Padding" Value="24" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
@@ -896,7 +897,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
-              <TextBlock Margin="16,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Text="{TemplateBinding Title}" />
+              <TextBlock Margin="24,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Text="{TemplateBinding Title}" />
               <ContentPresenter Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{TemplateBinding TitleContent}" />
             </Grid>
             <Rectangle x:Name="Divider" Grid.Row="1" Height="1" HorizontalAlignment="Stretch" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Visibility="{TemplateBinding DividerVisibility}" />
@@ -2970,6 +2971,15 @@ Themes\Styles\Win2D\Watermark.xaml
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
   </Storyboard>
+  <Style x:Key="DefaultWanderingParticlesStyle" TargetType="local:WanderingParticles">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:WanderingParticles">
+          <Grid x:Name="PART_Container" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <ControlTemplate x:Key="CompletedTemplate" TargetType="ContentControl">
     <Grid x:Name="CompletedElement" Margin="-2">
       <Ellipse x:Name="CompletedRectangle" Fill="{ThemeResource ProgressCompletedBackgroundBrush}">
@@ -9863,6 +9873,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultWanderingParticlesStyle}" TargetType="local:WanderingParticles" />
   <Style x:Key="DefaultWaveProgressBarStyle" TargetType="local:WaveProgressBar">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="WaveFill" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
