@@ -20,6 +20,6 @@ public sealed partial class MainWindow : Window
 
     private void ThemeButton_Click(object sender, RoutedEventArgs e)
     {
-        ThemeService.ChangeThemeWithoutSave(App.MainWindow);
+        App.Current.ThemeService.SetElementThemeWithoutSaveAsync();
     }
 }
