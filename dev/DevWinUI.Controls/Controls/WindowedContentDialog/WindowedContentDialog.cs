@@ -26,6 +26,8 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
         ContentDialogWindow.RequestedTheme = DetermineTheme();
         ContentDialogWindow.Title = WindowTitle;
         ContentDialogWindow.SystemBackdrop = SystemBackdrop;
+        ContentDialogWindow.BorderBrush = BorderBrush;
+        ContentDialogWindow.BorderThickness = BorderThickness;
         ContentDialogWindow.PrimaryButtonClick += (sender, args) => PrimaryButtonClick?.Invoke(this, args);
         ContentDialogWindow.SecondaryButtonClick += (sender, args) => SecondaryButtonClick?.Invoke(this, args);
         ContentDialogWindow.CloseButtonClick += (sender, args) => CloseButtonClick?.Invoke(this, args);
