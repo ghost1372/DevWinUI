@@ -141,6 +141,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.WanderingParticlesPage",
+          "Title": "Wandering Particles",
+          "Subtitle": "A visual effect that generates particles moving in random, flowing paths, creating a dynamic and wandering animation.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SnowFlakeEffectPage",
           "Title": "SnowFlake Effect",
           "Subtitle": "A visual effect that simulates falling snowflakes, with customizable particle count.",

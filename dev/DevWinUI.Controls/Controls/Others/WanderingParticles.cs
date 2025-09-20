@@ -12,6 +12,25 @@ public partial class WanderingParticles : Control
     private Random _random = new();
     private bool _isDisposed = false;
 
+    public int ParticleCount
+    {
+        get { return (int)GetValue(ParticleCountProperty); }
+        set { SetValue(ParticleCountProperty, value); }
+    }
+
+    public static readonly DependencyProperty ParticleCountProperty =
+        DependencyProperty.Register(nameof(ParticleCount), typeof(int), typeof(WanderingParticles), new PropertyMetadata(2000, OnParticleCountChanged));
+
+    private static void OnParticleCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (WanderingParticles)d;
+        if (ctl != null)
+        {
+            ctl.Stop();
+            ctl.Start();
+        }
+    }
+
     public bool AutoStart
     {
         get { return (bool)GetValue(AutoStartProperty); }
@@ -111,11 +130,10 @@ public partial class WanderingParticles : Control
 
     private void StartParticles()
     {
-        int count = 2000;
         float width = (float)ActualWidth;
         float height = (float)ActualHeight;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < ParticleCount; i++)
         {
             var brush = CreateCircleBrushAsync(_graphicsDevice, 1f, Colors.White);
 

@@ -149,6 +149,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ WanderingParticles
 - ✨ SnowFlakeEffect
 - ✨ FlipCards
 - ✨ FlipBlock
@@ -308,6 +309,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### WanderingParticles
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WanderingParticles.gif)
 
 ### SnowFlakeEffect
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnowFlakeEffect.gif)

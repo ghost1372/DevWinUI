@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WanderingParticlesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10"
+                    dev:PanelAttach.ChildrenTransitions="Default"
+                    Spacing="10">
+            <local:ControlExample DocPage="controls/wanderingParticles"
+                                  HeaderText="WanderingParticles">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:WanderingParticles ParticleCount="2000" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NbValue"
+                                   Header="Value"
+                                   Minimum="0"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="2000" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:WanderingParticles Height="400"
+                                        ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
