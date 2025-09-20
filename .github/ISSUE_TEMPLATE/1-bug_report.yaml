@@ -1,4 +1,4 @@
-name: Bug report
+﻿name: Bug report
 description: File a bug report.
 title: "[Bug]: "
 labels: []
@@ -35,17 +35,16 @@ body:
     attributes:
       label: NuGet package version
       options:
-        - "DevWinUI 8.3.0"
-        - "DevWinUI 8.2.0"
-        - "DevWinUI 8.1.0"
-        - "DevWinUI 8.0.0"
+        - "DevWinUI 9.1.0"
+        - "DevWinUI 9.0.0"
+        - "DevWinUI 8.9.2"
   - type: dropdown
     attributes:
       label: IDE
       description: Which Visual Studio versions did you see the issue on?
       multiple: true
       options:
-        - "Visual Studio 2022-preview"
+        - "Visual Studio 2026-Insider"
         - "Visual Studio 2022"
   - type: textarea
     attributes:
