@@ -148,6 +148,12 @@ public partial class ThemeService : IThemeService, IDisposable
     private void ElementThemeChanged(FrameworkElement sender, object args)
     {
         ThemeChanged?.Invoke(this, GetInternalElementTheme());
+
+        var window = WindowHelper.GetWindowForElement(sender);
+        if (window != null)
+        {
+            UpdateCaptionButtons(window);
+        }
     }
 
     private async Task InitializeAsync()
