@@ -13,10 +13,10 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar"
-                  Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
+                  Title="{x:Bind dev:ProcessInfoHelper.ProductNameDisplay}"
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
-                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefixDev}">
 
             <!--  Temporary Fix TitleBar Icon  -->
             <TitleBar.LeftHeader>

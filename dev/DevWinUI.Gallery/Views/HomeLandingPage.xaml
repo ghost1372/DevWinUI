@@ -9,7 +9,7 @@
       mc:Ignorable="d">
     <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
                          HeaderSubtitleText="Windows App SDK 1.8+"
-                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
+                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}"
                          JsonNavigationService="{x:Bind local:App.Current.NavService}" />
 </Page>
 
