@@ -16,26 +16,17 @@
             <PenLineCap x:Key="StorageRingTrackStartCap">Round</PenLineCap>
             <PenLineCap x:Key="StorageRingTrackEndCap">Round</PenLineCap>
 
-            <StaticResource x:Key="StorageRingBackgroundBrush"
-                            ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="StorageRingBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
 
-            <StaticResource x:Key="StorageRingValueBrush"
-                            ResourceKey="AccentFillColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingValueCautionBrush"
-                            ResourceKey="SystemFillColorCautionBrush" />
-            <StaticResource x:Key="StorageRingValueCriticalBrush"
-                            ResourceKey="SystemFillColorCriticalBrush" />
-            <StaticResource x:Key="StorageRingValueDisabledBrush"
-                            ResourceKey="AccentFillColorDisabledBrush" />
+            <StaticResource x:Key="StorageRingValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
+            <StaticResource x:Key="StorageRingValueCriticalBrush" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="StorageRingValueDisabledBrush" ResourceKey="AccentFillColorDisabledBrush" />
 
-            <StaticResource x:Key="StorageRingTrackBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackCautionBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackCriticalBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackDisabledBrush"
-                            ResourceKey="ControlStrongStrokeColorDisabledBrush" />
+            <StaticResource x:Key="StorageRingTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="ControlStrongStrokeColorDisabledBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="HighContrast">
@@ -50,26 +41,17 @@
             <PenLineCap x:Key="StorageRingTrackStartCap">Round</PenLineCap>
             <PenLineCap x:Key="StorageRingTrackEndCap">Round</PenLineCap>
 
-            <StaticResource x:Key="StorageRingBackgroundBrush"
-                            ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="StorageRingBackgroundBrush" ResourceKey="SystemControlBackgroundBaseLowBrush" />
 
-            <StaticResource x:Key="StorageRingValueBrush"
-                            ResourceKey="SystemColorHighlightColorBrush" />
-            <StaticResource x:Key="StorageRingValueCautionBrush"
-                            ResourceKey="SystemColorHotlightColorBrush" />
-            <StaticResource x:Key="StorageRingValueCriticalBrush"
-                            ResourceKey="SystemColorHotlightColorBrush" />
-            <StaticResource x:Key="StorageRingValueDisabledBrush"
-                            ResourceKey="SystemColorGrayTextBrush" />
+            <StaticResource x:Key="StorageRingValueBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="StorageRingValueCautionBrush" ResourceKey="SystemColorHotlightColorBrush" />
+            <StaticResource x:Key="StorageRingValueCriticalBrush" ResourceKey="SystemColorHotlightColorBrush" />
+            <StaticResource x:Key="StorageRingValueDisabledBrush" ResourceKey="SystemColorGrayTextBrush" />
 
-            <StaticResource x:Key="StorageRingTrackBrush"
-                            ResourceKey="SystemColorWindowTextColorBrush" />
-            <StaticResource x:Key="StorageRingTrackCautionBrush"
-                            ResourceKey="SystemColorWindowTextColorBrush" />
-            <StaticResource x:Key="StorageRingTrackCriticalBrush"
-                            ResourceKey="SystemColorWindowTextColorBrush" />
-            <StaticResource x:Key="StorageRingTrackDisabledBrush"
-                            ResourceKey="SystemColorGrayTextBrush" />
+            <StaticResource x:Key="StorageRingTrackBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="SystemColorGrayTextBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -84,34 +66,23 @@
             <PenLineCap x:Key="StorageRingTrackStartCap">Round</PenLineCap>
             <PenLineCap x:Key="StorageRingTrackEndCap">Round</PenLineCap>
 
-            <StaticResource x:Key="StorageRingBackgroundBrush"
-                            ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="StorageRingBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
 
-            <StaticResource x:Key="StorageRingValueBrush"
-                            ResourceKey="AccentFillColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingValueCautionBrush"
-                            ResourceKey="SystemFillColorCautionBrush" />
-            <StaticResource x:Key="StorageRingValueCriticalBrush"
-                            ResourceKey="SystemFillColorCriticalBrush" />
-            <StaticResource x:Key="StorageRingValueDisabledBrush"
-                            ResourceKey="AccentFillColorDisabledBrush" />
+            <StaticResource x:Key="StorageRingValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
+            <StaticResource x:Key="StorageRingValueCriticalBrush" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="StorageRingValueDisabledBrush" ResourceKey="AccentFillColorDisabledBrush" />
 
-            <StaticResource x:Key="StorageRingTrackBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackCautionBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackCriticalBrush"
-                            ResourceKey="ControlStrongStrokeColorDefaultBrush" />
-            <StaticResource x:Key="StorageRingTrackDisabledBrush"
-                            ResourceKey="ControlStrongStrokeColorDisabledBrush" />
+            <StaticResource x:Key="StorageRingTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="ControlStrongStrokeColorDisabledBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultStorageRingStyle}"
-           TargetType="local:StorageRing" />
+    <Style TargetType="local:StorageRing" BasedOn="{StaticResource DefaultStorageRingStyle}" />
 
-    <Style x:Key="DefaultStorageRingStyle"
-           TargetType="local:StorageRing">
+    <Style x:Key="DefaultStorageRingStyle" TargetType="local:StorageRing">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{ThemeResource StorageRingTrackBrush}" />
@@ -152,56 +123,40 @@
 
                                 <VisualState x:Name="Caution">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource StorageRingValueCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource StorageRingTrackCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="Critical">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource StorageRingValueCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource StorageRingTrackCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape"
-                                                                       Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="PART_Container"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Background="{ThemeResource StorageRingBackgroundBrush}"
-                              BackgroundSizing="OuterBorderEdge">
+                        <Grid x:Name="PART_Container" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource StorageRingBackgroundBrush}" BackgroundSizing="OuterBorderEdge">
 
                             <local:RingShape x:Name="PART_TrackRingShape"
                                              IsCircle="True"

@@ -5,96 +5,60 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="SelectorBarSegmentedBackground"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedBorderBrush"
-                            ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
 
             <!--  Background  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBackground"
-                            ResourceKey="ControlFillColorTransparentBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver"
-                            ResourceKey="SubtleFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected"
-                            ResourceKey="ControlFillColorDefaultBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed"
-                            ResourceKey="SubtleFillColorTertiaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled"
-                            ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackground" ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled" ResourceKey="ControlFillColorDisabledBrush" />
 
             <!--  BorderBrush  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush"
-                            ResourceKey="ControlFillColorTransparentBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver"
-                            ResourceKey="SubtleFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected"
-                            ResourceKey="ControlElevationBorderBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed"
-                            ResourceKey="SubtleFillColorTertiaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush" ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
             <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="SelectorBarSegmentedBackground"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedBorderBrush"
-                            ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
 
             <!--  Background  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBackground"
-                            ResourceKey="ControlFillColorTransparentBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver"
-                            ResourceKey="SubtleFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected"
-                            ResourceKey="ControlFillColorDefaultBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed"
-                            ResourceKey="SubtleFillColorTertiaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled"
-                            ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackground" ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled" ResourceKey="ControlFillColorDisabledBrush" />
 
             <!--  BorderBrush  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush"
-                            ResourceKey="ControlFillColorTransparentBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver"
-                            ResourceKey="SubtleFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected"
-                            ResourceKey="ControlElevationBorderBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed"
-                            ResourceKey="SubtleFillColorTertiaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush" ResourceKey="ControlFillColorTransparentBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
             <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="SelectorBarSegmentedBackground"
-                            ResourceKey="SystemColorButtonFaceColor" />
-            <StaticResource x:Key="SelectorBarSegmentedBorderBrush"
-                            ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedBackground" ResourceKey="SystemColorButtonFaceColor" />
+            <StaticResource x:Key="SelectorBarSegmentedBorderBrush" ResourceKey="SystemColorHighlightColorBrush" />
 
             <!--  Background  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBackground"
-                            ResourceKey="SystemColorButtonFaceColor" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver"
-                            ResourceKey="SystemColorHighlightColor" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected"
-                            ResourceKey="SystemColorHighlightColor" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed"
-                            ResourceKey="SystemColorHighlightColor" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled"
-                            ResourceKey="SystemControlTransparentBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackground" ResourceKey="SystemColorButtonFaceColor" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPointerOver" ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundSelected" ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundPressed" ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />
 
             <!--  BorderBrush  -->
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected"
-                            ResourceKey="ControlElevationBorderBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
-            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled"
-                            ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrush" ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPointerOver" ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushSelected" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushPressed" ResourceKey="ControlAltFillColorSecondaryBrush" />
+            <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
             <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
@@ -120,11 +84,9 @@
                                                MiddleItemMargin="{StaticResource SelectorBarMiddleItemHoverVerticalMargin}"
                                                RightItemMargin="{StaticResource SelectorBarRightItemHoverVerticalMargin}" />
 
-    <Style BasedOn="{StaticResource DefaultSelectorBarSegmentedStyle}"
-           TargetType="local:SelectorBarSegmented" />
+    <Style TargetType="local:SelectorBarSegmented" BasedOn="{StaticResource DefaultSelectorBarSegmentedStyle}" />
 
-    <Style x:Key="DefaultSelectorBarSegmentedStyle"
-           TargetType="local:SelectorBarSegmented">
+    <Style x:Key="DefaultSelectorBarSegmentedStyle" TargetType="local:SelectorBarSegmented">
         <Setter Property="Background" Value="{ThemeResource SelectorBarSegmentedBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource SelectorBarSegmentedBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource SelectorBarSegmentedBorderThickness}" />
@@ -140,14 +102,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SelectorBarSegmented">
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ColumnDefinitions="Auto"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowDefinitions="Auto">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ColumnDefinitions="Auto" CornerRadius="{TemplateBinding CornerRadius}" RowDefinitions="Auto">
                         <Grid.ChildrenTransitions>
                             <TransitionCollection>
                                 <RepositionThemeTransition />
@@ -171,8 +126,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SelectorBarItemBaseStyle"
-           TargetType="SelectorBarItem">
+    <Style x:Key="SelectorBarItemBaseStyle" TargetType="SelectorBarItem">
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
         <Setter Property="Foreground" Value="{ThemeResource SelectorBarItemForeground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource SelectorBarSegmentedItemBorderBrush}" />
@@ -189,22 +143,11 @@
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
     </Style>
 
-    <Style x:Key="SelectorBarItemHorizontalStyle"
-           BasedOn="{StaticResource SelectorBarItemBaseStyle}"
-           TargetType="SelectorBarItem">
+    <Style x:Key="SelectorBarItemHorizontalStyle" TargetType="SelectorBarItem" BasedOn="{StaticResource SelectorBarItemBaseStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="SelectorBarItem">
-                    <Grid x:Name="PART_ContainerRoot"
-                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ColumnDefinitions="Auto, *"
-                          Control.IsTemplateFocusTarget="True"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowDefinitions="Auto, Auto">
+                    <Grid x:Name="PART_ContainerRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ColumnDefinitions="Auto, *" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" RowDefinitions="Auto, Auto">
                         <Grid.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </Grid.BackgroundTransition>
@@ -214,162 +157,102 @@
                                 <VisualState x:Name="UnselectedNormal" />
                                 <VisualState x:Name="UnselectedPointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundPointerOver}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPressed">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="0.96" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}" Value="0.96" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="0.96" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}" Value="0.96" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedNormal">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleX">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="4" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="4" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedPointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleX">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="4" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="4" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedPressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleX">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -378,25 +261,17 @@
                                 <VisualState x:Name="Enabled" />
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemBackgroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemBackgroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemDisabledPillFill}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemDisabledPillFill}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -405,12 +280,7 @@
 
                         <!--  Placeholder for Child UIElement  -->
 
-                        <StackPanel Grid.Column="1"
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Orientation="Horizontal"
-                                    Spacing="{ThemeResource SelectorBarItemSpacing}">
+                        <StackPanel Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
                             <ContentPresenter x:Name="PART_IconVisual"
                                               Margin="{ThemeResource SelectorBarItemIconVisualMargin}"
                                               Content="{TemplateBinding Icon}"
@@ -442,8 +312,7 @@
                                    RadiusY="1"
                                    Style="{StaticResource SelectorBarItemPill}">
                             <Rectangle.RenderTransform>
-                                <CompositeTransform x:Name="PillTransform"
-                                                    ScaleX="1" />
+                                <CompositeTransform x:Name="PillTransform" ScaleX="1" />
                             </Rectangle.RenderTransform>
                         </Rectangle>
 
@@ -481,22 +350,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SelectorBarItemVerticalStyle"
-           BasedOn="{StaticResource SelectorBarItemBaseStyle}"
-           TargetType="SelectorBarItem">
+    <Style x:Key="SelectorBarItemVerticalStyle" TargetType="SelectorBarItem" BasedOn="{StaticResource SelectorBarItemBaseStyle}">
         <Setter Property="Padding" Value="{StaticResource SelectorBarSegmentedItemVerticalPadding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="SelectorBarItem">
-                    <Grid x:Name="PART_ContainerRoot"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ColumnDefinitions="Auto, Auto"
-                          Control.IsTemplateFocusTarget="True"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowDefinitions="Auto, Auto">
+                    <Grid x:Name="PART_ContainerRoot" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ColumnDefinitions="Auto, Auto" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" RowDefinitions="Auto, Auto">
                         <Grid.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </Grid.BackgroundTransition>
@@ -506,162 +365,102 @@
                                 <VisualState x:Name="UnselectedNormal" />
                                 <VisualState x:Name="UnselectedPointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundPointerOver}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPressed">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="0.96" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}" Value="0.96" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="0.96" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{ThemeResource ComboBoxItemScaleAnimationDuration}" Value="0.96" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedNormal">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleY">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="4" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleY">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="4" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedPointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleY">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="4" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleY">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="4" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedPressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBackgroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarSegmentedItemBorderBrushSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundSelected}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundSelected}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="PART_ContainerRoot" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform"
-                                                                       Storyboard.TargetProperty="ScaleY">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleY">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1"
-                                                                  KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0,1" KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -670,25 +469,17 @@
                                 <VisualState x:Name="Enabled" />
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemBackgroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemBackgroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual"
-                                                                       Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SelectorBarItemDisabledPillFill}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SelectionVisual" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SelectorBarItemDisabledPillFill}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -697,13 +488,7 @@
 
                         <!--  Placeholder for Child UIElement  -->
 
-                        <StackPanel Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Orientation="Horizontal"
-                                    Spacing="{ThemeResource SelectorBarItemSpacing}">
+                        <StackPanel Grid.RowSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
                             <ContentPresenter x:Name="PART_IconVisual"
                                               Margin="{ThemeResource SelectorBarItemIconVisualMargin}"
                                               Content="{TemplateBinding Icon}"
@@ -734,8 +519,7 @@
                                    RadiusY="0.5"
                                    Style="{StaticResource SelectorBarItemPill}">
                             <Rectangle.RenderTransform>
-                                <CompositeTransform x:Name="PillTransform"
-                                                    ScaleY="1" />
+                                <CompositeTransform x:Name="PillTransform" ScaleY="1" />
                             </Rectangle.RenderTransform>
                         </Rectangle>
                         <Rectangle x:Name="PART_CommonVisual"

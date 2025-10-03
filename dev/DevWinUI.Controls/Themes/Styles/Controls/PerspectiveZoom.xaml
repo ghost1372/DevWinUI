@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultPerspectiveZoomStyle}"
-           TargetType="local:PerspectiveZoom" />
+    <Style TargetType="local:PerspectiveZoom" BasedOn="{StaticResource DefaultPerspectiveZoomStyle}" />
 
-    <Style x:Key="DefaultPerspectiveZoomStyle"
-           TargetType="local:PerspectiveZoom">
+    <Style x:Key="DefaultPerspectiveZoomStyle" TargetType="local:PerspectiveZoom">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:PerspectiveZoom">

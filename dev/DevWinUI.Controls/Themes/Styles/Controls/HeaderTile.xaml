@@ -3,54 +3,36 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultHeaderTileStyle}"
-           TargetType="local:HeaderTile" />
+    <Style TargetType="local:HeaderTile" BasedOn="{StaticResource DefaultHeaderTileStyle}" />
 
-    <Style x:Key="DefaultHeaderTileStyle"
-           TargetType="local:HeaderTile">
+    <Style x:Key="DefaultHeaderTileStyle" TargetType="local:HeaderTile">
         <Setter Property="Width" Value="232" />
         <Setter Property="Height" Value="172" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HeaderTile">
-                    <Grid Width="{TemplateBinding Width}"
-                          Height="{TemplateBinding Height}"
-                          Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
-                          BorderBrush="{ThemeResource SurfaceStrokeColorFlyoutBrush}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource SurfaceStrokeColorFlyoutBrush}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.Resources>
                             <ResourceDictionary>
                                 <ResourceDictionary.ThemeDictionaries>
                                     <ResourceDictionary x:Key="Light">
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                                                         Color="{ThemeResource ControlStrokeColorSecondary}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource ControlStrokeColorSecondary}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource ControlStrokeColorDefault}" />
                                     </ResourceDictionary>
                                     <ResourceDictionary x:Key="Default">
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                                                         Color="{ThemeResource ControlStrokeColorSecondary}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                                                         Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource ControlStrokeColorSecondary}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource ControlStrokeColorDefault}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource ControlStrokeColorDefault}" />
                                     </ResourceDictionary>
                                     <ResourceDictionary x:Key="HighContrast">
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush"
-                                                         Color="{ThemeResource SystemColorButtonTextColor}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver"
-                                                         Color="{ThemeResource SystemColorButtonTextColor}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed"
-                                                         Color="{ThemeResource SystemColorButtonTextColor}" />
-                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled"
-                                                         Color="{ThemeResource SystemColorButtonTextColor}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPointerOver" Color="{ThemeResource SystemColorButtonTextColor}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushPressed" Color="{ThemeResource SystemColorButtonTextColor}" />
+                                        <SolidColorBrush x:Key="HyperlinkButtonBorderBrushDisabled" Color="{ThemeResource SystemColorButtonTextColor}" />
                                     </ResourceDictionary>
                                 </ResourceDictionary.ThemeDictionaries>
                             </ResourceDictionary>
@@ -63,9 +45,7 @@
                                          VerticalContentAlignment="Stretch"
                                          AutomationProperties.LabeledBy="{Binding ElementName=TitleText}"
                                          CornerRadius="{StaticResource OverlayCornerRadius}">
-                            <Grid Padding="24"
-                                  VerticalAlignment="Stretch"
-                                  RowSpacing="16">
+                            <Grid Padding="24" VerticalAlignment="Stretch" RowSpacing="16">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
                                     <RowDefinition Height="*" />
@@ -80,9 +60,7 @@
                                 <ContentPresenter HorizontalAlignment="Left"
                                                   VerticalAlignment="Top"
                                                   Content="{TemplateBinding Source}" />
-                                <StackPanel Grid.Row="1"
-                                            Orientation="Vertical"
-                                            Spacing="4">
+                                <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="4">
                                     <TextBlock x:Name="TitleText"
                                                Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                                Style="{StaticResource BodyStrongTextBlockStyle}"

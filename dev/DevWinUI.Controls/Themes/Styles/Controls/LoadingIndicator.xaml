@@ -3,8 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style x:Key="LoadingIndicatorDoubleBounceStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorDoubleBounceStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -28,34 +27,22 @@
                                     <Storyboard RepeatBehavior="Forever"
                                                 SpeedRatio="{TemplateBinding SpeedRatio}"
                                                 Duration="0:0:1.000">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="1" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="1" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.000" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -85,8 +72,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorWaveStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorWaveStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -109,50 +95,30 @@
                                     <Storyboard RepeatBehavior="Forever"
                                                 SpeedRatio="{TemplateBinding SpeedRatio}"
                                                 Duration="0:0:1.000">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.350"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.100" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.150" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.350" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.150" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect2"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.450"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.450" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect3"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.300"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect3" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.300" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect4"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.300"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.350"
-                                                                  Value="1.6" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.550"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect4" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.300" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.350" Value="1.6" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.550" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -205,8 +171,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorThreeDotsStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorThreeDotsStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -242,72 +207,42 @@
                                     <Storyboard RepeatBehavior="Forever"
                                                 SpeedRatio="{TemplateBinding SpeedRatio}"
                                                 Duration="0:0:1.900">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.600"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.750"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.850"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.350"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.750" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.850" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.350" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse2"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.600"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.000" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.600" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.600"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.600" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.750"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.850"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.350"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.750" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.850" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.350" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse2"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.000"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.600"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.000" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.600" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -315,8 +250,7 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <Border Background="Transparent">
-                            <Grid Width="70"
-                                  Height="20">
+                            <Grid Width="70" Height="20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="5" />
@@ -342,8 +276,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorRingStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorRingStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -365,190 +298,92 @@
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
                                     <Storyboard SpeedRatio="{TemplateBinding SpeedRatio}">
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse2"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse3"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse3" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse4"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse4" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse5"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse5" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse6"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse6" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse7"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse7" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse2"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse3"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse3" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse4"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse4" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse5"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse5" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse6"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse6" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Ellipse7"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700" RepeatBehavior="Forever" Storyboard.TargetName="PART_Ellipse7" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid Width="{TemplateBinding Width}"
-                              Height="{TemplateBinding Height}"
-                              Background="Transparent">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="Transparent">
                             <Grid.Resources>
                                 <Style TargetType="Ellipse">
                                     <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
@@ -632,8 +467,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorPulseStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorPulseStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -657,26 +491,16 @@
                                     <Storyboard RepeatBehavior="Forever"
                                                 SpeedRatio="{TemplateBinding SpeedRatio}"
                                                 Duration="0:0:1.500">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.500"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.500" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.500"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.500" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
-                                        <DoubleAnimation Storyboard.TargetName="PART_Ellipse"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:1.500" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_Ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" From="1" To="0" Duration="0:0:1.500" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -696,8 +520,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorFlipPlaneStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorFlipPlaneStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -721,25 +544,15 @@
                                     <Storyboard RepeatBehavior="Forever"
                                                 SpeedRatio="{TemplateBinding SpeedRatio}"
                                                 Duration="0:0:1.600">
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000"
-                                                                       Storyboard.TargetName="PART_Rect"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000" Storyboard.TargetName="PART_Rect" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.800"
-                                                                       Storyboard.TargetName="PART_Rect"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="1" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.800" Storyboard.TargetName="PART_Rect" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.800" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -760,8 +573,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorArcsRingStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorArcsRingStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -792,105 +604,52 @@
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas0"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas0" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas1"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.100" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas2"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.200" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas3"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.300" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas4"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.400" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas4" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas5"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.500" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas5" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas6"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.600" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas6" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700"
-                                                                       RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas7"
-                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100"
-                                                                    Value="0.3" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800"
-                                                                    Value="0.3" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.700" RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas7" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.100" Value="0.3" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.800" Value="0.3" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Grid Width="{TemplateBinding Width}"
-                              Height="{TemplateBinding Height}"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Background="Transparent"
-                              RenderTransformOrigin="0.5,0.5">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" RenderTransformOrigin="0.5,0.5">
                             <Grid.RenderTransform>
                                 <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
                             </Grid.RenderTransform>
@@ -958,8 +717,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LoadingIndicatorArcsStyle"
-           TargetType="local:LoadingIndicator">
+    <Style x:Key="LoadingIndicatorArcsStyle" TargetType="local:LoadingIndicator">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -991,21 +749,13 @@
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
                                     <Storyboard SpeedRatio="{TemplateBinding SpeedRatio}">
-                                        <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas0"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:3.000"
-                                                                  Value="360" />
+                                        <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas0" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.000" Value="360" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever"
-                                                                       Storyboard.TargetName="PART_Canvas1"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
-                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                  Value="0" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:2.000"
-                                                                  Value="-360" />
+                                        <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas1" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
+                                            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:2.000" Value="-360" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1019,8 +769,7 @@
                                     <TranslateTransform X="10" Y="10" />
                                 </TransformGroup>
                             </Grid.RenderTransform>
-                            <Canvas x:Name="PART_Canvas0"
-                                    Opacity="1.0">
+                            <Canvas x:Name="PART_Canvas0" Opacity="1.0">
                                 <Path Stroke="{TemplateBinding Foreground}"
                                       StrokeThickness="10">
                                     <Path.Data>
@@ -1047,8 +796,7 @@
                                 </Path>
                             </Canvas>
 
-                            <Canvas x:Name="PART_Canvas1"
-                                    Opacity="0.3">
+                            <Canvas x:Name="PART_Canvas1" Opacity="0.3">
                                 <Path Stroke="{TemplateBinding Foreground}"
                                       StrokeThickness="10">
                                     <Path.Data>

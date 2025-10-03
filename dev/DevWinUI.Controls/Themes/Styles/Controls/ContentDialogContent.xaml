@@ -5,18 +5,15 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="ContentDialogWindowTopOverlay"
-                            ResourceKey="LayerFillColorDefaultBrush" />
+            <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="ContentDialogWindowTopOverlay"
-                            ResourceKey="LayerFillColorDefaultBrush" />
+            <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="ContentDialogWindowTopOverlay"
-                            ResourceKey="SystemControlTransparentBrush" />
+            <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -24,15 +21,11 @@
     <Thickness x:Key="ContentDialogWindowContentPadding">24,0,24,24</Thickness>
     <Color x:Key="ContentDialogWindowCommandSpaceBackground">#0F000000</Color>
     <Color x:Key="ContentDialogWindowSeparatorBorderColor">#19000000</Color>
-    <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush"
-                     Opacity="0.5"
-                     Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
-    <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush"
-                     Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
+    <SolidColorBrush x:Key="ContentDialogWindowCommandSpaceBackgroundBrush" Opacity="0.5" Color="{StaticResource ContentDialogWindowCommandSpaceBackground}" />
+    <SolidColorBrush x:Key="ContentDialogWindowSeparatorBorderBrush" Color="{StaticResource ContentDialogWindowSeparatorBorderColor}" />
 
 
-    <Style x:Key="DefaultContentDialogContentStyle"
-           TargetType="local:ContentDialogContent">
+    <Style x:Key="DefaultContentDialogContentStyle" TargetType="local:ContentDialogContent">
         <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -135,9 +128,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}"
-                                  BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}"
-                                  BorderThickness="{StaticResource ContentDialogSeparatorThickness}">
+                            <Grid Background="{ThemeResource ContentDialogWindowTopOverlay}" BorderBrush="{ThemeResource ContentDialogWindowSeparatorBorderBrush}" BorderThickness="{StaticResource ContentDialogSeparatorThickness}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
@@ -189,24 +180,13 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <Grid x:Name="CommandSpace"
-                                  Grid.Row="1"
-                                  Padding="{StaticResource ContentDialogPadding}"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Bottom"
-                                  Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}"
-                                  XYFocusKeyboardNavigation="Enabled">
+                            <Grid x:Name="CommandSpace" Grid.Row="1" Padding="{StaticResource ContentDialogPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{StaticResource ContentDialogWindowCommandSpaceBackgroundBrush}" XYFocusKeyboardNavigation="Enabled">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition x:Name="PrimaryColumn"
-                                                      Width="*" />
-                                    <ColumnDefinition x:Name="FirstSpacer"
-                                                      Width="0" />
-                                    <ColumnDefinition x:Name="SecondaryColumn"
-                                                      Width="0" />
-                                    <ColumnDefinition x:Name="SecondSpacer"
-                                                      Width="{StaticResource ContentDialogButtonSpacing}" />
-                                    <ColumnDefinition x:Name="CloseColumn"
-                                                      Width="*" />
+                                    <ColumnDefinition x:Name="PrimaryColumn" Width="*" />
+                                    <ColumnDefinition x:Name="FirstSpacer" Width="0" />
+                                    <ColumnDefinition x:Name="SecondaryColumn" Width="0" />
+                                    <ColumnDefinition x:Name="SecondSpacer" Width="{StaticResource ContentDialogButtonSpacing}" />
+                                    <ColumnDefinition x:Name="CloseColumn" Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PrimaryButton"
                                         HorizontalAlignment="Stretch"
@@ -244,7 +224,6 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultContentDialogContentStyle}"
-           TargetType="local:ContentDialogContent" />
+    <Style TargetType="local:ContentDialogContent" BasedOn="{StaticResource DefaultContentDialogContentStyle}" />
 
 </ResourceDictionary>

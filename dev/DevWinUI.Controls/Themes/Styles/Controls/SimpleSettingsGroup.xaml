@@ -2,17 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}"
-           TargetType="local:SimpleSettingsGroup" />
+    <Style TargetType="local:SimpleSettingsGroup" BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" />
 
-    <Style x:Key="DefaultSimpleSettingsGroupStyle"
-           TargetType="local:SimpleSettingsGroup">
+    <Style x:Key="DefaultSimpleSettingsGroupStyle" TargetType="local:SimpleSettingsGroup">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
-                                Orientation="Vertical"
-                                Spacing="2" />
+                    <StackPanel ChildrenTransitions="{StaticResource SettingsCardsAnimations}" Orientation="Vertical" Spacing="2" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -53,14 +49,12 @@
                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                           TextWrapping="WrapWholeWords">
                             <ContentPresenter.Resources>
-                                <Style BasedOn="{StaticResource CaptionTextBlockStyle}"
-                                       TargetType="TextBlock">
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                                     <Style.Setters>
                                         <Setter Property="TextWrapping" Value="WrapWholeWords" />
                                     </Style.Setters>
                                 </Style>
-                                <Style BasedOn="{StaticResource TextButtonStyle}"
-                                       TargetType="HyperlinkButton">
+                                <Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextButtonStyle}">
                                     <Style.Setters>
                                         <Setter Property="Padding" Value="0,0,0,0" />
                                     </Style.Setters>

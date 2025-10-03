@@ -7,16 +7,14 @@
       xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
     <Page.Resources>
-        <Style BasedOn="{StaticResource ListViewItemSettingStyle}"
-               TargetType="ListViewItem" />
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}" />
     </Page.Resources>
     <dev:OutOfBoxPage Title="Color Picker"
                       Description="Quick and simple system-wide color picker."
                       HeroImage="ms-appx:///Assets/Modules/ColorPicker2.png"
                       SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Color Picker"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/ColorPicker2.png}">
                     <ToggleSwitch />
@@ -77,8 +75,7 @@
                                         <x:Double x:Key="SettingsCardLeftIndention">42</x:Double>
                                         <x:Double x:Key="SettingsCardActionButtonWidth">0</x:Double>
                                     </dev:SettingsCard.Resources>
-                                    <StackPanel Orientation="Horizontal"
-                                                Spacing="4">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
                                         <ToggleSwitch OffContent=""
                                                       OnContent="" />
                                         <Button Grid.Column="1"

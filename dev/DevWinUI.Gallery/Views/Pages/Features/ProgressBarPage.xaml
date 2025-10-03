@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/waveProgressBar"
                                   HeaderText="WaveProgressBar">
                 <local:ControlExample.Xaml>
@@ -32,8 +30,7 @@
                                 Value="2" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Orientation="Horizontal"
-                            Spacing="5">
+                <StackPanel Orientation="Horizontal" Spacing="5">
                     <dev:WaveProgressBar ShowText="{x:Bind tgText.IsOn, Mode=OneWay}"
                                          WaveThickness="{x:Bind slThickness.Value, Mode=OneWay}"
                                          Value="{x:Bind slPrg.Value, Mode=OneWay}" />

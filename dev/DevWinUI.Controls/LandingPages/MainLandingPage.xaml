@@ -23,8 +23,8 @@
                               HeaderSubtitleFontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
                               HeaderSubtitleText="{x:Bind HeaderSubtitleText, Mode=OneWay}"
                               HeaderText="{x:Bind HeaderText, Mode=OneWay}"
-                              Stretch="{x:Bind Stretch, Mode=OneWay}"
-                              IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"/>
+                              IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
+                              Stretch="{x:Bind Stretch, Mode=OneWay}" />
 
         <GridView Grid.Row="1"
                   Padding="{x:Bind GridViewPadding, Mode=OneWay}"
@@ -54,9 +54,7 @@
                 </GroupStyle>
             </GridView.GroupStyle>
             <GridView.Footer>
-                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}"
-                      VerticalAlignment="Bottom"
-                      Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
+                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}" VerticalAlignment="Bottom" Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
                     <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />
                 </Grid>
             </GridView.Footer>

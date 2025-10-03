@@ -4,11 +4,9 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style BasedOn="{StaticResource DefaultWatermarkStyle}"
-           TargetType="local:Watermark" />
+    <Style TargetType="local:Watermark" BasedOn="{StaticResource DefaultWatermarkStyle}" />
 
-    <Style x:Key="DefaultWatermarkStyle"
-           TargetType="local:Watermark">
+    <Style x:Key="DefaultWatermarkStyle" TargetType="local:Watermark">
         <Setter Property="Foreground" Value="{ThemeResource SystemBaseMediumColor}" />
         <Setter Property="ShadowColor" Value="{ThemeResource SystemBaseLowColor}" />
         <Setter Property="Template">

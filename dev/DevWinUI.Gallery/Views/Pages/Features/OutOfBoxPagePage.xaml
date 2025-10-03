@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/outOfBoxPage"
                                   HeaderText="OutOfBoxPage">
                 <local:ControlExample.Xaml>
@@ -46,8 +44,7 @@
                         <dev:CheckUpdateControl />
                     </dev:OutOfBoxPage.ActionContent>
                     <dev:OutOfBoxPage.Content>
-                        <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                                    Orientation="Vertical">
+                        <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                             <dev:SettingsCard Header="Enable FileExplorer"
                                               HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/fileExplorerPreview.png}">
                                 <ToggleSwitch OffContent="Off"

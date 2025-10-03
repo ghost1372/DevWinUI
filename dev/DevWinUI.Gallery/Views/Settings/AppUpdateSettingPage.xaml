@@ -12,14 +12,11 @@
     <ScrollView Margin="{ThemeResource ContentPageMargin}"
                 Padding="{ThemeResource ContentPagePadding}"
                 VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="5">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="5">
             <dev:SettingsCard Header="{x:Bind ViewModel.CurrentVersion}"
                               HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/update.png}">
                 <dev:SettingsCard.Description>
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="5">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
                         <TextBlock Style="{StaticResource SecondaryTextStyle}"
                                    Text="Last Update Check" />
                         <TextBlock FlowDirection="LeftToRight"
@@ -27,8 +24,7 @@
                                    Text="{x:Bind ViewModel.LastUpdateCheck}" />
                     </StackPanel>
                 </dev:SettingsCard.Description>
-                <StackPanel Orientation="Horizontal"
-                            Spacing="10">
+                <StackPanel Orientation="Horizontal" Spacing="10">
                     <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
                     <Button MinWidth="{StaticResource SettingActionControlMinWidth}"
                             Command="{x:Bind ViewModel.CheckForUpdateCommand}"
@@ -46,9 +42,7 @@
                                      Content="Release Note"
                                      Visibility="{x:Bind ViewModel.IsUpdateAvailable, Mode=OneWay}" />
                 </dev:SettingsCard.Description>
-                <StackPanel VerticalAlignment="Center"
-                            Orientation="Horizontal"
-                            Spacing="10">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
                     <Button MinWidth="{StaticResource SettingActionControlMinWidth}"
                             Command="{x:Bind ViewModel.GoToUpdateCommand}"
                             Content="Download Update"

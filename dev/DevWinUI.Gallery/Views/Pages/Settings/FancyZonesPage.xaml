@@ -10,8 +10,7 @@
                       Description="Create window layouts to help make multi-tasking easy."
                       HeroImage="ms-appx:///Assets/Modules/FancyZones.png">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SettingsCard Header="Enable FancyZones"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/fancyZones.png}">
                     <ToggleSwitch />
@@ -151,8 +150,7 @@
                                           MinHeight="56"
                                           SelectedIndex="0">
                                     <ComboBoxItem>
-                                        <StackPanel Orientation="Vertical"
-                                                    Spacing="4">
+                                        <StackPanel Orientation="Vertical" Spacing="4">
                                             <dev:IsEnabledTextBlock Text="Zone index" />
                                             <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                                        Style="{StaticResource SecondaryTextStyle}">
@@ -161,8 +159,7 @@
                                         </StackPanel>
                                     </ComboBoxItem>
                                     <ComboBoxItem>
-                                        <StackPanel Orientation="Vertical"
-                                                    Spacing="4">
+                                        <StackPanel Orientation="Vertical" Spacing="4">
                                             <dev:IsEnabledTextBlock Text="Relative position" />
                                             <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                                        Style="{StaticResource SecondaryTextStyle}">

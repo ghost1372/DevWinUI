@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/calendarWithClock"
                                   HeaderText="CalendarWithClock [Analog Clock]">
                 <local:ControlExample.Xaml>

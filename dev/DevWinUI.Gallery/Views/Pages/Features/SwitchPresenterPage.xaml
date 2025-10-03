@@ -10,8 +10,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <Page.Resources>
-        <Style x:Key="PanelStyle"
-               TargetType="StackPanel">
+        <Style x:Key="PanelStyle" TargetType="StackPanel">
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="Padding" Value="16" />
             <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
@@ -57,9 +56,7 @@
         </dev:SwitchConverter>
     </Page.Resources>
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchConverterBrush_cs.txt"
                                   DocPage="controls/switchPresenter"
                                   HeaderText="SwitchConverter Brush Example"
@@ -141,18 +138,13 @@
                     <ToggleSwitch x:Name="LoadingState"
                                   Header="IsLoading" />
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:SwitchPresenter Grid.Row="1"
                                          HorizontalAlignment="Center"
                                          TargetType="x:Boolean"
                                          Value="{x:Bind LoadingState.IsOn, Mode=OneWay}">
                         <dev:Case Value="True">
-                            <StackPanel HorizontalAlignment="Center"
-                                        animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                        animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                        Orientation="Vertical"
-                                        Spacing="8">
+                            <StackPanel HorizontalAlignment="Center" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Orientation="Vertical" Spacing="8">
                                 <ProgressRing IsActive="{x:Bind LoadingState.IsOn, Mode=OneWay}" />
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
@@ -191,14 +183,11 @@
                                      Tag="rect" />
                     </RadioButtons>
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:SwitchPresenter Grid.Row="1"
                                          Value="{x:Bind ViewModel.RadioSelectedItem.Tag, Mode=OneWay}">
                         <dev:Case Value="square">
-                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                        animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                        Style="{StaticResource PanelStyle}">
+                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
                                 <Border Width="24"
                                         Height="24"
                                         Background="{ThemeResource AccentFillColorDefaultBrush}" />
@@ -207,9 +196,7 @@
                             </StackPanel>
                         </dev:Case>
                         <dev:Case Value="circle">
-                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                        animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                        Style="{StaticResource PanelStyle}">
+                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
 
                                 <Ellipse Width="24"
                                          Height="24"
@@ -219,9 +206,7 @@
                             </StackPanel>
                         </dev:Case>
                         <dev:Case Value="rect">
-                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                        animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                        Style="{StaticResource PanelStyle}">
+                            <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
                                 <Rectangle Width="48"
                                            Height="24"
                                            Fill="{ThemeResource AccentFillColorDefaultBrush}" />

@@ -10,9 +10,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/shyHeader"
                                   XamlSource="Composition/ShyHeaderPage_xaml.txt">
                 <GridView Height="400"

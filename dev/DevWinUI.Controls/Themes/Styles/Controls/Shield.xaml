@@ -3,14 +3,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <SolidColorBrush x:Key="ShieldBorderBrush"
-                     Color="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <SolidColorBrush x:Key="ShieldBorderBrush" Color="{ThemeResource CardStrokeColorDefaultBrush}" />
 
-    <Style BasedOn="{StaticResource DefaultShieldStyle}"
-           TargetType="local:Shield" />
+    <Style TargetType="local:Shield" BasedOn="{StaticResource DefaultShieldStyle}" />
 
-    <Style x:Key="DefaultShieldStyle"
-           TargetType="local:Shield">
+    <Style x:Key="DefaultShieldStyle" TargetType="local:Shield">
         <Setter Property="BorderBrush" Value="{ThemeResource ShieldBorderBrush}" />
         <Setter Property="Height" Value="20" />
         <Setter Property="BorderThickness" Value="0" />

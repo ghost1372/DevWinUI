@@ -12,9 +12,7 @@
     <ScrollView Margin="{ThemeResource ContentPageMargin}"
                 Padding="{ThemeResource ContentPagePadding}"
                 VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="5">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="5">
             <dev:SettingsExpander Description="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3. Create a WinUI 3 app in less than a minute with the built-in project templates and scaffolding tools."
                                   Header="DevWinUI Gallery"
                                   HeaderIcon="{dev:BitmapIcon Source=Assets/icon.png}"
@@ -26,8 +24,7 @@
                 <dev:SettingsExpander.Items>
                     <dev:SettingsCard HorizontalContentAlignment="Left"
                                       ContentAlignment="Left">
-                        <StackPanel Orientation="Vertical"
-                                    Spacing="5">
+                        <StackPanel Orientation="Vertical" Spacing="5">
                             <TextBlock Text="Related Links" />
                             <HyperlinkButton Content="Source Code"
                                              NavigateUri="https://github.com/Ghost1372/DevWinUI" />

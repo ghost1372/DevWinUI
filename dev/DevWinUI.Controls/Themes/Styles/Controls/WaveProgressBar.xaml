@@ -5,30 +5,22 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="WaveProgressBarBackground"
-                            ResourceKey="ControlFillColorDefaultBrush" />
-            <StaticResource x:Key="WaveProgressBarBorderBrush"
-                            ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="WaveProgressBarBackground"
-                            ResourceKey="SystemColorButtonFaceColorBrush" />
-            <StaticResource x:Key="WaveProgressBarBorderBrush"
-                            ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="WaveProgressBarBackground"
-                            ResourceKey="CardStrokeColorDefaultSolidBrush" />
-            <StaticResource x:Key="WaveProgressBarBorderBrush"
-                            ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
+            <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}"
-           TargetType="local:WaveProgressBar" />
+    <Style TargetType="local:WaveProgressBar" BasedOn="{StaticResource DefaultWaveProgressBarStyle}" />
 
-    <Style x:Key="DefaultWaveProgressBarStyle"
-           TargetType="local:WaveProgressBar">
+    <Style x:Key="DefaultWaveProgressBarStyle" TargetType="local:WaveProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
         <Setter Property="WaveFill" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="Background" Value="{ThemeResource WaveProgressBarBackground}" />
@@ -48,10 +40,8 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Indeterminate">
                                     <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Wave"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:2"
-                                                                  Value="-400" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Wave" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-400" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

@@ -10,9 +10,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/accordion"
                                   HeaderText="Accordion">
                 <local:ControlExample.Xaml>
@@ -34,8 +32,7 @@
                         <DataTemplate x:DataType="model:SampleData">
                             <Grid>
                                 <Grid.Background>
-                                    <SolidColorBrush Opacity="0.25"
-                                                     Color="{ThemeResource CardBackgroundFillColorDefault}" />
+                                    <SolidColorBrush Opacity="0.25" Color="{ThemeResource CardBackgroundFillColorDefault}" />
                                 </Grid.Background>
                                 <TextBlock Margin="0,0,0,4"
                                            HorizontalAlignment="Center"

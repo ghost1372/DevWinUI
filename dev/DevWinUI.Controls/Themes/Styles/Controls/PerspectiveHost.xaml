@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultPerspectiveHostStyle}"
-           TargetType="local:PerspectiveHost" />
+    <Style TargetType="local:PerspectiveHost" BasedOn="{StaticResource DefaultPerspectiveHostStyle}" />
 
-    <Style x:Key="DefaultPerspectiveHostStyle"
-           TargetType="local:PerspectiveHost">
+    <Style x:Key="DefaultPerspectiveHostStyle" TargetType="local:PerspectiveHost">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:PerspectiveHost">

@@ -9,14 +9,11 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="brushes/themeBrushes"
                                   HeaderText="Brushes"
                                   XamlSource="Features/BrushPage_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <Border Height="80"
                             Background="{ThemeResource CardGradient2Brush}">
                         <TextBlock HorizontalAlignment="Center"

@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/homePageHeader">
                 <local:ControlExample.Xaml>
                     <x:String>
@@ -36,15 +34,13 @@
                                  Text="v9.0.0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}"
                                         HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}"
                                         HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}"
                                         HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
                         <dev:HomePageHeader.HeaderContent>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="12">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
                                 <dev:HeaderTile Title="Title"
                                                 Description="Description">
                                     <dev:HeaderTile.Source>

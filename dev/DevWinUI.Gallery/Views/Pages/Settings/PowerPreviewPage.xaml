@@ -11,8 +11,7 @@
                       Description="These settings allow you to manage your Windows File Explorer custom preview handlers."
                       HeroImage="ms-appx:///Assets/Modules/PowerPreview.png">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SimpleSettingsGroup Description="Select the file types which must be rendered in the Preview Pane. Ensure that Preview Pane is open by toggling the view with Alt + P in File Explorer."
                                          Header="Preview Pane">
                     <InfoBar Title="Enabling the preview handlers will override other preview handlers already installed - there have been reports of incompatibility between Outlook and the PDF Preview Handler."

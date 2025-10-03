@@ -3,8 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style x:Key="FlipBlockTextBlockStyle"
-           TargetType="TextBlock">
+    <Style x:Key="FlipBlockTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontSize" Value="75" />
@@ -15,31 +14,23 @@
         <GradientStop Offset="1" Color="#FF202020" />
     </LinearGradientBrush>
 
-    <Style BasedOn="{StaticResource DefaultFlipBlockStyle}"
-           TargetType="local:FlipBlock" />
+    <Style TargetType="local:FlipBlock" BasedOn="{StaticResource DefaultFlipBlockStyle}" />
 
-    <Style x:Key="DefaultFlipBlockStyle"
-           TargetType="local:FlipBlock">
+    <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:FlipBlock">
-                    <Grid Width="50"
-                          Height="80">
+                    <Grid Width="50" Height="80">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.5*" />
                             <RowDefinition Height="0.5*" />
                         </Grid.RowDefinitions>
 
                         <!--  Top Block  -->
-                        <Grid x:Name="PART_BlockTop"
-                              Grid.Row="0"
-                              Background="{StaticResource FlipBlockBackgroundGradientBrush}"
-                              BorderBrush="{TemplateBinding BorderBrush}"
-                              BorderThickness="{TemplateBinding BorderThickness}"
-                              CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid x:Name="PART_BlockTop" Grid.Row="0" Background="{StaticResource FlipBlockBackgroundGradientBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                             <TextBlock x:Name="PART_TextTop"
                                        Margin="0,-2,0,0"
                                        HorizontalAlignment="Center"
@@ -48,11 +39,7 @@
                         </Grid>
 
                         <!--  Bottom Block  -->
-                        <Grid x:Name="PART_BlockBottom"
-                              Grid.Row="1"
-                              BorderBrush="{TemplateBinding BorderBrush}"
-                              BorderThickness="{TemplateBinding BorderThickness}"
-                              CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid x:Name="PART_BlockBottom" Grid.Row="1" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                     <GradientStop Color="#FF202020" />
@@ -67,12 +54,7 @@
                         </Grid>
 
                         <!--  Flip Block  -->
-                        <Grid x:Name="PART_BlockFlip"
-                              Background="{StaticResource FlipBlockBackgroundGradientBrush}"
-                              BorderBrush="{TemplateBinding BorderBrush}"
-                              BorderThickness="{TemplateBinding BorderThickness}"
-                              CornerRadius="{TemplateBinding CornerRadius}"
-                              RenderTransformOrigin="0.5,1">
+                        <Grid x:Name="PART_BlockFlip" Background="{StaticResource FlipBlockBackgroundGradientBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" RenderTransformOrigin="0.5,1">
                             <Grid.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />

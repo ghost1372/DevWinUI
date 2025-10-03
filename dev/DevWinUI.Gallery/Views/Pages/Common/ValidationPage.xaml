@@ -15,9 +15,7 @@
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Features/Validation/ValidationPage_cs.txt"
                                   DocPage="validation"
                                   XamlSource="Features/Validation/ValidationPage_xaml.txt">

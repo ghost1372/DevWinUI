@@ -12,22 +12,18 @@
             <x:Double x:Key="ImageOpacity">0.9</x:Double>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Default">
-            <SolidColorBrush x:Key="BackgroundGradient"
-                             Color="#020B20" />
+            <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
             <x:Double x:Key="ImageOpacity">0.8</x:Double>
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <SolidColorBrush x:Key="BackgroundGradient"
-                             Color="Black" />
+            <SolidColorBrush x:Key="BackgroundGradient" Color="Black" />
             <x:Double x:Key="ImageOpacity">0.8</x:Double>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultHomePageHeaderStyle}"
-           TargetType="local:HomePageHeader" />
+    <Style TargetType="local:HomePageHeader" BasedOn="{StaticResource DefaultHomePageHeaderStyle}" />
 
-    <Style x:Key="DefaultHomePageHeaderStyle"
-           TargetType="local:HomePageHeader">
+    <Style x:Key="DefaultHomePageHeaderStyle" TargetType="local:HomePageHeader">
         <Setter Property="Stretch" Value="UniformToFill" />
         <Setter Property="Template">
             <Setter.Value>
@@ -44,9 +40,7 @@
                                                HorizontalAlignment="Stretch"
                                                VerticalAlignment="Top"
                                                OpacityMask="{ThemeResource OverlayRadialGradient}">
-                            <Grid x:Name="ImageGrid"
-                                  Margin="0,-100,0,0"
-                                  Background="{ThemeResource BackgroundGradient}">
+                            <Grid x:Name="ImageGrid" Margin="0,-100,0,0" Background="{ThemeResource BackgroundGradient}">
 
                                 <Image x:Name="PART_HeroImage"
                                        Opacity="{ThemeResource ImageOpacity}"
@@ -61,9 +55,7 @@
                         </local:OpacityMaskView>
 
                         <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
-                        <StackPanel Margin="36,48,0,0"
-                                    VerticalAlignment="Center"
-                                    Orientation="Vertical">
+                        <StackPanel Margin="36,48,0,0" VerticalAlignment="Center" Orientation="Vertical">
                             <TextBlock x:Name="smallHeaderSubtitleText"
                                        FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                        FontSize="{TemplateBinding HeaderSubtitleFontSize}"

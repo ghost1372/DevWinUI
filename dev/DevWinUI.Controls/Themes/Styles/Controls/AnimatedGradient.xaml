@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultAnimatedGradientStyle}"
-           TargetType="local:AnimatedGradient" />
+    <Style TargetType="local:AnimatedGradient" BasedOn="{StaticResource DefaultAnimatedGradientStyle}" />
 
-    <Style x:Key="DefaultAnimatedGradientStyle"
-           TargetType="local:AnimatedGradient">
+    <Style x:Key="DefaultAnimatedGradientStyle" TargetType="local:AnimatedGradient">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnimatedGradient">

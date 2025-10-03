@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultCheckUpdateControlStyle}"
-           TargetType="local:CheckUpdateControl" />
+    <Style TargetType="local:CheckUpdateControl" BasedOn="{StaticResource DefaultCheckUpdateControlStyle}" />
 
-    <Style x:Key="DefaultCheckUpdateControlStyle"
-           TargetType="local:CheckUpdateControl">
+    <Style x:Key="DefaultCheckUpdateControlStyle" TargetType="local:CheckUpdateControl">
         <Setter Property="LastUpdateCheckTitle" Value="Last checked: " />
         <Setter Property="UpdateNotAvailableTitle" Value="You're up to date" />
         <Setter Property="UpdateAvailableTitle" Value="Update Available" />
@@ -47,10 +45,7 @@
                                                   Grid.Column="1"
                                                   Content="{TemplateBinding UpdateAvailableTitle}"
                                                   Visibility="Collapsed" />
-                                <StackPanel x:Name="PART_UpdateAvailableTitleStackPanel"
-                                            Grid.Column="1"
-                                            Orientation="Vertical"
-                                            Visibility="Collapsed">
+                                <StackPanel x:Name="PART_UpdateAvailableTitleStackPanel" Grid.Column="1" Orientation="Vertical" Visibility="Collapsed">
                                     <TextBlock FontWeight="SemiBold"
                                                Text="{Binding UpdateAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
@@ -61,10 +56,7 @@
                                 </StackPanel>
                             </Grid>
                         </Button>
-                        <Grid Padding="0,0,4,0"
-                              VerticalAlignment="Center"
-                              ColumnSpacing="16"
-                              Visibility="{Binding IsUpdateAvailable, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
+                        <Grid Padding="0,0,4,0" VerticalAlignment="Center" ColumnSpacing="16" Visibility="{Binding IsUpdateAvailable, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityReConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -92,9 +84,7 @@
                                               Content="{TemplateBinding UpdateNotAvailableTitle}"
                                               Visibility="Collapsed" />
 
-                            <StackPanel x:Name="PART_UpdateNotAvailableTitleStackPanel"
-                                        Grid.Column="1"
-                                        Visibility="Collapsed">
+                            <StackPanel x:Name="PART_UpdateNotAvailableTitleStackPanel" Grid.Column="1" Visibility="Collapsed">
                                 <TextBlock FontWeight="SemiBold"
                                            Text="{Binding UpdateNotAvailableTitle, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                 <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"

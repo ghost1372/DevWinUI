@@ -7,17 +7,14 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Padding="64,0,64,0"
-                                Orientation="Horizontal"
-                                Spacing="-48" />
+                    <StackPanel Padding="64,0,64,0" Orientation="Horizontal" Spacing="-48" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HeaderCarousel">
-                    <Grid x:Name="RootGrid"
-                          CornerRadius="8,0,0,0">
+                    <Grid x:Name="RootGrid" CornerRadius="8,0,0,0">
                         <local:OpacityMaskView VerticalAlignment="Top"
                                                OpacityMask="{ThemeResource OverlayRadialGradient}">
                             <local:AnimatedImage x:Name="PART_BackDropImage"
@@ -34,17 +31,12 @@
                                       VerticalScrollMode="Disabled">
                             <ItemsPresenter x:Name="PART_ItemsPresenter" />
                         </ScrollViewer>
-                        <StackPanel Padding="24,12,24,24"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Vertical"
-                                    Spacing="12">
+                        <StackPanel Padding="24,12,24,24" HorizontalAlignment="Center" Orientation="Vertical" Spacing="12">
                             <ContentPresenter Content="{TemplateBinding Header}"
                                               Visibility="{TemplateBinding HeaderVisibility}" />
 
                             <Grid RequestedTheme="Light">
-                                <Grid Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}"
-                                      CornerRadius="12"
-                                      Opacity="0.6" />
+                                <Grid Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}" CornerRadius="12" Opacity="0.6" />
                                 <ContentPresenter Content="{TemplateBinding SecondaryHeader}"
                                                   Visibility="{TemplateBinding SecondaryHeaderVisibility}" />
                             </Grid>

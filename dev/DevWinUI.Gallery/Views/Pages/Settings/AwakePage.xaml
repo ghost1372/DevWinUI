@@ -12,8 +12,7 @@
                       IsTabStop="False"
                       SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SettingsCard Header="Enable Awake"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/awake.png}">
                     <ToggleSwitch OffContent="Off"
@@ -58,8 +57,7 @@
                                       HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
                                                                 Glyph=&#xE916;}">
 
-                        <StackPanel MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                    Orientation="Horizontal">
+                        <StackPanel MinWidth="{StaticResource SettingActionControlMinWidth}" Orientation="Horizontal">
                             <NumberBox Width="96"
                                        HorizontalAlignment="Left"
                                        Header="Hours"

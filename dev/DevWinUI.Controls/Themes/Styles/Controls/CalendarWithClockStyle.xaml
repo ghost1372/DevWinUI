@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultCalendarWithClockStyle}"
-           TargetType="local:CalendarWithClock" />
+    <Style TargetType="local:CalendarWithClock" BasedOn="{StaticResource DefaultCalendarWithClockStyle}" />
 
-    <Style x:Key="DefaultCalendarWithClockStyle"
-           TargetType="local:CalendarWithClock">
+    <Style x:Key="DefaultCalendarWithClockStyle" TargetType="local:CalendarWithClock">
         <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
         <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
@@ -43,48 +41,34 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="PointerOver">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushPointerOver}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPointerOver}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundPointerOver}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPointerOver}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundPressed}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPressed}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushPressed}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPressed}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerHeaderForegroundDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerHeaderForegroundDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -164,48 +148,34 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="PointerOver">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushPointerOver}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPointerOver}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundPointerOver}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPointerOver}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundPressed}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPressed}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushPressed}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPressed}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBackgroundDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
-                                                           Storyboard.TargetProperty="BorderBrush">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerBorderBrushDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource CalendarDatePickerHeaderForegroundDisabled}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerHeaderForegroundDisabled}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>

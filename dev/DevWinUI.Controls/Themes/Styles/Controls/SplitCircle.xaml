@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultSplitCircleStyle}"
-           TargetType="local:SplitCircle" />
+    <Style TargetType="local:SplitCircle" BasedOn="{StaticResource DefaultSplitCircleStyle}" />
 
-    <Style x:Key="DefaultSplitCircleStyle"
-           TargetType="local:SplitCircle">
+    <Style x:Key="DefaultSplitCircleStyle" TargetType="local:SplitCircle">
         <Setter Property="FirstColor" Value="{ThemeResource SystemFillColorSuccess}" />
         <Setter Property="SecondColor" Value="{ThemeResource SystemFillColorCritical}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
@@ -18,8 +16,7 @@
                 <ControlTemplate TargetType="local:SplitCircle">
                     <Viewbox Stretch="Fill">
                         <Border Padding="{TemplateBinding Padding}">
-                            <Canvas Width="100"
-                                    Height="100">
+                            <Canvas Width="100" Height="100">
                                 <!--  First Half  -->
                                 <Path x:Name="FirstHalf"
                                       Fill="{TemplateBinding FirstColorBrush}">

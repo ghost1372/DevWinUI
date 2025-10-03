@@ -8,14 +8,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Features/RainbowFramePage_cs.txt"
                                   DocPage="rainbowFrame"
                                   DocType="Core">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <Button x:Name="btnFixed"
                             Click="btnFixed_Click"
                             Content="Change Window Frame Color to Red" />

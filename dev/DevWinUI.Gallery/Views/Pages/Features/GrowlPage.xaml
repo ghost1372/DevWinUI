@@ -8,23 +8,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part1_cs.txt"
                                   DocPage="controls/growl"
                                   HeaderText="In-App Growl"
                                   XamlSource="Features/Growl/GrowlPage_xaml.txt">
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel MinWidth="340"
-                                dev:Growl.GrowlParent="True" />
-                    <StackPanel MinWidth="340"
-                                dev:Growl.GrowlParent="True"
-                                dev:Growl.Token="Test" />
+                    <StackPanel MinWidth="340" dev:Growl.GrowlParent="True" />
+                    <StackPanel MinWidth="340" dev:Growl.GrowlParent="True" dev:Growl.Token="Test" />
                 </StackPanel>
                 <local:ControlExample.Pane>
-                    <StackPanel Margin="10"
-                                Spacing="10">
+                    <StackPanel Margin="10" Spacing="10">
                         <Button x:Name="btnGrowl"
                                 Click="btnGrowl_Click"
                                 Content="Growl (Without Token)" />
@@ -53,8 +47,7 @@
                              Severity="Informational" />
                 </StackPanel>
                 <local:ControlExample.Pane>
-                    <StackPanel Margin="10"
-                                Spacing="10">
+                    <StackPanel Margin="10" Spacing="10">
                         <Button x:Name="btnGrowlGlobal"
                                 Click="btnGrowlGlobal_Click"
                                 Content="Growl Global" />

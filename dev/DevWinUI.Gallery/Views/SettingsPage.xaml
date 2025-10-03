@@ -13,9 +13,7 @@
                 Padding="{ThemeResource ContentPagePadding}"
                 HorizontalAlignment="Stretch"
                 VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="5">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="5">
             <dev:SettingsCard Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
                               CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage,
                                                                          BreadCrumbHeader='General'}"

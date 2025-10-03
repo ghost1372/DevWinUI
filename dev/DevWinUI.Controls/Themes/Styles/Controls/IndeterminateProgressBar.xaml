@@ -10,11 +10,9 @@
                      EasingMode="EaseIn"
                      Exponent="2" />
 
-    <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}"
-           TargetType="local:IndeterminateProgressBar" />
+    <Style TargetType="local:IndeterminateProgressBar" BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" />
 
-    <Style x:Key="DefaultIndeterminateProgressBarStyle"
-           TargetType="local:IndeterminateProgressBar">
+    <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="DotRadiusX" Value="8" />
         <Setter Property="DotRadiusY" Value="8" />
@@ -28,116 +26,56 @@
                                         AutoReverse="False"
                                         RepeatBehavior="Forever"
                                         Duration="00:00:04.4">
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0"
-                                                               Storyboard.TargetName="TransDot1"
-                                                               Storyboard.TargetProperty="X">
-                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0"
-                                                          Value="0.0" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}"
-                                                          KeyTime="00:00:00.5"
-                                                          Value="0.0" />
-                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0"
-                                                          Value="0.0" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}"
-                                                          KeyTime="00:00:02.5"
-                                                          Value="0.0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="TransDot1" Storyboard.TargetProperty="X">
+                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.0" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="0.0" />
+                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="0.0" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="0.0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1"
-                                                               Storyboard.TargetName="TransDot2"
-                                                               Storyboard.TargetProperty="X">
-                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0"
-                                                          Value="0.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}"
-                                                          KeyTime="00:00:00.5"
-                                                          Value="300.1" />
-                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0"
-                                                          Value="500.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}"
-                                                          KeyTime="00:00:02.5"
-                                                          Value="800.1" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1" Storyboard.TargetName="TransDot2" Storyboard.TargetProperty="X">
+                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
+                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2"
-                                                               Storyboard.TargetName="TransDot3"
-                                                               Storyboard.TargetProperty="X">
-                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0"
-                                                          Value="0.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}"
-                                                          KeyTime="00:00:00.5"
-                                                          Value="300.1" />
-                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0"
-                                                          Value="500.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}"
-                                                          KeyTime="00:00:02.5"
-                                                          Value="800.1" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="TransDot3" Storyboard.TargetProperty="X">
+                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
+                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3"
-                                                               Storyboard.TargetName="TransDot4"
-                                                               Storyboard.TargetProperty="X">
-                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0"
-                                                          Value="0.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}"
-                                                          KeyTime="00:00:00.5"
-                                                          Value="300.1" />
-                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0"
-                                                          Value="500.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}"
-                                                          KeyTime="00:00:02.5"
-                                                          Value="800.1" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="TransDot4" Storyboard.TargetProperty="X">
+                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
+                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4"
-                                                               Storyboard.TargetName="TransDot5"
-                                                               Storyboard.TargetProperty="X">
-                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0"
-                                                          Value="0.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}"
-                                                          KeyTime="00:00:00.5"
-                                                          Value="300.1" />
-                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0"
-                                                          Value="500.1" />
-                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}"
-                                                          KeyTime="00:00:02.5"
-                                                          Value="800.1" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="TransDot5" Storyboard.TargetProperty="X">
+                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
+                                    <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
+                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
                                 </DoubleAnimationUsingKeyFrames>
 
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0"
-                                                               Storyboard.TargetName="Dot1"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <DiscreteDoubleKeyFrame KeyTime="0"
-                                                            Value="1" />
-                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5"
-                                                            Value="0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="Dot1" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1"
-                                                               Storyboard.TargetName="Dot2"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <DiscreteDoubleKeyFrame KeyTime="0"
-                                                            Value="1" />
-                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5"
-                                                            Value="0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1" Storyboard.TargetName="Dot2" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2"
-                                                               Storyboard.TargetName="Dot3"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <DiscreteDoubleKeyFrame KeyTime="0"
-                                                            Value="1" />
-                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5"
-                                                            Value="0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Dot3" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3"
-                                                               Storyboard.TargetName="Dot4"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <DiscreteDoubleKeyFrame KeyTime="0"
-                                                            Value="1" />
-                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5"
-                                                            Value="0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="Dot4" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4"
-                                                               Storyboard.TargetName="Dot5"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <DiscreteDoubleKeyFrame KeyTime="0"
-                                                            Value="1" />
-                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5"
-                                                            Value="0" />
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Dot5" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                    <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                         </Grid.Resources>

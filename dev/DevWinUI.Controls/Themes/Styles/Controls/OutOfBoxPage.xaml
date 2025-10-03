@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultOutOfBoxPageStyle}"
-           TargetType="local:OutOfBoxPage" />
+    <Style TargetType="local:OutOfBoxPage" BasedOn="{StaticResource DefaultOutOfBoxPageStyle}" />
 
-    <Style x:Key="DefaultOutOfBoxPageStyle"
-           TargetType="local:OutOfBoxPage">
+    <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">
         <Setter Property="Template" Value="{StaticResource OutOfBoxLeftHeroImageTemplate}" />
         <Setter Property="UseTopHeroImage" Value="False" />
         <Setter Property="ContentMargin" Value="32,8" />
@@ -32,13 +30,7 @@
 
     <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate"
                      TargetType="local:OutOfBoxPage">
-        <Grid Padding="{TemplateBinding Padding}"
-              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              CornerRadius="{TemplateBinding CornerRadius}">
+        <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -81,17 +73,14 @@
 
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto">
-                <Grid Padding="0,0,20,24"
-                      ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
-                      RowSpacing="12">
+                <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0"
-                          VerticalAlignment="Top">
+                    <Grid Grid.Row="0" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -125,10 +114,7 @@
                                 </Image.Source>
                             </Image>
                         </Border>
-                        <StackPanel x:Name="DescriptionPanel"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Spacing="12">
+                        <StackPanel x:Name="DescriptionPanel" Grid.Row="0" Grid.Column="1" Spacing="12">
 
                             <ContentPresenter x:Name="PART_DescriptionPresenter"
                                               Content="{TemplateBinding Description}"
@@ -159,9 +145,7 @@
                                       VerticalContentAlignment="Stretch"
                                       Content="{TemplateBinding Content}" />
 
-                    <StackPanel Grid.Row="2"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                         <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter"
                                           Content="{TemplateBinding SecondaryLinksHeader}"
@@ -188,13 +172,7 @@
 
     <ControlTemplate x:Key="OutOfBoxTopHeroImageTemplate"
                      TargetType="local:OutOfBoxPage">
-        <Grid Padding="{TemplateBinding Padding}"
-              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              CornerRadius="{TemplateBinding CornerRadius}">
+        <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -213,9 +191,7 @@
 
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto">
-                <Grid Padding="0,0,20,24"
-                      ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
-                      RowSpacing="12">
+                <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
@@ -245,9 +221,7 @@
                                Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                Visibility="Collapsed" />
 
-                    <StackPanel Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                Spacing="5">
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">
 
                         <ContentPresenter x:Name="PART_DescriptionPresenter"
                                           Content="{TemplateBinding Description}"
@@ -274,8 +248,7 @@
                                       HorizontalContentAlignment="Stretch"
                                       VerticalContentAlignment="Stretch"
                                       Content="{TemplateBinding Content}" />
-                    <StackPanel Grid.Row="3"
-                                Grid.ColumnSpan="2">
+                    <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
 
                         <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter"
                                           Content="{TemplateBinding SecondaryLinksHeader}"

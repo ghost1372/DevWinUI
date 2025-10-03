@@ -3,8 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style x:Key="HeaderNavigationButtonStyle"
-           TargetType="Button">
+    <Style x:Key="HeaderNavigationButtonStyle" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
@@ -60,9 +59,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AccentHeaderNavigationButtonStyle"
-           BasedOn="{StaticResource HeaderNavigationButtonStyle}"
-           TargetType="Button">
+    <Style x:Key="AccentHeaderNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource HeaderNavigationButtonStyle}">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
@@ -112,8 +109,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="NavigationButtonStyle"
-           TargetType="Button">
+    <Style x:Key="NavigationButtonStyle" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
@@ -168,9 +164,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AccentNavigationButtonStyle"
-           BasedOn="{StaticResource NavigationButtonStyle}"
-           TargetType="Button">
+    <Style x:Key="AccentNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource NavigationButtonStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -218,9 +212,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DefaultDevWinUICalendarViewStyle"
-           BasedOn="{StaticResource DefaultCalendarViewStyle}"
-           TargetType="CalendarView">
+    <Style x:Key="DefaultDevWinUICalendarViewStyle" TargetType="CalendarView" BasedOn="{StaticResource DefaultCalendarViewStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarView">
@@ -229,17 +221,14 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Resources>
-                            <Style x:Key="WeekDayNameStyle"
-                                   BasedOn="{StaticResource CaptionTextBlockStyle}"
-                                   TargetType="TextBlock">
+                            <Style x:Key="WeekDayNameStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="FontWeight" Value="{ThemeResource CalendarViewWeekDayFontWeight}" />
                                 <Setter Property="Margin" Value="{ThemeResource CalendarViewWeekDayMargin}" />
                                 <Setter Property="Padding" Value="{ThemeResource CalendarViewWeekDayPadding}" />
                             </Style>
-                            <Style x:Key="ScrollViewerStyle"
-                                   TargetType="ScrollViewer">
+                            <Style x:Key="ScrollViewerStyle" TargetType="ScrollViewer">
                                 <Setter Property="HorizontalScrollMode" Value="Disabled" />
                                 <Setter Property="VerticalScrollMode" Value="Enabled" />
                                 <Setter Property="VerticalSnapPointsType" Value="Optional" />
@@ -254,40 +243,26 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay1"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay1" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay2"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay2" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay3"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay3" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay4"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay4" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay5"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay5" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay6"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay6" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay7"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeekDay7" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarViewWeekDayForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -296,11 +271,7 @@
                                 <VisualState x:Name="ViewChanged" />
                                 <VisualState x:Name="ViewChanging">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HeaderButton"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0"
-                                                         To="1"
-                                                         Duration="0:0:0.167" />
+                                        <DoubleAnimation Storyboard.TargetName="HeaderButton" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -308,367 +279,205 @@
                                 <VisualState x:Name="Month" />
                                 <VisualState x:Name="Year">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthViewScrollViewer"
-                                                                       Storyboard.TargetProperty="IsEnabled">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="False" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthViewScrollViewer" Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="Visible" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Decade">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthViewScrollViewer"
-                                                                       Storyboard.TargetProperty="IsEnabled">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="False" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthViewScrollViewer" Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="Visible" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Month"
-                                                      To="Year">
+                                    <VisualTransition From="Month" To="Year">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0.84" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0.84" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0.84" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0.84" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="1.29" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="1.29" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="1.29" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="1.29" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                      Value="0" />
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                      Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Year"
-                                                      To="Month">
+                                    <VisualTransition From="Year" To="Month">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="IsHitTestVisible">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="False" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="1.29" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="1.29" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="1.29" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="1.29" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                      Value="0" />
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                      Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Year"
-                                                      To="Decade">
+                                    <VisualTransition From="Year" To="Decade">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0.84" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0.84" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0.84" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0.84" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="1.29" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="1.29" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="1.29" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="1.29" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                      Value="0" />
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                      Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Decade"
-                                                      To="Year">
+                                    <VisualTransition From="Decade" To="Year">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MonthView" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                        Value="Visible" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                           Storyboard.TargetProperty="IsHitTestVisible">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="False" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="0" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0" />
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewScrollViewer" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="1.29" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="1.29" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.150"
-                                                                      Value="1.29" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DecadeViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.150" Value="1.29" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearViewTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform"
-                                                                           Storyboard.TargetProperty="ScaleX">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform"
-                                                                           Storyboard.TargetProperty="ScaleY">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150"
-                                                                        Value="0.84" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.84" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000"
-                                                                      Value="0" />
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200"
-                                                                      Value="0" />
-                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}"
-                                                                      KeyTime="0:0:0.500"
-                                                                      Value="1" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundLayer" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.200" Value="0" />
+                                                <SplineDoubleKeyFrame KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" KeyTime="0:0:0.500" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinViewWidth}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Grid MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinViewWidth}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -715,8 +524,7 @@
                                     Grid.Row="1"
                                     Height="1"
                                     Background="{TemplateBinding BorderBrush}" />
-                            <Grid x:Name="Views"
-                                  Grid.Row="2">
+                            <Grid x:Name="Views" Grid.Row="2">
                                 <Grid.Clip>
                                     <RectangleGeometry Rect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.ClipRect}" />
                                 </Grid.Clip>
@@ -734,9 +542,7 @@
                                     <Grid.RenderTransform>
                                         <ScaleTransform x:Name="MonthViewTransform" CenterX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterX}" CenterY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterY}" />
                                     </Grid.RenderTransform>
-                                    <Grid x:Name="WeekDayNames"
-                                          Margin="2,2,2,0"
-                                          Background="{TemplateBinding Background}">
+                                    <Grid x:Name="WeekDayNames" Margin="2,2,2,0" Background="{TemplateBinding Background}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />

@@ -10,23 +10,18 @@
     <Page.Resources>
         <!--  These styles can be referenced to create a consistent SettingsPage layout  -->
         <x:Double x:Key="SettingsCardSpacing">3</x:Double>
-        <Style x:Key="SettingsSectionHeaderTextBlockStyle"
-               BasedOn="{StaticResource BodyStrongTextBlockStyle}"
-               TargetType="TextBlock">
+        <Style x:Key="SettingsSectionHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
             <Style.Setters>
                 <Setter Property="Margin" Value="1,29,0,5" />
             </Style.Setters>
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/settingsCard"
                                   HeaderText="SettingsPage"
                                   XamlSource="Features/Settings/SettingsControl_Part1_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}"
                                Text="Section 1" />
                     <dev:SettingsCard Description="This is a default card, with the Header, HeaderIcon, Description and Content set"
@@ -98,8 +93,7 @@
                         <dev:SettingsExpander.Items>
                             <dev:SettingsCard HorizontalContentAlignment="Left"
                                               ContentAlignment="Left">
-                                <StackPanel Margin="-12,0,0,0"
-                                            Orientation="Vertical">
+                                <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                     <HyperlinkButton Content="Link 1" />
                                     <HyperlinkButton Content="Link 2" />
                                     <HyperlinkButton Content="Link 3" />
@@ -114,8 +108,7 @@
             <local:ControlExample DocPage="controls/settingsCard"
                                   HeaderText="Clickable SettingsCard"
                                   XamlSource="Features/Settings/SettingsControl_Part2_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsCard x:Name="settingsCard1"
                                       Description="A SettingsCard can be made clickable and you can leverage the Command property or Click event."
                                       Header="A clickable SettingsCard"
@@ -143,8 +136,7 @@
             <local:ControlExample DocPage="controls/settingsCard"
                                   HeaderText="SettingsCard"
                                   XamlSource="Features/Settings/SettingsControl_Part3_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <TextBlock Margin="1,0,0,4"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
                                Text="Group of settings" />
@@ -199,8 +191,7 @@
             <local:ControlExample DocPage="controls/settingsCard"
                                   HeaderText="SettingsExpander ItemsSource"
                                   XamlSource="Features/Settings/SettingsControl_Part4_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsExpander Margin="20"
                                           Description="The SettingsExpander can use ItemsSource to define its Items."
                                           Header="Settings Expander with ItemsSource"
@@ -247,8 +238,7 @@
             <local:ControlExample DocPage="controls/settingsCard"
                                   HeaderText="SettingsExpander"
                                   XamlSource="Features/Settings/SettingsControl_Part5_xaml.txt">
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsExpander x:Name="settingsCard"
                                           Description="The SettingsExpander has the same properties as a Card, and you can set SettingsCard as part of the Items collection."
                                           Header="SettingsExpander"

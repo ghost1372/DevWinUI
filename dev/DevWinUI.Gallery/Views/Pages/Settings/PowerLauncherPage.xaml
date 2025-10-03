@@ -10,8 +10,7 @@
                       HeroImage="ms-appx:///Assets/Modules/PowerLauncher.png"
                       SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SettingsCard Header="Enable PowerToys Run"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/powerToysRun.png}">
                     <ToggleSwitch />

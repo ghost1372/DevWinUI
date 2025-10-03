@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultDigitalSegmentStyle}"
-           TargetType="local:DigitalSegment" />
+    <Style TargetType="local:DigitalSegment" BasedOn="{StaticResource DefaultDigitalSegmentStyle}" />
 
-    <Style x:Key="DefaultDigitalSegmentStyle"
-           TargetType="local:DigitalSegment">
+    <Style x:Key="DefaultDigitalSegmentStyle" TargetType="local:DigitalSegment">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="ColonBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
@@ -22,20 +20,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:DigitalSegment">
                     <Viewbox Stretch="Uniform">
-                        <StackPanel x:Name="PART_Panel"
-                                    Orientation="Horizontal"
-                                    Spacing="{TemplateBinding Spacing}" />
+                        <StackPanel x:Name="PART_Panel" Orientation="Horizontal" Spacing="{TemplateBinding Spacing}" />
                     </Viewbox>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}"
-           TargetType="local:SixteenSegmentChar" />
+    <Style TargetType="local:SixteenSegmentChar" BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}" />
 
-    <Style x:Key="DefaultSixteenSegmentCharStyle"
-           TargetType="local:SixteenSegmentChar">
+    <Style x:Key="DefaultSixteenSegmentCharStyle" TargetType="local:SixteenSegmentChar">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="ColonBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
@@ -44,9 +38,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SixteenSegmentChar">
-                    <Grid Width="235"
-                          Height="380"
-                          Margin="10">
+                    <Grid Width="235" Height="380" Margin="10">
                         <Grid.RenderTransform>
                             <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
                         </Grid.RenderTransform>
@@ -163,15 +155,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WideSixteenSegmentCharStyle"
-           BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}"
-           TargetType="local:SixteenSegmentChar">
+    <Style x:Key="WideSixteenSegmentCharStyle" TargetType="local:SixteenSegmentChar" BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SixteenSegmentChar">
-                    <Grid Width="280"
-                          Height="350"
-                          Margin="10">
+                    <Grid Width="280" Height="350" Margin="10">
                         <Grid.RenderTransform>
                             <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
                         </Grid.RenderTransform>
@@ -303,11 +291,9 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultFourteenSegmentCharStyle}"
-           TargetType="local:FourteenSegmentChar" />
+    <Style TargetType="local:FourteenSegmentChar" BasedOn="{StaticResource DefaultFourteenSegmentCharStyle}" />
 
-    <Style x:Key="DefaultFourteenSegmentCharStyle"
-           TargetType="local:FourteenSegmentChar">
+    <Style x:Key="DefaultFourteenSegmentCharStyle" TargetType="local:FourteenSegmentChar">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="ColonBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
@@ -316,9 +302,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:FourteenSegmentChar">
-                    <Grid Width="280"
-                          Height="360"
-                          Margin="10">
+                    <Grid Width="280" Height="360" Margin="10">
                         <Grid.RenderTransform>
                             <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
                         </Grid.RenderTransform>
@@ -418,15 +402,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WideFourteenSegmentCharStyle"
-           BasedOn="{StaticResource DefaultFourteenSegmentCharStyle}"
-           TargetType="local:FourteenSegmentChar">
+    <Style x:Key="WideFourteenSegmentCharStyle" TargetType="local:FourteenSegmentChar" BasedOn="{StaticResource DefaultFourteenSegmentCharStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:FourteenSegmentChar">
-                    <Grid Width="280"
-                          Height="350"
-                          Margin="10">
+                    <Grid Width="280" Height="350" Margin="10">
                         <Grid.RenderTransform>
                             <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
                         </Grid.RenderTransform>
@@ -540,11 +520,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style BasedOn="{StaticResource DefaultMatrix5x7SegmentCharStyle}"
-           TargetType="local:Matrix5x7SegmentChar" />
+    <Style TargetType="local:Matrix5x7SegmentChar" BasedOn="{StaticResource DefaultMatrix5x7SegmentCharStyle}" />
 
-    <Style x:Key="DefaultMatrix5x7SegmentCharStyle"
-           TargetType="local:Matrix5x7SegmentChar">
+    <Style x:Key="DefaultMatrix5x7SegmentCharStyle" TargetType="local:Matrix5x7SegmentChar">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="Angle" Value="-5" />
@@ -561,11 +539,9 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultMatrix5x8SegmentCharStyle}"
-           TargetType="local:Matrix5x8SegmentChar" />
+    <Style TargetType="local:Matrix5x8SegmentChar" BasedOn="{StaticResource DefaultMatrix5x8SegmentCharStyle}" />
 
-    <Style x:Key="DefaultMatrix5x8SegmentCharStyle"
-           TargetType="local:Matrix5x8SegmentChar">
+    <Style x:Key="DefaultMatrix5x8SegmentCharStyle" TargetType="local:Matrix5x8SegmentChar">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="Angle" Value="-5" />
@@ -582,11 +558,9 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultMatrix8x14SegmentCharStyle}"
-           TargetType="local:Matrix8x14SegmentChar" />
+    <Style TargetType="local:Matrix8x14SegmentChar" BasedOn="{StaticResource DefaultMatrix8x14SegmentCharStyle}" />
 
-    <Style x:Key="DefaultMatrix8x14SegmentCharStyle"
-           TargetType="local:Matrix8x14SegmentChar">
+    <Style x:Key="DefaultMatrix8x14SegmentCharStyle" TargetType="local:Matrix8x14SegmentChar">
         <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="Angle" Value="-5" />

@@ -7,8 +7,7 @@
       xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
     <Page.Resources>
-        <Style BasedOn="{StaticResource ListViewItemSettingStyle}"
-               TargetType="ListViewItem" />
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}" />
     </Page.Resources>
     <dev:OutOfBoxPage Title="Image Resizer"
                       Description="Lets you resize images by right-clicking."
@@ -45,10 +44,7 @@
                                         <x:Double x:Key="SettingsCardLeftIndention">42</x:Double>
                                     </dev:SettingsCard.Resources>
                                     <dev:SettingsCard.Description>
-                                        <StackPanel Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    Margin="0,4,0,0"
-                                                    Orientation="Horizontal">
+                                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,4,0,0" Orientation="Horizontal">
                                             <TextBlock Margin="0,0,4,0"
                                                        Style="{ThemeResource SecondaryTextStyle}"
                                                        Text="{x:Bind Fit}" />
@@ -62,10 +58,7 @@
                                                        Text="{x:Bind Unit}" />
                                         </StackPanel>
                                     </dev:SettingsCard.Description>
-                                    <StackPanel Grid.Column="2"
-                                                HorizontalAlignment="Right"
-                                                Orientation="Horizontal"
-                                                Spacing="8">
+                                    <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
                                         <Button Width="40"
                                                 Height="36"
                                                 Content="&#xE70F;"
@@ -73,8 +66,7 @@
                                                 Style="{StaticResource SubtleButtonStyle}">
                                             <Button.Flyout>
                                                 <Flyout>
-                                                    <StackPanel Margin="0,12,0,0"
-                                                                Spacing="16">
+                                                    <StackPanel Margin="0,12,0,0" Spacing="16">
                                                         <TextBox Width="240"
                                                                  HorizontalAlignment="Left"
                                                                  Header="Name"
@@ -89,8 +81,7 @@
                                                             <ComboBoxItem Content="Stretch" />
                                                         </ComboBox>
 
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    Spacing="8">
+                                                        <StackPanel Orientation="Horizontal" Spacing="8">
                                                             <NumberBox Width="116"
                                                                        Header="Width"
                                                                        Minimum="0"
@@ -176,8 +167,7 @@
                 <dev:SimpleSettingsGroup Header="File">
                     <dev:SettingsCard Description="This format is used as the filename for resized images"
                                       Header="Filename format">
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="4">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
                             <TextBox MinWidth="{StaticResource SettingActionControlMinWidth}"
                                      PlaceholderText="Example: %1 (%2)" />
                             <Button Content="&#xE946;"

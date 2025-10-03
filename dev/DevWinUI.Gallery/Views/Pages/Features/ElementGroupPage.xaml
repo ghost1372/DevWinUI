@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/elementGroup"
                                   XamlSource="Features/ElementGroupPage_xaml.txt">
                 <local:ControlExample.Pane>
@@ -19,10 +17,8 @@
                               Header="Orientation"
                               SelectedIndex="0"
                               SelectionChanged="CmbOrientation_SelectionChanged">
-                        <ComboBoxItem Content="Horizontal"
-                                      Tag="Horizontal" />
-                        <ComboBoxItem Content="Vertical"
-                                      Tag="Vertical" />
+                        <ComboBoxItem Content="Horizontal" Tag="Horizontal" />
+                        <ComboBoxItem Content="Vertical" Tag="Vertical" />
                     </ComboBox>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">

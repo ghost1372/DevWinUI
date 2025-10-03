@@ -4,16 +4,7 @@
                     xmlns:local="using:DevWinUI">
     <DataTemplate x:Key="ControlItemTemplate"
                   x:DataType="local:DataItem">
-        <Grid x:Name="controlRoot"
-              Width="360"
-              Height="96"
-              Padding="8"
-              HorizontalAlignment="Stretch"
-              Background="{ThemeResource ControlFillColorDefaultBrush}"
-              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-              BorderThickness="1"
-              ColumnSpacing="16"
-              CornerRadius="{StaticResource OverlayCornerRadius}">
+        <Grid x:Name="controlRoot" Width="360" Height="96" Padding="8" HorizontalAlignment="Stretch" Background="{ThemeResource ControlFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" ColumnSpacing="16" CornerRadius="{StaticResource OverlayCornerRadius}">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="LayoutVisualStates">
                     <VisualState x:Name="WideLayout">

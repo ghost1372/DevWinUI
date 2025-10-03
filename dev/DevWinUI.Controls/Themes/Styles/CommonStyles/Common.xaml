@@ -12,8 +12,7 @@
     <ThemeShadow x:Name="ThemeShadow" />
     <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
 
-    <Style BasedOn="{StaticResource DefaultCheckBoxStyle}"
-           TargetType="local:CheckBoxWithDescriptionControl" />
+    <Style TargetType="local:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
 
     <TransitionCollection x:Key="SettingsCardsAnimations">
         <EntranceThemeTransition FromVerticalOffset="50" />
@@ -22,15 +21,13 @@
         <!--  Smoothly animates individual cards upon whenever Expanders are expanded/collapsed  -->
     </TransitionCollection>
 
-    <Style x:Key="ListViewItemSettingStyle"
-           TargetType="ListViewItem">
+    <Style x:Key="ListViewItemSettingStyle" TargetType="ListViewItem">
         <Setter Property="Margin" Value="0,0,0,2" />
         <Setter Property="Padding" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="AppTitleBarMenuFlyoutItemStyle"
-           TargetType="MenuFlyoutItem">
+    <Style x:Key="AppTitleBarMenuFlyoutItemStyle" TargetType="MenuFlyoutItem">
         <Setter Property="Height" Value="28" />
         <Setter Property="Background" Value="{ThemeResource MenuFlyoutItemBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource MenuFlyoutItemBackgroundBrush}" />
@@ -46,13 +43,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
-                    <Grid x:Name="LayoutRoot"
-                          Margin="{StaticResource MenuFlyoutItemMargin}"
-                          Padding="{TemplateBinding Padding}"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid x:Name="LayoutRoot" Margin="{StaticResource MenuFlyoutItemMargin}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -117,10 +108,8 @@
                                 <VisualState x:Name="NarrowPadding">
 
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
-                                                                       Storyboard.TargetProperty="Padding">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MenuFlyoutItemThemePaddingNarrow}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Padding">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MenuFlyoutItemThemePaddingNarrow}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

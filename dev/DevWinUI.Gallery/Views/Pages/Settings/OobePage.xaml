@@ -10,13 +10,10 @@
                       HeroImage="ms-appx:///Assets/Modules/OOBE/FileExplorer.png"
                       UseTopHeroImage="True">
         <dev:OutOfBoxPage.Content>
-            <StackPanel dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <TextBlock Style="{ThemeResource OobeSubtitleStyle}"
                            Text="How to enable" />
-                <StackPanel Margin="0,24,0,0"
-                            Orientation="Horizontal"
-                            Spacing="12">
+                <StackPanel Margin="0,24,0,0" Orientation="Horizontal" Spacing="12">
                     <Button Content="Open Settings" />
                     <HyperlinkButton Style="{StaticResource TextButtonStyle}">
                         <TextBlock Text="Learn more about File Explorer add-ons"

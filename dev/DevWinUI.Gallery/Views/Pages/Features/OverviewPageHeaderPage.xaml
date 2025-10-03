@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/overviewPageHeader"
                                   HeaderText="OverviewPageHeader"
                                   XamlSource="Features/OverviewPageHeaderPage_xaml.txt">
@@ -33,8 +31,7 @@
                     <dev:OverviewPageHeader.ActionContent>
                         <Button AutomationProperties.Name="Learn more about Windows AI APIs">
                             <Button.Content>
-                                <StackPanel Orientation="Horizontal"
-                                            Spacing="8">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
                                     <FontIcon FontSize="16"
                                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                               Glyph="&#xE7C3;" />
@@ -46,48 +43,28 @@
                     </dev:OverviewPageHeader.ActionContent>
                     <dev:OverviewPageHeader.ImageContent>
                         <Grid Margin="24,8,24,16">
-                            <Grid Margin="0,62,0,0"
-                                  Padding="16"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                            <Grid Margin="0,62,0,0" Padding="16" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource GlassAcrylicGridStyle}">
                                 <Image Width="56"
                                        Source="ms-appx:///Assets/Svgs/WCRAPI.svg" />
                             </Grid>
 
-                            <Grid Margin="48,166,0,0"
-                                  Padding="8"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                            <Grid Margin="48,166,0,0" Padding="8" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource GlassAcrylicGridStyle}">
                                 <FontIcon FontSize="24"
                                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                           Glyph="&#xE8F2;" />
                             </Grid>
 
-                            <Grid Margin="104,96,0,0"
-                                  Padding="16"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                            <Grid Margin="104,96,0,0" Padding="16" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource GlassAcrylicGridStyle}">
                                 <FontIcon FontSize="48"
                                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                           Glyph="&#xE7C5;" />
                             </Grid>
-                            <Grid Margin="104,12,0,0"
-                                  Padding="16"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                            <Grid Margin="104,12,0,0" Padding="16" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource GlassAcrylicGridStyle}">
                                 <FontIcon FontSize="36"
                                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                           Glyph="&#xE799;" />
                             </Grid>
-                            <Grid Margin="54,14,0,0"
-                                  Padding="8"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  Style="{StaticResource GlassAcrylicGridStyle}">
+                            <Grid Margin="54,14,0,0" Padding="8" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource GlassAcrylicGridStyle}">
                                 <FontIcon FontSize="18"
                                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                           Glyph="&#xE7A8;" />

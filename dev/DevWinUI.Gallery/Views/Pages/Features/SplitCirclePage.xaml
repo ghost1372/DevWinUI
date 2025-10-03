@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/splitCircle"
                                   HeaderText="SplitCircle">
                 <local:ControlExample.Xaml>
@@ -36,8 +34,7 @@
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Orientation="Horizontal"
-                            Spacing="10">
+                <StackPanel Orientation="Horizontal" Spacing="10">
                     <Viewbox Stretch="Uniform">
                         <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}"
                                          SecondColor="{ThemeResource SystemFillColorCaution}"

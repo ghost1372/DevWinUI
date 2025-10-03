@@ -8,9 +8,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="brushes/imageEffectBrush"
                                   XamlSource="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
                 <Grid>
@@ -26,9 +24,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0"
-                          Margin="20,20,10,10"
-                          Background="Black">
+                    <Grid Grid.Column="0" Margin="20,20,10,10" Background="Black">
                         <Grid Padding="10">
                             <Path HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
@@ -40,8 +36,7 @@
                             </Path>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="1"
-                          Margin="20,10,10,20">
+                    <Grid Grid.Column="1" Margin="20,10,10,20">
                         <Grid.Background>
                             <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
                         </Grid.Background>
@@ -50,8 +45,7 @@
             </local:ControlExample>
             <local:ControlExample DocPage="brushes/blurEffectBrush"
                                   XamlSource="Composition/CompositionBrush/CompositionBrushPage_BlurEffectBrush_xaml.txt">
-                <Grid Width="350"
-                      HorizontalAlignment="Left">
+                <Grid Width="350" HorizontalAlignment="Left">
                     <Grid.Background>
                         <LinearGradientBrush>
                             <GradientStopCollection>

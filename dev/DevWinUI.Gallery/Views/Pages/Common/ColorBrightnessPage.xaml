@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="attach/brushAttach"
                                   DocType="Core"
                                   HeaderText="BrushAttach">
@@ -20,20 +18,17 @@
                         &lt;SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.4" Color="{ThemeResource SystemAccentColor}" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <StackPanel Orientation="Horizontal"
-                            Spacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
                     <Rectangle Width="40"
                                Height="40">
                         <Rectangle.Fill>
-                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.4"
-                                             Color="{ThemeResource SystemAccentColor}" />
+                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.4" Color="{ThemeResource SystemAccentColor}" />
                         </Rectangle.Fill>
                     </Rectangle>
                     <Rectangle Width="40"
                                Height="40">
                         <Rectangle.Fill>
-                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.2"
-                                             Color="{ThemeResource SystemAccentColor}" />
+                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.2" Color="{ThemeResource SystemAccentColor}" />
                         </Rectangle.Fill>
                     </Rectangle>
                     <Rectangle Width="40"
@@ -45,15 +40,13 @@
                     <Rectangle Width="40"
                                Height="40">
                         <Rectangle.Fill>
-                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="1.2"
-                                             Color="{ThemeResource SystemAccentColor}" />
+                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="1.2" Color="{ThemeResource SystemAccentColor}" />
                         </Rectangle.Fill>
                     </Rectangle>
                     <Rectangle Width="40"
                                Height="40">
                         <Rectangle.Fill>
-                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="1.4"
-                                             Color="{ThemeResource SystemAccentColor}" />
+                            <SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="1.4" Color="{ThemeResource SystemAccentColor}" />
                         </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
@@ -66,8 +59,7 @@
                         &lt;SolidColorBrush Color="{dev:ColorBrightness Color={StaticResource SystemAccentColor}, CorrectionFactor=-0.4}" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <StackPanel Orientation="Horizontal"
-                            Spacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
                     <Rectangle Width="40"
                                Height="40">
                         <Rectangle.Fill>

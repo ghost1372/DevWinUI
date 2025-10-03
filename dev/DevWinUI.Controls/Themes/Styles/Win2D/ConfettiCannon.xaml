@@ -4,11 +4,9 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style BasedOn="{StaticResource DefaultConfettiCannonStyle}"
-           TargetType="local:ConfettiCannon" />
+    <Style TargetType="local:ConfettiCannon" BasedOn="{StaticResource DefaultConfettiCannonStyle}" />
 
-    <Style x:Key="DefaultConfettiCannonStyle"
-           TargetType="local:ConfettiCannon">
+    <Style x:Key="DefaultConfettiCannonStyle" TargetType="local:ConfettiCannon">
         <Setter Property="ClearColor" Value="Transparent" />
         <Setter Property="IsFixedTimeStep" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />

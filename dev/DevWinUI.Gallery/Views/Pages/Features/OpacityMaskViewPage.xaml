@@ -10,110 +10,56 @@
     <Page.Resources>
         <Storyboard x:Name="EffectButtonAnimation"
                     Duration="0:0:1.5">
-            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                          Storyboard.TargetName="Stop1"
-                                          Storyboard.TargetProperty="Color"
-                                          Duration="0:0:1.5">
-                <LinearColorKeyFrame KeyTime="0"
-                                     Value="#FFFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:0.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.5"
-                                     Value="#FFFFFFFF" />
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop1" Storyboard.TargetProperty="Color" Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0" Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5" Value="#FFFFFFFF" />
             </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                          Storyboard.TargetName="Stop2"
-                                          Storyboard.TargetProperty="Color"
-                                          Duration="0:0:1.5">
-                <LinearColorKeyFrame KeyTime="0"
-                                     Value="#FFFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:0.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.5"
-                                     Value="#FFFFFFFF" />
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop2" Storyboard.TargetProperty="Color" Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0" Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5" Value="#FFFFFFFF" />
             </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                          Storyboard.TargetName="Stop5"
-                                          Storyboard.TargetProperty="Color"
-                                          Duration="0:0:1.5">
-                <LinearColorKeyFrame KeyTime="0"
-                                     Value="#FFFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:0.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.5"
-                                     Value="#FFFFFFFF" />
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop5" Storyboard.TargetProperty="Color" Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0" Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5" Value="#FFFFFFFF" />
             </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                          Storyboard.TargetName="Stop6"
-                                          Storyboard.TargetProperty="Color"
-                                          Duration="0:0:1.5">
-                <LinearColorKeyFrame KeyTime="0"
-                                     Value="#FFFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:0.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.25"
-                                     Value="#0FFFFFFF" />
-                <LinearColorKeyFrame KeyTime="0:0:1.5"
-                                     Value="#FFFFFFFF" />
+            <ColorAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop6" Storyboard.TargetProperty="Color" Duration="0:0:1.5">
+                <LinearColorKeyFrame KeyTime="0" Value="#FFFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:0.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.25" Value="#0FFFFFFF" />
+                <LinearColorKeyFrame KeyTime="0:0:1.5" Value="#FFFFFFFF" />
             </ColorAnimationUsingKeyFrames>
 
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="Stop2"
-                                           Storyboard.TargetProperty="Offset"
-                                           Duration="0:0:1.25">
-                <DiscreteDoubleKeyFrame KeyTime="0"
-                                        Value="-0.4" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
-                                      Value="-0.4" />
-                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
-                                      Value="1" />
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop2" Storyboard.TargetProperty="Offset" Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="-0.4" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25" Value="-0.4" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25" Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="Stop3"
-                                           Storyboard.TargetProperty="Offset"
-                                           Duration="0:0:1.25">
-                <DiscreteDoubleKeyFrame KeyTime="0"
-                                        Value="-0.3" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
-                                      Value="-0.3" />
-                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
-                                      Value="1.1" />
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop3" Storyboard.TargetProperty="Offset" Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="-0.3" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25" Value="-0.3" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25" Value="1.1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="Stop4"
-                                           Storyboard.TargetProperty="Offset"
-                                           Duration="0:0:1.25">
-                <DiscreteDoubleKeyFrame KeyTime="0"
-                                        Value="-0.25" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
-                                      Value="-0.25" />
-                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
-                                      Value="1.15" />
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop4" Storyboard.TargetProperty="Offset" Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="-0.25" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25" Value="-0.25" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25" Value="1.15" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="Stop5"
-                                           Storyboard.TargetProperty="Offset"
-                                           Duration="0:0:1.25">
-                <DiscreteDoubleKeyFrame KeyTime="0"
-                                        Value="-0.15" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.25"
-                                      Value="-0.15" />
-                <LinearDoubleKeyFrame KeyTime="0:0:1.25"
-                                      Value="1.25" />
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Stop5" Storyboard.TargetProperty="Offset" Duration="0:0:1.25">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="-0.15" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.25" Value="-0.15" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1.25" Value="1.25" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/opacityMaskView"
                                   HeaderText="OpacityMaskView"
                                   XamlSource="Features/OpacityMaskView/OpacityMaskViewPage_Part1_xaml.txt">

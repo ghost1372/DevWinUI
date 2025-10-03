@@ -4,35 +4,25 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="TextOnAccentForegroundBrush"
-                            ResourceKey="TextOnAccentAAFillColorPrimary" />
-            <StaticResource x:Key="ClockCircleBackgroundBrush"
-                            ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
-                            ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
             <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
-            <StaticResource x:Key="ClockCircleBackgroundBrush"
-                            ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
-                            ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="TextOnAccentForegroundBrush"
-                            ResourceKey="TextOnAccentAAFillColorPrimary" />
-            <StaticResource x:Key="ClockCircleBackgroundBrush"
-                            ResourceKey="CardBackgroundFillColorSecondaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush"
-                            ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultClockStyle}"
-           TargetType="local:Clock" />
+    <Style TargetType="local:Clock" BasedOn="{StaticResource DefaultClockStyle}" />
 
-    <Style x:Key="DefaultClockStyle"
-           TargetType="local:Clock">
+    <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Margin" Value="8,0" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
@@ -57,8 +47,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Clock">
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -92,8 +81,7 @@
                                      Height="{TemplateBinding ClockHeight}"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid Name="PART_Grid"
-                                      Margin="10">
+                                <Grid Name="PART_Grid" Margin="10">
                                     <Border Width="178"
                                             Height="178"
                                             HorizontalAlignment="Stretch"

@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/colorPalette"
                                   HeaderText="ColorPalette">
                 <local:ControlExample.Xaml>
@@ -31,8 +29,7 @@
                                   Header="Item Shape"
                                   ItemsSource="{x:Bind ViewModel.ColorItemShapeItems, Mode=OneWay}"
                                   SelectedIndex="1" />
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
                             <NumberBox x:Name="NBWidth"
                                        Header="Item Width"
                                        Maximum="200"

@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}"
-           TargetType="local:RedirectVisualView" />
+    <Style TargetType="local:RedirectVisualView" BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" />
 
-    <Style x:Key="DefaultRedirectVisualViewStyle"
-           TargetType="local:RedirectVisualView">
+    <Style x:Key="DefaultRedirectVisualViewStyle" TargetType="local:RedirectVisualView">
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -18,12 +16,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:RedirectVisualView">
                     <Grid x:Name="LayoutRoot">
-                        <Canvas x:Name="OpacityMaskContainer"
-                                Width="0"
-                                Height="0"
-                                Visibility="Collapsed" />
-                        <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Canvas x:Name="OpacityMaskContainer" Width="0" Height="0" Visibility="Collapsed" />
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <Grid x:Name="ChildPresenterContainer">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -35,9 +29,7 @@
                                                   Margin="{TemplateBinding Padding}"
                                                   Content="{TemplateBinding Child}" />
                             </Grid>
-                            <Canvas x:Name="ChildHost"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" />
+                            <Canvas x:Name="ChildHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>

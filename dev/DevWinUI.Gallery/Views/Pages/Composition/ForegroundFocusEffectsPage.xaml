@@ -10,9 +10,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt"
                                   DocPage="controls/foregroundFocusEffects"
                                   XamlSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">

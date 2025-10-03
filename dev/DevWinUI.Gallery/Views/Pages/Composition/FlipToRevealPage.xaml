@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/flipToReveal"
                                   XamlSource="Composition/FlipToRevealPage_xaml.txt">
                 <dev:FlipToReveal Margin="0,150,0,0">
@@ -31,10 +29,7 @@
                                 BorderBrush="#B91C8D"
                                 BorderThickness="2"
                                 Opacity="0.8">
-                            <StackPanel Padding="10"
-                                        VerticalAlignment="Bottom"
-                                        Background="#250E35"
-                                        Opacity="1">
+                            <StackPanel Padding="10" VerticalAlignment="Bottom" Background="#250E35" Opacity="1">
                                 <TextBlock Foreground="#FDDA01"
                                            Text="Lorem ipsum"
                                            Typography.Capitals="AllSmallCaps" />

@@ -4,9 +4,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <InfoBar Title="You can simplify the operation of saving, retrieving and selecting the Application theme, All operations are performed automatically."
                      IsClosable="False"
                      IsOpen="True"
@@ -20,10 +18,8 @@
                                   DocType="Core"
                                   HeaderText="Theme"
                                   XamlSource="Features/ThemeManager/ThemeManagerPage_Theme_xaml.txt">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="10">
-                    <StackPanel x:Name="themePanel"
-                                Margin="10">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <StackPanel x:Name="themePanel" Margin="10">
                         <RadioButton Checked="OnThemeRadioButtonChecked"
                                      Content="Use system setting"
                                      Tag="Default" />
@@ -52,10 +48,8 @@
                                   DocType="Core"
                                   HeaderText="Backdrop"
                                   XamlSource="Features/ThemeManager/ThemeManagerPage_Backdrop_xaml.txt">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="10">
-                    <StackPanel x:Name="backdropPanel"
-                                Margin="10">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <StackPanel x:Name="backdropPanel" Margin="10">
                         <RadioButton Checked="OnBackdropRadioButtonChecked"
                                      Content="None"
                                      Tag="None" />

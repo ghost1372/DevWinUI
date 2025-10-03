@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultProgressRingStyle}"
-           TargetType="local:ProgressRing" />
+    <Style TargetType="local:ProgressRing" BasedOn="{StaticResource DefaultProgressRingStyle}" />
 
-    <Style x:Key="DefaultProgressRingStyle"
-           TargetType="local:ProgressRing">
+    <Style x:Key="DefaultProgressRingStyle" TargetType="local:ProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -25,8 +23,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Resources>
-                            <Style x:Key="ProgressRingEllipseStyle"
-                                   TargetType="Ellipse">
+                            <Style x:Key="ProgressRingEllipseStyle" TargetType="Ellipse">
                                 <Setter Property="Opacity" Value="0" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Top" />
@@ -36,9 +33,7 @@
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SixthCircle"
-                                                                       Storyboard.TargetProperty="Visibility"
-                                                                       Duration="0">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SixthCircle" Storyboard.TargetProperty="Visibility" Duration="0">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
@@ -53,236 +48,108 @@
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
                                     <Storyboard RepeatBehavior="Forever">
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ring"
-                                                                       Storyboard.TargetProperty="Visibility"
-                                                                       Duration="0">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ring" Storyboard.TargetProperty="Visibility" Duration="0">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0"
-                                                                       Storyboard.TargetName="E1"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167"
-                                                                       Storyboard.TargetName="E2"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334"
-                                                                       Storyboard.TargetName="E3"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501"
-                                                                       Storyboard.TargetName="E4"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668"
-                                                                       Storyboard.TargetName="E5"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835"
-                                                                       Storyboard.TargetName="E6"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21"
-                                                                    Value="1" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22"
-                                                                    Value="0" />
-                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47"
-                                                                    Value="0" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="0"
-                                                                       Storyboard.TargetName="E1R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-110" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="10" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="93" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="205" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="357" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="439" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="585" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-110" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="10" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="93" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="205" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="357" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="439" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="585" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167"
-                                                                       Storyboard.TargetName="E2R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-116" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="4" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="87" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="199" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="351" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="433" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="579" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-116" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="4" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="87" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="199" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="351" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="433" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="579" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334"
-                                                                       Storyboard.TargetName="E3R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-122" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="-2" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="81" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="193" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="345" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="427" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="573" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-122" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-2" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="81" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="193" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="345" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="427" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="573" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501"
-                                                                       Storyboard.TargetName="E4R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-128" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="-8" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="75" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="187" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="339" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="421" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="567" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-128" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-8" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="75" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="187" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="339" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="421" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="567" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668"
-                                                                       Storyboard.TargetName="E5R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-134" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="-14" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="69" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="181" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="331" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="415" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="561" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-134" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-14" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="69" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="181" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="331" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="415" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="561" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835"
-                                                                       Storyboard.TargetName="E6R"
-                                                                       Storyboard.TargetProperty="Angle">
-                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7"
-                                                                  KeyTime="0"
-                                                                  Value="-140" />
-                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77"
-                                                                  KeyTime="0:0:0.433"
-                                                                  Value="-20" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2"
-                                                                  Value="63" />
-                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75"
-                                                                  KeyTime="0:0:1.617"
-                                                                  Value="175" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72"
-                                                                  KeyTime="0:0:2.017"
-                                                                  Value="325" />
-                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783"
-                                                                  Value="409" />
-                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37"
-                                                                  KeyTime="0:0:3.217"
-                                                                  Value="555" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-140" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-20" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="63" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="175" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="325" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="409" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="555" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="Ring"
-                              MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}"
-                              MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}"
-                              Background="{TemplateBinding Background}"
-                              FlowDirection="LeftToRight"
-                              RenderTransformOrigin=".5,.5"
-                              Visibility="Collapsed">
+                        <Grid x:Name="Ring" MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}" MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}" Background="{TemplateBinding Background}" FlowDirection="LeftToRight" RenderTransformOrigin=".5,.5" Visibility="Collapsed">
                             <Canvas RenderTransformOrigin=".5,.5">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E1R" />
@@ -338,9 +205,7 @@
                                          Fill="{TemplateBinding Foreground}"
                                          Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
-                            <Canvas x:Name="SixthCircle"
-                                    RenderTransformOrigin=".5,.5"
-                                    Visibility="Collapsed">
+                            <Canvas x:Name="SixthCircle" RenderTransformOrigin=".5,.5" Visibility="Collapsed">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E6R" />
                                 </Canvas.RenderTransform>

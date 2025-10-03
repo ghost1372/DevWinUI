@@ -7,9 +7,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="landingPages/mainLandingPage"
                                   DocType="Controls"
                                   XamlSource="LandingsPage/HomeLandingsPage_xaml.txt">
@@ -19,8 +17,7 @@
                                      HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
                                      JsonNavigationService="{x:Bind local:App.Current.NavService}">
                     <dev:MainLandingPage.HeaderContent>
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
                             <dev:HeaderTile Title="Documentation Center"
                                             Description="Learn how to work with controls and styles."
                                             Link="https://Ghost1372.github.io/DevWinUI">

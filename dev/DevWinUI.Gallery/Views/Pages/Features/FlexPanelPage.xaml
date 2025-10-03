@@ -14,17 +14,14 @@
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
-        <Style BasedOn="{StaticResource BaseTextBlockStyle}"
-               TargetType="TextBlock">
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="White" />
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/flexPanel"
                                   XamlSource="Features/FlexPanelPage_xaml.txt">
                 <dev:FlexPanel Margin="32"

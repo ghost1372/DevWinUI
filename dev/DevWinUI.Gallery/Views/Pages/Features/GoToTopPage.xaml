@@ -9,14 +9,11 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/goToTop"
                                   HeaderText="ScrollViewer"
                                   XamlSource="Features/GoToTop/GoToTopPage_PART1_xaml.txt">
-                <Grid Height="400"
-                      HorizontalAlignment="Center">
+                <Grid Height="400" HorizontalAlignment="Center">
                     <ScrollViewer Name="ScrollViewerSample">
                         <Border Width="300"
                                 Height="2000"
@@ -43,8 +40,7 @@
             <local:ControlExample DocPage="controls/goToTop"
                                   HeaderText="ScrollView"
                                   XamlSource="Features/GoToTop/GoToTopPage_PART2_xaml.txt">
-                <Grid Height="400"
-                      HorizontalAlignment="Center">
+                <Grid Height="400" HorizontalAlignment="Center">
                     <ScrollView Name="ScrollViewSample">
                         <Border Width="300"
                                 Height="2000"

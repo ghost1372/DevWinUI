@@ -60,8 +60,7 @@
         </StackPanel>
     </dev:OptionsPageControl.Bar>
     <dev:OptionsPageControl.Footer>
-        <Grid BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-              BorderThickness="0">
+        <Grid BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />

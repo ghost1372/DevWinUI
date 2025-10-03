@@ -4,35 +4,27 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="StepBarItemInActiveBorderBrush"
-                            ResourceKey="ControlStrongStrokeColorDefault" />
+            <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="ControlStrongStrokeColorDefault" />
 
-            <StaticResource x:Key="StepBarItemActiveBorderBrush"
-                            ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="StepBarItemInActiveBorderBrush"
-                            ResourceKey="ControlStrongStrokeColorDefault" />
+            <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="ControlStrongStrokeColorDefault" />
 
-            <StaticResource x:Key="StepBarItemActiveBorderBrush"
-                            ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="StepBarItemInActiveBorderBrush"
-                            ResourceKey="SystemColorWindowColor" />
+            <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="SystemColorWindowColor" />
 
-            <StaticResource x:Key="StepBarItemActiveBorderBrush"
-                            ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="SystemColorHighlightColor" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultStepBarStyle}"
-           TargetType="local:StepBar" />
+    <Style TargetType="local:StepBar" BasedOn="{StaticResource DefaultStepBarStyle}" />
 
-    <Style x:Key="DefaultStepBarStyle"
-           TargetType="local:StepBar">
+    <Style x:Key="DefaultStepBarStyle" TargetType="local:StepBar">
         <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -46,13 +38,7 @@
 
     <ControlTemplate x:Key="StepBarHorizontalControlTemplate"
                      TargetType="local:StepBar">
-        <Grid Padding="{TemplateBinding Padding}"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Top"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              CornerRadius="{TemplateBinding CornerRadius}">
+        <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.Resources>
                 <x:Double x:Key="ProgressBarMinHeight">4</x:Double>
                 <x:Double x:Key="ProgressBarTrackHeight">4</x:Double>
@@ -62,50 +48,40 @@
                     <!--  Waiting  -->
                     <VisualState x:Name="Waiting">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource ProgressBarForeground}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ProgressBarForeground}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Info  -->
                     <VisualState x:Name="Info">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource ProgressBarForeground}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ProgressBarForeground}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Warning  -->
                     <VisualState x:Name="Warning">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorCautionBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Error  -->
                     <VisualState x:Name="Error">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Success  -->
                     <VisualState x:Name="Success">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -121,14 +97,7 @@
 
     <ControlTemplate x:Key="StepBarVerticalControlTemplate"
                      TargetType="local:StepBar">
-        <Grid x:Name="PART_RootGridVertical"
-              Padding="{TemplateBinding Padding}"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Stretch"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              CornerRadius="{TemplateBinding CornerRadius}">
+        <Grid x:Name="PART_RootGridVertical" Padding="{TemplateBinding Padding}" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.Resources>
                 <x:Double x:Key="ProgressBarMinHeight">4</x:Double>
                 <x:Double x:Key="ProgressBarTrackHeight">4</x:Double>
@@ -138,50 +107,40 @@
                     <!--  Waiting  -->
                     <VisualState x:Name="Waiting">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource ProgressBarForeground}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ProgressBarForeground}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Info  -->
                     <VisualState x:Name="Info">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource ProgressBarForeground}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ProgressBarForeground}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Warning  -->
                     <VisualState x:Name="Warning">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorCautionBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Error  -->
                     <VisualState x:Name="Error">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <!--  Success  -->
                     <VisualState x:Name="Success">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar"
-                                                           Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                        Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ProgressBar" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -201,8 +160,7 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="StepBarItemHorizontalStyle"
-           TargetType="local:StepBarItem">
+    <Style x:Key="StepBarItemHorizontalStyle" TargetType="local:StepBarItem">
         <Setter Property="Margin" Value="10,0" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
@@ -216,125 +174,85 @@
                                 <!--  Waiting  -->
                                 <VisualState x:Name="Waiting">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Info  -->
                                 <VisualState x:Name="Info">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Warning  -->
                                 <VisualState x:Name="Warning">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Error  -->
                                 <VisualState x:Name="Error">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Success  -->
                                 <VisualState x:Name="Success">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -375,8 +293,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="StepBarItemVerticalStyle"
-           TargetType="local:StepBarItem">
+    <Style x:Key="StepBarItemVerticalStyle" TargetType="local:StepBarItem">
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Background" Value="{ThemeResource ControlSolidFillColorDefaultBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
@@ -389,125 +306,85 @@
                                 <!--  Waiting  -->
                                 <VisualState x:Name="Waiting">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemInActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Info  -->
                                 <VisualState x:Name="Info">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource StepBarItemActiveBorderBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource StepBarItemActiveBorderBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Warning  -->
                                 <VisualState x:Name="Warning">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Error  -->
                                 <VisualState x:Name="Error">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <!--  Success  -->
                                 <VisualState x:Name="Success">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Number" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
-                                                                    Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Icon" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

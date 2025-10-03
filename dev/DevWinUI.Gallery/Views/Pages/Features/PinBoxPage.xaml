@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
 
             <local:ControlExample DocPage="controls/pinBox">
                 <local:ControlExample.Xaml>
@@ -19,8 +17,7 @@
                         &lt;dev:PinBox /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:PinBox x:Name="pinBox"
                                 HorizontalAlignment="{x:Bind GetHorizontalAlignment(cmbHorizontalAlignment.SelectedIndex), Mode=OneWay}"
                                 Description="{x:Bind txtDesc.Text, Mode=OneWay}"
@@ -62,8 +59,7 @@
                                 ValueChanged="Slider_ValueChanged"
                                 Value="12" />
 
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="20">
+                        <StackPanel Orientation="Horizontal" Spacing="20">
                             <ComboBox x:Name="cmbOrientation"
                                       Header="Orientation"
                                       SelectedIndex="1">
@@ -81,8 +77,7 @@
                             </ComboBox>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="20">
+                        <StackPanel Orientation="Horizontal" Spacing="20">
                             <ComboBox x:Name="cmbFocusMode"
                                       Header="Focus Mode"
                                       SelectedIndex="1">
@@ -99,8 +94,7 @@
                             </ComboBox>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
                             <ToggleSwitch x:Name="tgShowSuccess"
                                           Header="Show Success" />
                             <ToggleSwitch x:Name="tgShowError"

@@ -5,24 +5,19 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="ShimmerBackground"
-                            ResourceKey="ControlAltFillColorTertiaryBrush" />
+            <StaticResource x:Key="ShimmerBackground" ResourceKey="ControlAltFillColorTertiaryBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="ShimmerBackground"
-                            ResourceKey="ControlAltFillColorTertiaryBrush" />
+            <StaticResource x:Key="ShimmerBackground" ResourceKey="ControlAltFillColorTertiaryBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <StaticResource x:Key="ShimmerBackground"
-                            ResourceKey="SystemColorWindowColor" />
+            <StaticResource x:Key="ShimmerBackground" ResourceKey="SystemColorWindowColor" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultShimmerStyle}"
-           TargetType="local:Shimmer" />
+    <Style TargetType="local:Shimmer" BasedOn="{StaticResource DefaultShimmerStyle}" />
 
-    <Style x:Key="DefaultShimmerStyle"
-           TargetType="local:Shimmer">
+    <Style x:Key="DefaultShimmerStyle" TargetType="local:Shimmer">
         <Setter Property="Background" Value="{ThemeResource ShimmerBackground}" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="MinWidth" Value="40" />

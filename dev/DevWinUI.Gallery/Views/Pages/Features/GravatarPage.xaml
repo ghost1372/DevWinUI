@@ -8,17 +8,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/gravatar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Gravatar Id="DevWinUI" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:Gravatar Id="{x:Bind txt.Text, Mode=OneWay}" />
                     <TextBox x:Name="txt"
                              PlaceholderText="Id" />

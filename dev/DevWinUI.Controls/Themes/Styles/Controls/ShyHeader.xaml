@@ -3,20 +3,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultShyHeaderStyle}"
-           TargetType="local:ShyHeader" />
+    <Style TargetType="local:ShyHeader" BasedOn="{StaticResource DefaultShyHeaderStyle}" />
 
-    <Style x:Key="DefaultShyHeaderStyle"
-           TargetType="local:ShyHeader">
+    <Style x:Key="DefaultShyHeaderStyle" TargetType="local:ShyHeader">
         <Setter Property="Height" Value="300" />
         <Setter Property="BackgroundImageOpacity" Value="0.6" />
         <Setter Property="OverlayBrush" Value="#BFCFB5C0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ShyHeader">
-                    <Grid x:Name="PART_Header"
-                          Height="{TemplateBinding Height}"
-                          VerticalAlignment="Top">
+                    <Grid x:Name="PART_Header" Height="{TemplateBinding Height}" VerticalAlignment="Top">
                         <Rectangle x:Name="PART_BackgroundRectangle">
                             <Rectangle.Fill>
                                 <ImageBrush ImageSource="{Binding BackgroundImage, RelativeSource={RelativeSource TemplatedParent}}"
@@ -26,18 +22,12 @@
                         </Rectangle>
                         <Rectangle x:Name="PART_OverlayRectangle"
                                    Fill="{Binding OverlayBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        <StackPanel x:Name="PART_TextContainer"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Orientation="Horizontal"
-                                    Spacing="10">
+                        <StackPanel x:Name="PART_TextContainer" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
                             <ContentPresenter x:Name="PART_Profile"
                                               Margin="10,70,10,10"
                                               Content="{TemplateBinding Profile}" />
 
-                            <StackPanel Margin="0,70,0,0"
-                                        Orientation="Vertical"
-                                        Spacing="10">
+                            <StackPanel Margin="0,70,0,0" Orientation="Vertical" Spacing="10">
                                 <ContentPresenter x:Name="PART_Title"
                                                   Content="{TemplateBinding Title}" />
                                 <ContentPresenter x:Name="PART_Subtitle"

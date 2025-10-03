@@ -11,11 +11,7 @@
              Loaded="SampleCodePresenter_Loaded"
              mc:Ignorable="d">
 
-    <Grid Padding="{x:Bind Padding, Mode=OneWay}"
-          Background="{x:Bind Background, Mode=OneWay}"
-          BorderBrush="{x:Bind BorderBrush, Mode=OneWay}"
-          BorderThickness="{x:Bind BorderThickness, Mode=OneWay}"
-          CornerRadius="{x:Bind CornerRadius, Mode=OneWay}">
+    <Grid Padding="{x:Bind Padding, Mode=OneWay}" Background="{x:Bind Background, Mode=OneWay}" BorderBrush="{x:Bind BorderBrush, Mode=OneWay}" BorderThickness="{x:Bind BorderThickness, Mode=OneWay}" CornerRadius="{x:Bind CornerRadius, Mode=OneWay}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

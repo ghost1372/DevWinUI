@@ -9,17 +9,14 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt"
                                   DocPage="compositionAnimationController"
                                   DocType="Core"
                                   XamlSource="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
                             <Button x:Name="PlayButton"
                                     Click="PlayPause_Animation">
                                 <SymbolIcon x:Name="PlayIcon"

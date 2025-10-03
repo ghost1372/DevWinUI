@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt"
                                   DocPage="controls/colorBloomControl"
                                   XamlSource="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
@@ -26,9 +24,7 @@
                                  IsMoreButtonVisible="False"
                                  Color="Red" />
                 </local:ControlExample.Pane>
-                <Grid Height="200"
-                      VerticalAlignment="Top"
-                      SizeChanged="OnSizeChanged">
+                <Grid Height="200" VerticalAlignment="Top" SizeChanged="OnSizeChanged">
                     <Button x:Name="BtnStart"
                             Width="170"
                             Margin="0,0,0,10"

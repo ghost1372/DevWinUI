@@ -4,34 +4,22 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="HeaderTextInverseBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
-            <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Default">
-            <SolidColorBrush x:Key="HeaderTextInverseBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
-            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <SolidColorBrush x:Key="HeaderTextInverseBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextPrimaryBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
-            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush"
-                             Color="{ThemeResource TextFillColorPrimary}" />
-            <SolidColorBrush x:Key="HeaderTextFixInverseBrush"
-                             Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+            <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -39,34 +27,25 @@
     <x:Double x:Key="LandingItemSubtitleFontSize">12</x:Double>
     <x:Double x:Key="Breakpoint640Plus">641</x:Double>
 
-    <Style x:Key="IndentedGridViewItemStyleSmall"
-           BasedOn="{StaticResource DefaultGridViewItemStyle}"
-           TargetType="GridViewItem">
+    <Style x:Key="IndentedGridViewItemStyleSmall" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
         <Setter Property="Margin" Value="12,0,12,12" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="IndentedGridViewItemStyle"
-           BasedOn="{StaticResource DefaultGridViewItemStyle}"
-           TargetType="GridViewItem">
+    <Style x:Key="IndentedGridViewItemStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
         <Setter Property="Margin" Value="12,0,0,12" />
     </Style>
 
-    <Style x:Key="GridViewItemStyleSmall"
-           BasedOn="{StaticResource DefaultGridViewItemStyle}"
-           TargetType="GridViewItem">
+    <Style x:Key="GridViewItemStyleSmall" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
         <Setter Property="Margin" Value="0,0,0,12" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="GridViewItemStyle"
-           BasedOn="{StaticResource DefaultGridViewItemStyle}"
-           TargetType="GridViewItem">
+    <Style x:Key="GridViewItemStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
         <Setter Property="Margin" Value="0,0,12,12" />
     </Style>
 
-    <Style x:Key="ScrollButtonStyle"
-           TargetType="Button">
+    <Style x:Key="ScrollButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource FlipViewNextPreviousButtonBackground}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
         <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
@@ -108,20 +87,14 @@
 
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousButtonBackgroundPointerOver}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousButtonBackgroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousButtonBorderBrushPointerOver}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousButtonBorderBrushPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousArrowForegroundPointerOver}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousArrowForegroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                     <VisualState.Setters>
@@ -131,20 +104,14 @@
 
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousButtonBackgroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousButtonBackgroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousButtonBorderBrushPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousButtonBorderBrushPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource FlipViewNextPreviousArrowForegroundPressed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource FlipViewNextPreviousArrowForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                     <VisualState.Setters>
@@ -154,20 +121,14 @@
 
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ButtonBackgroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ButtonBorderBrushDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ButtonForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                     <VisualState.Setters>

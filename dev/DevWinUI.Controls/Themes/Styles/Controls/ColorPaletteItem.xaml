@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}"
-           TargetType="local:ColorPaletteItem" />
+    <Style TargetType="local:ColorPaletteItem" BasedOn="{StaticResource DefaultColorPaletteItemStyle}" />
 
-    <Style x:Key="DefaultColorPaletteItemStyle"
-           TargetType="local:ColorPaletteItem">
+    <Style x:Key="DefaultColorPaletteItemStyle" TargetType="local:ColorPaletteItem">
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -17,11 +15,7 @@
 
     <ControlTemplate x:Key="ColorPaletteTabViewTemplate"
                      TargetType="local:ColorPaletteItem">
-        <Grid Padding="{TemplateBinding Padding}"
-              AutomationProperties.Name="{TemplateBinding InternalColorName}"
-              BorderBrush="{ThemeResource ControlElevationBorderBrush}"
-              BorderThickness="1"
-              CornerRadius="{TemplateBinding CornerRadius}">
+        <Grid Padding="{TemplateBinding Padding}" AutomationProperties.Name="{TemplateBinding InternalColorName}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="16" />
                 <RowDefinition Height="50" />

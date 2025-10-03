@@ -23,8 +23,7 @@
                 <GradientStop Offset="1" Color="Transparent" />
             </LinearGradientBrush>
             <AcrylicBrush x:Key="GlassAcrylicBackground" />
-            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
-                             Color="{ThemeResource SurfaceStrokeColorDefault}" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Color="{ThemeResource SurfaceStrokeColorDefault}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
@@ -45,12 +44,8 @@
                 <GradientStop Offset="0.5" Color="#C8AEC4" />
                 <GradientStop Offset="1" Color="Transparent" />
             </LinearGradientBrush>
-            <AcrylicBrush x:Key="GlassAcrylicBackground"
-                          TintLuminosityOpacity="0.4"
-                          TintOpacity="0.4" />
-            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
-                             Opacity="0.6"
-                             Color="White" />
+            <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.6" Color="White" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
             <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
@@ -61,16 +56,10 @@
                 <GradientStop Offset="0.95" Color="#00000000" />
                 <GradientStop Offset="1" Color="#00000000" />
             </RadialGradientBrush>
-            <SolidColorBrush x:Key="CardGradient2Brush"
-                             Color="Transparent" />
-            <SolidColorBrush x:Key="CardGradient1Brush"
-                             Color="Transparent" />
-            <AcrylicBrush x:Key="GlassAcrylicBackground"
-                          TintLuminosityOpacity="0.4"
-                          TintOpacity="0.4" />
-            <SolidColorBrush x:Key="GlassAcrylicBorderBrush"
-                             Opacity="0.8"
-                             Color="White" />
+            <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
+            <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
+            <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+            <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

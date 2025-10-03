@@ -4,9 +4,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <InfoBar Title="First you must create a new release tag in github repository, tag version must be in this format : 1.0.0.0 now we can check for update with github username and github repository"
                      IsClosable="False"
                      IsOpen="True"
@@ -25,8 +23,7 @@
                                  PlaceholderText="Github Repository: DevWinUI" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <TextBlock Name="txtReleaseUrl"
                                TextWrapping="Wrap" />
                     <TextBlock Name="txtCreatedAt"

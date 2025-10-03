@@ -3,7 +3,12 @@
     "KeepFirstAttributeOnSameLine": true,
     "MaxAttributeCharactersPerLine": 0,
     "MaxAttributesPerLine": 1,
-    "NewlineExemptionElements": "RadialGradientBrush, GradientStop, LinearGradientBrush, ScaleTransform, SkewTransform, RotateTransform, TranslateTransform, Trigger, Condition, Setter",
+    "NewlineExemptionElements": 
+        "AcrylicBrush, Canvas, ColorAnimationUsingKeyFrames, ColumnDefinition, ComboBoxItem, CompositeTransform, Condition,
+         DiscreteDoubleKeyFrame, DiscreteObjectKeyFrame, DoubleAnimation, DoubleAnimationUsingKeyFrames, EasingDoubleKeyFrame, GradientStop, Grid,
+         LinearColorKeyFrame, LinearDoubleKeyFrame, LinearGradientBrush, ListViewItem, NavigationViewItem, ObjectAnimationUsingKeyFrames, RadialGradientBrush,
+         RepositionThemeAnimation, RotateTransform, RowDefinition, ScaleTransform, Setter, SkewTransform, SolidColorBrush, SplineDoubleKeyFrame, StackPanel,
+         StaticResource, Style, TranslateTransform, Trigger, VisualTransition",
     "SeparateByGroups": false,
     "AttributeIndentation": 0,
     "AttributeIndentationStyle": 1,
@@ -20,7 +25,7 @@
         "*:*, *",
         "PageSource, PageIndex, Offset, Color, TargetName, Property, Value, StartPoint, EndPoint",
         "mc:Ignorable, d:IsDataSource, d:LayoutOverrides, d:IsStaticText",
-        "Storyboard.*, From, To, Duration"
+        "Storyboard.*, From, To, Duration","BasedOn"
     ],
     "FirstLineAttributes": "",
     "OrderAttributesByName": true,
@@ -33,7 +38,7 @@
     "ReorderCanvasChildren": false,
     "ReorderSetters": 0,
     "FormatMarkupExtension": true,
-    "NoNewLineMarkupExtensions": "x:Bind, Binding",
+    "NoNewLineMarkupExtensions": "x:Bind, Binding, TemplateBinding",
     "ThicknessSeparator": 2,
     "ThicknessAttributes": "Margin, Padding, BorderThickness, ThumbnailClipMargin",
     "FormatOnSave": true,

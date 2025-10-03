@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultSnowFlakeEffectStyle}"
-           TargetType="local:SnowFlakeEffect" />
+    <Style TargetType="local:SnowFlakeEffect" BasedOn="{StaticResource DefaultSnowFlakeEffectStyle}" />
 
-    <Style x:Key="DefaultSnowFlakeEffectStyle"
-           TargetType="local:SnowFlakeEffect">
+    <Style x:Key="DefaultSnowFlakeEffectStyle" TargetType="local:SnowFlakeEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SnowFlakeEffect">

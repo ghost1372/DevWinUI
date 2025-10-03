@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/compositionImage">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CompositionImage Source="ms-appx:///Assets/Landscapes/Landscape-10.jpg" /&gt;</x:String>

@@ -8,25 +8,17 @@
         Title="SampleBackdrop"
         mc:Ignorable="d">
 
-    <StackPanel HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Spacing="10">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
         <ComboBox x:Name="CmbBackdrop"
                   MinWidth="200"
                   SelectedIndex="1"
                   SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="None"
-                          Tag="None" />
-            <ComboBoxItem Content="Mica"
-                          Tag="Mica" />
-            <ComboBoxItem Content="Mica Alt"
-                          Tag="MicaAlt" />
-            <ComboBoxItem Content="Acrylic"
-                          Tag="Acrylic" />
-            <ComboBoxItem Content="Acrylic Thin"
-                          Tag="AcrylicThin" />
-            <ComboBoxItem Content="Transparent"
-                          Tag="Transparent" />
+            <ComboBoxItem Content="None" Tag="None" />
+            <ComboBoxItem Content="Mica" Tag="Mica" />
+            <ComboBoxItem Content="Mica Alt" Tag="MicaAlt" />
+            <ComboBoxItem Content="Acrylic" Tag="Acrylic" />
+            <ComboBoxItem Content="Acrylic Thin" Tag="AcrylicThin" />
+            <ComboBoxItem Content="Transparent" Tag="Transparent" />
         </ComboBox>
 
         <TextBlock x:Name="SampleTxt"

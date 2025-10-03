@@ -11,9 +11,7 @@
                       HeroImage="ms-appx:///Assets/Modules/PowerRename.png"
                       SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
-            <StackPanel x:Name="PowerRenameView"
-                        dev:PanelAttach.ChildrenTransitions="Default"
-                        Orientation="Vertical">
+            <StackPanel x:Name="PowerRenameView" dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
                 <dev:SettingsCard Header="Enable PowerRename"
                                   HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/powerRename.png}">
                     <ToggleSwitch />

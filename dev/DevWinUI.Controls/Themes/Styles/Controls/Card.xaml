@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultCardStyle}"
-           TargetType="local:Card" />
+    <Style TargetType="local:Card" BasedOn="{StaticResource DefaultCardStyle}" />
 
-    <Style x:Key="DefaultCardStyle"
-           TargetType="local:Card">
+    <Style x:Key="DefaultCardStyle" TargetType="local:Card">
         <Setter Property="Padding" Value="24" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -18,14 +16,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Card">
-                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"
-                                           MinHeight="44" />
+                            <RowDefinition Height="Auto" MinHeight="44" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>

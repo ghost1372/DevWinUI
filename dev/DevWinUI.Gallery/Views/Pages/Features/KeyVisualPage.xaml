@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/keyVisual"
                                   HeaderText="KeyVisual">
                 <local:ControlExample.Xaml>
@@ -52,8 +50,7 @@
                              IsOpen="True"
                              Message="Instead of 16, 160, 161 you can use Shift, and instead of 91 and 92 you can use Win"
                              Severity="Informational" />
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="5">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
                         <dev:KeyVisual x:Name="MainKeyVisual"
                                        Content="{x:Bind TxtContent.Text, Mode=OneWay}"
                                        IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}"

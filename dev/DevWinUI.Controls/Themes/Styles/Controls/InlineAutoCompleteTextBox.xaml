@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultTextBoxStyle}"
-           TargetType="local:InlineAutoCompleteTextBox" />
+    <Style TargetType="local:InlineAutoCompleteTextBox" BasedOn="{StaticResource DefaultTextBoxStyle}" />
 </ResourceDictionary>

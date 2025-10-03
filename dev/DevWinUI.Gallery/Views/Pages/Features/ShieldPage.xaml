@@ -8,19 +8,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/shield">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Shield Status="Controls" Subject="DevWinUI" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <StackPanel Margin="10"
-                            Spacing="10">
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
                         <dev:Shield Click="Shield_Click"
                                     Status="Controls"
                                     Subject="DevWinUI" />
@@ -52,8 +48,7 @@
                             </dev:Shield.Status>
                         </dev:Shield>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
                         <dev:Shield Status="passing"
                                     Subject="build"
                                     Color="LimeGreen" />

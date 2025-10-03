@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultDividerStyle}"
-           TargetType="local:Divider" />
+    <Style TargetType="local:Divider" BasedOn="{StaticResource DefaultDividerStyle}" />
 
-    <Style x:Key="DefaultDividerStyle"
-           TargetType="local:Divider">
+    <Style x:Key="DefaultDividerStyle" TargetType="local:Divider">
         <Setter Property="Margin" Value="0,24" />
         <Setter Property="LineStroke" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -17,11 +15,9 @@
                 <ControlTemplate TargetType="local:Divider">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition x:Name="PART_ColumnStart"
-                                              Width="*" />
+                            <ColumnDefinition x:Name="PART_ColumnStart" Width="*" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition x:Name="PART_ColumnEnd"
-                                              Width="*" />
+                            <ColumnDefinition x:Name="PART_ColumnEnd" Width="*" />
                         </Grid.ColumnDefinitions>
                         <Line x:Name="PART_LeftLine"
                               VerticalAlignment="Center"

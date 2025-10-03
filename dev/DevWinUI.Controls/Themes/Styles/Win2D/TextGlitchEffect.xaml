@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultTextGlitchEffectStyle}"
-           TargetType="local:TextGlitchEffect" />
+    <Style TargetType="local:TextGlitchEffect" BasedOn="{StaticResource DefaultTextGlitchEffectStyle}" />
 
-    <Style x:Key="DefaultTextGlitchEffectStyle"
-           TargetType="local:TextGlitchEffect">
+    <Style x:Key="DefaultTextGlitchEffectStyle" TargetType="local:TextGlitchEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect">
@@ -24,11 +22,9 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultTextGlitchEffect2Style}"
-           TargetType="local:TextGlitchEffect2" />
+    <Style TargetType="local:TextGlitchEffect2" BasedOn="{StaticResource DefaultTextGlitchEffect2Style}" />
 
-    <Style x:Key="DefaultTextGlitchEffect2Style"
-           TargetType="local:TextGlitchEffect2">
+    <Style x:Key="DefaultTextGlitchEffect2Style" TargetType="local:TextGlitchEffect2">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect2">
@@ -45,11 +41,9 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultTextGlitchEffect3Style}"
-           TargetType="local:TextGlitchEffect3" />
+    <Style TargetType="local:TextGlitchEffect3" BasedOn="{StaticResource DefaultTextGlitchEffect3Style}" />
 
-    <Style x:Key="DefaultTextGlitchEffect3Style"
-           TargetType="local:TextGlitchEffect3">
+    <Style x:Key="DefaultTextGlitchEffect3Style" TargetType="local:TextGlitchEffect3">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect3">

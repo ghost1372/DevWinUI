@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultSelectableTextBlockStyle}"
-           TargetType="local:SelectableTextBlock" />
+    <Style TargetType="local:SelectableTextBlock" BasedOn="{StaticResource DefaultSelectableTextBlockStyle}" />
 
-    <Style x:Key="DefaultSelectableTextBlockStyle"
-           TargetType="local:SelectableTextBlock">
+    <Style x:Key="DefaultSelectableTextBlockStyle" TargetType="local:SelectableTextBlock">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SelectableTextBlock">
@@ -16,24 +14,15 @@
                             BorderThickness="{TemplateBinding BorderThickness}">
 
                         <Border.Resources>
-                            <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBackground"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBackgroundPointerOver"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBackgroundFocused"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBorderBrush"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBorderBrushPointerOver"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBorderBrushFocused"
-                                             Color="Transparent" />
-                            <SolidColorBrush x:Key="TextControlBorderBrushDisabled"
-                                             Color="Transparent" />
+                            <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBackground" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBorderBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Transparent" />
+                            <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="Transparent" />
                         </Border.Resources>
 
                         <TextBox MinWidth="0"

@@ -4,25 +4,21 @@
                     xmlns:local="using:DevWinUI">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Name="Default">
-            <StaticResource x:Key="ProgressCompletedBackgroundBrush"
-                            ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Name="Light">
-            <StaticResource x:Key="ProgressCompletedBackgroundBrush"
-                            ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Name="HighContrast">
-            <StaticResource x:Key="ProgressCompletedBackgroundBrush"
-                            ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
     <ControlTemplate x:Key="CompletedTemplate"
                      TargetType="ContentControl">
-        <Grid x:Name="CompletedElement"
-              Margin="-2">
+        <Grid x:Name="CompletedElement" Margin="-2">
 
             <Ellipse x:Name="CompletedRectangle"
                      Fill="{ThemeResource ProgressCompletedBackgroundBrush}">
@@ -33,11 +29,9 @@
         </Grid>
     </ControlTemplate>
 
-    <Style BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}"
-           TargetType="local:BubbleProgressButton" />
+    <Style TargetType="local:BubbleProgressButton" BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}" />
 
-    <Style x:Key="DefaultBubbleProgressButtonStyle"
-           TargetType="local:BubbleProgressButton">
+    <Style x:Key="DefaultBubbleProgressButtonStyle" TargetType="local:BubbleProgressButton">
         <Setter Property="Background" Value="{ThemeResource ControlFillColorTransparentBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -97,11 +91,7 @@
                                         <Setter Target="CompletedElement.Opacity" Value="0" />
                                     </VisualState.Setters>
                                     <Storyboard>
-                                        <DoubleAnimation EnableDependentAnimation="True"
-                                                         Storyboard.TargetName="CompletedElement"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.3" />
+                                        <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="CompletedElement" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Visible">
@@ -109,11 +99,7 @@
                                         <Setter Target="CompletedElement.Opacity" Value="1" />
                                     </VisualState.Setters>
                                     <Storyboard>
-                                        <DoubleAnimation EnableDependentAnimation="True"
-                                                         Storyboard.TargetName="CompletedElement"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.6" />
+                                        <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="CompletedElement" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.6" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

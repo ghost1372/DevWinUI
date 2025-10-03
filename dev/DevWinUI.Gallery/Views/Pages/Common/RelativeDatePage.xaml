@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="relativeDate"
                                   DocType="Core">
                 <local:ControlExample.CSharp>
@@ -23,9 +21,7 @@
                     <DatePicker x:Name="DatePickerSample"
                                 SelectedDateChanged="DatePickerSample_SelectedDateChanged" />
                 </local:ControlExample.Pane>
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Spacing="10">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                     <TextBlock x:Name="TextBlockSample"
                                Style="{ThemeResource TitleTextBlockStyle}" />
                     <TextBlock x:Name="TextBlockSample2"

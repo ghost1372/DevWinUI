@@ -2,11 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}"
-           TargetType="local:IsEnabledTextBlock" />
+    <Style TargetType="local:IsEnabledTextBlock" BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" />
 
-    <Style x:Key="DefaultIsEnabledTextBlockStyle"
-           TargetType="local:IsEnabledTextBlock">
+    <Style x:Key="DefaultIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
@@ -35,8 +33,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="SecondaryIsEnabledTextBlockStyle"
-           TargetType="local:IsEnabledTextBlock">
+    <Style x:Key="SecondaryIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
         <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}" />
     </Style>

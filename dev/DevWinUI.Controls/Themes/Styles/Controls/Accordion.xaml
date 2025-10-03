@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultAccordionStyle}"
-           TargetType="local:Accordion" />
+    <Style TargetType="local:Accordion" BasedOn="{StaticResource DefaultAccordionStyle}" />
 
-    <Style x:Key="DefaultAccordionStyle"
-           TargetType="local:Accordion">
+    <Style x:Key="DefaultAccordionStyle" TargetType="local:Accordion">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Accordion">

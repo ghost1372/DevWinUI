@@ -4,11 +4,9 @@
                     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}"
-           TargetType="local:DropdownColorPicker" />
+    <Style TargetType="local:DropdownColorPicker" BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" />
 
-    <Style x:Key="DefaultDropdownColorPickerStyle"
-           TargetType="local:DropdownColorPicker">
+    <Style x:Key="DefaultDropdownColorPickerStyle" TargetType="local:DropdownColorPicker">
         <Setter Property="Background" Value="Gray" />
         <Setter Property="Foreground" Value="LightGray" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -19,8 +17,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:DropdownColorPicker">
                     <Button Padding="{TemplateBinding Padding}">
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
                             <Border Width="{TemplateBinding TintBoxWidth}"
                                     Height="{TemplateBinding TintBoxHeight}"
                                     Margin="{TemplateBinding TintBoxMargin}"

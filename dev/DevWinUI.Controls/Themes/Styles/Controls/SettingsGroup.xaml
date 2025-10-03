@@ -22,11 +22,9 @@
     <local:TextBlockTemplateSelector x:Key="DescriptionTemplateSelector"
                                      TextBlockTemplate="{StaticResource DescriptionTextBlockTemplate}" />
 
-    <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}"
-           TargetType="local:SettingsGroup" />
+    <Style TargetType="local:SettingsGroup" BasedOn="{StaticResource DefaultSettingsGroupStyle}" />
 
-    <Style x:Key="DefaultSettingsGroupStyle"
-           TargetType="local:SettingsGroup">
+    <Style x:Key="DefaultSettingsGroupStyle" TargetType="local:SettingsGroup">
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -49,14 +47,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="PART_RootGrid"
-                              Grid.Row="0"
-                              MinHeight="{ThemeResource SettingsCardMinHeight}"
-                              Padding="{ThemeResource SettingsCardPadding}"
-                              Background="{ThemeResource SettingsCardBackground}"
-                              BackgroundSizing="InnerBorderEdge"
-                              BorderBrush="{ThemeResource SettingsCardBorderBrush}"
-                              BorderThickness="{ThemeResource SettingsCardBorderThickness}">
+                        <Grid x:Name="PART_RootGrid" Grid.Row="0" MinHeight="{ThemeResource SettingsCardMinHeight}" Padding="{ThemeResource SettingsCardPadding}" Background="{ThemeResource SettingsCardBackground}" BackgroundSizing="InnerBorderEdge" BorderBrush="{ThemeResource SettingsCardBorderBrush}" BorderThickness="{ThemeResource SettingsCardBorderThickness}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -92,14 +83,12 @@
                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                               TextWrapping="WrapWholeWords">
                                 <ContentPresenter.Resources>
-                                    <Style BasedOn="{StaticResource CaptionTextBlockStyle}"
-                                           TargetType="TextBlock">
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                                         <Style.Setters>
                                             <Setter Property="TextWrapping" Value="WrapWholeWords" />
                                         </Style.Setters>
                                     </Style>
-                                    <Style BasedOn="{StaticResource TextButtonStyle}"
-                                           TargetType="HyperlinkButton">
+                                    <Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextButtonStyle}">
                                         <Style.Setters>
                                             <Setter Property="Padding" Value="0,0,0,0" />
                                         </Style.Setters>

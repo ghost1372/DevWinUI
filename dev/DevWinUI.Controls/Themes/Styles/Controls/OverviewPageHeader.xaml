@@ -7,8 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:OverviewPageHeader">
-                    <Grid x:Name="PART_RootGrid"
-                          Background="{TemplateBinding Background}">
+                    <Grid x:Name="PART_RootGrid" Background="{TemplateBinding Background}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -29,9 +28,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <StackPanel x:Name="PART_TextPanel"
-                                    Padding="24,16,24,16"
-                                    Orientation="Vertical">
+                        <StackPanel x:Name="PART_TextPanel" Padding="24,16,24,16" Orientation="Vertical">
                             <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
                                        Text="{TemplateBinding Title}" />
                             <TextBlock MaxWidth="386"

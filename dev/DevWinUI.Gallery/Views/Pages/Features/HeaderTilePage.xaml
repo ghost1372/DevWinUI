@@ -9,9 +9,7 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample DocPage="controls/headerTile">
                 <local:ControlExample.Xaml>
                     <x:String>
@@ -34,8 +32,7 @@
                                  Text="https://github.com/ghost1372/DevWinUI" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:HeaderTile Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
                                     Description="{x:Bind TxtDesc.Text, Mode=OneWay}"
                                     Link="{x:Bind TxtLink.Text, Mode=OneWay}">

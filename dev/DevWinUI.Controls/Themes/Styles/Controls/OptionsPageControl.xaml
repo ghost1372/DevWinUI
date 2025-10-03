@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}"
-           TargetType="local:OptionsPageControl" />
+    <Style TargetType="local:OptionsPageControl" BasedOn="{StaticResource DefaultOptionsPageControlStyle}" />
 
-    <Style x:Key="DefaultOptionsPageControlStyle"
-           TargetType="local:OptionsPageControl">
+    <Style x:Key="DefaultOptionsPageControlStyle" TargetType="local:OptionsPageControl">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:OptionsPageControl">
@@ -21,14 +19,7 @@
                                    AutomationProperties.HeadingLevel="Level3"
                                    Style="{ThemeResource BodyStrongTextBlockStyle}"
                                    Text="{TemplateBinding HeaderText}" />
-                        <Grid x:Name="MainCard"
-                              Grid.Row="1"
-                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                              Background="{ThemeResource LayerFillColorDefaultBrush}"
-                              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                              BorderThickness="{TemplateBinding MainCardBorderThickness}"
-                              CornerRadius="{TemplateBinding MainCardCornerRadius}">
+                        <Grid x:Name="MainCard" Grid.Row="1" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="{TemplateBinding MainCardBorderThickness}" CornerRadius="{TemplateBinding MainCardCornerRadius}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
@@ -39,12 +30,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Grid x:Name="OptionsPanel"
-                                  Grid.Column="1"
-                                  VerticalAlignment="Stretch"
-                                  Background="{ThemeResource LayerFillColorDefaultBrush}"
-                                  BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                  BorderThickness="1,0,0,0">
+                            <Grid x:Name="OptionsPanel" Grid.Column="1" VerticalAlignment="Stretch" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1,0,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
@@ -59,14 +45,7 @@
                                     <ContentControl HorizontalContentAlignment="Stretch"
                                                     Content="{TemplateBinding Pane}" />
                                 </ScrollViewer>
-                                <Grid x:Name="FixedOptionsBar"
-                                      Grid.Column="1"
-                                      Padding="4"
-                                      HorizontalAlignment="Right"
-                                      Background="{ThemeResource LayerFillColorAltBrush}"
-                                      BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                      BorderThickness="1,0,0,0"
-                                      RowSpacing="8">
+                                <Grid x:Name="FixedOptionsBar" Grid.Column="1" Padding="4" HorizontalAlignment="Right" Background="{ThemeResource LayerFillColorAltBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" RowSpacing="8">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
@@ -95,8 +74,7 @@
                                 </Grid>
                             </Grid>
 
-                            <Grid x:Name="ContentPageHolder"
-                                  Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                            <Grid x:Name="ContentPageHolder" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
                                 <!--  A solidbackground we enable when toggling themes. WinUI uses a lot of translucent brushes and might look weird  -->
                                 <Border Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
                                         CornerRadius="8,0,0,8"

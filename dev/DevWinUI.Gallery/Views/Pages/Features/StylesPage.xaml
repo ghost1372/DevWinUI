@@ -14,9 +14,7 @@
         <TabViewItem Header="General"
                      IsClosable="False">
             <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
+                <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
                     <local:ControlExample DocPage="styles/#SelectorBar"
                                           HeaderText="SelectorBar">
                         <local:ControlExample.Xaml>
@@ -68,8 +66,7 @@
                                     </MenuFlyout>
                                 </DropDownButton.Flyout>
                             </DropDownButton>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="10">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
                                 <Button Style="{StaticResource ScrollButtonStyle}">
                                     <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
                                               Glyph="&#xedd9;" />
@@ -84,8 +81,7 @@
 
                     <local:ControlExample DocPage="styles"
                                           XamlSource="Features/Styles/Styles_xaml.txt">
-                        <StackPanel Margin="10"
-                                    Spacing="10">
+                        <StackPanel Margin="10" Spacing="10">
                             <TextBlock Style="{StaticResource OobeSubtitleStyle}"
                                        Text="OobeSubtitleStyle" />
                             <TextBlock Style="{StaticResource SecondaryTextStyle}"
@@ -127,14 +123,11 @@
         <TabViewItem Header="Panels"
                      IsClosable="False">
             <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
+                <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
                     <local:ControlExample DocPage="styles/#Border"
                                           HeaderText="Border"
                                           XamlSource="Features/Styles/Styles_Border_xaml.txt">
-                        <StackPanel Margin="10"
-                                    Spacing="10">
+                        <StackPanel Margin="10" Spacing="10">
                             <Border Height="80"
                                     Style="{ThemeResource BorderPanel}">
                                 <TextBlock HorizontalAlignment="Center"
@@ -183,38 +176,32 @@
                     <local:ControlExample DocPage="styles/#Grid"
                                           HeaderText="Grid"
                                           XamlSource="Features/Styles/Styles_Grid_xaml.txt">
-                        <StackPanel Margin="10"
-                                    Spacing="10">
-                            <Grid Height="80"
-                                  Style="{ThemeResource GridPanel}">
+                        <StackPanel Margin="10" Spacing="10">
+                            <Grid Height="80" Style="{ThemeResource GridPanel}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GridPanel" />
                             </Grid>
-                            <Grid Height="80"
-                                  Style="{ThemeResource GridCardPanel}">
+                            <Grid Height="80" Style="{ThemeResource GridCardPanel}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GridCardPanel" />
                             </Grid>
-                            <Grid Height="80"
-                                  Style="{ThemeResource CardGridStyle}">
+                            <Grid Height="80" Style="{ThemeResource CardGridStyle}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="CardGridStyle" />
                             </Grid>
-                            <Grid Height="80"
-                                  Style="{ThemeResource GlassAcrylicGridStyle}">
+                            <Grid Height="80" Style="{ThemeResource GlassAcrylicGridStyle}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="GlassAcrylicGridStyle" />
                             </Grid>
-                            <Grid Height="80"
-                                  Style="{ThemeResource HeroCardGridStyle}">
+                            <Grid Height="80" Style="{ThemeResource HeroCardGridStyle}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
@@ -226,17 +213,14 @@
                     <local:ControlExample DocPage="styles/#StackPanel"
                                           HeaderText="StackPanel"
                                           XamlSource="Features/Styles/Styles_StackPanel_xaml.txt">
-                        <StackPanel Margin="10"
-                                    Spacing="10">
-                            <StackPanel Height="80"
-                                        Style="{ThemeResource StackPanelStyle}">
+                        <StackPanel Margin="10" Spacing="10">
+                            <StackPanel Height="80" Style="{ThemeResource StackPanelStyle}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Text="StackPanelStyle" />
                             </StackPanel>
-                            <StackPanel Height="80"
-                                        Style="{ThemeResource CardPanelStyle}">
+                            <StackPanel Height="80" Style="{ThemeResource CardPanelStyle}">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource SubtitleTextBlockStyle}"
@@ -252,9 +236,7 @@
         <TabViewItem Header="NavigationView"
                      IsClosable="False">
             <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
+                <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
                     <local:ControlExample DocPage="styles/#NavigationView"
                                           HeaderText="NavigationViewStoreStyle">
                         <local:ControlExample.Xaml>
@@ -265,11 +247,9 @@
                         <NavigationView IsSettingsVisible="True"
                                         Style="{StaticResource NavigationViewStoreStyle}">
                             <NavigationView.MenuItems>
-                                <NavigationViewItem Content="Home"
-                                                    Icon="Home">
+                                <NavigationViewItem Content="Home" Icon="Home">
                                 </NavigationViewItem>
-                                <NavigationViewItem Content="Calendar"
-                                                    Icon="Calendar" />
+                                <NavigationViewItem Content="Calendar" Icon="Calendar" />
                                 <NavigationViewItem Content="Downloads">
                                     <NavigationViewItem.Icon>
                                         <FontIcon Glyph="&#xE753;" />
@@ -282,8 +262,7 @@
                                 </NavigationViewItem>
                             </NavigationView.MenuItems>
                             <NavigationView.FooterMenuItems>
-                                <NavigationViewItem IsEnabled="False"
-                                                    SelectsOnInvoked="False" />
+                                <NavigationViewItem IsEnabled="False" SelectsOnInvoked="False" />
                             </NavigationView.FooterMenuItems>
                         </NavigationView>
                     </local:ControlExample>
@@ -293,9 +272,7 @@
         <TabViewItem Header="ListView"
                      IsClosable="False">
             <ScrollViewer>
-                <StackPanel Margin="10"
-                            dev:PanelAttach.ChildrenTransitions="Default"
-                            Spacing="10">
+                <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
                     <local:ControlExample DocPage="styles/#ListViewItem">
                         <local:ControlExample.Xaml>
                             <x:String>
@@ -306,19 +283,11 @@
                                   ItemsSource="{x:Bind ColorFormats, Mode=TwoWay}"
                                   SelectionMode="None">
                             <ListView.Resources>
-                                <Style BasedOn="{StaticResource ListViewItemSettingStyle}"
-                                       TargetType="ListViewItem" />
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}" />
                             </ListView.Resources>
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="models:ColorFormatModel">
-                                    <Grid MinHeight="68"
-                                          Padding="0,0,16,0"
-                                          HorizontalAlignment="Stretch"
-                                          AutomationProperties.Name="{x:Bind Name}"
-                                          Background="{ThemeResource SettingsCardBackground}"
-                                          BorderBrush="{ThemeResource SettingsCardBorderBrush}"
-                                          BorderThickness="{ThemeResource SettingsCardBorderThickness}"
-                                          CornerRadius="{ThemeResource ControlCornerRadius}">
+                                    <Grid MinHeight="68" Padding="0,0,16,0" HorizontalAlignment="Stretch" AutomationProperties.Name="{x:Bind Name}" Background="{ThemeResource SettingsCardBackground}" BorderBrush="{ThemeResource SettingsCardBorderBrush}" BorderThickness="{ThemeResource SettingsCardBorderThickness}" CornerRadius="{ThemeResource ControlCornerRadius}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
                                             <RowDefinition />

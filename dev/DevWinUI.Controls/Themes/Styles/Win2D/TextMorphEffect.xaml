@@ -4,11 +4,9 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style BasedOn="{StaticResource DefaultTextMorphEffectStyle}"
-           TargetType="local:TextMorphEffect" />
+    <Style TargetType="local:TextMorphEffect" BasedOn="{StaticResource DefaultTextMorphEffectStyle}" />
 
-    <Style x:Key="DefaultTextMorphEffectStyle"
-           TargetType="local:TextMorphEffect">
+    <Style x:Key="DefaultTextMorphEffectStyle" TargetType="local:TextMorphEffect">
         <Setter Property="ColorBrush" Value="{ThemeResource SystemBaseMediumHighColor}" />
         <Setter Property="Template">
             <Setter.Value>

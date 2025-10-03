@@ -4,15 +4,12 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery">
     <ScrollViewer>
-        <StackPanel Margin="10"
-                    dev:PanelAttach.ChildrenTransitions="Default"
-                    Spacing="10">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <local:ControlExample CSharpSource="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_cs.txt"
                                   DocPage="controls/inlineAutoCompleteTextBox"
                                   XamlSource="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_xaml.txt">
                 <local:ControlExample.Pane>
-                    <StackPanel HorizontalAlignment="Stretch"
-                                Spacing="10">
+                    <StackPanel HorizontalAlignment="Stretch" Spacing="10">
                         <CheckBox x:Name="IsCaseSensitive"
                                   VerticalAlignment="Top"
                                   Content="Case Sensitive"
@@ -37,8 +34,7 @@
                                 Content="Update Demo Suggestions" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel Margin="10"
-                            Spacing="10">
+                <StackPanel Margin="10" Spacing="10">
                     <dev:InlineAutoCompleteTextBox Grid.Column="0"
                                                    VerticalAlignment="Top"
                                                    IsSuggestionCaseSensitive="{x:Bind (x:Boolean)IsCaseSensitive.IsChecked, Mode=OneWay}"

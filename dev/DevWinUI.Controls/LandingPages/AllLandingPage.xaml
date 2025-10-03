@@ -58,9 +58,7 @@
                   Loaded="OnItemGridViewLoaded"
                   SelectionMode="None">
             <GridView.Footer>
-                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}"
-                      VerticalAlignment="Bottom"
-                      Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
+                <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}" VerticalAlignment="Bottom" Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
                     <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />
                 </Grid>
             </GridView.Footer>

@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}"
-           TargetType="local:HorizontalScrollContainer" />
+    <Style TargetType="local:HorizontalScrollContainer" BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}" />
 
-    <Style x:Key="DefaultHorizontalScrollContainerStyle"
-           TargetType="local:HorizontalScrollContainer">
+    <Style x:Key="DefaultHorizontalScrollContainerStyle" TargetType="local:HorizontalScrollContainer">
         <Setter Property="ScrollBackButtonToolTipText" Value="Scroll left" />
         <Setter Property="ScrollForwardButtonToolTipText" Value="Scroll right" />
         <Setter Property="Template">
@@ -19,8 +17,7 @@
                                       HorizontalScrollMode="Enabled"
                                       VerticalScrollBarVisibility="Hidden"
                                       VerticalScrollMode="Disabled">
-                            <Grid x:Name="ContentGrid"
-                                  Margin="36,0,36,0">
+                            <Grid x:Name="ContentGrid" Margin="36,0,36,0">
                                 <ContentPresenter Content="{TemplateBinding Source}" />
                             </Grid>
                         </ScrollViewer>
