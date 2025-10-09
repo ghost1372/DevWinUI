@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-internal partial class NativeMessageBoxButtonTextLoader
+internal partial class NativeMessageBoxButtonStringLoader
 {
     public static string OK => field ??= GeneralHelper.LoadNativeString(800u);
     public static string Cancel => field ??= GeneralHelper.LoadNativeString(801u);

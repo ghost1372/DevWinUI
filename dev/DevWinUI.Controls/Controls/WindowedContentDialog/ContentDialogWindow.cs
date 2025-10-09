@@ -2,6 +2,7 @@
 
 using System.ComponentModel;
 using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
@@ -22,7 +23,7 @@ public partial class ContentDialogWindow : Window
     public ContentDialogWindow()
     {
         Content = new ContentDialogContent();
-        ContentDialogContent.PrimaryButtonClick += OnPrimaryButtonClick;
+        ContentDialogContent!.PrimaryButtonClick += OnPrimaryButtonClick;
         ContentDialogContent.SecondaryButtonClick += OnSecondaryButtonClick;
         ContentDialogContent.CloseButtonClick += OnCloseButtonClick;
         ContentDialogContent.Loaded += OnContentLoaded;
@@ -39,7 +40,7 @@ public partial class ContentDialogWindow : Window
 
     internal static ContentDialogWindow CreateWithoutComponent() => new(null);
 
-    private ContentDialogContent ContentDialogContent => (ContentDialogContent)Content;
+    private ContentDialogContent? ContentDialogContent => (ContentDialogContent)Content;
 
     internal void InitializeComponent(ContentDialogContent component)
     {
@@ -54,7 +55,7 @@ public partial class ContentDialogWindow : Window
 
         Closed += (sender, args) =>
         {
-            ContentDialogContent.PrimaryButtonClick -= OnPrimaryButtonClick;
+            ContentDialogContent!.PrimaryButtonClick -= OnPrimaryButtonClick;
             ContentDialogContent.SecondaryButtonClick -= OnSecondaryButtonClick;
             ContentDialogContent.CloseButtonClick -= OnCloseButtonClick;
             ContentDialogContent.Loaded -= OnContentLoaded;
@@ -76,7 +77,7 @@ public partial class ContentDialogWindow : Window
 
     private void DetermineTitleBarButtonForegroundColor()
     {
-        switch (ContentDialogContent.ActualTheme)
+        switch (ContentDialogContent!.ActualTheme)
         {
             case ElementTheme.Light:
                 AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
@@ -93,6 +94,10 @@ public partial class ContentDialogWindow : Window
     public event TypedEventHandler<ContentDialogWindow, CancelEventArgs>? SecondaryButtonClick;
     public event TypedEventHandler<ContentDialogWindow, CancelEventArgs>? CloseButtonClick;
 
+    public IList<KeyboardAccelerator> PrimaryButtonKeyboardAccelerators => ContentDialogContent?.PrimaryButtonKeyboardAccelerators ?? [];
+    public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators => ContentDialogContent?.SecondaryButtonKeyboardAccelerators ?? [];
+    public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators => ContentDialogContent?.CloseButtonKeyboardAccelerators ?? [];
+
     public event TypedEventHandler<ContentDialogWindow, EventArgs>? Loaded;
     public event TypedEventHandler<ContentDialogWindow, EventArgs>? Opened;
 
@@ -100,7 +105,7 @@ public partial class ContentDialogWindow : Window
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        if (!ContentDialogContent.IsLoaded)
+        if (!ContentDialogContent!.IsLoaded)
             return;
 
         if (args.WindowActivationState is WindowActivationState.Deactivated)
@@ -162,10 +167,10 @@ public partial class ContentDialogWindow : Window
 
     public ElementTheme RequestedTheme
     {
-        get => ContentDialogContent.RequestedTheme;
+        get => ContentDialogContent!.RequestedTheme;
         set
         {
-            ContentDialogContent.RequestedTheme = value;
+            ContentDialogContent!.RequestedTheme = value;
             AppWindow.TitleBar.PreferredTheme = value switch
             {
                 ElementTheme.Light => TitleBarTheme.Light,
@@ -292,7 +297,7 @@ public partial class ContentDialogWindow : Window
     private void OnContentLoaded(object sender, RoutedEventArgs e)
     {
         AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(
-            (int)((ContentDialogContent.DesiredSize.Width + 1) * ContentDialogContent.XamlRoot.RasterizationScale) + 1,
+            (int)((ContentDialogContent!.DesiredSize.Width + 1) * ContentDialogContent.XamlRoot.RasterizationScale) + 1,
             (int)((ContentDialogContent.DesiredSize.Height - 30) * ContentDialogContent.XamlRoot.RasterizationScale) + 1));
         SetTitleBar(ContentDialogContent.TitleArea);
 

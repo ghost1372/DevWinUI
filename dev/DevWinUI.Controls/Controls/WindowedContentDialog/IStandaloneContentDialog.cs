@@ -1,5 +1,7 @@
 ﻿//https://github.com/SuGar0218/WindowedContentDialog
 
+using Microsoft.UI.Xaml.Input;
+
 namespace DevWinUI;
 
 public interface IStandaloneContentDialog
@@ -33,4 +35,8 @@ public interface IStandaloneContentDialog
     public ElementTheme RequestedTheme { get; set; }
 
     public ElementTheme DetermineTheme() => RequestedTheme;
+
+    public IList<KeyboardAccelerator> PrimaryButtonKeyboardAccelerators { get; }
+    public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators { get; }
+    public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators { get; }
 }

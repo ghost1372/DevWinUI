@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Shapes;
 
@@ -39,6 +40,9 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
     public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? SecondaryButtonClick;
     public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? CloseButtonClick;
 
+    public IList<KeyboardAccelerator> PrimaryButtonKeyboardAccelerators => ContentDialogContent.PrimaryButtonKeyboardAccelerators;
+    public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators => ContentDialogContent.SecondaryButtonKeyboardAccelerators;
+    public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators => ContentDialogContent.CloseButtonKeyboardAccelerators;
     #region properties
 
     public object? Title
