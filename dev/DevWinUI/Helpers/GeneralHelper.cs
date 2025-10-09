@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Web;
 using Microsoft.UI.Input;
 using Microsoft.Win32;
@@ -289,5 +290,14 @@ public partial class GeneralHelper
     {
         var geographicRegion = new GeographicRegion();
         return privacySensitiveRegions.Contains(geographicRegion.CodeThreeLetter, StringComparer.OrdinalIgnoreCase);
+    }
+
+    public static string LoadNativeString(uint id, int bufferSize = 256)
+    {
+        var hInstance = PInvoke.GetModuleHandle(NativeValues.ExternDll.User32);
+        Span<char> buffer = stackalloc char[bufferSize];
+        int len = PInvoke.LoadString(hInstance, id, buffer, buffer.Length);
+
+        return len > 0 ? new string(buffer[..len]) : $"[{id}]";
     }
 }

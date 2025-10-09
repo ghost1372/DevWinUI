@@ -36,6 +36,7 @@ GetWindowRect
 GetWindowText
 GetWindowThreadProcessId
 IsWindowEnabled
+LoadString
 MessageBox
 MonitorFromWindow
 MONITORINFOEXW

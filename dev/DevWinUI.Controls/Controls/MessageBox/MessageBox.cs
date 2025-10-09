@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+namespace DevWinUI;
 public partial class MessageBox : MessageBoxBase
 {
     protected MessageBox(bool isModal, Window? owner, object? message, string? title, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton? defaultButton, MessageBoxOptions options) : base(message, title, buttons, icon, defaultButton, options)

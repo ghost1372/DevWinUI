@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Controls.Primitives;

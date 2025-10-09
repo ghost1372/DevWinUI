@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml.Input;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
 

@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+namespace DevWinUI;
 public abstract partial class MessageBoxBase
 {
     protected MessageBoxBase(
@@ -75,41 +77,41 @@ public abstract partial class MessageBoxBase
         switch (_buttons)
         {
             case MessageBoxButtons.OK:
-                _dialog.CloseButtonText = "OK";
+                _dialog.CloseButtonText = NativeMessageBoxButtonTextLoader.OK;
                 _dialog.DefaultButton = ContentDialogButton.Close;
                 break;
 
             case MessageBoxButtons.OKCancel:
-                _dialog.PrimaryButtonText = "OK";
-                _dialog.SecondaryButtonText = "Cancel";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.OK;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.Cancel;
                 break;
 
             case MessageBoxButtons.YesNo:
-                _dialog.PrimaryButtonText = "Yes";
-                _dialog.SecondaryButtonText = "No";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.Yes;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.No;
                 break;
 
             case MessageBoxButtons.YesNoCancel:
-                _dialog.PrimaryButtonText = "Yes";
-                _dialog.SecondaryButtonText = "No";
-                _dialog.CloseButtonText = "Cancel";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.Yes;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.No;
+                _dialog.CloseButtonText = NativeMessageBoxButtonTextLoader.Cancel;
                 break;
 
             case MessageBoxButtons.AbortRetryIgnore:
-                _dialog.PrimaryButtonText = "Abort";
-                _dialog.SecondaryButtonText = "Retry";
-                _dialog.CloseButtonText = "Ignore";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.Abort;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.Retry;
+                _dialog.CloseButtonText = NativeMessageBoxButtonTextLoader.Ignore;
                 break;
 
             case MessageBoxButtons.RetryCancel:
-                _dialog.PrimaryButtonText = "Retry";
-                _dialog.SecondaryButtonText = "Cancel";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.Retry;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.Cancel;
                 break;
 
             case MessageBoxButtons.CancelTryContinue:
-                _dialog.PrimaryButtonText = "Continue";
-                _dialog.SecondaryButtonText = "TryAgain";
-                _dialog.CloseButtonText = "Cancel";
+                _dialog.PrimaryButtonText = NativeMessageBoxButtonTextLoader.Continue;
+                _dialog.SecondaryButtonText = NativeMessageBoxButtonTextLoader.TryAgain;
+                _dialog.CloseButtonText = NativeMessageBoxButtonTextLoader.Cancel;
                 _dialog.DefaultButton = ContentDialogButton.Close;
                 break;
         }

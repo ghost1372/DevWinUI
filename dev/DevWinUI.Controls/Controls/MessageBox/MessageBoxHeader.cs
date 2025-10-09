@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+namespace DevWinUI;
 public partial class MessageBoxHeader : Control
 {
     public MessageBoxHeader()

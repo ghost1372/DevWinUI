@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+using System.ComponentModel;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Markup;
 

@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//https://github.com/SuGar0218/WindowedContentDialog
+
+namespace DevWinUI;
 public enum MessageBoxButtons
 {
     OK = 0,
