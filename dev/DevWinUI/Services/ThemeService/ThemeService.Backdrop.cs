@@ -122,15 +122,15 @@ public partial class ThemeService
         }
         catch { }
     }
-    private BackdropType GetSavedBackdropType()
+    private BackdropType? GetSavedBackdropType()
     {
         try
         {
-            return GeneralHelper.GetEnum<BackdropType>(GlobalData.Config.BackdropType.ToString());
+            return GlobalData.Config.BackdropType;
         }
         catch { }
 
-        return BackdropType.None;
+        return null;
     }
 
     public SystemBackdrop GetSystemBackdrop()

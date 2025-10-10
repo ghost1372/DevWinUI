@@ -106,14 +106,14 @@ public partial class ThemeService
         catch { }
     }
 
-    private ElementTheme GetSavedElementTheme()
+    private ElementTheme? GetSavedElementTheme()
     {
         try
         {
-            return GeneralHelper.GetEnum<ElementTheme>(GlobalData.Config.ElementTheme.ToString());
+            return GlobalData.Config.ElementTheme;
         }
         catch { }
 
-        return ElementTheme.Default;
+        return null;
     }
 }

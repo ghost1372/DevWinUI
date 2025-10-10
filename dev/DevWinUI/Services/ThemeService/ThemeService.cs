@@ -10,7 +10,7 @@ public partial class ThemeService : IThemeService, IDisposable
     private readonly Dictionary<Window, FrameworkElement> _rootElements = new();
     private TaskCompletionSource<bool>? _initialization;
 
-    private readonly string ConfigFilePath = "CoreAppConfigV9.0.0.json";
+    private readonly string ConfigFilePath = "CoreAppConfigV9.2.0.json";
 
     private bool _useAutoSave = true;
     private bool _isBackdropEnabled = true;
@@ -166,8 +166,22 @@ public partial class ThemeService : IThemeService, IDisposable
 
         _initialization = new TaskCompletionSource<bool>();
 
-        ElementTheme theme = _useAutoSave ? GetSavedElementTheme() : _userDefinedTheme;
-        BackdropType backdrop = _useAutoSave ? GetSavedBackdropType() : _userDefinedBackdrop;
+        ElementTheme theme;
+        BackdropType backdrop;
+
+        if (_useAutoSave)
+        {
+            var savedBackdrop = GetSavedBackdropType();
+            backdrop = savedBackdrop ?? _userDefinedBackdrop; // fallback to user-defined if nothing saved
+
+            var savedTheme = GetSavedElementTheme();
+            theme = savedTheme ?? _userDefinedTheme; // fallback to user-defined if nothing saved
+        }
+        else
+        {
+            backdrop = _userDefinedBackdrop;
+            theme = _userDefinedTheme;
+        }
 
         var success = await InternalSetElementThemeAsync(theme);
         var successBackdrop = await InternalSetBackdropTypeAsync(backdrop);
