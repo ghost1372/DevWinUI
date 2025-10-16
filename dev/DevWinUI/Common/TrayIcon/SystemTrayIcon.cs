@@ -362,31 +362,31 @@ public partial class SystemTrayIcon : IDisposable
         var type = (WindowMessage)(message.LParam & 0xffff);
         var lparam = message.LParam & 0xffff0000;
 
-        TrayIconEventArgs? args = null;
+        SystemTrayIconEventArgs? args = null;
         switch (type)
         {
             case WindowMessage.WM_LBUTTONDBLCLK:
-                LeftDoubleClick?.Invoke(this, args = new TrayIconEventArgs());
+                LeftDoubleClick?.Invoke(this, args = new SystemTrayIconEventArgs());
                 break;
             case WindowMessage.WM_RBUTTONDBLCLK:
-                RightDoubleClick?.Invoke(this, args = new TrayIconEventArgs());
+                RightDoubleClick?.Invoke(this, args = new SystemTrayIconEventArgs());
                 break;
             case WindowMessage.NIN_SELECT:
-                LeftClick?.Invoke(this, args = new TrayIconEventArgs());
+                LeftClick?.Invoke(this, args = new SystemTrayIconEventArgs());
                 break;
             case WindowMessage.WM_CONTEXTMENU:
-                RightClick?.Invoke(this, args = new TrayIconEventArgs());
+                RightClick?.Invoke(this, args = new SystemTrayIconEventArgs());
                 break;
         }
         if (args?.Flyout != null)
             ShowFlyout(args.Flyout);
     }
 
-    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? LeftClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? LeftClick;
 
-    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? RightClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? RightClick;
 
-    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? LeftDoubleClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? LeftDoubleClick;
 
-    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? RightDoubleClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? RightDoubleClick;
 }
