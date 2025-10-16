@@ -5,7 +5,7 @@ using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 
-public partial class TrayIcon : IDisposable
+public partial class SystemTrayIcon : IDisposable
 {
     private const uint TrayIconCallbackId = 0x8765;
     private readonly Window _window;
@@ -17,17 +17,17 @@ public partial class TrayIcon : IDisposable
     private FlyoutBase? _currentFlyout;
     private bool _disposed;
 
-    public TrayIcon(uint trayiconId, IconId iconId, string tooltip) : this(trayiconId, tooltip)
+    public SystemTrayIcon(uint trayiconId, IconId iconId, string tooltip) : this(trayiconId, tooltip)
     {
         currentIcon = iconId;
     }
 
-    public TrayIcon(uint trayiconId, string iconPath, string tooltip) : this(trayiconId, tooltip)
+    public SystemTrayIcon(uint trayiconId, string iconPath, string tooltip) : this(trayiconId, tooltip)
     {
         SetIcon(iconPath);
     }
 
-    private TrayIcon(uint trayiconId, string tooltip)
+    private SystemTrayIcon(uint trayiconId, string tooltip)
     {
         TrayIconId = trayiconId;
         _tooltip = tooltip;
@@ -43,7 +43,7 @@ public partial class TrayIcon : IDisposable
         _monitor.WindowMessageReceived += WindowMessageReceived;
     }
 
-    ~TrayIcon()
+    ~SystemTrayIcon()
     {
         Dispose(false);
     }
@@ -68,7 +68,7 @@ public partial class TrayIcon : IDisposable
     private void CheckDisposed()
     {
         if (_disposed)
-            throw new ObjectDisposedException(nameof(TrayIcon));
+            throw new ObjectDisposedException(nameof(SystemTrayIcon));
     }
 
     public uint TrayIconId { get; }
@@ -382,11 +382,11 @@ public partial class TrayIcon : IDisposable
             ShowFlyout(args.Flyout);
     }
 
-    public event Windows.Foundation.TypedEventHandler<TrayIcon, TrayIconEventArgs>? LeftClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? LeftClick;
 
-    public event Windows.Foundation.TypedEventHandler<TrayIcon, TrayIconEventArgs>? RightClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? RightClick;
 
-    public event Windows.Foundation.TypedEventHandler<TrayIcon, TrayIconEventArgs>? LeftDoubleClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? LeftDoubleClick;
 
-    public event Windows.Foundation.TypedEventHandler<TrayIcon, TrayIconEventArgs>? RightDoubleClick;
+    public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, TrayIconEventArgs>? RightDoubleClick;
 }

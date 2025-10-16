@@ -2,12 +2,9 @@
 
 namespace DevWinUI;
 
-public class TrayIconEventArgs : EventArgs
+public class SystemTrayIconEventArgs : EventArgs
 {
-    internal TrayIconEventArgs()
-    {
-    }
-
+    internal SystemTrayIconEventArgs() { }
     public FlyoutBase? Flyout { get; set; }
 
     public bool Handled { get; set; }
