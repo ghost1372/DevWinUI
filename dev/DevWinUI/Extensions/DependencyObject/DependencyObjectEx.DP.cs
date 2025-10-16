@@ -139,7 +139,7 @@ public partial class DependencyObjectEx
         {
             value = dependencyObject.GetValue(dependencyProperty) as DependencyObject;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return false;
         }
