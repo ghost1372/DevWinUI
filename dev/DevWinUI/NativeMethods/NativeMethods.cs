@@ -25,6 +25,20 @@ public static partial class NativeMethods
 
     [LibraryImport("user32.dll", EntryPoint = "SetWindowLongW")]
     internal static partial IntPtr SetWindowLong32(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+    
+    [LibraryImport(NativeValues.ExternDll.Shell32, EntryPoint = "Shell_NotifyIconW")]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static unsafe partial bool Shell_NotifyIcon32(uint dwMessage, NOTIFYICONDATAW32* lpData);
+
+    [LibraryImport(NativeValues.ExternDll.Shell32, EntryPoint = "Shell_NotifyIconW")]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static unsafe partial bool Shell_NotifyIcon64(uint dwMessage, NOTIFYICONDATAW64* lpData);
+
+    [DllImport(NativeValues.ExternDll.Shell32, SetLastError = true)]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    internal static extern int Shell_NotifyIconGetRect([In] ref NOTIFYICONIDENTIFIER identifier, [Out] out Windows.Graphics.RectInt32 iconLocation);
 
     /// <summary>
     /// Sets a new value for a specified window attribute of a given window handle. The method adapts based on the
@@ -55,9 +69,37 @@ public static partial class NativeMethods
         return list.Count != 0 ? list.Distinct().ToArray() : Array.Empty<HWND>();
     }
 
-    [DllImport("USER32.dll", ExactSpelling = true, PreserveSig = false)]
+    [DllImport(NativeValues.ExternDll.User32, ExactSpelling = true, PreserveSig = false)]
     internal static extern bool EnumThreadWindows([In] uint dwThreadId, [In] WNDENUMPROC lpfn, [In] nint lParam);
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     internal delegate bool WNDENUMPROC([In] nint param0, [In] nint param1);
+
+    internal static void SetWindowStyle(IntPtr hWnd, WindowStyle newStyle)
+    {
+        var h = new HWND(hWnd);
+        var currentStyle = Windows.Win32.PInvoke.GetWindowLong(h, Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+        var r = Windows.Win32.PInvoke.SetWindowLong(h, Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX.GWL_STYLE, (int)newStyle);
+        if (r != currentStyle)
+            Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
+        // Redraw window
+        Windows.Win32.PInvoke.SetWindowPos(h, new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOZORDER | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOOWNERZORDER);
+    }
+
+    internal static unsafe bool Shell_NotifyIcon(uint dwMessage, in NOTIFYICONDATAW32 lpData)
+    {
+        fixed (NOTIFYICONDATAW32* lpDataLocal = &lpData)
+        {
+            bool __result = Shell_NotifyIcon32(dwMessage, lpDataLocal);
+            return __result;
+        }
+    }
+    internal static unsafe bool Shell_NotifyIcon(uint dwMessage, in NOTIFYICONDATAW64 lpData)
+    {
+        fixed (NOTIFYICONDATAW64* lpDataLocal = &lpData)
+        {
+            bool __result = Shell_NotifyIcon64(dwMessage, lpDataLocal);
+            return __result;
+        }
+    }
 }
