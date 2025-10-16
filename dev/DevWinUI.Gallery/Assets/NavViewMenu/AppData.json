@@ -629,6 +629,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SpeedGraphPage",
+          "Title": "Speed Graph",
+          "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ConfettiCannonPage",
           "Title": "Confetti Cannon",
           "Subtitle": "A control that generates animated confetti particles, creating celebratory or festive visual effects.",

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SpeedGraphPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/speedGraph"
+                                  HeaderText="Speed Graph">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SpeedGraph /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        SpeedGraph.SetSpeed(percent, speed);
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button x:Name="BtnCopy"
+                                Click="BtnCopy_Click"
+                                Content="Starting file copy simulation" />
+                        <Button x:Name="BtnError"
+                                Click="BtnError_Click"
+                                Content="Show Error" />
+                        <Button x:Name="BtnWarning"
+                                Click="BtnPause_Click"
+                                Content="Show Pause" />
+                        <ToggleSwitch x:Name="TGShowLine"
+                                      Header="Show Speed Line"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowText"
+                                      Header="Show Speed Text"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGAutoUpdate"
+                                      Header="Auto Update Speed Text"
+                                      IsOn="True" />
+                        <NumberBox x:Name="NBFileSize"
+                                   Header="File Size (MB)"
+                                   Maximum="5000"
+                                   Minimum="100"
+                                   Value="500" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:SpeedGraph x:Name="SpeedGraphSample"
+                                AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}"
+                                SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

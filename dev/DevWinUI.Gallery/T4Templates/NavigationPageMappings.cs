@@ -108,6 +108,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.PerspectiveZoomPage", typeof(DevWinUIGallery.Views.PerspectiveZoomPage)},
         {"DevWinUIGallery.Views.CompositionAnimationControllerPage", typeof(DevWinUIGallery.Views.CompositionAnimationControllerPage)},
         {"DevWinUIGallery.Views.CompositionShadowPage", typeof(DevWinUIGallery.Views.CompositionShadowPage)},
+        {"DevWinUIGallery.Views.SpeedGraphPage", typeof(DevWinUIGallery.Views.SpeedGraphPage)},
         {"DevWinUIGallery.Views.ConfettiCannonPage", typeof(DevWinUIGallery.Views.ConfettiCannonPage)},
         {"DevWinUIGallery.Views.HatchPage", typeof(DevWinUIGallery.Views.HatchPage)},
         {"DevWinUIGallery.Views.TiledImageBrushPage", typeof(DevWinUIGallery.Views.TiledImageBrushPage)},
