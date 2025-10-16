@@ -149,7 +149,6 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
-- ✨ SpeedGraph
 - ✨ WanderingParticles
 - ✨ SnowFlakeEffect
 - ✨ FlipCards
@@ -249,7 +248,9 @@ Install-Package DevWinUI
 - ✨ Border Style
 - ✨ Brushes
 - ✨ Subtle Button Style
+
 #### 🔥 Win2D 🔥
+- ✨ SpeedGraph
 - ✨ ConfettiCannon
 - ✨ BlurEffectManager
 - ✨ Hatch
