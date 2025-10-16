@@ -611,4 +611,27 @@ public partial class WindowHelper
 
         return result;
     }
+
+    public static bool HideWindow(Window window) => HideWindow(WindowNative.GetWindowHandle(window));
+    public static bool HideWindow(IntPtr hwnd) => Windows.Win32.PInvoke.ShowWindow(new HWND(hwnd), 0);
+    public static bool ShowWindow(Window window) => ShowWindow(WindowNative.GetWindowHandle(window));
+    public static bool ShowWindow(IntPtr hwnd) => Windows.Win32.PInvoke.ShowWindow(new HWND(hwnd), Windows.Win32.UI.WindowsAndMessaging.SHOW_WINDOW_CMD.SW_SHOW);
+    public static uint GetDpiForWindow(Window window) => GetDpiForWindow(WindowNative.GetWindowHandle(window));
+    public static uint GetDpiForWindow(IntPtr hwnd) => Windows.Win32.PInvoke.GetDpiForWindow(new HWND(hwnd));
+
+    public static Microsoft.UI.IconId GetWindowIcon(Window window) => GetWindowIcon(WindowNative.GetWindowHandle(window));
+    public static unsafe Microsoft.UI.IconId GetWindowIcon(IntPtr hwnd)
+    {
+        var lresult = Windows.Win32.PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(hwnd), (uint)NativeValues.WindowMessage.WM_GETICON, 1, (nint)0);
+        if (lresult > 0)
+            return new Microsoft.UI.IconId((ulong)(nint)lresult);
+        else
+        {
+            lresult = Windows.Win32.PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(hwnd), (uint)NativeValues.WindowMessage.WM_GETICON, 0, (nint)0);
+            if (lresult > 0)
+                return new Microsoft.UI.IconId((ulong)(nint)lresult);
+        }
+        var icon = Windows.Win32.PInvoke.LoadIcon(Windows.Win32.Foundation.HINSTANCE.Null, lpIconName: Windows.Win32.PInvoke.IDI_APPLICATION);
+        return new Microsoft.UI.IconId((ulong)icon.Value);
+    }
 }

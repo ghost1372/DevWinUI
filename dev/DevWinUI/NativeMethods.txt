@@ -35,7 +35,10 @@ GetWindowLong
 GetWindowRect
 GetWindowText
 GetWindowThreadProcessId
+IDI_APPLICATION
 IsWindowEnabled
+LoadIcon
+LoadImage
 LoadString
 MessageBox
 MonitorFromWindow
@@ -50,6 +53,7 @@ SetWindowLong
 SetWindowPos
 SetWindowSubclass
 SHGetKnownFolderPath
+ShowWindow
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
 WritePrivateProfileString
