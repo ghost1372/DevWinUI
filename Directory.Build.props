@@ -26,7 +26,7 @@
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha0167</XAMLToolsVersion>
-    <CsWin32Version>0.3.205</CsWin32Version>
+    <CsWin32Version>0.3.217</CsWin32Version>
     <Win2dVersion>1.3.2</Win2dVersion>
     <DebugTargetFramework>net9.0-windows10.0.19041.0</DebugTargetFramework>
 
