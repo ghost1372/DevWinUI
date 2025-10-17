@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.TimelinePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/timeline"
+                                  HeaderText="Timeline">
+                <local:ControlExample.Xaml>
+                    &lt;dev:Timeline /&gt;
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TimePicker x:Name="StartTimePicker"
+                                    Header="Start Time"
+                                    Time="08:00:00" />
+
+                        <TimePicker x:Name="EndTimePicker"
+                                    Header="End Time"
+                                    Time="18:00:00" />
+
+                        <TimePicker x:Name="SunrisePicker"
+                                    Header="Sunrise"
+                                    Time="06:00:00" />
+
+                        <TimePicker x:Name="SunsetPicker"
+                                    Header="Sunset"
+                                    Time="20:00:00" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Timeline EndTime="{x:Bind EndTimePicker.Time, Mode=OneWay}"
+                              StartTime="{x:Bind StartTimePicker.Time, Mode=OneWay}"
+                              Sunrise="{x:Bind SunrisePicker.Time, Mode=OneWay}"
+                              Sunset="{x:Bind SunsetPicker.Time, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

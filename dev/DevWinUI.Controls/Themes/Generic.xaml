@@ -93,6 +93,7 @@ Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\StorageBar.xaml
 Themes\Styles\Controls\StorageRing.xaml
 Themes\Styles\Controls\TextBox.xaml
+Themes\Styles\Controls\Timeline.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\Validation.xaml
 Themes\Styles\Controls\WanderingParticles.xaml
@@ -2842,6 +2843,79 @@ Themes\Styles\Win2D\Watermark.xaml
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+  </Style>
+  <Style x:Key="DefaultTimelineStyle" TargetType="local:Timeline">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Timeline">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Canvas x:Name="PART_HeaderCanvas" Grid.Row="0" Height="24" />
+            <!--  Timeline (bands + ticks + labels)  -->
+            <Border Grid.Row="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource OverlayCornerRadius}">
+              <Canvas x:Name="PART_TimelineCanvas" Height="36" />
+            </Border>
+            <!--  Below-chart annotations (sunrise/sunset panels + major labels)  -->
+            <Canvas x:Name="PART_AnnotationCanvas" Grid.Row="2" Height="32" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="HourTickStyle" TargetType="Line">
+    <Setter Property="Stroke" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="StrokeThickness" Value="1" />
+  </Style>
+  <Style x:Key="SunRiseMarkerTickStyle" TargetType="Line">
+    <Setter Property="Stroke" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="StrokeThickness" Value="1" />
+    <Setter Property="StrokeDashArray" Value="2,2" />
+  </Style>
+  <Style x:Key="SunSetMarkerTickStyle" TargetType="Line">
+    <Setter Property="Stroke" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="StrokeThickness" Value="1" />
+    <Setter Property="StrokeDashArray" Value="2,2" />
+  </Style>
+  <Style x:Key="EdgeLabelStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+  </Style>
+  <Style x:Key="MajorTickLabelStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+  </Style>
+  <Style x:Key="SunIconStyle" TargetType="FontIcon">
+    <Setter Property="FontSize" Value="18" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+  </Style>
+  <Style x:Key="DarkBandStyle" TargetType="Border">
+    <!--<Setter Property="Background">
+        <Setter.Value>
+            <SolidColorBrush Opacity="0.6" Color="{ThemeResource SystemAccentColorDark1}"/>
+        </Setter.Value>
+    </Setter>-->
+    <Setter Property="Background" Value="{ThemeResource AccentFillColorTertiaryBrush}" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="4" />
+    <Setter Property="ToolTipService.ToolTip" Value="Dark mode" />
+  </Style>
+  <Style x:Key="LightBandStyle" TargetType="Border">
+    <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+    <Setter Property="ToolTipService.ToolTip" Value="Light mode" />
+  </Style>
+  <Style x:Key="DarkBandIconStyle" TargetType="FontIcon">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="Glyph" Value="" />
+    <Setter Property="Foreground" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
   </Style>
   <Storyboard x:Key="Right2LeftTransition">
     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" From="50" To="0" Duration="0:0:0.4">
@@ -9773,6 +9847,15 @@ Themes\Styles\Win2D\Watermark.xaml
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+  </Style>
+  <Style TargetType="local:Timeline" BasedOn="{StaticResource DefaultTimelineStyle}" />
+  <Style x:Key="MajorHourTickStyle" TargetType="Line" BasedOn="{StaticResource HourTickStyle}">
+    <Setter Property="StrokeThickness" Value="2" />
+    <Setter Property="Stroke" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+  </Style>
+  <Style x:Key="LightBandIconStyle" TargetType="FontIcon" BasedOn="{StaticResource DarkBandIconStyle}">
+    <Setter Property="Glyph" Value="" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
   </Style>
   <Style x:Key="ValidatingTextBoxStyle" TargetType="TextBox">
     <Setter Property="Template">

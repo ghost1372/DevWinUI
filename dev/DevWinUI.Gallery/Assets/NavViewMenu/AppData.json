@@ -141,6 +141,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TimelinePage",
+          "Title": "Timeline",
+          "Subtitle": "A visual control to display a day’s time range with key points like StartTime, EndTime, Sunrise, and Sunset.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.WanderingParticlesPage",
           "Title": "Wandering Particles",
           "Subtitle": "A visual effect that generates particles moving in random, flowing paths, creating a dynamic and wandering animation.",
