@@ -4,8 +4,7 @@ namespace DevWinUI;
 public static partial class ContentDialogEx
 {
     private static TaskCompletionSource<ContentDialog> _contentDialogShowRequest;
-
-    public static async Task<ContentDialogResult> ShowAsyncQueue(this ContentDialog dialog)
+    internal static async Task<ContentDialogResult> ShowAsyncQueueBase(this ContentDialog dialog, ContentDialogPlacement? contentDialogPlacement)
     {
         while (_contentDialogShowRequest != null)
         {
@@ -13,11 +12,26 @@ public static partial class ContentDialogEx
         }
 
         var request = _contentDialogShowRequest = new TaskCompletionSource<ContentDialog>();
-        var result = await dialog.ShowAsync();
+
+        ContentDialogResult result;
+
+        if (contentDialogPlacement == null)
+            result = await dialog.ShowAsync();
+        else
+            result = await dialog.ShowAsync((ContentDialogPlacement)contentDialogPlacement);
+
         _contentDialogShowRequest = null;
         request.SetResult(dialog);
 
         return result;
+    }
+    public static async Task<ContentDialogResult> ShowAsyncQueue(this ContentDialog dialog, ContentDialogPlacement contentDialogPlacement)
+    {
+        return await ShowAsyncQueueBase(dialog, contentDialogPlacement);
+    }
+    public static async Task<ContentDialogResult> ShowAsyncQueue(this ContentDialog dialog)
+    {
+        return await ShowAsyncQueueBase(dialog, null);
     }
 
     public static async Task<ContentDialogResult> ShowAsyncDraggable(this ContentDialog dialog)
