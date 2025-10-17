@@ -113,6 +113,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ SystemTrayIcon
  - ✨ AncestorBindingExtension
  - ✨ AnimationExtensions
  - ✨ CompositionAnimationController
@@ -312,6 +313,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SystemTrayIcon
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SystemTrayIcon.gif)
 
 ### Timeline
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Timeline.png)

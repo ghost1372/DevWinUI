@@ -21,6 +21,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SystemTrayIconPage",
+          "Title": "SystemTrayIcon",
+          "IsNew": true,
+          "Subtitle": "SystemTrayIcon is a class that manages an application’s icon in the Windows system tray. It allows showing an icon, setting a tooltip, handling click events, and displaying a context menu directly from the tray area.",
+          "ImagePath": "ms-appx:///Assets/Fluent/MenuFlyout.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.PreviewKeyDownHelperPage",
           "Title": "Preview Key Down Helper",
           "Subtitle": "A helper that intercepts and processes keyboard input during the PreviewKeyDown stage",
