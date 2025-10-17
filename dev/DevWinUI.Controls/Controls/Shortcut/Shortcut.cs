@@ -165,11 +165,22 @@ public partial class Shortcut : BaseShortcut
         };
         contentDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
 
+        contentDialog.Closing -= OnClosingContentDialog;
         contentDialog.Closing += OnClosingContentDialog;
+        contentDialog.PrimaryButtonClick -= OnSaveContentDialog;
         contentDialog.PrimaryButtonClick += OnSaveContentDialog;
+        contentDialog.SecondaryButtonClick -= OnResetContentDialog;
         contentDialog.SecondaryButtonClick += OnResetContentDialog;
+        contentDialog.CloseButtonClick -= OnCancelContentDialog;
         contentDialog.CloseButtonClick += OnCancelContentDialog;
+        contentDialog.SizeChanged -= OnContentDialogSizeChanged;
+        contentDialog.SizeChanged += OnContentDialogSizeChanged;
         await contentDialog.ShowAsyncQueue();
+    }
+
+    private void OnContentDialogSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        shortcut?.SetMinWidth(e.NewSize.Width);
     }
 
     private IconElement CreateDefaultIcon()
@@ -205,6 +216,7 @@ public partial class Shortcut : BaseShortcut
 
     private void OnClosingContentDialog(ContentDialog sender, ContentDialogClosingEventArgs args)
     {
+        contentDialog?.SizeChanged -= OnContentDialogSizeChanged;
         args.Cancel = !canCloseDialog;
         canCloseDialog = false;
         ClosingContentDialog?.Invoke(this, args);

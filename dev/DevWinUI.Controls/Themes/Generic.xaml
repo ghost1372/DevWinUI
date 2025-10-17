@@ -2474,18 +2474,19 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="DefaultShortcutPreview" TargetType="local:ShortcutPreview">
-    <Setter Property="MinWidth" Value="498" />
     <Setter Property="MinHeight" Value="220" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ShortcutPreview">
-          <Grid MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}">
+          <Grid MinHeight="{TemplateBinding MinHeight}">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
               <RowDefinition MinHeight="110" />
               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" />
+            <!--  Fix InfoBar Cut off Right Edges  -->
+            <Border x:Name="PART_Border" />
+            <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" />
             <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Height="56" Margin="0,64,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -2498,13 +2499,9 @@ Themes\Styles\Win2D\Watermark.xaml
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <StackPanel Grid.Row="2" Margin="0,24,0,0" VerticalAlignment="Top" Orientation="Vertical" Spacing="8">
-              <Grid Height="62">
-                <InfoBar IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" />
-                <InfoBar Title="{TemplateBinding ErrorTitle}" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" />
-                <InfoBar Title="{TemplateBinding WarningTitle}" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" />
-              </Grid>
-            </StackPanel>
+            <InfoBar Grid.Row="2" Margin="0,24,0,0" VerticalAlignment="Top" IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" />
+            <InfoBar Title="{TemplateBinding ErrorTitle}" Grid.Row="2" Margin="0,24,0,0" VerticalAlignment="Top" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" />
+            <InfoBar Title="{TemplateBinding WarningTitle}" Grid.Row="2" Margin="0,24,0,0" VerticalAlignment="Top" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -2531,7 +2528,7 @@ Themes\Styles\Win2D\Watermark.xaml
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <TextBlock Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Text="{TemplateBinding Text}" />
+            <TextBlock Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
