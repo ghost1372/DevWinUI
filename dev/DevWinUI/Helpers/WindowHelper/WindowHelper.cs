@@ -634,4 +634,19 @@ public partial class WindowHelper
         var icon = Windows.Win32.PInvoke.LoadIcon(Windows.Win32.Foundation.HINSTANCE.Null, lpIconName: Windows.Win32.PInvoke.IDI_APPLICATION);
         return new Microsoft.UI.IconId((ulong)icon.Value);
     }
+
+    public static void SetRegion(Microsoft.UI.Xaml.Window window, ScreenRegion? region)
+    {
+        var converter = Microsoft.UI.Content.ContentCoordinateConverter.CreateForWindowId(window.AppWindow.Id);
+        var screenLoc = window.AppWindow.Position;
+        var rgn = region?.Create(converter, screenLoc, GetDpiForWindow(window) / 96d) ?? Windows.Win32.Graphics.Gdi.HRGN.Null;
+        try
+        {
+            PInvoke.SetWindowRgn(new Windows.Win32.Foundation.HWND(WindowNative.GetWindowHandle(window)), rgn, window.Visible);
+        }
+        finally
+        {
+            PInvoke.DeleteObject(rgn);
+        }
+    }
 }
