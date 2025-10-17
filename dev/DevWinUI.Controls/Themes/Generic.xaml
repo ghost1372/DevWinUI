@@ -2448,7 +2448,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:Shortcut">
-          <Grid HorizontalAlignment="Right">
+          <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
             <StackPanel Orientation="Horizontal">
               <Button x:Name="PART_OpenDialog" Padding="0" CornerRadius="8">
                 <StackPanel Margin="12,6,12,6" Orientation="Horizontal" Spacing="16">
