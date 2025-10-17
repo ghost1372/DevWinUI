@@ -22,6 +22,8 @@ public partial class Shortcut : BaseShortcut
     public event EventHandler<ContentDialogButtonClickEventArgs> SecondaryButtonClick;
     public event EventHandler<ContentDialogClosingEventArgs> ClosingContentDialog;
 
+    public Func<VirtualKey, string>? KeyNameProvider { get; set; }
+
     public IconElement Icon
     {
         get { return (IconElement)GetValue(IconProperty); }
@@ -343,6 +345,11 @@ public partial class Shortcut : BaseShortcut
 
     private string GetKeyName(VirtualKey key)
     {
+        // Use user-provided function if available
+        if (KeyNameProvider != null)
+            return KeyNameProvider(key);
+
+        // fallback to default
         return key switch
         {
             VirtualKey.Control => "Ctrl",
