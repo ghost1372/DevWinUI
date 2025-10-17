@@ -163,12 +163,12 @@ public partial class Shortcut : BaseShortcut
             DefaultButton = ContentDialogButton.Primary,
             RequestedTheme = this.ActualTheme
         };
+        contentDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
 
         contentDialog.Closing += OnClosingContentDialog;
         contentDialog.PrimaryButtonClick += OnSaveContentDialog;
         contentDialog.SecondaryButtonClick += OnResetContentDialog;
         contentDialog.CloseButtonClick += OnCancelContentDialog;
-
         await contentDialog.ShowAsyncQueue();
     }
 
