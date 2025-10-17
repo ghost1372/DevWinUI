@@ -15,6 +15,7 @@ public partial class Shortcut : BaseShortcut
     private List<object> defaultKeys;
     private readonly HashSet<VirtualKey> _pressedKeys = new();
     private readonly List<VirtualKey> _keyOrder = new();
+    private bool _windowsKeyPressed = false;
 
     public event EventHandler<ContentDialogButtonClickEventArgs> CloseButtonClick;
     public event EventHandler<ContentDialogButtonClickEventArgs> PrimaryButtonClick;
@@ -141,6 +142,8 @@ public partial class Shortcut : BaseShortcut
         shortcut.KeyDown += OnKeyDown;
         shortcut.KeyUp -= OnKeyUp;
         shortcut.KeyUp += OnKeyUp;
+        shortcut.LostFocus -= OnLostFocus;
+        shortcut.LostFocus += OnLostFocus;
 
         shortcut.Keys = null;
         shortcut.Keys = Keys;
@@ -176,6 +179,17 @@ public partial class Shortcut : BaseShortcut
         contentDialog.SizeChanged -= OnContentDialogSizeChanged;
         contentDialog.SizeChanged += OnContentDialogSizeChanged;
         await contentDialog.ShowAsyncQueue();
+    }
+
+    private void OnLostFocus(object sender, RoutedEventArgs e)
+    {
+        if (_windowsKeyPressed)
+        {
+            _pressedKeys?.Clear();
+            _keyOrder?.Clear();
+            UpdatePreviewKeys();
+            _windowsKeyPressed = false;
+        }
     }
 
     private void OnContentDialogSizeChanged(object sender, SizeChangedEventArgs e)
@@ -238,6 +252,9 @@ public partial class Shortcut : BaseShortcut
     private void OnKeyDown(object sender, KeyRoutedEventArgs e)
     {
         var key = e.Key;
+
+        if (e.Key == VirtualKey.LeftWindows || e.Key == VirtualKey.RightWindows)
+            _windowsKeyPressed = true;
 
         if (_pressedKeys.Contains(key))
             return;
@@ -307,6 +324,9 @@ public partial class Shortcut : BaseShortcut
     }
     private void OnKeyUp(object sender, KeyRoutedEventArgs e)
     {
+        if (e.Key == VirtualKey.LeftWindows || e.Key == VirtualKey.RightWindows)
+            _windowsKeyPressed = false;
+
         _pressedKeys.Remove(e.Key);
         _keyOrder.Remove(e.Key); // also remove from ordered list
         e.Handled = true;
