@@ -261,8 +261,7 @@ public partial class Shortcut : BaseShortcut
             _keyOrder.Add(key);
         }
 
-        // Now use _keyOrder for display — but only include keys still in _pressedKeys
-        var keyNames = _keyOrder.Where(_pressedKeys.Contains).Select(GetKeyName).ToList();
+        var keyNames = _keyOrder.Where(_pressedKeys.Contains).Select(key=> new KeyVisualInfo { Key = key, KeyName = GetKeyName(key) }).ToList();
         shortcut.Keys = keyNames.Cast<object>().ToList();
 
         int modifierCount = _pressedKeys.Count(IsModifierKey);

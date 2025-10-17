@@ -22,7 +22,8 @@ public sealed partial class KeyVisual : Control
         set => SetValue(ContentProperty, value);
     }
 
-    public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object), typeof(KeyVisual), new PropertyMetadata(default(string), OnContentChanged));
+    public static readonly DependencyProperty ContentProperty =
+        DependencyProperty.Register(nameof(Content), typeof(object), typeof(KeyVisual), new PropertyMetadata(null, OnContentChanged));
 
     public VisualType VisualType
     {
@@ -30,7 +31,7 @@ public sealed partial class KeyVisual : Control
         set => SetValue(VisualTypeProperty, value);
     }
 
-    public static readonly DependencyProperty VisualTypeProperty = DependencyProperty.Register("VisualType", typeof(VisualType), typeof(KeyVisual), new PropertyMetadata(default(VisualType), OnSizeChanged));
+    public static readonly DependencyProperty VisualTypeProperty = DependencyProperty.Register(nameof(VisualType), typeof(VisualType), typeof(KeyVisual), new PropertyMetadata(default(VisualType), OnSizeChanged));
 
     public bool IsError
     {
@@ -38,7 +39,7 @@ public sealed partial class KeyVisual : Control
         set => SetValue(IsErrorProperty, value);
     }
 
-    public static readonly DependencyProperty IsErrorProperty = DependencyProperty.Register("IsError", typeof(bool), typeof(KeyVisual), new PropertyMetadata(false, OnIsErrorChanged));
+    public static readonly DependencyProperty IsErrorProperty = DependencyProperty.Register(nameof(IsError), typeof(bool), typeof(KeyVisual), new PropertyMetadata(false, OnIsErrorChanged));
 
     public KeyVisual()
     {
@@ -82,13 +83,21 @@ public sealed partial class KeyVisual : Control
 
         if (_keyVisual.Content != null)
         {
-            object content = _keyVisual.Content;
-            VirtualKey key = content switch
+            VirtualKey key = VirtualKey.None;
+
+            var content = _keyVisual.Content;
+            string keyName = null;
+
+            if (content is string strContent)
             {
-                string str => GetVirtualKeyFromString(str),
-                VirtualKey vk => vk,
-                _ => (VirtualKey)(int)content
-            };
+                key = GetVirtualKeyFromString(strContent);
+                keyName = strContent;
+            }
+            else if (content is KeyVisualInfo keyVisualInfo)
+            {
+                key = (VirtualKey)keyVisualInfo.Key;
+                keyName = keyVisualInfo.KeyName;
+            }
 
             if (TryGetIconForKey((int)key, out object iconContent))
             {
@@ -98,7 +107,7 @@ public sealed partial class KeyVisual : Control
             else
             {
                 _keyVisual.Style = GetStyleSize("TextKeyVisualStyle");
-                _keyVisual._keyPresenter.Content = content.ToString();
+                _keyVisual._keyPresenter.Content = keyName;
             }
         }
     }
