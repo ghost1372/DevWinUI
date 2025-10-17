@@ -34,12 +34,15 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
         ContentDialogWindow.PrimaryButtonClick += (sender, args) => PrimaryButtonClick?.Invoke(this, args);
         ContentDialogWindow.SecondaryButtonClick += (sender, args) => SecondaryButtonClick?.Invoke(this, args);
         ContentDialogWindow.CloseButtonClick += (sender, args) => CloseButtonClick?.Invoke(this, args);
+        ContentDialogWindow.Opened += (sender, args) => Opened?.Invoke(this, args);
+        ContentDialogWindow.Closed += (sender, args) => Closed?.Invoke(this, args);
     }
 
     public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? PrimaryButtonClick;
     public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? SecondaryButtonClick;
     public event TypedEventHandler<WindowedContentDialog, CancelEventArgs>? CloseButtonClick;
-
+    public event TypedEventHandler<WindowedContentDialog, EventArgs>? Opened;
+    public event TypedEventHandler<WindowedContentDialog, WindowEventArgs>? Closed;
     public IList<KeyboardAccelerator> PrimaryButtonKeyboardAccelerators => ContentDialogContent.PrimaryButtonKeyboardAccelerators;
     public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators => ContentDialogContent.SecondaryButtonKeyboardAccelerators;
     public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators => ContentDialogContent.CloseButtonKeyboardAccelerators;
@@ -582,4 +585,9 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
 
     protected static Style DefaultButtonStyle => (Style)Application.Current.Resources["DefaultButtonStyle"];
     protected static Color SmokeFillColor => (Color)Application.Current.Resources["SmokeFillColorDefault"];
+
+    public void Close()
+    {
+        ContentDialogWindow?.Close();
+    }
 }
