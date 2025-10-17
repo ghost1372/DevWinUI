@@ -21,6 +21,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SunTimesHelperPage",
+          "Title": "SunTimes Helper",
+          "IsNew": true,
+          "Subtitle": "A helper class for calculating sunrise and sunset",
+          "ImagePath": "ms-appx:///Assets/Fluent/Sunny.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SystemTrayIconPage",
           "Title": "SystemTrayIcon",
           "IsNew": true,

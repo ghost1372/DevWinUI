@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SunTimesHelperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="helpers/sunTimesHelper"
+                                  DocType="Core">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        var sunTimes = SunTimesHelper.CalculateSunriseSunset(Latitude, Longitude, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NBLatitude"
+                                   Header="Latitude"
+                                   Maximum="10000"
+                                   Minimum="-10000"
+                                   PlaceholderText="47.0313"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="47.0313" />
+                        <NumberBox x:Name="NBLongitude"
+                                   Header="Longitude"
+                                   Maximum="10000"
+                                   Minimum="-10000"
+                                   PlaceholderText="48.4787"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="48.4787" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <Button x:Name="BtnCalc"
+                            Click="BtnCalc_Click"
+                            Content="Calculate" />
+                    <TextBlock x:Name="TxtSunRise"
+                               Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBlock x:Name="TxtSunSet"
+                               Style="{ThemeResource BaseTextBlockStyle}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
