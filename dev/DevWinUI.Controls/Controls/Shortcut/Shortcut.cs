@@ -21,6 +21,7 @@ public partial class Shortcut : BaseShortcut
     public event EventHandler<ContentDialogButtonClickEventArgs> PrimaryButtonClick;
     public event EventHandler<ContentDialogButtonClickEventArgs> SecondaryButtonClick;
     public event EventHandler<ContentDialogClosingEventArgs> ClosingContentDialog;
+    public event EventHandler<ShortcutValidationEventArgs>? ValidateShortcut;
 
     public Func<VirtualKey, string>? KeyNameProvider { get; set; }
 
@@ -354,6 +355,10 @@ public partial class Shortcut : BaseShortcut
                 shortcut.IsWarning = false;
                 contentDialog.IsPrimaryButtonEnabled = false;
             }
+        }
+        else
+        {
+            ValidateShortcut?.Invoke(this, new ShortcutValidationEventArgs { KeysInfo = keyNames.AsReadOnly(), ContentDialog = contentDialog });
         }
 
         e.Handled = true;
