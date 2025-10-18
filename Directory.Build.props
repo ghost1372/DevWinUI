@@ -8,10 +8,10 @@
     <LibraryMajorVersion>9</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>1</DevWinUI_MinorVersion>
-    <DevWinUI_Controls_MinorVersion>1</DevWinUI_Controls_MinorVersion>
+    <DevWinUI_MinorVersion>2</DevWinUI_MinorVersion>
+    <DevWinUI_Controls_MinorVersion>2</DevWinUI_Controls_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>1</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>2</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
     <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
