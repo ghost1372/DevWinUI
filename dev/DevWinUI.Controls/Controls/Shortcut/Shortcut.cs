@@ -24,6 +24,15 @@ public partial class Shortcut : BaseShortcut
 
     public Func<VirtualKey, string>? KeyNameProvider { get; set; }
 
+    public bool UseAutoValidation
+    {
+        get { return (bool)GetValue(UseAutoValidationProperty); }
+        set { SetValue(UseAutoValidationProperty, value); }
+    }
+
+    public static readonly DependencyProperty UseAutoValidationProperty =
+        DependencyProperty.Register(nameof(UseAutoValidation), typeof(bool), typeof(Shortcut), new PropertyMetadata(true));
+
     public IconElement Icon
     {
         get { return (IconElement)GetValue(IconProperty); }
@@ -32,7 +41,7 @@ public partial class Shortcut : BaseShortcut
 
     public static readonly DependencyProperty IconProperty =
         DependencyProperty.Register(nameof(Icon), typeof(IconElement), typeof(Shortcut), new PropertyMetadata(null));
-    
+
     public new bool IsEnabled
     {
         get { return (bool)GetValue(IsEnabledProperty); }
@@ -68,15 +77,6 @@ public partial class Shortcut : BaseShortcut
             ctl.UpdateItemsSource((List<object>)e.NewValue);
         }
     }
-
-    private void UpdateItemsSource(List<object> keys)
-    {
-        if (shortcut != null)
-        {
-            shortcut.Keys = keys;
-        }
-    }
-
     public string ContentDialogTitle
     {
         get { return (string)GetValue(ContentDialogTitleProperty); }
@@ -84,7 +84,7 @@ public partial class Shortcut : BaseShortcut
     }
 
     public static readonly DependencyProperty ContentDialogTitleProperty =
-        DependencyProperty.Register(nameof(ContentDialogTitle), typeof(string), typeof(Shortcut), new PropertyMetadata("Activation shortcut"));
+        DependencyProperty.Register(nameof(ContentDialogTitle), typeof(string), typeof(Shortcut), new PropertyMetadata("Activation shortcut", OnUpdateProperties));
 
     public string PrimaryButtonText
     {
@@ -93,7 +93,7 @@ public partial class Shortcut : BaseShortcut
     }
 
     public static readonly DependencyProperty PrimaryButtonTextProperty =
-        DependencyProperty.Register(nameof(PrimaryButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Save"));
+        DependencyProperty.Register(nameof(PrimaryButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Save", OnUpdateProperties));
 
     public string SecondaryButtonText
     {
@@ -102,7 +102,7 @@ public partial class Shortcut : BaseShortcut
     }
 
     public static readonly DependencyProperty SecondaryButtonTextProperty =
-        DependencyProperty.Register(nameof(SecondaryButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Reset"));
+        DependencyProperty.Register(nameof(SecondaryButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Reset", OnUpdateProperties));
 
     public string CloseButtonText
     {
@@ -111,8 +111,53 @@ public partial class Shortcut : BaseShortcut
     }
 
     public static readonly DependencyProperty CloseButtonTextProperty =
-        DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Cancel"));
+        DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(Shortcut), new PropertyMetadata("Cancel", OnUpdateProperties));
 
+
+    protected override void OnBasePropertyChanged(DependencyProperty property, object oldValue, object newValue)
+    {
+        base.OnBasePropertyChanged(property, oldValue, newValue);
+        UpdateProperties();
+    }
+
+    private static void OnUpdateProperties(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (Shortcut)d;
+        if (ctl != null)
+        {
+            ctl.UpdateProperties();
+        }
+    }
+
+    private void UpdateItemsSource(List<object> keys)
+    {
+        if (shortcut != null)
+        {
+            shortcut.Keys = keys;
+        }
+    }
+    
+    private void UpdateProperties()
+    {
+        if (shortcut != null && contentDialog != null)
+        {
+            contentDialog.Title = ContentDialogTitle;
+            contentDialog.PrimaryButtonText = PrimaryButtonText;
+            contentDialog.SecondaryButtonText = SecondaryButtonText;
+            contentDialog.CloseButtonText = CloseButtonText;
+            shortcut.Title = Title;
+            shortcut.IsInfo = IsInfo;
+            shortcut.InfoTitle = InfoTitle;
+            shortcut.InfoToolTip = InfoToolTip;
+            shortcut.IsWarning = IsWarning;
+            shortcut.WarningTitle = WarningTitle;
+            shortcut.WarningToolTip = WarningToolTip;
+            shortcut.IsError = IsError;
+            shortcut.ErrorTitle = ErrorTitle;
+            shortcut.ErrorToolTip = ErrorToolTip;
+        }
+    }
+    
     public Shortcut()
     {
         DefaultStyleKey = typeof(Shortcut);
@@ -283,29 +328,32 @@ public partial class Shortcut : BaseShortcut
         var keyNames = _keyOrder.Where(_pressedKeys.Contains).Select(key=> new KeyVisualInfo { Key = key, KeyName = GetKeyName(key) }).ToList();
         shortcut.Keys = keyNames.Cast<object>().ToList();
 
-        int modifierCount = _pressedKeys.Count(IsModifierKey);
-        int nonModifierCount = _pressedKeys.Count(k => !IsModifierKey(k));
+        if (UseAutoValidation)
+        {
+            int modifierCount = _pressedKeys.Count(IsModifierKey);
+            int nonModifierCount = _pressedKeys.Count(k => !IsModifierKey(k));
 
-        if (modifierCount >= 1 && modifierCount <= 4 && nonModifierCount == 1)
-        {
-            shortcut.IsError = false;
-            shortcut.IsWarning = false;
-            shortcut.IsInfo = true;
-            contentDialog.IsPrimaryButtonEnabled = true;
-        }
-        else if (modifierCount == 0 && nonModifierCount == 1)
-        {
-            shortcut.IsInfo = false;
-            shortcut.IsError = false;
-            shortcut.IsWarning = true;
-            contentDialog.IsPrimaryButtonEnabled = true;
-        }
-        else
-        {
-            shortcut.IsError = true;
-            shortcut.IsInfo = false;
-            shortcut.IsWarning = false;
-            contentDialog.IsPrimaryButtonEnabled = false;
+            if (modifierCount >= 1 && modifierCount <= 4 && nonModifierCount == 1)
+            {
+                shortcut.IsError = false;
+                shortcut.IsWarning = false;
+                shortcut.IsInfo = true;
+                contentDialog.IsPrimaryButtonEnabled = true;
+            }
+            else if (modifierCount == 0 && nonModifierCount == 1)
+            {
+                shortcut.IsInfo = false;
+                shortcut.IsError = false;
+                shortcut.IsWarning = true;
+                contentDialog.IsPrimaryButtonEnabled = true;
+            }
+            else
+            {
+                shortcut.IsError = true;
+                shortcut.IsInfo = false;
+                shortcut.IsWarning = false;
+                contentDialog.IsPrimaryButtonEnabled = false;
+            }
         }
 
         e.Handled = true;

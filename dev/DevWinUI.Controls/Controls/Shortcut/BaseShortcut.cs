@@ -8,7 +8,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register(nameof(Title), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Press a combination of keys to change this shortcut"));
+        DependencyProperty.Register(nameof(Title), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Press a combination of keys to change this shortcut", OnPropertyChanged));
 
 
     public List<object> Keys
@@ -27,7 +27,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty IsErrorProperty =
-        DependencyProperty.Register(nameof(IsError), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsError), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(false, OnPropertyChanged));
 
     public string ErrorTitle
     {
@@ -36,7 +36,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty ErrorTitleProperty =
-        DependencyProperty.Register(nameof(ErrorTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Invalid shortcut"));
+        DependencyProperty.Register(nameof(ErrorTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Invalid shortcut", OnPropertyChanged));
     public string ErrorToolTip
     {
         get { return (string)GetValue(ErrorToolTipProperty); }
@@ -44,7 +44,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty ErrorToolTipProperty =
-        DependencyProperty.Register(nameof(ErrorToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(ErrorToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
 
     public bool IsWarning
     {
@@ -53,7 +53,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty IsWarningProperty =
-        DependencyProperty.Register(nameof(IsWarning), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsWarning), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(false, OnPropertyChanged));
 
     public string WarningTitle
     {
@@ -62,7 +62,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty WarningTitleProperty =
-        DependencyProperty.Register(nameof(WarningTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Possible shortcut interference with Alt Gr"));
+        DependencyProperty.Register(nameof(WarningTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Possible shortcut interference with Alt Gr", OnPropertyChanged));
 
     public string WarningToolTip
     {
@@ -71,7 +71,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty WarningToolTipProperty =
-        DependencyProperty.Register(nameof(WarningToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Shortcuts with **Ctrl** and **Alt** may remove functionality from some international keyboards, because **Ctrl** + **Alt** = **Alt Gr** in those keyboards."));
+        DependencyProperty.Register(nameof(WarningToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Shortcuts with **Ctrl** and **Alt** may remove functionality from some international keyboards, because **Ctrl** + **Alt** = **Alt Gr** in those keyboards.", OnPropertyChanged));
     public bool IsInfo
     {
         get { return (bool)GetValue(IsInfoProperty); }
@@ -79,7 +79,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty IsInfoProperty =
-        DependencyProperty.Register(nameof(IsInfo), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(IsInfo), typeof(bool), typeof(BaseShortcut), new PropertyMetadata(true, OnPropertyChanged));
 
     public string InfoTitle
     {
@@ -88,7 +88,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty InfoTitleProperty =
-        DependencyProperty.Register(nameof(InfoTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid."));
+        DependencyProperty.Register(nameof(InfoTitle), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Only shortcuts that start with Windows key, Ctrl, Alt or Shift are valid.", OnPropertyChanged));
 
     public string InfoToolTip
     {
@@ -97,5 +97,17 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty InfoToolTipProperty =
-        DependencyProperty.Register(nameof(InfoToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(InfoToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
+
+    private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is BaseShortcut ctl)
+        {
+            ctl.OnBasePropertyChanged(e.Property, e.OldValue, e.NewValue);
+        }
+    }
+
+    protected virtual void OnBasePropertyChanged(DependencyProperty property, object oldValue, object newValue)
+    {
+    }
 }
