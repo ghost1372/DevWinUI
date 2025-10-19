@@ -36,13 +36,30 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
+                    <InfoBar Title="Retrieve your current Latitude and Longitude"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="Works only if location access is granted and your device supports reliable location services (e.g., GPS or Wi-Fi).  If your device does not have GPS, results may be inaccurate.">
+                        <InfoBar.ActionButton>
+                            <Button x:Name="BtnGetLocation"
+                                    Click="BtnGetLocation_Click"
+                                    Content="Get Latitude and Longitude" />
+                        </InfoBar.ActionButton>
+                    </InfoBar>
+                    <InfoBar x:Name="InfoBarSource"
+                             Title="Position Source"
+                             IsClosable="False"
+                             IsOpen="True"
+                             Message="Position source will appear here after retrieving location."
+                             Severity="Warning" />
                     <Button x:Name="BtnCalc"
                             Click="BtnCalc_Click"
-                            Content="Calculate" />
+                            Content="Calculate Sunrise and Sunset"
+                            Style="{StaticResource AccentButtonStyle}" />
                     <TextBlock x:Name="TxtSunRise"
-                               Style="{ThemeResource BaseTextBlockStyle}" />
+                               Style="{ThemeResource TitleTextBlockStyle}" />
                     <TextBlock x:Name="TxtSunSet"
-                               Style="{ThemeResource BaseTextBlockStyle}" />
+                               Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

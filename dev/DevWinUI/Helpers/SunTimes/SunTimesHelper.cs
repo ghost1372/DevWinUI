@@ -121,5 +121,4 @@ public static partial class SunTimesHelper
             return hours;
         }
     }
-
 }
