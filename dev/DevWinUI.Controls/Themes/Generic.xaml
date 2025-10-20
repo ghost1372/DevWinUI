@@ -2488,7 +2488,7 @@ Themes\Styles\Win2D\Watermark.xaml
             <!--  Fix InfoBar Cut off Right Edges  -->
             <Border x:Name="PART_Border" />
             <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" />
-            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Height="56" Margin="0,64,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
+            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="0,64,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <StackPanel Orientation="Horizontal" Spacing="8" />
@@ -2496,7 +2496,7 @@ Themes\Styles\Win2D\Watermark.xaml
               </ItemsControl.ItemsPanel>
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                  <local:KeyVisual Height="56" AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsError="{Binding Tag, ElementName=KeysItemsControl}" IsTabStop="False" VisualType="Large" />
+                  <local:KeyVisual AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsError="{Binding Tag, ElementName=KeysItemsControl}" IsTabStop="False" VisualType="Large" />
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
