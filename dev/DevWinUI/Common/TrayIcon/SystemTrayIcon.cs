@@ -134,12 +134,20 @@ public partial class SystemTrayIcon : IDisposable
                 _currentFlyout.Hide();
             flyout.ShouldConstrainToRootBounds = false;
             _currentFlyout = flyout;
-            ((Grid)_window.Content).ContextFlyout = flyout;
+            var grid = ((Microsoft.UI.Xaml.Controls.Grid)_window.Content);
+            grid.ContextFlyout = flyout;
             _window.Activate();
             WindowHelper.ShowWindow(_windowHandle);
             _window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(location.X, location.Y, 0, 0), Microsoft.UI.Windowing.DisplayArea.GetFromPoint(new Windows.Graphics.PointInt32(0, 0), Microsoft.UI.Windowing.DisplayAreaFallback.Primary));
             WindowHelper.SetForegroundWindow(_windowHandle);
-            _currentFlyout.ShowAt(_root, new FlyoutShowOptions() { Position = new Windows.Foundation.Point(0, 0) });
+            double w = (location.Width - location.X) / grid.XamlRoot.RasterizationScale;
+            double h = (location.Height - location.Y) / grid.XamlRoot.RasterizationScale;
+
+            _currentFlyout.ShowAt(_root, new FlyoutShowOptions()
+            {
+                Position = new Windows.Foundation.Point(0, 0),
+                ExclusionRect = new Windows.Foundation.Rect(0, 0, w, h)
+            });
             _currentFlyout.Closing += CurrentFlyout_Closing;
         }
     }
