@@ -67,49 +67,62 @@ internal partial class MonitorInfo
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     private static extern unsafe bool GetMonitorInfo(HMONITOR hMonitor, MONITORINFOEXW* lpmi);
 
-    public unsafe static MonitorInfo? GetNearestDisplayMonitor(IntPtr hwnd)
+    public static unsafe MonitorInfo? GetNearestDisplayMonitor(IntPtr hwnd)
     {
-        var nearestMonitor = PInvoke.MonitorFromWindow(new HWND(hwnd), MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST);
-        MonitorInfo? nearestMonitorInfo = null;
+        HMONITOR nearestMonitor = PInvoke.MonitorFromWindow(new HWND(hwnd), MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST);
+        if (nearestMonitor == HMONITOR.Null)
+            return null;
 
-        var handle = GCHandle.Alloc(nearestMonitorInfo, GCHandleType.Pinned);
-        var ptr = GCHandle.ToIntPtr(handle);
-        LPARAM data = new LPARAM(ptr);
+        var info = new MONITORINFOEXW() { monitorInfo = new MONITORINFO() { cbSize = (uint)sizeof(MONITORINFOEXW) } };
+        if (!GetMonitorInfo(nearestMonitor, ref info))
+            return null;
+
+        RECT rect = info.monitorInfo.rcMonitor;
+        return new MonitorInfo(nearestMonitor, rect);
+    }
+
+    public unsafe static MonitorInfo? GetNearestDisplayMonitor2(IntPtr hwnd)
+    {
+        HMONITOR nearestMonitor = PInvoke.MonitorFromWindow(new HWND(hwnd), MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST);
+        if (nearestMonitor == HMONITOR.Null)
+            return null;
+
+        var wrapper = new MonitorHandleWrapper { Handle = nearestMonitor };
+        var gch = GCHandle.Alloc(wrapper, GCHandleType.Normal);
+        LPARAM data = new LPARAM(GCHandle.ToIntPtr(gch));
 
         try
         {
             bool ok = PInvoke.EnumDisplayMonitors(HDC.Null, (RECT?)null, &GetNearestDisplayMonitorEnumProc, data);
             if (!ok)
-            {
                 Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
-            }
 
-            if (handle.Target is MonitorInfo result)
-            {
-                nearestMonitorInfo = result;
-            }
+            return wrapper.Info;
         }
         finally
         {
-            handle.Free();
+            gch.Free();
         }
-
-        return nearestMonitorInfo;
     }
 
+
     [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvStdcall) })]
-    private unsafe static BOOL GetNearestDisplayMonitorEnumProc(HMONITOR monitor, HDC deviceContext, RECT* rect, LPARAM dwData)
+    private unsafe static BOOL GetNearestDisplayMonitorEnumProc(HMONITOR monitor, HDC hdc, RECT* rect, LPARAM dwData)
     {
-        var handle = GCHandle.FromIntPtr(dwData.Value);
-        if (handle.IsAllocated && handle.Target is MonitorInfo result && rect is not null)
+        var gch = GCHandle.FromIntPtr(dwData.Value);
+        if (!gch.IsAllocated)
+            return new BOOL(0);
+
+        if (gch.Target is not MonitorHandleWrapper wrapper || rect is null)
+            return new BOOL(1);
+
+        // compare current enumerated monitor with the desired one
+        if (monitor == wrapper.Handle)
         {
-            if (monitor == PInvoke.MonitorFromWindow(HWND.Null, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST))
-            {
-                RECT managedRect = *rect;
-                handle.Target = new MonitorInfo(monitor, managedRect);
-                return new BOOL(0);
-            }
+            wrapper.Info = new MonitorInfo(monitor, *rect);
+            return new BOOL(0); // stop enumeration
         }
-        return new BOOL(1);
+
+        return new BOOL(1); // continue enumeration
     }
 }

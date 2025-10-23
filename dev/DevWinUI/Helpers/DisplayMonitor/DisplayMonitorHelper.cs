@@ -3,10 +3,10 @@
 public static partial class DisplayMonitorHelper
 {
     /// <summary>
-    /// Retrieves a list of display monitor details including name, monitor rectangle, work rectangle, and primary
-    /// status.
+    /// Retrieves information about all available display monitors, including their device names,
+    /// bounding rectangles, working areas, and primary status.
     /// </summary>
-    /// <returns>Returns a list of DisplayMonitorDetails objects.</returns>
+    /// <returns>A list of <see cref="DisplayMonitorDetails"/> objects representing all detected monitors.</returns>
     public static List<DisplayMonitorDetails> GetMonitorInfo()
     {
         var monitorInfos = MonitorInfo.GetDisplayMonitors();
@@ -20,12 +20,15 @@ public static partial class DisplayMonitorHelper
     }
 
     /// <summary>
-    /// Retrieves details about the display monitor associated with a given window handle. If no monitor is found, it
-    /// returns information about the primary monitor.
+    /// Retrieves detailed information about the display monitor associated with a specified window handle.
+    /// If no monitor is associated with the handle, information for the primary monitor is returned.
+    /// This method directly queries the system for the nearest monitor without performing enumeration.
     /// </summary>
-    /// <param name="hwnd">Represents a handle to a window, used to identify the associated display monitor.</param>
-    /// <returns>Returns an object containing details such as the monitor's name, working area, and whether it is the primary
-    /// monitor.</returns>
+    /// <param name="hwnd">A handle to the window used to determine the associated monitor.</param>
+    /// <returns>
+    /// A <see cref="DisplayMonitorDetails"/> object containing monitor details such as device name,
+    /// working area, monitor bounds, and primary status.
+    /// </returns>
     public static DisplayMonitorDetails GetMonitorInfo(IntPtr hwnd)
     {
         var monitorInfo = MonitorInfo.GetNearestDisplayMonitor(hwnd);
@@ -44,11 +47,40 @@ public static partial class DisplayMonitorHelper
     }
 
     /// <summary>
-    /// Retrieves information about the display monitor associated with a specified window or the primary monitor if no
-    /// window is provided.
+    /// Retrieves detailed information about the display monitor associated with a specified window handle.
+    /// If no monitor is associated with the handle, information for the primary monitor is returned.
+    /// Unlike <see cref="GetMonitorInfo(IntPtr)"/>, this version determines the target monitor by
+    /// enumerating all available monitors using <c>EnumDisplayMonitors</c>, which may provide more
+    /// reliable results on certain multi-display configurations.
     /// </summary>
-    /// <param name="window">The window context used to obtain the monitor details.</param>
-    /// <returns>Returns details about the monitor, either for the specified window or the primary monitor.</returns>
+    /// <param name="hwnd">A handle to the window used to determine the associated monitor.</param>
+    /// <returns>
+    /// A <see cref="DisplayMonitorDetails"/> object containing monitor details such as device name,
+    /// working area, monitor bounds, and primary status.
+    /// </returns>
+    public static DisplayMonitorDetails GetMonitorInfo2(IntPtr hwnd)
+    {
+        var monitorInfo = MonitorInfo.GetNearestDisplayMonitor2(hwnd);
+        if (monitorInfo is not null)
+        {
+            return new()
+            {
+                Name = monitorInfo.Name,
+                RectMonitor = monitorInfo.RectMonitor,
+                RectWork = monitorInfo.RectWork,
+                IsPrimary = monitorInfo.IsPrimary
+            };
+        }
+
+        return GetPrimaryMonitorInfo();
+    }
+
+    /// <summary>
+    /// Retrieves information about the display monitor associated with the specified <see cref="Microsoft.UI.Xaml.Window"/>.
+    /// If the window is <c>null</c>, the primary monitor information is returned.
+    /// </summary>
+    /// <param name="window">The XAML window for which monitor information should be retrieved.</param>
+    /// <returns>A <see cref="DisplayMonitorDetails"/> object describing the associated or primary monitor.</returns>
     public static DisplayMonitorDetails GetMonitorInfo(Microsoft.UI.Xaml.Window? window)
     {
         if (window is not null)
@@ -60,9 +92,28 @@ public static partial class DisplayMonitorHelper
     }
 
     /// <summary>
-    /// Retrieves information about the primary display monitor, including its name and dimensions.
+    /// Retrieves information about the display monitor associated with the specified <see cref="Microsoft.UI.Xaml.Window"/>.
+    /// If the window is <c>null</c>, the primary monitor information is returned.
+    /// Unlike <see cref="GetMonitorInfo(Microsoft.UI.Xaml.Window)"/>, this version uses
+    /// enumeration to match the monitor handle, improving detection consistency in complex display setups.
     /// </summary>
-    /// <returns>Returns a DisplayMonitorDetails object containing details of the primary monitor.</returns>
+    /// <param name="window">The XAML window for which monitor information should be retrieved.</param>
+    /// <returns>A <see cref="DisplayMonitorDetails"/> object describing the associated or primary monitor.</returns>
+    public static DisplayMonitorDetails GetMonitorInfo2(Microsoft.UI.Xaml.Window? window)
+    {
+        if (window is not null)
+        {
+            return GetMonitorInfo2(WindowNative.GetWindowHandle(window));
+        }
+
+        return GetPrimaryMonitorInfo();
+    }
+
+    /// <summary>
+    /// Retrieves information about the system's primary display monitor, including its name,
+    /// bounding rectangle, and working area.
+    /// </summary>
+    /// <returns>A <see cref="DisplayMonitorDetails"/> object representing the primary monitor.</returns>
     public static DisplayMonitorDetails GetPrimaryMonitorInfo()
     {
         var primaryMonitorInfo = MonitorInfo.GetDisplayMonitors().FirstOrDefault(x => x.IsPrimary);
