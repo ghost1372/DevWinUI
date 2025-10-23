@@ -24,7 +24,7 @@ internal partial class MonitorInfo
     {
         var handle = GCHandle.FromIntPtr(dwData.Value);
         if (!lprcMonitor->IsEmpty && handle.IsAllocated && handle.Target is List<MonitorInfo> list)
-            list.Add(new MonitorInfo(hMonitor, lprcMonitor));
+            list.Add(new MonitorInfo(hMonitor, *lprcMonitor));
         return new BOOL(1);
     }
 
@@ -75,11 +75,11 @@ internal partial class MonitorInfo
 
     private readonly HMONITOR _monitor;
 
-    internal unsafe MonitorInfo(HMONITOR monitor, RECT* rect)
+    internal unsafe MonitorInfo(HMONITOR monitor, RECT rect)
     {
         RectMonitor =
-            new Rect(new Point(rect->left, rect->top),
-            new Point(rect->right, rect->bottom));
+            new Rect(new Point(rect.left, rect.top),
+            new Point(rect.right, rect.bottom));
         _monitor = monitor;
         var info = new MONITORINFOEXW() { monitorInfo = new MONITORINFO() { cbSize = (uint)sizeof(MONITORINFOEXW) } };
         GetMonitorInfo(monitor, ref info);
@@ -101,10 +101,14 @@ internal partial class MonitorInfo
     private static unsafe bool GetMonitorInfo(HMONITOR hMonitor, ref MONITORINFOEXW lpmi)
     {
         fixed (MONITORINFOEXW* lpmiLocal = &lpmi)
+
         {
-            var lpmiBase = (MONITORINFO*)lpmiLocal;
-            var __result = PInvoke.GetMonitorInfo(hMonitor, lpmiBase);
+            bool __result = GetMonitorInfo(hMonitor, lpmiLocal);
             return __result;
         }
     }
+
+    [DllImport("User32", ExactSpelling = true, EntryPoint = "GetMonitorInfoW")]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    private static extern unsafe bool GetMonitorInfo(HMONITOR hMonitor, MONITORINFOEXW* lpmi);
 }
