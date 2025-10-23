@@ -4,6 +4,31 @@ namespace DevWinUI;
 
 internal partial class MonitorInfo
 {
+    private readonly HMONITOR _monitor;
+
+    public string Name { get; }
+
+    public Rect RectMonitor { get; }
+
+    public Rect RectWork { get; }
+
+    public bool IsPrimary => _monitor == PInvoke.MonitorFromWindow(new(IntPtr.Zero), MONITOR_FROM_FLAGS.MONITOR_DEFAULTTOPRIMARY);
+
+    public override string ToString() => $"{Name} {RectMonitor.Width}x{RectMonitor.Height}";
+
+    internal unsafe MonitorInfo(HMONITOR monitor, RECT rect)
+    {
+        RectMonitor =
+            new Rect(new Point(rect.left, rect.top),
+            new Point(rect.right, rect.bottom));
+        _monitor = monitor;
+        var info = new MONITORINFOEXW() { monitorInfo = new MONITORINFO() { cbSize = (uint)sizeof(MONITORINFOEXW) } };
+        GetMonitorInfo(monitor, ref info);
+        RectWork =
+            new Rect(new Point(info.monitorInfo.rcWork.left, info.monitorInfo.rcWork.top),
+            new Point(info.monitorInfo.rcWork.right, info.monitorInfo.rcWork.bottom));
+        Name = new string(info.szDevice.AsSpan()).Replace("\0", "").Trim();
+    }
     public unsafe static IList<MonitorInfo> GetDisplayMonitors()
     {
         int monitorCount = PInvoke.GetSystemMetrics(Windows.Win32.UI.WindowsAndMessaging.SYSTEM_METRICS_INDEX.SM_CMONITORS);
@@ -27,6 +52,20 @@ internal partial class MonitorInfo
             list.Add(new MonitorInfo(hMonitor, *lprcMonitor));
         return new BOOL(1);
     }
+
+    private static unsafe bool GetMonitorInfo(HMONITOR hMonitor, ref MONITORINFOEXW lpmi)
+    {
+        fixed (MONITORINFOEXW* lpmiLocal = &lpmi)
+
+        {
+            bool __result = GetMonitorInfo(hMonitor, lpmiLocal);
+            return __result;
+        }
+    }
+
+    [DllImport("User32", ExactSpelling = true, EntryPoint = "GetMonitorInfoW")]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    private static extern unsafe bool GetMonitorInfo(HMONITOR hMonitor, MONITORINFOEXW* lpmi);
 
     public unsafe static MonitorInfo? GetNearestDisplayMonitor(IntPtr hwnd)
     {
@@ -66,49 +105,11 @@ internal partial class MonitorInfo
         {
             if (monitor == PInvoke.MonitorFromWindow(HWND.Null, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST))
             {
-                handle.Target = new MonitorInfo(monitor, rect);
+                RECT managedRect = *rect;
+                handle.Target = new MonitorInfo(monitor, managedRect);
                 return new BOOL(0);
             }
         }
         return new BOOL(1);
     }
-
-    private readonly HMONITOR _monitor;
-
-    internal unsafe MonitorInfo(HMONITOR monitor, RECT rect)
-    {
-        RectMonitor =
-            new Rect(new Point(rect.left, rect.top),
-            new Point(rect.right, rect.bottom));
-        _monitor = monitor;
-        var info = new MONITORINFOEXW() { monitorInfo = new MONITORINFO() { cbSize = (uint)sizeof(MONITORINFOEXW) } };
-        GetMonitorInfo(monitor, ref info);
-        RectWork =
-            new Rect(new Point(info.monitorInfo.rcWork.left, info.monitorInfo.rcWork.top),
-            new Point(info.monitorInfo.rcWork.right, info.monitorInfo.rcWork.bottom));
-        Name = new string(info.szDevice.AsSpan()).Replace("\0", "").Trim();
-    }
-    public string Name { get; }
-
-    public Rect RectMonitor { get; }
-
-    public Rect RectWork { get; }
-
-    public bool IsPrimary => _monitor == PInvoke.MonitorFromWindow(new(IntPtr.Zero), MONITOR_FROM_FLAGS.MONITOR_DEFAULTTOPRIMARY);
-
-    public override string ToString() => $"{Name} {RectMonitor.Width}x{RectMonitor.Height}";
-
-    private static unsafe bool GetMonitorInfo(HMONITOR hMonitor, ref MONITORINFOEXW lpmi)
-    {
-        fixed (MONITORINFOEXW* lpmiLocal = &lpmi)
-
-        {
-            bool __result = GetMonitorInfo(hMonitor, lpmiLocal);
-            return __result;
-        }
-    }
-
-    [DllImport("User32", ExactSpelling = true, EntryPoint = "GetMonitorInfoW")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static extern unsafe bool GetMonitorInfo(HMONITOR hMonitor, MONITORINFOEXW* lpmi);
 }
