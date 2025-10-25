@@ -34,6 +34,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ExtensionPage", typeof(DevWinUIGallery.Views.ExtensionPage)},
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
+        {"DevWinUIGallery.Views.SegmentedSliderPage", typeof(DevWinUIGallery.Views.SegmentedSliderPage)},
         {"DevWinUIGallery.Views.TimelinePage", typeof(DevWinUIGallery.Views.TimelinePage)},
         {"DevWinUIGallery.Views.WanderingParticlesPage", typeof(DevWinUIGallery.Views.WanderingParticlesPage)},
         {"DevWinUIGallery.Views.SnowFlakeEffectPage", typeof(DevWinUIGallery.Views.SnowFlakeEffectPage)},

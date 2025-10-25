@@ -11,6 +11,12 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<HorizontalAlignment> TitleHorizontalAlignment { get; set; } = new ObservableCollection<HorizontalAlignment>(Enum.GetValues<HorizontalAlignment>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<SegmentedSliderTitleVisibility> SegmentedSliderTitleVisibility { get; set; } = new ObservableCollection<SegmentedSliderTitleVisibility>(Enum.GetValues<SegmentedSliderTitleVisibility>());
+
+    [ObservableProperty]
     public partial ObservableCollection<FlipCardsSourceType> FlipCardsSourceItems { get; set; } = new ObservableCollection<FlipCardsSourceType>(Enum.GetValues<FlipCardsSourceType>());
 
     [ObservableProperty]

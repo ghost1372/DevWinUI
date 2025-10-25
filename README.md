@@ -150,6 +150,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ SegmentedSlider
 - ✨ Timeline
 - ✨ WanderingParticles
 - ✨ SnowFlakeEffect
@@ -313,6 +314,11 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SegmentedSlider
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SegmentedSlider.gif)
+
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SegmentedSlider2.gif)
 
 ### SystemTrayIcon
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SystemTrayIcon.gif)

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SegmentedSliderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Features/SegmentedSlider/SegmentedSliderSample_cs.txt"
+                                  DocPage="controls/segmentedSlider"
+                                  HeaderText="SegmentCount">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SegmentedSlider SegmentCount="5" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NBSegCount"
+                                   Header="Segment Count"
+                                   PlaceholderText="Segment Count"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="5" />
+                        <NumberBox x:Name="NBSpacing"
+                                   Header="Spacing"
+                                   PlaceholderText="Spacing"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="5" />
+                        <ComboBox x:Name="CmbTitleHorizontalAlignment"
+                                  Header="Title Horizontal Alignment"
+                                  ItemsSource="{x:Bind ViewModel.TitleHorizontalAlignment, Mode=OneWay}"
+                                  SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="HorizontalAlignment">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbSegmentedSliderTitleVisibility"
+                                  Header="Title Visibility"
+                                  ItemsSource="{x:Bind ViewModel.SegmentedSliderTitleVisibility, Mode=OneWay}"
+                                  SelectedIndex="1" />
+
+                        <Slider x:Name="SldValue"
+                                Header="Value"
+                                Maximum="100"
+                                Minimum="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:SegmentedSlider x:Name="SegmentedSliderSample"
+                                     SegmentCount="{x:Bind (x:Int32)NBSegCount.Value, Mode=OneWay}"
+                                     Spacing="{x:Bind NBSpacing.Value, Mode=OneWay}"
+                                     TitleHorizontalAlignment="{x:Bind ((HorizontalAlignment)CmbTitleHorizontalAlignment.SelectedItem), Mode=OneWay}"
+                                     TitleVisibility="{x:Bind ((dev:SegmentedSliderTitleVisibility)CmbSegmentedSliderTitleVisibility.SelectedItem), Mode=OneWay}"
+                                     Value="{x:Bind SldValue.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </local:ControlExample>
+            <local:ControlExample CSharpSource="Features/SegmentedSlider/SegmentedSliderTimeSample_cs.txt"
+                                  DocPage="controls/segmentedSlider"
+                                  HeaderText="Time Segment">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SegmentedSlider TotalTime="01:20:00" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NBSpacing2"
+                                   Header="Spacing"
+                                   PlaceholderText="Spacing"
+                                   SpinButtonPlacementMode="Inline"
+                                   Value="5" />
+                        <ComboBox x:Name="CmbTitleHorizontalAlignment2"
+                                  Header="Title Horizontal Alignment"
+                                  ItemsSource="{x:Bind ViewModel.TitleHorizontalAlignment, Mode=OneWay}"
+                                  SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="HorizontalAlignment">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbSegmentedSliderTitleVisibility2"
+                                  Header="Title Visibility"
+                                  ItemsSource="{x:Bind ViewModel.SegmentedSliderTitleVisibility, Mode=OneWay}"
+                                  SelectedIndex="1" />
+
+                        <Slider x:Name="SldValue2"
+                                Header="Value"
+                                Maximum="100"
+                                Minimum="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:SegmentedSlider x:Name="SegmentedSliderTimeSample"
+                                         Spacing="{x:Bind NBSpacing2.Value, Mode=OneWay}"
+                                         TitleHorizontalAlignment="{x:Bind ((HorizontalAlignment)CmbTitleHorizontalAlignment2.SelectedItem), Mode=OneWay}"
+                                         TitleVisibility="{x:Bind ((dev:SegmentedSliderTitleVisibility)CmbSegmentedSliderTitleVisibility2.SelectedItem), Mode=OneWay}"
+                                         TotalTime="01:20:00"
+                                         Value="{x:Bind SldValue2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel Margin="0,20" Orientation="Horizontal" Spacing="10">
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
+                                   Text="Selected Time: " />
+                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Text="{x:Bind SegmentedSliderTimeSample.SelectedTime.ToString(), Mode=OneWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
