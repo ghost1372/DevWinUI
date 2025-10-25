@@ -102,9 +102,11 @@
                                          TotalTime="01:20:00"
                                          Value="{x:Bind SldValue2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <StackPanel Margin="0,20" Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
                                    Text="Selected Time: " />
-                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
                                    Text="{x:Bind SegmentedSliderTimeSample.SelectedTime.ToString(), Mode=OneWay}" />
                     </StackPanel>
                 </StackPanel>
