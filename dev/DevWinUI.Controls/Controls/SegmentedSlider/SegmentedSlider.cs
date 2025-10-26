@@ -12,11 +12,13 @@ public partial class SegmentedSlider : Control
     private ItemsRepeater itemsRepeater;
     private Thumb horizontalThumb;
 
+    public event EventHandler<SegmentChangedEventArgs>? SegmentChanged;
     public event EventHandler<double>? ValueChanged;
     public event EventHandler<TimeSpan>? SelectedTimeChanged;
     public event EventHandler? DragStarted;
     public event EventHandler? DragCompleted;
 
+    private int _lastSegmentIndex = -1;
     private bool _isTemplateReady;
     private bool _isSyncing;
     private IList<SegmentedSliderTimeInfo> internalSegments = new List<SegmentedSliderTimeInfo>();
@@ -312,6 +314,7 @@ public partial class SegmentedSlider : Control
         }
 
         UpdateSegmentLabelsVisibility();
+        _lastSegmentIndex = -1;
     }
     private void OnSelectedTimeChanged(TimeSpan newTime)
     {
@@ -363,6 +366,22 @@ public partial class SegmentedSlider : Control
         {
             UpdateThumbPosition();
             UpdateSegmentsFill();
+
+            int currentIndex = CurrentSegmentIndex();
+            if (currentIndex != _lastSegmentIndex)
+            {
+                _lastSegmentIndex = currentIndex;
+
+                var segments = GetSegments();
+                var currentSegment = (segments != null && currentIndex >= 0 && currentIndex < segments.Count)
+                    ? segments[currentIndex]
+                    : null;
+
+                if (currentSegment != null)
+                    SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment));
+
+                UpdateSegmentLabelsVisibility();
+            }
         }
 
         ValueChanged?.Invoke(this, Value);
@@ -487,12 +506,33 @@ public partial class SegmentedSlider : Control
     }
     private int CurrentSegmentIndex()
     {
-        if (Maximum == 0 || SegmentCount == 0)
+        if (Maximum <= 0)
             return 0;
 
-        double ratio = Value / Maximum;
-        int index = (int)Math.Floor(ratio * SegmentCount);
-        return Math.Min(index, SegmentCount - 1);
+        // Time-based segments
+        if (internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
+        {
+            double ratio = Value / Maximum;
+            TimeSpan currentTime = TimeSpan.FromMilliseconds(ratio * TotalTime.TotalMilliseconds);
+
+            for (int i = 0; i < internalSegments.Count; i++)
+            {
+                var seg = internalSegments[i];
+                if (currentTime >= seg.StartTime && currentTime < seg.EndTime)
+                    return i;
+            }
+
+            // if we passed all, return last
+            return internalSegments.Count - 1;
+        }
+
+        // Simple segment mode
+        if (SegmentCount <= 0)
+            return 0;
+
+        double simpleRatio = Value / Maximum;
+        int simpleIndex = (int)Math.Floor(simpleRatio * SegmentCount);
+        return Math.Min(simpleIndex, SegmentCount - 1);
     }
 
     public ItemsRepeater GetItemsRepeater()
