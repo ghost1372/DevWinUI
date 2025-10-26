@@ -27,12 +27,13 @@ Ensure that your installation includes the appropriate workloads:
   - **.NET Desktop Development**
   - **WinUI Application Development**
 
-### 2. 🛠️ .NET SDKs
+### 2. 🛠️ SDKs
 
-Ensure that you have both of the following installed:
+Ensure that you have following installed:
 
 - .NET **8.x**
 - .NET **9.x**
+- Windows 10 SDK (10.0.19041)
 
 ### 3. 📂 Solution Format (SLNX)
 
@@ -45,7 +46,6 @@ This project uses the new **`.slnx`** solution format.
 
 ### 4. Installed the **XAML Styler** extension (Optional for Building, Required for Contribute):  
   [XAML Styler for Visual Studio](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
-
 
 Make sure your environment matches these requirements to avoid issues during compilation.
 
