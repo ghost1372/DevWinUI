@@ -377,8 +377,14 @@ public partial class SegmentedSlider : Control
                     ? segments[currentIndex]
                     : null;
 
+                SegmentedSliderTimeInfo timeInfo = null;
+                if (TimeSegments != null)
+                {
+                    timeInfo = TimeSegments[currentIndex];
+                }
+
                 if (currentSegment != null)
-                    SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment));
+                    SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment, timeInfo));
 
                 UpdateSegmentLabelsVisibility();
             }
