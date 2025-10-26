@@ -24,7 +24,9 @@
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Button Content="Open Flyout">
+                <Button MinWidth="200"
+                        HorizontalAlignment="Center"
+                        Content="Open Flyout">
                     <Button.Flyout>
                         <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}"
                                     dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.SelectedItem), Mode=OneWay}">
