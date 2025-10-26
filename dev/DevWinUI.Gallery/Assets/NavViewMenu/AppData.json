@@ -21,6 +21,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage",
+          "Title": "MenuFlyout Attach",
+          "IsNew": true,
+          "Subtitle": "Provides attached properties and behavior extensions for to support a customizable secondary menu section.",
+          "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SunTimesHelperPage",
           "Title": "SunTimes Helper",
           "IsNew": true,

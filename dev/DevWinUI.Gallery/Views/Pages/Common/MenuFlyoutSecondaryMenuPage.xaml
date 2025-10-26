@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Features/MenuFlyoutSecondaryMenuPage_cs.txt"
+                                  DocPage="attach/menuFlyoutAttach"
+                                  DocType="Core">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TgAutoClose"
+                                      Header="Auto Close Flyout"
+                                      IsOn="True" />
+                        <ComboBox x:Name="CmbPosition"
+                                  Header="Secondary Menu Position"
+                                  ItemsSource="{x:Bind ViewModel.SecondaryMenuPlacement, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Button Content="Open Flyout">
+                    <Button.Flyout>
+                        <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}"
+                                    dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.SelectedItem), Mode=OneWay}">
+                            <dev:MenuFlyoutAttach.SecondaryMenu>
+                                <dev:MenuFlyoutSecondaryItems>
+                                    <AppBarButton Icon="Cut"
+                                                  Label="Cut" />
+                                    <AppBarSeparator />
+                                    <AppBarButton Icon="SelectAll"
+                                                  Label="Select All" />
+                                    <AppBarSeparator />
+                                    <AppBarButton Icon="Copy"
+                                                  Label="Copy" />
+                                    <AppBarSeparator />
+                                    <AppBarButton Icon="Paste"
+                                                  Label="Paste" />
+                                    <AppBarSeparator />
+                                    <AppBarButton Icon="Delete"
+                                                  Label="Delete" />
+                                </dev:MenuFlyoutSecondaryItems>
+                            </dev:MenuFlyoutAttach.SecondaryMenu>
+                            <MenuFlyoutItem Text="Undo">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Undo" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="New Folder">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Folder" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="Save">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Save" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="Print">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Print" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="Preview">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Preview" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

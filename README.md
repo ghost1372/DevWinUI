@@ -315,6 +315,9 @@ Install-Package DevWinUI.ContextMenu
 
 ## 🕰️ History 🕰️
 
+### MenuFlyout SecondaryMenu Attach
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MenuFlyoutSecondaryMenu.gif)
+
 ### SegmentedSlider
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SegmentedSlider.gif)
 

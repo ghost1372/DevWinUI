@@ -11,6 +11,9 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<MenuFlyoutSecondaryMenuPlacement> SecondaryMenuPlacement { get; set; } = new ObservableCollection<MenuFlyoutSecondaryMenuPlacement>(Enum.GetValues<MenuFlyoutSecondaryMenuPlacement>());
+
+    [ObservableProperty]
     public partial ObservableCollection<HorizontalAlignment> TitleHorizontalAlignment { get; set; } = new ObservableCollection<HorizontalAlignment>(Enum.GetValues<HorizontalAlignment>());
 
     [ObservableProperty]

@@ -151,7 +151,7 @@ public partial class SegmentedSlider
     {
         if (d is SegmentedSlider slider)
         {
-            slider.NormalizeSegments();
+            slider.NormalizeTimeSegments();
             slider.UpdateSegments();
         }
     }

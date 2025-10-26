@@ -82,7 +82,7 @@ DevWinUI/
 
 To fix certain Visual Studio issues when switching between `Debug` and `Release`:
 
-- After Swithcing, Close Visual Studio and Use the `Clean-obj-bin.bat` script to clean all `bin/` and `obj/` folders.
+- After Switching, Close Visual Studio and Use the `Clean-obj-bin.bat` script to clean all `bin/` and `obj/` folders.
 
 ---
 

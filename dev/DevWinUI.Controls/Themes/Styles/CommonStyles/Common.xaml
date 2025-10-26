@@ -250,4 +250,32 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MenuFlyoutWithSecondaryMenuPresenterStyle" TargetType="MenuFlyoutPresenter" BasedOn="{StaticResource DefaultMenuFlyoutPresenterStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuFlyoutPresenter">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ScrollViewer>
+                            <StackPanel x:Name="RootStack">
+                                <!--  Default secondary menu container  -->
+                                <ItemsRepeater x:Name="SecondaryItemsHost"
+                                               Margin="5,0">
+                                    <ItemsRepeater.Layout>
+                                        <StackLayout Orientation="Horizontal" />
+                                    </ItemsRepeater.Layout>
+                                </ItemsRepeater>
+                                <MenuFlyoutSeparator />
+                                <!--  The normal ItemsPresenter for MenuFlyoutItems  -->
+                                <ItemsPresenter x:Name="MainItemsPresenter" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

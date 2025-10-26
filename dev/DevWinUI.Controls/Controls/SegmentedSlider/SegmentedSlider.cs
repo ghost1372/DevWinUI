@@ -392,7 +392,7 @@ public partial class SegmentedSlider : Control
 
         ValueChanged?.Invoke(this, Value);
     }
-    private void NormalizeSegments()
+    private void NormalizeTimeSegments()
     {
         if (TimeSegments == null || TimeSegments.Count == 0 || TotalTime == TimeSpan.Zero)
         {
