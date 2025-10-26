@@ -186,73 +186,55 @@ public partial class SegmentedSlider : Control
     }
     private void UpdateSegmentsFill()
     {
-        if (itemsRepeater == null)
+        if (itemsRepeater == null || Maximum <= 0)
             return;
 
         double trackWidth = itemsRepeater.ActualWidth;
+        if (trackWidth <= 0)
+            return;
 
-        double fillPixels = 0;
-        int segmentCount = 0;
-        double totalSpacing = 0;
-        double usableWidth = 0;
+        // total fill in pixels based on current Value
+        double totalSpacing = Math.Max(0, (internalSegments.Count > 0 ? internalSegments.Count : SegmentCount) - 1) * Spacing;
+        double usableWidth = trackWidth - totalSpacing;
+        double totalFillPixels = (Value / Maximum) * (usableWidth + totalSpacing);
 
-        if (internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
+        double filledSoFar = 0;
+
+        int count = internalSegments.Count > 0 ? internalSegments.Count : SegmentCount;
+
+        for (int i = 0; i < count; i++)
         {
-            segmentCount = internalSegments.Count;
-            totalSpacing = (segmentCount - 1) * Spacing;
-            usableWidth = trackWidth - totalSpacing;
+            var element = itemsRepeater.GetOrCreateElement(i);
+            if (element is not Grid hostGrid)
+                continue;
 
-            TimeSpan currentTime = TimeSpan.FromMilliseconds((Value / Maximum) * TotalTime.TotalMilliseconds);
+            var trackRect = hostGrid.Children[0] as Rectangle;
+            var fillRect = hostGrid.Children[1] as Rectangle;
+            if (trackRect == null || fillRect == null)
+                continue;
 
-            for (int i = 0; i < internalSegments.Count; i++)
+            double segmentWidth = trackRect.ActualWidth;
+            double segmentStart = filledSoFar + (i * Spacing);
+            double segmentEnd = segmentStart + segmentWidth;
+
+            if (totalFillPixels >= segmentEnd)
             {
-                var element = itemsRepeater.GetOrCreateElement(i);
-                if (element is Grid hostGrid && hostGrid.Children.Count > 1)
-                {
-                    var fillRect = hostGrid.Children[1] as Rectangle;
-                    if (fillRect != null)
-                    {
-                        double segmentStart = internalSegments[i].StartTime.TotalMilliseconds / TotalTime.TotalMilliseconds;
-                        double segmentEnd = internalSegments[i].EndTime.TotalMilliseconds / TotalTime.TotalMilliseconds;
-
-                        double segmentPixelStart = segmentStart * usableWidth + i * Spacing;
-                        double segmentPixelEnd = segmentEnd * usableWidth + i * Spacing;
-
-                        if (currentTime.TotalMilliseconds >= internalSegments[i].EndTime.TotalMilliseconds)
-                            fillRect.Width = segmentPixelEnd - segmentPixelStart;
-                        else if (currentTime.TotalMilliseconds <= internalSegments[i].StartTime.TotalMilliseconds)
-                            fillRect.Width = 0;
-                        else
-                            fillRect.Width = (currentTime.TotalMilliseconds - internalSegments[i].StartTime.TotalMilliseconds) /
-                                             (internalSegments[i].EndTime - internalSegments[i].StartTime).TotalMilliseconds *
-                                             (segmentPixelEnd - segmentPixelStart);
-                    }
-                }
+                // fully filled
+                fillRect.Width = segmentWidth;
             }
-        }
-        else
-        {
-            segmentCount = SegmentCount;
-            totalSpacing = (segmentCount - 1) * Spacing;
-            usableWidth = trackWidth - totalSpacing;
-
-            double valueRatio = Value / Maximum;
-            fillPixels = valueRatio * usableWidth;
-
-            for (int i = 0; i < segmentCount; i++)
+            else if (totalFillPixels <= segmentStart)
             {
-                var element = itemsRepeater.GetOrCreateElement(i);
-                if (element is Grid hostGrid && hostGrid.Children.Count > 1)
-                {
-                    var fillRect = hostGrid.Children[1] as Rectangle;
-                    if (fillRect != null)
-                    {
-                        double segmentWidth = usableWidth / segmentCount;
-                        double segmentFill = Math.Min(fillPixels - i * segmentWidth, segmentWidth);
-                        fillRect.Width = Math.Max(0, segmentFill);
-                    }
-                }
+                // not reached
+                fillRect.Width = 0;
             }
+            else
+            {
+                // partially filled
+                fillRect.Width = totalFillPixels - segmentStart;
+            }
+
+            // move on to next segment
+            filledSoFar += segmentWidth;
         }
     }
     private void UpdateSegments()
