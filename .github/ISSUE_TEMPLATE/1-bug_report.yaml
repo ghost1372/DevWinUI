@@ -35,6 +35,9 @@ body:
     attributes:
       label: NuGet package version
       options:
+        - "DevWinUI 9.4.1"
+        - "DevWinUI 9.4.0"
+        - "DevWinUI 9.3.0"
         - "DevWinUI 9.2.0"
         - "DevWinUI 9.1.0"
         - "DevWinUI 9.0.0"
