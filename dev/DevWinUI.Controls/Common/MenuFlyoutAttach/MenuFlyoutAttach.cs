@@ -69,6 +69,23 @@ public partial class MenuFlyoutAttach
             flyout.MenuFlyoutPresenterStyle = Application.Current.Resources["DefaultMenuFlyoutPresenterStyle"] as Style;
         }
     }
+    private static void WaitForTemplateParts(MenuFlyoutPresenter presenter, Action<StackPanel, ItemsRepeater, ItemsPresenter> onReady)
+    {
+        void handler(object s, object e)
+        {
+            var rootStack = DependencyObjectEx.FindDescendant(presenter, "RootStack") as StackPanel;
+            var secondaryRepeater = DependencyObjectEx.FindDescendant(presenter, "SecondaryItemsHost") as ItemsRepeater;
+            var mainItems = DependencyObjectEx.FindDescendant(presenter, "MainItemsPresenter") as ItemsPresenter;
+
+            if (rootStack != null && secondaryRepeater != null && mainItems != null)
+            {
+                presenter.LayoutUpdated -= handler;
+                onReady(rootStack, secondaryRepeater, mainItems);
+            }
+        }
+
+        presenter.LayoutUpdated += handler;
+    }
 
     private static void OnFlyoutOpened(object sender, object e)
     {
@@ -79,48 +96,45 @@ public partial class MenuFlyoutAttach
         if (popup?.Child is not MenuFlyoutPresenter presenter)
             return;
 
-
-        if (DependencyObjectEx.FindDescendant(presenter, "RootStack") is not StackPanel rootStack || DependencyObjectEx.FindDescendant(presenter, "SecondaryItemsHost") is not ItemsRepeater secondaryRepeater || DependencyObjectEx.FindDescendant(presenter, "MainItemsPresenter") is not ItemsPresenter mainItems)
-            return;
-
-        // Bind ItemsRepeater to the collection
-        secondaryRepeater.ItemsSource = GetSecondaryMenu(flyout).Items;
-
-        // Reorder children
-        var placement = GetSecondaryMenuPlacement(flyout);
-        rootStack.Children.Clear();
-        if (placement == MenuFlyoutSecondaryMenuPlacement.Top)
+        WaitForTemplateParts(presenter, (rootStack, secondaryRepeater, mainItems) =>
         {
-            rootStack.Children.Add(secondaryRepeater);
-            rootStack.Children.Add(new MenuFlyoutSeparator());
-            rootStack.Children.Add(mainItems);
-        }
-        else
-        {
-            rootStack.Children.Add(mainItems);
-            rootStack.Children.Add(new MenuFlyoutSeparator());
-            rootStack.Children.Add(secondaryRepeater);
-        }
+            secondaryRepeater.ItemsSource = GetSecondaryMenu(flyout).Items;
 
-        // Auto-close handling
-        foreach (var item in GetSecondaryMenu(flyout).Items)
-        {
-            if (item is ButtonBase btn)
+            var placement = GetSecondaryMenuPlacement(flyout);
+            rootStack.Children.Clear();
+            if (placement == MenuFlyoutSecondaryMenuPlacement.Top)
             {
-                var oldHandler = GetAutoCloseHandler(btn);
-                if (oldHandler != null)
-                {
-                    btn.Click -= oldHandler;
-                    SetAutoCloseHandler(btn, null);
-                }
+                rootStack.Children.Add(secondaryRepeater);
+                rootStack.Children.Add(new MenuFlyoutSeparator());
+                rootStack.Children.Add(mainItems);
+            }
+            else
+            {
+                rootStack.Children.Add(mainItems);
+                rootStack.Children.Add(new MenuFlyoutSeparator());
+                rootStack.Children.Add(secondaryRepeater);
+            }
 
-                if (GetAutoCloseByClickOnSecondaryMenuItems(flyout))
+            // Auto-close handling
+            foreach (var item in GetSecondaryMenu(flyout).Items)
+            {
+                if (item is ButtonBase btn)
                 {
-                    RoutedEventHandler handler = (s, args) => flyout.Hide();
-                    btn.Click += handler;
-                    SetAutoCloseHandler(btn, handler);
+                    var oldHandler = GetAutoCloseHandler(btn);
+                    if (oldHandler != null)
+                    {
+                        btn.Click -= oldHandler;
+                        SetAutoCloseHandler(btn, null);
+                    }
+
+                    if (GetAutoCloseByClickOnSecondaryMenuItems(flyout))
+                    {
+                        RoutedEventHandler handler = (s, args) => flyout.Hide();
+                        btn.Click += handler;
+                        SetAutoCloseHandler(btn, handler);
+                    }
                 }
             }
-        }
+        });
     }
 }
