@@ -198,10 +198,16 @@ public partial class Shortcut : BaseShortcut
 
         shortcut.InfoTitle = InfoTitle;
         shortcut.InfoToolTip = InfoToolTip;
+        shortcut.IsInfo = IsInfo;
+
         shortcut.WarningTitle = WarningTitle;
         shortcut.WarningToolTip = WarningToolTip;
+        shortcut.IsWarning = IsWarning;
+
         shortcut.ErrorTitle = ErrorTitle;
         shortcut.ErrorToolTip = ErrorToolTip;
+        shortcut.IsError = IsError;
+
         shortcut.Title = Title;
         contentDialog = new ContentDialog
         {
