@@ -10,4 +10,7 @@ public struct SunTimes
 
     public bool HasSunrise;
     public bool HasSunset;
+
+    public bool IsPolarDay { get; set; }
+    public bool IsPolarNight { get; set; }
 }

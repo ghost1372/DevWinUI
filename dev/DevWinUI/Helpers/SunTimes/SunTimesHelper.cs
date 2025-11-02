@@ -11,6 +11,9 @@ public static partial class SunTimesHelper
         int n3 = (int)Math.Floor(1.0 + Math.Floor((year - (4.0 * Math.Floor(year / 4.0)) + 2.0) / 3.0));
         int n = n1 - (n2 * n3) + day - 30;
 
+        bool isPolarDay = false;
+        bool isPolarNight = false;
+
         double? riseUT = CalcTime(isSunrise: true);
         double? setUT = CalcTime(isSunrise: false);
 
@@ -25,6 +28,8 @@ public static partial class SunTimesHelper
             SunriseMinute = riseLocal?.Minute ?? -1,
             SunsetHour = setLocal?.Hour ?? -1,
             SunsetMinute = setLocal?.Minute ?? -1,
+            IsPolarDay = isPolarDay,
+            IsPolarNight = isPolarNight
         };
 
         return result;
@@ -53,9 +58,16 @@ public static partial class SunTimesHelper
             double cosH = (Math.Cos(Deg2Rad(zenith)) - (sinDec * Math.Sin(Deg2Rad(latitude))))
                         / (cosDec * Math.Cos(Deg2Rad(latitude)));
 
-            if (cosH > 1.0 || cosH < -1.0)
+            if (cosH > 1.0)
             {
-                // Sun never rises or never sets on this date at this location
+                // Sun never rises on this date (polar night)
+                isPolarNight = true;
+                return null;
+            }
+            if (cosH < -1.0)
+            {
+                // Sun never sets on this date (polar day)
+                isPolarDay = true;
                 return null;
             }
 
