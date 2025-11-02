@@ -138,7 +138,7 @@ public partial class ThemeService : IThemeService, IDisposable
         }
         else if (systemBackdrop is AcrylicSystemBackdrop acrylic)
         {
-            return acrylic.Kind == (DesktopAcrylicKind.Base | DesktopAcrylicKind.Default) ? BackdropType.Acrylic : BackdropType.AcrylicThin;
+            return acrylic.Kind == DesktopAcrylicKind.Thin ? BackdropType.AcrylicThin : BackdropType.Acrylic;
         }
         else
         {
