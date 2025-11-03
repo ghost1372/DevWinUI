@@ -1,0 +1,45 @@
+﻿using Microsoft.UI.Input;
+using Windows.System;
+using Windows.UI.Core;
+
+namespace DevWinUI;
+
+internal static partial class PlatformHelpers
+{
+    public static VirtualKeyModifiers GetKeyboardModifiers()
+    {
+        var pnKeyboardModifiers = VirtualKeyModifiers.None;
+
+        var keyState = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu);
+        if (keyState.HasFlag(CoreVirtualKeyStates.Down))
+        {
+            pnKeyboardModifiers |= VirtualKeyModifiers.Menu;
+        }
+
+        keyState = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control);
+        if (keyState.HasFlag(CoreVirtualKeyStates.Down))
+        {
+            pnKeyboardModifiers |= VirtualKeyModifiers.Control;
+        }
+
+        keyState = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift);
+        if (keyState.HasFlag(CoreVirtualKeyStates.Down))
+        {
+            pnKeyboardModifiers |= VirtualKeyModifiers.Shift;
+        }
+
+        keyState = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.RightWindows);
+        if (keyState.HasFlag(CoreVirtualKeyStates.Down))
+        {
+            pnKeyboardModifiers |= VirtualKeyModifiers.Windows;
+        }
+
+        keyState = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.LeftWindows);
+        if (keyState.HasFlag(CoreVirtualKeyStates.Down))
+        {
+            pnKeyboardModifiers |= VirtualKeyModifiers.Windows;
+        }
+
+        return pnKeyboardModifiers;
+    }
+}
