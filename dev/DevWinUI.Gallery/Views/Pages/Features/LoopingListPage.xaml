@@ -24,18 +24,23 @@
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <TextBox x:Name="TxtHeader"
+                                 Header="Header"
                                  PlaceholderText="Country"
                                  Text="Country" />
                         <TextBox x:Name="TxtPrimary"
-                                 PlaceholderText="Primary Placeholder"
+                                 Header="Primary Placeholder"
+                                 PlaceholderText="Country"
                                  Text="Country" />
                         <TextBox x:Name="TxtSecondary"
+                                 Header="Secondary Placeholder"
                                  PlaceholderText="Capital"
                                  Text="Capital" />
                         <TextBox x:Name="TxtTertiary"
+                                 Header="Tertiary Placeholder"
                                  PlaceholderText="City"
                                  Text="City" />
                         <ToggleSwitch x:Name="TgShouldLoop"
+                                      Header="Should Loop?"
                                       IsOn="True" />
                         <Button MinWidth="170"
                                 Click="Button_Click"
