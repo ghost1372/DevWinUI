@@ -162,6 +162,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.LoopingListPage",
+          "Title": "Looping List",
+          "Subtitle": "An infinitely scrolling selector displayed in a flyout.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TimePicker.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LoopingSelectorPage",
+          "Title": "Looping Selector",
+          "Subtitle": "An infinitely scrolling selection control.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SegmentedSliderPage",
           "Title": "Segmented Slider",
           "Subtitle": "Slider control that divides its track into multiple visual segments. Each segment can represent a specific range, time span, or category, with individual fill states and labels.",

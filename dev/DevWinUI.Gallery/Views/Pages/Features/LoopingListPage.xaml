@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LoopingListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/loopingList">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:LoopingList x:Name="LoopingListSample"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        LoopingListSample.PrimaryItems = new List&lt;string&gt;(){ "Item 1", "Item 2"}
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtHeader"
+                                 PlaceholderText="Country"
+                                 Text="Country" />
+                        <TextBox x:Name="TxtPrimary"
+                                 PlaceholderText="Primary Placeholder"
+                                 Text="Country" />
+                        <TextBox x:Name="TxtSecondary"
+                                 PlaceholderText="Capital"
+                                 Text="Capital" />
+                        <TextBox x:Name="TxtTertiary"
+                                 PlaceholderText="City"
+                                 Text="City" />
+                        <ToggleSwitch x:Name="TgShouldLoop"
+                                      IsOn="True" />
+                        <Button MinWidth="170"
+                                Click="Button_Click"
+                                Content="Clear Selection" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:LoopingList x:Name="LoopingListSample"
+                                 Header="{x:Bind TxtHeader.Text, Mode=OneWay}"
+                                 PrimaryPlaceholderText="{x:Bind TxtPrimary.Text, Mode=OneWay}"
+                                 SecondaryPlaceholderText="{x:Bind TxtSecondary.Text, Mode=OneWay}"
+                                 ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}"
+                                 TertiaryPlaceholderText="{x:Bind TxtTertiary.Text, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
