@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI"
+                    xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrush" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPressed" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundDisabled" ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundFocused" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDefault" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundFocused" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBackground" ResourceKey="AcrylicBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBorderBrush" ResourceKey="SurfaceStrokeColorFlyoutBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterSpacerFill" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterHighlightFill" ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterHighlightForegroundColor" ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="LoopingListLightDismissOverlayBackground" ResourceKey="SystemControlPageBackgroundMediumAltMediumBrush" />
+            <SolidColorBrush x:Key="LoopingListHeaderForegroundThemeBrush" Color="#FFFFFFFF" />
+            <SolidColorBrush x:Key="LoopingListForegroundThemeBrush" Color="#FF000000" />
+            <x:Double x:Key="LoopingListSelectorThemeMinWidth">80</x:Double>
+            <x:Double x:Key="LoopingListSpacerThemeWidth">1</x:Double>
+            <Thickness x:Key="LoopingListBorderThemeThickness">1</Thickness>
+            <Thickness x:Key="LoopingListHeaderThemeMargin">0,0,0,4</Thickness>
+            <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
+            <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
+            <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="LoopingListHeaderForegroundDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPointerOver" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPressed" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPressed" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundDisabled" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundFocused" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForeground" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDefault" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPointerOver" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPressed" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundFocused" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBackground" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterSpacerFill" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterHighlightFill" ResourceKey="SystemColorHighlightColorBrush" />
+            <Color x:Key="LoopingListFlyoutPresenterHighlightForegroundColor">Transparent</Color>
+            <StaticResource x:Key="LoopingListLightDismissOverlayBackground" ResourceKey="SystemControlPageBackgroundMediumAltMediumBrush" />
+            <SolidColorBrush x:Key="LoopingListForegroundThemeBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <SolidColorBrush x:Key="LoopingListHeaderForegroundThemeBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <x:Double x:Key="LoopingListSelectorThemeMinWidth">80</x:Double>
+            <Thickness x:Key="LoopingListHeaderThemeMargin">0,0,0,4</Thickness>
+            <x:Double x:Key="LoopingListSpacerThemeWidth">1</x:Double>
+            <Thickness x:Key="LoopingListBorderThemeThickness">1</Thickness>
+            <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
+            <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
+            <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrush" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundPressed" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundDisabled" ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonBackgroundFocused" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDefault" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="LoopingListButtonForegroundFocused" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBackground" ResourceKey="AcrylicBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterBorderBrush" ResourceKey="SurfaceStrokeColorFlyoutBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterSpacerFill" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterHighlightFill" ResourceKey="AccentAAFillColorDefaultBrush" />
+            <StaticResource x:Key="LoopingListFlyoutPresenterHighlightForegroundColor" ResourceKey="TextOnAccentAAFillColorPrimary" />
+            <StaticResource x:Key="LoopingListLightDismissOverlayBackground" ResourceKey="SystemControlPageBackgroundMediumAltMediumBrush" />
+            <SolidColorBrush x:Key="LoopingListForegroundThemeBrush" Color="#FF000000" />
+            <SolidColorBrush x:Key="LoopingListHeaderForegroundThemeBrush" Color="#FF000000" />
+            <x:Double x:Key="LoopingListSelectorThemeMinWidth">80</x:Double>
+            <x:Double x:Key="LoopingListSpacerThemeWidth">1</x:Double>
+            <Thickness x:Key="LoopingListBorderThemeThickness">1</Thickness>
+            <Thickness x:Key="LoopingListHeaderThemeMargin">0,0,0,4</Thickness>
+            <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
+            <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
+            <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Thickness x:Key="LoopingListTopHeaderMargin">0,0,0,4</Thickness>
+    <x:Double x:Key="LoopingListFlyoutPresenterHighlightHeight">40</x:Double>
+    <x:Double x:Key="LoopingListFlyoutPresenterAcceptDismissHostGridHeight">41</x:Double>
+    <x:Double x:Key="LoopingListThemeMinWidth">242</x:Double>
+    <x:Double x:Key="LoopingListThemeMaxWidth">456</x:Double>
+    <x:Double x:Key="LoopingListFlyoutPresenterItemHeight">40</x:Double>
+    <Thickness x:Key="LoopingListFlyoutPresenterItemPadding">0,3,0,6</Thickness>
+    <Thickness x:Key="LoopingListHostPadding">0,3,0,6</Thickness>
+
+    <Style TargetType="local:LoopingList" BasedOn="{StaticResource DefaultLoopingListStyle}" />
+
+    <Style x:Key="DefaultLoopingListStyle" TargetType="local:LoopingList">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="FocusVisualMargin" Value="0" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+        <Setter Property="Background" Value="{ThemeResource DatePickerButtonBackground}" />
+        <Setter Property="Foreground" Value="{ThemeResource LoopingListButtonForeground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource DatePickerButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{ThemeResource DatePickerBorderThemeThickness}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+        <Setter Property="FocusVisualMargin" Value="-3" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoopingList">
+                    <Grid x:Name="LayoutRoot" Margin="{TemplateBinding Padding}">
+                        <Grid.Resources>
+                            <Style x:Key="LoopingListFlyoutButtonStyle" TargetType="Button">
+                                <Setter Property="ElementSoundMode" Value="FocusOnly" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="PointerOver">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBackgroundPointerOver}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonForegroundPointerOver}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBorderBrushPointerOver}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBackgroundPressed}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonForegroundPressed}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBorderBrushPressed}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBackgroundDisabled}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonForegroundDisabled}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListButtonBorderBrushDisabled}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="FocusStates">
+                                                        <VisualState x:Name="Focused" />
+                                                        <VisualState x:Name="Unfocused" />
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <ContentPresenter x:Name="ContentPresenter"
+                                                                  HorizontalContentAlignment="Stretch"
+                                                                  VerticalContentAlignment="Stretch"
+                                                                  AutomationProperties.AccessibilityView="Raw"
+                                                                  Background="{TemplateBinding Background}"
+                                                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                                                  Content="{TemplateBinding Content}"
+                                                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                                                  Foreground="{TemplateBinding Foreground}" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListHeaderForegroundDisabled}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_FirstColumnDivider" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListSpacerFillDisabled}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondColumnDivider" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource LoopingListSpacerFillDisabled}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="HasValueStates">
+                                <VisualState x:Name="HasValue" />
+                                <VisualState x:Name="HasNoValue">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_FlyoutButton.Foreground" Value="{ThemeResource LoopingListButtonForegroundDefault}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="PART_HeaderContentPresenter"
+                                          Grid.Row="0"
+                                          MaxWidth="{ThemeResource LoopingListThemeMaxWidth}"
+                                          Margin="{ThemeResource LoopingListTopHeaderMargin}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Top"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          Foreground="{ThemeResource LoopingListHeaderForeground}"
+                                          TextWrapping="Wrap"
+                                          Visibility="Collapsed" />
+                        <Button x:Name="PART_FlyoutButton"
+                                Grid.Row="1"
+                                MinWidth="{StaticResource LoopingListThemeMinWidth}"
+                                MaxWidth="{StaticResource LoopingListThemeMaxWidth}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                FocusVisualMargin="{TemplateBinding FocusVisualMargin}"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsEnabled="{TemplateBinding IsEnabled}"
+                                Style="{StaticResource LoopingListFlyoutButtonStyle}"
+                                UseSystemFocusVisuals="{TemplateBinding UseSystemFocusVisuals}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="PART_FirstTextBlockColumn" Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition x:Name="PART_SecondTextBlockColumn" Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition x:Name="PART_ThirdTextBlockColumn" Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="PART_FirstPickerHost"
+                                        Grid.Column="0"
+                                        Padding="5,0">
+                                    <TextBlock x:Name="PART_FirstTextBlock"
+                                               Padding="{ThemeResource LoopingListHostPadding}"
+                                               AutomationProperties.AccessibilityView="Raw"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               TextAlignment="Center" />
+                                </Border>
+                                <Rectangle x:Name="PART_FirstColumnDivider"
+                                           Grid.Column="1"
+                                           Width="{ThemeResource LoopingListSpacerThemeWidth}"
+                                           HorizontalAlignment="Center"
+                                           Fill="{ThemeResource LoopingListSpacerFill}" />
+                                <Border x:Name="PART_SecondPickerHost"
+                                        Grid.Column="2"
+                                        Padding="5,0">
+                                    <TextBlock x:Name="PART_SecondTextBlock"
+                                               Padding="{ThemeResource LoopingListHostPadding}"
+                                               AutomationProperties.AccessibilityView="Raw"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               TextAlignment="Center" />
+                                </Border>
+                                <Rectangle x:Name="PART_SecondColumnDivider"
+                                           Grid.Column="3"
+                                           Width="{ThemeResource LoopingListSpacerThemeWidth}"
+                                           HorizontalAlignment="Center"
+                                           Fill="{ThemeResource LoopingListSpacerFill}" />
+                                <Border x:Name="PART_ThirdPickerHost"
+                                        Grid.Column="4"
+                                        Padding="5,0">
+                                    <TextBlock x:Name="PART_ThirdTextBlock"
+                                               Padding="{ThemeResource LoopingListHostPadding}"
+                                               AutomationProperties.AccessibilityView="Raw"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               TextAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LoopingListFlyoutPresenter">
+        <Setter Property="Width" Value="242" />
+        <Setter Property="MinWidth" Value="242" />
+        <Setter Property="MaxHeight" Value="398" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Background" Value="{ThemeResource LoopingListFlyoutPresenterBackground}" />
+        <Setter Property="AutomationProperties.AutomationId" Value="LoopingListFlyoutPresenter" />
+        <Setter Property="BorderBrush" Value="{ThemeResource LoopingListFlyoutPresenterBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{ThemeResource DateTimeFlyoutBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoopingListFlyoutPresenter">
+                    <Border x:Name="Background"
+                            MaxHeight="398"
+                            Padding="{ThemeResource DateTimeFlyoutBorderPadding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid x:Name="ContentPanel">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid x:Name="PART_FlyoutGridHost">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="PART_FlyoutFirstColumnHost" Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition x:Name="PART_FlyoutSecondColumnHost" Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition x:Name="PART_FlyoutThirdColumnHost" Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="HighlightRect" Grid.Column="0" Grid.ColumnSpan="5" Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}" Margin="4,2,4,2" VerticalAlignment="Center" Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}" Canvas.ZIndex="9999" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="false" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="0"
+                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
+                                                                              Margin="3,0"
+                                                                              VerticalAlignment="Center"
+                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
+                                                                              Canvas.ZIndex="10000"
+                                                                              CornerRadius="{TemplateBinding CornerRadius}"
+                                                                              IsHitTestVisible="false"
+                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
+                                                                              SourceElement="{Binding ElementName=PART_FlyoutFirstPickerHost, Mode=OneTime}" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="2"
+                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
+                                                                              Margin="3,0"
+                                                                              VerticalAlignment="Center"
+                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
+                                                                              Canvas.ZIndex="10000"
+                                                                              CornerRadius="{TemplateBinding CornerRadius}"
+                                                                              IsHitTestVisible="false"
+                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
+                                                                              SourceElement="{Binding ElementName=PART_FlyoutSecondPickerHost}" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="4"
+                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
+                                                                              Margin="3,0"
+                                                                              VerticalAlignment="Center"
+                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
+                                                                              Canvas.ZIndex="10000"
+                                                                              CornerRadius="{TemplateBinding CornerRadius}"
+                                                                              IsHitTestVisible="false"
+                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
+                                                                              SourceElement="{Binding ElementName=PART_FlyoutThirdPickerHost}" />
+                                    <Border x:Name="PART_FlyoutFirstPickerHost"
+                                            Grid.Column="0" />
+                                    <Rectangle x:Name="PART_FlyoutFirstPickerSpacing"
+                                               Grid.Column="1"
+                                               Width="{ThemeResource LoopingListSpacerThemeWidth}"
+                                               HorizontalAlignment="Center"
+                                               Canvas.ZIndex="10000"
+                                               Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                    <Border x:Name="PART_FlyoutSecondPickerHost"
+                                            Grid.Column="2" />
+                                    <Rectangle x:Name="PART_FlyoutSecondPickerSpacing"
+                                               Grid.Column="3"
+                                               Width="{ThemeResource LoopingListSpacerThemeWidth}"
+                                               HorizontalAlignment="Center"
+                                               Canvas.ZIndex="10000"
+                                               Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                    <Border x:Name="PART_FlyoutThirdPickerHost"
+                                            Grid.Column="4" />
+                                </Grid>
+                            </Grid>
+                            <Grid x:Name="AcceptDismissHostGrid" Grid.Row="1" Height="{ThemeResource LoopingListFlyoutPresenterAcceptDismissHostGridHeight}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.ColumnSpan="2"
+                                           Height="{ThemeResource LoopingListSpacerThemeWidth}"
+                                           VerticalAlignment="Top"
+                                           Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                <Button x:Name="PART_AcceptButton"
+                                        Grid.Column="0"
+                                        Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}"
+                                        Padding="4"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Content="&#xE8FB;"
+                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                        FontSize="16"
+                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
+                                <Button x:Name="PART_DismissButton"
+                                        Grid.Column="1"
+                                        Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}"
+                                        Padding="4"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Content="&#xE711;"
+                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                        FontSize="16"
+                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
