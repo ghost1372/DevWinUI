@@ -247,8 +247,7 @@
                         <NavigationView IsSettingsVisible="True"
                                         Style="{StaticResource NavigationViewStoreStyle}">
                             <NavigationView.MenuItems>
-                                <NavigationViewItem Content="Home" Icon="Home">
-                                </NavigationViewItem>
+                                <NavigationViewItem dev:StoreNavigationViewItemAttach.ShowNotificationDot="True" Content="Home" Icon="Home" />
                                 <NavigationViewItem Content="Calendar" Icon="Calendar" />
                                 <NavigationViewItem Content="Downloads">
                                     <NavigationViewItem.Icon>

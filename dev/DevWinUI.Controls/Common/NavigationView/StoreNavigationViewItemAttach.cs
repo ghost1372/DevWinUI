@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-internal partial class NavItemIconHelper
+public partial class StoreNavigationViewItemAttach
 {
     public static object GetSelectedIcon(DependencyObject obj)
     {
@@ -12,7 +12,7 @@ internal partial class NavItemIconHelper
     }
 
     public static readonly DependencyProperty SelectedIconProperty =
-        DependencyProperty.RegisterAttached("SelectedIcon", typeof(object), typeof(NavItemIconHelper), new PropertyMetadata(null));
+        DependencyProperty.RegisterAttached("SelectedIcon", typeof(object), typeof(StoreNavigationViewItemAttach), new PropertyMetadata(null));
 
     /// <summary>
     /// Gets the value of <see cref="ShowNotificationDotProperty" /> for a <see cref="DependencyObject" />
@@ -35,7 +35,7 @@ internal partial class NavItemIconHelper
     /// An attached property that sets whether or not a notification dot should be shown on an associated <see cref="Microsoft.UI.Xaml.Controls.NavigationViewItem" />
     /// </summary>
     public static readonly DependencyProperty ShowNotificationDotProperty =
-        DependencyProperty.RegisterAttached("ShowNotificationDot", typeof(bool), typeof(NavItemIconHelper), new PropertyMetadata(false));
+        DependencyProperty.RegisterAttached("ShowNotificationDot", typeof(bool), typeof(StoreNavigationViewItemAttach), new PropertyMetadata(false));
 
     /// <summary>
     /// Gets the value of <see cref="UnselectedIconProperty"/> for a <see cref="DependencyObject"/>
@@ -58,7 +58,7 @@ internal partial class NavItemIconHelper
     /// An attached property that sets the unselected icon on an associated <see cref="Microsoft.UI.Xaml.Controls.NavigationViewItem" />
     /// </summary>
     public static readonly DependencyProperty UnselectedIconProperty =
-        DependencyProperty.RegisterAttached("UnselectedIcon", typeof(object), typeof(NavItemIconHelper), new PropertyMetadata(null));
+        DependencyProperty.RegisterAttached("UnselectedIcon", typeof(object), typeof(StoreNavigationViewItemAttach), new PropertyMetadata(null));
 
     public static Visibility GetStaticIconVisibility(DependencyObject obj)
     {
@@ -74,5 +74,5 @@ internal partial class NavItemIconHelper
     /// An attached property that sets the visibility of the static icon in the associated <see cref="Microsoft.UI.Xaml.Controls.NavigationViewItem"/>.
     /// </summary>
     public static readonly DependencyProperty StaticIconVisibilityProperty =
-        DependencyProperty.RegisterAttached("StaticIconVisibility", typeof(Visibility), typeof(NavItemIconHelper), new PropertyMetadata(Visibility.Collapsed));
+        DependencyProperty.RegisterAttached("StaticIconVisibility", typeof(Visibility), typeof(StoreNavigationViewItemAttach), new PropertyMetadata(Visibility.Collapsed));
 }
