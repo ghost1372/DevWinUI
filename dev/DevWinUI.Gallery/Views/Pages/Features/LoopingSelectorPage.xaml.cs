@@ -6,6 +6,6 @@ public sealed partial class LoopingSelectorPage : Page
     {
         InitializeComponent();
 
-        LoopingSelectorSample.Items = Enumerable.Range(0, 12).Cast<object>().ToList();
+        LoopingSelectorSample.Items = Enumerable.Range(0, 12).Select(x => new LoopingSelectorItem { PrimaryText = x.ToString() } as object).ToList();
     }
 }

@@ -150,6 +150,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ LoopingList
+- ✨ LoopingSelector
 - ✨ SegmentedSlider
 - ✨ Timeline
 - ✨ WanderingParticles
@@ -314,6 +316,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### LoopingList
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoopingList.gif)
+
+### LoopingSelector
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoopingSelector.gif)
 
 ### MenuFlyout SecondaryMenu Attach
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MenuFlyoutSecondaryMenu.gif)
