@@ -18,7 +18,16 @@ public partial class LoopingList
     }
 
     public static readonly DependencyProperty HeaderProperty =
-        DependencyProperty.Register(nameof(Header), typeof(object), typeof(LoopingList), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Header), typeof(object), typeof(LoopingList), new PropertyMetadata(null, OnHeaderChanged));
+
+    private static void OnHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (LoopingList)d;
+        if (ctl != null)
+        {
+            ctl.UpdateHeader();
+        }
+    }
 
     public IList<string> PrimaryItems
     {
@@ -136,4 +145,22 @@ public partial class LoopingList
 
     public static readonly DependencyProperty TertiaryPlaceholderTextProperty =
         DependencyProperty.Register(nameof(TertiaryPlaceholderText), typeof(string), typeof(LoopingList), new PropertyMetadata(null, OnUpdatePlaceholderText));
+
+    public bool ShouldLoop
+    {
+        get { return (bool)GetValue(ShouldLoopProperty); }
+        set { SetValue(ShouldLoopProperty, value); }
+    }
+
+    public static readonly DependencyProperty ShouldLoopProperty =
+        DependencyProperty.Register(nameof(ShouldLoop), typeof(bool), typeof(LoopingList), new PropertyMetadata(true, OnShouldLoopChanged));
+
+    private static void OnShouldLoopChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (LoopingList)d;
+        if (ctl != null)
+        {
+            ctl.UpdateShouldLoop();
+        }
+    }
 }

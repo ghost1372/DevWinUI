@@ -12,6 +12,7 @@ namespace DevWinUI;
 [TemplatePart(Name = nameof(PART_ThirdTextBlock), Type = typeof(TextBlock))]
 [TemplatePart(Name = nameof(PART_SecondTextBlock), Type = typeof(TextBlock))]
 [TemplatePart(Name = nameof(PART_FirstTextBlock), Type = typeof(TextBlock))]
+[TemplatePart(Name = nameof(PART_HeaderContentPresenter), Type = typeof(ContentPresenter))]
 public partial class LoopingList : Control
 {
     private const string PART_FlyoutButton = "PART_FlyoutButton";
@@ -25,6 +26,7 @@ public partial class LoopingList : Control
     private const string PART_ThirdTextBlock = "PART_ThirdTextBlock";
     private const string PART_SecondTextBlock = "PART_SecondTextBlock";
     private const string PART_FirstTextBlock = "PART_FirstTextBlock";
+    private const string PART_HeaderContentPresenter = "PART_HeaderContentPresenter";
 
     private LoopingListFlyout flyout;
 
@@ -42,11 +44,15 @@ public partial class LoopingList : Control
     private Border secondPickerHost;
     private Border thirdPickerHost;
 
+    private ContentPresenter headerContentPresenter;
+
     private LoopingSelector primarySelector = null;
     private LoopingSelector secondarySelector = null;
     private LoopingSelector tertiarySelector = null;
+
     public event EventHandler<LoopingListEventArgs> Accepted;
     public event EventHandler<RoutedEventArgs> Dismissed;
+
     private bool HasValue;
     public LoopingList()
     {
@@ -67,6 +73,7 @@ public partial class LoopingList : Control
         secondColumnDivider = GetTemplateChild(PART_SecondColumnDivider) as Rectangle;
         secondPickerHost = GetTemplateChild(PART_SecondPickerHost) as Border;
         thirdPickerHost = GetTemplateChild(PART_ThirdPickerHost) as Border;
+        headerContentPresenter = GetTemplateChild(PART_HeaderContentPresenter) as ContentPresenter;
 
         var btnFlyout = GetTemplateChild(PART_FlyoutButton) as Button;
         
@@ -86,11 +93,64 @@ public partial class LoopingList : Control
         UpdateColumnsVisibility();
         UpdatePlaceholderText();
         UpdateSelectedItem();
+        UpdateShouldLoop();
+        UpdateHeader();
 
         btnFlyout.Click -= OnFlyoutButtonClicked;
         btnFlyout.Click += OnFlyoutButtonClicked;
     }
 
+    private void UpdateHeader()
+    {
+        if (headerContentPresenter != null)
+        {
+            headerContentPresenter.Visibility = Header != null ? Visibility.Visible : Visibility.Collapsed;
+        }
+    }
+
+    public void ClearSelection()
+    {
+        if (primaryTextBlock != null)
+        {
+            primaryTextBlock.Text = string.Empty;
+            PrimarySelectedIndex = -1;
+            PrimarySelectedItem = null;
+        }
+
+        if (secondaryTextBlock != null)
+        {
+            secondaryTextBlock.Text = string.Empty;
+            SecondarySelectedIndex = -1;
+            SecondarySelectedItem = null;
+        }
+
+        if (tertiaryTextBlock != null)
+        {
+            tertiaryTextBlock.Text = string.Empty;
+            TertiarySelectedIndex = -1;
+            TertiarySelectedItem = null;
+        }
+
+        HasValue = false;
+        UpdatePlaceholderText();
+    }
+    private void UpdateShouldLoop()
+    {
+        if (primarySelector != null)
+        {
+            primarySelector.ShouldLoop = ShouldLoop;
+        }
+
+        if (secondarySelector != null)
+        {
+            secondarySelector.ShouldLoop = ShouldLoop;
+        }
+
+        if (tertiarySelector != null)
+        {
+            tertiarySelector.ShouldLoop = ShouldLoop;
+        }
+    }
     private void OnFlyoutButtonClicked(object sender, RoutedEventArgs e)
     {
         var button = sender as Button;
@@ -247,7 +307,8 @@ public partial class LoopingList : Control
             }
             else
             {
-                primaryTextBlock.Text = PrimaryPlaceholderText; 
+                primaryTextBlock.Text = PrimaryPlaceholderText;
+                VisualStateManager.GoToState(this, "HasNoValue", true);
             }
         }
 
@@ -266,6 +327,7 @@ public partial class LoopingList : Control
             else
             {
                 secondaryTextBlock.Text = SecondaryPlaceholderText;
+                VisualStateManager.GoToState(this, "HasNoValue", true);
             }
         }
 
@@ -284,14 +346,9 @@ public partial class LoopingList : Control
             else
             {
                 tertiaryTextBlock.Text = TertiaryPlaceholderText;
+                VisualStateManager.GoToState(this, "HasNoValue", true);
             }
         }
-
-        HasValue = !string.IsNullOrEmpty(primaryTextBlock.Text) ||
-               !string.IsNullOrEmpty(secondaryTextBlock.Text) ||
-               !string.IsNullOrEmpty(tertiaryTextBlock.Text);
-
-        VisualStateManager.GoToState(this, HasValue ? "HasValue" : "HasNoValue", true);
     }
 
     private void OnDismissButton(object sender, RoutedEventArgs e)
