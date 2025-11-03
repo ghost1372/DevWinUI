@@ -13,7 +13,7 @@
             <local:ControlExample DocPage="controls/loopingSelector">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:LoopingSelector x:Name="LoopingSelectorSample" Height="270"/&gt;
+                        &lt;dev:LoopingSelector x:Name="LoopingSelectorSample" Height="270" HorizontalContentAlignment="Center" ItemHeight="40"/&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.CSharp>
@@ -30,6 +30,9 @@
                 <dev:LoopingSelector x:Name="LoopingSelectorSample"
                                      Width="150"
                                      Height="270"
+                                     Padding="0,3,0,6"
+                                     HorizontalContentAlignment="Center"
+                                     ItemHeight="40"
                                      ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>

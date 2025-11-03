@@ -43,6 +43,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:LoopingList x:Name="LoopingListSample"
+                                 VerticalAlignment="Top"
                                  Header="{x:Bind TxtHeader.Text, Mode=OneWay}"
                                  PrimaryPlaceholderText="{x:Bind TxtPrimary.Text, Mode=OneWay}"
                                  SecondaryPlaceholderText="{x:Bind TxtSecondary.Text, Mode=OneWay}"
