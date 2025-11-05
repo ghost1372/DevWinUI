@@ -113,6 +113,7 @@ If you encounter any issues or have feedback, please report them [here](https://
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ SmoothWindowResizer
  - ✨ SystemTrayIcon
  - ✨ AncestorBindingExtension
  - ✨ AnimationExtensions
