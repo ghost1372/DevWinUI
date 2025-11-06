@@ -554,6 +554,7 @@
           "UniqueId": "DevWinUIGallery.Views.StylesPage",
           "Title": "Styles",
           "Subtitle": "Styles",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {
