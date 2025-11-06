@@ -24,6 +24,10 @@
           "UniqueId": "DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage",
           "Title": "MenuFlyout Attach",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "Subtitle": "Provides attached properties and behavior extensions for to support a customizable secondary menu section.",
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
         },
@@ -31,6 +35,10 @@
           "UniqueId": "DevWinUIGallery.Views.SunTimesHelperPage",
           "Title": "SunTimes Helper",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "Subtitle": "A helper class for calculating sunrise and sunset",
           "ImagePath": "ms-appx:///Assets/Fluent/Sunny.png"
         },
@@ -38,6 +46,10 @@
           "UniqueId": "DevWinUIGallery.Views.SystemTrayIconPage",
           "Title": "SystemTrayIcon",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "Subtitle": "SystemTrayIcon is a class that manages an application’s icon in the Windows system tray. It allows showing an icon, setting a tooltip, handling click events, and displaying a context menu directly from the tray area.",
           "ImagePath": "ms-appx:///Assets/Fluent/MenuFlyout.png"
         },
@@ -51,14 +63,12 @@
           "UniqueId": "DevWinUIGallery.Views.WindowedContentDialogPage",
           "Title": "Windowed Content Dialog",
           "Subtitle": "A dialog control that behaves like ContentDialog but opens in its own window",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MessageBoxPage",
           "Title": "MessageBox",
           "Subtitle": "A simple dialog for displaying messages and prompts with customizable buttons and icons, commonly used for alerts, confirmations, and quick user decisions.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
         {
@@ -166,6 +176,10 @@
           "Title": "Looping List",
           "Subtitle": "An infinitely scrolling selector displayed in a flyout.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/TimePicker.png"
         },
         {
@@ -173,6 +187,10 @@
           "Title": "Looping Selector",
           "Subtitle": "An infinitely scrolling selection control.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
@@ -180,6 +198,10 @@
           "Title": "Segmented Slider",
           "Subtitle": "Slider control that divides its track into multiple visual segments. Each segment can represent a specific range, time span, or category, with individual fill states and labels.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Slider.png"
         },
         {
@@ -187,6 +209,10 @@
           "Title": "Timeline",
           "Subtitle": "A visual control to display a day’s time range with key points like StartTime, EndTime, Sunrise, and Sunset.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -194,6 +220,10 @@
           "Title": "Wandering Particles",
           "Subtitle": "A visual effect that generates particles moving in random, flowing paths, creating a dynamic and wandering animation.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
@@ -201,69 +231,64 @@
           "Title": "SnowFlake Effect",
           "Subtitle": "A visual effect that simulates falling snowflakes, with customizable particle count.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New"
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Snowflake.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipCardsPage",
           "Title": "Flip Cards",
           "Subtitle": "A container of multiple FlipBlocks to show time, date, or multi-digit values with dynamic flipping animations.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/GridSplitter.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FlipBlockPage",
           "Title": "Flip Block",
           "Subtitle": "A single animated panel that “flips” to display a number or character with smooth transitions",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentSizer.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HomePageHeaderPage",
           "Title": "Home Page Header",
           "Subtitle": "A control for displaying the main header section of a home page, typically including title, subtitle, and Image.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HeaderTilePage",
           "Title": "Header Tile",
           "Subtitle": "A UI element used to display a compact, interactive header block, often combining an icon, title, and description for quick access or navigation.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SegmentCharPage",
           "Title": "Segment Char",
           "Subtitle": "A base class representing a digital display character, typically used in custom controls to render segments for numbers or letters (like SixteenSegmentChar, FourteenSegmentChar, MatrixSegmentChar)",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DigitalSegmentPage",
           "Title": "Digital Segment",
           "Subtitle": "A digital segment is a visual element that represents a portion of a character in a segmented display.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CheckUpdateControlPage",
           "Title": "CheckUpdateControl",
           "Subtitle": "A control that checks for software updates and notifies the user",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/update.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OutOfBoxPagePage",
           "Title": "OutOfBoxPage",
           "Subtitle": "A page displayed during the initial setup or first launch of an application, guiding users through onboarding, configuration, or feature introduction.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CardPage",
           "Title": "Card",
           "Subtitle": "A versatile container control that groups related content.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ContentIsland.png"
         },
         {
@@ -379,6 +404,10 @@
           "Title": "StepBar",
           "Subtitle": "A control that visually represents progress through a series of steps or stages, often used in wizards, forms, or multi-step processes.",
           "IsUpdated": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "Updated"
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -511,7 +540,6 @@
           "UniqueId": "DevWinUIGallery.Views.OpacityMaskViewPage",
           "Title": "OpacityMaskView",
           "Subtitle": "A control that applies an opacity mask to its content, enabling gradient fades, shape-based transparency, or custom visual effects.",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
@@ -555,6 +583,10 @@
           "Title": "Styles",
           "Subtitle": "Styles",
           "IsUpdated": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "Updated"
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {
@@ -630,7 +662,6 @@
           "UniqueId": "DevWinUIGallery.Views.ShimmerTextBlockPage",
           "Title": "Shimmer TextBlock",
           "Subtitle": "Target a TextBlock with a Composition Light",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/SwipeControl.png"
         },
         {
@@ -683,13 +714,16 @@
           "Title": "Speed Graph",
           "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
           "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ConfettiCannonPage",
           "Title": "Confetti Cannon",
           "Subtitle": "A control that generates animated confetti particles, creating celebratory or festive visual effects.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Confetti.png"
         },
         {
