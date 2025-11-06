@@ -254,6 +254,7 @@ Install-Package DevWinUI
 - ✨ Border Style
 - ✨ Brushes
 - ✨ Subtle Button Style
+- ✨ Rounded TabViewItem Style
 
 #### 🔥 Win2D 🔥
 - ✨ SpeedGraph
@@ -317,6 +318,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### TabViewItem Rounded Style
+![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TabViewItemRoundedStyle.png )
 
 ### LoopingList
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoopingList.gif)

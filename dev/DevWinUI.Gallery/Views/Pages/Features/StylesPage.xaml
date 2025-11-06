@@ -8,7 +8,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="TabViewItem" BasedOn="{StaticResource TabViewItemRoundedStyle}" />
+    </Page.Resources>
     <TabView Margin="10"
              IsAddTabButtonVisible="False">
         <TabViewItem Header="General"
