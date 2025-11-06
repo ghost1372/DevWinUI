@@ -136,6 +136,33 @@ public partial class ContentDialogContent : ContentControl
     public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators => field ??= [];
     public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators => field ??= [];
 
+    public string PrimaryButtonAccessKey
+    {
+        get { return (string)GetValue(PrimaryButtonAccessKeyProperty); }
+        set { SetValue(PrimaryButtonAccessKeyProperty, value); }
+    }
+
+    public static readonly DependencyProperty PrimaryButtonAccessKeyProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonAccessKey), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null));
+
+    public string SecondaryButtonAccessKey
+    {
+        get { return (string)GetValue(SecondaryButtonAccessKeyProperty); }
+        set { SetValue(SecondaryButtonAccessKeyProperty, value); }
+    }
+
+    public static readonly DependencyProperty SecondaryButtonAccessKeyProperty =
+        DependencyProperty.Register(nameof(SecondaryButtonAccessKey), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null));
+
+    public string CloseButtonAccessKey
+    {
+        get { return (string)GetValue(CloseButtonAccessKeyProperty); }
+        set { SetValue(CloseButtonAccessKeyProperty, value); }
+    }
+
+    public static readonly DependencyProperty CloseButtonAccessKeyProperty =
+        DependencyProperty.Register(nameof(CloseButtonAccessKey), typeof(string), typeof(ContentDialogContent), new PropertyMetadata(null));
+
     public UIElement TitleArea { get; private set; }
     public Grid DialogSpace { get; private set; }
     public Grid CommandSpace { get; private set; }

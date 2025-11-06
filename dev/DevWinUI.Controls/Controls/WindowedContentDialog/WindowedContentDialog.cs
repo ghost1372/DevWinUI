@@ -46,6 +46,23 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
     public IList<KeyboardAccelerator> PrimaryButtonKeyboardAccelerators => ContentDialogContent.PrimaryButtonKeyboardAccelerators;
     public IList<KeyboardAccelerator> SecondaryButtonKeyboardAccelerators => ContentDialogContent.SecondaryButtonKeyboardAccelerators;
     public IList<KeyboardAccelerator> CloseButtonKeyboardAccelerators => ContentDialogContent.CloseButtonKeyboardAccelerators;
+
+    public string? PrimaryButtonAccessKey
+    {
+        get => ContentDialogContent.PrimaryButtonAccessKey;
+        set => ContentDialogContent.PrimaryButtonAccessKey = value;
+    }
+    public string? SecondaryButtonAccessKey
+    {
+        get => ContentDialogContent.SecondaryButtonAccessKey;
+        set => ContentDialogContent.SecondaryButtonAccessKey = value;
+    }
+    public string? CloseButtonAccessKey
+    {
+        get => ContentDialogContent.CloseButtonAccessKey;
+        set => ContentDialogContent.CloseButtonAccessKey = value;
+    }
+    
     #region properties
 
     public object? Title

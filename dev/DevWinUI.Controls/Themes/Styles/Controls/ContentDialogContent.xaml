@@ -190,6 +190,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PrimaryButton"
                                         HorizontalAlignment="Stretch"
+                                        AccessKey="{TemplateBinding PrimaryButtonAccessKey}"
                                         Content="{TemplateBinding PrimaryButtonText}"
                                         ElementSoundMode="FocusOnly"
                                         IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
@@ -198,6 +199,7 @@
                                         ToolTipService.ToolTip="{TemplateBinding PrimaryButtonText}" />
                                 <Button x:Name="SecondaryButton"
                                         HorizontalAlignment="Stretch"
+                                        AccessKey="{TemplateBinding SecondaryButtonAccessKey}"
                                         Content="{TemplateBinding SecondaryButtonText}"
                                         ElementSoundMode="FocusOnly"
                                         IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
@@ -207,6 +209,7 @@
                                 <Button x:Name="CloseButton"
                                         Grid.Column="4"
                                         HorizontalAlignment="Stretch"
+                                        AccessKey="{TemplateBinding CloseButtonAccessKey}"
                                         Content="{TemplateBinding CloseButtonText}"
                                         ElementSoundMode="FocusOnly"
                                         IsTabStop="True"
