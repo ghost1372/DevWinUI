@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="media/tiledImageBrush"
+            <local:ControlExample DocPage="brushes/tiledImageBrush"
                                   DocType="Controls">
                 <local:ControlExample.Xaml>
                     <x:String>
