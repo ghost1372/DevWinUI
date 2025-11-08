@@ -15,6 +15,13 @@
                                   XamlSource="Features/BrushPage_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <Border Height="80"
+                            Background="{ThemeResource CardGradient3Brush}">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Text="CardGradient3Brush" />
+                    </Border>
+                    <Border Height="80"
                             Background="{ThemeResource CardGradient2Brush}">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
