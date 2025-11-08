@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:GoToCard" BasedOn="{StaticResource DefaultGoToCardStyle}" />
+
+    <Style x:Key="DefaultGoToCardStyle" TargetType="local:GoToCard">
+        <Setter Property="CornerRadius" Value="18" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
+        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:GoToCard">
+                    <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0"
+                                 Width="24"
+                                 VerticalAlignment="Center"
+                                 Visibility="{Binding ShowIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <IconSourceElement x:Name="PART_Icon"
+                                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                               IconSource="{TemplateBinding Icon}" />
+
+                        </Viewbox>
+                        <TextBlock Grid.Column="1"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="12"
+                                   Style="{ThemeResource BaseTextBlockStyle}"
+                                   Text="{TemplateBinding Title}"
+                                   TextWrapping="NoWrap" />
+
+                        <Button x:Name="PART_Button"
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Style="{ThemeResource SubtleButtonStyle}"
+                                Visibility="{Binding ShowActionButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="{ThemeResource SystemAccentColor}"
+                                           Style="{ThemeResource BaseTextBlockStyle}"
+                                           Text="{TemplateBinding ActionTitle}" />
+
+                                <Viewbox Width="12"
+                                         VerticalAlignment="Center"
+                                         Visibility="{Binding ShowActionIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <IconSourceElement x:Name="PART_ActionIcon"
+                                                       Grid.Column="0"
+                                                       Foreground="{ThemeResource SystemAccentColor}"
+                                                       IconSource="{TemplateBinding ActionIcon}" />
+
+                                </Viewbox>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

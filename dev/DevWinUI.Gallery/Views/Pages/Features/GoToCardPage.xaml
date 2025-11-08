@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.GoToCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/goToCard"
+                                  HeaderText="GoToCard">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:GoToCard Title="Test" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTitle"
+                                 Header="Title"
+                                 PlaceholderText="Title"
+                                 Text="Syncfusion Collaborates with Microsoft to Advance .NET MAUI" />
+                        <TextBox x:Name="TxtActionTitle"
+                                 Header="Action Title"
+                                 PlaceholderText="Action Title"
+                                 Text="Read more" />
+                        <TextBox x:Name="TxtUri"
+                                 Header="Launch Uri"
+                                 PlaceholderText="Launch Uri"
+                                 Text="ms-settings:colors" />
+
+                        <ToggleSwitch x:Name="TgShowIcon"
+                                      Header="Show Icon"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TgShowActionIcon"
+                                      Header="Show Action Icon"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TgShowActionButton"
+                                      Header="Show Action Button"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:GoToCard Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
+                                  ActionTitle="{x:Bind TxtActionTitle.Text, Mode=OneWay}"
+                                  Icon="{dev:BitmapIconSource Source=ms-appx:///Assets/Fluent/Microsoft.png}"
+                                  LaunchUri="{x:Bind TxtUri.Text, Mode=OneWay}"
+                                  ShowActionButton="{x:Bind TgShowActionButton.IsOn, Mode=OneWay}"
+                                  ShowActionIcon="{x:Bind TgShowActionIcon.IsOn, Mode=OneWay}"
+                                  ShowIcon="{x:Bind TgShowIcon.IsOn, Mode=OneWay}" />
+                    <dev:GoToCard Title="{x:Bind TxtTitle.Text, Mode=OneWay}"
+                                  ActionTitle="{x:Bind TxtActionTitle.Text, Mode=OneWay}"
+                                  Background="{ThemeResource CardGradient3Brush}"
+                                  Icon="{dev:BitmapIconSource Source=ms-appx:///Assets/Fluent/Microsoft.png}"
+                                  LaunchUri="{x:Bind TxtUri.Text, Mode=OneWay}"
+                                  ShowActionButton="{x:Bind TgShowActionButton.IsOn, Mode=OneWay}"
+                                  ShowActionIcon="{x:Bind TgShowActionIcon.IsOn, Mode=OneWay}"
+                                  ShowIcon="{x:Bind TgShowIcon.IsOn, Mode=OneWay}" />
+                    <dev:GoToCard Title="Join Our Live Webinar on WinUI 3 Best Practices"
+                                  ActionIcon="{dev:FontIconSource GlyphName=CalligraphyPen}"
+                                  ActionTitle="Register Now"
+                                  Background="{ThemeResource CardGradient1Brush}"
+                                  Icon="{dev:BitmapIconSource Source=ms-appx:///Assets/Fluent/external.png}"
+                                  LaunchUri="{x:Bind TxtUri.Text, Mode=OneWay}"
+                                  ShowActionButton="{x:Bind TgShowActionButton.IsOn, Mode=OneWay}"
+                                  ShowActionIcon="{x:Bind TgShowActionIcon.IsOn, Mode=OneWay}"
+                                  ShowIcon="{x:Bind TgShowIcon.IsOn, Mode=OneWay}" />
+                    <dev:GoToCard Title="Update Your Profile Information"
+                                  ActionIcon="{dev:FontIconSource GlyphName=Info}"
+                                  ActionTitle="Open Settings"
+                                  Background="{ThemeResource CardGradient2Brush}"
+                                  Icon="{dev:BitmapIconSource Source=ms-appx:///Assets/Fluent/update.png}"
+                                  LaunchUri="{x:Bind TxtUri.Text, Mode=OneWay}"
+                                  ShowActionButton="{x:Bind TgShowActionButton.IsOn, Mode=OneWay}"
+                                  ShowActionIcon="{x:Bind TgShowActionIcon.IsOn, Mode=OneWay}"
+                                  ShowIcon="{x:Bind TgShowIcon.IsOn, Mode=OneWay}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

@@ -13,6 +13,11 @@
                 <GradientStop Offset="0.95" Color="#00000000" />
                 <GradientStop Offset="1" Color="#00000000" />
             </RadialGradientBrush>
+            <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FF1E2024" />
+                <GradientStop Offset="0.5" Color="#FF21201F" />
+                <GradientStop Offset="1" Color="#FF251F1A" />
+            </LinearGradientBrush>
             <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
                 <GradientStop Offset="0" Color="#38C8AEC4" />
                 <GradientStop Offset="1" Color="#383286EE" />
@@ -34,6 +39,11 @@
                 <GradientStop Offset="0.95" Color="#00FFFFFF" />
                 <GradientStop Offset="1" Color="#00FFFFFF" />
             </RadialGradientBrush>
+            <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FFE7F2FF" />
+                <GradientStop Offset="0.5" Color="#FFF2F0FF" />
+                <GradientStop Offset="1" Color="#FFFDEFFF" />
+            </LinearGradientBrush>
             <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
                 <GradientStop Offset="0" Color="#E6F0FC" />
                 <GradientStop Offset="0.4" Color="#E6F0FC" />
@@ -56,6 +66,7 @@
                 <GradientStop Offset="0.95" Color="#00000000" />
                 <GradientStop Offset="1" Color="#00000000" />
             </RadialGradientBrush>
+            <SolidColorBrush x:Key="CardGradient3Brush" Color="{ThemeResource CardBackgroundFillColorDefault}" />
             <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
             <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
             <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />

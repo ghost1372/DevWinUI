@@ -172,6 +172,17 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.GoToCardPage",
+          "Title": "Go To Card",
+          "Subtitle": "a versatile card control that displays a title, optional icon, and an action button, allowing users to navigate to a URI or trigger a custom action when clicked.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/external.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LoopingListPage",
           "Title": "Looping List",
           "Subtitle": "An infinitely scrolling selector displayed in a flyout.",
