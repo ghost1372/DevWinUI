@@ -7955,6 +7955,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="BorderBrush" Value="{ThemeResource ControlElevationBorderBrush}" />
     <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
     <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="ActionTitle" Value="Read more" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:GoToCard">
