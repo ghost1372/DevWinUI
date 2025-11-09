@@ -5,7 +5,6 @@
     <DataTemplate x:Key="ControlItemTemplate"
                   x:DataType="local:DataItem">
         <local:InfoCard Title="{x:Bind Title}"
-                        Width="350"
                         Description="{x:Bind Subtitle}"
                         Icon="{x:Bind ImagePath}">
             <local:InfoCard.InfoBadge>
