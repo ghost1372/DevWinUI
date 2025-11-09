@@ -4,77 +4,15 @@
                     xmlns:local="using:DevWinUI">
     <DataTemplate x:Key="ControlItemTemplate"
                   x:DataType="local:DataItem">
-        <Grid x:Name="controlRoot" Width="360" Height="96" Padding="8" HorizontalAlignment="Stretch" Background="{ThemeResource ControlFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" ColumnSpacing="16" CornerRadius="{StaticResource OverlayCornerRadius}">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="LayoutVisualStates">
-                    <VisualState x:Name="WideLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters />
-                    </VisualState>
-                    <VisualState x:Name="NarrowLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="0" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="controlRoot.Width" Value="Auto" />
-                            <Setter Target="controlRoot.Height" Value="120" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <local:ImageEx x:Name="gridImage"
-                               Grid.RowSpan="2"
-                               Width="36"
-                               Margin="8,12,16,0"
-                               VerticalAlignment="Top"
-                               AutomationProperties.Name="{x:Bind Title}"
-                               Source="{x:Bind ImagePath}"
-                               Stretch="Uniform" />
-                <TextBlock x:Name="titleText"
-                           Grid.Column="1"
-                           Margin="0,12,0,0"
-                           VerticalAlignment="Bottom"
-                           FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                           FontSize="{ThemeResource LandingItemTitleFontSize}"
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Text="{x:Bind Title}"
-                           TextLineBounds="TrimToCapHeight"
-                           TextWrapping="NoWrap" />
-                <TextBlock x:Name="subtitleText"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                           FontSize="{ThemeResource LandingItemSubtitleFontSize}"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                           RelativePanel.Below="titleText"
-                           Style="{StaticResource CaptionTextBlockStyle}"
-                           Text="{x:Bind Subtitle}"
-                           TextTrimming="WordEllipsis">
-                    <ToolTipService.ToolTip>
-                        <ToolTip Visibility="{Binding ElementName=subtitleText, Path=IsTextTrimmed}">
-                            <TextBlock Text="{x:Bind Subtitle}"
-                                       TextWrapping="Wrap" />
-                        </ToolTip>
-                    </ToolTipService.ToolTip>
-                </TextBlock>
-                <InfoBadge Grid.Column="2"
-                           VerticalAlignment="Top"
-                           Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}"
+        <local:InfoCard Title="{x:Bind Title}"
+                        Width="350"
+                        Description="{x:Bind Subtitle}"
+                        Icon="{x:Bind ImagePath}">
+            <local:InfoCard.InfoBadge>
+                <InfoBadge Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}"
                            Tag="{x:Bind DataInfoBadge.InfoBadgeValue}"
                            Visibility="{x:Bind DataInfoBadge.IsLandingPageInfoBadgeHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
-            </Grid>
-        </Grid>
+            </local:InfoCard.InfoBadge>
+        </local:InfoCard>
     </DataTemplate>
 </ResourceDictionary>

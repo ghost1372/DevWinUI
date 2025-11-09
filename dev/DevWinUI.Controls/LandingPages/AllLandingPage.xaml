@@ -57,6 +57,9 @@
                   ItemsSource="{x:Bind Items, Mode=OneWay}"
                   Loaded="OnItemGridViewLoaded"
                   SelectionMode="None">
+            <GridView.Resources>
+                <CornerRadius x:Key="GridViewItemCornerRadius">8</CornerRadius>
+            </GridView.Resources>
             <GridView.Footer>
                 <Grid Margin="{x:Bind FooterMargin, Mode=OneWay}" VerticalAlignment="Bottom" Visibility="{x:Bind FooterContent, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
                     <ContentPresenter Content="{x:Bind FooterContent, Mode=OneWay}" />

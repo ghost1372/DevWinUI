@@ -39,7 +39,9 @@
                   ItemsSource="{x:Bind itemsCVS.View, Mode=OneWay}"
                   Loaded="OnItemGridViewLoaded"
                   SelectionMode="None">
-
+            <GridView.Resources>
+                <CornerRadius x:Key="GridViewItemCornerRadius">8</CornerRadius>
+            </GridView.Resources>
             <GridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
