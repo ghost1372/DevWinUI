@@ -92,9 +92,6 @@ To compile the project, contribute new features, or explore guidelines:
 
 👉 Please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions.
 
-### Feedback and Issues
-If you encounter any issues or have feedback, please report them [here](https://github.com/ghost1372/DevWinUI/issues). Your input helps improve the app!
-
 ---
 
 ## 🔥 DevWinUI 🔥
