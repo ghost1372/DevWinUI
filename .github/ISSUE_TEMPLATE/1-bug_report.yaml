@@ -35,6 +35,7 @@ body:
     attributes:
       label: NuGet package version
       options:
+        - "DevWinUI 9.5.0"
         - "DevWinUI 9.4.2"
         - "DevWinUI 9.3.0"
         - "DevWinUI 9.2.0"
@@ -47,7 +48,7 @@ body:
       description: Which Visual Studio versions did you see the issue on?
       multiple: true
       options:
-        - "Visual Studio 2026-Insider"
+        - "Visual Studio 2026"
         - "Visual Studio 2022"
   - type: textarea
     attributes:
