@@ -46,14 +46,13 @@ jobs:
         platform: [x64, x86, arm64] # Change platform if you want to build only a specific platform
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0
         
-    - uses: actions/setup-dotnet@v4
+    - uses: actions/setup-dotnet@v5
       with:
        dotnet-version: | 
-         8.x.x
          9.x.x
          10.x.x
 
@@ -123,7 +122,7 @@ jobs:
       APP_VERSION: ${{ needs.build.outputs.app-version }}
       IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
