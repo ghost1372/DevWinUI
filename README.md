@@ -49,7 +49,7 @@ A detailed list can be found in the [ThirdPartyNotices.txt](ThirdPartyNotices.tx
 ---
 
 # 🚀 DevWinUI 🚀
-#### Your All-in-One Toolkit for Effortless WinUI 3 Development
+### Your All-in-One Toolkit for Effortless WinUI 3 Development
 Whether you're an experienced developer or just starting your journey in app creation, DevWinUI provides everything you need to turn your ideas into reality. 🎉
 
 DevWinUI equips you with a powerful suite of tools — including custom controls, classes, styles, and utilities — all purpose-built for WinUI 3, the cutting-edge UI framework for Windows 10, Windows 11, and beyond.
