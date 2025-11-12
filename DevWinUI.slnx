@@ -1,17 +1,32 @@
 <Solution>
   <Folder Name="/Solution Items/" Id="33905DB2-64FA-4677-9694-9064DC5A0372">
-    <File Path=".editorconfig" />
-    <File Path=".gitattributes" />
-    <File Path=".gitignore" />
     <File Path="tools/AppData.Schema.json" />
+    <File Path="Directory.Build.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/Configs/">
+    <File Path=".editorconfig" />
+    <File Path="tools/settings.xamlstyler" />
+  </Folder>
+  <Folder Name="/Solution Items/Files/">
     <File Path="Clean-obj-bin.bat" />
     <File Path="CONTRIBUTING.md" />
-    <File Path="Directory.Build.props" />
     <File Path="LICENSE" />
     <File Path="Policy" />
-    <File Path="README.md" />
-    <File Path="tools/settings.xamlstyler" />
     <File Path="ThirdPartyNotices.txt" />
+  </Folder>
+  <Folder Name="/Solution Items/Git/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/Solution Items/ISSUE_TEMPLATES/">
+    <File Path=".github/ISSUE_TEMPLATE/1-bug_report.yaml" />
+    <File Path=".github/ISSUE_TEMPLATE/2-feature_request.yaml" />
+    <File Path=".github/ISSUE_TEMPLATE/3-custom.md" />
+    <File Path=".github/ISSUE_TEMPLATE/config.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/Workflows/">
+    <File Path=".github/workflows/publish-release.yml" />
   </Folder>
   <Folder Name="/VSIX_Extension/" Id="55c3cdfc-dabe-4658-ada9-aa32a6371d9b">
     <Project Path="VSIX/DevWinUI_Template/DevWinUI_Template/DevWinUI_Template.csproj" Id="84913ae7-791a-451d-b4c6-c2c93207d9ff" />
@@ -23,9 +38,6 @@
     <Project Path="VSIX/DevWinUI_Template/WinUIApp-MVVM/WinUIApp-MVVM.csproj" Id="df24dc85-9ed7-4697-85a0-ad2bed5e7916" />
     <Project Path="VSIX/DevWinUI_Template/WinUIApp-NavigationView/WinUIApp-NavigationView.csproj" Id="4c1692ff-c0b8-49fb-948d-090160e0e63a" />
     <Project Path="VSIX/DevWinUI_Template/WinUIApp/WinUIApp.csproj" Id="d9c038b7-6a62-4945-a030-4ac7597f53ca" />
-  </Folder>
-  <Folder Name="/Workflows/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
-    <File Path=".github/workflows/publish-release.yml" />
   </Folder>
   <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
   <Project Path="dev/DevWinUI.Controls/DevWinUI.Controls.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
