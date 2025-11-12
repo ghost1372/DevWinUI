@@ -215,6 +215,8 @@ Themes\Styles\Win2D\Watermark.xaml
         <GradientStop Offset="1.0" Color="#D5DBE3" />
       </LinearGradientBrush>
       <x:Double x:Key="ImageOpacity">0.9</x:Double>
+      <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
@@ -417,6 +419,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
       <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
       <x:Double x:Key="ImageOpacity">0.8</x:Double>
+      <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
@@ -607,6 +611,8 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
       <SolidColorBrush x:Key="BackgroundGradient" Color="Black" />
       <x:Double x:Key="ImageOpacity">0.8</x:Double>
+      <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="SystemColorButtonTextColorBrush" />
@@ -8324,8 +8330,8 @@ Themes\Styles\Win2D\Watermark.xaml
             </local:OpacityMaskView>
             <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
             <StackPanel Margin="36,48,0,0" VerticalAlignment="Center" Orientation="Vertical">
-              <TextBlock x:Name="smallHeaderSubtitleText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderSubtitleFontSize}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding HeaderSubtitleText}" Visibility="{Binding HeaderSubtitleText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
-              <TextBlock x:Name="smallHeaderText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderFontSize}" Foreground="{TemplateBinding Foreground}" Style="{StaticResource TitleLargeTextBlockStyle}" Text="{TemplateBinding HeaderText}" Visibility="{Binding HeaderText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+              <TextBlock x:Name="smallHeaderSubtitleText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderSubtitleFontSize}" Foreground="{ThemeResource HomePageHeaderSubtitleForeground}" Text="{TemplateBinding HeaderSubtitleText}" Visibility="{Binding HeaderSubtitleText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+              <TextBlock x:Name="smallHeaderText" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{TemplateBinding HeaderFontSize}" Foreground="{ThemeResource HomePageHeaderForeground}" Style="{StaticResource TitleLargeTextBlockStyle}" Text="{TemplateBinding HeaderText}" Visibility="{Binding HeaderText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
             </StackPanel>
             <local:HorizontalScrollContainer Grid.Row="2" Margin="0,56,0,0" Source="{TemplateBinding HeaderContent}" Visibility="{Binding HeaderContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
           </Grid>
@@ -8451,7 +8457,7 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style x:Key="DefaultInfoCardStyle" TargetType="local:InfoCard">
-    <Setter Property="Width" Value="360" />
+    <Setter Property="Width" Value="350" />
     <Setter Property="Height" Value="96" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />

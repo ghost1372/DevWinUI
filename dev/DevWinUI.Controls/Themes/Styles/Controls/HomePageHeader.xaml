@@ -10,14 +10,20 @@
                 <GradientStop Offset="1.0" Color="#D5DBE3" />
             </LinearGradientBrush>
             <x:Double x:Key="ImageOpacity">0.9</x:Double>
+            <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Default">
             <SolidColorBrush x:Key="BackgroundGradient" Color="#020B20" />
             <x:Double x:Key="ImageOpacity">0.8</x:Double>
+            <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
             <SolidColorBrush x:Key="BackgroundGradient" Color="Black" />
             <x:Double x:Key="ImageOpacity">0.8</x:Double>
+            <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+            <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -59,13 +65,13 @@
                             <TextBlock x:Name="smallHeaderSubtitleText"
                                        FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                        FontSize="{TemplateBinding HeaderSubtitleFontSize}"
-                                       Foreground="{TemplateBinding Foreground}"
+                                       Foreground="{ThemeResource HomePageHeaderSubtitleForeground}"
                                        Text="{TemplateBinding HeaderSubtitleText}"
                                        Visibility="{Binding HeaderSubtitleText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
                             <TextBlock x:Name="smallHeaderText"
                                        FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                        FontSize="{TemplateBinding HeaderFontSize}"
-                                       Foreground="{TemplateBinding Foreground}"
+                                       Foreground="{ThemeResource HomePageHeaderForeground}"
                                        Style="{StaticResource TitleLargeTextBlockStyle}"
                                        Text="{TemplateBinding HeaderText}"
                                        Visibility="{Binding HeaderText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
