@@ -1,4 +1,4 @@
-name: GitHub Release Publisher
+﻿name: GitHub Release Publisher
 
 on:
   workflow_dispatch:
@@ -55,6 +55,7 @@ jobs:
        dotnet-version: | 
          8.x.x
          9.x.x
+         10.x.x
 
     # Add CommunityToolkit Labs and Main nuget sources
     - run: |
