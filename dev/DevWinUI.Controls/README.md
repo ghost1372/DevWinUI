@@ -1,27 +1,25 @@
-﻿<p align="center">
-    <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2022-red"/> 
-    <a href="https://www.nuget.org/profiles/DevWinUI">
-        <img alt="DevWinUI Nugets" src="https://img.shields.io/badge/DevWinUI-Nugets-green"></img>
-    </a> 
-    <a href="https://www.nuget.org/packages/DevWinUI.Controls">
-        <img alt="nuget-version" src="https://img.shields.io/nuget/v/DevWinUI.Controls.svg"></img>
-    </a> 
-    <a href="https://www.nuget.org/packages/DevWinUI.Controls">
-        <img alt="Installed" src="https://img.shields.io/nuget/dt/DevWinUI.Controls?color=brightgreen&label=Installs"></img>
-    </a> 
-    <a href="https://ghost1372.github.io/devWinUI/">
-        <img alt="Docs" src="https://img.shields.io/badge/Document-Here-critical"></img>
-    </a> 
-</p>
+﻿<h3 align="center">
+  <a href="https://ghost1372.github.io">Documentation</a>
+  <span> · </span>
+  <a href="https://ghost1372.github.io/ReleaseNotes">Release notes</a>
+  <span> · </span>
+  <a href="https://github.com/ghost1372/DevWinUI/tree/main/dev/DevWinUI.Gallery">Samples</a>
+  <span> · </span>
+  <a href="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true
+	&mode=mini">Gallery App (Store)</a>
+</h3>
 
-<br>
-<p align="center">
-	<b>🙌 Donate Bitcoin with <a href="https://link.trustwallet.com/send?coin=0&address=bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a">Trust</a>🙌</b><br>
-	<b>🙌 Donate ETH with <a href="https://link.trustwallet.com/send?coin=60&address=0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C">Trust</a>🙌</b><br><br>
-	<b>🙌 Bitcoin: bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a<br></b>
-	<b>🙌 ETH: 0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C</b>
-</p>
-<br>
+<center>
+
+<div align="center">
+	
+|Packages|Download/Installation|Documentation|
+|:---|:---|:---:|
+|[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.Controls?label=DevWinUI.Controls)](https://www.nuget.org/packages/DevWinUI.Controls)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.Controls?label=DevWinUI.Controls)](https://www.nuget.org/packages/DevWinUI.Controls)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIControls/)|
+
+</div>
+
+---
 
 # DevWinUI.Controls
  
@@ -45,6 +43,6 @@ See the [Gallery](https://github.com/Ghost1372/DevWinUI) app to see how to use i
 
 ## Documentation
 
-See Here for Online [Documentation](https://ghost1372.github.io/devWinUI/)
+See Here for Online [Documentation](https://ghost1372.github.io/DevWinUIControls/)
 
 ![GalleryApp](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)

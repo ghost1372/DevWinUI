@@ -48,24 +48,15 @@ A detailed list can be found in the [ThirdPartyNotices.txt](ThirdPartyNotices.tx
 
 ---
 
-# 🚀 DevWinUI 🚀
-Your ultimate toolkit for building WinUI 3 applications effortlessly. Whether you're a seasoned developer or taking your first steps into app development, DevWinUI has everything you need to bring your ideas to life! 🎉
+# 🚀 DevWinUI 🚀 Your All-in-One Toolkit for Effortless WinUI 3 Development
+Whether you're an experienced developer or just starting your journey in app creation, DevWinUI provides everything you need to turn your ideas into reality. 🎉
 
-DevWinUI empowers you with a robust collection of tools, including custom classes, controls, styles, and utilities tailored for WinUI 3, the modern UI framework for Windows 10 and beyond.
+DevWinUI equips you with a powerful suite of tools — including custom controls, classes, styles, and utilities — all purpose-built for WinUI 3, the cutting-edge UI framework for Windows 10, Windows 11, and beyond.
 
-## Why Choose DevWinUI?
-### 🚀 Get Started Quickly:
-Kickstart your project in under a minute with built-in templates and scaffolding tools.
-### 🎨 Tailor Your App’s Look:
-Customize themes effortlessly — from classic light and dark modes to vibrant rainbow palettes.
-### 🧩 Elevate Your UI:
-Add flair with custom controls designed to enhance user experience.
-### ✨ Unlock Stunning Visuals:
-Use Win2D, a DirectX-based graphics library, to create mesmerizing effects like particle systems, gooey animations, watermarks, and more.
-### 🔧 Simplify Development:
-Streamline common tasks like navigation, theme management, and app updates with helper classes and extensions.
+Get your project up and running in under a minute using built-in templates and scaffolding tools. Simplify everyday development tasks like navigation, theme management, and app updates with ready-to-use helper classes and extensions.
 
-DevWinUI is your gateway to creating visually stunning, user-friendly, and feature-rich apps on WinUI 3. Let's build something amazing together! 🚀
+With DevWinUI, you can build beautiful, intuitive, and high-performance WinUI 3 applications faster than ever.
+Let’s create something extraordinary together! 🚀
 
 ### 📚 Explore Our Documentation! 📚
 > [!TIP]
@@ -83,16 +74,6 @@ DevWinUI is your gateway to creating visually stunning, user-friendly, and featu
 	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
 </a>
 
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)
-
-### ⚙️ Build & Contribute
-
-To compile the project, contribute new features, or explore guidelines:
-
-👉 Please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions.
-
-### ⚠️ Gallery App Nightly Build
-
 **nightly build** of the Gallery App generated automatically by GitHub Actions.
 
 **This build may contain experimental features or untested changes.**
@@ -101,9 +82,14 @@ If you would like to test the nightly build:
 1. Visit the [GitHub Actions page](https://github.com/ghost1372/DevWinUI/actions).
 2. Download the zipped Gallery App from the latest successful workflow run. (`artifacts-[platform].zip`)
 
-### 🧑‍💻 Contributing 🧑‍💻
-Found a bug? Want to contribute? We’d love your input!
-Happy coding! 🖥️💡
+
+![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)
+
+### ⚙️ Build & Contribute
+
+To compile the project, contribute new features, or explore guidelines:
+
+👉 Please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions.
 
 ### Feedback and Issues
 If you encounter any issues or have feedback, please report them [here](https://github.com/ghost1372/DevWinUI/issues). Your input helps improve the app!
@@ -118,7 +104,6 @@ If you encounter any issues or have feedback, please report them [here](https://
  - ✨ AncestorBindingExtension
  - ✨ AnimationExtensions
  - ✨ CompositionAnimationController
- - ✨ FilePicker, SavePicker and FolderPicker which is working in Elevated, Packaged, UnPackaged and AOT apps.
  - ✨ ModernSystemMenu
  - ✨ RelativeDate
  - ✨ DragMoveAndResize
@@ -142,9 +127,6 @@ If you encounter any issues or have feedback, please report them [here](https://
 ```
 Install-Package DevWinUI
 ```
-
-> [!WARNING]
->  For more info See the [DevWinUI](dev/DevWinUI/README.md) and [Docs](https://Ghost1372.github.io/DevWinUI/)
 
 ---
 
@@ -291,8 +273,6 @@ After installing, add the following resource to app.xaml
 <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/Generic.xaml" />
 ```
 
-> [!WARNING]
->  For more info See the [DevWinUI.Controls](dev/DevWinUI.Controls/README.md) and [Docs](https://Ghost1372.github.io/DevWinUIControls/) 
 ---
 ## 🔥 ContextMenu 🔥
 Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps which supports Package Identity. this means you can use it in WPF or WinForm with MSIX Packaging.
@@ -302,9 +282,6 @@ Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps 
 Install-Package DevWinUI.ContextMenu
 ```
 
-> [!WARNING]
->  For more info See the [DevWinUI.ContextMenu](dev/DevWinUI.ContextMenu/README.md) and [Docs](https://Ghost1372.github.io/DevWinUIContextMenu/)
-
 ---
 
 ## 🥷 Project Templates 🥷
@@ -313,9 +290,7 @@ Install-Package DevWinUI.ContextMenu
 > 🔥 Create a new project easily with your custom options, you can use our project templates and wizard! 
 > Download and install our VSIX extension from [Marketplace](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)
 
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Templates/Demo.png)
-
-![DevWinUITemplates](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Templates/1.png)
+![DevWinUITemplates](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Templates/TemplateDemo.jpg)
 
 ---
 
@@ -532,9 +507,6 @@ Install-Package DevWinUI.ContextMenu
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AccentDropDownButtonStyle.png)
 
 ![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ScrollButtonStyle.png)
-
-### Picker (Elevated/AOT/Packaged/UnPackaged Support)
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Picker.png)
 
 ### DragMoveAndResize
 ![DevWinUI](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DragMoveAndResize.gif)
