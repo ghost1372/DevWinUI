@@ -11,7 +11,7 @@ public static class WizardConfig
     public static Dictionary<string, string> CSProjectElements = new Dictionary<string, string>();
     public static Dictionary<string, string> UnvirtualizedResources = new Dictionary<string, string>();
 
-    public static string DotNetVersion = "net9.0";
+    public static string DotNetVersion = "net10.0";
     public static string TargetFrameworkVersion = "26100";
     public static string MinimumTargetPlatform = "17763";
     public static string Platforms = "x86;x64;ARM64";

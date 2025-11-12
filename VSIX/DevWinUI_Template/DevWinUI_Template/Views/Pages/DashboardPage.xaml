@@ -23,12 +23,12 @@
                       SelectedIndex="0"
                       SelectionChanged="cmbNetVersion_SelectionChanged"
                       ToolTip="Choose .Net Version">
-                <ComboBoxItem Content=".Net 9.0 (Recommended)"
+                <ComboBoxItem Content=".Net 10.0 (Recommended)"
+                              Tag="net10.0"
+                              ToolTip=".Net 10.0 will be used." />
+                <ComboBoxItem Content=".Net 9.0"
                               Tag="net9.0"
                               ToolTip=".Net 9.0 will be used." />
-                <ComboBoxItem Content=".Net 8.0"
-                              Tag="net8.0"
-                              ToolTip=".Net 8.0 will be used." />
             </ComboBox>
             <ComboBox x:Name="cmbTargetFrameworkVersion"
                       MinWidth="250"
