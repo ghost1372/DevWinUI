@@ -719,7 +719,7 @@
                                         <Setter Target="Backplate.Background" Value="{ThemeResource RailNavigationViewItemBackgroundPointerOver}" />
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundPointerOver}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundPointerOver}" />
-                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PointerOverOff" />
+                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PointerOver" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
@@ -727,7 +727,7 @@
                                         <Setter Target="Backplate.Background" Value="{ThemeResource RailNavigationViewItemBackgroundPressed}" />
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundPressed}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundPressed}" />
-                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PressedOff" />
+                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="Pressed" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
@@ -736,7 +736,6 @@
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelected}" />
                                         <!--  Store: Customized  -->
                                         <!--<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelected}" />-->
-                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="NormalOn" />
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewSelectionIndicatorForeground}" />
                                         <Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
                                         <Setter Target="UnselectedIconBox.Opacity" Value="0" />
@@ -749,7 +748,7 @@
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelectedPointerOver}" />
                                         <!--  Store: Customized  -->
                                         <!--<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelectedPointerOver}" />-->
-                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PointerOverOn" />
+                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PointerOver" />
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewSelectionIndicatorForeground}" />
                                         <Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
                                         <Setter Target="UnselectedIconBox.Opacity" Value="0" />
@@ -762,7 +761,7 @@
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelectedPressed}" />
                                         <!--  Store: Customized  -->
                                         <!--<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource RailNavigationViewItemForegroundSelectedPressed}" />-->
-                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="PressedOn" />
+                                        <Setter Target="Icon.(AnimatedIcon.State)" Value="Pressed" />
                                         <Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewSelectionIndicatorForeground}" />
                                         <Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
                                         <Setter Target="UnselectedIconBox.Opacity" Value="0" />
@@ -860,7 +859,7 @@
                                                   HorizontalContentAlignment="Stretch"
                                                   VerticalContentAlignment="Stretch"
                                                   local:ImplicitOffsetAnimationHelper.EnableOffsetAnimation="True"
-                                                  AnimatedIcon.State="NormalOff"
+                                                  AnimatedIcon.State="Normal"
                                                   Content="{TemplateBinding Icon}"
                                                   Foreground="{ThemeResource RailNavigationIconForegroundBrush}" />
                                 <!--</Border>-->
