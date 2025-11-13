@@ -33,6 +33,7 @@ Ensure that you have following installed:
 
 - .NET **8.x**
 - .NET **9.x**
+- .Net **10.x**
 - Windows 10 SDK (10.0.19041)
 
 ### 3. 📂 Solution Format (SLNX)
