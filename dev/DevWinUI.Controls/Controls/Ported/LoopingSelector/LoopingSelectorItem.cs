@@ -11,6 +11,10 @@ public partial class LoopingSelectorItem : DependencyObject
     public static DependencyProperty PrimaryTextProperty { get; } =
         DependencyProperty.Register(nameof(PrimaryText), typeof(string), typeof(LoopingSelectorItem), new PropertyMetadata("default"));
 
+    public LoopingSelectorItem()
+    {
+        
+    }
     public override string ToString()
     {
         return PrimaryText;
