@@ -71,7 +71,7 @@
 
                         <ItemsControl x:Name="KeysItemsControl"
                                       Grid.Row="1"
-                                      Margin="0,64,0,0"
+                                      Margin="{TemplateBinding KeysMargin}"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Top"
                                       HorizontalContentAlignment="Center"

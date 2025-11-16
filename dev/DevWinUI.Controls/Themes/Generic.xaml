@@ -2640,13 +2640,13 @@ Themes\Styles\Win2D\Watermark.xaml
           <Grid MinHeight="{TemplateBinding MinHeight}">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
-              <RowDefinition MinHeight="110" />
+              <RowDefinition />
               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <!--  Fix InfoBar Cut off Right Edges  -->
             <Border x:Name="PART_Border" />
             <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" />
-            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="0,64,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
+            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <StackPanel Orientation="Horizontal" Spacing="8" />
@@ -8350,10 +8350,10 @@ Themes\Styles\Win2D\Watermark.xaml
                 <ContentPresenter Content="{TemplateBinding Source}" />
               </Grid>
             </ScrollViewer>
-            <Button x:Name="PART_ScrollBackBtn" Width="16" Height="38" Margin="8,-16,0,0" AutomationProperties.Name="{TemplateBinding ScrollBackButtonToolTipText}" BorderThickness="0" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollBackButtonToolTipText}" Visibility="Collapsed">
+            <Button x:Name="PART_ScrollBackBtn" Width="16" Height="38" Margin="8,-16,0,0" AutomationProperties.Name="{TemplateBinding ScrollBackButtonToolTipText}" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollBackButtonToolTipText}" Visibility="Collapsed">
               <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
             </Button>
-            <Button x:Name="PART_ScrollForwardBtn" Width="16" Height="38" Margin="0,-16,8,0" HorizontalAlignment="Right" AutomationProperties.Name="{TemplateBinding ScrollForwardButtonToolTipText}" BorderThickness="0" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollForwardButtonToolTipText}">
+            <Button x:Name="PART_ScrollForwardBtn" Width="16" Height="38" Margin="0,-16,8,0" HorizontalAlignment="Right" AutomationProperties.Name="{TemplateBinding ScrollForwardButtonToolTipText}" Style="{StaticResource ScrollButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ScrollForwardButtonToolTipText}">
               <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
             </Button>
           </Grid>

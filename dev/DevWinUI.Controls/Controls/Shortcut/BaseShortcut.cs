@@ -1,6 +1,15 @@
 ﻿namespace DevWinUI;
 public partial class BaseShortcut : Control
 {
+    public Thickness KeysMargin
+    {
+        get { return (Thickness)GetValue(KeysMarginProperty); }
+        set { SetValue(KeysMarginProperty, value); }
+    }
+
+    public static readonly DependencyProperty KeysMarginProperty =
+        DependencyProperty.Register(nameof(KeysMargin), typeof(Thickness), typeof(BaseShortcut), new PropertyMetadata(new Thickness(0, 64, 0, 0), OnPropertyChanged));
+
     public string Title
     {
         get { return (string)GetValue(TitleProperty); }
