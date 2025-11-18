@@ -123,7 +123,7 @@
             <local:ControlExample DocPage="controls/haloTimePicker"
                                   HeaderText="HaloTimePicker"
                                   XamlSource="Features/Halo/HaloPage_HaloTimePicker_xaml.txt">
-                <dev:HaloPanel Width="150"
+                <dev:HaloPanel Width="220"
                                Height="250"
                                Margin="5">
                     <dev:HaloTimePicker />
