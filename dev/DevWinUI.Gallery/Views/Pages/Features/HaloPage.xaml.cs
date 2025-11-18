@@ -6,4 +6,9 @@ public sealed partial class HaloPage : Page
     {
         InitializeComponent();
     }
+
+    private void HaloTimePicker_TimeChanged(object sender, EventArgs e)
+    {
+        TxtTime.Text = ((HaloTimePicker)sender).Time.ToString(@"hh\:mm");
+    }
 }

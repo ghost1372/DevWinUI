@@ -123,11 +123,16 @@
             <local:ControlExample DocPage="controls/haloTimePicker"
                                   HeaderText="HaloTimePicker"
                                   XamlSource="Features/Halo/HaloPage_HaloTimePicker_xaml.txt">
-                <dev:HaloPanel Width="220"
-                               Height="250"
-                               Margin="5">
-                    <dev:HaloTimePicker />
-                </dev:HaloPanel>
+                <StackPanel Spacing="10">
+                    <dev:HaloPanel Width="220"
+                                   Height="250"
+                                   Margin="5">
+                        <dev:HaloTimePicker TimeChanged="HaloTimePicker_TimeChanged" />
+                    </dev:HaloPanel>
+                    <TextBlock x:Name="TxtTime"
+                               HorizontalAlignment="Center"
+                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                </StackPanel>
             </local:ControlExample>
             <local:ControlExample DocPage="controls/haloSlider"
                                   HeaderText="HaloSlider"
