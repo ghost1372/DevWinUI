@@ -1,8 +1,8 @@
-﻿//https://github.com/benthorner/radial_controls
+﻿using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
-public partial class HaloRingLabel : HaloRingCluster
+public partial class HaloRingLabel : HaloChain
 {
     public string Text
     {
@@ -10,79 +10,84 @@ public partial class HaloRingLabel : HaloRingCluster
         set { SetValue(TextProperty, value); }
     }
     public static readonly DependencyProperty TextProperty =
-        DependencyProperty.Register(nameof(Text), typeof(string), typeof(HaloRingLabel), new PropertyMetadata("", QueueSplitText));
+        DependencyProperty.Register(nameof(Text), typeof(string), typeof(HaloRingLabel), new PropertyMetadata("", RefreshText));
 
-    public double Offset
+    public bool Flip
     {
-        get { return (double)GetValue(OffsetProperty); }
-        set { SetValue(OffsetProperty, value); }
+        get { return (bool)GetValue(FlipProperty); }
+        set { SetValue(FlipProperty, value); }
     }
-    public static readonly DependencyProperty OffsetProperty =
-        DependencyProperty.Register(nameof(Offset), typeof(double), typeof(HaloRingLabel), new PropertyMetadata(0.5));
+    public static readonly DependencyProperty FlipProperty =
+        DependencyProperty.Register(nameof(Flip), typeof(bool), typeof(HaloRingLabel), new PropertyMetadata(false, RefreshFlip));
 
-    protected override Size ArrangeOverride(Size finalSize)
+    public double FontSize
     {
-        base.ArrangeOverride(finalSize);
+        get => (double)GetValue(FontSizeProperty);
+        set => SetValue(FontSizeProperty, value);
+    }
+    public static readonly DependencyProperty FontSizeProperty =
+        DependencyProperty.Register(nameof(FontSize), typeof(double), typeof(HaloRingLabel), new PropertyMetadata(16.0));
 
-        var children = Children.OfType<TextBlock>();
-        var offset = AlignmentFactor(children);
-
-        var parent = Parent as HaloRing;
-
-        for (var i = 0; i < children.Count(); i++)
+    public HaloRingLabel()
+    {
+        BindingOperations.SetBinding(this, Halo.ThicknessProperty, new Binding
         {
-            var slat = children.ElementAt(i);
-
-            if (i > 0)
-            {
-                offset += ArcAngle(slat) / 2;
-            }
-
-            slat.SetValue(HaloRing.AngleProperty, offset);
-
-            offset += ArcAngle(slat) / 2;
-        }
-
-        return new Size(0, 0);
+            Source = this, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+        });
     }
 
-    private static void QueueSplitText(object o, DependencyPropertyChangedEventArgs e)
+    private static void RefreshFlip(object o, DependencyPropertyChangedEventArgs e)
     {
-        var label = o as HaloRingLabel;
+        var label = (HaloRingLabel)o;
+
+        if (label.Flip)
+        {
+            label.Offset = 180;
+            label.FlowDirection = FlowDirection.RightToLeft;
+        }
+        else
+        {
+            label.Offset = 0;
+            label.FlowDirection = FlowDirection.LeftToRight;
+        }
+    }
+
+    private static void RefreshText(object o, DependencyPropertyChangedEventArgs e)
+    {
+        var label = (HaloRingLabel)o;
 
         label.Children.Clear();
 
-        foreach (var slat in (string)e.NewValue)
+        foreach (var letter in label.Text)
         {
-            label.Children.Add(new TextBlock
+            if (letter == ' ')
             {
-                Text = slat.ToString(),
-                FontSize = 30
-            });
+                label.Children.Add(MakeSpace(label));
+            }
+            else
+            {
+                label.Children.Add(new TextBlock
+                {
+                    Text = letter.ToString()
+                });
+            }
         }
     }
 
-    private double AlignmentFactor(IEnumerable<TextBlock> children)
+    private static UIElement MakeSpace(HaloRingLabel label)
     {
-        if (children.Count() == 0) return 0.0;
+        var space = new Rectangle();
 
-        double offset = children.Sum(
-            (slat) => ArcAngle(slat)
-        );
+        BindingOperations.SetBinding(space, FrameworkElement.WidthProperty, new Binding
+        {
+            Source = label, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+        });
 
-        offset -= ArcAngle(children.First()) / 2;
-        offset -= ArcAngle(children.Last()) / 2;
+        BindingOperations.SetBinding(space, FrameworkElement.HeightProperty, new Binding
+        {
+            Source = label, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+        });
 
-        return -(offset * Offset);
-    }
-
-    private double ArcAngle(TextBlock element)
-    {
-        var parent = Parent as HaloRing;
-        if (parent == null) return 0.0;
-
-        var length = Math.Min(parent.DesiredSize.Width, parent.DesiredSize.Height);
-        
-        return Math.Atan2(element.ActualWidth / 2, Math.Abs(length) / 2) * 360 / Math.PI;
+        return space;
     }
 }
