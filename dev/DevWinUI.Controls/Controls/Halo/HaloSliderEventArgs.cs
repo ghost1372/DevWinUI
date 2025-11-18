@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//https://github.com/benthorner/radial_controls
+
+namespace DevWinUI;
 
 public sealed class HaloSliderEventArgs
 {
