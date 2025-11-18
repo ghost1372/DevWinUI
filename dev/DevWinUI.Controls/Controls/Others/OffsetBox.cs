@@ -82,22 +82,31 @@ public partial class OffsetBox : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _visual = ElementCompositionPreview.GetElementVisual(this);
 
-        _compositor = _visual.Compositor;
-
-        if (Content is UIElement element && ShowShadowOnHover)
+        if (Content is UIElement element)
         {
-            element.Shadow = new ThemeShadow();
+            _visual = ElementCompositionPreview.GetElementVisual(element);
+            _compositor = _visual.Compositor;
+
+            if (ShowShadowOnHover)
+            {
+                element.Shadow = new ThemeShadow();
+            }
         }
     }
 
     protected override void OnContentChanged(object oldContent, object newContent)
     {
         base.OnContentChanged(oldContent, newContent);
-        if (Content is UIElement element && ShowShadowOnHover)
+        if (Content is UIElement element)
         {
-            element.Shadow = new ThemeShadow();
+            _visual = ElementCompositionPreview.GetElementVisual(element);
+            _compositor = _visual.Compositor;
+
+            if (ShowShadowOnHover)
+            {
+                element.Shadow = new ThemeShadow();
+            }
         }
     }
 
