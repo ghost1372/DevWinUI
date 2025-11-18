@@ -131,7 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
-- ✨ Halo (HaloArc, HaloChain, HaloDisk, HaloRing, HaloSlice, HaloSlider, HaloRingLabel)
+- ✨ Halo (HaloArc, HaloChain, HaloDisk, HaloRing, HaloSlice, HaloSlider, HaloRingLabel, HaloTimePicker)
 - ✨ OffsetBox
 - ✨ InfoCard
 - ✨ GoToCard
