@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.OffsetBoxPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/offsetBox"
+                                  HeaderText="OffsetBox">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:OffsetBox&gt;#nl#
+                        &lt;Button Content="Hello"/&gt;#nl#
+                        &lt;/dev:OffsetBox&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <ToggleSwitch x:Name="TgShadow"
+                                  Header="Show Shadow on Hover"
+                                  IsOn="True" />
+                </local:ControlExample.Pane>
+                <dev:OffsetBox HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               ShowShadowOnHover="{x:Bind TgShadow.IsOn, Mode=OneWay}">
+                    <Button MinWidth="200"
+                            Content="Hover Me!" />
+                </dev:OffsetBox>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
