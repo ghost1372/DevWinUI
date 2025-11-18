@@ -1,9 +1,9 @@
 ﻿<dev:Halo Height="150"
             Margin="5">
-    <dev:HaloRingLabel dev:Halo.Band="1"
+    <dev:HaloRingLabel dev:HaloPanel.Band="1"
                         FontSize="30"
                         Text="DevWinUI" />
-    <dev:HaloRingLabel dev:Halo.Band="1"
+    <dev:HaloRingLabel dev:HaloPanel.Band="1"
                         Flip="True"
                         FontSize="25"
                         Text="DevWinUI" />

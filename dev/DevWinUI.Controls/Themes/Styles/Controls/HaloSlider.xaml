@@ -7,7 +7,7 @@
 
     <Style x:Key="DefaultHaloSliderStyle" TargetType="local:HaloSlider">
         <Setter Property="Background" Value="AliceBlue" />
-        <Setter Property="local:Halo.Thickness" Value="50" />
+        <Setter Property="local:HaloPanel.Thickness" Value="50" />
         <Setter Property="Thumb">
             <Setter.Value>
                 <ControlTemplate>
@@ -22,8 +22,8 @@
                 <ControlTemplate TargetType="local:HaloSlider">
                     <local:HaloRingPanel>
                         <Grid local:HaloRingPanel.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRingPanel.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                            <ContentControl Width="{TemplateBinding local:Halo.Thickness}"
-                                            Height="{TemplateBinding local:Halo.Thickness}"
+                            <ContentControl Width="{TemplateBinding local:HaloPanel.Thickness}"
+                                            Height="{TemplateBinding local:HaloPanel.Thickness}"
                                             Background="{TemplateBinding Background}"
                                             Template="{TemplateBinding Thumb}" />
                         </Grid>
