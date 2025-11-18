@@ -35,6 +35,8 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ExtensionPage", typeof(DevWinUIGallery.Views.ExtensionPage)},
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
+        {"DevWinUIGallery.Views.HaloPage", typeof(DevWinUIGallery.Views.HaloPage)},
+        {"DevWinUIGallery.Views.OffsetBoxPage", typeof(DevWinUIGallery.Views.OffsetBoxPage)},
         {"DevWinUIGallery.Views.GoToCardPage", typeof(DevWinUIGallery.Views.GoToCardPage)},
         {"DevWinUIGallery.Views.LoopingListPage", typeof(DevWinUIGallery.Views.LoopingListPage)},
         {"DevWinUIGallery.Views.LoopingSelectorPage", typeof(DevWinUIGallery.Views.LoopingSelectorPage)},

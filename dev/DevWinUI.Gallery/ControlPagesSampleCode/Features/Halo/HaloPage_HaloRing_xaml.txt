@@ -1,0 +1,19 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloRing>
+        <Ellipse Width="30"
+                    Height="30"
+                    Fill="{ThemeResource SystemAccentColor}" />
+        <Ellipse Width="30"
+                    Height="30"
+                    dev:HaloRing.Angle="90"
+                    Fill="{ThemeResource SystemAccentColor}" />
+        <Ellipse Width="30"
+                    Height="30"
+                    dev:HaloRing.Angle="180"
+                    Fill="{ThemeResource SystemAccentColor}" />
+        <Ellipse Width="30"
+                    Height="30"
+                    dev:HaloRing.Angle="270"
+                    Fill="{ThemeResource SystemAccentColor}" />
+    </dev:HaloRing>
+</dev:Halo>

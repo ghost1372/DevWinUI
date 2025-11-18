@@ -1,0 +1,9 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloSlice Fill="White"
+                    Spread="180"
+                    Offset="90" />
+    <dev:HaloSlice Angle="180"
+                    Fill="Black"
+                    Spread="180"
+                    Offset="90" />
+</dev:Halo>

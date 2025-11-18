@@ -1,0 +1,13 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloSlider Angle="{x:Bind SldAngle.Value, Mode=OneWay}">
+        <dev:HaloSlider.Thumb>
+            <ControlTemplate>
+                <Rectangle Width="30"
+                            Height="30"
+                            Fill="{ThemeResource SystemAccentColor}"
+                            RadiusX="4"
+                            RadiusY="4" />
+            </ControlTemplate>
+        </dev:HaloSlider.Thumb>
+    </dev:HaloSlider>
+</dev:Halo>

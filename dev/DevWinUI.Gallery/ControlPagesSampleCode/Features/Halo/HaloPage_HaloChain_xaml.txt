@@ -1,0 +1,21 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloChain Spacing="10"
+                    Tension="0.5">
+        <TextBlock FontSize="30"
+                    Text="D" />
+        <TextBlock FontSize="30"
+                    Text="E" />
+        <TextBlock FontSize="30"
+                    Text="V" />
+        <TextBlock FontSize="30"
+                    Text="W" />
+        <TextBlock FontSize="30"
+                    Text="I" />
+        <TextBlock FontSize="30"
+                    Text="N" />
+        <TextBlock FontSize="30"
+                    Text="U" />
+        <TextBlock FontSize="30"
+                    Text="I" />
+    </dev:HaloChain>
+</dev:Halo>

@@ -56,6 +56,7 @@
     Themes\Styles\Controls\GoToTop.xaml
     Themes\Styles\Controls\Gravatar.xaml
     Themes\Styles\Controls\Growl.xaml
+    Themes\Styles\Controls\HaloSlider.xaml
     Themes\Styles\Controls\HeaderCarousel.xaml
     Themes\Styles\Controls\HeaderCarouselItem.xaml
     Themes\Styles\Controls\HeaderTile.xaml
@@ -1785,6 +1786,33 @@
         </Setter>
     </Style>
     <x:Double x:Key="GrowlWidth">340</x:Double>
+    <Style x:Key="DefaultHaloSliderStyle" TargetType="local:HaloSlider">
+        <Setter Property="Background" Value="AliceBlue" />
+        <Setter Property="local:Halo.Thickness" Value="50" />
+        <Setter Property="Thumb">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Ellipse Width="{TemplateBinding Width}"
+                             Height="{TemplateBinding Height}"
+                             Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HaloSlider">
+                    <local:HaloRing>
+                        <Grid local:HaloRing.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRing.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ContentControl Width="{TemplateBinding local:Halo.Thickness}"
+                                            Height="{TemplateBinding local:Halo.Thickness}"
+                                            Background="{TemplateBinding Background}"
+                                            Template="{TemplateBinding Thumb}" />
+                        </Grid>
+                    </local:HaloRing>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="local:HeaderCarousel">
         <Setter Property="ItemsPanel">
             <Setter.Value>
@@ -3225,7 +3253,7 @@
                     <Grid MinHeight="{TemplateBinding MinHeight}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition />
+                            <RowDefinition MinHeight="110" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <!--  Fix InfoBar Cut off Right Edges  -->
@@ -10383,6 +10411,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="local:HaloSlider" BasedOn="{StaticResource DefaultHaloSliderStyle}" />
     <Style TargetType="local:HeaderCarouselItem" BasedOn="{StaticResource DefaultCarouselItemStyle}" />
     <Style x:Key="DefaultHeaderTileStyle" TargetType="local:HeaderTile">
         <Setter Property="Width" Value="232" />

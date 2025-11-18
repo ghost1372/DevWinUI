@@ -131,6 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Halo (HaloArc, HaloChain, HaloDisk, HaloRing, HaloSlice, HaloSlider, HaloRingLabel)
 - ✨ OffsetBox
 - ✨ InfoCard
 - ✨ GoToCard
@@ -295,17 +296,20 @@ Install-Package DevWinUI.ContextMenu
 
 ## 🕰️ History 🕰️
 
+### Halo
+![Halo](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Halo.gif)
+
 ### OffsetBox
-![OffsetBox](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OffsetBox.png )
+![OffsetBox](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OffsetBox.gif)
 
 ### InfoCard
-![InfoCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/InfoCard.png )
+![InfoCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/InfoCard.png)
 
 ### GoToCard
-![GoToCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GoToCard.png )
+![GoToCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GoToCard.png)
 
 ### TabViewItem Rounded Style
-![TabViewItem Rounded Style](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TabViewItemRoundedStyle.png )
+![TabViewItem Rounded Style](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TabViewItemRoundedStyle.png)
 
 ### LoopingList
 ![LoopingList](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoopingList.gif)

@@ -1,0 +1,11 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloArc Spread="180"
+                    Stroke="White"
+                    StrokeThickness="30"
+                    Tension="0.5" />
+    <dev:HaloArc Angle="180"
+                    Spread="180"
+                    Stroke="Black"
+                    StrokeThickness="30"
+                    Tension="0.5" />
+</dev:Halo>

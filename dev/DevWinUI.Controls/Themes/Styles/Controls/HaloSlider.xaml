@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:HaloSlider" BasedOn="{StaticResource DefaultHaloSliderStyle}" />
+
+    <Style x:Key="DefaultHaloSliderStyle" TargetType="local:HaloSlider">
+        <Setter Property="Background" Value="AliceBlue" />
+        <Setter Property="local:Halo.Thickness" Value="50" />
+        <Setter Property="Thumb">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Ellipse Width="{TemplateBinding Width}"
+                             Height="{TemplateBinding Height}"
+                             Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HaloSlider">
+                    <local:HaloRing>
+                        <Grid local:HaloRing.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRing.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ContentControl Width="{TemplateBinding local:Halo.Thickness}"
+                                            Height="{TemplateBinding local:Halo.Thickness}"
+                                            Background="{TemplateBinding Background}"
+                                            Template="{TemplateBinding Thumb}" />
+                        </Grid>
+                    </local:HaloRing>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

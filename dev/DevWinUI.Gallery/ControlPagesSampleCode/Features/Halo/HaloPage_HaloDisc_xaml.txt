@@ -1,0 +1,10 @@
+﻿<dev:Halo Margin="5">
+    <dev:HaloDisc dev:Halo.Band="2"
+                    dev:Halo.Thickness="10"
+                    Fill="White" />
+    <dev:HaloDisc dev:Halo.Band="1"
+                    dev:Halo.Thickness="20"
+                    Fill="Black" />
+    <dev:HaloDisc dev:Halo.Thickness="10"
+                    Fill="White" />
+</dev:Halo>
