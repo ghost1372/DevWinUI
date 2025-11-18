@@ -6,13 +6,14 @@
     <Style TargetType="local:HaloArcSlider" BasedOn="{StaticResource DefaultHaloArcSliderStyle}" />
 
     <Style x:Key="DefaultHaloArcSliderStyle" TargetType="local:HaloArcSlider">
+        <Setter Property="Background" Value="{ThemeResource CardStrokeColorDefaultSolidBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HaloArcSlider">
                     <local:HaloArc x:Name="Arc"
                                    Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    Spread="20"
-                                   Stroke="{ThemeResource CardStrokeColorDefaultSolidBrush}"
+                                   Stroke="{TemplateBinding Background}"
                                    StrokeEndLineCap="Round"
                                    StrokeStartLineCap="Round"
                                    StrokeThickness="30"

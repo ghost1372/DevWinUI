@@ -1,0 +1,4 @@
+﻿<dev:Halo Height="250" Width="150"
+            Margin="5">
+    <dev:HaloTimePicker />
+</dev:Halo>
