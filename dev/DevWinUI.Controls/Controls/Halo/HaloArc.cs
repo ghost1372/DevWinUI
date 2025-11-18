@@ -48,7 +48,7 @@ public partial class HaloArc : Microsoft.UI.Xaml.Shapes.Path
 
         Data = path;
 
-        BindingOperations.SetBinding(this, Halo.ThicknessProperty,
+        BindingOperations.SetBinding(this, HaloPanel.ThicknessProperty,
             new Binding
             {
                 Source = this, Mode = BindingMode.TwoWay,

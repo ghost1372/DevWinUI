@@ -20,14 +20,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HaloSlider">
-                    <local:HaloRing>
-                        <Grid local:HaloRing.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRing.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                    <local:HaloRingPanel>
+                        <Grid local:HaloRingPanel.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRingPanel.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ContentControl Width="{TemplateBinding local:Halo.Thickness}"
                                             Height="{TemplateBinding local:Halo.Thickness}"
                                             Background="{TemplateBinding Background}"
                                             Template="{TemplateBinding Thumb}" />
                         </Grid>
-                    </local:HaloRing>
+                    </local:HaloRingPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

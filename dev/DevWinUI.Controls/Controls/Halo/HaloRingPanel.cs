@@ -2,31 +2,31 @@
 
 namespace DevWinUI;
 
-public partial class HaloRing : Panel
+public partial class HaloRingPanel : Panel
 {
     public static void SetAngle(DependencyObject o, double value)
     {
-        o.SetValue(HaloRing.AngleProperty, value);
+        o.SetValue(HaloRingPanel.AngleProperty, value);
     }
 
     public static double GetAngle(DependencyObject o)
     {
-        return (double)o.GetValue(HaloRing.AngleProperty);
+        return (double)o.GetValue(HaloRingPanel.AngleProperty);
     }
     public static readonly DependencyProperty AngleProperty =
-        DependencyProperty.RegisterAttached("Angle", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
+        DependencyProperty.RegisterAttached("Angle", typeof(double), typeof(HaloRingPanel), new PropertyMetadata(0.0, Refresh));
 
     public static double GetOffset(DependencyObject o)
     {
-        return (double)o.GetValue(HaloRing.OffsetProperty);
+        return (double)o.GetValue(HaloRingPanel.OffsetProperty);
     }
 
     public static void SetOffset(DependencyObject o, double value)
     {
-        o.SetValue(HaloRing.OffsetProperty, value);
+        o.SetValue(HaloRingPanel.OffsetProperty, value);
     }
     public static readonly DependencyProperty OffsetProperty =
-        DependencyProperty.RegisterAttached("Offset", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
+        DependencyProperty.RegisterAttached("Offset", typeof(double), typeof(HaloRingPanel), new PropertyMetadata(0.0, Refresh));
 
     protected override Size MeasureOverride(Size availableSize)
     {
@@ -35,7 +35,7 @@ public partial class HaloRing : Panel
             child.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
         }
 
-        SetValue(Halo.ThicknessProperty, RingThickness());
+        SetValue(HaloPanel.ThicknessProperty, RingThickness());
 
         return RingSize(availableSize);
     }
@@ -113,7 +113,7 @@ public partial class HaloRing : Panel
         var element = o as FrameworkElement;
         if (element == null) return;
 
-        var parent = element.Parent as HaloRing;
+        var parent = element.Parent as HaloRingPanel;
         if (parent == null) return;
 
         parent.InvalidateMeasure();

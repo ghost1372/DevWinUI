@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public partial class Halo : Panel
+public partial class HaloPanel : Panel
 {
     public static double GetThickness(DependencyObject o)
     {
@@ -14,7 +14,7 @@ public partial class Halo : Panel
         o.SetValue(ThicknessProperty, value);
     }
     public static readonly DependencyProperty ThicknessProperty =
-        DependencyProperty.RegisterAttached("Thickness", typeof(double), typeof(Halo), new PropertyMetadata(0.0, Refresh));
+        DependencyProperty.RegisterAttached("Thickness", typeof(double), typeof(HaloPanel), new PropertyMetadata(0.0, Refresh));
 
     public static int GetBand(DependencyObject o)
     {
@@ -26,7 +26,7 @@ public partial class Halo : Panel
         o.SetValue(BandProperty, value);
     }
     public static readonly DependencyProperty BandProperty =
-        DependencyProperty.RegisterAttached("Band", typeof(int), typeof(Halo), new PropertyMetadata(0, Refresh));
+        DependencyProperty.RegisterAttached("Band", typeof(int), typeof(HaloPanel), new PropertyMetadata(0, Refresh));
 
     protected override Size MeasureOverride(Size availableSize)
     {
@@ -94,7 +94,7 @@ public partial class Halo : Panel
         var element = o as FrameworkElement;
         if (element == null) return;
 
-        var parent = element.Parent as Halo;
+        var parent = element.Parent as HaloPanel;
         if (parent == null) return;
 
         parent.InvalidateMeasure();

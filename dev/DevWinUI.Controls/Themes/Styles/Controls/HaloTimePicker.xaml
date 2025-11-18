@@ -18,17 +18,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HaloTimePicker">
-                    <local:Halo>
-                        <local:HaloDisc local:Halo.Band="{TemplateBinding MinutesBand}"
+                    <local:HaloPanel>
+                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding MinutesBand}"
                                         Fill="{TemplateBinding MinutesBrush}" />
                         <local:HaloArcSlider x:Name="PART_Minutes"
-                                             local:Halo.Band="{TemplateBinding MinutesBand}"
+                                             local:HaloPanel.Band="{TemplateBinding MinutesBand}"
                                              Background="{TemplateBinding MinutesArcBrush}" />
 
-                        <local:HaloDisc local:Halo.Band="{TemplateBinding HoursBand}"
+                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding HoursBand}"
                                         Fill="{TemplateBinding HoursBrush}" />
                         <local:HaloArcSlider x:Name="PART_Hours"
-                                             local:Halo.Band="{TemplateBinding HoursBand}"
+                                             local:HaloPanel.Band="{TemplateBinding HoursBand}"
                                              Background="{TemplateBinding HoursArcBrush}" />
 
                         <local:HaloDisc Fill="{TemplateBinding Background}" />
@@ -38,7 +38,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="{TemplateBinding FontSize}"
                                    FontWeight="{TemplateBinding FontWeight}" />
-                    </local:Halo>
+                    </local:HaloPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

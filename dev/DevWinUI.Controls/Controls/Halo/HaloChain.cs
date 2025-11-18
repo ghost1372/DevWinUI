@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public partial class HaloChain : HaloRing
+public partial class HaloChain : HaloRingPanel
 {
     public double Tension
     {
@@ -45,10 +45,10 @@ public partial class HaloChain : HaloRing
         foreach (var link in Children)
         {
             angle += EnterAngle(link, radius);
-            link.SetValue(HaloRing.AngleProperty, angle);
+            link.SetValue(HaloRingPanel.AngleProperty, angle);
 
             angle += ExitAngle(link, radius);
-            link.SetValue(HaloRing.OffsetProperty, Offset);
+            link.SetValue(HaloRingPanel.OffsetProperty, Offset);
         }
 
         return base.ArrangeOverride(new Size(radius * 2, radius * 2));
@@ -82,7 +82,7 @@ public partial class HaloChain : HaloRing
 
     private double HalfAngle(Size size, double radius)
     {
-        var thickness = (double)GetValue(Halo.ThicknessProperty);
+        var thickness = (double)GetValue(HaloPanel.ThicknessProperty);
 
         var width = new HaloVector(
             Math.Cos(Offset.ToRadians()) * size.Width,

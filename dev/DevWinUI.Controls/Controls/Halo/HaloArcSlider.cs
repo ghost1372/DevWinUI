@@ -16,6 +16,6 @@ public partial class HaloArcSlider : HaloSlider
 
         SlideStop += (sender, args) => VisualStateManager.GoToState(this, "Resting", false);
 
-        SetValue(Halo.ThicknessProperty, 30.0);
+        SetValue(HaloPanel.ThicknessProperty, 30.0);
     }
 }

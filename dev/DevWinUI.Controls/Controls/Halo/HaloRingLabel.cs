@@ -30,7 +30,7 @@ public partial class HaloRingLabel : HaloChain
 
     public HaloRingLabel()
     {
-        BindingOperations.SetBinding(this, Halo.ThicknessProperty, new Binding
+        BindingOperations.SetBinding(this, HaloPanel.ThicknessProperty, new Binding
         {
             Source = this, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
         });
