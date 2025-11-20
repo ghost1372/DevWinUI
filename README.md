@@ -131,6 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ColorShadow
 - ✨ Halo (HaloPanel, HaloArc, HaloChain, HaloDisk, HaloRingPanel, HaloSlice, HaloSlider, HaloRingLabel, HaloTimePicker)
 - ✨ OffsetBox
 - ✨ InfoCard
@@ -295,6 +296,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ColorShadow
+![ColorShadow](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorShadow.png)
 
 ### Halo
 ![Halo](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Halo.gif)
