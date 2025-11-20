@@ -647,7 +647,7 @@ public sealed partial class FluidBanner : Panel
     /// <returns>Task</returns>
     private async Task CreateSurfaceImagesAsync()
     {
-        if (_surfaceImagesCreated)
+        if (_surfaceImagesCreated || _bgLayer == null)
             return;
 
         var padding = Padding;

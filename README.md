@@ -131,6 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ FluidBanner
 - ✨ ColorShadow
 - ✨ Halo (HaloPanel, HaloArc, HaloChain, HaloDisk, HaloRingPanel, HaloSlice, HaloSlider, HaloRingLabel, HaloTimePicker)
 - ✨ OffsetBox
@@ -296,6 +297,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### FluidBanner
+![FluidBanner](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FluidBanner.gif)
 
 ### ColorShadow
 ![ColorShadow](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorShadow.png)
