@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:FrostedGlass" BasedOn="{StaticResource DefaultFrostedGlassStyle}" />
+
+    <Style x:Key="DefaultFrostedGlassStyle" TargetType="local:FrostedGlass">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FrostedGlass">
+                    <Grid x:Name="PART_RootGrid" Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
