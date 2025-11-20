@@ -172,6 +172,61 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ImageFramePage",
+          "Title": "Image Frame",
+          "Subtitle": "ImageFrame is a control that loads and displays images with optional rounded corners, shadows, and smooth transitions.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ProfileControlPage",
+          "Title": "ProfileControl",
+          "Subtitle": "ProfileControl is a circular profile image control with optional blur, border, and tint effects.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/PersonPicture.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FrostedGlassPage",
+          "Title": "Frosted Glass",
+          "Subtitle": "FrostedGlass is a control that creates a blurred, frosted‑glass background with configurable tint, blur, and shadow.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FluidBannerPage",
+          "Title": "Fluid Banner",
+          "Subtitle": "FluidBanner is a control that displays multiple images in a smooth, fluid banner.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/StackPanelHorizontal.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorShadowPage",
+          "Title": "Color Shadow",
+          "Subtitle": "ColorShadow is a control that draws an image along with a softly blurred, color-based shadow generated from the image itself.",
+          "IsNew": true,
+          "DataInfoBadge": {
+            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
+            "InfoBadgeValue": "New  "
+          },
+          "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
           "Title": "Halo",
           "Subtitle": "The Halo is a set of interconnected UI components for circular or arc-based interfaces.",
