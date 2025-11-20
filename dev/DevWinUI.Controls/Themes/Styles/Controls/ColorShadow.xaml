@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:ColorShadow" BasedOn="{StaticResource DefaultColorShadowStyle}" />
+
+    <Style x:Key="DefaultColorShadowStyle" TargetType="local:ColorShadow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ColorShadow">
+                    <Grid x:Name="LayoutRoot">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ContentStates">
+                                <VisualState x:Name="Initialized" />
+                                <VisualState x:Name="Loading">
+                                    <VisualState.Setters>
+                                        <Setter Target="LoadProgress.IsActive" Value="True" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Loaded" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="RenderGrid" />
+                        <ProgressRing x:Name="LoadProgress"
+                                      Width="50"
+                                      Height="50"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsActive="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
