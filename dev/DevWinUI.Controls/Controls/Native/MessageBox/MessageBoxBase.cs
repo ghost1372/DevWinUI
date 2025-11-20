@@ -1,8 +1,5 @@
 ﻿//https://github.com/SuGar0218/WindowedContentDialog
 
-using Microsoft.UI.Xaml.Input;
-using Windows.System;
-
 namespace DevWinUI;
 public abstract partial class MessageBoxBase
 {

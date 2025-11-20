@@ -39,4 +39,12 @@
   <ItemGroup>
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CompositionProToolkit\Win2d\Common\" />
+    <Folder Include="CompositionProToolkit\Win2d\Core\" />
+    <Folder Include="CompositionProToolkit\Win2d\Geometry\Brush\" />
+    <Folder Include="CompositionProToolkit\Win2d\Geometry\Path\" />
+    <Folder Include="CompositionProToolkit\Win2d\Geometry\Stroke\" />
+    <Folder Include="CompositionProToolkit\Win2d\Parsers\" />
+  </ItemGroup>
 </Project>
