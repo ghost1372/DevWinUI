@@ -171,15 +171,15 @@ public partial class ColorShadow : Control
     /// ImageUri Dependency Property
     /// </summary>
     public static readonly DependencyProperty ImageUriProperty =
-        DependencyProperty.Register(nameof(ImageUri), typeof(Uri), typeof(ColorShadow),
+        DependencyProperty.Register(nameof(ImageUri), typeof(object), typeof(ColorShadow),
             new PropertyMetadata(null, OnImageUriChanged));
 
     /// <summary>
     /// Gets or sets the Uri of the image to be displayed with its ColorShadow.
     /// </summary>
-    public Uri ImageUri
+    public object ImageUri
     {
-        get => (Uri)GetValue(ImageUriProperty);
+        get => (object)GetValue(ImageUriProperty);
         set => SetValue(ImageUriProperty, value);
     }
 
@@ -191,7 +191,19 @@ public partial class ColorShadow : Control
     private static async void OnImageUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var target = (ColorShadow)d;
-        await target.OnImageUriChangedAsync(e.NewValue as Uri);
+        Uri uri = null;
+
+        switch (e.NewValue)
+        {
+            case Uri u:
+                uri = u;
+                break;
+
+            case string s when Uri.TryCreate(s, UriKind.RelativeOrAbsolute, out var uriFromString):
+                uri = uriFromString;
+                break;
+        }
+        await target.OnImageUriChangedAsync(uri);
     }
 
     /// <summary>
