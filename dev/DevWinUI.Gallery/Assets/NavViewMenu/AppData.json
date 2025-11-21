@@ -24,10 +24,6 @@
           "UniqueId": "DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage",
           "Title": "MenuFlyout Attach",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "Subtitle": "Provides attached properties and behavior extensions for to support a customizable secondary menu section.",
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
         },
@@ -35,10 +31,6 @@
           "UniqueId": "DevWinUIGallery.Views.SunTimesHelperPage",
           "Title": "SunTimes Helper",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "Subtitle": "A helper class for calculating sunrise and sunset",
           "ImagePath": "ms-appx:///Assets/Fluent/Sunny.png"
         },
@@ -46,10 +38,6 @@
           "UniqueId": "DevWinUIGallery.Views.SystemTrayIconPage",
           "Title": "SystemTrayIcon",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "Subtitle": "SystemTrayIcon is a class that manages an application’s icon in the Windows system tray. It allows showing an icon, setting a tooltip, handling click events, and displaying a context menu directly from the tray area.",
           "ImagePath": "ms-appx:///Assets/Fluent/MenuFlyout.png"
         },
@@ -172,69 +160,10 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
-          "UniqueId": "DevWinUIGallery.Views.ImageFramePage",
-          "Title": "Image Frame",
-          "Subtitle": "ImageFrame is a control that loads and displays images with optional rounded corners, shadows, and smooth transitions.",
-          "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
-          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ProfileControlPage",
-          "Title": "ProfileControl",
-          "Subtitle": "ProfileControl is a circular profile image control with optional blur, border, and tint effects.",
-          "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
-          "ImagePath": "ms-appx:///Assets/Fluent/PersonPicture.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.FrostedGlassPage",
-          "Title": "Frosted Glass",
-          "Subtitle": "FrostedGlass is a control that creates a blurred, frosted‑glass background with configurable tint, blur, and shadow.",
-          "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
-          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.FluidBannerPage",
-          "Title": "Fluid Banner",
-          "Subtitle": "FluidBanner is a control that displays multiple images in a smooth, fluid banner.",
-          "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
-          "ImagePath": "ms-appx:///Assets/Fluent/StackPanelHorizontal.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ColorShadowPage",
-          "Title": "Color Shadow",
-          "Subtitle": "ColorShadow is a control that draws an image along with a softly blurred, color-based shadow generated from the image itself.",
-          "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
-          "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
           "Title": "Halo",
           "Subtitle": "The Halo is a set of interconnected UI components for circular or arc-based interfaces.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
@@ -242,10 +171,6 @@
           "Title": "Offset Box",
           "Subtitle": "a ContentControl box which can change content offset by hovering it.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/external.png"
         },
         {
@@ -253,10 +178,6 @@
           "Title": "Go To Card",
           "Subtitle": "a versatile card control that displays a title, optional icon, and an action button, allowing users to navigate to a URI or trigger a custom action when clicked.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/external.png"
         },
         {
@@ -264,10 +185,6 @@
           "Title": "Looping List",
           "Subtitle": "An infinitely scrolling selector displayed in a flyout.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/TimePicker.png"
         },
         {
@@ -275,10 +192,6 @@
           "Title": "Looping Selector",
           "Subtitle": "An infinitely scrolling selection control.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
@@ -286,10 +199,6 @@
           "Title": "Segmented Slider",
           "Subtitle": "Slider control that divides its track into multiple visual segments. Each segment can represent a specific range, time span, or category, with individual fill states and labels.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Slider.png"
         },
         {
@@ -297,10 +206,6 @@
           "Title": "Timeline",
           "Subtitle": "A visual control to display a day’s time range with key points like StartTime, EndTime, Sunrise, and Sunset.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -308,10 +213,6 @@
           "Title": "Wandering Particles",
           "Subtitle": "A visual effect that generates particles moving in random, flowing paths, creating a dynamic and wandering animation.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
@@ -319,10 +220,6 @@
           "Title": "SnowFlake Effect",
           "Subtitle": "A visual effect that simulates falling snowflakes, with customizable particle count.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New"
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Snowflake.png"
         },
         {
@@ -492,10 +389,6 @@
           "Title": "StepBar",
           "Subtitle": "A control that visually represents progress through a series of steps or stages, often used in wizards, forms, or multi-step processes.",
           "IsUpdated": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "Updated"
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -671,10 +564,6 @@
           "Title": "Styles",
           "Subtitle": "Styles",
           "IsUpdated": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "Updated"
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {
@@ -698,6 +587,41 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.ImageFramePage",
+          "Title": "Image Frame",
+          "Subtitle": "ImageFrame is a control that loads and displays images with optional rounded corners, shadows, and smooth transitions.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ProfileControlPage",
+          "Title": "ProfileControl",
+          "Subtitle": "ProfileControl is a circular profile image control with optional blur, border, and tint effects.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/PersonPicture.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FrostedGlassPage",
+          "Title": "Frosted Glass",
+          "Subtitle": "FrostedGlass is a control that creates a blurred, frosted‑glass background with configurable tint, blur, and shadow.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FluidBannerPage",
+          "Title": "Fluid Banner",
+          "Subtitle": "FluidBanner is a control that displays multiple images in a smooth, fluid banner.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/StackPanelHorizontal.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorShadowPage",
+          "Title": "Color Shadow",
+          "Subtitle": "ColorShadow is a control that draws an image along with a softly blurred, color-based shadow generated from the image itself.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.DepthLayerViewPage",
           "Title": "Depth Layer View",
@@ -798,14 +722,24 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CountdownPage",
+          "Title": "Countdown",
+          "Subtitle": "Countdown is a circular animated timer with customizable border, gradient background, and center text showing remaining seconds or a label.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Countdown.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.CircleIconPage",
+          "Title": "Circle Icon",
+          "Subtitle": "CircleIcon is a circular control with customizable border, gradient background, and optional content.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SpeedGraphPage",
           "Title": "Speed Graph",
           "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
           "IsNew": true,
-          "DataInfoBadge": {
-            "LandingPageInfoBadgeStyle": "StringInfoBadgeStyle",
-            "InfoBadgeValue": "New  "
-          },
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },
         {

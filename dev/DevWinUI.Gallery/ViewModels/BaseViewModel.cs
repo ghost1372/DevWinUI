@@ -11,6 +11,9 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<CountdownState> CountdownState { get; set; } = new ObservableCollection<CountdownState>(Enum.GetValues<CountdownState>());
+
+    [ObservableProperty]
     public partial ObservableCollection<ImageFrameTransitionMode> ImageFrameTransition { get; set; } = new ObservableCollection<ImageFrameTransitionMode>(Enum.GetValues<ImageFrameTransitionMode>());
 
     [ObservableProperty]

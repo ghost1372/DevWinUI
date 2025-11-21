@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CountdownPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/countdown"
+                                  DocType="Controls"
+                                  HeaderText="Countdown">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Countdown CountdownSeconds="0" MaxSeconds="60" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SldSec"
+                                Header="Countdown Seconds"
+                                Maximum="{x:Bind SldMaxSec.Value, Mode=OneWay}"
+                                Value="0" />
+                        <Slider x:Name="SldMaxSec"
+                                Header="Max Second"
+                                Value="60" />
+                        <ComboBox x:Name="CmbState"
+                                  HorizontalAlignment="Stretch"
+                                  Header="State"
+                                  ItemsSource="{x:Bind ViewModel.CountdownState, Mode=OneWay}"
+                                  SelectedIndex="0">
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+
+                <dev:Countdown CountdownSeconds="{x:Bind (x:Int32)SldSec.Value, Mode=OneWay}"
+                               MaxSeconds="{x:Bind (x:Int32)SldMaxSec.Value, Mode=OneWay}"
+                               State="{x:Bind ((dev:CountdownState)CmbState.SelectedItem), Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

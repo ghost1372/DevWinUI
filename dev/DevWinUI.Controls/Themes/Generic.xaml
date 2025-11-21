@@ -114,7 +114,9 @@ Themes\Styles\Controls\WaveProgressBar.xaml
 Themes\Styles\Win2D\BubbleButton.xaml
 Themes\Styles\Win2D\BubbleProgressButton.xaml
 Themes\Styles\Win2D\BubbleView.xaml
+Themes\Styles\Win2D\CircleIcon.xaml
 Themes\Styles\Win2D\ConfettiCannon.xaml
+Themes\Styles\Win2D\Countdown.xaml
 Themes\Styles\Win2D\GooeyButton.xaml
 Themes\Styles\Win2D\GooeyButtonItem.xaml
 Themes\Styles\Win2D\GooeyEffect.xaml
@@ -3405,6 +3407,21 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultCircleIconStyle" TargetType="local:CircleIcon">
+    <Setter Property="FontFamily" Value="Segoe UI" />
+    <Setter Property="FontWeight" Value="SemiLight" />
+    <Setter Property="FontSize" Value="62" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:CircleIcon">
+          <Grid>
+            <win2d:CanvasControl x:Name="PART_Canvas" />
+            <ContentPresenter Padding="0,0,02,8" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultConfettiCannonStyle" TargetType="local:ConfettiCannon">
     <Setter Property="ClearColor" Value="Transparent" />
     <Setter Property="IsFixedTimeStep" Value="False" />
@@ -3413,6 +3430,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:ConfettiCannon">
           <win2d:CanvasAnimatedControl x:Name="PART_CanvasAnimated" IsHitTestVisible="{TemplateBinding IsHitTestVisible}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultCountdownStyle" TargetType="local:Countdown">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Countdown">
+          <win2d:CanvasAnimatedControl x:Name="PART_Canvas" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -11272,7 +11298,9 @@ Themes\Styles\Win2D\Watermark.xaml
     </Setter>
   </Style>
   <Style TargetType="local:BubbleView" BasedOn="{StaticResource DefaultBubbleViewStyle}" />
+  <Style TargetType="local:CircleIcon" BasedOn="{StaticResource DefaultCircleIconStyle}" />
   <Style TargetType="local:ConfettiCannon" BasedOn="{StaticResource DefaultConfettiCannonStyle}" />
+  <Style TargetType="local:Countdown" BasedOn="{StaticResource DefaultCountdownStyle}" />
   <Style x:Key="DefaultGooeyButtonStyle" TargetType="local:GooeyButton">
     <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
     <Setter Property="Foreground" Value="{ThemeResource GooeyButtonForegroundBrush}" />

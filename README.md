@@ -131,6 +131,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Countdown
+- ✨ CircleIcon
 - ✨ ImageFrame
 - ✨ FrostedGlass
 - ✨ ProfileControl
@@ -300,6 +302,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Countdown
+![Countdown](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Countdown.gif)
+
+### CircleIcon
+![CircleIcon](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CircleIcon.gif)
 
 ### ImageFrame
 ![ImageFrame](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ImageFrame.gif)
