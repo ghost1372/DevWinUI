@@ -131,6 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ ImageFrame
 - ✨ FrostedGlass
 - ✨ ProfileControl
 - ✨ FluidBanner
@@ -299,6 +300,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ImageFrame
+![ImageFrame](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ImageFrame.gif)
 
 ### FrostedGlass
 ![FrostedGlass](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FrostedGlass.gif)

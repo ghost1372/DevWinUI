@@ -6,6 +6,8 @@
 [TemplatePart(Name = RenderBorder, Type = typeof(Border))]
 public sealed partial class ImageFrame : Control, IDisposable
 {
+    private Color _shadowColor = Colors.Transparent;
+
     #region Enums
 
     private enum ImageEngineState
@@ -80,6 +82,43 @@ public sealed partial class ImageFrame : Control, IDisposable
     #endregion
 
     #region Dependency Properties
+
+    public bool UseAutoShadowColor
+    {
+        get { return (bool)GetValue(UseAutoShadowColorProperty); }
+        set { SetValue(UseAutoShadowColorProperty, value); }
+    }
+
+    public static readonly DependencyProperty UseAutoShadowColorProperty =
+        DependencyProperty.Register(nameof(UseAutoShadowColor), typeof(bool), typeof(ImageFrame), new PropertyMetadata(false, OnUseAutoShadowColor));
+
+    private async static void OnUseAutoShadowColor(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (ImageFrame)d;
+        if (ctl != null && ctl.DisplayShadow)
+        {
+            ctl.UpdateShadowColor();
+            ctl.InvalidateArrange();
+        }
+    }
+
+    private async void UpdateShadowColor()
+    {
+        if (UseAutoShadowColor)
+        {
+            var uri = GetUriFromSource();
+            if (uri != null)
+            {
+                var device = CanvasDevice.GetSharedDevice();
+                _shadowColor = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
+            }
+        }
+        else
+        {
+            _shadowColor = ShadowColor;
+        }
+    }
+
 
     #region AlignX
 
@@ -570,6 +609,7 @@ public sealed partial class ImageFrame : Control, IDisposable
         // Refresh Layout if shadow is displayed
         if (DisplayShadow)
         {
+            UpdateShadowColor();
             InvalidateArrange();
         }
     }
@@ -807,6 +847,8 @@ public sealed partial class ImageFrame : Control, IDisposable
 
         // If the ImageFrame is properly initialized, then we can schedule this Uri
         // to be loaded next.
+
+        UpdateShadowColor();
         ScheduleNextLoad();
     }
 
@@ -914,17 +956,17 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// TransitionMode Dependency Property
     /// </summary>
     public static readonly DependencyProperty TransitionModeProperty =
-        DependencyProperty.Register(nameof(TransitionMode), typeof(TransitionModeType), typeof(ImageFrame),
-            new PropertyMetadata(TransitionModeType.FadeIn));
+        DependencyProperty.Register(nameof(TransitionMode), typeof(ImageFrameTransitionMode), typeof(ImageFrame),
+            new PropertyMetadata(ImageFrameTransitionMode.FadeIn));
 
     /// <summary>
     /// Gets or sets the TransitionMode property. This dependency property 
     /// indicates the type of transition animation to employ for displaying
     /// an image after it has been loaded.
     /// </summary>
-    public TransitionModeType TransitionMode
+    public ImageFrameTransitionMode TransitionMode
     {
-        get => (TransitionModeType)GetValue(TransitionModeProperty);
+        get => (ImageFrameTransitionMode)GetValue(TransitionModeProperty);
         set => SetValue(TransitionModeProperty, value);
     }
 
@@ -1235,7 +1277,7 @@ public sealed partial class ImageFrame : Control, IDisposable
                          : (_shadow ?? (_shadow = _compositor.CreateDropShadow()));
 
             shadow.BlurRadius = ShadowBlurRadius.ToSingle();
-            shadow.Color = ShadowColor;
+            shadow.Color = _shadowColor;
             shadow.Offset = new Vector3(ShadowOffsetX.ToSingle(), ShadowOffsetY.ToSingle(), 0);
             shadow.Opacity = ShadowOpacity.ToSingle();
             shadow.Mask = _layerEffectBrush.GetSourceParameter("mask");
@@ -1833,35 +1875,35 @@ public sealed partial class ImageFrame : Control, IDisposable
         switch (TransitionMode)
         {
             // New content fades into view
-            case TransitionModeType.FadeIn:
+            case ImageFrameTransitionMode.FadeIn:
                 nextContent.StartAnimation("Opacity", _fadeInAnimation);
                 break;
             // New content slides from right to left
-            case TransitionModeType.SlideLeft:
+            case ImageFrameTransitionMode.SlideLeft:
                 nextContent.Offset = new Vector3(nextContent.Size.X, 0, 0);
                 nextContent.Opacity = 1;
                 nextContent.StartAnimation("Offset", _offsetAnimation);
                 break;
             // New content slides from left to right
-            case TransitionModeType.SlideRight:
+            case ImageFrameTransitionMode.SlideRight:
                 nextContent.Offset = new Vector3(-nextContent.Size.X, 0, 0);
                 nextContent.Opacity = 1;
                 nextContent.StartAnimation("Offset", _offsetAnimation);
                 break;
             // New content slides up from bottom to top
-            case TransitionModeType.SlideUp:
+            case ImageFrameTransitionMode.SlideUp:
                 nextContent.Offset = new Vector3(0, nextContent.Size.Y, 0);
                 nextContent.Opacity = 1;
                 nextContent.StartAnimation("Offset", _offsetAnimation);
                 break;
             // New content slides down from top to bottom
-            case TransitionModeType.SlideDown:
+            case ImageFrameTransitionMode.SlideDown:
                 nextContent.Offset = new Vector3(0, -nextContent.Size.Y, 0);
                 nextContent.Opacity = 1;
                 nextContent.StartAnimation("Offset", _offsetAnimation);
                 break;
             // New content zooms into view
-            case TransitionModeType.ZoomIn:
+            case ImageFrameTransitionMode.ZoomIn:
                 nextContent.Scale = new Vector3(MinScaleFactor, MinScaleFactor, 1);
                 nextContent.Offset = new Vector3(nextContent.Size.X * (1 - MinScaleFactor) / 2f,
                     nextContent.Size.Y * (1 - MinScaleFactor) / 2f, 0);
@@ -1890,7 +1932,7 @@ public sealed partial class ImageFrame : Control, IDisposable
         {
             _placeholderBackgroundVisual.Opacity = 1;
         }
-        else if (TransitionMode == TransitionModeType.FadeIn)
+        else if (TransitionMode == ImageFrameTransitionMode.FadeIn)
         {
             _placeholderBackgroundVisual.StartAnimation("Opacity", _fadeInAnimation);
         }

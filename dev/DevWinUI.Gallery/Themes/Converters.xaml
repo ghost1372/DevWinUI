@@ -3,4 +3,5 @@
                     xmlns:local="using:DevWinUIGallery.Common">
 
     <local:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+    <local:DoubleToCornerRadiusConverter x:Key="DoubleToCornerRadiusConverter" />
 </ResourceDictionary>

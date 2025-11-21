@@ -11,6 +11,15 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<ImageFrameTransitionMode> ImageFrameTransition { get; set; } = new ObservableCollection<ImageFrameTransitionMode>(Enum.GetValues<ImageFrameTransitionMode>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<AlignmentX> ImageFrameAlignmentX { get; set; } = new ObservableCollection<AlignmentX>(Enum.GetValues<AlignmentX>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<AlignmentY> ImageFrameAlignmentY { get; set; } = new ObservableCollection<AlignmentY>(Enum.GetValues<AlignmentY>());
+
+    [ObservableProperty]
     public partial ObservableCollection<MenuFlyoutSecondaryMenuPlacement> SecondaryMenuPlacement { get; set; } = new ObservableCollection<MenuFlyoutSecondaryMenuPlacement>(Enum.GetValues<MenuFlyoutSecondaryMenuPlacement>());
 
     [ObservableProperty]

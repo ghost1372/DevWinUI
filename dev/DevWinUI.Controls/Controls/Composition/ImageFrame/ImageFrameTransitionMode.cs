@@ -4,7 +4,7 @@
 /// This enum defines the various types of transitions that can 
 /// be used to display the loaded image in the ImageFrame
 /// </summary>
-public enum TransitionModeType
+public enum ImageFrameTransitionMode
 {
     /// <summary>
     /// The loaded image fades into view.

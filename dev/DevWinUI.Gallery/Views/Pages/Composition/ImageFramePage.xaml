@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ImageFramePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/colorShadow">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:ImageFrame Source="ms-appx:///Assets/Others/RainbowRose.png" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button x:Name="BtnChange"
+                                MinWidth="200"
+                                Click="BtnChange_Click"
+                                Content="Change Image" />
+                        <ComboBox x:Name="CmbTransition"
+                                  MinWidth="130"
+                                  Header="Transition"
+                                  ItemsSource="{x:Bind ViewModel.ImageFrameTransition, Mode=OneWay}"
+                                  SelectedIndex="1" />
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <ComboBox x:Name="CmbAlingmentX"
+                                      MinWidth="130"
+                                      Header="AlignmentX"
+                                      ItemsSource="{x:Bind ViewModel.ImageFrameAlignmentX, Mode=OneWay}"
+                                      SelectedIndex="1">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="AlignmentX">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbAlingmentY"
+                                      MinWidth="130"
+                                      Header="AlignmentY"
+                                      ItemsSource="{x:Bind ViewModel.ImageFrameAlignmentY, Mode=OneWay}"
+                                      SelectedIndex="1">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="AlignmentY">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <Slider x:Name="SldCornerRadius"
+                                Header="CornerRadius"
+                                Value="8" />
+                        <Slider x:Name="SldShadowBlurRadius"
+                                Header="Shadow Blur Radius"
+                                Value="60" />
+                        <Slider x:Name="SldShadowOffsetX"
+                                Header="Shadow Offset X"
+                                Minimum="-180"
+                                Value="0" />
+                        <Slider x:Name="SldShadowOffsetY"
+                                Header="Shadow Offset Y"
+                                Minimum="-180"
+                                Value="0" />
+                        <Slider x:Name="SldShadowOpacity"
+                                Header="Shadow Opacity"
+                                Maximum="1"
+                                Minimum="0"
+                                TickFrequency="0.01"
+                                Value="0.65" />
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <ToggleSwitch x:Name="TgShowShadow"
+                                          Header="Show Shadow"
+                                          IsOn="True" />
+                            <ToggleSwitch x:Name="TgShowPlaceholder"
+                                          Header="Show Placeholder"
+                                          IsOn="False" />
+                        </StackPanel>
+                        <ColorPicker x:Name="ColorPickerSample"
+                                     IsAlphaTextInputVisible="False"
+                                     IsColorChannelTextInputVisible="False"
+                                     IsColorSliderVisible="False"
+                                     IsHexInputVisible="False"
+                                     IsMoreButtonVisible="False"
+                                     Color="Yellow" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ImageFrame x:Name="ImageFrame"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                AlignX="{x:Bind ((AlignmentX)CmbAlingmentX.SelectedItem), Mode=OneWay}"
+                                AlignY="{x:Bind ((AlignmentY)CmbAlingmentY.SelectedItem), Mode=OneWay}"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="{x:Bind SldCornerRadius.Value, Mode=OneWay, Converter={StaticResource DoubleToCornerRadiusConverter}}"
+                                DisplayShadow="{x:Bind TgShowShadow.IsOn, Mode=OneWay}"
+                                FrameBackground="{ThemeResource CardStrokeColorDefaultSolid}"
+                                ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}"
+                                ShadowColor="{x:Bind ColorPickerSample.Color, Mode=OneWay}"
+                                ShadowOffsetX="{x:Bind SldShadowOffsetX.Value, Mode=OneWay}"
+                                ShadowOffsetY="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}"
+                                ShadowOpacity="{x:Bind SldShadowOpacity.Value, Mode=OneWay}"
+                                ShowPlaceholder="{x:Bind TgShowPlaceholder.IsOn, Mode=OneWay}"
+                                Stretch="Fill"
+                                TransitionMode="{x:Bind ((dev:ImageFrameTransitionMode)CmbTransition.SelectedItem), Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
