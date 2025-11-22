@@ -144,19 +144,7 @@ public partial class CompositionShadow : Control
             return;
         }
 
-        Uri uri = null;
-
-        switch (ImageSourceForEdgeColor)
-        {
-            case Uri u:
-                uri = u;
-                break;
-
-            case string s when Uri.TryCreate(s, UriKind.RelativeOrAbsolute, out var uriFromString):
-                uri = uriFromString;
-                break;
-        }
-
+        Uri uri = GeneralHelper.GetUriFromObjectSource(ImageSourceForEdgeColor);
         if (uri != null)
         {
             var device = CanvasDevice.GetSharedDevice();

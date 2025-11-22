@@ -9,6 +9,23 @@ public partial class CircleIcon : Control
     private const string PART_Canvas = "PART_Canvas";
     private CanvasControl canvas;
 
+    public Color ClearColor
+    {
+        get { return (Color)GetValue(ClearColorProperty); }
+        set { SetValue(ClearColorProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClearColorProperty =
+        DependencyProperty.Register(nameof(ClearColor), typeof(Color), typeof(CircleIcon), new PropertyMetadata(Colors.Transparent, OnClearColorChanged));
+
+    private static void OnClearColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (CircleIcon)d;
+        if (ctl != null)
+        {
+            ctl.UpdateClearColor();
+        }
+    }
     public double BorderStrokeThickness
     {
         get { return (double)GetValue(BorderStrokeThicknessProperty); }
@@ -53,14 +70,7 @@ public partial class CircleIcon : Control
             ctl.UpdateCanvas();
         }
     }
-
-    private void UpdateCanvas()
-    {
-        if (canvas == null)
-            return;
-
-        canvas.Invalidate();
-    }
+    
     public CircleIcon()
     {
         DefaultStyleKey = typeof(CircleIcon);
@@ -87,10 +97,27 @@ public partial class CircleIcon : Control
                 new RadialGradientStopData() { Color = endColor, Position = 1 }
             };
         }
+
+        UpdateClearColor();
+
         canvas.Draw -= OnCanvasDraw;
         canvas.Draw += OnCanvasDraw;
     }
+    private void UpdateClearColor()
+    {
+        if (canvas == null)
+            return;
 
+        canvas.ClearColor = ClearColor;
+    }
+
+    private void UpdateCanvas()
+    {
+        if (canvas == null)
+            return;
+
+        canvas.Invalidate();
+    }
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
         var width = (float)sender.ActualWidth;

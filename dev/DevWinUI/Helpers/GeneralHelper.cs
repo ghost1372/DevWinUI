@@ -300,4 +300,22 @@ public partial class GeneralHelper
 
         return len > 0 ? new string(buffer[..len]) : $"[{id}]";
     }
+
+    public static Uri GetUriFromObjectSource(object value)
+    {
+        Uri result = null;
+
+        switch (value)
+        {
+            case Uri uri:
+                result = uri;
+                break;
+
+            case string text when Uri.TryCreate(text, UriKind.RelativeOrAbsolute, out var parsedUri):
+                result = parsedUri;
+                break;
+        }
+
+        return result;
+    }
 }
