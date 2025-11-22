@@ -111,6 +111,7 @@ Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\Validation.xaml
 Themes\Styles\Controls\WanderingParticles.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
+Themes\Styles\Win2D\BlendedImage.xaml
 Themes\Styles\Win2D\BubbleButton.xaml
 Themes\Styles\Win2D\BubbleProgressButton.xaml
 Themes\Styles\Win2D\BubbleView.xaml
@@ -3380,6 +3381,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:WanderingParticles">
           <Grid x:Name="PART_Container" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultBlendedImageStyle" TargetType="local:BlendedImage">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:BlendedImage">
+          <Grid x:Name="PART_ImageGrid" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -11136,6 +11146,7 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style TargetType="local:BlendedImage" BasedOn="{StaticResource DefaultBlendedImageStyle}" />
   <Style x:Key="DefaultBubbleButtonStyle" TargetType="local:BubbleButton" BasedOn="{StaticResource DefaultButtonStyle}">
     <Setter Property="BubbleForeground" Value="{ThemeResource ButtonBackground}" />
     <Setter Property="Template">
