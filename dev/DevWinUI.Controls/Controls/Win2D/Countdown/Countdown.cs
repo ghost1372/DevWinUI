@@ -225,7 +225,7 @@ public partial class Countdown : Control
             case CountdownState.Normal:
             default:
                 backgroundBrush = backgroundDefaultBrush;
-                borderBrush = _text == null ? borderGradientBrush : borderDefaultBrush;
+                borderBrush = string.IsNullOrEmpty(_text) ? borderGradientBrush : borderDefaultBrush;
                 break;
         }
 
@@ -253,8 +253,14 @@ public partial class Countdown : Control
             }
         }
 
-        // Draw the foreground.
-        session.DrawText(_text ?? _countdownSeconds.ToString(), textPosition, _textForeground, _textFormat);
+        if (string.IsNullOrEmpty(_text))
+        {
+            session.DrawText(_countdownSeconds.ToString(), textPosition, _textForeground, _textFormat);
+        }
+        else
+        {
+            session.DrawText(_text, textPosition, _textForeground, _textFormat);
+        }
     }
 
     private void UpdateCanvas()
