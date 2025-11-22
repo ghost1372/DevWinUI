@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿
+
+namespace DevWinUI;
 
 public partial class Countdown
 {
@@ -124,6 +126,24 @@ public partial class Countdown
 
     public static readonly DependencyProperty ErrorBackgroundGradientStopsProperty =
         DependencyProperty.Register(nameof(ErrorBackgroundGradientStops), typeof(IList<RadialGradientStopData>), typeof(Countdown), new PropertyMetadata(null, OnPropertyChanged));
+
+    public Color ClearColor
+    {
+        get { return (Color)GetValue(ClearColorProperty); }
+        set { SetValue(ClearColorProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClearColorProperty =
+        DependencyProperty.Register(nameof(ClearColor), typeof(Color), typeof(Countdown), new PropertyMetadata(Colors.Transparent, OnClearColorChanged));
+
+    private static void OnClearColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (Countdown)d;
+        if (ctl != null)
+        {
+            ctl.UpdateClearColor();
+        }
+    }
 
     private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

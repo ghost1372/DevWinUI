@@ -45,6 +45,8 @@ public partial class Countdown : Control
         base.OnApplyTemplate();
         canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
 
+        UpdateClearColor();
+
         if (BackgroundGradientStops == null || BackgroundGradientStops.Count == 0)
         {
             var startColor = Color.FromArgb(0x00, 0x6E, 0xEF, 0xF8);
@@ -101,7 +103,13 @@ public partial class Countdown : Control
         Unloaded -= OnUnloaded;
         Unloaded += OnUnloaded;
     }
+    private void UpdateClearColor()
+    {
+        if (canvas == null)
+            return;
 
+        canvas.ClearColor = ClearColor;
+    }
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         if (canvas == null)
