@@ -24,7 +24,7 @@
                                 Value="100" />
                         <Slider x:Name="SldSplit"
                                 Header="Split Value"
-                                Value="20" />
+                                Value="50" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:BlendedImage Width="500"
