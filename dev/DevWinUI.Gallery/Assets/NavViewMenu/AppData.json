@@ -722,6 +722,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BlendedImagePage",
+          "Title": "Blended Image",
+          "Subtitle": "Create a dynamic blend of two images.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CountdownPage",
           "Title": "Countdown",
           "Subtitle": "Countdown is a circular animated timer with customizable border, gradient background, and center text showing remaining seconds or a label.",

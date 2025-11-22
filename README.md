@@ -131,6 +131,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ BlendedImage
 - ✨ Countdown
 - ✨ CircleIcon
 - ✨ ImageFrame
@@ -302,6 +303,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### BlendedImage
+![BlendedImage](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlendedImage.gif)
 
 ### Countdown
 ![Countdown](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Countdown.gif)
