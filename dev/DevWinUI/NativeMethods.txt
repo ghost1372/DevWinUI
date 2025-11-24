@@ -1,4 +1,5 @@
-﻿CombineRgn
+﻿ClientToScreen
+CombineRgn
 CoWaitForMultipleObjects
 CreateEllipticRgn
 CreateEvent
