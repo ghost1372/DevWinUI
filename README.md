@@ -132,9 +132,6 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
-- ✨ BlendedImage
-- ✨ Countdown
-- ✨ CircleIcon
 - ✨ ImageFrame
 - ✨ FrostedGlass
 - ✨ ProfileControl
@@ -250,6 +247,10 @@ Install-Package DevWinUI
 - ✨ Rounded TabViewItem Style
 
 #### 🔥 Win2D 🔥
+- ✨ AnimatedTextBlock
+- ✨ Countdown
+- ✨ CircleIcon
+- ✨ BlendedImage
 - ✨ SpeedGraph
 - ✨ ConfettiCannon
 - ✨ BlurEffectManager
@@ -304,6 +305,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### AnimatedTextBlock
+![AnimatedTextBlock](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimatedTextBlock.gif)
 
 ### SnapLayoutManager
 ![SnapLayoutManager](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnapLayoutManager.gif)

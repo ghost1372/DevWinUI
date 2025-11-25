@@ -722,6 +722,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AnimatedTextBlockPage",
+          "Title": "Animated TextBlock",
+          "Subtitle": "A TextBlock control which animates the text with customizable effects.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlendedImagePage",
           "Title": "Blended Image",
           "Subtitle": "Create a dynamic blend of two images.",

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.AnimatedTextBlockPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/animatedTextBlock"
+                                  HeaderText="AnimatedTextBlock">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Text="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        AnimatedTextBlockSample.TextEffect = new TextMotionBlurEffect();
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbText"
+                                  ItemsSource="{x:Bind SampleText, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                        <ComboBox x:Name="CmbEffects"
+                                  ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}"
+                                  SelectedIndex="0"
+                                  SelectionChanged="CmbEffects_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="views:BuiltInEffect">
+                                    <TextBlock Text="{x:Bind Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample"
+                                       Margin="10"
+                                       Text="{x:Bind CmbText.SelectedItem, Mode=OneWay}"
+                                       TextAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="Wrap" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

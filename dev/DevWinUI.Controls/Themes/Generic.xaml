@@ -111,6 +111,7 @@ Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\Validation.xaml
 Themes\Styles\Controls\WanderingParticles.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
+Themes\Styles\Win2D\AnimatedTextBlock.xaml
 Themes\Styles\Win2D\BlendedImage.xaml
 Themes\Styles\Win2D\BubbleButton.xaml
 Themes\Styles\Win2D\BubbleProgressButton.xaml
@@ -11146,6 +11147,23 @@ Themes\Styles\Win2D\Watermark.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultAnimatedTextBlockStyle" TargetType="local:AnimatedTextBlock">
+    <Setter Property="FontFamily" Value="XamlAutoFontFamily" />
+    <Setter Property="FontSize" Value="{StaticResource BodyTextBlockFontSize}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:AnimatedTextBlock">
+          <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <win2d:CanvasAnimatedControl x:Name="AnimatedCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style TargetType="local:BlendedImage" BasedOn="{StaticResource DefaultBlendedImageStyle}" />
   <Style x:Key="DefaultBubbleButtonStyle" TargetType="local:BubbleButton" BasedOn="{StaticResource DefaultButtonStyle}">
     <Setter Property="BubbleForeground" Value="{ThemeResource ButtonBackground}" />
@@ -12062,6 +12080,7 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style TargetType="local:TextBox" BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" />
   <Style TargetType="local:WaveProgressBar" BasedOn="{StaticResource DefaultWaveProgressBarStyle}" />
+  <Style TargetType="local:AnimatedTextBlock" BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" />
   <Style TargetType="local:BubbleButton" BasedOn="{StaticResource DefaultBubbleButtonStyle}" />
   <Style TargetType="local:BubbleProgressButton" BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}" />
   <Style TargetType="local:GooeyButton" BasedOn="{StaticResource DefaultGooeyButtonStyle}" />
