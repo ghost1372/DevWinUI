@@ -1,6 +1,13 @@
 ﻿namespace DevWinUI;
 public static partial class ColorHelper
 {
+    public static Color ChangeAlpha(Color color, double alpha)
+    {
+        double safeAlpha = Math.Max(Math.Min(alpha, 1.0), 0.0);
+        byte alphaByte = (byte)(safeAlpha * 255);
+        return Color.FromArgb(alphaByte, color.R, color.G, color.B);
+    }
+
     /// <summary>
     /// Converts a hexadecimal color string into a Color object, supporting both 6 and 8 character formats.
     /// </summary>
