@@ -1,6 +1,11 @@
 ﻿namespace DevWinUI;
 public static partial class Extensions
 {
+    public static Color ChangeAlpha(this Color color, double alpha)
+    {
+        return ColorHelper.ChangeAlpha(color, alpha);
+    }
+
     /// <summary>
     /// Finds the best contrasting color (black or white)
     /// </summary>
