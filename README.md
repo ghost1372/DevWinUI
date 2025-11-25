@@ -97,6 +97,7 @@ To compile the project, contribute new features, or explore guidelines:
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ SnapLayoutManager
  - ✨ SmoothWindowResizer
  - ✨ SystemTrayIcon
  - ✨ AncestorBindingExtension
@@ -303,6 +304,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SnapLayoutManager
+![SnapLayoutManager](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnapLayoutManager.gif)
 
 ### BlendedImage
 ![BlendedImage](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlendedImage.gif)
