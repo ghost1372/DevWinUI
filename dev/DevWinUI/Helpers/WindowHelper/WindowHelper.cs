@@ -649,4 +649,10 @@ public partial class WindowHelper
             PInvoke.DeleteObject(rgn);
         }
     }
+
+    public static void SetWindowSize(Microsoft.UI.Xaml.Window window, double width, double height)
+    {
+        var scale = WindowHelper.GetDpiForWindow(WindowNative.GetWindowHandle(window)) / 96f;
+        window.AppWindow.Resize(new Windows.Graphics.SizeInt32((int)(width * scale), (int)(height * scale)));
+    }
 }
