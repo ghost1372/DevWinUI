@@ -1,4 +1,9 @@
 <Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
   <Folder Name="/Solution Items/" Id="33905DB2-64FA-4677-9694-9064DC5A0372">
     <File Path="tools/AppData.Schema.json" />
     <File Path="Directory.Build.props" />
@@ -39,11 +44,13 @@
     <Project Path="VSIX/DevWinUI_Template/WinUIApp-NavigationView/WinUIApp-NavigationView.csproj" Id="4c1692ff-c0b8-49fb-948d-090160e0e63a" />
     <Project Path="VSIX/DevWinUI_Template/WinUIApp/WinUIApp.csproj" Id="d9c038b7-6a62-4945-a030-4ac7597f53ca" />
   </Folder>
-  <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
+  <Project Path="dev/DevWinUI/DevWinUI.csproj" Id="3b3c761a-d832-4514-81c5-9d1b3f4997b9" />
   <Project Path="dev/DevWinUI.Controls/DevWinUI.Controls.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
+  <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
   <Project Path="dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj">
-    <Platform Project="x64" />
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
     <Deploy />
   </Project>
-  <Project Path="dev/DevWinUI/DevWinUI.csproj" Id="3b3c761a-d832-4514-81c5-9d1b3f4997b9" />
 </Solution>
