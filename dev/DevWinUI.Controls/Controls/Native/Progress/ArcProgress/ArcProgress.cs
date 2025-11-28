@@ -22,7 +22,7 @@ public partial class ArcProgress : Control
     private double _radius;
     private double _centerX;
     private double _centerY;
-
+    public event EventHandler PercentageChanged;
     public ArcProgressInitialPosition InitialPosition
     {
         get { return (ArcProgressInitialPosition)GetValue(InitialPositionProperty); }
@@ -188,6 +188,7 @@ public partial class ArcProgress : Control
     {
         double angle = Math.Min(Math.Max(percentage, 0), 100) * 3.6;
         DrawArcSlice(angle);
+        PercentageChanged?.Invoke(this, null);
     }
 
     public void DrawArcSlice(double angle)
