@@ -388,7 +388,17 @@ public partial class StoreCarousel : Control
     {
         var item = imageList[pipsPager.SelectedPageIndex];
         var device = CanvasDevice.GetSharedDevice();
-        var color = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, new Uri(item.ImageSource));
+
+        Color color = Colors.Transparent;
+
+        if (UseImageEdgeOverContentColor)
+        {
+            color = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, new Uri(item.ImageSource));
+        }
+        else
+        {
+            color = await ColorHelperEx.GetBalancedImageColorAsync(device, new Uri(item.ImageSource));
+        }
 
         fadeRectangle.Width = image.ActualWidth * 0.4;
         fadeRectangle.Fill = new SolidColorBrush(color) { Opacity = 0.5 };

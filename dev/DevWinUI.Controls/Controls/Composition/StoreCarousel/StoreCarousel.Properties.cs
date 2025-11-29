@@ -2,6 +2,15 @@
 
 public partial class StoreCarousel
 {
+    public bool UseImageEdgeOverContentColor
+    {
+        get { return (bool)GetValue(UseImageEdgeOverContentColorProperty); }
+        set { SetValue(UseImageEdgeOverContentColorProperty, value); }
+    }
+
+    public static readonly DependencyProperty UseImageEdgeOverContentColorProperty =
+        DependencyProperty.Register(nameof(UseImageEdgeOverContentColor), typeof(bool), typeof(StoreCarousel), new PropertyMetadata(false));
+
     public TimeSpan ShuffleDuration
     {
         get { return (TimeSpan)GetValue(ShuffleDurationProperty); }
