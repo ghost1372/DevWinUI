@@ -588,6 +588,20 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.StoreCarouselPage",
+          "Title": "Store Carousel",
+          "Subtitle": "A modern, Store-style carousel layout inspired by the Microsoft Store, designed to showcase large hero images with titles, descriptions, and action buttons.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.XamlLightsPage",
+          "Title": "Xaml Lights",
+          "Subtitle": "A set of interactive lighting effects that enhance UI feedback: Ambient adds a constant soft glow, Hover highlights elements when the pointer moves over them, and Ripple creates a brief expanding light when the user clicks or taps.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RadioButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ImageFramePage",
           "Title": "Image Frame",
           "Subtitle": "ImageFrame is a control that loads and displays images with optional rounded corners, shadows, and smooth transitions.",

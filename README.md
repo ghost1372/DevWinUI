@@ -132,6 +132,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ StoreCarousel
+- ✨ Xaml Lights
 - ✨ ImageFrame
 - ✨ FrostedGlass
 - ✨ ProfileControl
@@ -305,6 +307,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### StoreCarousel
+![StoreCarousel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StoreCarousel.gif)
+
+### Xaml Lights
+![Xaml Lights](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/XamlLights.gif)
 
 ### AnimatedTextBlock
 ![AnimatedTextBlock](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimatedTextBlock.gif)

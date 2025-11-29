@@ -103,6 +103,8 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.StylesPage", typeof(DevWinUIGallery.Views.StylesPage)},
         {"DevWinUIGallery.Views.SwitchPresenterPage", typeof(DevWinUIGallery.Views.SwitchPresenterPage)},
         {"DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage", typeof(DevWinUIGallery.Views.InlineAutoCompleteTextBoxPage)},
+        {"DevWinUIGallery.Views.StoreCarouselPage", typeof(DevWinUIGallery.Views.StoreCarouselPage)},
+        {"DevWinUIGallery.Views.XamlLightsPage", typeof(DevWinUIGallery.Views.XamlLightsPage)},
         {"DevWinUIGallery.Views.ImageFramePage", typeof(DevWinUIGallery.Views.ImageFramePage)},
         {"DevWinUIGallery.Views.ProfileControlPage", typeof(DevWinUIGallery.Views.ProfileControlPage)},
         {"DevWinUIGallery.Views.FrostedGlassPage", typeof(DevWinUIGallery.Views.FrostedGlassPage)},

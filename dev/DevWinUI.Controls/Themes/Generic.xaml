@@ -105,6 +105,7 @@ Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\StorageBar.xaml
 Themes\Styles\Controls\StorageRing.xaml
+Themes\Styles\Controls\StoreCarousel.xaml
 Themes\Styles\Controls\TextBox.xaml
 Themes\Styles\Controls\Timeline.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
@@ -331,6 +332,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
       <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
       <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="ControlStrongStrokeColorDisabledBrush" />
+      <Color x:Key="StoreCarouselTitleForegroundColor">#FFFFFF</Color>
+      <Color x:Key="StoreCarouselDescriptionForegroundColor">#C5FFFFFF</Color>
+      <Color x:Key="StoreCarouselNavButtonForegroundColor">#72000000</Color>
+      <Thickness x:Key="StoreCarouselNavButtonBorderThickness">0</Thickness>
+      <x:Double x:Key="StoreCarouselNavButtonBlurAmount">0</x:Double>
+      <x:Double x:Key="StoreCarouselNavButtonRectangleOpacity">0</x:Double>
+      <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
@@ -535,6 +545,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
       <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
       <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="ControlStrongStrokeColorDisabledBrush" />
+      <Color x:Key="StoreCarouselTitleForegroundColor">#FFFFFF</Color>
+      <Color x:Key="StoreCarouselDescriptionForegroundColor">#C5FFFFFF</Color>
+      <Color x:Key="StoreCarouselNavButtonForegroundColor">#C5FFFFFF</Color>
+      <Thickness x:Key="StoreCarouselNavButtonBorderThickness">1</Thickness>
+      <x:Double x:Key="StoreCarouselNavButtonBlurAmount">20</x:Double>
+      <x:Double x:Key="StoreCarouselNavButtonRectangleOpacity">1</x:Double>
+      <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
@@ -727,6 +746,15 @@ Themes\Styles\Win2D\Watermark.xaml
       <StaticResource x:Key="StorageRingTrackCautionBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="StorageRingTrackCriticalBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="StorageRingTrackDisabledBrush" ResourceKey="SystemColorGrayTextBrush" />
+      <Color x:Key="StoreCarouselTitleForegroundColor">#FF0000</Color>
+      <Color x:Key="StoreCarouselDescriptionForegroundColor">#FF0000</Color>
+      <Color x:Key="StoreCarouselNavButtonForegroundColor">#C5FFFFFF</Color>
+      <Thickness x:Key="StoreCarouselNavButtonBorderThickness">1</Thickness>
+      <x:Double x:Key="StoreCarouselNavButtonBlurAmount">20</x:Double>
+      <x:Double x:Key="StoreCarouselNavButtonRectangleOpacity">1</x:Double>
+      <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
+      <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
@@ -10749,6 +10777,114 @@ Themes\Styles\Win2D\Watermark.xaml
   </Style>
   <Style TargetType="local:StorageBar" BasedOn="{StaticResource DefaultStorageBarStyle}" />
   <Style TargetType="local:StorageRing" BasedOn="{StaticResource DefaultStorageRingStyle}" />
+  <Style x:Key="DefaultStoreCarouselStyle" TargetType="local:StoreCarousel">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:StoreCarousel">
+          <Grid x:Name="PART_RootGrid" ColumnSpacing="15" RowSpacing="15">
+            <Grid.RowDefinitions>
+              <RowDefinition />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="0" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="1.6*" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup>
+                <VisualState x:Name="LargeState">
+                  <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="1000" />
+                  </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="SmallState">
+                  <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0" />
+                  </VisualState.StateTriggers>
+                  <VisualState.Setters>
+                    <Setter Target="PART_RootGrid.ColumnDefinitions[0].Width" Value="*" />
+                    <Setter Target="PART_RootGrid.ColumnDefinitions[1].Width" Value="Auto" />
+                    <Setter Target="PART_RootGrid.RowDefinitions[2].Height" Value="*" />
+                    <Setter Target="PART_ThumbnailGrid.ColumnDefinitions[0].Width" Value="1.7*" />
+                    <Setter Target="PART_ThumbnailGrid.(Grid.Row)" Value="2" />
+                    <Setter Target="PART_ThumbnailGrid.(Grid.Column)" Value="0" />
+                    <Setter Target="PART_ThumbnailGrid.(Grid.ColumnSpan)" Value="2" />
+                    <Setter Target="PART_PrimaryCompositionShadow.(Grid.Column)" Value="0" />
+                    <Setter Target="PART_PrimaryCompositionShadow.(Grid.ColumnSpan)" Value="1" />
+                    <Setter Target="PART_PrimaryCompositionShadow.(Grid.RowSpan)" Value="2" />
+                    <Setter Target="PART_SecondaryCompositionShadow.(Grid.Row)" Value="0" />
+                    <Setter Target="PART_SecondaryCompositionShadow.(Grid.Column)" Value="1" />
+                    <Setter Target="PART_TertiaryCompositionShadow.(Grid.Row)" Value="1" />
+                    <Setter Target="PART_TertiaryCompositionShadow.(Grid.Column)" Value="1" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid x:Name="PART_SliderGrid" Background="Transparent">
+              <local:ImageFrame x:Name="PART_Image" CornerRadius="{ThemeResource OverlayCornerRadius}" DisplayShadow="True" ShadowBlurRadius="80" ShowPlaceholder="False" Stretch="Fill" TransitionMode="SlideLeft" UseAutoShadowColor="True" />
+              <local:OpacityMaskView VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <local:OpacityMaskView.OpacityMask>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Offset="0.0" Color="{ThemeResource SystemBaseHighColor}" />
+                    <GradientStop Offset="0.7" Color="{ThemeResource SystemBaseHighColor}" />
+                    <GradientStop Offset="1.0" Color="Transparent" />
+                  </LinearGradientBrush>
+                </local:OpacityMaskView.OpacityMask>
+                <Rectangle x:Name="PART_FadeRectangle" VerticalAlignment="Stretch" Fill="Transparent" RadiusX="8" RadiusY="8" />
+              </local:OpacityMaskView>
+              <local:CompositionShadow Width="{Binding ElementName=PART_PreviousBtn, Path=Width}" Height="{Binding ElementName=PART_PreviousBtn, Path=Height}" Margin="{Binding ElementName=PART_PreviousBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_PreviousBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_PreviousBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_PreviousBtn, Path=Visibility}">
+                <Rectangle x:Name="PART_PreviousBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
+              </local:CompositionShadow>
+              <Button x:Name="PART_PreviousBtn" Width="32" Height="32" Margin="-10,0,0,0" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Backward" Visibility="Collapsed">
+                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
+              </Button>
+              <local:CompositionShadow Width="{Binding ElementName=PART_NextBtn, Path=Width}" Height="{Binding ElementName=PART_NextBtn, Path=Height}" Margin="{Binding ElementName=PART_NextBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_NextBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_NextBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_NextBtn, Path=Visibility}">
+                <Rectangle x:Name="PART_NextBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
+              </local:CompositionShadow>
+              <Button x:Name="PART_NextBtn" Width="32" Height="32" Margin="0,0,-10,0" HorizontalAlignment="Right" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Forward" Visibility="Collapsed">
+                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
+              </Button>
+            </Grid>
+            <StackPanel x:Name="PART_ActionPanel" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="5">
+              <TextBlock x:Name="PART_TitleBlock" MaxWidth="300" Foreground="{ThemeResource StoreCarouselTitleForegroundBrush}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" />
+              <TextBlock x:Name="PART_DescriptionBlock" MaxWidth="240" Foreground="{ThemeResource StoreCarouselDescriptionForegroundColor}" Opacity="0.75" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+              <Button x:Name="PART_ActionButton" MinWidth="120" BorderThickness="0,0,0,2" CornerRadius="8" Foreground="White">
+                <TextBlock x:Name="PART_ActionButtonTextBlock" Style="{StaticResource BaseTextBlockStyle}" />
+              </Button>
+            </StackPanel>
+            <local:ArcProgress x:Name="PART_Arc" Width="20" Height="20" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="DarkGray" Percentage="100" Visibility="{Binding AutoShuffle, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <PipsPager x:Name="PART_PipsPager" Grid.Row="1" Margin="0,-10,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{TemplateBinding PipsPagerVisibility}" />
+            <Grid x:Name="PART_ThumbnailGrid" Grid.Column="1" ColumnSpacing="15" RowSpacing="15">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <local:CompositionShadow x:Name="PART_PrimaryCompositionShadow" Grid.ColumnSpan="2" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
+                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
+                  <Image Source="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
+                </Border>
+              </local:CompositionShadow>
+              <local:CompositionShadow x:Name="PART_SecondaryCompositionShadow" Grid.Row="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
+                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
+                  <Image Source="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
+                </Border>
+              </local:CompositionShadow>
+              <local:CompositionShadow x:Name="PART_TertiaryCompositionShadow" Grid.Row="1" Grid.Column="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
+                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
+                  <Image Source="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
+                </Border>
+              </local:CompositionShadow>
+            </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultDevWinUITextBoxStyle" TargetType="local:TextBox">
     <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
     <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />
@@ -12078,6 +12214,7 @@ Themes\Styles\Win2D\Watermark.xaml
     <Setter Property="ItemsPanel" Value="{StaticResource StepBarHorizontalItemsPanelTemplate}" />
     <Setter Property="ShowStepIndex" Value="True" />
   </Style>
+  <Style TargetType="local:StoreCarousel" BasedOn="{StaticResource DefaultStoreCarouselStyle}" />
   <Style TargetType="local:TextBox" BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" />
   <Style TargetType="local:WaveProgressBar" BasedOn="{StaticResource DefaultWaveProgressBarStyle}" />
   <Style TargetType="local:AnimatedTextBlock" BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" />
