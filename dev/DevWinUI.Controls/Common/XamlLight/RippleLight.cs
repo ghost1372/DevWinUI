@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.UI.Xaml.Input;
+
+namespace DevWinUI;
 
 public partial class RippleLight : XamlLight
 {
