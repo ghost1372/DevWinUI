@@ -1,14 +1,30 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.Graphics.Canvas;
+
+namespace DevWinUI;
 
 internal static partial class ColorHelperEx
 {
     public static async Task<Color> GetImageEdgeColorWithWin2DAsync(CanvasDevice device, Uri path)
     {
-        using var bitmap = await CanvasBitmap.LoadAsync(device, path);
-        var colors = bitmap.GetPixelColors();
+        CanvasBitmap canvasBitmap = null;
+        if (RuntimeHelper.IsPackaged())
+        {
+            canvasBitmap = await CanvasBitmap.LoadAsync(device, path);
+        }
+        else
+        {
+            var localFilePath = path.LocalPath;
+            if (!File.Exists(localFilePath))
+            {
+                localFilePath = PathHelper.GetFilePath(path);
+            }
+            using var fs = File.OpenRead(localFilePath);
+            canvasBitmap = await CanvasBitmap.LoadAsync(device, fs.AsRandomAccessStream());
+        }
+        var colors = canvasBitmap.GetPixelColors();
 
-        uint width = bitmap.SizeInPixels.Width;
-        uint height = bitmap.SizeInPixels.Height;
+        uint width = canvasBitmap.SizeInPixels.Width;
+        uint height = canvasBitmap.SizeInPixels.Height;
 
         var edgePixels = new List<Color>();
 
@@ -32,11 +48,25 @@ internal static partial class ColorHelperEx
 
     public static async Task<Color> GetBalancedImageColorAsync(CanvasDevice device, Uri path, float edgeWeight = 0.7f)
     {
-        using var bitmap = await CanvasBitmap.LoadAsync(device, path);
-        var colors = bitmap.GetPixelColors();
+        CanvasBitmap canvasBitmap = null;
+        if (RuntimeHelper.IsPackaged())
+        {
+            canvasBitmap = await CanvasBitmap.LoadAsync(device, path);
+        }
+        else
+        {
+            var localFilePath = path.LocalPath;
+            if (!File.Exists(localFilePath))
+            {
+                localFilePath = PathHelper.GetFilePath(path);
+            }
+            using var fs = File.OpenRead(localFilePath);
+            canvasBitmap = await CanvasBitmap.LoadAsync(device, fs.AsRandomAccessStream());
+        }
+        var colors = canvasBitmap.GetPixelColors();
 
-        uint width = bitmap.SizeInPixels.Width;
-        uint height = bitmap.SizeInPixels.Height;
+        uint width = canvasBitmap.SizeInPixels.Width;
+        uint height = canvasBitmap.SizeInPixels.Height;
 
         // --- 1. Edge Color ---
         var edgePixels = new List<Color>();
