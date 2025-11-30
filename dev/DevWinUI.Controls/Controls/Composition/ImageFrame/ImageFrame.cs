@@ -1679,15 +1679,15 @@ public sealed partial class ImageFrame : Control, IDisposable
                                     () =>
                                     {
                                         // apply the new brush to the frameVisualContent
-                                        _frameContentVisual.Brush = _nextSurfaceBrush;
+                                        _frameContentVisual?.Brush = _nextSurfaceBrush;
                                         // Update the surface image
                                         _imageSurface = _nextImageSurface;
                                         // Make the frameVisualContent visible again
-                                        _frameContentVisual.Opacity = 1;
+                                        _frameContentVisual?.Opacity = 1;
                                         // Hide the placeholder
                                         HidePlaceholder();
                                         // Hide the nextVisualContent
-                                        _nextVisualContent.Opacity = 0;
+                                        _nextVisualContent?.Opacity = 0;
                                     });
                             }
                         }
