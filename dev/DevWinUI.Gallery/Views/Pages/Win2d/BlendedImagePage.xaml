@@ -27,11 +27,10 @@
                                 Value="50" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:BlendedImage Width="500"
+                <dev:BlendedImage x:Name="BlendedImageSample"
+                                  Width="500"
                                   Height="400"
                                   BlurRadius="{x:Bind SldBlur.Value, Mode=OneWay}"
-                                  PrimaryImageSource="ms-appx:///Assets/Others/Image1.jpg"
-                                  SecondaryImageSource="ms-appx:///Assets/Others/Image2.jpg"
                                   SplitValue="{x:Bind SldSplit.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
