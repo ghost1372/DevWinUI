@@ -8,45 +8,45 @@ public sealed partial class StoreCarouselPage : Page
     {
         new StoreCarouselItem
         {
-            Title ="Wolverine & Deadpool",
-            Description ="Action-packed mutant duo",
-            ImageSource="ms-appx:///Assets/Carousel/1.jpg",
+            Title = "Wolverine & Deadpool",
+            Description = "Action-packed mutant duo",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/1.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="Alien",
-            Description ="Survival horror in space",
-            ImageSource="ms-appx:///Assets/Carousel/2.jpg",
+            Title = "Alien",
+            Description = "Survival horror in space",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/2.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="Walking Dead: Dead City",
-            Description ="Zombies overrun New York",
-            ImageSource="ms-appx:///Assets/Carousel/3.jpg",
+            Title = "Walking Dead: Dead City",
+            Description = "Zombies overrun New York",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/3.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="Inferno",
-            Description ="Thrilling race against time",
-            ImageSource="ms-appx:///Assets/Carousel/4.jpg",
+            Title = "Inferno",
+            Description = "Thrilling race against time",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/4.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="The Forest Song",
-            Description ="Magical tale of nature and love",
-            ImageSource="ms-appx:///Assets/Carousel/5.jpg",
+            Title = "The Forest Song",
+            Description = "Magical tale of nature and love",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/5.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="Moana",
-            Description ="Epic ocean adventure",
-            ImageSource="ms-appx:///Assets/Carousel/6.jpg",
+            Title = "Moana",
+            Description = "Epic ocean adventure",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/6.jpg")),
         },
         new StoreCarouselItem
         {
-            Title ="Avatar",
-            Description ="Journey to Pandora",
-            ImageSource="ms-appx:///Assets/Carousel/7.jpg",
+            Title = "Avatar",
+            Description = "Journey to Pandora",
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/7.jpg")),
         },
     };
     public StoreCarouselPage()

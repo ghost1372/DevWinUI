@@ -16,7 +16,7 @@ public sealed partial class FluidBannerPage : Page
         var items = new List<Uri>();
         for (var i = 0; i < itemCount; i++)
         {
-            items.Add(new Uri($"ms-appx:///Assets/Landscapes/Landscape-{i + 1}.jpg"));
+            items.Add(new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-{i + 1}.jpg"))));
         }
 
         Banner.ItemsSource = items;

@@ -64,7 +64,6 @@
                                  ColorShadowBlurRadius="{x:Bind SldColorShadowBlurRadius.Value, Mode=OneWay}"
                                  ColorShadowOpacity="{x:Bind SldColorShadowOpacity.Value, Mode=OneWay}"
                                  ColorShadowPadding="{x:Bind SldColorShadowPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}"
-                                 ImageUri="ms-appx:///Assets/Others/RainbowRose.png"
                                  IsShadowEnabled="{x:Bind TgShowShadow.IsOn, Mode=OneWay}"
                                  ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}"
                                  ShadowOffsetX="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}"
