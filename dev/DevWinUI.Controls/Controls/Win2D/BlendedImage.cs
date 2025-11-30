@@ -50,7 +50,7 @@ public partial class BlendedImage : Control
     }
 
     public static readonly DependencyProperty PrimaryImageSourceProperty =
-        DependencyProperty.Register(nameof(PrimaryImageSource), typeof(object), typeof(BlendedImage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(PrimaryImageSource), typeof(object), typeof(BlendedImage), new PropertyMetadata(null, OnSourceChanged));
 
     public object SecondaryImageSource
     {
@@ -59,8 +59,16 @@ public partial class BlendedImage : Control
     }
 
     public static readonly DependencyProperty SecondaryImageSourceProperty =
-        DependencyProperty.Register(nameof(SecondaryImageSource), typeof(object), typeof(BlendedImage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(SecondaryImageSource), typeof(object), typeof(BlendedImage), new PropertyMetadata(null, OnSourceChanged));
 
+    private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (BlendedImage)d;
+        if (ctl != null)
+        {
+            ctl.RebuildSurfaces();
+        }
+    }
     public BlendedImage()
     {
         DefaultStyleKey = typeof(BlendedImage);
@@ -91,7 +99,7 @@ public partial class BlendedImage : Control
     }
     private async void RebuildSurfaces()
     {
-        if (grid == null || _generator == null)
+        if (grid == null || _generator == null || PrimaryImageSource == null || SecondaryImageSource == null)
             return;
 
         var size = new Vector2(_currentWidth, _currentHeight);
