@@ -27,11 +27,12 @@
 // CompositionProToolkit v1.0.1
 //
 
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Windows.Graphics.Effects;
 using Microsoft.UI.Composition.Interactions;
+using Windows.Graphics.Effects;
 
 namespace DevWinUI;
 
@@ -243,6 +244,7 @@ internal abstract partial class CompositionExpressionEngine
     /// <typeparam name="T">Type of the Expression</typeparam>
     /// <param name="expression">Expression</param>
     /// <returns>CompositionExpressionResult</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.Visit(LambdaExpression)")]
     internal static CompositionExpressionResult CreateCompositionExpression<T>(Expression<CompositionExpression<T>> expression)
     {
         // Reset flags
@@ -438,6 +440,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">LambdaExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.IsGenericCompositionExpressionContextType(Type)")]
     private static ExpressionToken Visit(LambdaExpression expression)
     {
         var token = new CompositeExpressionToken();
@@ -477,6 +480,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">MemberExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.IsGenericCompositionExpressionContextType(Type)")]
     private static ExpressionToken Visit(MemberExpression expression)
     {
         // Check if this expression is accessing the StartingValue or FinalValue
@@ -667,6 +671,8 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">MethodCallExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls System.Type.MakeGenericType(params Type[])")]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(CompositionExpressionContext<>))]
     private static ExpressionToken Visit(MethodCallExpression expression)
     {
         var isExtensionMethod = expression.Method.IsDefined(typeof(ExtensionAttribute));
@@ -809,6 +815,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">MethodCallExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.GetExpressionValue(Expression)")]
     private static ExpressionToken VisitCollection(MethodCallExpression expression)
     {
         // Get the key
@@ -1051,6 +1058,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">NewExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.GetExpressionValue(Expression)")]
     private static ExpressionToken Visit(NewExpression expression)
     {
         // Is 'new' called for a type deriving from ExpressionTemplate?
@@ -1113,6 +1121,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">BinaryExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.GetExpressionValue(Expression)")]
     private static ExpressionToken VisitArrayExpression(BinaryExpression expression)
     {
         // In a BinaryExpression for ArrayIndex, the Left expression will be the
@@ -1176,6 +1185,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">Expression</param>
     /// <returns>object</returns>
+    [RequiresDynamicCode("Calls System.Linq.Expressions.Expression.Lambda(Expression, params ParameterExpression[])")]
     private static object GetExpressionValue(Expression expression)
     {
         object result = null;
@@ -1333,6 +1343,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">MemberExpression</param>
     /// <returns>ExpressionToken</returns>
+    [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.IsGenericCompositionExpressionContextType(Type)")]
     private static ExpressionToken Parse(MemberExpression expression)
     {
         // If the the expression type is a class implementing the IGraphicEffect interface or
@@ -1538,6 +1549,8 @@ internal abstract partial class CompositionExpressionEngine
         return name;
     }
 
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(CompositionExpressionContext<>))]
+    [RequiresDynamicCode("Calls System.Type.MakeGenericType(params Type[])")]
     /// <summary>
     /// Checks if the given type of of type CompositionExpressionContext&lt;T&gt;
     /// </summary>

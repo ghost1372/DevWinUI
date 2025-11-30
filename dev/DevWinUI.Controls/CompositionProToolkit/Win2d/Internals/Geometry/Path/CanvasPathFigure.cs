@@ -69,7 +69,8 @@ internal partial class CanvasPathFigure : AbstractPathElement
         Data = main.Value;
 
         var elements = new List<ICanvasPathElement>();
-        foreach (PathElementType type in Enum.GetValues(typeof(PathElementType)))
+        var pathElementList = new List<PathElementType>(Enum.GetValues<PathElementType>());
+        foreach (PathElementType type in pathElementList)
         {
             foreach (Capture elementCapture in match.Groups[type.ToString()].Captures)
             {

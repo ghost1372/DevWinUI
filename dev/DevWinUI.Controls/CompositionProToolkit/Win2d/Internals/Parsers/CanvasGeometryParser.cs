@@ -75,7 +75,8 @@ internal static partial class CanvasGeometryParser
 
         var figures = new List<ICanvasPathElement>();
 
-        foreach (PathFigureType type in Enum.GetValues(typeof(PathFigureType)))
+        var pathFigureList = new List<PathFigureType>(Enum.GetValues<PathFigureType>());
+        foreach (PathFigureType type in pathFigureList)
         {
             foreach (Capture figureCapture in matches[0].Groups[type.ToString()].Captures)
             {
