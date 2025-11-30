@@ -27,6 +27,8 @@
 // CompositionProToolkit v1.0.1
 // 
 
+using Microsoft.Graphics.Canvas;
+
 namespace DevWinUI;
 
 /// <summary>
@@ -1061,7 +1063,15 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
         {
             try
             {
-                canvasBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
+                if (RuntimeHelper.IsPackaged())
+                {
+                    canvasBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
+                }
+                else
+                {
+                    using var fs = File.OpenRead(uri.LocalPath);
+                    canvasBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, fs.AsRandomAccessStream());
+                }
             }
             catch (Exception)
             {
@@ -1114,7 +1124,15 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
         {
             try
             {
-                surfaceBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
+                if (RuntimeHelper.IsPackaged())
+                {
+                    surfaceBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
+                }
+                else
+                {
+                    using var fs = File.OpenRead(uri.LocalPath);
+                    surfaceBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, fs.AsRandomAccessStream());
+                }
             }
             catch (Exception)
             {
