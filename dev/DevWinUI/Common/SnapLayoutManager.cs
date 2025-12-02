@@ -7,7 +7,7 @@ public partial class SnapLayoutManager
     private Window window;
     private FrameworkElement snapElement;
     private WindowMessageMonitor monitor;
-
+    private IntPtr hwnd;
     public bool IsEnabled { get; set; } = true;
 
     public void Attach(Window window, FrameworkElement element)
@@ -16,7 +16,7 @@ public partial class SnapLayoutManager
 
         this.window = window;
         this.snapElement = element;
-
+        this.hwnd = WindowNative.GetWindowHandle(this.window);
         this.window.Closed += OnWindowClosed;
 
         monitor = new WindowMessageMonitor(this.window);
@@ -30,10 +30,13 @@ public partial class SnapLayoutManager
         Detach();
     }
 
+    
     public void Detach()
     {
         if (window != null)
+        {
             window.Closed -= OnWindowClosed;
+        }
 
         if (monitor != null)
         {
@@ -87,11 +90,14 @@ public partial class SnapLayoutManager
 
     private Rect GetButtonScreenRect(FrameworkElement element)
     {
-        if (element == null || window?.Content == null)
+        if (element == null)
             return Rect.Empty;
 
-        var point = element.TransformToVisual(window.Content as UIElement)
-                          .TransformPoint(new Windows.Foundation.Point(0, 0));
+        var root = window.Content as UIElement;
+        if (root == null)
+            return Rect.Empty;
+
+        var point = element.TransformToVisual(root).TransformPoint(new Windows.Foundation.Point(0, 0));
 
         double scale = element.XamlRoot.RasterizationScale;
         double left = point.X * scale;
@@ -99,7 +105,6 @@ public partial class SnapLayoutManager
         double width = element.ActualWidth * scale;
         double height = element.ActualHeight * scale;
 
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         var pt = new System.Drawing.Point((int)Math.Round(left), (int)Math.Round(top));
         Windows.Win32.PInvoke.ClientToScreen(new(hwnd), ref pt);
 
