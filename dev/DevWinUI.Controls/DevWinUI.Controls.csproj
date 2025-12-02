@@ -32,6 +32,9 @@
     <EmbeddedResource Include="..\..\tools\Assets\Mask\TextGlitchMask.png">
       <LogicalName>Assets.Mask.TextGlitchMask.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\..\tools\Assets\Mask\CircleMask.png">
+      <LogicalName>Assets.Mask.CircleMask.png</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\tools\Assets\Noise\Noise.jpg">
       <LogicalName>Assets.Noise.Noise.jpg</LogicalName>
     </EmbeddedResource>

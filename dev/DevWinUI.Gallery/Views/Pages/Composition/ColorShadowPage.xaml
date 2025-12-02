@@ -51,9 +51,28 @@
                                 Header="Shadow Offset Y"
                                 Value="4" />
 
+                        <Slider x:Name="SldImageLayoutOffsetX"
+                                Header="Image Layout Offset X"
+                                Value="0" />
+                        <Slider x:Name="SldImageLayoutOffsetY"
+                                Header="Image Layout Offset Y"
+                                Value="0" />
+                        <Slider x:Name="SldImageLayoutOffsetZ"
+                                Header="Image Layout Offset Z"
+                                Value="0" />
+                        <Slider x:Name="SldImageOffsetX"
+                                Header="Image Offset X"
+                                Value="0" />
+                        <Slider x:Name="SldImageOffsetY"
+                                Header="Image Offset Y"
+                                Value="0" />
+
                         <ToggleSwitch x:Name="TgShowShadow"
                                       Header="Show Shadow"
                                       IsOn="True" />
+                        <ToggleSwitch x:Name="TgIsRound"
+                                      Header="Is Rounded Image?"
+                                      IsOn="False" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:ColorShadow x:Name="ColorShadowCtrl"
@@ -64,6 +83,12 @@
                                  ColorShadowBlurRadius="{x:Bind SldColorShadowBlurRadius.Value, Mode=OneWay}"
                                  ColorShadowOpacity="{x:Bind SldColorShadowOpacity.Value, Mode=OneWay}"
                                  ColorShadowPadding="{x:Bind SldColorShadowPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}"
+                                 ImageLayoutOffsetX="{x:Bind SldImageLayoutOffsetX.Value, Mode=OneWay}"
+                                 ImageLayoutOffsetY="{x:Bind SldImageLayoutOffsetY.Value, Mode=OneWay}"
+                                 ImageLayoutOffsetZ="{x:Bind SldImageLayoutOffsetZ.Value, Mode=OneWay}"
+                                 ImageOffsetX="{x:Bind SldImageOffsetX.Value, Mode=OneWay}"
+                                 ImageOffsetY="{x:Bind SldImageOffsetY.Value, Mode=OneWay}"
+                                 IsRounded="{x:Bind TgIsRound.IsOn, Mode=OneWay}"
                                  IsShadowEnabled="{x:Bind TgShowShadow.IsOn, Mode=OneWay}"
                                  ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}"
                                  ShadowOffsetX="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}"
