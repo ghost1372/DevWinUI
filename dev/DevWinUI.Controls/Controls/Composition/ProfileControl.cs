@@ -37,7 +37,6 @@ public sealed partial class ProfileControl : Control
     private ScalarKeyFrameAnimation _blurAnimation;
 
     private Vector2KeyFrameAnimation _revealAnimation;
-    //private KeyFrameAnimation<Vector2> _hideAnimation;
     private readonly ImageSurfaceOptions _imageOptions;
 
     private ScalarKeyFrameAnimation _fadeInAnimation;

@@ -44,12 +44,12 @@ public sealed partial class FluidBanner : Panel
     private bool _isCollapsing;
     private bool _surfaceImagesCreated;
     // Animations
-    private KeyFrameAnimation<float> _expandLeftInset;
-    private KeyFrameAnimation<float> _expandRightInset;
-    private KeyFrameAnimation<float> _expandInsetClip;
-    private KeyFrameAnimation<float> _collapseLeftInset;
-    private KeyFrameAnimation<float> _collapseRightInset;
-    private KeyFrameAnimation<float> _collapseInsetClip;
+    private ScalarKeyFrameAnimation _expandLeftInset;
+    private ScalarKeyFrameAnimation _expandRightInset;
+    private ScalarKeyFrameAnimation _expandInsetClip;
+    private ScalarKeyFrameAnimation _collapseLeftInset;
+    private ScalarKeyFrameAnimation _collapseRightInset;
+    private ScalarKeyFrameAnimation _collapseInsetClip;
 
     #endregion
 
@@ -597,30 +597,30 @@ public sealed partial class FluidBanner : Panel
         _implicitAnimationCollection["Scale"] = scaleAnimation.Animation;
 
         // Expand Animations
-        _expandLeftInset = _compositor.CreateKeyFrameAnimation<float>()
-                                      .HavingDuration(InsetAnimationDuration)
-                                      .DelayBy(InsetAnimationDelayDuration);
+        _expandLeftInset = _compositor.CreateScalarKeyFrameAnimation();
+        _expandLeftInset.Duration = InsetAnimationDuration;
+        _expandLeftInset.DelayTime = InsetAnimationDelayDuration;
 
         _expandLeftInset.InsertKeyFrame(1f, 0);
 
-        _expandRightInset = _compositor.CreateKeyFrameAnimation<float>()
-                                       .HavingDuration(InsetAnimationDuration)
-                                       .DelayBy(InsetAnimationDelayDuration);
+        _expandRightInset = _compositor.CreateScalarKeyFrameAnimation();
+        _expandRightInset.Duration = InsetAnimationDuration;
+        _expandRightInset.DelayTime = InsetAnimationDelayDuration;
 
-        _expandInsetClip = _compositor.CreateKeyFrameAnimation<float>()
-                                      .HavingDuration(InsetClipAnimationDuration);
+        _expandInsetClip = _compositor.CreateScalarKeyFrameAnimation();
+        _expandInsetClip.Duration = InsetClipAnimationDuration;
 
         _expandInsetClip.InsertKeyFrame(1f, 0);
 
         // Collapse Animations
-        _collapseLeftInset = _compositor.CreateKeyFrameAnimation<float>()
-                                        .HavingDuration(InsetAnimationDuration);
+        _collapseLeftInset = _compositor.CreateScalarKeyFrameAnimation();
+        _collapseLeftInset.Duration = InsetAnimationDuration;
 
-        _collapseRightInset = _compositor.CreateKeyFrameAnimation<float>()
-                                         .HavingDuration(InsetAnimationDuration);
+        _collapseRightInset = _compositor.CreateScalarKeyFrameAnimation();
+        _collapseRightInset.Duration = InsetAnimationDuration;
 
-        _collapseInsetClip = _compositor.CreateKeyFrameAnimation<float>()
-                                        .HavingDuration(InsetClipAnimationDuration);
+        _collapseInsetClip = _compositor.CreateScalarKeyFrameAnimation();
+        _collapseInsetClip.Duration = InsetClipAnimationDuration;
 
         // Root Container
         _rootContainer = _compositor.CreateContainerVisual();
