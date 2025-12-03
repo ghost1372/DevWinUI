@@ -30,8 +30,8 @@ public partial class ColorShadow : Control
     private SpriteVisual _imageVisual;
     private CompositionEffectBrush _colorShadowBrush;
     private DropShadow _dropShadow;
-    private KeyFrameAnimation<float> _colorShadowBlurAnimation;
-    readonly ImageSurfaceOptions _maskOptions = ImageSurfaceOptions.DefaultImageMaskOptions;
+    private ScalarKeyFrameAnimation _colorShadowBlurAnimation;
+    private readonly ImageSurfaceOptions _maskOptions = ImageSurfaceOptions.DefaultImageMaskOptions;
 
     private Grid _renderGrid;
     private bool _imageSourceLoaded;
@@ -203,7 +203,9 @@ public partial class ColorShadow : Control
             _colorShadowVisual.Brush = _colorShadowBrush;
             _colorShadowVisual.Opacity = ColorShadowOpacity.ToSingle();
 
-            _colorShadowBlurAnimation = _compositor.GenerateScalarKeyFrameAnimation().HavingDuration(TimeSpan.FromMilliseconds(100));
+            _colorShadowBlurAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            _colorShadowBlurAnimation.Duration = TimeSpan.FromMilliseconds(100);
+
             Expression<CompositionExpression<float>> expr = c => ColorShadowBlurRadius.ToSingle();
             _colorShadowBlurAnimation.InsertExpressionKeyFrame(1f, expr, _compositor.CreateLinearEasingFunction());
             _colorShadowBrush.Properties.StartAnimation("Blur.BlurAmount", _colorShadowBlurAnimation);
