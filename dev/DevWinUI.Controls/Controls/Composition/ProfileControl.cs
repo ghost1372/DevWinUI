@@ -33,14 +33,14 @@ public sealed partial class ProfileControl : Control
     private CompositionSurfaceBrush _imageMaskSurfaceBrush;
 
     private CompositionEffectBrush _bgBrush;
-    private KeyFrameAnimation<Color> _tintAnimation;
-    private KeyFrameAnimation<float> _blurAnimation;
+    private ColorKeyFrameAnimation _tintAnimation;
+    private ScalarKeyFrameAnimation _blurAnimation;
 
-    private KeyFrameAnimation<Vector2> _revealAnimation;
+    private Vector2KeyFrameAnimation _revealAnimation;
     //private KeyFrameAnimation<Vector2> _hideAnimation;
     private readonly ImageSurfaceOptions _imageOptions;
 
-    private KeyFrameAnimation<float> _fadeInAnimation;
+    private ScalarKeyFrameAnimation _fadeInAnimation;
 
     private bool _isLoaded;
     private bool _revealOnLoad;
@@ -86,10 +86,22 @@ public sealed partial class ProfileControl : Control
     /// </summary>
     private void OnBlurRadiusChanged()
     {
-        if ((_blurAnimation != null))
-        {
-            _bgBrush?.StartAnimation("Blur.BlurAmount", _blurAnimation);
-        }
+        if (_bgBrush == null || _compositor == null)
+            return;
+
+        AnimateBlurRadius();
+    }
+
+    private void AnimateBlurRadius()
+    {
+        var easing = _compositor.CreateLinearEasingFunction();
+
+        _blurAnimation = _compositor.CreateScalarKeyFrameAnimation();
+        _blurAnimation.Duration = DefaultBlurDuration;
+
+        _blurAnimation.InsertKeyFrame(1f, (float)BlurRadius, easing);
+
+        _bgBrush.StartAnimation("Blur.BlurAmount", _blurAnimation);
     }
 
     #endregion
@@ -336,10 +348,22 @@ public sealed partial class ProfileControl : Control
     /// </summary>
     private void OnTintChanged()
     {
-        if ((_tintAnimation != null))
-        {
-            _bgBrush?.StartAnimation("Color.Color", _tintAnimation);
-        }
+        if (_bgBrush == null || _compositor == null)
+            return;
+
+        AnimateTint();
+    }
+
+    private void AnimateTint()
+    {
+        var easing = _compositor.CreateLinearEasingFunction();
+
+        _tintAnimation = _compositor.CreateColorKeyFrameAnimation();
+        _tintAnimation.Duration = DefaultTintDuration;
+
+        _tintAnimation.InsertKeyFrame(1f, Tint, easing);
+
+        _bgBrush.StartAnimation("Color.Color", _tintAnimation);
     }
 
     #endregion
@@ -554,27 +578,26 @@ public sealed partial class ProfileControl : Control
         //
         var easing = _compositor.CreateLinearEasingFunction();
 
-        // Tint
-        _tintAnimation = _compositor.GenerateColorKeyFrameAnimation().HavingDuration(DefaultTintDuration);
-        _tintAnimation.InsertFinalValueKeyFrame(1f, easing);
+        AnimateTint();
 
-        // Blur
-        _blurAnimation = _compositor.GenerateScalarKeyFrameAnimation().HavingDuration(DefaultBlurDuration);
-        _blurAnimation.InsertFinalValueKeyFrame(1f, easing);
+        AnimateBlurRadius();
 
-        // Reveal
-        _revealAnimation = _compositor.GenerateVector2KeyFrameAnimation()
-            .HavingDuration(RevealDuration);
+        _revealAnimation = _compositor.CreateVector2KeyFrameAnimation();
+        _revealAnimation.Duration = RevealDuration;
 
-        _revealAnimation.InsertKeyFrames(new KeyFrame<Vector2>(0f, new Vector2(0)),
-            new KeyFrame<Vector2>(1f, new Vector2(FinalRevealScale), _compositor.CreateEaseOutQuinticEasingFunction()));
+        _revealAnimation.InsertKeyFrame(0f, new Vector2(0f));
+        _revealAnimation.InsertKeyFrame(
+            1f,
+            new Vector2(FinalRevealScale),
+            _compositor.CreateEaseOutQuinticEasingFunction()
+        );
 
         // Fade In
-        _fadeInAnimation = _compositor.GenerateScalarKeyFrameAnimation()
-            .HavingDuration(DefaultFadeInDuration);
+        _fadeInAnimation = _compositor.CreateScalarKeyFrameAnimation();
+        _fadeInAnimation.Duration = DefaultFadeInDuration;
 
-        _fadeInAnimation.InsertKeyFrames(new KeyFrame<float>(0f, 0f),
-            new KeyFrame<float>(1f, 1f));
+        _fadeInAnimation.InsertKeyFrame(0f, 0f);
+        _fadeInAnimation.InsertKeyFrame(1f, 1f);
 
         //_hideAnimation = _compositor.GenerateVector2KeyFrameAnimation()
         //    .HavingDuration(TimeSpan.FromMilliseconds(750));
@@ -595,8 +618,8 @@ public sealed partial class ProfileControl : Control
         await _imageSurface.RedrawAsync(Source, _imageVisual.Size.ToSize(),
             _imageOptions);
 
-        _imageVisual.StartAnimation(() => _imageVisual.Opacity, _fadeInAnimation);
-        _imageMaskSurfaceBrush.StartAnimation(() => _imageMaskSurfaceBrush.ScaleXY(), _revealAnimation);
+        _imageVisual.StartAnimation("Opacity", _fadeInAnimation);
+        _imageMaskSurfaceBrush.StartAnimation("Scale", _revealAnimation);
     }
 
     #endregion
