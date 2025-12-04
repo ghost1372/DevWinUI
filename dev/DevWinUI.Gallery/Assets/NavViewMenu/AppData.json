@@ -21,6 +21,13 @@
       "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ColorAnalyzerPage",
+          "Title": "Color Analyzer",
+          "IsNew": true,
+          "Subtitle": "Generates a color palette from any UIElement.",
+          "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage",
           "Title": "MenuFlyout Attach",
           "IsNew": true,
@@ -212,14 +219,12 @@
           "UniqueId": "DevWinUIGallery.Views.WanderingParticlesPage",
           "Title": "Wandering Particles",
           "Subtitle": "A visual effect that generates particles moving in random, flowing paths, creating a dynamic and wandering animation.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SnowFlakeEffectPage",
           "Title": "SnowFlake Effect",
           "Subtitle": "A visual effect that simulates falling snowflakes, with customizable particle count.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Snowflake.png"
         },
         {
@@ -388,7 +393,6 @@
           "UniqueId": "DevWinUIGallery.Views.StepBarPage",
           "Title": "StepBar",
           "Subtitle": "A control that visually represents progress through a series of steps or stages, often used in wizards, forms, or multi-step processes.",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -563,7 +567,6 @@
           "UniqueId": "DevWinUIGallery.Views.StylesPage",
           "Title": "Styles",
           "Subtitle": "Styles",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {

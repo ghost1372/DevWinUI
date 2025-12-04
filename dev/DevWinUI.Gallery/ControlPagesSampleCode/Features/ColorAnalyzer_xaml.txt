@@ -1,0 +1,35 @@
+﻿<Page.Resources>
+    <dev:ColorAnalyzer x:Name="ColorAnalyzerSample"
+                        Source="{x:Bind ImageSample}">
+        <dev:AccentColorAnalyzer x:Name="AccentColorAnalyzerSample"
+                                    MinColorCount="3" />
+        <dev:BaseColorAnalyzer x:Name="BaseColorAnalyzerSample"
+                                MinColorCount="3" />
+        <dev:ColorWeightAnalyzer x:Name="ColorWeightAnalyzerSample"
+                                    MinColorCount="3" />
+    </dev:ColorAnalyzer>
+</Page.Resources>
+
+<Border>
+    <Border.Background>
+        <SolidColorBrush Color="{x:Bind AccentColorAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}" />
+    </Border.Background>
+    <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind AccentColorAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}"
+                Text="Primary Accent" />
+</Border>
+
+<Border>
+    <Border.Background>
+        <SolidColorBrush Color="{x:Bind BaseColorAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}" />
+    </Border.Background>
+    <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind BaseColorAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}"
+                Text="Primary Base" />
+</Border>
+
+<Border>
+    <Border.Background>
+        <SolidColorBrush Color="{x:Bind ColorWeightAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}" />
+    </Border.Background>
+    <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind ColorWeightAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}"
+                Text="Primary Weight" />
+</Border>

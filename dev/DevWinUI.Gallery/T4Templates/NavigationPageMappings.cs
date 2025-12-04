@@ -14,6 +14,7 @@ public partial class NavigationPageMappings
     public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>
     {
         {"DevWinUIGallery.Views.HomeLandingPage", typeof(DevWinUIGallery.Views.HomeLandingPage)},
+        {"DevWinUIGallery.Views.ColorAnalyzerPage", typeof(DevWinUIGallery.Views.ColorAnalyzerPage)},
         {"DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage", typeof(DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage)},
         {"DevWinUIGallery.Views.SunTimesHelperPage", typeof(DevWinUIGallery.Views.SunTimesHelperPage)},
         {"DevWinUIGallery.Views.SystemTrayIconPage", typeof(DevWinUIGallery.Views.SystemTrayIconPage)},
