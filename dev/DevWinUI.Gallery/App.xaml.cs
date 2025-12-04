@@ -49,6 +49,7 @@ public partial class App : Application
 
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
         MainWindow.AppWindow.SetIcon("Assets/icon.ico");
+        MainWindow.AppWindow.SetTaskbarIcon("Assets/icon.ico");
 
         MainWindow.Activate();
 
