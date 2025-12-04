@@ -353,6 +353,15 @@ public partial class StoreCarousel : Control
         pipsPager.SelectedPageIndex = newIndex;
     }
 
+    public void GoToNext()
+    {
+        GoToNextPrev(true);
+    }
+    public void GoToPrevious()
+    {
+        GoToNextPrev(false);
+    }
+
     public void GoToIndex(int index)
     {
         if (imageList.Count < 1) return;
@@ -433,7 +442,7 @@ public partial class StoreCarousel : Control
         return brush;
     }
 
-    public void RunTextAnimation()
+    private void RunTextAnimation()
     {
         if (actionPanel.RenderTransform is not CompositeTransform transform)
         {
