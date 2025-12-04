@@ -97,6 +97,8 @@ To compile the project, contribute new features, or explore guidelines:
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ ContrastAnalyzer
+ - ✨ ColorAnalyzer
  - ✨ SnapLayoutManager
  - ✨ SmoothWindowResizer
  - ✨ SystemTrayIcon
@@ -307,6 +309,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### ColorAnalyzer
+![ColorAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorAnalyzer.gif)
 
 ### StoreCarousel
 ![StoreCarousel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StoreCarousel.gif)
