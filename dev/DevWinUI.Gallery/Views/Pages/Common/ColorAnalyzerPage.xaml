@@ -182,7 +182,7 @@
                                 <SolidColorBrush Color="{x:Bind ColorWeightAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}" />
                             </Border.Background>
                             <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind ColorWeightAnalyzerSample.SelectedColors[0], FallbackValue=Transparent, Mode=OneWay}"
-                                       Text="Primary Base" />
+                                       Text="Primary Weight" />
                         </Border>
 
                         <!--  Secondary Weight Color  -->
@@ -193,7 +193,7 @@
                                 <SolidColorBrush Color="{x:Bind ColorWeightAnalyzerSample.SelectedColors[1], FallbackValue=Transparent, Mode=OneWay}" />
                             </Border.Background>
                             <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind ColorWeightAnalyzerSample.SelectedColors[1], FallbackValue=Transparent, Mode=OneWay}"
-                                       Text="Secondary Base" />
+                                       Text="Secondary Weight" />
                         </Border>
 
                         <!--  Tertiary Weight Color  -->
@@ -205,7 +205,7 @@
                                 <SolidColorBrush Color="{x:Bind ColorWeightAnalyzerSample.SelectedColors[2], FallbackValue=Transparent, Mode=OneWay}" />
                             </Border.Background>
                             <TextBlock dev:ContrastAnalyzer.Opponent="{x:Bind ColorWeightAnalyzerSample.SelectedColors[2], FallbackValue=Transparent, Mode=OneWay}"
-                                       Text="Tertiary Base" />
+                                       Text="Tertiary Weight" />
                         </Border>
 
                         <!--  Weight Colors Gradient  -->
