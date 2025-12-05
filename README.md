@@ -311,7 +311,7 @@ Install-Package DevWinUI.ContextMenu
 ## 🕰️ History 🕰️
 
 ### ColorAnalyzer
-![ColorAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorAnalyzer.gif)
+![ColorAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorAnalyzer.png)
 
 ### StoreCarousel
 ![StoreCarousel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StoreCarousel.gif)
