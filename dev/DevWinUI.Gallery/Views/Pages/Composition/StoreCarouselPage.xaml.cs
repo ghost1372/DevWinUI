@@ -10,43 +10,43 @@ public sealed partial class StoreCarouselPage : Page
         {
             Title = "Wolverine & Deadpool",
             Description = "Action-packed mutant duo",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/1.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/1.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "Alien",
             Description = "Survival horror in space",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/2.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/2.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "Walking Dead: Dead City",
             Description = "Zombies overrun New York",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/3.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/3.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "Inferno",
             Description = "Thrilling race against time",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/4.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/4.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "The Forest Song",
             Description = "Magical tale of nature and love",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/5.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/5.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "Moana",
             Description = "Epic ocean adventure",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/6.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/6.jpg")).OriginalString,
         },
         new StoreCarouselItem
         {
             Title = "Avatar",
             Description = "Journey to Pandora",
-            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/7.jpg")),
+            ImageSource= PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Carousel/7.jpg")).OriginalString,
         },
     };
     public StoreCarouselPage()

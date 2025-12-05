@@ -11,12 +11,12 @@ public sealed partial class ProfileControlPage : Page
 
         _profiles = new List<Uri>
         {
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p1.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p2.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p3.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p4.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p5.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p6.jpg"))),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p1.jpg")),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p2.jpg")),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p3.jpg")),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p4.jpg")),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p5.jpg")),
+            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p6.jpg")),
         };
 
         currentIndex = 0;

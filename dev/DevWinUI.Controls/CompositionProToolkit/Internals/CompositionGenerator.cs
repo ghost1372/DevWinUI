@@ -1063,7 +1063,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
         {
             try
             {
-                if (RuntimeHelper.IsPackaged())
+                if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
                 {
                     canvasBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
                 }
@@ -1124,7 +1124,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
         {
             try
             {
-                if (RuntimeHelper.IsPackaged())
+                if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
                 {
                     surfaceBitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
                 }

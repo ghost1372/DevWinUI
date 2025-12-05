@@ -14,39 +14,64 @@ public partial class PathHelper
         return file.Path;
     }
 
-    public static string GetFilePath(Uri uri)
+    /// <summary>
+    /// Converts an input path or URI to a valid Uri, handling absolute paths, relative paths, 
+    /// and ms-appx:// URIs correctly for both packaged and unpackaged applications.
+    /// </summary>
+    public static Uri GetFilePath(object input)
     {
-        try
+        if (input == null) throw new ArgumentNullException(nameof(input));
+
+        Uri uri = input as Uri ?? new Uri(input.ToString(), UriKind.RelativeOrAbsolute);
+
+        // Case 1: Absolute file path (C:\...) or remote URLs (http/https)
+        if (uri.IsAbsoluteUri)
         {
             if (uri.IsFile)
             {
-                return uri.LocalPath;
+                return uri; // Local file path
             }
-            else if (!uri.IsAbsoluteUri)
+            else if (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
             {
-                return Path.Combine(AppContext.BaseDirectory, uri.OriginalString.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                return uri; // Remote URL
             }
-            else if (uri.Scheme.Equals("ms-appx", StringComparison.OrdinalIgnoreCase))
-            {
-                if (RuntimeHelper.IsPackaged())
-                {
-                    return Path.Combine(AppContext.BaseDirectory, uri.AbsolutePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-                }
-                else
-                {
-                    var path = uri.AbsolutePath.TrimStart('/');
-                    return Path.Combine(AppContext.BaseDirectory, path.Replace('/', Path.DirectorySeparatorChar));
-                }
-            }
-
-            return null;
         }
-        catch
+
+        // Determine if app is packaged
+        bool isPackaged = RuntimeHelper.IsPackaged();
+
+        // Case 2: ms-appx:// scheme
+        if (uri.IsAbsoluteUri && uri.Scheme == "ms-appx")
         {
+            if (isPackaged)
+            {
+                return uri; // Use as-is
+            }
+            else
+            {
+                // Convert to unpackaged local path
+                string path = uri.AbsolutePath.TrimStart('/');
+                string fullPath = Path.Combine(AppContext.BaseDirectory, path.Replace('/', Path.DirectorySeparatorChar));
+                return new Uri(fullPath);
+            }
         }
 
-        return null;
+        // Case 3: Relative path (e.g., Assets/Others/p1.jpg)
+        string relativePath = uri.OriginalString.TrimStart('/');
+
+        if (isPackaged)
+        {
+            // In packaged, convert relative path to ms-appx:///
+            return new Uri($"ms-appx:///{relativePath.Replace('\\', '/')}");
+        }
+        else
+        {
+            // In unpackaged, convert relative path to full local path
+            string fullPath = Path.Combine(AppContext.BaseDirectory, relativePath.Replace('/', Path.DirectorySeparatorChar));
+            return new Uri(fullPath);
+        }
     }
+
     /// <summary>
     /// Return Full Path to Assets folder even if your app is SelfContained/SingleFile
     /// Normal Mode: App/bin/Assets

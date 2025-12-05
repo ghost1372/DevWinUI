@@ -82,7 +82,15 @@ public partial class Watermark : Control
     {
         if (IsImage)
         {
-            _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, uri);
+            if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
+            {
+                _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, uri);
+            }
+            else
+            {
+                using var fs = File.OpenRead(uri.LocalPath);
+                _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
+            }
             _Canvas.Invalidate();
         }
     }
@@ -96,7 +104,16 @@ public partial class Watermark : Control
                 {
                     return;
                 }
-                _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, MarkImage);
+
+                if ((RuntimeHelper.IsPackaged() && !MarkImage.IsFile) || MarkImage.Scheme == Uri.UriSchemeHttp || MarkImage.Scheme == Uri.UriSchemeHttps)
+                {
+                    _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, MarkImage);
+                }
+                else
+                {
+                    using var fs = File.OpenRead(MarkImage.OriginalString);
+                    _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
+                }
             }
             catch (Exception)
             {

@@ -12,16 +12,16 @@ public sealed partial class ImageFramePage : Page
 
         _uris = new List<Uri>()
         {
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-1.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-2.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-3.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-4.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-5.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-6.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-7.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-8.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-9.jpg"))),
-            new Uri(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-10.jpg")))
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-1.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-2.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-3.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-4.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-5.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-6.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-7.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-8.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-9.jpg")),
+            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-10.jpg"))
         };
 
         ImageFrame.Source = _uris[_currentIndex];

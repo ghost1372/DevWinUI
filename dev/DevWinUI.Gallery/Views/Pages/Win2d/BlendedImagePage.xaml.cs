@@ -6,7 +6,7 @@ public sealed partial class BlendedImagePage : Page
     {
         InitializeComponent();
 
-        BlendedImageSample.PrimaryImageSource = new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/Image1.jpg")));
-        BlendedImageSample.SecondaryImageSource = new Uri(PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/Image2.jpg")));
+        BlendedImageSample.PrimaryImageSource = PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/Image1.jpg"));
+        BlendedImageSample.SecondaryImageSource = PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/Image2.jpg"));
     }
 }

@@ -7,16 +7,16 @@ internal static partial class ColorHelperEx
     public static async Task<Color> GetImageEdgeColorWithWin2DAsync(CanvasDevice device, Uri path)
     {
         CanvasBitmap canvasBitmap = null;
-        if (RuntimeHelper.IsPackaged())
+        if ((RuntimeHelper.IsPackaged() && !path.IsFile) || path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps)
         {
             canvasBitmap = await CanvasBitmap.LoadAsync(device, path);
         }
         else
         {
-            var localFilePath = path.LocalPath;
+            var localFilePath = path.OriginalString;
             if (!File.Exists(localFilePath))
             {
-                localFilePath = PathHelper.GetFilePath(path);
+                localFilePath = PathHelper.GetFilePath(path).OriginalString;
             }
             using var fs = File.OpenRead(localFilePath);
             canvasBitmap = await CanvasBitmap.LoadAsync(device, fs.AsRandomAccessStream());
@@ -49,16 +49,16 @@ internal static partial class ColorHelperEx
     public static async Task<Color> GetBalancedImageColorAsync(CanvasDevice device, Uri path, float edgeWeight = 0.7f)
     {
         CanvasBitmap canvasBitmap = null;
-        if (RuntimeHelper.IsPackaged())
+        if ((RuntimeHelper.IsPackaged() && !path.IsFile) || path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps)
         {
             canvasBitmap = await CanvasBitmap.LoadAsync(device, path);
         }
         else
         {
-            var localFilePath = path.LocalPath;
+            var localFilePath = path.OriginalString;
             if (!File.Exists(localFilePath))
             {
-                localFilePath = PathHelper.GetFilePath(path);
+                localFilePath = PathHelper.GetFilePath(path).OriginalString;
             }
             using var fs = File.OpenRead(localFilePath);
             canvasBitmap = await CanvasBitmap.LoadAsync(device, fs.AsRandomAccessStream());
