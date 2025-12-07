@@ -9,7 +9,7 @@ public partial class BlurEffectManager : IDisposable
     private SpriteVisual _blurVisual;
     private CompositionEffectBrush _blurBrush;
     private ManagedSurface _noiseSurface;
-
+    private LinearEasingFunction _linearEasing;
 
     private bool _isTintEnabled = false;
     public bool IsTintEnabled
@@ -427,46 +427,91 @@ public partial class BlurEffectManager : IDisposable
     {
         if (_blurBrush == null) return;
 
-        var blurAnimation = _compositor.CreateScalarKeyFrameAnimation();
-        blurAnimation.Duration = duration;
-        blurAnimation.InsertKeyFrame(0f, 0f);
-        blurAnimation.InsertKeyFrame(1f, (float)targetBlurAmount);
+        PrepareForNewAnimation();
 
-        _blurBrush.Properties.StartAnimation("Blur.BlurAmount", blurAnimation);
+        _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out float current);
+
+        var easing = GetEasing();
+
+        var blurAnim = _compositor.CreateScalarKeyFrameAnimation();
+        blurAnim.Duration = duration;
+        blurAnim.InsertKeyFrame(0f, current, easing);
+        blurAnim.InsertKeyFrame(1f, (float)targetBlurAmount, easing);
+
+        _blurBrush.Properties.StartAnimation("Blur.BlurAmount", blurAnim);
 
         if (IsTintEnabled)
         {
-            var colorAnimation = _compositor.CreateColorKeyFrameAnimation();
-            colorAnimation.Duration = duration;
-            colorAnimation.InsertKeyFrame(0f, Colors.Transparent);
-            colorAnimation.InsertKeyFrame(1f, TintColor);
-            _blurBrush.Properties.StartAnimation("Tint.Color", colorAnimation);
+            Color transparent = Color.FromArgb(0, TintColor.R, TintColor.G, TintColor.B);
+
+            var tintAnim = _compositor.CreateColorKeyFrameAnimation();
+            tintAnim.Duration = duration;
+            tintAnim.InsertKeyFrame(0f, transparent, easing);
+            tintAnim.InsertKeyFrame(1f, TintColor, easing);
+
+            _blurBrush.Properties.StartAnimation("Tint.Color", tintAnim);
         }
     }
 
     public void StartBlurReverseAnimation() => StartBlurReverseAnimation(BlurAmount, TimeSpan.FromMilliseconds(300));
     public void StartBlurReverseAnimation(TimeSpan duration) => StartBlurReverseAnimation(BlurAmount, duration);
 
-    public void StartBlurReverseAnimation(double currentBlurAmount, TimeSpan duration)
+    public void StartBlurReverseAnimation(double fallbackBlur, TimeSpan duration)
     {
         if (_blurBrush == null) return;
 
-        var blurAnimation = _compositor.CreateScalarKeyFrameAnimation();
-        blurAnimation.Duration = duration;
-        blurAnimation.InsertKeyFrame(0f, (float)currentBlurAmount);
-        blurAnimation.InsertKeyFrame(1f, 0f);
-        _blurBrush.Properties.StartAnimation(propertyName: "Blur.BlurAmount", blurAnimation);
+        PrepareForNewAnimation();
+
+        float current = (float)fallbackBlur;
+        _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out current);
+
+        var easing = GetEasing();
+
+        var blurAnim = _compositor.CreateScalarKeyFrameAnimation();
+        blurAnim.Duration = duration;
+        blurAnim.InsertKeyFrame(0f, current, easing);
+        blurAnim.InsertKeyFrame(1f, 0f, easing);
+
+        _blurBrush.Properties.StartAnimation("Blur.BlurAmount", blurAnim);
 
         if (IsTintEnabled)
         {
-            var colorAnimation = _compositor.CreateColorKeyFrameAnimation();
-            colorAnimation.Duration = duration;
-            colorAnimation.InsertKeyFrame(0f, TintColor);
-            colorAnimation.InsertKeyFrame(1f, Colors.Transparent);
-            _blurBrush.Properties.StartAnimation("Tint.Color", colorAnimation);
+            _blurBrush.Properties.TryGetColor("Tint.Color", out Color startColor);
+            Color transparent = Color.FromArgb(0, startColor.R, startColor.G, startColor.B);
+
+            var tintAnim = _compositor.CreateColorKeyFrameAnimation();
+            tintAnim.Duration = duration;
+            tintAnim.InsertKeyFrame(0f, startColor, easing);
+            tintAnim.InsertKeyFrame(1f, transparent, easing);
+
+            _blurBrush.Properties.StartAnimation("Tint.Color", tintAnim);
         }
     }
 
+    private void PrepareForNewAnimation()
+    {
+        if (_blurBrush == null) return;
+
+        _blurBrush.Properties.StopAnimation("Blur.BlurAmount");
+        if (IsTintEnabled)
+            _blurBrush.Properties.StopAnimation("Tint.Color");
+
+        // Force compositor to apply the final animated value before starting new one
+        _blurBrush.Properties.InsertScalar("Blur.BlurAmount",
+            _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out float v1) == CompositionGetValueStatus.Succeeded ? v1 : 0f);
+
+        if (IsTintEnabled)
+        {
+            if (_blurBrush.Properties.TryGetColor("Tint.Color", out Color c) == CompositionGetValueStatus.Succeeded)
+                _blurBrush.Properties.InsertColor("Tint.Color", c);
+            else
+                _blurBrush.Properties.InsertColor("Tint.Color", TintColor);
+        }
+    }
+    private LinearEasingFunction GetEasing()
+    {
+        return _linearEasing ??= _compositor.CreateLinearEasingFunction();
+    }
     public void StopBlurAnimation()
     {
         if (_blurBrush == null) return;
