@@ -88,4 +88,18 @@
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
+
+    <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="#FFFFFF" />
+        <GradientStop Offset="0.3" Color="#E9E9E9" />
+        <GradientStop Offset="0.6" Color="#FDFDFD" />
+        <GradientStop Offset="0.9" Color="#FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DarkTextGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="#303030" />
+        <GradientStop Offset="0.3" Color="#4A4A4A" />
+        <GradientStop Offset="0.6" Color="#161515" />
+        <GradientStop Offset="0.9" Color="#303030" />
+    </LinearGradientBrush>
 </ResourceDictionary>

@@ -38,7 +38,11 @@
         <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}" />
         <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}" />
-        <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <ThemeShadow />
+            </Setter.Value>
+        </Setter>
         <Setter Property="Transitions">
             <Setter.Value>
                 <TransitionCollection>
