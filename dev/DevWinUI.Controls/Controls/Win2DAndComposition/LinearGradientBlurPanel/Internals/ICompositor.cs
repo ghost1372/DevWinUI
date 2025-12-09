@@ -67,21 +67,21 @@ internal interface ICompositionPropertySet : ICompositionObject
 
     void InsertVector4(string propertyName, Vector4 value);
 
-    CompositionGetValueStatus TryGetColor(string propertyName, out Color value);
+    CompositionGetValueStatusEx TryGetColor(string propertyName, out Color value);
 
-    CompositionGetValueStatus TryGetMatrix3x2(string propertyName, out Matrix3x2 value);
+    CompositionGetValueStatusEx TryGetMatrix3x2(string propertyName, out Matrix3x2 value);
 
-    CompositionGetValueStatus TryGetMatrix4x4(string propertyName, out Matrix4x4 value);
+    CompositionGetValueStatusEx TryGetMatrix4x4(string propertyName, out Matrix4x4 value);
 
-    CompositionGetValueStatus TryGetQuaternion(string propertyName, out Quaternion value);
+    CompositionGetValueStatusEx TryGetQuaternion(string propertyName, out Quaternion value);
 
-    CompositionGetValueStatus TryGetScalar(string propertyName, out float value);
+    CompositionGetValueStatusEx TryGetScalar(string propertyName, out float value);
 
-    CompositionGetValueStatus TryGetVector2(string propertyName, out Vector2 value);
+    CompositionGetValueStatusEx TryGetVector2(string propertyName, out Vector2 value);
 
-    CompositionGetValueStatus TryGetVector3(string propertyName, out Vector3 value);
+    CompositionGetValueStatusEx TryGetVector3(string propertyName, out Vector3 value);
 
-    CompositionGetValueStatus TryGetVector4(string propertyName, out Vector4 value);
+    CompositionGetValueStatusEx TryGetVector4(string propertyName, out Vector4 value);
 }
 internal interface ICompositionAnimation : ICompositionObject
 {
@@ -140,11 +140,11 @@ internal interface ICompositionLinearGradientBrush : ICompositionBrush
 
     Vector2 EndPoint { get; set; }
 
-    CompositionMappingMode MappingMode { get; set; }
+    CompositionMappingModeEx MappingMode { get; set; }
 
     ICompositionColorGradientStopCollection ColorStops { get; }
 }
-internal enum CompositionMappingMode
+internal enum CompositionMappingModeEx
 {
     Absolute,
     Relative
@@ -159,7 +159,7 @@ internal interface ICompositionColorGradientStopCollection : ICompositionWrapper
 
     ICompositionColorGradientStop this[int index] { get; }
 }
-internal enum CompositionGetValueStatus
+internal enum CompositionGetValueStatusEx
 {
     Succeeded,
     TypeMismatch,

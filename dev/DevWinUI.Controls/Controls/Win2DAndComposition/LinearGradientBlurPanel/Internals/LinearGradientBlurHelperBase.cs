@@ -203,7 +203,7 @@ internal abstract class LinearGradientBlurHelperBase<TVisual, TCompositionProper
     {
         var maskBrush = compositor.CreateLinearGradientBrush();
 
-        maskBrush.MappingMode = CompositionMappingMode.Relative;
+        maskBrush.MappingMode = CompositionMappingModeEx.Relative;
 
         maskBrush.StartAnimation("StartPoint", startPointBind);
         maskBrush.StartAnimation("EndPoint", endPointBind);

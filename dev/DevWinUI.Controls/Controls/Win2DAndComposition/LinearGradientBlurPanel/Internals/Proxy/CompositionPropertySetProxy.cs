@@ -1,6 +1,4 @@
-﻿using CompositionNS = Microsoft.UI.Composition;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 internal partial class CompositionPropertySetProxy : CompositionObjectProxy, ICompositionPropertySet
 {
@@ -47,59 +45,59 @@ internal partial class CompositionPropertySetProxy : CompositionObjectProxy, ICo
         ((CompositionPropertySet)RawObject).InsertVector4(propertyName, value);
     }
 
-    public CompositionGetValueStatus TryGetColor(string propertyName, out Color value)
+    public CompositionGetValueStatusEx TryGetColor(string propertyName, out Color value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetColor(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetMatrix3x2(string propertyName, out Matrix3x2 value)
+    public CompositionGetValueStatusEx TryGetMatrix3x2(string propertyName, out Matrix3x2 value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetMatrix3x2(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetMatrix4x4(string propertyName, out Matrix4x4 value)
+    public CompositionGetValueStatusEx TryGetMatrix4x4(string propertyName, out Matrix4x4 value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetMatrix4x4(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetQuaternion(string propertyName, out Quaternion value)
+    public CompositionGetValueStatusEx TryGetQuaternion(string propertyName, out Quaternion value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetQuaternion(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetScalar(string propertyName, out float value)
+    public CompositionGetValueStatusEx TryGetScalar(string propertyName, out float value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetScalar(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetVector2(string propertyName, out Vector2 value)
+    public CompositionGetValueStatusEx TryGetVector2(string propertyName, out Vector2 value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetVector2(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetVector3(string propertyName, out Vector3 value)
+    public CompositionGetValueStatusEx TryGetVector3(string propertyName, out Vector3 value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetVector3(propertyName, out value));
     }
 
-    public CompositionGetValueStatus TryGetVector4(string propertyName, out Vector4 value)
+    public CompositionGetValueStatusEx TryGetVector4(string propertyName, out Vector4 value)
     {
         return MapCompositionGetValueStatus(((CompositionPropertySet)RawObject).TryGetVector4(propertyName, out value));
     }
 
-    private static CompositionGetValueStatus MapCompositionGetValueStatus(CompositionNS.CompositionGetValueStatus status)
+    private static CompositionGetValueStatusEx MapCompositionGetValueStatus(CompositionGetValueStatus status)
     {
         switch (status)
         {
-            case CompositionNS.CompositionGetValueStatus.Succeeded:
-                return CompositionGetValueStatus.Succeeded;
+            case CompositionGetValueStatus.Succeeded:
+                return CompositionGetValueStatusEx.Succeeded;
 
-            case CompositionNS.CompositionGetValueStatus.TypeMismatch:
-                return CompositionGetValueStatus.TypeMismatch;
+            case CompositionGetValueStatus.TypeMismatch:
+                return CompositionGetValueStatusEx.TypeMismatch;
 
-            case CompositionNS.CompositionGetValueStatus.NotFound:
+            case CompositionGetValueStatus.NotFound:
             default:
-                return CompositionGetValueStatus.NotFound;
+                return CompositionGetValueStatusEx.NotFound;
         }
     }
 }

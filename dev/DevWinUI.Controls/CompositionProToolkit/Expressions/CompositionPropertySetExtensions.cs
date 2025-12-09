@@ -137,16 +137,16 @@ public static partial class CompositionPropertySetExtensions
         var result = default(T);
         // Once a matching TryGetXXX method is found, Invoke it!
         var methodResult =
-            (CompositionGetValueStatus)TryGetMethods[methodKey].Invoke(propertySet, new object[] { key, result });
+            (CompositionGetValueStatusEx)TryGetMethods[methodKey].Invoke(propertySet, new object[] { key, result });
 
         switch (methodResult)
         {
-            case CompositionGetValueStatus.Succeeded:
+            case CompositionGetValueStatusEx.Succeeded:
                 return result;
-            case CompositionGetValueStatus.TypeMismatch:
+            case CompositionGetValueStatusEx.TypeMismatch:
                 throw new ArgumentException($"The key \'{key}\' does not return data of type "
                                             + $"\'{type.FullName}\' in the CompositionPropertySet!");
-            case CompositionGetValueStatus.NotFound:
+            case CompositionGetValueStatusEx.NotFound:
                 throw new ArgumentException($"The key \'{key}\' was not found in the CompositionPropertySet!");
         }
 

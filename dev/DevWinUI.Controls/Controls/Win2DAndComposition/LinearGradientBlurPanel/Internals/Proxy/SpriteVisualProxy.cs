@@ -1,6 +1,4 @@
-﻿using static DevWinUI.CompositionProxies;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 internal partial class SpriteVisualProxy : CompositionObjectProxy, ISpriteVisual
 {

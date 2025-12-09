@@ -20,7 +20,7 @@ internal partial class CompositionLinearGradientBrushProxy : CompositionBrushPro
         set => ((CompositionLinearGradientBrush)RawObject).EndPoint = value;
     }
 
-    public CompositionMappingMode MappingMode
+    public CompositionMappingModeEx MappingMode
     {
         get => MapCompositionMappingMode(((CompositionLinearGradientBrush)RawObject).MappingMode);
         set => ((CompositionLinearGradientBrush)RawObject).MappingMode = MapCompositionMappingMode(value);
@@ -35,29 +35,29 @@ internal partial class CompositionLinearGradientBrushProxy : CompositionBrushPro
         colorStops = null!;
     }
 
-    private static CompositionNS.CompositionMappingMode MapCompositionMappingMode(CompositionMappingMode mappingMode)
+    private static CompositionNS.CompositionMappingMode MapCompositionMappingMode(CompositionMappingModeEx mappingMode)
     {
         switch (mappingMode)
         {
-            case CompositionMappingMode.Relative:
+            case CompositionMappingModeEx.Relative:
                 return CompositionNS.CompositionMappingMode.Relative;
 
             default:
-            case CompositionMappingMode.Absolute:
+            case CompositionMappingModeEx.Absolute:
                 return CompositionNS.CompositionMappingMode.Absolute;
         }
     }
 
-    private static CompositionMappingMode MapCompositionMappingMode(CompositionNS.CompositionMappingMode mappingMode)
+    private static CompositionMappingModeEx MapCompositionMappingMode(CompositionNS.CompositionMappingMode mappingMode)
     {
         switch (mappingMode)
         {
             case CompositionNS.CompositionMappingMode.Relative:
-                return CompositionMappingMode.Relative;
+                return CompositionMappingModeEx.Relative;
 
             default:
             case CompositionNS.CompositionMappingMode.Absolute:
-                return CompositionMappingMode.Absolute;
+                return CompositionMappingModeEx.Absolute;
         }
     }
 }
