@@ -1,6 +1,4 @@
-﻿using Microsoft.Graphics.Canvas;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 internal static partial class ColorHelperEx
 {
