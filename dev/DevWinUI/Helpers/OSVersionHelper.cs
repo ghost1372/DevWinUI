@@ -62,6 +62,16 @@ public static partial class OSVersionHelper
     public static bool IsWindows11_26100_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 26100, OSVersion.Revision);
 
     /// <summary>
+    ///     Windows 11 Build 26100
+    /// </summary>
+    public static bool IsWindows11_26200 { get; } = IsWindowsNT && OSVersion == new Version(10, 0, 26200, OSVersion.Revision);
+
+    /// <summary>
+    ///     Windows 11 Build 26200 Or Greater
+    /// </summary>
+    public static bool IsWindows11_26200_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 26200, OSVersion.Revision);
+
+    /// <summary>
     /// Retrieves the operating system version as a Version object, optionally using the registry for the revision
     /// number.
     /// </summary>
