@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <DevWinUI xmlns="using:DevWinUI" />
+                <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/Generic.xaml" />
 
                 <ResourceDictionary Source="Themes/Styles.xaml" />
                 <ResourceDictionary Source="Themes/ThemeResources.xaml" />
