@@ -18,7 +18,6 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Common",
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.ColorAnalyzerPage",
@@ -164,7 +163,6 @@
       "Title": "Features",
       "ImagePath": "ms-appx:///Assets/Fluent/RatingControl.png",
       "IsSpecialSection": false,
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
@@ -588,8 +586,21 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Composition",
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.LinearGradientBlurPanelPage",
+          "Title": "Linear Gradient Blur Panel",
+          "Subtitle": "Apply linear gradient blur to the content and the elements behind it.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OrbitLoadingIndicatorPage",
+          "Title": "Orbit Loading Indicator",
+          "Subtitle": "A composition-based loading indicator with orbiting animations to show progress.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.StoreCarouselPage",
           "Title": "Store Carousel",
@@ -736,7 +747,6 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedTextBlockPage",
@@ -853,7 +863,6 @@
       "Title": "LandingPages",
       "SecondaryTitle": "",
       "ImagePath": "ms-appx:///Assets/Fluent/dataGrid.png",
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.AllLandingsPage",
@@ -874,7 +883,6 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Settings Control",
       "ImagePath": "ms-appx:///Assets/Fluent/StackPanel.png",
-      "UseBuiltInNavigationViewInfoBadgeStyle": true,
       "Items": [
         {
           "UniqueId": "DevWinUIGallery.Views.SettingsGroup",

@@ -134,6 +134,8 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ LinearGradientBlurPanel
+- ✨ OrbitLoadingIndicator
 - ✨ StoreCarousel
 - ✨ Xaml Lights
 - ✨ ImageFrame
@@ -309,6 +311,12 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### LinearGradientBlurPanel
+![LinearGradientBlurPanel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LinearGradientBlurPanel.gif)
+
+### OrbitLoadingIndicator
+![OrbitLoadingIndicator](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OrbitLoadingIndicator.gif)
 
 ### ColorAnalyzer
 ![ColorAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorAnalyzer.png)

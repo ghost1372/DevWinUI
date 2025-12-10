@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LinearGradientBlurPanelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer CanContentRenderOutsideBounds="True">
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/linearGradientBlurPanel">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:LinearGradientBlurPanel TintColor="#99000000" MaxBlurAmount="64" StartPoint="{x:Bind StartPoint}" EndPoint="{x:Bind EndPoint}"/&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <RadioButtons x:Name="PointRadioButtons"
+                                      SelectedIndex="0" />
+                        <Button Click="StartAnimationButton_Click"
+                                Content="Start Animation" />
+
+                        <Slider x:Name="SlMaxBlurAmount"
+                                Header="Max Blur Amount"
+                                Value="64" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Border MaxWidth="400"
+                        MaxHeight="500"
+                        HorizontalAlignment="Stretch">
+                    <Grid>
+                        <Image Source="ms-appx:///Assets/Others/Girl.jpg"
+                               Stretch="Uniform" />
+                        <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample"
+                                                     MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}"
+                                                     TintColor="#99000000"
+                                                     StartPoint="{Binding ElementName=PointRadioButtons, Path=SelectedItem.StartPoint}"
+                                                     EndPoint="{Binding ElementName=PointRadioButtons, Path=SelectedItem.EndPoint}">
+                            <Rectangle Width="50"
+                                       Height="50"
+                                       Margin="50"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Bottom"
+                                       Fill="#77c3f4" />
+                        </dev:LinearGradientBlurPanel>
+                    </Grid>
+                </Border>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
