@@ -1,7 +1,7 @@
 ﻿namespace DevWinUIGallery.Views;
-public sealed partial class ProgressBarPage : Page
+public sealed partial class ProgressRingPage : Page
 {
-    public ProgressBarPage()
+    public ProgressRingPage()
     {
         this.InitializeComponent();
     }

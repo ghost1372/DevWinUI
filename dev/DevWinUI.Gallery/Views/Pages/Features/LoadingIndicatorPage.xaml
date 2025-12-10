@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LoadingIndicatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/loadingIndicator"
+                                  HeaderText="LoadingIndicator">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:LoadingIndicator Mode="DoubleBounce" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="tgActive2"
+                                      Header="IsActive"
+                                      IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:UniformGrid ColumnSpacing="10"
+                                 Columns="5"
+                                 RowSpacing="10">
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="Arcs" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="ArcsRing" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="DoubleBounce" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="FlipPlane" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="Pulse" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="Ring" />
+                    <dev:LoadingIndicator IsActive="{x:Bind tgActive2.IsOn, Mode=OneWay}"
+                                          Mode="ThreeDots" />
+                </dev:UniformGrid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

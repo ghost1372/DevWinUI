@@ -165,6 +165,27 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.WaveProgressBarPage",
+          "Title": "Wave ProgressBar",
+          "Subtitle": "Wave ProgressBar",
+          "IsUpdated": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LoadingIndicatorPage",
+          "Title": "Loading Indicator",
+          "Subtitle": "Loading Indicator",
+          "IsUpdated": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.IndeterminateProgressBarPage",
+          "Title": "Indeterminate ProgressBar",
+          "Subtitle": "An animated bar where dots move from left to right to indicate ongoing, indeterminate progress.",
+          "IsUpdated": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
           "Title": "Halo",
           "Subtitle": "The Halo is a set of interconnected UI components for circular or arc-based interfaces.",
@@ -526,9 +547,9 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ProgressBarPage",
-          "Title": "Progress",
-          "Subtitle": "ProgressRing, WaveProgressBar",
+          "UniqueId": "DevWinUIGallery.Views.ProgressRingPage",
+          "Title": "Progress Ring",
+          "Subtitle": "Represents a control that indicates the progress of an operation",
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
