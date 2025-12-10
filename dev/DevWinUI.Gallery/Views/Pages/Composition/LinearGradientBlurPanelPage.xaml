@@ -17,7 +17,9 @@
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <RadioButtons x:Name="PointRadioButtons"
-                                      SelectedIndex="0" />
+                                      ItemsSource="{x:Bind PointList, Mode=OneWay}"
+                                      SelectedIndex="0"
+                                      SelectionChanged="PointRadioButtons_SelectionChanged" />
                         <Button Click="StartAnimationButton_Click"
                                 Content="Start Animation" />
 
@@ -31,12 +33,10 @@
                         HorizontalAlignment="Stretch">
                     <Grid>
                         <Image Source="ms-appx:///Assets/Others/Girl.jpg"
-                               Stretch="Uniform" />
+                               Stretch="Fill" />
                         <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample"
                                                      MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}"
-                                                     TintColor="#99000000"
-                                                     StartPoint="{Binding ElementName=PointRadioButtons, Path=SelectedItem.StartPoint}"
-                                                     EndPoint="{Binding ElementName=PointRadioButtons, Path=SelectedItem.EndPoint}">
+                                                     TintColor="#99000000">
                             <Rectangle Width="50"
                                        Height="50"
                                        Margin="50"
