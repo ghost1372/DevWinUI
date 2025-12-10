@@ -549,6 +549,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressRingPage",
           "Title": "Progress Ring",
+          "IsUpdated": true,
           "Subtitle": "Represents a control that indicates the progress of an operation",
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
