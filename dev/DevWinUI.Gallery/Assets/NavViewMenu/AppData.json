@@ -169,7 +169,7 @@
           "Title": "Wave ProgressBar",
           "Subtitle": "Wave ProgressBar",
           "IsUpdated": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/WaveProgress.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LoadingIndicatorPage",
@@ -770,6 +770,13 @@
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.SpectrumVisualizerPage",
+          "Title": "Spectrum Visualizer",
+          "Subtitle": "Lightweight real-time audio visualizer capturing system or mic input, displaying dynamic waveforms and spectrum effects.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Spectrum.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedTextBlockPage",
           "Title": "Animated TextBlock",

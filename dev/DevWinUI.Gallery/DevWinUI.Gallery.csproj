@@ -18,6 +18,9 @@
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 	  <Version>$(LibraryMajorVersion).$(DevWinUI_Gallery_MinorVersion).$(DevWinUI_Gallery_PatchVersion)$(PreviewBuildSuffix)</Version>
 
+    <!-- Needed only for NAudio in Native AOT builds -->
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>
 	  <!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
@@ -39,8 +42,9 @@
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.2.250402" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.0-prerelease.251115.2" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
 	  <PackageReference Include="nucs.JsonSettings.AutosaveGenerator" Version="2.0.4" />
 	  <PackageReference Include="Serilog" Version="4.3.0" />

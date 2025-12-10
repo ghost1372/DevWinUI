@@ -17,7 +17,7 @@ env:
   VSIX_MANIFEST_PATH: VSIX/DevWinUI_Template/DevWinUI_Template/source.extension.vsixmanifest
   VSIX_OUTPUT_PATH: VSIX/DevWinUI_Template/DevWinUI_Template/bin/Release
   VSIX_OUTPUT_BASE_NAME: DevWinUI
-  APP_NAME: DevWinUIGallery
+  APP_NAME: DevWinUIGalleryNativeAOT
   APP_VERSION: ''
   APP_VERSION_SUFFIX: ''
   APP_VERSION_PREFIX: ''

@@ -11,6 +11,12 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<SpectrumColorType> SpectrumColorTypeList { get; set; } = new ObservableCollection<SpectrumColorType>(Enum.GetValues<SpectrumColorType>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<SpectrumType> SpectrumTypeList { get; set; } = new ObservableCollection<SpectrumType>(Enum.GetValues<SpectrumType>());
+
+    [ObservableProperty]
     public partial ObservableCollection<CountdownState> CountdownState { get; set; } = new ObservableCollection<CountdownState>(Enum.GetValues<CountdownState>());
 
     [ObservableProperty]

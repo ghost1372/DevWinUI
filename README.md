@@ -134,6 +134,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ SpectrumVisualizer
 - ✨ LinearGradientBlurPanel
 - ✨ OrbitLoadingIndicator
 - ✨ StoreCarousel
@@ -311,6 +312,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SpectrumVisualizer
+![SpectrumVisualizer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SpectrumVisualizer.gif)
 
 ### LinearGradientBlurPanel
 ![LinearGradientBlurPanel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LinearGradientBlurPanel.gif)
