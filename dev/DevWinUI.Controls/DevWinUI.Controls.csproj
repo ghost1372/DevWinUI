@@ -18,11 +18,11 @@
   <ItemGroup>
     <XAMLCombineItems Include="Themes\Styles\**\*.xaml">
       <TargetFile>Themes\Generic.xaml</TargetFile>
-      <Visible>False</Visible>
+      <Visible>True</Visible>
     </XAMLCombineItems>
     <XAMLCombineItems Include="Controls\Ported\**\*.xaml">
       <TargetFile>Themes\Generic.xaml</TargetFile>
-      <Visible>False</Visible>
+      <Visible>True</Visible>
     </XAMLCombineItems>
   </ItemGroup>
   <ItemGroup>
