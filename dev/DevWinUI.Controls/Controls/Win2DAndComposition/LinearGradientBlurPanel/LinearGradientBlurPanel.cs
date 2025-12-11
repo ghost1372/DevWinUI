@@ -2,11 +2,13 @@
 
 public partial class LinearGradientBlurPanel : Grid
 {
+    private CompositionRoundedRectangleGeometry clipGeometry;
     public LinearGradientBlurPanel()
     {
         HorizontalAlignment = HorizontalAlignment.Stretch;
         VerticalAlignment = VerticalAlignment.Stretch;
 
+        SizeChanged += OnSizeChanged;
         this.Loaded += OnLoaded;
     }
 
@@ -56,6 +58,17 @@ public partial class LinearGradientBlurPanel : Grid
                         StartPoint = StartPoint.ToVector2(),
                         EndPoint = EndPoint.ToVector2(),
                     };
+
+                    clipGeometry = compositor.CreateRoundedRectangleGeometry();
+
+                    var clip = compositor.CreateGeometricClip();
+                    clip.Geometry = clipGeometry;
+
+                    helper.RootVisual.Clip = clip;
+
+                    UpdateClipSize();
+                    UpdateCornerRadius();
+
                     ElementCompositionPreview.SetElementChildVisual(this, helper.RootVisual);
                 }
             }
@@ -63,7 +76,25 @@ public partial class LinearGradientBlurPanel : Grid
 
         return helper;
     }
+    private void UpdateClipSize()
+    {
+        if (clipGeometry != null)
+        {
+            clipGeometry.Size = new Vector2((float)ActualWidth, (float)ActualHeight);
+        }
+    }
+    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        UpdateClipSize();
+    }
 
+    private void UpdateCornerRadius()
+    {
+        if (clipGeometry != null)
+        {
+            clipGeometry.CornerRadius = new Vector2((float)CornerRadius);
+        }
+    }
     public double MaxBlurAmount
     {
         get { return (double)GetValue(MaxBlurAmountProperty); }
@@ -108,6 +139,24 @@ public partial class LinearGradientBlurPanel : Grid
 
     public static readonly DependencyProperty EndPointProperty =
         DependencyProperty.Register(nameof(EndPoint), typeof(Point), typeof(LinearGradientBlurPanel), new PropertyMetadata(new Point(0, 1), OnDependencyPropertyChanged));
+
+    public new double CornerRadius
+    {
+        get { return (double)GetValue(CornerRadiusProperty); }
+        set { SetValue(CornerRadiusProperty, value); }
+    }
+
+    public static new readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(LinearGradientBlurPanel), new PropertyMetadata(default(double), OnCornerRadiusChanged));
+
+    private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (LinearGradientBlurPanel)d;
+        if (ctl != null)
+        {
+            ctl.UpdateCornerRadius();
+        }
+    }
 
     public void StartMaxBlurAmountAnimation(CompositionAnimation animation) => StartHelperCompositionAnimation("MaxBlurAmount", animation);
     public void StopMaxBlurAmountAnimation() => StopHelperCompositionAnimation("MaxBlurAmount");
