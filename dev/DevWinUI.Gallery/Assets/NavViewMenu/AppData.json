@@ -610,6 +610,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.StarsPage",
+          "Title": "Stars",
+          "Subtitle": "Animated sky background with stars",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BannerViewPage",
           "Title": "Banner View",
           "Subtitle": "An enhanced FlipView with smooth composition animations, optional scaling and perspective effects, and seamless infinite cycling of items with automatic shuffle support",

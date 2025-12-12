@@ -132,7 +132,7 @@ public static partial class CompositionExtensions
 
 		var animationCollection = compositor.CreateImplicitAnimationCollection();
 
-		foreach (var type in UtilExtensions.GetValues<CompositionVisualPropertyType>())
+		foreach (var type in Extensions.GetValues<CompositionVisualPropertyType>())
 		{
 			if (!typeToAnimate.HasFlag(type)) continue;
 
@@ -154,7 +154,7 @@ public static partial class CompositionExtensions
 
 		var animationCollection = compositor.CreateImplicitAnimationCollection();
 
-		foreach (var type in UtilExtensions.GetValues<CompositionVisualPropertyType>())
+		foreach (var type in Extensions.GetValues<CompositionVisualPropertyType>())
 		{
 			if (!typeToAnimate.HasFlag(type)) continue;
 

@@ -163,4 +163,6 @@ public static partial class Extensions
 
         return taskSource.Task;
     }
+
+    public static IEnumerable<T> GetValues<T>() where T : struct, Enum => Enum.GetValues<T>();
 }
