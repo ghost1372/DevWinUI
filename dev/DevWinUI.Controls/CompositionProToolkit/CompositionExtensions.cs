@@ -48,7 +48,7 @@ public static partial class CompositionExtensions
     public static CompositionEffectBrush CreateMaskedBackdropBrush(this Compositor compositor, IMaskSurface mask,
         Color blendColor, float blurAmount, CompositionBackdropBrush backdropBrush = null)
     {
-        return CompositionExtensions.CreateBackdropBrush(compositor, mask, blendColor, blurAmount, backdropBrush);
+        return CreateBackdropBrush(compositor, mask, blendColor, blurAmount, backdropBrush);
     }
 
     /// <summary>
@@ -63,7 +63,7 @@ public static partial class CompositionExtensions
     public static CompositionEffectBrush CreateGaussianMaskedBackdropBrush(this Compositor compositor, IGaussianMaskSurface mask,
         Color blendColor, float blurRadius, CompositionBackdropBrush backdropBrush = null)
     {
-        return CompositionExtensions.CreateBackdropBrush(compositor, mask, blendColor, blurRadius, backdropBrush);
+        return CreateBackdropBrush(compositor, mask, blendColor, blurRadius, backdropBrush);
     }
 
     /// <summary>
