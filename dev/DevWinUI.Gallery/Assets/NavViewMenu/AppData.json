@@ -771,6 +771,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AudioWavePage",
+          "Title": "Audio Wave",
+          "Subtitle": "Audio visualizer",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Spectrum.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SpectrumVisualizerPage",
           "Title": "Spectrum Visualizer",
           "Subtitle": "Lightweight real-time audio visualizer capturing system or mic input, displaying dynamic waveforms and spectrum effects.",

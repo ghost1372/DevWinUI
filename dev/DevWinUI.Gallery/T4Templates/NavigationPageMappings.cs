@@ -131,6 +131,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.PerspectiveZoomPage", typeof(DevWinUIGallery.Views.PerspectiveZoomPage)},
         {"DevWinUIGallery.Views.CompositionAnimationControllerPage", typeof(DevWinUIGallery.Views.CompositionAnimationControllerPage)},
         {"DevWinUIGallery.Views.CompositionShadowPage", typeof(DevWinUIGallery.Views.CompositionShadowPage)},
+        {"DevWinUIGallery.Views.AudioWavePage", typeof(DevWinUIGallery.Views.AudioWavePage)},
         {"DevWinUIGallery.Views.SpectrumVisualizerPage", typeof(DevWinUIGallery.Views.SpectrumVisualizerPage)},
         {"DevWinUIGallery.Views.AnimatedTextBlockPage", typeof(DevWinUIGallery.Views.AnimatedTextBlockPage)},
         {"DevWinUIGallery.Views.BlendedImagePage", typeof(DevWinUIGallery.Views.BlendedImagePage)},

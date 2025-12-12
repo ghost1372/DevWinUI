@@ -134,7 +134,14 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ AudioWave
 - ✨ SpectrumVisualizer
+- ✨ AnimatedTextBlock
+- ✨ Countdown
+- ✨ CircleIcon
+- ✨ BlendedImage
+- ✨ SpeedGraph
+- ✨ ConfettiCannon
 - ✨ LinearGradientBlurPanel
 - ✨ OrbitLoadingIndicator
 - ✨ StoreCarousel
@@ -252,14 +259,6 @@ Install-Package DevWinUI
 - ✨ Brushes
 - ✨ Subtle Button Style
 - ✨ Rounded TabViewItem Style
-
-#### 🔥 Win2D 🔥
-- ✨ AnimatedTextBlock
-- ✨ Countdown
-- ✨ CircleIcon
-- ✨ BlendedImage
-- ✨ SpeedGraph
-- ✨ ConfettiCannon
 - ✨ BlurEffectManager
 - ✨ Hatch
 - ✨ TiledImageBrush
@@ -312,6 +311,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### AudioWave
+![AudioWave](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AudioWave.gif)
 
 ### SpectrumVisualizer
 ![SpectrumVisualizer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SpectrumVisualizer.gif)
