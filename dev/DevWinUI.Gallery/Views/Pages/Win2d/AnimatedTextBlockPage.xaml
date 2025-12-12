@@ -26,9 +26,11 @@
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <ComboBox x:Name="CmbText"
+                                  Header="Text"
                                   ItemsSource="{x:Bind SampleText, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbEffects"
+                                  Header="Effect"
                                   ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}"
                                   SelectedIndex="0"
                                   SelectionChanged="CmbEffects_SelectionChanged">
