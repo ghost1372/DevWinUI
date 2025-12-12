@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.UI.Xaml.Controls;
-using Windows.Foundation.Metadata;
+﻿using Windows.Foundation.Metadata;
 
 namespace DevWinUI;
 
@@ -29,7 +27,6 @@ public partial class BannerView : FlipView
 
     protected bool IsLoaded { get; private set; }
     private DispatcherTimer timer;
-    private bool isForward = true;
     public BannerView()
     {
         this.DefaultStyleKey = typeof(BannerView);
@@ -116,7 +113,7 @@ public partial class BannerView : FlipView
         if (!AutoShuffle)
             return;
 
-        isForward = true;
+        ShiftingDirection = CarouselShiftingDirection.Forward;
         StartShuffleInternal();
     }
 
@@ -125,7 +122,7 @@ public partial class BannerView : FlipView
         if (!AutoShuffle)
             return;
 
-        isForward = false;
+        ShiftingDirection = CarouselShiftingDirection.Backward;
         StartShuffleInternal();
     }
 
@@ -135,10 +132,15 @@ public partial class BannerView : FlipView
     }
     private void Timer_Tick(object sender, object e)
     {
-        if (isForward)
-            SelectedIndex++;
-        else
-            SelectedIndex--;
+        switch (ShiftingDirection)
+        {
+            case CarouselShiftingDirection.Forward:
+                SelectedIndex++;
+                break;
+            case CarouselShiftingDirection.Backward:
+                SelectedIndex--;
+                break;
+        }
     }
 
     private void ScrollingHost_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using static DevWinUI.EasyCarouselPanel;
+
+namespace DevWinUI;
 
 public partial class BannerView
 {
@@ -8,7 +10,7 @@ public partial class BannerView
         set { SetValue(IsPerspectiveEnableProperty, value); }
     }
     public static readonly DependencyProperty IsPerspectiveEnableProperty =
-        DependencyProperty.Register("IsPerspectiveEnable", typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
+        DependencyProperty.Register(nameof(IsPerspectiveEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
         {
             if (a.NewValue != a.OldValue)
             {
@@ -25,7 +27,7 @@ public partial class BannerView
         set { SetValue(IsScaleEnableProperty, value); }
     }
     public static readonly DependencyProperty IsScaleEnableProperty =
-        DependencyProperty.Register("IsScaleEnable", typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
+        DependencyProperty.Register(nameof(IsScaleEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
         {
             if (a.NewValue != a.OldValue)
             {
@@ -43,7 +45,7 @@ public partial class BannerView
     }
 
     public static readonly DependencyProperty ItemsSpacingProperty =
-        DependencyProperty.Register("ItemsSpacing", typeof(double), typeof(BannerView), new PropertyMetadata(0d, (s, a) =>
+        DependencyProperty.Register(nameof(ItemsSpacing), typeof(double), typeof(BannerView), new PropertyMetadata(0d, (s, a) =>
         {
             if (a.NewValue != a.OldValue)
             {
@@ -89,4 +91,13 @@ public partial class BannerView
             ctl.timer?.Interval = timeSpan;
         }
     }
+
+    public CarouselShiftingDirection ShiftingDirection
+    {
+        get { return (CarouselShiftingDirection)GetValue(ShiftingDirectionProperty); }
+        set { SetValue(ShiftingDirectionProperty, value); }
+    }
+
+    public static readonly DependencyProperty ShiftingDirectionProperty =
+        DependencyProperty.Register(nameof(ShiftingDirection), typeof(CarouselShiftingDirection), typeof(BannerView), new PropertyMetadata(CarouselShiftingDirection.Forward, null));
 }
