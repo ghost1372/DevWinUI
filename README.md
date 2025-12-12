@@ -97,6 +97,7 @@ To compile the project, contribute new features, or explore guidelines:
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+ - ✨ CycleCollection
  - ✨ ContrastAnalyzer
  - ✨ ColorAnalyzer
  - ✨ SnapLayoutManager
@@ -134,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ BannerView
 - ✨ AudioWave
 - ✨ SpectrumVisualizer
 - ✨ AnimatedTextBlock
@@ -311,6 +313,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### BannerView
+![BannerView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BannerView.gif)
 
 ### AudioWave
 ![AudioWave](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AudioWave.gif)

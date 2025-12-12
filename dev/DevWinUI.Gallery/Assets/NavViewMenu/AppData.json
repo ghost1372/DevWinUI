@@ -610,6 +610,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BannerViewPage",
+          "Title": "Banner View",
+          "Subtitle": "An enhanced FlipView with smooth composition animations, optional scaling and perspective effects, and seamless infinite cycling of items with automatic shuffle support",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LinearGradientBlurPanelPage",
           "Title": "Linear Gradient Blur Panel",
           "Subtitle": "Apply linear gradient blur to the content and the elements behind it.",

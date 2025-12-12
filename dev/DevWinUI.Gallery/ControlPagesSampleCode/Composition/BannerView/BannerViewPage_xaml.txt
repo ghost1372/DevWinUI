@@ -1,0 +1,10 @@
+﻿<dev:BannerView x:Name="BannerViewSample" ItemsSource="{x:Bind CycleList, Mode=OneWay}">
+    <dev:BannerView.ItemTemplate>
+        <DataTemplate x:DataType="x:String">
+            <Image HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{x:Bind}"
+                    Stretch="UniformToFill" />
+        </DataTemplate>
+    </dev:BannerView.ItemTemplate>
+</dev:BannerView>

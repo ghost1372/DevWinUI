@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 
 namespace DevWinUI;
 
-public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, INotifyPropertyChanged, ICycleCollection, ICycleCollectionProvider<T>
+public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, INotifyPropertyChanged, ICycleCollection, ICycleCollection<T>
 {
     private readonly ObservableCollection<T> collection;
     private ObservableCollection<T> headers;

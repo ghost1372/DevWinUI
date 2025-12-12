@@ -25,7 +25,7 @@ public interface ICycleCollection : IList
     int CrossLength { get; }
 }
 
-public interface ICycleCollectionProvider<T>
+public interface ICycleCollection<T>
 {
     T GetItem(int index);
     bool IsCycleItem(T item);

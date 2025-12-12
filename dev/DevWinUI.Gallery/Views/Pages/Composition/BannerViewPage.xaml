@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BannerViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Composition/BannerView/BannerViewPage_cs.txt"
+                                  DocPage="controls/bannerView"
+                                  XamlSource="Composition/BannerView/BannerViewPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TgPerspective"
+                                      Header="Is Perspective Enable" />
+                        <ToggleSwitch x:Name="TgScale"
+                                      Header="Is Scale Enable" />
+                        <ToggleSwitch x:Name="TgShuffle"
+                                      Header="Auto Shuffle"
+                                      IsOn="True" />
+                        <Slider x:Name="SldSpacing"
+                                Header="Item Spacing"
+                                Maximum="200"
+                                Minimum="0"
+                                Value="60" />
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button x:Name="BtnPlayBackward"
+                                    Click="BtnPlayBackward_Click"
+                                    Content="Play Backward" />
+                            <Button x:Name="BtnStop"
+                                    Click="BtnStop_Click"
+                                    Content="Stop" />
+                            <Button x:Name="BtnPlayForward"
+                                    Click="BtnPlayForward_Click"
+                                    Content="Play Forward" />
+                        </StackPanel>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+            <dev:BannerView x:Name="BannerViewSample"
+                            MinWidth="400"
+                            MinHeight="150"
+                            MaxWidth="600"
+                            MaxHeight="300"
+                            VerticalContentAlignment="Center"
+                            AutoShuffle="{x:Bind TgShuffle.IsOn, Mode=OneWay}"
+                            IsPerspectiveEnable="{x:Bind TgPerspective.IsOn, Mode=OneWay}"
+                            IsScaleEnable="{x:Bind TgScale.IsOn, Mode=OneWay}"
+                            ItemsSource="{x:Bind CycleList, Mode=OneWay}"
+                            ItemsSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}">
+                <dev:BannerView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Image HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Source="{x:Bind}"
+                               Stretch="UniformToFill" />
+                    </DataTemplate>
+                </dev:BannerView.ItemTemplate>
+            </dev:BannerView>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
