@@ -55,6 +55,7 @@ Themes\Styles\Controls\CompareSlider.xaml
 Themes\Styles\Controls\CompositionShadow.xaml
 Themes\Styles\Controls\ConfettiCannon.xaml
 Themes\Styles\Controls\ContentDialogContent.xaml
+Themes\Styles\Controls\ContentSlider.xaml
 Themes\Styles\Controls\CopyButton.xaml
 Themes\Styles\Controls\Countdown.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
@@ -8054,6 +8055,38 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </media3D:Setter>
   </media3D:Style>
   <media3D:Style TargetType="local:ContentDialogContent" BasedOn="{StaticResource DefaultContentDialogContentStyle}" />
+  <media3D:Style x:Key="DefaultContentSliderStyle" TargetType="local:ContentSlider">
+    <media3D:Setter Property="ItemsPanel">
+      <media3D:Setter.Value>
+        <media3D:ItemsPanelTemplate>
+          <media3D:StackPanel Orientation="Horizontal" />
+        </media3D:ItemsPanelTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ContentSlider">
+          <media3D:Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <media3D:Grid.RowDefinitions>
+              <media3D:RowDefinition />
+              <media3D:RowDefinition Height="Auto" />
+            </media3D:Grid.RowDefinitions>
+            <media3D:Grid x:Name="PART_Container">
+              <media3D:ContentPresenter x:Name="PART_OldPresenter" Content="{TemplateBinding SelectedItem}" ContentTemplate="{TemplateBinding ItemTemplate}" RenderTransformOrigin="0.5,0.5" />
+              <media3D:ContentPresenter x:Name="PART_NewPresenter" ContentTemplate="{TemplateBinding ItemTemplate}" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" />
+            </media3D:Grid>
+            <media3D:Button x:Name="PART_Prev" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource NavigationButtonStyle}" Tag="prev">
+              <media3D:FontIcon Glyph="" />
+            </media3D:Button>
+            <media3D:Button x:Name="PART_Next" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NavigationButtonStyle}" Tag="next">
+              <media3D:FontIcon Glyph="" />
+            </media3D:Button>
+            <media3D:PipsPager x:Name="PART_Indicator" Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
   <media3D:Style x:Key="DefaultCopyButtonStyle" TargetType="local:CopyButton">
     <media3D:Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
     <media3D:Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -12365,6 +12398,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <media3D:Setter Property="ThumbStyle" Value="{StaticResource SliderThumbStyle}" />
     <media3D:Setter Property="ShowLineAndThumb" Value="True" />
   </media3D:Style>
+  <media3D:Style TargetType="local:ContentSlider" BasedOn="{StaticResource DefaultContentSliderStyle}" />
   <media3D:Style TargetType="local:CopyButton" BasedOn="{StaticResource DefaultCopyButtonStyle}">
     <media3D:Setter Property="Content" Value="" />
   </media3D:Style>

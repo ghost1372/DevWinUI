@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:ContentSlider" BasedOn="{StaticResource DefaultContentSliderStyle}" />
+
+    <Style x:Key="DefaultContentSliderStyle" TargetType="local:ContentSlider">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ContentSlider">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="PART_Container">
+                            <ContentPresenter x:Name="PART_OldPresenter"
+                                              Content="{TemplateBinding SelectedItem}"
+                                              ContentTemplate="{TemplateBinding ItemTemplate}"
+                                              RenderTransformOrigin="0.5,0.5" />
+
+                            <ContentPresenter x:Name="PART_NewPresenter"
+                                              ContentTemplate="{TemplateBinding ItemTemplate}"
+                                              RenderTransformOrigin="0.5,0.5"
+                                              Visibility="Collapsed" />
+                        </Grid>
+                        <Button x:Name="PART_Prev"
+                                Grid.RowSpan="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource NavigationButtonStyle}"
+                                Tag="prev">
+                            <FontIcon Glyph="&#xE76B;" />
+                        </Button>
+                        <Button x:Name="PART_Next"
+                                Grid.RowSpan="2"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource NavigationButtonStyle}"
+                                Tag="next">
+                            <FontIcon Glyph="&#xE76C;" />
+                        </Button>
+                        <PipsPager x:Name="PART_Indicator"
+                                   Grid.Row="1"
+                                   Margin="0,10,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

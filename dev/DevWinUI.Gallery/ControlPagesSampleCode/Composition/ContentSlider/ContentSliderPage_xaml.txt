@@ -1,0 +1,12 @@
+﻿<dev:ContentSlider ItemsSource="{x:Bind ContentItems, Mode=OneWay}"
+                    ViewportWidth="500">
+    <dev:ContentSlider.ItemTemplate>
+        <DataTemplate x:DataType="views:ContentSliderItem">
+            <Grid>
+                <Image Width="400"
+                        Height="300"
+                        Source="{x:Bind Image}" />
+            </Grid>
+        </DataTemplate>
+    </dev:ContentSlider.ItemTemplate>
+</dev:ContentSlider>
