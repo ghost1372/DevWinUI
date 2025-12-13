@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CoverFlowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Features/CoverFlow/CoverFlowPage_cs.txt"
+                                  DocPage="controls/coverFlow"
+                                  HeaderText="CoverFlow"
+                                  XamlSource="Features/CoverFlow/CoverFlowPage_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SldRotationAngle"
+                                Header="Rotation Angle"
+                                Maximum="360"
+                                Minimum="-360"
+                                Value="160" />
+                        <Slider x:Name="SldSpaceBetweenItems"
+                                Header="Space Between Items"
+                                Maximum="500"
+                                Minimum="0"
+                                Value="100" />
+                        <Slider x:Name="SldSpaceBetweenSelectedItemAndItems"
+                                Header="Space Between Selected Item And Items"
+                                Maximum="500"
+                                Minimum="0"
+                                Value="100" />
+                        <Slider x:Name="SldZDistance"
+                                Header="Z Distance"
+                                Maximum="360"
+                                Minimum="0"
+                                Value="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:CoverFlow x:Name="CoverFlowSample"
+                               Width="500"
+                               Height="500"
+                               ItemsSource="{x:Bind CoverItems, Mode=OneWay}"
+                               RotationAngle="{x:Bind SldRotationAngle.Value, Mode=OneWay}"
+                               SpaceBetweenItems="{x:Bind SldSpaceBetweenItems.Value, Mode=OneWay}"
+                               SpaceBetweenSelectedItemAndItems="{x:Bind SldSpaceBetweenSelectedItemAndItems.Value, Mode=OneWay}"
+                               ZDistance="{x:Bind SldZDistance.Value, Mode=OneWay}">
+                    <dev:CoverFlow.ItemTemplate>
+                        <DataTemplate x:DataType="views:CoverFlowItemSample">
+                            <StackPanel Spacing="5">
+                                <Image Height="150"
+                                       Source="{x:Bind Image}" />
+                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
+                                           Text="{x:Bind Name}"
+                                           TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dev:CoverFlow.ItemTemplate>
+                </dev:CoverFlow>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

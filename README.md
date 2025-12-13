@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ CoverFlow
 - ✨ ContentSlider
 - ✨ CarouselView
 - ✨ EasyCarouselPanel
@@ -317,6 +318,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### CoverFlow
+![CoverFlow](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CoverFlow.gif)
 
 ### ContentSlider
 ![ContentSlider](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ContentSlider.gif)

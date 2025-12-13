@@ -58,6 +58,7 @@ Themes\Styles\Controls\ContentDialogContent.xaml
 Themes\Styles\Controls\ContentSlider.xaml
 Themes\Styles\Controls\CopyButton.xaml
 Themes\Styles\Controls\Countdown.xaml
+Themes\Styles\Controls\CoverFlow.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\DepthLayerView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
@@ -1515,6 +1516,77 @@ Themes\Styles\Controls\WaveProgressBar.xaml
         <media3D:ControlTemplate TargetType="local:Countdown">
           <wind2:CanvasAnimatedControl x:Name="PART_Canvas" />
         </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultCoverFlowItemStyle" TargetType="local:CoverFlowItem">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:CoverFlowItem">
+          <media3D:Grid x:Name="LayoutRoot">
+            <media3D:Grid.Resources>
+              <media3D:Storyboard x:Name="Animation">
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="RotationY">
+                  <media3D:EasingDoubleKeyFrame x:Name="rotationKeyFrame" KeyTime="00:00:00.9" Value="0">
+                    <media3D:EasingDoubleKeyFrame.EasingFunction>
+                      <media3D:CubicEase />
+                    </media3D:EasingDoubleKeyFrame.EasingFunction>
+                  </media3D:EasingDoubleKeyFrame>
+                </media3D:DoubleAnimationUsingKeyFrames>
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="LocalOffsetZ">
+                  <media3D:EasingDoubleKeyFrame x:Name="offestZKeyFrame" KeyTime="00:00:00.9" Value="0">
+                    <media3D:EasingDoubleKeyFrame.EasingFunction>
+                      <media3D:CubicEase />
+                    </media3D:EasingDoubleKeyFrame.EasingFunction>
+                  </media3D:EasingDoubleKeyFrame>
+                </media3D:DoubleAnimationUsingKeyFrames>
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleX">
+                  <media3D:EasingDoubleKeyFrame x:Name="scaleXKeyFrame" KeyTime="00:00:00.9" Value="1">
+                    <media3D:EasingDoubleKeyFrame.EasingFunction>
+                      <media3D:CubicEase />
+                    </media3D:EasingDoubleKeyFrame.EasingFunction>
+                  </media3D:EasingDoubleKeyFrame>
+                </media3D:DoubleAnimationUsingKeyFrames>
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleY">
+                  <media3D:EasingDoubleKeyFrame x:Name="scaleYKeyFrame" KeyTime="00:00:00.9" Value="1">
+                    <media3D:EasingDoubleKeyFrame.EasingFunction>
+                      <media3D:CubicEase />
+                    </media3D:EasingDoubleKeyFrame.EasingFunction>
+                  </media3D:EasingDoubleKeyFrame>
+                </media3D:DoubleAnimationUsingKeyFrames>
+              </media3D:Storyboard>
+            </media3D:Grid.Resources>
+            <media3D:Grid RenderTransformOrigin=".5,.5">
+              <media3D:Grid.RenderTransform>
+                <media3D:ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+              </media3D:Grid.RenderTransform>
+              <media3D:Grid.Projection>
+                <media3D:PlaneProjection x:Name="Rotator" CenterOfRotationX="0.5" />
+              </media3D:Grid.Projection>
+              <media3D:ContentControl x:Name="ContentPresenter" RenderTransformOrigin="0.5,0.5">
+                <media3D:ContentPresenter />
+              </media3D:ContentControl>
+            </media3D:Grid>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultCoverFlowStyle" TargetType="local:CoverFlow">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate>
+          <media3D:Grid x:Name="LayoutRoot">
+            <media3D:ItemsPresenter x:Name="ItemsPresenter" Height="{TemplateBinding Height}" />
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+    <media3D:Setter Property="ItemsPanel">
+      <media3D:Setter.Value>
+        <media3D:ItemsPanelTemplate>
+          <media3D:Canvas x:Name="itemCanvas" />
+        </media3D:ItemsPanelTemplate>
       </media3D:Setter.Value>
     </media3D:Setter>
   </media3D:Style>
@@ -8081,7 +8153,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             <media3D:Button x:Name="PART_Next" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NavigationButtonStyle}" Tag="next">
               <media3D:FontIcon Glyph="" />
             </media3D:Button>
-            <media3D:PipsPager x:Name="PART_Indicator" Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            <media3D:PipsPager x:Name="PART_Indicator" Grid.Row="1" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
           </media3D:Grid>
         </media3D:ControlTemplate>
       </media3D:Setter.Value>
@@ -8229,6 +8301,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </media3D:Setter>
   </media3D:Style>
   <media3D:Style TargetType="local:Countdown" BasedOn="{StaticResource DefaultCountdownStyle}" />
+  <media3D:Style TargetType="local:CoverFlowItem" BasedOn="{StaticResource DefaultCoverFlowItemStyle}" />
+  <media3D:Style TargetType="local:CoverFlow" BasedOn="{StaticResource DefaultCoverFlowStyle}" />
   <media3D:Style x:Key="DefaultDateTimePickerStyle" TargetType="local:DateTimePicker">
     <media3D:Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
     <media3D:Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />

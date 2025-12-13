@@ -1,0 +1,19 @@
+﻿<dev:CoverFlow x:Name="CoverFlowSample"
+                Width="500"
+                Height="500"
+                ItemsSource="{x:Bind CoverItems, Mode=OneWay}"
+                RotationAngle="160"
+                SpaceBetweenItems="100"
+                SpaceBetweenSelectedItemAndItems="100">
+    <dev:CoverFlow.ItemTemplate>
+        <DataTemplate x:DataType="views:CoverFlowItemSample">
+            <StackPanel Spacing="5">
+                <Image Source="{x:Bind Image}" />
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
+                            Text="{x:Bind Name}"
+                            TextTrimming="CharacterEllipsis" />
+
+            </StackPanel>
+        </DataTemplate>
+    </dev:CoverFlow.ItemTemplate>
+</dev:CoverFlow>
