@@ -610,6 +610,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.CarouselViewPage",
+          "Title": "Carousel View",
+          "Subtitle": "A simple carousel control with animations powered by composition API.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.EasyCarouselPanelPage",
           "Title": "Easy Carousel Panel",
           "Subtitle": "A simple carousel control with animations powered by composition API.",

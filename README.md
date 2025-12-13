@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ CarouselView
 - ✨ EasyCarouselPanel
 - ✨ Stars
 - ✨ BannerView
@@ -315,6 +316,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### CarouselView
+![CarouselView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CarouselView.gif)
 
 ### EasyCarouselPanel
 ![EasyCarouselPanel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EasyCarouselPanel.gif)

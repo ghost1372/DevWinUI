@@ -41,6 +41,7 @@ Themes\Styles\Controls\BubbleProgressButton.xaml
 Themes\Styles\Controls\BubbleView.xaml
 Themes\Styles\Controls\CalendarWithClockStyle.xaml
 Themes\Styles\Controls\Card.xaml
+Themes\Styles\Controls\CarouselView.xaml
 Themes\Styles\Controls\CheckBoxWithDescriptionControl.xaml
 Themes\Styles\Controls\CheckUpdateControl.xaml
 Themes\Styles\Controls\CircleIcon.xaml
@@ -1171,6 +1172,144 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             </media3D:Grid>
             <media3D:Rectangle x:Name="Divider" Grid.Row="1" Height="1" HorizontalAlignment="Stretch" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Visibility="{TemplateBinding DividerVisibility}" />
             <media3D:ContentPresenter Grid.Row="2" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultCarouselViewStyle" TargetType="local:CarouselView">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:CarouselView">
+          <media3D:Grid x:Name="RootGrid">
+            <media3D:Rectangle x:Name="indicatorRect" Width="10" Height="10" VerticalAlignment="Top" Fill="#FFEA7474" Opacity="0" />
+            <media3D:Grid x:Name="canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
+              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+            </media3D:Grid>
+            <media3D:ListBox Name="indexlistbox" Margin="0,0,0,6" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" BorderThickness="0" IsEnabled="False" IsTapEnabled="False" ItemsSource="{TemplateBinding ItemImageSource}" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectedIndex="{TemplateBinding SelectedIndex}">
+              <media3D:ListBox.ItemTemplate>
+                <media3D:DataTemplate />
+              </media3D:ListBox.ItemTemplate>
+              <media3D:ListBox.ItemContainerStyle>
+                <media3D:Style TargetType="ListBoxItem">
+                  <media3D:Setter Property="Background" Value="Transparent" />
+                  <media3D:Setter Property="TabNavigation" Value="Local" />
+                  <media3D:Setter Property="Padding" Value="2.5,8" />
+                  <media3D:Setter Property="HorizontalContentAlignment" Value="Left" />
+                  <media3D:Setter Property="Template">
+                    <media3D:Setter.Value>
+                      <media3D:ControlTemplate TargetType="ListBoxItem">
+                        <media3D:Border x:Name="LayoutRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                          <media3D:VisualStateManager.VisualStateGroups>
+                            <media3D:VisualStateGroup x:Name="SelectionStates">
+                              <media3D:VisualState x:Name="Unselected">
+                                <media3D:Storyboard>
+                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="0.45" Duration="0" />
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                              <media3D:VisualState x:Name="Selected">
+                                <media3D:Storyboard>
+                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                              <media3D:VisualState x:Name="SelectedUnfocused">
+                                <media3D:Storyboard>
+                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
+                                  </media3D:ObjectAnimationUsingKeyFrames>
+                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                              <media3D:VisualState x:Name="SelectedDisabled">
+                                <media3D:Storyboard>
+                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedDisabledForegroundThemeBrush}" />
+                                  </media3D:ObjectAnimationUsingKeyFrames>
+                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                              <media3D:VisualState x:Name="SelectedPointerOver">
+                                <media3D:Storyboard>
+                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerGrid" Storyboard.TargetProperty="Background">
+                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedPointerOverBackgroundThemeBrush}" />
+                                  </media3D:ObjectAnimationUsingKeyFrames>
+                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
+                                  </media3D:ObjectAnimationUsingKeyFrames>
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                              <media3D:VisualState x:Name="SelectedPressed">
+                                <media3D:Storyboard>
+                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
+                                  </media3D:ObjectAnimationUsingKeyFrames>
+                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
+                                </media3D:Storyboard>
+                              </media3D:VisualState>
+                            </media3D:VisualStateGroup>
+                          </media3D:VisualStateManager.VisualStateGroups>
+                          <media3D:Grid x:Name="InnerGrid" Margin="0" Background="Transparent">
+                            <media3D:Rectangle x:Name="PressedBackground" Fill="{ThemeResource ListBoxItemPressedBackgroundThemeBrush}" Opacity="0" />
+                            <media3D:ContentPresenter x:Name="ContentPresenter" Margin="2.5,0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+                            <media3D:Ellipse x:Name="ellipse" Width="5" Height="5" Margin="2.5,0" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Opacity="0.495" StrokeThickness="0" />
+                          </media3D:Grid>
+                        </media3D:Border>
+                      </media3D:ControlTemplate>
+                    </media3D:Setter.Value>
+                  </media3D:Setter>
+                </media3D:Style>
+              </media3D:ListBox.ItemContainerStyle>
+              <media3D:ListBox.ItemsPanel>
+                <media3D:ItemsPanelTemplate>
+                  <media3D:StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
+                </media3D:ItemsPanelTemplate>
+              </media3D:ListBox.ItemsPanel>
+            </media3D:ListBox>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultCarouselViewItemStyle" TargetType="local:CarouselViewItem">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:CarouselViewItem">
+          <media3D:Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <media3D:VisualStateManager.VisualStateGroups>
+              <media3D:VisualStateGroup x:Name="CommonStates">
+                <media3D:VisualState x:Name="Normal">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="Mask" Storyboard.TargetProperty="Opacity">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="0" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="PointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="Mask" Storyboard.TargetProperty="Opacity">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="0.1" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Pressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="Mask" Storyboard.TargetProperty="Opacity">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="0.2" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+            </media3D:VisualStateManager.VisualStateGroups>
+            <media3D:Image Source="{TemplateBinding ImageSource}" Stretch="UniformToFill" />
+            <media3D:Rectangle x:Name="MaskBlack" Fill="Black" Opacity="{TemplateBinding BlackMaskOpacity}" />
+            <media3D:Rectangle x:Name="Mask" Fill="White" Opacity="0" />
+            <media3D:Border HorizontalAlignment="Center" VerticalAlignment="Bottom">
+              <media3D:TextBlock x:Name="TitleTB" Margin="12,6,12,15" HorizontalAlignment="Center" Foreground="White" Text="{TemplateBinding Title}" />
+            </media3D:Border>
           </media3D:Grid>
         </media3D:ControlTemplate>
       </media3D:Setter.Value>
@@ -7641,6 +7780,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </media3D:Grid>
   </media3D:ControlTemplate>
   <media3D:Style TargetType="local:Card" BasedOn="{StaticResource DefaultCardStyle}" />
+  <media3D:Style TargetType="local:CarouselView" BasedOn="{StaticResource DefaultCarouselViewStyle}" />
+  <media3D:Style TargetType="local:CarouselViewItem" BasedOn="{StaticResource DefaultCarouselViewItemStyle}" />
   <media3D:Style x:Key="DefaultCheckBoxWithDescriptionControlStyle" TargetType="local:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
   <media3D:Style x:Key="DefaultCheckUpdateControlStyle" TargetType="local:CheckUpdateControl">
     <media3D:Setter Property="LastUpdateCheckTitle" Value="Last checked: " />

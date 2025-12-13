@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CarouselViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Composition/CarouselViewPage_cs.txt"
+                                  DocPage="controls/carouselView">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:CarouselView x:Name="CarouselSample" ItemImageSource="{x:Bind Items, Mode=OneWay}"/&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <ToggleSwitch x:Name="TgAutoShift"
+                                  Header="Auto Shift" />
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+            <dev:CarouselView x:Name="CarouselSample"
+                              MaxHeight="300"
+                              VerticalAlignment="Center"
+                              IsAutoSwitchEnabled="{x:Bind TgAutoShift.IsOn, Mode=OneWay}"
+                              ItemClick="CarouselSample_ItemClick"
+                              ItemImageSource="{x:Bind Items, Mode=OneWay}"
+                              ItemWidth="500" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
