@@ -1,0 +1,22 @@
+﻿<dev:CarouselView2 x:Name="CarouselSample"
+                    CarouselType="Row"
+                    FliptychDegrees="80"
+                    ItemsSource="{x:Bind Items, Mode=OneWay}"
+                    NavigationSpeed="500"
+                    SelectedIndex="0"
+                    SelectedItemScale="1.4">
+    <dev:CarouselView2.ItemTemplate>
+        <DataTemplate x:DataType="views:CarouselView2Item">
+            <UserControl>
+                <UserControl.Transform3D>
+                    <PerspectiveTransform3D Depth="1000" />
+                </UserControl.Transform3D>
+                <ContentControl Width="100"
+                                Height="240">
+                    <Image Height="240"
+                            Source="{x:Bind ImageSource}" />
+                </ContentControl>
+            </UserControl>
+        </DataTemplate>
+    </dev:CarouselView2.ItemTemplate>
+</dev:CarouselView2>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.CarouselView2Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Composition/CarouselView2/CarouselView2Page_cs.txt"
+                                  DocPage="controls/carouselView2"
+                                  HeaderText="Album Covers"
+                                  XamlSource="Composition/CarouselView2/CarouselView2Page_Part2_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <ComboBox x:Name="CmbCarouselType"
+                                      Width="120"
+                                      Header="Carousel Type"
+                                      ItemsSource="{x:Bind ViewModel.CarouselTypeList}"
+                                      SelectedIndex="2"
+                                      ToolTipService.ToolTip="Change the layout style of the carosel." />
+                            <ComboBox x:Name="CmbWheelAlignment"
+                                      Width="120"
+                                      Header="Wheel Alignment"
+                                      ItemsSource="{x:Bind ViewModel.WheelAlignmentList}"
+                                      SelectedIndex="0"
+                                      ToolTipService.ToolTip="Choose which container edge to align the wheel." />
+                        </StackPanel>
+                        <Slider x:Name="SldNavigationSpeed"
+                                Header="Navigation Speed"
+                                Maximum="2000"
+                                Minimum="0"
+                                StepFrequency="50"
+                                ToolTipService.ToolTip="Speed (in ms) the carousel changes selection."
+                                Value="500" />
+                        <Slider x:Name="SldFliptychDegrees"
+                                Header="Fliptych Amount"
+                                Maximum="90"
+                                Minimum="0"
+                                StepFrequency="0.1"
+                                ToolTipService.ToolTip="Create a Coverflow-like effect."
+                                Value="80" />
+                        <Slider x:Name="SldSelectedItemScale"
+                                Header="Selected Item Scale"
+                                Maximum="3.0"
+                                Minimum="1"
+                                StepFrequency="0.1"
+                                ToolTipService.ToolTip="Animated grow and shrink effect for selected item."
+                                Value="1.4" />
+                        <Slider x:Name="SldAdditionalItemsToScale"
+                                Header="Additional Items to Scale"
+                                Maximum="12"
+                                Minimum="0"
+                                StepFrequency="2"
+                                ToolTipService.ToolTip="Number of items closest to selected to have an animated falloff effect." />
+                        <Slider x:Name="SldDensity"
+                                Header="Density"
+                                Maximum="72"
+                                Minimum="12"
+                                StepFrequency="4"
+                                ToolTipService.ToolTip="Number of items active in the UI. Lower improves performance."
+                                Value="48" />
+                        <Slider x:Name="SldItemGap"
+                                Header="Item Gap"
+                                Maximum="100"
+                                Minimum="-30"
+                                StepFrequency="1"
+                                ToolTipService.ToolTip="Space between items. Negative values allowed."
+                                Value="12" />
+                        <Slider x:Name="SldAdditionalItemsToWarp"
+                                Header="Additional Items to Warp"
+                                Maximum="12"
+                                Minimum="0"
+                                StepFrequency="2"
+                                ToolTipService.ToolTip="Number of items closest to selected to have an animated falloff effect."
+                                Value="4" />
+                        <Slider x:Name="SldWarpIntensity"
+                                Header="Warp Intensity"
+                                Maximum="1280"
+                                Minimum="-1280"
+                                StepFrequency="1"
+                                ToolTipService.ToolTip="Amount to protrude the selected item. Use this and Warp Curve." />
+                        <Slider x:Name="SldWarpCurve"
+                                Header="Warp Curve"
+                                Maximum="0.01"
+                                Minimum="0.0001"
+                                StepFrequency="0.0001"
+                                ToolTipService.ToolTip="Curve of all protruding items. Use this and Warp Intensity" />
+                        <ToggleSwitch x:Name="TgZIndexUpdateWaitsForAnimation"
+                                      Header="ZIndex Update Waits for Animation"
+                                      ToolTipService.ToolTip="Delay when the selected item becomes topmost" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:CarouselView2 Height="100"
+                                   AdditionalItemsToScale="{x:Bind (x:Int32)SldAdditionalItemsToScale.Value, Mode=OneWay}"
+                                   AdditionalItemsToWarp="{x:Bind (x:Int32)SldAdditionalItemsToWarp.Value, Mode=OneWay}"
+                                   CarouselType="{x:Bind (dev:CarouselView2CarouselTypes)CmbCarouselType.SelectedItem, Mode=OneWay}"
+                                   Density="{x:Bind (x:Int32)SldDensity.Value, Mode=OneWay}"
+                                   FliptychDegrees="{x:Bind SldFliptychDegrees.Value, Mode=OneWay}"
+                                   ItemGap="{x:Bind (x:Int32)SldItemGap.Value, Mode=OneWay}"
+                                   ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                   NavigationSpeed="{x:Bind (x:Int32)SldNavigationSpeed.Value, Mode=OneWay}"
+                                   SelectedIndex="0"
+                                   SelectedItemScale="{x:Bind SldSelectedItemScale.Value, Mode=OneWay}"
+                                   WarpCurve="{x:Bind SldWarpCurve.Value, Mode=OneWay}"
+                                   WarpIntensity="{x:Bind (x:Int32)SldWarpIntensity.Value, Mode=OneWay}"
+                                   WheelAlignment="{x:Bind (dev:CarouselView2WheelAlignments)CmbWheelAlignment.SelectedItem, Mode=OneWay}"
+                                   ZIndexUpdateWaitsForAnimation="{x:Bind TgZIndexUpdateWaitsForAnimation.IsOn, Mode=OneWay}">
+                    <dev:CarouselView2.ItemTemplate>
+                        <DataTemplate x:DataType="views:CarouselView2Item">
+                            <UserControl>
+                                <UserControl.Transform3D>
+                                    <PerspectiveTransform3D Depth="1000" />
+                                </UserControl.Transform3D>
+                                <Grid Width="120" Height="120" Padding="8">
+                                    <Image Source="{x:Bind ImageSource}" />
+                                </Grid>
+                            </UserControl>
+                        </DataTemplate>
+                    </dev:CarouselView2.ItemTemplate>
+                </dev:CarouselView2>
+            </local:ControlExample>
+            <local:ControlExample CSharpSource="Composition/CarouselView2/CarouselView2Page_cs.txt"
+                                  DocPage="controls/carouselView2"
+                                  HeaderText="Movie Posters"
+                                  XamlSource="Composition/CarouselView2/CarouselView2Page_xaml.txt">
+                <dev:CarouselView2 Height="400"
+                                   CarouselType="Column"
+                                   ItemGap="12"
+                                   ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                   NavigationSpeed="500"
+                                   SelectedIndex="0"
+                                   SelectedItemScale="1.8">
+                    <dev:CarouselView2.ItemTemplate>
+                        <DataTemplate x:DataType="views:CarouselView2Item">
+                            <UserControl>
+                                <UserControl.Transform3D>
+                                    <PerspectiveTransform3D Depth="1000" />
+                                </UserControl.Transform3D>
+                                <ContentControl Width="60"
+                                                Height="120">
+                                    <Image Height="120"
+                                           Source="{x:Bind ImageSource}" />
+                                </ContentControl>
+                            </UserControl>
+                        </DataTemplate>
+                    </dev:CarouselView2.ItemTemplate>
+                </dev:CarouselView2>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

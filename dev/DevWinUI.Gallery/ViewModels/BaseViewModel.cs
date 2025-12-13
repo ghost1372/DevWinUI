@@ -11,6 +11,12 @@ public partial class BaseViewModel : ObservableObject
     public partial DigitalSegmentOption DigitalSegmentSelectedModel { get; set; }
 
     [ObservableProperty]
+    public partial ObservableCollection<CarouselView2WheelAlignments> WheelAlignmentList { get; set; } = new ObservableCollection<CarouselView2WheelAlignments>(Enum.GetValues<CarouselView2WheelAlignments>());
+
+    [ObservableProperty]
+    public partial ObservableCollection<CarouselView2CarouselTypes> CarouselTypeList { get; set; } = new ObservableCollection<CarouselView2CarouselTypes>(Enum.GetValues<CarouselView2CarouselTypes>());
+
+    [ObservableProperty]
     public partial ObservableCollection<SpectrumColorType> SpectrumColorTypeList { get; set; } = new ObservableCollection<SpectrumColorType>(Enum.GetValues<SpectrumColorType>());
 
     [ObservableProperty]
