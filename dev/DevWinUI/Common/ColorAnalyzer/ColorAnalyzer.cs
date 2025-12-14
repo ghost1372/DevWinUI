@@ -26,6 +26,7 @@ public partial class ColorAnalyzer : DependencyObject
 
         const int sampleCount = 4096;
         const int k = 8;
+        const float mergeDistance = 0.12f;
 
         // Retreive pixel samples from source
         var samples = await SampleSourcePixelColorsAsync(sampleCount);
@@ -36,8 +37,10 @@ public partial class ColorAnalyzer : DependencyObject
 
         // Cluster samples in RGB floating-point color space
         // With Euclidean Squared distance function, then construct analyzer data.
-        var clusters = KMeansCluster(samples, k, out var sizes);
-        var colorData = clusters.Select((vectorColor, i) => new AnalyzedColor(vectorColor.ToColor(), (float)sizes[i] / samples.Length));
+        var kClusters = KMeansCluster(samples, k, out var counts);
+        var weights = counts.Select(x => (float)x / samples.Length).ToArray();
+        var dbCluster = DBScan.Cluster(kClusters, mergeDistance, 0, ref weights);
+        var colorData = dbCluster.Select((vectorColor, i) => new AnalyzedColor(vectorColor.ToColor(), weights[i]));
 
         // Update analyzers on the UI thread
         foreach (var analyzer in Analyzers)
