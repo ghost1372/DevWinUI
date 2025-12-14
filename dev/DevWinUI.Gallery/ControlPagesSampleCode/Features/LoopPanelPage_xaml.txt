@@ -1,0 +1,27 @@
+﻿<ItemsControl x:Name="loopingList"
+                ItemsSource="{x:Bind Items, Mode=OneWay}">
+    <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+            <dev:LoopPanel Background="Transparent"
+                            BringChildrenIntoView="False"
+                            IsInertiaEnabled="True"
+                            Orientation="Horizontal"
+                            Spacing="5" />
+        </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+
+    <ItemsControl.ItemTemplate>
+        <DataTemplate x:DataType="views:LoopPanelItem">
+            <Border Margin="10,10,0,0"
+                    Padding="5"
+                    Background="Purple"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1">
+                <Image Source="{x:Bind ImageSource}"
+                        Stretch="Uniform">
+
+                </Image>
+            </Border>
+        </DataTemplate>
+    </ItemsControl.ItemTemplate>
+</ItemsControl>

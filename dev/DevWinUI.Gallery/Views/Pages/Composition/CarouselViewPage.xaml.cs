@@ -25,7 +25,7 @@ public sealed partial class CarouselViewPage : Page
         await MessageBox.ShowInfoAsync($"You have clicked {(e.ClickItem as ICarouselViewItemSource).Title} ;-)", "Wow");
     }
 }
-public class CarouselItemSource : ICarouselViewItemSource
+public partial class CarouselItemSource : ICarouselViewItemSource
 {
     public string ImageSource { get; set; }
     public string Title { get; set; }

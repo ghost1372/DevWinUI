@@ -36,6 +36,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ExtensionPage", typeof(DevWinUIGallery.Views.ExtensionPage)},
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
+        {"DevWinUIGallery.Views.LoopPanelPage", typeof(DevWinUIGallery.Views.LoopPanelPage)},
         {"DevWinUIGallery.Views.CoverFlowPage", typeof(DevWinUIGallery.Views.CoverFlowPage)},
         {"DevWinUIGallery.Views.WaveProgressBarPage", typeof(DevWinUIGallery.Views.WaveProgressBarPage)},
         {"DevWinUIGallery.Views.LoadingIndicatorPage", typeof(DevWinUIGallery.Views.LoadingIndicatorPage)},

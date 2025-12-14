@@ -165,6 +165,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.LoopPanelPage",
+          "Title": "Loop Panel",
+          "Subtitle": "An infinitely scrolling panel.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CoverFlowPage",
           "Title": "Cover Flow",
           "Subtitle": "A CoverFlow control is a 3D-style carousel that highlights a centered item while showing neighboring items angled.",
