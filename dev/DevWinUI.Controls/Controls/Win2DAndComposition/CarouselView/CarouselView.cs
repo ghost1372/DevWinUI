@@ -461,7 +461,7 @@ public sealed partial class CarouselView : Control
         }
     }
 
-    private void GotoNext()
+    public void GotoNext()
     {
         // Avoid null crash
         if (ItemImageSource == null || ItemImageSource.Count == 0)
@@ -500,7 +500,7 @@ public sealed partial class CarouselView : Control
         MeasureItemsPosition(newindex, oldindex);
     }
 
-    private void GotoPrevious()
+    public void GotoPrevious()
     {
         // Avoid null crash
         if (ItemImageSource == null || ItemImageSource.Count == 0)

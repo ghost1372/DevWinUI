@@ -139,7 +139,7 @@ public partial class ContentSlider : ItemsControl
 
         SlideTo(delta);
     }
-    private void SlideTo(int direction)
+    public void SlideTo(int direction)
     {
         if (isAnimating || itemCache.Count < 2)
             return;
