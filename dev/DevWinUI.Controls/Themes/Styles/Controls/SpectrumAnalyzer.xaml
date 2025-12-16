@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:SpectrumAnalyzer" BasedOn="{StaticResource DefaultSpectrumAnalyzerStyle}" />
+
+    <Style x:Key="DefaultSpectrumAnalyzerStyle" TargetType="local:SpectrumAnalyzer">
+        <Setter Property="Height" Value="200" />
+        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BarStyle">
+            <Setter.Value>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="{StaticResource SpectrumBarBrush}" />
+                    <Setter Property="RadiusX" Value="3" />
+                    <Setter Property="RadiusY" Value="3" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="PeakStyle">
+            <Setter.Value>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="{StaticResource SpectrumPeakBrush}" />
+                    <Setter Property="RadiusX" Value="3" />
+                    <Setter Property="RadiusY" Value="3" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SpectrumAnalyzer">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Canvas Name="PART_SpectrumCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

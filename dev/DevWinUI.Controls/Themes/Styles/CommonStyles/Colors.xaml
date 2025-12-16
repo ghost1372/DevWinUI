@@ -112,4 +112,11 @@
         <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
         <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
     </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SpectrumBarBrush" StartPoint="0.5,1" EndPoint="0.5,0">
+        <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
+        <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight2}" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="SpectrumPeakBrush" Color="{ThemeResource SystemAccentColorLight1}" />
 </ResourceDictionary>
