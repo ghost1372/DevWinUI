@@ -14,12 +14,13 @@
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <Button x:Name="BtnOpen"
-                                Width="200"
+                                HorizontalAlignment="Stretch"
                                 Click="BtnOpen_Click"
                                 Content="Open Audio" />
                         <TextBox x:Name="TxtPath"
                                  HorizontalAlignment="Stretch"
-                                 IsReadOnly="True" />
+                                 IsReadOnly="True"
+                                 PlaceholderText="File Path" />
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <Button x:Name="BtnPlay"
                                     Click="BtnPlay_Click"
