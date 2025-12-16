@@ -102,4 +102,14 @@
         <GradientStop Offset="0.6" Color="#161515" />
         <GradientStop Offset="0.9" Color="#303030" />
     </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="WaveformRightLevelBrush" StartPoint="1,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+        <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight1}" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="WaveformLeftLevelBrush" StartPoint="1,1" EndPoint="1,0">
+        <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
+        <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
+    </LinearGradientBrush>
 </ResourceDictionary>

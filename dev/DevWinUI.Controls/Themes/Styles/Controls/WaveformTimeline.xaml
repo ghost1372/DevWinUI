@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:WaveformTimeline" BasedOn="{StaticResource DefaultWaveformTimelineStyle}" />
+
+    <Style x:Key="DefaultWaveformTimelineStyle" TargetType="local:WaveformTimeline">
+        <Setter Property="RepeatRegionBrush" Value="{ThemeResource SystemControlBackgroundAltMediumLowBrush}" />
+        <Setter Property="TimelineTickBrush" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+        <Setter Property="ProgressBarBrush" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+        <Setter Property="CenterLineBrush" Value="{ThemeResource SystemControlForegroundBaseLowBrush}" />
+        <Setter Property="RightLevelBrush" Value="{ThemeResource WaveformRightLevelBrush}" />
+        <Setter Property="LeftLevelBrush" Value="{ThemeResource WaveformLeftLevelBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:WaveformTimeline">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Canvas Name="PART_Waveform" Grid.Row="1" />
+                            <Border Grid.Row="0"
+                                    BorderBrush="{TemplateBinding TimelineTickBrush}"
+                                    BorderThickness="0,0,0,1"
+                                    Canvas.ZIndex="0">
+                                <Canvas Name="PART_Timeline" Height="20" />
+                            </Border>
+                            <Canvas Name="PART_Repeat" Grid.Row="1" />
+                            <Canvas Name="PART_Progress" Grid.Row="0" Grid.RowSpan="2" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
