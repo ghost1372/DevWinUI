@@ -165,11 +165,18 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SpectrumAnalyzerPage",
+          "Title": "Spectrum Analyzer",
+          "Subtitle": "Displays audio level and frequency data.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/AudioWave2.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.WaveformTimelinePage",
           "Title": "Waveform Timeline",
           "Subtitle": "Displays a stereo waveform and allows a user to change playback position.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/Wave.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/AudioWave.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LoopPanelPage",
@@ -940,7 +947,7 @@
           "UniqueId": "DevWinUIGallery.Views.WaveCirclePage",
           "Title": "Wave Circle",
           "Subtitle": "Wave Circle",
-          "ImagePath": "ms-appx:///Assets/Fluent/Wave.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Circle.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BubblePage",

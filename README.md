@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ SpectrumAnalyzer
 - ✨ WaveformTimeline
 - ✨ LoopPanel
 - ✨ CarouselView2
@@ -321,6 +322,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SpectrumAnalyzer
+![SpectrumAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SpectrumAnalyzer.gif)
 
 ### WaveformTimeline
 ![WaveformTimeline](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WaveformTimeline.gif)
