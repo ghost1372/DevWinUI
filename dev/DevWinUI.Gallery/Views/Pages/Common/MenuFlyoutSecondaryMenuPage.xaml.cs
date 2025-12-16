@@ -2,10 +2,9 @@
 
 public sealed partial class MenuFlyoutSecondaryMenuPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<MenuFlyoutSecondaryMenuPlacement> SecondaryMenuPlacement { get; set; } = new ObservableCollection<MenuFlyoutSecondaryMenuPlacement>(Enum.GetValues<MenuFlyoutSecondaryMenuPlacement>());
     public MenuFlyoutSecondaryMenuPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 }

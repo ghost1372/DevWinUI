@@ -174,7 +174,7 @@
                 <local:ControlExample.Pane>
                     <RadioButtons Header="Options"
                                   SelectedIndex="0"
-                                  SelectedItem="{x:Bind ViewModel.RadioSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedItem="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <RadioButton Content="Square"
                                      Tag="square" />
                         <RadioButton Content="Circle"
@@ -185,7 +185,7 @@
                 </local:ControlExample.Pane>
                 <StackPanel Margin="10" Spacing="10">
                     <dev:SwitchPresenter Grid.Row="1"
-                                         Value="{x:Bind ViewModel.RadioSelectedItem.Tag, Mode=OneWay}">
+                                         Value="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem.Tag, Mode=OneWay}">
                         <dev:Case Value="square">
                             <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
                                 <Border Width="24"
@@ -225,7 +225,7 @@
                 <local:ControlExample.Pane>
                     <ComboBox x:Name="AnimalPicker"
                               Header="Pick an Animal"
-                              ItemsSource="{x:Bind ViewModel.SwitchPresenterItems, Mode=OneWay}" />
+                              ItemsSource="{x:Bind SwitchPresenterItems, Mode=OneWay}" />
                 </local:ControlExample.Pane>
                 <StackPanel>
                     <dev:SwitchPresenter Padding="16"

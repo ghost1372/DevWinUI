@@ -29,15 +29,15 @@
                                  Text="Content" />
                         <ComboBox x:Name="CmbMessageBoxButtons"
                                   Header="MessageBox Buttons"
-                                  ItemsSource="{x:Bind ViewModel.MessageBoxButtonItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind MessageBoxButtonItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbMessageBoxDefaultBUtton"
                                   Header="MessageBox Default Button"
-                                  ItemsSource="{x:Bind ViewModel.MessageBoxDefaultButtonItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind MessageBoxDefaultButtonItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbMessageBoxIcon"
                                   Header="MessageBox Icon"
-                                  ItemsSource="{x:Bind ViewModel.MessageBoxIconItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind MessageBoxIconItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ToggleSwitch x:Name="TGIsModal"
                                       Header="Is Modal"
@@ -47,15 +47,15 @@
                                       IsOn="True" />
                         <ComboBox x:Name="CmbUnderlayMode"
                                   Header="Underlay Mode"
-                                  ItemsSource="{x:Bind ViewModel.UnderlayModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind UnderlayModeItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
                                   Header="Underlay Backdrop"
-                                  ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayCoverModes"
                                   Header="Underlay Cover Mode"
-                                  ItemsSource="{x:Bind ViewModel.UnderlayCoverModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind UnderlayCoverModeItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>

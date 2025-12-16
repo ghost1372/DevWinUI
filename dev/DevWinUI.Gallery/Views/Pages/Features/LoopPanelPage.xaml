@@ -6,7 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:DevWinUIGallery.Views"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -54,7 +54,7 @@
                 </local:ControlExample.Pane>
                 <ItemsControl x:Name="loopingList"
                               Height="200"
-                              ItemsSource="{x:Bind Items, Mode=OneWay}">
+                              ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <dev:LoopPanel x:Name="LoopPanelSample"
@@ -71,13 +71,13 @@
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="views:LoopPanelItem">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <Border Margin="10,10,0,0"
                                     Padding="5"
                                     Background="Purple"
                                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                     BorderThickness="1">
-                                <Image Source="{x:Bind ImageSource}"
+                                <Image Source="{x:Bind ImagePath}"
                                        Stretch="Uniform">
 
                                 </Image>

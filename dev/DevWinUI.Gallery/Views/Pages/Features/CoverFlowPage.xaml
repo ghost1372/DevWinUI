@@ -6,7 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:DevWinUIGallery.Views"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -42,18 +42,18 @@
                 <dev:CoverFlow x:Name="CoverFlowSample"
                                Width="500"
                                Height="500"
-                               ItemsSource="{x:Bind CoverItems, Mode=OneWay}"
+                               ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
                                RotationAngle="{x:Bind SldRotationAngle.Value, Mode=OneWay}"
                                SpaceBetweenItems="{x:Bind SldSpaceBetweenItems.Value, Mode=OneWay}"
                                SpaceBetweenSelectedItemAndItems="{x:Bind SldSpaceBetweenSelectedItemAndItems.Value, Mode=OneWay}"
                                ZDistance="{x:Bind SldZDistance.Value, Mode=OneWay}">
                     <dev:CoverFlow.ItemTemplate>
-                        <DataTemplate x:DataType="views:CoverFlowItemSample">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <StackPanel Spacing="5">
                                 <Image Height="150"
-                                       Source="{x:Bind Image}" />
+                                       Source="{x:Bind ImagePath}" />
                                 <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
-                                           Text="{x:Bind Name}"
+                                           Text="{x:Bind Title}"
                                            TextTrimming="CharacterEllipsis" />
                             </StackPanel>
                         </DataTemplate>

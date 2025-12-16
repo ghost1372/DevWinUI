@@ -26,11 +26,11 @@
                                 Value="36" />
                         <ComboBox x:Name="CmbFillAnim"
                                   Header="Fill Status"
-                                  ItemsSource="{x:Bind ViewModel.FillAnimationStateItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind FillAnimationStateItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbSweepDirection"
                                   Header="Sweep Direction"
-                                  ItemsSource="{x:Bind ViewModel.SweepDirectionItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SweepDirectionItems, Mode=OneWay}"
                                   SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="SweepDirection">

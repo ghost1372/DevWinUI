@@ -2,10 +2,11 @@
 
 public sealed partial class SpectrumVisualizerPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<SpectrumColorType> SpectrumColorTypeList { get; set; } = new ObservableCollection<SpectrumColorType>(Enum.GetValues<SpectrumColorType>());
+    public ObservableCollection<SpectrumType> SpectrumTypeList { get; set; } = new ObservableCollection<SpectrumType>(Enum.GetValues<SpectrumType>());
+
     public SpectrumVisualizerPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
 
         SpectrumVisualizerSample.Analyzer = new NaudioSpectrumAnalyzer();

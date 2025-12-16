@@ -20,7 +20,7 @@
                                       IsOn="True" />
                         <ComboBox x:Name="CmbPosition"
                                   Header="Secondary Menu Position"
-                                  ItemsSource="{x:Bind ViewModel.SecondaryMenuPlacement, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SecondaryMenuPlacement, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>

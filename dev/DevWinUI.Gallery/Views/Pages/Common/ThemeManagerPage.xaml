@@ -32,7 +32,7 @@
                     </StackPanel>
 
                     <ComboBox x:Name="cmbTheme"
-                              ItemsSource="{x:Bind ViewModel.ThemeItems, Mode=OneWay}"
+                              ItemsSource="{x:Bind ThemeItems, Mode=OneWay}"
                               SelectedItem="{x:Bind local:App.Current.ThemeService.ElementTheme}"
                               SelectionChanged="cmbTheme_SelectionChanged">
                         <ComboBox.ItemTemplate>
@@ -71,7 +71,7 @@
                     </StackPanel>
 
                     <ComboBox x:Name="cmbBackdrop"
-                              ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
+                              ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
                               SelectedItem="{x:Bind local:App.Current.ThemeService.BackdropType}"
                               SelectionChanged="cmbBackdrop_SelectionChanged" />
                 </StackPanel>

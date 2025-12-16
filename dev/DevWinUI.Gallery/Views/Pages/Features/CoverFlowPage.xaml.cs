@@ -2,31 +2,10 @@
 
 public sealed partial class CoverFlowPage : Page
 {
-    public List<CoverFlowItemSample> CoverItems = new List<CoverFlowItemSample>()
-    {
-        new CoverFlowItemSample() {Name="Item 1", Image = "ms-appx:///Assets/BannerView/1.jpeg"},
-        new CoverFlowItemSample() {Name="Item 2", Image = "ms-appx:///Assets/BannerView/2.png"},
-        new CoverFlowItemSample() {Name="Item 3", Image = "ms-appx:///Assets/BannerView/3.jpeg"},
-        new CoverFlowItemSample() {Name="Item 4", Image = "ms-appx:///Assets/BannerView/4.jpeg"},
-        new CoverFlowItemSample() {Name="Item 5", Image = "ms-appx:///Assets/BannerView/5.jpeg"},
-        new CoverFlowItemSample() {Name="Item 6", Image = "ms-appx:///Assets/BannerView/6.png"},
-        new CoverFlowItemSample() {Name="Item 7", Image = "ms-appx:///Assets/BannerView/7.jpeg"},
-        new CoverFlowItemSample() {Name="Item 8", Image = "ms-appx:///Assets/BannerView/8.jpeg"},
-        new CoverFlowItemSample() {Name="Item 9", Image = "ms-appx:///Assets/BannerView/9.jpeg"},
-    };
+    public BaseViewModel ViewModel { get; }
     public CoverFlowPage()
     {
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
-    }
-}
-
-public partial class CoverFlowItemSample
-{
-    public string Name { get; set; }
-    public string Image { get; set; }
-
-    public override string ToString()
-    {
-        return Name;
     }
 }

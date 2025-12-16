@@ -26,7 +26,7 @@
                                    Value="1" />
                         <ComboBox x:Name="CmbSources"
                                   Header="Sources"
-                                  ItemsSource="{x:Bind ViewModel.FlipCardsSourceItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind FlipCardsSourceItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                     </StackPanel>
                 </local:ControlExample.Pane>

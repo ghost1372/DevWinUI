@@ -35,12 +35,12 @@
                         <ComboBox x:Name="CmbSpectrumType"
                                   MinWidth="130"
                                   Header="Spectrum Type"
-                                  ItemsSource="{x:Bind ViewModel.SpectrumTypeList, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SpectrumTypeList, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbColorType"
                                   MinWidth="130"
                                   Header="Color Type"
-                                  ItemsSource="{x:Bind ViewModel.SpectrumColorTypeList, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SpectrumColorTypeList, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <Slider x:Name="SldRotationSpeed"
                                 Header="Rotation Speed"

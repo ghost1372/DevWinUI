@@ -2,23 +2,16 @@
 
 public sealed partial class ProfileControlPage : Page
 {
+    public BaseViewModel ViewModel { get; }
     private readonly List<Uri> _profiles;
     private int currentIndex;
     private int totalProfiles;
     public ProfileControlPage()
     {
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
 
-        _profiles = new List<Uri>
-        {
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p1.jpg")),
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p2.jpg")),
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p3.jpg")),
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p4.jpg")),
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p5.jpg")),
-            PathHelper.GetFilePath(new Uri("ms-appx:///Assets/Others/p6.jpg")),
-        };
-
+        _profiles = ViewModel.ProfileData.Select(x => PathHelper.GetFilePath(x.ImageUri)).ToList();
         currentIndex = 0;
         totalProfiles = _profiles.Count;
 

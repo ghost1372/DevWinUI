@@ -43,15 +43,15 @@
                                       IsOn="False" />
                         <ComboBox x:Name="CmbUnderlayMode"
                                   Header="Underlay Mode"
-                                  ItemsSource="{x:Bind ViewModel.UnderlayModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind UnderlayModeItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
                                   Header="Underlay Backdrop"
-                                  ItemsSource="{x:Bind ViewModel.BackdropItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbUnderlayCoverModes"
                                   Header="Underlay Cover Mode"
-                                  ItemsSource="{x:Bind ViewModel.UnderlayCoverModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind UnderlayCoverModeItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>

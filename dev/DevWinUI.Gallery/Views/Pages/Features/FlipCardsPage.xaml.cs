@@ -2,10 +2,10 @@
 
 public sealed partial class FlipCardsPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<FlipCardsSourceType> FlipCardsSourceItems { get; set; } = new ObservableCollection<FlipCardsSourceType>(Enum.GetValues<FlipCardsSourceType>());
+
     public FlipCardsPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 }

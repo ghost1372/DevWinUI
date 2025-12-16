@@ -4,10 +4,12 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class WindowedContentDialogPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<UnderlayCoverMode> UnderlayCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
+    public ObservableCollection<UnderlayMode> UnderlayModeItems { get; set; } = new ObservableCollection<UnderlayMode>(Enum.GetValues<UnderlayMode>());
+    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
+
     public WindowedContentDialogPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 

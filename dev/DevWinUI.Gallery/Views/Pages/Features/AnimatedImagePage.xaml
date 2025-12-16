@@ -20,7 +20,7 @@
                     </x:String>
                 </local:ControlExample.Xaml>
                 <dev:AnimatedImage Height="400"
-                                   ImageUrl="{x:Bind ViewModel.ImageUrl, Mode=OneWay}"
+                                   ImageUrl="{x:Bind ViewModel.AnimatedImageImagePath, Mode=OneWay}"
                                    Visibility="Visible" />
             </local:ControlExample>
         </StackPanel>

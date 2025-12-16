@@ -6,7 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:DevWinUIGallery.Views"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -21,13 +21,13 @@
                             <ComboBox x:Name="CmbCarouselType"
                                       Width="120"
                                       Header="Carousel Type"
-                                      ItemsSource="{x:Bind ViewModel.CarouselTypeList}"
+                                      ItemsSource="{x:Bind CarouselTypeList}"
                                       SelectedIndex="2"
                                       ToolTipService.ToolTip="Change the layout style of the carosel." />
                             <ComboBox x:Name="CmbWheelAlignment"
                                       Width="120"
                                       Header="Wheel Alignment"
-                                      ItemsSource="{x:Bind ViewModel.WheelAlignmentList}"
+                                      ItemsSource="{x:Bind WheelAlignmentList}"
                                       SelectedIndex="0"
                                       ToolTipService.ToolTip="Choose which container edge to align the wheel." />
                         </StackPanel>
@@ -103,7 +103,7 @@
                                    Density="{x:Bind (x:Int32)SldDensity.Value, Mode=OneWay}"
                                    FliptychDegrees="{x:Bind SldFliptychDegrees.Value, Mode=OneWay}"
                                    ItemGap="{x:Bind (x:Int32)SldItemGap.Value, Mode=OneWay}"
-                                   ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                   ItemsSource="{x:Bind ViewModel.CarouselData, Mode=OneWay}"
                                    NavigationSpeed="{x:Bind (x:Int32)SldNavigationSpeed.Value, Mode=OneWay}"
                                    SelectedIndex="0"
                                    SelectedItemScale="{x:Bind SldSelectedItemScale.Value, Mode=OneWay}"
@@ -112,13 +112,13 @@
                                    WheelAlignment="{x:Bind (dev:CarouselView2WheelAlignments)CmbWheelAlignment.SelectedItem, Mode=OneWay}"
                                    ZIndexUpdateWaitsForAnimation="{x:Bind TgZIndexUpdateWaitsForAnimation.IsOn, Mode=OneWay}">
                     <dev:CarouselView2.ItemTemplate>
-                        <DataTemplate x:DataType="views:CarouselView2Item">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <UserControl>
                                 <UserControl.Transform3D>
                                     <PerspectiveTransform3D Depth="1000" />
                                 </UserControl.Transform3D>
                                 <Grid Width="120" Height="120" Padding="8">
-                                    <Image Source="{x:Bind ImageSource}" />
+                                    <Image Source="{x:Bind ImagePath}" />
                                 </Grid>
                             </UserControl>
                         </DataTemplate>
@@ -132,12 +132,12 @@
                 <dev:CarouselView2 Height="400"
                                    CarouselType="Column"
                                    ItemGap="12"
-                                   ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                   ItemsSource="{x:Bind ViewModel.CarouselData, Mode=OneWay}"
                                    NavigationSpeed="500"
                                    SelectedIndex="0"
                                    SelectedItemScale="1.8">
                     <dev:CarouselView2.ItemTemplate>
-                        <DataTemplate x:DataType="views:CarouselView2Item">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <UserControl>
                                 <UserControl.Transform3D>
                                     <PerspectiveTransform3D Depth="1000" />
@@ -145,7 +145,7 @@
                                 <ContentControl Width="60"
                                                 Height="120">
                                     <Image Height="120"
-                                           Source="{x:Bind ImageSource}" />
+                                           Source="{x:Bind ImagePath}" />
                                 </ContentControl>
                             </UserControl>
                         </DataTemplate>

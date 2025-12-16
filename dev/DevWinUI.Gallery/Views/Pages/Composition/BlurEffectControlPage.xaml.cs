@@ -5,10 +5,13 @@ using Microsoft.UI.Xaml.Hosting;
 namespace DevWinUIGallery.Views;
 public sealed partial class BlurEffectControlPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<BlurSourceType> BlurSourceTypeItems { get; set; } = new ObservableCollection<BlurSourceType>(Enum.GetValues<BlurSourceType>());
+    public ObservableCollection<EffectBorderMode> EffectBorderModeItems { get; set; } = new ObservableCollection<EffectBorderMode>(Enum.GetValues<EffectBorderMode>());
+    public ObservableCollection<EffectOptimization> EffectOptimizationItems { get; set; } = new ObservableCollection<EffectOptimization>(Enum.GetValues<EffectOptimization>());
+    public ObservableCollection<BlendEffectMode> BlendEffectModeItems { get; set; } = new ObservableCollection<BlendEffectMode>(Enum.GetValues<BlendEffectMode>());
+
     public BlurEffectControlPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         this.InitializeComponent();
     }
 

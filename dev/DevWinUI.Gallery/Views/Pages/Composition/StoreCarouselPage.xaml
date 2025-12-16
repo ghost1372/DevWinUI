@@ -23,7 +23,7 @@
                 </local:ControlExample.Pane>
                 <dev:StoreCarousel AutoShuffle="{x:Bind TgShuffle.IsOn, Mode=OneWay}"
                                    ItemClick="StoreCarouselSample_ItemClick"
-                                   ItemsSource="{x:Bind images, Mode=OneWay}"
+                                   ItemsSource="{x:Bind ViewModel.StoreCarouselData, Mode=OneWay}"
                                    PrimaryImageSource="ms-appx:///Assets/Carousel/8.jpg"
                                    SecondaryImageSource="ms-appx:///Assets/Carousel/9.jpg"
                                    TertiaryImageSource="ms-appx:///Assets/Carousel/10.jpg" />

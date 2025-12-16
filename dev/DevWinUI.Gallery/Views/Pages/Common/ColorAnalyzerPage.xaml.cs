@@ -6,8 +6,10 @@ public sealed partial class ColorAnalyzerPage : Page
 {
     int imageIndex = 1;
 
+    public BaseViewModel ViewModel { get; }
     public ColorAnalyzerPage()
     {
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 
@@ -18,7 +20,7 @@ public sealed partial class ColorAnalyzerPage : Page
             imageIndex = 1;
         }
 
-        ImageSample.Source = new BitmapImage(new Uri($"ms-appx:///Assets/Carousel/{imageIndex}.jpg"));
+        ImageSample.Source = new BitmapImage(ViewModel.CarouselData[imageIndex].ImageUri);
         imageIndex++;
     }
 

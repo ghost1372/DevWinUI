@@ -24,7 +24,7 @@
                                       IsOn="True" />
                         <ComboBox x:Name="CmbSplitOrientation"
                                   Header="Split Orientation"
-                                  ItemsSource="{x:Bind ViewModel.OrientationItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind OrientationItems, Mode=OneWay}"
                                   SelectedIndex="1">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="Orientation">

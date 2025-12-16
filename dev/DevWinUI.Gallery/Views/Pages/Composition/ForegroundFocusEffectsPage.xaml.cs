@@ -4,6 +4,8 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class ForegroundFocusEffectsPage : Page
 {
+    public ObservableCollection<ForegroundFocusEffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<ForegroundFocusEffectTypes>(Enum.GetValues<ForegroundFocusEffectTypes>());
+
     public BaseViewModel ViewModel { get; }
 
     public ForegroundFocusEffectsPage()
@@ -14,14 +16,14 @@ public sealed partial class ForegroundFocusEffectsPage : Page
 
     private async void OnItemClick(object sender, ItemClickEventArgs e)
     {
-        var item = (SampleData)e.ClickedItem;
+        var item = (SampleItemModel)e.ClickedItem;
 
         ForegroundFocusEffectsSample.ApplyEffect();
 
         ContentDialog contentDialog = new ContentDialog
         {
             XamlRoot = this.XamlRoot,
-            Title = item.Name,
+            Title = item.Title,
             Content = item.Description,
             PrimaryButtonText = "OK",
             CloseButtonText = "Cancel",

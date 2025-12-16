@@ -2,8 +2,10 @@
 
 public sealed partial class FluidBannerPage : Page
 {
+    public BaseViewModel ViewModel { get; }
     public FluidBannerPage()
     {
+        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
 
         Loaded += FluidBannerPage_Loaded;
@@ -11,14 +13,6 @@ public sealed partial class FluidBannerPage : Page
 
     private void FluidBannerPage_Loaded(object sender, RoutedEventArgs e)
     {
-        var itemCount = 10;
-
-        var items = new List<Uri>();
-        for (var i = 0; i < itemCount; i++)
-        {
-            items.Add(PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-{i + 1}.jpg")));
-        }
-
-        Banner.ItemsSource = items;
+        Banner.ItemsSource = ViewModel.LandscapeData.Select(x=> PathHelper.GetFilePath(x.ImageUri)).Take(4).ToList();
     }
 }

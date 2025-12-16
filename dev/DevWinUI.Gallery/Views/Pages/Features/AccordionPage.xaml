@@ -15,21 +15,21 @@
                                   HeaderText="Accordion">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.SampleImageAndTextData}" /&gt;
+                        &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.LandscapeData}" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
                 <dev:Accordion Height="500"
-                               ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                               ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                     <dev:Accordion.ItemTemplate>
-                        <DataTemplate x:DataType="model:SampleData">
+                        <DataTemplate x:DataType="model:SampleItemModel">
                             <Image HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Source="{x:Bind ImageUrl}"
+                                   Source="{x:Bind ImagePath}"
                                    Stretch="UniformToFill" />
                         </DataTemplate>
                     </dev:Accordion.ItemTemplate>
                     <dev:Accordion.HeaderTemplate>
-                        <DataTemplate x:DataType="model:SampleData">
+                        <DataTemplate x:DataType="model:SampleItemModel">
                             <Grid>
                                 <Grid.Background>
                                     <SolidColorBrush Opacity="0.25" Color="{ThemeResource CardBackgroundFillColorDefault}" />
@@ -38,7 +38,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource TitleTextBlockStyle}"
-                                           Text="{x:Bind Name}" />
+                                           Text="{x:Bind Title}" />
                             </Grid>
                         </DataTemplate>
                     </dev:Accordion.HeaderTemplate>

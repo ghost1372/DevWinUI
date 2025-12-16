@@ -18,7 +18,7 @@
                     <StackPanel Spacing="10">
                         <ComboBox x:Name="CmbEffectType"
                                   Header="Foreground Focus Effect"
-                                  ItemsSource="{x:Bind ViewModel.ForegroundFocusEffectItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ForegroundFocusEffectItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
@@ -26,18 +26,18 @@
                                             Effect="{x:Bind ((dev:ForegroundFocusEffectTypes)CmbEffectType.SelectedItem), Mode=OneWay}">
                     <ListView IsItemClickEnabled="True"
                               ItemClick="OnItemClick"
-                              ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                              ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="model:SampleData">
+                            <DataTemplate x:DataType="model:SampleItemModel">
                                 <Grid>
                                     <Image Width="140"
                                            Height="140"
-                                           Source="{x:Bind ImageUrl}"
+                                           Source="{x:Bind ImagePath}"
                                            Stretch="UniformToFill" />
                                 </Grid>
                             </DataTemplate>

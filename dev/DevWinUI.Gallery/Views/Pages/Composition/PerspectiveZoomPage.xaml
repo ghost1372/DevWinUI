@@ -35,7 +35,7 @@
 
                     <ListView IsItemClickEnabled="True"
                               ItemClick="OnItemClick"
-                              ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                              ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal" />
@@ -43,11 +43,11 @@
                         </ListView.ItemsPanel>
 
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="model:SampleData">
+                            <DataTemplate x:DataType="model:SampleItemModel">
                                 <Grid>
                                     <Image Width="200"
                                            Height="120"
-                                           Source="{x:Bind ImageUrl}"
+                                           Source="{x:Bind ImagePath}"
                                            Stretch="UniformToFill" />
                                 </Grid>
                             </DataTemplate>

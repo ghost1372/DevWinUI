@@ -2,10 +2,10 @@
 
 public sealed partial class KeyVisualPage : Page
 {
-    public BaseViewModel ViewModel { get;}
+    public ObservableCollection<VisualType> VisualTypeItems { get; set; } = new ObservableCollection<VisualType>(Enum.GetValues<VisualType>());
+
     public KeyVisualPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 

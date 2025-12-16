@@ -26,27 +26,27 @@
                                 Value="2" />
                         <ComboBox x:Name="CmbBlurSourceType"
                                   Header="Blur Source Type"
-                                  ItemsSource="{x:Bind ViewModel.BlurSourceTypeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind BlurSourceTypeItems, Mode=OneWay}"
                                   SelectedIndex="0"
                                   SelectionChanged="CmbBlurSourceType_SelectionChanged" />
                         <ComboBox x:Name="CmbEffectBorderMode"
                                   Header="Effect Border Mode"
-                                  ItemsSource="{x:Bind ViewModel.EffectBorderModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind EffectBorderModeItems, Mode=OneWay}"
                                   SelectedIndex="1"
                                   SelectionChanged="CmbEffectBorderMode_SelectionChanged" />
                         <ComboBox x:Name="CmbEffectOptimization"
                                   Header="Effect Optimization"
-                                  ItemsSource="{x:Bind ViewModel.EffectOptimizationItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind EffectOptimizationItems, Mode=OneWay}"
                                   SelectedIndex="1"
                                   SelectionChanged="CmbEffectOptimization_SelectionChanged" />
                         <ComboBox x:Name="CmbBlendEffectMode"
                                   Header="Blend Effect Mode"
-                                  ItemsSource="{x:Bind ViewModel.BlendEffectModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
                                   SelectedIndex="0"
                                   SelectionChanged="CmbBlendEffectMode_SelectionChanged" />
                         <ComboBox x:Name="CmbNoiseBlendMode"
                                   Header="Noise Blend Effect Mode"
-                                  ItemsSource="{x:Bind ViewModel.BlendEffectModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
                                   SelectedIndex="1"
                                   SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
                         <ToggleSwitch x:Name="TGUseNoise"

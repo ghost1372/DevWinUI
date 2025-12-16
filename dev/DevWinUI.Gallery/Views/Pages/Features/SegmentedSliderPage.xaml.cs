@@ -2,10 +2,11 @@
 
 public sealed partial class SegmentedSliderPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<HorizontalAlignment> TitleHorizontalAlignment { get; set; } = new ObservableCollection<HorizontalAlignment>(Enum.GetValues<HorizontalAlignment>());
+    public ObservableCollection<SegmentedSliderTitleVisibility> SegmentedSliderTitleVisibility { get; set; } = new ObservableCollection<SegmentedSliderTitleVisibility>(Enum.GetValues<SegmentedSliderTitleVisibility>());
+
     public SegmentedSliderPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
 
         SegmentedSliderSample.SegmentTitles = new List<string>

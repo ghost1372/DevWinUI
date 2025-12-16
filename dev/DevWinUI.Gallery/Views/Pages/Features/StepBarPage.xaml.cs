@@ -2,10 +2,13 @@
 
 public sealed partial class StepBarPage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<StepBarDisplayMode> StepBarDisplayModeItems { get; set; } = new ObservableCollection<StepBarDisplayMode>(Enum.GetValues<StepBarDisplayMode>());
+    public ObservableCollection<StepBarHeaderDisplayMode> StepBarHeaderDisplayModeItems { get; set; } = new ObservableCollection<StepBarHeaderDisplayMode>(Enum.GetValues<StepBarHeaderDisplayMode>());
+    public ObservableCollection<StepStatus> StepStatusItems { get; set; } = new ObservableCollection<StepStatus>(Enum.GetValues<StepStatus>());
+    public ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
+
     public StepBarPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         this.InitializeComponent();
     }
 

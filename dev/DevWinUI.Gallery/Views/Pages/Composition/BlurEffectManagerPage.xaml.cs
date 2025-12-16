@@ -7,12 +7,15 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class BlurEffectManagerPage : Page
 {
+    public ObservableCollection<BlurSourceType> BlurSourceTypeItems { get; set; } = new ObservableCollection<BlurSourceType>(Enum.GetValues<BlurSourceType>());
+    public ObservableCollection<EffectBorderMode> EffectBorderModeItems { get; set; } = new ObservableCollection<EffectBorderMode>(Enum.GetValues<EffectBorderMode>());
+    public ObservableCollection<EffectOptimization> EffectOptimizationItems { get; set; } = new ObservableCollection<EffectOptimization>(Enum.GetValues<EffectOptimization>());
+    public ObservableCollection<BlendEffectMode> BlendEffectModeItems { get; set; } = new ObservableCollection<BlendEffectMode>(Enum.GetValues<BlendEffectMode>());
+
     private BlurEffectManager _blurEffectManager;
     private BlurEffectManager _blurEffectManager2;
-    public BaseViewModel ViewModel { get; }
     public BlurEffectManagerPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
         _blurEffectManager = new BlurEffectManager(BackdropImage) { IsTintEnabled = true };
         _blurEffectManager2 = new BlurEffectManager(BackdropImage2);

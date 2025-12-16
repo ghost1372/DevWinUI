@@ -32,7 +32,7 @@
                                    Value="5" />
                         <ComboBox x:Name="CmbTitleHorizontalAlignment"
                                   Header="Title Horizontal Alignment"
-                                  ItemsSource="{x:Bind ViewModel.TitleHorizontalAlignment, Mode=OneWay}"
+                                  ItemsSource="{x:Bind TitleHorizontalAlignment, Mode=OneWay}"
                                   SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="HorizontalAlignment">
@@ -42,7 +42,7 @@
                         </ComboBox>
                         <ComboBox x:Name="CmbSegmentedSliderTitleVisibility"
                                   Header="Title Visibility"
-                                  ItemsSource="{x:Bind ViewModel.SegmentedSliderTitleVisibility, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SegmentedSliderTitleVisibility, Mode=OneWay}"
                                   SelectedIndex="1" />
 
                         <Slider x:Name="SldValue"
@@ -75,7 +75,7 @@
                                    Value="5" />
                         <ComboBox x:Name="CmbTitleHorizontalAlignment2"
                                   Header="Title Horizontal Alignment"
-                                  ItemsSource="{x:Bind ViewModel.TitleHorizontalAlignment, Mode=OneWay}"
+                                  ItemsSource="{x:Bind TitleHorizontalAlignment, Mode=OneWay}"
                                   SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="HorizontalAlignment">
@@ -85,7 +85,7 @@
                         </ComboBox>
                         <ComboBox x:Name="CmbSegmentedSliderTitleVisibility2"
                                   Header="Title Visibility"
-                                  ItemsSource="{x:Bind ViewModel.SegmentedSliderTitleVisibility, Mode=OneWay}"
+                                  ItemsSource="{x:Bind SegmentedSliderTitleVisibility, Mode=OneWay}"
                                   SelectedIndex="1" />
 
                         <Slider x:Name="SldValue2"

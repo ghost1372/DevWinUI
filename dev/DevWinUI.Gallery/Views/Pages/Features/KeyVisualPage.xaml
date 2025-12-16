@@ -34,7 +34,7 @@
                                       IsOn="False" />
                         <ComboBox x:Name="VisualTypePicker"
                                   Header="Pick a VisualType"
-                                  ItemsSource="{x:Bind ViewModel.VisualTypeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind VisualTypeItems, Mode=OneWay}"
                                   SelectedIndex="0"
                                   SelectionChanged="OnSelectionChanged" />
                     </StackPanel>

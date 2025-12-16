@@ -2,10 +2,10 @@
 
 public sealed partial class SplitCirclePage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
+
     public SplitCirclePage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 }

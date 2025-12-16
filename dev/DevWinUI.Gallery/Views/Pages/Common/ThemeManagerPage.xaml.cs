@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using WinRT;
+﻿using WinRT;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class ThemeManagerPage : Page
 {
-    public BaseViewModel ViewModel { get;}
+    public ObservableCollection<ElementTheme> ThemeItems { get; set; } = new ObservableCollection<ElementTheme>(Enum.GetValues<ElementTheme>());
+    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
+
     public ThemeManagerPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         this.InitializeComponent();
     }
 

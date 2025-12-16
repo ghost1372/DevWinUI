@@ -1,36 +1,27 @@
-﻿namespace DevWinUIGallery.Views;
+﻿using Microsoft.UI.Xaml.Media;
+
+namespace DevWinUIGallery.Views;
 
 public sealed partial class ImageFramePage : Page
 {
+    public ObservableCollection<ImageFrameTransitionMode> ImageFrameTransition { get; set; } = new ObservableCollection<ImageFrameTransitionMode>(Enum.GetValues<ImageFrameTransitionMode>());
+
+    public ObservableCollection<AlignmentX> ImageFrameAlignmentX { get; set; } = new ObservableCollection<AlignmentX>(Enum.GetValues<AlignmentX>());
+
+    public ObservableCollection<AlignmentY> ImageFrameAlignmentY { get; set; } = new ObservableCollection<AlignmentY>(Enum.GetValues<AlignmentY>());
+
     public BaseViewModel ViewModel { get; }
-    private List<Uri> _uris;
     private int _currentIndex = 0;
     public ImageFramePage()
     {
         ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
-
-        _uris = new List<Uri>()
-        {
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-1.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-2.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-3.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-4.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-5.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-6.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-7.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-8.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-9.jpg")),
-            PathHelper.GetFilePath(new Uri($"ms-appx:///Assets/Landscapes/Landscape-10.jpg"))
-        };
-
-        ImageFrame.Source = _uris[_currentIndex];
+        ImageFrame.Source = ViewModel.LandscapeData[_currentIndex].ImagePath;
     }
-
 
     private void BtnChange_Click(object sender, RoutedEventArgs e)
     {
-        if (_currentIndex < _uris.Count - 1)
+        if (_currentIndex < ViewModel.LandscapeData.Count - 1)
         {
             _currentIndex += 1;
         }
@@ -39,6 +30,6 @@ public sealed partial class ImageFramePage : Page
             _currentIndex = 0;
         }
 
-        ImageFrame.Source = _uris[_currentIndex];
+        ImageFrame.Source = ViewModel.LandscapeData[_currentIndex].ImagePath;
     }
 }

@@ -6,7 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:DevWinUIGallery.Views"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -15,14 +15,14 @@
                                   DocPage="controls/contentSlider"
                                   HeaderText="ContentSlider|Image"
                                   XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
-                <dev:ContentSlider ItemsSource="{x:Bind ContentItems, Mode=OneWay}"
+                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
                                    ViewportWidth="500">
                     <dev:ContentSlider.ItemTemplate>
-                        <DataTemplate x:DataType="views:ContentSliderItem">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <Grid>
                                 <Image Width="400"
                                        Height="300"
-                                       Source="{x:Bind Image}" />
+                                       Source="{x:Bind ImagePath}" />
                             </Grid>
                         </DataTemplate>
                     </dev:ContentSlider.ItemTemplate>
@@ -32,15 +32,15 @@
                                   DocPage="controls/contentSlider"
                                   HeaderText="ContentSlider|Text"
                                   XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
-                <dev:ContentSlider ItemsSource="{x:Bind ContentItems, Mode=OneWay}"
+                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
                                    ViewportWidth="500">
                     <dev:ContentSlider.ItemTemplate>
-                        <DataTemplate x:DataType="views:ContentSliderItem">
+                        <DataTemplate x:DataType="models:SampleItemModel">
                             <Grid>
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Style="{ThemeResource TitleTextBlockStyle}"
-                                           Text="{x:Bind Name}" />
+                                           Text="{x:Bind Title}" />
                             </Grid>
                         </DataTemplate>
                     </dev:ContentSlider.ItemTemplate>

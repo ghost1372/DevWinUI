@@ -2,10 +2,11 @@
 
 public sealed partial class ColorPalettePage : Page
 {
-    public BaseViewModel ViewModel { get; }
+    public ObservableCollection<ColorSetType> ColorSetItems { get; set; } = new ObservableCollection<ColorSetType>(Enum.GetValues<ColorSetType>());
+    public ObservableCollection<ColorItemShape> ColorItemShapeItems { get; set; } = new ObservableCollection<ColorItemShape>(Enum.GetValues<ColorItemShape>());
+
     public ColorPalettePage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 

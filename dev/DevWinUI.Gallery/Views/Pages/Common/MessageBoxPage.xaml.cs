@@ -4,10 +4,15 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class MessageBoxPage : Page
 {
-    public BaseViewModel ViewModel { get;}
+    public ObservableCollection<MessageBoxIcon> MessageBoxIconItems { get; set; } = new ObservableCollection<MessageBoxIcon>(Enum.GetValues<MessageBoxIcon>());
+    public ObservableCollection<UnderlayCoverMode> UnderlayCoverModeItems { get; set; } = new ObservableCollection<UnderlayCoverMode>(Enum.GetValues<UnderlayCoverMode>());
+    public ObservableCollection<UnderlayMode> UnderlayModeItems { get; set; } = new ObservableCollection<UnderlayMode>(Enum.GetValues<UnderlayMode>());
+    public ObservableCollection<MessageBoxButtons> MessageBoxButtonItems { get; set; } = new ObservableCollection<MessageBoxButtons>(Enum.GetValues<MessageBoxButtons>());
+    public ObservableCollection<MessageBoxDefaultButton> MessageBoxDefaultButtonItems { get; set; } = new ObservableCollection<MessageBoxDefaultButton>(Enum.GetValues<MessageBoxDefaultButton>());
+    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
+
     public MessageBoxPage()
     {
-        ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
     }
 

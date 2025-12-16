@@ -6,7 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:DevWinUIGallery.Views"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -34,19 +34,19 @@
                                    ItemSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}"
                                    ItemTapped="EasyCarouselPanelSample_ItemTapped"
                                    ItemWidth="300"
-                                   ItemsSource="{x:Bind CarouselItems, Mode=OneWay}"
+                                   ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
                                    SelectedIndex="0">
                 <dev:EasyCarouselPanel.ItemTemplate>
-                    <DataTemplate x:DataType="views:EasyCarouselPanelItem">
+                    <DataTemplate x:DataType="models:SampleItemModel">
                         <Grid>
                             <Image HorizontalAlignment="Stretch"
                                    VerticalAlignment="Stretch"
-                                   Source="{x:Bind Image}"
+                                   Source="{x:Bind ImagePath}"
                                    Stretch="UniformToFill" />
                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="#88000000">
                                 <TextBlock Margin="6"
                                            Foreground="White"
-                                           Text="{x:Bind Name}" />
+                                           Text="{x:Bind Title}" />
                             </Grid>
                         </Grid>
                     </DataTemplate>

@@ -30,7 +30,7 @@
                         <ComboBox x:Name="CmbState"
                                   HorizontalAlignment="Stretch"
                                   Header="State"
-                                  ItemsSource="{x:Bind ViewModel.CountdownState, Mode=OneWay}"
+                                  ItemsSource="{x:Bind CountdownState, Mode=OneWay}"
                                   SelectedIndex="0">
                         </ComboBox>
                     </StackPanel>

@@ -25,7 +25,7 @@
                               VerticalAlignment="Center"
                               IsAutoSwitchEnabled="{x:Bind TgAutoShift.IsOn, Mode=OneWay}"
                               ItemClick="CarouselSample_ItemClick"
-                              ItemImageSource="{x:Bind Items, Mode=OneWay}"
+                              ItemImageSource="{x:Bind ViewModel.CarouselViewData, Mode=OneWay}"
                               ItemWidth="500" />
         </StackPanel>
     </ScrollViewer>

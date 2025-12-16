@@ -26,11 +26,11 @@
                         </StackPanel>
                         <ComboBox x:Name="CmbStatus"
                                   Header="Status"
-                                  ItemsSource="{x:Bind ViewModel.StepStatusItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind StepStatusItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbOrientation"
                                   Header="Orientation"
-                                  ItemsSource="{x:Bind ViewModel.OrientationItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind OrientationItems, Mode=OneWay}"
                                   SelectedIndex="1">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="Orientation">
@@ -40,11 +40,11 @@
                         </ComboBox>
                         <ComboBox x:Name="CmbHeaderDisplayMode"
                                   Header="Header Display Mode"
-                                  ItemsSource="{x:Bind ViewModel.StepBarHeaderDisplayModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind StepBarHeaderDisplayModeItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbDisplayMode"
                                   Header="Display Mode"
-                                  ItemsSource="{x:Bind ViewModel.StepBarDisplayModeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind StepBarDisplayModeItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ToggleSwitch x:Name="TGShowStepIndex"
                                       Header="Show StepIndex"

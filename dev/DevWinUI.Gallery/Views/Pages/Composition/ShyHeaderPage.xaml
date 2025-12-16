@@ -14,7 +14,7 @@
             <local:ControlExample DocPage="controls/shyHeader"
                                   XamlSource="Composition/ShyHeaderPage_xaml.txt">
                 <GridView Height="400"
-                          ItemsSource="{x:Bind ViewModel.SampleImageAndTextData, Mode=OneWay}">
+                          ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                     <GridView.Header>
                         <dev:ShyHeader Title="Lorem Ipsum"
                                        BackgroundImage="ms-appx:///Assets/Others/Abstract.jpg"
@@ -35,13 +35,13 @@
                         </dev:ShyHeader>
                     </GridView.Header>
                     <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:SampleData">
+                        <DataTemplate x:DataType="model:SampleItemModel">
                             <Image Width="200"
                                    Height="200"
                                    Margin="4"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Source="{x:Bind ImageUrl}"
+                                   Source="{x:Bind ImagePath}"
                                    Stretch="UniformToFill" />
                         </DataTemplate>
                     </GridView.ItemTemplate>

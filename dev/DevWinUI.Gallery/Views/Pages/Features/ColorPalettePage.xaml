@@ -22,12 +22,12 @@
                         <ComboBox x:Name="CmbColorSet"
                                   MinWidth="200"
                                   Header="Color Set"
-                                  ItemsSource="{x:Bind ViewModel.ColorSetItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ColorSetItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <ComboBox x:Name="CmbItemShape"
                                   MinWidth="200"
                                   Header="Item Shape"
-                                  ItemsSource="{x:Bind ViewModel.ColorItemShapeItems, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ColorItemShapeItems, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <NumberBox x:Name="NBWidth"

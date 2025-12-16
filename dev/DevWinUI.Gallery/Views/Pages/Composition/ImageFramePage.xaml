@@ -23,13 +23,13 @@
                         <ComboBox x:Name="CmbTransition"
                                   MinWidth="130"
                                   Header="Transition"
-                                  ItemsSource="{x:Bind ViewModel.ImageFrameTransition, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ImageFrameTransition, Mode=OneWay}"
                                   SelectedIndex="1" />
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <ComboBox x:Name="CmbAlingmentX"
                                       MinWidth="130"
                                       Header="AlignmentX"
-                                      ItemsSource="{x:Bind ViewModel.ImageFrameAlignmentX, Mode=OneWay}"
+                                      ItemsSource="{x:Bind ImageFrameAlignmentX, Mode=OneWay}"
                                       SelectedIndex="1">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="AlignmentX">
@@ -40,7 +40,7 @@
                             <ComboBox x:Name="CmbAlingmentY"
                                       MinWidth="130"
                                       Header="AlignmentY"
-                                      ItemsSource="{x:Bind ViewModel.ImageFrameAlignmentY, Mode=OneWay}"
+                                      ItemsSource="{x:Bind ImageFrameAlignmentY, Mode=OneWay}"
                                       SelectedIndex="1">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="AlignmentY">
