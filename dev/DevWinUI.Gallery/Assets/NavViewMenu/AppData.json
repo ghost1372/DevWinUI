@@ -165,6 +165,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.WaveformTimelinePage",
+          "Title": "Waveform Timeline",
+          "Subtitle": "Displays a stereo waveform and allows a user to change playback position.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Wave.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LoopPanelPage",
           "Title": "Loop Panel",
           "Subtitle": "An infinitely scrolling panel.",

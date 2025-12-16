@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ WaveformTimeline
 - ✨ LoopPanel
 - ✨ CarouselView2
 - ✨ CoverFlow
@@ -320,6 +321,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### WaveformTimeline
+![WaveformTimeline](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WaveformTimeline.gif)
 
 ### LoopPanel
 ![LoopPanel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoopPanel.gif)
