@@ -102,8 +102,18 @@ public partial class BannerView : FlipView
         timer.Tick -= Timer_Tick;
         timer.Tick += Timer_Tick;
 
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
+
         OnAutoShuffleChanged();
     }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        timer?.Stop();
+        timer = null;
+    }
+
     public void StopShuffle()
     {
         timer.Stop();
