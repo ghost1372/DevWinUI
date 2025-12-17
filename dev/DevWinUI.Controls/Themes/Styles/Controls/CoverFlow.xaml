@@ -9,32 +9,32 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:CoverFlowItem">
-                    <Grid x:Name="LayoutRoot">
+                    <Grid x:Name="PART_LayoutRoot">
                         <Grid.Resources>
-                            <Storyboard x:Name="Animation">
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="RotationY">
-                                    <EasingDoubleKeyFrame x:Name="rotationKeyFrame" KeyTime="00:00:00.9" Value="0">
+                            <Storyboard x:Name="PART_Animation">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="RotationY">
+                                    <EasingDoubleKeyFrame x:Name="PART_RotationKeyFrame" KeyTime="00:00:00.9" Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <CubicEase />
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="LocalOffsetZ">
-                                    <EasingDoubleKeyFrame x:Name="offestZKeyFrame" KeyTime="00:00:00.9" Value="0">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="LocalOffsetZ">
+                                    <EasingDoubleKeyFrame x:Name="PART_OffestZKeyFrame" KeyTime="00:00:00.9" Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <CubicEase />
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleX">
-                                    <EasingDoubleKeyFrame x:Name="scaleXKeyFrame" KeyTime="00:00:00.9" Value="1">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_ScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                    <EasingDoubleKeyFrame x:Name="PART_ScaleXKeyFrame" KeyTime="00:00:00.9" Value="1">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <CubicEase />
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleY">
-                                    <EasingDoubleKeyFrame x:Name="scaleYKeyFrame" KeyTime="00:00:00.9" Value="1">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_ScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                    <EasingDoubleKeyFrame x:Name="PART_ScaleYKeyFrame" KeyTime="00:00:00.9" Value="1">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <CubicEase />
                                         </EasingDoubleKeyFrame.EasingFunction>
@@ -44,13 +44,13 @@
                         </Grid.Resources>
                         <Grid RenderTransformOrigin=".5,.5">
                             <Grid.RenderTransform>
-                                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                <ScaleTransform x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
                             </Grid.RenderTransform>
                             <Grid.Projection>
-                                <PlaneProjection x:Name="Rotator"
+                                <PlaneProjection x:Name="PART_Rotator"
                                                  CenterOfRotationX="0.5" />
                             </Grid.Projection>
-                            <ContentControl x:Name="ContentPresenter"
+                            <ContentControl x:Name="PART_ContentPresenter"
                                             RenderTransformOrigin="0.5,0.5">
                                 <ContentPresenter />
                             </ContentControl>
@@ -67,8 +67,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid x:Name="LayoutRoot">
-                        <ItemsPresenter x:Name="ItemsPresenter"
+                    <Grid x:Name="PART_LayoutRoot">
+                        <ItemsPresenter x:Name="PART_ItemsPresenter"
                                         Height="{TemplateBinding Height}" />
                     </Grid>
                 </ControlTemplate>

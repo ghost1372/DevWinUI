@@ -6,13 +6,14 @@ namespace DevWinUI;
 
 public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 {
+    private const string PART_ItemsPresenter = "PART_ItemsPresenter";
+    private ItemsPresenter itemsPresenter;
+
     public delegate void SelectedItemChangedEvent(CoverFlowEventArgs e);
 
     public event PropertyChangedEventHandler PropertyChanged;
     public event SelectedItemChangedEvent SelectedItemChanged;
 
-    private FrameworkElement LayoutRoot;
-    private ItemsPresenter ItemsPresenter;
     private Dictionary<object, CoverFlowItem> _objectToItemContainer;
     private List<CoverFlowItem> items;
 
@@ -136,8 +137,7 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
     {
         base.OnApplyTemplate();
 
-        LayoutRoot = (FrameworkElement)GetTemplateChild("LayoutRoot");
-        ItemsPresenter = (ItemsPresenter)GetTemplateChild("ItemsPresenter");
+        itemsPresenter = GetTemplateChild(PART_ItemsPresenter) as ItemsPresenter;
 
         this.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateRailsX;
         this.ManipulationStarted += OnManipulationStarted;
@@ -218,21 +218,22 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
     {
         base.PrepareContainerForItemOverride(element, item);
 
-        CoverFlowItem item2 = element as CoverFlowItem;
-        if (item2 != item)
+        if (element is not CoverFlowItem container)
+            return;
+
+        ObjectToItemContainer[item] = container;
+
+        if (!items.Contains(container))
         {
-            this.ObjectToItemContainer[item] = item2;
+            items.Add(container);
+            container.ItemSelected += OnItemSelected;
+            container.SizeChanged += OnItemSizeChanged;
         }
-        if (!items.Contains(item2))
-        {
-            items.Add(item2);
-            item2.ItemSelected += OnItemSelected;
-            item2.SizeChanged += OnItemSizeChanged;
-        }
+
         if (items.Count == 1)
             IndexSelected(0, false);
-
     }
+
 
     protected void OnItemSizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -244,13 +245,17 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
     protected override void ClearContainerForItemOverride(DependencyObject element, object item)
     {
         base.ClearContainerForItemOverride(element, item);
-        CoverFlowItem item2 = element as CoverFlowItem;
-        if (item2 != item)
-        {
-            this.ObjectToItemContainer.Remove(item);
-        }
-        items.Remove(item2);
+
+        if (element is not CoverFlowItem container)
+            return;
+
+        ObjectToItemContainer.Remove(item);
+        items.Remove(container);
+
+        container.ItemSelected -= OnItemSelected;
+        container.SizeChanged -= OnItemSizeChanged;
     }
+
 
     protected void LayoutChildren()
     {
@@ -263,7 +268,10 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     protected void LayoutChild(CoverFlowItem item, int index)
     {
-        double m = ItemsPresenter.ActualWidth / 2;
+        if (itemsPresenter == null)
+            return;
+
+        double m = itemsPresenter.ActualWidth / 2;
 
         int b = index - SelectedIndex;
         double mu = 0;
@@ -277,10 +285,10 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
         int zindex = items.Count - Math.Abs(b);
 
-        if (((x + item.ActualWidth) < 0 || x > ItemsPresenter.ActualWidth)
-            && ((item.X + item.ActualWidth) < 0 || item.X > ItemsPresenter.ActualWidth)
-            && !((x + item.ActualWidth) < 0 && item.X > ItemsPresenter.ActualWidth)
-            && !((item.X + item.ActualWidth) < 0 && x > ItemsPresenter.ActualWidth))
+        if (((x + item.ActualWidth) < 0 || x > itemsPresenter.ActualWidth)
+            && ((item.X + item.ActualWidth) < 0 || item.X > itemsPresenter.ActualWidth)
+            && !((x + item.ActualWidth) < 0 && item.X > itemsPresenter.ActualWidth)
+            && !((item.X + item.ActualWidth) < 0 && x > itemsPresenter.ActualWidth))
         {
             item.SetValues(x, zindex, r * mu, z * Math.Abs(mu), s, duration, EasingFunction, false);
         }
@@ -292,17 +300,20 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     protected override Size ArrangeOverride(Size finalSize)
     {
+        if (itemsPresenter == null)
+            return finalSize;
+
         Size size = base.ArrangeOverride(finalSize);
         RectangleGeometry visibleArea = new RectangleGeometry();
-        Rect clip = new Rect(0, 0, ItemsPresenter.ActualWidth, ItemsPresenter.ActualHeight);
+        Rect clip = new Rect(0, 0, itemsPresenter.ActualWidth, itemsPresenter.ActualHeight);
         foreach (CoverFlowItem item in items)
         {
-            item.Height = ItemsPresenter.ActualHeight;
+            item.Height = itemsPresenter.ActualHeight;
         }
         visibleArea.Rect = clip;
-        ItemsPresenter.Clip = visibleArea;
+        itemsPresenter.Clip = visibleArea;
 
-        double m = ItemsPresenter.ActualWidth / 2;
+        double m = itemsPresenter.ActualWidth / 2;
 
         for (int index = 0; index < items.Count; index++)
         {
@@ -376,7 +387,10 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     protected int GetPageCount()
     {
-        double m = ItemsPresenter.ActualWidth / 2;
+        if(itemsPresenter == null)
+            return 1;
+
+        double m = itemsPresenter.ActualWidth / 2;
         m -= k;
         return (int)(m / l);
     }

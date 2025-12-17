@@ -4,11 +4,20 @@ namespace DevWinUI;
 
 public partial class CoverFlowItem : ContentControl
 {
+    private const string PART_ContentPresenter = "PART_ContentPresenter";
+    private const string PART_Rotator = "PART_Rotator";
+    private const string PART_LayoutRoot = "PART_LayoutRoot";
+    private const string PART_Animation = "PART_Animation";
+    private const string PART_RotationKeyFrame = "PART_RotationKeyFrame";
+    private const string PART_OffestZKeyFrame = "PART_OffestZKeyFrame";
+    private const string PART_ScaleXKeyFrame = "PART_ScaleXKeyFrame";
+    private const string PART_ScaleYKeyFrame = "PART_ScaleYKeyFrame";
+    private const string PART_ScaleTransform = "PART_ScaleTransform";
     public event EventHandler ItemSelected;
 
-    private FrameworkElement LayoutRoot;
+    private Grid layoutRoot;
     private PlaneProjection planeProjection;
-    private Storyboard Animation;
+    private Storyboard animation;
     private ScaleTransform scaleTransform;
     private EasingDoubleKeyFrame rotationKeyFrame, offestZKeyFrame, scaleXKeyFrame, scaleYKeyFrame;
 
@@ -17,7 +26,7 @@ public partial class CoverFlowItem : ContentControl
     private double scale;
     private double x;
     private bool isAnimating;
-    private ContentControl ContentPresenter;
+    private ContentControl contentPresenter;
     private Duration duration;
     private EasingFunctionBase easingFunction;
     private DoubleAnimation xAnimation;
@@ -59,7 +68,7 @@ public partial class CoverFlowItem : ContentControl
         }
     }
 
-    public double Scale
+    public new double Scale
     {
         get
         {
@@ -91,6 +100,9 @@ public partial class CoverFlowItem : ContentControl
 
     public void SetValues(double x, int zIndex, double r, double z, double s, Duration d, EasingFunctionBase ease, bool useAnimation)
     {
+        if (rotationKeyFrame == null || offestZKeyFrame == null || scaleXKeyFrame == null || scaleYKeyFrame == null)
+            return;
+
         if (useAnimation)
         {
             if (!isAnimating && Canvas.GetLeft(this) != x)
@@ -122,7 +134,7 @@ public partial class CoverFlowItem : ContentControl
             }
 
             isAnimating = true;
-            Animation.Begin();
+            animation.Begin();
             Canvas.SetZIndex(this, zIndex);
         }
 
@@ -132,29 +144,35 @@ public partial class CoverFlowItem : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        ContentPresenter = (ContentControl)GetTemplateChild("ContentPresenter");
-        planeProjection = (PlaneProjection)GetTemplateChild("Rotator");
-        LayoutRoot = (FrameworkElement)GetTemplateChild("LayoutRoot");
+        contentPresenter = GetTemplateChild(PART_ContentPresenter) as ContentControl;
+        planeProjection = GetTemplateChild(PART_Rotator) as PlaneProjection;
+        layoutRoot = GetTemplateChild(PART_LayoutRoot) as Grid;
 
-        Animation = (Storyboard)GetTemplateChild("Animation");
-        Animation.Completed += Animation_Completed;
-        rotationKeyFrame = (EasingDoubleKeyFrame)GetTemplateChild("rotationKeyFrame");
-        offestZKeyFrame = (EasingDoubleKeyFrame)GetTemplateChild("offestZKeyFrame");
-        scaleXKeyFrame = (EasingDoubleKeyFrame)GetTemplateChild("scaleXKeyFrame");
-        scaleYKeyFrame = (EasingDoubleKeyFrame)GetTemplateChild("scaleYKeyFrame");
-        scaleTransform = (ScaleTransform)GetTemplateChild("scaleTransform");
+        animation = GetTemplateChild(PART_Animation) as Storyboard;
+        rotationKeyFrame = GetTemplateChild(PART_RotationKeyFrame) as EasingDoubleKeyFrame;
+        offestZKeyFrame = GetTemplateChild(PART_OffestZKeyFrame) as EasingDoubleKeyFrame;
+        scaleXKeyFrame = GetTemplateChild(PART_ScaleXKeyFrame) as EasingDoubleKeyFrame;
+        scaleYKeyFrame = GetTemplateChild(PART_ScaleYKeyFrame) as EasingDoubleKeyFrame;
+        scaleTransform = GetTemplateChild(PART_ScaleTransform) as ScaleTransform;
 
-        planeProjection.RotationY = yRotation;
-        planeProjection.LocalOffsetZ = zOffset;
-        if (ContentPresenter != null)
+        if (planeProjection != null)
         {
-            ContentPresenter.Tapped += ContentPresenter_Tapped;
+            planeProjection.RotationY = yRotation;
+            planeProjection.LocalOffsetZ = zOffset;
         }
 
-        if (Animation != null)
+        if (contentPresenter != null)
         {
+            contentPresenter.Tapped += ContentPresenter_Tapped;
+        }
+
+        if (animation != null)
+        {
+            animation.Completed -= Animation_Completed;
+            animation.Completed += Animation_Completed;
+
             xAnimation = new DoubleAnimation();
-            Animation.Children.Add(xAnimation);
+            animation.Children.Add(xAnimation);
 
             Storyboard.SetTarget(xAnimation, this);
             Storyboard.SetTargetProperty(xAnimation, "(Canvas.Left)");
