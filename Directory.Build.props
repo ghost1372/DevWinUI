@@ -8,16 +8,16 @@
     <LibraryMajorVersion>9</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>7</DevWinUI_MinorVersion>
-    <DevWinUI_Controls_MinorVersion>7</DevWinUI_Controls_MinorVersion>
+    <DevWinUI_MinorVersion>8</DevWinUI_MinorVersion>
+    <DevWinUI_Controls_MinorVersion>8</DevWinUI_Controls_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>5</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>7</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>8</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>1</DevWinUI_PatchVersion>
-    <DevWinUI_Controls_PatchVersion>1</DevWinUI_Controls_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Controls_PatchVersion>0</DevWinUI_Controls_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>1</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
@@ -26,7 +26,7 @@
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha0178</XAMLToolsVersion>
-    <CsWin32Version>0.3.259</CsWin32Version>
+    <CsWin32Version>0.3.264</CsWin32Version>
     <Win2dVersion>1.3.2</Win2dVersion>
 
     <!-- TargetFramework version -->
