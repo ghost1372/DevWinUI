@@ -79,22 +79,25 @@ public partial class BaseViewModel : ObservableObject
 
     [ObservableProperty]
     public partial Uri AnimatedImageImagePath { get; set; }
-
-    public BaseViewModel()
+    internal void GenerateDepthLayerData()
     {
-        CarouselViewData = BannerViewData.Select(x => new CarouselItemSource
-        {
-            Title = x.Title,
-            ImageSource = x.ImagePath
-        }).Cast<ICarouselViewItemSource>().ToList();
-
+        DepthLayerData = new(LandscapeData.OrderBy(x => x.IntValue).ToList());
+    }
+    internal void GenerateStoreCarouselData()
+    {
         StoreCarouselData = new(CarouselData.Select(x => new StoreCarouselItem
         {
             Title = x.Title,
             Description = x.Description,
             ImageSource = PathHelper.GetFilePath(new Uri(x.ImagePath)).OriginalString
         }).Cast<StoreCarouselItem>().ToList());
-
-        DepthLayerData = new(LandscapeData.OrderBy(x => x.IntValue).ToList());
+    }
+    internal void GenerateCarouselViewData()
+    {
+        CarouselViewData = BannerViewData.Select(x => new CarouselItemSource
+        {
+            Title = x.Title,
+            ImageSource = x.ImagePath
+        }).Cast<ICarouselViewItemSource>().ToList();
     }
 }

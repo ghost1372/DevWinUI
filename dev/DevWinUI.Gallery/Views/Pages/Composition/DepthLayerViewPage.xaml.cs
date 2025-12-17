@@ -7,5 +7,6 @@ public sealed partial class DepthLayerViewPage : Page
     {
         ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
+        ViewModel.GenerateDepthLayerData();
     }
 }

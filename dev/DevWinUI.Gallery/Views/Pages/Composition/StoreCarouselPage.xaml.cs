@@ -7,6 +7,7 @@ public sealed partial class StoreCarouselPage : Page
     {
         ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
+        ViewModel.GenerateStoreCarouselData();
 
         foreach (var item in ViewModel.StoreCarouselData)
         {

@@ -8,6 +8,8 @@ public sealed partial class CarouselViewPage : Page
     {
         ViewModel = App.GetService<BaseViewModel>();
         InitializeComponent();
+
+        ViewModel.GenerateCarouselViewData();
     }
 
     private async void CarouselSample_ItemClick(object sender, CarouselViewItemClickEventArgs e)
