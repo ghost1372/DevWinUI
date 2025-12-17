@@ -36,14 +36,12 @@
         {
           "UniqueId": "DevWinUIGallery.Views.SunTimesHelperPage",
           "Title": "SunTimes Helper",
-          "IsNew": true,
           "Subtitle": "A helper class for calculating sunrise and sunset",
           "ImagePath": "ms-appx:///Assets/Fluent/Sunny.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SystemTrayIconPage",
           "Title": "SystemTrayIcon",
-          "IsNew": true,
           "Subtitle": "SystemTrayIcon is a class that manages an application’s icon in the Windows system tray. It allows showing an icon, setting a tooltip, handling click events, and displaying a context menu directly from the tray area.",
           "ImagePath": "ms-appx:///Assets/Fluent/MenuFlyout.png"
         },
@@ -238,28 +236,24 @@
           "UniqueId": "DevWinUIGallery.Views.LoopingListPage",
           "Title": "Looping List",
           "Subtitle": "An infinitely scrolling selector displayed in a flyout.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TimePicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LoopingSelectorPage",
           "Title": "Looping Selector",
           "Subtitle": "An infinitely scrolling selection control.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SegmentedSliderPage",
           "Title": "Segmented Slider",
           "Subtitle": "Slider control that divides its track into multiple visual segments. Each segment can represent a specific range, time span, or category, with individual fill states and labels.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Slider.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.TimelinePage",
           "Title": "Timeline",
           "Subtitle": "A visual control to display a day’s time range with key points like StartTime, EndTime, Sunrise, and Sunset.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
@@ -886,7 +880,6 @@
           "UniqueId": "DevWinUIGallery.Views.SpeedGraphPage",
           "Title": "Speed Graph",
           "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },
         {
