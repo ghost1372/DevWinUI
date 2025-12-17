@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
-public static partial class ContentDialogExtension
+public static partial class ContentDialogExtensions
 {
     private static TaskCompletionSource<ContentDialog> _contentDialogShowRequest;
 
