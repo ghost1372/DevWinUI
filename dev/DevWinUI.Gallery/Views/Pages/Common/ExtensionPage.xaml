@@ -10,10 +10,10 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/AnimationExtensions_cs.txt"
-                                  DocPage="extensions/animationExtensions"
+            <local:ControlExample CSharpSource="Features/DependencyObjectExtensions_cs.txt"
+                                  DocPage="extensions/dependencyObjectExtension"
                                   DocType="Core"
-                                  HeaderText="Animation Extensions">
+                                  HeaderText="DependencyObject Extensions">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <Button MinWidth="200"

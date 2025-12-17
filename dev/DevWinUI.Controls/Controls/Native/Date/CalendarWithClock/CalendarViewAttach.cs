@@ -18,11 +18,11 @@ internal partial class CalendarViewAttach
     {
         if (d is CalendarView calendarView && calendarView != null)
         {
-            FrameworkElement headerBorder = DependencyObjectEx.FindDescendant(calendarView, "PART_HeaderBorder");
-            FrameworkElement topBorder = DependencyObjectEx.FindDescendant(calendarView, "PART_TopBorder");
-            var headerButton = DependencyObjectEx.FindDescendant(calendarView, "HeaderButton") as Button;
-            var nextButton = DependencyObjectEx.FindDescendant(calendarView, "NextButton") as Button;
-            var previousButton = DependencyObjectEx.FindDescendant(calendarView, "PreviousButton") as Button;
+            FrameworkElement headerBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_HeaderBorder");
+            FrameworkElement topBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_TopBorder");
+            var headerButton = DependencyObjectExtensions.FindDescendant(calendarView, "HeaderButton") as Button;
+            var nextButton = DependencyObjectExtensions.FindDescendant(calendarView, "NextButton") as Button;
+            var previousButton = DependencyObjectExtensions.FindDescendant(calendarView, "PreviousButton") as Button;
 
             var showBorder = (bool)e.NewValue;
             calendarView.Loaded -= CalendarView_Loaded;
@@ -32,11 +32,11 @@ internal partial class CalendarViewAttach
             {
                 if (headerBorder == null || topBorder == null || headerButton == null || nextButton == null || previousButton == null)
                 {
-                    headerBorder = DependencyObjectEx.FindDescendant(calendarView, "PART_HeaderBorder");
-                    topBorder = DependencyObjectEx.FindDescendant(calendarView, "PART_TopBorder");
-                    headerButton = DependencyObjectEx.FindDescendant(calendarView, "HeaderButton") as Button;
-                    nextButton = DependencyObjectEx.FindDescendant(calendarView, "NextButton") as Button;
-                    previousButton = DependencyObjectEx.FindDescendant(calendarView, "PreviousButton") as Button;
+                    headerBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_HeaderBorder");
+                    topBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_TopBorder");
+                    headerButton = DependencyObjectExtensions.FindDescendant(calendarView, "HeaderButton") as Button;
+                    nextButton = DependencyObjectExtensions.FindDescendant(calendarView, "NextButton") as Button;
+                    previousButton = DependencyObjectExtensions.FindDescendant(calendarView, "PreviousButton") as Button;
 
                     UpdateBorders();
                 }

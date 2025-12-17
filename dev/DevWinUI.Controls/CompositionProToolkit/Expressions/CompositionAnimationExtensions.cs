@@ -35,7 +35,7 @@ namespace DevWinUI;
 /// <summary>
 /// Extension methods for Animations deriving from CompositionAnimation
 /// </summary>
-public static partial class CompositionAnimationExtensions2
+public static partial class CompositionAnimationExtensions
 {
     #region Fields
 
@@ -48,7 +48,7 @@ public static partial class CompositionAnimationExtensions2
     /// <summary>
     /// Static Ctor
     /// </summary>
-    static CompositionAnimationExtensions2()
+    static CompositionAnimationExtensions()
     {
         // Get all the SetXXXParameter methods
         SetMethods = typeof(CompositionAnimation)

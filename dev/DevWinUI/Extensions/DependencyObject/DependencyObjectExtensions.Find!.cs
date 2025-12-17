@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-public partial class DependencyObjectEx
+public partial class DependencyObjectExtensions
 {
     internal static string RemoveTail(this string value, string? tail) => tail?.Length > 0 && value.EndsWith(tail) ? value[..^tail.Length] : value;
 

@@ -2,8 +2,8 @@
 
 #nullable enable
 
-/// <inheritdoc cref="FrameworkElementEx"/>
-public static partial class FrameworkElementEx
+/// <inheritdoc cref="FrameworkElementExtensions"/>
+public static partial class FrameworkElementExtensions
 {
     /// <summary>
     /// Find the first child of type <see cref="FrameworkElement"/> with a given name, using a depth-first search.

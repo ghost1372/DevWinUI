@@ -3,32 +3,32 @@
 namespace DevWinUI;
 public static partial class DispatcherQueueExtensions
 {
-    public static async ValueTask<TResult> ExecuteAsync<TResult>(
-        this DispatcherQueue dispatcher,
-        AsyncFunc<TResult> actionWithResult,
-        CancellationToken cancellation)
+    extension(DispatcherQueue dispatcher)
     {
-        var completion = new TaskCompletionSource<TResult>();
-        dispatcher.TryEnqueue(async () =>
+        public async ValueTask<TResult> ExecuteAsync<TResult>(AsyncFunc<TResult> actionWithResult, CancellationToken cancellation)
         {
-            try
+            var completion = new TaskCompletionSource<TResult>();
+            dispatcher.TryEnqueue(async () =>
             {
-                var result = await actionWithResult(cancellation);
-                completion.SetResult(result);
-            }
-            catch (Exception ex)
-            {
-                completion.SetException(ex);
-            }
-        });
-        return await completion.Task;
-    }
+                try
+                {
+                    var result = await actionWithResult(cancellation);
+                    completion.SetResult(result);
+                }
+                catch (Exception ex)
+                {
+                    completion.SetException(ex);
+                }
+            });
+            return await completion.Task;
+        }
 
-    public static ValueTask<TResult> ExecuteAsync<TResult>(this DispatcherQueue dispatcher, Func<ValueTask<TResult>> actionWithResult)
-    {
-        return dispatcher.ExecuteAsync(async (CancellationToken t) =>
+        public ValueTask<TResult> ExecuteAsync<TResult>(Func<ValueTask<TResult>> actionWithResult)
         {
-            return await actionWithResult();
-        }, CancellationToken.None);
+            return dispatcher.ExecuteAsync(async (CancellationToken t) =>
+            {
+                return await actionWithResult();
+            }, CancellationToken.None);
+        }
     }
 }

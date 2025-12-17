@@ -73,9 +73,9 @@ public partial class MenuFlyoutAttach
     {
         void handler(object s, object e)
         {
-            var rootStack = DependencyObjectEx.FindDescendant(presenter, "RootStack") as StackPanel;
-            var secondaryRepeater = DependencyObjectEx.FindDescendant(presenter, "SecondaryItemsHost") as ItemsRepeater;
-            var mainItems = DependencyObjectEx.FindDescendant(presenter, "MainItemsPresenter") as ItemsPresenter;
+            var rootStack = DependencyObjectExtensions.FindDescendant(presenter, "RootStack") as StackPanel;
+            var secondaryRepeater = DependencyObjectExtensions.FindDescendant(presenter, "SecondaryItemsHost") as ItemsRepeater;
+            var mainItems = DependencyObjectExtensions.FindDescendant(presenter, "MainItemsPresenter") as ItemsPresenter;
 
             if (rootStack != null && secondaryRepeater != null && mainItems != null)
             {

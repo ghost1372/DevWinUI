@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-internal static partial class DoubleExtensionsEx
+internal static partial class InternalDoubleExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static bool IsFinite(this double value)

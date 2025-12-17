@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-internal static partial class Ext
+internal static partial class CarouselView2InternalExtensions
 {
     [Pure]
     public static string ToCompositionString(this float number)

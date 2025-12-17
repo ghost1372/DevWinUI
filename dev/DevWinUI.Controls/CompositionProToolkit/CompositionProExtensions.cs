@@ -34,7 +34,7 @@ namespace DevWinUI;
 /// <summary>
 /// Extension Methods for Compositor
 /// </summary>
-public static partial class CompositionExtensions2
+public static partial class CompositionProExtensions
 {
     /// <summary>
     /// Creates a custom shaped Effect Brush using BackdropBrush and an IMaskSurface
@@ -335,17 +335,6 @@ public static partial class CompositionExtensions2
     }
 
     /// <summary>
-    /// Gets the first descendant (of Type T) of this dependency object in the visual tree.
-    /// </summary>
-    /// <typeparam name="T">Type deriving from DependencyObject</typeparam>
-    /// <param name="dependencyObject">DependencyObject whose first descendant is to be obtained.</param>
-    /// <returns>First descendant (of Type T), if any</returns>
-    public static T GetFirstDescendantOfType<T>(this DependencyObject dependencyObject) where T : DependencyObject
-    {
-        return dependencyObject.GetDescendantsOfType<T>().FirstOrDefault();
-    }
-
-    /// <summary>
     /// Gets the descendants (of Type T) of this dependency object in the visual tree.
     /// </summary>
     /// <typeparam name="T">Type deriving from DependencyObject</typeparam>
@@ -383,55 +372,5 @@ public static partial class CompositionExtensions2
                 queue.Enqueue(child);
             }
         }
-    }
-
-    /// <summary>
-    /// Gets the first ancestor (of Type T) of this dependency object in the visual tree.
-    /// </summary>
-    /// <typeparam name="T">Type deriving from DependencyObject</typeparam>
-    /// <param name="dependencyObject">DependencyObject whose first ancestor is to be obtained.</param>
-    /// <returns>First ancestor (of Type T), if any</returns>
-    public static T GetFirstAncestorOfType<T>(this DependencyObject dependencyObject) where T : DependencyObject
-    {
-        return dependencyObject.GetAncestorsOfType<T>().FirstOrDefault();
-    }
-
-    /// <summary>
-    /// Gets the ancestors (of Type T) of this dependency object in the visual tree.
-    /// </summary>
-    /// <typeparam name="T">Type deriving from DependencyObject</typeparam>
-    /// <param name="dependencyObject">DependencyObject whose ancestors are to be obtained.</param>
-    /// <returns>Enumerable collection of ancestors (of Type T)</returns>
-    public static IEnumerable<T> GetAncestorsOfType<T>(this DependencyObject dependencyObject) where T : DependencyObject
-    {
-        return dependencyObject.GetAncestors().OfType<T>();
-    }
-
-    /// <summary>
-    /// Gets the ancestors of this dependency object in the visual tree.
-    /// </summary>
-    /// <param name="dependencyObject">DependencyObject whose ancestors are to be obtained.</param>
-    /// <returns>Enumerable collection of ancestors</returns>
-    public static IEnumerable<DependencyObject> GetAncestors(this DependencyObject dependencyObject)
-    {
-        var parent = VisualTreeHelper.GetParent(dependencyObject);
-
-        while (parent != null)
-        {
-            yield return parent;
-            parent = VisualTreeHelper.GetParent(parent);
-        }
-    }
-
-    /// <summary>
-    /// Checks if this dependency object is present in the Visual Tree 
-    /// of the current window.
-    /// </summary>
-    /// <param name="dependencyObject">DependencyObject</param>
-    /// <returns>True if present, otherwise False</returns>
-    public static bool IsInVisualTree(this DependencyObject dependencyObject)
-    {
-        return Window.Current.Content != null &&
-            dependencyObject.GetAncestors().Contains(Window.Current.Content);
     }
 }

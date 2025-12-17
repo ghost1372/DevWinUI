@@ -2,185 +2,183 @@
 
 public static partial class ResourceDictionaryExtension
 {
-    public static void AddIfNotNull(this Collection<ResourceDictionary> mergedDictionaries, ResourceDictionary item)
+    extension(Collection<ResourceDictionary> dictionaries)
     {
-        if (item != null)
+        public void AddIfNotNull(ResourceDictionary? item)
         {
-            mergedDictionaries.Add(item);
-        }
-    }
-
-    public static void RemoveIfNotNull(this Collection<ResourceDictionary> mergedDictionaries, ResourceDictionary item)
-    {
-        if (item != null)
-        {
-            mergedDictionaries.Remove(item);
-        }
-    }
-
-    public static void InsertOrReplace(this Collection<ResourceDictionary> mergedDictionaries, int index, ResourceDictionary item)
-    {
-        if (mergedDictionaries.Count > index)
-        {
-            mergedDictionaries[index] = item;
-        }
-        else
-        {
-            mergedDictionaries.Insert(index, item);
-        }
-    }
-
-    public static void RemoveAll<T>(this Collection<ResourceDictionary> mergedDictionaries) where T : ResourceDictionary
-    {
-        for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
-        {
-            if (mergedDictionaries[i] is T)
+            if (item is not null)
             {
-                mergedDictionaries.RemoveAt(i);
+                dictionaries.Add(item);
             }
         }
-    }
 
-    public static void InsertIfNotExists(this Collection<ResourceDictionary> mergedDictionaries, int index, ResourceDictionary item)
-    {
-        if (!mergedDictionaries.Contains(item))
+        public void RemoveIfNotNull(ResourceDictionary? item)
         {
-            mergedDictionaries.Insert(index, item);
-        }
-    }
-
-    public static void AddIfNotExists(this Collection<ResourceDictionary> resourceDictionaries, ResourceDictionary item)
-    {
-        if (!resourceDictionaries.Any(d => d.Source == item.Source))
-        {
-            resourceDictionaries.Add(item);
-        }
-    }
-
-    public static void Swap(this Collection<ResourceDictionary> mergedDictionaries, int index1, int index2)
-    {
-        if (index1 == index2)
-        {
-            return;
-        }
-
-        var smallIndex = Math.Min(index1, index2);
-        var largeIndex = Math.Max(index1, index2);
-        var tmp = mergedDictionaries[smallIndex];
-        mergedDictionaries.RemoveAt(smallIndex);
-        mergedDictionaries.Insert(largeIndex, tmp);
-    }
-
-    public static void AddIfNotNull(this IList<ResourceDictionary> mergedDictionaries, ResourceDictionary item)
-    {
-        if (item != null)
-        {
-            mergedDictionaries.Add(item);
-        }
-    }
-
-    public static void RemoveIfNotNull(this IList<ResourceDictionary> mergedDictionaries, ResourceDictionary item)
-    {
-        if (item != null)
-        {
-            mergedDictionaries.Remove(item);
-        }
-    }
-
-    public static void InsertOrReplace(this IList<ResourceDictionary> mergedDictionaries, int index, ResourceDictionary item)
-    {
-        if (mergedDictionaries.Count > index)
-        {
-            mergedDictionaries[index] = item;
-        }
-        else
-        {
-            mergedDictionaries.Insert(index, item);
-        }
-    }
-
-    public static void RemoveAll<T>(this IList<ResourceDictionary> mergedDictionaries) where T : ResourceDictionary
-    {
-        for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
-        {
-            if (mergedDictionaries[i] is T)
+            if (item is not null)
             {
-                mergedDictionaries.RemoveAt(i);
+                dictionaries.Remove(item);
             }
         }
-    }
 
-    public static void InsertIfNotExists(this IList<ResourceDictionary> mergedDictionaries, int index, ResourceDictionary item)
-    {
-        if (!mergedDictionaries.Contains(item))
+        public void InsertOrReplace(int index, ResourceDictionary item)
         {
-            mergedDictionaries.Insert(index, item);
-        }
-    }
+            ArgumentNullException.ThrowIfNull(item);
 
-    public static void Swap(this IList<ResourceDictionary> mergedDictionaries, int index1, int index2)
-    {
-        if (index1 == index2)
-        {
-            return;
+            if (dictionaries.Count > index)
+                dictionaries[index] = item;
+            else
+                dictionaries.Insert(index, item);
         }
 
-        var smallIndex = Math.Min(index1, index2);
-        var largeIndex = Math.Max(index1, index2);
-        var tmp = mergedDictionaries[smallIndex];
-        mergedDictionaries.RemoveAt(smallIndex);
-        mergedDictionaries.Insert(largeIndex, tmp);
-    }
-
-    public static void AddIfNotExists(this IList<ResourceDictionary> resourceDictionaries, ResourceDictionary item)
-    {
-        if (!resourceDictionaries.Any(d => d.Source == item.Source))
+        public void RemoveAll<T>() where T : ResourceDictionary
         {
-            resourceDictionaries.Add(item);
-        }
-    }
-
-    public static void CopyFrom(this ResourceDictionary destination, ResourceDictionary source)
-    {
-        if (source.Source != null)
-        {
-            destination.Source = source.Source;
-        }
-        else
-        {
-            // Clone theme dictionaries
-            if (source.ThemeDictionaries != null)
+            for (int i = dictionaries.Count - 1; i >= 0; i--)
             {
-                foreach (var theme in source.ThemeDictionaries)
+                if (dictionaries[i] is T)
+                    dictionaries.RemoveAt(i);
+            }
+        }
+
+        public void InsertIfNotExists(int index, ResourceDictionary item)
+        {
+            ArgumentNullException.ThrowIfNull(item);
+
+            if (!dictionaries.Contains(item))
+                dictionaries.Insert(index, item);
+        }
+
+        public void AddIfNotExists(ResourceDictionary item)
+        {
+            ArgumentNullException.ThrowIfNull(item);
+
+            if (!dictionaries.Any(d => d.Source == item.Source))
+                dictionaries.Add(item);
+        }
+
+        public void Swap(int index1, int index2)
+        {
+            if (index1 == index2) return;
+
+            var smallIndex = Math.Min(index1, index2);
+            var largeIndex = Math.Max(index1, index2);
+            var tmp = dictionaries[smallIndex];
+            dictionaries.RemoveAt(smallIndex);
+            dictionaries.Insert(largeIndex, tmp);
+        }
+    }
+
+    extension(IList<ResourceDictionary> dictionaries)
+    {
+        public void AddIfNotNull(ResourceDictionary? item)
+        {
+            if (item is not null)
+            {
+                dictionaries.Add(item);
+            }
+        }
+
+        public void RemoveIfNotNull(ResourceDictionary? item)
+        {
+            if (item is not null)
+            {
+                dictionaries.Remove(item);
+            }
+        }
+
+        public void InsertOrReplace(int index, ResourceDictionary item)
+        {
+            ArgumentNullException.ThrowIfNull(item);
+
+            if (dictionaries.Count > index)
+                dictionaries[index] = item;
+            else
+                dictionaries.Insert(index, item);
+        }
+
+        public void RemoveAll<T>() where T : ResourceDictionary
+        {
+            for (int i = dictionaries.Count - 1; i >= 0; i--)
+            {
+                if (dictionaries[i] is T)
+                    dictionaries.RemoveAt(i);
+            }
+        }
+
+        public void InsertIfNotExists(int index, ResourceDictionary item)
+        {
+            ArgumentNullException.ThrowIfNull(item);
+
+            if (!dictionaries.Contains(item))
+                dictionaries.Insert(index, item);
+        }
+
+        public void Swap(int index1, int index2)
+        {
+            if (index1 == index2) return;
+
+            var smallIndex = Math.Min(index1, index2);
+            var largeIndex = Math.Max(index1, index2);
+            var tmp = dictionaries[smallIndex];
+            dictionaries.RemoveAt(smallIndex);
+            dictionaries.Insert(largeIndex, tmp);
+        }
+
+        public void AddIfNotExists(ResourceDictionary item)
+        {
+            ArgumentNullException.ThrowIfNull(item);
+
+            if (!dictionaries.Any(d => d.Source == item.Source))
+                dictionaries.Add(item);
+        }
+    }
+
+    extension(ResourceDictionary destination)
+    {
+        public void CopyFrom(ResourceDictionary source)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(destination);
+
+            if (source.Source != null)
+            {
+                destination.Source = source.Source;
+            }
+            else
+            {
+                // Clone theme dictionaries
+                if (source.ThemeDictionaries != null)
                 {
-                    if (theme.Value is ResourceDictionary themedResource)
+                    foreach (var theme in source.ThemeDictionaries)
                     {
-                        var themeDictionary = new ResourceDictionary();
-                        themeDictionary.CopyFrom(themedResource);
-                        destination.ThemeDictionaries[theme.Key] = themeDictionary;
-                    }
-                    else
-                    {
-                        destination.ThemeDictionaries[theme.Key] = theme.Value;
+                        if (theme.Value is ResourceDictionary themedResource)
+                        {
+                            var themeDictionary = new ResourceDictionary();
+                            themeDictionary.CopyFrom(themedResource);
+                            destination.ThemeDictionaries[theme.Key] = themeDictionary;
+                        }
+                        else
+                        {
+                            destination.ThemeDictionaries[theme.Key] = theme.Value;
+                        }
                     }
                 }
-            }
 
-            // Clone merged dictionaries
-            if (source.MergedDictionaries != null)
-            {
-                foreach (var mergedResource in source.MergedDictionaries)
+                // Clone merged dictionaries
+                if (source.MergedDictionaries != null)
                 {
-                    var themeDictionary = new ResourceDictionary();
-                    themeDictionary.CopyFrom(mergedResource);
-                    destination.MergedDictionaries.Add(themeDictionary);
+                    foreach (var merged in source.MergedDictionaries)
+                    {
+                        var mergedCopy = new ResourceDictionary();
+                        mergedCopy.CopyFrom(merged);
+                        destination.MergedDictionaries.Add(mergedCopy);
+                    }
                 }
-            }
 
-            // Clone all contents
-            foreach (var item in source)
-            {
-                destination[item.Key] = item.Value;
+                // Clone all key-value contents
+                foreach (var item in source)
+                {
+                    destination[item.Key] = item.Value;
+                }
             }
         }
     }
