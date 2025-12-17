@@ -34,7 +34,7 @@ namespace DevWinUI;
 /// <summary>
 /// Extension Methods for Compositor
 /// </summary>
-public static partial class CompositionExtensions
+public static partial class CompositionExtensions2
 {
     /// <summary>
     /// Creates a custom shaped Effect Brush using BackdropBrush and an IMaskSurface
