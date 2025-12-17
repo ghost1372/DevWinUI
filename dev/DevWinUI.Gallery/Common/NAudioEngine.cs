@@ -234,7 +234,7 @@ public partial class NAudioEngine : INotifyPropertyChanged, ISpectrumPlayer, IWa
         int readCount = 0;
         while (currentPointIndex * 2 < waveformParams.Points)
         {
-            waveformInputStream.Read(readBuffer, 0, readBuffer.Length);
+            waveformInputStream.ReadExactly(readBuffer);
 
             waveformData.Add(waveformAggregator.LeftMaxVolume);
             waveformData.Add(waveformAggregator.RightMaxVolume);
