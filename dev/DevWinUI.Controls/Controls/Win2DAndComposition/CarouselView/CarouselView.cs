@@ -124,11 +124,10 @@ public sealed partial class CarouselView : Control
 
     private void SetItemsImageSource(bool isinitial = false)
     {
-        System.Diagnostics.Debug.WriteLine("SetItemsImageSource");
         // Set the imagesource of each item. 
         if (ItemImageSource == null || _itemUIElementList == null || ItemImageSource.Count == 0 || _listbox == null || _listbox.ItemsSource == null)
             return;
-        System.Diagnostics.Debug.WriteLine($"SetItemImagesource,source[0] {ItemImageSource[0].Title}");
+
         // get the source indexes
         int count = ItemImageSource.Count;
         if (SelectedIndex < 0)
@@ -185,7 +184,6 @@ public sealed partial class CarouselView : Control
 
     private void Canvas_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("Canvas_ManipulationInertiaStarted");
         _dispatcherTimer.Stop();
         // Stop the Animation and reset the postion of indicator
         _itemVisualList[0].StopAnimation("Offset.X");
@@ -272,7 +270,6 @@ public sealed partial class CarouselView : Control
     /// <param name="oldindex"></param>
     private void MeasureItemsPosition(int index, int oldindex = -1)
     {
-        System.Diagnostics.Debug.WriteLine($"MeasureItemsPosition _selectedIndex is {index} _oldselected is {oldindex}");
         // Set the itemwidth
         // if the container width is larger than ItemWidtn, itemwidth = ItemWidth
         // else itemwidth = container
