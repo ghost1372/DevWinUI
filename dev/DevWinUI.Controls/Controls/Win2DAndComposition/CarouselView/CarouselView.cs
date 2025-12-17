@@ -5,6 +5,11 @@ namespace DevWinUI;
 
 public sealed partial class CarouselView : Control
 {
+    private const string PART_RootGrid = "PART_RootGrid";
+    private const string PART_Canvas = "PART_Canvas";
+    private const string PART_IndicatorRect = "PART_IndicatorRect";
+    private const string PART_Indexlistbox = "PART_Indexlistbox";
+
     public delegate void CarouselViewItemClickEventHandler(object sender, CarouselViewItemClickEventArgs e);
     public event CarouselViewItemClickEventHandler ItemClick;
     private void OnItemClick(ICarouselViewItemSource e)
@@ -21,7 +26,7 @@ public sealed partial class CarouselView : Control
     ScalarKeyFrameAnimation _indicatorAnimation;
     float _x;
     int _selectedIndex;
-    Panel _canvas, _rootGrid;
+    Grid _canvas, _rootGrid;
     ListBox _listbox;
     DispatcherTimer _dispatcherTimer; // for auto switch
     bool _isAnimationRunning = false; // flag of animation running, for precessing mouse WheelChanged Event
@@ -41,9 +46,9 @@ public sealed partial class CarouselView : Control
         base.OnApplyTemplate();
 
         // Get the original elements from the template
-        _rootGrid = this.GetTemplateChild("RootGrid") as Panel;
-        _canvas = this.GetTemplateChild("canvas") as Panel;
-        var indiRect = this.GetTemplateChild("indicatorRect") as Rectangle;
+        _rootGrid = this.GetTemplateChild(PART_RootGrid) as Grid;
+        _canvas = this.GetTemplateChild(PART_Canvas) as Grid;
+        var indiRect = this.GetTemplateChild(PART_IndicatorRect) as Rectangle;
         _indicatorVisual = ElementCompositionPreview.GetElementVisual(indiRect);
         _touchAreaVisual = ElementCompositionPreview.GetElementVisual(_canvas);
         _compositor = _touchAreaVisual.Compositor;
@@ -55,7 +60,7 @@ public sealed partial class CarouselView : Control
             // For ItemClick Event
             item.Tapped += (s, e) => { OnItemClick((s as CarouselViewItem).ItemSource); };
         }
-        _listbox = this.GetTemplateChild("indexlistbox") as ListBox;
+        _listbox = GetTemplateChild(PART_Indexlistbox) as ListBox;
 
         // Event handlers
         this._canvas.ManipulationMode = ManipulationModes.TranslateX;
@@ -89,6 +94,14 @@ public sealed partial class CarouselView : Control
             _dispatcherTimer.Start();
         }
 
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _dispatcherTimer?.Stop();
+        _dispatcherTimer = null;
     }
 
     private void PrepareAnimations()

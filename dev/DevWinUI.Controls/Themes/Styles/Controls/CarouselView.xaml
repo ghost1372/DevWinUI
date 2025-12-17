@@ -9,14 +9,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:CarouselView">
-                    <Grid x:Name="RootGrid">
-                        <Rectangle x:Name="indicatorRect"
+                    <Grid x:Name="PART_RootGrid">
+                        <Rectangle x:Name="PART_IndicatorRect"
                                    Width="10"
                                    Height="10"
                                    VerticalAlignment="Top"
                                    Fill="#FFEA7474"
                                    Opacity="0" />
-                        <Grid x:Name="canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                        <Grid x:Name="PART_Canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
                             <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
                             <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
@@ -28,7 +28,7 @@
                             <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
                         </Grid>
-                        <ListBox Name="indexlistbox"
+                        <ListBox Name="PART_Indexlistbox"
                                  Margin="0,0,0,6"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Bottom"
