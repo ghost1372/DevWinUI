@@ -10,6 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <InfoBar Title="AOT Not Supported"
+                     IsClosable="False"
+                     IsOpen="True"
+                     Message="This sample does not work with AOT. NAudio is not AOT-compatible. Compile without AOT or replace the audio library."
+                     Severity="Warning" />
             <local:ControlExample DocPage="controls/spectrumAnalyzer"
                                   HeaderText="SpectrumAnalyzer">
                 <local:ControlExample.Pane>
