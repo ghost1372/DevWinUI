@@ -1198,94 +1198,16 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <media3D:Setter Property="Template">
       <media3D:Setter.Value>
         <media3D:ControlTemplate TargetType="local:CarouselView">
-          <media3D:Grid x:Name="RootGrid">
-            <media3D:Rectangle x:Name="indicatorRect" Width="10" Height="10" VerticalAlignment="Top" Fill="#FFEA7474" Opacity="0" />
-            <media3D:Grid x:Name="canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
-              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
-              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
-              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
-              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
-              <local:CarouselViewItem Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+          <media3D:Grid x:Name="PART_RootGrid">
+            <media3D:Rectangle x:Name="PART_IndicatorRect" Width="10" Height="10" VerticalAlignment="Top" Fill="#FFEA7474" Opacity="0" />
+            <media3D:Grid x:Name="PART_Canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
+              <local:CarouselViewItem x:Name="PART_CarouselViewItem1" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem x:Name="PART_CarouselViewItem2" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem x:Name="PART_CarouselViewItem3" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem x:Name="PART_CarouselViewItem4" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+              <local:CarouselViewItem x:Name="PART_CarouselViewItem5" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
             </media3D:Grid>
-            <media3D:ListBox Name="indexlistbox" Margin="0,0,0,6" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" BorderThickness="0" IsEnabled="False" IsTapEnabled="False" ItemsSource="{TemplateBinding ItemImageSource}" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectedIndex="{TemplateBinding SelectedIndex}">
-              <media3D:ListBox.ItemTemplate>
-                <media3D:DataTemplate />
-              </media3D:ListBox.ItemTemplate>
-              <media3D:ListBox.ItemContainerStyle>
-                <media3D:Style TargetType="ListBoxItem">
-                  <media3D:Setter Property="Background" Value="Transparent" />
-                  <media3D:Setter Property="TabNavigation" Value="Local" />
-                  <media3D:Setter Property="Padding" Value="2.5,8" />
-                  <media3D:Setter Property="HorizontalContentAlignment" Value="Left" />
-                  <media3D:Setter Property="Template">
-                    <media3D:Setter.Value>
-                      <media3D:ControlTemplate TargetType="ListBoxItem">
-                        <media3D:Border x:Name="LayoutRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                          <media3D:VisualStateManager.VisualStateGroups>
-                            <media3D:VisualStateGroup x:Name="SelectionStates">
-                              <media3D:VisualState x:Name="Unselected">
-                                <media3D:Storyboard>
-                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="0.45" Duration="0" />
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                              <media3D:VisualState x:Name="Selected">
-                                <media3D:Storyboard>
-                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                              <media3D:VisualState x:Name="SelectedUnfocused">
-                                <media3D:Storyboard>
-                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                  </media3D:ObjectAnimationUsingKeyFrames>
-                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                              <media3D:VisualState x:Name="SelectedDisabled">
-                                <media3D:Storyboard>
-                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedDisabledForegroundThemeBrush}" />
-                                  </media3D:ObjectAnimationUsingKeyFrames>
-                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                              <media3D:VisualState x:Name="SelectedPointerOver">
-                                <media3D:Storyboard>
-                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerGrid" Storyboard.TargetProperty="Background">
-                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedPointerOverBackgroundThemeBrush}" />
-                                  </media3D:ObjectAnimationUsingKeyFrames>
-                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                  </media3D:ObjectAnimationUsingKeyFrames>
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                              <media3D:VisualState x:Name="SelectedPressed">
-                                <media3D:Storyboard>
-                                  <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                    <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                  </media3D:ObjectAnimationUsingKeyFrames>
-                                  <media3D:DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                </media3D:Storyboard>
-                              </media3D:VisualState>
-                            </media3D:VisualStateGroup>
-                          </media3D:VisualStateManager.VisualStateGroups>
-                          <media3D:Grid x:Name="InnerGrid" Margin="0" Background="Transparent">
-                            <media3D:Rectangle x:Name="PressedBackground" Fill="{ThemeResource ListBoxItemPressedBackgroundThemeBrush}" Opacity="0" />
-                            <media3D:ContentPresenter x:Name="ContentPresenter" Margin="2.5,0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
-                            <media3D:Ellipse x:Name="ellipse" Width="5" Height="5" Margin="2.5,0" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Opacity="0.495" StrokeThickness="0" />
-                          </media3D:Grid>
-                        </media3D:Border>
-                      </media3D:ControlTemplate>
-                    </media3D:Setter.Value>
-                  </media3D:Setter>
-                </media3D:Style>
-              </media3D:ListBox.ItemContainerStyle>
-              <media3D:ListBox.ItemsPanel>
-                <media3D:ItemsPanelTemplate>
-                  <media3D:StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
-                </media3D:ItemsPanelTemplate>
-              </media3D:ListBox.ItemsPanel>
-            </media3D:ListBox>
+            <media3D:PipsPager x:Name="PART_PipsPager" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
           </media3D:Grid>
         </media3D:ControlTemplate>
       </media3D:Setter.Value>
@@ -1538,32 +1460,32 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <media3D:Setter Property="Template">
       <media3D:Setter.Value>
         <media3D:ControlTemplate TargetType="local:CoverFlowItem">
-          <media3D:Grid x:Name="LayoutRoot">
+          <media3D:Grid x:Name="PART_LayoutRoot">
             <media3D:Grid.Resources>
-              <media3D:Storyboard x:Name="Animation">
-                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="RotationY">
-                  <media3D:EasingDoubleKeyFrame x:Name="rotationKeyFrame" KeyTime="00:00:00.9" Value="0">
+              <media3D:Storyboard x:Name="PART_Animation">
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="RotationY">
+                  <media3D:EasingDoubleKeyFrame x:Name="PART_RotationKeyFrame" KeyTime="00:00:00.9" Value="0">
                     <media3D:EasingDoubleKeyFrame.EasingFunction>
                       <media3D:CubicEase />
                     </media3D:EasingDoubleKeyFrame.EasingFunction>
                   </media3D:EasingDoubleKeyFrame>
                 </media3D:DoubleAnimationUsingKeyFrames>
-                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rotator" Storyboard.TargetProperty="LocalOffsetZ">
-                  <media3D:EasingDoubleKeyFrame x:Name="offestZKeyFrame" KeyTime="00:00:00.9" Value="0">
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="LocalOffsetZ">
+                  <media3D:EasingDoubleKeyFrame x:Name="PART_OffestZKeyFrame" KeyTime="00:00:00.9" Value="0">
                     <media3D:EasingDoubleKeyFrame.EasingFunction>
                       <media3D:CubicEase />
                     </media3D:EasingDoubleKeyFrame.EasingFunction>
                   </media3D:EasingDoubleKeyFrame>
                 </media3D:DoubleAnimationUsingKeyFrames>
-                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleX">
-                  <media3D:EasingDoubleKeyFrame x:Name="scaleXKeyFrame" KeyTime="00:00:00.9" Value="1">
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_ScaleTransform" Storyboard.TargetProperty="ScaleX">
+                  <media3D:EasingDoubleKeyFrame x:Name="PART_ScaleXKeyFrame" KeyTime="00:00:00.9" Value="1">
                     <media3D:EasingDoubleKeyFrame.EasingFunction>
                       <media3D:CubicEase />
                     </media3D:EasingDoubleKeyFrame.EasingFunction>
                   </media3D:EasingDoubleKeyFrame>
                 </media3D:DoubleAnimationUsingKeyFrames>
-                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scaleTransform" Storyboard.TargetProperty="ScaleY">
-                  <media3D:EasingDoubleKeyFrame x:Name="scaleYKeyFrame" KeyTime="00:00:00.9" Value="1">
+                <media3D:DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_ScaleTransform" Storyboard.TargetProperty="ScaleY">
+                  <media3D:EasingDoubleKeyFrame x:Name="PART_ScaleYKeyFrame" KeyTime="00:00:00.9" Value="1">
                     <media3D:EasingDoubleKeyFrame.EasingFunction>
                       <media3D:CubicEase />
                     </media3D:EasingDoubleKeyFrame.EasingFunction>
@@ -1573,12 +1495,12 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             </media3D:Grid.Resources>
             <media3D:Grid RenderTransformOrigin=".5,.5">
               <media3D:Grid.RenderTransform>
-                <media3D:ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                <media3D:ScaleTransform x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
               </media3D:Grid.RenderTransform>
               <media3D:Grid.Projection>
-                <media3D:PlaneProjection x:Name="Rotator" CenterOfRotationX="0.5" />
+                <media3D:PlaneProjection x:Name="PART_Rotator" CenterOfRotationX="0.5" />
               </media3D:Grid.Projection>
-              <media3D:ContentControl x:Name="ContentPresenter" RenderTransformOrigin="0.5,0.5">
+              <media3D:ContentControl x:Name="PART_ContentPresenter" RenderTransformOrigin="0.5,0.5">
                 <media3D:ContentPresenter />
               </media3D:ContentControl>
             </media3D:Grid>
@@ -1591,8 +1513,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <media3D:Setter Property="Template">
       <media3D:Setter.Value>
         <media3D:ControlTemplate>
-          <media3D:Grid x:Name="LayoutRoot">
-            <media3D:ItemsPresenter x:Name="ItemsPresenter" Height="{TemplateBinding Height}" />
+          <media3D:Grid x:Name="PART_LayoutRoot">
+            <media3D:ItemsPresenter x:Name="PART_ItemsPresenter" Height="{TemplateBinding Height}" />
           </media3D:Grid>
         </media3D:ControlTemplate>
       </media3D:Setter.Value>

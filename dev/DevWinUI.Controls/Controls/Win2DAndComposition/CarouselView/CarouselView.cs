@@ -8,34 +8,45 @@ public sealed partial class CarouselView : Control
     private const string PART_RootGrid = "PART_RootGrid";
     private const string PART_Canvas = "PART_Canvas";
     private const string PART_IndicatorRect = "PART_IndicatorRect";
-    private const string PART_Indexlistbox = "PART_Indexlistbox";
+    private const string PART_PipsPager = "PART_PipsPager";
+    private const string PART_CarouselViewItem1 = "PART_CarouselViewItem1";
+    private const string PART_CarouselViewItem2 = "PART_CarouselViewItem2";
+    private const string PART_CarouselViewItem3 = "PART_CarouselViewItem3";
+    private const string PART_CarouselViewItem4 = "PART_CarouselViewItem4";
+    private const string PART_CarouselViewItem5 = "PART_CarouselViewItem5";
+
+    private Grid rootGrid;
+    private Grid canvas;
+    private PipsPager pipsPager;
+    private CarouselViewItem carouselViewItem1;
+    private CarouselViewItem carouselViewItem2;
+    private CarouselViewItem carouselViewItem3;
+    private CarouselViewItem carouselViewItem4;
+    private CarouselViewItem carouselViewItem5;
 
     public delegate void CarouselViewItemClickEventHandler(object sender, CarouselViewItemClickEventArgs e);
     public event CarouselViewItemClickEventHandler ItemClick;
-    private void OnItemClick(ICarouselViewItemSource e)
-    {
-        if (e == null) return;
-        ItemClick?.Invoke(this, new CarouselViewItemClickEventArgs(e));
-    }
 
-    Compositor _compositor;
-    Visual _touchAreaVisual, _indicatorVisual;
-    List<Visual> _itemVisualList;
-    List<CarouselViewItem> _itemUIElementList;
-    ExpressionAnimation _animation, _animation_0, _animation_1, _animation_2, _animation_3, _animation_4;
-    ScalarKeyFrameAnimation _indicatorAnimation;
-    float _x;
-    int _selectedIndex;
-    Grid _canvas, _rootGrid;
-    ListBox _listbox;
-    DispatcherTimer _dispatcherTimer; // for auto switch
-    bool _isAnimationRunning = false; // flag of animation running, for precessing mouse WheelChanged Event
-
+    private Compositor compositor;
+    private Visual touchAreaVisual, indicatorVisual;
+    private List<Visual> itemVisualList;
+    private ExpressionAnimation animation;
+    private ExpressionAnimation animation_0;
+    private ExpressionAnimation animation_1;
+    private ExpressionAnimation animation_2;
+    private ExpressionAnimation animation_3;
+    private ExpressionAnimation animation_4;
+    private ScalarKeyFrameAnimation _indicatorAnimation;
+    private float _x;
+    private int _selectedIndex;
+    private DispatcherTimer _dispatcherTimer;
+    private bool _isAnimationRunning = false;
+    private List<CarouselViewItem> carouselViewItems;
+    private bool ignorePipsChange;
     public CarouselView()
     {
         this.DefaultStyleKey = typeof(CarouselView);
         _selectedIndex = 2;
-        // setup the timer in order to aname: name: utoswitch
         _dispatcherTimer = new DispatcherTimer();
         _dispatcherTimer.Tick += _dispatcherTimer_Tick;
         _dispatcherTimer.Interval = this.AutoSwitchInterval;
@@ -45,49 +56,58 @@ public sealed partial class CarouselView : Control
     {
         base.OnApplyTemplate();
 
-        // Get the original elements from the template
-        _rootGrid = this.GetTemplateChild(PART_RootGrid) as Grid;
-        _canvas = this.GetTemplateChild(PART_Canvas) as Grid;
+        rootGrid = GetTemplateChild(PART_RootGrid) as Grid;
+        canvas = GetTemplateChild(PART_Canvas) as Grid;
+        pipsPager = GetTemplateChild(PART_PipsPager) as PipsPager;
+        carouselViewItem1 = GetTemplateChild(PART_CarouselViewItem1) as CarouselViewItem;
+        carouselViewItem2 = GetTemplateChild(PART_CarouselViewItem2) as CarouselViewItem;
+        carouselViewItem3 = GetTemplateChild(PART_CarouselViewItem3) as CarouselViewItem;
+        carouselViewItem4 = GetTemplateChild(PART_CarouselViewItem4) as CarouselViewItem;
+        carouselViewItem5 = GetTemplateChild(PART_CarouselViewItem5) as CarouselViewItem;
+
+        carouselViewItems = new List<CarouselViewItem>();
+
+        carouselViewItems.Add(carouselViewItem1);
+        carouselViewItems.Add(carouselViewItem2);
+        carouselViewItems.Add(carouselViewItem3);
+        carouselViewItems.Add(carouselViewItem4);
+        carouselViewItems.Add(carouselViewItem5);
+
         var indiRect = this.GetTemplateChild(PART_IndicatorRect) as Rectangle;
-        _indicatorVisual = ElementCompositionPreview.GetElementVisual(indiRect);
-        _touchAreaVisual = ElementCompositionPreview.GetElementVisual(_canvas);
-        _compositor = _touchAreaVisual.Compositor;
-        _itemVisualList = new List<Visual>();
-        _itemUIElementList = _canvas.GetDescendantsOfType<CarouselViewItem>().ToList();
-        foreach (var item in _itemUIElementList)
+        indicatorVisual = ElementCompositionPreview.GetElementVisual(indiRect);
+        touchAreaVisual = ElementCompositionPreview.GetElementVisual(canvas);
+        compositor = touchAreaVisual.Compositor;
+
+        itemVisualList = new List<Visual>();
+
+        foreach (var item in carouselViewItems)
         {
-            _itemVisualList.Add(ElementCompositionPreview.GetElementVisual(item));
-            // For ItemClick Event
+            itemVisualList.Add(ElementCompositionPreview.GetElementVisual(item));
             item.Tapped += (s, e) => { OnItemClick((s as CarouselViewItem).ItemSource); };
         }
-        _listbox = GetTemplateChild(PART_Indexlistbox) as ListBox;
 
-        // Event handlers
-        this._canvas.ManipulationMode = ManipulationModes.TranslateX;
+        this.canvas.ManipulationMode = ManipulationModes.TranslateX;
 
+        canvas.ManipulationStarted -= Canvas_ManipulationStarted;
+        canvas.ManipulationStarted += Canvas_ManipulationStarted;
 
-        _canvas.ManipulationStarted += Canvas_ManipulationStarted;
-        _canvas.ManipulationDelta += Canvas_ManipulationDelta;
-        _canvas.ManipulationCompleted += Canvas_ManipulationCompleted;
-        //_canvas.ManipulationInertiaStarting += Canvas_ManipulationInertiaStarting;
+        canvas.ManipulationDelta -= Canvas_ManipulationDelta;
+        canvas.ManipulationDelta += Canvas_ManipulationDelta;
 
-        _canvas.PointerWheelChanged += Canvas_PointerWheelChanged;
-        // Response to the SizeChanged
-        _rootGrid.SizeChanged += (ss, ee) =>
-        {
-            MeasureItemsPosition(_selectedIndex);
-            // Change the Clip to fit new size
-            _canvas.Clip = new RectangleGeometry() { Rect = RectHelper.FromCoordinatesAndDimensions(0, 0, (float)ee.NewSize.Width, (float)ee.NewSize.Height) };
-        };
-        //_canvas.SizeChanged += (ss, ee) => { MeasureItemsPosition(_selectedIndex, _selectedIndex); };
-        this.Loaded += (ss, ee) =>
-        {
-            // Initial items' image data
-            SetItemsImageSource(true);
-            SetSelectedAppearance();
-            //MeasureItemsPosition(_selectedIndex);
-        };
+        canvas.ManipulationCompleted -= Canvas_ManipulationCompleted;
+        canvas.ManipulationCompleted += Canvas_ManipulationCompleted;
 
+        canvas.PointerWheelChanged -= Canvas_PointerWheelChanged;
+        canvas.PointerWheelChanged += Canvas_PointerWheelChanged;
+
+        rootGrid.SizeChanged -= OnRootGridSizeChanged;
+        rootGrid.SizeChanged += OnRootGridSizeChanged;
+
+        pipsPager.SelectedIndexChanged -= OnPipsPagerSelectedIndexChanged;
+        pipsPager.SelectedIndexChanged += OnPipsPagerSelectedIndexChanged;
+
+        SetItemsImageSource(true);
+        SetSelectedAppearance();
 
         if (this.IsAutoSwitchEnabled)
         {
@@ -98,6 +118,40 @@ public sealed partial class CarouselView : Control
         Unloaded += OnUnloaded;
     }
 
+    private void OnPipsPagerSelectedIndexChanged(PipsPager sender, PipsPagerSelectedIndexChangedEventArgs args)
+    {
+        if (ignorePipsChange)
+            return;
+
+        int newIndex = sender.SelectedPageIndex;
+        int oldIndex = SelectedIndex;
+
+        if (newIndex == oldIndex)
+            return;
+
+        if (IsNext(oldIndex, newIndex))
+            GotoNext();
+        else
+            GotoPrevious();
+    }
+    private bool IsNext(int oldIndex, int newIndex)
+    {
+        // User clicked forward direction
+        return newIndex > oldIndex ||
+               (oldIndex == pipsPager.NumberOfPages - 1 && newIndex == 0);
+    }
+    private void OnRootGridSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        MeasureItemsPosition(_selectedIndex);
+        canvas.Clip = new RectangleGeometry() { Rect = RectHelper.FromCoordinatesAndDimensions(0, 0, (float)e.NewSize.Width, (float)e.NewSize.Height) };
+    }
+
+    private void OnItemClick(ICarouselViewItemSource e)
+    {
+        if (e == null) return;
+        ItemClick?.Invoke(this, new CarouselViewItemClickEventArgs(e));
+    }
+
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         _dispatcherTimer?.Stop();
@@ -106,42 +160,40 @@ public sealed partial class CarouselView : Control
 
     private void PrepareAnimations()
     {
-        _animation = _compositor.CreateExpressionAnimation("touch.Offset.X");
-        _animation.SetReferenceParameter("touch", _indicatorVisual);
+        animation = compositor.CreateExpressionAnimation("touch.Offset.X");
+        animation.SetReferenceParameter("touch", indicatorVisual);
 
-        _animation_0 = _compositor.CreateExpressionAnimation("touch.Offset.X+self");
-        float offsestX_0 = _itemVisualList[0].Offset.X;
-        _animation_0.SetScalarParameter("self", offsestX_0);
-        _animation_0.SetReferenceParameter("touch", _indicatorVisual);
+        animation_0 = compositor.CreateExpressionAnimation("touch.Offset.X+self");
+        float offsestX_0 = itemVisualList[0].Offset.X;
+        animation_0.SetScalarParameter("self", offsestX_0);
+        animation_0.SetReferenceParameter("touch", indicatorVisual);
 
-        _animation_1 = _compositor.CreateExpressionAnimation("touch.Offset.X+self");
-        float offsestX_1 = _itemVisualList[1].Offset.X;
-        _animation_1.SetScalarParameter("self", offsestX_1);
-        _animation_1.SetReferenceParameter("touch", _indicatorVisual);
+        animation_1 = compositor.CreateExpressionAnimation("touch.Offset.X+self");
+        float offsestX_1 = itemVisualList[1].Offset.X;
+        animation_1.SetScalarParameter("self", offsestX_1);
+        animation_1.SetReferenceParameter("touch", indicatorVisual);
 
-        _animation_2 = _compositor.CreateExpressionAnimation("touch.Offset.X+self");
-        float offsestX_2 = _itemVisualList[2].Offset.X;
-        _animation_2.SetScalarParameter("self", offsestX_2);
-        _animation_2.SetReferenceParameter("touch", _indicatorVisual);
+        animation_2 = compositor.CreateExpressionAnimation("touch.Offset.X+self");
+        float offsestX_2 = itemVisualList[2].Offset.X;
+        animation_2.SetScalarParameter("self", offsestX_2);
+        animation_2.SetReferenceParameter("touch", indicatorVisual);
 
-        _animation_3 = _compositor.CreateExpressionAnimation("touch.Offset.X+self");
-        float offsestX_3 = _itemVisualList[3].Offset.X;
-        _animation_3.SetScalarParameter("self", offsestX_3);
-        _animation_3.SetReferenceParameter("touch", _indicatorVisual);
+        animation_3 = compositor.CreateExpressionAnimation("touch.Offset.X+self");
+        float offsestX_3 = itemVisualList[3].Offset.X;
+        animation_3.SetScalarParameter("self", offsestX_3);
+        animation_3.SetReferenceParameter("touch", indicatorVisual);
 
-        _animation_4 = _compositor.CreateExpressionAnimation("touch.Offset.X+self");
-        float offsestX_4 = _itemVisualList[4].Offset.X;
-        _animation_4.SetScalarParameter("self", offsestX_4);
-        _animation_4.SetReferenceParameter("touch", _indicatorVisual);
+        animation_4 = compositor.CreateExpressionAnimation("touch.Offset.X+self");
+        float offsestX_4 = itemVisualList[4].Offset.X;
+        animation_4.SetScalarParameter("self", offsestX_4);
+        animation_4.SetReferenceParameter("touch", indicatorVisual);
     }
 
     private void SetItemsImageSource(bool isinitial = false)
     {
-        // Set the imagesource of each item. 
-        if (ItemImageSource == null || _itemUIElementList == null || ItemImageSource.Count == 0 || _listbox == null || _listbox.ItemsSource == null)
+        if (ItemImageSource == null || carouselViewItems == null || carouselViewItems.Count == 0 || pipsPager == null)
             return;
 
-        // get the source indexes
         int count = ItemImageSource.Count;
         if (SelectedIndex < 0)
             SelectedIndex = 0;
@@ -170,27 +222,30 @@ public sealed partial class CarouselView : Control
         index_4 = _selectedIndex + 2;
         if (index_4 > 4) index_4 = index_4 - 5;
 
-        _itemUIElementList[index_0].ItemSource = ItemImageSource[sindex_0];
-        _itemUIElementList[index_1].ItemSource = ItemImageSource[sindex_1];
-        _itemUIElementList[index_2].ItemSource = ItemImageSource[sindex_2];
-        _itemUIElementList[index_3].ItemSource = ItemImageSource[sindex_3];
-        _itemUIElementList[index_4].ItemSource = ItemImageSource[sindex_4];
-        _listbox.SelectedIndex = SelectedIndex;
+        pipsPager.NumberOfPages = count;
+
+        carouselViewItems[index_0].ItemSource = ItemImageSource[sindex_0];
+        carouselViewItems[index_1].ItemSource = ItemImageSource[sindex_1];
+        carouselViewItems[index_2].ItemSource = ItemImageSource[sindex_2];
+        carouselViewItems[index_3].ItemSource = ItemImageSource[sindex_3];
+        carouselViewItems[index_4].ItemSource = ItemImageSource[sindex_4];
+
+        ignorePipsChange = true;
+        pipsPager.SelectedPageIndex = SelectedIndex;
+        ignorePipsChange = false;
     }
 
     private void SetSelectedAppearance()
     {
-        // Set the Selected or UnSelected Items' stype
-        // Like BlackMaskOpacity of CarouselViewItem
         for (int i = 0; i < 5; i++)
         {
             if (i == _selectedIndex)
             {
-                _itemUIElementList[i].BlackMaskOpacity = 0.0;
+                carouselViewItems[i].BlackMaskOpacity = 0.0;
             }
             else
             {
-                _itemUIElementList[i].BlackMaskOpacity = 0.3;
+                carouselViewItems[i].BlackMaskOpacity = 0.3;
             }
         }
     }
@@ -198,62 +253,53 @@ public sealed partial class CarouselView : Control
     private void Canvas_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
     {
         _dispatcherTimer.Stop();
-        // Stop the Animation and reset the postion of indicator
-        _itemVisualList[0].StopAnimation("Offset.X");
-        _itemVisualList[1].StopAnimation("Offset.X");
-        _itemVisualList[2].StopAnimation("Offset.X");
-        _itemVisualList[3].StopAnimation("Offset.X");
-        _itemVisualList[4].StopAnimation("Offset.X");
+        itemVisualList[0].StopAnimation("Offset.X");
+        itemVisualList[1].StopAnimation("Offset.X");
+        itemVisualList[2].StopAnimation("Offset.X");
+        itemVisualList[3].StopAnimation("Offset.X");
+        itemVisualList[4].StopAnimation("Offset.X");
         _x = 0.0f;
-        _indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
+        indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
 
-        // Prepare animiations
         PrepareAnimations();
 
-        // Strat the Animations based on the indicator
-        _itemVisualList[0].StartAnimation("Offset.X", _animation_0);
-        _itemVisualList[1].StartAnimation("Offset.X", _animation_1);
-        _itemVisualList[2].StartAnimation("Offset.X", _animation_2);
-        _itemVisualList[3].StartAnimation("Offset.X", _animation_3);
-        _itemVisualList[4].StartAnimation("Offset.X", _animation_4);
+        itemVisualList[0].StartAnimation("Offset.X", animation_0);
+        itemVisualList[1].StartAnimation("Offset.X", animation_1);
+        itemVisualList[2].StartAnimation("Offset.X", animation_2);
+        itemVisualList[3].StartAnimation("Offset.X", animation_3);
+        itemVisualList[4].StartAnimation("Offset.X", animation_4);
     }
     private void Canvas_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
         _x += (float)e.Delta.Translation.X;
 
-        // set the pan rectangle's visual's offset
-        _indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
+        indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
 
     }
 
     private void Canvas_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
     {
-        double containerWidth = _canvas.ActualWidth;
-        double itemWidth = _itemUIElementList[0].ActualWidth;
+        double containerWidth = canvas.ActualWidth;
+        double itemWidth = carouselViewItems[0].ActualWidth;
         double cleft = (containerWidth - itemWidth) / 2;
         double threshold = itemWidth / 8;
-        // evaluate the new selectedIndex
         int oldSelectedIndex = _selectedIndex;
-        var cha = _indicatorVisual.Offset.X;
+        var cha = indicatorVisual.Offset.X;
         if (cha <= -threshold)
         {
-            // new selcted item is the right item of current item
             _selectedIndex = _selectedIndex + 1;
             if (_selectedIndex > 4)
             {
                 _selectedIndex = _selectedIndex - 5;
             }
-            // Change the SelectedIndex
             var k = SelectedIndex + 1;
             SelectedIndex = k > ItemImageSource.Count - 1 ? k - ItemImageSource.Count : k;
         }
         if (cha >= threshold)
         {
-            // new selcted item is the left item of current item
             _selectedIndex = _selectedIndex - 1;
             if (_selectedIndex < 0) _selectedIndex = _selectedIndex + 5;
 
-            // Change the SelectedIndex
             var k = SelectedIndex - 1;
             SelectedIndex = k < 0 ? k + ItemImageSource.Count : k;
         }
@@ -286,23 +332,23 @@ public sealed partial class CarouselView : Control
         // Set the itemwidth
         // if the container width is larger than ItemWidtn, itemwidth = ItemWidth
         // else itemwidth = container
-        double containerWidth = _canvas.ActualWidth;
-        double itemWidth = _itemUIElementList[0].ActualWidth;
+        double containerWidth = canvas.ActualWidth;
+        double itemWidth = carouselViewItems[0].ActualWidth;
         if (containerWidth < this.ItemWidth)
         {
-            foreach (var item in _itemUIElementList)
+            foreach (var item in carouselViewItems)
             {
                 item.Width = containerWidth;
             }
         }
         else if (itemWidth < ItemWidth)
         {
-            foreach (var item in _itemUIElementList)
+            foreach (var item in carouselViewItems)
             {
                 item.Width = ItemWidth;
             }
         }
-        itemWidth = _itemUIElementList[0].Width;
+        itemWidth = carouselViewItems[0].Width;
         double LLeft, Cleft, Rleft;
         Cleft = (containerWidth - itemWidth) / 2;
         LLeft = -(itemWidth - Cleft);
@@ -322,11 +368,11 @@ public sealed partial class CarouselView : Control
         // for initialing only, or no need to enable animiations
         if (oldindex == -1)
         {
-            _itemVisualList[index_0].Offset = new Vector3((float)(LLeft - itemWidth), 0, 0);
-            _itemVisualList[index_1].Offset = new Vector3((float)LLeft, 0, 0);
-            _itemVisualList[index_2].Offset = new Vector3((float)Cleft, 0, 0);
-            _itemVisualList[index_3].Offset = new Vector3((float)(Rleft), 0, 0);
-            _itemVisualList[index_4].Offset = new Vector3((float)(Rleft + itemWidth), 0, 0);
+            itemVisualList[index_0].Offset = new Vector3((float)(LLeft - itemWidth), 0, 0);
+            itemVisualList[index_1].Offset = new Vector3((float)LLeft, 0, 0);
+            itemVisualList[index_2].Offset = new Vector3((float)Cleft, 0, 0);
+            itemVisualList[index_3].Offset = new Vector3((float)(Rleft), 0, 0);
+            itemVisualList[index_4].Offset = new Vector3((float)(Rleft + itemWidth), 0, 0);
             return;
         }
 
@@ -335,21 +381,21 @@ public sealed partial class CarouselView : Control
         // new selected item equals to current item
         if (diff == 0)
         {
-            _indicatorAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            _indicatorAnimation = compositor.CreateScalarKeyFrameAnimation();
             _indicatorAnimation.InsertKeyFrame(1.0f, 0.0f);
             _indicatorAnimation.Duration = TimeSpan.FromMilliseconds(duration);
         }
         // new selected item is the right item of current item
         if (diff == 1 || diff < -1)
         {
-            _indicatorAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            _indicatorAnimation = compositor.CreateScalarKeyFrameAnimation();
             _indicatorAnimation.InsertKeyFrame(1.0f, (float)-itemWidth);
             _indicatorAnimation.Duration = TimeSpan.FromMilliseconds(duration);
         }
         // new selected item is the left one of current item
         if (diff == -1 || diff > 1)
         {
-            _indicatorAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            _indicatorAnimation = compositor.CreateScalarKeyFrameAnimation();
             _indicatorAnimation.InsertKeyFrame(1.0f, (float)itemWidth);
             _indicatorAnimation.Duration = TimeSpan.FromMilliseconds(duration);
         }
@@ -357,17 +403,17 @@ public sealed partial class CarouselView : Control
         _isAnimationRunning = true;
 
         // Start the indicator animiation
-        var backScopedBatch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
-        _indicatorVisual.StartAnimation("Offset.X", _indicatorAnimation);
+        var backScopedBatch = compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+        indicatorVisual.StartAnimation("Offset.X", _indicatorAnimation);
         backScopedBatch.End();
         backScopedBatch.Completed += (ss, ee) =>
         {
             // reset the firt and last item's postion
-            _itemVisualList[index_0].Offset = new Vector3((float)(LLeft - itemWidth), 0, 0);
-            _itemVisualList[index_1].Offset = new Vector3((float)LLeft, 0, 0);
-            _itemVisualList[index_2].Offset = new Vector3((float)Cleft, 0, 0);
-            _itemVisualList[index_3].Offset = new Vector3((float)(Rleft), 0, 0);
-            _itemVisualList[index_4].Offset = new Vector3((float)(Rleft + itemWidth), 0, 0);
+            itemVisualList[index_0].Offset = new Vector3((float)(LLeft - itemWidth), 0, 0);
+            itemVisualList[index_1].Offset = new Vector3((float)LLeft, 0, 0);
+            itemVisualList[index_2].Offset = new Vector3((float)Cleft, 0, 0);
+            itemVisualList[index_3].Offset = new Vector3((float)(Rleft), 0, 0);
+            itemVisualList[index_4].Offset = new Vector3((float)(Rleft + itemWidth), 0, 0);
 
             // Change item's imagesources
             SetItemsImageSource();
@@ -376,13 +422,6 @@ public sealed partial class CarouselView : Control
             // reset animation running flas
             _isAnimationRunning = false;
         };
-
-        // Set the ZIndex of the items
-        //Canvas.SetZIndex(_itemUIElementList[index_0], 0);
-        //Canvas.SetZIndex(_itemUIElementList[index_1], 1);
-        //Canvas.SetZIndex(_itemUIElementList[index_2], 2);
-        //Canvas.SetZIndex(_itemUIElementList[index_3], 1);
-        //Canvas.SetZIndex(_itemUIElementList[index_4], 0);
 
         // set the dispatcherTimer
         if (IsAutoSwitchEnabled)
@@ -406,16 +445,16 @@ public sealed partial class CarouselView : Control
         }
 
         // Stop the Animation and reset the postion of indicator
-        _itemVisualList[0].StopAnimation("Offset.X");
-        _itemVisualList[1].StopAnimation("Offset.X");
-        _itemVisualList[2].StopAnimation("Offset.X");
-        _itemVisualList[3].StopAnimation("Offset.X");
-        _itemVisualList[4].StopAnimation("Offset.X");
+        itemVisualList[0].StopAnimation("Offset.X");
+        itemVisualList[1].StopAnimation("Offset.X");
+        itemVisualList[2].StopAnimation("Offset.X");
+        itemVisualList[3].StopAnimation("Offset.X");
+        itemVisualList[4].StopAnimation("Offset.X");
         _x = 0.0f;
-        _indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
+        indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
 
         // Processing the PointerWheelChanged event by mouse
-        var pointerpoint = e.GetCurrentPoint(_canvas);
+        var pointerpoint = e.GetCurrentPoint(canvas);
         var mousewheeldelta = pointerpoint.Properties.MouseWheelDelta;
 
         int newindex = _selectedIndex;
@@ -447,11 +486,11 @@ public sealed partial class CarouselView : Control
             SelectedIndex = k > ItemImageSource.Count - 1 ? k - ItemImageSource.Count : k;
         }
         PrepareAnimations();
-        _itemVisualList[0].StartAnimation("Offset.X", _animation_0);
-        _itemVisualList[1].StartAnimation("Offset.X", _animation_1);
-        _itemVisualList[2].StartAnimation("Offset.X", _animation_2);
-        _itemVisualList[3].StartAnimation("Offset.X", _animation_3);
-        _itemVisualList[4].StartAnimation("Offset.X", _animation_4);
+        itemVisualList[0].StartAnimation("Offset.X", animation_0);
+        itemVisualList[1].StartAnimation("Offset.X", animation_1);
+        itemVisualList[2].StartAnimation("Offset.X", animation_2);
+        itemVisualList[3].StartAnimation("Offset.X", animation_3);
+        itemVisualList[4].StartAnimation("Offset.X", animation_4);
         // Changed the _selectedIndex
         int oldindex = _selectedIndex;
         _selectedIndex = newindex;
@@ -479,13 +518,13 @@ public sealed partial class CarouselView : Control
             return;
         }
         // Stop the Animation and reset the postion of indicator
-        _itemVisualList[0].StopAnimation("Offset.X");
-        _itemVisualList[1].StopAnimation("Offset.X");
-        _itemVisualList[2].StopAnimation("Offset.X");
-        _itemVisualList[3].StopAnimation("Offset.X");
-        _itemVisualList[4].StopAnimation("Offset.X");
+        itemVisualList[0].StopAnimation("Offset.X");
+        itemVisualList[1].StopAnimation("Offset.X");
+        itemVisualList[2].StopAnimation("Offset.X");
+        itemVisualList[3].StopAnimation("Offset.X");
+        itemVisualList[4].StopAnimation("Offset.X");
         _x = 0.0f;
-        _indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
+        indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
 
         int newindex = _selectedIndex;
         // get the index of next one
@@ -499,11 +538,11 @@ public sealed partial class CarouselView : Control
         SelectedIndex = k > ItemImageSource.Count - 1 ? k - ItemImageSource.Count : k;
 
         PrepareAnimations();
-        _itemVisualList[0].StartAnimation("Offset.X", _animation_0);
-        _itemVisualList[1].StartAnimation("Offset.X", _animation_1);
-        _itemVisualList[2].StartAnimation("Offset.X", _animation_2);
-        _itemVisualList[3].StartAnimation("Offset.X", _animation_3);
-        _itemVisualList[4].StartAnimation("Offset.X", _animation_4);
+        itemVisualList[0].StartAnimation("Offset.X", animation_0);
+        itemVisualList[1].StartAnimation("Offset.X", animation_1);
+        itemVisualList[2].StartAnimation("Offset.X", animation_2);
+        itemVisualList[3].StartAnimation("Offset.X", animation_3);
+        itemVisualList[4].StartAnimation("Offset.X", animation_4);
         // Changed the _selectedIndex
         int oldindex = _selectedIndex;
         _selectedIndex = newindex;
@@ -518,13 +557,13 @@ public sealed partial class CarouselView : Control
             return;
         }
         // Stop the Animation and reset the postion of indicator
-        _itemVisualList[0].StopAnimation("Offset.X");
-        _itemVisualList[1].StopAnimation("Offset.X");
-        _itemVisualList[2].StopAnimation("Offset.X");
-        _itemVisualList[3].StopAnimation("Offset.X");
-        _itemVisualList[4].StopAnimation("Offset.X");
+        itemVisualList[0].StopAnimation("Offset.X");
+        itemVisualList[1].StopAnimation("Offset.X");
+        itemVisualList[2].StopAnimation("Offset.X");
+        itemVisualList[3].StopAnimation("Offset.X");
+        itemVisualList[4].StopAnimation("Offset.X");
         _x = 0.0f;
-        _indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
+        indicatorVisual.Offset = new Vector3(_x, 0.0f, 0.0f);
 
         int newindex = _selectedIndex;
         // get the index of last one
@@ -538,11 +577,11 @@ public sealed partial class CarouselView : Control
         SelectedIndex = k < 0 ? k + ItemImageSource.Count : k;
 
         PrepareAnimations();
-        _itemVisualList[0].StartAnimation("Offset.X", _animation_0);
-        _itemVisualList[1].StartAnimation("Offset.X", _animation_1);
-        _itemVisualList[2].StartAnimation("Offset.X", _animation_2);
-        _itemVisualList[3].StartAnimation("Offset.X", _animation_3);
-        _itemVisualList[4].StartAnimation("Offset.X", _animation_4);
+        itemVisualList[0].StartAnimation("Offset.X", animation_0);
+        itemVisualList[1].StartAnimation("Offset.X", animation_1);
+        itemVisualList[2].StartAnimation("Offset.X", animation_2);
+        itemVisualList[3].StartAnimation("Offset.X", animation_3);
+        itemVisualList[4].StartAnimation("Offset.X", animation_4);
         // Changed the _selectedIndex
         int oldindex = _selectedIndex;
         _selectedIndex = newindex;

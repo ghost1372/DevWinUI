@@ -17,127 +17,25 @@
                                    Fill="#FFEA7474"
                                    Opacity="0" />
                         <Grid x:Name="PART_Canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                            <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem1"
+                                                    Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
-                            <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem2"
+                                                    Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
-                            <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem3"
+                                                    Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
-                            <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem4"
+                                                    Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
-                            <local:CarouselViewItem Width="{TemplateBinding ItemWidth}"
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem5"
+                                                    Width="{TemplateBinding ItemWidth}"
                                                     HorizontalAlignment="Left" />
                         </Grid>
-                        <ListBox Name="PART_Indexlistbox"
-                                 Margin="0,0,0,6"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Bottom"
-                                 Background="{x:Null}"
-                                 BorderThickness="0"
-                                 IsEnabled="False"
-                                 IsTapEnabled="False"
-                                 ItemsSource="{TemplateBinding ItemImageSource}"
-                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                 SelectedIndex="{TemplateBinding SelectedIndex}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="TabNavigation" Value="Local" />
-                                    <Setter Property="Padding" Value="2.5,8" />
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ListBoxItem">
-                                                <Border x:Name="LayoutRoot"
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}">
-                                                    <VisualStateManager.VisualStateGroups>
-
-                                                        <VisualStateGroup x:Name="SelectionStates">
-                                                            <VisualState x:Name="Unselected">
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="0.45" Duration="0" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="Selected">
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="SelectedUnfocused">
-                                                                <Storyboard>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                    <DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="SelectedDisabled">
-                                                                <Storyboard>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedDisabledForegroundThemeBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                    <DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="SelectedPointerOver">
-                                                                <Storyboard>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerGrid" Storyboard.TargetProperty="Background">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedPointerOverBackgroundThemeBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="SelectedPressed">
-                                                                <Storyboard>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ListBoxItemSelectedForegroundThemeBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                    <DoubleAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                    <Grid x:Name="InnerGrid" Margin="0" Background="Transparent">
-                                                        <Rectangle x:Name="PressedBackground"
-                                                                   Fill="{ThemeResource ListBoxItemPressedBackgroundThemeBrush}"
-                                                                   Opacity="0" />
-                                                        <ContentPresenter x:Name="ContentPresenter"
-                                                                          Margin="2.5,0"
-                                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          Content="{TemplateBinding Content}"
-                                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
-                                                        <Ellipse x:Name="ellipse"
-                                                                 Width="5"
-                                                                 Height="5"
-                                                                 Margin="2.5,0"
-                                                                 HorizontalAlignment="Center"
-                                                                 VerticalAlignment="Center"
-                                                                 Fill="White"
-                                                                 Opacity="0.495"
-                                                                 StrokeThickness="0" />
-                                                    </Grid>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
+                        <PipsPager x:Name="PART_PipsPager"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
