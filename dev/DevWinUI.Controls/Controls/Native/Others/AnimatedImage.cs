@@ -19,7 +19,16 @@ public partial class AnimatedImage : Control
     }
 
     public static readonly DependencyProperty ImageUrlProperty =
-        DependencyProperty.Register(nameof(ImageUrl), typeof(Uri), typeof(AnimatedImage), new PropertyMetadata(null, OnImageUrlChanged));
+        DependencyProperty.Register(nameof(ImageUrl), typeof(Uri), typeof(AnimatedImage), new PropertyMetadata(null, OnImageSourceChanged));
+
+    public BitmapImage ImageSource
+    {
+        get { return (BitmapImage)GetValue(ImageSourceProperty); }
+        set { SetValue(ImageSourceProperty, value); }
+    }
+
+    public static readonly DependencyProperty ImageSourceProperty =
+        DependencyProperty.Register(nameof(ImageSource), typeof(BitmapImage), typeof(AnimatedImage), new PropertyMetadata(null, OnImageSourceChanged));
 
     public Stretch Stretch
     {
@@ -48,7 +57,7 @@ public partial class AnimatedImage : Control
 
         OnIsImageChanged();
     }
-    private static void OnImageUrlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is AnimatedImage control)
         {
@@ -66,10 +75,26 @@ public partial class AnimatedImage : Control
 
     private void OnIsImageChanged()
     {
-        if (ImageUrl == null || _bottomImage == null || _topImage == null)
+        if (_bottomImage == null || _topImage == null)
             return;
 
-        _bottomImage.Source = new BitmapImage(ImageUrl);
+        BitmapImage bitmapImage = null;
+
+        if (ImageSource != null)
+        {
+            bitmapImage = ImageSource;
+        }
+        else if (ImageUrl != null)
+        {
+            bitmapImage = new BitmapImage(ImageUrl);
+        }
+        else
+        {
+            return;
+        }
+
+        _bottomImage.Source = bitmapImage;
+
         _bottomImage.Opacity = 1;
 
         var topVisual = ElementCompositionPreview.GetElementVisual(_topImage);
@@ -84,7 +109,7 @@ public partial class AnimatedImage : Control
             {
                 try
                 {
-                    _topImage.Source = new BitmapImage(ImageUrl);
+                    _topImage.Source = bitmapImage;
                     topVisual.Opacity = 1.0f;
                 }
                 catch { }
