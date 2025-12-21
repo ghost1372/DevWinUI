@@ -77,7 +77,7 @@ public partial class GoToCard : Control
         DependencyProperty.Register(nameof(LaunchUri), typeof(string), typeof(GoToCard), new PropertyMetadata(null));
 
 
-    public EventHandler<RoutedEventArgs> ActionClick;
+    public event EventHandler<RoutedEventArgs> ActionClick;
 
     public GoToCard()
     {
