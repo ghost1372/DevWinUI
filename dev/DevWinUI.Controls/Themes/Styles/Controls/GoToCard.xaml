@@ -16,13 +16,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:GoToCard">
-                    <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ColumnSpacing="5" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Viewbox Grid.Column="0"
+                        <Button x:Name="PART_CloseButton"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{ThemeResource SubtleButtonStyle}"
+                                Visibility="{Binding ShowCloseButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <FontIcon HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontSize="16"
+                                      Glyph="&#xE711;" />
+                        </Button>
+                        <Viewbox Grid.Column="1"
                                  Width="24"
                                  VerticalAlignment="Center"
                                  Visibility="{Binding ShowIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -31,7 +42,7 @@
                                                IconSource="{TemplateBinding Icon}" />
 
                         </Viewbox>
-                        <TextBlock Grid.Column="1"
+                        <TextBlock Grid.Column="2"
                                    Margin="10,0,0,0"
                                    VerticalAlignment="Center"
                                    FontSize="12"
@@ -40,7 +51,7 @@
                                    TextWrapping="NoWrap" />
 
                         <Button x:Name="PART_Button"
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 VerticalAlignment="Center"
                                 Style="{ThemeResource SubtleButtonStyle}"
                                 Visibility="{Binding ShowActionButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
