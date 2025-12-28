@@ -419,6 +419,39 @@ public partial class WindowedContentDialog : Control, IStandaloneContentDialog
         new PropertyMetadata(true)
     );
 
+    public double ContentMinWidth
+    {
+        get => (double)GetValue(ContentMinWidthProperty);
+        set => SetValue(ContentMinWidthProperty, value);
+    }
+
+    public static readonly DependencyProperty ContentMinWidthProperty = DependencyProperty.Register(
+        nameof(ContentMinWidth),
+        typeof(double),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(320.0d, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.MinWidth = (double)e.NewValue;
+        })
+    );
+    public FlowDirection ContentFlowDirection
+    {
+        get => (FlowDirection)GetValue(ContentFlowDirectionProperty);
+        set => SetValue(ContentFlowDirectionProperty, value);
+    }
+
+    public static readonly DependencyProperty ContentFlowDirectionProperty = DependencyProperty.Register(
+        nameof(ContentFlowDirection),
+        typeof(FlowDirection),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(FlowDirection.LeftToRight, (d, e) =>
+        {
+            WindowedContentDialog self = (WindowedContentDialog)d;
+            self.ContentDialogContent.FlowDirection = (FlowDirection)e.NewValue;
+        })
+    );
+
     public bool IsModal { get; set; }
 
     public Window? OwnerWindow { get; set; }
