@@ -5,6 +5,7 @@ public static partial class ProcessInfoHelper
 {
     private static readonly FileVersionInfo _fileVersionInfo;
     private static readonly Process _process;
+    public static bool IsDebug { get; set; }
     static ProcessInfoHelper()
     {
         _process = Process.GetCurrentProcess();
@@ -23,11 +24,14 @@ public static partial class ProcessInfoHelper
     {
         get
         {
-#if DEBUG
-            return "Dev";
-#else
-            return GetVersion()?.ToString();
-#endif
+            if (IsDebug)
+            {
+                return "Dev";
+            }
+            else
+            {
+                return GetVersion()?.ToString();
+            }
         }
     }
 
@@ -43,11 +47,14 @@ public static partial class ProcessInfoHelper
     {
         get
         {
-#if DEBUG
-            return "Dev";
-#else
-            return $"v{Version}";
-#endif
+            if (IsDebug)
+            {
+                return "Dev";
+            }
+            else
+            {
+                return $"v{Version}";
+            }
         }
     }
 
@@ -72,11 +79,14 @@ public static partial class ProcessInfoHelper
     {
         get
         {
-#if DEBUG
-            return ProductName + " Dev";
-#else
-            return ProductName;
-#endif
+            if (IsDebug)
+            {
+                return ProductName + " Dev";
+            }
+            else
+            {
+                return ProductName;
+            }
         }
     }
 
@@ -89,11 +99,14 @@ public static partial class ProcessInfoHelper
     {
         get
         {
-#if DEBUG
-            return ProductNameDisplay + " Dev";
-#else
-            return ProductNameDisplay;
-#endif
+            if (IsDebug)
+            {
+                return ProductNameDisplay + " Dev";
+            }
+            else
+            {
+                return ProductNameDisplay;
+            }
         }
     }
 
