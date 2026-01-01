@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Toolbar
 - ✨ BreadcrumbBar
 - ✨ ThemedIcon
 - ✨ SamplePanel
@@ -325,6 +326,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Toolbar
+![Toolbar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Toolbar.png)
 
 ### BreadcrumbBar
 ![BreadcrumbBar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BreadcrumbBar.png)

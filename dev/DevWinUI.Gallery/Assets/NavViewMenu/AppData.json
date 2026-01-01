@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ToolbarPage",
+          "Title": "Toolbar",
+          "Subtitle": "A toolbar control is a user interface element that provides a row or column of buttons, icons, or menus, allowing users to quickly access common commands or functions within an application.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CommandBar.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BreadcrumbBarPage",
           "Title": "BreadcrumbBar",
           "Subtitle": "A BreadcrumbBar provides the direct path of pages or folders to the current location.",

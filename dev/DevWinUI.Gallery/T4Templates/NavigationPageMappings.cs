@@ -36,6 +36,7 @@ public partial class NavigationPageMappings
         {"DevWinUIGallery.Views.ExtensionPage", typeof(DevWinUIGallery.Views.ExtensionPage)},
         {"DevWinUIGallery.Views.ThemeManagerPage", typeof(DevWinUIGallery.Views.ThemeManagerPage)},
         {"DevWinUIGallery.Views.CheckUpdatePage", typeof(DevWinUIGallery.Views.CheckUpdatePage)},
+        {"DevWinUIGallery.Views.ToolbarPage", typeof(DevWinUIGallery.Views.ToolbarPage)},
         {"DevWinUIGallery.Views.BreadcrumbBarPage", typeof(DevWinUIGallery.Views.BreadcrumbBarPage)},
         {"DevWinUIGallery.Views.ThemedIconPage", typeof(DevWinUIGallery.Views.ThemedIconPage)},
         {"DevWinUIGallery.Views.SamplePanelPage", typeof(DevWinUIGallery.Views.SamplePanelPage)},
