@@ -1,0 +1,102 @@
+﻿public sealed partial class FolderItem : ISidebarItemModel, INotifyPropertyChanged
+{
+    private string text = "";
+    public string Text
+    {
+        get => text;
+        set => SetProperty(ref text, value, nameof(Text));
+    }
+
+    private string path = "";
+    public string Path
+    {
+        get => path;
+        set => SetProperty(ref path, value, nameof(Path));
+    }
+
+    private ImageIconSource icon = new ImageIconSource();
+    public ImageIconSource Icon
+    {
+        get => icon;
+        set
+        {
+            SetProperty(ref icon, value, nameof(Icon));
+            OnPropertyChanged(nameof(IconSource));
+        }
+    }
+
+    public object? Children { get; set; } = null;
+
+    public IconSource? IconSource => Icon;
+
+    public bool IsExpanded { get; set; } = false;
+
+    public object ToolTip => Path;
+
+    public bool PaddedItem => false;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void OnPropertyChanged(string propertyName)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private bool SetProperty<T>(ref T storage, T value, string propertyName)
+    {
+        if (Equals(storage, value)) return false;
+        storage = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
+}
+
+public partial ObservableCollection<FolderItem> Items { get; set; } = new ObservableCollection<FolderItem>()
+{
+    new FolderItem()
+    {
+        Text = "Folder",
+        Path = "C:\\Folder",
+        Icon = new ImageIconSource()
+        {
+            ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Database.png"))
+        },
+        Children = new ObservableCollection<FolderItem>()
+        {
+            new FolderItem()
+            {
+                Text = "SubFolder1",
+                Path = "C:\\Folder\\SubFolder1",
+                Icon = new ImageIconSource()
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Folder.png"))
+                }
+            },
+            new FolderItem()
+            {
+                Text = "SubFolder2",
+                Path = "C:\\Folder\\SubFolder2",
+                Icon = new ImageIconSource()
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Folder.png"))
+                }
+            }
+        }
+    },
+    new FolderItem()
+    {
+        Text = "Drive",
+        Path = "D:\\Drive",
+        Icon = new ImageIconSource()
+        {
+            ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Audio.png"))
+        }
+    },
+    new FolderItem()
+    {
+        Text = "Font",
+        Path = "C:\\Fonts",
+        Icon = new ImageIconSource()
+        {
+            ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Save.png"))
+        }
+    }
+};

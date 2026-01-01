@@ -1,9 +1,64 @@
 ﻿using DevWinUIGallery.Models;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {
+    [ObservableProperty]
+    public partial ObservableCollection<FolderItem> SidebarViewItems { get; set; } = new ObservableCollection<FolderItem>()
+    {
+         new FolderItem()
+        {
+            Text = "Home",
+            Path = "C:\\Fonts",
+            Icon = new ImageIconSource()
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Home.png"))
+            }
+        },
+        new FolderItem()
+        {
+            Text = "Folder",
+            Path = "C:\\Folder",
+            IsExpanded = true,
+            Icon = new ImageIconSource()
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Folder.png"))
+            },
+            Children = new ObservableCollection<FolderItem>()
+            {
+                new FolderItem()
+                {
+                    Text = "SubFolder1",
+                    Path = "C:\\Folder\\SubFolder1",
+                    Icon = new ImageIconSource()
+                    {
+                        ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Folder.png"))
+                    }
+                },
+                new FolderItem()
+                {
+                    Text = "SubFolder2",
+                    Path = "C:\\Folder\\SubFolder2",
+                    Icon = new ImageIconSource()
+                    {
+                        ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/Folder.png"))
+                    }
+                }
+            }
+        },
+        new FolderItem()
+        {
+            Text = "Drive",
+            Path = "D:\\Drive",
+            Icon = new ImageIconSource()
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Fluent/CloudDrive.png"))
+            }
+        },
+    };
+
     [ObservableProperty]
     public partial ObservableCollection<SampleItemModel> LandscapeData { get; set; } = new ObservableCollection<SampleItemModel>()
     {
