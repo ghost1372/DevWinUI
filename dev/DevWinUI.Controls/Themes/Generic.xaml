@@ -4,11 +4,14 @@
 -->
 <!--
 Source files:
+Controls\Ported\BreadcrumbBar\BreadcrumbBar.xaml
 Controls\Ported\LoopingSelector\LoopingSelector.xaml
 Controls\Ported\PagerControl\PagerControl.xaml
+Controls\Ported\SamplePanel\SamplePanel.xaml
 Controls\Ported\SettingsCard\SettingsCard.xaml
 Controls\Ported\SettingsExpander\SettingsExpander.xaml
 Controls\Ported\Sidebar\SidebarStyles.xaml
+Controls\Ported\Sidebar\SidebarView.ThemeResources.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Action.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Common.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Favorite.xaml
@@ -28,6 +31,17 @@ Controls\Ported\ThemedIcon\ThemedIcon.ThemeResources.xaml
 Controls\Ported\ThemedIcon\ThemedIcon.xaml
 Controls\Ported\ThemedIcon\ThemedIconLayer\ThemedIconLayer.xaml
 Controls\Ported\TileControl\TileControl.xaml
+Controls\Ported\Toolbar\Toolbar.ThemeResources.xaml
+Controls\Ported\Toolbar\Toolbar.xaml
+Controls\Ported\Toolbar\ToolbarButton\ToolbarButton.ThemeResources.xaml
+Controls\Ported\Toolbar\ToolbarButton\ToolbarButton.xaml
+Controls\Ported\Toolbar\ToolbarFlyoutButton\ToolbarFlyoutButton.xaml
+Controls\Ported\Toolbar\ToolbarRadioButton\ToolbarRadioButton.xaml
+Controls\Ported\Toolbar\ToolbarSeparator\ToolbarSeparator.ThemeResources.xaml
+Controls\Ported\Toolbar\ToolbarSeparator\ToolbarSeparator.xaml
+Controls\Ported\Toolbar\ToolbarSplitButton\ToolbarSplitButton.xaml
+Controls\Ported\Toolbar\ToolbarToggleButton\ToolbarToggleButton.ThemeResources.xaml
+Controls\Ported\Toolbar\ToolbarToggleButton\ToolbarToggleButton.xaml
 Themes\Styles\CommonStyles\Button.xaml
 Themes\Styles\CommonStyles\CalendarViewStyle.xaml
 Themes\Styles\CommonStyles\Colors.xaml
@@ -163,7 +177,7 @@ Themes\Styles\Controls\Watermark.xaml
 Themes\Styles\Controls\WaveformTimeline.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
 -->
-<media3D:ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:DevWinUI" xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:wind2="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives" xmlns:media3D="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)" xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)" xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)">
+<media3D:ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" xmlns:local="using:DevWinUI" xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:wind2="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives" xmlns:media3D="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)" xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)" xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)">
   <media3D:ResourceDictionary.ThemeDictionaries>
     <media3D:ResourceDictionary x:Key="Light">
       <media3D:StaticResource x:Key="PagerControlSelectionIndicatorForeground" ResourceKey="AccentFillColorDefaultBrush" />
@@ -185,6 +199,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
       <media3D:StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <media3D:StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
       <media3D:Color x:Key="ThemedIconBaseColor">#DB161616</media3D:Color>
       <media3D:Color x:Key="ThemedIconAltColor">#66F0F0F0</media3D:Color>
       <media3D:StaticResource x:Key="ThemedIconBaseBrush" ResourceKey="ThemedIconBaseColor" />
@@ -202,6 +217,66 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="ThemedIconSuccessBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
       <media3D:StaticResource x:Key="ThemedIconNeutralBackgroundBrush" ResourceKey="SystemFillColorNeutralBackgroundBrush" />
       <x:Boolean x:Key="ThemedIconHighContrast">False</x:Boolean>
+      <media3D:StaticResource x:Key="ToolbarBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarCornerRadius" ResourceKey="OverlayCornerRadius" />
+      <media3D:Thickness x:Key="ToolbarInnerPadding">4</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarBorderThickness">1</media3D:Thickness>
+      <x:Double x:Key="ToolbarItemSpacing">4</x:Double>
+      <media3D:StaticResource x:Key="ToolbarButtonBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrush" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:Thickness x:Key="ToolbarButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarSeparatorForeground" ResourceKey="DividerStrokeColorDefault" />
+      <media3D:Thickness x:Key="ToolbarToggleButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedBorderThemeThickness">2</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedInnerBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminate" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminateDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundChecked" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminate" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminateDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrush" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushChecked" ResourceKey="AccentControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPointerOver" ResourceKey="AccentControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPressed" ResourceKey="ControlFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedDisabled" ResourceKey="ControlFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminate" ResourceKey="ControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePointerOver" ResourceKey="ControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="FocusStrokeColorInnerBrush" />
       <media3D:RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
         <media3D:GradientStop Offset="0" Color="#FFFFFFFF" />
         <media3D:GradientStop Offset="0.05" Color="#FFFFFFFF" />
@@ -435,6 +510,66 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="ThemedIconSuccessBackgroundBrush" ResourceKey="SystemFillColorSuccessBackgroundBrush" />
       <media3D:StaticResource x:Key="ThemedIconNeutralBackgroundBrush" ResourceKey="SystemFillColorNeutralBackgroundBrush" />
       <x:Boolean x:Key="ThemedIconHighContrast">False</x:Boolean>
+      <media3D:StaticResource x:Key="ToolbarBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarCornerRadius" ResourceKey="OverlayCornerRadius" />
+      <media3D:Thickness x:Key="ToolbarInnerPadding">4</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarBorderThickness">1</media3D:Thickness>
+      <x:Double x:Key="ToolbarItemSpacing">4</x:Double>
+      <media3D:StaticResource x:Key="ToolbarButtonBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrush" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:Thickness x:Key="ToolbarButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarSeparatorForeground" ResourceKey="DividerStrokeColorDefault" />
+      <media3D:Thickness x:Key="ToolbarToggleButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedBorderThemeThickness">2</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedInnerBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminate" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminateDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundChecked" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminate" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminateDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrush" ResourceKey="SubtleFillColorTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushChecked" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminate" ResourceKey="ControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePointerOver" ResourceKey="ControlElevationBorderBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="FocusStrokeColorInnerBrush" />
       <media3D:RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0.0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
         <media3D:GradientStop Offset="0" Color="#FF000000" />
         <media3D:GradientStop Offset="0.05" Color="#FF000000" />
@@ -648,6 +783,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="SystemColorHighlightColorBrush" />
       <media3D:StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
       <media3D:StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <media3D:SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="Transparent" />
       <media3D:Color x:Key="ThemedIconBaseColor">#FF000000</media3D:Color>
       <media3D:Color x:Key="ThemedIconAltColor">#00000000</media3D:Color>
       <media3D:StaticResource x:Key="ThemedIconBaseBrush" ResourceKey="SystemColorButtonTextColorBrush" />
@@ -665,6 +801,66 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="ThemedIconSuccessBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <media3D:StaticResource x:Key="ThemedIconNeutralBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <x:Boolean x:Key="ThemedIconHighContrast">True</x:Boolean>
+      <media3D:StaticResource x:Key="ToolbarBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarCornerRadius" ResourceKey="OverlayCornerRadius" />
+      <media3D:Thickness x:Key="ToolbarInnerPadding">4</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarBorderThickness">1</media3D:Thickness>
+      <x:Double x:Key="ToolbarItemSpacing">4</x:Double>
+      <media3D:StaticResource x:Key="ToolbarButtonBackground" ResourceKey="SystemControlTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPointerOver" ResourceKey="SystemControlHighlightListLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundPressed" ResourceKey="SystemControlHighlightListMediumBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPointerOver" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPointerOver" ResourceKey="SystemControlHighlightTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushPressed" ResourceKey="SystemControlHighlightTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarButtonBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <media3D:Thickness x:Key="ToolbarButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarSeparatorForeground" ResourceKey="SystemControlForegroundBaseMediumLowBrush" />
+      <media3D:Thickness x:Key="ToolbarToggleButtonBorderThemeThickness">1</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedBorderThemeThickness">2</media3D:Thickness>
+      <media3D:Thickness x:Key="ToolbarToggleButtonCheckedInnerBorderThemeThickness">1</media3D:Thickness>
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackground" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundChecked" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundCheckedDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminate" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminatePressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBackgroundIndeterminateDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundChecked" ResourceKey="SystemControlHighlightAccentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundCheckedDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminate" ResourceKey="SystemControlHighlightAccentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminatePressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonForegroundIndeterminateDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPointerOver" ResourceKey="SystemControlHighlightBaseMediumLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushChecked" ResourceKey="AccentFillColorDefaultBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushCheckedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePointerOver" ResourceKey="SystemControlHighlightBaseMediumLowBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="SystemControlHighlightTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <media3D:StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="SystemColorButtonTextColor" />
       <media3D:RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
         <media3D:GradientStop Offset="0" Color="#FF000000" />
         <media3D:GradientStop Offset="0.05" Color="#FF000000" />
@@ -846,8 +1042,24 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <media3D:StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <media3D:StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
     </media3D:ResourceDictionary>
+    <media3D:ResourceDictionary x:Key="Dark">
+      <media3D:SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
+    </media3D:ResourceDictionary>
   </media3D:ResourceDictionary.ThemeDictionaries>
+  <x:Double x:Key="BreadcrumbBarHeight">34</x:Double>
+  <x:Double x:Key="BreadcrumbBarMinWidth">120</x:Double>
+  <x:Double x:Key="BreadcrumbBarEllipsisFontSize">16</x:Double>
+  <media3D:Thickness x:Key="BreadcrumbBarChevronPadding">4,0</media3D:Thickness>
+  <media3D:Thickness x:Key="BreadcrumbBarItemPadding">8,0</media3D:Thickness>
+  <media3D:Thickness x:Key="BreadcrumbBarRootItemPadding">16,0,8,0</media3D:Thickness>
+  <media3D:Thickness x:Key="BreadcrumbBarItemMargin">2,0,0,0</media3D:Thickness>
+  <x:Double x:Key="BreadcrumbBarItemHeight">32</x:Double>
+  <media3D:CornerRadius x:Key="BreadcrumbBarItemCornerRadius">2,2,2,2</media3D:CornerRadius>
+  <media3D:CornerRadius x:Key="BreadcrumbBarChevronCornerRaduis">2,2,2,2</media3D:CornerRadius>
+  <media3D:CornerRadius x:Key="BreadcrumbBarRootItemCornerRadius">16,2,2,16</media3D:CornerRadius>
   <x:Double x:Key="PagerControlNumberPanelButtonWidth">32</x:Double>
+  <x:Double x:Key="SamplePanelSideContentWidth">360</x:Double>
+  <media3D:Thickness x:Key="SamplePanelPadding">24</media3D:Thickness>
   <media3D:Thickness x:Key="SettingsCardBorderThickness">1</media3D:Thickness>
   <media3D:Thickness x:Key="SettingsCardPadding">16,16,16,16</media3D:Thickness>
   <x:Double x:Key="SettingsCardMinWidth">148</x:Double>
@@ -1115,6 +1327,39 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </media3D:Setter.Value>
     </media3D:Setter>
   </media3D:Style>
+  <x:Double x:Key="ToolbarButtonSmallMinWidth">32</x:Double>
+  <x:Double x:Key="ToolbarButtonSmallMinHeight">32</x:Double>
+  <x:Double x:Key="ToolbarButtonMediumMinWidth">32</x:Double>
+  <x:Double x:Key="ToolbarButtonMediumMinHeight">40</x:Double>
+  <x:Double x:Key="ToolbarButtonLargeMinWidth">40</x:Double>
+  <x:Double x:Key="ToolbarButtonLargeMinHeight">40</x:Double>
+  <media3D:Thickness x:Key="ToolbarButtonPadding">4</media3D:Thickness>
+  <media3D:Style x:Key="DefaultToolbarFlyoutButtonStyle" TargetType="local:ToolbarFlyoutButton">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarFlyoutButton" />
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultToolbarRadioButtonStyle" TargetType="local:ToolbarRadioButton">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarRadioButton" />
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Thickness x:Key="ToolbarSeparatorMargin">4,4,4,4</media3D:Thickness>
+  <x:Double x:Key="ToolbarSeparatorWidth">1</x:Double>
+  <x:Double x:Key="ToolbarSeparatorCornerRadius">0.5</x:Double>
+  <media3D:Style x:Key="DefaultToolbarSplitButtonStyle" TargetType="local:ToolbarSplitButton">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarSplitButton" />
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Thickness x:Key="ToolbarToggleButtonPadding">4</media3D:Thickness>
+  <media3D:CornerRadius x:Key="ToolbarToggleButtonInnerBorderCornerRadius">3</media3D:CornerRadius>
   <media3D:Style x:Key="HyperlinkButtonStyle" TargetType="HyperlinkButton" />
   <media3D:Style x:Name="TextBoxButtonStyle" TargetType="Button">
     <media3D:Setter Property="Padding" Value="{ThemeResource HelperButtonThemePadding}" />
@@ -4195,6 +4440,93 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </media3D:Setter.Value>
     </media3D:Setter>
   </media3D:Style>
+  <media3D:Style x:Key="DefaultBreadcrumbBarStyle" TargetType="local:BreadcrumbBar">
+    <media3D:Setter Property="MinWidth" Value="{StaticResource BreadcrumbBarMinWidth}" />
+    <media3D:Setter Property="HorizontalAlignment" Value="Stretch" />
+    <media3D:Setter Property="HorizontalContentAlignment" Value="Center" />
+    <media3D:Setter Property="VerticalAlignment" Value="Stretch" />
+    <media3D:Setter Property="VerticalContentAlignment" Value="Center" />
+    <media3D:Setter Property="AutomationProperties.LandmarkType" Value="Navigation" />
+    <media3D:Setter Property="IsTabStop" Value="False" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:BreadcrumbBar">
+          <media3D:Grid MinWidth="{TemplateBinding MinWidth}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+            <media3D:Grid.ColumnDefinitions>
+              <media3D:ColumnDefinition Width="Auto" />
+              <media3D:ColumnDefinition Width="Auto" />
+              <media3D:ColumnDefinition Width="*" />
+              <media3D:ColumnDefinition Width="Auto" />
+            </media3D:Grid.ColumnDefinitions>
+            <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem" Grid.Column="0" Padding="{StaticResource BreadcrumbBarRootItemPadding}" ChevronToolTip="{TemplateBinding RootItemChevronToolTip}" CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}" ItemToolTip="{TemplateBinding RootItemToolTip}">
+              <media3D:ContentPresenter Content="{Binding RootItem, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            </local:BreadcrumbBarItem>
+            <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem" Grid.Column="1" Margin="{StaticResource BreadcrumbBarItemMargin}" IsEllipsis="True" ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}" Visibility="Collapsed">
+              <media3D:FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}" Glyph="" />
+            </local:BreadcrumbBarItem>
+            <media3D:ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="BreadcrumbBarItemChevronButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="Button">
+          <media3D:ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
+            <media3D:ContentPresenter.BackgroundTransition>
+              <media3D:BrushTransition Duration="0:0:0.083" />
+            </media3D:ContentPresenter.BackgroundTransition>
+            <media3D:VisualStateManager.VisualStateGroups>
+              <media3D:VisualStateGroup x:Name="CommonStates">
+                <media3D:VisualState x:Name="Normal" />
+                <media3D:VisualState x:Name="PointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Pressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Disabled">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+            </media3D:VisualStateManager.VisualStateGroups>
+          </media3D:ContentPresenter>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
   <media3D:Style TargetType="local:LoopingListSelectorInfo">
     <media3D:Setter Property="HorizontalAlignment" Value="Stretch" />
     <media3D:Setter Property="VerticalAlignment" Value="Stretch" />
@@ -4555,6 +4887,42 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <media3D:Button x:Name="NextPageButton" Content="" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding NextButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=NextPageButton, Path=(AutomationProperties.Name)}" />
               <media3D:Button x:Name="LastPageButton" Content="" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding LastButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=LastPageButton, Path=(AutomationProperties.Name)}" />
             </media3D:StackPanel>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultSamplePanelStyle" TargetType="local:SamplePanel">
+    <media3D:Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <media3D:Setter Property="BorderBrush" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
+    <media3D:Setter Property="BorderThickness" Value="1" />
+    <media3D:Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <media3D:Setter Property="Padding" Value="{ThemeResource SamplePanelPadding}" />
+    <media3D:Setter Property="HorizontalAlignment" Value="Stretch" />
+    <media3D:Setter Property="VerticalAlignment" Value="Center" />
+    <media3D:Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <media3D:Setter Property="IsTabStop" Value="True" />
+    <media3D:Setter Property="UseSystemFocusVisuals" Value="True" />
+    <media3D:Setter Property="IsFocusEngagementEnabled" Value="True" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:SamplePanel">
+          <media3D:Grid x:Name="PART_RootGrid" RowSpacing="8">
+            <media3D:Grid.RowDefinitions>
+              <media3D:RowDefinition Height="Auto" />
+              <media3D:RowDefinition Height="Auto" />
+            </media3D:Grid.RowDefinitions>
+            <media3D:TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            <media3D:Grid x:Name="PART_RootPanel" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+              <media3D:Grid.ColumnDefinitions>
+                <media3D:ColumnDefinition Width="*" />
+                <media3D:ColumnDefinition Width="Auto" />
+              </media3D:Grid.ColumnDefinitions>
+              <media3D:ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              <media3D:StackPanel Grid.Column="1" Width="{StaticResource SamplePanelSideContentWidth}" Padding="{TemplateBinding Padding}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" Spacing="12">
+                <media3D:ContentPresenter Margin="0,12,0,0" Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              </media3D:StackPanel>
+            </media3D:Grid>
           </media3D:Grid>
         </media3D:ControlTemplate>
       </media3D:Setter.Value>
@@ -7934,6 +8302,450 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </media3D:Setter>
   </media3D:Style>
   <media3D:Style TargetType="local:ThemedIconLayer" BasedOn="{StaticResource DefaultThemedIconLayerStyle}" />
+  <media3D:Style x:Key="DefaultToolbarStyle" TargetType="local:Toolbar">
+    <media3D:Setter Property="Background" Value="{ThemeResource ToolbarBackgroundBrush}" />
+    <media3D:Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+    <media3D:Setter Property="BorderBrush" Value="{ThemeResource ToolbarBorderBrush}" />
+    <media3D:Setter Property="BorderThickness" Value="{ThemeResource ToolbarBorderThickness}" />
+    <media3D:Setter Property="CornerRadius" Value="{ThemeResource ToolbarCornerRadius}" />
+    <media3D:Setter Property="Padding" Value="{ThemeResource ToolbarInnerPadding}" />
+    <media3D:Setter Property="IsTabStop" Value="False" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:Toolbar">
+          <media3D:Border x:Name="RootBorder" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <media3D:Grid x:Name="RootGrid">
+              <media3D:Grid.ColumnDefinitions>
+                <media3D:ColumnDefinition Width="*" />
+                <media3D:ColumnDefinition x:Name="OverflowColumn" Width="Auto" />
+              </media3D:Grid.ColumnDefinitions>
+              <!--  Stack Panel is a placeholder to be replaced with the ItemsRepeater  -->
+              <media3D:ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding Items}" TabFocusNavigation="Local" Visibility="Visible">
+                <media3D:ItemsRepeater.Layout>
+                  <media3D:StackLayout Orientation="Horizontal" Spacing="{ThemeResource ToolbarItemSpacing}" />
+                </media3D:ItemsRepeater.Layout>
+              </media3D:ItemsRepeater>
+              <media3D:StackPanel x:Name="OverflowStackPanel" Grid.Column="1" Orientation="Horizontal" Spacing="{ThemeResource ToolbarItemSpacing}" Visibility="Visible">
+                <local:ToolbarSeparator />
+                <local:ToolbarButton MinWidth="40" MinHeight="32" IconSize="16" Label="Overflow Button" ThemedIcon="{StaticResource App.ThemedIcons.More}" />
+              </media3D:StackPanel>
+            </media3D:Grid>
+          </media3D:Border>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style x:Key="DefaultToolbarButtonStyle" TargetType="local:ToolbarButton">
+    <media3D:Setter Property="Background" Value="{ThemeResource ToolbarButtonBackground}" />
+    <media3D:Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <media3D:Setter Property="Foreground" Value="{ThemeResource ToolbarButtonForeground}" />
+    <media3D:Setter Property="BorderBrush" Value="{ThemeResource ToolbarButtonBorderBrush}" />
+    <media3D:Setter Property="BorderThickness" Value="{ThemeResource ToolbarButtonBorderThemeThickness}" />
+    <media3D:Setter Property="Padding" Value="{StaticResource ToolbarButtonPadding}" />
+    <media3D:Setter Property="HorizontalAlignment" Value="Center" />
+    <media3D:Setter Property="VerticalAlignment" Value="Center" />
+    <media3D:Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <media3D:Setter Property="FontWeight" Value="Normal" />
+    <media3D:Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <media3D:Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <media3D:Setter Property="FocusVisualMargin" Value="-3" />
+    <media3D:Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <media3D:Setter Property="ToolTipService.Placement" Value="Bottom" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarButton">
+          <media3D:Grid x:Name="GridRoot" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Padding="{TemplateBinding Padding}" AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" ToolTipService.Placement="{TemplateBinding ToolTipService.Placement}" ToolTipService.ToolTip="{TemplateBinding Label}">
+            <media3D:ContentPresenter x:Name="PART_ContentPresenter" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Foreground="{TemplateBinding Foreground}" IsTabStop="False" Visibility="Collapsed" />
+            <local:ThemedIcon x:Name="PART_ThemedIcon" Width="{TemplateBinding IconSize}" Height="{TemplateBinding IconSize}" IconSize="{TemplateBinding IconSize}" IsFocusEngagementEnabled="False" IsTabStop="False" Opacity="1" Style="{TemplateBinding ThemedIcon}" />
+            <media3D:VisualStateManager.VisualStateGroups>
+              <media3D:VisualStateGroup x:Name="CommonStates">
+                <media3D:VisualState x:Name="Normal" />
+                <media3D:VisualState x:Name="PointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBackgroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonForegroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBorderBrushPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Pressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBackgroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonForegroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ThemedIcon" Storyboard.TargetProperty="Opacity">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="0.75" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBorderBrushPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Disabled">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBackgroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonForegroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarButtonBorderBrushDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Normal" />
+                    <media3D:Setter Target="PART_ThemedIcon.IsEnabled" Value="False" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+              <media3D:VisualStateGroup x:Name="ContentStates">
+                <media3D:VisualState x:Name="HasContent">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ThemedIcon" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="HasNoContent">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ThemedIcon" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+            </media3D:VisualStateManager.VisualStateGroups>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style TargetType="local:ToolbarFlyoutButton" BasedOn="{StaticResource DefaultToolbarFlyoutButtonStyle}" />
+  <media3D:Style TargetType="local:ToolbarRadioButton" BasedOn="{StaticResource DefaultToolbarRadioButtonStyle}" />
+  <media3D:Style x:Key="DefaultToolbarSeparatorStyle" TargetType="local:ToolbarSeparator">
+    <media3D:Setter Property="Foreground" Value="{ThemeResource ToolbarSeparatorForeground}" />
+    <media3D:Setter Property="Padding" Value="{ThemeResource ToolbarSeparatorMargin}" />
+    <media3D:Setter Property="IsTabStop" Value="False" />
+    <media3D:Setter Property="IsFocusEngagementEnabled" Value="False" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarSeparator">
+          <media3D:Grid x:Name="RootGrid">
+            <media3D:Rectangle Width="{StaticResource ToolbarSeparatorWidth}" Margin="{TemplateBinding Padding}" VerticalAlignment="Stretch" Fill="{TemplateBinding Foreground}" RadiusX="{StaticResource ToolbarSeparatorCornerRadius}" RadiusY="{StaticResource ToolbarSeparatorCornerRadius}" />
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style TargetType="local:ToolbarSplitButton" BasedOn="{StaticResource DefaultToolbarSplitButtonStyle}" />
+  <media3D:Style x:Key="DefaultToolbarToggleButtonStyle" TargetType="local:ToolbarToggleButton">
+    <media3D:Setter Property="Background" Value="{ThemeResource ToolbarToggleButtonBackground}" />
+    <media3D:Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <media3D:Setter Property="Foreground" Value="{ThemeResource ToolbarToggleButtonForeground}" />
+    <media3D:Setter Property="BorderBrush" Value="{ThemeResource ToolbarToggleButtonBorderBrush}" />
+    <media3D:Setter Property="BorderThickness" Value="{ThemeResource ToolbarToggleButtonBorderThemeThickness}" />
+    <media3D:Setter Property="Padding" Value="{StaticResource ToolbarToggleButtonPadding}" />
+    <media3D:Setter Property="HorizontalAlignment" Value="Center" />
+    <media3D:Setter Property="VerticalAlignment" Value="Center" />
+    <media3D:Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <media3D:Setter Property="FontWeight" Value="Normal" />
+    <media3D:Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <media3D:Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <media3D:Setter Property="FocusVisualMargin" Value="-3" />
+    <media3D:Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <media3D:Setter Property="ToolTipService.Placement" Value="Bottom" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:ToolbarToggleButton">
+          <media3D:Grid x:Name="GridRoot" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Padding="0" AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" ToolTipService.Placement="{TemplateBinding ToolTipService.Placement}" ToolTipService.ToolTip="{TemplateBinding Label}">
+            <media3D:Grid x:Name="CheckedVisual" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BackgroundSizing="InnerBorderEdge" BorderBrush="{ThemeResource ToolbarToggleInnerBorderBrush}" BorderThickness="0" CornerRadius="{ThemeResource ToolbarToggleButtonInnerBorderCornerRadius}">
+              <media3D:ContentPresenter x:Name="PART_ContentPresenter" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Foreground="{TemplateBinding Foreground}" IsTabStop="False" Visibility="Collapsed" />
+              <local:ThemedIcon x:Name="PART_ThemedIcon" Width="{TemplateBinding IconSize}" Height="{TemplateBinding IconSize}" IconSize="{TemplateBinding IconSize}" IsFocusEngagementEnabled="False" IsTabStop="False" IsToggled="False" Opacity="1" Style="{TemplateBinding ThemedIcon}" />
+            </media3D:Grid>
+            <media3D:VisualStateManager.VisualStateGroups>
+              <media3D:VisualStateGroup x:Name="CommonStates">
+                <media3D:VisualState x:Name="Normal" />
+                <media3D:VisualState x:Name="PointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Pressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Disabled">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Normal" />
+                    <media3D:Setter Target="PART_ThemedIcon.IsEnabled" Value="False" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Checked">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundChecked}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushChecked}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundChecked}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="CheckedVisual.BorderThickness" Value="1" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="CheckedPointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundCheckedPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushCheckedPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundCheckedPointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                    <media3D:Setter Target="CheckedVisual.BorderThickness" Value="1" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="CheckedPressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundCheckedPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushCheckedPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundCheckedPressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                    <media3D:Setter Target="CheckedVisual.BorderThickness" Value="1" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="CheckedDisabled">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundCheckedDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushCheckedDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundCheckedDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Normal" />
+                    <media3D:Setter Target="PART_ThemedIcon.IsEnabled" Value="False" />
+                    <media3D:Setter Target="CheckedVisual.Visibility" Value="Visible" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="Indeterminate">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundIndeterminate}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushIndeterminate}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundIndeterminate}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="IndeterminatePointerOver">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundIndeterminatePointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushIndeterminatePointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundIndeterminatePointerOver}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="IndeterminatePressed">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundIndeterminatePressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushIndeterminatePressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundIndeterminatePressed}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="IndeterminateDisabled">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="Background">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBackgroundIndeterminateDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderBrush">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonBorderBrushIndeterminateDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridRoot" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="BorderThickness">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonCheckedInnerBorderThemeThickness}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToolbarToggleButtonForegroundIndeterminateDisabled}" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                  <media3D:VisualState.Setters>
+                    <!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+                    <media3D:Setter Target="PART_ContentPresenter.(AnimatedIcon.State)" Value="Normal" />
+                    <media3D:Setter Target="PART_ThemedIcon.IsEnabled" Value="False" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+              <media3D:VisualStateGroup x:Name="ContentStates">
+                <media3D:VisualState x:Name="HasContent">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ThemedIcon" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="HasNoContent">
+                  <media3D:Storyboard>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                    <media3D:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ThemedIcon" Storyboard.TargetProperty="Visibility">
+                      <media3D:DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </media3D:ObjectAnimationUsingKeyFrames>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+            </media3D:VisualStateManager.VisualStateGroups>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
   <media3D:Style x:Key="ScrollButtonStyle" TargetType="Button">
     <media3D:Setter Property="Background" Value="{ThemeResource FlipViewNextPreviousButtonBackground}" />
     <media3D:Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -15422,6 +16234,110 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </media3D:Setter.Value>
     </media3D:Setter>
   </media3D:Style>
+  <media3D:Style TargetType="local:BreadcrumbBar" BasedOn="{StaticResource DefaultBreadcrumbBarStyle}" />
+  <media3D:Style x:Key="DefaultBreadcrumbBarItemStyle" TargetType="local:BreadcrumbBarItem">
+    <media3D:Setter Property="Background" Value="{ThemeResource BreadcrumbBarBackgroundBrush}" />
+    <media3D:Setter Property="Foreground" Value="{ThemeResource BreadcrumbBarForegroundBrush}" />
+    <media3D:Setter Property="BorderBrush" Value="{ThemeResource BreadcrumbBarBorderBrush}" />
+    <media3D:Setter Property="CornerRadius" Value="{StaticResource BreadcrumbBarItemCornerRadius}" />
+    <media3D:Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <media3D:Setter Property="FontSize" Value="{ThemeResource BreadcrumbBarItemThemeFontSize}" />
+    <media3D:Setter Property="FontWeight" Value="{ThemeResource BreadcrumbBarItemFontWeight}" />
+    <media3D:Setter Property="Padding" Value="{ThemeResource BreadcrumbBarItemPadding}" />
+    <media3D:Setter Property="Height" Value="{ThemeResource BreadcrumbBarItemHeight}" />
+    <media3D:Setter Property="HorizontalAlignment" Value="Stretch" />
+    <media3D:Setter Property="HorizontalContentAlignment" Value="Center" />
+    <media3D:Setter Property="VerticalAlignment" Value="Stretch" />
+    <media3D:Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <media3D:Setter Property="FocusVisualMargin" Value="1" />
+    <media3D:Setter Property="IsTabStop" Value="False" />
+    <media3D:Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <media3D:Setter Property="Template">
+      <media3D:Setter.Value>
+        <media3D:ControlTemplate TargetType="local:BreadcrumbBarItem">
+          <media3D:Grid x:Name="PART_LayoutRoot" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+            <media3D:VisualStateManager.VisualStateGroups>
+              <media3D:VisualStateGroup x:Name="ChevronVisibilityStates">
+                <media3D:VisualState x:Name="ChevronVisible" />
+                <media3D:VisualState x:Name="ChevronCollapsed">
+                  <media3D:VisualState.Setters>
+                    <media3D:Setter Target="PART_ItemChevronButton.Visibility" Value="Collapsed" />
+                  </media3D:VisualState.Setters>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+              <media3D:VisualStateGroup x:Name="ChevronStates">
+                <media3D:VisualState x:Name="ChevronNormalOff">
+                  <media3D:Storyboard>
+                    <media3D:DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="0:0:0.2">
+                      <media3D:DoubleAnimation.EasingFunction>
+                        <media3D:CubicEase EasingMode="EaseIn" />
+                      </media3D:DoubleAnimation.EasingFunction>
+                    </media3D:DoubleAnimation>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+                <media3D:VisualState x:Name="ChevronNormalOn">
+                  <media3D:Storyboard>
+                    <media3D:DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="90" Duration="0:0:0.2">
+                      <media3D:DoubleAnimation.EasingFunction>
+                        <media3D:CubicEase EasingMode="EaseIn" />
+                      </media3D:DoubleAnimation.EasingFunction>
+                    </media3D:DoubleAnimation>
+                  </media3D:Storyboard>
+                </media3D:VisualState>
+              </media3D:VisualStateGroup>
+            </media3D:VisualStateManager.VisualStateGroups>
+            <media3D:StackPanel AutomationProperties.Name="{TemplateBinding ItemToolTip}" Orientation="Horizontal">
+              <!--  Clickable Area  -->
+              <media3D:Button x:Name="PART_ItemContentButton" Padding="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" AutomationProperties.Name="{TemplateBinding Content}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" ToolTipService.ToolTip="{TemplateBinding ItemToolTip}" UseSystemFocusVisuals="True">
+                <media3D:Button.Resources>
+                  <media3D:SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SubtleFillColorSecondary}" />
+                  <media3D:SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SubtleFillColorTertiary}" />
+                </media3D:Button.Resources>
+                <media3D:FlyoutBase.AttachedFlyout>
+                  <media3D:MenuFlyout x:Name="PART_ItemEllipsisDropDownMenuFlyout" Placement="Bottom" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto">
+                    <media3D:MenuFlyout.MenuFlyoutPresenterStyle>
+                      <media3D:Style TargetType="MenuFlyoutPresenter">
+                        <media3D:Setter Property="MaxHeight" Value="400" />
+                        <!--  Workaround for https://github.com/files-community/Files/issues/13078  -->
+                        <media3D:Setter Target="HighContrastAdjustment" Value="None" />
+                      </media3D:Style>
+                    </media3D:MenuFlyout.MenuFlyoutPresenterStyle>
+                  </media3D:MenuFlyout>
+                </media3D:FlyoutBase.AttachedFlyout>
+                <media3D:ContentPresenter x:Name="PART_ItemContentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{ThemeResource BreadcrumbBarForegroundBrush}" TextLineBounds="Tight" />
+              </media3D:Button>
+              <!--  Chevron  -->
+              <media3D:Button x:Name="PART_ItemChevronButton" Margin="{StaticResource BreadcrumbBarItemMargin}" Padding="{StaticResource BreadcrumbBarChevronPadding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" AutomationProperties.Name="Chevron" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource BreadcrumbBarChevronCornerRaduis}" Style="{StaticResource BreadcrumbBarItemChevronButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ChevronToolTip}" UseSystemFocusVisuals="True">
+                <media3D:Button.Resources>
+                  <media3D:SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SubtleFillColorSecondary}" />
+                  <media3D:SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SubtleFillColorTertiary}" />
+                </media3D:Button.Resources>
+                <media3D:FlyoutBase.AttachedFlyout>
+                  <media3D:MenuFlyout x:Name="PART_ItemChevronDropDownMenuFlyout" Placement="BottomEdgeAlignedLeft" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto">
+                    <media3D:MenuFlyout.MenuFlyoutPresenterStyle>
+                      <media3D:Style TargetType="MenuFlyoutPresenter">
+                        <media3D:Setter Property="MaxHeight" Value="400" />
+                        <!--  Workaround for https://github.com/files-community/Files/issues/13078  -->
+                        <media3D:Setter Target="HighContrastAdjustment" Value="None" />
+                      </media3D:Style>
+                    </media3D:MenuFlyout.MenuFlyoutPresenterStyle>
+                  </media3D:MenuFlyout>
+                </media3D:FlyoutBase.AttachedFlyout>
+                <media3D:FontIcon x:Name="PART_ItemChevronIcon" Width="{StaticResource BreadcrumbBarChevronFontSize}" Height="{StaticResource BreadcrumbBarChevronFontSize}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" FontSize="{StaticResource BreadcrumbBarChevronFontSize}" Foreground="{ThemeResource BreadcrumbBarForegroundBrush}" Glyph="" IsTextScaleFactorEnabled="False" RenderTransformOrigin="0.5,0.5">
+                  <media3D:FontIcon.RenderTransform>
+                    <media3D:TransformGroup>
+                      <media3D:RotateTransform x:Name="ChevronRotateTransform" Angle="0" />
+                    </media3D:TransformGroup>
+                  </media3D:FontIcon.RenderTransform>
+                </media3D:FontIcon>
+              </media3D:Button>
+            </media3D:StackPanel>
+          </media3D:Grid>
+        </media3D:ControlTemplate>
+      </media3D:Setter.Value>
+    </media3D:Setter>
+  </media3D:Style>
+  <media3D:Style TargetType="local:SamplePanel" BasedOn="{StaticResource DefaultSamplePanelStyle}" />
   <media3D:Style x:Key="DefaultSettingsCardStyle" TargetType="local:SettingsCard">
     <media3D:Style.Setters>
       <media3D:Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
@@ -15814,6 +16730,10 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <media3D:Setter Target="Height" Value="12" />
     <media3D:Setter Target="Padding" Value="0" />
   </media3D:Style>
+  <media3D:Style TargetType="local:Toolbar" BasedOn="{StaticResource DefaultToolbarStyle}" />
+  <media3D:Style BasedOn="{StaticResource DefaultToolbarButtonStyle}" TargetType="local:ToolbarButton" />
+  <media3D:Style TargetType="local:ToolbarSeparator" BasedOn="{StaticResource DefaultToolbarSeparatorStyle}" />
+  <media3D:Style BasedOn="{StaticResource DefaultToolbarToggleButtonStyle}" TargetType="local:ToolbarToggleButton" />
   <media3D:Style x:Key="NavigationViewItemStoreStyle" TargetType="NavigationViewItem">
     <media3D:Setter Property="Foreground" Value="{ThemeResource NavigationViewItemForeground}" />
     <media3D:Setter Property="Background" Value="{ThemeResource NavigationViewItemBackground}" />
@@ -16095,6 +17015,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <media3D:Style TargetType="local:StoreCarousel" BasedOn="{StaticResource DefaultStoreCarouselStyle}" />
   <media3D:Style TargetType="local:TextBox" BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" />
   <media3D:Style TargetType="local:WaveProgressBar" BasedOn="{StaticResource DefaultWaveProgressBarStyle}" />
+  <media3D:Style TargetType="local:BreadcrumbBarItem" BasedOn="{StaticResource DefaultBreadcrumbBarItemStyle}" />
   <media3D:Style TargetType="local:SettingsCard" BasedOn="{StaticResource DefaultSettingsCardStyle}" />
   <media3D:Style x:Key="DefaultSettingsExpanderStyle" TargetType="local:SettingsExpander">
     <media3D:Style.Setters>
