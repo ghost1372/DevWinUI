@@ -44,7 +44,83 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Action.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Common.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Favorite.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Git.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Misc16.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.New.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Open.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Panel.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Properties.Dialog.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Settings.Sidebar.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Settings.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.SizeLayout.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.SizeLayout28.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.Status.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\Styles\Icons.TabPane.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\ThemedIcon.ThemeResources.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\ThemedIcon.xaml" />
+    <Page Include="Controls\Ported\ThemedIcon\ThemedIconLayer\ThemedIconLayer.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Action.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Favorite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Git.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Misc16.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.New.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Open.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Panel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Properties.Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Settings.Sidebar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.SizeLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.SizeLayout28.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.Status.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\Styles\Icons.TabPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\ThemedIcon.ThemeResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\ThemedIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Ported\ThemedIcon\ThemedIconLayer\ThemedIconLayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
   <Target Name="PackCustomContent">
