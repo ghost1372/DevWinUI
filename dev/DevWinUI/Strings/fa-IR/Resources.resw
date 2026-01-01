@@ -189,6 +189,9 @@
   <data name="Tomorrow" xml:space="preserve">
     <value>روز بعد</value>
   </data>
+  <data name="UseSystemSetting" xml:space="preserve">
+    <value>پیشفرض سیستم</value>
+  </data>
   <data name="Yesterday" xml:space="preserve">
     <value>دیروز</value>
   </data>

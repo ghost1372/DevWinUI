@@ -1,11 +1,40 @@
-﻿using Microsoft.UI.Xaml.Media.Imaging;
+﻿using System.Collections.Concurrent;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
 
 public static partial class StringExtensions
 {
+    private static readonly ConcurrentDictionary<string, string> cachedResources = new();
+    private static readonly ResourceMap resourcesTree = new ResourceManager().MainResourceMap.TryGetSubtree("Resources");
+
     extension(string value)
     {
+        public string GetLocalizedResource()
+        {
+            if (cachedResources.TryGetValue(value, out var resource))
+            {
+                return resource;
+            }
+
+            resource = resourcesTree?.TryGetValue(value)?.ValueAsString;
+
+            return cachedResources[value] = resource ?? string.Empty;
+        }
+
+        public TEnum GetLocalizedEnum<TEnum>() where TEnum : struct, Enum
+        {
+            var result = value.GetLocalizedResource();
+            return GeneralHelper.GetEnum<TEnum>(result);
+        }
+
+        public TEnum GetEnum<TEnum>() where TEnum : struct, Enum
+        {
+            return GeneralHelper.GetEnum<TEnum>(value);
+        }
+
+
         public string ConvertToPersianDigit()
         {
             return value.Replace("0", "۰").Replace("1", "۱").Replace("2", "۲").Replace("3", "۳").Replace("4", "۴")
