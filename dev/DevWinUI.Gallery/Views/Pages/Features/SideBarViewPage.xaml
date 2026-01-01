@@ -10,6 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <InfoBar Title="AOT Not Supported"
+                     IsClosable="False"
+                     IsOpen="True"
+                     Message="This sample does not work with AOT."
+                     Severity="Warning" />
             <local:ControlExample CSharpSource="Features/SideBarViewPage_cs.txt"
                                   DocPage="controls/sidebarView"
                                   HeaderText="SidebarView">
