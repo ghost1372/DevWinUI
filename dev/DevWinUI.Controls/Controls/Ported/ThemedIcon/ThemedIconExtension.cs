@@ -6,7 +6,7 @@ using Microsoft.UI.Xaml.Markup;
 namespace DevWinUI;
 
 [MarkupExtensionReturnType(ReturnType = typeof(ThemedIcon))]
-public sealed partial class ThemedIconMarkup : MarkupExtension
+public sealed partial class ThemedIconExtension : MarkupExtension
 {
 	public Style Style { get; set; } = null!;
 
