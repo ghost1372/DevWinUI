@@ -46,7 +46,11 @@ public partial class App : Application
         MainWindow = new MainWindow();
 
         this.ThemeService.Initialize(MainWindow);
-
+#if DEBUG
+        ProcessInfoHelper.IsDebug = true;
+#else
+        ProcessInfoHelper.IsDebug = false;
+#endif
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
         MainWindow.AppWindow.SetIcon("Assets/icon.ico");
         MainWindow.AppWindow.SetTaskbarIcon("Assets/icon.ico");

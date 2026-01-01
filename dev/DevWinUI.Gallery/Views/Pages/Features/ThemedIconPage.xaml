@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ThemedIconPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/themedIcon">
+                <local:ControlExample.Xaml>
+                    &lt;dev:ThemedIcon Style="{StaticResource App.ThemedIcons.Copy}" /&gt;
+                </local:ControlExample.Xaml>
+                <ItemsControl ItemsSource="{x:Bind ThemedIconStyles, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="{Binding Key}" />
+                                <dev:ThemedIcon Style="{Binding Value}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ThemedIconPage",
+          "Title": "Themed Icon",
+          "Subtitle": "A control for a State and Color aware Icon",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SamplePanelPage",
           "Title": "Sample Panel",
           "Subtitle": "Sample panel with 2 Side.",
