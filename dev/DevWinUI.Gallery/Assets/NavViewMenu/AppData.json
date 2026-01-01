@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BreadcrumbBarPage",
+          "Title": "BreadcrumbBar",
+          "Subtitle": "A BreadcrumbBar provides the direct path of pages or folders to the current location.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/BreadcrumbBar.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ThemedIconPage",
           "Title": "Themed Icon",
           "Subtitle": "A control for a State and Color aware Icon",
