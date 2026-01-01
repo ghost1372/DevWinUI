@@ -135,6 +135,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ SamplePanel
 - ✨ SpectrumAnalyzer
 - ✨ WaveformTimeline
 - ✨ LoopPanel
@@ -322,6 +323,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### SamplePanel
+![SamplePanel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SamplePanel.png)
 
 ### SpectrumAnalyzer
 ![SpectrumAnalyzer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SpectrumAnalyzer.gif)

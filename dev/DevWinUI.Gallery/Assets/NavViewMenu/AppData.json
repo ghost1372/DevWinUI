@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SamplePanelPage",
+          "Title": "Sample Panel",
+          "Subtitle": "Sample panel with 2 Side.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/AppBarSeparator.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SpectrumAnalyzerPage",
           "Title": "Spectrum Analyzer",
           "Subtitle": "Displays audio level and frequency data.",
