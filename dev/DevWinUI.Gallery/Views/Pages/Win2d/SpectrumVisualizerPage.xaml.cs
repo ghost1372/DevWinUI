@@ -9,7 +9,7 @@ public sealed partial class SpectrumVisualizerPage : Page
     {
         InitializeComponent();
 
-        SpectrumVisualizerSample.Analyzer = new NaudioSpectrumAnalyzer();
+        SpectrumVisualizerSample.Analyzer = new AudioGraphSpectrumAnalyzer();
         SpectrumVisualizerSample.CustomColorProvider = (intensity, i) =>
         {
             return i % 2 == 0 ? Colors.HotPink : Colors.Cyan;
