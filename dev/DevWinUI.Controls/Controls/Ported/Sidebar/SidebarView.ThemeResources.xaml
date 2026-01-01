@@ -7,7 +7,7 @@
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
         </ResourceDictionary>
-        <ResourceDictionary x:Key="Dark">
+        <ResourceDictionary x:Key="Default">
             <SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
