@@ -6,6 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
@@ -13,17 +14,74 @@
                 <local:ControlExample.Xaml>
                     &lt;dev:ThemedIcon Style="{StaticResource App.ThemedIcons.Copy}" /&gt;
                 </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="IsToggled"
+                                      Header="Is Toggled" />
+                        <ComboBox x:Name="CmbColorType"
+                                  Header="Color Type"
+                                  ItemsSource="{x:Bind ThemedIconColorType, Mode=OneWay}"
+                                  SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:ThemedIconColorType">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbIconType"
+                                  Header="Icon Type"
+                                  ItemsSource="{x:Bind ThemedIconTypes, Mode=OneWay}"
+                                  SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:ThemedIconTypes">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.Copy}" />
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.Paste}" />
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.Delete}" />
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.Rename}" />
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.Refresh}" />
+                    <dev:ThemedIcon IconColorType="{x:Bind (dev:ThemedIconColorType)CmbColorType.SelectedItem, Mode=OneWay}"
+                                    IconType="{x:Bind (dev:ThemedIconTypes)CmbIconType.SelectedItem, Mode=OneWay}"
+                                    IsToggled="{x:Bind IsToggled.IsOn, Mode=OneWay}"
+                                    Style="{StaticResource App.ThemedIcons.CopyTo}" />
+                </StackPanel>
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/themedIcon">
                 <ItemsControl ItemsSource="{x:Bind ThemedIconStyles, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Spacing="6">
-                                <TextBlock Text="{Binding Key}" />
-                                <dev:ThemedIcon Style="{Binding Value}" />
-                            </StackPanel>
+                        <DataTemplate x:DataType="models:ThemedIconItem">
+                            <dev:ThemedIcon Style="{x:Bind Style}"
+                                            ToolTipService.ToolTip="{x:Bind Key}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dev:WrapPanel HorizontalSpacing="5"
+                                           VerticalSpacing="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
                 </ItemsControl>
-
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
