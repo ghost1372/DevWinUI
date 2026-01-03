@@ -12,6 +12,14 @@ public sealed partial class WaveformTimelinePage : Page
 
         soundEngine = new AudioGraphEngine();
         WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
+
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        soundEngine.Dispose();
     }
 
     private async void BtnOpen_Click(object sender, RoutedEventArgs e)
