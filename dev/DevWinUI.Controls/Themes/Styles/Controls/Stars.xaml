@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:DevWinUI"
-                    xmlns:media3D="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                    xmlns:local="using:DevWinUI">
 
     <Style TargetType="local:Stars" BasedOn="{StaticResource DefaultStarsStyle}" />
 
@@ -16,7 +15,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transform3D>
-                            <media3D:PerspectiveTransform3D />
+                            <PerspectiveTransform3D />
                         </Border.Transform3D>
                     </Border>
                 </ControlTemplate>
