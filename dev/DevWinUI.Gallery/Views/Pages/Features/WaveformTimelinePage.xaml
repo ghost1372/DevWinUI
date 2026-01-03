@@ -9,11 +9,6 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <InfoBar Title="AOT Not Supported"
-                     IsClosable="False"
-                     IsOpen="True"
-                     Message="This sample does not work with AOT. NAudio is not AOT-compatible. Compile without AOT or replace the audio library."
-                     Severity="Warning" />
             <local:ControlExample DocPage="controls/waveformTimeline"
                                   HeaderText="WaveformTimeline">
                 <local:ControlExample.Pane>
@@ -22,6 +17,10 @@
                                 HorizontalAlignment="Stretch"
                                 Click="BtnOpen_Click"
                                 Content="Open Audio" />
+                        <Button x:Name="BtnOpenBuiltIn"
+                                HorizontalAlignment="Stretch"
+                                Click="BtnOpenBuiltIn_Click"
+                                Content="Open Built In Sample" />
                         <TextBox x:Name="TxtPath"
                                  HorizontalAlignment="Stretch"
                                  IsReadOnly="True"
@@ -46,7 +45,10 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.CSharp>
                     <x:String>
-                        WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
+                        var soundEngine = new AudioGraphEngine();#nl#
+                        WaveformTimelineSample.RegisterSoundPlayer(soundEngine); #nl#
+                        await soundEngine.OpenFileAsync(@"D:\myfile.wav"); #nl#
+                        soundEngine.Play();
                     </x:String>
                 </local:ControlExample.CSharp>
                 <dev:WaveformTimeline x:Name="WaveformTimelineSample" />

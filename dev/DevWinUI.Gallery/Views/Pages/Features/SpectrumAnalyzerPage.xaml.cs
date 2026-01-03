@@ -1,15 +1,16 @@
 ﻿using Microsoft.Windows.Storage.Pickers;
+using Windows.Storage;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class SpectrumAnalyzerPage : Page
 {
-    private NAudioEngine soundEngine;
+    private AudioGraphEngine soundEngine;
     public SpectrumAnalyzerPage()
     {
         InitializeComponent();
 
-        soundEngine = NAudioEngine.Instance;
+        soundEngine = new AudioGraphEngine();
         SpectrumAnalyzerSample.RegisterSoundPlayer(soundEngine);
     }
 
@@ -17,37 +18,29 @@ public sealed partial class SpectrumAnalyzerPage : Page
     {
         var picker = new FileOpenPicker(MainWindow.Instance.AppWindow.Id);
         picker.FileTypeFilter.Add(".mp3");
+        picker.FileTypeFilter.Add(".wav");
 
         var result = await picker.PickSingleFileAsync();
         if (result != null)
         {
             TxtPath.Text = result.Path;
-            soundEngine.OpenFile(result.Path);
+            await soundEngine.OpenFileAsync(await StorageFile.GetFileFromPathAsync(result.Path), false);
             soundEngine.Play();
         }
     }
 
     private void BtnPlay_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanPlay)
-        {
-            soundEngine.Play();
-        }
+        soundEngine.Play();
     }
 
     private void BtnPause_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanPause)
-        {
-            soundEngine.Pause();
-        }
+        soundEngine.Pause();
     }
 
     private void BtnStop_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanStop)
-        {
-            soundEngine.Stop();
-        }
+        soundEngine.Stop();
     }
 }

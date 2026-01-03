@@ -10,11 +10,6 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <InfoBar Title="AOT Not Supported"
-                     IsClosable="False"
-                     IsOpen="True"
-                     Message="This sample does not work with AOT. NAudio is not AOT-compatible. Compile without AOT or replace the audio library."
-                     Severity="Warning" />
             <local:ControlExample DocPage="controls/spectrumAnalyzer"
                                   HeaderText="SpectrumAnalyzer">
                 <local:ControlExample.Pane>
@@ -47,12 +42,14 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.CSharp>
                     <x:String>
-                        SpectrumAnalyzerSample.RegisterSoundPlayer(soundEngine);
+                        var soundEngine = new AudioGraphEngine();#nl#
+                        SpectrumAnalyzerSample.RegisterSoundPlayer(soundEngine); #nl#
+                        await soundEngine.OpenFileAsync(@"D:\myfile.mp3"); #nl#
+                        soundEngine.Play();
                     </x:String>
                 </local:ControlExample.CSharp>
                 <dev:SpectrumAnalyzer x:Name="SpectrumAnalyzerSample" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

@@ -1,53 +1,66 @@
 ﻿using Microsoft.Windows.Storage.Pickers;
+using Windows.Storage;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class WaveformTimelinePage : Page
 {
-    private NAudioEngine soundEngine;
+    private AudioGraphEngine soundEngine;
     public WaveformTimelinePage()
     {
         InitializeComponent();
 
-        soundEngine = NAudioEngine.Instance;
+        soundEngine = new AudioGraphEngine();
         WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
     }
 
     private async void BtnOpen_Click(object sender, RoutedEventArgs e)
     {
         var picker = new FileOpenPicker(MainWindow.Instance.AppWindow.Id);
-        picker.FileTypeFilter.Add(".mp3");
+        picker.FileTypeFilter.Add(".wav");
 
         var result = await picker.PickSingleFileAsync();
         if (result != null)
         {
             TxtPath.Text = result.Path;
-            soundEngine.OpenFile(result.Path);
+            await soundEngine.OpenFileAsync(await StorageFile.GetFileFromPathAsync(result.Path), true);
             soundEngine.Play();
         }
     }
 
     private void BtnPlay_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanPlay)
-        {
-            soundEngine.Play();
-        }
+        soundEngine.Play();
     }
 
     private void BtnPause_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanPause)
-        {
-            soundEngine.Pause();
-        }
+        soundEngine.Pause();
     }
 
     private void BtnStop_Click(object sender, RoutedEventArgs e)
     {
-        if (soundEngine.CanStop)
+        soundEngine.Stop();
+    }
+
+    private async void BtnOpenBuiltIn_Click(object sender, RoutedEventArgs e)
+    {
+        StorageFile sampleStorageFile = null;
+
+        WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
+
+        if (RuntimeHelper.IsPackaged())
         {
-            soundEngine.Stop();
+            sampleStorageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Media/sample.wav"));
         }
+        else
+        {
+            string assetPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Media", "sample.wav");
+            sampleStorageFile = await StorageFile.GetFileFromPathAsync(assetPath);
+        }
+
+        await soundEngine.OpenFileAsync(sampleStorageFile, true);
+
+        soundEngine.Play();
     }
 }
