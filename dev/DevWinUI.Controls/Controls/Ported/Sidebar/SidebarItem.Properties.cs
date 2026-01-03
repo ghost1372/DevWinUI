@@ -97,13 +97,53 @@ public sealed partial class SidebarItem : Control
 	public static readonly DependencyProperty TemplateRootProperty =
 		DependencyProperty.Register("TemplateRoot", typeof(FrameworkElement), typeof(FrameworkElement), new PropertyMetadata(null));
 
-	public static void OnPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+    internal string TextValue
+    {
+        get => (string)GetValue(TextValueProperty);
+        set => SetValue(TextValueProperty, value);
+    }
+    public static readonly DependencyProperty TextValueProperty =
+        DependencyProperty.Register(nameof(TextValue), typeof(string), typeof(SidebarItem), new PropertyMetadata(""));
+
+    internal object? ToolTipValue
+    {
+        get => GetValue(ToolTipValueProperty);
+        set => SetValue(ToolTipValueProperty, value);
+    }
+    public static readonly DependencyProperty ToolTipValueProperty =
+        DependencyProperty.Register(nameof(ToolTipValue), typeof(object), typeof(SidebarItem), new PropertyMetadata(null));
+
+    internal object? ChildrenValue
+    {
+        get => GetValue(ChildrenValueProperty);
+        set => SetValue(ChildrenValueProperty, value);
+    }
+    public static readonly DependencyProperty ChildrenValueProperty =
+        DependencyProperty.Register(nameof(ChildrenValue), typeof(object), typeof(SidebarItem), new PropertyMetadata(null));
+
+    private void UpdateTemplateBindings()
+    {
+        if (Item is not null)
+        {
+            TextValue = Item.Text;
+            ToolTipValue = Item.ToolTip;
+            ChildrenValue = Item.Children;
+        }
+        else
+        {
+            TextValue = "";
+            ToolTipValue = null;
+            ChildrenValue = null;
+        }
+    }
+
+    public static void OnPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
 	{
 		if (sender is not SidebarItem item) return;
 		if (e.Property == DisplayModeProperty)
 		{
 			item.SidebarDisplayModeChanged((SidebarDisplayMode)e.OldValue);
-		}
+        }
 		else if (e.Property == IsSelectedProperty)
 		{
 			item.UpdateSelectionState();
@@ -115,6 +155,7 @@ public sealed partial class SidebarItem : Control
 		else if (e.Property == ItemProperty)
 		{
 			item.HandleItemChange();
-		}
-	}
+            item.UpdateTemplateBindings();
+        }
+    }
 }

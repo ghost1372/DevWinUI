@@ -95,7 +95,9 @@ public sealed partial class SidebarItem : Control
 
 		if (Item is not null)
 			Decorator = Item.ItemDecorator;
-	}
+
+        UpdateTemplateBindings();
+    }
 
 	private void HookupOwners()
 	{

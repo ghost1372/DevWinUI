@@ -2,32 +2,16 @@
 
 namespace DevWinUIGallery.Models;
 
-public sealed partial class FolderItem : ISidebarItemModel, INotifyPropertyChanged
+public sealed partial class FolderItem : ObservableObject, ISidebarItemModel
 {
-    private string text = "";
-    public string Text
-    {
-        get => text;
-        set => SetProperty(ref text, value, nameof(Text));
-    }
+    [ObservableProperty]
+    public partial string FolderText { get; set; } = "";
 
-    private string path = "";
-    public string Path
-    {
-        get => path;
-        set => SetProperty(ref path, value, nameof(Path));
-    }
+    [ObservableProperty]
+    public partial string Path { get; set; } = "";
 
-    private ImageIconSource icon = new ImageIconSource();
-    public ImageIconSource Icon
-    {
-        get => icon;
-        set
-        {
-            SetProperty(ref icon, value, nameof(Icon));
-            OnPropertyChanged(nameof(IconSource));
-        }
-    }
+    [ObservableProperty]
+    public partial ImageIconSource Icon { get; set; } = new ImageIconSource();
 
     public object? Children { get; set; } = null;
 
@@ -39,16 +23,11 @@ public sealed partial class FolderItem : ISidebarItemModel, INotifyPropertyChang
 
     public bool PaddedItem => false;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public string Text => FolderText;
 
-    private void OnPropertyChanged(string propertyName)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-    private bool SetProperty<T>(ref T storage, T value, string propertyName)
+    partial void OnIconChanged(ImageIconSource value)
     {
-        if (Equals(storage, value)) return false;
-        storage = value;
-        OnPropertyChanged(propertyName);
-        return true;
+        // Notify that IconSource also changed when Icon changes
+        OnPropertyChanged(nameof(IconSource));
     }
 }

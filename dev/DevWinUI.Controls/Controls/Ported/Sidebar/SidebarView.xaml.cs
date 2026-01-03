@@ -28,7 +28,8 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 
 	public SidebarView()
 	{
-		InitializeComponent();
+        Application.Current.Resources.MergedDictionaries.AddIfNotExists(new SidebarItemTemplate());
+        InitializeComponent();
 	}
 
 	internal void UpdateSelectedItemContainer(SidebarItem container)

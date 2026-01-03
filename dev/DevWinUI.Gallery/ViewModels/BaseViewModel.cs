@@ -10,7 +10,7 @@ public partial class BaseViewModel : ObservableObject
     {
          new FolderItem()
         {
-            Text = "Home",
+            FolderText = "Home",
             Path = "C:\\Fonts",
             Icon = new ImageIconSource()
             {
@@ -19,7 +19,7 @@ public partial class BaseViewModel : ObservableObject
         },
         new FolderItem()
         {
-            Text = "Folder",
+            FolderText = "Folder",
             Path = "C:\\Folder",
             IsExpanded = true,
             Icon = new ImageIconSource()
@@ -30,7 +30,7 @@ public partial class BaseViewModel : ObservableObject
             {
                 new FolderItem()
                 {
-                    Text = "SubFolder1",
+                    FolderText = "SubFolder1",
                     Path = "C:\\Folder\\SubFolder1",
                     Icon = new ImageIconSource()
                     {
@@ -39,7 +39,7 @@ public partial class BaseViewModel : ObservableObject
                 },
                 new FolderItem()
                 {
-                    Text = "SubFolder2",
+                    FolderText = "SubFolder2",
                     Path = "C:\\Folder\\SubFolder2",
                     Icon = new ImageIconSource()
                     {
@@ -50,7 +50,7 @@ public partial class BaseViewModel : ObservableObject
         },
         new FolderItem()
         {
-            Text = "Drive",
+            FolderText = "Drive",
             Path = "D:\\Drive",
             Icon = new ImageIconSource()
             {

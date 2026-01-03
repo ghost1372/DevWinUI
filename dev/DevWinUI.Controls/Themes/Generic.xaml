@@ -1086,9 +1086,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <x:Double x:Key="SidebarNegativeOpenPaneLength">-300</x:Double>
   <x:Double x:Key="SidebarCompactOpenPaneLength">56</x:Double>
   <x:Double x:Key="SidebarNegativeCompactOpenPaneLength">-56</x:Double>
-  <media3D:DataTemplate x:Key="DefaultSidebarItemTemplate">
-    <local:SidebarItem AutomationProperties.AutomationId="{Binding Text, Mode=OneWay}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}" Item="{Binding}" />
-  </media3D:DataTemplate>
   <media3D:Style x:Key="DefaultThemedIconStyle" TargetType="local:ThemedIcon">
     <media3D:Setter Property="IsTabStop" Value="False" />
     <media3D:Setter Property="IconSize" Value="16" />
@@ -5328,7 +5325,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             <media3D:Rectangle x:Name="DragTargetIndicator" Grid.ColumnSpan="3" Height="2" Margin="4,-2" HorizontalAlignment="Stretch" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" RadiusX="4" RadiusY="4" Visibility="Collapsed" />
             <!--  Focusable Visual  -->
             <media3D:Border x:Name="ElementBorder" Grid.Row="0" Height="32" Background="Transparent">
-              <media3D:Grid x:Name="ElementGrid" Margin="0,2,0,2" HorizontalAlignment="Stretch" Background="{ThemeResource SubtleFillColorTransparentBrush}" BackgroundSizing="InnerBorderEdge" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" IsTabStop="True" TabFocusNavigation="Once" ToolTipService.ToolTip="{Binding ToolTip, Mode=OneWay}" UseSystemFocusVisuals="True">
+              <media3D:Grid x:Name="ElementGrid" Margin="0,2,0,2" HorizontalAlignment="Stretch" Background="{ThemeResource SubtleFillColorTransparentBrush}" BackgroundSizing="InnerBorderEdge" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" IsTabStop="True" TabFocusNavigation="Once" ToolTipService.ToolTip="{Binding ToolTipValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseSystemFocusVisuals="True">
                 <media3D:Grid.ColumnDefinitions>
                   <!--  Selection Indicator  -->
                   <media3D:ColumnDefinition Width="3" />
@@ -5344,7 +5341,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 <!--  Icon  -->
                 <media3D:ContentPresenter x:Name="IconPresenter" Grid.Column="1" Width="16" Height="16" Margin="8,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                 <!--  Text  -->
-                <media3D:TextBlock x:Name="ItemNameTextBlock" Grid.Column="2" Margin="12,0,12,2" HorizontalAlignment="Stretch" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource ContentControlThemeFontFamily}" LineHeight="16" Text="{Binding Text, Mode=OneWay}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                <media3D:TextBlock x:Name="ItemNameTextBlock" Grid.Column="2" Margin="12,0,12,2" HorizontalAlignment="Stretch" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource ContentControlThemeFontFamily}" LineHeight="16" Text="{Binding TextValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
                 <!--  Decorator  -->
                 <media3D:ContentPresenter x:Name="ItemDecoratorPresenter" Grid.Column="3" Width="28" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding Decorator, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
                 <!--  Chevron  -->
@@ -5367,19 +5364,13 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                         <media3D:Setter Target="MinHeight" Value="20" />
                       </media3D:Style>
                     </media3D:Flyout.FlyoutPresenterStyle>
-                    <media3D:ItemsRepeater x:Name="FlyoutChildrenPresenter" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemsSource="{Binding Children, Mode=OneWay}" XYFocusKeyboardNavigation="Enabled">
-                      <media3D:ItemsRepeater.ItemTemplate>
-                        <media3D:DataTemplate>
-                          <local:SidebarItem AutomationProperties.AutomationId="{Binding Text, Mode=OneWay}" IsInFlyout="True" Item="{Binding}" />
-                        </media3D:DataTemplate>
-                      </media3D:ItemsRepeater.ItemTemplate>
-                    </media3D:ItemsRepeater>
+                    <media3D:ItemsRepeater x:Name="FlyoutChildrenPresenter" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemInFlyoutTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" XYFocusKeyboardNavigation="Enabled" />
                   </media3D:Flyout>
                 </media3D:FlyoutBase.AttachedFlyout>
               </media3D:Grid>
             </media3D:Border>
             <!--  Children  -->
-            <media3D:ItemsRepeater x:Name="ChildrenPresenter" Grid.Row="2" Margin="-4,2" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{Binding Children, Mode=OneWay}" Visibility="Collapsed" XYFocusKeyboardNavigation="Enabled">
+            <media3D:ItemsRepeater x:Name="ChildrenPresenter" Grid.Row="2" Margin="-4,2" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" XYFocusKeyboardNavigation="Enabled">
               <media3D:ItemsRepeater.Layout>
                 <media3D:StackLayout />
               </media3D:ItemsRepeater.Layout>
