@@ -7,7 +7,7 @@ public partial class PathHelper
     /// <param name="filePath">Specifies the location of the file to be accessed.</param>
     /// <param name="pathType">Indicates whether the file path is relative or absolute.</param>
     /// <returns>Returns the path of the file as a string.</returns>
-    public static async Task<string> GetFilePath(string filePath, PathType pathType = PathType.Relative)
+    public static async Task<string> GetFilePath(string filePath, PathType pathType)
     {
         var file = await FileHelper.GetStorageFile(filePath, pathType);
 
