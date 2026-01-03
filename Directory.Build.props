@@ -62,7 +62,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug' And '$(MSBuildProjectName)' != $(GalleryAppName)">True</GeneratePackageOnBuild>
-    <Copyright>Copyright (c) 2021-$([System.DateTime]::Now.ToString('yyyy')) - Mahdi Hosseini</Copyright>
+    <Copyright>Copyright (c) 2021-$([System.DateTime]::Now.Year) - Mahdi Hosseini</Copyright>
     <PackageProjectUrl>https://github.com/ghost1372/DevWinUI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ghost1372/DevWinUI</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/ghost1372/DevWinUI/releases</PackageReleaseNotes>
