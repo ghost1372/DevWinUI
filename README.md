@@ -1,7 +1,7 @@
 ﻿<h3 align="center">
 🌟 Welcome to DevWinUI! 🌟<br>
 🔥 Unleash the power of the gods 🔥<br>
-Summon ancient strength into every control.
+Native AOT Compatible — 99% Full support for Native AOT compilation
 </3>
 </br>
 
