@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUI;
 public partial class JsonNavigationService
@@ -175,7 +176,7 @@ public partial class JsonNavigationService
 
         if (!string.IsNullOrEmpty(imagePath))
         {
-            return new BitmapIcon() { UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute), ShowAsMonochrome = false };
+            return new ImageIcon() { Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute))};
         }
 
         return null;
