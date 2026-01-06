@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace DevWinUI;
 
-public class Root
+public partial class Root
 {
     public ObservableCollection<DataGroup> Groups { get; set; }
 }
@@ -13,7 +13,7 @@ internal partial class RootContext : JsonSerializerContext
 {
 }
 
-public sealed class DataSource
+public sealed partial class DataSource
 {
     private string _jsonFilePath;
     private PathType _pathType;
