@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	  <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>$(LibraryMajorVersion).$(DevWinUI_ContextMenu_MinorVersion).$(DevWinUI_ContextMenu_PatchVersion)$(PreviewBuildSuffix)</Version>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_SourceGenerator_MinorVersion).$(DevWinUI_SourceGenerator_PatchVersion)$(PreviewBuildSuffix)</Version>
     <AssemblyName>$(BaseNamespace).SourceGenerator</AssemblyName>
     <PackageId>$(BaseNamespace).SourceGenerator</PackageId>
     <Description>DevWinUI SourceGenerator</Description>
