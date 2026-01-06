@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-public class BreadcrumbPageConfig
+public partial class BreadcrumbPageConfig
 {
     public string PageTitle { get; set; }
     public bool IsHeaderVisible { get; set; }
