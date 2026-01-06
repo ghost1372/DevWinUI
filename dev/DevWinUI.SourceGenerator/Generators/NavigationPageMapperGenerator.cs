@@ -69,7 +69,7 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
         sb.AppendLine("// |                                                                                                   |");
         sb.AppendLine("// |                            -------------------------------------------                            |");
         sb.AppendLine("// |                            |                                         |                            |");
-        sb.AppendLine($"// |                            |   Date Modified: {DateTime.Now.ToString(CultureInfo.InvariantCulture)}    |                            |");
+        sb.AppendLine($"// |                            |   Date Modified: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)}    |                            |");
         sb.AppendLine("// |                            |                                         |                            |");
         sb.AppendLine("// |                            -------------------------------------------                            |");
         sb.AppendLine("// -----------------------------------------------------------------------------------------------------");
