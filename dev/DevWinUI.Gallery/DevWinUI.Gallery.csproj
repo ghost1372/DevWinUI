@@ -3,6 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>$(GalleryTargetFramework)</TargetFramework>
     <RootNamespace>$(BaseNamespace)Gallery</RootNamespace>
+    <NavigationMappingsNamespace>$(RootNamespace)</NavigationMappingsNamespace>
+    <BreadcrumbMappingsNamespace>$(RootNamespace)</BreadcrumbMappingsNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;ARM64</Platforms>
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
@@ -17,7 +19,6 @@
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 	  <Version>$(LibraryMajorVersion).$(DevWinUI_Gallery_MinorVersion).$(DevWinUI_Gallery_PatchVersion)$(PreviewBuildSuffix)</Version>
-
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>
 	  <!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
@@ -68,7 +69,10 @@
     <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />
     <AdditionalFiles Include="**\*.xaml" />
   </ItemGroup>
-  
+  <ItemGroup>
+    <CompilerVisibleProperty Include="NavigationMappingsNamespace" />
+    <CompilerVisibleProperty Include="BreadcrumbMappingsNamespace" />
+  </ItemGroup>
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
     Explorer "Package and Publish" context menu entry to be enabled for this project even if
