@@ -61,30 +61,14 @@
     <ProjectReference Include="..\DevWinUI.ContextMenu\DevWinUI.ContextMenu.csproj" />
     <ProjectReference Include="..\DevWinUI.Controls\DevWinUI.Controls.csproj" />
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
+    <ProjectReference Include="..\DevWinUI.SourceGenerator\DevWinUI.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
+
   <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />
+    <AdditionalFiles Include="**\*.xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="T4Templates\NavigationPageMappings.tt">
-	  <Generator>TextTemplatingFileGenerator</Generator>
-	  <LastGenOutput>NavigationPageMappings.cs</LastGenOutput>
-	</None>
-	<Compile Update="T4Templates\NavigationPageMappings.cs">
-	  <DesignTime>True</DesignTime>
-	  <AutoGen>True</AutoGen>
-	  <DependentUpon>NavigationPageMappings.tt</DependentUpon>
-	</Compile>
-	<None Update="T4Templates\BreadcrumbPageMappings.tt">
-	  <Generator>TextTemplatingFileGenerator</Generator>
-	  <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>
-	</None>
-	<Compile Update="T4Templates\BreadcrumbPageMappings.cs">
-	  <DesignTime>True</DesignTime>
-	  <AutoGen>True</AutoGen>
-	  <DependentUpon>BreadcrumbPageMappings.tt</DependentUpon>
-	</Compile>
-  </ItemGroup>
+  
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
     Explorer "Package and Publish" context menu entry to be enabled for this project even if
@@ -101,14 +85,4 @@
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
   </PropertyGroup>
-
-  <Target Name="TransformAllT4Templates" BeforeTargets="BeforeBuild">
-	  <ItemGroup>
-		  <!-- This picks up all T4 templates in the project -->
-		  <T4Template Include="**\*.tt" />
-	  </ItemGroup>
-
-	  <!-- Check if TextTransform.exe exists before running -->
-	  <Exec Command="if exist &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;%(T4Template.FullPath)&quot;" Condition="Exists('$(DevEnvDir)TextTransform.exe')" />
-  </Target>
 </Project>

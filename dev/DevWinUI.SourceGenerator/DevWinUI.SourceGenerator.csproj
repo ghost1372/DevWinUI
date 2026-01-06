@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_ContextMenu_MinorVersion).$(DevWinUI_ContextMenu_PatchVersion)$(PreviewBuildSuffix)</Version>
+    <AssemblyName>$(BaseNamespace).SourceGenerator</AssemblyName>
+    <PackageId>$(BaseNamespace).SourceGenerator</PackageId>
+    <Description>DevWinUI SourceGenerator</Description>
+    <PackageTags>winui generator WindDevUI WinDevUIContextMenu contextmenu contextmenuextensions wpf packaged winform winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell WinUICommunity</PackageTags>
+
+    <IncludeAnalyzer>true</IncludeAnalyzer>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsRoslynComponent>true</IsRoslynComponent>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="10.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+</Project>

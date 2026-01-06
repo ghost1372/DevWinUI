@@ -47,6 +47,7 @@
   <Project Path="dev/DevWinUI/DevWinUI.csproj" Id="3b3c761a-d832-4514-81c5-9d1b3f4997b9" />
   <Project Path="dev/DevWinUI.Controls/DevWinUI.Controls.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
   <Project Path="dev/DevWinUI.ContextMenu/DevWinUI.ContextMenu.csproj" Id="a95cc543-1958-4754-a79a-1f8bd1ca2dac" />
+  <Project Path="dev/DevWinUI.SourceGenerator/DevWinUI.SourceGenerator.csproj" Id="5d333619-af6e-4d59-80e3-7683db025f9c" />
   <Project Path="dev/DevWinUI.Gallery/DevWinUI.Gallery.csproj">
     <Platform Solution="*|ARM64" Project="ARM64" />
     <Platform Solution="*|x64" Project="x64" />
