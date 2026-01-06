@@ -29,7 +29,7 @@ Install-Package DevWinUI.SourceGenerator
 ```
 
 ## Example
-For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="**\*.xaml" />`, for `NavigationPageMappings` you need to define `<AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />` and for `<AdditionalFiles Include="Strings\en-US\Resources.resw" />` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" />`
+For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="**\*.xaml" />`, for `NavigationPageMappings` you need to define `<AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />` and for `Strings` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" />`
 
 ```xml
 <ItemGroup>
@@ -37,6 +37,14 @@ For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Inc
   <AdditionalFiles Include="**\*.xaml" />
   <AdditionalFiles Include="Strings\en-US\Resources.resw" />
 </ItemGroup>
+```
+
+you can define namespace for each file in `csproj` and `PropertyGroup` section:
+
+```xml
+<StringsNamespace>myStringsNamespace</StringsNamespace>
+<NavigationMappingsNamespace>MyNavigationMappingsNamespace</NavigationMappingsNamespace>
+<BreadcrumbMappingsNamespace>MyBreadcrumbMappingsNamespace</BreadcrumbMappingsNamespace>
 ```
 
 ## Demo
