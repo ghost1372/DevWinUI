@@ -94,7 +94,7 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
         sb.AppendLine("// |                                                                                                   |");
         sb.AppendLine("// |                            -------------------------------------------                            |");
         sb.AppendLine("// |                            |                                         |                            |");
-        sb.AppendLine($"// |                            | Date Modified: {DateTime.Now.ToString(CultureInfo.InvariantCulture)}  |                            |");
+        sb.AppendLine($"// |                            |   Date Modified: {DateTime.Now.ToString(CultureInfo.InvariantCulture)}    |                            |");
         sb.AppendLine("// |                            |                                         |                            |");
         sb.AppendLine("// |                            -------------------------------------------                            |");
         sb.AppendLine("// -----------------------------------------------------------------------------------------------------");
