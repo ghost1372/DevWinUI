@@ -15,7 +15,7 @@
 	
 |Packages|Download/Installation|Documentation|
 |:---|:---|:---:|
-|[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI.SourceGenerator)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUI.SourceGenerator)|
+|[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI.SourceGenerator)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUISourceGenerator)|
 
 </div>
 
