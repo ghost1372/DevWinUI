@@ -36,24 +36,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="T4Templates\NavigationPageMappings.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NavigationPageMappings.cs</LastGenOutput>
-    </None>
-    <Compile Update="T4Templates\NavigationPageMappings.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>NavigationPageMappings.tt</DependentUpon>
-    </Compile>
-    <None Update="T4Templates\BreadcrumbPageMappings.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BreadcrumbPageMappings.cs</LastGenOutput>
-    </None>
-    <Compile Update="T4Templates\BreadcrumbPageMappings.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>BreadcrumbPageMappings.tt</DependentUpon>
-    </Compile>
+    <AdditionalFiles Include="**\*.xaml" />
+    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,14 +67,4 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 	<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
-
-<Target Name="TransformAllT4Templates" BeforeTargets="BeforeBuild">
-  <ItemGroup>
-    <!-- This picks up all T4 templates in the project -->
-    <T4Template Include="**\*.tt" />
-  </ItemGroup>
-
-  <!-- Check if TextTransform.exe exists before running -->
-  <Exec Command="if exist &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;$(DevEnvDir)TextTransform.exe&quot; &quot;%(T4Template.FullPath)&quot;" Condition="Exists('$(DevEnvDir)TextTransform.exe')" />
-</Target>
 </Project>

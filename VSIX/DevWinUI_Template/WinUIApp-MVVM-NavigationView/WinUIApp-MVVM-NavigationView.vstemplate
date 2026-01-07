@@ -74,11 +74,6 @@
 	  <Folder Name="Assets\NavViewMenu" TargetFolderName="Assets\NavViewMenu">
 		<ProjectItem ReplaceParameters="true" TargetFileName="AppData.json">AppData.json</ProjectItem>
 	  </Folder>
-
-	  <Folder Name="T4Templates" TargetFolderName="T4Templates">
-		<ProjectItem ReplaceParameters="true" TargetFileName="BreadcrumbPageMappings.tt">BreadcrumbPageMappings.tt</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="NavigationPageMappings.tt">NavigationPageMappings.tt</ProjectItem>
-	  </Folder>
 		
 	  <Folder Name="Views" TargetFolderName="Views">
 		<ProjectItem ReplaceParameters="true" TargetFileName="HomeLandingPage.xaml">HomeLandingPage.xaml</ProjectItem>
@@ -125,7 +120,7 @@
 	  </Folder>
 	</Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;DevWinUI.SourceGenerator;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>
