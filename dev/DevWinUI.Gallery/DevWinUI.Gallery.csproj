@@ -41,6 +41,7 @@
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.2.250402" />
+    <PackageReference Include="DevWinUI.SourceGenerator" Version="9.9.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.0-prerelease.251115.2" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
@@ -62,7 +63,6 @@
     <ProjectReference Include="..\DevWinUI.ContextMenu\DevWinUI.ContextMenu.csproj" />
     <ProjectReference Include="..\DevWinUI.Controls\DevWinUI.Controls.csproj" />
     <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
-    <ProjectReference Include="..\DevWinUI.SourceGenerator\DevWinUI.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>
