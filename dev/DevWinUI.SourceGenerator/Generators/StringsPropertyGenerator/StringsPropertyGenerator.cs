@@ -27,9 +27,10 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
             .Select((provider, _) =>
             {
                 provider.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+                provider.GlobalOptions.TryGetValue("build_property.RootNamespace", out var rootNamespace);
                 provider.GlobalOptions.TryGetValue($"build_property.{Constants.StringsNamespace}", out var stringsNamespace);
 
-                return (projectDir, stringsNamespace);
+                return (projectDir, rootNamespace, stringsNamespace);
             });
 
         var combined =
@@ -39,13 +40,13 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(combined, (ctx, data) =>
         {
-            var ((files, compilation), (projectDir, stringsNamespace)) = data;
+            var ((files, compilation), (projectDir, rootNamespace, stringsNamespace)) = data;
 
-            Execute(ctx, files, compilation, stringsNamespace, projectDir);
+            Execute(ctx, files, compilation, stringsNamespace, projectDir, rootNamespace);
         });
     }
 
-    private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string @namespace, string projectDir)
+    private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
     {
         var fileName = SystemIO.Path.GetFileNameWithoutExtension(file.Path);
 
@@ -60,7 +61,12 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
         {
-            projectNamespace = compilation.AssemblyName ?? Constants.HelperNamespace;
+            projectNamespace = rootNamespace;
+
+            if (string.IsNullOrEmpty(projectNamespace))
+            {
+                projectNamespace = compilation.AssemblyName ?? Constants.HelperNamespace;
+            }
         }
 
         var sb = new StringBuilder();

@@ -25,9 +25,10 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
             .Select((provider, _) =>
             {
                 provider.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+                provider.GlobalOptions.TryGetValue("build_property.RootNamespace", out var rootNamespace);
                 provider.GlobalOptions.TryGetValue($"build_property.{Constants.BreadcrumbMappingsNamespace}", out var stringsNamespace);
 
-                return (projectDir, stringsNamespace);
+                return (projectDir, rootNamespace, stringsNamespace);
             });
 
         var combined =
@@ -37,13 +38,13 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(combined, (ctx, data) =>
         {
-            var ((files, compilation), (projectDir, stringsNamespace)) = data;
+            var ((files, compilation), (projectDir, rootNamespace, stringsNamespace)) = data;
 
-            Execute(ctx, files, compilation, stringsNamespace, projectDir);
+            Execute(ctx, files, compilation, stringsNamespace, projectDir, rootNamespace);
         });
     }
 
-    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string @namespace, string projectDir)
+    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
     {
         var entries = new List<string>();
         var fileNamesStringBuilder = new StringBuilder();
@@ -99,7 +100,12 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
         {
-            projectNamespace = compilation.AssemblyName ?? Constants.HelperNamespace;
+            projectNamespace = rootNamespace;
+
+            if (string.IsNullOrEmpty(projectNamespace))
+            {
+                projectNamespace = compilation.AssemblyName ?? Constants.HelperNamespace;
+            }
         }
 
         var sb = new StringBuilder();
