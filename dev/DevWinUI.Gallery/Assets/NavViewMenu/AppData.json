@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SpoilerPage",
+          "Title": "Spoiler",
+          "Subtitle": "Show/Hide a Content.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SideBarViewPage",
           "Title": "SideBarView",
           "Subtitle": "Provides top-level navigation for your app.",

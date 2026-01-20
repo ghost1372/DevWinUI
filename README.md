@@ -136,6 +136,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ Spoiler
 - ✨ SidebarView
 - ✨ Toolbar
 - ✨ BreadcrumbBar
@@ -328,6 +329,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### Spoiler
+![Spoiler](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Spoiler.gif)
 
 ### SidebarView
 ![SidebarView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SidebarView.gif)

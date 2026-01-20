@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:Spoiler" BasedOn="{StaticResource DefaultSpoilerStyle}" />
+
+    <Style x:Key="DefaultSpoilerStyle" TargetType="local:Spoiler">
+        <Setter Property="HeaderVerticalAlignment" Value="Center" />
+        <Setter Property="HeaderHorizontalAlignment" Value="Left" />
+        <Setter Property="HeaderMargin" Value="10,0" />
+        <Setter Property="ShimmerHeight" Value="30" />
+        <Setter Property="ShimmerCornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Spoiler">
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="RevealStates">
+                                <VisualState x:Name="Hidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShimmerHost" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation Storyboard.TargetName="ShimmerHost" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" />
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Revealed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ShimmerHost" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25" />
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShimmerHost" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.25" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="ShimmerHost"
+                                Width="{TemplateBinding ShimmerWidth}"
+                                Height="{TemplateBinding ShimmerHeight}"
+                                CornerRadius="{TemplateBinding ShimmerCornerRadius}"
+                                IsHitTestVisible="False"
+                                Opacity="1">
+                            <ContentPresenter x:Name="ShimmerPresenter"
+                                              ContentTemplate="{TemplateBinding ShimmerTemplate}">
+                                <Grid>
+                                    <local:Shimmer x:Name="Shimmer"
+                                                   IsActive="{TemplateBinding InternalIsActiveShimmer}"
+                                                   IsTabStop="False" />
+                                    <StackPanel Margin="{TemplateBinding HeaderMargin}" HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}" VerticalAlignment="{TemplateBinding HeaderVerticalAlignment}" Orientation="Horizontal" Spacing="5" Visibility="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}">
+                                        <IconSourceElement IconSource="{TemplateBinding HeaderIcon}"
+                                                           IsTabStop="False"
+                                                           Visibility="{Binding HeaderIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+                                        <TextBlock IsTabStop="False"
+                                                   Style="{ThemeResource BaseTextBlockStyle}"
+                                                   Text="{TemplateBinding Header}" />
+                                    </StackPanel>
+                                </Grid>
+                            </ContentPresenter>
+                        </Border>
+
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
