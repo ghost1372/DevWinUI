@@ -72,77 +72,84 @@
                         </dev:Spoiler.HeaderIcon>
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <NavigationViewItemSeparator />
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{ThemeResource BaseTextBlockStyle}"
+                                   Text="Here is some text before the spoiler."
+                                   TextWrapping="Wrap" />
+                        <dev:Spoiler Height="20"
+                                     VerticalAlignment="Center"
+                                     IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
+                                     RevealMode="Toggle"
+                                     ShimmerHeight="20"
+                                     ShimmerWidth="100">
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
+                                       Text="DevWinUI Is GREAT!" />
+                        </dev:Spoiler>
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{ThemeResource BaseTextBlockStyle}"
+                                   Text="And here is some text after it."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <NavigationViewItemSeparator />
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerHeight="35"
                                  ShimmerWidth="300">
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerHeight="35"
                                  ShimmerWidth="280">
-
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerHeight="35"
                                  ShimmerWidth="200">
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerHeight="35"
                                  ShimmerWidth="150">
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerHeight="35"
                                  ShimmerWidth="260">
-
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
-                    <dev:Spoiler IsActiveShimmer="{x:Bind TgIsActiveShimmer.IsOn, Mode=OneWay}"
-                                 IsRevealed="{x:Bind TgIsRevealed.IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 RevealMode="{x:Bind ((dev:SpoilerRevealMode)CmbRevealMode.SelectedItem), Mode=OneWay}"
+                    <dev:Spoiler RevealMode="Toggle"
                                  ShimmerCornerRadius="180"
                                  ShimmerHeight="50"
                                  ShimmerWidth="50">
                         <StackPanel Spacing="10">
                             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                       Text="DevWinUI IS GREAT!" />
-                            <Button Content="DevWinUI IS GREAT!" />
+                                       Text="DevWinUI Is GREAT!" />
+                            <Button Content="DevWinUI Is GREAT!" />
                         </StackPanel>
                     </dev:Spoiler>
                 </StackPanel>
