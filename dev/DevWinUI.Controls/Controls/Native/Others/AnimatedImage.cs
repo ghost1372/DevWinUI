@@ -10,7 +10,8 @@ public partial class AnimatedImage : Control
     private Image _bottomImage;
     private Image _topImage;
     private Compositor _compositor;
-    private ScalarKeyFrameAnimation? _opacityAnimation;
+    private ScalarKeyFrameAnimation _opacityAnimation;
+    private CompositionScopedBatch _currentBatch;
 
     public Uri ImageUrl
     {
@@ -19,101 +20,103 @@ public partial class AnimatedImage : Control
     }
 
     public static readonly DependencyProperty ImageUrlProperty =
-        DependencyProperty.Register(nameof(ImageUrl), typeof(Uri), typeof(AnimatedImage), new PropertyMetadata(null, OnImageSourceChanged));
+        DependencyProperty.Register(nameof(ImageUrl), typeof(Uri), typeof(AnimatedImage), new PropertyMetadata(null, OnImageChanged));
 
     public BitmapImage ImageSource
     {
-        get { return (BitmapImage)GetValue(ImageSourceProperty); }
-        set { SetValue(ImageSourceProperty, value); }
+        get => (BitmapImage)GetValue(ImageSourceProperty);
+        set => SetValue(ImageSourceProperty, value);
     }
 
     public static readonly DependencyProperty ImageSourceProperty =
-        DependencyProperty.Register(nameof(ImageSource), typeof(BitmapImage), typeof(AnimatedImage), new PropertyMetadata(null, OnImageSourceChanged));
+        DependencyProperty.Register(nameof(ImageSource), typeof(BitmapImage), typeof(AnimatedImage), new PropertyMetadata(null, OnImageChanged));
 
     public Stretch Stretch
     {
-        get { return (Stretch)GetValue(StretchProperty); }
-        set { SetValue(StretchProperty, value); }
+        get => (Stretch)GetValue(StretchProperty);
+        set => SetValue(StretchProperty, value);
     }
 
     public static readonly DependencyProperty StretchProperty =
         DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(AnimatedImage), new PropertyMetadata(Stretch.UniformToFill));
 
+    public TimeSpan OpacityAnimationDuration
+    {
+        get { return (TimeSpan)GetValue(OpacityAnimationDurationProperty); }
+        set { SetValue(OpacityAnimationDurationProperty, value); }
+    }
+
+    public static readonly DependencyProperty OpacityAnimationDurationProperty =
+        DependencyProperty.Register(nameof(OpacityAnimationDuration), typeof(TimeSpan), typeof(AnimatedImage), new PropertyMetadata(TimeSpan.FromMilliseconds(600)));
+
     public AnimatedImage()
     {
-        this.DefaultStyleKey = typeof(AnimatedImage);
+        DefaultStyleKey = typeof(AnimatedImage);
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
-
         _bottomImage = GetTemplateChild(PART_BottomImage) as Image;
         _topImage = GetTemplateChild(PART_TopImage) as Image;
 
-        InitAnimations();
+        if (_bottomImage == null || _topImage == null)
+            return;
 
-        OnIsImageChanged();
+        _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+
+        InitAnimation();
+        UpdateImage();
     }
-    private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+
+    private static void OnImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is AnimatedImage control)
-        {
-            control.OnIsImageChanged();
-        }
+        ((AnimatedImage)d).UpdateImage();
     }
 
-    private void InitAnimations()
+    private void InitAnimation()
     {
         _opacityAnimation = _compositor.CreateScalarKeyFrameAnimation();
-        _opacityAnimation.InsertKeyFrame(0.0f, 1.0f);
-        _opacityAnimation.InsertKeyFrame(1.0f, 0.0f);
-        _opacityAnimation.Duration = TimeSpan.FromMilliseconds(800);
+        _opacityAnimation.InsertKeyFrame(0f, 1f);
+        _opacityAnimation.InsertKeyFrame(1f, 0f);
+        _opacityAnimation.Duration = OpacityAnimationDuration;
     }
 
-    private void OnIsImageChanged()
+    private void UpdateImage()
     {
         if (_bottomImage == null || _topImage == null)
             return;
 
-        BitmapImage bitmapImage = null;
+        ImageSource newSource = ImageSource;
 
-        if (ImageSource != null)
-        {
-            bitmapImage = ImageSource;
-        }
-        else if (ImageUrl != null)
-        {
-            bitmapImage = new BitmapImage(ImageUrl);
-        }
-        else
-        {
+        if (newSource == null && ImageUrl != null)
+            newSource = new BitmapImage(ImageUrl);
+
+        if (newSource == null)
             return;
-        }
 
-        _bottomImage.Source = bitmapImage;
+        if (_bottomImage.Source == newSource)
+            return;
 
-        _bottomImage.Opacity = 1;
+        _bottomImage.Source = newSource;
 
         var topVisual = ElementCompositionPreview.GetElementVisual(_topImage);
-        topVisual.Opacity = 1.0f;
+
+        _currentBatch?.Dispose();
+
+        topVisual.Opacity = 1f;
+
+        _currentBatch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
 
         topVisual.StartAnimation("Opacity", _opacityAnimation);
 
-        // Set new image after fade-out
-        _ = Task.Delay(800).ContinueWith(_ =>
+        _currentBatch.Completed += (s, e) =>
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                try
-                {
-                    _topImage.Source = bitmapImage;
-                    topVisual.Opacity = 1.0f;
-                }
-                catch { }
-            });
-        });
+            _topImage.Source = newSource;
+            topVisual.Opacity = 1f;
+        };
+
+        _currentBatch.End();
     }
 }
