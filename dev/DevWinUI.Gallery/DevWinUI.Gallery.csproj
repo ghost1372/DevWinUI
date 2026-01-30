@@ -66,8 +66,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" />
-    <AdditionalFiles Include="**\*.xaml" />
+    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
+    <AdditionalFiles Include="**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
   </ItemGroup>
   <ItemGroup>
     <CompilerVisibleProperty Include="NavigationMappingsNamespace" />
