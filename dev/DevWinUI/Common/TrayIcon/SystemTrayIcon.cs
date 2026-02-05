@@ -238,7 +238,13 @@ public partial class SystemTrayIcon : IDisposable
         if (IsVisible)
             UpdateIcon();
     }
-
+    public void SetTheme(ElementTheme elementTheme)
+    {
+        if (_window != null && _window.Content is FrameworkElement element)
+        {
+            element.RequestedTheme = elementTheme;
+        }
+    }
     private void AddToTray(uint iconId)
     {
         if (currentIcon.Value == 0) // Fallback to default icon
