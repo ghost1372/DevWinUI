@@ -17,13 +17,9 @@
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <!--  Temporary Fix TitleBar Icon  -->
-            <TitleBar.LeftHeader>
-                <ImageIcon Width="16"
-                           Height="16"
-                           Margin="2,0,14,0"
-                           Source="ms-appx:///Assets/AppIcon.png" />
-            </TitleBar.LeftHeader>
+            <TitleBar.IconSource>
+                <ImageIconSource ImageSource="ms-appx:///Assets/AppIcon.png" />
+            </TitleBar.IconSource>
             <TitleBar.RightHeader>
                 <Button x:Name="ThemeButton"
                         Height="32"
