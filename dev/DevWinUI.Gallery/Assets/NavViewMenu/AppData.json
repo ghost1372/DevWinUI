@@ -163,6 +163,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.RichButtonPage",
+          "Title": "Rich Button",
+          "Subtitle": "A Button with More Options",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SpoilerPage",
           "Title": "Spoiler",
           "Subtitle": "Show/Hide a Content.",

@@ -136,6 +136,7 @@ Install-Package DevWinUI
 ## 🔥 DevWinUI.Controls 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ RichButton
 - ✨ Spoiler
 - ✨ SidebarView
 - ✨ Toolbar
@@ -329,6 +330,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### RichButton
+![RichButton](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RichButton.gif)
 
 ### Spoiler
 ![Spoiler](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Spoiler.gif)

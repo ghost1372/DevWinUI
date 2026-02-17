@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.RichButtonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/richButton">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:RichButton Title="Title" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <dev:RichButton Title="Decima"
+                                        IsEnabled="True"
+                                        SubTitle="Connected, secured">
+                            <dev:RichButton.Icon>
+                                <FontIcon Foreground="{ThemeResource SystemAccentColor}"
+                                          Glyph="&#xE701;" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                        <dev:RichButton Title="Windows Update"
+                                        SubTitle="Last checked: 1 hour ago">
+                            <dev:RichButton.Icon>
+                                <ImageIcon Width="22"
+                                           Height="22"
+                                           Source="ms-appx:///Assets/update.png" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <dev:RichButton DisplayMode="ReadOnly">
+                            <dev:RichButton.Icon>
+                                <Viewbox Width="92"
+                                         Height="92"
+                                         Margin="0,0,10,0">
+                                    <FontIcon Foreground="{ThemeResource SystemAccentColor}"
+                                              Glyph="&#xE701;" />
+                                </Viewbox>
+                            </dev:RichButton.Icon>
+
+                            <dev:RichButton.Title>
+                                <TextBlock FontSize="18"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                                           Text="Wi-Fi (Decima)" />
+                            </dev:RichButton.Title>
+                            <dev:RichButton.SubTitle>
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    <Viewbox Width="12"
+                                             Height="12">
+                                        <FontIcon Foreground="{ThemeResource SystemAccentColor}"
+                                                  Glyph="&#xE774;" />
+                                    </Viewbox>
+                                    <TextBlock FontWeight="SemiBold"
+                                               Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                               Style="{ThemeResource BaseTextBlockStyle}"
+                                               Text="Connected, secured" />
+                                </StackPanel>
+                            </dev:RichButton.SubTitle>
+                        </dev:RichButton>
+                        <dev:RichButton Title="Properties"
+                                        Width="150"
+                                        SubTitle="Public network 5 GHz">
+                            <dev:RichButton.Icon>
+                                <FontIcon Glyph="&#xE946;" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                        <dev:RichButton Title="Data usage"
+                                        SubTitle="0 MB, last 30 days">
+                            <dev:RichButton.Icon>
+                                <FontIcon Glyph="&#xEB05;" />
+                            </dev:RichButton.Icon>
+                            <dev:RichButton.ActionIcon>
+                                <Viewbox Width="16"
+                                         Height="16">
+                                    <FontIcon Glyph="&#xE76C;" />
+                                </Viewbox>
+                            </dev:RichButton.ActionIcon>
+                        </dev:RichButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <dev:RichButton Title="Delete"
+                                        DisplayMode="Normal">
+                            <dev:RichButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                        <dev:RichButton Title="Delete"
+                                        DisplayMode="Subtle">
+                            <dev:RichButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                        <dev:RichButton DisplayMode="Normal">
+                            <dev:RichButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                        <dev:RichButton DisplayMode="Subtle">
+                            <dev:RichButton.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </dev:RichButton.Icon>
+                        </dev:RichButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <dev:RichButton DisplayMode="ReadOnly">
+                            <dev:RichButton.Icon>
+                                <Border Width="110"
+                                        Height="60"
+                                        Background="Purple"
+                                        CornerRadius="{ThemeResource ControlCornerRadius}" />
+                            </dev:RichButton.Icon>
+
+                            <dev:RichButton.Title>
+                                <TextBlock FontSize="18"
+                                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                                           Text="DESKTOP-3R39MPM" />
+                            </dev:RichButton.Title>
+                            <dev:RichButton.SubTitle>
+                                <StackPanel Margin="0,-5,0,0" Spacing="5">
+                                    <TextBlock FontWeight="SemiLight"
+                                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                               Style="{ThemeResource BaseTextBlockStyle}"
+                                               Text="GE60 2PC" />
+                                    <HyperlinkButton Margin="-12,-10,0,0"
+                                                     Content="Rename" />
+                                </StackPanel>
+                            </dev:RichButton.SubTitle>
+                        </dev:RichButton>
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
