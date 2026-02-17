@@ -145,6 +145,7 @@ Themes\Styles\Controls\ProfileControl.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
 Themes\Styles\Controls\RedirectVisualView.xaml
+Themes\Styles\Controls\RichButton.xaml
 Themes\Styles\Controls\SegmentedSlider.xaml
 Themes\Styles\Controls\SelectableTextBlock.xaml
 Themes\Styles\Controls\SelectorBarSegmented.xaml
@@ -8979,6 +8980,57 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="NoEffectSubtleButtonStyle" TargetType="Button">
+    <Setter Property="Background" Value="{ThemeResource SubtleButtonBackground}" />
+    <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+    <Setter Property="Foreground" Value="{ThemeResource SubtleButtonForeground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource SubtleButtonBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+    <Setter Property="Padding" Value="{StaticResource ButtonPadding}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="FocusVisualMargin" Value="-3" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <ContentPresenter xmlns:local="using:Microsoft.UI.Xaml.Controls" x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" local:AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
+            <ContentPresenter.BackgroundTransition>
+              <BrushTransition Duration="0:0:0.083" />
+            </ContentPresenter.BackgroundTransition>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver" />
+                <VisualState x:Name="Pressed" />
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBackgroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBorderBrushDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                  <VisualState.Setters>
+                    <!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+                    <Setter Target="ContentPresenter.(controls:AnimatedIcon.State)" Value="Normal" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </ContentPresenter>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="HeaderNavigationButtonStyle" TargetType="Button">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -14839,6 +14891,31 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </Setter>
   </Style>
   <Style TargetType="local:RedirectVisualView" BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" />
+  <Style x:Key="DefaultRichButtonStyle" TargetType="local:RichButton">
+    <Setter Property="TitleForeground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="SubTitleForeground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:RichButton">
+          <Button x:Name="PART_Button" Command="{TemplateBinding Command}" CommandParameter="{TemplateBinding CommandParameter}" IsEnabled="{TemplateBinding IsEnabled}" Style="{StaticResource SubtleButtonStyle}">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <ContentPresenter x:Name="PART_IconPresenter" Content="{TemplateBinding Icon}" Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+              <StackPanel x:Name="PART_TitleStackPanel" Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical" Spacing="5">
+                <ContentPresenter VerticalAlignment="Center" Content="{TemplateBinding Title}" FontWeight="SemiBold" Foreground="{TemplateBinding TitleForeground}" TextWrapping="Wrap" Visibility="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+                <ContentPresenter VerticalAlignment="Center" Content="{TemplateBinding SubTitle}" FontSize="{StaticResource CaptionTextBlockFontSize}" FontWeight="Normal" Foreground="{TemplateBinding SubTitleForeground}" TextWrapping="Wrap" Visibility="{Binding SubTitle, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+              </StackPanel>
+              <ContentPresenter x:Name="PART_ActionIconPresenter" Grid.Column="2" Margin="32,0,0,0" Content="{TemplateBinding ActionIcon}" Visibility="{Binding ActionIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+            </Grid>
+          </Button>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultSegmentedSliderStyle" TargetType="local:SegmentedSlider">
     <Setter Property="Template">
       <Setter.Value>
@@ -17209,6 +17286,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   </Style>
   <Style TargetType="local:ProgressButton" BasedOn="{StaticResource DefaultProgressButtonStyle}" />
   <Style TargetType="local:ProgressRing" BasedOn="{StaticResource DefaultProgressRingStyle}" />
+  <Style TargetType="local:RichButton" BasedOn="{StaticResource DefaultRichButtonStyle}" />
   <Style TargetType="local:SegmentedSlider" BasedOn="{StaticResource DefaultSegmentedSliderStyle}" />
   <Style TargetType="local:SettingsGroup" BasedOn="{StaticResource DefaultSettingsGroupStyle}" />
   <Style TargetType="local:Shield" BasedOn="{StaticResource DefaultShieldStyle}" />
