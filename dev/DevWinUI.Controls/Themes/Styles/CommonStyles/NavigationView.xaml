@@ -241,11 +241,13 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="CompactPaneLength" Value="{ThemeResource RailNavigationViewCompactPaneLength}" />
         <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-        <Setter Property="MenuItemContainerStyle" Value="{StaticResource NavigationViewItemStoreStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="NavigationView">
                     <Grid x:Name="RootGrid">
+                        <Grid.Resources>
+                            <Style TargetType="NavigationViewItem" BasedOn="{StaticResource NavigationViewItemStoreStyle}" />
+                        </Grid.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="DisplayModeGroup">
                                 <VisualState x:Name="Compact" />
