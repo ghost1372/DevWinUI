@@ -128,4 +128,22 @@ public partial class CompositionShadow
             await ctl.UpdateColorFromImageAsync();
         }
     }
+
+    public bool IsRounded
+    {
+        get { return (bool)GetValue(IsRoundedProperty); }
+        set { SetValue(IsRoundedProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsRoundedProperty =
+        DependencyProperty.Register(nameof(IsRounded), typeof(bool), typeof(CompositionShadow), new PropertyMetadata(false, OnIsRoundedChanged));
+
+    private static void OnIsRoundedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (CompositionShadow)d;
+        if (ctl != null)
+        {
+            ctl.UpdateIsRounded();
+        }
+    }
 }

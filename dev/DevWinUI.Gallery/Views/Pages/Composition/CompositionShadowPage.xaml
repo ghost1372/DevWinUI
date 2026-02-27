@@ -45,6 +45,9 @@
                                      IsHexInputVisible="False"
                                      IsMoreButtonVisible="False"
                                      Color="Yellow" />
+                        <ToggleSwitch x:Name="TGIsRounded"
+                                      Header="Is Rounded"
+                                      IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
@@ -78,6 +81,14 @@
                         <Polygon Fill="Blue"
                                  Points="50,0 0,50 50,50" />
                     </dev:CompositionShadow>
+                    <dev:CompositionShadow Width="100"
+                                           Height="100"
+                                           BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}"
+                                           IsRounded="{x:Bind TGIsRounded.IsOn, Mode=OneWay}"
+                                           OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}"
+                                           OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}"
+                                           ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}"
+                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
                 </StackPanel>
 
             </local:ControlExample>

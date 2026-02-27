@@ -15,7 +15,9 @@ public partial class CompositionShadow : Control
     public DropShadow DropShadow => _dropShadow;
 
     public SpriteVisual Visual => _shadowVisual;
+    public Compositor compositor;
 
+    private bool _isCustomMask;
     public CompositionBrush Mask
     {
         get => _dropShadow?.Mask;
@@ -24,6 +26,7 @@ public partial class CompositionShadow : Control
             if (_dropShadow != null)
             {
                 _dropShadow.Mask = value;
+                _isCustomMask = value != null; // mark that user provided a mask
             }
         }
     }
@@ -32,7 +35,7 @@ public partial class CompositionShadow : Control
         this.DefaultStyleKey = typeof(CompositionShadow);
         this.SizeChanged += CompositionShadow_SizeChanged;
         this.Loaded += CompositionShadow_Loaded;
-        var compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+        compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         _shadowVisual = compositor.CreateSpriteVisual();
         _dropShadow = compositor.CreateDropShadow();
@@ -70,7 +73,15 @@ public partial class CompositionShadow : Control
 
     private void ConfigureShadowVisualForContent()
     {
-        UpdateShadowMask();
+        if (IsRounded)
+        {
+            UpdateIsRounded();
+        }
+        else
+        {
+            UpdateShadowMask();
+        }
+
         UpdateShadowSize();
 
         if (_dropShadow != null)
@@ -87,25 +98,26 @@ public partial class CompositionShadow : Control
         if (_dropShadow == null)
             return;
 
-        if (Content != null)
+        // If IsRounded is true, always use rounded mask
+        if (IsRounded)
+            return; // Mask is already set in UpdateIsRounded
+
+        // Only auto-generate mask if user hasn't set a custom mask
+        if (!_isCustomMask && Content != null)
         {
             CompositionBrush mask = null;
             if (Content is Image image)
-            {
                 mask = image.GetAlphaMask();
-            }
             else if (Content is Shape shape)
-            {
                 mask = shape.GetAlphaMask();
-            }
             else if (Content is TextBlock textBlock)
-            {
                 mask = textBlock.GetAlphaMask();
-            }
+
             _dropShadow.Mask = mask;
         }
-        else
+        else if (!_isCustomMask)
         {
+            // fallback if Content is null or unsupported
             _dropShadow.Mask = null;
         }
     }
@@ -154,6 +166,39 @@ public partial class CompositionShadow : Control
         else
         {
             Color = Colors.Black;
+        }
+    }
+
+    private void UpdateIsRounded()
+    {
+        if (IsRounded)
+        {
+            float width = (float)this.ActualWidth;
+            float height = (float)this.ActualHeight;
+            float radius = MathF.Min(width, height) / 2f;
+
+            var ellipse = compositor.CreateEllipseGeometry();
+            ellipse.Center = new Vector2(width / 2f, height / 2f);
+            ellipse.Radius = new Vector2(radius, radius);
+
+            var shape = compositor.CreateSpriteShape(ellipse);
+            shape.FillBrush = compositor.CreateColorBrush(Colors.White);
+
+            var shapeVisual = compositor.CreateShapeVisual();
+            shapeVisual.Size = new Vector2(width, height);
+            shapeVisual.Shapes.Add(shape);
+
+            var visualSurface = compositor.CreateVisualSurface();
+            visualSurface.SourceVisual = shapeVisual;
+            visualSurface.SourceSize = new Vector2(width, height);
+
+            var maskBrush = compositor.CreateSurfaceBrush(visualSurface);
+
+            _dropShadow.Mask = maskBrush;
+        }
+        else
+        {
+            UpdateShadowMask();
         }
     }
 }
