@@ -16,11 +16,11 @@
     <DevWinUI_Gallery_MinorVersion>9</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>3</DevWinUI_PatchVersion>
-    <DevWinUI_Controls_PatchVersion>3</DevWinUI_Controls_PatchVersion>
+    <DevWinUI_PatchVersion>4</DevWinUI_PatchVersion>
+    <DevWinUI_Controls_PatchVersion>4</DevWinUI_Controls_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>3</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>4</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
