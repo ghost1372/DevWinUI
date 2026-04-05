@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Runtime.InteropServices.Marshalling;
+
+namespace DevWinUI;
 
 public enum TaskbarStates
 {
@@ -8,12 +10,16 @@ public enum TaskbarStates
     Error = 0x4,
     Paused = 0x8
 }
+
 public static partial class TaskbarHelper
 {
-    [ComImport()]
+    private static readonly Guid CLSID_TaskbarList = new("56fdf344-fd6d-11d0-958a-006097c9a090");
+    private static readonly Guid IID_ITaskbarList3 = new("ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf");
+
     [Guid("ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    private interface ITaskbarList3
+    [GeneratedComInterface]
+    internal partial interface ITaskbarList3
     {
         // ITaskbarList
         [PreserveSig]
@@ -33,20 +39,37 @@ public static partial class TaskbarHelper
 
         // ITaskbarList3
         [PreserveSig]
-        void SetProgressValue(IntPtr hwnd, UInt64 ullCompleted, UInt64 ullTotal);
+        void SetProgressValue(IntPtr hwnd, ulong ullCompleted, ulong ullTotal);
         [PreserveSig]
         void SetProgressState(IntPtr hwnd, TaskbarStates state);
     }
 
-    [ComImport()]
-    [Guid("56fdf344-fd6d-11d0-958a-006097c9a090")]
-    [ClassInterface(ClassInterfaceType.None)]
-    private class TaskbarInstance
-    {
-    }
+    private static readonly ITaskbarList3 taskbarInstance;
+    private static readonly bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
 
-    private static ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
-    private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
+    static TaskbarHelper()
+    {
+        if (taskbarSupported)
+        {
+            unsafe
+            {
+                void* ppv;
+                HRESULT hr = PInvoke.CoCreateInstance(
+                    in CLSID_TaskbarList,
+                    null,
+                    Windows.Win32.System.Com.CLSCTX.CLSCTX_INPROC_SERVER,
+                    in IID_ITaskbarList3,
+                    out ppv);
+
+                if (hr.Succeeded && ppv != null)
+                {
+                    taskbarInstance = (ITaskbarList3)new StrategyBasedComWrappers().GetOrCreateObjectForComInstance((IntPtr)ppv, CreateObjectFlags.None);
+                    Marshal.Release((IntPtr)ppv);
+                    taskbarInstance.HrInit();
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Sets the progress state of a specified window in the taskbar if supported.
