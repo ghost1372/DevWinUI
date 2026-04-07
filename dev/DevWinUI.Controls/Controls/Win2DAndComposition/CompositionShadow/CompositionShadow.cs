@@ -216,9 +216,9 @@ public partial class CompositionShadow : Control
 
         var easing = breathEasing ?? compositor.CreateEaseInOutSineEasingFunction();
 
-        animation.InsertKeyFrame(0f, 0f, easing);
+        animation.InsertKeyFrame(0f, 5f, easing);
         animation.InsertKeyFrame(0.5f, 30f, easing);
-        animation.InsertKeyFrame(1f, 0f, easing);
+        animation.InsertKeyFrame(1f, 5f, easing);
 
         animation.Duration = breathDuration ?? TimeSpan.FromSeconds(2);
         animation.IterationBehavior = AnimationIterationBehavior.Forever;
