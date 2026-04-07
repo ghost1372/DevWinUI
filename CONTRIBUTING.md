@@ -19,7 +19,7 @@ To get started quickly, watch these YouTube video tutorials:
 > [!TIP]  
 > Please confirm that your development environment meets the requirements before compiling.
 
-### 1. 🖥️ Visual Studio 2022
+### 1. 🖥️ Visual Studio 2026
 
 Ensure that your installation includes the appropriate workloads:
 
@@ -36,16 +36,7 @@ Ensure that you have following installed:
 - .Net **10.x**
 - Windows 10 SDK (10.0.19041)
 
-### 3. 📂 Solution Format (SLNX)
-
-This project uses the new **`.slnx`** solution format.
-
-> ⚠️ This feature is currently in preview — enable it in Visual Studio:  
-> **Tools → Options → Preview Features → Use the new solution format (`.slnx`)**
-
-![DevWinUI](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SLNX.png)
-
-### 4. Installed the **XAML Styler** extension (Optional for Building, Required for Contribute):  
+### 3. Installed the **XAML Styler** extension (Optional for Building, Required for Contribute):  
   [XAML Styler for Visual Studio](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
 
 Make sure your environment matches these requirements to avoid issues during compilation.
@@ -57,10 +48,9 @@ Make sure your environment matches these requirements to avoid issues during com
 ```bash
 DevWinUI/
   dev/
-    DevWinUI/ # Core (non-XAML) logic
-    DevWinUI.Controls/ # Custom controls and styles
-      Themes/ # Styles, templates, and resources
-
+    DevWinUI/ # Full Library (Custom controls and Styles and Base Library)
+        Themes/ # Styles, templates, and resources
+    DevWinUI.Base/ # Core Library
     DevWinUI.ContextMenu/ # Cross-platform context menu logic
     DevWinUI.Gallery/ # Demo app for controls
   VSIX/ # Source code for Visual Studio item templates
@@ -89,17 +79,18 @@ To fix certain Visual Studio issues when switching between `Debug` and `Release`
 
 ## 🚀 Debug and Release Configuration
 
-- **Debug** builds target only `.NET 9` for faster development.
-- **Release** builds target both `.NET 8` and `.NET 9`, and will automatically generate a NuGet package in `Output/`.
+- **Debug** builds target only `.NET 10` for faster development.
+- **Release** builds target both `.NET 8`, `.Net 9` and `.NET 10`, and will automatically generate a NuGet package in `Output/`.
 
 ---
 
 ## 🧱 Project Details
 
-### 📁 DevWinUI (Core Library)
+### 📁 DevWinUI.Base (Core Library)
 
 Contains:
 - Attached properties
+- Common
 - Helpers
 - Native methods
 - Services
@@ -111,7 +102,7 @@ Contains:
 
 ---
 
-### 📁 DevWinUI.Controls (Control Library)
+### 📁 DevWinUI (Controls Library)
 
 Contains all XAML-related functionality:
 - Custom controls
@@ -243,13 +234,13 @@ Versions are controlled centrally in `Directory.Build.props` with properties lik
 
 <!-- Minor Version -->
 <DevWinUI_MinorVersion>4</DevWinUI_MinorVersion>
-<DevWinUI_Controls_MinorVersion>4</DevWinUI_Controls_MinorVersion>
+<DevWinUI_Base_MinorVersion>4</DevWinUI_Base_MinorVersion>
 <DevWinUI_ContextMenu_MinorVersion>3</DevWinUI_ContextMenu_MinorVersion>
 <DevWinUI_Gallery_MinorVersion>4</DevWinUI_Gallery_MinorVersion>
 
 <!-- Patch Version -->
 <DevWinUI_PatchVersion>1</DevWinUI_PatchVersion>
-<DevWinUI_Controls_PatchVersion>1</DevWinUI_Controls_PatchVersion>
+<DevWinUI_Base_PatchVersion>1</DevWinUI_Base_PatchVersion>
 <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
 <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
 
