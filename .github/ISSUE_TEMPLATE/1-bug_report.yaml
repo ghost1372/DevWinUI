@@ -35,13 +35,8 @@ body:
     attributes:
       label: NuGet package version
       options:
-        - "DevWinUI 9.5.0"
-        - "DevWinUI 9.4.2"
-        - "DevWinUI 9.3.0"
-        - "DevWinUI 9.2.0"
-        - "DevWinUI 9.1.0"
-        - "DevWinUI 9.0.0"
-        - "DevWinUI 8.9.2"
+        - "DevWinUI 10.0.0"
+        - "DevWinUI 9.9.4"
   - type: dropdown
     attributes:
       label: IDE
