@@ -10,20 +10,14 @@
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
     <EnableMsixTooling>true</EnableMsixTooling>
 	  <TrimMode>partial</TrimMode>
-	  <ImplicitUsings>true</ImplicitUsings>
-	  <LangVersion>preview</LangVersion>
-	  <IsAotCompatible>True</IsAotCompatible>
     <PublishAot>true</PublishAot>
-    <WinUISDKReferences>false</WinUISDKReferences>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 	  <Version>$(LibraryMajorVersion).$(DevWinUI_Gallery_MinorVersion).$(DevWinUI_Gallery_PatchVersion)$(PreviewBuildSuffix)</Version>
-	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>
 	  <!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 	  <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-	  <GITHUB_ACTIONS>false</GITHUB_ACTIONS>
   </PropertyGroup>
   <ItemGroup>
 	  <Content Include="ControlPagesSampleCode\**\*">
@@ -39,14 +33,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.2.250402" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.3.260402-preview2" />
     <PackageReference Include="DevWinUI.SourceGenerator" Version="9.9.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.0-prerelease.251115.2" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.2" />
 	  <PackageReference Include="nucs.JsonSettings.AutosaveGenerator" Version="2.0.4" />
-	  <PackageReference Include="Serilog" Version="4.3.0" />
+	  <PackageReference Include="Serilog" Version="4.3.1" />
 	  <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
 	  <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
   </ItemGroup>
@@ -66,8 +60,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
-    <AdditionalFiles Include="**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
+    <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <AdditionalFiles Include="Views\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <CompilerVisibleProperty Include="NavigationMappingsNamespace" />
