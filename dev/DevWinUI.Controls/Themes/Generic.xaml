@@ -97,6 +97,7 @@ Themes\Styles\Controls\DepthLayerView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
+Themes\Styles\Controls\EdgeLighting.xaml
 Themes\Styles\Controls\FlipBlock.xaml
 Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlipToReveal.xaml
@@ -2229,6 +2230,18 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
             </Canvas.RenderTransform>
           </Canvas>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultEdgeLightingStyle" TargetType="local:EdgeLighting">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:EdgeLighting">
+          <Border x:Name="PART_Border">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -12920,6 +12933,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style TargetType="local:EdgeLighting" BasedOn="{StaticResource DefaultEdgeLightingStyle}" />
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="BorderBrush" Value="Gray" />
