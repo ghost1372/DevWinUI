@@ -16,7 +16,7 @@ public partial class CompositionShadow : Control
 
     public SpriteVisual Visual => _shadowVisual;
     public Compositor compositor;
-
+    private ScalarKeyFrameAnimation breathAnimation;
     private bool _isCustomMask;
     public CompositionBrush Mask
     {
@@ -200,5 +200,43 @@ public partial class CompositionShadow : Control
         {
             UpdateShadowMask();
         }
+    }
+    public DropShadow GetDropShadow()
+    {
+        return _dropShadow;
+    }
+    public void StartBreath(CompositionEasingFunction breathEasing = null, TimeSpan? breathDuration = null)
+    {
+        if (breathAnimation != null)
+            return;
+
+        var compositor = _dropShadow.Compositor;
+
+        var animation = compositor.CreateScalarKeyFrameAnimation();
+
+        var easing = breathEasing ?? compositor.CreateEaseInOutSineEasingFunction();
+
+        animation.InsertKeyFrame(0f, 0f, easing);
+        animation.InsertKeyFrame(0.5f, 30f, easing);
+        animation.InsertKeyFrame(1f, 0f, easing);
+
+        animation.Duration = breathDuration ?? TimeSpan.FromSeconds(2);
+        animation.IterationBehavior = AnimationIterationBehavior.Forever;
+        animation.Direction = AnimationDirection.Alternate;
+
+        _dropShadow.StartAnimation("BlurRadius", animation);
+
+        breathAnimation = animation;
+    }
+
+    public void StopBreath()
+    {
+        if (breathAnimation == null)
+            return;
+
+        _dropShadow.StopAnimation("BlurRadius");
+        breathAnimation = null;
+
+        _dropShadow.BlurRadius = 0;
     }
 }
