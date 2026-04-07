@@ -6,7 +6,7 @@
     <AssemblyName>$(BaseNamespace).SourceGenerator</AssemblyName>
     <PackageId>$(BaseNamespace).SourceGenerator</PackageId>
     <Description>DevWinUI SourceGenerator</Description>
-    <PackageTags>winui generator WindDevUI WinDevUIContextMenu contextmenu contextmenuextensions wpf packaged winform winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell WinUICommunity</PackageTags>
+    <PackageTags>winui generator DevWinUI DevWinUIContextMenu contextmenu contextmenuextensions wpf packaged winform winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell WinUICommunity</PackageTags>
 
     <IncludeAnalyzer>true</IncludeAnalyzer>
     <IncludeBuildOutput>false</IncludeBuildOutput>
