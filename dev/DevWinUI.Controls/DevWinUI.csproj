@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>$(LibraryMajorVersion).$(DevWinUI_Controls_MinorVersion).$(DevWinUI_Controls_PatchVersion)$(PreviewBuildSuffix)</Version>
-    <PackageId>$(BaseNamespace).Controls</PackageId>
-    <AssemblyName>$(BaseNamespace).Controls</AssemblyName>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_MinorVersion).$(DevWinUI_PatchVersion)$(PreviewBuildSuffix)</Version>
+    <PackageId>$(BaseNamespace)</PackageId>
+    <AssemblyName>$(BaseNamespace)</AssemblyName>
     <Description>
-      Experience WinUI 3 quickly and easily with the help of DevWinUI.Controls, Everything you need to develop an application is gathered in one place. DevWinUI.Controls Includes custom controls, styles, landingPages,Compositions and win2d.
+      Experience WinUI 3 quickly and easily with the help of DevWinUI, Everything you need to develop an application is gathered in one place. DevWinUI Includes custom controls, styles, landingPages,Compositions and win2d.
     </Description>
     <PackageTags>winui winui3 win11 xaml DevWinUI DevWinUI.Controls SettingsUI Components settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard landingPages win2d composition</PackageTags>
     <!-- Remove trailing .0 from Windows TFM -->
@@ -44,13 +44,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
+    <ProjectReference Include="..\DevWinUI\DevWinUI.Base.csproj" />
   </ItemGroup>
 
   <Target Name="PackCustomContent">
     <ItemGroup>
       <TfmSpecificPackageFile Include="Themes\Generic.xaml">
-        <PackagePath>lib\$(CleanTargetFramework)\DevWinUI.Controls\Themes\</PackagePath>
+        <PackagePath>lib\$(CleanTargetFramework)\DevWinUI\Themes\</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>

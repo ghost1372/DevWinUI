@@ -18,6 +18,6 @@ public partial class ImageEx : ImageExBase
         : base()
     {
         DefaultStyleKey = typeof(ImageEx);
-        DefaultStyleResourceUri = new System.Uri("ms-appx:///DevWinUI.Controls/Themes/Generic.xaml");
+        DefaultStyleResourceUri = new System.Uri("ms-appx:///DevWinUI/Themes/Generic.xaml");
     }
 }

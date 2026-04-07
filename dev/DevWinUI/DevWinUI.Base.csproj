@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>$(LibraryMajorVersion).$(DevWinUI_MinorVersion).$(DevWinUI_PatchVersion)$(PreviewBuildSuffix)</Version>
-    <AssemblyName>$(BaseNamespace)</AssemblyName>
-    <PackageId>$(BaseNamespace)</PackageId>
+    <Version>$(LibraryMajorVersion).$(DevWinUI_Base_MinorVersion).$(DevWinUI_Base_PatchVersion)$(PreviewBuildSuffix)</Version>
+    <AssemblyName>$(BaseNamespace).Base</AssemblyName>
+    <PackageId>$(BaseNamespace).Base</PackageId>
     <Description>Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place. Helpers, Extensions...</Description>
     <PackageTags>winui winui3 win11 xaml core DevWinUI Common SettingsUI settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard composition</PackageTags>
   </PropertyGroup>
