@@ -11,7 +11,9 @@ internal static partial class Constants
     internal const string BreadcrumbMappingsNamespace = "BreadcrumbMappingsNamespace";
     internal const char ConstantSeparator = '/';
     internal static readonly DiagnosticDescriptor DEVGEN1002 = new(
+#pragma warning disable RS2008 // Enable analyzer release tracking
                 id: nameof(DEVGEN1002),
+#pragma warning restore RS2008 // Enable analyzer release tracking
                 title: "Multiple files with the same name detected",
                 messageFormat: "Multiple files named '{0}' were detected. Ensure all generated localization string files have unique names.",
                 category: "FileGeneration",
