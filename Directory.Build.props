@@ -6,34 +6,35 @@
     <SourceGeneratorLibName>DevWinUI.SourceGenerator</SourceGeneratorLibName>
     
     <!-- Major Version -->
-    <LibraryMajorVersion>9</LibraryMajorVersion>
+    <LibraryMajorVersion>10</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>9</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>9</DevWinUI_Base_MinorVersion>
-    <DevWinUI_ContextMenu_MinorVersion>9</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_SourceGenerator_MinorVersion>9</DevWinUI_SourceGenerator_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>9</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
+    <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
+    <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>4</DevWinUI_PatchVersion>
-    <DevWinUI_Base_PatchVersion>4</DevWinUI_Base_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>4</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
-    <IsPreviewBuild>false</IsPreviewBuild>
-    <PreviewLabel>-Preview</PreviewLabel>
+    <IsPreviewBuild>true</IsPreviewBuild>
+    <PreviewLabel>-Preview1</PreviewLabel>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
     <CsWin32Version>0.3.269</CsWin32Version>
-    <Win2dVersion>1.3.2</Win2dVersion>
+    <Win2dVersion>1.4.0</Win2dVersion>
+    <WASDKWinUIVersion>1.8.260204000</WASDKWinUIVersion>
     
     <NoWarn>WMC1506;WMC0001;CA1416;CS8632;CS0067;CS0078;CS0649;CS0414;NU1903;NU1902;NU1900;WIN2D0001</NoWarn>
-
+    
     <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
     
     <RootNamespace>$(BaseNamespace)</RootNamespace>
@@ -43,7 +44,7 @@
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
     <CsWinRTAotWarningLevel Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">2</CsWinRTAotWarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-
+    
     <!-- The NuGet package options -->
     <PackageIcon>Icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -77,9 +78,8 @@
   </PropertyGroup>
 
   <!-- The NuGet versions of dependencies to build against. -->
-  <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName) And '$(MSBuildProjectName)' != $(SourceGeneratorLibName)">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250907003" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4948" />
+  <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName) And '$(MSBuildProjectName)' != $(SourceGeneratorLibName) And '$(MSBuildProjectName)' != $(GalleryAppName)">
+    <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="$(WASDKWinUIVersion)" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
