@@ -44,7 +44,6 @@ Controls\Ported\Toolbar\ToolbarToggleButton\ToolbarToggleButton.ThemeResources.x
 Controls\Ported\Toolbar\ToolbarToggleButton\ToolbarToggleButton.xaml
 Themes\Styles\CommonStyles\Button.xaml
 Themes\Styles\CommonStyles\CalendarViewStyle.xaml
-Themes\Styles\CommonStyles\Colors.xaml
 Themes\Styles\CommonStyles\ComboBox.xaml
 Themes\Styles\CommonStyles\Common.xaml
 Themes\Styles\CommonStyles\Converters.xaml
@@ -57,6 +56,7 @@ Themes\Styles\CommonStyles\Panel.xaml
 Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TabViewItem.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
+Themes\Styles\CommonStyles\ThemeResources.xaml
 Themes\Styles\CommonStyles\Thumb.xaml
 Themes\Styles\CommonStyles\ToggleSwitch.xaml
 Themes\Styles\Controls\Accordion.xaml
@@ -280,35 +280,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="FocusStrokeColorInnerBrush" />
-      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
-        <GradientStop Offset="0" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.05" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.35" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.55" Color="#FFFFFFFF" />
-        <GradientStop Offset="0.95" Color="#00FFFFFF" />
-        <GradientStop Offset="1" Color="#00FFFFFF" />
-      </RadialGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Offset="0" Color="#FFE7F2FF" />
-        <GradientStop Offset="0.5" Color="#FFF2F0FF" />
-        <GradientStop Offset="1" Color="#FFFDEFFF" />
-      </LinearGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
-        <GradientStop Offset="0" Color="#E6F0FC" />
-        <GradientStop Offset="0.4" Color="#E6F0FC" />
-        <GradientStop Offset="1" Color="#F0F0F7" />
-      </LinearGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
-        <GradientStop Offset="0" Color="#3286EE" />
-        <GradientStop Offset="0.5" Color="#C8AEC4" />
-        <GradientStop Offset="1" Color="Transparent" />
-      </LinearGradientBrush>
-      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
-      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.6" Color="White" />
-      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
-      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="RailNavigationIconForegroundBrush" ResourceKey="ControlAAFillColorDefaultBrush" />
       <SolidColorBrush x:Key="RailNavigationViewDefaultPaneBackground" Color="Transparent" />
       <SolidColorBrush x:Key="RailNavigationViewExpandedPaneBackground" Color="Transparent" />
@@ -345,6 +316,35 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
       <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TabViewItemRoundedSelectedBorderBrush" ResourceKey="CardStrokeColorDefault" />
+      <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.05" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.35" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.55" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.95" Color="#00FFFFFF" />
+        <GradientStop Offset="1" Color="#00FFFFFF" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#FFE7F2FF" />
+        <GradientStop Offset="0.5" Color="#FFF2F0FF" />
+        <GradientStop Offset="1" Color="#FFFDEFFF" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,1" EndPoint="1, 0">
+        <GradientStop Offset="0" Color="#E6F0FC" />
+        <GradientStop Offset="0.4" Color="#E6F0FC" />
+        <GradientStop Offset="1" Color="#F0F0F7" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+        <GradientStop Offset="0" Color="#3286EE" />
+        <GradientStop Offset="0.5" Color="#C8AEC4" />
+        <GradientStop Offset="1" Color="Transparent" />
+      </LinearGradientBrush>
+      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.6" Color="White" />
+      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
@@ -574,35 +574,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="FocusStrokeColorInnerBrush" />
-      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0.0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
-        <GradientStop Offset="0" Color="#FF000000" />
-        <GradientStop Offset="0.05" Color="#FF000000" />
-        <GradientStop Offset="0.35" Color="#FF000000" />
-        <GradientStop Offset="0.55" Color="#FF000000" />
-        <GradientStop Offset="0.85" Color="#00000000" />
-        <GradientStop Offset="0.95" Color="#00000000" />
-        <GradientStop Offset="1" Color="#00000000" />
-      </RadialGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Offset="0" Color="#FF1E2024" />
-        <GradientStop Offset="0.5" Color="#FF21201F" />
-        <GradientStop Offset="1" Color="#FF251F1A" />
-      </LinearGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
-        <GradientStop Offset="0" Color="#38C8AEC4" />
-        <GradientStop Offset="1" Color="#383286EE" />
-      </LinearGradientBrush>
-      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
-        <GradientStop Offset="0" Color="#3286EE" />
-        <GradientStop Offset="0.5" Color="#C8AEC4" />
-        <GradientStop Offset="1" Color="Transparent" />
-      </LinearGradientBrush>
-      <AcrylicBrush x:Key="GlassAcrylicBackground" />
-      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Color="{ThemeResource SurfaceStrokeColorDefault}" />
-      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
-      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="RailNavigationIconForegroundBrush" ResourceKey="ControlAAFillColorDefaultBrush" />
       <SolidColorBrush x:Key="RailNavigationViewDefaultPaneBackground" Color="Transparent" />
       <SolidColorBrush x:Key="RailNavigationViewExpandedPaneBackground" Color="Transparent" />
@@ -639,6 +610,35 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
       <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TabViewItemRoundedSelectedBorderBrush" ResourceKey="CardStrokeColorDefault" />
+      <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.05" Color="#FF000000" />
+        <GradientStop Offset="0.35" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.85" Color="#00000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient3Brush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#FF1E2024" />
+        <GradientStop Offset="0.5" Color="#FF21201F" />
+        <GradientStop Offset="1" Color="#FF251F1A" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient2Brush" StartPoint="0,0" EndPoint="0.5, 1">
+        <GradientStop Offset="0" Color="#38C8AEC4" />
+        <GradientStop Offset="1" Color="#383286EE" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="CardGradient1Brush" Opacity="0.15" StartPoint="-0.2,0" EndPoint="1, 1">
+        <GradientStop Offset="0" Color="#3286EE" />
+        <GradientStop Offset="0.5" Color="#C8AEC4" />
+        <GradientStop Offset="1" Color="Transparent" />
+      </LinearGradientBrush>
+      <AcrylicBrush x:Key="GlassAcrylicBackground" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Color="{ThemeResource SurfaceStrokeColorDefault}" />
+      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -865,23 +865,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminatePressed" ResourceKey="SystemControlHighlightTransparentBrush" />
       <StaticResource x:Key="ToolbarToggleButtonBorderBrushIndeterminateDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
       <StaticResource x:Key="ToolbarToggleInnerBorderBrush" ResourceKey="SystemColorButtonTextColor" />
-      <RadialGradientBrush x:Key="OverlayRadialGradient" Center="0.5,0.22" GradientOrigin="0.5,0" MappingMode="RelativeToBoundingBox" RadiusX="0.92" RadiusY="0.8200000000000001" SpreadMethod="Pad">
-        <GradientStop Offset="0" Color="#FF000000" />
-        <GradientStop Offset="0.05" Color="#FF000000" />
-        <GradientStop Offset="0.35" Color="#FF000000" />
-        <GradientStop Offset="0.55" Color="#FF000000" />
-        <GradientStop Offset="0.95" Color="#00000000" />
-        <GradientStop Offset="1" Color="#00000000" />
-      </RadialGradientBrush>
-      <SolidColorBrush x:Key="CardGradient3Brush" Color="{ThemeResource CardBackgroundFillColorDefault}" />
-      <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
-      <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
-      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
-      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
-      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
-      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="RailNavigationIconForegroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="RailNavigationViewDefaultPaneBackground" ResourceKey="SystemColorWindowBrush" />
       <StaticResource x:Key="RailNavigationViewExpandedPaneBackground" ResourceKey="SystemColorWindowBrush" />
@@ -918,6 +901,23 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
       <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <SolidColorBrush x:Key="TabViewItemRoundedSelectedBorderBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.05" Color="#FF000000" />
+        <GradientStop Offset="0.35" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="CardGradient3Brush" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
+      <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
+      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
+      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -1414,31 +1414,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
-    <GradientStop Offset="0.1" Color="#FFFFFF" />
-    <GradientStop Offset="0.3" Color="#E9E9E9" />
-    <GradientStop Offset="0.6" Color="#FDFDFD" />
-    <GradientStop Offset="0.9" Color="#FFFFFF" />
-  </LinearGradientBrush>
-  <LinearGradientBrush x:Key="DarkTextGradient" StartPoint="0,0" EndPoint="1,1">
-    <GradientStop Offset="0.1" Color="#303030" />
-    <GradientStop Offset="0.3" Color="#4A4A4A" />
-    <GradientStop Offset="0.6" Color="#161515" />
-    <GradientStop Offset="0.9" Color="#303030" />
-  </LinearGradientBrush>
-  <LinearGradientBrush x:Key="WaveformRightLevelBrush" StartPoint="1,0" EndPoint="1,1">
-    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
-    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight1}" />
-  </LinearGradientBrush>
-  <LinearGradientBrush x:Key="WaveformLeftLevelBrush" StartPoint="1,1" EndPoint="1,0">
-    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
-    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
-  </LinearGradientBrush>
-  <LinearGradientBrush x:Key="SpectrumBarBrush" StartPoint="0.5,1" EndPoint="0.5,0">
-    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
-    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight2}" />
-  </LinearGradientBrush>
-  <SolidColorBrush x:Key="SpectrumPeakBrush" Color="{ThemeResource SystemAccentColorLight1}" />
   <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
   <ItemsPanelTemplate x:Key="ElementGroupHorizontalItemsPanel">
     <StackPanel Orientation="Horizontal" />
@@ -1537,6 +1512,31 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Thickness x:Key="TabViewItemRoundedSelectedBorderThickness">1</Thickness>
   <x:Double x:Key="SecondaryTextFontSize">12</x:Double>
   <x:Double x:Key="HeaderTextFontSize">12</x:Double>
+  <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Offset="0.1" Color="#FFFFFF" />
+    <GradientStop Offset="0.3" Color="#E9E9E9" />
+    <GradientStop Offset="0.6" Color="#FDFDFD" />
+    <GradientStop Offset="0.9" Color="#FFFFFF" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="DarkTextGradient" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Offset="0.1" Color="#303030" />
+    <GradientStop Offset="0.3" Color="#4A4A4A" />
+    <GradientStop Offset="0.6" Color="#161515" />
+    <GradientStop Offset="0.9" Color="#303030" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="WaveformRightLevelBrush" StartPoint="1,0" EndPoint="1,1">
+    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight1}" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="WaveformLeftLevelBrush" StartPoint="1,1" EndPoint="1,0">
+    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
+    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="SpectrumBarBrush" StartPoint="0.5,1" EndPoint="0.5,0">
+    <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorDark2}" />
+    <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorLight2}" />
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="SpectrumPeakBrush" Color="{ThemeResource SystemAccentColorLight1}" />
   <Style x:Key="DefaultAccordionStyle" TargetType="local:Accordion">
     <Setter Property="Template">
       <Setter.Value>
