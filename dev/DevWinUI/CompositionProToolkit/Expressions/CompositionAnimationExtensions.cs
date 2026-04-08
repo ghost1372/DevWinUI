@@ -73,7 +73,9 @@ public static partial class CompositionAnimationExtensions
     public static void SetExpression<T>(this ExpressionAnimation animation,
         Expression<CompositionExpression<T>> expression)
     {
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         var result = CompositionExpressionEngine.CreateCompositionExpression(expression);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         animation.Expression = result.Expression;
         animation.SetParameters(result.Parameters);
     }
@@ -92,7 +94,9 @@ public static partial class CompositionAnimationExtensions
     public static KeyFrameAnimation InsertExpressionKeyFrame<T>(this KeyFrameAnimation animation, float normalizedProgressKey,
         Expression<CompositionExpression<T>> expression, CompositionEasingFunction easingFunction = null)
     {
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         var result = CompositionExpressionEngine.CreateCompositionExpression(expression);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         animation.InsertExpressionKeyFrame(normalizedProgressKey, result.Expression, easingFunction);
         animation.SetParameters(result.Parameters);
 

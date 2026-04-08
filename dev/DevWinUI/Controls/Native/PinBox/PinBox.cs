@@ -8,12 +8,14 @@ public partial class PinBox : Control
     private const string PART_Panel = "PART_Panel";
     private UniformGrid _uniformGrid;
     private List<SecureString> _passwordList;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value 0
     private long _foregroundPropertyToken;
     private long _backgroundPropertyToken;
     private long _borderBrushPropertyToken;
     private long _borderThicknessPropertyToken;
     private long _contextFlyoutPropertyToken;
     private long _cornerRadiusPropertyToken;
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value 0
 
     public PinBox()
     {

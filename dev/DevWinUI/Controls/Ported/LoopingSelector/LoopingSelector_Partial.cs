@@ -469,7 +469,6 @@ public partial class LoopingSelector
         //UNREFERENCED_PARAMETER(pEventArgs);
         var nPointerDeviceType = PointerDeviceType.Touch;
         PointerPoint spPointerPoint;
-        global::Windows.Devices.Input.PointerDevice spPointerDevice;
 
         spPointerPoint = pEventArgs.GetCurrentPoint(null);
         if (spPointerPoint == null)

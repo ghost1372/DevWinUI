@@ -137,7 +137,9 @@ public partial class ExpressionAnimation<T>
         // Clear previous references if any
         _references.Clear();
         _expression = expression;
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         var result = CompositionExpressionEngine.CreateCompositionExpression(_expression);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         _expressionString = result.Expression;
         _references = new Dictionary<string, ExpressionParameter>(result.Parameters);
         _anyReferenceUpdated = true;

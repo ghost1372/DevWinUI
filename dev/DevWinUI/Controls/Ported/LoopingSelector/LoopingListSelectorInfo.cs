@@ -107,7 +107,6 @@ internal partial class LoopingListSelectorInfo : ContentControl
 	{
 		var pointerDeviceType = PointerDeviceType.Touch;
 		PointerPoint spPointerPoint;
-		global::Windows.Devices.Input.PointerDevice spPointerDevice;
 
 		spPointerPoint = pEventArgs.GetCurrentPoint(null);
 		if (spPointerPoint == null) { return; }

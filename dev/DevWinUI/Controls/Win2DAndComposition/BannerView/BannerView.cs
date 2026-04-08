@@ -25,7 +25,7 @@ public partial class BannerView : FlipView
 
     private static readonly string ClampedDistanceNode = $"Clamp({DistanceNode}, -1f, 1f)";
 
-    protected bool IsLoaded { get; private set; }
+    protected new bool IsLoaded { get; private set; }
     private DispatcherTimer timer;
     public BannerView()
     {

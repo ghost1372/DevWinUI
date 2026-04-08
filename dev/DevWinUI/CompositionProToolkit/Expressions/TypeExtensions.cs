@@ -31,6 +31,8 @@ using System.Reflection;
 
 namespace DevWinUI;
 
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+
 /// <summary>
 /// Extension methods for System.Type
 /// </summary>
@@ -217,3 +219,4 @@ public static partial class TypeExtensions
         return fullname ? t.FullName : t.Name;
     }
 }
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.

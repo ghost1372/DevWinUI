@@ -16,7 +16,7 @@ public partial class TimelineProgresser
 
     public double GetCurrentProgress(TimeSpan timeSpan)
     {
-        var beginTimeTicks = 0l;
+        var beginTimeTicks = 0L;
 
         if (BeginTime != null)
             beginTimeTicks = BeginTime.Value.Ticks;

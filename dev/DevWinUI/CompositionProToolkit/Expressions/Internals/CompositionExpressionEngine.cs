@@ -26,6 +26,7 @@
 //
 // CompositionProToolkit v1.0.1
 //
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
@@ -198,12 +199,14 @@ internal abstract partial class CompositionExpressionEngine
         };
 
         // Get all the types which derive from Expression or MemberBinding
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         ExpressionTypes = typeof(Expression)
             .GetTypeInfo()
             .Assembly
             .GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Expression))
                         || t.IsSubclassOf(typeof(MemberBinding)));
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 
 
         // Get all the Visit Methods
@@ -356,7 +359,9 @@ internal abstract partial class CompositionExpressionEngine
         // Is this an Array Index expression?
         if (expression.NodeType == ExpressionType.ArrayIndex)
         {
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
             return VisitArrayExpression(expression);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         }
 
         // Check if it is the outermost BinaryExpression
@@ -1739,3 +1744,4 @@ internal abstract partial class CompositionExpressionEngine
 
     #endregion
 }
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.

@@ -3,7 +3,9 @@
 internal struct ConfettiParticle
 {
     public Vector2 Position;
+#pragma warning disable CS0649
     public Vector2 Velocity2D;
+#pragma warning restore CS0649
 
     public double Wobble;
     public double WobbleSpeed;

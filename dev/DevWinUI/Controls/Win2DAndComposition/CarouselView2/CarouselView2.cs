@@ -717,7 +717,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         foreach (var element in elements)
         {
             var t = element.GetType();
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             var props = t.GetProperties();
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             foreach (var prop in props)
             {
                 if (prop.PropertyType == typeof(CompositionColorBrush) || prop.PropertyType == typeof(CompositionLinearGradientBrush))

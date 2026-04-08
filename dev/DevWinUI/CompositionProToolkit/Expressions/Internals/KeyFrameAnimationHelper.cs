@@ -50,11 +50,13 @@ internal static partial class KeyFrameAnimationHelper
         {
             // Get the InsertKeyFrame method (of the KeyFrameAnimation matching 
             // the animationType.Key) which take 3 parameters
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             var methodInfo = animationType.Value.GetMethods(BindingFlags.Public |
                                                             BindingFlags.Instance |
                                                             BindingFlags.Static)
                 .FirstOrDefault(m => m.Name.Equals("InsertKeyFrame") &&
                                      (m.GetParameters().Length == 3));
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
 
             InsertMethods[animationType.Key] = methodInfo;
         }

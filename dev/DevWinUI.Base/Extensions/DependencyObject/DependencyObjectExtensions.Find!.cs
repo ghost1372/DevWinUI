@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+#pragma warning disable IL2070, IL2075
 
 public partial class DependencyObjectExtensions
 {
@@ -149,3 +150,4 @@ public partial class DependencyObjectExtensions
 
     internal record class DependencyPropertyInfo(DependencyProperty Definition, string PropertyName, Type? PropertyType, Type OwnerType, bool IsAttached);
 }
+#pragma warning restore IL2070, IL2075

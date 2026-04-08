@@ -277,6 +277,7 @@ public static partial class CompositionPropertySetExtensions
     {
         var propertySet = compositor.CreatePropertySet();
 
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
         foreach (var property in input.GetType().GetTypeInfo().DeclaredProperties)
         {
             var type = property.PropertyType;
@@ -305,6 +306,7 @@ public static partial class CompositionPropertySetExtensions
             // Once a matching Insertxxx method is found, Invoke it!
             InsertMethods[methodKey].Invoke(propertySet, new[] { property.Name, parameter });
         }
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
 
         return propertySet;
     }

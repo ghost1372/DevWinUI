@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 
 
-#pragma warning disable CS0660, CS0661
+#pragma warning disable CS0660, CS0661, CS0649
 internal sealed partial class Vector2Node : ExpressionNode
 {
     internal Vector2Node()
@@ -16,4 +16,4 @@ internal sealed partial class Vector2Node : ExpressionNode
 
     private Vector2 _value;
 }
-#pragma warning restore CS0660, CS0661
+#pragma warning restore CS0660, CS0661, CS0649

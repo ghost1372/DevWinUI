@@ -19,9 +19,13 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 	public event EventHandler<ItemContextInvokedArgs>? ItemContextInvoked;
 	public event EventHandler<ItemDragOverEventArgs>? ItemDragOver;
 	public event EventHandler<ItemDroppedEventArgs>? ItemDropped;
-	public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS8632, CS0067
+    public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore IDE0079 // Remove unnecessary suppression
+#pragma warning restore CS8632, CS0067
 
-	internal SidebarItem? SelectedItemContainer = null;
+    internal SidebarItem? SelectedItemContainer = null;
 
 	private bool draggingSidebarResizer;
 	private double preManipulationSidebarWidth = 0;
@@ -235,8 +239,10 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 		e.Handled = true;
 	}
 
-	private void MenuItemsHost_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
-	{
+#pragma warning disable CA1822 // Mark members as static
+    private void MenuItemsHost_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
+#pragma warning restore CA1822 // Mark members as static
+    {
 		if (args.Element is SidebarItem sidebarItem)
 		{
 			sidebarItem.HandleItemChange();

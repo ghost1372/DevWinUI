@@ -18,7 +18,6 @@ public sealed partial class GooeyButton : ItemsControl
     private IReadOnlyList<GooeyButtonItem.GooeyButtonItemProperty> gooeyButtonItemsProperty;
     private ICanvasImage image;
     private Button InnerButton;
-    private bool isAnimating;
 
     private Grid LayoutRoot;
     private readonly double mainButtonAnimationDuration = 0.6d;
@@ -383,12 +382,10 @@ public sealed partial class GooeyButton : ItemsControl
 
     private void OnItemsAnimationCompleted(object sender, EventArgs e)
     {
-        isAnimating = false;
     }
 
     private void OnItemsAnimationStarted(object sender, EventArgs e)
     {
-        isAnimating = true;
     }
 
     private void OnItemsPanelUnloaded(object sender, RoutedEventArgs e)

@@ -10,7 +10,6 @@ public sealed partial class GooeyButtonItem : Button
     private Brush background;
     private long brushColorToken = -1;
     private long brushOpacityToken = -1;
-    private bool isAnimating = false;
 
     public GooeyButtonItem()
     {
