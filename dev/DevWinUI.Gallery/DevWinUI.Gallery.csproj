@@ -54,9 +54,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevWinUI.ContextMenu\DevWinUI.ContextMenu.csproj" />
-    <ProjectReference Include="..\DevWinUI.Controls\DevWinUI.csproj" />
-    <ProjectReference Include="..\DevWinUI\DevWinUI.Base.csproj" />
+    <ProjectReference Include="..\DevWinUI\DevWinUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

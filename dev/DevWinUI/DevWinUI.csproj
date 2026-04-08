@@ -44,7 +44,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevWinUI\DevWinUI.Base.csproj" />
+    <ProjectReference Include="..\DevWinUI.Base\DevWinUI.Base.csproj" />
   </ItemGroup>
 
   <Target Name="PackCustomContent">
