@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
 	<Name>WinUI App (MVVM + NavigationView)</Name>
-	<Description>Creates a new WinUI 3 App with DevWinUI, MVVM Packages and NavigationView.</Description>
+	<Description>Creates a new WinUI App with DevWinUI, MVVM Packages and NavigationView.</Description>
 	<Icon>TemplateIcon.ico</Icon>
 	<TemplateID>WinUIApp-MVVM-NavigationView-{F8D06623-1F58-4E3F-98F6-15178E4BB860}</TemplateID>
 	<TemplateGroupID>WinRT-Managed</TemplateGroupID>
@@ -120,7 +120,7 @@
 	  </Folder>
 	</Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;DevWinUI.SourceGenerator;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.SourceGenerator;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>

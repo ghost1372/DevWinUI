@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
 	<Name>WinUI App</Name>
-	<Description>Creates a new WinUI 3 App with DevWinUI Packages.</Description>
+	<Description>Creates a new WinUI App with DevWinUI Packages.</Description>
     <Icon>TemplateIcon.ico</Icon>
     <TemplateID>WinUIApp-{07E96C59-27D7-497F-B096-08922AC9C65F}</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
@@ -68,7 +68,7 @@
 	  </Folder>
     </Project>
 	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.Controls;Microsoft.Windows.CsWinRT"/>
+	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;Microsoft.Windows.CsWinRT"/>
 	</CustomParameters>
   </TemplateContent>
   <WizardExtension>

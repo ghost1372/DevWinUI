@@ -38,8 +38,7 @@
                      VerticalAlignment="Top">
                 <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/header.png" />
             </Viewbox>
-            <StackPanel Grid.ColumnSpan="2"
-                        HorizontalAlignment="Center">
+            <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center">
                 <TextBlock Margin="10"
                            FontWeight="Thin"
                            Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}"
@@ -52,9 +51,7 @@
                            TextWrapping="Wrap" />
             </StackPanel>
 
-            <StackPanel Grid.Row="2"
-                        Grid.Column="0"
-                        HorizontalAlignment="Center">
+            <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
                 <ui:ImageIcon Width="72"
                               Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
                 <TextBlock HorizontalAlignment="Center"
@@ -62,17 +59,17 @@
                            Style="{StaticResource TitleTextBlockStyle}"
                            Text="Documentation" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
+                                    Content="DevWinUI.Base"
+                                    Cursor="Hand"
+                                    FontWeight="Bold"
+                                    Icon="{ui:SymbolIcon Link24}"
+                                    NavigateUri="https://ghost1372.github.io/DevWinUIBase/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center"
                                     Content="DevWinUI"
                                     Cursor="Hand"
                                     FontWeight="Bold"
                                     Icon="{ui:SymbolIcon Link24}"
                                     NavigateUri="https://ghost1372.github.io/DevWinUI/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center"
-                                    Content="DevWinUI.Controls"
-                                    Cursor="Hand"
-                                    FontWeight="Bold"
-                                    Icon="{ui:SymbolIcon Link24}"
-                                    NavigateUri="https://ghost1372.github.io/DevWinUIControls/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center"
                                     Content="DevWinUI.ContextMenu"
                                     Cursor="Hand"
@@ -81,9 +78,7 @@
                                     NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" />
             </StackPanel>
 
-            <StackPanel Grid.Row="2"
-                        Grid.Column="1"
-                        HorizontalAlignment="Center">
+            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
                 <ui:ImageIcon Width="72"
                               Source="pack://application:,,,/DevWinUI_Template;component/Assets/GalleryApp.png" />
                 <TextBlock HorizontalAlignment="Center"
@@ -114,7 +109,7 @@
                                     Cursor="Hand"
                                     FontWeight="Bold"
                                     Icon="{ui:SymbolIcon WindowApps24}"
-                                    NavigateUri="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true&amp;mode=mini"/>
+                                    NavigateUri="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true&amp;mode=mini" />
                 <Viewbox Width="160"
                          Margin="0,5,0,0"
                          Cursor="Hand">
@@ -123,9 +118,7 @@
                 </Viewbox>
             </StackPanel>
 
-            <StackPanel Grid.Row="2"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center">
+            <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center">
                 <ui:ImageIcon Width="72"
                               Source="pack://application:,,,/DevWinUI_Template;component/Assets/WASDK.png" />
                 <TextBlock HorizontalAlignment="Center"
