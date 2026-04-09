@@ -32,8 +32,10 @@
                                 Minimum="0"
                                 Value="10" />
                         <dev:DropdownColorPicker x:Name="DpColorBorder"
+                                                 Header="Border Stroke Color"
                                                  Color="#3C141414" />
                         <dev:DropdownColorPicker x:Name="DpColorHighlight"
+                                                 Header="Highlight Color"
                                                  Color="#FFFFFFFF" />
                         <Slider x:Name="SldHighlightOffset"
                                 Header="Highlight Offset"
@@ -43,6 +45,7 @@
                                 Value="0" />
 
                         <dev:DropdownColorPicker x:Name="DpColorFade"
+                                                 Header="Fade Color"
                                                  Color="#000078D7" />
                         <Slider x:Name="SldFadeOffset"
                                 Header="Fade Offset"
@@ -52,6 +55,7 @@
                                 Value="0.4" />
 
                         <dev:DropdownColorPicker x:Name="DpColorMid"
+                                                 Header="Mid Color"
                                                  Color="#FF0078D7" />
                         <Slider x:Name="SldMidOffset"
                                 Header="Mid Offset"
@@ -61,6 +65,7 @@
                                 Value="0.3" />
 
                         <dev:DropdownColorPicker x:Name="DpColorTail"
+                                                 Header="Tail Color"
                                                  Color="Transparent" />
                     </StackPanel>
                 </local:ControlExample.Pane>

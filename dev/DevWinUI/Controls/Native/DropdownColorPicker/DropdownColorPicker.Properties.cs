@@ -239,4 +239,23 @@ public partial class DropdownColorPicker
 
     public static readonly DependencyProperty TintBoxHeightProperty =
         DependencyProperty.Register(nameof(TintBoxHeight), typeof(double), typeof(DropdownColorPicker), new PropertyMetadata(24.0));
+
+    public object Header
+    {
+        get { return (object)GetValue(HeaderProperty); }
+        set { SetValue(HeaderProperty, value); }
+    }
+
+    public static readonly DependencyProperty HeaderProperty =
+        DependencyProperty.Register(nameof(Header), typeof(object), typeof(DropdownColorPicker), new PropertyMetadata(null));
+
+    public DataTemplate HeaderTemplate
+    {
+        get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+        set { SetValue(HeaderTemplateProperty, value); }
+    }
+
+    public static readonly DependencyProperty HeaderTemplateProperty =
+        DependencyProperty.Register(nameof(HeaderTemplate), typeof(DataTemplate), typeof(DropdownColorPicker), new PropertyMetadata(default(DataTemplate)));
 }
+

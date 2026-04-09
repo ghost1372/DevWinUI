@@ -350,6 +350,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -644,6 +646,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -923,6 +927,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ContentDialogWindowTopOverlay" ResourceKey="SystemControlTransparentBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -2234,6 +2240,9 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Thickness x:Key="DropdownColorPickerTopHeaderMargin">0,0,0,4</Thickness>
+  <Thickness x:Key="DropdownColorPickerLeftHeaderMargin">0,5,32,0</Thickness>
+  <FontWeight x:Key="DropdownColorPickerHeaderThemeFontWeight">Normal</FontWeight>
   <Style x:Key="DefaultEdgeLightingStyle" TargetType="local:EdgeLighting">
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="Template">
@@ -12904,31 +12913,50 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:DropdownColorPicker">
-          <Button Padding="{TemplateBinding Padding}">
-            <StackPanel Orientation="Horizontal" Spacing="5">
-              <Border Width="{TemplateBinding TintBoxWidth}" Height="{TemplateBinding TintBoxHeight}" Margin="{TemplateBinding TintBoxMargin}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding TintBoxCornerRadius}">
-                <Grid>
-                  <PathIcon Data="M0 6 L0 0 L6 0 L6 6 L12 6 L12 0 L18 0 L18 6 L12 6 L12 12 L18 12 L18 6 L24 6 L24 12 L18 12 L18 18 L24 18 L24 24 L6 24 L6 18 L0 18 L0 12 L6 12 L6 18 L12 18 L12 24 L18 24 L18 18 L12 18 L12 12 L6 12 L6 6 Z" Foreground="{TemplateBinding Foreground}" />
-                  <Rectangle x:Name="PART_Rectangle" />
-                </Grid>
-              </Border>
-              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Color, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding IsColorCodeVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
-              <AnimatedIcon Width="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <animatedvisuals:AnimatedChevronDownSmallVisualSource />
-                <AnimatedIcon.FallbackIconSource>
-                  <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="14" Glyph="" IsTextScaleFactorEnabled="False" />
-                </AnimatedIcon.FallbackIconSource>
-              </AnimatedIcon>
-            </StackPanel>
-            <Button.Flyout>
-              <Flyout x:Name="PART_Flyout">
-                <Grid>
-                  <ColorPicker x:Name="PART_ColorPicker" ColorSpectrumShape="{TemplateBinding ColorSpectrumShape}" IsAlphaEnabled="{TemplateBinding IsAlphaEnabled}" IsAlphaSliderVisible="{TemplateBinding IsAlphaSliderVisible}" IsAlphaTextInputVisible="{TemplateBinding IsAlphaTextInputVisible}" IsColorChannelTextInputVisible="{TemplateBinding IsColorChannelTextInputVisible}" IsColorPreviewVisible="{TemplateBinding IsColorPreviewVisible}" IsColorSliderVisible="{TemplateBinding IsColorSliderVisible}" IsColorSpectrumVisible="{TemplateBinding IsColorSpectrumVisible}" IsHexInputVisible="{TemplateBinding IsHexInputVisible}" IsMoreButtonVisible="{TemplateBinding IsMoreButtonVisible}" />
-                  <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding ColorPalette}" />
-                </Grid>
-              </Flyout>
-            </Button.Flyout>
-          </Button>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition />
+            </Grid.RowDefinitions>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource DropdownColorPickerHeaderForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Margin="{ThemeResource DropdownColorPickerTopHeaderMargin}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontWeight="{ThemeResource DropdownColorPickerHeaderThemeFontWeight}" Foreground="{ThemeResource DropdownColorPickerHeaderForeground}" TextWrapping="Wrap" Visibility="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+            <Button Grid.Row="1" Padding="{TemplateBinding Padding}">
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <Border Width="{TemplateBinding TintBoxWidth}" Height="{TemplateBinding TintBoxHeight}" Margin="{TemplateBinding TintBoxMargin}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding TintBoxCornerRadius}">
+                  <Grid>
+                    <PathIcon Data="M0 6 L0 0 L6 0 L6 6 L12 6 L12 0 L18 0 L18 6 L12 6 L12 12 L18 12 L18 6 L24 6 L24 12 L18 12 L18 18 L24 18 L24 24 L6 24 L6 18 L0 18 L0 12 L6 12 L6 18 L12 18 L12 24 L18 24 L18 18 L12 18 L12 12 L6 12 L6 6 Z" Foreground="{TemplateBinding Foreground}" />
+                    <Rectangle x:Name="PART_Rectangle" />
+                  </Grid>
+                </Border>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Color, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding IsColorCodeVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <AnimatedIcon Width="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                  <animatedvisuals:AnimatedChevronDownSmallVisualSource />
+                  <AnimatedIcon.FallbackIconSource>
+                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="14" Glyph="" IsTextScaleFactorEnabled="False" />
+                  </AnimatedIcon.FallbackIconSource>
+                </AnimatedIcon>
+              </StackPanel>
+              <Button.Flyout>
+                <Flyout x:Name="PART_Flyout">
+                  <Grid>
+                    <ColorPicker x:Name="PART_ColorPicker" ColorSpectrumShape="{TemplateBinding ColorSpectrumShape}" IsAlphaEnabled="{TemplateBinding IsAlphaEnabled}" IsAlphaSliderVisible="{TemplateBinding IsAlphaSliderVisible}" IsAlphaTextInputVisible="{TemplateBinding IsAlphaTextInputVisible}" IsColorChannelTextInputVisible="{TemplateBinding IsColorChannelTextInputVisible}" IsColorPreviewVisible="{TemplateBinding IsColorPreviewVisible}" IsColorSliderVisible="{TemplateBinding IsColorSliderVisible}" IsColorSpectrumVisible="{TemplateBinding IsColorSpectrumVisible}" IsHexInputVisible="{TemplateBinding IsHexInputVisible}" IsMoreButtonVisible="{TemplateBinding IsMoreButtonVisible}" />
+                    <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding ColorPalette}" />
+                  </Grid>
+                </Flyout>
+              </Button.Flyout>
+            </Button>
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
