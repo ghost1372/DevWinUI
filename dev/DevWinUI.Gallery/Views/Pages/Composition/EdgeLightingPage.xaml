@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.EdgeLightingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/edgeLighting">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:EdgeLighting Width="200" Height="200" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TGIsRound"
+                                      Header="Is Rounded?" />
+                        <ToggleSwitch x:Name="TGIsLighting"
+                                      Header="Is Lighting"
+                                      IsOn="True" />
+                        <Slider x:Name="SldRadius"
+                                Header="Corner Radius"
+                                Maximum="360"
+                                Minimum="0"
+                                Value="8" />
+                        <Slider x:Name="SldStrokeThickness"
+                                Header="Stroke Thickness"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="10" />
+                        <dev:DropdownColorPicker x:Name="DpColorBorder"
+                                                 Color="#3C141414" />
+                        <dev:DropdownColorPicker x:Name="DpColorHighlight"
+                                                 Color="#FFFFFFFF" />
+                        <Slider x:Name="SldHighlightOffset"
+                                Header="Highlight Offset"
+                                Maximum="1.0"
+                                Minimum="0"
+                                StepFrequency="0.1"
+                                Value="0" />
+
+                        <dev:DropdownColorPicker x:Name="DpColorFade"
+                                                 Color="#000078D7" />
+                        <Slider x:Name="SldFadeOffset"
+                                Header="Fade Offset"
+                                Maximum="1.0"
+                                Minimum="0"
+                                StepFrequency="0.1"
+                                Value="0.4" />
+
+                        <dev:DropdownColorPicker x:Name="DpColorMid"
+                                                 Color="#FF0078D7" />
+                        <Slider x:Name="SldMidOffset"
+                                Header="Mid Offset"
+                                Maximum="1.0"
+                                Minimum="0"
+                                StepFrequency="0.1"
+                                Value="0.3" />
+
+                        <dev:DropdownColorPicker x:Name="DpColorTail"
+                                                 Color="Transparent" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:EdgeLighting Width="200"
+                                  Height="200"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  BorderStrokeColor="{x:Bind DpColorBorder.Color, Mode=OneWay}"
+                                  CornerRadius="{x:Bind SldRadius.Value, Mode=OneWay}"
+                                  FadeColor="{x:Bind DpColorFade.Color, Mode=OneWay}"
+                                  FadeOffset="{x:Bind SldFadeOffset.Value, Mode=OneWay}"
+                                  HighlightColor="{x:Bind DpColorHighlight.Color, Mode=OneWay}"
+                                  HighlightOffset="{x:Bind SldHighlightOffset.Value, Mode=OneWay}"
+                                  IsLighting="{x:Bind TGIsLighting.IsOn, Mode=OneWay}"
+                                  IsRounded="{x:Bind TGIsRound.IsOn, Mode=OneWay}"
+                                  MidColor="{x:Bind DpColorMid.Color, Mode=OneWay}"
+                                  MidOffset="{x:Bind SldMidOffset.Value, Mode=OneWay}"
+                                  StrokeThickness="{x:Bind SldStrokeThickness.Value, Mode=OneWay}"
+                                  TailColor="{x:Bind DpColorTail.Color, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

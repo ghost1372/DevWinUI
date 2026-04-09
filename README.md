@@ -168,6 +168,7 @@ Install-Package DevWinUI.Base
 ## 🔥 DevWinUI 🔥
 ### ⚡ What’s Inside? ⚡
 
+- ✨ EdgeLighting
 - ✨ RichButton
 - ✨ Spoiler
 - ✨ SidebarView
@@ -362,6 +363,9 @@ Install-Package DevWinUI.ContextMenu
 ---
 
 ## 🕰️ History 🕰️
+
+### EdgeLighting
+![EdgeLighting](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EdgeLighting.gif)
 
 ### RichButton
 ![RichButton](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RichButton.gif)
