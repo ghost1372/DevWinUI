@@ -27,14 +27,14 @@
                             </dev:HeaderTile>
                             <dev:HeaderTile Title="Controls"
                                             Description="Experience WinUI 3 quickly and easily with the help of Components, Everything you need to develop an application is gathered in one place."
-                                            Link="https://Ghost1372.github.io/DevWinUIControls">
+                                            Link="https://Ghost1372.github.io/DevWinUI">
                                 <dev:HeaderTile.Source>
                                     <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>
                             </dev:HeaderTile>
                             <dev:HeaderTile Title="Core"
                                             Description="Experience WinUI 3 quickly and easily with the help of Core, Everything you need to develop an application is gathered in one place."
-                                            Link="https://Ghost1372.github.io/DevWinUI">
+                                            Link="https://Ghost1372.github.io/DevWinUIBase">
                                 <dev:HeaderTile.Source>
                                     <Image Source="/Assets/Icon.png" />
                                 </dev:HeaderTile.Source>

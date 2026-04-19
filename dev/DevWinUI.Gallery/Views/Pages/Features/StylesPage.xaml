@@ -91,10 +91,10 @@
                             <InfoBar Title="Title"
                                      IsClosable="False"
                                      IsOpen="True"
-                                     Message="&lt;ResourceDictionary Source='ms-appx:///DevWinUI.Controls/Themes/InfoBarInformationalColor.xaml' /&gt;"
+                                     Message="&lt;ResourceDictionary Source='ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml' /&gt;"
                                      Severity="Informational">
                                 <InfoBar.Resources>
-                                    <ResourceDictionary Source="ms-appx:///DevWinUI.Controls/Themes/InfoBarInformationalColor.xaml" />
+                                    <ResourceDictionary Source="ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml" />
                                 </InfoBar.Resources>
                             </InfoBar>
                         </StackPanel>

@@ -162,6 +162,7 @@ public static class PreDefinedLibrary
         {
             new Library(Constants.DevWinUI_Core, Group.DevWinUI),
             new Library(Constants.DevWinUI_Controls, Group.DevWinUI),
+            new Library(Constants.DevWinUI_SourceGenerator, Group.DevWinUI),
             new Library(Constants.DevWinUI_ContextMenu, Group.DevWinUI)
         };
         return list;

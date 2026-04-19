@@ -117,10 +117,10 @@ public sealed partial class ControlExample : OptionsPageControl
         switch (DocType)
         {
             case DocType.Core:
-                docTypeValue = "DevWinUI";
+                docTypeValue = "DevWinUIBase";
                 break;
             case DocType.Controls:
-                docTypeValue = "DevWinUIControls";
+                docTypeValue = "DevWinUI";
                 break;
             case DocType.ContextMenu:
                 docTypeValue = "DevWinUIContextMenu";

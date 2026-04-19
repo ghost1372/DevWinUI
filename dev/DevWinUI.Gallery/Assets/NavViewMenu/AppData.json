@@ -681,6 +681,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.EdgeLightingPage",
+          "Title": "Edge Lighting",
+          "Subtitle": "Edge Lighting",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.CarouselView2Page",
           "Title": "Carousel View 2",
           "Subtitle": "A professional carousel control with animations powered by composition API.",

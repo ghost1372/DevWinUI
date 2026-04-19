@@ -374,22 +374,6 @@ public class SharedWizard
         }
         #endregion
 
-        #region Blank
-
-        if (WizardConfig.IsBlank)
-        {
-            if (WizardConfig.LibraryDic != null && WizardConfig.LibraryDic.ContainsKey(Constants.DevWinUI_Controls))
-            {
-                replacementsDictionary.Add("$DevWinUI.Controls$", Environment.NewLine + Constants.DevWinUI_Controls_Xaml);
-            }
-            else
-            {
-                replacementsDictionary.Add("$DevWinUI.Controls$", "");
-            }
-        }
-
-        #endregion
-
         #region Add Xaml Dictionary if User Use Extra Lib
         if (WizardConfig.LibraryDic != null && WizardConfig.LibraryDic.ContainsKey(Constants.DevWinUI_ContextMenu))
         {
