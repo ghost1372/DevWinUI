@@ -2241,7 +2241,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </Setter>
   </Style>
   <Thickness x:Key="DropdownColorPickerTopHeaderMargin">0,0,0,4</Thickness>
-  <Thickness x:Key="DropdownColorPickerLeftHeaderMargin">0,5,32,0</Thickness>
   <FontWeight x:Key="DropdownColorPickerHeaderThemeFontWeight">Normal</FontWeight>
   <Style x:Key="DefaultEdgeLightingStyle" TargetType="local:EdgeLighting">
     <Setter Property="HorizontalAlignment" Value="Center" />

@@ -1,0 +1,9 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BlockedPackage>DevWinUI.Controls</BlockedPackage>
+  </PropertyGroup>
+  <Target Name="ListPackageReferences" BeforeTargets="Build">
+    <Error Code="DevWinUI-0001" Text="The DevWinUI (v10.0.0+) package has introduced breaking changes that conflict with $(BlockedPackage). To resolve this, Please uninstall/remove the $(BlockedPackage) package to avoid conflicts. (We moved $(BlockedPackage) into DevWinUI.)"
+			   Condition="%(PackageReference.Identity) == '$(BlockedPackage)'"/>
+  </Target>
+</Project>

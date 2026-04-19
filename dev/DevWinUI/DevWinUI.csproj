@@ -47,6 +47,10 @@
     <ProjectReference Include="..\DevWinUI.Base\DevWinUI.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="build\$(PackageId).targets" Pack="true" PackagePath="build\" />
+  </ItemGroup>
+  
   <Target Name="PackCustomContent">
     <ItemGroup>
       <TfmSpecificPackageFile Include="Themes\Generic.xaml">
