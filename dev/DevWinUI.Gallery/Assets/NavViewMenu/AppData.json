@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.UacStyleDialogWindowPage",
+          "Title": "Uac Style Dialog Window",
+          "IsNew": true,
+          "Subtitle": "A dialog control with UAC Style",
+          "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ColorAnalyzerPage",
           "Title": "Color Analyzer",
           "IsNew": true,

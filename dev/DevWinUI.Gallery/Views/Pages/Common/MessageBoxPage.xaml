@@ -27,41 +27,60 @@
                                  Header="Content"
                                  PlaceholderText="Content"
                                  Text="Content" />
+                        <ComboBox x:Name="CmbFlow"
+                                  Header="FlowDirection"
+                                  ItemsSource="{x:Bind FlowDirectionItems, Mode=OneWay}"
+                                  SelectedIndex="0" />
+                        <ComboBox x:Name="CmbWindowStartupLocation"
+                                  Header="WindowStartupLocation"
+                                  ItemsSource="{x:Bind WindowStartupLocationItems, Mode=OneWay}"
+                                  SelectedIndex="2" />
                         <ComboBox x:Name="CmbMessageBoxButtons"
                                   Header="MessageBox Buttons"
                                   ItemsSource="{x:Bind MessageBoxButtonItems, Mode=OneWay}"
                                   SelectedIndex="0" />
-                        <ComboBox x:Name="CmbMessageBoxDefaultBUtton"
+                        <ComboBox x:Name="CmbMessageBoxDefaultButton"
                                   Header="MessageBox Default Button"
                                   ItemsSource="{x:Bind MessageBoxDefaultButtonItems, Mode=OneWay}"
                                   SelectedIndex="0" />
                         <ComboBox x:Name="CmbMessageBoxIcon"
                                   Header="MessageBox Icon"
                                   ItemsSource="{x:Bind MessageBoxIconItems, Mode=OneWay}"
-                                  SelectedIndex="1" />
-                        <ToggleSwitch x:Name="TGIsModal"
-                                      Header="Is Modal"
-                                      IsOn="True" />
+                                  SelectedIndex="0" />
                         <ToggleSwitch x:Name="TGHasOwnerWindow"
                                       Header="Has Owner Window?"
                                       IsOn="True" />
-                        <ComboBox x:Name="CmbUnderlayMode"
-                                  Header="Underlay Mode"
-                                  ItemsSource="{x:Bind UnderlayModeItems, Mode=OneWay}"
-                                  SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TGHasTitleBar"
+                                      Header="Has TitleBar?"
+                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGCanResize"
+                                      Header="Can Resize?"
+                                      IsOn="True" />
                         <ComboBox x:Name="CmbUnderlayBackdrops"
-                                  Header="Underlay Backdrop"
+                                  Header="Backdrop"
                                   ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
                                   SelectedIndex="1" />
-                        <ComboBox x:Name="CmbUnderlayCoverModes"
-                                  Header="Underlay Cover Mode"
-                                  ItemsSource="{x:Bind UnderlayCoverModeItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
                     <Button Click="OnMessageBox"
-                            Content="Show MessageBox" />
+                            Content="Show MessageBox"
+                            Tag="None" />
+                    <Button Click="OnMessageBox"
+                            Content="Show Info MessageBox"
+                            Tag="Info" />
+                    <Button Click="OnMessageBox"
+                            Content="Show Error MessageBox"
+                            Tag="Error" />
+                    <Button Click="OnMessageBox"
+                            Content="Show Success MessageBox"
+                            Tag="Success" />
+                    <Button Click="OnMessageBox"
+                            Content="Show Warning MessageBox"
+                            Tag="Warning" />
+                    <Button Click="OnMessageBox"
+                            Content="Show Question MessageBox"
+                            Tag="Question" />
                     <TextBlock x:Name="TxtResult"
                                Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>

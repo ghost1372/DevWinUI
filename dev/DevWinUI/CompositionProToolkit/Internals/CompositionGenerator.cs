@@ -27,8 +27,6 @@
 // CompositionProToolkit v1.0.1
 // 
 
-using Microsoft.Graphics.Canvas;
-
 namespace DevWinUI;
 
 /// <summary>

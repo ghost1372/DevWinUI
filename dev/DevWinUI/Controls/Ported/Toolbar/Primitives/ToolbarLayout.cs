@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using Windows.Foundation;
-
 namespace DevWinUI;
 
 public partial class ToolbarLayout : NonVirtualizingLayout

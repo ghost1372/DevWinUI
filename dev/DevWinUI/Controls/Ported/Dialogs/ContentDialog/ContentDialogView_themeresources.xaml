@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="ContentDialogViewTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ContentDialogViewTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ContentDialogViewTopOverlay" ResourceKey="SystemControlTransparentBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Thickness x:Key="ContentDialogViewTitlePadding">24,24,24,0</Thickness>
+    <Thickness x:Key="ContentDialogViewContentPadding">24,0,24,24</Thickness>
+    <Color x:Key="ContentDialogViewCommandSpaceBackground">#0F000000</Color>
+    <Color x:Key="ContentDialogViewSeparatorBorderColor">#19000000</Color>
+    <SolidColorBrush x:Key="ContentDialogViewCommandSpaceBackgroundBrush" Opacity="0.5" Color="{StaticResource ContentDialogViewCommandSpaceBackground}" />
+    <SolidColorBrush x:Key="ContentDialogViewSeparatorBorderBrush" Color="{StaticResource ContentDialogViewSeparatorBorderColor}" />
+
+</ResourceDictionary>

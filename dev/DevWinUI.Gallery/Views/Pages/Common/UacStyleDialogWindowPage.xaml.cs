@@ -2,14 +2,13 @@
 using WinRT;
 
 namespace DevWinUIGallery.Views;
-
-public sealed partial class WindowedContentDialogPage : Page
+public sealed partial class UacStyleDialogWindowPage : Page
 {
     public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
     public ObservableCollection<FlowDirection> FlowDirectionItems { get; set; } = new ObservableCollection<FlowDirection>(Enum.GetValues<FlowDirection>());
-    public ObservableCollection<Orientation> ButtonOrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
+    public ObservableCollection<InfoBarSeverity> SeverityItems { get; set; } = new ObservableCollection<InfoBarSeverity>(Enum.GetValues<InfoBarSeverity>());
 
-    public WindowedContentDialogPage()
+    public UacStyleDialogWindowPage()
     {
         InitializeComponent();
     }
@@ -18,11 +17,12 @@ public sealed partial class WindowedContentDialogPage : Page
     {
         var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
         var flow = CmbFlow.SelectedItem.As<FlowDirection>();
-        var orientation = CmbButtonOrientation.SelectedItem.As<Orientation>();
+        var severity = CmbSeverity.SelectedItem.As<InfoBarSeverity>();
 
-        WindowedContentDialog dialog = new()
+        UacStyleDialogWindow dialog = new()
         {
             Header = txtTitle.Text,
+            ExtendedHeader = txtTitle.Text,
             Content = txtContent.Text,
             PrimaryButtonContent = "PrimaryButtonText",
             SecondaryButtonContent = "SecondaryButtonText",
@@ -31,7 +31,7 @@ public sealed partial class WindowedContentDialogPage : Page
             HasTitleBar = TGHasTitleBar.IsOn,
             CanResize = TGIsResizable.IsOn,
             FlowDirection = flow,
-            ButtonOrientation = orientation
+            Severity = severity
         };
 
         switch (underlayBackdrop)
@@ -56,7 +56,6 @@ public sealed partial class WindowedContentDialogPage : Page
                 break;
         }
 
-        ContentDialogResult result = await dialog.ShowAsync();
-        TxtResult.Text = result.ToString();
+        dialog.ShowDialog();
     }
 }

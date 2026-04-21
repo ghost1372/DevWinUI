@@ -62,8 +62,8 @@ public static partial class NativeValues
         WS_EX_TRANSPARENT = 0x00000020,
         WS_EX_LAYOUTLTR = 0x00000000,
         WS_EX_LAYOUTRTL = 0x00400000,
-        Popup = unchecked(0x80000000),
-    }
+        Popup = unchecked(0x80000000)
+}
     public enum DWM_WINDOW_CORNER_PREFERENCE
     {
         DWMWCP_DEFAULT = 0,
@@ -149,9 +149,11 @@ public static partial class NativeValues
         NIN_POPUPCLOSE = WM_USER + 7,
         WA_ACTIVE = 0x01,
         WA_INACTIVE = 0x00,
-        WM_INITMENUPOPUP = 0x0117
+        WM_INITMENUPOPUP = 0x0117,
+        WM_NCDESTROY = 0x0082,
+        WM_DESTROY = 0x0002,
     }
-    
+
     internal enum NOTIFYICON : uint
     {
         NIM_ADD = 0x00000000,

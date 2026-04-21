@@ -1,4 +1,5 @@
-﻿using static DevWinUI.NativeValues;
+﻿using Windows.Win32.UI.WindowsAndMessaging;
+using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 public static partial class NativeMethods
@@ -25,7 +26,13 @@ public static partial class NativeMethods
 
     [LibraryImport("user32.dll", EntryPoint = "SetWindowLongW")]
     internal static partial IntPtr SetWindowLong32(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
-    
+
+    [LibraryImport("User32.dll", EntryPoint = "GetWindowLongPtrW")]
+    internal static partial nint GetWindowLong64(nint hWnd, int nIndex);
+
+    [LibraryImport("User32.dll", EntryPoint = "GetWindowLongW")]
+    internal static partial nint GetWindowLong32(nint hWnd, int nIndex);
+
     [LibraryImport(NativeValues.ExternDll.Shell32, EntryPoint = "Shell_NotifyIconW")]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -86,6 +93,17 @@ public static partial class NativeMethods
         Windows.Win32.PInvoke.SetWindowPos(h, new HWND(IntPtr.Zero), 0, 0, 0, 0, Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOMOVE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOSIZE | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOZORDER | Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOOWNERZORDER);
     }
 
+    public static nint GetWindowLongPtr(IntPtr hWnd, int nIndex)
+    {
+        if (Environment.Is64BitOperatingSystem)
+        {
+            return GetWindowLong64(hWnd, (int)nIndex);
+        }
+        else
+        {
+            return GetWindowLong32(hWnd, (int)nIndex);
+        }
+    }
     internal static unsafe bool Shell_NotifyIcon(uint dwMessage, in NOTIFYICONDATAW32 lpData)
     {
         fixed (NOTIFYICONDATAW32* lpDataLocal = &lpData)

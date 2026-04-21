@@ -1,6 +1,4 @@
-﻿using static DevWinUI.EasyCarouselPanel;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class BannerView
 {

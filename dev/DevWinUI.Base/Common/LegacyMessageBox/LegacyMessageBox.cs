@@ -86,29 +86,21 @@ public static class LegacyMessageBox
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDOK:
                 return MessageBoxResult.OK;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDCANCEL:
-                return MessageBoxResult.CANCEL;
+                return MessageBoxResult.Cancel;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDABORT:
-                return MessageBoxResult.ABORT;
+                return MessageBoxResult.Abort;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDRETRY:
-                return MessageBoxResult.RETRY;
+                return MessageBoxResult.Retry;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDIGNORE:
-                return MessageBoxResult.IGNORE;
+                return MessageBoxResult.Ignore;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDYES:
-                return MessageBoxResult.YES;
+                return MessageBoxResult.Yes;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDNO:
-                return MessageBoxResult.NO;
-            case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDCLOSE:
-                return MessageBoxResult.CLOSE;
-            case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDHELP:
-                return MessageBoxResult.HELP;
+                return MessageBoxResult.No;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDTRYAGAIN:
-                return MessageBoxResult.TRYAGAIN;
+                return MessageBoxResult.TryAgain;
             case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDCONTINUE:
-                return MessageBoxResult.CONTINUE;
-            case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDASYNC:
-                return MessageBoxResult.ASYNC;
-            case Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_RESULT.IDTIMEOUT:
-                return MessageBoxResult.TIMEOUT;
+                return MessageBoxResult.Continue;
             default:
                 return MessageBoxResult.OK;
         }

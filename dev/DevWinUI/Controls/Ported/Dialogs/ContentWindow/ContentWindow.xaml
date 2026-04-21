@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style x:Key="ContentWindowDefaultStyle" TargetType="local:ContentWindow">
+        <Setter Property="TitleBarButtonForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="TitleBarButtonHoverForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="TitleBarButtonPressedForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="TitleBarButtonHoverBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonHoverBackgroundColor}" />
+        <Setter Property="TitleBarButtonPressedBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonPressedBackgroundColor}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="ShowInTaskbar" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ContentWindow">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ContentWindow" BasedOn="{StaticResource ContentWindowDefaultStyle}" />
+
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="ContentWindowTitleBarButtonHoverBackgroundColor">#0FFFFFFF</Color>
+            <Color x:Key="ContentWindowTitleBarButtonPressedBackgroundColor">#08FFFFFF</Color>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="ContentWindowTitleBarButtonHoverBackgroundColor">#0F000000</Color>
+            <Color x:Key="ContentWindowTitleBarButtonPressedBackgroundColor">#08000000</Color>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <!--<Color x:Key="ContentWindowTitleBarButtonHoverBackgroundColor">#808080</Color>-->
+            <!--<Color x:Key="ContentWindowTitleBarButtonPressedBackgroundColor">#808080</Color>-->
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

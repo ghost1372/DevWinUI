@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:UacStyleDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" />
+
+    <Style x:Key="UacStyleDialogViewErrorSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogErrorSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="UacStyleDialogViewWarningSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogWarningSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="UacStyleDialogViewSuccessSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogSuccessSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="UacStyleDialogViewInformationalSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogInformationalSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+</ResourceDictionary>

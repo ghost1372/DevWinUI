@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.WindowedContentDialogPage"
+<Page x:Class="DevWinUIGallery.Views.UacStyleDialogWindowPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,16 +10,16 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/windowedContentDialog"
-                                  HeaderText="WindowedContentDialog">
+            <local:ControlExample DocPage="controls/uacStyleDialogWindow"
+                                  HeaderText="UacStyleDialogWindow">
                 <local:ControlExample.CSharp>
                     <x:String>
-                        WindowedContentDialog dialog = new()#nl#
+                        UacStyleDialogWindow dialog = new()#nl#
                         {#nl#
                         Header = txtTitle.Text,#nl#
                         Content = txtContent.Text,#nl#
                         };#nl#
-                        ContentDialogResult result = await dialog.ShowAsync();
+                        dialog.ShowDialog();
                     </x:String>
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
@@ -53,12 +53,12 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ComboBox x:Name="CmbButtonOrientation"
-                                  Header="Button Orientation"
-                                  ItemsSource="{x:Bind ButtonOrientationItems, Mode=OneWay}"
+                        <ComboBox x:Name="CmbSeverity"
+                                  Header="Severity"
+                                  ItemsSource="{x:Bind SeverityItems, Mode=OneWay}"
                                   SelectedIndex="1">
                             <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="Orientation">
+                                <DataTemplate x:DataType="InfoBarSeverity">
                                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
                                                Text="{x:Bind}" />
                                 </DataTemplate>
@@ -69,10 +69,9 @@
                 <StackPanel Spacing="10">
                     <Button Click="Button_Click"
                             Content="Show Dialog" />
-                    <TextBlock x:Name="TxtResult"
-                               Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
+
 </Page>
