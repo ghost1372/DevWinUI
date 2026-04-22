@@ -62,7 +62,7 @@ DevWinUI is a comprehensive collection of libraries, components, styles, and too
 * [Licensing and Attribution](./docs/LICENSE.md)
 
 
-Make sure to also check out the Gallery App, our interactive sample experience showing everything you can do with WinUI and Windows App SDK.
+Make sure to also check out the Gallery App, our interactive sample experience showing everything you can do with DevWinUI.
 
 <a href="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true
 	&mode=mini">
