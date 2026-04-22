@@ -52,8 +52,8 @@ public partial class App : Application
         ProcessInfoHelper.IsDebug = false;
 #endif
         MainWindow.Title = MainWindow.AppWindow.Title = ProcessInfoHelper.ProductNameAndVersion;
-        MainWindow.AppWindow.SetIcon("Assets/icon.ico");
-        MainWindow.AppWindow.SetTaskbarIcon("Assets/icon.ico");
+        MainWindow.AppWindow.SetIcon("Assets/AppIcon.ico");
+        MainWindow.AppWindow.SetTaskbarIcon("Assets/AppIcon.ico");
 
         MainWindow.Activate();
 
