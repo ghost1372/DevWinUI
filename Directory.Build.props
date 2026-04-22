@@ -83,7 +83,7 @@
   </ItemGroup>
   
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
-    <None Include="..\..\tools\nuget-icon.png" Pack="true" PackagePath="Icon.png" />
+    <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
