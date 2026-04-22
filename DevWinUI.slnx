@@ -5,7 +5,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Solution Items/" Id="33905DB2-64FA-4677-9694-9064DC5A0372">
-    <File Path="tools/AppData.Schema.json" />
     <File Path="Directory.Build.props" />
   </Folder>
   <Folder Name="/Solution Items/Configs/">
@@ -23,6 +22,7 @@
   <Folder Name="/Solution Items/Files/">
     <File Path="Clean-obj-bin.bat" />
     <File Path="LICENSE" />
+    <File Path="tools/AppData.Schema.json" />
     <File Path="tools/Assets/DevWinUI.png" />
     <File Path="tools/Assets/DevWinUI.svg" />
   </Folder>
