@@ -13,12 +13,16 @@
     <File Path=".editorconfig" />
     <File Path="tools/settings.xamlstyler" />
   </Folder>
-  <Folder Name="/Solution Items/Files/">
-    <File Path="Clean-obj-bin.bat" />
+  <Folder Name="/Solution Items/Docs/">
     <File Path="docs/CONTRIBUTING.md" />
-    <File Path="LICENSE" />
+    <File Path="docs/LICENSE.md" />
+    <File Path="docs/Migration.md" />
     <File Path="docs/Policy" />
     <File Path="docs/ThirdPartyNotices.txt" />
+  </Folder>
+  <Folder Name="/Solution Items/Files/">
+    <File Path="Clean-obj-bin.bat" />
+    <File Path="LICENSE" />
     <File Path="tools/Assets/DevWinUI.png" />
     <File Path="tools/Assets/DevWinUI.svg" />
   </Folder>
