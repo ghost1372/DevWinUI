@@ -136,9 +136,9 @@ public partial class SystemTrayIcon : IDisposable
             _currentFlyout = flyout;
             var grid = ((Microsoft.UI.Xaml.Controls.Grid)_window.Content);
             grid.ContextFlyout = flyout;
+            _window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(location.X, location.Y, 0, 0), Microsoft.UI.Windowing.DisplayArea.GetFromPoint(new Windows.Graphics.PointInt32(0, 0), Microsoft.UI.Windowing.DisplayAreaFallback.Primary));
             _window.Activate();
             WindowHelper.ShowWindow(_windowHandle);
-            _window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(location.X, location.Y, 0, 0), Microsoft.UI.Windowing.DisplayArea.GetFromPoint(new Windows.Graphics.PointInt32(0, 0), Microsoft.UI.Windowing.DisplayAreaFallback.Primary));
             WindowHelper.SetForegroundWindow(_windowHandle);
             double w = (location.Width - location.X) / grid.XamlRoot.RasterizationScale;
             double h = (location.Height - location.Y) / grid.XamlRoot.RasterizationScale;
