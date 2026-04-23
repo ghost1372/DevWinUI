@@ -18,7 +18,7 @@ public partial class MessageBox : DependencyObject
         _window.HasTitleBar = HasTitleBar;
         if (CanDragMoveWindow)
         {
-            DragMoveAndResizeHelper.SetDragMove(_window.Window, _view);
+            new DragMoveHelper(_window.Window).SetDragMove(_view);
         }
         _window.Closed += OnWindowClosed;
         _view.ResultChanged += OnResultChanged;

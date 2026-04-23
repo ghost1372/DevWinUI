@@ -2,6 +2,7 @@
 
 public partial class WindowedContentDialog
 {
+    private DragMoveHelper dragMoveHelper;
     public bool HasTitleBar
     {
         get => (bool)GetValue(HasTitleBarProperty);
@@ -72,11 +73,11 @@ public partial class WindowedContentDialog
         {
             if ((bool)e.NewValue)
             {
-                DragMoveAndResizeHelper.SetDragMove(ctl._window.Window, ctl._view);
+                ctl.dragMoveHelper.SetDragMove(ctl._view);
             }
             else
             {
-                DragMoveAndResizeHelper.UnsetDragMove(ctl._view);
+                ctl.dragMoveHelper.UnSetDragMove(ctl._view);
             }
         }
     }

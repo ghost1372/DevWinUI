@@ -31,7 +31,8 @@ public sealed partial class WindowedContentDialogPage : Page
             HasTitleBar = TGHasTitleBar.IsOn,
             CanResize = TGIsResizable.IsOn,
             FlowDirection = flow,
-            ButtonOrientation = orientation
+            ButtonOrientation = orientation,
+            CanDragMoveWindow = TGDragMove.IsOn
         };
 
         switch (underlayBackdrop)

@@ -468,9 +468,11 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
             MinWidth = MinWidth,
         };
 
+        dragMoveHelper = new DragMoveHelper(_window.Window);
+
         if (CanDragMoveWindow)
         {
-            DragMoveAndResizeHelper.SetDragMove(_window.Window, _view);
+            dragMoveHelper.SetDragMove(_view);
         }
         _window.Closed += OnWindowClosed;
         _window.ShowDialog();

@@ -72,7 +72,7 @@
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DragMoveAndResizePage",
-          "Title": "Drag Move And Resize",
+          "Title": "Drag Move",
           "Subtitle": "Drag and Move Window by UIElement",
           "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png"
         },

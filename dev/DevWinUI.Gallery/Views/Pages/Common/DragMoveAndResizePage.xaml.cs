@@ -2,16 +2,18 @@
 
 public sealed partial class DragMoveAndResizePage : Page
 {
+    private DragMoveHelper dragMoveHelper;
     public DragMoveAndResizePage()
     {
         this.InitializeComponent();
+        dragMoveHelper = new DragMoveHelper(App.Hwnd);
         Loaded += DragMoveAndResizePage_Loaded;
 
     }
 
     private void DragMoveAndResizePage_Loaded(object sender, RoutedEventArgs e)
     {
-        DragMoveAndResizeHelper.SetDragMove(App.MainWindow, DragElement);
+        dragMoveHelper.SetDragMove(DragElement);
     }
 
     private void SampleTG_Toggled(object sender, RoutedEventArgs e)
@@ -23,11 +25,11 @@ public sealed partial class DragMoveAndResizePage : Page
 
         if (SampleTG.IsOn)
         {
-            DragMoveAndResizeHelper.SetDragMove(App.MainWindow, DragElement);
+            dragMoveHelper.SetDragMove(DragElement);
         }
         else
         {
-            DragMoveAndResizeHelper.UnsetDragMove(DragElement);
+            dragMoveHelper.UnSetDragMove(DragElement);
         }
     }
 }

@@ -56,7 +56,7 @@ public sealed partial class MessageBoxPage : Page
         MessageBox.StartupLocation = location;
         MessageBox.CanResize = TGCanResize.IsOn;
         MessageBox.HasTitleBar = TGHasTitleBar.IsOn;
-
+        MessageBox.CanDragMoveWindow = TGDragMove.IsOn;
         MessageBoxResult result = MessageBoxResult.None;
         switch (element.Tag.ToString())
         {

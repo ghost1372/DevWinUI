@@ -53,6 +53,9 @@
                         <ToggleSwitch x:Name="TGHasTitleBar"
                                       Header="Has TitleBar?"
                                       IsOn="True" />
+                        <ToggleSwitch x:Name="TGDragMove"
+                                      Header="Drag by Content"
+                                      IsOn="False" />
                         <ToggleSwitch x:Name="TGCanResize"
                                       Header="Can Resize?"
                                       IsOn="True" />
