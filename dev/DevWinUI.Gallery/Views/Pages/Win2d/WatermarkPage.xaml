@@ -108,7 +108,7 @@
                         <Slider x:Name="MarkScale2"
                                 Header="MarkScale"
                                 StepFrequency="0.1"
-                                Value="1" />
+                                Value="0.1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:Watermark x:Name="watermark2"
