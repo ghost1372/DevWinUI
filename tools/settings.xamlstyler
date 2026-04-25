@@ -1,18 +1,14 @@
 {
-    "AttributesTolerance": 1,
+    "AttributesTolerance": 9999,
     "KeepFirstAttributeOnSameLine": true,
     "MaxAttributeCharactersPerLine": 0,
     "MaxAttributesPerLine": 1,
-    "NewlineExemptionElements": 
-        "AcrylicBrush, Canvas, ColorAnimationUsingKeyFrames, ColumnDefinition, ComboBoxItem, CompositeTransform, Condition,
-         DiscreteDoubleKeyFrame, DiscreteObjectKeyFrame, DoubleAnimation, DoubleAnimationUsingKeyFrames, EasingDoubleKeyFrame, GradientStop, Grid,
-         LinearColorKeyFrame, LinearDoubleKeyFrame, LinearGradientBrush, ListViewItem, NavigationViewItem, ObjectAnimationUsingKeyFrames, RadialGradientBrush,
-         RepositionThemeAnimation, RotateTransform, RowDefinition, ScaleTransform, Setter, SkewTransform, SolidColorBrush, SplineDoubleKeyFrame, StackPanel,
-         StaticResource, Style, TranslateTransform, Trigger, VisualTransition",
+    "NewlineExemptionElements": "",
     "SeparateByGroups": false,
     "AttributeIndentation": 0,
     "AttributeIndentationStyle": 1,
-    "RemoveDesignTimeReferences": false,
+    "RemoveDesignTimeReferences":  false,
+    "IgnoreDesignTimeReferencePrefix": false,
     "EnableAttributeReordering": true,
     "AttributeOrderingRuleGroups": [
         "x:Class",
@@ -25,7 +21,7 @@
         "*:*, *",
         "PageSource, PageIndex, Offset, Color, TargetName, Property, Value, StartPoint, EndPoint",
         "mc:Ignorable, d:IsDataSource, d:LayoutOverrides, d:IsStaticText",
-        "Storyboard.*, From, To, Duration","BasedOn"
+        "Storyboard.*, From, To, Duration"
     ],
     "FirstLineAttributes": "",
     "OrderAttributesByName": true,
@@ -43,5 +39,6 @@
     "ThicknessAttributes": "Margin, Padding, BorderThickness, ThumbnailClipMargin",
     "FormatOnSave": true,
     "CommentPadding": 2,
-    "IndentSize": 4
+    "IndentSize": 4,
+    "IndentWithTabs": false
 }
