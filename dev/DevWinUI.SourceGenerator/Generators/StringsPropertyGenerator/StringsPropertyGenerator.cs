@@ -56,7 +56,7 @@ internal sealed class StringsPropertyGenerator : IIncrementalGenerator
 
             foreach (string fileName in duplicates)
             {
-                ctx.ReportDiagnostic(Diagnostic.Create(Constants.DEVGEN1002, Location.None, fileName));
+                ctx.ReportDiagnostic(Diagnostic.Create(Constants.DEVGEN1001, Location.None, fileName));
             }
         });
     }

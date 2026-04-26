@@ -33,7 +33,7 @@
     <Win2dVersion>1.4.0</Win2dVersion>
     <WASDKWinUIVersion>1.8.260204000</WASDKWinUIVersion>
 
-    <NoWarn>CS8632;WIN2D0001;WMC1510</NoWarn>
+    <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
 
     <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
     
