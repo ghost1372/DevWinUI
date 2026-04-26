@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/waveCircle"
-                                  DocType="Controls">
+            <local:ControlExample DocPage="controls/waveCircle" DocType="Controls">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:WaveCircle IsAnimate="True" /&gt;
@@ -19,17 +18,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgAnimate"
-                                      Header="IsAnimate"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="tgReverse"
-                                      Header="Reverse"
-                                      IsOn="False" />
+                        <ToggleSwitch x:Name="tgAnimate" Header="IsAnimate" IsOn="True" />
+                        <ToggleSwitch x:Name="tgReverse" Header="Reverse" IsOn="False" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:WaveCircle ColorBrush="{ThemeResource SystemAccentColor}"
-                                IsAnimate="{x:Bind tgAnimate.IsOn, Mode=OneWay}"
-                                IsReverseAnimation="{x:Bind tgReverse.IsOn, Mode=OneWay}" />
+                <dev:WaveCircle ColorBrush="{ThemeResource SystemAccentColor}" IsAnimate="{x:Bind tgAnimate.IsOn, Mode=OneWay}" IsReverseAnimation="{x:Bind tgReverse.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

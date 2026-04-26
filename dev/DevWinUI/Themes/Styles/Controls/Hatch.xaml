@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:Hatch" BasedOn="{StaticResource DefaultHatchStyle}" />
+    <Style BasedOn="{StaticResource DefaultHatchStyle}" TargetType="local:Hatch" />
 
     <Style x:Key="DefaultHatchStyle" TargetType="local:Hatch">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
@@ -17,10 +17,7 @@
                 <ControlTemplate TargetType="local:Hatch">
                     <Grid BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <win2d:CanvasControl x:Name="PART_Canvas" />
-                        <ContentPresenter Padding="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}" />
+                        <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

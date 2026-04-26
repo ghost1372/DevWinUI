@@ -25,23 +25,18 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tg"
-                                      Header="IsFlipped" />
+                        <ToggleSwitch x:Name="tg" Header="IsFlipped" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
                     <dev:FlipSide.Side1>
                         <Grid Background="Red">
-                            <TextBlock HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Text="Side 1" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 1" />
                         </Grid>
                     </dev:FlipSide.Side1>
                     <dev:FlipSide.Side2>
                         <Grid Background="Blue">
-                            <TextBlock HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Text="Side 2" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 2" />
                         </Grid>
                     </dev:FlipSide.Side2>
                 </dev:FlipSide>

@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:GooeyButton" BasedOn="{StaticResource DefaultGooeyButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultGooeyButtonStyle}" TargetType="local:GooeyButton" />
 
     <Style x:Key="DefaultGooeyButtonStyle" TargetType="local:GooeyButton">
         <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
@@ -60,18 +60,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
-                                            <ContentPresenter x:Name="ContentPresenter"
-                                                              Padding="{TemplateBinding Padding}"
-                                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              AutomationProperties.AccessibilityView="Raw"
-                                                              Background="{TemplateBinding Background}"
-                                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                                              Content="{TemplateBinding Content}"
-                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                              CornerRadius="{TemplateBinding CornerRadius}" />
+                                            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" />
 
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -81,21 +70,10 @@
                         </Grid.Resources>
                         <Canvas x:Name="Win2DHost" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <ItemsPresenter x:Name="ItemsPresenter" />
-                        <Button x:Name="InnerButton"
-                                Style="{StaticResource InnerButtonStyle}"
-                                TabFocusNavigation="{TemplateBinding TabFocusNavigation}">
+                        <Button x:Name="InnerButton" Style="{StaticResource InnerButtonStyle}" TabFocusNavigation="{TemplateBinding TabFocusNavigation}">
                             <Grid>
-                                <Ellipse x:Name="BackgroundShape"
-                                         HorizontalAlignment="Stretch"
-                                         VerticalAlignment="Stretch"
-                                         Fill="{TemplateBinding Background}" />
-                                <ContentPresenter x:Name="ContentPresenter"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  Content="{TemplateBinding Content}"
-                                                  Foreground="{TemplateBinding Foreground}">
+                                <Ellipse x:Name="BackgroundShape" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{TemplateBinding Background}" />
+                                <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}">
                                     <ContentPresenter.RenderTransform>
                                         <TranslateTransform x:Name="BackgroundShapeTranslate" />
                                     </ContentPresenter.RenderTransform>

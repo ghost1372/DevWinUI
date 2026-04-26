@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/wanderingParticles"
-                                  HeaderText="WanderingParticles">
+            <local:ControlExample DocPage="controls/wanderingParticles" HeaderText="WanderingParticles">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:WanderingParticles ParticleCount="2000" /&gt;
@@ -19,15 +18,10 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue"
-                                   Header="Value"
-                                   Minimum="0"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="2000" />
+                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="2000" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:WanderingParticles Height="400"
-                                        ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
+                <dev:WanderingParticles Height="400" ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

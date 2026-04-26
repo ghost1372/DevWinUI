@@ -80,7 +80,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:StorageRing" BasedOn="{StaticResource DefaultStorageRingStyle}" />
+    <Style BasedOn="{StaticResource DefaultStorageRingStyle}" TargetType="local:StorageRing" />
 
     <Style x:Key="DefaultStorageRingStyle" TargetType="local:StorageRing">
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -107,14 +107,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StorageRing">
-                    <Border x:Name="RingRootPanel"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MinHeight="{TemplateBinding MinHeight}"
-                            Padding="{TemplateBinding Padding}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="RingRootPanel" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ControlStates">
@@ -158,27 +151,9 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="PART_Container" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource StorageRingBackgroundBrush}" BackgroundSizing="OuterBorderEdge">
 
-                            <local:RingShape x:Name="PART_TrackRingShape"
-                                             IsCircle="True"
-                                             MaxAngle="{TemplateBinding MaxAngle}"
-                                             MinAngle="{TemplateBinding MinAngle}"
-                                             Stroke="{TemplateBinding Background}"
-                                             StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}"
-                                             StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}"
-                                             StrokeThickness="{TemplateBinding TrackRingThickness}"
-                                             SweepDirection="Clockwise"
-                                             UseLayoutRounding="True" />
+                            <local:RingShape x:Name="PART_TrackRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Background}" StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}" StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}" StrokeThickness="{TemplateBinding TrackRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
-                            <local:RingShape x:Name="PART_ValueRingShape"
-                                             IsCircle="True"
-                                             MaxAngle="{TemplateBinding MaxAngle}"
-                                             MinAngle="{TemplateBinding MinAngle}"
-                                             Stroke="{TemplateBinding Foreground}"
-                                             StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}"
-                                             StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}"
-                                             StrokeThickness="{TemplateBinding ValueRingThickness}"
-                                             SweepDirection="Clockwise"
-                                             UseLayoutRounding="True" />
+                            <local:RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
                         </Grid>
                     </Border>

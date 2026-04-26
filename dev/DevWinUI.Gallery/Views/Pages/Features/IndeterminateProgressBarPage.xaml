@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/indeterminateProgressBar"
-                                  HeaderText="IndeterminateProgressBar">
+            <local:ControlExample DocPage="controls/indeterminateProgressBar" HeaderText="IndeterminateProgressBar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:IndeterminateProgressBar /&gt;
@@ -19,19 +18,13 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgActive3"
-                                      Header="IsActive"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="tgActive3" Header="IsActive" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
                     <dev:IndeterminateProgressBar IsActive="{x:Bind tgActive3.IsOn, Mode=OneWay}" />
-                    <dev:IndeterminateProgressBar DotHeight="8"
-                                                  DotWidth="8"
-                                                  IsActive="{x:Bind tgActive3.IsOn, Mode=OneWay}" />
-                    <dev:IndeterminateProgressBar DotRadiusX="0"
-                                                  DotRadiusY="0"
-                                                  IsActive="{x:Bind tgActive3.IsOn, Mode=OneWay}" />
+                    <dev:IndeterminateProgressBar DotHeight="8" DotWidth="8" IsActive="{x:Bind tgActive3.IsOn, Mode=OneWay}" />
+                    <dev:IndeterminateProgressBar DotRadiusX="0" DotRadiusY="0" IsActive="{x:Bind tgActive3.IsOn, Mode=OneWay}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

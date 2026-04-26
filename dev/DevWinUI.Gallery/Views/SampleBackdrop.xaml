@@ -9,10 +9,7 @@
         mc:Ignorable="d">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-        <ComboBox x:Name="CmbBackdrop"
-                  MinWidth="200"
-                  SelectedIndex="1"
-                  SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox x:Name="CmbBackdrop" MinWidth="200" SelectedIndex="1" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="None" Tag="None" />
             <ComboBoxItem Content="Mica" Tag="Mica" />
             <ComboBoxItem Content="Mica Alt" Tag="MicaAlt" />
@@ -21,7 +18,6 @@
             <ComboBoxItem Content="Transparent" Tag="Transparent" />
         </ComboBox>
 
-        <TextBlock x:Name="SampleTxt"
-                   Style="{ThemeResource BaseTextBlockStyle}" />
+        <TextBlock x:Name="SampleTxt" Style="{ThemeResource BaseTextBlockStyle}" />
     </StackPanel>
 </Window>

@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CopyButton" BasedOn="{StaticResource DefaultCopyButtonStyle}">
+    <Style BasedOn="{StaticResource DefaultCopyButtonStyle}" TargetType="local:CopyButton">
         <Setter Property="Content" Value="&#xE8C8;" />
     </Style>
 
@@ -136,29 +136,16 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          FontFamily="{TemplateBinding FontFamily}"
-                                          FontSize="{TemplateBinding FontSize}"
-                                          Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue={ThemeResource ButtonForeground}}"
-                                          RenderTransformOrigin=".5,.5">
+                        <ContentPresenter x:Name="ContentPresenter" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue={ThemeResource ButtonForeground}}" RenderTransformOrigin=".5,.5">
                             <ContentPresenter.RenderTransform>
                                 <ScaleTransform x:Name="CopyToClipboardTextScaleTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
-                        <ContentPresenter x:Name="CopySuccessGlyph"
-                                          Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue={ThemeResource ButtonForeground}}"
-                                          Opacity="0"
-                                          RenderTransformOrigin=".5,.5">
+                        <ContentPresenter x:Name="CopySuccessGlyph" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue={ThemeResource ButtonForeground}}" Opacity="0" RenderTransformOrigin=".5,.5">
                             <ContentPresenter.RenderTransform>
                                 <ScaleTransform x:Name="CopyToClipboardSuccessTextScaleTransform" />
                             </ContentPresenter.RenderTransform>
-                            <FontIcon FontSize="{TemplateBinding FontSize}"
-                                      Glyph="&#xE73E;" />
+                            <FontIcon FontSize="{TemplateBinding FontSize}" Glyph="&#xE73E;" />
                         </ContentPresenter>
                     </Grid>
                 </ControlTemplate>

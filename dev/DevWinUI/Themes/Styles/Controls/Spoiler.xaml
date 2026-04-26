@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Spoiler" BasedOn="{StaticResource DefaultSpoilerStyle}" />
+    <Style BasedOn="{StaticResource DefaultSpoilerStyle}" TargetType="local:Spoiler" />
 
     <Style x:Key="DefaultSpoilerStyle" TargetType="local:Spoiler">
         <Setter Property="HeaderVerticalAlignment" Value="Center" />
@@ -51,33 +51,19 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="ShimmerHost"
-                                Width="{TemplateBinding ShimmerWidth}"
-                                Height="{TemplateBinding ShimmerHeight}"
-                                CornerRadius="{TemplateBinding ShimmerCornerRadius}"
-                                IsHitTestVisible="False"
-                                Opacity="1">
-                            <ContentPresenter x:Name="ShimmerPresenter"
-                                              ContentTemplate="{TemplateBinding ShimmerTemplate}">
+                        <Border x:Name="ShimmerHost" Width="{TemplateBinding ShimmerWidth}" Height="{TemplateBinding ShimmerHeight}" CornerRadius="{TemplateBinding ShimmerCornerRadius}" IsHitTestVisible="False" Opacity="1">
+                            <ContentPresenter x:Name="ShimmerPresenter" ContentTemplate="{TemplateBinding ShimmerTemplate}">
                                 <Grid>
-                                    <local:Shimmer x:Name="Shimmer"
-                                                   IsActive="{TemplateBinding InternalIsActiveShimmer}"
-                                                   IsTabStop="False" />
+                                    <local:Shimmer x:Name="Shimmer" IsActive="{TemplateBinding InternalIsActiveShimmer}" IsTabStop="False" />
                                     <StackPanel Margin="{TemplateBinding HeaderMargin}" HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}" VerticalAlignment="{TemplateBinding HeaderVerticalAlignment}" Orientation="Horizontal" Spacing="5" Visibility="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}">
-                                        <IconSourceElement IconSource="{TemplateBinding HeaderIcon}"
-                                                           IsTabStop="False"
-                                                           Visibility="{Binding HeaderIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
-                                        <TextBlock IsTabStop="False"
-                                                   Style="{ThemeResource BaseTextBlockStyle}"
-                                                   Text="{TemplateBinding Header}" />
+                                        <IconSourceElement IconSource="{TemplateBinding HeaderIcon}" IsTabStop="False" Visibility="{Binding HeaderIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+                                        <TextBlock IsTabStop="False" Style="{ThemeResource BaseTextBlockStyle}" Text="{TemplateBinding Header}" />
                                     </StackPanel>
                                 </Grid>
                             </ContentPresenter>
                         </Border>
 
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

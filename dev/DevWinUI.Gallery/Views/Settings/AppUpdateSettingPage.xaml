@@ -9,44 +9,27 @@
       xmlns:views="using:DevWinUIGallery.Views"
       dev:BreadcrumbNavigator.IsHeaderVisible="True"
       mc:Ignorable="d">
-    <ScrollView Margin="{ThemeResource ContentPageMargin}"
-                Padding="{ThemeResource ContentPagePadding}"
-                VerticalScrollBarVisibility="Auto">
+    <ScrollView Margin="{ThemeResource ContentPageMargin}" Padding="{ThemeResource ContentPagePadding}" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="5">
-            <dev:SettingsCard Header="{x:Bind ViewModel.CurrentVersion}"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/update.png}">
+            <dev:SettingsCard Header="{x:Bind ViewModel.CurrentVersion}" HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/update.png}">
                 <dev:SettingsCard.Description>
                     <StackPanel Orientation="Horizontal" Spacing="5">
-                        <TextBlock Style="{StaticResource SecondaryTextStyle}"
-                                   Text="Last Update Check" />
-                        <TextBlock FlowDirection="LeftToRight"
-                                   Style="{StaticResource SecondaryTextStyle}"
-                                   Text="{x:Bind ViewModel.LastUpdateCheck}" />
+                        <TextBlock Style="{StaticResource SecondaryTextStyle}" Text="Last Update Check" />
+                        <TextBlock FlowDirection="LeftToRight" Style="{StaticResource SecondaryTextStyle}" Text="{x:Bind ViewModel.LastUpdateCheck}" />
                     </StackPanel>
                 </dev:SettingsCard.Description>
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-                    <Button MinWidth="{StaticResource SettingActionControlMinWidth}"
-                            Command="{x:Bind ViewModel.CheckForUpdateCommand}"
-                            Content="Check for New Version"
-                            IsEnabled="{x:Bind ViewModel.IsCheckButtonEnabled, Mode=OneWay}"
-                            Style="{ThemeResource AccentButtonStyle}" />
+                    <Button MinWidth="{StaticResource SettingActionControlMinWidth}" Command="{x:Bind ViewModel.CheckForUpdateCommand}" Content="Check for New Version" IsEnabled="{x:Bind ViewModel.IsCheckButtonEnabled, Mode=OneWay}" Style="{ThemeResource AccentButtonStyle}" />
                 </StackPanel>
             </dev:SettingsCard>
 
-            <dev:SettingsCard Header="{x:Bind ViewModel.LoadingStatus, Mode=OneWay}"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}">
+            <dev:SettingsCard Header="{x:Bind ViewModel.LoadingStatus, Mode=OneWay}" HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}">
                 <dev:SettingsCard.Description>
-                    <HyperlinkButton Padding="5,0"
-                                     Command="{x:Bind ViewModel.GetReleaseNotesCommand}"
-                                     Content="Release Note"
-                                     Visibility="{x:Bind ViewModel.IsUpdateAvailable, Mode=OneWay}" />
+                    <HyperlinkButton Padding="5,0" Command="{x:Bind ViewModel.GetReleaseNotesCommand}" Content="Release Note" Visibility="{x:Bind ViewModel.IsUpdateAvailable, Mode=OneWay}" />
                 </dev:SettingsCard.Description>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
-                    <Button MinWidth="{StaticResource SettingActionControlMinWidth}"
-                            Command="{x:Bind ViewModel.GoToUpdateCommand}"
-                            Content="Download Update"
-                            Visibility="{x:Bind ViewModel.IsUpdateAvailable, Mode=OneWay}" />
+                    <Button MinWidth="{StaticResource SettingActionControlMinWidth}" Command="{x:Bind ViewModel.GoToUpdateCommand}" Content="Download Update" Visibility="{x:Bind ViewModel.IsUpdateAvailable, Mode=OneWay}" />
                 </StackPanel>
             </dev:SettingsCard>
         </StackPanel>

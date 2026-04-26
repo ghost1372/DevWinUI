@@ -6,7 +6,7 @@
     <x:Double x:Key="SamplePanelSideContentWidth">360</x:Double>
     <Thickness x:Key="SamplePanelPadding">24</Thickness>
 
-    <Style TargetType="local:SamplePanel" BasedOn="{StaticResource DefaultSamplePanelStyle}" />
+    <Style BasedOn="{StaticResource DefaultSamplePanelStyle}" TargetType="local:SamplePanel" />
 
     <Style x:Key="DefaultSamplePanelStyle" TargetType="local:SamplePanel">
         <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
@@ -29,9 +29,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0"
-                                   Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                        <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 
                         <Grid x:Name="PART_RootPanel" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid.ColumnDefinitions>
@@ -39,14 +37,11 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <ContentPresenter Grid.Column="0"
-                                              Padding="{TemplateBinding Padding}"
-                                              Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                            <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 
                             <StackPanel Grid.Column="1" Width="{StaticResource SamplePanelSideContentWidth}" Padding="{TemplateBinding Padding}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" Spacing="12">
 
-                                <ContentPresenter Margin="0,12,0,0"
-                                                  Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                <ContentPresenter Margin="0,12,0,0" Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 
                             </StackPanel>
                         </Grid>

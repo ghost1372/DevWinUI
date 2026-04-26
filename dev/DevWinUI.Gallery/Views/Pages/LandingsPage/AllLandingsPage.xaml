@@ -8,13 +8,8 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="landingPages/allLandingPage"
-                                  DocType="Controls"
-                                  XamlSource="LandingsPage/AllLandingsPage_xaml.txt">
-                <dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}"
-                                    HeaderSubtitleText="Windows App SDK 1.8+"
-                                    HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}"
-                                    JsonNavigationService="{x:Bind local:App.Current.NavService}" />
+            <local:ControlExample DocPage="landingPages/allLandingPage" DocType="Controls" XamlSource="LandingsPage/AllLandingsPage_xaml.txt">
+                <dev:AllLandingPage HeaderImage="{ThemeResource HeaderCover}" HeaderSubtitleText="Windows App SDK 1.8+" HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}" JsonNavigationService="{x:Bind local:App.Current.NavService}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="semanticVersion"
-                                  DocType="Core">
+            <local:ControlExample DocPage="semanticVersion" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         SemanticVersion.TryParse("1.2.3-apha.1+build.1.2", out SemanticVersion version);
@@ -19,13 +18,8 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="SampleTextBox"
-                                 Header="Enter Version string"
-                                 PlaceholderText="1.2.3"
-                                 TextChanged="SampleTextBox_TextChanged" />
-                        <ComboBox x:Name="SampleComboBox"
-                                  Header="Choose Predefined Versions"
-                                  SelectionChanged="SampleComboBox_SelectionChanged">
+                        <TextBox x:Name="SampleTextBox" Header="Enter Version string" PlaceholderText="1.2.3" TextChanged="SampleTextBox_TextChanged" />
+                        <ComboBox x:Name="SampleComboBox" Header="Choose Predefined Versions" SelectionChanged="SampleComboBox_SelectionChanged">
                             <ComboBoxItem Content="1.2.3" />
                             <ComboBoxItem Content="v1.2.3" />
                             <ComboBoxItem Content="1.2.3-alpha" />
@@ -39,60 +33,32 @@
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="HasMetadata:" />
-                        <TextBlock x:Name="SampleTextBlock1"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="HasMetadata:" />
+                        <TextBlock x:Name="SampleTextBlock1" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="Metadata:" />
-                        <TextBlock x:Name="SampleTextBlock2"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Metadata:" />
+                        <TextBlock x:Name="SampleTextBlock2" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="IsPrerelease:" />
-                        <TextBlock x:Name="SampleTextBlock3"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="IsPrerelease:" />
+                        <TextBlock x:Name="SampleTextBlock3" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="PrereleaseLabels:" />
-                        <TextBlock x:Name="SampleTextBlock4"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="PrereleaseLabels:" />
+                        <TextBlock x:Name="SampleTextBlock4" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="Major:" />
-                        <TextBlock x:Name="SampleTextBlock5"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Major:" />
+                        <TextBlock x:Name="SampleTextBlock5" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="Minor:" />
-                        <TextBlock x:Name="SampleTextBlock6"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Minor:" />
+                        <TextBlock x:Name="SampleTextBlock6" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="Patch:" />
-                        <TextBlock x:Name="SampleTextBlock7"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Patch:" />
+                        <TextBlock x:Name="SampleTextBlock7" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                 </StackPanel>
             </local:ControlExample>

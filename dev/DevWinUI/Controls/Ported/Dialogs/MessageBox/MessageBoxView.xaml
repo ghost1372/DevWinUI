@@ -9,13 +9,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MessageBoxView">
-                    <local:UacStyleDialogView x:Name="PART_UacStyleDialogView"
-                                              MaxWidth="{ThemeResource ContentDialogMaxWidth}"
-                                              Background="{TemplateBinding Background}"
-                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                              DefaultButton="{Binding DefaultButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={ThemeResource MessageBoxDefaultButtonToContentDialogButtonConverter}}"
-                                              ExtendedHeader="{TemplateBinding Title}">
+                    <local:UacStyleDialogView x:Name="PART_UacStyleDialogView" MaxWidth="{ThemeResource ContentDialogMaxWidth}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" DefaultButton="{Binding DefaultButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={ThemeResource MessageBoxDefaultButtonToContentDialogButtonConverter}}" ExtendedHeader="{TemplateBinding Title}">
                         <local:UacStyleDialogView.Resources>
                             <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="Transparent" />
                             <SolidColorBrush x:Key="TextControlBackground" Color="Transparent" />
@@ -43,12 +37,7 @@
 
                         <local:UacStyleDialogView.ExtendedHeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="0,8,0,0"
-                                           HorizontalAlignment="Stretch"
-                                           FontSize="20"
-                                           FontWeight="SemiBold"
-                                           Text="{Binding}"
-                                           TextWrapping="Wrap" />
+                                <TextBlock Margin="0,8,0,0" HorizontalAlignment="Stretch" FontSize="20" FontWeight="SemiBold" Text="{Binding}" TextWrapping="Wrap" />
                             </DataTemplate>
                         </local:UacStyleDialogView.ExtendedHeaderTemplate>
 
@@ -110,29 +99,12 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid x:Name="IconArea" Grid.Column="0" VerticalAlignment="Top">
-                                <TextBlock x:Name="IconBackground"
-                                           Margin="{ThemeResource MessageBoxIconMargin}"
-                                           AutomationProperties.AccessibilityView="Raw"
-                                           FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                           FontSize="{ThemeResource MessageBoxIconFontSize}"
-                                           Foreground="{ThemeResource MessageBoxInformationalSeverityIconBackground}"
-                                           Text="{ThemeResource MessageBoxIconBackgroundGlyph}" />
+                                <TextBlock x:Name="IconBackground" Margin="{ThemeResource MessageBoxIconMargin}" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="{ThemeResource MessageBoxIconFontSize}" Foreground="{ThemeResource MessageBoxInformationalSeverityIconBackground}" Text="{ThemeResource MessageBoxIconBackgroundGlyph}" />
 
-                                <TextBlock x:Name="StandardIcon"
-                                           Margin="{ThemeResource MessageBoxIconMargin}"
-                                           FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                           FontSize="{ThemeResource MessageBoxIconFontSize}"
-                                           Foreground="{ThemeResource MessageBoxInformationalSeverityIconForeground}"
-                                           Text="{ThemeResource MessageBoxInformationalIconGlyph}" />
+                                <TextBlock x:Name="StandardIcon" Margin="{ThemeResource MessageBoxIconMargin}" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="{ThemeResource MessageBoxIconFontSize}" Foreground="{ThemeResource MessageBoxInformationalSeverityIconForeground}" Text="{ThemeResource MessageBoxInformationalIconGlyph}" />
                             </Grid>
 
-                            <TextBox Grid.Column="1"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Center"
-                                     AcceptsReturn="True"
-                                     IsReadOnly="True"
-                                     Style="{StaticResource MinimalTextBoxStyle}"
-                                     Text="{TemplateBinding Message}" />
+                            <TextBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" AcceptsReturn="True" IsReadOnly="True" Style="{StaticResource MinimalTextBoxStyle}" Text="{TemplateBinding Message}" />
                         </Grid>
                     </local:UacStyleDialogView>
                 </ControlTemplate>

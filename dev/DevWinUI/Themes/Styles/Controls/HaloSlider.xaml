@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:HaloSlider" BasedOn="{StaticResource DefaultHaloSliderStyle}" />
+    <Style BasedOn="{StaticResource DefaultHaloSliderStyle}" TargetType="local:HaloSlider" />
 
     <Style x:Key="DefaultHaloSliderStyle" TargetType="local:HaloSlider">
         <Setter Property="Background" Value="AliceBlue" />
@@ -11,9 +11,7 @@
         <Setter Property="Thumb">
             <Setter.Value>
                 <ControlTemplate>
-                    <Ellipse Width="{TemplateBinding Width}"
-                             Height="{TemplateBinding Height}"
-                             Fill="{TemplateBinding Background}" />
+                    <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -22,10 +20,7 @@
                 <ControlTemplate TargetType="local:HaloSlider">
                     <local:HaloRingPanel>
                         <Grid local:HaloRingPanel.Angle="{Binding Angle, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" local:HaloRingPanel.Offset="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                            <ContentControl Width="{TemplateBinding local:HaloPanel.Thickness}"
-                                            Height="{TemplateBinding local:HaloPanel.Thickness}"
-                                            Background="{TemplateBinding Background}"
-                                            Template="{TemplateBinding Thumb}" />
+                            <ContentControl Width="{TemplateBinding local:HaloPanel.Thickness}" Height="{TemplateBinding local:HaloPanel.Thickness}" Background="{TemplateBinding Background}" Template="{TemplateBinding Thumb}" />
                         </Grid>
                     </local:HaloRingPanel>
                 </ControlTemplate>

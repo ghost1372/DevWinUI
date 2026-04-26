@@ -153,33 +153,25 @@
 
                                 <VisualState x:Name="BottomReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation Direction="Bottom"
-                                                                ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
-                                                                TargetName="LayoutRoot" />
+                                        <DragOverThemeAnimation Direction="Bottom" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" TargetName="LayoutRoot" />
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="TopReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation Direction="Top"
-                                                                ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
-                                                                TargetName="LayoutRoot" />
+                                        <DragOverThemeAnimation Direction="Top" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" TargetName="LayoutRoot" />
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="RightReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation Direction="Right"
-                                                                ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
-                                                                TargetName="LayoutRoot" />
+                                        <DragOverThemeAnimation Direction="Right" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" TargetName="LayoutRoot" />
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="LeftReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation Direction="Left"
-                                                                ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
-                                                                TargetName="LayoutRoot" />
+                                        <DragOverThemeAnimation Direction="Left" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" TargetName="LayoutRoot" />
                                     </Storyboard>
                                 </VisualState>
 
@@ -280,51 +272,15 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Path x:Name="LeftRadiusRenderArc"
-                              Width="4"
-                              Height="4"
-                              Margin="-4,0,0,0"
-                              VerticalAlignment="Bottom"
-                              x:Load="False"
-                              Data="M4 0C4 1.19469 3.47624 2.26706 2.64582 3H0C1.65685 3 3 1.65685 3 0H4Z"
-                              Fill="{ThemeResource CardStrokeColorDefault}"
-                              Visibility="Collapsed" />
+                        <Path x:Name="LeftRadiusRenderArc" Width="4" Height="4" Margin="-4,0,0,0" VerticalAlignment="Bottom" x:Load="False" Data="M4 0C4 1.19469 3.47624 2.26706 2.64582 3H0C1.65685 3 3 1.65685 3 0H4Z" Fill="{ThemeResource CardStrokeColorDefault}" Visibility="Collapsed" />
 
-                        <Path x:Name="LeftRadiusRenderTriangle"
-                              Margin="-4,0,0,0"
-                              VerticalAlignment="Bottom"
-                              x:Load="False"
-                              Data="M0 4H4V0C4 2.20914 2.20914 4 0 4Z"
-                              Fill="{ThemeResource TabViewItemHeaderBackgroundSelected}"
-                              Visibility="Collapsed" />
+                        <Path x:Name="LeftRadiusRenderTriangle" Margin="-4,0,0,0" VerticalAlignment="Bottom" x:Load="False" Data="M0 4H4V0C4 2.20914 2.20914 4 0 4Z" Fill="{ThemeResource TabViewItemHeaderBackgroundSelected}" Visibility="Collapsed" />
 
-                        <Path x:Name="RightRadiusRenderArc"
-                              Grid.Column="2"
-                              Width="4"
-                              Height="4"
-                              Margin="0,0,-4,0"
-                              VerticalAlignment="Bottom"
-                              x:Load="False"
-                              Data="M0 0C0 1.19469 0.523755 2.26706 1.35418 3H4C2.34315 3 1 1.65685 1 0H0Z"
-                              Fill="{ThemeResource CardStrokeColorDefault}"
-                              Visibility="Collapsed" />
+                        <Path x:Name="RightRadiusRenderArc" Grid.Column="2" Width="4" Height="4" Margin="0,0,-4,0" VerticalAlignment="Bottom" x:Load="False" Data="M0 0C0 1.19469 0.523755 2.26706 1.35418 3H4C2.34315 3 1 1.65685 1 0H0Z" Fill="{ThemeResource CardStrokeColorDefault}" Visibility="Collapsed" />
 
-                        <Path x:Name="RightRadiusRenderTriangle"
-                              Grid.Column="2"
-                              Margin="0,0,-4,0"
-                              VerticalAlignment="Bottom"
-                              x:Load="False"
-                              Data="M4 4H0V0C0 2.20914 1.79086 4 4 4Z"
-                              Fill="{ThemeResource TabViewItemHeaderBackgroundSelected}"
-                              Visibility="Collapsed" />
+                        <Path x:Name="RightRadiusRenderTriangle" Grid.Column="2" Margin="0,0,-4,0" VerticalAlignment="Bottom" x:Load="False" Data="M4 4H0V0C0 2.20914 1.79086 4 4 4Z" Fill="{ThemeResource TabViewItemHeaderBackgroundSelected}" Visibility="Collapsed" />
 
-                        <Border x:Name="TabSeparator"
-                                Grid.Column="1"
-                                Width="1"
-                                Margin="{ThemeResource TabViewItemSeparatorMargin}"
-                                HorizontalAlignment="Right"
-                                BorderBrush="{ThemeResource TabViewItemSeparator}"
-                                BorderThickness="1" />
+                        <Border x:Name="TabSeparator" Grid.Column="1" Width="1" Margin="{ThemeResource TabViewItemSeparatorMargin}" HorizontalAlignment="Right" BorderBrush="{ThemeResource TabViewItemSeparator}" BorderThickness="1" />
 
                         <Grid x:Name="TabContainer" Grid.Column="1" Padding="{ThemeResource TabViewItemHeaderPadding}" Background="{ThemeResource TabViewItemHeaderBackground}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius}" FocusVisualMargin="{TemplateBinding FocusVisualMargin}">
 
@@ -334,45 +290,15 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Viewbox x:Name="IconBox"
-                                     MaxWidth="{ThemeResource TabViewItemHeaderIconSize}"
-                                     MaxHeight="{ThemeResource TabViewItemHeaderIconSize}"
-                                     Margin="{ThemeResource TabViewItemHeaderIconMargin}">
-                                <ContentControl x:Name="IconControl"
-                                                Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TabViewTemplateSettings.IconElement}"
-                                                Foreground="{ThemeResource TabViewItemIconForeground}"
-                                                HighContrastAdjustment="None"
-                                                IsTabStop="False" />
+                            <Viewbox x:Name="IconBox" MaxWidth="{ThemeResource TabViewItemHeaderIconSize}" MaxHeight="{ThemeResource TabViewItemHeaderIconSize}" Margin="{ThemeResource TabViewItemHeaderIconMargin}">
+                                <ContentControl x:Name="IconControl" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TabViewTemplateSettings.IconElement}" Foreground="{ThemeResource TabViewItemIconForeground}" HighContrastAdjustment="None" IsTabStop="False" />
                             </Viewbox>
 
-                            <ProgressRing x:Name="LoadingIndicator"
-                                          MaxWidth="{ThemeResource TabViewItemHeaderIconSize}"
-                                          MaxHeight="{ThemeResource TabViewItemHeaderIconSize}"
-                                          Margin="{ThemeResource TabViewItemHeaderIconMargin}"
-                                          IsIndeterminate="True"
-                                          Visibility="Collapsed" />
+                            <ProgressRing x:Name="LoadingIndicator" MaxWidth="{ThemeResource TabViewItemHeaderIconSize}" MaxHeight="{ThemeResource TabViewItemHeaderIconSize}" Margin="{ThemeResource TabViewItemHeaderIconMargin}" IsIndeterminate="True" Visibility="Collapsed" />
 
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              FontSize="{ThemeResource TabViewItemHeaderFontSize}"
-                                              FontWeight="{TemplateBinding FontWeight}"
-                                              Foreground="{ThemeResource TabViewItemHeaderForeground}"
-                                              HighContrastAdjustment="None"
-                                              OpticalMarginAlignment="TrimSideBearings" />
+                            <ContentPresenter x:Name="ContentPresenter" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" FontSize="{ThemeResource TabViewItemHeaderFontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{ThemeResource TabViewItemHeaderForeground}" HighContrastAdjustment="None" OpticalMarginAlignment="TrimSideBearings" />
 
-                            <Button x:Name="CloseButton"
-                                    Grid.Column="2"
-                                    Margin="{ThemeResource TabViewItemHeaderCloseMargin}"
-                                    Content="&#xE711;"
-                                    HighContrastAdjustment="None"
-                                    IsTabStop="False"
-                                    IsTextScaleFactorEnabled="False"
-                                    Style="{ThemeResource TabViewCloseButtonStyle}" />
+                            <Button x:Name="CloseButton" Grid.Column="2" Margin="{ThemeResource TabViewItemHeaderCloseMargin}" Content="&#xE711;" HighContrastAdjustment="None" IsTabStop="False" IsTextScaleFactorEnabled="False" Style="{ThemeResource TabViewCloseButtonStyle}" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
@@ -397,18 +323,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="ContentPresenter"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                      CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter x:Name="ContentPresenter" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />

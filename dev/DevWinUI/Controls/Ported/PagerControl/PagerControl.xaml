@@ -90,15 +90,7 @@
                             </VisualStateGroup>
 
                         </VisualStateManager.VisualStateGroups>
-                        <FontIcon x:Name="Content"
-                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  AutomationProperties.AccessibilityView="Raw"
-                                  FontFamily="{TemplateBinding FontFamily}"
-                                  FontSize="{TemplateBinding FontSize}"
-                                  Foreground="{TemplateBinding Foreground}"
-                                  Glyph="{TemplateBinding Content}"
-                                  MirroredWhenRightToLeft="True" />
+                        <FontIcon x:Name="Content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Glyph="{TemplateBinding Content}" MirroredWhenRightToLeft="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -114,19 +106,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="ContentPresenter"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                      CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -313,66 +293,27 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Button x:Name="FirstPageButton"
-                                    Content="&#xE892;"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    Style="{TemplateBinding FirstButtonStyle}"
-                                    ToolTipService.ToolTip="{Binding ElementName=FirstPageButton, Path=(AutomationProperties.Name)}" />
-                            <Button x:Name="PreviousPageButton"
-                                    Content="&#xE76B;"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    Style="{TemplateBinding PreviousButtonStyle}"
-                                    ToolTipService.ToolTip="{Binding ElementName=PreviousPageButton, Path=(AutomationProperties.Name)}" />
+                            <Button x:Name="FirstPageButton" Content="&#xE892;" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding FirstButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=FirstPageButton, Path=(AutomationProperties.Name)}" />
+                            <Button x:Name="PreviousPageButton" Content="&#xE76B;" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding PreviousButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=PreviousPageButton, Path=(AutomationProperties.Name)}" />
                         </StackPanel>
 
                         <StackPanel x:Name="BoxPanels" Grid.Column="1" Orientation="Horizontal" Visibility="Collapsed">
-                            <TextBlock Margin="5,0,5,0"
-                                       VerticalAlignment="Center"
-                                       Text="{TemplateBinding PrefixText}" />
+                            <TextBlock Margin="5,0,5,0" VerticalAlignment="Center" Text="{TemplateBinding PrefixText}" />
                             <!--  NumberBox Display  -->
-                            <NumberBox x:Name="NumberBoxDisplay"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       LargeChange="5"
-                                       Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumberOfPages, Mode=OneWay}"
-                                       Minimum="1"
-                                       SmallChange="1"
-                                       Visibility="Collapsed" />
+                            <NumberBox x:Name="NumberBoxDisplay" HorizontalAlignment="Center" VerticalAlignment="Center" LargeChange="5" Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumberOfPages, Mode=OneWay}" Minimum="1" SmallChange="1" Visibility="Collapsed" />
                             <!--  ComboBox Display  -->
-                            <ComboBox x:Name="ComboBoxDisplay"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.Pages}"
-                                      Visibility="Collapsed" />
-                            <TextBlock x:Name="SuffixTextLabel"
-                                       Margin="5,0,0,0"
-                                       VerticalAlignment="Center"
-                                       Text="{TemplateBinding SuffixText}" />
-                            <TextBlock x:Name="TotalNumberOfPagesLabel"
-                                       Margin="5,0,5,0"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumberOfPages, Mode=OneWay}" />
+                            <ComboBox x:Name="ComboBoxDisplay" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.Pages}" Visibility="Collapsed" />
+                            <TextBlock x:Name="SuffixTextLabel" Margin="5,0,0,0" VerticalAlignment="Center" Text="{TemplateBinding SuffixText}" />
+                            <TextBlock x:Name="TotalNumberOfPagesLabel" Margin="5,0,5,0" VerticalAlignment="Center" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumberOfPages, Mode=OneWay}" />
                         </StackPanel>
 
-                        <ItemsRepeater x:Name="NumberPanelItemsRepeater"
-                                       Grid.Column="1"
-                                       ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NumberPanelItems}"
-                                       Visibility="Collapsed">
+                        <ItemsRepeater x:Name="NumberPanelItemsRepeater" Grid.Column="1" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NumberPanelItems}" Visibility="Collapsed">
                             <ItemsRepeater.Layout>
-                                <StackLayout Orientation="Horizontal"
-                                             Spacing="5" />
+                                <StackLayout Orientation="Horizontal" Spacing="5" />
                             </ItemsRepeater.Layout>
                         </ItemsRepeater>
 
-                        <Rectangle x:Name="NumberPanelCurrentPageIndicator"
-                                   Grid.Column="1"
-                                   Height="2"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
-                                   Fill="{ThemeResource PagerControlSelectionIndicatorForeground}"
-                                   RadiusX="1"
-                                   RadiusY="1"
-                                   Visibility="Collapsed">
+                        <Rectangle x:Name="NumberPanelCurrentPageIndicator" Grid.Column="1" Height="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Fill="{ThemeResource PagerControlSelectionIndicatorForeground}" RadiusX="1" RadiusY="1" Visibility="Collapsed">
                             <Rectangle.Transitions>
                                 <TransitionCollection>
                                     <RepositionThemeTransition />
@@ -381,16 +322,8 @@
                         </Rectangle>
 
                         <StackPanel Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Button x:Name="NextPageButton"
-                                    Content="&#xE76C;"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    Style="{TemplateBinding NextButtonStyle}"
-                                    ToolTipService.ToolTip="{Binding ElementName=NextPageButton, Path=(AutomationProperties.Name)}" />
-                            <Button x:Name="LastPageButton"
-                                    Content="&#xE893;"
-                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    Style="{TemplateBinding LastButtonStyle}"
-                                    ToolTipService.ToolTip="{Binding ElementName=LastPageButton, Path=(AutomationProperties.Name)}" />
+                            <Button x:Name="NextPageButton" Content="&#xE76C;" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding NextButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=NextPageButton, Path=(AutomationProperties.Name)}" />
+                            <Button x:Name="LastPageButton" Content="&#xE893;" FontFamily="{StaticResource SymbolThemeFontFamily}" Style="{TemplateBinding LastButtonStyle}" ToolTipService.ToolTip="{Binding ElementName=LastPageButton, Path=(AutomationProperties.Name)}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>

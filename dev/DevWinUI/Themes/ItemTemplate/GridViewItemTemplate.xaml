@@ -2,15 +2,10 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
-    <DataTemplate x:Key="ControlItemTemplate"
-                  x:DataType="local:DataItem">
-        <local:InfoCard Title="{x:Bind Title}"
-                        Description="{x:Bind Subtitle}"
-                        Icon="{x:Bind ImagePath}">
+    <DataTemplate x:Key="ControlItemTemplate" x:DataType="local:DataItem">
+        <local:InfoCard Title="{x:Bind Title}" Description="{x:Bind Subtitle}" Icon="{x:Bind ImagePath}">
             <local:InfoCard.InfoBadge>
-                <InfoBadge Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}"
-                           Tag="{x:Bind DataInfoBadge.InfoBadgeValue}"
-                           Visibility="{x:Bind DataInfoBadge.IsLandingPageInfoBadgeHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <InfoBadge Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}" Tag="{x:Bind DataInfoBadge.InfoBadgeValue}" Visibility="{x:Bind DataInfoBadge.IsLandingPageInfoBadgeHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
             </local:InfoCard.InfoBadge>
         </local:InfoCard>
     </DataTemplate>

@@ -10,35 +10,18 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/circlePanel"
-                                  HeaderText="CirclePanel">
+            <local:ControlExample DocPage="controls/circlePanel" HeaderText="CirclePanel">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CirclePanel /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGKeepVertical"
-                                      Header="KeepVertical"
-                                      IsOn="True"
-                                      Toggled="TGKeepVertical_Toggled" />
-                        <NumberBox x:Name="NBDiameter"
-                                   Header="Diameter"
-                                   Minimum="100"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="OnValueChanged"
-                                   Value="170" />
-                        <NumberBox x:Name="NBOffset"
-                                   Header="OffsetAngle"
-                                   Minimum="0"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="OnValueChanged"
-                                   Value="0" />
+                        <ToggleSwitch x:Name="TGKeepVertical" Header="KeepVertical" IsOn="True" Toggled="TGKeepVertical_Toggled" />
+                        <NumberBox x:Name="NBDiameter" Header="Diameter" Minimum="100" SpinButtonPlacementMode="Inline" ValueChanged="OnValueChanged" Value="170" />
+                        <NumberBox x:Name="NBOffset" Header="OffsetAngle" Minimum="0" SpinButtonPlacementMode="Inline" ValueChanged="OnValueChanged" Value="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CirclePanel x:Name="CirclePanelSample"
-                                 Diameter="{x:Bind NBDiameter.Value, Mode=OneWay}"
-                                 KeepVertical="{x:Bind TGKeepVertical.IsOn, Mode=OneWay}"
-                                 OffsetAngle="{x:Bind NBOffset.Value, Mode=OneWay}">
+                <dev:CirclePanel x:Name="CirclePanelSample" Diameter="{x:Bind NBDiameter.Value, Mode=OneWay}" KeepVertical="{x:Bind TGKeepVertical.IsOn, Mode=OneWay}" OffsetAngle="{x:Bind NBOffset.Value, Mode=OneWay}">
                     <dev:ClockRadioButton Content="3" />
                     <dev:ClockRadioButton Content="4" />
                     <dev:ClockRadioButton Content="5" />
@@ -53,41 +36,20 @@
                     <dev:ClockRadioButton Content="2" />
                 </dev:CirclePanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/circlePanel"
-                                  HeaderText="CirclePanel">
+            <local:ControlExample DocPage="controls/circlePanel" HeaderText="CirclePanel">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CirclePanel /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGKeepVertical2"
-                                      Header="KeepVertical"
-                                      IsOn="True"
-                                      Toggled="TGKeepVertical2_Toggled" />
-                        <NumberBox x:Name="NBDiameter2"
-                                   Header="Diameter"
-                                   Minimum="100"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="OnValueChanged2"
-                                   Value="170" />
-                        <NumberBox x:Name="NBOffset2"
-                                   Header="OffsetAngle"
-                                   Minimum="0"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="OnValueChanged2"
-                                   Value="0" />
-                        <Button x:Name="BtnAdd"
-                                Click="BtnAdd_Click"
-                                Content="Add Item" />
-                        <Button x:Name="BtnRemove"
-                                Click="BtnRemove_Click"
-                                Content="Remove Item" />
+                        <ToggleSwitch x:Name="TGKeepVertical2" Header="KeepVertical" IsOn="True" Toggled="TGKeepVertical2_Toggled" />
+                        <NumberBox x:Name="NBDiameter2" Header="Diameter" Minimum="100" SpinButtonPlacementMode="Inline" ValueChanged="OnValueChanged2" Value="170" />
+                        <NumberBox x:Name="NBOffset2" Header="OffsetAngle" Minimum="0" SpinButtonPlacementMode="Inline" ValueChanged="OnValueChanged2" Value="0" />
+                        <Button x:Name="BtnAdd" Click="BtnAdd_Click" Content="Add Item" />
+                        <Button x:Name="BtnRemove" Click="BtnRemove_Click" Content="Remove Item" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CirclePanel x:Name="CirclePanelSample2"
-                                 Diameter="{x:Bind NBDiameter2.Value, Mode=OneWay}"
-                                 KeepVertical="{x:Bind TGKeepVertical2.IsOn, Mode=OneWay}"
-                                 OffsetAngle="{x:Bind NBOffset2.Value, Mode=OneWay}" />
+                <dev:CirclePanel x:Name="CirclePanelSample2" Diameter="{x:Bind NBDiameter2.Value, Mode=OneWay}" KeepVertical="{x:Bind TGKeepVertical2.IsOn, Mode=OneWay}" OffsetAngle="{x:Bind NBOffset2.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

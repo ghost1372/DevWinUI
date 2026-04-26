@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ImageFrame" BasedOn="{StaticResource DefaultImageFrameStyle}" />
+    <Style BasedOn="{StaticResource DefaultImageFrameStyle}" TargetType="local:ImageFrame" />
 
     <Style x:Key="DefaultImageFrameStyle" TargetType="local:ImageFrame">
         <Setter Property="Template">

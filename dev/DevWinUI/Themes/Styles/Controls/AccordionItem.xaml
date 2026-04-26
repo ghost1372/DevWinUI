@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:AccordionItem" BasedOn="{StaticResource DefaultAccordionItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultAccordionItemStyle}" TargetType="local:AccordionItem" />
 
     <Style x:Key="DefaultAccordionItemStyle" TargetType="local:AccordionItem">
         <Setter Property="Template">
@@ -15,12 +15,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <ContentPresenter Grid.RowSpan="2" />
-                        <ContentControl Name="PART_Header"
-                                        Grid.Row="1"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Stretch"
-                                        Content="{TemplateBinding Header}"
-                                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <ContentControl Name="PART_Header" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

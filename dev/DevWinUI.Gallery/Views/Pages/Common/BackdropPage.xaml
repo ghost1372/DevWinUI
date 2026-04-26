@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="backdrop"
-                                  DocType="Core">
+            <local:ControlExample DocPage="backdrop" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         window.SystemBackdrop = new TransparentBackdrop();

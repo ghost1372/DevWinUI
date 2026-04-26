@@ -19,13 +19,9 @@
                     &lt;/dev:SelectorBarSegmented&gt;#nl#
                 </local:ControlExample.Xaml>
                 <dev:SelectorBarSegmented>
-                    <SelectorBarItem Icon="Find"
-                                     IsSelected="True"
-                                     Text="Item 1" />
-                    <SelectorBarItem Icon="Home"
-                                     Text="Item 2" />
-                    <SelectorBarItem Icon="Home"
-                                     Text="Item 3" />
+                    <SelectorBarItem Icon="Find" IsSelected="True" Text="Item 1" />
+                    <SelectorBarItem Icon="Home" Text="Item 2" />
+                    <SelectorBarItem Icon="Home" Text="Item 3" />
                 </dev:SelectorBarSegmented>
             </local:ControlExample>
         </StackPanel>

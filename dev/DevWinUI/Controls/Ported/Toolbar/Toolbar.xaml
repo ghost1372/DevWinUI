@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Toolbar" BasedOn="{StaticResource DefaultToolbarStyle}" />
+    <Style BasedOn="{StaticResource DefaultToolbarStyle}" TargetType="local:Toolbar" />
 
     <Style x:Key="DefaultToolbarStyle" TargetType="local:Toolbar">
         <Setter Property="Background" Value="{ThemeResource ToolbarBackgroundBrush}" />
@@ -17,13 +17,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Toolbar">
 
-                    <Border x:Name="RootBorder"
-                            Padding="{TemplateBinding Padding}"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border x:Name="RootBorder" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
 
                         <Grid x:Name="RootGrid">
                             <Grid.ColumnDefinitions>
@@ -32,17 +26,9 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  Stack Panel is a placeholder to be replaced with the ItemsRepeater  -->
-                            <ItemsRepeater x:Name="PART_ItemsRepeater"
-                                           Grid.Column="0"
-                                           HorizontalAlignment="Stretch"
-                                           VerticalAlignment="Stretch"
-                                           ItemTemplate="{TemplateBinding ItemTemplate}"
-                                           ItemsSource="{TemplateBinding Items}"
-                                           TabFocusNavigation="Local"
-                                           Visibility="Visible">
+                            <ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding Items}" TabFocusNavigation="Local" Visibility="Visible">
                                 <ItemsRepeater.Layout>
-                                    <StackLayout Orientation="Horizontal"
-                                                 Spacing="{ThemeResource ToolbarItemSpacing}" />
+                                    <StackLayout Orientation="Horizontal" Spacing="{ThemeResource ToolbarItemSpacing}" />
                                 </ItemsRepeater.Layout>
                             </ItemsRepeater>
 
@@ -50,11 +36,7 @@
 
                                 <local:ToolbarSeparator />
 
-                                <local:ToolbarButton MinWidth="40"
-                                                     MinHeight="32"
-                                                     IconSize="16"
-                                                     Label="Overflow Button"
-                                                     ThemedIcon="{StaticResource App.ThemedIcons.More}" />
+                                <local:ToolbarButton MinWidth="40" MinHeight="32" IconSize="16" Label="Overflow Button" ThemedIcon="{StaticResource App.ThemedIcons.More}" />
 
                             </StackPanel>
                         </Grid>

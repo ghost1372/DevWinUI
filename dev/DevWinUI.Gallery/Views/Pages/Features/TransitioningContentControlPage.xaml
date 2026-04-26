@@ -10,16 +10,13 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/transitioningContentControl"
-                                  HeaderText="TransitioningContentControl">
+            <local:ControlExample DocPage="controls/transitioningContentControl" HeaderText="TransitioningContentControl">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:TransitioningContentControl&gt; &lt;Button Content="Test"/&gt; &lt;/dev:TransitioningContentControl&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGVisibility"
-                                      Header="Button Visibility"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGVisibility" Header="Button Visibility" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <Grid ColumnSpacing="30" RowSpacing="50">
@@ -37,106 +34,67 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <dev:TransitioningContentControl TransitionMode="Right2Left"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl TransitionMode="Right2Left" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Right2Left" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Column="1"
-                                                     TransitionMode="Left2Right"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Column="1" TransitionMode="Left2Right" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Left2Right" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Column="2"
-                                                     TransitionMode="Bottom2Top"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Column="2" TransitionMode="Bottom2Top" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Bottom2Top" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="1"
-                                                     TransitionMode="Top2Bottom"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="1" TransitionMode="Top2Bottom" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Top2Bottom" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="1"
-                                                     Grid.Column="1"
-                                                     TransitionMode="Right2LeftWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="1" Grid.Column="1" TransitionMode="Right2LeftWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Right2LeftWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="1"
-                                                     Grid.Column="2"
-                                                     TransitionMode="Left2RightWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="1" Grid.Column="2" TransitionMode="Left2RightWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Left2RightWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="2"
-                                                     TransitionMode="Bottom2TopWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="2" TransitionMode="Bottom2TopWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Bottom2TopWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="2"
-                                                     Grid.Column="1"
-                                                     TransitionMode="Top2BottomWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="2" Grid.Column="1" TransitionMode="Top2BottomWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Top2BottomWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="2"
-                                                     Grid.Column="2"
-                                                     TransitionMode="Fade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="2" Grid.Column="2" TransitionMode="Fade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Fade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="3"
-                                                     TransitionMode="DiagonalSlideWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="3" TransitionMode="DiagonalSlideWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="DiagonalSlideWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="3"
-                                                     Grid.Column="1"
-                                                     TransitionMode="ScaleDown"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="3" Grid.Column="1" TransitionMode="ScaleDown" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="ScaleDown" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="3"
-                                                     Grid.Column="2"
-                                                     TransitionMode="ScaleUp"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="3" Grid.Column="2" TransitionMode="ScaleUp" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="ScaleUp" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="4"
-                                                     TransitionMode="ZoomInWithFade"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="4" TransitionMode="ZoomInWithFade" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="ZoomInWithFade" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="4"
-                                                     Grid.Column="1"
-                                                     TransitionStoryboard="{StaticResource Custom1Transition}"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="4" Grid.Column="1" TransitionStoryboard="{StaticResource Custom1Transition}" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Custom1" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="4"
-                                                     Grid.Column="2"
-                                                     TransitionStoryboard="{StaticResource Custom2Transition}"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="4" Grid.Column="2" TransitionStoryboard="{StaticResource Custom2Transition}" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Custom2" />
                     </dev:TransitioningContentControl>
 
-                    <dev:TransitioningContentControl Grid.Row="5"
-                                                     TransitionStoryboard="{StaticResource Custom3Transition}"
-                                                     Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <dev:TransitioningContentControl Grid.Row="5" TransitionStoryboard="{StaticResource Custom3Transition}" Visibility="{x:Bind TGVisibility.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="Custom3" />
                     </dev:TransitioningContentControl>
                 </Grid>

@@ -6,31 +6,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:OutOfBoxPage Title="Awake"
-                      Description="A convenient way to keep your PC awake on-demand."
-                      HeroImage="ms-appx:///Assets/Modules/Awake.png"
-                      IsTabStop="False"
-                      SecondaryLinksHeader="Attribution">
+    <dev:OutOfBoxPage Title="Awake" Description="A convenient way to keep your PC awake on-demand." HeroImage="ms-appx:///Assets/Modules/Awake.png" IsTabStop="False" SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
-                <dev:SettingsCard Header="Enable Awake"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/awake.png}">
-                    <ToggleSwitch OffContent="Off"
-                                  OnContent="On" />
+                <dev:SettingsCard Header="Enable Awake" HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/awake.png}">
+                    <ToggleSwitch OffContent="Off" OnContent="On" />
                 </dev:SettingsCard>
-                <InfoBar Title="The system administrator is forcing this setting."
-                         IsClosable="False"
-                         IsOpen="True"
-                         Severity="Informational" />
+                <InfoBar Title="The system administrator is forcing this setting." IsClosable="False" IsOpen="True" Severity="Informational" />
 
                 <dev:SimpleSettingsGroup Header="Behavior">
 
-                    <dev:SettingsCard Description="Manage the state of your device when Awake is active"
-                                      Header="Mode"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE945;}">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                    <dev:SettingsCard Description="Manage the state of your device when Awake is active" Header="Mode" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE945;}">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Keep using the selected power plan" />
                             <ComboBoxItem Content="Keep awake indefinitely" />
                             <ComboBoxItem Content="Keep awake for a time interval" />
@@ -38,11 +25,7 @@
                         </ComboBox>
                     </dev:SettingsCard>
 
-                    <dev:SettingsExpander Description="Keep custom awake state until a specific date and time"
-                                          Header="End date and time"
-                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                    Glyph=&#xEC92;}"
-                                          IsExpanded="True">
+                    <dev:SettingsExpander Description="Keep custom awake state until a specific date and time" Header="End date and time" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEC92;}" IsExpanded="True">
                         <dev:SettingsExpander.Items>
                             <dev:SettingsCard Header="End date">
                                 <DatePicker />
@@ -53,34 +36,15 @@
                         </dev:SettingsExpander.Items>
                     </dev:SettingsExpander>
 
-                    <dev:SettingsCard Header="Interval before returning to the previous awakeness state"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE916;}">
+                    <dev:SettingsCard Header="Interval before returning to the previous awakeness state" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE916;}">
 
                         <StackPanel MinWidth="{StaticResource SettingActionControlMinWidth}" Orientation="Horizontal">
-                            <NumberBox Width="96"
-                                       HorizontalAlignment="Left"
-                                       Header="Hours"
-                                       LargeChange="5"
-                                       Minimum="0"
-                                       SmallChange="1"
-                                       SpinButtonPlacementMode="Compact" />
-                            <NumberBox Width="96"
-                                       Margin="8,0,0,0"
-                                       HorizontalAlignment="Left"
-                                       Header="Minutes"
-                                       LargeChange="5"
-                                       Maximum="60"
-                                       Minimum="0"
-                                       SmallChange="1"
-                                       SpinButtonPlacementMode="Compact" />
+                            <NumberBox Width="96" HorizontalAlignment="Left" Header="Hours" LargeChange="5" Minimum="0" SmallChange="1" SpinButtonPlacementMode="Compact" />
+                            <NumberBox Width="96" Margin="8,0,0,0" HorizontalAlignment="Left" Header="Minutes" LargeChange="5" Maximum="60" Minimum="0" SmallChange="1" SpinButtonPlacementMode="Compact" />
                         </StackPanel>
                     </dev:SettingsCard>
 
-                    <dev:SettingsCard Description="This setting is only available when keeping the PC awake"
-                                      Header="Keep screen on"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE7F4;}">
+                    <dev:SettingsCard Description="This setting is only available when keeping the PC awake" Header="Keep screen on" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE7F4;}">
                         <ToggleSwitch />
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
@@ -88,12 +52,10 @@
         </dev:OutOfBoxPage.Content>
 
         <dev:OutOfBoxPage.PrimaryLinks>
-            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake"
-                                  Text="Learn more about Awake" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake" Text="Learn more about Awake" />
         </dev:OutOfBoxPage.PrimaryLinks>
         <dev:OutOfBoxPage.SecondaryLinks>
-            <dev:OutOfBoxPageLink Link="https://Awake.den.dev"
-                                  Text="Den Delimarsky's Awake" />
+            <dev:OutOfBoxPageLink Link="https://Awake.den.dev" Text="Den Delimarsky's Awake" />
         </dev:OutOfBoxPage.SecondaryLinks>
     </dev:OutOfBoxPage>
 </Page>

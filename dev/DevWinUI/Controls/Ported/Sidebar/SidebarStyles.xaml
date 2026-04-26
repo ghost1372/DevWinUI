@@ -9,7 +9,7 @@
     <x:Double x:Key="SidebarCompactOpenPaneLength">56</x:Double>
     <x:Double x:Key="SidebarNegativeCompactOpenPaneLength">-56</x:Double>
 
-    <Style x:Key="SidebarEjectButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+    <Style x:Key="SidebarEjectButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
         <Setter Target="MinWidth" Value="24" />
         <Setter Target="Width" Value="24" />
         <Setter Target="MinHeight" Value="24" />
@@ -20,7 +20,7 @@
         <Setter Target="Background" Value="Transparent" />
     </Style>
 
-    <Style x:Key="SidebarFavouritesPinnedIcon" TargetType="local:ThemedIcon" BasedOn="{StaticResource App.ThemedIcons.Actions.Pinned.12}">
+    <Style x:Key="SidebarFavouritesPinnedIcon" BasedOn="{StaticResource App.ThemedIcons.Actions.Pinned.12}" TargetType="local:ThemedIcon">
         <Setter Target="MinWidth" Value="12" />
         <Setter Target="Width" Value="12" />
         <Setter Target="MinHeight" Value="12" />
@@ -261,23 +261,10 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <!--  Drag Target Indicator  -->
-                        <Rectangle x:Name="DragTargetIndicator"
-                                   Grid.ColumnSpan="3"
-                                   Height="2"
-                                   Margin="4,-2"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Top"
-                                   AutomationProperties.AccessibilityView="Raw"
-                                   Fill="{ThemeResource AccentFillColorDefaultBrush}"
-                                   RadiusX="4"
-                                   RadiusY="4"
-                                   Visibility="Collapsed" />
+                        <Rectangle x:Name="DragTargetIndicator" Grid.ColumnSpan="3" Height="2" Margin="4,-2" HorizontalAlignment="Stretch" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" RadiusX="4" RadiusY="4" Visibility="Collapsed" />
 
                         <!--  Focusable Visual  -->
-                        <Border x:Name="ElementBorder"
-                                Grid.Row="0"
-                                Height="32"
-                                Background="Transparent">
+                        <Border x:Name="ElementBorder" Grid.Row="0" Height="32" Background="Transparent">
                             <Grid x:Name="ElementGrid" Margin="0,2,0,2" HorizontalAlignment="Stretch" Background="{ThemeResource SubtleFillColorTransparentBrush}" BackgroundSizing="InnerBorderEdge" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" IsTabStop="True" TabFocusNavigation="Once" ToolTipService.ToolTip="{Binding ToolTipValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseSystemFocusVisuals="True">
                                 <Grid.ColumnDefinitions>
                                     <!--  Selection Indicator  -->
@@ -291,72 +278,22 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--  Selection Rectangle  -->
-                                <Rectangle x:Name="SelectionIndicator"
-                                           Grid.Column="0"
-                                           Width="3"
-                                           Height="16"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           AutomationProperties.AccessibilityView="Raw"
-                                           Fill="{ThemeResource AccentFillColorDefaultBrush}"
-                                           Opacity="0"
-                                           RadiusX="2"
-                                           RadiusY="2" />
+                                <Rectangle x:Name="SelectionIndicator" Grid.Column="0" Width="3" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" Opacity="0" RadiusX="2" RadiusY="2" />
 
                                 <!--  Icon  -->
-                                <ContentPresenter x:Name="IconPresenter"
-                                                  Grid.Column="1"
-                                                  Width="16"
-                                                  Height="16"
-                                                  Margin="8,0,0,0"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  AutomationProperties.AccessibilityView="Raw"
-                                                  Content="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <ContentPresenter x:Name="IconPresenter" Grid.Column="1" Width="16" Height="16" Margin="8,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
 
                                 <!--  Text  -->
-                                <TextBlock x:Name="ItemNameTextBlock"
-                                           Grid.Column="2"
-                                           Margin="12,0,12,2"
-                                           HorizontalAlignment="Stretch"
-                                           VerticalAlignment="Center"
-                                           AutomationProperties.AccessibilityView="Raw"
-                                           FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                           LineHeight="16"
-                                           Text="{Binding TextValue, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextWrapping="NoWrap" />
+                                <TextBlock x:Name="ItemNameTextBlock" Grid.Column="2" Margin="12,0,12,2" HorizontalAlignment="Stretch" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource ContentControlThemeFontFamily}" LineHeight="16" Text="{Binding TextValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
 
                                 <!--  Decorator  -->
-                                <ContentPresenter x:Name="ItemDecoratorPresenter"
-                                                  Grid.Column="3"
-                                                  Width="28"
-                                                  Margin="0"
-                                                  HorizontalContentAlignment="Center"
-                                                  VerticalContentAlignment="Center"
-                                                  BorderThickness="0"
-                                                  Content="{Binding Decorator, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Visibility="Collapsed" />
+                                <ContentPresenter x:Name="ItemDecoratorPresenter" Grid.Column="3" Width="28" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding Decorator, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
 
                                 <!--  Chevron  -->
-                                <AnimatedIcon x:Name="ExpandCollapseChevron"
-                                              Grid.Column="3"
-                                              Width="{StaticResource ExpanderChevronGlyphSize}"
-                                              Height="{StaticResource ExpanderChevronGlyphSize}"
-                                              Margin="0,0,8,0"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                              AnimatedIcon.State="NormalOff"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                              RenderTransformOrigin="0.5, 0.5"
-                                              Visibility="Collapsed">
+                                <AnimatedIcon x:Name="ExpandCollapseChevron" Grid.Column="3" Width="{StaticResource ExpanderChevronGlyphSize}" Height="{StaticResource ExpanderChevronGlyphSize}" Margin="0,0,8,0" HorizontalAlignment="Center" VerticalAlignment="Center" AnimatedIcon.State="NormalOff" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorSecondaryBrush}" RenderTransformOrigin="0.5, 0.5" Visibility="Collapsed">
                                     <animatedvisuals:AnimatedChevronUpDownSmallVisualSource />
                                     <AnimatedIcon.FallbackIconSource>
-                                        <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                        FontSize="12"
-                                                        Glyph="{StaticResource ExpanderChevronDownGlyph}"
-                                                        IsTextScaleFactorEnabled="False" />
+                                        <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="12" Glyph="{StaticResource ExpanderChevronDownGlyph}" IsTextScaleFactorEnabled="False" />
                                     </AnimatedIcon.FallbackIconSource>
                                     <AnimatedIcon.RenderTransform>
                                         <RotateTransform x:Name="ExpandCollapseChevronRotateTransform" Angle="0" />
@@ -365,38 +302,22 @@
 
                                 <!--  Overflow  -->
                                 <FlyoutBase.AttachedFlyout>
-                                    <Flyout x:Name="ChildrenFlyout"
-                                            Placement="Right">
+                                    <Flyout x:Name="ChildrenFlyout" Placement="Right">
                                         <Flyout.FlyoutPresenterStyle>
-                                            <Style TargetType="FlyoutPresenter" BasedOn="{StaticResource DefaultFlyoutPresenterStyle}">
+                                            <Style BasedOn="{StaticResource DefaultFlyoutPresenterStyle}" TargetType="FlyoutPresenter">
                                                 <Setter Target="Padding" Value="0,4" />
                                                 <Setter Target="MinWidth" Value="200" />
                                                 <Setter Target="MinHeight" Value="20" />
                                             </Style>
                                         </Flyout.FlyoutPresenterStyle>
-                                        <ItemsRepeater x:Name="FlyoutChildrenPresenter"
-                                                       HorizontalAlignment="Stretch"
-                                                       local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}"
-                                                       AutomationProperties.AccessibilityView="Content"
-                                                       ItemTemplate="{StaticResource DefaultSidebarItemInFlyoutTemplate}"
-                                                       ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                       XYFocusKeyboardNavigation="Enabled" />
+                                        <ItemsRepeater x:Name="FlyoutChildrenPresenter" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemInFlyoutTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" XYFocusKeyboardNavigation="Enabled" />
                                     </Flyout>
                                 </FlyoutBase.AttachedFlyout>
                             </Grid>
                         </Border>
 
                         <!--  Children  -->
-                        <ItemsRepeater x:Name="ChildrenPresenter"
-                                       Grid.Row="2"
-                                       Margin="-4,2"
-                                       HorizontalAlignment="Stretch"
-                                       local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}"
-                                       AutomationProperties.AccessibilityView="Content"
-                                       ItemTemplate="{StaticResource DefaultSidebarItemTemplate}"
-                                       ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                       Visibility="Collapsed"
-                                       XYFocusKeyboardNavigation="Enabled">
+                        <ItemsRepeater x:Name="ChildrenPresenter" Grid.Row="2" Margin="-4,2" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" XYFocusKeyboardNavigation="Enabled">
                             <ItemsRepeater.Layout>
                                 <StackLayout />
                             </ItemsRepeater.Layout>

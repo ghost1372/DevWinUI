@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:BlendedImage" BasedOn="{StaticResource DefaultBlendedImageStyle}" />
+    <Style BasedOn="{StaticResource DefaultBlendedImageStyle}" TargetType="local:BlendedImage" />
 
     <Style x:Key="DefaultBlendedImageStyle" TargetType="local:BlendedImage">
         <Setter Property="Template">

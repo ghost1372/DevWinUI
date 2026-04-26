@@ -10,34 +10,22 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/timeline"
-                                  HeaderText="Timeline">
+            <local:ControlExample DocPage="controls/timeline" HeaderText="Timeline">
                 <local:ControlExample.Xaml>
                     &lt;dev:Timeline /&gt;
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TimePicker x:Name="StartTimePicker"
-                                    Header="Start Time"
-                                    Time="08:00:00" />
+                        <TimePicker x:Name="StartTimePicker" Header="Start Time" Time="08:00:00" />
 
-                        <TimePicker x:Name="EndTimePicker"
-                                    Header="End Time"
-                                    Time="18:00:00" />
+                        <TimePicker x:Name="EndTimePicker" Header="End Time" Time="18:00:00" />
 
-                        <TimePicker x:Name="SunrisePicker"
-                                    Header="Sunrise"
-                                    Time="06:00:00" />
+                        <TimePicker x:Name="SunrisePicker" Header="Sunrise" Time="06:00:00" />
 
-                        <TimePicker x:Name="SunsetPicker"
-                                    Header="Sunset"
-                                    Time="20:00:00" />
+                        <TimePicker x:Name="SunsetPicker" Header="Sunset" Time="20:00:00" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Timeline EndTime="{x:Bind EndTimePicker.Time, Mode=OneWay}"
-                              StartTime="{x:Bind StartTimePicker.Time, Mode=OneWay}"
-                              Sunrise="{x:Bind SunrisePicker.Time, Mode=OneWay}"
-                              Sunset="{x:Bind SunsetPicker.Time, Mode=OneWay}" />
+                <dev:Timeline EndTime="{x:Bind EndTimePicker.Time, Mode=OneWay}" StartTime="{x:Bind StartTimePicker.Time, Mode=OneWay}" Sunrise="{x:Bind SunrisePicker.Time, Mode=OneWay}" Sunset="{x:Bind SunsetPicker.Time, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Card" BasedOn="{StaticResource DefaultCardStyle}" />
+    <Style BasedOn="{StaticResource DefaultCardStyle}" TargetType="local:Card" />
 
     <Style x:Key="DefaultCardStyle" TargetType="local:Card">
         <Setter Property="Padding" Value="24" />
@@ -37,28 +37,12 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="24,0,0,0"
-                                       VerticalAlignment="Center"
-                                       FontSize="16"
-                                       FontWeight="SemiBold"
-                                       Text="{TemplateBinding Title}" />
-                            <ContentPresenter Grid.Column="2"
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding TitleContent}" />
+                            <TextBlock Margin="24,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Text="{TemplateBinding Title}" />
+                            <ContentPresenter Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{TemplateBinding TitleContent}" />
                         </Grid>
-                        <Rectangle x:Name="Divider"
-                                   Grid.Row="1"
-                                   Height="1"
-                                   HorizontalAlignment="Stretch"
-                                   Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
-                                   Visibility="{TemplateBinding DividerVisibility}" />
+                        <Rectangle x:Name="Divider" Grid.Row="1" Height="1" HorizontalAlignment="Stretch" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Visibility="{TemplateBinding DividerVisibility}" />
 
-                        <ContentPresenter Grid.Row="2"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}" />
+                        <ContentPresenter Grid.Row="2" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

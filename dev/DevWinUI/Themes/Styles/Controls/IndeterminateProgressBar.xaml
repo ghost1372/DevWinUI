@@ -3,14 +3,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <ExponentialEase x:Key="ProgressBarEaseOut"
-                     EasingMode="EaseOut"
-                     Exponent="2" />
-    <ExponentialEase x:Key="ProgressBarEaseIn"
-                     EasingMode="EaseIn"
-                     Exponent="2" />
+    <ExponentialEase x:Key="ProgressBarEaseOut" EasingMode="EaseOut" Exponent="2" />
+    <ExponentialEase x:Key="ProgressBarEaseIn" EasingMode="EaseIn" Exponent="2" />
 
-    <Style TargetType="local:IndeterminateProgressBar" BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" />
+    <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
 
     <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
@@ -22,10 +18,7 @@
                 <ControlTemplate TargetType="local:IndeterminateProgressBar">
                     <Grid x:Name="PART_RootGrid">
                         <Grid.Resources>
-                            <Storyboard x:Key="RootStoryboard"
-                                        AutoReverse="False"
-                                        RepeatBehavior="Forever"
-                                        Duration="00:00:04.4">
+                            <Storyboard x:Key="RootStoryboard" AutoReverse="False" RepeatBehavior="Forever" Duration="00:00:04.4">
                                 <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="TransDot1" Storyboard.TargetProperty="X">
                                     <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.0" />
                                     <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="0.0" />
@@ -79,70 +72,30 @@
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                         </Grid.Resources>
-                        <Rectangle x:Name="Dot1"
-                                   Width="{TemplateBinding DotWidth}"
-                                   Height="{TemplateBinding DotHeight}"
-                                   HorizontalAlignment="Left"
-                                   Fill="{TemplateBinding Foreground}"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   RadiusX="{TemplateBinding DotRadiusX}"
-                                   RadiusY="{TemplateBinding DotRadiusY}">
+                        <Rectangle x:Name="Dot1" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform x:Name="TransDot1" />
                             </Rectangle.RenderTransform>
 
                         </Rectangle>
-                        <Rectangle x:Name="Dot2"
-                                   Width="{TemplateBinding DotWidth}"
-                                   Height="{TemplateBinding DotHeight}"
-                                   HorizontalAlignment="Left"
-                                   Fill="{TemplateBinding Foreground}"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   RadiusX="{TemplateBinding DotRadiusX}"
-                                   RadiusY="{TemplateBinding DotRadiusY}">
+                        <Rectangle x:Name="Dot2" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform x:Name="TransDot2" />
                             </Rectangle.RenderTransform>
 
                         </Rectangle>
-                        <Rectangle x:Name="Dot3"
-                                   Width="{TemplateBinding DotWidth}"
-                                   Height="{TemplateBinding DotHeight}"
-                                   HorizontalAlignment="Left"
-                                   Fill="{TemplateBinding Foreground}"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   RadiusX="{TemplateBinding DotRadiusX}"
-                                   RadiusY="{TemplateBinding DotRadiusY}">
+                        <Rectangle x:Name="Dot3" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform x:Name="TransDot3" />
                             </Rectangle.RenderTransform>
 
                         </Rectangle>
-                        <Rectangle x:Name="Dot4"
-                                   Width="{TemplateBinding DotWidth}"
-                                   Height="{TemplateBinding DotHeight}"
-                                   HorizontalAlignment="Left"
-                                   Fill="{TemplateBinding Foreground}"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   RadiusX="{TemplateBinding DotRadiusX}"
-                                   RadiusY="{TemplateBinding DotRadiusY}">
+                        <Rectangle x:Name="Dot4" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform x:Name="TransDot4" />
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Rectangle x:Name="Dot5"
-                                   Width="{TemplateBinding DotWidth}"
-                                   Height="{TemplateBinding DotHeight}"
-                                   HorizontalAlignment="Left"
-                                   Fill="{TemplateBinding Foreground}"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   RadiusX="{TemplateBinding DotRadiusX}"
-                                   RadiusY="{TemplateBinding DotRadiusY}">
+                        <Rectangle x:Name="Dot5" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform x:Name="TransDot5" />
                             </Rectangle.RenderTransform>

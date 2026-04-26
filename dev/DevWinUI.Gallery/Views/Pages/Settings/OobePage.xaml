@@ -5,19 +5,14 @@
       xmlns:dev="using:DevWinUI"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <dev:OutOfBoxPage Title="FileExplorer Preview"
-                      Description="These settings allow you to manage your Windows File Explorer custom preview handlers."
-                      HeroImage="ms-appx:///Assets/Modules/OOBE/FileExplorer.png"
-                      UseTopHeroImage="True">
+    <dev:OutOfBoxPage Title="FileExplorer Preview" Description="These settings allow you to manage your Windows File Explorer custom preview handlers." HeroImage="ms-appx:///Assets/Modules/OOBE/FileExplorer.png" UseTopHeroImage="True">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
-                <TextBlock Style="{ThemeResource OobeSubtitleStyle}"
-                           Text="How to enable" />
+                <TextBlock Style="{ThemeResource OobeSubtitleStyle}" Text="How to enable" />
                 <StackPanel Margin="0,24,0,0" Orientation="Horizontal" Spacing="12">
                     <Button Content="Open Settings" />
                     <HyperlinkButton Style="{StaticResource TextButtonStyle}">
-                        <TextBlock Text="Learn more about File Explorer add-ons"
-                                   TextWrapping="Wrap" />
+                        <TextBlock Text="Learn more about File Explorer add-ons" TextWrapping="Wrap" />
                     </HyperlinkButton>
                 </StackPanel>
             </StackPanel>

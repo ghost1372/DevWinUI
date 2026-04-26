@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:Countdown" BasedOn="{StaticResource DefaultCountdownStyle}" />
+    <Style BasedOn="{StaticResource DefaultCountdownStyle}" TargetType="local:Countdown" />
 
     <Style x:Key="DefaultCountdownStyle" TargetType="local:Countdown">
         <Setter Property="Template">

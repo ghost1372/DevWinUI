@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/windowedContentDialog"
-                                  HeaderText="WindowedContentDialog">
+            <local:ControlExample DocPage="controls/windowedContentDialog" HeaderText="WindowedContentDialog">
                 <local:ControlExample.CSharp>
                     <x:String>
                         WindowedContentDialog dialog = new()#nl#
@@ -24,56 +23,31 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="txtTitle"
-                                 Header="Header"
-                                 PlaceholderText="Header"
-                                 Text="Header" />
-                        <TextBox x:Name="txtContent"
-                                 Header="Content"
-                                 PlaceholderText="Content"
-                                 Text="Content" />
-                        <ToggleSwitch x:Name="TGHasTitleBar"
-                                      Header="Has TitleBar"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TGDragMove"
-                                      Header="Drag by Content"
-                                      IsOn="False" />
-                        <ToggleSwitch x:Name="TGIsResizable"
-                                      Header="Can Resize?"
-                                      IsOn="False" />
-                        <ComboBox x:Name="CmbUnderlayBackdrops"
-                                  Header="Backdrop"
-                                  ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
-                                  SelectedIndex="1" />
-                        <ComboBox x:Name="CmbFlow"
-                                  Header="FlowDirection"
-                                  ItemsSource="{x:Bind FlowDirectionItems, Mode=OneWay}"
-                                  SelectedIndex="0">
+                        <TextBox x:Name="txtTitle" Header="Header" PlaceholderText="Header" Text="Header" />
+                        <TextBox x:Name="txtContent" Header="Content" PlaceholderText="Content" Text="Content" />
+                        <ToggleSwitch x:Name="TGHasTitleBar" Header="Has TitleBar" IsOn="True" />
+                        <ToggleSwitch x:Name="TGDragMove" Header="Drag by Content" IsOn="False" />
+                        <ToggleSwitch x:Name="TGIsResizable" Header="Can Resize?" IsOn="False" />
+                        <ComboBox x:Name="CmbUnderlayBackdrops" Header="Backdrop" ItemsSource="{x:Bind BackdropItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbFlow" Header="FlowDirection" ItemsSource="{x:Bind FlowDirectionItems, Mode=OneWay}" SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="FlowDirection">
-                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
-                                               Text="{x:Bind}" />
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ComboBox x:Name="CmbButtonOrientation"
-                                  Header="Button Orientation"
-                                  ItemsSource="{x:Bind ButtonOrientationItems, Mode=OneWay}"
-                                  SelectedIndex="1">
+                        <ComboBox x:Name="CmbButtonOrientation" Header="Button Orientation" ItemsSource="{x:Bind ButtonOrientationItems, Mode=OneWay}" SelectedIndex="1">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="Orientation">
-                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
-                                               Text="{x:Bind}" />
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <Button Click="Button_Click"
-                            Content="Show Dialog" />
-                    <TextBlock x:Name="TxtResult"
-                               Style="{ThemeResource TitleTextBlockStyle}" />
+                    <Button Click="Button_Click" Content="Show Dialog" />
+                    <TextBlock x:Name="TxtResult" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

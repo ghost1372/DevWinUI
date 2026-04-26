@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/checkUpdateControl"
-                                  HeaderText="CheckUpdateControl">
+            <local:ControlExample DocPage="controls/checkUpdateControl" HeaderText="CheckUpdateControl">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:CheckUpdateControl /&gt;
@@ -19,40 +18,16 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGIsUpdateAvailable"
-                                      Header="Is Update Available"
-                                      IsOn="True" />
-                        <TextBox x:Name="TxtUpdateAvailableTitle"
-                                 Header="Update Available Title"
-                                 PlaceholderText="Update Available"
-                                 Text="Update Available" />
-                        <TextBox x:Name="TxtUpdateAvailableVersionTitle"
-                                 Header="Update Available Version Title"
-                                 PlaceholderText="Version"
-                                 Text="Version" />
-                        <TextBox x:Name="TxtNewVersion"
-                                 Header="New Version"
-                                 PlaceholderText="1.2.3"
-                                 Text="v1.2.3" />
-                        <TextBox x:Name="TxtUpdateNotAvailableTitle"
-                                 Header="Update Not Available Title"
-                                 PlaceholderText="You're up to date"
-                                 Text="You're up to date" />
-                        <TextBox x:Name="TxtLastUpdateCheckTitle"
-                                 Header="Last Update Check Title"
-                                 PlaceholderText="Last checked: "
-                                 Text="Last checked: " />
+                        <ToggleSwitch x:Name="TGIsUpdateAvailable" Header="Is Update Available" IsOn="True" />
+                        <TextBox x:Name="TxtUpdateAvailableTitle" Header="Update Available Title" PlaceholderText="Update Available" Text="Update Available" />
+                        <TextBox x:Name="TxtUpdateAvailableVersionTitle" Header="Update Available Version Title" PlaceholderText="Version" Text="Version" />
+                        <TextBox x:Name="TxtNewVersion" Header="New Version" PlaceholderText="1.2.3" Text="v1.2.3" />
+                        <TextBox x:Name="TxtUpdateNotAvailableTitle" Header="Update Not Available Title" PlaceholderText="You're up to date" Text="You're up to date" />
+                        <TextBox x:Name="TxtLastUpdateCheckTitle" Header="Last Update Check Title" PlaceholderText="Last checked: " Text="Last checked: " />
                         <DatePicker x:Name="DatePickerSample" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CheckUpdateControl Click="CheckUpdateControl_Click"
-                                        IsUpdateAvailable="{x:Bind TGIsUpdateAvailable.IsOn, Mode=OneWay}"
-                                        LastUpdateCheckDate="{x:Bind DatePickerSample.Date, Mode=OneWay}"
-                                        LastUpdateCheckTitle="{x:Bind TxtLastUpdateCheckTitle.Text, Mode=OneWay}"
-                                        UpdateAvailableTitle="{x:Bind TxtUpdateAvailableTitle.Text, Mode=OneWay}"
-                                        UpdateAvailableVersion="{x:Bind TxtNewVersion.Text, Mode=OneWay}"
-                                        UpdateAvailableVersionTitle="{x:Bind TxtUpdateAvailableVersionTitle.Text, Mode=OneWay}"
-                                        UpdateNotAvailableTitle="{x:Bind TxtUpdateNotAvailableTitle.Text, Mode=OneWay}" />
+                <dev:CheckUpdateControl Click="CheckUpdateControl_Click" IsUpdateAvailable="{x:Bind TGIsUpdateAvailable.IsOn, Mode=OneWay}" LastUpdateCheckDate="{x:Bind DatePickerSample.Date, Mode=OneWay}" LastUpdateCheckTitle="{x:Bind TxtLastUpdateCheckTitle.Text, Mode=OneWay}" UpdateAvailableTitle="{x:Bind TxtUpdateAvailableTitle.Text, Mode=OneWay}" UpdateAvailableVersion="{x:Bind TxtNewVersion.Text, Mode=OneWay}" UpdateAvailableVersionTitle="{x:Bind TxtUpdateAvailableVersionTitle.Text, Mode=OneWay}" UpdateNotAvailableTitle="{x:Bind TxtUpdateNotAvailableTitle.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

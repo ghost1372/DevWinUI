@@ -10,14 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/ToolbarPage_cs.txt"
-                                  DocPage="controls/toolbar"
-                                  HeaderText="Toolbar">
+            <local:ControlExample CSharpSource="Features/ToolbarPage_cs.txt" DocPage="controls/toolbar" HeaderText="Toolbar">
                 <local:ControlExample.Xaml>
                     &lt;dev:Toolbar Items={x:Bind Items}/&gt;
                 </local:ControlExample.Xaml>
-                <dev:Toolbar x:Name="ToolbarSample"
-                             Items="{x:Bind Items, Mode=OneWay}" />
+                <dev:Toolbar x:Name="ToolbarSample" Items="{x:Bind Items, Mode=OneWay}" />
             </local:ControlExample>
 
         </StackPanel>

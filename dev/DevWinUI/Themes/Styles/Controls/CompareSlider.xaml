@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CompareSlider" BasedOn="{StaticResource DefaultCompareSliderStyle}" />
+    <Style BasedOn="{StaticResource DefaultCompareSliderStyle}" TargetType="local:CompareSlider" />
 
     <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">
         <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />
@@ -14,85 +14,42 @@
         <Setter Property="ShowLineAndThumb" Value="True" />
     </Style>
 
-    <ControlTemplate x:Key="ComapreSliderHorizontalTemplate"
-                     TargetType="local:CompareSlider">
+    <ControlTemplate x:Key="ComapreSliderHorizontalTemplate" TargetType="local:CompareSlider">
         <Grid Padding="16,0,16,0">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                 <Border CornerRadius="{TemplateBinding CornerRadius}">
-                    <Image x:Name="PART_BeforeImage"
-                           HorizontalAlignment="Left"
-                           Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                    <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                 </Border>
                 <Border CornerRadius="{TemplateBinding CornerRadius}">
-                    <Rectangle x:Name="PART_Rectangle"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Stretch">
+                    <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                         <Rectangle.Fill>
-                            <ImageBrush AlignmentX="Left"
-                                        AlignmentY="Center"
-                                        ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                        Stretch="UniformToFill" />
+                            <ImageBrush AlignmentX="Left" AlignmentY="Center" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
                         </Rectangle.Fill>
                     </Rectangle>
                 </Border>
-                <Line x:Name="PART_Line"
-                      Stretch="Fill"
-                      Stroke="{ThemeResource ControlAAFillColorDefaultBrush}"
-                      StrokeDashArray="2"
-                      StrokeEndLineCap="Round"
-                      StrokeStartLineCap="Round"
-                      StrokeThickness="2"
-                      Style="{TemplateBinding LineStyle}"
-                      Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"
-                      Y2="1">
+                <Line x:Name="PART_Line" Stretch="Fill" Stroke="{ThemeResource ControlAAFillColorDefaultBrush}" StrokeDashArray="2" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="2" Style="{TemplateBinding LineStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" Y2="1">
                 </Line>
             </Grid>
-            <Thumb x:Name="PART_Thumb"
-                   Width="18"
-                   Height="18"
-                   Style="{TemplateBinding ThumbStyle}"
-                   Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <Thumb x:Name="PART_Thumb" Width="18" Height="18" Style="{TemplateBinding ThumbStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="CompareSliderVerticalTemplate"
-                     TargetType="local:CompareSlider">
+    <ControlTemplate x:Key="CompareSliderVerticalTemplate" TargetType="local:CompareSlider">
         <Grid Padding="0,16,0,16" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                 <Border CornerRadius="{TemplateBinding CornerRadius}">
-                    <Image x:Name="PART_BeforeImage"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                    <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                 </Border>
                 <Border CornerRadius="{TemplateBinding CornerRadius}">
-                    <Rectangle x:Name="PART_Rectangle"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Top">
+                    <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Rectangle.Fill>
-                            <ImageBrush AlignmentX="Left"
-                                        AlignmentY="Top"
-                                        ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                        Stretch="UniformToFill" />
+                            <ImageBrush AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
                         </Rectangle.Fill>
                     </Rectangle>
                 </Border>
-                <Line x:Name="PART_Line"
-                      Stretch="Fill"
-                      Stroke="{ThemeResource ControlAAFillColorDefaultBrush}"
-                      StrokeDashArray="2"
-                      StrokeEndLineCap="Round"
-                      StrokeStartLineCap="Round"
-                      StrokeThickness="2"
-                      Style="{TemplateBinding LineStyle}"
-                      Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"
-                      X2="1" />
+                <Line x:Name="PART_Line" Stretch="Fill" Stroke="{ThemeResource ControlAAFillColorDefaultBrush}" StrokeDashArray="2" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="2" Style="{TemplateBinding LineStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" X2="1" />
             </Grid>
-            <Thumb x:Name="PART_Thumb"
-                   Width="18"
-                   Height="18"
-                   Style="{TemplateBinding ThumbStyle}"
-                   Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <Thumb x:Name="PART_Thumb" Width="18" Height="18" Style="{TemplateBinding ThumbStyle}" Visibility="{Binding ShowLineAndThumb, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
         </Grid>
     </ControlTemplate>
 </ResourceDictionary>

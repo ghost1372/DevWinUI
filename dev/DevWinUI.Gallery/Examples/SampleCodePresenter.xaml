@@ -18,22 +18,9 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="CodeScrollViewer"
-                      VerticalAlignment="{x:Bind VerticalContentAlignment, Mode=OneWay}"
-                      HorizontalScrollBarVisibility="Auto"
-                      HorizontalScrollMode="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      VerticalScrollMode="Auto">
-            <ContentPresenter x:Name="CodePresenter"
-                              Margin="0,10"
-                              Loaded="CodePresenter_Loaded" />
+        <ScrollViewer x:Name="CodeScrollViewer" VerticalAlignment="{x:Bind VerticalContentAlignment, Mode=OneWay}" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
+            <ContentPresenter x:Name="CodePresenter" Margin="0,10" Loaded="CodePresenter_Loaded" />
         </ScrollViewer>
-        <dev:CopyButton x:Name="CopyCodeButton"
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Click="CopyCodeButton_Click"
-                        Content="&#xE8C8;" />
+        <dev:CopyButton x:Name="CopyCodeButton" Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CopyCodeButton_Click" Content="&#xE8C8;" />
     </Grid>
 </UserControl>

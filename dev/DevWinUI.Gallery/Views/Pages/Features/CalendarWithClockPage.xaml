@@ -10,60 +10,38 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/calendarWithClock"
-                                  HeaderText="CalendarWithClock [Analog Clock]">
+            <local:ControlExample DocPage="controls/calendarWithClock" HeaderText="CalendarWithClock [Analog Clock]">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CalendarWithClock /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGShowAccentBorderOnHeader"
-                                      Header="ShowAccentBorderOnHeader"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowAccentBorderOnHeader" Header="ShowAccentBorderOnHeader" IsOn="True" />
 
-                        <Button Click="Button_Click"
-                                Content="Get Selected Date and Time" />
+                        <Button Click="Button_Click" Content="Get Selected Date and Time" />
                         <TextBlock x:Name="TxtDateTime" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CalendarWithClock x:Name="CalendarWithClockSample"
-                                       ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" />
+                <dev:CalendarWithClock x:Name="CalendarWithClockSample" ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" />
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/calendarWithClock"
-                                  HeaderText="CalendarWithClock [TimePicker]">
+            <local:ControlExample DocPage="controls/calendarWithClock" HeaderText="CalendarWithClock [TimePicker]">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:CalendarWithClock ClockMode="TimePicker" /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <RadioButtons x:Name="RBDisplayMode"
-                                      Header="TimePicker DisplayMode"
-                                      SelectedIndex="2">
-                            <RadioButton Checked="RadioButton_Checked"
-                                         Content="Left"
-                                         Tag="Left"
-                                         Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked"
-                                         Content="Top"
-                                         Tag="Top"
-                                         Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked"
-                                         Content="Right"
-                                         Tag="Right"
-                                         Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked"
-                                         Content="Bottom"
-                                         Tag="Bottom"
-                                         Unchecked="RadioButton_Checked" />
+                        <RadioButtons x:Name="RBDisplayMode" Header="TimePicker DisplayMode" SelectedIndex="2">
+                            <RadioButton Checked="RadioButton_Checked" Content="Left" Tag="Left" Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked" Content="Top" Tag="Top" Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked" Content="Right" Tag="Right" Unchecked="RadioButton_Checked" />
+                            <RadioButton Checked="RadioButton_Checked" Content="Bottom" Tag="Bottom" Unchecked="RadioButton_Checked" />
                         </RadioButtons>
 
-                        <Button Click="Button_Click_1"
-                                Content="Get Selected Date and Time" />
+                        <Button Click="Button_Click_1" Content="Get Selected Date and Time" />
                         <TextBlock x:Name="TxtDateTime2" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CalendarWithClock x:Name="CalendarWithClockSample2"
-                                       ClockMode="TimePicker" />
+                <dev:CalendarWithClock x:Name="CalendarWithClockSample2" ClockMode="TimePicker" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

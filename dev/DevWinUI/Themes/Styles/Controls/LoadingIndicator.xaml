@@ -12,10 +12,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large" />
@@ -24,9 +21,7 @@
                             <VisualStateGroup x:Name="ActiveStates">
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
-                                    <Storyboard RepeatBehavior="Forever"
-                                                SpeedRatio="{TemplateBinding SpeedRatio}"
-                                                Duration="0:0:1.000">
+                                    <Storyboard RepeatBehavior="Forever" SpeedRatio="{TemplateBinding SpeedRatio}" Duration="0:0:1.000">
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
                                             <EasingDoubleKeyFrame KeyTime="0:0:1.000" Value="1" />
@@ -49,18 +44,12 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid Background="Transparent">
-                            <Ellipse x:Name="PART_Ellipse0"
-                                     Fill="{TemplateBinding Foreground}"
-                                     Opacity="0.3"
-                                     RenderTransformOrigin="0.5,0.5">
+                            <Ellipse x:Name="PART_Ellipse0" Fill="{TemplateBinding Foreground}" Opacity="0.3" RenderTransformOrigin="0.5,0.5">
                                 <Ellipse.RenderTransform>
                                     <ScaleTransform />
                                 </Ellipse.RenderTransform>
                             </Ellipse>
-                            <Ellipse x:Name="PART_Ellipse1"
-                                     Fill="{TemplateBinding Foreground}"
-                                     Opacity="0.3"
-                                     RenderTransformOrigin="0.5,0.5">
+                            <Ellipse x:Name="PART_Ellipse1" Fill="{TemplateBinding Foreground}" Opacity="0.3" RenderTransformOrigin="0.5,0.5">
                                 <Ellipse.RenderTransform>
                                     <ScaleTransform />
                                 </Ellipse.RenderTransform>
@@ -80,10 +69,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large" />
@@ -92,9 +78,7 @@
                             <VisualStateGroup x:Name="ActiveStates">
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
-                                    <Storyboard RepeatBehavior="Forever"
-                                                SpeedRatio="{TemplateBinding SpeedRatio}"
-                                                Duration="0:0:1.000">
+                                    <Storyboard RepeatBehavior="Forever" SpeedRatio="{TemplateBinding SpeedRatio}" Duration="0:0:1.000">
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Rect0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.100" Value="1.6" />
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.150" Value="1.6" />
@@ -149,21 +133,11 @@
                                     </Setter>
                                 </Style>
                             </Grid.Resources>
-                            <Rectangle x:Name="PART_Rect0"
-                                       Grid.Column="0"
-                                       Fill="{TemplateBinding Foreground}" />
-                            <Rectangle x:Name="PART_Rect1"
-                                       Grid.Column="2"
-                                       Fill="{TemplateBinding Foreground}" />
-                            <Rectangle x:Name="PART_Rect2"
-                                       Grid.Column="4"
-                                       Fill="{TemplateBinding Foreground}" />
-                            <Rectangle x:Name="PART_Rect3"
-                                       Grid.Column="6"
-                                       Fill="{TemplateBinding Foreground}" />
-                            <Rectangle x:Name="PART_Rect4"
-                                       Grid.Column="8"
-                                       Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="PART_Rect0" Grid.Column="0" Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="PART_Rect1" Grid.Column="2" Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="PART_Rect2" Grid.Column="4" Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="PART_Rect3" Grid.Column="6" Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="PART_Rect4" Grid.Column="8" Fill="{TemplateBinding Foreground}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -180,10 +154,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Resources>
                             <Style TargetType="Ellipse">
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
@@ -204,9 +175,7 @@
                             <VisualStateGroup x:Name="ActiveStates">
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
-                                    <Storyboard RepeatBehavior="Forever"
-                                                SpeedRatio="{TemplateBinding SpeedRatio}"
-                                                Duration="0:0:1.900">
+                                    <Storyboard RepeatBehavior="Forever" SpeedRatio="{TemplateBinding SpeedRatio}" Duration="0:0:1.900">
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse0" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1" />
@@ -259,15 +228,9 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Ellipse x:Name="PART_Ellipse0"
-                                         Grid.Column="0"
-                                         Fill="{TemplateBinding Foreground}" />
-                                <Ellipse x:Name="PART_Ellipse1"
-                                         Grid.Column="2"
-                                         Fill="{TemplateBinding Foreground}" />
-                                <Ellipse x:Name="PART_Ellipse2"
-                                         Grid.Column="4"
-                                         Fill="{TemplateBinding Foreground}" />
+                                <Ellipse x:Name="PART_Ellipse0" Grid.Column="0" Fill="{TemplateBinding Foreground}" />
+                                <Ellipse x:Name="PART_Ellipse1" Grid.Column="2" Fill="{TemplateBinding Foreground}" />
+                                <Ellipse x:Name="PART_Ellipse2" Grid.Column="4" Fill="{TemplateBinding Foreground}" />
                             </Grid>
                         </Border>
                     </Border>
@@ -285,10 +248,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large" />
@@ -412,54 +372,14 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <Ellipse x:Name="PART_Ellipse0"
-                                     Grid.Row="0"
-                                     Grid.RowSpan="1"
-                                     Grid.Column="2"
-                                     Grid.ColumnSpan="1"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse1"
-                                     Grid.Row="0"
-                                     Grid.RowSpan="2"
-                                     Grid.Column="3"
-                                     Grid.ColumnSpan="2"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse2"
-                                     Grid.Row="2"
-                                     Grid.RowSpan="1"
-                                     Grid.Column="4"
-                                     Grid.ColumnSpan="1"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse3"
-                                     Grid.Row="3"
-                                     Grid.RowSpan="2"
-                                     Grid.Column="3"
-                                     Grid.ColumnSpan="2"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse4"
-                                     Grid.Row="4"
-                                     Grid.RowSpan="1"
-                                     Grid.Column="2"
-                                     Grid.ColumnSpan="1"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse5"
-                                     Grid.Row="3"
-                                     Grid.RowSpan="2"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="2"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse6"
-                                     Grid.Row="2"
-                                     Grid.RowSpan="1"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="1"
-                                     Fill="{TemplateBinding Foreground}" />
-                            <Ellipse x:Name="PART_Ellipse7"
-                                     Grid.Row="0"
-                                     Grid.RowSpan="2"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="2"
-                                     Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse2" Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse3" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse4" Grid.Row="4" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse5" Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse6" Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse x:Name="PART_Ellipse7" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Fill="{TemplateBinding Foreground}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -476,10 +396,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large" />
@@ -488,9 +405,7 @@
                             <VisualStateGroup x:Name="ActiveStates">
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
-                                    <Storyboard RepeatBehavior="Forever"
-                                                SpeedRatio="{TemplateBinding SpeedRatio}"
-                                                Duration="0:0:1.500">
+                                    <Storyboard RepeatBehavior="Forever" SpeedRatio="{TemplateBinding SpeedRatio}" Duration="0:0:1.500">
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
                                             <LinearDoubleKeyFrame KeyTime="0:0:1.500" Value="1" />
@@ -506,9 +421,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid Background="Transparent">
-                            <Ellipse x:Name="PART_Ellipse"
-                                     Fill="{TemplateBinding Foreground}"
-                                     RenderTransformOrigin="0.5,0.5">
+                            <Ellipse x:Name="PART_Ellipse" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
                                 <Ellipse.RenderTransform>
                                     <ScaleTransform />
                                 </Ellipse.RenderTransform>
@@ -529,10 +442,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SizeStates">
                                 <VisualState x:Name="Large" />
@@ -541,9 +451,7 @@
                             <VisualStateGroup x:Name="ActiveStates">
                                 <VisualState x:Name="Inactive" />
                                 <VisualState x:Name="Active">
-                                    <Storyboard RepeatBehavior="Forever"
-                                                SpeedRatio="{TemplateBinding SpeedRatio}"
-                                                Duration="0:0:1.600">
+                                    <Storyboard RepeatBehavior="Forever" SpeedRatio="{TemplateBinding SpeedRatio}" Duration="0:0:1.600">
                                         <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.000" Storyboard.TargetName="PART_Rect" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="1" />
                                             <LinearDoubleKeyFrame KeyTime="0:0:0.400" Value="0" />
@@ -559,9 +467,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid Background="Transparent">
-                            <Rectangle x:Name="PART_Rect"
-                                       Fill="{TemplateBinding Foreground}"
-                                       RenderTransformOrigin="0.5,0.5">
+                            <Rectangle x:Name="PART_Rect" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
                                 <Rectangle.RenderTransform>
                                     <ScaleTransform />
                                 </Rectangle.RenderTransform>
@@ -582,10 +488,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Resources>
                             <Style TargetType="Canvas">
                                 <Setter Property="Opacity" Value="0.3" />
@@ -658,57 +561,49 @@
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="0" Y="-14" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 10,0 A 40,40 0 0 1 30,0"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 10,0 A 40,40 0 0 1 30,0" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas1">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="12" Y="-12" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 40,14 A 40,40 0 0 0 24,0"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 40,14 A 40,40 0 0 0 24,0" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas2">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="14" Y="0" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 40,10 A 40,40 0 0 1 40,30"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 40,10 A 40,40 0 0 1 40,30" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas3">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="12" Y="12" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 40,24 A 40,40 0 0 1 24,40"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 40,24 A 40,40 0 0 1 24,40" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas4">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="0" Y="14" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 10,40 A 40,40 0 0 0 30,40"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 10,40 A 40,40 0 0 0 30,40" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas5">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="-12" Y="12" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 0,24 A 40,40 0 0 0 14,40"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 0,24 A 40,40 0 0 0 14,40" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas6">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="-14" Y="0" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 0,10 A 40,40 0 0 0 0,30"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 0,10 A 40,40 0 0 0 0,30" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                             <Canvas x:Name="PART_Canvas7">
                                 <Canvas.RenderTransform>
                                     <TranslateTransform X="-12" Y="-12" />
                                 </Canvas.RenderTransform>
-                                <Path Data="M 0,14 A 40,40 0 0 1 14,0"
-                                      Stroke="{TemplateBinding Foreground}" />
+                                <Path Data="M 0,14 A 40,40 0 0 1 14,0" Stroke="{TemplateBinding Foreground}" />
                             </Canvas>
                         </Grid>
                     </Border>
@@ -726,10 +621,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
-                    <Border x:Name="PART_Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Resources>
                             <Style TargetType="Canvas">
                                 <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
@@ -770,8 +662,7 @@
                                 </TransformGroup>
                             </Grid.RenderTransform>
                             <Canvas x:Name="PART_Canvas0" Opacity="1.0">
-                                <Path Stroke="{TemplateBinding Foreground}"
-                                      StrokeThickness="10">
+                                <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="10">
                                     <Path.Data>
                                         <PathGeometry>
                                             <PathGeometry.Transform>
@@ -782,10 +673,7 @@
                                                     <PathFigure StartPoint="0,0">
                                                         <PathFigure.Segments>
                                                             <PathSegmentCollection>
-                                                                <ArcSegment IsLargeArc="True"
-                                                                            Point="40,40"
-                                                                            Size="40,40"
-                                                                            SweepDirection="CounterClockwise" />
+                                                                <ArcSegment IsLargeArc="True" Point="40,40" Size="40,40" SweepDirection="CounterClockwise" />
                                                             </PathSegmentCollection>
                                                         </PathFigure.Segments>
                                                     </PathFigure>
@@ -797,8 +685,7 @@
                             </Canvas>
 
                             <Canvas x:Name="PART_Canvas1" Opacity="0.3">
-                                <Path Stroke="{TemplateBinding Foreground}"
-                                      StrokeThickness="10">
+                                <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="10">
                                     <Path.Data>
                                         <PathGeometry>
                                             <PathGeometry.Transform>
@@ -809,10 +696,7 @@
                                                     <PathFigure StartPoint="0,0">
                                                         <PathFigure.Segments>
                                                             <PathSegmentCollection>
-                                                                <ArcSegment IsLargeArc="True"
-                                                                            Point="40,40"
-                                                                            Size="30,30"
-                                                                            SweepDirection="Clockwise" />
+                                                                <ArcSegment IsLargeArc="True" Point="40,40" Size="30,30" SweepDirection="Clockwise" />
                                                             </PathSegmentCollection>
                                                         </PathFigure.Segments>
                                                     </PathFigure>

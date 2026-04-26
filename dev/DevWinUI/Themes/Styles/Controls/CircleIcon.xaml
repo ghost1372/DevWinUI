@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:CircleIcon" BasedOn="{StaticResource DefaultCircleIconStyle}" />
+    <Style BasedOn="{StaticResource DefaultCircleIconStyle}" TargetType="local:CircleIcon" />
 
     <Style x:Key="DefaultCircleIconStyle" TargetType="local:CircleIcon">
         <Setter Property="FontFamily" Value="Segoe UI" />
@@ -15,13 +15,7 @@
                 <ControlTemplate TargetType="local:CircleIcon">
                     <Grid>
                         <win2d:CanvasControl x:Name="PART_Canvas" />
-                        <ContentPresenter Padding="0,0,02,8"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Content="{TemplateBinding Content}"
-                                          FontFamily="{TemplateBinding FontFamily}"
-                                          FontSize="{TemplateBinding FontSize}"
-                                          FontWeight="{TemplateBinding FontWeight}" />
+                        <ContentPresenter Padding="0,0,02,8" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

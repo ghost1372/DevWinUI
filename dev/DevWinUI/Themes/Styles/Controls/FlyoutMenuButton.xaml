@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:FlyoutMenuButton" BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
 
     <Style x:Key="DefaultFlyoutMenuButtonStyle" TargetType="local:FlyoutMenuButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -58,20 +58,10 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="0,52,0,0"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Top"
-                                          Content="{TemplateBinding Content}" />
+                        <ContentPresenter x:Name="ContentPresenter" Margin="0,52,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{TemplateBinding Content}" />
 
 
-                        <ContentPresenter x:Name="IconPresenter"
-                                          Width="32"
-                                          Margin="0,12,0,0"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Top"
-                                          Content="{TemplateBinding Icon}"
-                                          RenderTransformOrigin="0.5, 0.5">
+                        <ContentPresenter x:Name="IconPresenter" Width="32" Margin="0,12,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{TemplateBinding Icon}" RenderTransformOrigin="0.5, 0.5">
                             <ContentPresenter.RenderTransform>
                                 <CompositeTransform />
                             </ContentPresenter.RenderTransform>

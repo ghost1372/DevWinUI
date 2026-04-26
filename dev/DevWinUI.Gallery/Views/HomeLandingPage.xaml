@@ -7,9 +7,6 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}"
-                         HeaderSubtitleText="{x:Bind WASDKVersion}"
-                         HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}"
-                         JsonNavigationService="{x:Bind local:App.Current.NavService}" />
+    <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}" HeaderSubtitleText="{x:Bind WASDKVersion}" HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" JsonNavigationService="{x:Bind local:App.Current.NavService}" />
 </Page>
 

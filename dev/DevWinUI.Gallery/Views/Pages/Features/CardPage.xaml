@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/card"
-                                  HeaderText="Card">
+            <local:ControlExample DocPage="controls/card" HeaderText="Card">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Card Title="Title" /&gt;
@@ -19,8 +18,7 @@
                 </local:ControlExample.Xaml>
                 <dev:Card Title="Title">
                     <dev:Card.TitleContent>
-                        <Button Margin="0,0,10,0"
-                                Content="Title Content" />
+                        <Button Margin="0,0,10,0" Content="Title Content" />
                     </dev:Card.TitleContent>
                     <dev:Card.Content>
                         <Button Content="Content" />

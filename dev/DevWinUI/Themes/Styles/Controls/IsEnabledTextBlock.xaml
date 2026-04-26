@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:IsEnabledTextBlock" BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" />
+    <Style BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" TargetType="local:IsEnabledTextBlock" />
 
     <Style x:Key="DefaultIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
@@ -21,13 +21,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <TextBlock x:Name="Label"
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Text}"
-                                   TextWrapping="WrapWholeWords" />
+                        <TextBlock x:Name="Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="WrapWholeWords" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

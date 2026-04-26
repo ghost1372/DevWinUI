@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ForegroundFocusEffects" BasedOn="{StaticResource DefaultForegroundFocusEffectsStyle}" />
+    <Style BasedOn="{StaticResource DefaultForegroundFocusEffectsStyle}" TargetType="local:ForegroundFocusEffects" />
 
     <Style x:Key="DefaultForegroundFocusEffectsStyle" TargetType="local:ForegroundFocusEffects">
         <Setter Property="Template">

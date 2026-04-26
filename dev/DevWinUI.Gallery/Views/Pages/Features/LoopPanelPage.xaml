@@ -11,74 +11,29 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/loopPanel"
-                                  HeaderText="LoopPanel"
-                                  XamlSource="Features/LoopPanelPage_xaml.txt">
+            <local:ControlExample DocPage="controls/loopPanel" HeaderText="LoopPanel" XamlSource="Features/LoopPanelPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TgBringChildrenIntoView"
-                                      Header="Bring Children Into View" />
-                        <ToggleSwitch x:Name="TgIsInertiaEnabled"
-                                      Header="Is Inertia Enabled"
-                                      IsOn="True" />
-                        <Slider x:Name="SldSpacing"
-                                Header="Spacing"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="5" />
-                        <Slider x:Name="SldMouseWheelScrollFactor"
-                                Header="Mouse Wheel Scroll Factor"
-                                Maximum="1"
-                                Minimum="0"
-                                StepFrequency="0.01"
-                                Value="0.25" />
-                        <Slider x:Name="SldDragScrollFactor"
-                                Header="Drag Scroll Factor"
-                                Maximum="1"
-                                Minimum="0"
-                                StepFrequency="0.01"
-                                Value="1.0" />
-                        <Slider x:Name="SldOffset"
-                                Header="Offset"
-                                Maximum="1"
-                                Minimum="0"
-                                StepFrequency="0.01"
-                                Value="0.5" />
-                        <Slider x:Name="SldRelativeOffset"
-                                Header="Relative Offset"
-                                Maximum="1"
-                                Minimum="0"
-                                StepFrequency="0.01"
-                                Value="0.5" />
+                        <ToggleSwitch x:Name="TgBringChildrenIntoView" Header="Bring Children Into View" />
+                        <ToggleSwitch x:Name="TgIsInertiaEnabled" Header="Is Inertia Enabled" IsOn="True" />
+                        <Slider x:Name="SldSpacing" Header="Spacing" Maximum="100" Minimum="0" Value="5" />
+                        <Slider x:Name="SldMouseWheelScrollFactor" Header="Mouse Wheel Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.25" />
+                        <Slider x:Name="SldDragScrollFactor" Header="Drag Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="1.0" />
+                        <Slider x:Name="SldOffset" Header="Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
+                        <Slider x:Name="SldRelativeOffset" Header="Relative Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <ItemsControl x:Name="loopingList"
-                              Height="200"
-                              ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
+                <ItemsControl x:Name="loopingList" Height="200" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <dev:LoopPanel x:Name="LoopPanelSample"
-                                           Background="Transparent"
-                                           BringChildrenIntoView="{Binding ElementName=TgBringChildrenIntoView, Path=IsOn}"
-                                           DragScrollFactor="{Binding ElementName=SldDragScrollFactor, Path=Value}"
-                                           IsInertiaEnabled="{Binding ElementName=TgIsInertiaEnabled, Path=IsOn}"
-                                           MouseWheelScrollFactor="{Binding ElementName=SldMouseWheelScrollFactor, Path=Value}"
-                                           Orientation="Horizontal"
-                                           RelativeOffset="{Binding ElementName=SldRelativeOffset, Path=Value}"
-                                           Spacing="{Binding ElementName=SldSpacing, Path=Value}"
-                                           Offset="{Binding ElementName=SldOffset, Path=Value}" />
+                            <dev:LoopPanel x:Name="LoopPanelSample" Background="Transparent" BringChildrenIntoView="{Binding ElementName=TgBringChildrenIntoView, Path=IsOn}" DragScrollFactor="{Binding ElementName=SldDragScrollFactor, Path=Value}" IsInertiaEnabled="{Binding ElementName=TgIsInertiaEnabled, Path=IsOn}" MouseWheelScrollFactor="{Binding ElementName=SldMouseWheelScrollFactor, Path=Value}" Orientation="Horizontal" RelativeOffset="{Binding ElementName=SldRelativeOffset, Path=Value}" Spacing="{Binding ElementName=SldSpacing, Path=Value}" Offset="{Binding ElementName=SldOffset, Path=Value}" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:SampleItemModel">
-                            <Border Margin="10,10,0,0"
-                                    Padding="5"
-                                    Background="Purple"
-                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                    BorderThickness="1">
-                                <Image Source="{x:Bind ImagePath}"
-                                       Stretch="Uniform">
+                            <Border Margin="10,10,0,0" Padding="5" Background="Purple" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                                <Image Source="{x:Bind ImagePath}" Stretch="Uniform">
 
                                 </Image>
                             </Border>

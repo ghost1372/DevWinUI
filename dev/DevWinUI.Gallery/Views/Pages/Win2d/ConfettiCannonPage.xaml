@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/confettiCannon"
-                                  HeaderText="Confetti Cannon">
+            <local:ControlExample DocPage="controls/confettiCannon" HeaderText="Confetti Cannon">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:ConfettiCannon x:Name="ConfettiCannonSample" /&gt;
@@ -24,27 +23,13 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button MinWidth="200"
-                                Click="OnFireBasicClick"
-                                Content="Fire Basic" />
-                        <Button MinWidth="200"
-                                Click="OnFireRandomClick"
-                                Content="Fire Random Direction" />
-                        <Button MinWidth="200"
-                                Click="OnFireRealisticClick"
-                                Content="Fire Realistic" />
-                        <Button MinWidth="200"
-                                Click="OnFireFireworksClick"
-                                Content="Fire Fireworks" />
-                        <Button MinWidth="200"
-                                Click="OnFireStarsClick"
-                                Content="Fire Stars" />
-                        <Button MinWidth="200"
-                                Click="OnFireSnowClick"
-                                Content="Fire Snow" />
-                        <Button MinWidth="200"
-                                Click="OnFireSchoolPrideClick"
-                                Content="SchoolPride" />
+                        <Button MinWidth="200" Click="OnFireBasicClick" Content="Fire Basic" />
+                        <Button MinWidth="200" Click="OnFireRandomClick" Content="Fire Random Direction" />
+                        <Button MinWidth="200" Click="OnFireRealisticClick" Content="Fire Realistic" />
+                        <Button MinWidth="200" Click="OnFireFireworksClick" Content="Fire Fireworks" />
+                        <Button MinWidth="200" Click="OnFireStarsClick" Content="Fire Stars" />
+                        <Button MinWidth="200" Click="OnFireSnowClick" Content="Fire Snow" />
+                        <Button MinWidth="200" Click="OnFireSchoolPrideClick" Content="SchoolPride" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <Grid>
@@ -53,15 +38,10 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Spacing="10">
-                        <TextBlock x:Name="TxtStarted"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
-                        <TextBlock x:Name="TxtCompleted"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="TxtStarted" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="TxtCompleted" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
-                    <dev:ConfettiCannon x:Name="ConfettiCannonSample"
-                                        Grid.Row="1"
-                                        AnimationCompleted="ConfettiCannonSample_AnimationCompleted"
-                                        AnimationStarted="ConfettiCannonSample_AnimationStarted" />
+                    <dev:ConfettiCannon x:Name="ConfettiCannonSample" Grid.Row="1" AnimationCompleted="ConfettiCannonSample_AnimationCompleted" AnimationStarted="ConfettiCannonSample_AnimationStarted" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>

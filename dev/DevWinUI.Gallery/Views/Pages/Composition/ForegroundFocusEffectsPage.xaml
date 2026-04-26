@@ -11,22 +11,14 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt"
-                                  DocPage="controls/foregroundFocusEffects"
-                                  XamlSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">
+            <local:ControlExample CSharpSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt" DocPage="controls/foregroundFocusEffects" XamlSource="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbEffectType"
-                                  Header="Foreground Focus Effect"
-                                  ItemsSource="{x:Bind ForegroundFocusEffectItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
+                        <ComboBox x:Name="CmbEffectType" Header="Foreground Focus Effect" ItemsSource="{x:Bind ForegroundFocusEffectItems, Mode=OneWay}" SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample"
-                                            Effect="{x:Bind ((dev:ForegroundFocusEffectTypes)CmbEffectType.SelectedItem), Mode=OneWay}">
-                    <ListView IsItemClickEnabled="True"
-                              ItemClick="OnItemClick"
-                              ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
+                <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample" Effect="{x:Bind ((dev:ForegroundFocusEffectTypes)CmbEffectType.SelectedItem), Mode=OneWay}">
+                    <ListView IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal" />
@@ -35,10 +27,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:SampleItemModel">
                                 <Grid>
-                                    <Image Width="140"
-                                           Height="140"
-                                           Source="{x:Bind ImagePath}"
-                                           Stretch="UniformToFill" />
+                                    <Image Width="140" Height="140" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

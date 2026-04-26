@@ -6,8 +6,7 @@
                      NavigationCacheMode="Enabled">
 
     <Page.Resources>
-        <CollectionViewSource x:Name="itemsCVS"
-                              IsSourceGrouped="true" />
+        <CollectionViewSource x:Name="itemsCVS" IsSourceGrouped="true" />
     </Page.Resources>
 
     <Grid>
@@ -16,29 +15,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <local:HomePageHeader HeaderContent="{x:Bind HeaderContent, Mode=OneWay}"
-                              HeaderFontSize="{x:Bind HeaderFontSize, Mode=OneWay}"
-                              HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                              HeaderImageHeight="{x:Bind HeaderImageHeight, Mode=OneWay}"
-                              HeaderSubtitleFontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
-                              HeaderSubtitleText="{x:Bind HeaderSubtitleText, Mode=OneWay}"
-                              HeaderText="{x:Bind HeaderText, Mode=OneWay}"
-                              IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
-                              Stretch="{x:Bind Stretch, Mode=OneWay}" />
+        <local:HomePageHeader HeaderContent="{x:Bind HeaderContent, Mode=OneWay}" HeaderFontSize="{x:Bind HeaderFontSize, Mode=OneWay}" HeaderImage="{x:Bind HeaderImage, Mode=OneWay}" HeaderImageHeight="{x:Bind HeaderImageHeight, Mode=OneWay}" HeaderSubtitleFontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}" HeaderSubtitleText="{x:Bind HeaderSubtitleText, Mode=OneWay}" HeaderText="{x:Bind HeaderText, Mode=OneWay}" IsTileImage="{x:Bind IsTileImage, Mode=OneWay}" Stretch="{x:Bind Stretch, Mode=OneWay}" />
 
-        <GridView Grid.Row="1"
-                  Padding="{x:Bind GridViewPadding, Mode=OneWay}"
-                  AutomationProperties.AutomationId="ItemGridView"
-                  AutomationProperties.Name="Items In Group"
-                  ContainerContentChanging="OnItemGridViewContainerContentChanging"
-                  IsItemClickEnabled="True"
-                  IsSwipeEnabled="False"
-                  ItemClick="OnItemGridViewItemClick"
-                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
-                  ItemTemplate="{StaticResource ControlItemTemplate}"
-                  ItemsSource="{x:Bind itemsCVS.View, Mode=OneWay}"
-                  Loaded="OnItemGridViewLoaded"
-                  SelectionMode="None">
+        <GridView Grid.Row="1" Padding="{x:Bind GridViewPadding, Mode=OneWay}" AutomationProperties.AutomationId="ItemGridView" AutomationProperties.Name="Items In Group" ContainerContentChanging="OnItemGridViewContainerContentChanging" IsItemClickEnabled="True" IsSwipeEnabled="False" ItemClick="OnItemGridViewItemClick" ItemContainerStyle="{StaticResource GridViewItemStyle}" ItemTemplate="{StaticResource ControlItemTemplate}" ItemsSource="{x:Bind itemsCVS.View, Mode=OneWay}" Loaded="OnItemGridViewLoaded" SelectionMode="None">
             <GridView.Resources>
                 <CornerRadius x:Key="GridViewItemCornerRadius">8</CornerRadius>
             </GridView.Resources>
@@ -46,11 +25,7 @@
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate x:DataType="local:GroupInfoList">
-                            <TextBlock x:Name="pageSubtitle"
-                                       Margin="4,32,0,0"
-                                       AutomationProperties.HeadingLevel="Level1"
-                                       Style="{StaticResource SubtitleTextBlockStyle}"
-                                       Text="{x:Bind Title}" />
+                            <TextBlock x:Name="pageSubtitle" Margin="4,32,0,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind Title}" />
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>

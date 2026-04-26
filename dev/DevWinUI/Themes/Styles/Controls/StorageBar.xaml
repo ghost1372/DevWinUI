@@ -68,7 +68,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:StorageBar" BasedOn="{StaticResource DefaultStorageBarStyle}" />
+    <Style BasedOn="{StaticResource DefaultStorageBarStyle}" TargetType="local:StorageBar" />
 
     <Style x:Key="DefaultStorageBarStyle" TargetType="local:StorageBar">
         <Setter Property="Padding" Value="{ThemeResource StorageBarPadding}" />
@@ -90,16 +90,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StorageBar">
-                    <Border x:Name="BarRootPanel"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MinHeight="{TemplateBinding MinHeight}"
-                            MaxWidth="{TemplateBinding MaxWidth}"
-                            MaxHeight="{TemplateBinding MaxHeight}"
-                            Padding="{TemplateBinding Padding}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="BarRootPanel" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" MaxWidth="{TemplateBinding MaxWidth}" MaxHeight="{TemplateBinding MaxHeight}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ControlStates">
@@ -148,19 +139,9 @@
                                 <ColumnDefinition x:Name="PART_TrackColumn" />
                             </Grid.ColumnDefinitions>
 
-                            <Border x:Name="PART_ValueBar"
-                                    Grid.Column="0"
-                                    Height="{TemplateBinding ValueBarHeight}"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Background="{TemplateBinding Foreground}" />
+                            <Border x:Name="PART_ValueBar" Grid.Column="0" Height="{TemplateBinding ValueBarHeight}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="{TemplateBinding Foreground}" />
 
-                            <Border x:Name="PART_TrackBar"
-                                    Grid.Column="2"
-                                    Height="{TemplateBinding TrackBarHeight}"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Background="{TemplateBinding Background}" />
+                            <Border x:Name="PART_TrackBar" Grid.Column="2" Height="{TemplateBinding TrackBarHeight}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="{TemplateBinding Background}" />
 
                         </Grid>
                     </Border>

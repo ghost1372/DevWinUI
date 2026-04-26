@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="common/lights"
-                                  HeaderText="Combined Lights">
+            <local:ControlExample DocPage="common/lights" HeaderText="Combined Lights">
                 <local:ControlExample.CSharp>
                     <x:String>
                         myGrid.Lights.Add(new AmbLight());#nl#
@@ -21,8 +20,7 @@
                 </local:ControlExample.CSharp>
                 <Grid x:Name="AllGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
             </local:ControlExample>
-            <local:ControlExample DocPage="common/lights"
-                                  HeaderText="AmbLight">
+            <local:ControlExample DocPage="common/lights" HeaderText="AmbLight">
                 <local:ControlExample.CSharp>
                     <x:String>
                         myGrid.Lights.Add(new AmbLight());
@@ -30,8 +28,7 @@
                 </local:ControlExample.CSharp>
                 <Grid x:Name="AmbGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
             </local:ControlExample>
-            <local:ControlExample DocPage="common/lights"
-                                  HeaderText="HoverLight">
+            <local:ControlExample DocPage="common/lights" HeaderText="HoverLight">
                 <local:ControlExample.CSharp>
                     <x:String>
                         myGrid.Lights.Add(new HoverLight());
@@ -39,8 +36,7 @@
                 </local:ControlExample.CSharp>
                 <Grid x:Name="HoverGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
             </local:ControlExample>
-            <local:ControlExample DocPage="common/lights"
-                                  HeaderText="RippleLight">
+            <local:ControlExample DocPage="common/lights" HeaderText="RippleLight">
                 <local:ControlExample.CSharp>
                     <x:String>
                         myGrid.Lights.Add(new RippleLight());

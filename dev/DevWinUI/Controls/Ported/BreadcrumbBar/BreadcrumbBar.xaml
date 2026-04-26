@@ -18,8 +18,8 @@
     <CornerRadius x:Key="BreadcrumbBarChevronCornerRaduis">2,2,2,2</CornerRadius>
     <CornerRadius x:Key="BreadcrumbBarRootItemCornerRadius">16,2,2,16</CornerRadius>
 
-    <Style TargetType="local:BreadcrumbBar" BasedOn="{StaticResource DefaultBreadcrumbBarStyle}" />
-    <Style TargetType="local:BreadcrumbBarItem" BasedOn="{StaticResource DefaultBreadcrumbBarItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultBreadcrumbBarStyle}" TargetType="local:BreadcrumbBar" />
+    <Style BasedOn="{StaticResource DefaultBreadcrumbBarItemStyle}" TargetType="local:BreadcrumbBarItem" />
 
     <Style x:Key="DefaultBreadcrumbBarStyle" TargetType="local:BreadcrumbBar">
 
@@ -45,31 +45,15 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem"
-                                                 Grid.Column="0"
-                                                 Padding="{StaticResource BreadcrumbBarRootItemPadding}"
-                                                 ChevronToolTip="{TemplateBinding RootItemChevronToolTip}"
-                                                 CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}"
-                                                 ItemToolTip="{TemplateBinding RootItemToolTip}">
+                        <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem" Grid.Column="0" Padding="{StaticResource BreadcrumbBarRootItemPadding}" ChevronToolTip="{TemplateBinding RootItemChevronToolTip}" CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}" ItemToolTip="{TemplateBinding RootItemToolTip}">
                             <ContentPresenter Content="{Binding RootItem, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                         </local:BreadcrumbBarItem>
 
-                        <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem"
-                                                 Grid.Column="1"
-                                                 Margin="{StaticResource BreadcrumbBarItemMargin}"
-                                                 IsEllipsis="True"
-                                                 ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}"
-                                                 Visibility="Collapsed">
-                            <FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}"
-                                      Glyph="&#xE712;" />
+                        <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem" Grid.Column="1" Margin="{StaticResource BreadcrumbBarItemMargin}" IsEllipsis="True" ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}" Visibility="Collapsed">
+                            <FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}" Glyph="&#xE712;" />
                         </local:BreadcrumbBarItem>
 
-                        <ItemsRepeater x:Name="PART_MainItemsRepeater"
-                                       Grid.Column="2"
-                                       Margin="{StaticResource BreadcrumbBarItemMargin}"
-                                       HorizontalAlignment="Left"
-                                       ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                       ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                        <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 
                     </Grid>
                 </ControlTemplate>
@@ -139,28 +123,14 @@
                         </VisualStateManager.VisualStateGroups>
                         <StackPanel AutomationProperties.Name="{TemplateBinding ItemToolTip}" Orientation="Horizontal">
                             <!--  Clickable Area  -->
-                            <Button x:Name="PART_ItemContentButton"
-                                    Padding="{TemplateBinding Padding}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    AutomationProperties.AccessibilityView="Raw"
-                                    AutomationProperties.Name="{TemplateBinding Content}"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Control.IsTemplateFocusTarget="True"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    ToolTipService.ToolTip="{TemplateBinding ItemToolTip}"
-                                    UseSystemFocusVisuals="True">
+                            <Button x:Name="PART_ItemContentButton" Padding="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" AutomationProperties.Name="{TemplateBinding Content}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" ToolTipService.ToolTip="{TemplateBinding ItemToolTip}" UseSystemFocusVisuals="True">
                                 <Button.Resources>
                                     <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SubtleFillColorSecondary}" />
                                     <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SubtleFillColorTertiary}" />
                                 </Button.Resources>
 
                                 <FlyoutBase.AttachedFlyout>
-                                    <MenuFlyout x:Name="PART_ItemEllipsisDropDownMenuFlyout"
-                                                Placement="Bottom"
-                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                ScrollViewer.VerticalScrollMode="Auto">
+                                    <MenuFlyout x:Name="PART_ItemEllipsisDropDownMenuFlyout" Placement="Bottom" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto">
                                         <MenuFlyout.MenuFlyoutPresenterStyle>
                                             <Style TargetType="MenuFlyoutPresenter">
                                                 <Setter Property="MaxHeight" Value="400" />
@@ -171,45 +141,19 @@
                                     </MenuFlyout>
                                 </FlyoutBase.AttachedFlyout>
 
-                                <ContentPresenter x:Name="PART_ItemContentPresenter"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  AutomationProperties.AccessibilityView="Raw"
-                                                  Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                  FontFamily="{TemplateBinding FontFamily}"
-                                                  FontSize="{TemplateBinding FontSize}"
-                                                  FontWeight="{TemplateBinding FontWeight}"
-                                                  Foreground="{ThemeResource BreadcrumbBarForegroundBrush}"
-                                                  TextLineBounds="Tight" />
+                                <ContentPresenter x:Name="PART_ItemContentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{ThemeResource BreadcrumbBarForegroundBrush}" TextLineBounds="Tight" />
 
                             </Button>
 
                             <!--  Chevron  -->
-                            <Button x:Name="PART_ItemChevronButton"
-                                    Margin="{StaticResource BreadcrumbBarItemMargin}"
-                                    Padding="{StaticResource BreadcrumbBarChevronPadding}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    AutomationProperties.AccessibilityView="Raw"
-                                    AutomationProperties.Name="Chevron"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{StaticResource BreadcrumbBarChevronCornerRaduis}"
-                                    Style="{StaticResource BreadcrumbBarItemChevronButtonStyle}"
-                                    ToolTipService.ToolTip="{TemplateBinding ChevronToolTip}"
-                                    UseSystemFocusVisuals="True">
+                            <Button x:Name="PART_ItemChevronButton" Margin="{StaticResource BreadcrumbBarItemMargin}" Padding="{StaticResource BreadcrumbBarChevronPadding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" AutomationProperties.Name="Chevron" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource BreadcrumbBarChevronCornerRaduis}" Style="{StaticResource BreadcrumbBarItemChevronButtonStyle}" ToolTipService.ToolTip="{TemplateBinding ChevronToolTip}" UseSystemFocusVisuals="True">
                                 <Button.Resources>
                                     <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SubtleFillColorSecondary}" />
                                     <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SubtleFillColorTertiary}" />
                                 </Button.Resources>
 
                                 <FlyoutBase.AttachedFlyout>
-                                    <MenuFlyout x:Name="PART_ItemChevronDropDownMenuFlyout"
-                                                Placement="BottomEdgeAlignedLeft"
-                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                ScrollViewer.VerticalScrollMode="Auto">
+                                    <MenuFlyout x:Name="PART_ItemChevronDropDownMenuFlyout" Placement="BottomEdgeAlignedLeft" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto">
                                         <MenuFlyout.MenuFlyoutPresenterStyle>
                                             <Style TargetType="MenuFlyoutPresenter">
                                                 <Setter Property="MaxHeight" Value="400" />
@@ -220,16 +164,7 @@
                                     </MenuFlyout>
                                 </FlyoutBase.AttachedFlyout>
 
-                                <FontIcon x:Name="PART_ItemChevronIcon"
-                                          Width="{StaticResource BreadcrumbBarChevronFontSize}"
-                                          Height="{StaticResource BreadcrumbBarChevronFontSize}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          FontSize="{StaticResource BreadcrumbBarChevronFontSize}"
-                                          Foreground="{ThemeResource BreadcrumbBarForegroundBrush}"
-                                          Glyph="&#xE76C;"
-                                          IsTextScaleFactorEnabled="False"
-                                          RenderTransformOrigin="0.5,0.5">
+                                <FontIcon x:Name="PART_ItemChevronIcon" Width="{StaticResource BreadcrumbBarChevronFontSize}" Height="{StaticResource BreadcrumbBarChevronFontSize}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" FontSize="{StaticResource BreadcrumbBarChevronFontSize}" Foreground="{ThemeResource BreadcrumbBarForegroundBrush}" Glyph="&#xE76C;" IsTextScaleFactorEnabled="False" RenderTransformOrigin="0.5,0.5">
                                     <FontIcon.RenderTransform>
                                         <TransformGroup>
                                             <RotateTransform x:Name="ChevronRotateTransform" Angle="0" />
@@ -244,24 +179,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="BreadcrumbBarItemChevronButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+    <Style x:Key="BreadcrumbBarItemChevronButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="ContentPresenter"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      Foreground="{TemplateBinding Foreground}">
+                    <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                         <ContentPresenter.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </ContentPresenter.BackgroundTransition>

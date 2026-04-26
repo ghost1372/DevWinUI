@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:SimpleSettingsGroup" BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" />
+    <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" TargetType="local:SimpleSettingsGroup" />
 
     <Style x:Key="DefaultSimpleSettingsGroupStyle" TargetType="local:SimpleSettingsGroup">
         <Setter Property="ItemsPanel">
@@ -35,34 +35,23 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <TextBlock x:Name="HeaderPresenter"
-                                   Grid.Row="0"
-                                   Margin="1,32,0,0"
-                                   AutomationProperties.HeadingLevel="Level2"
-                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                   Text="{TemplateBinding Header}" />
+                        <TextBlock x:Name="HeaderPresenter" Grid.Row="0" Margin="1,32,0,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Header}" />
 
-                        <ContentPresenter x:Name="DescriptionPresenter"
-                                          Grid.Row="1"
-                                          Margin="1,0,0,0"
-                                          Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                          TextWrapping="WrapWholeWords">
+                        <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="1" Margin="1,0,0,0" Content="{TemplateBinding Description}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="WrapWholeWords">
                             <ContentPresenter.Resources>
-                                <Style TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+                                <Style BasedOn="{StaticResource CaptionTextBlockStyle}" TargetType="TextBlock">
                                     <Style.Setters>
                                         <Setter Property="TextWrapping" Value="WrapWholeWords" />
                                     </Style.Setters>
                                 </Style>
-                                <Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextButtonStyle}">
+                                <Style BasedOn="{StaticResource TextButtonStyle}" TargetType="HyperlinkButton">
                                     <Style.Setters>
                                         <Setter Property="Padding" Value="0,0,0,0" />
                                     </Style.Setters>
                                 </Style>
                             </ContentPresenter.Resources>
                         </ContentPresenter>
-                        <ItemsPresenter Grid.Row="2"
-                                        Margin="0,8,0,0" />
+                        <ItemsPresenter Grid.Row="2" Margin="0,8,0,0" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

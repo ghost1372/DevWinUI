@@ -14,15 +14,9 @@
                     <x:String>&lt;dev:OrbitLoadingIndicator IsBusy="true" /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TgIsBusy"
-                                  Header="Is Busy"
-                                  IsOn="True" />
+                    <ToggleSwitch x:Name="TgIsBusy" Header="Is Busy" IsOn="True" />
                 </local:ControlExample.Pane>
-                <dev:OrbitLoadingIndicator Width="64"
-                                           Height="64"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           IsBusy="{x:Bind TgIsBusy.IsOn, Mode=OneWay}" />
+                <dev:OrbitLoadingIndicator Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" IsBusy="{x:Bind TgIsBusy.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

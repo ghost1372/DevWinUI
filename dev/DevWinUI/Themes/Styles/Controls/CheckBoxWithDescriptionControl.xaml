@@ -3,8 +3,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxWithDescriptionControlStyle}" />
+    <Style BasedOn="{StaticResource DefaultCheckBoxWithDescriptionControlStyle}" TargetType="local:CheckBoxWithDescriptionControl" />
 
-    <Style x:Key="DefaultCheckBoxWithDescriptionControlStyle" TargetType="local:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
+    <Style x:Key="DefaultCheckBoxWithDescriptionControlStyle" BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="local:CheckBoxWithDescriptionControl" />
 
 </ResourceDictionary>

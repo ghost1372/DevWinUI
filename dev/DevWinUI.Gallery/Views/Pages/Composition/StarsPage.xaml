@@ -10,28 +10,17 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/stars"
-                                  HeaderText="Stars">
+            <local:ControlExample DocPage="controls/stars" HeaderText="Stars">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="SldNumberOfBigMovingStars"
-                                Header="Number Of Big Moving Stars"
-                                Maximum="300"
-                                Minimum="10"
-                                Value="150" />
-                        <Slider x:Name="SldNumberOfSmallTwinklingStars"
-                                Header="Number Of Small Twinkling Stars"
-                                Maximum="2000"
-                                Minimum="100"
-                                Value="600" />
+                        <Slider x:Name="SldNumberOfBigMovingStars" Header="Number Of Big Moving Stars" Maximum="300" Minimum="10" Value="150" />
+                        <Slider x:Name="SldNumberOfSmallTwinklingStars" Header="Number Of Small Twinkling Stars" Maximum="2000" Minimum="100" Value="600" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:Stars /&gt;</x:String>
                 </local:ControlExample.Xaml>
-                <dev:Stars Height="300"
-                           NumberOfBigMovingStars="{x:Bind (x:Int32)SldNumberOfBigMovingStars.Value, Mode=OneWay}"
-                           NumberOfSmallTwinklingStars="{x:Bind (x:Int32)SldNumberOfSmallTwinklingStars.Value, Mode=OneWay}" />
+                <dev:Stars Height="300" NumberOfBigMovingStars="{x:Bind (x:Int32)SldNumberOfBigMovingStars.Value, Mode=OneWay}" NumberOfSmallTwinklingStars="{x:Bind (x:Int32)SldNumberOfSmallTwinklingStars.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

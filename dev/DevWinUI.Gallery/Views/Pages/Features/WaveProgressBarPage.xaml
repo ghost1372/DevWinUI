@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/waveProgressBar"
-                                  HeaderText="WaveProgressBar">
+            <local:ControlExample DocPage="controls/waveProgressBar" HeaderText="WaveProgressBar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:WaveProgressBar Value="35"/&gt;
@@ -19,25 +18,14 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgText"
-                                      Header="ShowText"
-                                      IsOn="True" />
-                        <Slider x:Name="slPrg"
-                                Header="Progress"
-                                Value="35" />
-                        <Slider x:Name="slThickness"
-                                Header="Wave Thickness"
-                                Value="2" />
+                        <ToggleSwitch x:Name="tgText" Header="ShowText" IsOn="True" />
+                        <Slider x:Name="slPrg" Header="Progress" Value="35" />
+                        <Slider x:Name="slThickness" Header="Wave Thickness" Value="2" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <dev:WaveProgressBar ShowText="{x:Bind tgText.IsOn, Mode=OneWay}"
-                                         WaveThickness="{x:Bind slThickness.Value, Mode=OneWay}"
-                                         Value="{x:Bind slPrg.Value, Mode=OneWay}" />
-                    <dev:WaveProgressBar ShowText="{x:Bind tgText.IsOn, Mode=OneWay}"
-                                         WaveFill="{ThemeResource SystemFillColorCriticalBrush}"
-                                         WaveThickness="{x:Bind slThickness.Value, Mode=OneWay}"
-                                         Value="{x:Bind slPrg.Value, Mode=OneWay}" />
+                    <dev:WaveProgressBar ShowText="{x:Bind tgText.IsOn, Mode=OneWay}" WaveThickness="{x:Bind slThickness.Value, Mode=OneWay}" Value="{x:Bind slPrg.Value, Mode=OneWay}" />
+                    <dev:WaveProgressBar ShowText="{x:Bind tgText.IsOn, Mode=OneWay}" WaveFill="{ThemeResource SystemFillColorCriticalBrush}" WaveThickness="{x:Bind slThickness.Value, Mode=OneWay}" Value="{x:Bind slPrg.Value, Mode=OneWay}" />
 
                 </StackPanel>
             </local:ControlExample>

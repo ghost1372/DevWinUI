@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:FlipSide" BasedOn="{StaticResource DefaultFlipSideStyle}" />
+    <Style BasedOn="{StaticResource DefaultFlipSideStyle}" TargetType="local:FlipSide" />
 
     <Style x:Key="DefaultFlipSideStyle" TargetType="local:FlipSide">
         <Setter Property="Background" Value="Transparent" />
@@ -27,16 +27,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="Side1Content"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Content="{TemplateBinding Side1}"
-                                          IsHitTestVisible="True" />
-                        <ContentPresenter x:Name="Side2Content"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Content="{TemplateBinding Side2}"
-                                          IsHitTestVisible="False" />
+                        <ContentPresenter x:Name="Side1Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side1}" IsHitTestVisible="True" />
+                        <ContentPresenter x:Name="Side2Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Side2}" IsHitTestVisible="False" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

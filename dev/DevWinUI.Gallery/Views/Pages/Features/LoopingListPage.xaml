@@ -23,37 +23,15 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtHeader"
-                                 Header="Header"
-                                 PlaceholderText="Country"
-                                 Text="Country" />
-                        <TextBox x:Name="TxtPrimary"
-                                 Header="Primary Placeholder"
-                                 PlaceholderText="Country"
-                                 Text="Country" />
-                        <TextBox x:Name="TxtSecondary"
-                                 Header="Secondary Placeholder"
-                                 PlaceholderText="Capital"
-                                 Text="Capital" />
-                        <TextBox x:Name="TxtTertiary"
-                                 Header="Tertiary Placeholder"
-                                 PlaceholderText="City"
-                                 Text="City" />
-                        <ToggleSwitch x:Name="TgShouldLoop"
-                                      Header="Should Loop?"
-                                      IsOn="True" />
-                        <Button MinWidth="170"
-                                Click="Button_Click"
-                                Content="Clear Selection" />
+                        <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Country" Text="Country" />
+                        <TextBox x:Name="TxtPrimary" Header="Primary Placeholder" PlaceholderText="Country" Text="Country" />
+                        <TextBox x:Name="TxtSecondary" Header="Secondary Placeholder" PlaceholderText="Capital" Text="Capital" />
+                        <TextBox x:Name="TxtTertiary" Header="Tertiary Placeholder" PlaceholderText="City" Text="City" />
+                        <ToggleSwitch x:Name="TgShouldLoop" Header="Should Loop?" IsOn="True" />
+                        <Button MinWidth="170" Click="Button_Click" Content="Clear Selection" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:LoopingList x:Name="LoopingListSample"
-                                 VerticalAlignment="Top"
-                                 Header="{x:Bind TxtHeader.Text, Mode=OneWay}"
-                                 PrimaryPlaceholderText="{x:Bind TxtPrimary.Text, Mode=OneWay}"
-                                 SecondaryPlaceholderText="{x:Bind TxtSecondary.Text, Mode=OneWay}"
-                                 ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}"
-                                 TertiaryPlaceholderText="{x:Bind TxtTertiary.Text, Mode=OneWay}" />
+                <dev:LoopingList x:Name="LoopingListSample" VerticalAlignment="Top" Header="{x:Bind TxtHeader.Text, Mode=OneWay}" PrimaryPlaceholderText="{x:Bind TxtPrimary.Text, Mode=OneWay}" SecondaryPlaceholderText="{x:Bind TxtSecondary.Text, Mode=OneWay}" ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" TertiaryPlaceholderText="{x:Bind TxtTertiary.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

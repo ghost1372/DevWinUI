@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="helpers/sunTimesHelper"
-                                  DocType="Core">
+            <local:ControlExample DocPage="helpers/sunTimesHelper" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         var sunTimes = SunTimesHelper.CalculateSunriseSunset(Latitude, Longitude, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -19,47 +18,20 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <NumberBox x:Name="NBLatitude"
-                                   Header="Latitude"
-                                   Maximum="10000"
-                                   Minimum="-10000"
-                                   PlaceholderText="47.0313"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="47.0313" />
-                        <NumberBox x:Name="NBLongitude"
-                                   Header="Longitude"
-                                   Maximum="10000"
-                                   Minimum="-10000"
-                                   PlaceholderText="48.4787"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="48.4787" />
+                        <NumberBox x:Name="NBLatitude" Header="Latitude" Maximum="10000" Minimum="-10000" PlaceholderText="47.0313" SpinButtonPlacementMode="Inline" Value="47.0313" />
+                        <NumberBox x:Name="NBLongitude" Header="Longitude" Maximum="10000" Minimum="-10000" PlaceholderText="48.4787" SpinButtonPlacementMode="Inline" Value="48.4787" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <InfoBar Title="Retrieve your current Latitude and Longitude"
-                             IsClosable="False"
-                             IsOpen="True"
-                             Message="Works only if location access is granted and your device supports reliable location services (e.g., GPS or Wi-Fi).  If your device does not have GPS, results may be inaccurate.">
+                    <InfoBar Title="Retrieve your current Latitude and Longitude" IsClosable="False" IsOpen="True" Message="Works only if location access is granted and your device supports reliable location services (e.g., GPS or Wi-Fi).  If your device does not have GPS, results may be inaccurate.">
                         <InfoBar.ActionButton>
-                            <Button x:Name="BtnGetLocation"
-                                    Click="BtnGetLocation_Click"
-                                    Content="Get Latitude and Longitude" />
+                            <Button x:Name="BtnGetLocation" Click="BtnGetLocation_Click" Content="Get Latitude and Longitude" />
                         </InfoBar.ActionButton>
                     </InfoBar>
-                    <InfoBar x:Name="InfoBarSource"
-                             Title="Position Source"
-                             IsClosable="False"
-                             IsOpen="True"
-                             Message="Position source will appear here after retrieving location."
-                             Severity="Warning" />
-                    <Button x:Name="BtnCalc"
-                            Click="BtnCalc_Click"
-                            Content="Calculate Sunrise and Sunset"
-                            Style="{StaticResource AccentButtonStyle}" />
-                    <TextBlock x:Name="TxtSunRise"
-                               Style="{ThemeResource TitleTextBlockStyle}" />
-                    <TextBlock x:Name="TxtSunSet"
-                               Style="{ThemeResource TitleTextBlockStyle}" />
+                    <InfoBar x:Name="InfoBarSource" Title="Position Source" IsClosable="False" IsOpen="True" Message="Position source will appear here after retrieving location." Severity="Warning" />
+                    <Button x:Name="BtnCalc" Click="BtnCalc_Click" Content="Calculate Sunrise and Sunset" Style="{StaticResource AccentButtonStyle}" />
+                    <TextBlock x:Name="TxtSunRise" Style="{ThemeResource TitleTextBlockStyle}" />
+                    <TextBlock x:Name="TxtSunSet" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

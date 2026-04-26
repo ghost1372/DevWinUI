@@ -10,85 +10,31 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/compositionShadow"
-                                  XamlSource="Composition/CompositionShadowPage_xaml.txt">
+            <local:ControlExample DocPage="controls/compositionShadow" XamlSource="Composition/CompositionShadowPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="ShadowSlider"
-                                Header="Shadow Opacity"
-                                Maximum="1"
-                                Minimum="0"
-                                TickFrequency="0.1"
-                                Value="1" />
-                        <Slider x:Name="BlurSlider"
-                                Header="Blur Radius"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="16" />
-                        <Slider x:Name="OffsetXSlider"
-                                Header="OffsexX"
-                                Maximum="200"
-                                Minimum="-200"
-                                Value="2" />
-                        <Slider x:Name="OffsetYSlider"
-                                Header="OffsetY"
-                                Maximum="200"
-                                Minimum="-200"
-                                Value="2" />
-                        <ToggleSwitch x:Name="TGMask"
-                                      Header="Toggle Mask"
-                                      Toggled="TGMask_Toggled" />
-                        <ColorPicker x:Name="ColorPickerSample"
-                                     IsAlphaTextInputVisible="False"
-                                     IsColorChannelTextInputVisible="False"
-                                     IsColorSliderVisible="False"
-                                     IsHexInputVisible="False"
-                                     IsMoreButtonVisible="False"
-                                     Color="Yellow" />
-                        <ToggleSwitch x:Name="TGIsRounded"
-                                      Header="Is Rounded"
-                                      IsOn="True" />
+                        <Slider x:Name="ShadowSlider" Header="Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="1" />
+                        <Slider x:Name="BlurSlider" Header="Blur Radius" Maximum="100" Minimum="0" Value="16" />
+                        <Slider x:Name="OffsetXSlider" Header="OffsexX" Maximum="200" Minimum="-200" Value="2" />
+                        <Slider x:Name="OffsetYSlider" Header="OffsetY" Maximum="200" Minimum="-200" Value="2" />
+                        <ToggleSwitch x:Name="TGMask" Header="Toggle Mask" Toggled="TGMask_Toggled" />
+                        <ColorPicker x:Name="ColorPickerSample" IsAlphaTextInputVisible="False" IsColorChannelTextInputVisible="False" IsColorSliderVisible="False" IsHexInputVisible="False" IsMoreButtonVisible="False" Color="Yellow" />
+                        <ToggleSwitch x:Name="TGIsRounded" Header="Is Rounded" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}"
-                                           OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}"
-                                           OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}"
-                                           ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}"
-                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
-                        <TextBlock FontSize="30"
-                                   FontWeight="SemiBold"
-                                   TextWrapping="Wrap">
+                    <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
+                        <TextBlock FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap">
                             Here’s a custom control that allows you to apply DropShadows through Markup on XAML Text, Images, or Shapes
                         </TextBlock>
                     </dev:CompositionShadow>
-                    <dev:CompositionShadow x:Name="RenderShadow"
-                                           Width="200"
-                                           Height="300"
-                                           BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}"
-                                           OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}"
-                                           OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}"
-                                           ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}"
-                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
-                        <dev:CompositionImage x:Name="ComImage"
-                                              Source="ms-appx:///Assets/Others/Girl.jpg" />
+                    <dev:CompositionShadow x:Name="RenderShadow" Width="200" Height="300" BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
+                        <dev:CompositionImage x:Name="ComImage" Source="ms-appx:///Assets/Others/Girl.jpg" />
                     </dev:CompositionShadow>
-                    <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}"
-                                           OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}"
-                                           OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}"
-                                           ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}"
-                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
-                        <Polygon Fill="Blue"
-                                 Points="50,0 0,50 50,50" />
+                    <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}">
+                        <Polygon Fill="Blue" Points="50,0 0,50 50,50" />
                     </dev:CompositionShadow>
-                    <dev:CompositionShadow Width="100"
-                                           Height="100"
-                                           BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}"
-                                           IsRounded="{x:Bind TGIsRounded.IsOn, Mode=OneWay}"
-                                           OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}"
-                                           OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}"
-                                           ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}"
-                                           Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
+                    <dev:CompositionShadow Width="100" Height="100" BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" IsRounded="{x:Bind TGIsRounded.IsOn, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
                 </StackPanel>
 
             </local:ControlExample>

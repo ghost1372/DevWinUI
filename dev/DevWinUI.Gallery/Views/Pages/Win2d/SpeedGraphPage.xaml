@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/speedGraph"
-                                  HeaderText="Speed Graph">
+            <local:ControlExample DocPage="controls/speedGraph" HeaderText="Speed Graph">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:SpeedGraph /&gt;
@@ -24,35 +23,16 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button x:Name="BtnCopy"
-                                Click="BtnCopy_Click"
-                                Content="Starting file copy simulation" />
-                        <Button x:Name="BtnError"
-                                Click="BtnError_Click"
-                                Content="Show Error" />
-                        <Button x:Name="BtnWarning"
-                                Click="BtnPause_Click"
-                                Content="Show Pause" />
-                        <ToggleSwitch x:Name="TGShowLine"
-                                      Header="Show Speed Line"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TGShowText"
-                                      Header="Show Speed Text"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TGAutoUpdate"
-                                      Header="Auto Update Speed Text"
-                                      IsOn="True" />
-                        <NumberBox x:Name="NBFileSize"
-                                   Header="File Size (MB)"
-                                   Maximum="5000"
-                                   Minimum="100"
-                                   Value="500" />
+                        <Button x:Name="BtnCopy" Click="BtnCopy_Click" Content="Starting file copy simulation" />
+                        <Button x:Name="BtnError" Click="BtnError_Click" Content="Show Error" />
+                        <Button x:Name="BtnWarning" Click="BtnPause_Click" Content="Show Pause" />
+                        <ToggleSwitch x:Name="TGShowLine" Header="Show Speed Line" IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowText" Header="Show Speed Text" IsOn="True" />
+                        <ToggleSwitch x:Name="TGAutoUpdate" Header="Auto Update Speed Text" IsOn="True" />
+                        <NumberBox x:Name="NBFileSize" Header="File Size (MB)" Maximum="5000" Minimum="100" Value="500" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:SpeedGraph x:Name="SpeedGraphSample"
-                                AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}"
-                                SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
-                                SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <dev:SpeedGraph x:Name="SpeedGraphSample" AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}" SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

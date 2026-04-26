@@ -17,8 +17,7 @@
                 </local:ControlExample.Xaml>
                 <StackPanel Margin="10" Spacing="10">
                     <dev:Gravatar Id="{x:Bind txt.Text, Mode=OneWay}" />
-                    <TextBox x:Name="txt"
-                             PlaceholderText="Id" />
+                    <TextBox x:Name="txt" PlaceholderText="Id" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

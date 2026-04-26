@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/offsetBox"
-                                  HeaderText="OffsetBox">
+            <local:ControlExample DocPage="controls/offsetBox" HeaderText="OffsetBox">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:OffsetBox&gt;#nl#
@@ -20,15 +19,10 @@
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TgShadow"
-                                  Header="Show Shadow on Hover"
-                                  IsOn="True" />
+                    <ToggleSwitch x:Name="TgShadow" Header="Show Shadow on Hover" IsOn="True" />
                 </local:ControlExample.Pane>
-                <dev:OffsetBox HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               ShowShadowOnHover="{x:Bind TgShadow.IsOn, Mode=OneWay}">
-                    <Button MinWidth="200"
-                            Content="Hover Me!" />
+                <dev:OffsetBox HorizontalAlignment="Center" VerticalAlignment="Center" ShowShadowOnHover="{x:Bind TgShadow.IsOn, Mode=OneWay}">
+                    <Button MinWidth="200" Content="Hover Me!" />
                 </dev:OffsetBox>
             </local:ControlExample>
         </StackPanel>

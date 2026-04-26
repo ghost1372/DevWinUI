@@ -3,21 +3,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:UacStyleDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" />
+    <Style BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:UacStyleDialogView" />
 
-    <Style x:Key="UacStyleDialogViewErrorSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+    <Style x:Key="UacStyleDialogViewErrorSeverityStyle" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:ExtendedContentDialogView">
         <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogErrorSeverityHeaderBackgroundBrush}" />
     </Style>
 
-    <Style x:Key="UacStyleDialogViewWarningSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+    <Style x:Key="UacStyleDialogViewWarningSeverityStyle" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:ExtendedContentDialogView">
         <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogWarningSeverityHeaderBackgroundBrush}" />
     </Style>
 
-    <Style x:Key="UacStyleDialogViewSuccessSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+    <Style x:Key="UacStyleDialogViewSuccessSeverityStyle" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:ExtendedContentDialogView">
         <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogSuccessSeverityHeaderBackgroundBrush}" />
     </Style>
 
-    <Style x:Key="UacStyleDialogViewInformationalSeverityStyle" TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}">
+    <Style x:Key="UacStyleDialogViewInformationalSeverityStyle" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:ExtendedContentDialogView">
         <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogInformationalSeverityHeaderBackgroundBrush}" />
     </Style>
 

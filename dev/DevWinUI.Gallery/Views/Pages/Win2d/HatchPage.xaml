@@ -10,22 +10,16 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/hatch"
-                                  DocType="Controls">
+            <local:ControlExample DocPage="controls/hatch" DocType="Controls">
                 <local:ControlExample.Pane>
-                    <ComboBox x:Name="HatchPicker"
-                              Header="Pick a Hatch"
-                              ItemsSource="{x:Bind Items, Mode=OneWay}"
-                              SelectedIndex="0"
-                              SelectionChanged="HatchPicker_SelectionChanged" />
+                    <ComboBox x:Name="HatchPicker" Header="Pick a Hatch" ItemsSource="{x:Bind Items, Mode=OneWay}" SelectedIndex="0" SelectionChanged="HatchPicker_SelectionChanged" />
                 </local:ControlExample.Pane>
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Hatch /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <dev:Hatch x:Name="HatchSample"
-                           Height="400" />
+                <dev:Hatch x:Name="HatchSample" Height="400" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

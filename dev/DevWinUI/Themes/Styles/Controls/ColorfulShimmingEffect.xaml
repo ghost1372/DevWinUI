@@ -3,16 +3,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ColorfulShimmingEffect" BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" />
+    <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
 
     <Style x:Key="DefaultColorfulShimmingEffectStyle" TargetType="local:ColorfulShimmingEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ColorfulShimmingEffect">
                     <StackPanel x:Name="PART_Root">
-                        <ContentPresenter HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Content="{TemplateBinding Content}" />
+                        <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{TemplateBinding Content}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

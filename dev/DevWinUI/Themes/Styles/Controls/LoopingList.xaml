@@ -123,7 +123,7 @@
     <Thickness x:Key="LoopingListFlyoutPresenterItemPadding">0,3,0,6</Thickness>
     <Thickness x:Key="LoopingListHostPadding">0,3,0,6</Thickness>
 
-    <Style TargetType="local:LoopingList" BasedOn="{StaticResource DefaultLoopingListStyle}" />
+    <Style BasedOn="{StaticResource DefaultLoopingListStyle}" TargetType="local:LoopingList" />
 
     <Style x:Key="DefaultLoopingListStyle" TargetType="local:LoopingList">
         <Setter Property="IsTabStop" Value="False" />
@@ -198,16 +198,7 @@
                                                         <VisualState x:Name="Unfocused" />
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
-                                                <ContentPresenter x:Name="ContentPresenter"
-                                                                  HorizontalContentAlignment="Stretch"
-                                                                  VerticalContentAlignment="Stretch"
-                                                                  AutomationProperties.AccessibilityView="Raw"
-                                                                  Background="{TemplateBinding Background}"
-                                                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                                                  Content="{TemplateBinding Content}"
-                                                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                                                  Foreground="{TemplateBinding Foreground}" />
+                                                <ContentPresenter x:Name="ContentPresenter" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}" />
                                             </Grid>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -244,34 +235,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="PART_HeaderContentPresenter"
-                                          Grid.Row="0"
-                                          MaxWidth="{ThemeResource LoopingListThemeMaxWidth}"
-                                          Margin="{ThemeResource LoopingListTopHeaderMargin}"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Top"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          Foreground="{ThemeResource LoopingListHeaderForeground}"
-                                          TextWrapping="Wrap"
-                                          Visibility="Collapsed" />
-                        <Button x:Name="PART_FlyoutButton"
-                                Grid.Row="1"
-                                MinWidth="{StaticResource LoopingListThemeMinWidth}"
-                                MaxWidth="{StaticResource LoopingListThemeMaxWidth}"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Top"
-                                HorizontalContentAlignment="Stretch"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                FocusVisualMargin="{TemplateBinding FocusVisualMargin}"
-                                Foreground="{TemplateBinding Foreground}"
-                                IsEnabled="{TemplateBinding IsEnabled}"
-                                Style="{StaticResource LoopingListFlyoutButtonStyle}"
-                                UseSystemFocusVisuals="{TemplateBinding UseSystemFocusVisuals}">
+                        <ContentPresenter x:Name="PART_HeaderContentPresenter" Grid.Row="0" MaxWidth="{ThemeResource LoopingListThemeMaxWidth}" Margin="{ThemeResource LoopingListTopHeaderMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" Foreground="{ThemeResource LoopingListHeaderForeground}" TextWrapping="Wrap" Visibility="Collapsed" />
+                        <Button x:Name="PART_FlyoutButton" Grid.Row="1" MinWidth="{StaticResource LoopingListThemeMinWidth}" MaxWidth="{StaticResource LoopingListThemeMaxWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" FocusVisualMargin="{TemplateBinding FocusVisualMargin}" Foreground="{TemplateBinding Foreground}" IsEnabled="{TemplateBinding IsEnabled}" Style="{StaticResource LoopingListFlyoutButtonStyle}" UseSystemFocusVisuals="{TemplateBinding UseSystemFocusVisuals}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition x:Name="PART_FirstTextBlockColumn" Width="*" />
@@ -280,48 +245,16 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition x:Name="PART_ThirdTextBlockColumn" Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="PART_FirstPickerHost"
-                                        Grid.Column="0"
-                                        Padding="5,0">
-                                    <TextBlock x:Name="PART_FirstTextBlock"
-                                               Padding="{ThemeResource LoopingListHostPadding}"
-                                               AutomationProperties.AccessibilityView="Raw"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               TextAlignment="Center" />
+                                <Border x:Name="PART_FirstPickerHost" Grid.Column="0" Padding="5,0">
+                                    <TextBlock x:Name="PART_FirstTextBlock" Padding="{ThemeResource LoopingListHostPadding}" AutomationProperties.AccessibilityView="Raw" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" TextAlignment="Center" />
                                 </Border>
-                                <Rectangle x:Name="PART_FirstColumnDivider"
-                                           Grid.Column="1"
-                                           Width="{ThemeResource LoopingListSpacerThemeWidth}"
-                                           HorizontalAlignment="Center"
-                                           Fill="{ThemeResource LoopingListSpacerFill}" />
-                                <Border x:Name="PART_SecondPickerHost"
-                                        Grid.Column="2"
-                                        Padding="5,0">
-                                    <TextBlock x:Name="PART_SecondTextBlock"
-                                               Padding="{ThemeResource LoopingListHostPadding}"
-                                               AutomationProperties.AccessibilityView="Raw"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               TextAlignment="Center" />
+                                <Rectangle x:Name="PART_FirstColumnDivider" Grid.Column="1" Width="{ThemeResource LoopingListSpacerThemeWidth}" HorizontalAlignment="Center" Fill="{ThemeResource LoopingListSpacerFill}" />
+                                <Border x:Name="PART_SecondPickerHost" Grid.Column="2" Padding="5,0">
+                                    <TextBlock x:Name="PART_SecondTextBlock" Padding="{ThemeResource LoopingListHostPadding}" AutomationProperties.AccessibilityView="Raw" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" TextAlignment="Center" />
                                 </Border>
-                                <Rectangle x:Name="PART_SecondColumnDivider"
-                                           Grid.Column="3"
-                                           Width="{ThemeResource LoopingListSpacerThemeWidth}"
-                                           HorizontalAlignment="Center"
-                                           Fill="{ThemeResource LoopingListSpacerFill}" />
-                                <Border x:Name="PART_ThirdPickerHost"
-                                        Grid.Column="4"
-                                        Padding="5,0">
-                                    <TextBlock x:Name="PART_ThirdTextBlock"
-                                               Padding="{ThemeResource LoopingListHostPadding}"
-                                               AutomationProperties.AccessibilityView="Raw"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               TextAlignment="Center" />
+                                <Rectangle x:Name="PART_SecondColumnDivider" Grid.Column="3" Width="{ThemeResource LoopingListSpacerThemeWidth}" HorizontalAlignment="Center" Fill="{ThemeResource LoopingListSpacerFill}" />
+                                <Border x:Name="PART_ThirdPickerHost" Grid.Column="4" Padding="5,0">
+                                    <TextBlock x:Name="PART_ThirdTextBlock" Padding="{ThemeResource LoopingListHostPadding}" AutomationProperties.AccessibilityView="Raw" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" TextAlignment="Center" />
                                 </Border>
                             </Grid>
                         </Button>
@@ -346,13 +279,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoopingListFlyoutPresenter">
-                    <Border x:Name="Background"
-                            MaxHeight="398"
-                            Padding="{ThemeResource DateTimeFlyoutBorderPadding}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border x:Name="Background" MaxHeight="398" Padding="{ThemeResource DateTimeFlyoutBorderPadding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid x:Name="ContentPanel">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -368,54 +295,14 @@
                                         <ColumnDefinition x:Name="PART_FlyoutThirdColumnHost" Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid x:Name="HighlightRect" Grid.Column="0" Grid.ColumnSpan="5" Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}" Margin="4,2,4,2" VerticalAlignment="Center" Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}" Canvas.ZIndex="9999" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="false" />
-                                    <primitives:MonochromaticOverlayPresenter Grid.Column="0"
-                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
-                                                                              Margin="3,0"
-                                                                              VerticalAlignment="Center"
-                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
-                                                                              Canvas.ZIndex="10000"
-                                                                              CornerRadius="{TemplateBinding CornerRadius}"
-                                                                              IsHitTestVisible="false"
-                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
-                                                                              SourceElement="{Binding ElementName=PART_FlyoutFirstPickerHost, Mode=OneTime}" />
-                                    <primitives:MonochromaticOverlayPresenter Grid.Column="2"
-                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
-                                                                              Margin="3,0"
-                                                                              VerticalAlignment="Center"
-                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
-                                                                              Canvas.ZIndex="10000"
-                                                                              CornerRadius="{TemplateBinding CornerRadius}"
-                                                                              IsHitTestVisible="false"
-                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
-                                                                              SourceElement="{Binding ElementName=PART_FlyoutSecondPickerHost}" />
-                                    <primitives:MonochromaticOverlayPresenter Grid.Column="4"
-                                                                              Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}"
-                                                                              Margin="3,0"
-                                                                              VerticalAlignment="Center"
-                                                                              Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}"
-                                                                              Canvas.ZIndex="10000"
-                                                                              CornerRadius="{TemplateBinding CornerRadius}"
-                                                                              IsHitTestVisible="false"
-                                                                              ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}"
-                                                                              SourceElement="{Binding ElementName=PART_FlyoutThirdPickerHost}" />
-                                    <Border x:Name="PART_FlyoutFirstPickerHost"
-                                            Grid.Column="0" />
-                                    <Rectangle x:Name="PART_FlyoutFirstPickerSpacing"
-                                               Grid.Column="1"
-                                               Width="{ThemeResource LoopingListSpacerThemeWidth}"
-                                               HorizontalAlignment="Center"
-                                               Canvas.ZIndex="10000"
-                                               Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
-                                    <Border x:Name="PART_FlyoutSecondPickerHost"
-                                            Grid.Column="2" />
-                                    <Rectangle x:Name="PART_FlyoutSecondPickerSpacing"
-                                               Grid.Column="3"
-                                               Width="{ThemeResource LoopingListSpacerThemeWidth}"
-                                               HorizontalAlignment="Center"
-                                               Canvas.ZIndex="10000"
-                                               Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
-                                    <Border x:Name="PART_FlyoutThirdPickerHost"
-                                            Grid.Column="4" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="0" Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}" Margin="3,0" VerticalAlignment="Center" Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}" Canvas.ZIndex="10000" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="false" ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}" SourceElement="{Binding ElementName=PART_FlyoutFirstPickerHost, Mode=OneTime}" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="2" Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}" Margin="3,0" VerticalAlignment="Center" Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}" Canvas.ZIndex="10000" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="false" ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}" SourceElement="{Binding ElementName=PART_FlyoutSecondPickerHost}" />
+                                    <primitives:MonochromaticOverlayPresenter Grid.Column="4" Height="{ThemeResource LoopingListFlyoutPresenterHighlightHeight}" Margin="3,0" VerticalAlignment="Center" Background="{ThemeResource LoopingListFlyoutPresenterHighlightFill}" Canvas.ZIndex="10000" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="false" ReplacementColor="{ThemeResource LoopingListFlyoutPresenterHighlightForegroundColor}" SourceElement="{Binding ElementName=PART_FlyoutThirdPickerHost}" />
+                                    <Border x:Name="PART_FlyoutFirstPickerHost" Grid.Column="0" />
+                                    <Rectangle x:Name="PART_FlyoutFirstPickerSpacing" Grid.Column="1" Width="{ThemeResource LoopingListSpacerThemeWidth}" HorizontalAlignment="Center" Canvas.ZIndex="10000" Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                    <Border x:Name="PART_FlyoutSecondPickerHost" Grid.Column="2" />
+                                    <Rectangle x:Name="PART_FlyoutSecondPickerSpacing" Grid.Column="3" Width="{ThemeResource LoopingListSpacerThemeWidth}" HorizontalAlignment="Center" Canvas.ZIndex="10000" Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                    <Border x:Name="PART_FlyoutThirdPickerHost" Grid.Column="4" />
                                 </Grid>
                             </Grid>
                             <Grid x:Name="AcceptDismissHostGrid" Grid.Row="1" Height="{ThemeResource LoopingListFlyoutPresenterAcceptDismissHostGridHeight}">
@@ -423,30 +310,9 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Rectangle Grid.ColumnSpan="2"
-                                           Height="{ThemeResource LoopingListSpacerThemeWidth}"
-                                           VerticalAlignment="Top"
-                                           Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
-                                <Button x:Name="PART_AcceptButton"
-                                        Grid.Column="0"
-                                        Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}"
-                                        Padding="4"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        Content="&#xE8FB;"
-                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        FontSize="16"
-                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
-                                <Button x:Name="PART_DismissButton"
-                                        Grid.Column="1"
-                                        Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}"
-                                        Padding="4"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        Content="&#xE711;"
-                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        FontSize="16"
-                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
+                                <Rectangle Grid.ColumnSpan="2" Height="{ThemeResource LoopingListSpacerThemeWidth}" VerticalAlignment="Top" Fill="{ThemeResource LoopingListFlyoutPresenterSpacerFill}" />
+                                <Button x:Name="PART_AcceptButton" Grid.Column="0" Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}" Padding="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="&#xE8FB;" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="16" Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
+                                <Button x:Name="PART_DismissButton" Grid.Column="1" Margin="{StaticResource DatePickerFlyoutPresenterDismissMargin}" Padding="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="&#xE711;" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="16" Style="{StaticResource DateTimePickerFlyoutButtonStyle}" />
                             </Grid>
                         </Grid>
                     </Border>

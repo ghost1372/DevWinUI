@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:InfoCard" BasedOn="{StaticResource DefaultInfoCardStyle}" />
+    <Style BasedOn="{StaticResource DefaultInfoCardStyle}" TargetType="local:InfoCard" />
 
     <Style x:Key="DefaultInfoCardStyle" TargetType="local:InfoCard">
         <Setter Property="Width" Value="350" />
@@ -46,45 +46,17 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <local:ImageEx x:Name="gridImage"
-                                       Grid.RowSpan="2"
-                                       Width="36"
-                                       Margin="8,12,16,0"
-                                       VerticalAlignment="Top"
-                                       AutomationProperties.Name="{TemplateBinding Title}"
-                                       Source="{TemplateBinding Icon}"
-                                       Stretch="Uniform" />
+                        <local:ImageEx x:Name="gridImage" Grid.RowSpan="2" Width="36" Margin="8,12,16,0" VerticalAlignment="Top" AutomationProperties.Name="{TemplateBinding Title}" Source="{TemplateBinding Icon}" Stretch="Uniform" />
 
-                        <TextBlock x:Name="titleText"
-                                   Grid.Column="1"
-                                   Margin="0,12,0,0"
-                                   VerticalAlignment="Bottom"
-                                   FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                   FontSize="{ThemeResource LandingItemTitleFontSize}"
-                                   Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{TemplateBinding Title}"
-                                   TextLineBounds="TrimToCapHeight"
-                                   TextWrapping="NoWrap" />
-                        <TextBlock x:Name="subtitleText"
-                                   Grid.Row="1"
-                                   Grid.Column="1"
-                                   FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                   FontSize="{ThemeResource LandingItemSubtitleFontSize}"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                   RelativePanel.Below="titleText"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Text="{TemplateBinding Description}"
-                                   TextTrimming="WordEllipsis">
+                        <TextBlock x:Name="titleText" Grid.Column="1" Margin="0,12,0,0" VerticalAlignment="Bottom" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemTitleFontSize}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Title}" TextLineBounds="TrimToCapHeight" TextWrapping="NoWrap" />
+                        <TextBlock x:Name="subtitleText" Grid.Row="1" Grid.Column="1" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemSubtitleFontSize}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" RelativePanel.Below="titleText" Style="{StaticResource CaptionTextBlockStyle}" Text="{TemplateBinding Description}" TextTrimming="WordEllipsis">
                             <ToolTipService.ToolTip>
                                 <ToolTip Visibility="{Binding ElementName=subtitleText, Path=IsTextTrimmed}">
-                                    <TextBlock Text="{TemplateBinding Description}"
-                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" />
                                 </ToolTip>
                             </ToolTipService.ToolTip>
                         </TextBlock>
-                        <ContentPresenter Grid.Column="2"
-                                          VerticalAlignment="Top"
-                                          Content="{TemplateBinding InfoBadge}" />
+                        <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding InfoBadge}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

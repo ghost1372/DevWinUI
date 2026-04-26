@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ColorShadow" BasedOn="{StaticResource DefaultColorShadowStyle}" />
+    <Style BasedOn="{StaticResource DefaultColorShadowStyle}" TargetType="local:ColorShadow" />
 
     <Style x:Key="DefaultColorShadowStyle" TargetType="local:ColorShadow">
         <Setter Property="Template">
@@ -23,12 +23,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="RenderGrid" />
-                        <ProgressRing x:Name="LoadProgress"
-                                      Width="50"
-                                      Height="50"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      IsActive="False" />
+                        <ProgressRing x:Name="LoadProgress" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

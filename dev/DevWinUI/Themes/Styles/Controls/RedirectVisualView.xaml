@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:RedirectVisualView" BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" />
+    <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" TargetType="local:RedirectVisualView" />
 
     <Style x:Key="DefaultRedirectVisualViewStyle" TargetType="local:RedirectVisualView">
         <Setter Property="IsTabStop" Value="False" />
@@ -25,9 +25,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <ContentPresenter x:Name="ChildPresenter"
-                                                  Margin="{TemplateBinding Padding}"
-                                                  Content="{TemplateBinding Child}" />
+                                <ContentPresenter x:Name="ChildPresenter" Margin="{TemplateBinding Padding}" Content="{TemplateBinding Child}" />
                             </Grid>
                             <Canvas x:Name="ChildHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Grid>

@@ -87,9 +87,7 @@
                             </VisualStateGroup>
 
                         </VisualStateManager.VisualStateGroups>
-                        <Path x:Name="PART_LayerPath"
-                              Width="{TemplateBinding LayerSize}"
-                              Height="{TemplateBinding LayerSize}" />
+                        <Path x:Name="PART_LayerPath" Width="{TemplateBinding LayerSize}" Height="{TemplateBinding LayerSize}" />
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
@@ -97,6 +95,6 @@
 
     </Style>
 
-    <Style TargetType="local:ThemedIconLayer" BasedOn="{StaticResource DefaultThemedIconLayerStyle}" />
+    <Style BasedOn="{StaticResource DefaultThemedIconLayerStyle}" TargetType="local:ThemedIconLayer" />
 
 </ResourceDictionary>

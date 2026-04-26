@@ -17,43 +17,27 @@
                 </local:ControlExample.Xaml>
                 <StackPanel Margin="10" Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <dev:Shield Click="Shield_Click"
-                                    Status="Controls"
-                                    Subject="DevWinUI" />
-                        <dev:Shield Click="Shield_Click"
-                                    Status="Core"
-                                    Subject="DevWinUI"
-                                    Color="Green" />
-                        <dev:Shield Click="Shield_Click"
-                                    Status="LandingPage"
-                                    Subject="DevWinUI"
-                                    Color="Orange" />
-                        <dev:Shield Click="Shield_Click"
-                                    Status="Github"
-                                    Color="Violet">
+                        <dev:Shield Click="Shield_Click" Status="Controls" Subject="DevWinUI" />
+                        <dev:Shield Click="Shield_Click" Status="Core" Subject="DevWinUI" Color="Green" />
+                        <dev:Shield Click="Shield_Click" Status="LandingPage" Subject="DevWinUI" Color="Orange" />
+                        <dev:Shield Click="Shield_Click" Status="Github" Color="Violet">
                             <dev:Shield.Subject>
                                 <Viewbox Margin="2">
                                     <PathIcon Data="{StaticResource GitHubIcon}" />
                                 </Viewbox>
                             </dev:Shield.Subject>
                         </dev:Shield>
-                        <dev:Shield Click="Shield_Click"
-                                    Subject="Github"
-                                    Color="Violet">
+                        <dev:Shield Click="Shield_Click" Subject="Github" Color="Violet">
                             <dev:Shield.Status>
                                 <Viewbox>
-                                    <PathIcon Margin="2"
-                                              Data="{StaticResource GitHubIcon}" />
+                                    <PathIcon Margin="2" Data="{StaticResource GitHubIcon}" />
                                 </Viewbox>
                             </dev:Shield.Status>
                         </dev:Shield>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <dev:Shield Status="passing"
-                                    Subject="build"
-                                    Color="LimeGreen" />
-                        <dev:Shield Status="vs2022"
-                                    Subject="IDE" />
+                        <dev:Shield Status="passing" Subject="build" Color="LimeGreen" />
+                        <dev:Shield Status="vs2022" Subject="IDE" />
                     </StackPanel>
                 </StackPanel>
             </local:ControlExample>

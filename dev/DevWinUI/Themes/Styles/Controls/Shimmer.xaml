@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:Shimmer" BasedOn="{StaticResource DefaultShimmerStyle}" />
+    <Style BasedOn="{StaticResource DefaultShimmerStyle}" TargetType="local:Shimmer" />
 
     <Style x:Key="DefaultShimmerStyle" TargetType="local:Shimmer">
         <Setter Property="Background" Value="{ThemeResource ShimmerBackground}" />
@@ -25,9 +25,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Shimmer">
-                    <Border x:Name="Shape"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="{TemplateBinding CornerRadius}" />
+                    <Border x:Name="Shape" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -10,9 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/circleIcon"
-                                  DocType="Controls"
-                                  HeaderText="CircleIcon">
+            <local:ControlExample DocPage="controls/circleIcon" DocType="Controls" HeaderText="CircleIcon">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:CircleIcon /&gt;
@@ -20,17 +18,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="SldBorderThickness"
-                                Header="Border Thickness"
-                                Value="2" />
-                        <TextBox x:Name="TxtContent"
-                                 Header="Content (Can be any object)"
-                                 PlaceholderText="D"
-                                 Text="D" />
+                        <Slider x:Name="SldBorderThickness" Header="Border Thickness" Value="2" />
+                        <TextBox x:Name="TxtContent" Header="Content (Can be any object)" PlaceholderText="D" Text="D" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:CircleIcon BorderStrokeThickness="{x:Bind SldBorderThickness.Value, Mode=OneWay}"
-                                Content="{x:Bind TxtContent.Text, Mode=OneWay}" />
+                <dev:CircleIcon BorderStrokeThickness="{x:Bind SldBorderThickness.Value, Mode=OneWay}" Content="{x:Bind TxtContent.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

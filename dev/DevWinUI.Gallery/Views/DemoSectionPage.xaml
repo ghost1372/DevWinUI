@@ -8,6 +8,5 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SectionPage x:Name="sectionPage"
-                     OnItemClick="SectionPage_OnItemClick" />
+    <dev:SectionPage x:Name="sectionPage" OnItemClick="SectionPage_OnItemClick" />
 </Page>

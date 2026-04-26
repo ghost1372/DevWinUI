@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:FrostedGlass" BasedOn="{StaticResource DefaultFrostedGlassStyle}" />
+    <Style BasedOn="{StaticResource DefaultFrostedGlassStyle}" TargetType="local:FrostedGlass" />
 
     <Style x:Key="DefaultFrostedGlassStyle" TargetType="local:FrostedGlass">
         <Setter Property="Background" Value="Transparent" />

@@ -15,23 +15,17 @@
                     <x:String>&lt;dev:AnimatedGradient&gt; &lt;TextBlock Text="About" /&gt; &lt;/dev:AnimatedGradient&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <StackPanel Spacing="10">
-                    <dev:AnimatedGradient HorizontalAlignment="Left"
-                                          ColorScheme="CoolReversed">
-                        <TextBlock FontSize="68"
-                                   Text="About" />
+                    <dev:AnimatedGradient HorizontalAlignment="Left" ColorScheme="CoolReversed">
+                        <TextBlock FontSize="68" Text="About" />
                     </dev:AnimatedGradient>
                     <dev:AnimatedGradient ColorScheme="Warm">
-                        <TextBlock FontSize="48"
-                                   Text="Work" />
+                        <TextBlock FontSize="48" Text="Work" />
                     </dev:AnimatedGradient>
-                    <dev:AnimatedGradient HorizontalAlignment="Left"
-                                          ColorScheme="Cool">
-                        <TextBlock FontSize="72"
-                                   Text="Partners" />
+                    <dev:AnimatedGradient HorizontalAlignment="Left" ColorScheme="Cool">
+                        <TextBlock FontSize="72" Text="Partners" />
                     </dev:AnimatedGradient>
                     <dev:AnimatedGradient ColorScheme="WarmReversed">
-                        <TextBlock FontSize="72"
-                                   Text="Awards" />
+                        <TextBlock FontSize="72" Text="Awards" />
                     </dev:AnimatedGradient>
                 </StackPanel>
             </local:ControlExample>

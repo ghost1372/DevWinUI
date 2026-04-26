@@ -10,19 +10,10 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Win2d/GooeyPage_cs.txt"
-                                  DocPage="controls/gooey"
-                                  DocType="Controls"
-                                  HeaderText="GooeyButton"
-                                  XamlSource="Win2d/GooeyPage_xaml.txt">
+            <local:ControlExample CSharpSource="Win2d/GooeyPage_cs.txt" DocPage="controls/gooey" DocType="Controls" HeaderText="GooeyButton" XamlSource="Win2d/GooeyPage_xaml.txt">
 
                 <Grid Height="250">
-                    <dev:GooeyButton x:Name="gooeyButton"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Bottom"
-                                     Invoked="gooeyButton_Invoked"
-                                     ItemInvoked="gooeyButton_ItemInvoked"
-                                     ItemsSource="{x:Bind strings}">
+                    <dev:GooeyButton x:Name="gooeyButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Invoked="gooeyButton_Invoked" ItemInvoked="gooeyButton_ItemInvoked" ItemsSource="{x:Bind strings}">
                         <dev:GooeyButton.Content>
                             <SymbolIcon Symbol="Add" />
                         </dev:GooeyButton.Content>
@@ -35,9 +26,7 @@
                 </Grid>
             </local:ControlExample>
 
-            <local:ControlExample DocPage="controls/gooey"
-                                  DocType="Controls"
-                                  HeaderText="GooeyEffect">
+            <local:ControlExample DocPage="controls/gooey" DocType="Controls" HeaderText="GooeyEffect">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:GooeyEffect /&gt;
@@ -45,79 +34,23 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="PrimaryRadius"
-                                Header="PrimaryRadius"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="30" />
-                        <Slider x:Name="SecondaryRadius"
-                                Header="SecondaryRadius"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="50" />
-                        <Slider x:Name="PrimaryTimeLineFromX"
-                                Header="PrimaryTimeLineFromX"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="100" />
-                        <Slider x:Name="PrimaryTimeLineToX"
-                                Header="PrimaryTimeLineToX"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="-100" />
-                        <Slider x:Name="SecondaryTimeLineFromX"
-                                Header="SecondaryTimeLineFromX"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="-100" />
-                        <Slider x:Name="SecondaryTimeLineToX"
-                                Header="SecondaryTimeLineToX"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="100" />
-                        <Slider x:Name="PrimaryTimeLineFromY"
-                                Header="PrimaryTimeLineFromY"
-                                Maximum="500"
-                                Minimum="-500" />
-                        <Slider x:Name="PrimaryTimeLineToY"
-                                Header="PrimaryTimeLineToY"
-                                Maximum="500"
-                                Minimum="-500" />
-                        <Slider x:Name="SecondaryTimeLineFromY"
-                                Header="SecondaryTimeLineFromY"
-                                Maximum="500"
-                                Minimum="-500" />
-                        <Slider x:Name="SecondaryTimeLineToY"
-                                Header="SecondaryTimeLineToY"
-                                Maximum="500"
-                                Minimum="-500" />
-                        <NumberBox x:Name="Duration"
-                                   Header="Duration"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="2" />
-                        <NumberBox x:Name="BlurAmount"
-                                   Header="BlurAmount"
-                                   Minimum="1"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="10" />
+                        <Slider x:Name="PrimaryRadius" Header="PrimaryRadius" Maximum="500" Minimum="-500" Value="30" />
+                        <Slider x:Name="SecondaryRadius" Header="SecondaryRadius" Maximum="500" Minimum="-500" Value="50" />
+                        <Slider x:Name="PrimaryTimeLineFromX" Header="PrimaryTimeLineFromX" Maximum="500" Minimum="-500" Value="100" />
+                        <Slider x:Name="PrimaryTimeLineToX" Header="PrimaryTimeLineToX" Maximum="500" Minimum="-500" Value="-100" />
+                        <Slider x:Name="SecondaryTimeLineFromX" Header="SecondaryTimeLineFromX" Maximum="500" Minimum="-500" Value="-100" />
+                        <Slider x:Name="SecondaryTimeLineToX" Header="SecondaryTimeLineToX" Maximum="500" Minimum="-500" Value="100" />
+                        <Slider x:Name="PrimaryTimeLineFromY" Header="PrimaryTimeLineFromY" Maximum="500" Minimum="-500" />
+                        <Slider x:Name="PrimaryTimeLineToY" Header="PrimaryTimeLineToY" Maximum="500" Minimum="-500" />
+                        <Slider x:Name="SecondaryTimeLineFromY" Header="SecondaryTimeLineFromY" Maximum="500" Minimum="-500" />
+                        <Slider x:Name="SecondaryTimeLineToY" Header="SecondaryTimeLineToY" Maximum="500" Minimum="-500" />
+                        <NumberBox x:Name="Duration" Header="Duration" SpinButtonPlacementMode="Inline" Value="2" />
+                        <NumberBox x:Name="BlurAmount" Header="BlurAmount" Minimum="1" SpinButtonPlacementMode="Inline" Value="10" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:GooeyEffect BlurAmount="{x:Bind BlurAmount.Value, Mode=OneWay}"
-                                 PrimaryRadius="{x:Bind PrimaryRadius.Value, Mode=OneWay}"
-                                 PrimaryTimeLineFromX="{x:Bind PrimaryTimeLineFromX.Value, Mode=OneWay}"
-                                 PrimaryTimeLineFromY="{x:Bind PrimaryTimeLineFromY.Value, Mode=OneWay}"
-                                 PrimaryTimeLineToX="{x:Bind PrimaryTimeLineToX.Value, Mode=OneWay}"
-                                 PrimaryTimeLineToY="{x:Bind PrimaryTimeLineToY.Value, Mode=OneWay}"
-                                 SecondaryRadius="{x:Bind SecondaryRadius.Value, Mode=OneWay}"
-                                 SecondaryTimeLineFromX="{x:Bind SecondaryTimeLineFromX.Value, Mode=OneWay}"
-                                 SecondaryTimeLineFromY="{x:Bind SecondaryTimeLineFromY.Value, Mode=OneWay}"
-                                 SecondaryTimeLineToX="{x:Bind SecondaryTimeLineToX.Value, Mode=OneWay}"
-                                 SecondaryTimeLineToY="{x:Bind SecondaryTimeLineToY.Value, Mode=OneWay}"
-                                 Duration="{x:Bind Duration.Value, Mode=OneWay}" />
+                <dev:GooeyEffect BlurAmount="{x:Bind BlurAmount.Value, Mode=OneWay}" PrimaryRadius="{x:Bind PrimaryRadius.Value, Mode=OneWay}" PrimaryTimeLineFromX="{x:Bind PrimaryTimeLineFromX.Value, Mode=OneWay}" PrimaryTimeLineFromY="{x:Bind PrimaryTimeLineFromY.Value, Mode=OneWay}" PrimaryTimeLineToX="{x:Bind PrimaryTimeLineToX.Value, Mode=OneWay}" PrimaryTimeLineToY="{x:Bind PrimaryTimeLineToY.Value, Mode=OneWay}" SecondaryRadius="{x:Bind SecondaryRadius.Value, Mode=OneWay}" SecondaryTimeLineFromX="{x:Bind SecondaryTimeLineFromX.Value, Mode=OneWay}" SecondaryTimeLineFromY="{x:Bind SecondaryTimeLineFromY.Value, Mode=OneWay}" SecondaryTimeLineToX="{x:Bind SecondaryTimeLineToX.Value, Mode=OneWay}" SecondaryTimeLineToY="{x:Bind SecondaryTimeLineToY.Value, Mode=OneWay}" Duration="{x:Bind Duration.Value, Mode=OneWay}" />
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/gooey"
-                                  DocType="Controls"
-                                  HeaderText="GooeyFooter">
+            <local:ControlExample DocPage="controls/gooey" DocType="Controls" HeaderText="GooeyFooter">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:GooeyFooterEffect /&gt;
@@ -125,78 +58,21 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="TimeLineFrom"
-                                Header="TimeLineFrom"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="30" />
-                        <Slider x:Name="TimeLineTo"
-                                Header="TimeLineTo"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="50" />
-                        <Slider x:Name="SizeTimeLineFrom"
-                                Header="SizeTimeLineFrom"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="100" />
-                        <Slider x:Name="SizeTimeLineTo"
-                                Header="SizeTimeLineTo"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="-100" />
-                        <Slider x:Name="X"
-                                Header="X"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="-100" />
-                        <Slider x:Name="Y"
-                                Header="Y"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="0" />
-                        <Slider x:Name="W"
-                                Header="W"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="200" />
-                        <Slider x:Name="H"
-                                Header="H"
-                                Maximum="500"
-                                Minimum="-500"
-                                Value="100" />
-                        <NumberBox x:Name="Duration2"
-                                   Header="Duration"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="2" />
-                        <NumberBox x:Name="nbBubble"
-                                   Header="Bubble"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="nbBubble_ValueChanged"
-                                   Value="2" />
-                        <NumberBox x:Name="SizeDuration"
-                                   Header="SizeDuration"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="2" />
-                        <NumberBox x:Name="BlurAmount2"
-                                   Header="BlurAmount"
-                                   Minimum="1"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="10" />
+                        <Slider x:Name="TimeLineFrom" Header="TimeLineFrom" Maximum="500" Minimum="-500" Value="30" />
+                        <Slider x:Name="TimeLineTo" Header="TimeLineTo" Maximum="500" Minimum="-500" Value="50" />
+                        <Slider x:Name="SizeTimeLineFrom" Header="SizeTimeLineFrom" Maximum="500" Minimum="-500" Value="100" />
+                        <Slider x:Name="SizeTimeLineTo" Header="SizeTimeLineTo" Maximum="500" Minimum="-500" Value="-100" />
+                        <Slider x:Name="X" Header="X" Maximum="500" Minimum="-500" Value="-100" />
+                        <Slider x:Name="Y" Header="Y" Maximum="500" Minimum="-500" Value="0" />
+                        <Slider x:Name="W" Header="W" Maximum="500" Minimum="-500" Value="200" />
+                        <Slider x:Name="H" Header="H" Maximum="500" Minimum="-500" Value="100" />
+                        <NumberBox x:Name="Duration2" Header="Duration" SpinButtonPlacementMode="Inline" Value="2" />
+                        <NumberBox x:Name="nbBubble" Header="Bubble" SpinButtonPlacementMode="Inline" ValueChanged="nbBubble_ValueChanged" Value="2" />
+                        <NumberBox x:Name="SizeDuration" Header="SizeDuration" SpinButtonPlacementMode="Inline" Value="2" />
+                        <NumberBox x:Name="BlurAmount2" Header="BlurAmount" Minimum="1" SpinButtonPlacementMode="Inline" Value="10" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:GooeyFooterEffect x:Name="gooeyFooter"
-                                       BlurAmount="{x:Bind BlurAmount2.Value, Mode=OneWay}"
-                                       H="{x:Bind H.Value, Mode=OneWay}"
-                                       SizeDuration="{x:Bind SizeDuration.Value, Mode=OneWay}"
-                                       SizeTimeLineFrom="{x:Bind SizeTimeLineFrom.Value, Mode=OneWay}"
-                                       SizeTimeLineTo="{x:Bind SizeTimeLineTo.Value, Mode=OneWay}"
-                                       TimeLineFrom="{x:Bind TimeLineFrom.Value, Mode=OneWay}"
-                                       TimeLineTo="{x:Bind TimeLineTo.Value, Mode=OneWay}"
-                                       W="{x:Bind W.Value, Mode=OneWay}"
-                                       X="{x:Bind X.Value, Mode=OneWay}"
-                                       Y="{x:Bind Y.Value, Mode=OneWay}"
-                                       Duration="{x:Bind Duration2.Value, Mode=OneWay}" />
+                <dev:GooeyFooterEffect x:Name="gooeyFooter" BlurAmount="{x:Bind BlurAmount2.Value, Mode=OneWay}" H="{x:Bind H.Value, Mode=OneWay}" SizeDuration="{x:Bind SizeDuration.Value, Mode=OneWay}" SizeTimeLineFrom="{x:Bind SizeTimeLineFrom.Value, Mode=OneWay}" SizeTimeLineTo="{x:Bind SizeTimeLineTo.Value, Mode=OneWay}" TimeLineFrom="{x:Bind TimeLineFrom.Value, Mode=OneWay}" TimeLineTo="{x:Bind TimeLineTo.Value, Mode=OneWay}" W="{x:Bind W.Value, Mode=OneWay}" X="{x:Bind X.Value, Mode=OneWay}" Y="{x:Bind Y.Value, Mode=OneWay}" Duration="{x:Bind Duration2.Value, Mode=OneWay}" />
             </local:ControlExample>
 
         </StackPanel>

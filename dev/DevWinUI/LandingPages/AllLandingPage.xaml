@@ -32,31 +32,9 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <local:HomePageHeader Grid.RowSpan="2"
-                              VerticalAlignment="Top"
-                              HeaderFontSize="{x:Bind HeaderFontSize, Mode=OneWay}"
-                              HeaderImage="{x:Bind HeaderImage, Mode=OneWay}"
-                              HeaderImageHeight="{x:Bind HeaderImageHeight, Mode=OneWay}"
-                              HeaderSubtitleFontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}"
-                              HeaderSubtitleText="{x:Bind HeaderSubtitleText, Mode=OneWay}"
-                              HeaderText="{x:Bind HeaderText, Mode=OneWay}"
-                              IsTileImage="{x:Bind IsTileImage, Mode=OneWay}"
-                              Stretch="{x:Bind Stretch, Mode=OneWay}" />
+        <local:HomePageHeader Grid.RowSpan="2" VerticalAlignment="Top" HeaderFontSize="{x:Bind HeaderFontSize, Mode=OneWay}" HeaderImage="{x:Bind HeaderImage, Mode=OneWay}" HeaderImageHeight="{x:Bind HeaderImageHeight, Mode=OneWay}" HeaderSubtitleFontSize="{x:Bind HeaderSubtitleFontSize, Mode=OneWay}" HeaderSubtitleText="{x:Bind HeaderSubtitleText, Mode=OneWay}" HeaderText="{x:Bind HeaderText, Mode=OneWay}" IsTileImage="{x:Bind IsTileImage, Mode=OneWay}" Stretch="{x:Bind Stretch, Mode=OneWay}" />
         <Border Height="{x:Bind HeaderImageHeight, Mode=OneWay}" />
-        <GridView x:Name="itemGridView"
-                  Grid.Row="1"
-                  Padding="{x:Bind GridViewPadding, Mode=OneWay}"
-                  AutomationProperties.AutomationId="ItemGridView"
-                  AutomationProperties.Name="Items In Group"
-                  ContainerContentChanging="OnItemGridViewContainerContentChanging"
-                  IsItemClickEnabled="True"
-                  IsSwipeEnabled="False"
-                  ItemClick="OnItemGridViewItemClick"
-                  ItemContainerStyle="{StaticResource IndentedGridViewItemStyle}"
-                  ItemTemplate="{StaticResource ControlItemTemplate}"
-                  ItemsSource="{x:Bind Items, Mode=OneWay}"
-                  Loaded="OnItemGridViewLoaded"
-                  SelectionMode="None">
+        <GridView x:Name="itemGridView" Grid.Row="1" Padding="{x:Bind GridViewPadding, Mode=OneWay}" AutomationProperties.AutomationId="ItemGridView" AutomationProperties.Name="Items In Group" ContainerContentChanging="OnItemGridViewContainerContentChanging" IsItemClickEnabled="True" IsSwipeEnabled="False" ItemClick="OnItemGridViewItemClick" ItemContainerStyle="{StaticResource IndentedGridViewItemStyle}" ItemTemplate="{StaticResource ControlItemTemplate}" ItemsSource="{x:Bind Items, Mode=OneWay}" Loaded="OnItemGridViewLoaded" SelectionMode="None">
             <GridView.Resources>
                 <CornerRadius x:Key="GridViewItemCornerRadius">8</CornerRadius>
             </GridView.Resources>

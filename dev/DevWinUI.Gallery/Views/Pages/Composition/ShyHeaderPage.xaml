@@ -11,19 +11,12 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/shyHeader"
-                                  XamlSource="Composition/ShyHeaderPage_xaml.txt">
-                <GridView Height="400"
-                          ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
+            <local:ControlExample DocPage="controls/shyHeader" XamlSource="Composition/ShyHeaderPage_xaml.txt">
+                <GridView Height="400" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                     <GridView.Header>
-                        <dev:ShyHeader Title="Lorem Ipsum"
-                                       BackgroundImage="ms-appx:///Assets/Others/Abstract.jpg"
-                                       Description="Lorem ipsum dolor sit amet..."
-                                       Subtitle="dolor sit amet">
+                        <dev:ShyHeader Title="Lorem Ipsum" BackgroundImage="ms-appx:///Assets/Others/Abstract.jpg" Description="Lorem ipsum dolor sit amet..." Subtitle="dolor sit amet">
                             <dev:ShyHeader.Profile>
-                                <PersonPicture Width="150"
-                                               Height="150"
-                                               ProfilePicture="ms-appx:///Assets/Others/Profile.png" />
+                                <PersonPicture Width="150" Height="150" ProfilePicture="ms-appx:///Assets/Others/Profile.png" />
                             </dev:ShyHeader.Profile>
                             <dev:ShyHeader.Footer>
                                 <StackPanel Orientation="Horizontal">
@@ -36,13 +29,7 @@
                     </GridView.Header>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:SampleItemModel">
-                            <Image Width="200"
-                                   Height="200"
-                                   Margin="4"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Source="{x:Bind ImagePath}"
-                                   Stretch="UniformToFill" />
+                            <Image Width="200" Height="200" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>

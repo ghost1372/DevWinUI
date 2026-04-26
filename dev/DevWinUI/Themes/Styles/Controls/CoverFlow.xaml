@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CoverFlowItem" BasedOn="{StaticResource DefaultCoverFlowItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultCoverFlowItemStyle}" TargetType="local:CoverFlowItem" />
 
     <Style x:Key="DefaultCoverFlowItemStyle" TargetType="local:CoverFlowItem">
         <Setter Property="Template">
@@ -47,11 +47,9 @@
                                 <ScaleTransform x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
                             </Grid.RenderTransform>
                             <Grid.Projection>
-                                <PlaneProjection x:Name="PART_Rotator"
-                                                 CenterOfRotationX="0.5" />
+                                <PlaneProjection x:Name="PART_Rotator" CenterOfRotationX="0.5" />
                             </Grid.Projection>
-                            <ContentControl x:Name="PART_ContentPresenter"
-                                            RenderTransformOrigin="0.5,0.5">
+                            <ContentControl x:Name="PART_ContentPresenter" RenderTransformOrigin="0.5,0.5">
                                 <ContentPresenter />
                             </ContentControl>
                         </Grid>
@@ -61,15 +59,14 @@
         </Setter>
     </Style>
 
-    <Style TargetType="local:CoverFlow" BasedOn="{StaticResource DefaultCoverFlowStyle}" />
+    <Style BasedOn="{StaticResource DefaultCoverFlowStyle}" TargetType="local:CoverFlow" />
 
     <Style x:Key="DefaultCoverFlowStyle" TargetType="local:CoverFlow">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid x:Name="PART_LayoutRoot">
-                        <ItemsPresenter x:Name="PART_ItemsPresenter"
-                                        Height="{TemplateBinding Height}" />
+                        <ItemsPresenter x:Name="PART_ItemsPresenter" Height="{TemplateBinding Height}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

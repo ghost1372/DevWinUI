@@ -16,47 +16,18 @@
     <dev:OptionsPageControl.Resources>
         <Thickness x:Key="ExpanderHeaderBorderThickness">0,1,0,1</Thickness>
         <animations:ImplicitAnimationSet x:Name="ShowTransitions">
-            <animations:OffsetAnimation EasingMode="EaseOut"
-                                        From="0,24,0"
-                                        To="0"
-                                        Duration="0:0:0.4" />
-            <animations:OpacityAnimation EasingMode="EaseOut"
-                                         From="0"
-                                         To="1"
-                                         Duration="0:0:0.2" />
+            <animations:OffsetAnimation EasingMode="EaseOut" From="0,24,0" To="0" Duration="0:0:0.4" />
+            <animations:OpacityAnimation EasingMode="EaseOut" From="0" To="1" Duration="0:0:0.2" />
         </animations:ImplicitAnimationSet>
         <animations:ImplicitAnimationSet x:Name="HideTransitions">
-            <animations:OffsetAnimation EasingMode="EaseOut"
-                                        From="0"
-                                        To="0,24,0"
-                                        Duration="0:0:0.2" />
-            <animations:OpacityAnimation EasingMode="EaseOut"
-                                         From="1"
-                                         To="0"
-                                         Duration="0:0:0.1" />
+            <animations:OffsetAnimation EasingMode="EaseOut" From="0" To="0,24,0" Duration="0:0:0.2" />
+            <animations:OpacityAnimation EasingMode="EaseOut" From="1" To="0" Duration="0:0:0.1" />
         </animations:ImplicitAnimationSet>
     </dev:OptionsPageControl.Resources>
     <dev:OptionsPageControl.Bar>
         <StackPanel>
-            <Button Width="32"
-                    Height="32"
-                    Padding="4"
-                    HorizontalAlignment="Center"
-                    Click="ToggleTheme_Click"
-                    Content="{dev:FontIcon GlyphCode=E793,
-                                           FontSize=16}"
-                    Style="{StaticResource SubtleButtonStyle}"
-                    ToolTipService.ToolTip="Toggle theme" />
-            <Button x:Name="btnGoToDoc"
-                    Width="32"
-                    Height="32"
-                    Padding="4"
-                    HorizontalAlignment="Center"
-                    Click="GoToDoc_Click"
-                    Content="{dev:FontIcon GlyphName=Document,
-                                           FontSize=16}"
-                    Style="{StaticResource SubtleButtonStyle}"
-                    ToolTipService.ToolTip="Go To Documentation" />
+            <Button Width="32" Height="32" Padding="4" HorizontalAlignment="Center" Click="ToggleTheme_Click" Content="{dev:FontIcon GlyphCode=E793, FontSize=16}" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Toggle theme" />
+            <Button x:Name="btnGoToDoc" Width="32" Height="32" Padding="4" HorizontalAlignment="Center" Click="GoToDoc_Click" Content="{dev:FontIcon GlyphName=Document, FontSize=16}" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Go To Documentation" />
         </StackPanel>
     </dev:OptionsPageControl.Bar>
     <dev:OptionsPageControl.Footer>
@@ -66,33 +37,15 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <SelectorBar x:Name="selectorBarControl">
-                <SelectorBarItem x:Name="selectorBarXamlItem"
-                                 Loaded="SelectorBarItem_Loaded"
-                                 Tag="XAML"
-                                 Text="XAML" />
-                <SelectorBarItem x:Name="selectorBarCSharpItem"
-                                 Loaded="SelectorBarItem_Loaded"
-                                 Tag="C#"
-                                 Text="C#" />
+                <SelectorBarItem x:Name="selectorBarXamlItem" Loaded="SelectorBarItem_Loaded" Tag="XAML" Text="XAML" />
+                <SelectorBarItem x:Name="selectorBarCSharpItem" Loaded="SelectorBarItem_Loaded" Tag="C#" Text="C#" />
             </SelectorBar>
-            <dev:SwitchPresenter Grid.Row="1"
-                                 x:DefaultBindMode="OneWay"
-                                 Value="{x:Bind selectorBarControl.SelectedItem.Tag, Mode=OneWay}">
+            <dev:SwitchPresenter Grid.Row="1" x:DefaultBindMode="OneWay" Value="{x:Bind selectorBarControl.SelectedItem.Tag, Mode=OneWay}">
                 <dev:Case Value="XAML">
-                    <local:SampleCodePresenter x:Name="XamlPresenter"
-                                               animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                               animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                               Code="{x:Bind Xaml}"
-                                               CodeSourceFile="{x:Bind XamlSource}"
-                                               SampleType="XAML" />
+                    <local:SampleCodePresenter x:Name="XamlPresenter" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Code="{x:Bind Xaml}" CodeSourceFile="{x:Bind XamlSource}" SampleType="XAML" />
                 </dev:Case>
                 <dev:Case Value="C#">
-                    <local:SampleCodePresenter x:Name="CSharpPresenter"
-                                               animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                               animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                               Code="{x:Bind CSharp}"
-                                               CodeSourceFile="{x:Bind CSharpSource}"
-                                               SampleType="CSharp" />
+                    <local:SampleCodePresenter x:Name="CSharpPresenter" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Code="{x:Bind CSharp}" CodeSourceFile="{x:Bind CSharpSource}" SampleType="CSharp" />
                 </dev:Case>
             </dev:SwitchPresenter>
         </Grid>

@@ -10,31 +10,16 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/textBlockStrokeView"
-                                  DocType="Controls"
-                                  XamlSource="Win2d/TextBlockStrokeViewPage_xaml.txt">
+            <local:ControlExample DocPage="controls/textBlockStrokeView" DocType="Controls" XamlSource="Win2d/TextBlockStrokeViewPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="txt"
-                                 Header="Text"
-                                 PlaceholderText="Text"
-                                 Text="{StaticResource LoremText}" />
-                        <ToggleSwitch x:Name="tgAnimate"
-                                      Header="Animate" />
-                        <NumberBox x:Name="nbStroke"
-                                   Header="Stroke Thickness"
-                                   Minimum="0"
-                                   PlaceholderText="Stroke Thickness"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="1" />
+                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="{StaticResource LoremText}" />
+                        <ToggleSwitch x:Name="tgAnimate" Header="Animate" />
+                        <NumberBox x:Name="nbStroke" Header="Stroke Thickness" Minimum="0" PlaceholderText="Stroke Thickness" SpinButtonPlacementMode="Inline" Value="1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:TextBlockStrokeView Animate="{x:Bind tgAnimate.IsOn, Mode=OneWay}"
-                                         StrokeThickness="{x:Bind nbStroke.Value, Mode=OneWay}">
-                    <TextBlock FontSize="16"
-                               Style="{ThemeResource BaseTextBlockStyle}"
-                               Text="{x:Bind txt.Text, Mode=OneWay}"
-                               TextWrapping="Wrap" />
+                <dev:TextBlockStrokeView Animate="{x:Bind tgAnimate.IsOn, Mode=OneWay}" StrokeThickness="{x:Bind nbStroke.Value, Mode=OneWay}">
+                    <TextBlock FontSize="16" Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind txt.Text, Mode=OneWay}" TextWrapping="Wrap" />
                 </dev:TextBlockStrokeView>
             </local:ControlExample>
         </StackPanel>

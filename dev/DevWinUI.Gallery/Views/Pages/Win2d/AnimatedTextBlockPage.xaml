@@ -11,8 +11,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/animatedTextBlock"
-                                  HeaderText="AnimatedTextBlock">
+            <local:ControlExample DocPage="controls/animatedTextBlock" HeaderText="AnimatedTextBlock">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Text="DevWinUI" /&gt;
@@ -25,15 +24,8 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbText"
-                                  Header="Text"
-                                  ItemsSource="{x:Bind SampleText, Mode=OneWay}"
-                                  SelectedIndex="0" />
-                        <ComboBox x:Name="CmbEffects"
-                                  Header="Effect"
-                                  ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbEffects_SelectionChanged">
+                        <ComboBox x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbEffects" Header="Effect" ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}" SelectedIndex="0" SelectionChanged="CmbEffects_SelectionChanged">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="views:BuiltInEffect">
                                     <TextBlock Text="{x:Bind Name}" />
@@ -42,12 +34,7 @@
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample"
-                                       Margin="10"
-                                       Text="{x:Bind CmbText.SelectedItem, Mode=OneWay}"
-                                       TextAlignment="Center"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="Wrap" />
+                <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Margin="10" Text="{x:Bind CmbText.SelectedItem, Mode=OneWay}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

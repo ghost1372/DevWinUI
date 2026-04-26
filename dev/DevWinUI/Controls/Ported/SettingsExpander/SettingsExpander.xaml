@@ -15,7 +15,7 @@
 
     <local:CornerRadiusConverter x:Key="CornerRadiusConverter" />
 
-    <Style x:Key="DefaultSettingsExpanderItemStyle" TargetType="local:SettingsCard" BasedOn="{StaticResource DefaultSettingsCardStyle}">
+    <Style x:Key="DefaultSettingsExpanderItemStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard">
         <Style.Setters>
             <Setter Property="BorderThickness" Value="{ThemeResource SettingsExpanderItemBorderThickness}" />
             <Setter Property="MinHeight" Value="52" />
@@ -24,18 +24,16 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="ClickableSettingsExpanderItemStyle" TargetType="local:SettingsCard" BasedOn="{StaticResource DefaultSettingsExpanderItemStyle}">
+    <Style x:Key="ClickableSettingsExpanderItemStyle" BasedOn="{StaticResource DefaultSettingsExpanderItemStyle}" TargetType="local:SettingsCard">
         <Style.Setters>
             <Setter Property="Padding" Value="{ThemeResource ClickableSettingsExpanderItemPadding}" />
         </Style.Setters>
     </Style>
 
-    <local:SettingsExpanderItemStyleSelector x:Key="SettingsExpanderItemStyleSelector"
-                                             ClickableStyle="{StaticResource ClickableSettingsExpanderItemStyle}"
-                                             DefaultStyle="{StaticResource DefaultSettingsExpanderItemStyle}" />
+    <local:SettingsExpanderItemStyleSelector x:Key="SettingsExpanderItemStyleSelector" ClickableStyle="{StaticResource ClickableSettingsExpanderItemStyle}" DefaultStyle="{StaticResource DefaultSettingsExpanderItemStyle}" />
 
     <!--  Implicitly applied default style  -->
-    <Style TargetType="local:SettingsExpander" BasedOn="{StaticResource DefaultSettingsExpanderStyle}" />
+    <Style BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander" />
 
     <Style x:Key="DefaultSettingsExpanderStyle" TargetType="local:SettingsExpander">
         <Style.Setters>
@@ -61,26 +59,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="local:SettingsExpander">
-                        <Expander MinWidth="{TemplateBinding MinWidth}"
-                                  MinHeight="{TemplateBinding MinHeight}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  AutomationProperties.HelpText="{TemplateBinding AutomationProperties.HelpText}"
-                                  AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}"
-                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                  IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                  Style="{StaticResource SettingsExpanderExpanderStyle}">
+                        <Expander MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" AutomationProperties.HelpText="{TemplateBinding AutomationProperties.HelpText}" AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}" CornerRadius="{TemplateBinding CornerRadius}" IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource SettingsExpanderExpanderStyle}">
                             <Expander.Header>
-                                <local:SettingsCard Padding="{StaticResource SettingsExpanderHeaderPadding}"
-                                                    VerticalAlignment="Center"
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    Content="{TemplateBinding Content}"
-                                                    Description="{TemplateBinding Description}"
-                                                    FontFamily="{TemplateBinding FontFamily}"
-                                                    Header="{TemplateBinding Header}"
-                                                    HeaderIcon="{TemplateBinding HeaderIcon}"
-                                                    IsClickEnabled="False" />
+                                <local:SettingsCard Padding="{StaticResource SettingsExpanderHeaderPadding}" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Content="{TemplateBinding Content}" Description="{TemplateBinding Description}" FontFamily="{TemplateBinding FontFamily}" Header="{TemplateBinding Header}" HeaderIcon="{TemplateBinding HeaderIcon}" IsClickEnabled="False" />
                             </Expander.Header>
                             <Expander.Content>
                                 <Grid CornerRadius="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusConverter}}">
@@ -90,16 +71,12 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <ContentPresenter Content="{TemplateBinding ItemsHeader}" />
-                                    <ItemsRepeater x:Name="PART_ItemsRepeater"
-                                                   Grid.Row="1"
-                                                   ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   TabFocusNavigation="Local">
+                                    <ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Row="1" ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" TabFocusNavigation="Local">
                                         <ItemsRepeater.Layout>
                                             <StackLayout Orientation="Vertical" />
                                         </ItemsRepeater.Layout>
                                     </ItemsRepeater>
-                                    <ContentPresenter Grid.Row="2"
-                                                      Content="{TemplateBinding ItemsFooter}" />
+                                    <ContentPresenter Grid.Row="2" Content="{TemplateBinding ItemsFooter}" />
                                 </Grid>
                             </Expander.Content>
                         </Expander>
@@ -204,44 +181,11 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ToggleButton x:Name="ExpanderHeader"
-                                      MinHeight="{TemplateBinding MinHeight}"
-                                      Padding="{StaticResource ExpanderHeaderPadding}"
-                                      HorizontalAlignment="Stretch"
-                                      HorizontalContentAlignment="{StaticResource ExpanderHeaderHorizontalContentAlignment}"
-                                      VerticalContentAlignment="{StaticResource ExpanderHeaderVerticalContentAlignment}"
-                                      AutomationProperties.AutomationId="ExpanderToggleButton"
-                                      AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
-                                      BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
-                                      Content="{TemplateBinding Header}"
-                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                      ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                      IsEnabled="{TemplateBinding IsEnabled}"
-                                      IsTabStop="True"
-                                      Style="{StaticResource SettingsExpanderHeaderDownStyle}" />
+                        <ToggleButton x:Name="ExpanderHeader" MinHeight="{TemplateBinding MinHeight}" Padding="{StaticResource ExpanderHeaderPadding}" HorizontalAlignment="Stretch" HorizontalContentAlignment="{StaticResource ExpanderHeaderHorizontalContentAlignment}" VerticalContentAlignment="{StaticResource ExpanderHeaderVerticalContentAlignment}" AutomationProperties.AutomationId="ExpanderToggleButton" AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}" BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" CornerRadius="{TemplateBinding CornerRadius}" IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{TemplateBinding IsEnabled}" IsTabStop="True" Style="{StaticResource SettingsExpanderHeaderDownStyle}" />
                         <!--  The clip is a composition clip applied in code  -->
-                        <Border x:Name="ExpanderContentClip"
-                                Grid.Row="1">
-                            <Border x:Name="ExpanderContent"
-                                    MinHeight="{ThemeResource SettingsExpanderContentMinHeight}"
-                                    Padding="{TemplateBinding Padding}"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{StaticResource ExpanderContentDownBorderThickness}"
-                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}"
-                                    Visibility="Collapsed">
-                                <ContentPresenter Margin="0,-2,0,0"
-                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                        <Border x:Name="ExpanderContentClip" Grid.Row="1">
+                            <Border x:Name="ExpanderContent" MinHeight="{ThemeResource SettingsExpanderContentMinHeight}" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{StaticResource ExpanderContentDownBorderThickness}" CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}" Visibility="Collapsed">
+                                <ContentPresenter Margin="0,-2,0,0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
                                 <Border.RenderTransform>
                                     <CompositeTransform />
                                 </Border.RenderTransform>
@@ -416,47 +360,13 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          Foreground="{TemplateBinding Foreground}" />
+                        <ContentPresenter x:Name="ContentPresenter" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Foreground="{TemplateBinding Foreground}" />
 
-                        <ContentControl x:Name="ExpandCollapseChevronBorder"
-                                        Grid.Column="1"
-                                        Width="{StaticResource SettingsExpanderChevronButtonWidth}"
-                                        Height="{StaticResource SettingsExpanderChevronButtonHeight}"
-                                        Margin="0,0,8,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center"
-                                        Background="{ThemeResource ExpanderChevronBackground}"
-                                        BorderBrush="{ThemeResource ExpanderChevronBorderBrush}"
-                                        BorderThickness="{ThemeResource ExpanderChevronBorderThickness}"
-                                        CornerRadius="{ThemeResource ControlCornerRadius}"
-                                        FocusVisualMargin="-3"
-                                        IsTabStop="False"
-                                        ToolTipService.ToolTip="{StaticResource SettingsExpanderChevronToolTip}"
-                                        UseSystemFocusVisuals="True">
-                            <AnimatedIcon x:Name="ExpandCollapseChevron"
-                                          Width="16"
-                                          Height="16"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          AnimatedIcon.State="NormalOff"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Foreground="{ThemeResource ExpanderChevronForeground}"
-                                          RenderTransformOrigin="0.5, 0.5">
+                        <ContentControl x:Name="ExpandCollapseChevronBorder" Grid.Column="1" Width="{StaticResource SettingsExpanderChevronButtonWidth}" Height="{StaticResource SettingsExpanderChevronButtonHeight}" Margin="0,0,8,0" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{ThemeResource ExpanderChevronBackground}" BorderBrush="{ThemeResource ExpanderChevronBorderBrush}" BorderThickness="{ThemeResource ExpanderChevronBorderThickness}" CornerRadius="{ThemeResource ControlCornerRadius}" FocusVisualMargin="-3" IsTabStop="False" ToolTipService.ToolTip="{StaticResource SettingsExpanderChevronToolTip}" UseSystemFocusVisuals="True">
+                            <AnimatedIcon x:Name="ExpandCollapseChevron" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" AnimatedIcon.State="NormalOff" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource ExpanderChevronForeground}" RenderTransformOrigin="0.5, 0.5">
                                 <animatedvisuals:AnimatedChevronUpDownSmallVisualSource />
                                 <AnimatedIcon.FallbackIconSource>
-                                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                    FontSize="16"
-                                                    Glyph="{StaticResource ExpanderChevronDownGlyph}"
-                                                    IsTextScaleFactorEnabled="False" />
+                                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="{StaticResource ExpanderChevronDownGlyph}" IsTextScaleFactorEnabled="False" />
                                 </AnimatedIcon.FallbackIconSource>
                             </AnimatedIcon>
                         </ContentControl>

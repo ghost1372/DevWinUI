@@ -7,98 +7,55 @@
       xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
     <Page.Resources>
-        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}" />
+        <Style BasedOn="{StaticResource ListViewItemSettingStyle}" TargetType="ListViewItem" />
     </Page.Resources>
-    <dev:OutOfBoxPage Title="Image Resizer"
-                      Description="Lets you resize images by right-clicking."
-                      HeroImage="ms-appx:///Assets/Modules/ImageResizer.png"
-                      SecondaryLinksHeader="Attribution">
+    <dev:OutOfBoxPage Title="Image Resizer" Description="Lets you resize images by right-clicking." HeroImage="ms-appx:///Assets/Modules/ImageResizer.png" SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default">
-                <dev:SettingsCard Header="Enable Image Resizer"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/imageResizer.png}">
+                <dev:SettingsCard Header="Enable Image Resizer" HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/imageResizer.png}">
                     <ToggleSwitch />
                 </dev:SettingsCard>
 
-                <InfoBar Title="The system administrator is forcing this setting."
-                         IsClosable="False"
-                         IsOpen="True"
-                         Severity="Informational" />
+                <InfoBar Title="The system administrator is forcing this setting." IsClosable="False" IsOpen="True" Severity="Informational" />
 
                 <dev:SimpleSettingsGroup Header="Image sizes">
-                    <dev:SettingsCard Description="Manage preset sizes that can be used in the editor"
-                                      Header="Presets"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE792;}">
-                        <Button Content="Add new size"
-                                Style="{ThemeResource AccentButtonStyle}" />
+                    <dev:SettingsCard Description="Manage preset sizes that can be used in the editor" Header="Presets" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE792;}">
+                        <Button Content="Add new size" Style="{ThemeResource AccentButtonStyle}" />
                     </dev:SettingsCard>
-                    <ListView x:Name="ImagesSizesListView"
-                              ItemsSource="{x:Bind Sizes, Mode=TwoWay}"
-                              SelectionMode="None">
+                    <ListView x:Name="ImagesSizesListView" ItemsSource="{x:Bind Sizes, Mode=TwoWay}" SelectionMode="None">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:Name="SingleLineDataTemplate"
-                                          x:DataType="models:ImageSize">
+                            <DataTemplate x:Name="SingleLineDataTemplate" x:DataType="models:ImageSize">
                                 <dev:SettingsCard Header="{x:Bind Name, Mode=OneWay}">
                                     <dev:SettingsCard.Resources>
                                         <x:Double x:Key="SettingsCardLeftIndention">42</x:Double>
                                     </dev:SettingsCard.Resources>
                                     <dev:SettingsCard.Description>
                                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,4,0,0" Orientation="Horizontal">
-                                            <TextBlock Margin="0,0,4,0"
-                                                       Style="{ThemeResource SecondaryTextStyle}"
-                                                       Text="{x:Bind Fit}" />
-                                            <TextBlock Margin="0,0,4,0"
-                                                       FontWeight="SemiBold"
-                                                       Style="{ThemeResource SecondaryTextStyle}"
-                                                       Text="{x:Bind Width, Mode=OneWay}" />
-                                            <TextBlock Margin="0,0,4,0"
-                                                       Foreground="{ThemeResource SystemBaseMediumColor}"
-                                                       Style="{ThemeResource SecondaryTextStyle}"
-                                                       Text="{x:Bind Unit}" />
+                                            <TextBlock Margin="0,0,4,0" Style="{ThemeResource SecondaryTextStyle}" Text="{x:Bind Fit}" />
+                                            <TextBlock Margin="0,0,4,0" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}" Text="{x:Bind Width, Mode=OneWay}" />
+                                            <TextBlock Margin="0,0,4,0" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource SecondaryTextStyle}" Text="{x:Bind Unit}" />
                                         </StackPanel>
                                     </dev:SettingsCard.Description>
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
-                                        <Button Width="40"
-                                                Height="36"
-                                                Content="&#xE70F;"
-                                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                                Style="{StaticResource SubtleButtonStyle}">
+                                        <Button Width="40" Height="36" Content="&#xE70F;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Style="{StaticResource SubtleButtonStyle}">
                                             <Button.Flyout>
                                                 <Flyout>
                                                     <StackPanel Margin="0,12,0,0" Spacing="16">
-                                                        <TextBox Width="240"
-                                                                 HorizontalAlignment="Left"
-                                                                 Header="Name"
-                                                                 Text="{x:Bind Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <TextBox Width="240" HorizontalAlignment="Left" Header="Name" Text="{x:Bind Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                                        <ComboBox Width="240"
-                                                                  HorizontalAlignment="Left"
-                                                                  Header="Fit"
-                                                                  SelectedIndex="0">
+                                                        <ComboBox Width="240" HorizontalAlignment="Left" Header="Fit" SelectedIndex="0">
                                                             <ComboBoxItem Content="Fill" />
                                                             <ComboBoxItem Content="Fit" />
                                                             <ComboBoxItem Content="Stretch" />
                                                         </ComboBox>
 
                                                         <StackPanel Orientation="Horizontal" Spacing="8">
-                                                            <NumberBox Width="116"
-                                                                       Header="Width"
-                                                                       Minimum="0"
-                                                                       SpinButtonPlacementMode="Compact"
-                                                                       Value="{x:Bind Path=Width, Mode=TwoWay}" />
+                                                            <NumberBox Width="116" Header="Width" Minimum="0" SpinButtonPlacementMode="Compact" Value="{x:Bind Path=Width, Mode=TwoWay}" />
 
-                                                            <NumberBox Width="116"
-                                                                       Header="Height"
-                                                                       Minimum="0"
-                                                                       SpinButtonPlacementMode="Compact"
-                                                                       Value="{x:Bind Path=Height, Mode=TwoWay}" />
+                                                            <NumberBox Width="116" Header="Height" Minimum="0" SpinButtonPlacementMode="Compact" Value="{x:Bind Path=Height, Mode=TwoWay}" />
 
                                                         </StackPanel>
-                                                        <ComboBox Width="240"
-                                                                  Margin="0,0,0,24"
-                                                                  Header="Size"
-                                                                  SelectedIndex="0">
+                                                        <ComboBox Width="240" Margin="0,0,0,24" Header="Size" SelectedIndex="0">
                                                             <ComboBoxItem Content="CM" />
                                                             <ComboBoxItem Content="Inches" />
                                                             <ComboBoxItem Content="Percent" />
@@ -109,12 +66,7 @@
                                             </Button.Flyout>
                                         </Button>
 
-                                        <Button x:Name="RemoveButton"
-                                                Width="40"
-                                                Height="36"
-                                                Content="&#xE74D;"
-                                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                                Style="{StaticResource SubtleButtonStyle}" />
+                                        <Button x:Name="RemoveButton" Width="40" Height="36" Content="&#xE74D;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Style="{StaticResource SubtleButtonStyle}" />
                                     </StackPanel>
                                 </dev:SettingsCard>
                             </DataTemplate>
@@ -124,8 +76,7 @@
 
                 <dev:SimpleSettingsGroup Header="Encoding">
                     <dev:SettingsCard Header="Fallback encoder">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="PNG" />
                             <ComboBoxItem Content="BMP" />
                             <ComboBoxItem Content="JPEG" />
@@ -136,14 +87,11 @@
                     </dev:SettingsCard>
 
                     <dev:SettingsCard Header="JPEG quality level">
-                        <Slider MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                Maximum="100"
-                                Minimum="0" />
+                        <Slider MinWidth="{StaticResource SettingActionControlMinWidth}" Maximum="100" Minimum="0" />
                     </dev:SettingsCard>
 
                     <dev:SettingsCard Header="PNG interlacing">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Default" />
                             <ComboBoxItem Content="On" />
                             <ComboBoxItem Content="Off" />
@@ -151,8 +99,7 @@
                     </dev:SettingsCard>
 
                     <dev:SettingsCard Header="TIFF compression">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Default" />
                             <ComboBoxItem Content="None" />
                             <ComboBoxItem Content="CCITT3" />
@@ -165,47 +112,37 @@
                 </dev:SimpleSettingsGroup>
 
                 <dev:SimpleSettingsGroup Header="File">
-                    <dev:SettingsCard Description="This format is used as the filename for resized images"
-                                      Header="Filename format">
+                    <dev:SettingsCard Description="This format is used as the filename for resized images" Header="Filename format">
                         <StackPanel Orientation="Horizontal" Spacing="4">
-                            <TextBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                     PlaceholderText="Example: %1 (%2)" />
-                            <Button Content="&#xE946;"
-                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Style="{StaticResource SubtleButtonStyle}">
+                            <TextBox MinWidth="{StaticResource SettingActionControlMinWidth}" PlaceholderText="Example: %1 (%2)" />
+                            <Button Content="&#xE946;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Style="{StaticResource SubtleButtonStyle}">
                                 <Button.Flyout>
                                     <Flyout>
                                         <TextBlock x:Name="FileFormatTextBlock">
                                             <Run Text="The following parameters can be used:" />
                                             <LineBreak />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%1" />
+                                            <Run FontWeight="Bold" Text="%1" />
                                             <Run Text=" - " />
                                             <Run Text="Original filename" />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%2" />
+                                            <Run FontWeight="Bold" Text="%2" />
                                             <Run Text=" - " />
                                             <Run Text="Size name" />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%3" />
+                                            <Run FontWeight="Bold" Text="%3" />
                                             <Run Text=" - " />
                                             <Run Text="Selected width" />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%4" />
+                                            <Run FontWeight="Bold" Text="%4" />
                                             <Run Text=" - " />
                                             <Run Text="Selected height" />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%5" />
+                                            <Run FontWeight="Bold" Text="%5" />
                                             <Run Text=" - " />
                                             <Run Text="Actual width" />
                                             <LineBreak />
-                                            <Run FontWeight="Bold"
-                                                 Text="%6" />
+                                            <Run FontWeight="Bold" Text="%6" />
                                             <Run Text=" - " />
                                             <Run Text="Actual height" />
                                         </TextBlock>
@@ -215,10 +152,8 @@
                         </StackPanel>
                     </dev:SettingsCard>
 
-                    <dev:SettingsCard Description="Used as the 'modified timestamp' in the file properties"
-                                      Header="File modified timestamp">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                    <dev:SettingsCard Description="Used as the 'modified timestamp' in the file properties" Header="File modified timestamp">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Original file timestamp" />
                             <ComboBoxItem Content="Timestamp of resize action" />
                         </ComboBox>
@@ -228,12 +163,10 @@
         </dev:OutOfBoxPage.Content>
 
         <dev:OutOfBoxPage.PrimaryLinks>
-            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ImageResizer"
-                                  Text="Learn more about Image Resizer" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ImageResizer" Text="Learn more about Image Resizer" />
         </dev:OutOfBoxPage.PrimaryLinks>
         <dev:OutOfBoxPage.SecondaryLinks>
-            <dev:OutOfBoxPageLink Link="https://github.com/bricelam/ImageResizer/"
-                                  Text="Brice Lambson's ImageResizer" />
+            <dev:OutOfBoxPageLink Link="https://github.com/bricelam/ImageResizer/" Text="Brice Lambson's ImageResizer" />
         </dev:OutOfBoxPage.SecondaryLinks>
     </dev:OutOfBoxPage>
 </Page>

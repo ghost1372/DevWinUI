@@ -61,15 +61,7 @@
                             </VisualStateGroup>
 
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="2,0,2,0"
-                                          Padding="{TemplateBinding Padding}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          Foreground="{TemplateBinding Foreground}" />
+                        <ContentPresenter x:Name="ContentPresenter" Margin="2,0,2,0" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Foreground="{TemplateBinding Foreground}" />
 
                     </Grid>
 
@@ -101,39 +93,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ScrollViewer x:Name="ScrollViewer"
-                                      HorizontalScrollMode="Disabled"
-                                      Template="{StaticResource ScrollViewerScrollBarlessTemplate}"
-                                      VerticalScrollBarVisibility="Hidden"
-                                      VerticalSnapPointsAlignment="Near"
-                                      VerticalSnapPointsType="Mandatory"
-                                      ZoomMode="Disabled" />
-                        <RepeatButton x:Name="UpButton"
-                                      Height="{ThemeResource LoopingSelectorUpDownButtonHeight}"
-                                      Margin="{StaticResource LoopingSelectorUpDownButtonMargin}"
-                                      Padding="0"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Top"
-                                      Background="{ThemeResource LoopingSelectorUpDownButtonBackground}"
-                                      Content="&#xEDDB;"
-                                      FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                      FontSize="8"
-                                      IsTabStop="False"
-                                      Style="{StaticResource DateTimePickerFlyoutLoopingSelectorNavigationButtonStyle}"
-                                      Visibility="Collapsed" />
-                        <RepeatButton x:Name="DownButton"
-                                      Height="{ThemeResource LoopingSelectorUpDownButtonHeight}"
-                                      Margin="{StaticResource LoopingSelectorUpDownButtonMargin}"
-                                      Padding="0"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Bottom"
-                                      Background="{ThemeResource LoopingSelectorUpDownButtonBackground}"
-                                      Content="&#xEDDC;"
-                                      FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                      FontSize="8"
-                                      IsTabStop="False"
-                                      Style="{StaticResource DateTimePickerFlyoutLoopingSelectorNavigationButtonStyle}"
-                                      Visibility="Collapsed" />
+                        <ScrollViewer x:Name="ScrollViewer" HorizontalScrollMode="Disabled" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalScrollBarVisibility="Hidden" VerticalSnapPointsAlignment="Near" VerticalSnapPointsType="Mandatory" ZoomMode="Disabled" />
+                        <RepeatButton x:Name="UpButton" Height="{ThemeResource LoopingSelectorUpDownButtonHeight}" Margin="{StaticResource LoopingSelectorUpDownButtonMargin}" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{ThemeResource LoopingSelectorUpDownButtonBackground}" Content="&#xEDDB;" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="8" IsTabStop="False" Style="{StaticResource DateTimePickerFlyoutLoopingSelectorNavigationButtonStyle}" Visibility="Collapsed" />
+                        <RepeatButton x:Name="DownButton" Height="{ThemeResource LoopingSelectorUpDownButtonHeight}" Margin="{StaticResource LoopingSelectorUpDownButtonMargin}" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="{ThemeResource LoopingSelectorUpDownButtonBackground}" Content="&#xEDDC;" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="8" IsTabStop="False" Style="{StaticResource DateTimePickerFlyoutLoopingSelectorNavigationButtonStyle}" Visibility="Collapsed" />
 
                     </Grid>
 

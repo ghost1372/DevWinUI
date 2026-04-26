@@ -18,49 +18,31 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbHeight"
-                                   Header="Header Image Height"
-                                   Maximum="400"
-                                   Minimum="200"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="400" />
-                        <TextBox x:Name="TxtHeader"
-                                 Header="Header"
-                                 PlaceholderText="Header"
-                                 Text="DevWinUI" />
-                        <TextBox x:Name="TxtHeaderSubtitle"
-                                 Header="Header Subtitle"
-                                 PlaceholderText="Header Subtitle"
-                                 Text="v9.0.0" />
+                        <NumberBox x:Name="NbHeight" Header="Header Image Height" Maximum="400" Minimum="200" SpinButtonPlacementMode="Inline" Value="400" />
+                        <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="DevWinUI" />
+                        <TextBox x:Name="TxtHeaderSubtitle" Header="Header Subtitle" PlaceholderText="Header Subtitle" Text="v9.0.0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Margin="10" Spacing="10">
-                    <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}"
-                                        HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}"
-                                        HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}"
-                                        HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
+                    <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}" HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}" HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}" HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
                         <dev:HomePageHeader.HeaderContent>
                             <StackPanel Orientation="Horizontal" Spacing="12">
-                                <dev:HeaderTile Title="Title"
-                                                Description="Description">
+                                <dev:HeaderTile Title="Title" Description="Description">
                                     <dev:HeaderTile.Source>
                                         <Image Source="ms-appx:///Assets/Fluent/Clock.png" />
                                     </dev:HeaderTile.Source>
                                 </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title"
-                                                Description="Description">
+                                <dev:HeaderTile Title="Title" Description="Description">
                                     <dev:HeaderTile.Source>
                                         <Image Source="ms-appx:///Assets/Fluent/InfoBadge.png" />
                                     </dev:HeaderTile.Source>
                                 </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title"
-                                                Description="Description">
+                                <dev:HeaderTile Title="Title" Description="Description">
                                     <dev:HeaderTile.Source>
                                         <Image Source="ms-appx:///Assets/Fluent/RatingControl.png" />
                                     </dev:HeaderTile.Source>
                                 </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title"
-                                                Description="Description">
+                                <dev:HeaderTile Title="Title" Description="Description">
                                     <dev:HeaderTile.Source>
                                         <Image Source="ms-appx:///Assets/Fluent/update.png" />
                                     </dev:HeaderTile.Source>

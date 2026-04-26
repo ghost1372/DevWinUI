@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/arcProgress"
-                                  HeaderText="ArcProgress">
+            <local:ControlExample DocPage="controls/arcProgress" HeaderText="ArcProgress">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:ArcProgress Percentage="36" /&gt;
@@ -19,19 +18,9 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="SliderSample"
-                                Header="Percentage"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="36" />
-                        <ComboBox x:Name="CmbFillAnim"
-                                  Header="Fill Status"
-                                  ItemsSource="{x:Bind FillAnimationStateItems, Mode=OneWay}"
-                                  SelectedIndex="0" />
-                        <ComboBox x:Name="CmbSweepDirection"
-                                  Header="Sweep Direction"
-                                  ItemsSource="{x:Bind SweepDirectionItems, Mode=OneWay}"
-                                  SelectedIndex="0">
+                        <Slider x:Name="SliderSample" Header="Percentage" Maximum="100" Minimum="0" Value="36" />
+                        <ComboBox x:Name="CmbFillAnim" Header="Fill Status" ItemsSource="{x:Bind FillAnimationStateItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbSweepDirection" Header="Sweep Direction" ItemsSource="{x:Bind SweepDirectionItems, Mode=OneWay}" SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="SweepDirection">
                                     <TextBlock Text="{x:Bind}" />
@@ -40,9 +29,7 @@
                         </ComboBox>
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:ArcProgress FillStatus="{x:Bind ((dev:ArcProgressFillAnimationState)CmbFillAnim.SelectedItem), Mode=OneWay}"
-                                 Percentage="{x:Bind SliderSample.Value, Mode=OneWay}"
-                                 SweepDirection="{x:Bind ((SweepDirection)CmbSweepDirection.SelectedItem), Mode=OneWay}" />
+                <dev:ArcProgress FillStatus="{x:Bind ((dev:ArcProgressFillAnimationState)CmbFillAnim.SelectedItem), Mode=OneWay}" Percentage="{x:Bind SliderSample.Value, Mode=OneWay}" SweepDirection="{x:Bind ((SweepDirection)CmbSweepDirection.SelectedItem), Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ThemedIcon" BasedOn="{StaticResource DefaultThemedIconStyle}" />
+    <Style BasedOn="{StaticResource DefaultThemedIconStyle}" TargetType="local:ThemedIcon" />
 
     <Style x:Key="DefaultThemedIconStyle" TargetType="local:ThemedIcon">
 
@@ -19,12 +19,8 @@
         <Setter Property="Layers">
             <Setter.Value>
                 <local:ThemedIconLayers>
-                    <local:ThemedIconLayer LayerType="Base"
-                                           Opacity="1.0"
-                                           PathData="" />
-                    <local:ThemedIconLayer LayerType="Alt"
-                                           Opacity="1.0"
-                                           PathData="" />
+                    <local:ThemedIconLayer LayerType="Base" Opacity="1.0" PathData="" />
+                    <local:ThemedIconLayer LayerType="Alt" Opacity="1.0" PathData="" />
                 </local:ThemedIconLayers>
             </Setter.Value>
         </Setter>
@@ -138,35 +134,17 @@
 
                         </VisualStateManager.VisualStateGroups>
                         <!--  Filled  -->
-                        <Viewbox x:Name="PART_FilledIconViewBox"
-                                 Width="{TemplateBinding Width}"
-                                 Height="{TemplateBinding Height}"
-                                 Stretch="UniformToFill"
-                                 UseLayoutRounding="False">
-                            <Path x:Name="PART_FilledPath"
-                                  Width="{TemplateBinding IconSize}"
-                                  Height="{TemplateBinding IconSize}"
-                                  Fill="{ThemeResource ThemedIconAccentBrush}" />
+                        <Viewbox x:Name="PART_FilledIconViewBox" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stretch="UniformToFill" UseLayoutRounding="False">
+                            <Path x:Name="PART_FilledPath" Width="{TemplateBinding IconSize}" Height="{TemplateBinding IconSize}" Fill="{ThemeResource ThemedIconAccentBrush}" />
                         </Viewbox>
 
                         <!--  Outline  -->
-                        <Viewbox x:Name="PART_OutlineIconViewBox"
-                                 Width="{TemplateBinding Width}"
-                                 Height="{TemplateBinding Height}"
-                                 Stretch="UniformToFill"
-                                 UseLayoutRounding="False">
-                            <Path x:Name="PART_OutlinePath"
-                                  Width="{TemplateBinding IconSize}"
-                                  Height="{TemplateBinding IconSize}"
-                                  Fill="{ThemeResource ThemedIconBaseBrush}" />
+                        <Viewbox x:Name="PART_OutlineIconViewBox" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stretch="UniformToFill" UseLayoutRounding="False">
+                            <Path x:Name="PART_OutlinePath" Width="{TemplateBinding IconSize}" Height="{TemplateBinding IconSize}" Fill="{ThemeResource ThemedIconBaseBrush}" />
                         </Viewbox>
 
                         <!--  Layered (Rendered From Top to Bottom in The Visual Tree Order)  -->
-                        <Viewbox x:Name="PART_LayeredIconViewBox"
-                                 Width="{TemplateBinding Width}"
-                                 Height="{TemplateBinding Height}"
-                                 Stretch="UniformToFill"
-                                 UseLayoutRounding="False">
+                        <Viewbox x:Name="PART_LayeredIconViewBox" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stretch="UniformToFill" UseLayoutRounding="False">
                             <Canvas x:Name="PART_LayerCanvas" Width="{TemplateBinding IconSize}" Height="{TemplateBinding IconSize}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" UseLayoutRounding="False" />
                         </Viewbox>
                     </Grid>
@@ -177,7 +155,7 @@
     </Style>
 
     <!--  Empty  -->
-    <Style x:Key="App.ThemedIcons.Empty" TargetType="local:ThemedIcon" BasedOn="{StaticResource DefaultThemedIconStyle}">
+    <Style x:Key="App.ThemedIcons.Empty" BasedOn="{StaticResource DefaultThemedIconStyle}" TargetType="local:ThemedIcon">
 
         <Setter Property="IconSize" Value="16" />
 
@@ -188,14 +166,10 @@
             <Setter.Value>
                 <local:ThemedIconLayers>
                     <!--  Place lower layers first in the list  -->
-                    <local:ThemedIconLayer LayerType="Alt"
-                                           PathData="" />
-                    <local:ThemedIconLayer LayerType="Base"
-                                           PathData="" />
-                    <local:ThemedIconLayer LayerType="Accent"
-                                           PathData="" />
-                    <local:ThemedIconLayer LayerType="AccentContrast"
-                                           PathData="" />
+                    <local:ThemedIconLayer LayerType="Alt" PathData="" />
+                    <local:ThemedIconLayer LayerType="Base" PathData="" />
+                    <local:ThemedIconLayer LayerType="Accent" PathData="" />
+                    <local:ThemedIconLayer LayerType="AccentContrast" PathData="" />
                 </local:ThemedIconLayers>
             </Setter.Value>
         </Setter>

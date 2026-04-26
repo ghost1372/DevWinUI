@@ -6,39 +6,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:OutOfBoxPage Title="Shortcut Guide"
-                      Description="Shows a help overlay with Windows shortcuts when the Windows key is pressed."
-                      HeroImage="ms-appx:///Assets/Modules/ShortcutGuide.png">
+    <dev:OutOfBoxPage Title="Shortcut Guide" Description="Shows a help overlay with Windows shortcuts when the Windows key is pressed." HeroImage="ms-appx:///Assets/Modules/ShortcutGuide.png">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
-                <dev:SettingsCard Header="Enable Shortcut Guide"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/shortcutGuide.png}">
+                <dev:SettingsCard Header="Enable Shortcut Guide" HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/shortcutGuide.png}">
                     <ToggleSwitch />
                 </dev:SettingsCard>
 
-                <dev:KeyVisual HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               AutomationProperties.AccessibilityView="Raw"
-                               Content="Ctrl+F5"
-                               IsTabStop="False"
-                               VisualType="SmallOutline" />
-                <dev:ShortcutWithTextLabel x:Name="HotkeyMicVidControl"
-                                           Text="to toggle both your microphone and video" />
-                <dev:ShortcutWithTextLabel x:Name="HotkeyMicControl"
-                                           Text="to toggle your microphone" />
-                <dev:ShortcutWithTextLabel x:Name="HotkeyVidControl"
-                                           Text="to toggle your microphone" />
-                <Button Click="Button_Click"
-                        Content="Open Shortcut Dialog" />
+                <dev:KeyVisual HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="Ctrl+F5" IsTabStop="False" VisualType="SmallOutline" />
+                <dev:ShortcutWithTextLabel x:Name="HotkeyMicVidControl" Text="to toggle both your microphone and video" />
+                <dev:ShortcutWithTextLabel x:Name="HotkeyMicControl" Text="to toggle your microphone" />
+                <dev:ShortcutWithTextLabel x:Name="HotkeyVidControl" Text="to toggle your microphone" />
+                <Button Click="Button_Click" Content="Open Shortcut Dialog" />
                 <dev:SimpleSettingsGroup Header="Appearance &amp; behavior">
-                    <dev:SettingsCard Header="Choose a mode"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE790;}">
+                    <dev:SettingsCard Header="Choose a mode" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE790;}">
                         <dev:SettingsCard.Description>
                             <HyperlinkButton Content="Windows color settings" />
                         </dev:SettingsCard.Description>
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Dark" />
                             <ComboBoxItem Content="Light" />
                             <ComboBoxItem Content="Default" />
@@ -46,29 +31,15 @@
                     </dev:SettingsCard>
 
                     <dev:SettingsCard Header="Opacity of background">
-                        <Slider MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                Maximum="100"
-                                Minimum="0" />
+                        <Slider MinWidth="{StaticResource SettingActionControlMinWidth}" Maximum="100" Minimum="0" />
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
 
                 <dev:SimpleSettingsGroup Header="Excluded apps">
-                    <dev:SettingsExpander Description="Turns off Shortcut Guide when these applications have focus - add one application name per line"
-                                          Header="Exclude apps"
-                                          HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                    Glyph=&#xECE4;}"
-                                          IsExpanded="True">
+                    <dev:SettingsExpander Description="Turns off Shortcut Guide when these applications have focus - add one application name per line" Header="Exclude apps" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xECE4;}" IsExpanded="True">
                         <dev:SettingsExpander.Items>
-                            <dev:SettingsCard HorizontalContentAlignment="Stretch"
-                                              ContentAlignment="Vertical">
-                                <TextBox MinWidth="240"
-                                         MinHeight="160"
-                                         AcceptsReturn="True"
-                                         PlaceholderText="Example: outlook.exe"
-                                         ScrollViewer.IsVerticalRailEnabled="True"
-                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                         ScrollViewer.VerticalScrollMode="Enabled"
-                                         TextWrapping="Wrap" />
+                            <dev:SettingsCard HorizontalContentAlignment="Stretch" ContentAlignment="Vertical">
+                                <TextBox MinWidth="240" MinHeight="160" AcceptsReturn="True" PlaceholderText="Example: outlook.exe" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled" TextWrapping="Wrap" />
                             </dev:SettingsCard>
                         </dev:SettingsExpander.Items>
                     </dev:SettingsExpander>
@@ -76,8 +47,7 @@
             </StackPanel>
         </dev:OutOfBoxPage.Content>
         <dev:OutOfBoxPage.PrimaryLinks>
-            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ShortcutGuide"
-                                  Text="Learn more about Shortcut Guide" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_ShortcutGuide" Text="Learn more about Shortcut Guide" />
         </dev:OutOfBoxPage.PrimaryLinks>
     </dev:OutOfBoxPage>
 </Page>

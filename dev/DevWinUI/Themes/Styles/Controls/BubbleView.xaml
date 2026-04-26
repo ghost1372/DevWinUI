@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:BubbleView" BasedOn="{StaticResource DefaultBubbleViewStyle}" />
+    <Style BasedOn="{StaticResource DefaultBubbleViewStyle}" TargetType="local:BubbleView" />
 
     <Style x:Key="DefaultBubbleViewStyle" TargetType="local:BubbleView">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -12,12 +12,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:BubbleView">
                     <Grid x:Name="RootGrid" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Rectangle x:Name="ShadowHost"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch" />
-                        <Rectangle x:Name="BubbleHost"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch" />
+                        <Rectangle x:Name="ShadowHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <Rectangle x:Name="BubbleHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

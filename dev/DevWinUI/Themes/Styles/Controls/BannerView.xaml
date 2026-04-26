@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:BannerViewItem" BasedOn="{StaticResource DefaultBannerViewItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultBannerViewItemStyle}" TargetType="local:BannerViewItem" />
 
     <Style x:Key="DefaultBannerViewItemStyle" TargetType="local:BannerViewItem">
         <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
@@ -20,22 +20,9 @@
                 <ControlTemplate TargetType="local:BannerViewItem">
                     <Grid x:Name="LayoutRoot" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Canvas x:Name="ShadowHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <Rectangle x:Name="BackgroundRect"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   Fill="{TemplateBinding Background}"
-                                   RadiusX="{TemplateBinding RadiusX}"
-                                   RadiusY="{TemplateBinding RadiusY}" />
-                        <Border HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                            <ContentPresenter HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Stretch"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}" />
+                        <Rectangle x:Name="BackgroundRect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{TemplateBinding Background}" RadiusX="{TemplateBinding RadiusX}" RadiusY="{TemplateBinding RadiusY}" />
+                        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="{TemplateBinding CornerRadius}">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -44,7 +31,7 @@
     </Style>
 
 
-    <Style TargetType="local:BannerView" BasedOn="{StaticResource DefaultBannerViewStyle}" />
+    <Style BasedOn="{StaticResource DefaultBannerViewStyle}" TargetType="local:BannerView" />
 
     <Style x:Key="DefaultBannerViewStyle" TargetType="local:BannerView">
         <Setter Property="Background" Value="{ThemeResource SystemControlTransparentBrush}" />
@@ -66,8 +53,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel AreScrollSnapPointsRegular="True"
-                                            Orientation="Horizontal" />
+                    <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -75,24 +61,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:BannerView">
                     <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ScrollViewer x:Name="ScrollingHost"
-                                      Padding="{TemplateBinding Padding}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                      HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                      HorizontalSnapPointsType="MandatorySingle"
-                                      IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                      IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                      IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}"
-                                      IsTabStop="False"
-                                      IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                      IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}"
-                                      TabNavigation="{TemplateBinding TabNavigation}"
-                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                      VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                      VerticalSnapPointsType="MandatorySingle"
-                                      ZoomMode="Disabled">
+                        <ScrollViewer x:Name="ScrollingHost" Padding="{TemplateBinding Padding}" AutomationProperties.AccessibilityView="Raw" BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalSnapPointsType="MandatorySingle" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}" IsTabStop="False" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}" TabNavigation="{TemplateBinding TabNavigation}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" VerticalSnapPointsType="MandatorySingle" ZoomMode="Disabled">
                             <ItemsPresenter />
                         </ScrollViewer>
                     </Grid>

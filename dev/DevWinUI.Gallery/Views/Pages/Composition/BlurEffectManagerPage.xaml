@@ -10,82 +10,26 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage_cs.txt"
-                                  DocPage="common/blurEffectManager"
-                                  HeaderText="BlurEffectManager">
+            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage_cs.txt" DocPage="common/blurEffectManager" HeaderText="BlurEffectManager">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGIsBlurEnabled"
-                                      Header="IsBlurEnabled"
-                                      IsOn="True"
-                                      Toggled="TGIsBlurEnabled_Toggled" />
-                        <Slider x:Name="TGSlider"
-                                Header="Blur Amount"
-                                Maximum="100"
-                                Minimum="0"
-                                ValueChanged="TGSlider_ValueChanged"
-                                Value="10" />
-                        <ComboBox x:Name="CmbEffectBorderMode"
-                                  Header="Effect Border Mode"
-                                  ItemsSource="{x:Bind EffectBorderModeItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbEffectBorderMode_SelectionChanged" />
-                        <ComboBox x:Name="CmbEffectOptimization"
-                                  Header="Effect Optimization"
-                                  ItemsSource="{x:Bind EffectOptimizationItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbEffectOptimization_SelectionChanged" />
-                        <ComboBox x:Name="CmbBlendEffectMode"
-                                  Header="Blend Effect Mode"
-                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbBlendEffectMode_SelectionChanged" />
-                        <ComboBox x:Name="CmbNoiseBlendMode"
-                                  Header="Noise Blend Effect Mode"
-                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
-                        <ToggleSwitch x:Name="TGUseNoise"
-                                      Header="Use Noise"
-                                      IsOn="False"
-                                      Toggled="TGUseNoise_Toggled" />
-                        <TextBox x:Name="TxtNoiseUri"
-                                 Header="Noise Uri"
-                                 IsReadOnly="True"
-                                 Text="ms-appx:///Assets/Noise/Noise.jpg" />
-                        <ColorPicker x:Name="CpTintColor"
-                                     ColorChanged="CpTintColor_ColorChanged"
-                                     IsAlphaSliderVisible="False"
-                                     IsAlphaTextInputVisible="False"
-                                     IsColorChannelTextInputVisible="False"
-                                     IsColorPreviewVisible="False"
-                                     IsColorSliderVisible="False"
-                                     IsHexInputVisible="False"
-                                     IsMoreButtonVisible="False"
-                                     Color="Transparent" />
+                        <ToggleSwitch x:Name="TGIsBlurEnabled" Header="IsBlurEnabled" IsOn="True" Toggled="TGIsBlurEnabled_Toggled" />
+                        <Slider x:Name="TGSlider" Header="Blur Amount" Maximum="100" Minimum="0" ValueChanged="TGSlider_ValueChanged" Value="10" />
+                        <ComboBox x:Name="CmbEffectBorderMode" Header="Effect Border Mode" ItemsSource="{x:Bind EffectBorderModeItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbEffectBorderMode_SelectionChanged" />
+                        <ComboBox x:Name="CmbEffectOptimization" Header="Effect Optimization" ItemsSource="{x:Bind EffectOptimizationItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbEffectOptimization_SelectionChanged" />
+                        <ComboBox x:Name="CmbBlendEffectMode" Header="Blend Effect Mode" ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="CmbBlendEffectMode_SelectionChanged" />
+                        <ComboBox x:Name="CmbNoiseBlendMode" Header="Noise Blend Effect Mode" ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
+                        <ToggleSwitch x:Name="TGUseNoise" Header="Use Noise" IsOn="False" Toggled="TGUseNoise_Toggled" />
+                        <TextBox x:Name="TxtNoiseUri" Header="Noise Uri" IsReadOnly="True" Text="ms-appx:///Assets/Noise/Noise.jpg" />
+                        <ColorPicker x:Name="CpTintColor" ColorChanged="CpTintColor_ColorChanged" IsAlphaSliderVisible="False" IsAlphaTextInputVisible="False" IsColorChannelTextInputVisible="False" IsColorPreviewVisible="False" IsColorSliderVisible="False" IsHexInputVisible="False" IsMoreButtonVisible="False" Color="Transparent" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Image x:Name="BackdropImage"
-                       MaxHeight="500"
-                       VerticalAlignment="Top"
-                       Source="ms-appx:///Assets/Others/Girl.jpg"
-                       Stretch="Uniform" />
+                <Image x:Name="BackdropImage" MaxHeight="500" VerticalAlignment="Top" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
             </local:ControlExample>
-            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt"
-                                  DocPage="common/blurEffectManager"
-                                  HeaderText="BlurEffectManager">
+            <local:ControlExample CSharpSource="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt" DocPage="common/blurEffectManager" HeaderText="BlurEffectManager">
                 <StackPanel Spacing="10">
-                    <InfoBar Title="Hover over the image to start blur animation; move away to reverse it."
-                             IsClosable="False"
-                             IsOpen="True"
-                             Severity="Informational" />
-                    <Image x:Name="BackdropImage2"
-                           MaxHeight="500"
-                           VerticalAlignment="Top"
-                           PointerEntered="BackdropImage_PointerEntered"
-                           PointerExited="BackdropImage_PointerExited"
-                           Source="ms-appx:///Assets/Others/Girl.jpg"
-                           Stretch="Uniform" />
+                    <InfoBar Title="Hover over the image to start blur animation; move away to reverse it." IsClosable="False" IsOpen="True" Severity="Informational" />
+                    <Image x:Name="BackdropImage2" MaxHeight="500" VerticalAlignment="Top" PointerEntered="BackdropImage_PointerEntered" PointerExited="BackdropImage_PointerExited" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
                 </StackPanel>
             </local:ControlExample>
 

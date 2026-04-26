@@ -10,12 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <InfoBar Title="It will be removed with the release of WASDK v1.7+"
-                     IsClosable="False"
-                     IsOpen="True"
-                     Severity="Warning" />
-            <local:ControlExample DocPage="controls/pagerControl"
-                                  HeaderText="PagerControl/Auto (NumberBox)">
+            <InfoBar Title="It will be removed with the release of WASDK v1.7+" IsClosable="False" IsOpen="True" Severity="Warning" />
+            <local:ControlExample DocPage="controls/pagerControl" HeaderText="PagerControl/Auto (NumberBox)">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:PagerControl NumberOfPages="10"/&gt;
@@ -23,25 +19,21 @@
                 </local:ControlExample.Xaml>
                 <dev:PagerControl NumberOfPages="10" />
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/pagerControl"
-                                  HeaderText="PagerControl/ButtonPanel">
+            <local:ControlExample DocPage="controls/pagerControl" HeaderText="PagerControl/ButtonPanel">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:PagerControl DisplayMode="ButtonPanel" NumberOfPages="10"/&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <dev:PagerControl DisplayMode="ButtonPanel"
-                                  NumberOfPages="10" />
+                <dev:PagerControl DisplayMode="ButtonPanel" NumberOfPages="10" />
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/pagerControl"
-                                  HeaderText="PagerControl/ComboBox">
+            <local:ControlExample DocPage="controls/pagerControl" HeaderText="PagerControl/ComboBox">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:PagerControl DisplayMode="ComboBox" NumberOfPages="10"/&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <dev:PagerControl DisplayMode="ComboBox"
-                                  NumberOfPages="10" />
+                <dev:PagerControl DisplayMode="ComboBox" NumberOfPages="10" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

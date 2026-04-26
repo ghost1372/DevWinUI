@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:SpectrumAnalyzer" BasedOn="{StaticResource DefaultSpectrumAnalyzerStyle}" />
+    <Style BasedOn="{StaticResource DefaultSpectrumAnalyzerStyle}" TargetType="local:SpectrumAnalyzer" />
 
     <Style x:Key="DefaultSpectrumAnalyzerStyle" TargetType="local:SpectrumAnalyzer">
         <Setter Property="Height" Value="200" />
@@ -32,10 +32,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SpectrumAnalyzer">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Canvas Name="PART_SpectrumCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Border>
                 </ControlTemplate>

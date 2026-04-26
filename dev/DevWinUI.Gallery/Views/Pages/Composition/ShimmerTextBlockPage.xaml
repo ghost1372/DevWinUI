@@ -10,11 +10,9 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/shimmerTextBlock"
-                                  XamlSource="Composition/ShimmerTextBlockPage_xaml.txt">
+            <local:ControlExample DocPage="controls/shimmerTextBlock" XamlSource="Composition/ShimmerTextBlockPage_xaml.txt">
                 <dev:ShimmerTextBlock>
-                    <TextBlock FontSize="72"
-                               Text="Loading..." />
+                    <TextBlock FontSize="72" Text="Loading..." />
                 </dev:ShimmerTextBlock>
             </local:ControlExample>
         </StackPanel>

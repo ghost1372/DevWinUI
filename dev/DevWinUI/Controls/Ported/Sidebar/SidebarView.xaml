@@ -213,10 +213,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <!--  Background For Both Pane And Content  -->
-        <Border x:Name="PaneBackground"
-                Grid.Row="1"
-                Grid.ColumnSpan="3"
-                Background="{ThemeResource App.Theme.Sidebar.BackgroundBrush}" />
+        <Border x:Name="PaneBackground" Grid.Row="1" Grid.ColumnSpan="3" Background="{ThemeResource App.Theme.Sidebar.BackgroundBrush}" />
 
         <!--  Pane Dismiss Layer  -->
         <Grid x:Name="PaneLightDismissLayer" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Canvas.ZIndex="10" PointerPressed="PaneLightDismissLayer_PointerPressed" Tapped="PaneLightDismissLayer_Tapped" Visibility="Collapsed" />
@@ -232,81 +229,26 @@
             </Grid.RenderTransform>
 
             <!--  Content  -->
-            <ContentPresenter Grid.RowSpan="2"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              HorizontalContentAlignment="Stretch"
-                              VerticalContentAlignment="Stretch"
-                              Content="{x:Bind SidebarContent, Mode=OneWay}" />
+            <ContentPresenter Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{x:Bind SidebarContent, Mode=OneWay}" />
 
             <!--  Menu Items  -->
-            <ItemsRepeaterScrollHost HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch">
-                <ScrollViewer x:Name="MenuItemHostScrollViewer"
-                              Padding="0,8,0,0"
-                              ContextRequested="MenuItemHostScrollViewer_ContextRequested"
-                              HorizontalScrollMode="Disabled"
-                              VerticalScrollBarVisibility="Auto"
-                              XYFocusKeyboardNavigation="Enabled">
-                    <ItemsRepeater x:Name="MenuItemsHost"
-                                   Margin="4,0,4,16"
-                                   AutomationProperties.AccessibilityView="Content"
-                                   AutomationProperties.Name="Sidebar pane"
-                                   ElementPrepared="MenuItemsHost_ElementPrepared"
-                                   IsTabStop="True"
-                                   ItemTemplate="{StaticResource DefaultSidebarItemTemplate}"
-                                   ItemsSource="{x:Bind MenuItemsSource, Mode=OneWay}"
-                                   VerticalCacheLength="100"
-                                   XYFocusKeyboardNavigation="Enabled" />
+            <ItemsRepeaterScrollHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ScrollViewer x:Name="MenuItemHostScrollViewer" Padding="0,8,0,0" ContextRequested="MenuItemHostScrollViewer_ContextRequested" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" XYFocusKeyboardNavigation="Enabled">
+                    <ItemsRepeater x:Name="MenuItemsHost" Margin="4,0,4,16" AutomationProperties.AccessibilityView="Content" AutomationProperties.Name="Sidebar pane" ElementPrepared="MenuItemsHost_ElementPrepared" IsTabStop="True" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{x:Bind MenuItemsSource, Mode=OneWay}" VerticalCacheLength="100" XYFocusKeyboardNavigation="Enabled" />
                 </ScrollViewer>
             </ItemsRepeaterScrollHost>
 
             <!--  Footer Items  -->
-            <ContentPresenter Grid.Row="1"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              HorizontalContentAlignment="Stretch"
-                              VerticalContentAlignment="Stretch"
-                              Content="{x:Bind Footer, Mode=OneWay}" />
+            <ContentPresenter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{x:Bind Footer, Mode=OneWay}" />
 
         </Grid>
 
         <!--  Sizer  -->
-        <Border x:Name="SidebarResizer"
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="2"
-                MinWidth="4"
-                Margin="0,60,0,40"
-                HorizontalAlignment="Left"
-                AllowFocusOnInteraction="True"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                Canvas.ZIndex="100"
-                CornerRadius="2"
-                DoubleTapped="SidebarResizer_DoubleTapped"
-                ManipulationCompleted="SidebarResizer_ManipulationCompleted"
-                ManipulationDelta="SidebarResizer_ManipulationDelta"
-                ManipulationMode="TranslateX"
-                ManipulationStarted="SidebarResizer_ManipulationStarted"
-                PointerCanceled="SidebarResizer_PointerExited"
-                PointerEntered="SidebarResizer_PointerEntered"
-                PointerExited="SidebarResizer_PointerExited"
-                RenderTransform="{Binding ElementName=ContentRoot, Path=RenderTransform, Mode=OneWay}"
-                Visibility="{Binding ElementName=PaneRoot, Path=Visibility, Mode=OneWay}">
-            <UserControl x:Name="SidebarResizerControl"
-                         IsTabStop="True"
-                         KeyDown="SidebarResizerControl_KeyDown"
-                         UseSystemFocusVisuals="True" />
+        <Border x:Name="SidebarResizer" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" MinWidth="4" Margin="0,60,0,40" HorizontalAlignment="Left" AllowFocusOnInteraction="True" Background="Transparent" BorderBrush="Transparent" Canvas.ZIndex="100" CornerRadius="2" DoubleTapped="SidebarResizer_DoubleTapped" ManipulationCompleted="SidebarResizer_ManipulationCompleted" ManipulationDelta="SidebarResizer_ManipulationDelta" ManipulationMode="TranslateX" ManipulationStarted="SidebarResizer_ManipulationStarted" PointerCanceled="SidebarResizer_PointerExited" PointerEntered="SidebarResizer_PointerEntered" PointerExited="SidebarResizer_PointerExited" RenderTransform="{Binding ElementName=ContentRoot, Path=RenderTransform, Mode=OneWay}" Visibility="{Binding ElementName=PaneRoot, Path=Visibility, Mode=OneWay}">
+            <UserControl x:Name="SidebarResizerControl" IsTabStop="True" KeyDown="SidebarResizerControl_KeyDown" UseSystemFocusVisuals="True" />
         </Border>
 
         <!--  Content  -->
-        <ContentPresenter x:Name="ContentPresenter"
-                          Grid.Row="1"
-                          Grid.Column="2"
-                          Margin="2,0,8,0"
-                          VerticalAlignment="Stretch"
-                          Content="{x:Bind InnerContent, Mode=OneWay}"
-                          TabFocusNavigation="Local" />
+        <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Grid.Column="2" Margin="2,0,8,0" VerticalAlignment="Stretch" Content="{x:Bind InnerContent, Mode=OneWay}" TabFocusNavigation="Local" />
     </Grid>
 </UserControl>

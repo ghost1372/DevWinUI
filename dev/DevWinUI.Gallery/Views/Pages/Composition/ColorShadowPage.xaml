@@ -16,84 +16,28 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="SldColorMaskBlur"
-                                Header="Color Mask Blur Radius"
-                                Value="11" />
-                        <Slider x:Name="SldColorShadowBlurRadius"
-                                Header="Color Shadow Blur Radius"
-                                Value="12" />
-                        <Slider x:Name="SldShadowBlurRadius"
-                                Header="Shadow Blur Radius"
-                                Value="12" />
+                        <Slider x:Name="SldColorMaskBlur" Header="Color Mask Blur Radius" Value="11" />
+                        <Slider x:Name="SldColorShadowBlurRadius" Header="Color Shadow Blur Radius" Value="12" />
+                        <Slider x:Name="SldShadowBlurRadius" Header="Shadow Blur Radius" Value="12" />
 
-                        <Slider x:Name="SldColorMaskPadding"
-                                Header="Color Mask Padding"
-                                Value="25" />
-                        <Slider x:Name="SldColorShadowPadding"
-                                Header="Color Shadow Padding"
-                                Value="35" />
-                        <Slider x:Name="SldColorShadowOpacity"
-                                Header="Color Shadow Opacity"
-                                Maximum="1"
-                                Minimum="0"
-                                TickFrequency="0.1"
-                                Value="0.7" />
-                        <Slider x:Name="SldShadowOpacity"
-                                Header="Shadow Opacity"
-                                Maximum="1"
-                                Minimum="0"
-                                TickFrequency="0.1"
-                                Value="0.5" />
-                        <Slider x:Name="SldShadowOffsetX"
-                                Header="Shadow Offset X"
-                                Value="4" />
-                        <Slider x:Name="SldShadowOffsetY"
-                                Header="Shadow Offset Y"
-                                Value="4" />
+                        <Slider x:Name="SldColorMaskPadding" Header="Color Mask Padding" Value="25" />
+                        <Slider x:Name="SldColorShadowPadding" Header="Color Shadow Padding" Value="35" />
+                        <Slider x:Name="SldColorShadowOpacity" Header="Color Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="0.7" />
+                        <Slider x:Name="SldShadowOpacity" Header="Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="0.5" />
+                        <Slider x:Name="SldShadowOffsetX" Header="Shadow Offset X" Value="4" />
+                        <Slider x:Name="SldShadowOffsetY" Header="Shadow Offset Y" Value="4" />
 
-                        <Slider x:Name="SldImageLayoutOffsetX"
-                                Header="Image Layout Offset X"
-                                Value="0" />
-                        <Slider x:Name="SldImageLayoutOffsetY"
-                                Header="Image Layout Offset Y"
-                                Value="0" />
-                        <Slider x:Name="SldImageLayoutOffsetZ"
-                                Header="Image Layout Offset Z"
-                                Value="0" />
-                        <Slider x:Name="SldImageOffsetX"
-                                Header="Image Offset X"
-                                Value="0" />
-                        <Slider x:Name="SldImageOffsetY"
-                                Header="Image Offset Y"
-                                Value="0" />
+                        <Slider x:Name="SldImageLayoutOffsetX" Header="Image Layout Offset X" Value="0" />
+                        <Slider x:Name="SldImageLayoutOffsetY" Header="Image Layout Offset Y" Value="0" />
+                        <Slider x:Name="SldImageLayoutOffsetZ" Header="Image Layout Offset Z" Value="0" />
+                        <Slider x:Name="SldImageOffsetX" Header="Image Offset X" Value="0" />
+                        <Slider x:Name="SldImageOffsetY" Header="Image Offset Y" Value="0" />
 
-                        <ToggleSwitch x:Name="TgShowShadow"
-                                      Header="Show Shadow"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TgIsRound"
-                                      Header="Is Rounded Image?"
-                                      IsOn="False" />
+                        <ToggleSwitch x:Name="TgShowShadow" Header="Show Shadow" IsOn="True" />
+                        <ToggleSwitch x:Name="TgIsRound" Header="Is Rounded Image?" IsOn="False" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:ColorShadow x:Name="ColorShadowCtrl"
-                                 Width="400"
-                                 Height="400"
-                                 ColorMaskBlurRadius="{x:Bind SldColorMaskBlur.Value, Mode=OneWay}"
-                                 ColorMaskPadding="{x:Bind SldColorMaskPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}"
-                                 ColorShadowBlurRadius="{x:Bind SldColorShadowBlurRadius.Value, Mode=OneWay}"
-                                 ColorShadowOpacity="{x:Bind SldColorShadowOpacity.Value, Mode=OneWay}"
-                                 ColorShadowPadding="{x:Bind SldColorShadowPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}"
-                                 ImageLayoutOffsetX="{x:Bind SldImageLayoutOffsetX.Value, Mode=OneWay}"
-                                 ImageLayoutOffsetY="{x:Bind SldImageLayoutOffsetY.Value, Mode=OneWay}"
-                                 ImageLayoutOffsetZ="{x:Bind SldImageLayoutOffsetZ.Value, Mode=OneWay}"
-                                 ImageOffsetX="{x:Bind SldImageOffsetX.Value, Mode=OneWay}"
-                                 ImageOffsetY="{x:Bind SldImageOffsetY.Value, Mode=OneWay}"
-                                 IsRounded="{x:Bind TgIsRound.IsOn, Mode=OneWay}"
-                                 IsShadowEnabled="{x:Bind TgShowShadow.IsOn, Mode=OneWay}"
-                                 ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}"
-                                 ShadowOffsetX="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}"
-                                 ShadowOffsetY="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}"
-                                 ShadowOpacity="{x:Bind SldShadowOpacity.Value, Mode=OneWay}" />
+                <dev:ColorShadow x:Name="ColorShadowCtrl" Width="400" Height="400" ColorMaskBlurRadius="{x:Bind SldColorMaskBlur.Value, Mode=OneWay}" ColorMaskPadding="{x:Bind SldColorMaskPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}" ColorShadowBlurRadius="{x:Bind SldColorShadowBlurRadius.Value, Mode=OneWay}" ColorShadowOpacity="{x:Bind SldColorShadowOpacity.Value, Mode=OneWay}" ColorShadowPadding="{x:Bind SldColorShadowPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}" ImageLayoutOffsetX="{x:Bind SldImageLayoutOffsetX.Value, Mode=OneWay}" ImageLayoutOffsetY="{x:Bind SldImageLayoutOffsetY.Value, Mode=OneWay}" ImageLayoutOffsetZ="{x:Bind SldImageLayoutOffsetZ.Value, Mode=OneWay}" ImageOffsetX="{x:Bind SldImageOffsetX.Value, Mode=OneWay}" ImageOffsetY="{x:Bind SldImageOffsetY.Value, Mode=OneWay}" IsRounded="{x:Bind TgIsRound.IsOn, Mode=OneWay}" IsShadowEnabled="{x:Bind TgShowShadow.IsOn, Mode=OneWay}" ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}" ShadowOffsetX="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}" ShadowOffsetY="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}" ShadowOpacity="{x:Bind SldShadowOpacity.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -10,42 +10,32 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/shimmer"
-                                  HeaderText="Shimmer">
+            <local:ControlExample DocPage="controls/shimmer" HeaderText="Shimmer">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;Shimmer/&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TGIsActive"
-                                  Header="IsActive"
-                                  IsOn="True" />
+                    <ToggleSwitch x:Name="TGIsActive" Header="IsActive" IsOn="True" />
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="5">
-                    <Border Width="300"
-                            Height="30">
+                    <Border Width="300" Height="30">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Width="280"
-                            Height="30">
+                    <Border Width="280" Height="30">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Width="200"
-                            Height="30">
+                    <Border Width="200" Height="30">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Width="150"
-                            Height="30">
+                    <Border Width="150" Height="30">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Width="260"
-                            Height="30">
+                    <Border Width="260" Height="30">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
-                    <Border Width="50"
-                            Height="50"
-                            CornerRadius="180">
+                    <Border Width="50" Height="50" CornerRadius="180">
                         <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
                     </Border>
                 </StackPanel>

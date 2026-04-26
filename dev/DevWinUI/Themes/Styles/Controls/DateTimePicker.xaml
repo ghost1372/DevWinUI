@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:DateTimePicker" BasedOn="{StaticResource DefaultDateTimePickerStyle}" />
+    <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
 
     <Style x:Key="DefaultDateTimePickerStyle" TargetType="local:DateTimePicker">
         <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
@@ -128,8 +128,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <FlyoutBase.AttachedFlyout>
-                            <Flyout Placement="Bottom"
-                                    ShouldConstrainToRootBounds="False">
+                            <Flyout Placement="Bottom" ShouldConstrainToRootBounds="False">
                                 <Flyout.FlyoutPresenterStyle>
                                     <Style TargetType="FlyoutPresenter">
                                         <Setter Property="MaxHeight" Value="Infinity" />
@@ -142,16 +141,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="FlyoutPresenter">
-                                                    <ContentPresenter Margin="{TemplateBinding Padding}"
-                                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                      Background="{TemplateBinding Background}"
-                                                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                                                      Content="{TemplateBinding Content}"
-                                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                                      CornerRadius="{TemplateBinding CornerRadius}" />
+                                                    <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -162,84 +152,17 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Button x:Name="PART_ConfirmButton"
-                                            Grid.Row="1"
-                                            HorizontalAlignment="Stretch"
-                                            Content="{TemplateBinding ConfirmButtonContent}"
-                                            CornerRadius="0,0,4,4"
-                                            Style="{TemplateBinding ConfirmButtonStyle}"
-                                            Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <local:CalendarWithClock x:Name="PART_CalendarWithClockView"
-                                                             Margin="{TemplateBinding CalendarViewMargin}"
-                                                             BorderThickness="{TemplateBinding Padding}"
-                                                             CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
-                                                             CalendarViewBorderThickness="{TemplateBinding CalendarViewBorderThickness}"
-                                                             CalendarViewStyle="{TemplateBinding CalendarViewStyle}"
-                                                             ClockBorderThickness="{TemplateBinding ClockBorderThickness}"
-                                                             ClockMargin="{TemplateBinding ClockMargin}"
-                                                             ClockMode="{TemplateBinding ClockMode}"
-                                                             CornerRadius="0"
-                                                             DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}"
-                                                             DisplayMode="{TemplateBinding DisplayMode}"
-                                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                                             IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}"
-                                                             IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}"
-                                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
-                                                             MaxDate="{TemplateBinding MaxDate}"
-                                                             MinDate="{TemplateBinding MinDate}"
-                                                             ShowAccentBorderOnHeader="{TemplateBinding ShowAccentBorderOnHeader}"
-                                                             TimePickerDisplayMode="{TemplateBinding TimePickerDisplayMode}"
-                                                             TimePickerMargin="{TemplateBinding TimePickerMargin}" />
+                                    <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                    <local:CalendarWithClock x:Name="PART_CalendarWithClockView" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding Padding}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CalendarViewBorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarViewStyle="{TemplateBinding CalendarViewStyle}" ClockBorderThickness="{TemplateBinding ClockBorderThickness}" ClockMargin="{TemplateBinding ClockMargin}" ClockMode="{TemplateBinding ClockMode}" CornerRadius="0" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" ShowAccentBorderOnHeader="{TemplateBinding ShowAccentBorderOnHeader}" TimePickerDisplayMode="{TemplateBinding TimePickerDisplayMode}" TimePickerMargin="{TemplateBinding TimePickerMargin}" />
 
                                 </Grid>
                             </Flyout>
                         </FlyoutBase.AttachedFlyout>
-                        <ContentPresenter x:Name="HeaderContentPresenter"
-                                          Grid.Row="0"
-                                          Grid.Column="1"
-                                          Grid.ColumnSpan="2"
-                                          Margin="{StaticResource CalendarDatePickerTopHeaderMargin}"
-                                          VerticalAlignment="Top"
-                                          x:DeferLoadStrategy="Lazy"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          TextWrapping="Wrap"
-                                          Visibility="Collapsed" />
-                        <Border x:Name="Background"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Grid.ColumnSpan="2"
-                                MinHeight="32"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Control.IsTemplateFocusTarget="True"
-                                CornerRadius="{TemplateBinding CornerRadius}" />
-                        <TextBlock x:Name="DateText"
-                                   Grid.Row="1"
-                                   Grid.Column="1"
-                                   Padding="12,0,0,2"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding PlaceholderText}" />
-                        <FontIcon x:Name="CalendarGlyph"
-                                  Grid.Row="1"
-                                  Grid.Column="2"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                  FontSize="12"
-                                  Foreground="{ThemeResource CalendarDatePickerCalendarGlyphForeground}"
-                                  Glyph="&#xE787;" />
-                        <ContentPresenter x:Name="DescriptionPresenter"
-                                          Grid.Row="2"
-                                          Grid.Column="1"
-                                          Grid.ColumnSpan="2"
-                                          x:Load="False"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+                        <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="{StaticResource CalendarDatePickerTopHeaderMargin}" VerticalAlignment="Top" x:DeferLoadStrategy="Lazy" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" TextWrapping="Wrap" Visibility="Collapsed" />
+                        <Border x:Name="Background" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
+                        <TextBlock x:Name="DateText" Grid.Row="1" Grid.Column="1" Padding="12,0,0,2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding PlaceholderText}" />
+                        <FontIcon x:Name="CalendarGlyph" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="12" Foreground="{ThemeResource CalendarDatePickerCalendarGlyphForeground}" Glyph="&#xE787;" />
+                        <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Load="False" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -14,7 +14,7 @@
             <StaticResource x:Key="ProgressForeground" ResourceKey="ControlAAFillColorDefaultBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-    <Style TargetType="local:ProgressButton" BasedOn="{StaticResource DefaultProgressButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultProgressButtonStyle}" TargetType="local:ProgressButton" />
 
     <Style x:Key="DefaultProgressButtonStyle" TargetType="local:ProgressButton">
         <Setter Property="Background" Value="{ThemeResource ToggleButtonBackground}" />
@@ -199,54 +199,14 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Padding="{TemplateBinding Padding}"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Background="{TemplateBinding Background}"
-                                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          Foreground="{TemplateBinding Foreground}">
+                        <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter.BackgroundTransition>
                                 <BrushTransition Duration="0:0:0.083" />
                             </ContentPresenter.BackgroundTransition>
                         </ContentPresenter>
-                        <ProgressRing x:Name="PART_ProgressRing"
-                                      Width="{TemplateBinding ProgressRingSize}"
-                                      Height="{TemplateBinding ProgressRingSize}"
-                                      Margin="10,0"
-                                      HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}"
-                                      IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}"
-                                      Style="{TemplateBinding ProgressRingStyle}"
-                                      Visibility="Collapsed"
-                                      Value="{TemplateBinding Progress}" />
-                        <ProgressBar x:Name="PART_ProgressBar"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
-                                     Background="{TemplateBinding ProgressBackground}"
-                                     BorderBrush="Transparent"
-                                     BorderThickness="0"
-                                     CornerRadius="{ThemeResource ControlCornerRadius}"
-                                     Foreground="{TemplateBinding ProgressForeground}"
-                                     IsIndeterminate="{TemplateBinding IsIndeterminate}"
-                                     ShowError="{TemplateBinding ShowError}"
-                                     ShowPaused="{TemplateBinding ShowPaused}"
-                                     Visibility="Collapsed"
-                                     Value="{TemplateBinding Progress}" />
-                        <TextBlock x:Name="CheckedText"
-                                   Padding="{TemplateBinding Padding}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Foreground="{ThemeResource ToggleButtonForeground}"
-                                   Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Visibility="Collapsed" />
+                        <ProgressRing x:Name="PART_ProgressRing" Width="{TemplateBinding ProgressRingSize}" Height="{TemplateBinding ProgressRingSize}" Margin="10,0" HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}" IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}" Style="{TemplateBinding ProgressRingStyle}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+                        <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+                        <TextBlock x:Name="CheckedText" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{ThemeResource ToggleButtonForeground}" Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -486,55 +446,14 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Padding="{TemplateBinding Padding}"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Background="{TemplateBinding Background}"
-                                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          Foreground="{TemplateBinding Foreground}">
+                        <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter.BackgroundTransition>
                                 <BrushTransition Duration="0:0:0.083" />
                             </ContentPresenter.BackgroundTransition>
                         </ContentPresenter>
-                        <ProgressRing x:Name="PART_ProgressRing"
-                                      Width="{TemplateBinding ProgressRingSize}"
-                                      Height="{TemplateBinding ProgressRingSize}"
-                                      Margin="10,0"
-                                      HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}"
-                                      Background="LightGray"
-                                      IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}"
-                                      Style="{TemplateBinding ProgressRingStyle}"
-                                      Visibility="Collapsed"
-                                      Value="{TemplateBinding Progress}" />
-                        <ProgressBar x:Name="PART_ProgressBar"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
-                                     Background="{TemplateBinding ProgressBackground}"
-                                     BorderBrush="Transparent"
-                                     BorderThickness="0"
-                                     CornerRadius="{ThemeResource ControlCornerRadius}"
-                                     Foreground="{TemplateBinding ProgressForeground}"
-                                     IsIndeterminate="{TemplateBinding IsIndeterminate}"
-                                     ShowError="{TemplateBinding ShowError}"
-                                     ShowPaused="{TemplateBinding ShowPaused}"
-                                     Visibility="Collapsed"
-                                     Value="{TemplateBinding Progress}" />
-                        <TextBlock x:Name="CheckedText"
-                                   Padding="{TemplateBinding Padding}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Foreground="{ThemeResource ToggleButtonForegroundChecked}"
-                                   Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Visibility="Collapsed" />
+                        <ProgressRing x:Name="PART_ProgressRing" Width="{TemplateBinding ProgressRingSize}" Height="{TemplateBinding ProgressRingSize}" Margin="10,0" HorizontalAlignment="{TemplateBinding ProgressRingHorizontalAlignment}" Background="LightGray" IsIndeterminate="{TemplateBinding IsIndeterminateProgressRing}" Style="{TemplateBinding ProgressRingStyle}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+                        <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
+                        <TextBlock x:Name="CheckedText" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{ThemeResource ToggleButtonForegroundChecked}" Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -11,31 +11,16 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/PerspectiveZoom/PerspectiveZoomPage_cs.txt"
-                                  DocPage="controls/perspectiveZoom"
-                                  XamlSource="Composition/PerspectiveZoom/PerspectiveZoomPage_xaml.txt">
+            <local:ControlExample CSharpSource="Composition/PerspectiveZoom/PerspectiveZoomPage_cs.txt" DocPage="controls/perspectiveZoom" XamlSource="Composition/PerspectiveZoom/PerspectiveZoomPage_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="ZoomFactorSlider"
-                                Header="Zoom Factor"
-                                Maximum="1"
-                                Minimum="0"
-                                TickFrequency="0.1"
-                                Value="0.7" />
-                        <Slider x:Name="AngleSlider"
-                                Header="Angle Rotation"
-                                Maximum="360"
-                                Minimum="0"
-                                Value="45" />
+                        <Slider x:Name="ZoomFactorSlider" Header="Zoom Factor" Maximum="1" Minimum="0" TickFrequency="0.1" Value="0.7" />
+                        <Slider x:Name="AngleSlider" Header="Angle Rotation" Maximum="360" Minimum="0" Value="45" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:PerspectiveZoom x:Name="PerspectiveSample"
-                                     RotationAngle="{x:Bind AngleSlider.Value, Mode=OneWay}"
-                                     ZoomFactor="{x:Bind ZoomFactorSlider.Value, Mode=OneWay}">
+                <dev:PerspectiveZoom x:Name="PerspectiveSample" RotationAngle="{x:Bind AngleSlider.Value, Mode=OneWay}" ZoomFactor="{x:Bind ZoomFactorSlider.Value, Mode=OneWay}">
 
-                    <ListView IsItemClickEnabled="True"
-                              ItemClick="OnItemClick"
-                              ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
+                    <ListView IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal" />
@@ -45,10 +30,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:SampleItemModel">
                                 <Grid>
-                                    <Image Width="200"
-                                           Height="120"
-                                           Source="{x:Bind ImagePath}"
-                                           Stretch="UniformToFill" />
+                                    <Image Width="200" Height="120" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

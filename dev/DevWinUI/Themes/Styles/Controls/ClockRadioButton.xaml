@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ClockRadioButton" BasedOn="{StaticResource DefaultClockRadioButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
 
     <Style x:Key="DefaultClockRadioButtonStyle" TargetType="local:ClockRadioButton">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -34,18 +34,8 @@
                                 <VisualState x:Name="Unchecked" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="Ellipse"
-                                 Width="{TemplateBinding Width}"
-                                 Height="{TemplateBinding Height}"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 Fill="Transparent" />
-                        <TextBlock x:Name="ContentPresenter"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Content}" />
+                        <Ellipse x:Name="Ellipse" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Transparent" />
+                        <TextBlock x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

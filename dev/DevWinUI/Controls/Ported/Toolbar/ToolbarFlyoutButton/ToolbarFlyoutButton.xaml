@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ToolbarFlyoutButton" BasedOn="{StaticResource DefaultToolbarFlyoutButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultToolbarFlyoutButtonStyle}" TargetType="local:ToolbarFlyoutButton" />
 
     <Style x:Key="DefaultToolbarFlyoutButtonStyle" TargetType="local:ToolbarFlyoutButton">
         <Setter Property="Template">

@@ -6,25 +6,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:OutOfBoxPage Title="PowerRename"
-                      Description="A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions."
-                      HeroImage="ms-appx:///Assets/Modules/PowerRename.png"
-                      SecondaryLinksHeader="Attribution">
+    <dev:OutOfBoxPage Title="PowerRename" Description="A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions." HeroImage="ms-appx:///Assets/Modules/PowerRename.png" SecondaryLinksHeader="Attribution">
         <dev:OutOfBoxPage.Content>
             <StackPanel x:Name="PowerRenameView" dev:PanelAttach.ChildrenTransitions="Default" Orientation="Vertical">
-                <dev:SettingsCard Header="Enable PowerRename"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/powerRename.png}">
+                <dev:SettingsCard Header="Enable PowerRename" HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/powerRename.png}">
                     <ToggleSwitch />
                 </dev:SettingsCard>
-                <InfoBar Title="The system administrator is forcing this setting."
-                         IsClosable="False"
-                         IsOpen="True"
-                         Severity="Informational" />
+                <InfoBar Title="The system administrator is forcing this setting." IsClosable="False" IsOpen="True" Severity="Informational" />
                 <dev:SimpleSettingsGroup Header="Shell integration">
-                    <dev:SettingsExpander Header="Show PowerRename in"
-                                          IsExpanded="True">
-                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                  SelectedIndex="0">
+                    <dev:SettingsExpander Header="Show PowerRename in" IsExpanded="True">
+                        <ComboBox MinWidth="{StaticResource SettingActionControlMinWidth}" SelectedIndex="0">
                             <ComboBoxItem Content="Default and extended context menu" />
                             <ComboBoxItem Content="Extended context menu only" />
                         </ComboBox>
@@ -37,28 +28,21 @@
                 </dev:SimpleSettingsGroup>
 
                 <dev:SimpleSettingsGroup Header="Auto-complete">
-                    <dev:SettingsExpander Header="Enable auto-complete for the search &amp; replace fields"
-                                          IsExpanded="True">
+                    <dev:SettingsExpander Header="Enable auto-complete for the search &amp; replace fields" IsExpanded="True">
                         <ToggleSwitch />
                         <dev:SettingsExpander.Items>
                             <dev:SettingsCard Header="Maximum number of items">
-                                <NumberBox MinWidth="{StaticResource SettingActionControlMinWidth}"
-                                           Maximum="20"
-                                           Minimum="0"
-                                           SpinButtonPlacementMode="Compact" />
+                                <NumberBox MinWidth="{StaticResource SettingActionControlMinWidth}" Maximum="20" Minimum="0" SpinButtonPlacementMode="Compact" />
                             </dev:SettingsCard>
                         </dev:SettingsExpander.Items>
                     </dev:SettingsExpander>
 
-                    <dev:SettingsCard Header="Show recently used strings"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xe81c;}">
+                    <dev:SettingsCard Header="Show recently used strings" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xe81c;}">
                         <ToggleSwitch />
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
                 <dev:SimpleSettingsGroup Header="Behavior">
-                    <dev:SettingsCard Description="Provides extended features but may use different regex syntax"
-                                      Header="Use Boost library">
+                    <dev:SettingsCard Description="Provides extended features but may use different regex syntax" Header="Use Boost library">
                         <ToggleSwitch />
                     </dev:SettingsCard>
                 </dev:SimpleSettingsGroup>
@@ -66,12 +50,10 @@
         </dev:OutOfBoxPage.Content>
 
         <dev:OutOfBoxPage.PrimaryLinks>
-            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_PowerRename"
-                                  Text="Learn more about PowerRename" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_PowerRename" Text="Learn more about PowerRename" />
         </dev:OutOfBoxPage.PrimaryLinks>
         <dev:OutOfBoxPage.SecondaryLinks>
-            <dev:OutOfBoxPageLink Link="https://github.com/chrdavis/SmartRename"
-                                  Text="Chris Davis's SmartRenamer" />
+            <dev:OutOfBoxPageLink Link="https://github.com/chrdavis/SmartRename" Text="Chris Davis's SmartRenamer" />
         </dev:OutOfBoxPage.SecondaryLinks>
     </dev:OutOfBoxPage>
 </Page>

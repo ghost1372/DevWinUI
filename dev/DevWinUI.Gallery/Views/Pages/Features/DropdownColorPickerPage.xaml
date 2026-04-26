@@ -10,32 +10,25 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/dropdownColorPicker"
-                                  HeaderText="DropdownColorPicker">
+            <local:ControlExample DocPage="controls/dropdownColorPicker" HeaderText="DropdownColorPicker">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:DropdownColorPicker /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
                 <StackPanel Spacing="10">
-                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample"
-                                             ColorChanged="DropdownColorPickerSample_ColorChanged" />
-                    <TextBlock x:Name="TxtResult"
-                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample" ColorChanged="DropdownColorPickerSample_ColorChanged" />
+                    <TextBlock x:Name="TxtResult" Style="{ThemeResource SubtitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/dropdownColorPicker"
-                                  HeaderText="DropdownColorPicker|ColorPalette"
-                                  XamlSource="Features/DropdownColorPickerPage_xaml.txt">
+            <local:ControlExample DocPage="controls/dropdownColorPicker" HeaderText="DropdownColorPicker|ColorPalette" XamlSource="Features/DropdownColorPickerPage_xaml.txt">
                 <StackPanel Spacing="10">
-                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample2"
-                                             ColorChanged="DropdownColorPickerSample2_ColorChanged">
+                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample2" ColorChanged="DropdownColorPickerSample2_ColorChanged">
                         <dev:DropdownColorPicker.ColorPalette>
                             <dev:ColorPalette />
                         </dev:DropdownColorPicker.ColorPalette>
                     </dev:DropdownColorPicker>
-                    <TextBlock x:Name="TxtResult2"
-                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBlock x:Name="TxtResult2" Style="{ThemeResource SubtitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

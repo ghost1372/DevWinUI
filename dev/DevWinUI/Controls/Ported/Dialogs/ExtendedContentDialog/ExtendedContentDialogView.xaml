@@ -32,65 +32,23 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="PART_ExtendedHeaderArea"
-                                Grid.Row="0"
-                                Padding="{ThemeResource ExtendedContentDialogViewHeaderPadding}"
-                                Background="{TemplateBinding ExtendedHeaderBackground}"
-                                BorderBrush="{ThemeResource ContentDialogViewSeparatorBorderBrush}"
-                                BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
-                            <ContentControl x:Name="PART_ExtendedHeader"
-                                            Content="{TemplateBinding ExtendedHeader}"
-                                            ContentTemplate="{TemplateBinding ExtendedHeaderTemplate}"
-                                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            IsTabStop="True">
+                        <Border x:Name="PART_ExtendedHeaderArea" Grid.Row="0" Padding="{ThemeResource ExtendedContentDialogViewHeaderPadding}" Background="{TemplateBinding ExtendedHeaderBackground}" BorderBrush="{ThemeResource ContentDialogViewSeparatorBorderBrush}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}">
+                            <ContentControl x:Name="PART_ExtendedHeader" Content="{TemplateBinding ExtendedHeader}" ContentTemplate="{TemplateBinding ExtendedHeaderTemplate}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" Foreground="{TemplateBinding Foreground}" IsTabStop="True">
                                 <ContentControl.Template>
                                     <ControlTemplate TargetType="ContentControl">
-                                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          Background="{TemplateBinding Background}"
-                                                          Content="{TemplateBinding Content}"
-                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                          MaxLines="3"
-                                                          TextWrapping="Wrap" />
+                                        <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" MaxLines="3" TextWrapping="Wrap" />
                                     </ControlTemplate>
                                 </ContentControl.Template>
                             </ContentControl>
                         </Border>
 
-                        <local:ContentDialogView x:Name="PART_ContentDialogView"
-                                                 Grid.Row="1"
-                                                 ButtonOrientation="{TemplateBinding ButtonOrientation}"
-                                                 CloseButtonAccessKey="{TemplateBinding CloseButtonAccessKey}"
-                                                 CloseButtonCommand="{TemplateBinding CloseButtonCommand}"
-                                                 CloseButtonContent="{TemplateBinding CloseButtonContent}"
-                                                 CloseButtonStyle="{TemplateBinding CloseButtonStyle}"
-                                                 CloseButtonTemplate="{TemplateBinding CloseButtonTemplate}"
-                                                 Content="{TemplateBinding Content}"
-                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                 DefaultButton="{TemplateBinding DefaultButton}"
-                                                 Header="{TemplateBinding Header}"
-                                                 HeaderTemplate="{TemplateBinding HeaderTemplate}"
-                                                 IsPrimaryButtonEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
-                                                 IsSecondaryButtonEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
-                                                 PrimaryButtonAccessKey="{TemplateBinding PrimaryButtonAccessKey}"
-                                                 PrimaryButtonCommand="{TemplateBinding PrimaryButtonCommand}"
-                                                 PrimaryButtonContent="{TemplateBinding PrimaryButtonContent}"
-                                                 PrimaryButtonStyle="{TemplateBinding PrimaryButtonStyle}"
-                                                 PrimaryButtonTemplate="{TemplateBinding PrimaryButtonTemplate}"
-                                                 SecondaryButtonAccessKey="{TemplateBinding SecondaryButtonAccessKey}"
-                                                 SecondaryButtonCommand="{TemplateBinding SecondaryButtonCommand}"
-                                                 SecondaryButtonContent="{TemplateBinding SecondaryButtonContent}"
-                                                 SecondaryButtonStyle="{TemplateBinding SecondaryButtonStyle}"
-                                                 SecondaryButtonTemplate="{TemplateBinding SecondaryButtonTemplate}" />
+                        <local:ContentDialogView x:Name="PART_ContentDialogView" Grid.Row="1" ButtonOrientation="{TemplateBinding ButtonOrientation}" CloseButtonAccessKey="{TemplateBinding CloseButtonAccessKey}" CloseButtonCommand="{TemplateBinding CloseButtonCommand}" CloseButtonContent="{TemplateBinding CloseButtonContent}" CloseButtonStyle="{TemplateBinding CloseButtonStyle}" CloseButtonTemplate="{TemplateBinding CloseButtonTemplate}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" DefaultButton="{TemplateBinding DefaultButton}" Header="{TemplateBinding Header}" HeaderTemplate="{TemplateBinding HeaderTemplate}" IsPrimaryButtonEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsSecondaryButtonEnabled="{TemplateBinding IsSecondaryButtonEnabled}" PrimaryButtonAccessKey="{TemplateBinding PrimaryButtonAccessKey}" PrimaryButtonCommand="{TemplateBinding PrimaryButtonCommand}" PrimaryButtonContent="{TemplateBinding PrimaryButtonContent}" PrimaryButtonStyle="{TemplateBinding PrimaryButtonStyle}" PrimaryButtonTemplate="{TemplateBinding PrimaryButtonTemplate}" SecondaryButtonAccessKey="{TemplateBinding SecondaryButtonAccessKey}" SecondaryButtonCommand="{TemplateBinding SecondaryButtonCommand}" SecondaryButtonContent="{TemplateBinding SecondaryButtonContent}" SecondaryButtonStyle="{TemplateBinding SecondaryButtonStyle}" SecondaryButtonTemplate="{TemplateBinding SecondaryButtonTemplate}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="local:ExtendedContentDialogView" BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" />
+    <Style BasedOn="{StaticResource ExtendedContentDialogViewDefaultStyle}" TargetType="local:ExtendedContentDialogView" />
 
 </ResourceDictionary>

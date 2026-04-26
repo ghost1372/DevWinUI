@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ContentSlider" BasedOn="{StaticResource DefaultContentSliderStyle}" />
+    <Style BasedOn="{StaticResource DefaultContentSliderStyle}" TargetType="local:ContentSlider" />
 
     <Style x:Key="DefaultContentSliderStyle" TargetType="local:ContentSlider">
         <Setter Property="ItemsPanel">
@@ -22,37 +22,17 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid x:Name="PART_Container">
-                            <ContentPresenter x:Name="PART_OldPresenter"
-                                              Content="{TemplateBinding SelectedItem}"
-                                              ContentTemplate="{TemplateBinding ItemTemplate}"
-                                              RenderTransformOrigin="0.5,0.5" />
+                            <ContentPresenter x:Name="PART_OldPresenter" Content="{TemplateBinding SelectedItem}" ContentTemplate="{TemplateBinding ItemTemplate}" RenderTransformOrigin="0.5,0.5" />
 
-                            <ContentPresenter x:Name="PART_NewPresenter"
-                                              ContentTemplate="{TemplateBinding ItemTemplate}"
-                                              RenderTransformOrigin="0.5,0.5"
-                                              Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_NewPresenter" ContentTemplate="{TemplateBinding ItemTemplate}" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" />
                         </Grid>
-                        <Button x:Name="PART_Prev"
-                                Grid.RowSpan="2"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{StaticResource NavigationButtonStyle}"
-                                Tag="prev">
+                        <Button x:Name="PART_Prev" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource NavigationButtonStyle}" Tag="prev">
                             <FontIcon Glyph="&#xE76B;" />
                         </Button>
-                        <Button x:Name="PART_Next"
-                                Grid.RowSpan="2"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{StaticResource NavigationButtonStyle}"
-                                Tag="next">
+                        <Button x:Name="PART_Next" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NavigationButtonStyle}" Tag="next">
                             <FontIcon Glyph="&#xE76C;" />
                         </Button>
-                        <PipsPager x:Name="PART_Indicator"
-                                   Grid.Row="1"
-                                   Margin="0,5,0,0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+                        <PipsPager x:Name="PART_Indicator" Grid.Row="1" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

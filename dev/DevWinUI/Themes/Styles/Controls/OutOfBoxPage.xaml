@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:OutOfBoxPage" BasedOn="{StaticResource DefaultOutOfBoxPageStyle}" />
+    <Style BasedOn="{StaticResource DefaultOutOfBoxPageStyle}" TargetType="local:OutOfBoxPage" />
 
     <Style x:Key="DefaultOutOfBoxPageStyle" TargetType="local:OutOfBoxPage">
         <Setter Property="Template" Value="{StaticResource OutOfBoxLeftHeroImageTemplate}" />
@@ -28,8 +28,7 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate"
-                     TargetType="local:OutOfBoxPage">
+    <ControlTemplate x:Key="OutOfBoxLeftHeroImageTemplate" TargetType="local:OutOfBoxPage">
         <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -56,23 +55,11 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
 
-            <ContentPresenter x:Name="PART_TitlePresenter"
-                              Grid.Row="0"
-                              Grid.Column="0"
-                              Content="{TemplateBinding Title}"
-                              Visibility="Collapsed" />
+            <ContentPresenter x:Name="PART_TitlePresenter" Grid.Row="0" Grid.Column="0" Content="{TemplateBinding Title}" Visibility="Collapsed" />
 
-            <TextBlock x:Name="PART_TitleTextBlock"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Margin="32,24,32,0"
-                       AutomationProperties.HeadingLevel="Level1"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                       Visibility="Collapsed" />
+            <TextBlock x:Name="PART_TitleTextBlock" Grid.Row="0" Grid.Column="0" Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
 
-            <ScrollViewer Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -91,23 +78,11 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <ContentPresenter Grid.Column="2"
-                                          VerticalAlignment="Top"
-                                          Content="{TemplateBinding ActionContent}" />
+                        <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding ActionContent}" />
 
-                        <ContentPresenter x:Name="PART_HeroImagePresenter"
-                                          Grid.Column="0"
-                                          Content="{TemplateBinding HeroImage}"
-                                          Visibility="Collapsed" />
+                        <ContentPresenter x:Name="PART_HeroImagePresenter" Grid.Column="0" Content="{TemplateBinding HeroImage}" Visibility="Collapsed" />
 
-                        <Border x:Name="PART_HeroImageBorder"
-                                Grid.Column="0"
-                                MaxWidth="160"
-                                Margin="32,24,16,24"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                CornerRadius="4"
-                                Visibility="Collapsed">
+                        <Border x:Name="PART_HeroImageBorder" Grid.Column="0" MaxWidth="160" Margin="32,24,16,24" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="4" Visibility="Collapsed">
                             <Image AutomationProperties.AccessibilityView="Raw">
                                 <Image.Source>
                                     <BitmapImage UriSource="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
@@ -116,53 +91,23 @@
                         </Border>
                         <StackPanel x:Name="DescriptionPanel" Grid.Row="0" Grid.Column="1" Spacing="12">
 
-                            <ContentPresenter x:Name="PART_DescriptionPresenter"
-                                              Content="{TemplateBinding Description}"
-                                              Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_DescriptionPresenter" Content="{TemplateBinding Description}" Visibility="Collapsed" />
 
-                            <TextBlock x:Name="PART_DescriptionTextBlock"
-                                       Margin="0,24,0,0"
-                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                       Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                       TextWrapping="Wrap"
-                                       Visibility="Collapsed" />
+                            <TextBlock x:Name="PART_DescriptionTextBlock" Margin="0,24,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
-                            <ItemsControl Grid.Row="1"
-                                          Grid.Column="1"
-                                          VerticalAlignment="Top"
-                                          IsTabStop="False"
-                                          ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
-                                          ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}"
-                                          ItemsSource="{TemplateBinding PrimaryLinks}" />
+                            <ItemsControl Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
                         </StackPanel>
                     </Grid>
 
-                    <ContentPresenter Grid.Row="1"
-                                      Margin="{TemplateBinding ContentMargin}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      HorizontalContentAlignment="Stretch"
-                                      VerticalContentAlignment="Stretch"
-                                      Content="{TemplateBinding Content}" />
+                    <ContentPresenter Grid.Row="1" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
 
                     <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                        <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter"
-                                          Content="{TemplateBinding SecondaryLinksHeader}"
-                                          Visibility="Collapsed" />
+                        <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter" Content="{TemplateBinding SecondaryLinksHeader}" Visibility="Collapsed" />
 
-                        <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock"
-                                   Margin="34,0,34,0"
-                                   AutomationProperties.HeadingLevel="Level2"
-                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                   Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                   Visibility="Collapsed" />
+                        <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock" Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
 
-                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}"
-                                      IsTabStop="False"
-                                      ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
-                                      ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}"
-                                      ItemsSource="{TemplateBinding SecondaryLinks}" />
+                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
                     </StackPanel>
                 </Grid>
 
@@ -170,27 +115,18 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="OutOfBoxTopHeroImageTemplate"
-                     TargetType="local:OutOfBoxPage">
+    <ControlTemplate x:Key="OutOfBoxTopHeroImageTemplate" TargetType="local:OutOfBoxPage">
         <Grid Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ContentPresenter x:Name="PART_HeroImagePresenter"
-                              Content="{TemplateBinding HeroImage}"
-                              Visibility="Collapsed" />
+            <ContentPresenter x:Name="PART_HeroImagePresenter" Content="{TemplateBinding HeroImage}" Visibility="Collapsed" />
 
-            <Image x:Name="PART_HeroImageImage"
-                   Height="{TemplateBinding HeroImageHeight}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                   Stretch="UniformToFill" />
+            <Image x:Name="PART_HeroImageImage" Height="{TemplateBinding HeroImageHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding HeroImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
 
-            <ScrollViewer Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid Padding="0,0,20,24" ChildrenTransitions="{StaticResource SettingsCardsAnimations}" RowSpacing="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -202,70 +138,27 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <ContentPresenter Grid.Row="0"
-                                      Grid.Column="1"
-                                      VerticalAlignment="Top"
-                                      Content="{TemplateBinding ActionContent}" />
-                    <ContentPresenter x:Name="PART_TitlePresenter"
-                                      Grid.Row="0"
-                                      Grid.Column="0"
-                                      Content="{TemplateBinding Title}"
-                                      Visibility="Collapsed" />
+                    <ContentPresenter Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Content="{TemplateBinding ActionContent}" />
+                    <ContentPresenter x:Name="PART_TitlePresenter" Grid.Row="0" Grid.Column="0" Content="{TemplateBinding Title}" Visibility="Collapsed" />
 
-                    <TextBlock x:Name="PART_TitleTextBlock"
-                               Grid.Row="0"
-                               Grid.Column="0"
-                               Margin="32,24,32,0"
-                               AutomationProperties.HeadingLevel="Level1"
-                               Style="{StaticResource TitleTextBlockStyle}"
-                               Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                               Visibility="Collapsed" />
+                    <TextBlock x:Name="PART_TitleTextBlock" Grid.Row="0" Grid.Column="0" Margin="32,24,32,0" AutomationProperties.HeadingLevel="Level1" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
 
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">
 
-                        <ContentPresenter x:Name="PART_DescriptionPresenter"
-                                          Content="{TemplateBinding Description}"
-                                          Visibility="Collapsed" />
+                        <ContentPresenter x:Name="PART_DescriptionPresenter" Content="{TemplateBinding Description}" Visibility="Collapsed" />
 
-                        <TextBlock x:Name="PART_DescriptionTextBlock"
-                                   Margin="32,0"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                   Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                   TextWrapping="Wrap"
-                                   Visibility="Collapsed" />
+                        <TextBlock x:Name="PART_DescriptionTextBlock" Margin="32,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
-                        <ItemsControl Margin="32,0"
-                                      IsTabStop="False"
-                                      ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}"
-                                      ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}"
-                                      ItemsSource="{TemplateBinding PrimaryLinks}" />
+                        <ItemsControl Margin="32,0" IsTabStop="False" ItemTemplate="{TemplateBinding PrimaryLinksItemTemplate}" ItemsPanel="{TemplateBinding PrimaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding PrimaryLinks}" />
                     </StackPanel>
-                    <ContentPresenter Grid.Row="2"
-                                      Grid.ColumnSpan="2"
-                                      Margin="{TemplateBinding ContentMargin}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      HorizontalContentAlignment="Stretch"
-                                      VerticalContentAlignment="Stretch"
-                                      Content="{TemplateBinding Content}" />
+                    <ContentPresenter Grid.Row="2" Grid.ColumnSpan="2" Margin="{TemplateBinding ContentMargin}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Content}" />
                     <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
 
-                        <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter"
-                                          Content="{TemplateBinding SecondaryLinksHeader}"
-                                          Visibility="Collapsed" />
+                        <ContentPresenter x:Name="PART_SecondaryLinksHeaderPresenter" Content="{TemplateBinding SecondaryLinksHeader}" Visibility="Collapsed" />
 
-                        <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock"
-                                   Margin="34,0,34,0"
-                                   AutomationProperties.HeadingLevel="Level2"
-                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                   Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                   Visibility="Collapsed" />
+                        <TextBlock x:Name="PART_SecondaryLinksHeaderTextBlock" Margin="34,0,34,0" AutomationProperties.HeadingLevel="Level2" Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{Binding SecondaryLinksHeader, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" />
 
-                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}"
-                                      IsTabStop="False"
-                                      ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}"
-                                      ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}"
-                                      ItemsSource="{TemplateBinding SecondaryLinks}" />
+                        <ItemsControl Margin="{TemplateBinding SecondaryLinksMargin}" IsTabStop="False" ItemTemplate="{TemplateBinding SecondaryLinksItemTemplate}" ItemsPanel="{TemplateBinding SecondaryLinkItemsPanelTemplate}" ItemsSource="{TemplateBinding SecondaryLinks}" />
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

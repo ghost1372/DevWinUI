@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:WaveProgressBar" BasedOn="{StaticResource DefaultWaveProgressBarStyle}" />
+    <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />
 
     <Style x:Key="DefaultWaveProgressBarStyle" TargetType="local:WaveProgressBar">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -47,27 +47,10 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Windows10version1809:CornerRadius="90,90,90,90"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border Windows10version1809:CornerRadius="90,90,90,90" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <Viewbox>
-                                <Border x:Name="PART_Clip"
-                                        Width="200"
-                                        Height="200"
-                                        Windows10version1809:CornerRadius="100,100,100,100">
-                                    <Path x:Name="PART_Wave"
-                                          Width="600"
-                                          Height="250"
-                                          Margin="0,0,-400,-20"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Top"
-                                          Fill="{TemplateBinding WaveFill}"
-                                          RenderTransformOrigin="0.5,0.5"
-                                          Stretch="Fill"
-                                          Stroke="{TemplateBinding WaveStroke}"
-                                          StrokeThickness="{TemplateBinding WaveThickness}"
-                                          UseLayoutRounding="False">
+                                <Border x:Name="PART_Clip" Width="200" Height="200" Windows10version1809:CornerRadius="100,100,100,100">
+                                    <Path x:Name="PART_Wave" Width="600" Height="250" Margin="0,0,-400,-20" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding WaveFill}" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Stroke="{TemplateBinding WaveStroke}" StrokeThickness="{TemplateBinding WaveThickness}" UseLayoutRounding="False">
                                         <Path.Data>
                                             <PathGeometry>
                                                 <PathFigure StartPoint="0,1">
@@ -82,12 +65,7 @@
                                 </Border>
                             </Viewbox>
                         </Border>
-                        <TextBlock Margin="0,10,0,0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{Binding Value, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource WaveProgressBarValueToPercentConverter}}"
-                                   Visibility="{Binding ShowText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" Text="{Binding Value, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource WaveProgressBarValueToPercentConverter}}" Visibility="{Binding ShowText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </StackPanel>
 
                 </ControlTemplate>

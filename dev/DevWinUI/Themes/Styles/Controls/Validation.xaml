@@ -59,15 +59,7 @@
                                                         </VisualState>
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
-                                                <TextBlock x:Name="GlyphElement"
-                                                           HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           AutomationProperties.AccessibilityView="Raw"
-                                                           FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                                           FontSize="{ThemeResource TextBoxIconFontSize}"
-                                                           FontStyle="Normal"
-                                                           Foreground="{ThemeResource TextControlButtonForeground}"
-                                                           Text="&#xE10A;" />
+                                                <TextBlock x:Name="GlyphElement" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="{ThemeResource TextBoxIconFontSize}" FontStyle="Normal" Foreground="{ThemeResource TextControlButtonForeground}" Text="&#xE10A;" />
                                             </Grid>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -107,10 +99,8 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
-                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                        Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
-                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                     Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundDisabled}}" />
+                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
+                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0" Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundDisabled}}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -125,10 +115,8 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
-                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                        Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
-                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                     Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundPointerOver}}" />
+                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
+                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0" Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundPointerOver}}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundPointerOver}" />
@@ -139,10 +127,8 @@
 
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
-                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                        Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
-                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0"
-                                                                                     Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundFocused}}" />
+                                            <contract5NotPresent:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
+                                            <contract5Present:DiscreteObjectKeyFrame KeyTime="0" Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundFocused}}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocused}" />
@@ -190,90 +176,15 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <ContentPresenter x:Name="HeaderContentPresenter"
-                                          Grid.Row="0"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="2"
-                                          Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                          VerticalAlignment="Top"
-                                          x:DeferLoadStrategy="Lazy"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          FontWeight="Normal"
-                                          Foreground="{ThemeResource TextControlHeaderForeground}"
-                                          TextWrapping="Wrap"
-                                          Visibility="Collapsed" />
-                        <Border x:Name="BorderElement"
-                                Grid.Row="1"
-                                Grid.RowSpan="1"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                MinWidth="{TemplateBinding MinWidth}"
-                                MinHeight="{TemplateBinding MinHeight}"
-                                contract7NotPresent:CornerRadius="{ThemeResource ControlCornerRadius}"
-                                contract7Present:CornerRadius="{TemplateBinding CornerRadius}"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Control.IsTemplateFocusTarget="True" />
-                        <ScrollViewer x:Name="ContentElement"
-                                      Grid.Row="1"
-                                      Grid.Column="0"
-                                      Margin="{TemplateBinding BorderThickness}"
-                                      Padding="{TemplateBinding Padding}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                      HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                      IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                      IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                      IsTabStop="False"
-                                      IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                      VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                      ZoomMode="Disabled" />
+                        <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{ThemeResource TextBoxTopHeaderMargin}" VerticalAlignment="Top" x:DeferLoadStrategy="Lazy" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontWeight="Normal" Foreground="{ThemeResource TextControlHeaderForeground}" TextWrapping="Wrap" Visibility="Collapsed" />
+                        <Border x:Name="BorderElement" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="2" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" contract7NotPresent:CornerRadius="{ThemeResource ControlCornerRadius}" contract7Present:CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" />
+                        <ScrollViewer x:Name="ContentElement" Grid.Row="1" Grid.Column="0" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" AutomationProperties.AccessibilityView="Raw" Foreground="{TemplateBinding Foreground}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsTabStop="False" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled" />
 
-                        <TextBlock x:Name="PlaceholderTextContentPresenter"
-                                   Grid.Row="1"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="2"
-                                   Margin="{TemplateBinding BorderThickness}"
-                                   Padding="{TemplateBinding Padding}"
-                                   contract5NotPresent:Foreground="{ThemeResource TextControlPlaceholderForeground}"
-                                   contract5Present:Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}"
-                                   IsHitTestVisible="False"
-                                   Text="{TemplateBinding PlaceholderText}"
-                                   TextAlignment="{TemplateBinding TextAlignment}"
-                                   TextWrapping="{TemplateBinding TextWrapping}" />
-                        <Button x:Name="DeleteButton"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Width="30"
-                                Padding="{ThemeResource HelperButtonThemePadding}"
-                                VerticalAlignment="Stretch"
-                                contract7Present:CornerRadius="{TemplateBinding CornerRadius}"
-                                AutomationProperties.AccessibilityView="Raw"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                FontSize="{TemplateBinding FontSize}"
-                                IsTabStop="False"
-                                Style="{StaticResource DeleteButtonStyle}"
-                                Visibility="Collapsed" />
-                        <contract7Present:ContentPresenter x:Name="DescriptionPresenter"
-                                                           Grid.Row="2"
-                                                           Grid.Column="0"
-                                                           Grid.ColumnSpan="2"
-                                                           x:Load="False"
-                                                           AutomationProperties.AccessibilityView="Raw"
-                                                           Content="{TemplateBinding Description}"
-                                                           Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+                        <TextBlock x:Name="PlaceholderTextContentPresenter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" contract5NotPresent:Foreground="{ThemeResource TextControlPlaceholderForeground}" contract5Present:Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}" IsHitTestVisible="False" Text="{TemplateBinding PlaceholderText}" TextAlignment="{TemplateBinding TextAlignment}" TextWrapping="{TemplateBinding TextWrapping}" />
+                        <Button x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Width="30" Padding="{ThemeResource HelperButtonThemePadding}" VerticalAlignment="Stretch" contract7Present:CornerRadius="{TemplateBinding CornerRadius}" AutomationProperties.AccessibilityView="Raw" BorderThickness="{TemplateBinding BorderThickness}" FontSize="{TemplateBinding FontSize}" IsTabStop="False" Style="{StaticResource DeleteButtonStyle}" Visibility="Collapsed" />
+                        <contract7Present:ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
 
-                        <ItemsRepeater x:Name="ErrorsRepeater"
-                                       Grid.Row="3"
-                                       Grid.Column="0"
-                                       Grid.ColumnSpan="2"
-                                       x:Load="False"
-                                       ItemTemplate="{Binding Path=(local:Validation.ErrorTemplate), RelativeSource={RelativeSource TemplatedParent}}"
-                                       ItemsSource="{Binding Path=(local:Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ItemsRepeater x:Name="ErrorsRepeater" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" ItemTemplate="{Binding Path=(local:Validation.ErrorTemplate), RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding Path=(local:Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

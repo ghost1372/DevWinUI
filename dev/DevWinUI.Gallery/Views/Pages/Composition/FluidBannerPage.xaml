@@ -14,15 +14,7 @@
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:FluidBanner ItemsSource="{x:Bind Images, Mode=OneWay}" /&gt;</x:String>
                 </local:ControlExample.Xaml>
-                <dev:FluidBanner x:Name="Banner"
-                                 Width="500"
-                                 Height="400"
-                                 Margin="50"
-                                 Padding="20"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 Background="Transparent"
-                                 Stretch="Fill" />
+                <dev:FluidBanner x:Name="Banner" Width="500" Height="400" Margin="50" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Stretch="Fill" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

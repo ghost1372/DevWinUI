@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/colorPalette"
-                                  HeaderText="ColorPalette">
+            <local:ControlExample DocPage="controls/colorPalette" HeaderText="ColorPalette">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:ColorPalette /&gt;
@@ -19,54 +18,20 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbColorSet"
-                                  MinWidth="200"
-                                  Header="Color Set"
-                                  ItemsSource="{x:Bind ColorSetItems, Mode=OneWay}"
-                                  SelectedIndex="1" />
-                        <ComboBox x:Name="CmbItemShape"
-                                  MinWidth="200"
-                                  Header="Item Shape"
-                                  ItemsSource="{x:Bind ColorItemShapeItems, Mode=OneWay}"
-                                  SelectedIndex="1" />
+                        <ComboBox x:Name="CmbColorSet" MinWidth="200" Header="Color Set" ItemsSource="{x:Bind ColorSetItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbItemShape" MinWidth="200" Header="Item Shape" ItemsSource="{x:Bind ColorItemShapeItems, Mode=OneWay}" SelectedIndex="1" />
                         <StackPanel Orientation="Horizontal" Spacing="5">
-                            <NumberBox x:Name="NBWidth"
-                                       Header="Item Width"
-                                       Maximum="200"
-                                       Minimum="4"
-                                       SpinButtonPlacementMode="Inline"
-                                       Value="32" />
-                            <NumberBox x:Name="NBHeight"
-                                       Header="Item Height"
-                                       Maximum="200"
-                                       Minimum="4"
-                                       SpinButtonPlacementMode="Inline"
-                                       Value="32" />
+                            <NumberBox x:Name="NBWidth" Header="Item Width" Maximum="200" Minimum="4" SpinButtonPlacementMode="Inline" Value="32" />
+                            <NumberBox x:Name="NBHeight" Header="Item Height" Maximum="200" Minimum="4" SpinButtonPlacementMode="Inline" Value="32" />
                         </StackPanel>
-                        <ToggleSwitch x:Name="TGIsCopyEnabled"
-                                      Header="Copy color code on item click"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TGShowHexCode"
-                                      Header="Show Hex Code"
-                                      IsOn="False" />
-                        <ToggleSwitch x:Name="TGShowColorName"
-                                      Header="Show Color Name"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TGShowToolTip"
-                                      Header="Show ToolTip"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TGIsCopyEnabled" Header="Copy color code on item click" IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowHexCode" Header="Show Hex Code" IsOn="False" />
+                        <ToggleSwitch x:Name="TGShowColorName" Header="Show Color Name" IsOn="True" />
+                        <ToggleSwitch x:Name="TGShowToolTip" Header="Show ToolTip" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:ColorPalette ColorChanged="ColorPalette_ColorChanged"
-                                      ColorSet="{x:Bind ((dev:ColorSetType)CmbColorSet.SelectedItem), Mode=OneWay}"
-                                      IsCopyColorCodeOnClickEnabled="{x:Bind TGIsCopyEnabled.IsOn, Mode=OneWay}"
-                                      ItemHeight="{x:Bind NBHeight.Value, Mode=OneWay}"
-                                      ItemShape="{x:Bind ((dev:ColorItemShape)CmbItemShape.SelectedItem), Mode=OneWay}"
-                                      ItemWidth="{x:Bind NBWidth.Value, Mode=OneWay}"
-                                      ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}"
-                                      ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}"
-                                      ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
+                    <dev:ColorPalette ColorChanged="ColorPalette_ColorChanged" ColorSet="{x:Bind ((dev:ColorSetType)CmbColorSet.SelectedItem), Mode=OneWay}" IsCopyColorCodeOnClickEnabled="{x:Bind TGIsCopyEnabled.IsOn, Mode=OneWay}" ItemHeight="{x:Bind NBHeight.Value, Mode=OneWay}" ItemShape="{x:Bind ((dev:ColorItemShape)CmbItemShape.SelectedItem), Mode=OneWay}" ItemWidth="{x:Bind NBWidth.Value, Mode=OneWay}" ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}" ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}" ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
                         <dev:ColorPalette.Colors>
                             <dev:ColorPaletteItem Color="Red" />
                             <dev:ColorPaletteItem Color="Green" />
@@ -79,14 +44,10 @@
                             </ItemsPanelTemplate>
                         </dev:ColorPalette.ItemsPanel>
                     </dev:ColorPalette>
-                    <TextBlock x:Name="TxtResult"
-                               HorizontalAlignment="Center"
-                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBlock x:Name="TxtResult" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/colorPalette"
-                                  HeaderText="Direct Xaml Items"
-                                  XamlSource="Features/ColorPalettePage_xaml.txt">
+            <local:ControlExample DocPage="controls/colorPalette" HeaderText="Direct Xaml Items" XamlSource="Features/ColorPalettePage_xaml.txt">
                 <dev:ColorPalette ColorSet="Custom">
                     <dev:ColorPalette.Colors>
                         <dev:ColorPaletteItem Color="Red" />

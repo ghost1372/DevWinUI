@@ -6,50 +6,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:OutOfBoxPage Title="Keyboard Manager"
-                      Description="Reconfigure your keyboard by remapping keys and shortcuts"
-                      HeroImage="ms-appx:///Assets/Modules/KBM.png">
+    <dev:OutOfBoxPage Title="Keyboard Manager" Description="Reconfigure your keyboard by remapping keys and shortcuts" HeroImage="ms-appx:///Assets/Modules/KBM.png">
         <dev:OutOfBoxPage.Content>
             <StackPanel dev:PanelAttach.ChildrenTransitions="Default">
-                <dev:SettingsCard Header="Enable Keyboard Manager"
-                                  HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/keyboardManager.png}">
+                <dev:SettingsCard Header="Enable Keyboard Manager" HeaderIcon="{dev:BitmapIcon Source=/Assets/Fluent/keyboardManager.png}">
                     <ToggleSwitch />
                     <dev:SettingsCard.Description>
                         <HyperlinkButton NavigateUri="https://aka.ms/powerToysCannotRemapKeys">
-                            <TextBlock FontWeight="SemiBold"
-                                       Text="Learn more about remapping limitations" />
+                            <TextBlock FontWeight="SemiBold" Text="Learn more about remapping limitations" />
                         </HyperlinkButton>
                     </dev:SettingsCard.Description>
                 </dev:SettingsCard>
 
-                <dev:SimpleSettingsGroup Header="Keys"
-                                         IsEnabled="False">
-                    <dev:SettingsCard ActionIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                FontSize=14,
-                                                                Glyph=&#xE8A7;}"
-                                      Description="Remap keys to other keys or shortcuts"
-                                      Header="Remap a key"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE92E;}"
-                                      IsClickEnabled="True" />
+                <dev:SimpleSettingsGroup Header="Keys" IsEnabled="False">
+                    <dev:SettingsCard ActionIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, FontSize=14, Glyph=&#xE8A7;}" Description="Remap keys to other keys or shortcuts" Header="Remap a key" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE92E;}" IsClickEnabled="True" />
                 </dev:SimpleSettingsGroup>
 
-                <dev:SimpleSettingsGroup Header="Shortcuts"
-                                         IsEnabled="False">
-                    <dev:SettingsCard ActionIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                FontSize=14,
-                                                                Glyph=&#xE8A7;}"
-                                      Description="Remap shortcuts to other shortcuts or keys for all or specific applications"
-                                      Header="Remap a shortcut"
-                                      HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily},
-                                                                Glyph=&#xE92E;}"
-                                      IsClickEnabled="True" />
+                <dev:SimpleSettingsGroup Header="Shortcuts" IsEnabled="False">
+                    <dev:SettingsCard ActionIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, FontSize=14, Glyph=&#xE8A7;}" Description="Remap shortcuts to other shortcuts or keys for all or specific applications" Header="Remap a shortcut" HeaderIcon="{dev:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE92E;}" IsClickEnabled="True" />
                 </dev:SimpleSettingsGroup>
             </StackPanel>
         </dev:OutOfBoxPage.Content>
         <dev:OutOfBoxPage.PrimaryLinks>
-            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_KeyboardManager"
-                                  Text="Learn more about Keyboard Manager" />
+            <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_KeyboardManager" Text="Learn more about Keyboard Manager" />
         </dev:OutOfBoxPage.PrimaryLinks>
     </dev:OutOfBoxPage>
 </Page>

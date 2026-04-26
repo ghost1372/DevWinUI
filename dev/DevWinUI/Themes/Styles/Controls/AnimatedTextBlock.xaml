@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:AnimatedTextBlock" BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" />
+    <Style BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" TargetType="local:AnimatedTextBlock" />
 
     <Style x:Key="DefaultAnimatedTextBlockStyle" TargetType="local:AnimatedTextBlock">
         <Setter Property="FontFamily" Value="XamlAutoFontFamily" />
@@ -16,13 +16,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnimatedTextBlock">
-                    <Border x:Name="ContentBorder"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <win2d:CanvasAnimatedControl x:Name="AnimatedCanvas"
-                                                     HorizontalAlignment="Stretch"
-                                                     VerticalAlignment="Stretch" />
+                    <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <win2d:CanvasAnimatedControl x:Name="AnimatedCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

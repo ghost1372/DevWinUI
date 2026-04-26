@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ImageEx" BasedOn="{StaticResource DefaultImageExStyle}" />
+    <Style BasedOn="{StaticResource DefaultImageExStyle}" TargetType="local:ImageEx" />
 
     <Style x:Key="DefaultImageExStyle" TargetType="local:ImageEx">
         <Setter Property="Background" Value="Transparent" />
@@ -45,18 +45,8 @@
                                 <VisualState x:Name="Unloaded" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Image Name="PlaceholderImage"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               Opacity="1.0"
-                               Source="{TemplateBinding PlaceholderSource}"
-                               Stretch="{TemplateBinding PlaceholderStretch}" />
-                        <Image Name="Image"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               NineGrid="{TemplateBinding NineGrid}"
-                               Opacity="0.0"
-                               Stretch="{TemplateBinding Stretch}" />
+                        <Image Name="PlaceholderImage" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Opacity="1.0" Source="{TemplateBinding PlaceholderSource}" Stretch="{TemplateBinding PlaceholderStretch}" />
+                        <Image Name="Image" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" NineGrid="{TemplateBinding NineGrid}" Opacity="0.0" Stretch="{TemplateBinding Stretch}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

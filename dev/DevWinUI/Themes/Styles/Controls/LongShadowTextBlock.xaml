@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:LongShadowTextBlock" BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" />
+    <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
 
     <Style x:Key="DefaultLongShadowTextBlockStyle" TargetType="local:LongShadowTextBlock">
         <Setter Property="Template">
@@ -11,8 +11,7 @@
                 <ControlTemplate TargetType="local:LongShadowTextBlock">
                     <Grid>
                         <Rectangle x:Name="PART_ShadowElement" />
-                        <ContentPresenter x:Name="PART_TextBlock"
-                                          Content="{TemplateBinding TextBlock}" />
+                        <ContentPresenter x:Name="PART_TextBlock" Content="{TemplateBinding TextBlock}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

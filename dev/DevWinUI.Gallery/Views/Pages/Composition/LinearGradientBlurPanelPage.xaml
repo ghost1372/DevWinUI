@@ -16,33 +16,17 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <RadioButtons x:Name="PointRadioButtons"
-                                      ItemsSource="{x:Bind PointList, Mode=OneWay}"
-                                      SelectedIndex="0"
-                                      SelectionChanged="PointRadioButtons_SelectionChanged" />
-                        <Button Click="StartAnimationButton_Click"
-                                Content="Start Animation" />
+                        <RadioButtons x:Name="PointRadioButtons" ItemsSource="{x:Bind PointList, Mode=OneWay}" SelectedIndex="0" SelectionChanged="PointRadioButtons_SelectionChanged" />
+                        <Button Click="StartAnimationButton_Click" Content="Start Animation" />
 
-                        <Slider x:Name="SlMaxBlurAmount"
-                                Header="Max Blur Amount"
-                                Value="64" />
+                        <Slider x:Name="SlMaxBlurAmount" Header="Max Blur Amount" Value="64" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Border MaxWidth="400"
-                        MaxHeight="500"
-                        HorizontalAlignment="Stretch">
+                <Border MaxWidth="400" MaxHeight="500" HorizontalAlignment="Stretch">
                     <Grid>
-                        <Image Source="ms-appx:///Assets/Others/Girl.jpg"
-                               Stretch="Fill" />
-                        <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample"
-                                                     MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}"
-                                                     TintColor="#99000000">
-                            <Rectangle Width="50"
-                                       Height="50"
-                                       Margin="50"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Bottom"
-                                       Fill="#77c3f4" />
+                        <Image Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Fill" />
+                        <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample" MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}" TintColor="#99000000">
+                            <Rectangle Width="50" Height="50" Margin="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#77c3f4" />
                         </dev:LinearGradientBlurPanel>
                     </Grid>
                 </Border>

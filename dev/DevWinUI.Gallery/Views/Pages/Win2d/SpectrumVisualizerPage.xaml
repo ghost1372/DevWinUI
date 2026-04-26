@@ -10,10 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <InfoBar Title="Please play music on your system to see the spectrum visualizer effects."
-                     IsClosable="False"
-                     IsOpen="True"
-                     Severity="Warning" />
+            <InfoBar Title="Please play music on your system to see the spectrum visualizer effects." IsClosable="False" IsOpen="True" Severity="Warning" />
             <local:ControlExample DocPage="controls/spectrumVisualizer">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" /&gt;</x:String>
@@ -23,41 +20,16 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TgShowAlbumArt"
-                                      Header="Show Album Art"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TgShowTitle"
-                                      Header="Show Title"
-                                      IsOn="True" />
-                        <ToggleSwitch x:Name="TgShowArtist"
-                                      Header="Show Artist"
-                                      IsOn="True" />
-                        <ComboBox x:Name="CmbSpectrumType"
-                                  MinWidth="130"
-                                  Header="Spectrum Type"
-                                  ItemsSource="{x:Bind SpectrumTypeList, Mode=OneWay}"
-                                  SelectedIndex="1" />
-                        <ComboBox x:Name="CmbColorType"
-                                  MinWidth="130"
-                                  Header="Color Type"
-                                  ItemsSource="{x:Bind SpectrumColorTypeList, Mode=OneWay}"
-                                  SelectedIndex="0" />
-                        <Slider x:Name="SldRotationSpeed"
-                                Header="Rotation Speed"
-                                Value="10" />
-                        <Slider x:Name="SldSensitivity"
-                                Header="Sensitivity"
-                                Value="20" />
+                        <ToggleSwitch x:Name="TgShowAlbumArt" Header="Show Album Art" IsOn="True" />
+                        <ToggleSwitch x:Name="TgShowTitle" Header="Show Title" IsOn="True" />
+                        <ToggleSwitch x:Name="TgShowArtist" Header="Show Artist" IsOn="True" />
+                        <ComboBox x:Name="CmbSpectrumType" MinWidth="130" Header="Spectrum Type" ItemsSource="{x:Bind SpectrumTypeList, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbColorType" MinWidth="130" Header="Color Type" ItemsSource="{x:Bind SpectrumColorTypeList, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SldRotationSpeed" Header="Rotation Speed" Value="10" />
+                        <Slider x:Name="SldSensitivity" Header="Sensitivity" Value="20" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample"
-                                        ColorType="{x:Bind ((dev:SpectrumColorType)CmbColorType.SelectedItem), Mode=OneWay}"
-                                        RotationSpeed="{x:Bind SldRotationSpeed.Value, Mode=OneWay}"
-                                        Sensitivity="{x:Bind SldRotationSpeed.Value, Mode=OneWay}"
-                                        ShowAlbumArt="{x:Bind TgShowAlbumArt.IsOn, Mode=OneWay}"
-                                        ShowArtist="{x:Bind TgShowArtist.IsOn, Mode=OneWay}"
-                                        ShowTitle="{x:Bind TgShowTitle.IsOn, Mode=OneWay}"
-                                        SpectrumType="{x:Bind ((dev:SpectrumType)CmbSpectrumType.SelectedItem), Mode=OneWay}" />
+                <dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" ColorType="{x:Bind ((dev:SpectrumColorType)CmbColorType.SelectedItem), Mode=OneWay}" RotationSpeed="{x:Bind SldRotationSpeed.Value, Mode=OneWay}" Sensitivity="{x:Bind SldRotationSpeed.Value, Mode=OneWay}" ShowAlbumArt="{x:Bind TgShowAlbumArt.IsOn, Mode=OneWay}" ShowArtist="{x:Bind TgShowArtist.IsOn, Mode=OneWay}" ShowTitle="{x:Bind TgShowTitle.IsOn, Mode=OneWay}" SpectrumType="{x:Bind ((dev:SpectrumType)CmbSpectrumType.SelectedItem), Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

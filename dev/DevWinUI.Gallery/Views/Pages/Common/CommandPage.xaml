@@ -10,9 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="delegateCommand"
-                                  DocType="Core"
-                                  HeaderText="Simple Command">
+            <local:ControlExample DocPage="delegateCommand" DocType="Core" HeaderText="Simple Command">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;Button Command="{x:Bind SimpleCommand}" Content="Click Me" /&gt;
@@ -23,12 +21,9 @@
                         private IDelegateCommand SimpleCommand { get; }#nl#SimpleCommand = DelegateCommand.Create(OnSimpleCommand);#nl#private void OnSimpleCommand()#nl{#nl#}
                     </x:String>
                 </local:ControlExample.CSharp>
-                <Button Command="{x:Bind SimpleCommand}"
-                        Content="Click Me" />
+                <Button Command="{x:Bind SimpleCommand}" Content="Click Me" />
             </local:ControlExample>
-            <local:ControlExample DocPage="delegateCommand"
-                                  DocType="Core"
-                                  HeaderText="Command with CanExecute">
+            <local:ControlExample DocPage="delegateCommand" DocType="Core" HeaderText="Command with CanExecute">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;Button Command="{x:Bind CommandWithCanExecute}" Content="Click Me" /&gt;
@@ -40,17 +35,11 @@
                     </x:String>
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TGCommandWithCanExecute"
-                                  Header="Can Execute Command?"
-                                  IsOn="True"
-                                  Toggled="TGCommandWithParameter_Toggled" />
+                    <ToggleSwitch x:Name="TGCommandWithCanExecute" Header="Can Execute Command?" IsOn="True" Toggled="TGCommandWithParameter_Toggled" />
                 </local:ControlExample.Pane>
-                <Button Command="{x:Bind CommandWithCanExecute}"
-                        Content="Click Me" />
+                <Button Command="{x:Bind CommandWithCanExecute}" Content="Click Me" />
             </local:ControlExample>
-            <local:ControlExample DocPage="delegateCommand"
-                                  DocType="Core"
-                                  HeaderText="Command with Parameter">
+            <local:ControlExample DocPage="delegateCommand" DocType="Core" HeaderText="Command with Parameter">
                 <local:ControlExample.CSharp>
                     <x:String>
                         private IDelegateCommand CommandWithParameter { get; }#nl#CommandWithParameter = DelegateCommand.Create(OnCommandWithParameter, CanExecuteCommandWithParameter);#nl#private void OnCommandWithParameter(object? parameter)#nl{#nl#}#nl#private bool CanExecuteCommandWithParameter(object? parameter)#nl#{#nl#return true;#nl#}
@@ -62,14 +51,9 @@
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TGCommandWithParameter"
-                                  Header="Can Execute Command?"
-                                  IsOn="True"
-                                  Toggled="TGCommandWithParameter_Toggled" />
+                    <ToggleSwitch x:Name="TGCommandWithParameter" Header="Can Execute Command?" IsOn="True" Toggled="TGCommandWithParameter_Toggled" />
                 </local:ControlExample.Pane>
-                <Button Command="{x:Bind CommandWithParameter}"
-                        CommandParameter="My Parameter"
-                        Content="Click Me" />
+                <Button Command="{x:Bind CommandWithParameter}" CommandParameter="My Parameter" Content="Click Me" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

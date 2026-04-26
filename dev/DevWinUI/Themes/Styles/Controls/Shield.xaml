@@ -5,7 +5,7 @@
 
     <SolidColorBrush x:Key="ShieldBorderBrush" Color="{ThemeResource CardStrokeColorDefaultBrush}" />
 
-    <Style TargetType="local:Shield" BasedOn="{StaticResource DefaultShieldStyle}" />
+    <Style BasedOn="{StaticResource DefaultShieldStyle}" TargetType="local:Shield" />
 
     <Style x:Key="DefaultShieldStyle" TargetType="local:Shield">
         <Setter Property="BorderBrush" Value="{ThemeResource ShieldBorderBrush}" />
@@ -22,22 +22,12 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0"
-                                Background="#555"
-                                CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusSplitConverter}, ConverterParameter='1,0,0,1'}">
+                        <Border Grid.Column="0" Background="#555" CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusSplitConverter}, ConverterParameter='1,0,0,1'}">
 
-                            <ContentPresenter Margin="4,0"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding Subject}"
-                                              Foreground="{TemplateBinding Foreground}" />
+                            <ContentPresenter Margin="4,0" VerticalAlignment="Center" Content="{TemplateBinding Subject}" Foreground="{TemplateBinding Foreground}" />
                         </Border>
-                        <Border Grid.Column="1"
-                                Background="{TemplateBinding Color}"
-                                CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusSplitConverter}, ConverterParameter='0,1,1,0'}">
-                            <ContentPresenter Margin="4,0"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding Status}"
-                                              Foreground="{TemplateBinding Foreground}" />
+                        <Border Grid.Column="1" Background="{TemplateBinding Color}" CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusSplitConverter}, ConverterParameter='0,1,1,0'}">
+                            <ContentPresenter Margin="4,0" VerticalAlignment="Center" Content="{TemplateBinding Status}" Foreground="{TemplateBinding Foreground}" />
                         </Border>
                     </Grid>
                 </ControlTemplate>

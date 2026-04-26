@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:EdgeLighting" BasedOn="{StaticResource DefaultEdgeLightingStyle}" />
+    <Style BasedOn="{StaticResource DefaultEdgeLightingStyle}" TargetType="local:EdgeLighting" />
 
     <Style x:Key="DefaultEdgeLightingStyle" TargetType="local:EdgeLighting">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -11,14 +11,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:EdgeLighting">
                     <Border x:Name="PART_Border">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTransitions="{TemplateBinding ContentTransitions}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

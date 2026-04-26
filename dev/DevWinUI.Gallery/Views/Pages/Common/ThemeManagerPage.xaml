@@ -5,36 +5,17 @@
       xmlns:local="using:DevWinUIGallery">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <InfoBar Title="You can simplify the operation of saving, retrieving and selecting the Application theme, All operations are performed automatically."
-                     IsClosable="False"
-                     IsOpen="True"
-                     Severity="Informational" />
-            <InfoBar Title="Dont forget to Initialize `ThemeService` in your App.cs"
-                     IsClosable="False"
-                     IsOpen="True"
-                     Severity="Warning" />
-            <local:ControlExample CSharpSource="Features/ThemeManager/ThemeManagerPage_Theme_cs.txt"
-                                  DocPage="themeService"
-                                  DocType="Core"
-                                  HeaderText="Theme"
-                                  XamlSource="Features/ThemeManager/ThemeManagerPage_Theme_xaml.txt">
+            <InfoBar Title="You can simplify the operation of saving, retrieving and selecting the Application theme, All operations are performed automatically." IsClosable="False" IsOpen="True" Severity="Informational" />
+            <InfoBar Title="Dont forget to Initialize `ThemeService` in your App.cs" IsClosable="False" IsOpen="True" Severity="Warning" />
+            <local:ControlExample CSharpSource="Features/ThemeManager/ThemeManagerPage_Theme_cs.txt" DocPage="themeService" DocType="Core" HeaderText="Theme" XamlSource="Features/ThemeManager/ThemeManagerPage_Theme_xaml.txt">
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <StackPanel x:Name="themePanel" Margin="10">
-                        <RadioButton Checked="OnThemeRadioButtonChecked"
-                                     Content="Use system setting"
-                                     Tag="Default" />
-                        <RadioButton Checked="OnThemeRadioButtonChecked"
-                                     Content="Light"
-                                     Tag="Light" />
-                        <RadioButton Checked="OnThemeRadioButtonChecked"
-                                     Content="Dark"
-                                     Tag="Dark" />
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Use system setting" Tag="Default" />
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Light" Tag="Light" />
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Dark" Tag="Dark" />
                     </StackPanel>
 
-                    <ComboBox x:Name="cmbTheme"
-                              ItemsSource="{x:Bind ThemeItems, Mode=OneWay}"
-                              SelectedItem="{x:Bind local:App.Current.ThemeService.ElementTheme}"
-                              SelectionChanged="cmbTheme_SelectionChanged">
+                    <ComboBox x:Name="cmbTheme" ItemsSource="{x:Bind ThemeItems, Mode=OneWay}" SelectedItem="{x:Bind local:App.Current.ThemeService.ElementTheme}" SelectionChanged="cmbTheme_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate x:DataType="ElementTheme">
                                 <TextBlock Text="{x:Bind}" />
@@ -43,37 +24,18 @@
                     </ComboBox>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample CSharpSource="Features/ThemeManager/ThemeManagerPage_Backdrop_cs.txt"
-                                  DocPage="themeService"
-                                  DocType="Core"
-                                  HeaderText="Backdrop"
-                                  XamlSource="Features/ThemeManager/ThemeManagerPage_Backdrop_xaml.txt">
+            <local:ControlExample CSharpSource="Features/ThemeManager/ThemeManagerPage_Backdrop_cs.txt" DocPage="themeService" DocType="Core" HeaderText="Backdrop" XamlSource="Features/ThemeManager/ThemeManagerPage_Backdrop_xaml.txt">
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <StackPanel x:Name="backdropPanel" Margin="10">
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="None"
-                                     Tag="None" />
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="Mica"
-                                     Tag="Mica" />
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="MicaAlt"
-                                     Tag="MicaAlt" />
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="Acrylic"
-                                     Tag="Acrylic" />
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="Acrylic Thin"
-                                     Tag="AcrylicThin" />
-                        <RadioButton Checked="OnBackdropRadioButtonChecked"
-                                     Content="Transparent"
-                                     Tag="Transparent" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="None" Tag="None" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="Mica" Tag="Mica" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="MicaAlt" Tag="MicaAlt" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="Acrylic" Tag="Acrylic" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="Acrylic Thin" Tag="AcrylicThin" />
+                        <RadioButton Checked="OnBackdropRadioButtonChecked" Content="Transparent" Tag="Transparent" />
                     </StackPanel>
 
-                    <ComboBox x:Name="cmbBackdrop"
-                              ItemsSource="{x:Bind BackdropItems, Mode=OneWay}"
-                              SelectedItem="{x:Bind local:App.Current.ThemeService.BackdropType}"
-                              SelectionChanged="cmbBackdrop_SelectionChanged" />
+                    <ComboBox x:Name="cmbBackdrop" ItemsSource="{x:Bind BackdropItems, Mode=OneWay}" SelectedItem="{x:Bind local:App.Current.ThemeService.BackdropType}" SelectionChanged="cmbBackdrop_SelectionChanged" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

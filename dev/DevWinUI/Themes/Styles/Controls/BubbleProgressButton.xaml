@@ -16,12 +16,10 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <ControlTemplate x:Key="CompletedTemplate"
-                     TargetType="ContentControl">
+    <ControlTemplate x:Key="CompletedTemplate" TargetType="ContentControl">
         <Grid x:Name="CompletedElement" Margin="-2">
 
-            <Ellipse x:Name="CompletedRectangle"
-                     Fill="{ThemeResource ProgressCompletedBackgroundBrush}">
+            <Ellipse x:Name="CompletedRectangle" Fill="{ThemeResource ProgressCompletedBackgroundBrush}">
                 <Ellipse.Shadow>
                     <ThemeShadow />
                 </Ellipse.Shadow>
@@ -29,7 +27,7 @@
         </Grid>
     </ControlTemplate>
 
-    <Style TargetType="local:BubbleProgressButton" BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultBubbleProgressButtonStyle}" TargetType="local:BubbleProgressButton" />
 
     <Style x:Key="DefaultBubbleProgressButtonStyle" TargetType="local:BubbleProgressButton">
         <Setter Property="Background" Value="{ThemeResource ControlFillColorTransparentBrush}" />
@@ -104,36 +102,13 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <local:BubbleView x:Name="BubbleView"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Foreground="{TemplateBinding BubbleForeground}" />
-                        <ContentControl x:Name="CompletedElement"
-                                        Template="{StaticResource CompletedTemplate}"
-                                        Visibility="Collapsed" />
+                        <local:BubbleView x:Name="BubbleView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="{TemplateBinding BubbleForeground}" />
+                        <ContentControl x:Name="CompletedElement" Template="{StaticResource CompletedTemplate}" Visibility="Collapsed" />
 
-                        <Border x:Name="RootBorder"
-                                Margin="{TemplateBinding Padding}"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1"
-                                CornerRadius="100">
-                            <ContentControl x:Name="ContentControl"
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            Content="{TemplateBinding Content}"
-                                            FontFamily="{TemplateBinding FontFamily}"
-                                            Foreground="{TemplateBinding Foreground}" />
+                        <Border x:Name="RootBorder" Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="100">
+                            <ContentControl x:Name="ContentControl" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" FontFamily="{TemplateBinding FontFamily}" Foreground="{TemplateBinding Foreground}" />
                         </Border>
-                        <ProgressRing x:Name="PressProgressBar"
-                                      Width="{Binding ElementName=RootBorder, Path=Width}"
-                                      Height="{Binding ElementName=RootBorder, Path=Height}"
-                                      Background="Transparent"
-                                      Foreground="{TemplateBinding ProgressForeground}"
-                                      IsIndeterminate="False"
-                                      Maximum="{TemplateBinding Maximum}"
-                                      Minimum="{TemplateBinding Minimum}"
-                                      Value="{TemplateBinding Value}" />
+                        <ProgressRing x:Name="PressProgressBar" Width="{Binding ElementName=RootBorder, Path=Width}" Height="{Binding ElementName=RootBorder, Path=Height}" Background="Transparent" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="False" Maximum="{TemplateBinding Maximum}" Minimum="{TemplateBinding Minimum}" Value="{TemplateBinding Value}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

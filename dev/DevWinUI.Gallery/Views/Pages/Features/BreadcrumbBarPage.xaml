@@ -14,9 +14,7 @@
                 <local:ControlExample.Xaml>
                     &lt;dev:BreadcrumbBar ItemsSource="{x:Bind Items}" /&gt;
                 </local:ControlExample.Xaml>
-                <dev:BreadcrumbBar EllipsisButtonToolTip="More folders"
-                                   ItemsSource="{x:Bind Items, Mode=OneWay}"
-                                   RootItemToolTip="Root Folder" />
+                <dev:BreadcrumbBar EllipsisButtonToolTip="More folders" ItemsSource="{x:Bind Items, Mode=OneWay}" RootItemToolTip="Root Folder" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

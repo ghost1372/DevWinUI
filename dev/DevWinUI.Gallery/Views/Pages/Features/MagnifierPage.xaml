@@ -10,12 +10,9 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/magnifier"
-                                  HeaderText="Magnifier"
-                                  XamlSource="Features/MagnifierPage_xaml.txt">
+            <local:ControlExample DocPage="controls/magnifier" HeaderText="Magnifier" XamlSource="Features/MagnifierPage_xaml.txt">
                 <Grid>
-                    <Image dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}"
-                           Source="ms-appx:///Assets/Others/Girl.jpg" />
+                    <Image dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}" Source="ms-appx:///Assets/Others/Girl.jpg" />
 
                     <dev:Magnifier x:Name="MyMagnifier" />
                 </Grid>

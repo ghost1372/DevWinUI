@@ -16,8 +16,7 @@
                         var window = new ModalWindow(WindowNative.GetWindowHandle(MainWindow.Instance));#nl#window.Activate();
                     </x:String>
                 </local:ControlExample.CSharp>
-                <Button Click="OnCreateModalWindowClick"
-                        Content="Create a New ModalWindow" />
+                <Button Click="OnCreateModalWindowClick" Content="Create a New ModalWindow" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

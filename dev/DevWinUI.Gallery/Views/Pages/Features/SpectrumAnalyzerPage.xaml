@@ -10,28 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/spectrumAnalyzer"
-                                  HeaderText="SpectrumAnalyzer">
+            <local:ControlExample DocPage="controls/spectrumAnalyzer" HeaderText="SpectrumAnalyzer">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button x:Name="BtnOpen"
-                                HorizontalAlignment="Stretch"
-                                Click="BtnOpen_Click"
-                                Content="Open Audio" />
-                        <TextBox x:Name="TxtPath"
-                                 HorizontalAlignment="Stretch"
-                                 IsReadOnly="True"
-                                 PlaceholderText="File Path" />
+                        <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
+                        <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
                         <StackPanel Orientation="Horizontal" Spacing="5">
-                            <Button x:Name="BtnPlay"
-                                    Click="BtnPlay_Click"
-                                    Content="Play" />
-                            <Button x:Name="BtnPause"
-                                    Click="BtnPause_Click"
-                                    Content="Pause" />
-                            <Button x:Name="BtnStop"
-                                    Click="BtnStop_Click"
-                                    Content="Stop" />
+                            <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
+                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
+                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
                         </StackPanel>
                     </StackPanel>
                 </local:ControlExample.Pane>

@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/particle"
-                                  DocType="Controls">
+            <local:ControlExample DocPage="controls/particle" DocType="Controls">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Particle IsPointerEnable="True" Density="6" /&gt;
@@ -19,20 +18,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgMouseHover"
-                                      Header="Mouse Hover" />
-                        <NumberBox x:Name="nbDensity"
-                                   Header="Density"
-                                   Maximum="9"
-                                   Minimum="1"
-                                   PlaceholderText="Density"
-                                   SpinButtonPlacementMode="Inline"
-                                   ValueChanged="nbDensity_ValueChanged"
-                                   Value="6" />
+                        <ToggleSwitch x:Name="tgMouseHover" Header="Mouse Hover" />
+                        <NumberBox x:Name="nbDensity" Header="Density" Maximum="9" Minimum="1" PlaceholderText="Density" SpinButtonPlacementMode="Inline" ValueChanged="nbDensity_ValueChanged" Value="6" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Particle x:Name="particle"
-                              IsPointerEnable="{x:Bind tgMouseHover.IsOn, Mode=OneWay}" />
+                <dev:Particle x:Name="particle" IsPointerEnable="{x:Bind tgMouseHover.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

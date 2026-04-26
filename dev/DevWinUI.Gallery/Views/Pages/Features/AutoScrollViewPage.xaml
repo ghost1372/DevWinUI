@@ -10,72 +10,43 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/autoScrollView"
-                                  HeaderText="TextBlock"
-                                  XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part1_xaml.txt">
+            <local:ControlExample DocPage="controls/autoScrollView" HeaderText="TextBlock" XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part1_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgPlay"
-                                      Header="IsPlay"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="tgPlay" Header="IsPlay" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:AutoScrollView IsPlaying="{x:Bind tgPlay.IsOn, Mode=OneWay}">
-                    <TextBlock Text="{StaticResource LoremText2}"
-                               TextTrimming="None" />
+                    <TextBlock Text="{StaticResource LoremText2}" TextTrimming="None" />
                 </dev:AutoScrollView>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/autoScrollView"
-                                  HeaderText="Button Content"
-                                  XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part2_xaml.txt">
+            <local:ControlExample DocPage="controls/autoScrollView" HeaderText="Button Content" XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part2_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgPlay2"
-                                      Header="IsPlay"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="tgPlay2" Header="IsPlay" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <ToggleButton MaxWidth="150"
-                              Margin="0,20"
-                              Padding="0,5,0,6"
-                              IsChecked="True">
-                    <dev:AutoScrollView Padding="11,0"
-                                        IsPlaying="{x:Bind tgPlay2.IsOn, Mode=OneWay}">
-                        <TextBlock Text="{StaticResource LoremText2}"
-                                   TextTrimming="CharacterEllipsis" />
+                <ToggleButton MaxWidth="150" Margin="0,20" Padding="0,5,0,6" IsChecked="True">
+                    <dev:AutoScrollView Padding="11,0" IsPlaying="{x:Bind tgPlay2.IsOn, Mode=OneWay}">
+                        <TextBlock Text="{StaticResource LoremText2}" TextTrimming="CharacterEllipsis" />
                     </dev:AutoScrollView>
                 </ToggleButton>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/autoScrollView"
-                                  HeaderText="Run Fast"
-                                  XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part3_xaml.txt">
+            <local:ControlExample DocPage="controls/autoScrollView" HeaderText="Run Fast" XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part3_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgPlay3"
-                                      Header="IsPlay"
-                                      IsOn="True" />
-                        <Slider x:Name="slSpeed"
-                                Header="ScrollingPixelsPreSecond"
-                                Maximum="500"
-                                Minimum="1"
-                                Value="200" />
+                        <ToggleSwitch x:Name="tgPlay3" Header="IsPlay" IsOn="True" />
+                        <Slider x:Name="slSpeed" Header="ScrollingPixelsPreSecond" Maximum="500" Minimum="1" Value="200" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:AutoScrollView Margin="0,20"
-                                    IsPlaying="{x:Bind tgPlay3.IsOn, Mode=OneWay}"
-                                    ScrollingPixelsPreSecond="{x:Bind slSpeed.Value, Mode=OneWay}">
-                    <TextBlock Text="{StaticResource LoremText2}"
-                               TextTrimming="None" />
+                <dev:AutoScrollView Margin="0,20" IsPlaying="{x:Bind tgPlay3.IsOn, Mode=OneWay}" ScrollingPixelsPreSecond="{x:Bind slSpeed.Value, Mode=OneWay}">
+                    <TextBlock Text="{StaticResource LoremText2}" TextTrimming="None" />
                 </dev:AutoScrollView>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/autoScrollView"
-                                  HeaderText="With OpacityMaskView"
-                                  XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part4_xaml.txt">
+            <local:ControlExample DocPage="controls/autoScrollView" HeaderText="With OpacityMaskView" XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part4_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgPlay4"
-                                      Header="IsPlay"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="tgPlay4" Header="IsPlay" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:OpacityMaskView>
@@ -87,26 +58,14 @@
                             <GradientStop Offset="1" Color="Transparent" />
                         </LinearGradientBrush>
                     </dev:OpacityMaskView.OpacityMask>
-                    <dev:AutoScrollView Margin="0,20"
-                                        Padding="10,0"
-                                        IsPlaying="{x:Bind tgPlay4.IsOn, Mode=OneWay}">
-                        <TextBlock Text="{StaticResource LoremText2}"
-                                   TextTrimming="None" />
+                    <dev:AutoScrollView Margin="0,20" Padding="10,0" IsPlaying="{x:Bind tgPlay4.IsOn, Mode=OneWay}">
+                        <TextBlock Text="{StaticResource LoremText2}" TextTrimming="None" />
                     </dev:AutoScrollView>
                 </dev:OpacityMaskView>
             </local:ControlExample>
-            <local:ControlExample CSharpSource="Features/AutoScrollView/AutoScrollViewPage_Part5_cs.txt"
-                                  DocPage="controls/autoScrollView"
-                                  HeaderText="With Hover Effect"
-                                  XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part5_xaml.txt">
-                <dev:AutoScrollView x:Name="AutoScrollHoverEffectView"
-                                    Margin="0,20"
-                                    IsPlaying="False"
-                                    PointerCanceled="AutoScrollHoverEffectView_PointerCanceled"
-                                    PointerEntered="AutoScrollHoverEffectView_PointerEntered"
-                                    PointerExited="AutoScrollHoverEffectView_PointerExited">
-                    <TextBlock Text="{StaticResource LoremText2}"
-                               TextTrimming="CharacterEllipsis" />
+            <local:ControlExample CSharpSource="Features/AutoScrollView/AutoScrollViewPage_Part5_cs.txt" DocPage="controls/autoScrollView" HeaderText="With Hover Effect" XamlSource="Features/AutoScrollView/AutoScrollViewPage_Part5_xaml.txt">
+                <dev:AutoScrollView x:Name="AutoScrollHoverEffectView" Margin="0,20" IsPlaying="False" PointerCanceled="AutoScrollHoverEffectView_PointerCanceled" PointerEntered="AutoScrollHoverEffectView_PointerEntered" PointerExited="AutoScrollHoverEffectView_PointerExited">
+                    <TextBlock Text="{StaticResource LoremText2}" TextTrimming="CharacterEllipsis" />
                 </dev:AutoScrollView>
             </local:ControlExample>
         </StackPanel>

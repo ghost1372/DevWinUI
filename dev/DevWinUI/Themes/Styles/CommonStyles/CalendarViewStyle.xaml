@@ -18,18 +18,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="Text"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      Foreground="{TemplateBinding Foreground}">
+                    <ContentPresenter x:Name="Text" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -59,23 +48,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AccentHeaderNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource HeaderNavigationButtonStyle}">
+    <Style x:Key="AccentHeaderNavigationButtonStyle" BasedOn="{StaticResource HeaderNavigationButtonStyle}" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="Text"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      Foreground="{TemplateBinding Foreground}">
+                    <ContentPresenter x:Name="Text" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -124,17 +102,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="Text"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter x:Name="Text" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -164,21 +132,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AccentNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource NavigationButtonStyle}">
+    <Style x:Key="AccentNavigationButtonStyle" BasedOn="{StaticResource NavigationButtonStyle}" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="Text"
-                                      Padding="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      Background="{TemplateBinding Background}"
-                                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                      BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Content="{TemplateBinding Content}"
-                                      CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter x:Name="Text" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource CalendarViewNavigationButtonBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -212,16 +170,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DefaultDevWinUICalendarViewStyle" TargetType="CalendarView" BasedOn="{StaticResource DefaultCalendarViewStyle}">
+    <Style x:Key="DefaultDevWinUICalendarViewStyle" BasedOn="{StaticResource DefaultCalendarViewStyle}" TargetType="CalendarView">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarView">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Resources>
-                            <Style x:Key="WeekDayNameStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+                            <Style x:Key="WeekDayNameStyle" BasedOn="{StaticResource CaptionTextBlockStyle}" TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="FontWeight" Value="{ThemeResource CalendarViewWeekDayFontWeight}" />
@@ -489,41 +444,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="PART_HeaderBorder"
-                                        Grid.ColumnSpan="3"
-                                        Margin="4,4,0,4"
-                                        Background="{ThemeResource SysemAccentControlBackgroundBrush}"
-                                        CornerRadius="8,0,0,8"
-                                        Visibility="Collapsed" />
-                                <Button x:Name="HeaderButton"
-                                        Grid.Column="1"
-                                        HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Center"
-                                        Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HeaderText}"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreViews}"
-                                        Style="{StaticResource HeaderNavigationButtonStyle}" />
-                                <Button x:Name="PreviousButton"
-                                        Grid.Column="0"
-                                        Margin="{ThemeResource CalendarViewNavigationPreviousButtonMargin}"
-                                        HorizontalContentAlignment="Stretch"
-                                        Content="&#xE76B;"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreContentBefore}"
-                                        Style="{StaticResource NavigationButtonStyle}" />
-                                <Button x:Name="NextButton"
-                                        Grid.Column="2"
-                                        Margin="{ThemeResource CalendarViewNavigationNextButtonMargin}"
-                                        HorizontalContentAlignment="Center"
-                                        Content="&#xE76C;"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreContentAfter}"
-                                        Style="{StaticResource NavigationButtonStyle}" />
+                                <Border x:Name="PART_HeaderBorder" Grid.ColumnSpan="3" Margin="4,4,0,4" Background="{ThemeResource SysemAccentControlBackgroundBrush}" CornerRadius="8,0,0,8" Visibility="Collapsed" />
+                                <Button x:Name="HeaderButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HeaderText}" Foreground="{TemplateBinding Foreground}" IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreViews}" Style="{StaticResource HeaderNavigationButtonStyle}" />
+                                <Button x:Name="PreviousButton" Grid.Column="0" Margin="{ThemeResource CalendarViewNavigationPreviousButtonMargin}" HorizontalContentAlignment="Stretch" Content="&#xE76B;" Foreground="{TemplateBinding Foreground}" IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreContentBefore}" Style="{StaticResource NavigationButtonStyle}" />
+                                <Button x:Name="NextButton" Grid.Column="2" Margin="{ThemeResource CalendarViewNavigationNextButtonMargin}" HorizontalContentAlignment="Center" Content="&#xE76C;" Foreground="{TemplateBinding Foreground}" IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HasMoreContentAfter}" Style="{StaticResource NavigationButtonStyle}" />
                             </Grid>
-                            <Border x:Name="PART_TopBorder"
-                                    Grid.Row="1"
-                                    Height="1"
-                                    Background="{TemplateBinding BorderBrush}" />
+                            <Border x:Name="PART_TopBorder" Grid.Row="1" Height="1" Background="{TemplateBinding BorderBrush}" />
                             <Grid x:Name="Views" Grid.Row="2">
                                 <Grid.Clip>
                                     <RectangleGeometry Rect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.ClipRect}" />
@@ -552,66 +478,25 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock x:Name="WeekDay1"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay1}" />
-                                        <TextBlock x:Name="WeekDay2"
-                                                   Grid.Column="1"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay2}" />
-                                        <TextBlock x:Name="WeekDay3"
-                                                   Grid.Column="2"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay3}" />
-                                        <TextBlock x:Name="WeekDay4"
-                                                   Grid.Column="3"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay4}" />
-                                        <TextBlock x:Name="WeekDay5"
-                                                   Grid.Column="4"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay5}" />
-                                        <TextBlock x:Name="WeekDay6"
-                                                   Grid.Column="5"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay6}" />
-                                        <TextBlock x:Name="WeekDay7"
-                                                   Grid.Column="6"
-                                                   Foreground="{TemplateBinding CalendarItemForeground}"
-                                                   Style="{StaticResource WeekDayNameStyle}"
-                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay7}" />
+                                        <TextBlock x:Name="WeekDay1" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay1}" />
+                                        <TextBlock x:Name="WeekDay2" Grid.Column="1" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay2}" />
+                                        <TextBlock x:Name="WeekDay3" Grid.Column="2" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay3}" />
+                                        <TextBlock x:Name="WeekDay4" Grid.Column="3" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay4}" />
+                                        <TextBlock x:Name="WeekDay5" Grid.Column="4" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay5}" />
+                                        <TextBlock x:Name="WeekDay6" Grid.Column="5" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay6}" />
+                                        <TextBlock x:Name="WeekDay7" Grid.Column="6" Foreground="{TemplateBinding CalendarItemForeground}" Style="{StaticResource WeekDayNameStyle}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.WeekDay7}" />
                                     </Grid>
-                                    <ScrollViewer x:Name="MonthViewScrollViewer"
-                                                  Grid.Row="1"
-                                                  Margin="2"
-                                                  IsFocusEngagementEnabled="True"
-                                                  Style="{StaticResource ScrollViewerStyle}">
+                                    <ScrollViewer x:Name="MonthViewScrollViewer" Grid.Row="1" Margin="2" IsFocusEngagementEnabled="True" Style="{StaticResource ScrollViewerStyle}">
                                         <CalendarPanel x:Name="MonthViewPanel" />
                                     </ScrollViewer>
                                 </Grid>
-                                <ScrollViewer x:Name="YearViewScrollViewer"
-                                              Margin="2"
-                                              IsFocusEngagementEnabled="True"
-                                              Style="{StaticResource ScrollViewerStyle}"
-                                              UseLayoutRounding="False"
-                                              Visibility="Collapsed">
+                                <ScrollViewer x:Name="YearViewScrollViewer" Margin="2" IsFocusEngagementEnabled="True" Style="{StaticResource ScrollViewerStyle}" UseLayoutRounding="False" Visibility="Collapsed">
                                     <ScrollViewer.RenderTransform>
                                         <ScaleTransform x:Name="YearViewTransform" CenterX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterX}" CenterY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterY}" />
                                     </ScrollViewer.RenderTransform>
                                     <CalendarPanel x:Name="YearViewPanel" />
                                 </ScrollViewer>
-                                <ScrollViewer x:Name="DecadeViewScrollViewer"
-                                              Margin="2"
-                                              IsFocusEngagementEnabled="True"
-                                              Style="{StaticResource ScrollViewerStyle}"
-                                              UseLayoutRounding="False"
-                                              Visibility="Collapsed">
+                                <ScrollViewer x:Name="DecadeViewScrollViewer" Margin="2" IsFocusEngagementEnabled="True" Style="{StaticResource ScrollViewerStyle}" UseLayoutRounding="False" Visibility="Collapsed">
                                     <ScrollViewer.RenderTransform>
                                         <ScaleTransform x:Name="DecadeViewTransform" CenterX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterX}" CenterY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CenterY}" />
                                     </ScrollViewer.RenderTransform>

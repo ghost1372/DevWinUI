@@ -23,17 +23,10 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TgShouldLoop"
-                                      IsOn="True" />
+                        <ToggleSwitch x:Name="TgShouldLoop" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:LoopingSelector x:Name="LoopingSelectorSample"
-                                     Width="150"
-                                     Height="270"
-                                     Padding="0,3,0,6"
-                                     HorizontalContentAlignment="Center"
-                                     ItemHeight="40"
-                                     ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" />
+                <dev:LoopingSelector x:Name="LoopingSelectorSample" Width="150" Height="270" Padding="0,3,0,6" HorizontalContentAlignment="Center" ItemHeight="40" ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

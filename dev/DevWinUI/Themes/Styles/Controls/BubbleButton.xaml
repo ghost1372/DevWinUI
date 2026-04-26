@@ -3,9 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:BubbleButton" BasedOn="{StaticResource DefaultBubbleButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultBubbleButtonStyle}" TargetType="local:BubbleButton" />
 
-    <Style x:Key="DefaultBubbleButtonStyle" TargetType="local:BubbleButton" BasedOn="{StaticResource DefaultButtonStyle}">
+    <Style x:Key="DefaultBubbleButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="local:BubbleButton">
         <Setter Property="BubbleForeground" Value="{ThemeResource ButtonBackground}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -71,26 +71,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <local:BubbleView x:Name="BubbleView"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Foreground="{TemplateBinding BubbleForeground}" />
+                        <local:BubbleView x:Name="BubbleView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="{TemplateBinding BubbleForeground}" />
                         <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" local:VisualAttach.IsBindCenterPoint="True">
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              Padding="{TemplateBinding Padding}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              AnimatedIcon.State="Normal"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              Background="{TemplateBinding Background}"
-                                              BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              CornerRadius="{TemplateBinding CornerRadius}"
-                                              Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AnimatedIcon.State="Normal" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
                                 <ContentPresenter.BackgroundTransition>
                                     <BrushTransition Duration="0:0:0.083" />
                                 </ContentPresenter.BackgroundTransition>

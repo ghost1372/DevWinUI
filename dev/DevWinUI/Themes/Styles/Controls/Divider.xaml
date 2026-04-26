@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Divider" BasedOn="{StaticResource DefaultDividerStyle}" />
+    <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
 
     <Style x:Key="DefaultDividerStyle" TargetType="local:Divider">
         <Setter Property="Margin" Value="0,24" />
@@ -19,42 +19,10 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition x:Name="PART_ColumnEnd" Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Line x:Name="PART_LeftLine"
-                              VerticalAlignment="Center"
-                              Stretch="Fill"
-                              Stroke="{TemplateBinding LineStroke}"
-                              StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}"
-                              StrokeEndLineCap="Square"
-                              StrokeStartLineCap="Square"
-                              StrokeThickness="{TemplateBinding LineStrokeThickness}"
-                              X2="1" />
-                        <ContentPresenter x:Name="PART_Content"
-                                          Grid.Column="1"
-                                          Margin="{TemplateBinding ContentPadding}"
-                                          VerticalAlignment="Center"
-                                          Content="{TemplateBinding Content}"
-                                          Foreground="{TemplateBinding Foreground}" />
-                        <Line x:Name="PART_RightLine"
-                              Grid.Column="2"
-                              VerticalAlignment="Center"
-                              Stretch="Fill"
-                              Stroke="{TemplateBinding LineStroke}"
-                              StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}"
-                              StrokeEndLineCap="Square"
-                              StrokeStartLineCap="Square"
-                              StrokeThickness="{TemplateBinding LineStrokeThickness}"
-                              X2="1" />
-                        <Line x:Name="PART_StretchLine"
-                              Grid.ColumnSpan="3"
-                              HorizontalAlignment="Center"
-                              Stretch="Fill"
-                              Stroke="{TemplateBinding LineStroke}"
-                              StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}"
-                              StrokeEndLineCap="Square"
-                              StrokeStartLineCap="Square"
-                              StrokeThickness="{TemplateBinding LineStrokeThickness}"
-                              Visibility="Collapsed"
-                              Y2="1" />
+                        <Line x:Name="PART_LeftLine" VerticalAlignment="Center" Stretch="Fill" Stroke="{TemplateBinding LineStroke}" StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}" StrokeEndLineCap="Square" StrokeStartLineCap="Square" StrokeThickness="{TemplateBinding LineStrokeThickness}" X2="1" />
+                        <ContentPresenter x:Name="PART_Content" Grid.Column="1" Margin="{TemplateBinding ContentPadding}" VerticalAlignment="Center" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" />
+                        <Line x:Name="PART_RightLine" Grid.Column="2" VerticalAlignment="Center" Stretch="Fill" Stroke="{TemplateBinding LineStroke}" StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}" StrokeEndLineCap="Square" StrokeStartLineCap="Square" StrokeThickness="{TemplateBinding LineStrokeThickness}" X2="1" />
+                        <Line x:Name="PART_StretchLine" Grid.ColumnSpan="3" HorizontalAlignment="Center" Stretch="Fill" Stroke="{TemplateBinding LineStroke}" StrokeDashArray="{Binding LineStrokeDashArray, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource LineDashStrokeArrayConverter}}" StrokeEndLineCap="Square" StrokeStartLineCap="Square" StrokeThickness="{TemplateBinding LineStrokeThickness}" Visibility="Collapsed" Y2="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

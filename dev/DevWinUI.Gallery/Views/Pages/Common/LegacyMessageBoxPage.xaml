@@ -10,17 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="messageBox"
-                                  DocType="Core">
+            <local:ControlExample DocPage="messageBox" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         LegacyMessageBox.Show(window, "Message", "Title", MessageBoxStyle.IconInformation);
                     </x:String>
                 </local:ControlExample.CSharp>
 
-                <Button x:Name="BtnMessageBox"
-                        Click="BtnMessageBox_Click"
-                        Content="Show MessageBox" />
+                <Button x:Name="BtnMessageBox" Click="BtnMessageBox_Click" Content="Show MessageBox" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

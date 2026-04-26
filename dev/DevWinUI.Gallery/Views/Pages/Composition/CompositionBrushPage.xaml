@@ -9,8 +9,7 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="brushes/imageEffectBrush"
-                                  XamlSource="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
+            <local:ControlExample DocPage="brushes/imageEffectBrush" XamlSource="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
                 <Grid>
                     <Grid.Background>
                         <LinearGradientBrush>
@@ -26,10 +25,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" Margin="20,20,10,10" Background="Black">
                         <Grid Padding="10">
-                            <Path HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0"
-                                  Stretch="Uniform">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
                                 <Path.Fill>
                                     <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
                                 </Path.Fill>
@@ -43,8 +39,7 @@
                     </Grid>
                 </Grid>
             </local:ControlExample>
-            <local:ControlExample DocPage="brushes/blurEffectBrush"
-                                  XamlSource="Composition/CompositionBrush/CompositionBrushPage_BlurEffectBrush_xaml.txt">
+            <local:ControlExample DocPage="brushes/blurEffectBrush" XamlSource="Composition/CompositionBrush/CompositionBrushPage_BlurEffectBrush_xaml.txt">
                 <Grid Width="350" HorizontalAlignment="Left">
                     <Grid.Background>
                         <LinearGradientBrush>
@@ -56,14 +51,10 @@
                     </Grid.Background>
                     <Grid Margin="10,10,20,20">
                         <Grid.Background>
-                            <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/Landscape-12.jpg"
-                                        Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/Landscape-12.jpg" Stretch="UniformToFill" />
                         </Grid.Background>
                         <Grid Padding="10">
-                            <Path HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0"
-                                  Stretch="Uniform">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
                                 <Path.Fill>
                                     <dev:BlurEffectBrush FallbackColor="#80C0C0C0" />
                                 </Path.Fill>

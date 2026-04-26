@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ToolbarRadioButton" BasedOn="{StaticResource DefaultToolbarRadioButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultToolbarRadioButtonStyle}" TargetType="local:ToolbarRadioButton" />
 
     <Style x:Key="DefaultToolbarRadioButtonStyle" TargetType="local:ToolbarRadioButton">
         <Setter Property="Template">

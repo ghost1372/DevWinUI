@@ -16,24 +16,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button x:Name="BtnPrev"
-                                MinWidth="150"
-                                Click="BtnPrev_Click"
-                                Content="Previous" />
-                        <Button x:Name="BtnNext"
-                                MinWidth="150"
-                                Click="BtnNext_Click"
-                                Content="Next" />
+                        <Button x:Name="BtnPrev" MinWidth="150" Click="BtnPrev_Click" Content="Previous" />
+                        <Button x:Name="BtnNext" MinWidth="150" Click="BtnNext_Click" Content="Next" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:ProfileControl x:Name="profile"
-                                    Width="320"
-                                    Height="320"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    BorderGap="25"
-                                    Stretch="Uniform"
-                                    Tint="#efefef" />
+                <dev:ProfileControl x:Name="profile" Width="320" Height="320" HorizontalAlignment="Center" VerticalAlignment="Center" BorderGap="25" Stretch="Uniform" Tint="#efefef" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

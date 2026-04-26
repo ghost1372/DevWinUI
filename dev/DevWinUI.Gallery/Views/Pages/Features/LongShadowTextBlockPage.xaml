@@ -22,30 +22,14 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="txt"
-                                 Header="Text"
-                                 PlaceholderText="Text"
-                                 Text="00:10:45" />
-                        <Slider x:Name="slOpacity"
-                                Header="Opacity"
-                                Maximum="1.0"
-                                Minimum="0"
-                                TickFrequency="0.1"
-                                Value="0.3" />
-                        <Slider x:Name="slDepth"
-                                Header="Depth"
-                                Maximum="500"
-                                Minimum="0"
-                                TickFrequency="1"
-                                Value="100" />
+                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="00:10:45" />
+                        <Slider x:Name="slOpacity" Header="Opacity" Maximum="1.0" Minimum="0" TickFrequency="0.1" Value="0.3" />
+                        <Slider x:Name="slDepth" Header="Depth" Maximum="500" Minimum="0" TickFrequency="1" Value="100" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:LongShadowTextBlock Depth="{x:Bind (x:Int32)slDepth.Value, Mode=OneWay}"
-                                         TextOpacity="{x:Bind slOpacity.Value, Mode=OneWay}"
-                                         Color="GreenYellow">
+                <dev:LongShadowTextBlock Depth="{x:Bind (x:Int32)slDepth.Value, Mode=OneWay}" TextOpacity="{x:Bind slOpacity.Value, Mode=OneWay}" Color="GreenYellow">
                     <dev:LongShadowTextBlock.TextBlock>
-                        <TextBlock FontSize="100"
-                                   Text="{x:Bind txt.Text, Mode=OneWay}" />
+                        <TextBlock FontSize="100" Text="{x:Bind txt.Text, Mode=OneWay}" />
                     </dev:LongShadowTextBlock.TextBlock>
                 </dev:LongShadowTextBlock>
             </local:ControlExample>

@@ -3,17 +3,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Accordion" BasedOn="{StaticResource DefaultAccordionStyle}" />
+    <Style BasedOn="{StaticResource DefaultAccordionStyle}" TargetType="local:Accordion" />
 
     <Style x:Key="DefaultAccordionStyle" TargetType="local:Accordion">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Accordion">
                     <Grid>
-                        <local:AccordionPanel HeaderTemplate="{TemplateBinding HeaderTemplate}"
-                                              ItemTemplate="{TemplateBinding ItemTemplate}"
-                                              ItemsSource="{TemplateBinding ItemsSource}"
-                                              SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <local:AccordionPanel HeaderTemplate="{TemplateBinding HeaderTemplate}" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding ItemsSource}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         <Grid.Clip>
                             <RectangleGeometry x:Name="PART_RectangleGeometry" />
                         </Grid.Clip>

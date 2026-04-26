@@ -3,46 +3,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CarouselView" BasedOn="{StaticResource DefaultCarouselViewStyle}" />
+    <Style BasedOn="{StaticResource DefaultCarouselViewStyle}" TargetType="local:CarouselView" />
 
     <Style x:Key="DefaultCarouselViewStyle" TargetType="local:CarouselView">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:CarouselView">
                     <Grid x:Name="PART_RootGrid">
-                        <Rectangle x:Name="PART_IndicatorRect"
-                                   Width="10"
-                                   Height="10"
-                                   VerticalAlignment="Top"
-                                   Fill="#FFEA7474"
-                                   Opacity="0" />
+                        <Rectangle x:Name="PART_IndicatorRect" Width="10" Height="10" VerticalAlignment="Top" Fill="#FFEA7474" Opacity="0" />
                         <Grid x:Name="PART_Canvas" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                            <local:CarouselViewItem x:Name="PART_CarouselViewItem1"
-                                                    Width="{TemplateBinding ItemWidth}"
-                                                    HorizontalAlignment="Left" />
-                            <local:CarouselViewItem x:Name="PART_CarouselViewItem2"
-                                                    Width="{TemplateBinding ItemWidth}"
-                                                    HorizontalAlignment="Left" />
-                            <local:CarouselViewItem x:Name="PART_CarouselViewItem3"
-                                                    Width="{TemplateBinding ItemWidth}"
-                                                    HorizontalAlignment="Left" />
-                            <local:CarouselViewItem x:Name="PART_CarouselViewItem4"
-                                                    Width="{TemplateBinding ItemWidth}"
-                                                    HorizontalAlignment="Left" />
-                            <local:CarouselViewItem x:Name="PART_CarouselViewItem5"
-                                                    Width="{TemplateBinding ItemWidth}"
-                                                    HorizontalAlignment="Left" />
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem1" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem2" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem3" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem4" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
+                            <local:CarouselViewItem x:Name="PART_CarouselViewItem5" Width="{TemplateBinding ItemWidth}" HorizontalAlignment="Left" />
                         </Grid>
-                        <PipsPager x:Name="PART_PipsPager"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Bottom" />
+                        <PipsPager x:Name="PART_PipsPager" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="local:CarouselViewItem" BasedOn="{StaticResource DefaultCarouselViewItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultCarouselViewItemStyle}" TargetType="local:CarouselViewItem" />
 
     <Style x:Key="DefaultCarouselViewItemStyle" TargetType="local:CarouselViewItem">
         <Setter Property="Template">
@@ -74,22 +57,12 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Image Source="{TemplateBinding ImageSource}"
-                               Stretch="UniformToFill" />
-                        <Rectangle x:Name="MaskBlack"
-                                   Fill="Black"
-                                   Opacity="{TemplateBinding BlackMaskOpacity}" />
+                        <Image Source="{TemplateBinding ImageSource}" Stretch="UniformToFill" />
+                        <Rectangle x:Name="MaskBlack" Fill="Black" Opacity="{TemplateBinding BlackMaskOpacity}" />
 
-                        <Rectangle x:Name="Mask"
-                                   Fill="White"
-                                   Opacity="0" />
-                        <Border HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom">
-                            <TextBlock x:Name="TitleTB"
-                                       Margin="12,6,12,15"
-                                       HorizontalAlignment="Center"
-                                       Foreground="White"
-                                       Text="{TemplateBinding Title}" />
+                        <Rectangle x:Name="Mask" Fill="White" Opacity="0" />
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            <TextBlock x:Name="TitleTB" Margin="12,6,12,15" HorizontalAlignment="Center" Foreground="White" Text="{TemplateBinding Title}" />
                         </Border>
                     </Grid>
                 </ControlTemplate>

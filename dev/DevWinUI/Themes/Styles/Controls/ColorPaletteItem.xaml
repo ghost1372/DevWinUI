@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ColorPaletteItem" BasedOn="{StaticResource DefaultColorPaletteItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}" TargetType="local:ColorPaletteItem" />
 
     <Style x:Key="DefaultColorPaletteItemStyle" TargetType="local:ColorPaletteItem">
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -13,8 +13,7 @@
         <Setter Property="Template" Value="{StaticResource ColorPaletteRectangleTemplate}" />
     </Style>
 
-    <ControlTemplate x:Key="ColorPaletteTabViewTemplate"
-                     TargetType="local:ColorPaletteItem">
+    <ControlTemplate x:Key="ColorPaletteTabViewTemplate" TargetType="local:ColorPaletteItem">
         <Grid Padding="{TemplateBinding Padding}" AutomationProperties.Name="{TemplateBinding InternalColorName}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="16" />
@@ -22,65 +21,31 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <!--  Background  -->
-            <Border Grid.RowSpan="2"
-                    Height="66"
-                    Background="{TemplateBinding ColorBrush}"
-                    CornerRadius="4,4,0,0" />
+            <Border Grid.RowSpan="2" Height="66" Background="{TemplateBinding ColorBrush}" CornerRadius="4,4,0,0" />
 
             <!--  Tab Bar  -->
             <StackPanel Orientation="Horizontal">
-                <Border Width="4"
-                        Height="1"
-                        VerticalAlignment="Bottom"
-                        Background="{ThemeResource ControlElevationBorderBrush}" />
-                <Border Width="32"
-                        Height="12"
-                        VerticalAlignment="Bottom"
-                        Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}"
-                        BorderBrush="{ThemeResource ControlElevationBorderBrush}"
-                        BorderThickness="1,1,1,0"
-                        CornerRadius="4,4,0,0" />
-                <Border Width="86"
-                        Height="1"
-                        VerticalAlignment="Bottom"
-                        Background="{ThemeResource ControlElevationBorderBrush}" />
+                <Border Width="4" Height="1" VerticalAlignment="Bottom" Background="{ThemeResource ControlElevationBorderBrush}" />
+                <Border Width="32" Height="12" VerticalAlignment="Bottom" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="4,4,0,0" />
+                <Border Width="86" Height="1" VerticalAlignment="Bottom" Background="{ThemeResource ControlElevationBorderBrush}" />
             </StackPanel>
 
             <!--  File area  -->
-            <Border Grid.Row="1"
-                    Height="50"
-                    VerticalAlignment="Bottom"
-                    Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}"
-                    BorderBrush="{ThemeResource ControlElevationBorderBrush}"
-                    BorderThickness="0,0,0,.5" />
+            <Border Grid.Row="1" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="0,0,0,.5" />
 
-            <TextBlock Grid.Row="2"
-                       Padding="4"
-                       HorizontalAlignment="Center"
-                       Text="{TemplateBinding InternalColorName}"
-                       TextTrimming="CharacterEllipsis"
-                       Visibility="{Binding ShowColorName, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <TextBlock Grid.Row="2" Padding="4" HorizontalAlignment="Center" Text="{TemplateBinding InternalColorName}" TextTrimming="CharacterEllipsis" Visibility="{Binding ShowColorName, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="ColorPaletteCircleTemplate"
-                     TargetType="local:ColorPaletteItem">
+    <ControlTemplate x:Key="ColorPaletteCircleTemplate" TargetType="local:ColorPaletteItem">
         <Border Padding="5">
-            <local:SplitCircle Padding="{TemplateBinding Padding}"
-                               AutomationProperties.Name="{TemplateBinding InternalColorName}"
-                               FirstColor="{TemplateBinding Color}"
-                               SecondColor="{TemplateBinding Color}" />
+            <local:SplitCircle Padding="{TemplateBinding Padding}" AutomationProperties.Name="{TemplateBinding InternalColorName}" FirstColor="{TemplateBinding Color}" SecondColor="{TemplateBinding Color}" />
         </Border>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="ColorPaletteRectangleTemplate"
-                     TargetType="local:ColorPaletteItem">
+    <ControlTemplate x:Key="ColorPaletteRectangleTemplate" TargetType="local:ColorPaletteItem">
         <Border Padding="{TemplateBinding Padding}">
-            <Border AutomationProperties.Name="{TemplateBinding InternalColorName}"
-                    Background="{TemplateBinding ColorBrush}"
-                    BorderBrush="{ThemeResource ControlElevationBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border AutomationProperties.Name="{TemplateBinding InternalColorName}" Background="{TemplateBinding ColorBrush}" BorderBrush="{ThemeResource ControlElevationBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" />
         </Border>
     </ControlTemplate>
 

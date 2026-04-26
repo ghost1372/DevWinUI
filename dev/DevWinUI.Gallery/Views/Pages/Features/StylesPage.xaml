@@ -9,24 +9,20 @@
       xmlns:models="using:DevWinUIGallery.Models"
       mc:Ignorable="d">
     <Page.Resources>
-        <Style TargetType="TabViewItem" BasedOn="{StaticResource TabViewItemRoundedStyle}" />
+        <Style BasedOn="{StaticResource TabViewItemRoundedStyle}" TargetType="TabViewItem" />
     </Page.Resources>
-    <TabView Margin="10"
-             IsAddTabButtonVisible="False">
-        <TabViewItem Header="General"
-                     IsClosable="False">
+    <TabView Margin="10" IsAddTabButtonVisible="False">
+        <TabViewItem Header="General" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-                    <local:ControlExample DocPage="styles/#SelectorBar"
-                                          HeaderText="SelectorBar">
+                    <local:ControlExample DocPage="styles/#SelectorBar" HeaderText="SelectorBar">
                         <local:ControlExample.Xaml>
                             <x:String>
                                 &lt;SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}"/&gt;
                             </x:String>
                         </local:ControlExample.Xaml>
                         <StackPanel Spacing="10">
-                            <InfoBar Title="TokenViewSelectorBarStyle"
-                                     IsClosable="False" />
+                            <InfoBar Title="TokenViewSelectorBarStyle" IsClosable="False" />
                             <SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}">
                                 <SelectorBarItem Text="Recent" />
                                 <SelectorBarItem Text="New" />
@@ -35,31 +31,24 @@
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#ComboBox"
-                                          HeaderText="ComboBox">
+                    <local:ControlExample DocPage="styles/#ComboBox" HeaderText="ComboBox">
                         <local:ControlExample.Xaml>
                             <x:String>
                                 &lt;ComboBox Style="{StaticResource SubtleComboBoxStyle}"/&gt;
                             </x:String>
                         </local:ControlExample.Xaml>
-                        <ComboBox Header="SubtleComboBoxStyle"
-                                  Style="{StaticResource SubtleComboBoxStyle}">
+                        <ComboBox Header="SubtleComboBoxStyle" Style="{StaticResource SubtleComboBoxStyle}">
                             <ComboBoxItem Content="Item 1" />
                             <ComboBoxItem Content="Item 2" />
                             <ComboBoxItem Content="Item 3" />
                         </ComboBox>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#Buttons"
-                                          HeaderText="Buttons"
-                                          XamlSource="Features/Styles/Styles_Button_xaml.txt">
+                    <local:ControlExample DocPage="styles/#Buttons" HeaderText="Buttons" XamlSource="Features/Styles/Styles_Button_xaml.txt">
                         <StackPanel Spacing="10">
-                            <HyperlinkButton Content="HyperlinkButtonStyle"
-                                             Style="{ThemeResource HyperlinkButtonStyle}" />
-                            <Button Content="TextButtonStyle"
-                                    Style="{ThemeResource TextButtonStyle}" />
-                            <DropDownButton Content="AccentDropDownButtonStyle"
-                                            Style="{StaticResource AccentDropDownButtonStyle}">
+                            <HyperlinkButton Content="HyperlinkButtonStyle" Style="{ThemeResource HyperlinkButtonStyle}" />
+                            <Button Content="TextButtonStyle" Style="{ThemeResource TextButtonStyle}" />
+                            <DropDownButton Content="AccentDropDownButtonStyle" Style="{StaticResource AccentDropDownButtonStyle}">
                                 <DropDownButton.Flyout>
                                     <MenuFlyout Placement="Bottom">
                                         <MenuFlyoutItem Text="Send" />
@@ -70,29 +59,20 @@
                             </DropDownButton>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <Button Style="{StaticResource ScrollButtonStyle}">
-                                    <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
-                                              Glyph="&#xedd9;" />
+                                    <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xedd9;" />
                                 </Button>
                                 <Button Style="{StaticResource ScrollButtonStyle}">
-                                    <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
-                                              Glyph="&#xEDDA;" />
+                                    <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xEDDA;" />
                                 </Button>
                             </StackPanel>
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles"
-                                          XamlSource="Features/Styles/Styles_xaml.txt">
+                    <local:ControlExample DocPage="styles" XamlSource="Features/Styles/Styles_xaml.txt">
                         <StackPanel Margin="10" Spacing="10">
-                            <TextBlock Style="{StaticResource OobeSubtitleStyle}"
-                                       Text="OobeSubtitleStyle" />
-                            <TextBlock Style="{StaticResource SecondaryTextStyle}"
-                                       Text="SecondaryTextStyle" />
-                            <InfoBar Title="Title"
-                                     IsClosable="False"
-                                     IsOpen="True"
-                                     Message="&lt;ResourceDictionary Source='ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml' /&gt;"
-                                     Severity="Informational">
+                            <TextBlock Style="{StaticResource OobeSubtitleStyle}" Text="OobeSubtitleStyle" />
+                            <TextBlock Style="{StaticResource SecondaryTextStyle}" Text="SecondaryTextStyle" />
+                            <InfoBar Title="Title" IsClosable="False" IsOpen="True" Message="&lt;ResourceDictionary Source='ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml' /&gt;" Severity="Informational">
                                 <InfoBar.Resources>
                                     <ResourceDictionary Source="ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml" />
                                 </InfoBar.Resources>
@@ -100,133 +80,74 @@
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#InfoBadge"
-                                          HeaderText="StringInfoBadgeStyle">
+                    <local:ControlExample DocPage="styles/#InfoBadge" HeaderText="StringInfoBadgeStyle">
                         <local:ControlExample.Xaml>
                             <x:String>
                                 &lt;InfoBadge Tag="BETA" Style="{StaticResource StringInfoBadgeStyle}"/&gt;
                             </x:String>
                         </local:ControlExample.Xaml>
                         <local:ControlExample.Pane>
-                            <TextBox x:Name="TxtInfoBadge"
-                                     Header="Tag"
-                                     PlaceholderText="BETA, NEW,..."
-                                     Text="BETA" />
+                            <TextBox x:Name="TxtInfoBadge" Header="Tag" PlaceholderText="BETA, NEW,..." Text="BETA" />
                         </local:ControlExample.Pane>
-                        <InfoBadge Margin="4,0,0,0"
-                                   HorizontalAlignment="Center"
-                                   Style="{StaticResource StringInfoBadgeStyle}"
-                                   Tag="{x:Bind TxtInfoBadge.Text, Mode=OneWay}" />
+                        <InfoBadge Margin="4,0,0,0" HorizontalAlignment="Center" Style="{StaticResource StringInfoBadgeStyle}" Tag="{x:Bind TxtInfoBadge.Text, Mode=OneWay}" />
                     </local:ControlExample>
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
 
-        <TabViewItem Header="Panels"
-                     IsClosable="False">
+        <TabViewItem Header="Panels" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-                    <local:ControlExample DocPage="styles/#Border"
-                                          HeaderText="Border"
-                                          XamlSource="Features/Styles/Styles_Border_xaml.txt">
+                    <local:ControlExample DocPage="styles/#Border" HeaderText="Border" XamlSource="Features/Styles/Styles_Border_xaml.txt">
                         <StackPanel Margin="10" Spacing="10">
-                            <Border Height="80"
-                                    Style="{ThemeResource BorderPanel}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="BorderPanel" />
+                            <Border Height="80" Style="{ThemeResource BorderPanel}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="BorderPanel" />
                             </Border>
-                            <Border Height="80"
-                                    Style="{ThemeResource InfoBorderPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="InfoBorderPanelStyle" />
+                            <Border Height="80" Style="{ThemeResource InfoBorderPanelStyle}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="InfoBorderPanelStyle" />
                             </Border>
-                            <Border Height="80"
-                                    Style="{ThemeResource WarningBorderPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="WarningBorderPanelStyle" />
+                            <Border Height="80" Style="{ThemeResource WarningBorderPanelStyle}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="WarningBorderPanelStyle" />
                             </Border>
-                            <Border Height="80"
-                                    Style="{ThemeResource ErrorBorderPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="ErrorBorderPanelStyle" />
+                            <Border Height="80" Style="{ThemeResource ErrorBorderPanelStyle}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="ErrorBorderPanelStyle" />
                             </Border>
-                            <Border Height="80"
-                                    Style="{ThemeResource SuccessBorderPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="SuccessBorderPanelStyle" />
+                            <Border Height="80" Style="{ThemeResource SuccessBorderPanelStyle}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="SuccessBorderPanelStyle" />
                             </Border>
-                            <Border Height="80"
-                                    Style="{ThemeResource TokenStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="TokenStyle" />
+                            <Border Height="80" Style="{ThemeResource TokenStyle}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="TokenStyle" />
                             </Border>
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#Grid"
-                                          HeaderText="Grid"
-                                          XamlSource="Features/Styles/Styles_Grid_xaml.txt">
+                    <local:ControlExample DocPage="styles/#Grid" HeaderText="Grid" XamlSource="Features/Styles/Styles_Grid_xaml.txt">
                         <StackPanel Margin="10" Spacing="10">
                             <Grid Height="80" Style="{ThemeResource GridPanel}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="GridPanel" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GridPanel" />
                             </Grid>
                             <Grid Height="80" Style="{ThemeResource GridCardPanel}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="GridCardPanel" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GridCardPanel" />
                             </Grid>
                             <Grid Height="80" Style="{ThemeResource CardGridStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="CardGridStyle" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGridStyle" />
                             </Grid>
                             <Grid Height="80" Style="{ThemeResource GlassAcrylicGridStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="GlassAcrylicGridStyle" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GlassAcrylicGridStyle" />
                             </Grid>
                             <Grid Height="80" Style="{ThemeResource HeroCardGridStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="HeroCardGridStyle" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="HeroCardGridStyle" />
                             </Grid>
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#StackPanel"
-                                          HeaderText="StackPanel"
-                                          XamlSource="Features/Styles/Styles_StackPanel_xaml.txt">
+                    <local:ControlExample DocPage="styles/#StackPanel" HeaderText="StackPanel" XamlSource="Features/Styles/Styles_StackPanel_xaml.txt">
                         <StackPanel Margin="10" Spacing="10">
                             <StackPanel Height="80" Style="{ThemeResource StackPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="StackPanelStyle" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="StackPanelStyle" />
                             </StackPanel>
                             <StackPanel Height="80" Style="{ThemeResource CardPanelStyle}">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource SubtitleTextBlockStyle}"
-                                           Text="CardPanelStyle" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardPanelStyle" />
                             </StackPanel>
 
                         </StackPanel>
@@ -235,19 +156,16 @@
             </ScrollViewer>
         </TabViewItem>
 
-        <TabViewItem Header="NavigationView"
-                     IsClosable="False">
+        <TabViewItem Header="NavigationView" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-                    <local:ControlExample DocPage="styles/#NavigationView"
-                                          HeaderText="NavigationViewStoreStyle">
+                    <local:ControlExample DocPage="styles/#NavigationView" HeaderText="NavigationViewStoreStyle">
                         <local:ControlExample.Xaml>
                             <x:String>
                                 &lt;NavigationView Style="{StaticResource NavigationViewStoreStyle}"/&gt;
                             </x:String>
                         </local:ControlExample.Xaml>
-                        <NavigationView IsSettingsVisible="True"
-                                        Style="{StaticResource NavigationViewStoreStyle}">
+                        <NavigationView IsSettingsVisible="True" Style="{StaticResource NavigationViewStoreStyle}">
                             <NavigationView.MenuItems>
                                 <NavigationViewItem dev:StoreNavigationViewItemAttach.ShowNotificationDot="True" Content="Home" Icon="Home" />
                                 <NavigationViewItem Content="Calendar" Icon="Calendar" />
@@ -270,8 +188,7 @@
                 </StackPanel>
             </ScrollViewer>
         </TabViewItem>
-        <TabViewItem Header="ListView"
-                     IsClosable="False">
+        <TabViewItem Header="ListView" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
                     <local:ControlExample DocPage="styles/#ListViewItem">
@@ -280,11 +197,9 @@
                                 &lt;Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/&gt;
                             </x:String>
                         </local:ControlExample.Xaml>
-                        <ListView HorizontalAlignment="Stretch"
-                                  ItemsSource="{x:Bind ColorFormats, Mode=TwoWay}"
-                                  SelectionMode="None">
+                        <ListView HorizontalAlignment="Stretch" ItemsSource="{x:Bind ColorFormats, Mode=TwoWay}" SelectionMode="None">
                             <ListView.Resources>
-                                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}" />
+                                <Style BasedOn="{StaticResource ListViewItemSettingStyle}" TargetType="ListViewItem" />
                             </ListView.Resources>
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="models:ColorFormatModel">
@@ -293,35 +208,15 @@
                                             <RowDefinition />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Margin="56,8,0,0"
-                                                   FontSize="16"
-                                                   FontWeight="SemiBold"
-                                                   Text="{x:Bind Name}" />
-                                        <TextBlock Grid.Row="1"
-                                                   Margin="56,0,0,8"
-                                                   Style="{StaticResource SecondaryTextStyle}"
-                                                   Text="{x:Bind Example}" />
-                                        <ToggleSwitch Grid.RowSpan="2"
-                                                      Margin="0,0,56,0"
-                                                      HorizontalAlignment="Right"
-                                                      AutomationProperties.HelpText="{x:Bind Name}"
-                                                      IsOn="{x:Bind IsShown, Mode=TwoWay}"
-                                                      OffContent=""
-                                                      OnContent="" />
+                                        <TextBlock Margin="56,8,0,0" FontSize="16" FontWeight="SemiBold" Text="{x:Bind Name}" />
+                                        <TextBlock Grid.Row="1" Margin="56,0,0,8" Style="{StaticResource SecondaryTextStyle}" Text="{x:Bind Example}" />
+                                        <ToggleSwitch Grid.RowSpan="2" Margin="0,0,56,0" HorizontalAlignment="Right" AutomationProperties.HelpText="{x:Bind Name}" IsOn="{x:Bind IsShown, Mode=TwoWay}" OffContent="" OnContent="" />
 
-                                        <Button Grid.RowSpan="2"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Background="Transparent"
-                                                Content="&#xE10C;"
-                                                FontFamily="{ThemeResource SymbolThemeFontFamily}">
+                                        <Button Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Transparent" Content="&#xE10C;" FontFamily="{ThemeResource SymbolThemeFontFamily}">
                                             <Button.Flyout>
                                                 <MenuFlyout>
-                                                    <MenuFlyoutItem Icon="Up"
-                                                                    IsEnabled="{x:Bind CanMoveUp}"
-                                                                    Text="Move up" />
-                                                    <MenuFlyoutItem IsEnabled="{x:Bind CanMoveDown}"
-                                                                    Text="Move down">
+                                                    <MenuFlyoutItem Icon="Up" IsEnabled="{x:Bind CanMoveUp}" Text="Move up" />
+                                                    <MenuFlyoutItem IsEnabled="{x:Bind CanMoveDown}" Text="Move down">
                                                         <MenuFlyoutItem.Icon>
                                                             <FontIcon Glyph="&#xE1FD;" />
                                                         </MenuFlyoutItem.Icon>

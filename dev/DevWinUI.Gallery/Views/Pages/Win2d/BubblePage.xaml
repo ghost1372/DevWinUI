@@ -10,9 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/bubble"
-                                  DocType="Controls"
-                                  HeaderText="BubbleButton Example 1">
+            <local:ControlExample DocPage="controls/bubble" DocType="Controls" HeaderText="BubbleButton Example 1">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:BubbleButton Content="Button" /&gt;
@@ -21,39 +19,21 @@
                 <dev:BubbleButton Content="Button" />
             </local:ControlExample>
 
-            <local:ControlExample DocPage="controls/bubble"
-                                  DocType="Controls"
-                                  HeaderText="BubbleButton Example 2">
+            <local:ControlExample DocPage="controls/bubble" DocType="Controls" HeaderText="BubbleButton Example 2">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:BubbleButton BubbleForeground="Pink" Content="Button" /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
-                <dev:BubbleButton BubbleForeground="Pink"
-                                  Content="Button" />
+                <dev:BubbleButton BubbleForeground="Pink" Content="Button" />
             </local:ControlExample>
 
-            <local:ControlExample CSharpSource="Win2d/BubblePage_cs.txt"
-                                  DocPage="controls/bubble"
-                                  DocType="Controls"
-                                  HeaderText="BubbleProgressButton"
-                                  XamlSource="Win2d/BubblePage_xaml.txt">
+            <local:ControlExample CSharpSource="Win2d/BubblePage_cs.txt" DocPage="controls/bubble" DocType="Controls" HeaderText="BubbleProgressButton" XamlSource="Win2d/BubblePage_xaml.txt">
 
                 <StackPanel Orientation="Horizontal" Spacing="10">
-                    <dev:BubbleProgressButton x:Name="LikeButton"
-                                              Content="{dev:FontIcon GlyphName=Like}"
-                                              GestureRecognizerHolding="OnGestureRecognizerHolding"
-                                              GestureRecognizerTapped="OnGestureRecognizerTapped" />
-                    <dev:BubbleProgressButton x:Name="CoinButton"
-                                              Content="{dev:FontIcon GlyphName=ButtonA}"
-                                              GestureRecognizerHolding="OnGestureRecognizerHolding"
-                                              GestureRecognizerTapped="OnGestureRecognizerTapped"
-                                              Value="{x:Bind LikeButton.Value, Mode=OneWay}" />
-                    <dev:BubbleProgressButton x:Name="FavoriteButton"
-                                              Content="{dev:FontIcon GlyphName=Favicon}"
-                                              GestureRecognizerHolding="OnGestureRecognizerHolding"
-                                              GestureRecognizerTapped="OnGestureRecognizerTapped"
-                                              Value="{x:Bind LikeButton.Value, Mode=OneWay}" />
+                    <dev:BubbleProgressButton x:Name="LikeButton" Content="{dev:FontIcon GlyphName=Like}" GestureRecognizerHolding="OnGestureRecognizerHolding" GestureRecognizerTapped="OnGestureRecognizerTapped" />
+                    <dev:BubbleProgressButton x:Name="CoinButton" Content="{dev:FontIcon GlyphName=ButtonA}" GestureRecognizerHolding="OnGestureRecognizerHolding" GestureRecognizerTapped="OnGestureRecognizerTapped" Value="{x:Bind LikeButton.Value, Mode=OneWay}" />
+                    <dev:BubbleProgressButton x:Name="FavoriteButton" Content="{dev:FontIcon GlyphName=Favicon}" GestureRecognizerHolding="OnGestureRecognizerHolding" GestureRecognizerTapped="OnGestureRecognizerTapped" Value="{x:Bind LikeButton.Value, Mode=OneWay}" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

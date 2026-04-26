@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="systemTrayIcon"
-                                  DocType="Core">
+            <local:ControlExample DocPage="systemTrayIcon" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         var icon = WindowHelper.GetCurrentIcon(window);#nl#
@@ -24,17 +23,10 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtToolTip"
-                                 Header="ToolTip"
-                                 PlaceholderText="AppName"
-                                 Text="ToolTip"
-                                 TextChanged="TxtToolTip_TextChanged" />
+                        <TextBox x:Name="TxtToolTip" Header="ToolTip" PlaceholderText="AppName" Text="ToolTip" TextChanged="TxtToolTip_TextChanged" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <ToggleSwitch x:Name="TGIsVisible"
-                              Header="IsVisible"
-                              IsOn="True"
-                              Toggled="TGIsVisible_Toggled" />
+                <ToggleSwitch x:Name="TGIsVisible" Header="IsVisible" IsOn="True" Toggled="TGIsVisible_Toggled" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

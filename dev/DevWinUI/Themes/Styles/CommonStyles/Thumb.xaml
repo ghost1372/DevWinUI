@@ -9,11 +9,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Border Margin="-2"
-                            Background="{ThemeResource SliderOuterThumbBackground}"
-                            BorderBrush="{ThemeResource SliderThumbBorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{ThemeResource SliderThumbCornerRadius}">
+                    <Border Margin="-2" Background="{ThemeResource SliderOuterThumbBackground}" BorderBrush="{ThemeResource SliderThumbBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{ThemeResource SliderThumbCornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -66,11 +62,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="SliderInnerThumb"
-                                 Width="{ThemeResource SliderInnerThumbWidth}"
-                                 Height="{ThemeResource SliderInnerThumbHeight}"
-                                 Fill="{TemplateBinding Background}"
-                                 RenderTransformOrigin="0.5, 0.5">
+                        <Ellipse x:Name="SliderInnerThumb" Width="{ThemeResource SliderInnerThumbWidth}" Height="{ThemeResource SliderInnerThumbHeight}" Fill="{TemplateBinding Background}" RenderTransformOrigin="0.5, 0.5">
                             <Ellipse.RenderTransform>
                                 <CompositeTransform />
                             </Ellipse.RenderTransform>

@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/segmentChar"
-                                  HeaderText="SixteenSegmentChar">
+            <local:ControlExample DocPage="controls/segmentChar" HeaderText="SixteenSegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:SixteenSegmentChar Character="D" /&gt;
@@ -19,32 +18,17 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="Txt"
-                                 Header="Single Character"
-                                 Text="D" />
-                        <Slider x:Name="SldAngle"
-                                Header="Angle"
-                                Maximum="360"
-                                Minimum="-360"
-                                Value="0" />
-                        <ToggleSwitch x:Name="TGIsPatternMaker"
-                                      Header="Is Pattern Maker" />
+                        <TextBox x:Name="Txt" Header="Single Character" Text="D" />
+                        <Slider x:Name="SldAngle" Header="Angle" Maximum="360" Minimum="-360" Value="0" />
+                        <ToggleSwitch x:Name="TGIsPatternMaker" Header="Is Pattern Maker" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:SixteenSegmentChar x:Name="SixSeg"
-                                            Angle="{x:Bind SldAngle.Value, Mode=OneWay}"
-                                            Character="{x:Bind Txt.Text, Mode=OneWay}"
-                                            IsPatternMakerEnabled="{x:Bind TGIsPatternMaker.IsOn, Mode=OneWay}"
-                                            PatternChanged="OnSixteenPatternChanged"
-                                            SegmentPointerPressed="OnSixteenPointerPressed" />
-                    <TextBox x:Name="TxtPattern"
-                             Header="Pattern"
-                             IsReadOnly="True" />
+                    <dev:SixteenSegmentChar x:Name="SixSeg" Angle="{x:Bind SldAngle.Value, Mode=OneWay}" Character="{x:Bind Txt.Text, Mode=OneWay}" IsPatternMakerEnabled="{x:Bind TGIsPatternMaker.IsOn, Mode=OneWay}" PatternChanged="OnSixteenPatternChanged" SegmentPointerPressed="OnSixteenPointerPressed" />
+                    <TextBox x:Name="TxtPattern" Header="Pattern" IsReadOnly="True" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/segmentChar"
-                                  HeaderText="FourteenSegmentChar">
+            <local:ControlExample DocPage="controls/segmentChar" HeaderText="FourteenSegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:FourteenSegmentChar Character="D" /&gt;
@@ -52,33 +36,18 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="Txt2"
-                                 Header="Single Character"
-                                 Text="D" />
-                        <Slider x:Name="SldAngle2"
-                                Header="Angle"
-                                Maximum="360"
-                                Minimum="-360"
-                                Value="0" />
-                        <ToggleSwitch x:Name="TGIsPatternMaker2"
-                                      Header="Is Pattern Maker" />
+                        <TextBox x:Name="Txt2" Header="Single Character" Text="D" />
+                        <Slider x:Name="SldAngle2" Header="Angle" Maximum="360" Minimum="-360" Value="0" />
+                        <ToggleSwitch x:Name="TGIsPatternMaker2" Header="Is Pattern Maker" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:FourteenSegmentChar x:Name="FourSeg"
-                                             Angle="{x:Bind SldAngle2.Value, Mode=OneWay}"
-                                             Character="{x:Bind Txt2.Text, Mode=OneWay}"
-                                             IsPatternMakerEnabled="{x:Bind TGIsPatternMaker2.IsOn, Mode=OneWay}"
-                                             PatternChanged="OnFourteenPatternChanged"
-                                             SegmentPointerPressed="OnFourteenPointerPressed" />
-                    <TextBox x:Name="TxtPattern2"
-                             Header="Pattern"
-                             IsReadOnly="True" />
+                    <dev:FourteenSegmentChar x:Name="FourSeg" Angle="{x:Bind SldAngle2.Value, Mode=OneWay}" Character="{x:Bind Txt2.Text, Mode=OneWay}" IsPatternMakerEnabled="{x:Bind TGIsPatternMaker2.IsOn, Mode=OneWay}" PatternChanged="OnFourteenPatternChanged" SegmentPointerPressed="OnFourteenPointerPressed" />
+                    <TextBox x:Name="TxtPattern2" Header="Pattern" IsReadOnly="True" />
                 </StackPanel>
 
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/segmentChar"
-                                  HeaderText="Matrix8x14SegmentChar">
+            <local:ControlExample DocPage="controls/segmentChar" HeaderText="Matrix8x14SegmentChar">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:Matrix8x14SegmentChar Character="D" /&gt;
@@ -86,31 +55,15 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="Txt3"
-                                 Header="Single Character"
-                                 Text="D" />
-                        <Slider x:Name="SldAngle3"
-                                Header="Angle"
-                                Maximum="360"
-                                Minimum="-360"
-                                Value="0" />
-                        <ToggleSwitch x:Name="TGMatrixSquare"
-                                      Header="IsMatrixSquare" />
-                        <ToggleSwitch x:Name="TGIsPatternMaker3"
-                                      Header="Is Pattern Maker" />
+                        <TextBox x:Name="Txt3" Header="Single Character" Text="D" />
+                        <Slider x:Name="SldAngle3" Header="Angle" Maximum="360" Minimum="-360" Value="0" />
+                        <ToggleSwitch x:Name="TGMatrixSquare" Header="IsMatrixSquare" />
+                        <ToggleSwitch x:Name="TGIsPatternMaker3" Header="Is Pattern Maker" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <dev:Matrix8x14SegmentChar x:Name="MatrixSeg"
-                                               Angle="{x:Bind SldAngle3.Value, Mode=OneWay}"
-                                               Character="{x:Bind Txt3.Text, Mode=OneWay}"
-                                               IsMatrixSquare="{x:Bind TGMatrixSquare.IsOn, Mode=OneWay}"
-                                               IsPatternMakerEnabled="{x:Bind TGIsPatternMaker3.IsOn, Mode=OneWay}"
-                                               PatternChanged="OnMatrixPatternChanged"
-                                               SegmentPointerPressed="OnMatrixPointerPressed" />
-                    <TextBox x:Name="TxtPattern3"
-                             Header="Pattern"
-                             IsReadOnly="True" />
+                    <dev:Matrix8x14SegmentChar x:Name="MatrixSeg" Angle="{x:Bind SldAngle3.Value, Mode=OneWay}" Character="{x:Bind Txt3.Text, Mode=OneWay}" IsMatrixSquare="{x:Bind TGMatrixSquare.IsOn, Mode=OneWay}" IsPatternMakerEnabled="{x:Bind TGIsPatternMaker3.IsOn, Mode=OneWay}" PatternChanged="OnMatrixPatternChanged" SegmentPointerPressed="OnMatrixPointerPressed" />
+                    <TextBox x:Name="TxtPattern3" Header="Pattern" IsReadOnly="True" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

@@ -5,21 +5,21 @@
     <x:Double x:Key="LandingItemSubtitleFontSize">12</x:Double>
     <x:Double x:Key="Breakpoint640Plus">641</x:Double>
 
-    <Style x:Key="IndentedGridViewItemStyleSmall" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+    <Style x:Key="IndentedGridViewItemStyleSmall" BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
         <Setter Property="Margin" Value="12,0,12,12" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="IndentedGridViewItemStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+    <Style x:Key="IndentedGridViewItemStyle" BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
         <Setter Property="Margin" Value="12,0,0,12" />
     </Style>
 
-    <Style x:Key="GridViewItemStyleSmall" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+    <Style x:Key="GridViewItemStyleSmall" BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
         <Setter Property="Margin" Value="0,0,0,12" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="GridViewItemStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+    <Style x:Key="GridViewItemStyle" BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
         <Setter Property="Margin" Value="0,0,12,12" />
     </Style>
 </ResourceDictionary>

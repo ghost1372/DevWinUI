@@ -11,36 +11,23 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/ContentSlider/ContentSliderPage_cs.txt"
-                                  DocPage="controls/contentSlider"
-                                  HeaderText="ContentSlider|Image"
-                                  XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
-                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
-                                   ViewportWidth="500">
+            <local:ControlExample CSharpSource="Composition/ContentSlider/ContentSliderPage_cs.txt" DocPage="controls/contentSlider" HeaderText="ContentSlider|Image" XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
+                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" ViewportWidth="500">
                     <dev:ContentSlider.ItemTemplate>
                         <DataTemplate x:DataType="models:SampleItemModel">
                             <Grid>
-                                <Image Width="400"
-                                       Height="300"
-                                       Source="{x:Bind ImagePath}" />
+                                <Image Width="400" Height="300" Source="{x:Bind ImagePath}" />
                             </Grid>
                         </DataTemplate>
                     </dev:ContentSlider.ItemTemplate>
                 </dev:ContentSlider>
             </local:ControlExample>
-            <local:ControlExample CSharpSource="Composition/ContentSlider/ContentSliderPage_cs.txt"
-                                  DocPage="controls/contentSlider"
-                                  HeaderText="ContentSlider|Text"
-                                  XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
-                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
-                                   ViewportWidth="500">
+            <local:ControlExample CSharpSource="Composition/ContentSlider/ContentSliderPage_cs.txt" DocPage="controls/contentSlider" HeaderText="ContentSlider|Text" XamlSource="Composition/ContentSlider/ContentSliderPage_xaml.txt">
+                <dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" ViewportWidth="500">
                     <dev:ContentSlider.ItemTemplate>
                         <DataTemplate x:DataType="models:SampleItemModel">
                             <Grid>
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Style="{ThemeResource TitleTextBlockStyle}"
-                                           Text="{x:Bind Title}" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Title}" />
                             </Grid>
                         </DataTemplate>
                     </dev:ContentSlider.ItemTemplate>

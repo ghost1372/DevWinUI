@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ToolbarSplitButton" BasedOn="{StaticResource DefaultToolbarSplitButtonStyle}" />
+    <Style BasedOn="{StaticResource DefaultToolbarSplitButtonStyle}" TargetType="local:ToolbarSplitButton" />
 
     <Style x:Key="DefaultToolbarSplitButtonStyle" TargetType="local:ToolbarSplitButton">
         <Setter Property="Template">

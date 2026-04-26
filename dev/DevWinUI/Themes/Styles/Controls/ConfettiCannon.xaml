@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:ConfettiCannon" BasedOn="{StaticResource DefaultConfettiCannonStyle}" />
+    <Style BasedOn="{StaticResource DefaultConfettiCannonStyle}" TargetType="local:ConfettiCannon" />
 
     <Style x:Key="DefaultConfettiCannonStyle" TargetType="local:ConfettiCannon">
         <Setter Property="ClearColor" Value="Transparent" />
@@ -13,8 +13,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ConfettiCannon">
-                    <win2d:CanvasAnimatedControl x:Name="PART_CanvasAnimated"
-                                                 IsHitTestVisible="{TemplateBinding IsHitTestVisible}" />
+                    <win2d:CanvasAnimatedControl x:Name="PART_CanvasAnimated" IsHitTestVisible="{TemplateBinding IsHitTestVisible}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

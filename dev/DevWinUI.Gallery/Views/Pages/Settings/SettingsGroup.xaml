@@ -9,49 +9,28 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/settingsGroup"
-                                  HeaderText="Example 1"
-                                  XamlSource="Features/Settings/SettingsGroup_Part1_xaml.txt">
-                <dev:SettingsGroup Description="Recent and commonly used settings"
-                                   Header="Recommended settings">
+            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 1" XamlSource="Features/Settings/SettingsGroup_Part1_xaml.txt">
+                <dev:SettingsGroup Description="Recent and commonly used settings" Header="Recommended settings">
                     <dev:SettingsGroup.Items>
-                        <dev:SettingsCard Header="Installed apps"
-                                          HeaderIcon="{dev:SymbolIcon Symbol=AllApps}"
-                                          IsClickEnabled="True" />
-                        <dev:SettingsCard Header="Taskbar"
-                                          HeaderIcon="{dev:SymbolIcon Symbol=More}"
-                                          IsClickEnabled="True" />
-                        <dev:SettingsCard Header="Display"
-                                          HeaderIcon="{dev:SymbolIcon Symbol=Mail}"
-                                          IsClickEnabled="True" />
+                        <dev:SettingsCard Header="Installed apps" HeaderIcon="{dev:SymbolIcon Symbol=AllApps}" IsClickEnabled="True" />
+                        <dev:SettingsCard Header="Taskbar" HeaderIcon="{dev:SymbolIcon Symbol=More}" IsClickEnabled="True" />
+                        <dev:SettingsCard Header="Display" HeaderIcon="{dev:SymbolIcon Symbol=Mail}" IsClickEnabled="True" />
                     </dev:SettingsGroup.Items>
                 </dev:SettingsGroup>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsGroup"
-                                  HeaderText="Example 2"
-                                  XamlSource="Features/Settings/SettingsGroup_Part2_xaml.txt">
-                <dev:SettingsGroup Description="Make sure OneDrive is installed on your PC so you can see your storage details here"
-                                   Header="Cloud storage"
-                                   HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/OneDrive.png}">
+            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 2" XamlSource="Features/Settings/SettingsGroup_Part2_xaml.txt">
+                <dev:SettingsGroup Description="Make sure OneDrive is installed on your PC so you can see your storage details here" Header="Cloud storage" HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/OneDrive.png}">
                     <dev:SettingsGroup.Content>
                         <Button Content="Install OneDrive" />
                     </dev:SettingsGroup.Content>
                 </dev:SettingsGroup>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsGroup"
-                                  HeaderText="Example 3"
-                                  XamlSource="Features/Settings/SettingsGroup_Part3_xaml.txt">
-                <dev:SettingsGroup Description="Manage, add, and remove devices"
-                                   Header="Bluetooth devices">
+            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 3" XamlSource="Features/Settings/SettingsGroup_Part3_xaml.txt">
+                <dev:SettingsGroup Description="Manage, add, and remove devices" Header="Bluetooth devices">
                     <dev:SettingsGroup.Items>
-                        <dev:SettingsCard Description="Discoverable as 'DESKTOP-NJVNLK0'"
-                                          Header="Bluetooth"
-                                          HeaderIcon="{dev:SymbolIcon Symbol=DisconnectDrive}" />
-                        <dev:SettingsCard Description="Not connected"
-                                          Header="KA"
-                                          HeaderIcon="{dev:SymbolIcon Symbol=Mute}" />
-                        <dev:SettingsCard Header="View all devices"
-                                          IsClickEnabled="True" />
+                        <dev:SettingsCard Description="Discoverable as 'DESKTOP-NJVNLK0'" Header="Bluetooth" HeaderIcon="{dev:SymbolIcon Symbol=DisconnectDrive}" />
+                        <dev:SettingsCard Description="Not connected" Header="KA" HeaderIcon="{dev:SymbolIcon Symbol=Mute}" />
+                        <dev:SettingsCard Header="View all devices" IsClickEnabled="True" />
                     </dev:SettingsGroup.Items>
                 </dev:SettingsGroup>
             </local:ControlExample>

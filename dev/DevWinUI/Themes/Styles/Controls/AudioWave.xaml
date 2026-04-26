@@ -4,7 +4,7 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:wind2="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:AudioWave" BasedOn="{StaticResource DefaultAudioWaveStyle}" />
+    <Style BasedOn="{StaticResource DefaultAudioWaveStyle}" TargetType="local:AudioWave" />
 
     <Style x:Key="DefaultAudioWaveStyle" TargetType="local:AudioWave">
         <Setter Property="Height" Value="100" />
@@ -13,9 +13,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AudioWave">
-                    <wind2:CanvasAnimatedControl x:Name="PART_Canvas"
-                                                 HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                                 VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                    <wind2:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

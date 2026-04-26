@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/flipBlock"
-                                  HeaderText="FlipBlock">
+            <local:ControlExample DocPage="controls/flipBlock" HeaderText="FlipBlock">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:FlipBlock Value="1" /&gt;
@@ -19,18 +18,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue"
-                                   Header="Value"
-                                   Minimum="0"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="1" />
+                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="10">
-                    <InfoBar Title="Change Value to see Flip Effect"
-                             IsClosable="False"
-                             IsOpen="True"
-                             Severity="Warning" />
+                    <InfoBar Title="Change Value to see Flip Effect" IsClosable="False" IsOpen="True" Severity="Warning" />
                     <dev:FlipBlock Value="{x:Bind NbValue.Value, Mode=OneWay}" />
                 </StackPanel>
             </local:ControlExample>

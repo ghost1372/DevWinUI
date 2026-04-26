@@ -16,74 +16,23 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGIsBlurEnabled"
-                                      Header="IsBlurEnabled"
-                                      IsOn="True" />
-                        <Slider x:Name="TGSlider"
-                                Header="Blur Amount"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="2" />
-                        <ComboBox x:Name="CmbBlurSourceType"
-                                  Header="Blur Source Type"
-                                  ItemsSource="{x:Bind BlurSourceTypeItems, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbBlurSourceType_SelectionChanged" />
-                        <ComboBox x:Name="CmbEffectBorderMode"
-                                  Header="Effect Border Mode"
-                                  ItemsSource="{x:Bind EffectBorderModeItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbEffectBorderMode_SelectionChanged" />
-                        <ComboBox x:Name="CmbEffectOptimization"
-                                  Header="Effect Optimization"
-                                  ItemsSource="{x:Bind EffectOptimizationItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbEffectOptimization_SelectionChanged" />
-                        <ComboBox x:Name="CmbBlendEffectMode"
-                                  Header="Blend Effect Mode"
-                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
-                                  SelectedIndex="0"
-                                  SelectionChanged="CmbBlendEffectMode_SelectionChanged" />
-                        <ComboBox x:Name="CmbNoiseBlendMode"
-                                  Header="Noise Blend Effect Mode"
-                                  ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}"
-                                  SelectedIndex="1"
-                                  SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
-                        <ToggleSwitch x:Name="TGUseNoise"
-                                      Header="Use Noise"
-                                      IsOn="False" />
-                        <TextBox x:Name="TxtNoiseUri"
-                                 Header="Noise Uri"
-                                 IsReadOnly="True"
-                                 Text="ms-appx:///Assets/Noise/Noise.jpg" />
-                        <ColorPicker x:Name="CpTintColor"
-                                     IsAlphaSliderVisible="False"
-                                     IsAlphaTextInputVisible="False"
-                                     IsColorChannelTextInputVisible="False"
-                                     IsColorPreviewVisible="False"
-                                     IsColorSliderVisible="False"
-                                     IsHexInputVisible="False"
-                                     IsMoreButtonVisible="False"
-                                     Color="Transparent" />
+                        <ToggleSwitch x:Name="TGIsBlurEnabled" Header="IsBlurEnabled" IsOn="True" />
+                        <Slider x:Name="TGSlider" Header="Blur Amount" Maximum="100" Minimum="0" Value="2" />
+                        <ComboBox x:Name="CmbBlurSourceType" Header="Blur Source Type" ItemsSource="{x:Bind BlurSourceTypeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="CmbBlurSourceType_SelectionChanged" />
+                        <ComboBox x:Name="CmbEffectBorderMode" Header="Effect Border Mode" ItemsSource="{x:Bind EffectBorderModeItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbEffectBorderMode_SelectionChanged" />
+                        <ComboBox x:Name="CmbEffectOptimization" Header="Effect Optimization" ItemsSource="{x:Bind EffectOptimizationItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbEffectOptimization_SelectionChanged" />
+                        <ComboBox x:Name="CmbBlendEffectMode" Header="Blend Effect Mode" ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="CmbBlendEffectMode_SelectionChanged" />
+                        <ComboBox x:Name="CmbNoiseBlendMode" Header="Noise Blend Effect Mode" ItemsSource="{x:Bind BlendEffectModeItems, Mode=OneWay}" SelectedIndex="1" SelectionChanged="CmbNoiseBlendMode_SelectionChanged" />
+                        <ToggleSwitch x:Name="TGUseNoise" Header="Use Noise" IsOn="False" />
+                        <TextBox x:Name="TxtNoiseUri" Header="Noise Uri" IsReadOnly="True" Text="ms-appx:///Assets/Noise/Noise.jpg" />
+                        <ColorPicker x:Name="CpTintColor" IsAlphaSliderVisible="False" IsAlphaTextInputVisible="False" IsColorChannelTextInputVisible="False" IsColorPreviewVisible="False" IsColorSliderVisible="False" IsHexInputVisible="False" IsMoreButtonVisible="False" Color="Transparent" />
                     </StackPanel>
                 </local:ControlExample.Pane>
 
                 <Grid VerticalAlignment="Top">
-                    <dev:CompositionImage x:Name="BackdropImage"
-                                          Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
-                    <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="72"
-                               Foreground="Black"
-                               Text="DevWinUI"
-                               TextWrapping="Wrap" />
-                    <dev:BlurEffectControl x:Name="BlurEffectControlSample"
-                                           BlurAmount="{x:Bind TGSlider.Value, Mode=OneWay}"
-                                           IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}"
-                                           IsTintEnabled="True"
-                                           NoiseUri="{x:Bind TxtNoiseUri.Text, Mode=OneWay}"
-                                           TintColor="{x:Bind CpTintColor.Color, Mode=OneWay}"
-                                           UseNoise="{x:Bind TGUseNoise.IsOn, Mode=OneWay}" />
+                    <dev:CompositionImage x:Name="BackdropImage" Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="Black" Text="DevWinUI" TextWrapping="Wrap" />
+                    <dev:BlurEffectControl x:Name="BlurEffectControlSample" BlurAmount="{x:Bind TGSlider.Value, Mode=OneWay}" IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}" IsTintEnabled="True" NoiseUri="{x:Bind TxtNoiseUri.Text, Mode=OneWay}" TintColor="{x:Bind CpTintColor.Color, Mode=OneWay}" UseNoise="{x:Bind TGUseNoise.IsOn, Mode=OneWay}" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>

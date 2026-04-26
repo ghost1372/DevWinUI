@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Magnifier" BasedOn="{StaticResource DefaultMagnifierStyle}" />
+    <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
 
     <Style x:Key="DefaultMagnifierStyle" TargetType="local:Magnifier">
         <Setter Property="Width" Value="180" />
@@ -15,13 +15,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Magnifier">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-                        <Border x:Name="PART_MagnifierHost"
-                                Background="Transparent" />
+                        <Border x:Name="PART_MagnifierHost" Background="Transparent" />
 
-                        <Border Background="Transparent"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Border Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

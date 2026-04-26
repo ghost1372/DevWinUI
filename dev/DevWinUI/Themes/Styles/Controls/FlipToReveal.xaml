@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:FlipToReveal" BasedOn="{StaticResource DefaultFlipToRevealStyle}" />
+    <Style BasedOn="{StaticResource DefaultFlipToRevealStyle}" TargetType="local:FlipToReveal" />
 
     <Style x:Key="DefaultFlipToRevealStyle" TargetType="local:FlipToReveal">
         <Setter Property="Template">

@@ -21,16 +21,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentDialogView">
-                    <Border x:Name="BackgroundElement"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="InnerBorderEdge"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            FlowDirection="{TemplateBinding FlowDirection}"
-                            RequestedTheme="{TemplateBinding RequestedTheme}"
-                            TabFocusNavigation="Cycle">
+                    <Border x:Name="BackgroundElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BackgroundSizing="InnerBorderEdge" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" FlowDirection="{TemplateBinding FlowDirection}" RequestedTheme="{TemplateBinding RequestedTheme}" TabFocusNavigation="Cycle">
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ButtonsVisibilityStates">
@@ -125,98 +116,30 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <Border x:Name="TitleArea"
-                                        Grid.Row="0"
-                                        Padding="{ThemeResource ContentDialogViewTitlePadding}"
-                                        HorizontalAlignment="Stretch"
-                                        x:FieldModifier="private">
-                                    <ContentControl x:Name="Title"
-                                                    Margin="{ThemeResource ContentDialogTitleMargin}"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    Content="{TemplateBinding Header}"
-                                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                                    FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                                    FontSize="20"
-                                                    FontWeight="SemiBold"
-                                                    Foreground="{TemplateBinding Foreground}"
-                                                    IsTabStop="True">
+                                <Border x:Name="TitleArea" Grid.Row="0" Padding="{ThemeResource ContentDialogViewTitlePadding}" HorizontalAlignment="Stretch" x:FieldModifier="private">
+                                    <ContentControl x:Name="Title" Margin="{ThemeResource ContentDialogTitleMargin}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="20" FontWeight="SemiBold" Foreground="{TemplateBinding Foreground}" IsTabStop="True">
                                         <ContentControl.Template>
                                             <ControlTemplate TargetType="ContentControl">
-                                                <ContentPresenter Margin="{TemplateBinding Padding}"
-                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                  Content="{TemplateBinding Content}"
-                                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                                  MaxLines="2"
-                                                                  TextWrapping="Wrap" />
+                                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" MaxLines="2" TextWrapping="Wrap" />
                                             </ControlTemplate>
                                         </ContentControl.Template>
                                     </ContentControl>
                                 </Border>
-                                <ScrollViewer x:Name="ContentScrollViewer"
-                                              Grid.Row="1"
-                                              HorizontalScrollBarVisibility="Disabled"
-                                              IsTabStop="False"
-                                              VerticalScrollBarVisibility="Auto"
-                                              ZoomMode="Disabled">
-                                    <ContentPresenter x:Name="ContentArea"
-                                                      Padding="{ThemeResource ContentDialogViewContentPadding}"
-                                                      Content="{TemplateBinding Content}"
-                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                      FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                                      FontSize="{ThemeResource ControlContentThemeFontSize}"
-                                                      Foreground="{TemplateBinding Foreground}"
-                                                      TextWrapping="Wrap" />
+                                <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" IsTabStop="False" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                                    <ContentPresenter x:Name="ContentArea" Padding="{ThemeResource ContentDialogViewContentPadding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource ControlContentThemeFontSize}" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" />
                                 </ScrollViewer>
                             </Grid>
 
-                            <Border x:Name="CommandSpace"
-                                    Grid.Row="1"
-                                    Padding="{ThemeResource ContentDialogPadding}"
-                                    Background="{ThemeResource ContentDialogViewCommandSpaceBackgroundBrush}">
-                                <local:UniformStackPanel HorizontalAlignment="Stretch"
-                                                         VerticalAlignment="Bottom"
-                                                         Orientation="{TemplateBinding ButtonOrientation}"
-                                                         Spacing="{ThemeResource ContentDialogViewButtonSpacing}"
-                                                         XYFocusKeyboardNavigation="Enabled">
-                                    <ContentControl x:Name="CommandSpacePlaceholder"
-                                                    Visibility="Collapsed">
+                            <Border x:Name="CommandSpace" Grid.Row="1" Padding="{ThemeResource ContentDialogPadding}" Background="{ThemeResource ContentDialogViewCommandSpaceBackgroundBrush}">
+                                <local:UniformStackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Orientation="{TemplateBinding ButtonOrientation}" Spacing="{ThemeResource ContentDialogViewButtonSpacing}" XYFocusKeyboardNavigation="Enabled">
+                                    <ContentControl x:Name="CommandSpacePlaceholder" Visibility="Collapsed">
                                         <ContentControl.Template>
                                             <ControlTemplate TargetType="ContentControl" />
                                         </ContentControl.Template>
                                     </ContentControl>
-                                    <Button x:Name="PrimaryButton"
-                                            HorizontalAlignment="Stretch"
-                                            AccessKey="{TemplateBinding PrimaryButtonAccessKey}"
-                                            Command="{TemplateBinding PrimaryButtonCommand}"
-                                            Content="{TemplateBinding PrimaryButtonContent}"
-                                            ContentTemplate="{TemplateBinding PrimaryButtonTemplate}"
-                                            ElementSoundMode="FocusOnly"
-                                            IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
-                                            IsTabStop="True"
-                                            Style="{TemplateBinding PrimaryButtonStyle}" />
-                                    <Button x:Name="SecondaryButton"
-                                            HorizontalAlignment="Stretch"
-                                            AccessKey="{TemplateBinding SecondaryButtonAccessKey}"
-                                            Command="{TemplateBinding SecondaryButtonCommand}"
-                                            Content="{TemplateBinding SecondaryButtonContent}"
-                                            ContentTemplate="{TemplateBinding SecondaryButtonTemplate}"
-                                            ElementSoundMode="FocusOnly"
-                                            IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
-                                            IsTabStop="True"
-                                            Style="{TemplateBinding SecondaryButtonStyle}" />
-                                    <Button x:Name="CloseButton"
-                                            Grid.Column="4"
-                                            HorizontalAlignment="Stretch"
-                                            AccessKey="{TemplateBinding CloseButtonAccessKey}"
-                                            Command="{TemplateBinding CloseButtonCommand}"
-                                            Content="{TemplateBinding CloseButtonContent}"
-                                            ContentTemplate="{TemplateBinding CloseButtonTemplate}"
-                                            ElementSoundMode="FocusOnly"
-                                            IsTabStop="True"
-                                            Style="{TemplateBinding CloseButtonStyle}">
+                                    <Button x:Name="PrimaryButton" HorizontalAlignment="Stretch" AccessKey="{TemplateBinding PrimaryButtonAccessKey}" Command="{TemplateBinding PrimaryButtonCommand}" Content="{TemplateBinding PrimaryButtonContent}" ContentTemplate="{TemplateBinding PrimaryButtonTemplate}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding PrimaryButtonStyle}" />
+                                    <Button x:Name="SecondaryButton" HorizontalAlignment="Stretch" AccessKey="{TemplateBinding SecondaryButtonAccessKey}" Command="{TemplateBinding SecondaryButtonCommand}" Content="{TemplateBinding SecondaryButtonContent}" ContentTemplate="{TemplateBinding SecondaryButtonTemplate}" ElementSoundMode="FocusOnly" IsEnabled="{TemplateBinding IsSecondaryButtonEnabled}" IsTabStop="True" Style="{TemplateBinding SecondaryButtonStyle}" />
+                                    <Button x:Name="CloseButton" Grid.Column="4" HorizontalAlignment="Stretch" AccessKey="{TemplateBinding CloseButtonAccessKey}" Command="{TemplateBinding CloseButtonCommand}" Content="{TemplateBinding CloseButtonContent}" ContentTemplate="{TemplateBinding CloseButtonTemplate}" ElementSoundMode="FocusOnly" IsTabStop="True" Style="{TemplateBinding CloseButtonStyle}">
                                         <Button.KeyboardAccelerators>
                                             <KeyboardAccelerator Key="Escape" />
                                         </Button.KeyboardAccelerators>

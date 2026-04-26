@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/splitCircle"
-                                  HeaderText="SplitCircle">
+            <local:ControlExample DocPage="controls/splitCircle" HeaderText="SplitCircle">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:SplitCircle FirstColor="Red" SecondColor="Green" /&gt;
@@ -19,13 +18,8 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGShowMica"
-                                      Header="Show Mica Layer"
-                                      IsOn="True" />
-                        <ComboBox x:Name="CmbSplitOrientation"
-                                  Header="Split Orientation"
-                                  ItemsSource="{x:Bind OrientationItems, Mode=OneWay}"
-                                  SelectedIndex="1">
+                        <ToggleSwitch x:Name="TGShowMica" Header="Show Mica Layer" IsOn="True" />
+                        <ComboBox x:Name="CmbSplitOrientation" Header="Split Orientation" ItemsSource="{x:Bind OrientationItems, Mode=OneWay}" SelectedIndex="1">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="Orientation">
                                     <TextBlock Text="{x:Bind}" />
@@ -36,14 +30,10 @@
                 </local:ControlExample.Pane>
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <Viewbox Stretch="Uniform">
-                        <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}"
-                                         SecondColor="{ThemeResource SystemFillColorCaution}"
-                                         ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}"
-                                         SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
+                        <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}" SecondColor="{ThemeResource SystemFillColorCaution}" ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
                     </Viewbox>
                     <Viewbox>
-                        <dev:SplitCircle ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}"
-                                         SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
+                        <dev:SplitCircle ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.SelectedItem), Mode=OneWay}" />
                     </Viewbox>
                 </StackPanel>
             </local:ControlExample>

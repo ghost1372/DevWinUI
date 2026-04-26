@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/audioWave"
-                                  HeaderText="AudioWave">
+            <local:ControlExample DocPage="controls/audioWave" HeaderText="AudioWave">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:AudioWave x:Name="AudioWaveSample" /&gt;
@@ -24,34 +23,17 @@
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button x:Name="BtnFake"
-                                Width="200"
-                                Click="BtnFake_Click"
-                                Content="Generate Fake Data" />
-                        <Button x:Name="BtnFake2"
-                                Width="200"
-                                Click="BtnFake2_Click"
-                                Content="Generate Fake Data2" />
+                        <Button x:Name="BtnFake" Width="200" Click="BtnFake_Click" Content="Generate Fake Data" />
+                        <Button x:Name="BtnFake2" Width="200" Click="BtnFake2_Click" Content="Generate Fake Data2" />
                         <StackPanel Orientation="Horizontal" Spacing="5">
-                            <Button x:Name="BtnStart"
-                                    Click="BtnStart_Click"
-                                    Content="Start" />
-                            <Button x:Name="BtnPause"
-                                    Click="BtnPause_Click"
-                                    Content="Pause" />
-                            <Button x:Name="BtnStop"
-                                    Click="BtnStop_Click"
-                                    Content="Stop" />
+                            <Button x:Name="BtnStart" Click="BtnStart_Click" Content="Start" />
+                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
+                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
                         </StackPanel>
-                        <Slider x:Name="SldProgress"
-                                Maximum="100"
-                                Minimum="0" />
+                        <Slider x:Name="SldProgress" Maximum="100" Minimum="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:AudioWave x:Name="AudioWaveSample"
-                               Height="100"
-                               CanSelectedByMouse="True"
-                               Progress="{x:Bind (x:Int32)SldProgress.Value, Mode=OneWay}" />
+                <dev:AudioWave x:Name="AudioWaveSample" Height="100" CanSelectedByMouse="True" Progress="{x:Bind (x:Int32)SldProgress.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

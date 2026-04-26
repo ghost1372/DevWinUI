@@ -10,13 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/tileControl"
-                                  HeaderText="TileControl">
+            <local:ControlExample DocPage="controls/tileControl" HeaderText="TileControl">
                 <local:ControlExample.Xaml>
                     &lt;dev:TileControl ImageSource="ms-appx:///Assets/Icon.png" /&gt;
                 </local:ControlExample.Xaml>
-                <dev:TileControl Height="400"
-                                 ImageSource="ms-appx:///Assets/cloud.png" />
+                <dev:TileControl Height="400" ImageSource="ms-appx:///Assets/cloud.png" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:HeaderCarouselItem" BasedOn="{StaticResource DefaultCarouselItemStyle}" />
+    <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:HeaderCarouselItem" />
 
     <Style x:Key="DefaultCarouselItemStyle" TargetType="local:HeaderCarouselItem">
         <Setter Property="Width" Value="360" />
@@ -34,19 +34,11 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Image HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   AutomationProperties.AccessibilityView="Raw"
-                                   Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Stretch="{TemplateBinding Stretch}" />
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" Source="{Binding ImageUrl, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{TemplateBinding Stretch}" />
 
                             <StackPanel x:Name="PART_TextPanel" Padding="12" VerticalAlignment="Bottom" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Orientation="Vertical" Visibility="Collapsed">
-                                <TextBlock FontWeight="SemiBold"
-                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                           Text="{TemplateBinding Header}" />
-                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                           Text="{TemplateBinding Description}"
-                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{TemplateBinding Header}" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Description}" TextTrimming="CharacterEllipsis" />
                             </StackPanel>
                         </Grid>
                     </Grid>

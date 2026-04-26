@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:GoToCard" BasedOn="{StaticResource DefaultGoToCardStyle}" />
+    <Style BasedOn="{StaticResource DefaultGoToCardStyle}" TargetType="local:GoToCard" />
 
     <Style x:Key="DefaultGoToCardStyle" TargetType="local:GoToCard">
         <Setter Property="CornerRadius" Value="18" />
@@ -23,52 +23,21 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="PART_CloseButton"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Style="{ThemeResource SubtleButtonStyle}"
-                                Visibility="{Binding ShowCloseButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <FontIcon HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      FontSize="16"
-                                      Glyph="&#xE711;" />
+                        <Button x:Name="PART_CloseButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtleButtonStyle}" Visibility="{Binding ShowCloseButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Glyph="&#xE711;" />
                         </Button>
-                        <Viewbox Grid.Column="1"
-                                 Width="24"
-                                 VerticalAlignment="Center"
-                                 Visibility="{Binding ShowIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <IconSourceElement x:Name="PART_Icon"
-                                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                               IconSource="{TemplateBinding Icon}" />
+                        <Viewbox Grid.Column="1" Width="24" VerticalAlignment="Center" Visibility="{Binding ShowIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <IconSourceElement x:Name="PART_Icon" Foreground="{ThemeResource TextFillColorPrimaryBrush}" IconSource="{TemplateBinding Icon}" />
 
                         </Viewbox>
-                        <TextBlock Grid.Column="2"
-                                   Margin="10,0,0,0"
-                                   VerticalAlignment="Center"
-                                   FontSize="12"
-                                   Style="{ThemeResource BaseTextBlockStyle}"
-                                   Text="{TemplateBinding Title}"
-                                   TextWrapping="NoWrap" />
+                        <TextBlock Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="12" Style="{ThemeResource BaseTextBlockStyle}" Text="{TemplateBinding Title}" TextWrapping="NoWrap" />
 
-                        <Button x:Name="PART_Button"
-                                Grid.Column="3"
-                                VerticalAlignment="Center"
-                                Style="{ThemeResource SubtleButtonStyle}"
-                                Visibility="{Binding ShowActionButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button x:Name="PART_Button" Grid.Column="3" VerticalAlignment="Center" Style="{ThemeResource SubtleButtonStyle}" Visibility="{Binding ShowActionButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontSize="12"
-                                           Foreground="{ThemeResource SystemAccentColor}"
-                                           Style="{ThemeResource BaseTextBlockStyle}"
-                                           Text="{TemplateBinding ActionTitle}" />
+                                <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{ThemeResource SystemAccentColor}" Style="{ThemeResource BaseTextBlockStyle}" Text="{TemplateBinding ActionTitle}" />
 
-                                <Viewbox Width="12"
-                                         VerticalAlignment="Center"
-                                         Visibility="{Binding ShowActionIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
-                                    <IconSourceElement x:Name="PART_ActionIcon"
-                                                       Grid.Column="0"
-                                                       Foreground="{ThemeResource SystemAccentColor}"
-                                                       IconSource="{TemplateBinding ActionIcon}" />
+                                <Viewbox Width="12" VerticalAlignment="Center" Visibility="{Binding ShowActionIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <IconSourceElement x:Name="PART_ActionIcon" Grid.Column="0" Foreground="{ThemeResource SystemAccentColor}" IconSource="{TemplateBinding ActionIcon}" />
 
                                 </Viewbox>
                             </StackPanel>

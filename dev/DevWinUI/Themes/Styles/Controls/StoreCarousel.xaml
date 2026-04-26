@@ -42,7 +42,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:StoreCarousel" BasedOn="{StaticResource DefaultStoreCarouselStyle}" />
+    <Style BasedOn="{StaticResource DefaultStoreCarouselStyle}" TargetType="local:StoreCarousel" />
 
     <Style x:Key="DefaultStoreCarouselStyle" TargetType="local:StoreCarousel">
         <Setter Property="Template">
@@ -94,16 +94,8 @@
 
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="PART_SliderGrid" Background="Transparent">
-                            <local:ImageFrame x:Name="PART_Image"
-                                              CornerRadius="{ThemeResource OverlayCornerRadius}"
-                                              DisplayShadow="True"
-                                              ShadowBlurRadius="80"
-                                              ShowPlaceholder="False"
-                                              Stretch="Fill"
-                                              TransitionMode="SlideLeft"
-                                              UseAutoShadowColor="True" />
-                            <local:OpacityMaskView VerticalAlignment="Stretch"
-                                                   VerticalContentAlignment="Stretch">
+                            <local:ImageFrame x:Name="PART_Image" CornerRadius="{ThemeResource OverlayCornerRadius}" DisplayShadow="True" ShadowBlurRadius="80" ShowPlaceholder="False" Stretch="Fill" TransitionMode="SlideLeft" UseAutoShadowColor="True" />
+                            <local:OpacityMaskView VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
                                 <local:OpacityMaskView.OpacityMask>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                         <GradientStop Offset="0.0" Color="{ThemeResource SystemBaseHighColor}" />
@@ -111,101 +103,34 @@
                                         <GradientStop Offset="1.0" Color="Transparent" />
                                     </LinearGradientBrush>
                                 </local:OpacityMaskView.OpacityMask>
-                                <Rectangle x:Name="PART_FadeRectangle"
-                                           VerticalAlignment="Stretch"
-                                           Fill="Transparent"
-                                           RadiusX="8"
-                                           RadiusY="8" />
+                                <Rectangle x:Name="PART_FadeRectangle" VerticalAlignment="Stretch" Fill="Transparent" RadiusX="8" RadiusY="8" />
                             </local:OpacityMaskView>
 
-                            <local:CompositionShadow Width="{Binding ElementName=PART_PreviousBtn, Path=Width}"
-                                                     Height="{Binding ElementName=PART_PreviousBtn, Path=Height}"
-                                                     Margin="{Binding ElementName=PART_PreviousBtn, Path=Margin}"
-                                                     HorizontalAlignment="{Binding ElementName=PART_PreviousBtn, Path=HorizontalAlignment}"
-                                                     VerticalAlignment="{Binding ElementName=PART_PreviousBtn, Path=VerticalAlignment}"
-                                                     BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}"
-                                                     Visibility="{Binding ElementName=PART_PreviousBtn, Path=Visibility}">
-                                <Rectangle x:Name="PART_PreviousBtnRectangle"
-                                           Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}"
-                                           RadiusX="16"
-                                           RadiusY="16" />
+                            <local:CompositionShadow Width="{Binding ElementName=PART_PreviousBtn, Path=Width}" Height="{Binding ElementName=PART_PreviousBtn, Path=Height}" Margin="{Binding ElementName=PART_PreviousBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_PreviousBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_PreviousBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_PreviousBtn, Path=Visibility}">
+                                <Rectangle x:Name="PART_PreviousBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
                             </local:CompositionShadow>
-                            <Button x:Name="PART_PreviousBtn"
-                                    Width="32"
-                                    Height="32"
-                                    Margin="-10,0,0,0"
-                                    BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}"
-                                    CornerRadius="16"
-                                    Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}"
-                                    ToolTipService.ToolTip="Sroll Backward"
-                                    Visibility="Collapsed">
-                                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
-                                          Glyph="&#xedd9;" />
+                            <Button x:Name="PART_PreviousBtn" Width="32" Height="32" Margin="-10,0,0,0" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Backward" Visibility="Collapsed">
+                                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xedd9;" />
                             </Button>
 
-                            <local:CompositionShadow Width="{Binding ElementName=PART_NextBtn, Path=Width}"
-                                                     Height="{Binding ElementName=PART_NextBtn, Path=Height}"
-                                                     Margin="{Binding ElementName=PART_NextBtn, Path=Margin}"
-                                                     HorizontalAlignment="{Binding ElementName=PART_NextBtn, Path=HorizontalAlignment}"
-                                                     VerticalAlignment="{Binding ElementName=PART_NextBtn, Path=VerticalAlignment}"
-                                                     BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}"
-                                                     Visibility="{Binding ElementName=PART_NextBtn, Path=Visibility}">
-                                <Rectangle x:Name="PART_NextBtnRectangle"
-                                           Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}"
-                                           RadiusX="16"
-                                           RadiusY="16" />
+                            <local:CompositionShadow Width="{Binding ElementName=PART_NextBtn, Path=Width}" Height="{Binding ElementName=PART_NextBtn, Path=Height}" Margin="{Binding ElementName=PART_NextBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_NextBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_NextBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_NextBtn, Path=Visibility}">
+                                <Rectangle x:Name="PART_NextBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
                             </local:CompositionShadow>
-                            <Button x:Name="PART_NextBtn"
-                                    Width="32"
-                                    Height="32"
-                                    Margin="0,0,-10,0"
-                                    HorizontalAlignment="Right"
-                                    BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}"
-                                    CornerRadius="16"
-                                    Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}"
-                                    ToolTipService.ToolTip="Sroll Forward"
-                                    Visibility="Collapsed">
-                                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}"
-                                          Glyph="&#xEDDA;" />
+                            <Button x:Name="PART_NextBtn" Width="32" Height="32" Margin="0,0,-10,0" HorizontalAlignment="Right" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Forward" Visibility="Collapsed">
+                                <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xEDDA;" />
                             </Button>
                         </Grid>
 
                         <StackPanel x:Name="PART_ActionPanel" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="5">
-                            <TextBlock x:Name="PART_TitleBlock"
-                                       MaxWidth="300"
-                                       Foreground="{ThemeResource StoreCarouselTitleForegroundBrush}"
-                                       Style="{ThemeResource TitleTextBlockStyle}"
-                                       TextWrapping="Wrap" />
-                            <TextBlock x:Name="PART_DescriptionBlock"
-                                       MaxWidth="240"
-                                       Foreground="{ThemeResource StoreCarouselDescriptionForegroundColor}"
-                                       Opacity="0.75"
-                                       Style="{ThemeResource BodyStrongTextBlockStyle}" />
-                            <Button x:Name="PART_ActionButton"
-                                    MinWidth="120"
-                                    BorderThickness="0,0,0,2"
-                                    CornerRadius="8"
-                                    Foreground="White">
-                                <TextBlock x:Name="PART_ActionButtonTextBlock"
-                                           Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock x:Name="PART_TitleBlock" MaxWidth="300" Foreground="{ThemeResource StoreCarouselTitleForegroundBrush}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" />
+                            <TextBlock x:Name="PART_DescriptionBlock" MaxWidth="240" Foreground="{ThemeResource StoreCarouselDescriptionForegroundColor}" Opacity="0.75" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                            <Button x:Name="PART_ActionButton" MinWidth="120" BorderThickness="0,0,0,2" CornerRadius="8" Foreground="White">
+                                <TextBlock x:Name="PART_ActionButtonTextBlock" Style="{StaticResource BaseTextBlockStyle}" />
                             </Button>
                         </StackPanel>
 
-                        <local:ArcProgress x:Name="PART_Arc"
-                                           Width="20"
-                                           Height="20"
-                                           Margin="10"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Bottom"
-                                           Foreground="DarkGray"
-                                           Percentage="100"
-                                           Visibility="{Binding AutoShuffle, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
-                        <PipsPager x:Name="PART_PipsPager"
-                                   Grid.Row="1"
-                                   Margin="0,-10,0,0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Bottom"
-                                   Visibility="{TemplateBinding PipsPagerVisibility}" />
+                        <local:ArcProgress x:Name="PART_Arc" Width="20" Height="20" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="DarkGray" Percentage="100" Visibility="{Binding AutoShuffle, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <PipsPager x:Name="PART_PipsPager" Grid.Row="1" Margin="0,-10,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{TemplateBinding PipsPagerVisibility}" />
 
                         <Grid x:Name="PART_ThumbnailGrid" Grid.Column="1" ColumnSpacing="15" RowSpacing="15">
                             <Grid.RowDefinitions>
@@ -217,38 +142,19 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <local:CompositionShadow x:Name="PART_PrimaryCompositionShadow"
-                                                     Grid.ColumnSpan="2"
-                                                     BlurRadius="35"
-                                                     CornerRadius="{ThemeResource OverlayCornerRadius}"
-                                                     ImageSourceForEdgeColor="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                     UseEdgeColorFromImage="True">
+                            <local:CompositionShadow x:Name="PART_PrimaryCompositionShadow" Grid.ColumnSpan="2" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
                                 <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                           Stretch="Fill" />
+                                    <Image Source="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                                 </Border>
                             </local:CompositionShadow>
-                            <local:CompositionShadow x:Name="PART_SecondaryCompositionShadow"
-                                                     Grid.Row="1"
-                                                     BlurRadius="35"
-                                                     CornerRadius="{ThemeResource OverlayCornerRadius}"
-                                                     ImageSourceForEdgeColor="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                     UseEdgeColorFromImage="True">
+                            <local:CompositionShadow x:Name="PART_SecondaryCompositionShadow" Grid.Row="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
                                 <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                           Stretch="Fill" />
+                                    <Image Source="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                                 </Border>
                             </local:CompositionShadow>
-                            <local:CompositionShadow x:Name="PART_TertiaryCompositionShadow"
-                                                     Grid.Row="1"
-                                                     Grid.Column="1"
-                                                     BlurRadius="35"
-                                                     CornerRadius="{ThemeResource OverlayCornerRadius}"
-                                                     ImageSourceForEdgeColor="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                     UseEdgeColorFromImage="True">
+                            <local:CompositionShadow x:Name="PART_TertiaryCompositionShadow" Grid.Row="1" Grid.Column="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
                                 <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                           Stretch="Fill" />
+                                    <Image Source="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                                 </Border>
                             </local:CompositionShadow>
                         </Grid>

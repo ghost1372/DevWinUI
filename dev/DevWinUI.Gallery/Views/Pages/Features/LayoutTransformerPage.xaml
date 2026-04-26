@@ -10,22 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/layoutTransformer"
-                                  XamlSource="Features/LayoutTransformer_xaml.txt">
+            <local:ControlExample DocPage="controls/layoutTransformer" XamlSource="Features/LayoutTransformer_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Slider x:Name="SliderSample"
-                                Maximum="360"
-                                Minimum="-360"
-                                Value="0" />
+                        <Slider x:Name="SliderSample" Maximum="360" Minimum="-360" Value="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:LayoutTransformer x:Name="LayoutTransformerSample"
-                                       Height="300"
-                                       RenderTransformOrigin="0.5,0.5">
-                    <Rectangle Width="200"
-                               Height="100"
-                               Fill="{ThemeResource SystemFillColorCriticalBrush}" />
+                <dev:LayoutTransformer x:Name="LayoutTransformerSample" Height="300" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle Width="200" Height="100" Fill="{ThemeResource SystemFillColorCriticalBrush}" />
                     <dev:LayoutTransformer.RenderTransform>
                         <CompositeTransform Rotation="{x:Bind SliderSample.Value, Mode=OneWay}" />
                     </dev:LayoutTransformer.RenderTransform>

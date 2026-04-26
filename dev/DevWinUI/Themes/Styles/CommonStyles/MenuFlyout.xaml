@@ -96,54 +96,27 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Viewbox x:Name="IconRoot"
-                                 Grid.Column="0"
-                                 Width="10"
-                                 Height="10"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 Visibility="Visible">
-                            <ContentPresenter x:Name="IconContent"
-                                              Content="{TemplateBinding Icon}" />
+                        <Viewbox x:Name="IconRoot" Grid.Column="0" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Visible">
+                            <ContentPresenter x:Name="IconContent" Content="{TemplateBinding Icon}" />
                         </Viewbox>
-                        <TextBlock x:Name="TextBlock"
-                                   Grid.Column="0"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   FontSize="12"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Text}"
-                                   TextTrimming="{ThemeResource MenuFlyoutItemTextTrimming}" />
+                        <TextBlock x:Name="TextBlock" Grid.Column="0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" FontSize="12" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextTrimming="{ThemeResource MenuFlyoutItemTextTrimming}" />
 
-                        <TextBlock x:Name="KeyboardAcceleratorTextBlock"
-                                   Grid.Column="1"
-                                   MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KeyboardAcceleratorTextMinWidth}"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"
-                                   AutomationProperties.AccessibilityView="Raw"
-                                   Foreground="{ThemeResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
-                                   Style="{ThemeResource CaptionTextBlockStyle}"
-                                   Text="{TemplateBinding KeyboardAcceleratorTextOverride}"
-                                   Visibility="Collapsed" />
+                        <TextBlock x:Name="KeyboardAcceleratorTextBlock" Grid.Column="1" MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KeyboardAcceleratorTextMinWidth}" HorizontalAlignment="Right" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource MenuFlyoutItemKeyboardAcceleratorTextForeground}" Style="{ThemeResource CaptionTextBlockStyle}" Text="{TemplateBinding KeyboardAcceleratorTextOverride}" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MenuFlyoutWithSecondaryMenuPresenterStyle" TargetType="MenuFlyoutPresenter" BasedOn="{StaticResource DefaultMenuFlyoutPresenterStyle}">
+    <Style x:Key="MenuFlyoutWithSecondaryMenuPresenterStyle" BasedOn="{StaticResource DefaultMenuFlyoutPresenterStyle}" TargetType="MenuFlyoutPresenter">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutPresenter">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <ScrollViewer>
                             <StackPanel x:Name="RootStack">
                                 <!--  Default secondary menu container  -->
-                                <ItemsRepeater x:Name="SecondaryItemsHost"
-                                               Margin="5,0">
+                                <ItemsRepeater x:Name="SecondaryItemsHost" Margin="5,0">
                                     <ItemsRepeater.Layout>
                                         <StackLayout Orientation="Horizontal" />
                                     </ItemsRepeater.Layout>
@@ -255,35 +228,12 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Viewbox x:Name="IconRoot"
-                                 Grid.Column="0"
-                                 Width="10"
-                                 Height="10"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 Visibility="Visible">
-                            <ContentPresenter x:Name="IconContent"
-                                              Content="{TemplateBinding Icon}" />
+                        <Viewbox x:Name="IconRoot" Grid.Column="0" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Visible">
+                            <ContentPresenter x:Name="IconContent" Content="{TemplateBinding Icon}" />
                         </Viewbox>
-                        <TextBlock x:Name="TextBlock"
-                                   Grid.Column="0"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   FontSize="12"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Text}"
-                                   TextTrimming="{ThemeResource MenuFlyoutItemTextTrimming}" />
+                        <TextBlock x:Name="TextBlock" Grid.Column="0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" FontSize="12" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextTrimming="{ThemeResource MenuFlyoutItemTextTrimming}" />
 
-                        <TextBlock x:Name="KeyboardAcceleratorTextBlock"
-                                   Grid.Column="1"
-                                   MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KeyboardAcceleratorTextMinWidth}"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"
-                                   AutomationProperties.AccessibilityView="Raw"
-                                   Foreground="{ThemeResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
-                                   Style="{ThemeResource CaptionTextBlockStyle}"
-                                   Text="{TemplateBinding KeyboardAcceleratorTextOverride}"
-                                   Visibility="Collapsed" />
+                        <TextBlock x:Name="KeyboardAcceleratorTextBlock" Grid.Column="1" MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KeyboardAcceleratorTextMinWidth}" HorizontalAlignment="Right" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource MenuFlyoutItemKeyboardAcceleratorTextForeground}" Style="{ThemeResource CaptionTextBlockStyle}" Text="{TemplateBinding KeyboardAcceleratorTextOverride}" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

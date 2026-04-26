@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:WaveformTimeline" BasedOn="{StaticResource DefaultWaveformTimelineStyle}" />
+    <Style BasedOn="{StaticResource DefaultWaveformTimelineStyle}" TargetType="local:WaveformTimeline" />
 
     <Style x:Key="DefaultWaveformTimelineStyle" TargetType="local:WaveformTimeline">
         <Setter Property="RepeatRegionBrush" Value="{ThemeResource SystemControlBackgroundAltMediumLowBrush}" />
@@ -20,20 +20,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:WaveformTimeline">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Canvas Name="PART_Waveform" Grid.Row="1" />
-                            <Border Grid.Row="0"
-                                    BorderBrush="{TemplateBinding TimelineTickBrush}"
-                                    BorderThickness="0,0,0,1"
-                                    Canvas.ZIndex="0">
+                            <Border Grid.Row="0" BorderBrush="{TemplateBinding TimelineTickBrush}" BorderThickness="0,0,0,1" Canvas.ZIndex="0">
                                 <Canvas Name="PART_Timeline" Height="20" />
                             </Border>
                             <Canvas Name="PART_Repeat" Grid.Row="1" />

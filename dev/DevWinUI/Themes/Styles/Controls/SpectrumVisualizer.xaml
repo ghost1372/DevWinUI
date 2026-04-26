@@ -4,15 +4,13 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:SpectrumVisualizer" BasedOn="{StaticResource DefaultSpectrumVisualizerStyle}" />
+    <Style BasedOn="{StaticResource DefaultSpectrumVisualizerStyle}" TargetType="local:SpectrumVisualizer" />
 
     <Style x:Key="DefaultSpectrumVisualizerStyle" TargetType="local:SpectrumVisualizer">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SpectrumVisualizer">
-                    <win2d:CanvasAnimatedControl x:Name="PART_SpectrumCanvasControl"
-                                                 ClearColor="Transparent"
-                                                 TargetElapsedTime="0:0:0.0166" />
+                    <win2d:CanvasAnimatedControl x:Name="PART_SpectrumCanvasControl" ClearColor="Transparent" TargetElapsedTime="0:0:0.0166" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -30,33 +30,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="FlyoutPresenter">
                         <Grid Margin="0" Background="Transparent">
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <Flyout x:Key="CustomFlyout"
-                FlyoutPresenterStyle="{StaticResource CustomFlyoutPresenterStyle}">
+        <Flyout x:Key="CustomFlyout" FlyoutPresenterStyle="{StaticResource CustomFlyoutPresenterStyle}">
             <Grid>
-                <dev:FrostedGlass CornerRadius="16"
-                                  MultiplyAmount="0"
-                                  ShadowBlurRadius="8"
-                                  TintColor="Gray"
-                                  TintOpacity="0.5" />
-                <Border Width="500"
-                        Height="60"
-                        Background="#373737"
-                        CornerRadius="5">
-                    <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Foreground="White">
+                <dev:FrostedGlass CornerRadius="16" MultiplyAmount="0" ShadowBlurRadius="8" TintColor="Gray" TintOpacity="0.5" />
+                <Border Width="500" Height="60" Background="#373737" CornerRadius="5">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">
                         Flyout with Acrylic background, Rounded corners and Drop shadow.
                     </TextBlock>
                 </Border>
@@ -70,24 +55,9 @@
                     <x:String>&lt;dev:FrostedGlass /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <StackPanel Spacing="10">
-                    <dev:FrostedGlass Width="300"
-                                      Height="150"
-                                      CornerRadius="16"
-                                      MultiplyAmount="0"
-                                      ShadowBlurRadius="8"
-                                      TintColor="Gray"
-                                      TintOpacity="0.5" />
+                    <dev:FrostedGlass Width="300" Height="150" CornerRadius="16" MultiplyAmount="0" ShadowBlurRadius="8" TintColor="Gray" TintOpacity="0.5" />
 
-                    <Button x:Name="FlyoutButton"
-                            Width="150"
-                            Height="40"
-                            Margin="100"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Click="CalligraphyPenButton_OnClick"
-                            Content="Show Flyout"
-                            CornerRadius="4"
-                            FlyoutBase.AttachedFlyout="{StaticResource CustomFlyout}" />
+                    <Button x:Name="FlyoutButton" Width="150" Height="40" Margin="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CalligraphyPenButton_OnClick" Content="Show Flyout" CornerRadius="4" FlyoutBase.AttachedFlyout="{StaticResource CustomFlyout}" />
                 </StackPanel>
 
             </local:ControlExample>

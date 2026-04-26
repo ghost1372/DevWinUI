@@ -33,7 +33,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style TargetType="local:SegmentedSlider" BasedOn="{StaticResource DefaultSegmentedSliderStyle}" />
+    <Style BasedOn="{StaticResource DefaultSegmentedSliderStyle}" TargetType="local:SegmentedSlider" />
 
     <Style x:Key="DefaultSegmentedSliderStyle" TargetType="local:SegmentedSlider">
         <Setter Property="Template">
@@ -47,36 +47,15 @@
                             <ItemsRepeater.ItemTemplate>
                                 <DataTemplate>
                                     <Grid VerticalAlignment="Center">
-                                        <Rectangle Height="{ThemeResource SegmentedSliderTrackThemeHeight}"
-                                                   Fill="{ThemeResource SegmentedSliderSegmentBackground}"
-                                                   RadiusX="{ThemeResource SegmentedSliderTrackRadiusX}"
-                                                   RadiusY="{ThemeResource SegmentedSliderTrackRadiusY}" />
-                                        <Rectangle Width="0"
-                                                   Height="{ThemeResource SegmentedSliderTrackThemeHeight}"
-                                                   HorizontalAlignment="Left"
-                                                   Fill="{ThemeResource SegmentedSliderSegmentForeground}"
-                                                   RadiusX="{ThemeResource SegmentedSliderFillTrackRadiusX}"
-                                                   RadiusY="{ThemeResource SegmentedSliderFillTrackRadiusY}"
-                                                   Tag="FillRect" />
+                                        <Rectangle Height="{ThemeResource SegmentedSliderTrackThemeHeight}" Fill="{ThemeResource SegmentedSliderSegmentBackground}" RadiusX="{ThemeResource SegmentedSliderTrackRadiusX}" RadiusY="{ThemeResource SegmentedSliderTrackRadiusY}" />
+                                        <Rectangle Width="0" Height="{ThemeResource SegmentedSliderTrackThemeHeight}" HorizontalAlignment="Left" Fill="{ThemeResource SegmentedSliderSegmentForeground}" RadiusX="{ThemeResource SegmentedSliderFillTrackRadiusX}" RadiusY="{ThemeResource SegmentedSliderFillTrackRadiusY}" Tag="FillRect" />
 
-                                        <TextBlock Margin="0,50,0,0"
-                                                   VerticalAlignment="Center"
-                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                   Tag="SegmentLabel"
-                                                   Text="{Binding}" />
+                                        <TextBlock Margin="0,50,0,0" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" Tag="SegmentLabel" Text="{Binding}" />
                                     </Grid>
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
-                        <Thumb x:Name="PART_HorizontalThumb"
-                               Width="{ThemeResource SliderHorizontalThumbWidth}"
-                               Height="{ThemeResource SliderHorizontalThumbHeight}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               AutomationProperties.AccessibilityView="Raw"
-                               CornerRadius="{StaticResource ControlCornerRadius}"
-                               FocusVisualMargin="-14,-6,-14,-6"
-                               Style="{StaticResource SliderThumbStyle}" />
+                        <Thumb x:Name="PART_HorizontalThumb" Width="{ThemeResource SliderHorizontalThumbWidth}" Height="{ThemeResource SliderHorizontalThumbHeight}" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" CornerRadius="{StaticResource ControlCornerRadius}" FocusVisualMargin="-14,-6,-14,-6" Style="{StaticResource SliderThumbStyle}" />
 
                     </Grid>
                 </ControlTemplate>

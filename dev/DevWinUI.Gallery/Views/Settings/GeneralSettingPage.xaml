@@ -10,19 +10,12 @@
       xmlns:views="using:DevWinUIGallery.Views"
       dev:BreadcrumbNavigator.IsHeaderVisible="True"
       mc:Ignorable="d">
-    <ScrollView Margin="{ThemeResource ContentPageMargin}"
-                Padding="{ThemeResource ContentPagePadding}"
-                VerticalScrollBarVisibility="Auto">
+    <ScrollView Margin="{ThemeResource ContentPageMargin}" Padding="{ThemeResource ContentPagePadding}" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="5">
-            <dev:SettingsExpander Description="Help us improve this app by sharing optional diagnostics data to inform bug fixes, performance, and feature enhancements"
-                                  Header="Diagnostics &amp; feedback (Restart Required)"
-                                  HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/DevMode.png}">
+            <dev:SettingsExpander Description="Help us improve this app by sharing optional diagnostics data to inform bug fixes, performance, and feature enhancements" Header="Diagnostics &amp; feedback (Restart Required)" HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/DevMode.png}">
                 <ToggleSwitch IsOn="{x:Bind common:AppHelper.Settings.UseDeveloperMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <dev:SettingsExpander.ItemsHeader>
-                    <HyperlinkButton HorizontalAlignment="Stretch"
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavigateToLogPath_Click"
-                                     Content="{x:Bind common:Constants.LogDirectoryPath}" />
+                    <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="NavigateToLogPath_Click" Content="{x:Bind common:Constants.LogDirectoryPath}" />
                 </dev:SettingsExpander.ItemsHeader>
             </dev:SettingsExpander>
         </StackPanel>

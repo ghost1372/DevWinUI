@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:CalendarWithClock" BasedOn="{StaticResource DefaultCalendarWithClockStyle}" />
+    <Style BasedOn="{StaticResource DefaultCalendarWithClockStyle}" TargetType="local:CalendarWithClock" />
 
     <Style x:Key="DefaultCalendarWithClockStyle" TargetType="local:CalendarWithClock">
         <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
@@ -29,8 +29,7 @@
         <Setter Property="Template" Value="{StaticResource CalendarWithAnalogClockTemplate}" />
     </Style>
 
-    <ControlTemplate x:Key="CalendarWithAnalogClockTemplate"
-                     TargetType="local:CalendarWithClock">
+    <ControlTemplate x:Key="CalendarWithAnalogClockTemplate" TargetType="local:CalendarWithClock">
         <Grid x:Name="PART_Root">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="300" />
@@ -99,41 +98,13 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border x:Name="Background"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    MinHeight="32"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    Control.IsTemplateFocusTarget="True"
-                    CornerRadius="{TemplateBinding CornerRadius}" />
-            <CalendarView x:Name="PART_CalendarView"
-                          Grid.Column="0"
-                          MinWidth="300"
-                          Margin="{TemplateBinding CalendarViewMargin}"
-                          BorderThickness="{TemplateBinding CalendarViewBorderThickness}"
-                          CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
-                          CornerRadius="{TemplateBinding CalendarViewCornerRadius}"
-                          DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}"
-                          DisplayMode="{TemplateBinding DisplayMode}"
-                          FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                          IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}"
-                          IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}"
-                          IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
-                          MaxDate="{TemplateBinding MaxDate}"
-                          MinDate="{TemplateBinding MinDate}"
-                          Style="{TemplateBinding CalendarViewStyle}" />
-            <local:Clock x:Name="PART_Clock"
-                         Grid.Column="1"
-                         Margin="{TemplateBinding ClockMargin}"
-                         BorderThickness="{TemplateBinding ClockBorderThickness}"
-                         ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
+            <Border x:Name="Background" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
+            <CalendarView x:Name="PART_CalendarView" Grid.Column="0" MinWidth="300" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="{TemplateBinding CalendarViewCornerRadius}" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" />
+            <local:Clock x:Name="PART_Clock" Grid.Column="1" Margin="{TemplateBinding ClockMargin}" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="CalendarWithTimePickerTemplate"
-                     TargetType="local:CalendarWithClock">
+    <ControlTemplate x:Key="CalendarWithTimePickerTemplate" TargetType="local:CalendarWithClock">
         <Grid x:Name="PART_Root">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -206,37 +177,9 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border x:Name="Background"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    MinHeight="32"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    Control.IsTemplateFocusTarget="True"
-                    CornerRadius="{TemplateBinding CornerRadius}" />
-            <CalendarView x:Name="PART_CalendarView"
-                          Grid.Column="0"
-                          Margin="{TemplateBinding CalendarViewMargin}"
-                          BorderThickness="{TemplateBinding CalendarViewBorderThickness}"
-                          CalendarIdentifier="{TemplateBinding CalendarIdentifier}"
-                          CornerRadius="{ThemeResource OverlayCornerRadius}"
-                          DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}"
-                          DisplayMode="{TemplateBinding DisplayMode}"
-                          FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                          IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}"
-                          IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}"
-                          IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
-                          MaxDate="{TemplateBinding MaxDate}"
-                          MinDate="{TemplateBinding MinDate}"
-                          Style="{TemplateBinding CalendarViewStyle}" />
-            <TimePicker x:Name="PART_TimePicker"
-                        Grid.Column="1"
-                        Margin="{TemplateBinding TimePickerMargin}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            <Border x:Name="Background" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
+            <CalendarView x:Name="PART_CalendarView" Grid.Column="0" Margin="{TemplateBinding CalendarViewMargin}" BorderThickness="{TemplateBinding CalendarViewBorderThickness}" CalendarIdentifier="{TemplateBinding CalendarIdentifier}" CornerRadius="{ThemeResource OverlayCornerRadius}" DayOfWeekFormat="{TemplateBinding DayOfWeekFormat}" DisplayMode="{TemplateBinding DisplayMode}" FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}" IsGroupLabelVisible="{TemplateBinding IsGroupLabelVisible}" IsOutOfScopeEnabled="{TemplateBinding IsOutOfScopeEnabled}" IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" MaxDate="{TemplateBinding MaxDate}" MinDate="{TemplateBinding MinDate}" Style="{TemplateBinding CalendarViewStyle}" />
+            <TimePicker x:Name="PART_TimePicker" Grid.Column="1" Margin="{TemplateBinding TimePickerMargin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
         </Grid>
     </ControlTemplate>
 </ResourceDictionary>

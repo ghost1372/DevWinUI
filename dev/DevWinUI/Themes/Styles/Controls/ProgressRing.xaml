@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ProgressRing" BasedOn="{StaticResource DefaultProgressRingStyle}" />
+    <Style BasedOn="{StaticResource DefaultProgressRingStyle}" TargetType="local:ProgressRing" />
 
     <Style x:Key="DefaultProgressRingStyle" TargetType="local:ProgressRing">
         <Setter Property="Background" Value="Transparent" />
@@ -18,10 +18,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressRing">
-                    <Border x:Name="ProgressRingRoot"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="ProgressRingRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Resources>
                             <Style x:Key="ProgressRingEllipseStyle" TargetType="Ellipse">
                                 <Setter Property="Opacity" Value="0" />
@@ -154,67 +151,37 @@
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E1R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E1"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E1" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                             <Canvas RenderTransformOrigin=".5,.5">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E2R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E2"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E2" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                             <Canvas RenderTransformOrigin=".5,.5">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E3R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E3"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E3" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                             <Canvas RenderTransformOrigin=".5,.5">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E4R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E4"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E4" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                             <Canvas RenderTransformOrigin=".5,.5">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E5R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E5"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E5" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                             <Canvas x:Name="SixthCircle" RenderTransformOrigin=".5,.5" Visibility="Collapsed">
                                 <Canvas.RenderTransform>
                                     <RotateTransform x:Name="E6R" />
                                 </Canvas.RenderTransform>
-                                <Ellipse x:Name="E6"
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}"
-                                         Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}"
-                                         Fill="{TemplateBinding Foreground}"
-                                         Style="{StaticResource ProgressRingEllipseStyle}" />
+                                <Ellipse x:Name="E6" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
                             </Canvas>
                         </Grid>
                     </Border>

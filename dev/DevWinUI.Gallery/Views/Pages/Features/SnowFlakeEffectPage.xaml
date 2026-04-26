@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/snowFlakeEffect"
-                                  HeaderText="SnowFlakeEffect">
+            <local:ControlExample DocPage="controls/snowFlakeEffect" HeaderText="SnowFlakeEffect">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:SnowFlakeEffect FlakeCount="100" /&gt;
@@ -19,11 +18,7 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue"
-                                   Header="Value"
-                                   Minimum="0"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="100" />
+                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="100" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:SnowFlakeEffect FlakeCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />

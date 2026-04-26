@@ -10,33 +10,16 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/DependencyObjectExtensions_cs.txt"
-                                  DocPage="extensions/dependencyObjectExtension"
-                                  DocType="Core"
-                                  HeaderText="DependencyObject Extensions">
+            <local:ControlExample CSharpSource="Features/DependencyObjectExtensions_cs.txt" DocPage="extensions/dependencyObjectExtension" DocType="Core" HeaderText="DependencyObject Extensions">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <Button MinWidth="200"
-                                Click="OnFadeIn"
-                                Content="Fade In" />
-                        <Button MinWidth="200"
-                                Click="OnAnimateWidth"
-                                Content="Animate Width" />
-                        <Button MinWidth="200"
-                                Click="OnAnimateHeight"
-                                Content="Animate Height" />
-                        <Button MinWidth="200"
-                                Click="OnGrow"
-                                Content="Grow" />
-                        <Button MinWidth="200"
-                                Click="OnRotate"
-                                Content="Rotate" />
-                        <Button MinWidth="200"
-                                Click="OnTranslate"
-                                Content="Translate" />
-                        <Button MinWidth="200"
-                                Click="OnSkew"
-                                Content="Skew" />
+                        <Button MinWidth="200" Click="OnFadeIn" Content="Fade In" />
+                        <Button MinWidth="200" Click="OnAnimateWidth" Content="Animate Width" />
+                        <Button MinWidth="200" Click="OnAnimateHeight" Content="Animate Height" />
+                        <Button MinWidth="200" Click="OnGrow" Content="Grow" />
+                        <Button MinWidth="200" Click="OnRotate" Content="Rotate" />
+                        <Button MinWidth="200" Click="OnTranslate" Content="Translate" />
+                        <Button MinWidth="200" Click="OnSkew" Content="Skew" />
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <ScrollViewer>
@@ -44,9 +27,7 @@
                     </Grid>
                 </ScrollViewer>
             </local:ControlExample>
-            <local:ControlExample DocPage="markupExtensions/enumValueExtension"
-                                  DocType="Core"
-                                  HeaderText="EnumValuesExtension">
+            <local:ControlExample DocPage="markupExtensions/enumValueExtension" DocType="Core" HeaderText="EnumValuesExtension">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;ComboBox ItemsSource="{dev:EnumValues Type=enum:Animal}"/&gt;
@@ -66,89 +47,49 @@
                     </x:String>
                 </local:ControlExample.CSharp>
                 <StackPanel Margin="10" Spacing="10">
-                    <ComboBox MinWidth="200"
-                              ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
-                              SelectedIndex="0" />
+                    <ComboBox MinWidth="200" ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}" SelectedIndex="0" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="extensions/textBoxExtension"
-                                  DocType="Core"
-                                  HeaderText="TextBoxExtensions"
-                                  XamlSource="Features/Extension/ExtensionPage_Part1_xaml.txt">
+            <local:ControlExample DocPage="extensions/textBoxExtension" DocType="Core" HeaderText="TextBoxExtensions" XamlSource="Features/Extension/ExtensionPage_Part1_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
-                    <TextBox Name="PhoneNumberValidator"
-                             dev:TextBoxExtensions.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"
-                             Header="Text box with Regex extension for phone number, validation occurs on TextChanged"
-                             TextChanging="PhoneNumberValidator_TextChanging" />
+                    <TextBox Name="PhoneNumberValidator" dev:TextBoxExtensions.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" Header="Text box with Regex extension for phone number, validation occurs on TextChanged" TextChanging="PhoneNumberValidator_TextChanging" />
                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
                         <Run Text="Is valid: " />
-                        <Run FontWeight="SemiBold"
-                             Text="{x:Bind ViewModel.IsPhoneNumberValid, Mode=OneWay}" />
+                        <Run FontWeight="SemiBold" Text="{x:Bind ViewModel.IsPhoneNumberValid, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBox Name="CharactValidator"
-                             dev:TextBoxExtensions.ValidationMode="Dynamic"
-                             dev:TextBoxExtensions.ValidationType="Characters"
-                             Header="Text box with ValidationType=Characters, validation occurs at input with ValidationMode=Dynamic and clear only single character when value is invalid"
-                             Text="abcdef"
-                             TextChanging="CharactValidator_TextChanging" />
+                    <TextBox Name="CharactValidator" dev:TextBoxExtensions.ValidationMode="Dynamic" dev:TextBoxExtensions.ValidationType="Characters" Header="Text box with ValidationType=Characters, validation occurs at input with ValidationMode=Dynamic and clear only single character when value is invalid" Text="abcdef" TextChanging="CharactValidator_TextChanging" />
                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
                         <Run Text="Is valid: " />
-                        <Run FontWeight="SemiBold"
-                             Text="{x:Bind ViewModel.IsCharacterValid, Mode=OneWay}" />
+                        <Run FontWeight="SemiBold" Text="{x:Bind ViewModel.IsCharacterValid, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBox Name="EmailValidator"
-                             dev:TextBoxExtensions.ValidationType="Email"
-                             Header="Text box with ValidationType=Email, validation occurs on TextChanged"
-                             TextChanging="EmailValidator_TextChanging" />
+                    <TextBox Name="EmailValidator" dev:TextBoxExtensions.ValidationType="Email" Header="Text box with ValidationType=Email, validation occurs on TextChanged" TextChanging="EmailValidator_TextChanging" />
                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
                         <Run Text="Is valid: " />
-                        <Run FontWeight="SemiBold"
-                             Text="{x:Bind ViewModel.IsEmailValid, Mode=OneWay}" />
+                        <Run FontWeight="SemiBold" Text="{x:Bind ViewModel.IsEmailValid, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBox Name="DecimalValidatorForce"
-                             dev:TextBoxExtensions.ValidationMode="Forced"
-                             dev:TextBoxExtensions.ValidationType="Decimal"
-                             Header="Text box with ValidationType=Decimal, validation occurs on TextChanged and force occurs on lose focus with ValidationMode=Force (333,111 or 333.111)"
-                             TextChanging="DecimalValidatorForce_TextChanging" />
+                    <TextBox Name="DecimalValidatorForce" dev:TextBoxExtensions.ValidationMode="Forced" dev:TextBoxExtensions.ValidationType="Decimal" Header="Text box with ValidationType=Decimal, validation occurs on TextChanged and force occurs on lose focus with ValidationMode=Force (333,111 or 333.111)" TextChanging="DecimalValidatorForce_TextChanging" />
                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
                         <Run Text="Is valid: " />
-                        <Run FontWeight="SemiBold"
-                             Text="{x:Bind ViewModel.IsDecimalValid, Mode=OneWay}" />
+                        <Run FontWeight="SemiBold" Text="{x:Bind ViewModel.IsDecimalValid, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBox Name="NumberValidatorDynamic"
-                             dev:TextBoxExtensions.ValidationMode="Dynamic"
-                             dev:TextBoxExtensions.ValidationType="Number"
-                             Header="Text box with ValidationType=Number, validation occurs at input with ValidationMode=Dynamic and clear only single character when value is invalid"
-                             TextChanging="NumberValidatorDynamic_TextChanging" />
+                    <TextBox Name="NumberValidatorDynamic" dev:TextBoxExtensions.ValidationMode="Dynamic" dev:TextBoxExtensions.ValidationType="Number" Header="Text box with ValidationType=Number, validation occurs at input with ValidationMode=Dynamic and clear only single character when value is invalid" TextChanging="NumberValidatorDynamic_TextChanging" />
                     <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
                         <Run Text="Is valid: " />
-                        <Run FontWeight="SemiBold"
-                             Text="{x:Bind ViewModel.IsNumberValid, Mode=OneWay}" />
+                        <Run FontWeight="SemiBold" Text="{x:Bind ViewModel.IsNumberValid, Mode=OneWay}" />
                     </TextBlock>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="extensions/textBoxExtension/#Text-mask"
-                                  DocType="Core"
-                                  HeaderText="Mask"
-                                  XamlSource="Features/Extension/ExtensionPage_Part2_xaml.txt">
+            <local:ControlExample DocPage="extensions/textBoxExtension/#Text-mask" DocType="Core" HeaderText="Mask" XamlSource="Features/Extension/ExtensionPage_Part2_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
-                    <TextBox dev:TextBoxExtensions.Mask="9a9a-a9a*"
-                             Header="Text box with Mask 9a9a-a9a* (9 allows from 0 to 9, a allow from a to Z and * allows both a and 9)"
-                             Text="TextBoxMask" />
+                    <TextBox dev:TextBoxExtensions.Mask="9a9a-a9a*" Header="Text box with Mask 9a9a-a9a* (9 allows from 0 to 9, a allow from a to Z and * allows both a and 9)" Text="TextBoxMask" />
 
-                    <TextBox dev:TextBoxExtensions.Mask="+1999-9999"
-                             dev:TextBoxExtensions.MaskPlaceholder=" "
-                             Header="Text box with Mask +1999-9999 and placeHolder as space (placeholder represents the characters the user can change on runtime)" />
+                    <TextBox dev:TextBoxExtensions.Mask="+1999-9999" dev:TextBoxExtensions.MaskPlaceholder=" " Header="Text box with Mask +1999-9999 and placeHolder as space (placeholder represents the characters the user can change on runtime)" />
 
-                    <TextBox dev:TextBoxExtensions.Mask="+\964 799 999 9999"
-                             Header="Text box with Mask +964 799 999 9999 (Notice how we escape the first 9 with a backslash)" />
+                    <TextBox dev:TextBoxExtensions.Mask="+\964 799 999 9999" Header="Text box with Mask +964 799 999 9999 (Notice how we escape the first 9 with a backslash)" />
 
-                    <TextBox dev:TextBoxExtensions.Mask="99\\99\\9999"
-                             Header="Text box with Mask 99\99\9999 (You can escape a backslash with another backslash)" />
+                    <TextBox dev:TextBoxExtensions.Mask="99\\99\\9999" Header="Text box with Mask 99\99\9999 (You can escape a backslash with another backslash)" />
 
-                    <TextBox dev:TextBoxExtensions.CustomMask="5:[1-5],c:[a-c]"
-                             dev:TextBoxExtensions.Mask="a5c-5c*9"
-                             Header="Text box with CustomMask in case you want to define your own variable character like a, 9 and *. Mask: a5c-5c*9, 5: [1-5], c: [a-c]" />
+                    <TextBox dev:TextBoxExtensions.CustomMask="5:[1-5],c:[a-c]" dev:TextBoxExtensions.Mask="a5c-5c*9" Header="Text box with CustomMask in case you want to define your own variable character like a, 9 and *. Mask: a5c-5c*9, 5: [1-5], c: [a-c]" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>

@@ -22,49 +22,28 @@
         </Style>
 
         <animations:ImplicitAnimationSet x:Name="ShowTransitions">
-            <animations:OffsetAnimation EasingMode="EaseOut"
-                                        From="0,24,0"
-                                        To="0"
-                                        Duration="0:0:0.4" />
-            <animations:OpacityAnimation EasingMode="EaseOut"
-                                         From="0"
-                                         To="1"
-                                         Duration="0:0:0.2" />
+            <animations:OffsetAnimation EasingMode="EaseOut" From="0,24,0" To="0" Duration="0:0:0.4" />
+            <animations:OpacityAnimation EasingMode="EaseOut" From="0" To="1" Duration="0:0:0.2" />
         </animations:ImplicitAnimationSet>
         <animations:ImplicitAnimationSet x:Name="HideTransitions">
-            <animations:OffsetAnimation EasingMode="EaseOut"
-                                        From="0"
-                                        To="0,24,0"
-                                        Duration="0:0:0.2" />
-            <animations:OpacityAnimation EasingMode="EaseOut"
-                                         From="1"
-                                         To="0"
-                                         Duration="0:0:0.1" />
+            <animations:OffsetAnimation EasingMode="EaseOut" From="0" To="0,24,0" Duration="0:0:0.2" />
+            <animations:OpacityAnimation EasingMode="EaseOut" From="1" To="0" Duration="0:0:0.1" />
         </animations:ImplicitAnimationSet>
 
         <enum:CheckStatus x:Key="MyChecks">Warning</enum:CheckStatus>
 
-        <dev:SwitchConverter x:Key="StatusToColorSwitchConverter"
-                             TargetType="enum:CheckStatus">
+        <dev:SwitchConverter x:Key="StatusToColorSwitchConverter" TargetType="enum:CheckStatus">
             <!--  Note: These are reused from the controls namespace from SwitchPresenter  -->
-            <dev:Case Content="{ThemeResource SystemFillColorSuccessBrush}"
-                      Value="Success" />
-            <dev:Case Content="{ThemeResource SystemFillColorCautionBrush}"
-                      Value="Warning" />
-            <dev:Case Content="{ThemeResource SystemFillColorCriticalBrush}"
-                      Value="Error" />
+            <dev:Case Content="{ThemeResource SystemFillColorSuccessBrush}" Value="Success" />
+            <dev:Case Content="{ThemeResource SystemFillColorCautionBrush}" Value="Warning" />
+            <dev:Case Content="{ThemeResource SystemFillColorCriticalBrush}" Value="Error" />
         </dev:SwitchConverter>
     </Page.Resources>
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchConverterBrush_cs.txt"
-                                  DocPage="controls/switchPresenter"
-                                  HeaderText="SwitchConverter Brush Example"
-                                  XamlSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchConverterBrush_xaml.txt">
+            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchConverterBrush_cs.txt" DocPage="controls/switchPresenter" HeaderText="SwitchConverter Brush Example" XamlSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchConverterBrush_xaml.txt">
                 <local:ControlExample.Pane>
-                    <ComboBox x:Name="StatusPicker"
-                              Header="Pick a status"
-                              SelectedIndex="0">
+                    <ComboBox x:Name="StatusPicker" Header="Pick a status" SelectedIndex="0">
                         <x:String>Success</x:String>
                         <x:String>Warning</x:String>
                         <x:String>Error</x:String>
@@ -72,20 +51,12 @@
                 </local:ControlExample.Pane>
                 <StackPanel Spacing="8">
                     <TextBlock Text="This is it, this is the demo:" />
-                    <TextBlock FontWeight="SemiBold"
-                               Foreground="{x:Bind StatusPicker.SelectedItem, Converter={StaticResource StatusToColorSwitchConverter}, Mode=OneWay}"
-                               Text="{x:Bind StatusPicker.SelectedItem, Mode=OneWay}" />
+                    <TextBlock FontWeight="SemiBold" Foreground="{x:Bind StatusPicker.SelectedItem, Converter={StaticResource StatusToColorSwitchConverter}, Mode=OneWay}" Text="{x:Bind StatusPicker.SelectedItem, Mode=OneWay}" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchPresenterTemplate_cs.txt"
-                                  DocPage="controls/switchPresenter"
-                                  HeaderText="SwitchPresenter Template Example"
-                                  XamlSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchPresenterTemplate_xaml.txt">
+            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchPresenterTemplate_cs.txt" DocPage="controls/switchPresenter" HeaderText="SwitchPresenter Template Example" XamlSource="Features/SwitchPresenter/SwitchPresenterPage_SwitchPresenterTemplate_xaml.txt">
                 <local:ControlExample.Pane>
-                    <ComboBox x:Name="Lookup"
-                              Margin="0,0,0,8"
-                              Header="Look up reservation"
-                              SelectedIndex="0">
+                    <ComboBox x:Name="Lookup" Margin="0,0,0,8" Header="Look up reservation" SelectedIndex="0">
                         <x:String>Confirmation Code</x:String>
                         <x:String>E-ticket number</x:String>
                         <x:String>Mileage Plan number</x:String>
@@ -99,67 +70,41 @@
                         <dev:SwitchPresenter.ContentTemplate>
                             <DataTemplate x:DataType="enum:TemplateInformation">
                                 <StackPanel>
-                                    <TextBox Name="CodeValidator"
-                                             dev:TextBoxExtensions.Regex="{x:Bind Regex, Mode=OneWay}"
-                                             Header="{x:Bind Header, Mode=OneWay}"
-                                             PlaceholderText="{x:Bind PlaceholderText, Mode=OneWay}"
-                                             TextChanging="CodeValidator_TextChanging" />
-                                    <TextBlock Text="Thanks for entering a valid code!"
-                                               Visibility="Collapsed" />
+                                    <TextBox Name="CodeValidator" dev:TextBoxExtensions.Regex="{x:Bind Regex, Mode=OneWay}" Header="{x:Bind Header, Mode=OneWay}" PlaceholderText="{x:Bind PlaceholderText, Mode=OneWay}" TextChanging="CodeValidator_TextChanging" />
+                                    <TextBlock Text="Thanks for entering a valid code!" Visibility="Collapsed" />
                                 </StackPanel>
                             </DataTemplate>
                         </dev:SwitchPresenter.ContentTemplate>
 
                         <!--  And use the value to transform our data into an object we'll use as the context for our UI  -->
 
-                        <dev:Case IsDefault="True"
-                                  Value="Confirmation Code">
-                            <enum:TemplateInformation Header="Confirmation code"
-                                                      PlaceholderText="6 letters"
-                                                      Regex="^[a-zA-Z]{6}$" />
+                        <dev:Case IsDefault="True" Value="Confirmation Code">
+                            <enum:TemplateInformation Header="Confirmation code" PlaceholderText="6 letters" Regex="^[a-zA-Z]{6}$" />
                         </dev:Case>
                         <dev:Case Value="E-ticket number">
-                            <enum:TemplateInformation Header="E-ticket number"
-                                                      PlaceholderText="10 or 13 numbers"
-                                                      Regex="(^\d{10}$)|(^\d{13}$)" />
+                            <enum:TemplateInformation Header="E-ticket number" PlaceholderText="10 or 13 numbers" Regex="(^\d{10}$)|(^\d{13}$)" />
                         </dev:Case>
                         <dev:Case Value="Mileage Plan number">
-                            <enum:TemplateInformation Header="Mileage Plan #"
-                                                      PlaceholderText="Mileage Plan (12 digits)"
-                                                      Regex="(^\d{12}$)" />
+                            <enum:TemplateInformation Header="Mileage Plan #" PlaceholderText="Mileage Plan (12 digits)" Regex="(^\d{12}$)" />
                         </dev:Case>
                     </dev:SwitchPresenter>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/switchPresenter"
-                                  HeaderText="Loading Example"
-                                  XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Loading_xaml.txt">
+            <local:ControlExample DocPage="controls/switchPresenter" HeaderText="Loading Example" XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Loading_xaml.txt">
                 <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="LoadingState"
-                                  Header="IsLoading" />
+                    <ToggleSwitch x:Name="LoadingState" Header="IsLoading" />
                 </local:ControlExample.Pane>
                 <StackPanel Margin="10" Spacing="10">
-                    <dev:SwitchPresenter Grid.Row="1"
-                                         HorizontalAlignment="Center"
-                                         TargetType="x:Boolean"
-                                         Value="{x:Bind LoadingState.IsOn, Mode=OneWay}">
+                    <dev:SwitchPresenter Grid.Row="1" HorizontalAlignment="Center" TargetType="x:Boolean" Value="{x:Bind LoadingState.IsOn, Mode=OneWay}">
                         <dev:Case Value="True">
                             <StackPanel HorizontalAlignment="Center" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Orientation="Vertical" Spacing="8">
                                 <ProgressRing IsActive="{x:Bind LoadingState.IsOn, Mode=OneWay}" />
-                                <TextBlock HorizontalAlignment="Center"
-                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="Fetching data.." />
+                                <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Fetching data.." />
                             </StackPanel>
                         </dev:Case>
                         <dev:Case Value="False">
-                            <TextBlock HorizontalAlignment="Center"
-                                       animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
-                                       animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
-                                       TextAlignment="Center"
-                                       TextWrapping="WrapWholeWords">
-                                <Run FontWeight="SemiBold"
-                                     Text="Content has loaded" />
+                            <TextBlock HorizontalAlignment="Center" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" TextAlignment="Center" TextWrapping="WrapWholeWords">
+                                <Run FontWeight="SemiBold" Text="Content has loaded" />
                                 <LineBreak />
                                 <Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
                             </TextBlock>
@@ -168,104 +113,71 @@
                 </StackPanel>
             </local:ControlExample>
 
-            <local:ControlExample DocPage="controls/switchPresenter"
-                                  HeaderText="Example 1"
-                                  XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Part1_xaml.txt">
+            <local:ControlExample DocPage="controls/switchPresenter" HeaderText="Example 1" XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Part1_xaml.txt">
                 <local:ControlExample.Pane>
-                    <RadioButtons Header="Options"
-                                  SelectedIndex="0"
-                                  SelectedItem="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <RadioButton Content="Square"
-                                     Tag="square" />
-                        <RadioButton Content="Circle"
-                                     Tag="circle" />
-                        <RadioButton Content="Rect"
-                                     Tag="rect" />
+                    <RadioButtons Header="Options" SelectedIndex="0" SelectedItem="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <RadioButton Content="Square" Tag="square" />
+                        <RadioButton Content="Circle" Tag="circle" />
+                        <RadioButton Content="Rect" Tag="rect" />
                     </RadioButtons>
                 </local:ControlExample.Pane>
                 <StackPanel Margin="10" Spacing="10">
-                    <dev:SwitchPresenter Grid.Row="1"
-                                         Value="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem.Tag, Mode=OneWay}">
+                    <dev:SwitchPresenter Grid.Row="1" Value="{x:Bind ViewModel.SwitchPresenterRadioSelectedItem.Tag, Mode=OneWay}">
                         <dev:Case Value="square">
                             <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
-                                <Border Width="24"
-                                        Height="24"
-                                        Background="{ThemeResource AccentFillColorDefaultBrush}" />
-                                <TextBlock VerticalAlignment="Center"
-                                           Text="This is the Square panel" />
+                                <Border Width="24" Height="24" Background="{ThemeResource AccentFillColorDefaultBrush}" />
+                                <TextBlock VerticalAlignment="Center" Text="This is the Square panel" />
                             </StackPanel>
                         </dev:Case>
                         <dev:Case Value="circle">
                             <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
 
-                                <Ellipse Width="24"
-                                         Height="24"
-                                         Fill="{ThemeResource AccentFillColorDefaultBrush}" />
-                                <TextBlock VerticalAlignment="Center"
-                                           Text="This is the Circle panel" />
+                                <Ellipse Width="24" Height="24" Fill="{ThemeResource AccentFillColorDefaultBrush}" />
+                                <TextBlock VerticalAlignment="Center" Text="This is the Circle panel" />
                             </StackPanel>
                         </dev:Case>
                         <dev:Case Value="rect">
                             <StackPanel animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Style="{StaticResource PanelStyle}">
-                                <Rectangle Width="48"
-                                           Height="24"
-                                           Fill="{ThemeResource AccentFillColorDefaultBrush}" />
-                                <TextBlock VerticalAlignment="Center"
-                                           Text="This is the Rectangle panel" />
+                                <Rectangle Width="48" Height="24" Fill="{ThemeResource AccentFillColorDefaultBrush}" />
+                                <TextBlock VerticalAlignment="Center" Text="This is the Rectangle panel" />
                             </StackPanel>
                         </dev:Case>
                     </dev:SwitchPresenter>
                 </StackPanel>
             </local:ControlExample>
 
-            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_Part3_cs.txt"
-                                  DocPage="controls/switchPresenter"
-                                  HeaderText="Example 3"
-                                  XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Part3_xaml.txt">
+            <local:ControlExample CSharpSource="Features/SwitchPresenter/SwitchPresenterPage_Part3_cs.txt" DocPage="controls/switchPresenter" HeaderText="Example 3" XamlSource="Features/SwitchPresenter/SwitchPresenterPage_Part3_xaml.txt">
                 <local:ControlExample.Pane>
-                    <ComboBox x:Name="AnimalPicker"
-                              Header="Pick an Animal"
-                              ItemsSource="{x:Bind SwitchPresenterItems, Mode=OneWay}" />
+                    <ComboBox x:Name="AnimalPicker" Header="Pick an Animal" ItemsSource="{x:Bind SwitchPresenterItems, Mode=OneWay}" />
                 </local:ControlExample.Pane>
                 <StackPanel>
-                    <dev:SwitchPresenter Padding="16"
-                                         TargetType="enum:Animal"
-                                         Value="{x:Bind AnimalPicker.SelectedItem, Mode=OneWay}">
+                    <dev:SwitchPresenter Padding="16" TargetType="enum:Animal" Value="{x:Bind AnimalPicker.SelectedItem, Mode=OneWay}">
                         <dev:Case Value="Bunny">
-                            <TextBlock FontSize="32"
-                                       Text="🐇" />
+                            <TextBlock FontSize="32" Text="🐇" />
                         </dev:Case>
                         <dev:Case Value="Cat">
-                            <TextBlock FontSize="32"
-                                       Text="🐈" />
+                            <TextBlock FontSize="32" Text="🐈" />
                         </dev:Case>
                         <dev:Case Value="Dog">
-                            <TextBlock FontSize="32"
-                                       Text="🐕" />
+                            <TextBlock FontSize="32" Text="🐕" />
                         </dev:Case>
                         <dev:Case Value="Giraffe">
-                            <TextBlock FontSize="32"
-                                       Text="🦒" />
+                            <TextBlock FontSize="32" Text="🦒" />
                         </dev:Case>
                         <dev:Case Value="Llama">
-                            <TextBlock FontSize="32"
-                                       Text="🦙" />
+                            <TextBlock FontSize="32" Text="🦙" />
                         </dev:Case>
                         <dev:Case Value="Otter">
-                            <TextBlock FontSize="32"
-                                       Text="🦦" />
+                            <TextBlock FontSize="32" Text="🦦" />
                         </dev:Case>
                         <dev:Case Value="Owl">
-                            <TextBlock FontSize="32"
-                                       Text="🦉" />
+                            <TextBlock FontSize="32" Text="🦉" />
                         </dev:Case>
                         <dev:Case Value="Parrot">
-                            <TextBlock FontSize="32"
-                                       Text="🦜" />
+                            <TextBlock FontSize="32" Text="🦜" />
                         </dev:Case>
                         <dev:Case Value="Squirrel">
-                            <TextBlock FontSize="32"
-                                       Text="🐿" />
+                            <TextBlock FontSize="32" Text="🐿" />
                         </dev:Case>
                     </dev:SwitchPresenter>
                 </StackPanel>

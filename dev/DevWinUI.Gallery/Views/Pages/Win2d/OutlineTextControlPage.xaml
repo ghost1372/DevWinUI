@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/outlineTextControl"
-                                  DocType="Controls">
+            <local:ControlExample DocPage="controls/outlineTextControl" DocType="Controls">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:OutlineTextControl DashStyle="Solid"
@@ -23,20 +22,12 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="txt"
-                                 Header="Text"
-                                 PlaceholderText="Text"
-                                 Text="DevWinUI" />
+                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
                     </StackPanel>
                 </local:ControlExample.Pane>
 
             </local:ControlExample>
-            <dev:OutlineTextControl Height="200"
-                                    DashStyle="Solid"
-                                    FontSize="90"
-                                    OutlineColor="Purple"
-                                    StrokeWidth="4"
-                                    Text="{x:Bind txt.Text, Mode=OneWay}" />
+            <dev:OutlineTextControl Height="200" DashStyle="Solid" FontSize="90" OutlineColor="Purple" StrokeWidth="4" Text="{x:Bind txt.Text, Mode=OneWay}" />
 
         </StackPanel>
     </ScrollViewer>

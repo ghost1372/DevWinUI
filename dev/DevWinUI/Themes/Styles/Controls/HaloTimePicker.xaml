@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:HaloTimePicker" BasedOn="{StaticResource DefaultHaloTimePickerStyle}" />
+    <Style BasedOn="{StaticResource DefaultHaloTimePickerStyle}" TargetType="local:HaloTimePicker" />
 
     <Style x:Key="DefaultHaloTimePickerStyle" TargetType="local:HaloTimePicker">
         <Setter Property="MinutesBrush" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
@@ -19,25 +19,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:HaloTimePicker">
                     <local:HaloPanel>
-                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding MinutesBand}"
-                                        Fill="{TemplateBinding MinutesBrush}" />
-                        <local:HaloArcSlider x:Name="PART_Minutes"
-                                             local:HaloPanel.Band="{TemplateBinding MinutesBand}"
-                                             Background="{TemplateBinding MinutesArcBrush}" />
+                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding MinutesBand}" Fill="{TemplateBinding MinutesBrush}" />
+                        <local:HaloArcSlider x:Name="PART_Minutes" local:HaloPanel.Band="{TemplateBinding MinutesBand}" Background="{TemplateBinding MinutesArcBrush}" />
 
-                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding HoursBand}"
-                                        Fill="{TemplateBinding HoursBrush}" />
-                        <local:HaloArcSlider x:Name="PART_Hours"
-                                             local:HaloPanel.Band="{TemplateBinding HoursBand}"
-                                             Background="{TemplateBinding HoursArcBrush}" />
+                        <local:HaloDisc local:HaloPanel.Band="{TemplateBinding HoursBand}" Fill="{TemplateBinding HoursBrush}" />
+                        <local:HaloArcSlider x:Name="PART_Hours" local:HaloPanel.Band="{TemplateBinding HoursBand}" Background="{TemplateBinding HoursArcBrush}" />
 
                         <local:HaloDisc Fill="{TemplateBinding Background}" />
 
-                        <TextBlock x:Name="PART_Display"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}" />
+                        <TextBlock x:Name="PART_Display" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
                     </local:HaloPanel>
                 </ControlTemplate>
             </Setter.Value>

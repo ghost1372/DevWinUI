@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ContentDialogWindow" BasedOn="{StaticResource ContentWindowDefaultStyle}">
+    <Style BasedOn="{StaticResource ContentWindowDefaultStyle}" TargetType="local:ContentDialogWindow">
         <Setter Property="DefaultButton" Value="Primary" />
         <Setter Property="PrimaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
         <Setter Property="SecondaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
@@ -11,30 +11,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentDialogWindow">
-                    <local:ContentDialogView x:Name="PART_ContentDialogView"
-                                             ButtonOrientation="{TemplateBinding ButtonOrientation}"
-                                             CloseButtonAccessKey="{TemplateBinding CloseButtonAccessKey}"
-                                             CloseButtonCommand="{TemplateBinding CloseButtonCommand}"
-                                             CloseButtonContent="{TemplateBinding CloseButtonContent}"
-                                             CloseButtonStyle="{TemplateBinding CloseButtonStyle}"
-                                             CloseButtonTemplate="{TemplateBinding CloseButtonTemplate}"
-                                             Content="{TemplateBinding Content}"
-                                             ContentTemplate="{TemplateBinding ContentTemplate}"
-                                             DefaultButton="{TemplateBinding DefaultButton}"
-                                             Header="{TemplateBinding Header}"
-                                             HeaderTemplate="{TemplateBinding HeaderTemplate}"
-                                             IsPrimaryButtonEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
-                                             IsSecondaryButtonEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
-                                             PrimaryButtonAccessKey="{TemplateBinding PrimaryButtonAccessKey}"
-                                             PrimaryButtonCommand="{TemplateBinding PrimaryButtonCommand}"
-                                             PrimaryButtonContent="{TemplateBinding PrimaryButtonContent}"
-                                             PrimaryButtonStyle="{TemplateBinding PrimaryButtonStyle}"
-                                             PrimaryButtonTemplate="{TemplateBinding PrimaryButtonTemplate}"
-                                             SecondaryButtonAccessKey="{TemplateBinding SecondaryButtonAccessKey}"
-                                             SecondaryButtonCommand="{TemplateBinding SecondaryButtonCommand}"
-                                             SecondaryButtonContent="{TemplateBinding SecondaryButtonContent}"
-                                             SecondaryButtonStyle="{TemplateBinding SecondaryButtonStyle}"
-                                             SecondaryButtonTemplate="{TemplateBinding SecondaryButtonTemplate}" />
+                    <local:ContentDialogView x:Name="PART_ContentDialogView" ButtonOrientation="{TemplateBinding ButtonOrientation}" CloseButtonAccessKey="{TemplateBinding CloseButtonAccessKey}" CloseButtonCommand="{TemplateBinding CloseButtonCommand}" CloseButtonContent="{TemplateBinding CloseButtonContent}" CloseButtonStyle="{TemplateBinding CloseButtonStyle}" CloseButtonTemplate="{TemplateBinding CloseButtonTemplate}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" DefaultButton="{TemplateBinding DefaultButton}" Header="{TemplateBinding Header}" HeaderTemplate="{TemplateBinding HeaderTemplate}" IsPrimaryButtonEnabled="{TemplateBinding IsPrimaryButtonEnabled}" IsSecondaryButtonEnabled="{TemplateBinding IsSecondaryButtonEnabled}" PrimaryButtonAccessKey="{TemplateBinding PrimaryButtonAccessKey}" PrimaryButtonCommand="{TemplateBinding PrimaryButtonCommand}" PrimaryButtonContent="{TemplateBinding PrimaryButtonContent}" PrimaryButtonStyle="{TemplateBinding PrimaryButtonStyle}" PrimaryButtonTemplate="{TemplateBinding PrimaryButtonTemplate}" SecondaryButtonAccessKey="{TemplateBinding SecondaryButtonAccessKey}" SecondaryButtonCommand="{TemplateBinding SecondaryButtonCommand}" SecondaryButtonContent="{TemplateBinding SecondaryButtonContent}" SecondaryButtonStyle="{TemplateBinding SecondaryButtonStyle}" SecondaryButtonTemplate="{TemplateBinding SecondaryButtonTemplate}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

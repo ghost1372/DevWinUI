@@ -3,58 +3,37 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:TextGlitchEffect" BasedOn="{StaticResource DefaultTextGlitchEffectStyle}" />
+    <Style BasedOn="{StaticResource DefaultTextGlitchEffectStyle}" TargetType="local:TextGlitchEffect" />
 
     <Style x:Key="DefaultTextGlitchEffectStyle" TargetType="local:TextGlitchEffect">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect">
-                    <Rectangle x:Name="PART_TextBackground"
-                               Width="{TemplateBinding Width}"
-                               Height="{TemplateBinding Height}"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               Fill="{TemplateBinding Background}"
-                               Opacity="{TemplateBinding Opacity}"
-                               Stroke="{TemplateBinding BorderBrush}" />
+                    <Rectangle x:Name="PART_TextBackground" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Fill="{TemplateBinding Background}" Opacity="{TemplateBinding Opacity}" Stroke="{TemplateBinding BorderBrush}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="local:TextGlitchEffect2" BasedOn="{StaticResource DefaultTextGlitchEffect2Style}" />
+    <Style BasedOn="{StaticResource DefaultTextGlitchEffect2Style}" TargetType="local:TextGlitchEffect2" />
 
     <Style x:Key="DefaultTextGlitchEffect2Style" TargetType="local:TextGlitchEffect2">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect2">
-                    <Rectangle x:Name="PART_TextBackground"
-                               Width="{TemplateBinding Width}"
-                               Height="{TemplateBinding Height}"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               Fill="{TemplateBinding Background}"
-                               Opacity="{TemplateBinding Opacity}"
-                               Stroke="{TemplateBinding BorderBrush}" />
+                    <Rectangle x:Name="PART_TextBackground" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Fill="{TemplateBinding Background}" Opacity="{TemplateBinding Opacity}" Stroke="{TemplateBinding BorderBrush}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="local:TextGlitchEffect3" BasedOn="{StaticResource DefaultTextGlitchEffect3Style}" />
+    <Style BasedOn="{StaticResource DefaultTextGlitchEffect3Style}" TargetType="local:TextGlitchEffect3" />
 
     <Style x:Key="DefaultTextGlitchEffect3Style" TargetType="local:TextGlitchEffect3">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextGlitchEffect3">
-                    <Rectangle x:Name="PART_TextBackground"
-                               Width="{TemplateBinding Width}"
-                               Height="{TemplateBinding Height}"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               Fill="{TemplateBinding Background}"
-                               Opacity="{TemplateBinding Opacity}"
-                               Stroke="{TemplateBinding BorderBrush}" />
+                    <Rectangle x:Name="PART_TextBackground" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Fill="{TemplateBinding Background}" Opacity="{TemplateBinding Opacity}" Stroke="{TemplateBinding BorderBrush}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -10,16 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/clock"
-                                  HeaderText="Analog Clock">
+            <local:ControlExample DocPage="controls/clock" HeaderText="Analog Clock">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:Clock /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <TextBlock x:Name="Txt" />
                 </local:ControlExample.Pane>
-                <dev:Clock HorizontalAlignment="Left"
-                           SelectedTimeChanged="Clock_SelectedTimeChanged" />
+                <dev:Clock HorizontalAlignment="Left" SelectedTimeChanged="Clock_SelectedTimeChanged" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

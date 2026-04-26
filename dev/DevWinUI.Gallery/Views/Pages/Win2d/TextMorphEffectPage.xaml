@@ -10,8 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/textMorphEffect"
-                                  DocType="Controls">
+            <local:ControlExample DocPage="controls/textMorphEffect" DocType="Controls">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:TextMorphEffect BlurAmount="1" Delimiter="," Text="Text1,Text2,Text3" /&gt;
@@ -19,27 +18,12 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox x:Name="txt"
-                                 Header="Text"
-                                 PlaceholderText="Text"
-                                 Text="DevWinUI,Controls,ContextMenu,Core" />
-                        <TextBox x:Name="delimiter"
-                                 Header="Delimiter"
-                                 PlaceholderText="Delimiter"
-                                 Text="," />
-                        <NumberBox x:Name="nbBlur"
-                                   Header="Blur Amount"
-                                   Maximum="10"
-                                   Minimum="0"
-                                   PlaceholderText="Blur Amount"
-                                   SpinButtonPlacementMode="Inline"
-                                   Value="1" />
+                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI,Controls,ContextMenu,Core" />
+                        <TextBox x:Name="delimiter" Header="Delimiter" PlaceholderText="Delimiter" Text="," />
+                        <NumberBox x:Name="nbBlur" Header="Blur Amount" Maximum="10" Minimum="0" PlaceholderText="Blur Amount" SpinButtonPlacementMode="Inline" Value="1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:TextMorphEffect BlurAmount="{x:Bind nbBlur.Value, Mode=OneWay}"
-                                     Delimiter="{x:Bind delimiter.Text, Mode=OneWay}"
-                                     FontSize="32"
-                                     Text="{x:Bind txt.Text, Mode=OneWay}" />
+                <dev:TextMorphEffect BlurAmount="{x:Bind nbBlur.Value, Mode=OneWay}" Delimiter="{x:Bind delimiter.Text, Mode=OneWay}" FontSize="32" Text="{x:Bind txt.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

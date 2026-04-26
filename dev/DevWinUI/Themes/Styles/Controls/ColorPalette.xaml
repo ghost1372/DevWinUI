@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:ColorPalette" BasedOn="{StaticResource DefaultColorPaletteStyle}" />
+    <Style BasedOn="{StaticResource DefaultColorPaletteStyle}" TargetType="local:ColorPalette" />
 
     <Style x:Key="DefaultColorPaletteStyle" TargetType="local:ColorPalette">
         <Setter Property="HorizontalAlignment" Value="Left" />

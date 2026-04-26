@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:Timeline" BasedOn="{StaticResource DefaultTimelineStyle}" />
+    <Style BasedOn="{StaticResource DefaultTimelineStyle}" TargetType="local:Timeline" />
 
     <Style x:Key="DefaultTimelineStyle" TargetType="local:Timeline">
         <Setter Property="Template">
@@ -19,10 +19,7 @@
                         <Canvas x:Name="PART_HeaderCanvas" Grid.Row="0" Height="24" />
 
                         <!--  Timeline (bands + ticks + labels)  -->
-                        <Border Grid.Row="1"
-                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                BorderThickness="1"
-                                CornerRadius="{ThemeResource OverlayCornerRadius}">
+                        <Border Grid.Row="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource OverlayCornerRadius}">
                             <Canvas x:Name="PART_TimelineCanvas" Height="36" />
                         </Border>
 
@@ -39,7 +36,7 @@
         <Setter Property="StrokeThickness" Value="1" />
     </Style>
 
-    <Style x:Key="MajorHourTickStyle" TargetType="Line" BasedOn="{StaticResource HourTickStyle}">
+    <Style x:Key="MajorHourTickStyle" BasedOn="{StaticResource HourTickStyle}" TargetType="Line">
         <Setter Property="StrokeThickness" Value="2" />
         <Setter Property="Stroke" Value="{ThemeResource TextFillColorTertiaryBrush}" />
     </Style>
@@ -104,7 +101,7 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="LightBandIconStyle" TargetType="FontIcon" BasedOn="{StaticResource DarkBandIconStyle}">
+    <Style x:Key="LightBandIconStyle" BasedOn="{StaticResource DarkBandIconStyle}" TargetType="FontIcon">
         <Setter Property="Glyph" Value="&#xE706;" />
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     </Style>

@@ -6,7 +6,7 @@
     <x:Double x:Key="PinBoxMinHeight">32</x:Double>
     <x:Double x:Key="PinBoxMinWidth">42</x:Double>
 
-    <Style TargetType="local:PinBox" BasedOn="{StaticResource DefaultPinBoxStyle}" />
+    <Style BasedOn="{StaticResource DefaultPinBoxStyle}" TargetType="local:PinBox" />
 
     <Style x:Key="DefaultPinBoxStyle" TargetType="local:PinBox">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -22,7 +22,7 @@
                 <ControlTemplate TargetType="local:PinBox">
                     <Grid>
                         <Grid.Resources>
-                            <Style TargetType="PasswordBox" BasedOn="{StaticResource PinBoxPasswordBoxStyle}" />
+                            <Style BasedOn="{StaticResource PinBoxPasswordBoxStyle}" TargetType="PasswordBox" />
                         </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -44,30 +44,16 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <ContentPresenter x:Name="HeaderContentPresenter"
-                                          Grid.Row="0"
-                                          Margin="{ThemeResource PasswordBoxTopHeaderMargin}"
-                                          VerticalAlignment="Top"
-                                          Content="{TemplateBinding Header}"
-                                          FontWeight="Normal"
-                                          Foreground="{ThemeResource TextControlHeaderForeground}"
-                                          TextWrapping="Wrap" />
-                        <local:UniformGrid x:Name="PART_Panel"
-                                           Grid.Row="1"
-                                           Orientation="{TemplateBinding Orientation}"
-                                           Rows="1" />
-                        <ContentPresenter x:Name="DescriptionPresenter"
-                                          Grid.Row="2"
-                                          AutomationProperties.AccessibilityView="Raw"
-                                          Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+                        <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Margin="{ThemeResource PasswordBoxTopHeaderMargin}" VerticalAlignment="Top" Content="{TemplateBinding Header}" FontWeight="Normal" Foreground="{ThemeResource TextControlHeaderForeground}" TextWrapping="Wrap" />
+                        <local:UniformGrid x:Name="PART_Panel" Grid.Row="1" Orientation="{TemplateBinding Orientation}" Rows="1" />
+                        <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="PinBoxPasswordBoxStyle" TargetType="PasswordBox" BasedOn="{StaticResource DefaultPasswordBoxStyle}">
+    <Style x:Key="PinBoxPasswordBoxStyle" BasedOn="{StaticResource DefaultPasswordBoxStyle}" TargetType="PasswordBox">
         <Setter Property="MinHeight" Value="{ThemeResource PinBoxMinHeight}" />
         <Setter Property="MinWidth" Value="{ThemeResource PinBoxMinWidth}" />
         <Setter Property="Template">
@@ -156,32 +142,9 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="BorderElement"
-                                MinHeight="{ThemeResource PinBoxMinHeight}"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}" />
-                        <ScrollViewer x:Name="ContentElement"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      AutomationProperties.AccessibilityView="Raw"
-                                      HorizontalScrollBarVisibility="Hidden"
-                                      HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                      IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                      IsTabStop="False"
-                                      IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                      VerticalScrollBarVisibility="Hidden"
-                                      VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                      ZoomMode="Disabled" />
-                        <TextBlock x:Name="PlaceholderTextContentPresenter"
-                                   Margin="{TemplateBinding BorderThickness}"
-                                   Padding="{TemplateBinding Padding}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Foreground="{ThemeResource TextControlPlaceholderForeground}"
-                                   IsHitTestVisible="False"
-                                   Text="{TemplateBinding PlaceholderText}" />
+                        <Border x:Name="BorderElement" MinHeight="{ThemeResource PinBoxMinHeight}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" />
+                        <ScrollViewer x:Name="ContentElement" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsTabStop="False" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled" />
+                        <TextBlock x:Name="PlaceholderTextContentPresenter" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource TextControlPlaceholderForeground}" IsHitTestVisible="False" Text="{TemplateBinding PlaceholderText}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

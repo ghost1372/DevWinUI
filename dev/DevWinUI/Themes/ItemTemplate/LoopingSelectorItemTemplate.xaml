@@ -3,11 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <DataTemplate x:Key="LoopingSelectorItemDefaultTemplate"
-                  x:DataType="local:LoopingSelectorItem">
+    <DataTemplate x:Key="LoopingSelectorItemDefaultTemplate" x:DataType="local:LoopingSelectorItem">
         <StackPanel VerticalAlignment="Center">
-            <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                       Text="{x:Bind PrimaryText}" />
+            <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}" Text="{x:Bind PrimaryText}" />
         </StackPanel>
     </DataTemplate>
 

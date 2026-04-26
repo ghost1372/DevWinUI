@@ -10,9 +10,6 @@
                  mc:Ignorable="d">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="68"
-                   Text="Modal Window" />
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="68" Text="Modal Window" />
     </Grid>
 </dev:ModalWindow>

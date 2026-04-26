@@ -5,24 +5,18 @@
     <local:Bool2CornerRadiusConverter x:Key="Bool2CornerRadiusConverter" />
 
     <DataTemplate x:Key="HeaderTextBlockTemplate">
-        <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                   Style="{ThemeResource SubtitleTextBlockStyle}"
-                   Text="{Binding}" />
+        <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{Binding}" />
     </DataTemplate>
 
     <DataTemplate x:Key="DescriptionTextBlockTemplate">
-        <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                   Style="{ThemeResource BodyTextBlockStyle}"
-                   Text="{Binding}" />
+        <TextBlock FontFamily="{ThemeResource ContentControlThemeFontFamily}" Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding}" />
     </DataTemplate>
 
-    <local:TextBlockTemplateSelector x:Key="HeaderTemplateSelector"
-                                     TextBlockTemplate="{StaticResource HeaderTextBlockTemplate}" />
+    <local:TextBlockTemplateSelector x:Key="HeaderTemplateSelector" TextBlockTemplate="{StaticResource HeaderTextBlockTemplate}" />
 
-    <local:TextBlockTemplateSelector x:Key="DescriptionTemplateSelector"
-                                     TextBlockTemplate="{StaticResource DescriptionTextBlockTemplate}" />
+    <local:TextBlockTemplateSelector x:Key="DescriptionTemplateSelector" TextBlockTemplate="{StaticResource DescriptionTextBlockTemplate}" />
 
-    <Style TargetType="local:SettingsGroup" BasedOn="{StaticResource DefaultSettingsGroupStyle}" />
+    <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}" TargetType="local:SettingsGroup" />
 
     <Style x:Key="DefaultSettingsGroupStyle" TargetType="local:SettingsGroup">
         <Setter Property="IsTabStop" Value="False" />
@@ -54,57 +48,27 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Viewbox x:Name="PART_HeaderIconPresenterHolder"
-                                     Grid.Row="0"
-                                     MaxWidth="32"
-                                     MaxHeight="32"
-                                     Margin="10,10,0,5"
-                                     HorizontalAlignment="Left">
-                                <ContentPresenter x:Name="PART_HeaderIconPresenter"
-                                                  AutomationProperties.AccessibilityView="Raw"
-                                                  Content="{TemplateBinding HeaderIcon}"
-                                                  FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                                  HighContrastAdjustment="None" />
+                            <Viewbox x:Name="PART_HeaderIconPresenterHolder" Grid.Row="0" MaxWidth="32" MaxHeight="32" Margin="10,10,0,5" HorizontalAlignment="Left">
+                                <ContentPresenter x:Name="PART_HeaderIconPresenter" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding HeaderIcon}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" HighContrastAdjustment="None" />
                             </Viewbox>
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              Grid.Row="1"
-                                              Margin="10,10,0,0"
-                                              Content="{TemplateBinding Header}"
-                                              ContentTemplateSelector="{StaticResource HeaderTemplateSelector}"
-                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                              HighContrastAdjustment="None"
-                                              TextWrapping="Wrap" />
-                            <ContentPresenter x:Name="PART_DescriptionPresenter"
-                                              Grid.Row="2"
-                                              Margin="10,12,0,10"
-                                              Content="{TemplateBinding Description}"
-                                              ContentTemplateSelector="{StaticResource DescriptionTemplateSelector}"
-                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                              Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                              TextWrapping="WrapWholeWords">
+                            <ContentPresenter x:Name="PART_HeaderPresenter" Grid.Row="1" Margin="10,10,0,0" Content="{TemplateBinding Header}" ContentTemplateSelector="{StaticResource HeaderTemplateSelector}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" HighContrastAdjustment="None" TextWrapping="Wrap" />
+                            <ContentPresenter x:Name="PART_DescriptionPresenter" Grid.Row="2" Margin="10,12,0,10" Content="{TemplateBinding Description}" ContentTemplateSelector="{StaticResource DescriptionTemplateSelector}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="WrapWholeWords">
                                 <ContentPresenter.Resources>
-                                    <Style TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+                                    <Style BasedOn="{StaticResource CaptionTextBlockStyle}" TargetType="TextBlock">
                                         <Style.Setters>
                                             <Setter Property="TextWrapping" Value="WrapWholeWords" />
                                         </Style.Setters>
                                     </Style>
-                                    <Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextButtonStyle}">
+                                    <Style BasedOn="{StaticResource TextButtonStyle}" TargetType="HyperlinkButton">
                                         <Style.Setters>
                                             <Setter Property="Padding" Value="0,0,0,0" />
                                         </Style.Setters>
                                     </Style>
                                 </ContentPresenter.Resources>
                             </ContentPresenter>
-                            <ContentPresenter x:Name="PART_ContentPresenter"
-                                              Grid.Row="3"
-                                              Margin="10,20,0,10"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}" />
+                            <ContentPresenter x:Name="PART_ContentPresenter" Grid.Row="3" Margin="10,20,0,10" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding Content}" FontFamily="{ThemeResource ContentControlThemeFontFamily}" />
                         </Grid>
-                        <ItemsRepeater x:Name="PART_ItemsRepeater"
-                                       Grid.Row="1"
-                                       TabFocusNavigation="Local">
+                        <ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Row="1" TabFocusNavigation="Local">
                             <ItemsRepeater.Layout>
                                 <StackLayout Orientation="Vertical" />
                             </ItemsRepeater.Layout>
