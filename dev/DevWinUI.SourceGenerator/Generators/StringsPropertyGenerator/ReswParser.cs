@@ -3,16 +3,19 @@ using Microsoft.CodeAnalysis;
 
 namespace DevWinUI;
 
-internal static partial class ReswParser
+/// <summary>
+/// Provides methods to parse RESW (Resource) files and extract keys with optional comments.
+/// </summary>
+internal static class ReswParser
 {
     /// <summary>
     /// Parses a RESW (Resource) file and extracts keys with optional comments.
     /// </summary>
-    /// <param name="file">The <see cref="AdditionalText"/> representing the RESW file to parse.</param>
+    /// <param name="text">The text in the RESW file to parse.</param>
     /// <returns>An <see cref="IEnumerable{ParserItem}"/> containing the extracted keys and their corresponding values and comments.</returns>
-    internal static IEnumerable<ParserItem> GetKeys(AdditionalText file)
+    internal static IEnumerable<ParserItem> GetKeys(string text)
     {
-        var document = XDocument.Load(file.Path);
+        var document = XDocument.Parse(text);
         var keys = document
             .Descendants("data")
             .Select(element => new ParserItem

@@ -1,19 +1,20 @@
 ﻿using System.Text.Json;
-using Microsoft.CodeAnalysis;
 
 namespace DevWinUI;
 
-internal static partial class JsonParser
+/// <summary>
+/// Provides methods to parse JSON files and extract keys with optional context information.
+/// </summary>
+internal static class JsonParser
 {
     /// <summary>
     /// Parses a JSON file and extracts keys with optional context information.
     /// </summary>
-    /// <param name="file">The <see cref="AdditionalText"/> representing the JSON file to parse.</param>
+    /// <param name="text">The text in the JSON file to parse.</param>
     /// <returns>An <see cref="IEnumerable{ParserItem}"/> containing the extracted keys and their associated values.</returns>
-    internal static IEnumerable<ParserItem> GetKeys(AdditionalText file)
+    internal static IEnumerable<ParserItem> GetKeys(string text)
     {
-        var jsonText = new System.IO.StreamReader(file.Path).ReadToEnd();
-        var jsonDocument = JsonDocument.Parse(jsonText);
+        var jsonDocument = JsonDocument.Parse(text);
         var result = new List<ParserItem>();
         ProcessJsonObject(jsonDocument.RootElement, string.Empty, result);
         return result.OrderBy(item => item.Key);

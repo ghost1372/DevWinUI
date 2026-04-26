@@ -1,16 +1,16 @@
-﻿using System.Text;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using System.Text;
 using SystemIO = global::System.IO;
 
 namespace DevWinUI;
 
+/// <summary>
+/// Generates properties for strings based on resource files.
+/// </summary>
 [Generator]
-internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
+internal sealed class StringsPropertyGenerator : IIncrementalGenerator
 {
-    // Static HashSet to track generated file names
-    private readonly HashSet<string> _generatedFileNames = [];
-
     /// <summary>
     /// Initializes the generator and registers source output based on resource files.
     /// </summary>
@@ -18,9 +18,8 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var additionalFiles = context
-            .AdditionalTextsProvider
-            .Where(af => af.Path.Contains(@"en-US\Resources"));
-
+            .AdditionalTextsProvider.Where(af => af.Path.Contains("en-US\\Resources"));
+        
         var compilationProvider = context.CompilationProvider;
 
         var buildProperties = context.AnalyzerConfigOptionsProvider
@@ -32,7 +31,6 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
 
                 return (projectDir, rootNamespace, stringsNamespace);
             });
-
         var combined =
             additionalFiles
                 .Combine(compilationProvider)
@@ -44,19 +42,33 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
 
             Execute(ctx, files, compilation, stringsNamespace, projectDir, rootNamespace);
         });
+
+        var additionalFileNames = additionalFiles
+            .Select((af, ct) => SystemIO.Path.GetFileNameWithoutExtension(af.Path))
+            .Collect();
+
+        context.RegisterSourceOutput(additionalFileNames, (ctx, fileNames) =>
+        {
+            if (fileNames.Length <= 1)
+                return;
+
+            var duplicates = fileNames.GroupBy(n => n).Where(g => g.Count() > 1).Select(g => g.Key);
+
+            foreach (string fileName in duplicates)
+            {
+                ctx.ReportDiagnostic(Diagnostic.Create(Constants.DEVGEN1002, Location.None, fileName));
+            }
+        });
     }
 
+    /// <summary>
+    /// Executes the generation of string properties based on the provided file.
+    /// </summary>
+    /// <param name="ctx">The source production context.</param>
+    /// <param name="file">The additional text file with its hash.</param>
     private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
     {
         var fileName = SystemIO.Path.GetFileNameWithoutExtension(file.Path);
-
-        lock (_generatedFileNames)
-        {
-            if (_generatedFileNames.Contains(fileName))
-                ctx.ReportDiagnostic(Diagnostic.Create(Constants.DEVGEN1002, Location.None, fileName));
-
-            _ = _generatedFileNames.Add(fileName);
-        }
 
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
@@ -69,8 +81,7 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
             }
         }
 
-        var sb = new StringBuilder();
-
+        var sb = new StringBuilder(8000);
         var sourceFiles = file.Path.Replace(projectDir, "");
         _ = sb.AppendFullHeader($"//{sourceFiles}");
         _ = sb.AppendLine();
@@ -82,7 +93,7 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
         _ = sb.AppendLine($"public sealed partial class {Constants.StringsClassName}");
         _ = sb.AppendLine($"{{");
 
-        foreach (var key in ReadAllKeys(file)) // Write all keys from file
+        foreach (var key in ReadAllKeys(file, ctx.CancellationToken)) // Write all keys from file
             AddKey(
                 buffer: sb,
                 key: key.Key,
@@ -106,7 +117,7 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
     /// <param name="value">Optional value assigned to the key. If null, the key will be used as the value.</param>
     /// <param name="exampleValue">Optional example value for the key.</param>
     /// <param name="tabPos">Position of the tab.</param>
-    private void AddKey(StringBuilder buffer, string key, string? comment = null, string? value = null, string? exampleValue = null, int tabPos = 1)
+    private static void AddKey(StringBuilder buffer, string key, string? comment = null, string? value = null, string? exampleValue = null, int tabPos = 1)
     {
         var tabString = Spacing(tabPos);
 
@@ -136,12 +147,14 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
     /// </summary>
     /// <param name="file">The additional text file to read keys from.</param>
     /// <returns>An enumerable of <see cref="ParserItem"/> objects containing the keys and their associated values.</returns>
-    private IEnumerable<ParserItem> ReadAllKeys(AdditionalText file)
+    private static IEnumerable<ParserItem> ReadAllKeys(AdditionalText file, CancellationToken cancellationToken)
     {
+        string text = file.GetText(cancellationToken)!.ToString();
+
         return SystemIO.Path.GetExtension(file.Path) switch
         {
-            ".resw" => ReswParser.GetKeys(file),
-            ".json" => JsonParser.GetKeys(file),
+            ".resw" => ReswParser.GetKeys(text),
+            ".json" => JsonParser.GetKeys(text),
             _ => []
         };
     }
@@ -151,7 +164,7 @@ internal sealed partial class StringsPropertyGenerator : IIncrementalGenerator
     /// </summary>
     /// <param name="key">The key to validate.</param>
     /// <returns>A valid C# identifier based on the key.</returns>
-    private string KeyNameValidator(string key)
+    private static string KeyNameValidator(string key)
     {
         Span<char> resultSpan = key.Length <= 256 ? stackalloc char[key.Length] : new char[key.Length];
         var keySpan = key.AsSpan();
