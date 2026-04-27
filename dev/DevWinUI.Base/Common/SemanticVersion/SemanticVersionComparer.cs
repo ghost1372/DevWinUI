@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Globalization;
+
+namespace DevWinUI;
 
 internal sealed class SemanticVersionComparer : IComparer<SemanticVersion>, IEqualityComparer<SemanticVersion>
 {

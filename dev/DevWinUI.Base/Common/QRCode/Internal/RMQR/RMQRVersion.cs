@@ -241,8 +241,8 @@ internal static partial class RMQRVersion
 
         return ecLevel switch
         {
-            ErrorCorrectionLevel.M => MProfiles[version - 1],
-            ErrorCorrectionLevel.H => HProfiles[version - 1],
+            ErrorCorrectionLevel.Medium => MProfiles[version - 1],
+            ErrorCorrectionLevel.High => HProfiles[version - 1],
             _ => throw new ArgumentOutOfRangeException(nameof(ecLevel), $"rMQR only supports EC levels M and H, got {ecLevel}."),
         };
     }

@@ -90,7 +90,7 @@ internal sealed partial class MicroQRMatrixBuilder
     public void PlaceDataBits(byte[] codewords, ErrorCorrectionLevel ecLevel)
     {
         var hasD4mBlock = _version % 2 == 1;
-        var d4mBlockIndex = _version == 1 ? 3 : (ecLevel == ErrorCorrectionLevel.L ? 11 : 9);
+        var d4mBlockIndex = _version == 1 ? 3 : (ecLevel == ErrorCorrectionLevel.Low ? 11 : 9);
         var codewordIndex = 0;
         var bitPosition = GetBitsInCodeword(codewordIndex + 1, hasD4mBlock, d4mBlockIndex) - 1;
 

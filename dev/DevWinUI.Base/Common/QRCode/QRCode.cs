@@ -45,7 +45,7 @@ public sealed partial class QRCode
     /// <param name="data">The text data to encode.</param>
     /// <param name="errorCorrectionLevel">The error correction level.</param>
     /// <returns>A new <see cref="QRCode"/> instance.</returns>
-    public static QRCode Create(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.M)
+    public static QRCode Create(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Medium)
     {
         ArgumentNullException.ThrowIfNull(data);
         if (data.Length == 0)
@@ -67,7 +67,7 @@ public sealed partial class QRCode
     /// <param name="data">The binary data to encode.</param>
     /// <param name="errorCorrectionLevel">The error correction level.</param>
     /// <returns>A new <see cref="QRCode"/> instance.</returns>
-    public static QRCode Create(ReadOnlySpan<byte> data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.M)
+    public static QRCode Create(ReadOnlySpan<byte> data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Medium)
     {
         if (data.IsEmpty)
         {
@@ -88,7 +88,7 @@ public sealed partial class QRCode
     /// <param name="data">The text data to encode.</param>
     /// <param name="errorCorrectionLevel">The error correction level. M1 only supports detection; M2/M3 support L/M; M4 supports L/M/Q.</param>
     /// <returns>A new <see cref="QRCode"/> instance.</returns>
-    public static QRCode CreateMicroQR(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.L)
+    public static QRCode CreateMicroQR(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Low)
     {
         ArgumentNullException.ThrowIfNull(data);
         if (data.Length == 0)
@@ -106,7 +106,7 @@ public sealed partial class QRCode
     /// <param name="data">The text data to encode.</param>
     /// <param name="errorCorrectionLevel">The error correction level. Only M and H are supported.</param>
     /// <returns>A new <see cref="QRCode"/> instance.</returns>
-    public static QRCode CreateRMQR(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.M)
+    public static QRCode CreateRMQR(string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Medium)
     {
         ArgumentNullException.ThrowIfNull(data);
         if (data.Length == 0)

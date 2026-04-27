@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.QRCodePage",
+          "Title": "QR Code",
+          "IsNew": true,
+          "Subtitle": "Generate QR Code",
+          "ImagePath": "ms-appx:///Assets/Fluent/QRCode.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.UacStyleDialogWindowPage",
           "Title": "Uac Style Dialog Window",
           "IsNew": true,

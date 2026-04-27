@@ -28,13 +28,13 @@ internal static partial class MicroQRVersion
         return (version, ecLevel) switch
         {
             (1, _) => 3,
-            (2, ErrorCorrectionLevel.L) => 5,
-            (2, ErrorCorrectionLevel.M) => 4,
-            (3, ErrorCorrectionLevel.L) => 11,
-            (3, ErrorCorrectionLevel.M) => 9,
-            (4, ErrorCorrectionLevel.L) => 16,
-            (4, ErrorCorrectionLevel.M) => 14,
-            (4, ErrorCorrectionLevel.Q) => 10,
+            (2, ErrorCorrectionLevel.Low) => 5,
+            (2, ErrorCorrectionLevel.Medium) => 4,
+            (3, ErrorCorrectionLevel.Low) => 11,
+            (3, ErrorCorrectionLevel.Medium) => 9,
+            (4, ErrorCorrectionLevel.Low) => 16,
+            (4, ErrorCorrectionLevel.Medium) => 14,
+            (4, ErrorCorrectionLevel.Quartile) => 10,
             _ => throw new InvalidOperationException($"Invalid Micro QR version {version} with EC level {ecLevel}."),
         };
     }
@@ -96,30 +96,30 @@ internal static partial class MicroQRVersion
         return (version, ecLevel, mode) switch
         {
             (1, _, EncodingMode.Numeric) => 5,
-            (2, ErrorCorrectionLevel.L, EncodingMode.Numeric) => 10,
-            (2, ErrorCorrectionLevel.L, EncodingMode.Alphanumeric) => 6,
-            (2, ErrorCorrectionLevel.M, EncodingMode.Numeric) => 8,
-            (2, ErrorCorrectionLevel.M, EncodingMode.Alphanumeric) => 5,
-            (3, ErrorCorrectionLevel.L, EncodingMode.Numeric) => 23,
-            (3, ErrorCorrectionLevel.L, EncodingMode.Alphanumeric) => 14,
-            (3, ErrorCorrectionLevel.L, EncodingMode.Byte) => 9,
-            (3, ErrorCorrectionLevel.L, EncodingMode.Kanji) => 6,
-            (3, ErrorCorrectionLevel.M, EncodingMode.Numeric) => 18,
-            (3, ErrorCorrectionLevel.M, EncodingMode.Alphanumeric) => 11,
-            (3, ErrorCorrectionLevel.M, EncodingMode.Byte) => 7,
-            (3, ErrorCorrectionLevel.M, EncodingMode.Kanji) => 4,
-            (4, ErrorCorrectionLevel.L, EncodingMode.Numeric) => 35,
-            (4, ErrorCorrectionLevel.L, EncodingMode.Alphanumeric) => 21,
-            (4, ErrorCorrectionLevel.L, EncodingMode.Byte) => 15,
-            (4, ErrorCorrectionLevel.L, EncodingMode.Kanji) => 9,
-            (4, ErrorCorrectionLevel.M, EncodingMode.Numeric) => 30,
-            (4, ErrorCorrectionLevel.M, EncodingMode.Alphanumeric) => 18,
-            (4, ErrorCorrectionLevel.M, EncodingMode.Byte) => 13,
-            (4, ErrorCorrectionLevel.M, EncodingMode.Kanji) => 8,
-            (4, ErrorCorrectionLevel.Q, EncodingMode.Numeric) => 21,
-            (4, ErrorCorrectionLevel.Q, EncodingMode.Alphanumeric) => 13,
-            (4, ErrorCorrectionLevel.Q, EncodingMode.Byte) => 9,
-            (4, ErrorCorrectionLevel.Q, EncodingMode.Kanji) => 5,
+            (2, ErrorCorrectionLevel.Low, EncodingMode.Numeric) => 10,
+            (2, ErrorCorrectionLevel.Low, EncodingMode.Alphanumeric) => 6,
+            (2, ErrorCorrectionLevel.Medium, EncodingMode.Numeric) => 8,
+            (2, ErrorCorrectionLevel.Medium, EncodingMode.Alphanumeric) => 5,
+            (3, ErrorCorrectionLevel.Low, EncodingMode.Numeric) => 23,
+            (3, ErrorCorrectionLevel.Low, EncodingMode.Alphanumeric) => 14,
+            (3, ErrorCorrectionLevel.Low, EncodingMode.Byte) => 9,
+            (3, ErrorCorrectionLevel.Low, EncodingMode.Kanji) => 6,
+            (3, ErrorCorrectionLevel.Medium, EncodingMode.Numeric) => 18,
+            (3, ErrorCorrectionLevel.Medium, EncodingMode.Alphanumeric) => 11,
+            (3, ErrorCorrectionLevel.Medium, EncodingMode.Byte) => 7,
+            (3, ErrorCorrectionLevel.Medium, EncodingMode.Kanji) => 4,
+            (4, ErrorCorrectionLevel.Low, EncodingMode.Numeric) => 35,
+            (4, ErrorCorrectionLevel.Low, EncodingMode.Alphanumeric) => 21,
+            (4, ErrorCorrectionLevel.Low, EncodingMode.Byte) => 15,
+            (4, ErrorCorrectionLevel.Low, EncodingMode.Kanji) => 9,
+            (4, ErrorCorrectionLevel.Medium, EncodingMode.Numeric) => 30,
+            (4, ErrorCorrectionLevel.Medium, EncodingMode.Alphanumeric) => 18,
+            (4, ErrorCorrectionLevel.Medium, EncodingMode.Byte) => 13,
+            (4, ErrorCorrectionLevel.Medium, EncodingMode.Kanji) => 8,
+            (4, ErrorCorrectionLevel.Quartile, EncodingMode.Numeric) => 21,
+            (4, ErrorCorrectionLevel.Quartile, EncodingMode.Alphanumeric) => 13,
+            (4, ErrorCorrectionLevel.Quartile, EncodingMode.Byte) => 9,
+            (4, ErrorCorrectionLevel.Quartile, EncodingMode.Kanji) => 5,
             _ => 0, // Unsupported combination
         };
     }
@@ -131,13 +131,13 @@ internal static partial class MicroQRVersion
         return (version, ecLevel) switch
         {
             (1, _) => 0,
-            (2, ErrorCorrectionLevel.L) => 1,
-            (2, ErrorCorrectionLevel.M) => 2,
-            (3, ErrorCorrectionLevel.L) => 3,
-            (3, ErrorCorrectionLevel.M) => 4,
-            (4, ErrorCorrectionLevel.L) => 5,
-            (4, ErrorCorrectionLevel.M) => 6,
-            (4, ErrorCorrectionLevel.Q) => 7,
+            (2, ErrorCorrectionLevel.Low) => 1,
+            (2, ErrorCorrectionLevel.Medium) => 2,
+            (3, ErrorCorrectionLevel.Low) => 3,
+            (3, ErrorCorrectionLevel.Medium) => 4,
+            (4, ErrorCorrectionLevel.Low) => 5,
+            (4, ErrorCorrectionLevel.Medium) => 6,
+            (4, ErrorCorrectionLevel.Quartile) => 7,
             _ => throw new InvalidOperationException($"Invalid Micro QR version {version} with EC level {ecLevel}."),
         };
     }
@@ -160,9 +160,9 @@ internal static partial class MicroQRVersion
         return (version, ecLevel) switch
         {
             (1, _) => true, // M1 only has error detection, accept any EC level
-            (2, ErrorCorrectionLevel.L or ErrorCorrectionLevel.M) => true,
-            (3, ErrorCorrectionLevel.L or ErrorCorrectionLevel.M) => true,
-            (4, ErrorCorrectionLevel.L or ErrorCorrectionLevel.M or ErrorCorrectionLevel.Q) => true,
+            (2, ErrorCorrectionLevel.Low or ErrorCorrectionLevel.Medium) => true,
+            (3, ErrorCorrectionLevel.Low or ErrorCorrectionLevel.Medium) => true,
+            (4, ErrorCorrectionLevel.Low or ErrorCorrectionLevel.Medium or ErrorCorrectionLevel.Quartile) => true,
             _ => false,
         };
     }
@@ -206,7 +206,7 @@ internal static partial class MicroQRVersion
         if (version == 1)
         {
             // M1 only supports error detection; map any requested level to L
-            return ErrorCorrectionLevel.L;
+            return ErrorCorrectionLevel.Low;
         }
 
         return requested;

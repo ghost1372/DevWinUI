@@ -48,8 +48,8 @@ internal static partial class RMQRFormatInfo
         var versionIndex = version - 1;
         return ecLevel switch
         {
-            ErrorCorrectionLevel.M => versionIndex,
-            ErrorCorrectionLevel.H => versionIndex + 32,
+            ErrorCorrectionLevel.Medium => versionIndex,
+            ErrorCorrectionLevel.High => versionIndex + 32,
             _ => throw new ArgumentOutOfRangeException(nameof(ecLevel), $"rMQR only supports EC levels M and H, got {ecLevel}."),
         };
     }

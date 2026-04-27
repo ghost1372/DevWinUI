@@ -98,10 +98,20 @@ Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps 
 Install-Package DevWinUI.ContextMenu
 ```
 
+## 💻 DevWinUI.SourceGenerator
+
+Some useful Source Generator
+```
+Install-Package DevWinUI.SourceGenerator
+```
+
 ##
 ❤️ Special thanks to **Fatemeh sadat Ashian** for designing our icon. You can find her here: [Telegram](https://t.me/Setareh1380s), [Gmail](mailto:ashyfatii@gmail.com).
 
 ## 🕰️ History
+
+### QRCode
+![QRCode](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/QRCode.png)
 
 ### EdgeLighting
 ![EdgeLighting](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EdgeLighting.gif)
