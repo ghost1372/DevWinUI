@@ -9,7 +9,7 @@
           "UniqueId": "DevWinUIGallery.Views.HomeLandingPage",
           "Title": "Home",
           "HideItem": true,
-          "ImagePath": "ms-appx:///Assets/Icon.png"
+          "ImagePath": "ms-appx:///Assets/AppIcon.png"
         }
       ]
     },

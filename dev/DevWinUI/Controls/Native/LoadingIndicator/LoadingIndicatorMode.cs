@@ -25,5 +25,32 @@ public enum LoadingIndicatorMode
     Ring,
 
     [Description("LoadingIndicatorThreeDotsStyle")]
-    ThreeDots
+    ThreeDots,
+
+    [Description("LoadingIndicatorBarStyle")]
+    Bar,
+
+    [Description("LoadingIndicatorCogStyle")]
+    Cog,
+
+    [Description("LoadingIndicatorCupertinoStyle")]
+    Cupertino,
+
+    [Description("LoadingIndicatorDotCircleStyle")]
+    DotCircle,
+
+    [Description("LoadingIndicatorGridStyle")]
+    Grid,
+
+    [Description("LoadingIndicatorPistonStyle")]
+    Piston,
+
+    [Description("LoadingIndicatorRing2Style")]
+    Ring2,
+
+    [Description("LoadingIndicatorSwirlStyle")]
+    Swirl,
+
+    [Description("LoadingIndicatorTwistStyle")]
+    Twist,
 }

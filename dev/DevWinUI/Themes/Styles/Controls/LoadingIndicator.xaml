@@ -149,8 +149,6 @@
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="MinWidth" Value="70" />
-        <Setter Property="MinHeight" Value="20" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
@@ -483,8 +481,6 @@
         <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Width" Value="40" />
-        <Setter Property="Height" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:LoadingIndicator">
@@ -708,6 +704,1074 @@
                             </Canvas>
                         </Grid>
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorBarStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard AutoReverse="True" BeginTime="00:00:00" RepeatBehavior="Forever" Duration="0:0:2.7">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.5" Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.5" Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.7" Storyboard.TargetName="Ellipse3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.7" Storyboard.TargetName="Ellipse3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.9" Storyboard.TargetName="Ellipse4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.9" Storyboard.TargetName="Ellipse4" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+                            <Ellipse x:Name="Ellipse1" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="-75" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+
+                            <Ellipse x:Name="Ellipse2" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="-75" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+
+                            <Ellipse x:Name="Ellipse3" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="-75" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+
+                            <Ellipse x:Name="Ellipse4" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="-75" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorCogStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="bottomCog" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="15" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="195" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="374" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="topCog" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="-180" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-359" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas Width="50" Height="50" Margin="10">
+                                <Path x:Name="topCog" Canvas.Left="5" Canvas.Top="5" Width="20" Height="20" Data="M6.1820068,13.326002 C6.1820068,9.1240015 9.6010065,5.7050018 13.804008,5.7050018 C18.005007,5.7050018 21.425007,9.1240015 21.425007,13.326002 C21.425007,17.528002 18.005007,20.947002 13.804008,20.947002 C9.6010065,20.947002 6.1820068,17.528002 6.1820068,13.326002 z M26.226999,13.326 C26.226999,10.769 25.448999,8.3900003 24.118999,6.4120002 L27.768,2.7639999 L25.004,0 L21.455,3.549 C19.344999,1.8940001 16.688,0.90200001 13.804,0.90200001 C10.959,0.90200001 8.3380003,1.865 6.2420001,3.4779999 L2.7639999,0 L0,2.7639999 L3.553,6.316 C2.1830001,8.3129997 1.38,10.727 1.38,13.326 C1.38,16.209999 2.3710001,18.865999 4.026,20.978001 L0,25.004 L2.7639999,27.768 L6.8889999,23.642 C8.8669996,24.972 11.246,25.749001 13.804,25.749001 C16.402,25.749001 18.816,24.945999 20.813,23.576 L25.004,27.768 L27.768,25.004 L23.65,20.888 C25.264,18.791 26.226999,16.169001 26.226999,13.326 z" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Path x:Name="bottomCog" Canvas.Left="22" Canvas.Top="20.5" Width="20" Height="20" Data="M6.1820068,13.326002 C6.1820068,9.1240015 9.6010065,5.7050018 13.804008,5.7050018 C18.005007,5.7050018 21.425007,9.1240015 21.425007,13.326002 C21.425007,17.528002 18.005007,20.947002 13.804008,20.947002 C9.6010065,20.947002 6.1820068,17.528002 6.1820068,13.326002 z M26.226999,13.326 C26.226999,10.769 25.448999,8.3900003 24.118999,6.4120002 L27.768,2.7639999 L25.004,0 L21.455,3.549 C19.344999,1.8940001 16.688,0.90200001 13.804,0.90200001 C10.959,0.90200001 8.3380003,1.865 6.2420001,3.4779999 L2.7639999,0 L0,2.7639999 L3.553,6.316 C2.1830001,8.3129997 1.38,10.727 1.38,13.326 C1.38,16.209999 2.3710001,18.865999 4.026,20.978001 L0,25.004 L2.7639999,27.768 L6.8889999,23.642 C8.8669996,24.972 11.246,25.749001 13.804,25.749001 C16.402,25.749001 18.816,24.945999 20.813,23.576 L25.004,27.768 L27.768,25.004 L23.65,20.888 C25.264,18.791 26.226999,16.169001 26.226999,13.326 z" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="15" />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorCupertinoStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle01" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.20" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle12" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.20" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01.10" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle11" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.90" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01.10" Value="0.5" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle02" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.20" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.40" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle03" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.20" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.40" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle04" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.20" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.40" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.60" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle05" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.40" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.60" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.70" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle06" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.40" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.60" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.70" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.80" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle07" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.70" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.80" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.90" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle08" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.60" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.70" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.80" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.90" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle09" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.70" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.80" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.90" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01.10" Value="0.2" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Rectangle10" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.10" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0.2" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.90" Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.5" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01.10" Value="0.25" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas Width="48" Height="48" Margin="10">
+                                <Rectangle x:Name="Rectangle01" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" />
+                                <Rectangle x:Name="Rectangle02" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="30" />
+                                            <TranslateTransform X="7.5" Y="2" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle03" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="60" />
+                                            <TranslateTransform X="13" Y="7.5" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle04" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="90" />
+                                            <TranslateTransform X="15" Y="15" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle05" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="120" />
+                                            <TranslateTransform X="13" Y="22.5" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle06" Canvas.Left="22" Canvas.Top="4" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="150" />
+                                            <TranslateTransform X="7.5" Y="28" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle07" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.562,0.3" />
+                                <Rectangle x:Name="Rectangle08" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="30" />
+                                            <TranslateTransform X="-7.5" Y="-2" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle09" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="60" />
+                                            <TranslateTransform X="-13" Y="-7.5" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle10" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="90" />
+                                            <TranslateTransform X="-15" Y="-15" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle11" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="120" />
+                                            <TranslateTransform X="-13" Y="-22.5" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle x:Name="Rectangle12" Canvas.Left="22" Canvas.Top="34" Width="4" Height="10" Fill="{TemplateBinding Foreground}" Opacity="0.2" RadiusX="2" RadiusY="2" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="150" />
+                                            <TranslateTransform X="-7.5" Y="-28" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorDotCircleStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse01" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse12" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.10" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse11" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.90" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.10" Value="0.5" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse02" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse03" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse04" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse05" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.70" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse06" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.70" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.80" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse07" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.70" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.80" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.90" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse08" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.70" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.80" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.90" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse09" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.70" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.80" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.90" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="0.25" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.10" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse10" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.80" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.90" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="0.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.10" Value="0.25" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas Width="48" Height="48" Margin="10">
+                                <Ellipse x:Name="ellipse01" Canvas.Top="20" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse02" Canvas.Left="2.8" Canvas.Top="10" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse03" Canvas.Left="10" Canvas.Top="2.8" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse04" Canvas.Left="20" Canvas.Top="0" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse05" Canvas.Left="30" Canvas.Top="2.8" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse06" Canvas.Left="37.32" Canvas.Top="10" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse07" Canvas.Left="40" Canvas.Top="20" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse08" Canvas.Left="37.4" Canvas.Top="30" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse09" Canvas.Left="30" Canvas.Top="37.32" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse10" Canvas.Left="20" Canvas.Top="40" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse11" Canvas.Left="10" Canvas.Top="37.32" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                                <Ellipse x:Name="ellipse12" Canvas.Left="2.8" Canvas.Top="30" Width="8" Height="8" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorGridStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever" Duration="00:00:02">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle01" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle01" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.6" Storyboard.TargetName="Rectangle02" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.6" Storyboard.TargetName="Rectangle02" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.8" Storyboard.TargetName="Rectangle03" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.8" Storyboard.TargetName="Rectangle03" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Rectangle04" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Rectangle04" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle05" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle05" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.6" Storyboard.TargetName="Rectangle06" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.6" Storyboard.TargetName="Rectangle06" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="Rectangle07" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="Rectangle07" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Rectangle08" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Rectangle08" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle09" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Rectangle09" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.4" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01.0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Rectangle x:Name="Rectangle01" Grid.Row="0" Grid.Column="0" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle02" Grid.Row="0" Grid.Column="1" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle03" Grid.Row="0" Grid.Column="2" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle04" Grid.Row="1" Grid.Column="0" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle05" Grid.Row="1" Grid.Column="1" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle06" Grid.Row="1" Grid.Column="2" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle07" Grid.Row="2" Grid.Column="0" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle08" Grid.Row="2" Grid.Column="1" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="Rectangle09" Grid.Row="2" Grid.Column="2" Width="20" Height="20" Margin="0.5" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5, 0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorPistonStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="-13.66" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="-28" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="-27.90" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="-27.750" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="13.90" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="28.5" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="28.26" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="28" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.2440000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.7400000" Value="-13.688" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="-28" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="13.3" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.50" Value="27.75" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0.3" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0.3" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.10" Value="0.3" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.20" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.30" Value="0.3" />
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.40" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Ellipse x:Name="Ellipse1" Canvas.Left="32" Canvas.Top="4" Width="12" Height="12" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5 0.5">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+
+                                <Ellipse x:Name="Ellipse2" Canvas.Left="4" Canvas.Top="32" Width="12" Height="12" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5 0.5">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorRing2Style" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-110" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="10" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="93" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="205" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="357" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="439" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="585" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-116" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="4" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="87" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="199" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="351" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="433" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="579" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-122" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-2" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="81" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="193" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="345" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="427" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="573" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-128" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-8" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="75" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="187" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="339" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="421" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="567" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-134" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-14" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="69" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="181" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="331" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="415" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="561" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6R" Storyboard.TargetProperty="Angle">
+                                            <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-140" />
+                                            <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-20" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="63" />
+                                            <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="175" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="325" />
+                                            <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="409" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="555" />
+                                            <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.3" Value="555" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E1R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E1" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E2R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E2" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E3R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E3" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E4R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E4" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E5R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E5" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5" Visibility="Visible">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="E6R" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E6" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
+                            </Canvas>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorSwirlStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="Background" Value="{ThemeResource ProgressBarBackgroundThemeBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="canvas" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="180" />
+                                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="359" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas x:Name="canvas" Width="50" Height="50" Margin="10" RenderTransformOrigin="0.5,0.5">
+                                <Canvas.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Canvas.RenderTransform>
+                                <Path Canvas.Left="1.937" Canvas.Top="1.932" Data="F1 M 10.000,2.918 C 6.123,2.918 2.964,6.050 2.920,9.917 L 0.002,9.917 C 0.046,4.441 4.514,0.000 10.000,0.000 C 15.487,0.000 19.954,4.441 19.999,9.917 L 17.080,9.917 C 17.036,6.050 13.878,2.918 10.000,2.918 Z" Fill="{TemplateBinding Foreground}" UseLayoutRounding="False">
+                                    <Path.RenderTransform>
+                                        <ScaleTransform ScaleX="2.3" ScaleY="2.3" />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Path Canvas.Left="1.937" Canvas.Top="1.932" Data="F1 M 17.080,9.917 C 17.080,9.945 17.083,9.972 17.083,10.000 C 17.083,13.904 13.905,17.082 10.000,17.082 C 6.095,17.082 2.917,13.904 2.917,10.000 C 2.917,9.972 2.920,9.945 2.920,9.917 L 0.002,9.917 C 0.002,9.945 0.000,9.972 0.000,10.000 C 0.000,15.514 4.485,20.000 10.000,20.000 C 15.514,20.000 20.000,15.514 20.000,10.000 C 20.000,9.972 19.999,9.945 19.999,9.917 L 17.080,9.917 Z" Fill="{TemplateBinding Background}" UseLayoutRounding="False">
+                                    <Path.RenderTransform>
+                                        <ScaleTransform ScaleX="2.3" ScaleY="2.3" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoadingIndicatorTwistStyle" TargetType="local:LoadingIndicator">
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+        <Setter Property="Background" Value="{ThemeResource ProgressBarBackgroundThemeBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LoadingIndicator">
+                    <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="Active">
+                                    <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="C1" Storyboard.TargetProperty="Angle">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="360" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E1" Storyboard.TargetProperty="(Canvas.Left)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E1" Storyboard.TargetProperty="(Canvas.Top)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="C2" Storyboard.TargetProperty="Angle">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="450" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E2" Storyboard.TargetProperty="(Canvas.Left)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E2" Storyboard.TargetProperty="(Canvas.Top)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="C3" Storyboard.TargetProperty="Angle">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="540" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E3" Storyboard.TargetProperty="(Canvas.Left)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E3" Storyboard.TargetProperty="(Canvas.Top)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="C4" Storyboard.TargetProperty="Angle">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:01" Value="630" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E4" Storyboard.TargetProperty="(Canvas.Left)" From="13.4" To="4" Duration="00:00:00.4" />
+                                        <DoubleAnimation AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="E4" Storyboard.TargetProperty="(Canvas.Top)" From="13.4" To="4" Duration="00:00:00.4" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RenderTransformOrigin="0.5 0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="C1" Angle="0" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E1" Canvas.Left="13.4" Canvas.Top="13.4" Width="10" Height="10" Fill="{TemplateBinding Background}" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="C2" Angle="90" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E2" Canvas.Left="13.4" Canvas.Top="13.4" Width="10" Height="10" Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="C3" Angle="180" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E3" Canvas.Left="13.4" Canvas.Top="13.4" Width="10" Height="10" Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                            <Canvas RenderTransformOrigin=".5,.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="C4" Angle="270" />
+                                </Canvas.RenderTransform>
+                                <Ellipse x:Name="E4" Canvas.Left="13.4" Canvas.Top="13.4" Width="10" Height="10" Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                        </Grid>
+                    </Border>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
