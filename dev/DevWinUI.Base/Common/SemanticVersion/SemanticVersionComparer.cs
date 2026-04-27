@@ -1,6 +1,5 @@
-﻿using System.Globalization;
+﻿namespace DevWinUI;
 
-namespace DevWinUI;
 internal sealed class SemanticVersionComparer : IComparer<SemanticVersion>, IEqualityComparer<SemanticVersion>
 {
     public static SemanticVersionComparer Instance { get; } = new SemanticVersionComparer();

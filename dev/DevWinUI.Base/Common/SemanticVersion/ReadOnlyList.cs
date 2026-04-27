@@ -12,7 +12,7 @@ internal static partial class ReadOnlyList
     }
 }
 
-internal sealed class ReadOnlyList<T> : IList<T>, IReadOnlyList<T>
+internal sealed partial class ReadOnlyList<T> : IList<T>, IReadOnlyList<T>
 {
     private readonly List<T> _items;
     private bool _frozen;
