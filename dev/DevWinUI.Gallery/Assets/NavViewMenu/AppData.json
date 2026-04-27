@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.NTPClientPage",
+          "Title": "NTP Client",
+          "IsNew": true,
+          "Subtitle": "Querying NTP servers to retrieve accurate network time",
+          "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.QRCodePage",
           "Title": "QR Code",
           "IsNew": true,

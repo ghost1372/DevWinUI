@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.QRCodePage"
+<Page x:Class="DevWinUIGallery.Views.NTPClientPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,22 +7,30 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="qRCode" DocType="Core" HeaderText="QRCode">
+            <local:ControlExample DocPage="ntpClient" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
-                        var standardQr = QRCode.Create("DevWinUI", ErrorCorrectionLevel.High);
+                        using var client = new NtpClient(TxtServer.Text);#nl#
+                        var response = await client.QueryAsync();
                     </x:String>
                 </local:ControlExample.CSharp>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <TextBox Name="TxtInput" PlaceholderText="Input" Text="DevWinUI" TextChanged="TxtInput_TextChanged" />
-                        <ComboBox x:Name="CmbError" Header="Error Correction Level" ItemsSource="{x:Bind ErrorCorrectionLevelItems, Mode=OneWay}" SelectedIndex="3" SelectionChanged="CmbError_SelectionChanged" />
+                        <TextBox Name="TxtServer" PlaceholderText="NTP Server" Text="pool.ntp.org" />
+                        <Button x:Name="BtnGet" Click="BtnGet_Click" Content="Query" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <Image x:Name="OutPutImg" />
+                <StackPanel Spacing="10">
+                    <TextBlock x:Name="TxtTime" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBlock x:Name="TxtOffset" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBlock x:Name="TxtDelay" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBlock x:Name="TxtStratum" Style="{ThemeResource BaseTextBlockStyle}" />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
+
 </Page>

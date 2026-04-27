@@ -110,6 +110,9 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### NTPClient
+![NTPClient](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/NTPClient.png)
+
 ### QRCode
 ![QRCode](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/QRCode.png)
 
