@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 /// <summary>
 /// Represents a 48-byte NTP packet as defined in RFC 5905.

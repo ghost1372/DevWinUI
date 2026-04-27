@@ -1,5 +1,4 @@
-﻿using Windows.Win32.UI.WindowsAndMessaging;
-using static DevWinUI.NativeValues;
+﻿using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 public static partial class NativeMethods

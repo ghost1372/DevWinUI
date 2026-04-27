@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
-using Microsoft.Windows.ApplicationModel.Resources;
+﻿using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 
 namespace DevWinUI;
 
