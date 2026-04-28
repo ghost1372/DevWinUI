@@ -677,4 +677,139 @@ public partial class WindowHelper
             }
         }
     }
+
+    /// <summary>
+    /// Position a flyout-style window at the bottom-right corner of the work area on the
+    /// monitor under the mouse cursor.
+    /// </summary>
+    public static void MoveWindowToBottomRight(Window window, int widthDip, int heightDip, int rightMarginDip = 0, int bottomMarginDip = 0)
+    {
+        MoveWindowToBottomRight(WindowNative.GetWindowHandle(window), widthDip, heightDip, rightMarginDip, bottomMarginDip);
+    }
+
+    /// <summary>
+    /// Position a flyout-style window at the bottom-right corner of the work area on the
+    /// monitor under the mouse cursor.
+    /// </summary>
+    public static void MoveWindowToBottomRight(IntPtr hwnd, int widthDip, int heightDip, int rightMarginDip = 0, int bottomMarginDip = 0)
+    {
+        if (!DisplayMonitorHelper.TryGetDisplayAreaAtCursor(out var displayArea) || displayArea is null)
+        {
+            return;
+        }
+
+        MoveWindowToBottomRight(hwnd, displayArea, widthDip, heightDip, rightMarginDip, bottomMarginDip);
+    }
+
+    /// <summary>
+    /// Position a flyout-style window at the bottom-right corner of the specified display
+    /// area's work area. Use this overload when the caller has already resolved the target
+    /// <see cref="DisplayArea"/> (e.g. the cursor monitor) so size and placement are computed
+    /// from the same source.
+    ///
+    /// Internally moves the window in two steps to avoid <c>WM_DPICHANGED</c> double-scaling
+    /// when the target monitor has a different DPI than the one the window was previously on:
+    /// first a 1×1 teleport into the target display, then the real position+size while the
+    /// window is already on that monitor (no DPI boundary crossing).
+    /// </summary>
+    public static void MoveWindowToBottomRight(Window window, DisplayArea displayArea, int widthDip, int heightDip, int rightMarginDip = 0, int bottomMarginDip = 0)
+    {
+        MoveWindowToBottomRight(WindowNative.GetWindowHandle(window), displayArea, widthDip, heightDip, rightMarginDip, bottomMarginDip);
+    }
+    /// <summary>
+    /// Position a flyout-style window at the bottom-right corner of the specified display
+    /// area's work area. Use this overload when the caller has already resolved the target
+    /// <see cref="DisplayArea"/> (e.g. the cursor monitor) so size and placement are computed
+    /// from the same source.
+    ///
+    /// Internally moves the window in two steps to avoid <c>WM_DPICHANGED</c> double-scaling
+    /// when the target monitor has a different DPI than the one the window was previously on:
+    /// first a 1×1 teleport into the target display, then the real position+size while the
+    /// window is already on that monitor (no DPI boundary crossing).
+    /// </summary>
+    public static void MoveWindowToBottomRight(IntPtr hwnd, DisplayArea displayArea, int widthDip, int heightDip, int rightMarginDip = 0, int bottomMarginDip = 0)
+    {
+        ArgumentNullException.ThrowIfNull(displayArea);
+
+        double dpiScale = GeneralHelper.GetDpiScale(displayArea);
+        var work = displayArea.WorkArea;
+
+        int w = GeneralHelper.ScaleToPhysicalPixels(widthDip, dpiScale);
+        int h = GeneralHelper.ScaleToPhysicalPixels(heightDip, dpiScale);
+        int marginRight = GeneralHelper.ScaleToPhysicalPixels(rightMarginDip, dpiScale);
+        int marginBottom = GeneralHelper.ScaleToPhysicalPixels(bottomMarginDip, dpiScale);
+
+        // Clamp size so the window never extends past the work area minus margins.
+        // Guards against the bottom/right edge spilling into the taskbar when rounding
+        // (Math.Ceiling above) would push it just past the boundary.
+        int maxW = Math.Max(0, work.Width - marginRight);
+        int maxH = Math.Max(0, work.Height - marginBottom);
+        w = Math.Min(w, maxW);
+        h = Math.Min(h, maxH);
+
+        // Absolute screen physical-pixel coordinates. WorkArea is in screen coordinates,
+        // so for non-primary monitors WorkArea.X/Y will be non-zero (and may be negative).
+        int x = work.X + work.Width - w - marginRight;
+        int y = work.Y + work.Height - h - marginBottom;
+
+        MoveAndResizeOnDisplay(hwnd, displayArea, new RectInt32(x, y, w, h));
+    }
+
+    /// <summary>
+    /// Two-step move that avoids WM_DPICHANGED double-scaling. First teleports a 1×1
+    /// window into the target display (which may trigger an auto-rescale, but on a 1×1
+    /// rect the effect is invisible). Then sets the real position+size while the window
+    /// is already on the target monitor — no DPI boundary crossing, so WinUI's auto
+    /// handler doesn't fire and overwrite our computed rect.
+    ///
+    /// Skips the teleport when the window is already on the target display, since there
+    /// is no boundary to cross.
+    /// </summary>
+    private static void MoveAndResizeOnDisplay(IntPtr hwnd, DisplayArea targetDisplay, RectInt32 finalRect)
+    {
+        var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+        var appWindow = AppWindow.GetFromWindowId(windowId);
+
+        var currentDisplay = DisplayArea.GetFromWindowId(windowId, DisplayAreaFallback.Nearest);
+        bool needsTeleport = currentDisplay is null || currentDisplay.DisplayId.Value != targetDisplay.DisplayId.Value;
+
+        if (needsTeleport)
+        {
+            var work = targetDisplay.WorkArea;
+            appWindow.MoveAndResize(new RectInt32(work.X, work.Y, 1, 1));
+        }
+
+        appWindow.MoveAndResize(finalRect);
+    }
+
+    /// <summary>
+    /// Center a window within the specified display area's work area.
+    /// Uses a 1×1 teleport into the target display first to avoid WM_DPICHANGED
+    /// double-scaling when crossing monitors with different DPI.
+    /// </summary>
+    public static void CenterWindowOnDisplay(IntPtr hwnd, DisplayArea displayArea, int widthDip, int heightDip)
+    {
+        ArgumentNullException.ThrowIfNull(displayArea);
+
+        double dpiScale = GeneralHelper.GetDpiScale(displayArea);
+        var work = displayArea.WorkArea;
+
+        int w = Math.Min(GeneralHelper.ScaleToPhysicalPixels(widthDip, dpiScale), work.Width);
+        int h = Math.Min(GeneralHelper.ScaleToPhysicalPixels(heightDip, dpiScale), work.Height);
+
+        int x = work.X + ((work.Width - w) / 2);
+        int y = work.Y + ((work.Height - h) / 2);
+
+        MoveAndResizeOnDisplay(hwnd, displayArea, new RectInt32(x, y, w, h));
+    }
+
+    /// <summary>
+    /// Center a window within the specified display area's work area.
+    /// Uses a 1×1 teleport into the target display first to avoid WM_DPICHANGED
+    /// double-scaling when crossing monitors with different DPI.
+    /// </summary>
+    public static void CenterWindowOnDisplay(Window window, DisplayArea displayArea, int widthDip, int heightDip)
+    {
+        CenterWindowOnDisplay(WindowNative.GetWindowHandle(window), displayArea, widthDip, heightDip);
+    }
 }
