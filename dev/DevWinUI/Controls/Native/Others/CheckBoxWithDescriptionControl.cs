@@ -8,11 +8,8 @@ namespace DevWinUI;
 
 public partial class CheckBoxWithDescriptionControl : CheckBox
 {
-    private CheckBoxWithDescriptionControl _checkBoxSubTextControl;
-
     public CheckBoxWithDescriptionControl()
     {
-        _checkBoxSubTextControl = (CheckBoxWithDescriptionControl)this;
         this.Loaded += CheckBoxSubTextControl_Loaded;
     }
 
@@ -41,17 +38,17 @@ public partial class CheckBoxWithDescriptionControl : CheckBox
             panel.Children.Add(new IsEnabledTextBlock() { Style = (Style)Application.Current.Resources["SecondaryIsEnabledTextBlockStyle"], Text = Description });
         }
 
-        _checkBoxSubTextControl.Content = panel;
+        this.Content = panel;
     }
 
     public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-        "Header",
+        nameof(Header),
         typeof(string),
         typeof(CheckBoxWithDescriptionControl),
         new PropertyMetadata(default(string)));
 
     public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register(
-        "Description",
+        nameof(Description),
         typeof(string),
         typeof(CheckBoxWithDescriptionControl),
         new PropertyMetadata(default(string)));
