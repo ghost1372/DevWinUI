@@ -60,6 +60,7 @@ public sealed partial class KeyVisual2 : Control
 
     private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        ((KeyVisual2)d).Update();
         ((KeyVisual2)d).SetVisualStates();
     }
 
@@ -93,7 +94,7 @@ public sealed partial class KeyVisual2 : Control
 
     private void Update()
     {
-        if (Content == null)
+        if (Content == null || _keyPresenter == null)
         {
             return;
         }
@@ -124,6 +125,12 @@ public sealed partial class KeyVisual2 : Control
 
                 case "Office":
                     _keyPresenter.Style = (Style)Application.Current.Resources["OfficeKeyCharPresenterStyle"];
+                    break;
+                case nameof(VirtualKey.LeftWindows):
+                case nameof(VirtualKey.RightWindows):
+                case "Win":
+                case "Windows":
+                    _keyPresenter.Style = (Style)Application.Current.Resources["WindowsKeyCharPresenterStyle"];
                     break;
 
                 default:
