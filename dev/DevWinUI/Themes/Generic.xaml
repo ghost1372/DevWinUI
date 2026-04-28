@@ -2856,7 +2856,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <TextBlock x:Name="Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="WrapWholeWords" />
+            <TextBlock x:Name="Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" IsTextSelectionEnabled="{TemplateBinding IsTextSelectionEnabled}" Text="{TemplateBinding Text}" TextWrapping="WrapWholeWords" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -15002,9 +15002,9 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="local:InlineAutoCompleteTextBox" />
   <Style BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" TargetType="local:IsEnabledTextBlock" />
-  <Style x:Key="SecondaryIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
+  <Style x:Key="SecondaryIsEnabledTextBlockStyle" BasedOn="{StaticResource DefaultIsEnabledTextBlockStyle}" TargetType="local:IsEnabledTextBlock">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
-    <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}" />
+    <Setter Property="FontSize" Value="12" />
   </Style>
   <Style BasedOn="{StaticResource DefaultTextKeyVisualStyle}" TargetType="local:KeyVisual" />
   <Style x:Key="SmallTextKeyVisualStyle" BasedOn="{StaticResource DefaultTextKeyVisualStyle}" TargetType="local:KeyVisual">
