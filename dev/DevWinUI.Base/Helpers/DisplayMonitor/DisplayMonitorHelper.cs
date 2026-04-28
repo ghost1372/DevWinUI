@@ -125,4 +125,20 @@ public static partial class DisplayMonitorHelper
             IsPrimary = primaryMonitorInfo.IsPrimary
         };
     }
+
+    /// <summary>
+    /// Look up the <see cref="DisplayArea"/> currently containing the mouse cursor.
+    /// </summary>
+    public static bool TryGetDisplayAreaAtCursor(out DisplayArea? displayArea)
+    {
+        displayArea = null;
+
+        if (!PInvoke.GetCursorPos(out var cursorPos))
+        {
+            return false;
+        }
+
+        displayArea = DisplayArea.GetFromPoint(new PointInt32(cursorPos.X, cursorPos.Y), DisplayAreaFallback.Nearest);
+        return displayArea is not null;
+    }
 }
