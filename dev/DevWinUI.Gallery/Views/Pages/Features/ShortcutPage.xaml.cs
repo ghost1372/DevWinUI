@@ -9,6 +9,9 @@ public sealed partial class ShortcutPage : Page
         MainShortcut.Keys = new List<object>() { "Win", "Alt", "F1" };
         MainShortcutPreview.Keys = new List<object>() { "Win", "Alt", "F1" };
         MainShortcutWithTextLabel.Keys = new List<object>() { "Win", "Alt", "F1" };
+        MainShortcutWithTextLabel2.Keys = new List<object>() { "Win", "Alt", "F1" };
+        MainShortcutWithTextLabel21.Keys = new List<object>() { "Win", "Alt", "F1" };
+        MainShortcutWithTextLabel22.Keys = new List<object>() { "Win", "Alt", "F1" };
     }
 
     private void OnMainShortcutPrimaryButtonClick(object sender, ContentDialogButtonClickEventArgs e)

@@ -62,6 +62,13 @@
                 </local:ControlExample.Pane>
                 <dev:ShortcutWithTextLabel x:Name="MainShortcutWithTextLabel" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="{x:Bind TGIsEnabled3.IsOn, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/shortcutWithTextLabel2" HeaderText="ShortcutWithTextLabel2">
+                <StackPanel Spacing="10">
+                    <dev:ShortcutWithTextLabel2 x:Name="MainShortcutWithTextLabel2" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+                    <dev:ShortcutWithTextLabel2 x:Name="MainShortcutWithTextLabel21" HorizontalAlignment="Left" VerticalAlignment="Top" KeyVisualStyle="{StaticResource AccentKeyVisualStyle}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+                    <dev:ShortcutWithTextLabel2 x:Name="MainShortcutWithTextLabel22" HorizontalAlignment="Left" VerticalAlignment="Top" KeyVisualStyle="{StaticResource SubtleKeyVisualStyle}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+                </StackPanel>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

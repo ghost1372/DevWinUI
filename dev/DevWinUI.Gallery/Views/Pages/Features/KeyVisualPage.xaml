@@ -34,6 +34,18 @@
                 </StackPanel>
 
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/keyVisual2" HeaderText="KeyVisual2">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:KeyVisual2 Content="Ctrl+F5" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Spacing="10">
+                    <dev:KeyVisual2 Content="{x:Bind TxtContent.Text, Mode=OneWay}" State="Error" />
+                    <dev:KeyVisual2 Content="{x:Bind TxtContent2.Text, Mode=OneWay}" State="Warning" />
+                    <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource AccentKeyVisualStyle}" />
+                    <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource SubtleKeyVisualStyle}" />
+                </StackPanel>
+
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 
