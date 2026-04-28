@@ -30,6 +30,7 @@ GetCursorPos
 GetCurrentThreadId
 GetDC
 GetDpiForWindow
+GetDpiForMonitor
 GetModuleFileName
 GetModuleHandle
 GetMonitorInfo

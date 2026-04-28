@@ -7,6 +7,8 @@ using Windows.Globalization;
 namespace DevWinUI;
 public partial class GeneralHelper
 {
+    private const uint MdtEffectiveDpi = 0;
+    private const int DefaultDpi = 96;
     private const string firstRunKey = "IsFirstRun";
 
     /// <summary>
@@ -316,5 +318,51 @@ public partial class GeneralHelper
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Get the DPI scale factor (1.0 = 100%, 1.25 = 125%, 1.5 = 150%, 2.0 = 200%) for a window.
+    /// </summary>
+    public static double GetDpiScale(Window window)
+    {
+        ArgumentNullException.ThrowIfNull(window);
+        return (double)WindowHelper.GetDpiForWindow(window) / DefaultDpi;
+    }
+
+    /// <summary>
+    /// Get the DPI scale factor for a given <see cref="DisplayArea"/>.
+    /// Resolves DPI from the underlying monitor handle so the value reflects the
+    /// target display, regardless of which monitor the window is currently on.
+    /// </summary>
+    public static double GetDpiScale(DisplayArea displayArea)
+    {
+        ArgumentNullException.ThrowIfNull(displayArea);
+        return (double)GetEffectiveDpi(global::Microsoft.UI.Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId)) / DefaultDpi;
+    }
+    /// <summary>
+    /// Convert device-independent pixels (DIP) to physical pixels (rounding up).
+    /// </summary>
+    public static int ScaleToPhysicalPixels(int dip, double dpiScale)
+    {
+        return (int)Math.Ceiling(dip * dpiScale);
+    }
+
+    /// <summary>
+    /// Convert physical pixels to device-independent pixels (DIP) (rounding down).
+    /// </summary>
+    public static int ScaleToDip(int physicalPixels, double dpiScale)
+    {
+        return (int)Math.Floor(physicalPixels / dpiScale);
+    }
+
+    public static int GetEffectiveDpi(nint hMonitor)
+    {
+        if (hMonitor == 0)
+        {
+            return DefaultDpi;
+        }
+
+        var hr = PInvoke.GetDpiForMonitor(new Windows.Win32.Graphics.Gdi.HMONITOR(hMonitor), MdtEffectiveDpi, out var dpiX, out _);
+        return hr >= 0 && dpiX > 0 ? (int)dpiX : DefaultDpi;
     }
 }
