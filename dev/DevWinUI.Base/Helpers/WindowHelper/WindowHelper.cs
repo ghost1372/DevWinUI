@@ -652,7 +652,29 @@ public partial class WindowHelper
 
     public static void SetWindowSize(Microsoft.UI.Xaml.Window window, double width, double height)
     {
-        var scale = WindowHelper.GetDpiForWindow(WindowNative.GetWindowHandle(window)) / 96f;
+        var scale = GetDpiForWindow(WindowNative.GetWindowHandle(window)) / 96f;
         window.AppWindow.Resize(new Windows.Graphics.SizeInt32((int)(width * scale), (int)(height * scale)));
+    }
+    public static async Task ShakeWindowAsync(Window window, int intensity = 10, int times = 2, int delayMs = 50) => await ShakeWindowAsync(WindowNative.GetWindowHandle(window), intensity, times, delayMs);
+    public static async Task ShakeWindowAsync(IntPtr hwnd, int intensity = 10, int times = 2, int delayMs = 50)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            for (int j = 0; j < 4; j++) // 4 steps per shake
+            {
+                int dx = (j % 2 == 0) ? intensity : -intensity;
+                int dy = (j < 2) ? 0 : 0;
+
+                RECT rect = new RECT();
+                PInvoke.GetWindowRect(new HWND(hwnd), out rect);
+
+                int newX = rect.left + dx;
+                int newY = rect.top + dy;
+
+                NativeMethods.SetWindowPos(hwnd, IntPtr.Zero, newX, newY, 0, 0, (uint)Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOZORDER | (uint)Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE | 0x0040 | 0x0001);
+
+                await Task.Delay(delayMs);
+            }
+        }
     }
 }

@@ -3,6 +3,10 @@
 namespace DevWinUI;
 public static partial class NativeMethods
 {
+    [LibraryImport(ExternDll.User32)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
     /// <summary>
     /// FlushMenuThemes clears the current theme settings for menus. It ensures that any changes to theme settings are
     /// applied immediately.
