@@ -43,14 +43,12 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ColorAnalyzerPage",
           "Title": "Color Analyzer",
-          "IsNew": true,
           "Subtitle": "Generates a color palette from any UIElement.",
           "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MenuFlyoutSecondaryMenuPage",
           "Title": "MenuFlyout Attach",
-          "IsNew": true,
           "Subtitle": "Provides attached properties and behavior extensions for to support a customizable secondary menu section.",
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBarFlyout.png"
         },
@@ -201,70 +199,60 @@
           "UniqueId": "DevWinUIGallery.Views.SideBarViewPage",
           "Title": "SideBarView",
           "Subtitle": "Provides top-level navigation for your app.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/NavigationView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ToolbarPage",
           "Title": "Toolbar",
           "Subtitle": "A toolbar control is a user interface element that provides a row or column of buttons, icons, or menus, allowing users to quickly access common commands or functions within an application.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/CommandBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BreadcrumbBarPage",
           "Title": "BreadcrumbBar",
           "Subtitle": "A BreadcrumbBar provides the direct path of pages or folders to the current location.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/BreadcrumbBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ThemedIconPage",
           "Title": "Themed Icon",
           "Subtitle": "A control for a State and Color aware Icon",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SamplePanelPage",
           "Title": "Sample Panel",
           "Subtitle": "Sample panel with 2 Side.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/AppBarSeparator.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SpectrumAnalyzerPage",
           "Title": "Spectrum Analyzer",
           "Subtitle": "Displays audio level and frequency data.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/AudioWave2.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WaveformTimelinePage",
           "Title": "Waveform Timeline",
           "Subtitle": "Displays a stereo waveform and allows a user to change playback position.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/AudioWave.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LoopPanelPage",
           "Title": "Loop Panel",
           "Subtitle": "An infinitely scrolling panel.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CoverFlowPage",
           "Title": "Cover Flow",
           "Subtitle": "A CoverFlow control is a 3D-style carousel that highlights a centered item while showing neighboring items angled.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.WaveProgressBarPage",
           "Title": "Wave ProgressBar",
           "Subtitle": "Wave ProgressBar",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/WaveProgress.png"
         },
         {
@@ -278,28 +266,24 @@
           "UniqueId": "DevWinUIGallery.Views.IndeterminateProgressBarPage",
           "Title": "Indeterminate ProgressBar",
           "Subtitle": "An animated bar where dots move from left to right to indicate ongoing, indeterminate progress.",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
           "Title": "Halo",
           "Subtitle": "The Halo is a set of interconnected UI components for circular or arc-based interfaces.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OffsetBoxPage",
           "Title": "Offset Box",
           "Subtitle": "a ContentControl box which can change content offset by hovering it.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/external.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.GoToCardPage",
           "Title": "Go To Card",
           "Subtitle": "a versatile card control that displays a title, optional icon, and an action button, allowing users to navigate to a URI or trigger a custom action when clicked.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/external.png"
         },
         {
@@ -468,12 +452,14 @@
           "UniqueId": "DevWinUIGallery.Views.ShortcutPage",
           "Title": "Shortcut",
           "Subtitle": "Press a combination of keys to change this shortcut",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/shortcutGuide.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.KeyVisualPage",
           "Title": "KeyVisual",
           "Subtitle": "KeyVisual",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/keyboardManager.png"
         },
         {
@@ -641,7 +627,6 @@
         {
           "UniqueId": "DevWinUIGallery.Views.ProgressRingPage",
           "Title": "Progress Ring",
-          "IsUpdated": true,
           "Subtitle": "Represents a control that indicates the progress of an operation",
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
@@ -712,105 +697,90 @@
           "UniqueId": "DevWinUIGallery.Views.CarouselView2Page",
           "Title": "Carousel View 2",
           "Subtitle": "A professional carousel control with animations powered by composition API.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ContentSliderPage",
           "Title": "Content Slider",
           "Subtitle": "A simple content slider with animation.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CarouselViewPage",
           "Title": "Carousel View",
           "Subtitle": "A simple carousel control with animations powered by composition API.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.EasyCarouselPanelPage",
           "Title": "Easy Carousel Panel",
           "Subtitle": "A simple carousel control with animations powered by composition API.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StarsPage",
           "Title": "Stars",
           "Subtitle": "Animated sky background with stars",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BannerViewPage",
           "Title": "Banner View",
           "Subtitle": "An enhanced FlipView with smooth composition animations, optional scaling and perspective effects, and seamless infinite cycling of items with automatic shuffle support",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LinearGradientBlurPanelPage",
           "Title": "Linear Gradient Blur Panel",
           "Subtitle": "Apply linear gradient blur to the content and the elements behind it.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.OrbitLoadingIndicatorPage",
           "Title": "Orbit Loading Indicator",
           "Subtitle": "A composition-based loading indicator with orbiting animations to show progress.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.StoreCarouselPage",
           "Title": "Store Carousel",
           "Subtitle": "A modern, Store-style carousel layout inspired by the Microsoft Store, designed to showcase large hero images with titles, descriptions, and action buttons.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.XamlLightsPage",
           "Title": "Xaml Lights",
           "Subtitle": "A set of interactive lighting effects that enhance UI feedback: Ambient adds a constant soft glow, Hover highlights elements when the pointer moves over them, and Ripple creates a brief expanding light when the user clicks or taps.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RadioButton.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ImageFramePage",
           "Title": "Image Frame",
           "Subtitle": "ImageFrame is a control that loads and displays images with optional rounded corners, shadows, and smooth transitions.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ProfileControlPage",
           "Title": "ProfileControl",
           "Subtitle": "ProfileControl is a circular profile image control with optional blur, border, and tint effects.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/PersonPicture.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FrostedGlassPage",
           "Title": "Frosted Glass",
           "Subtitle": "FrostedGlass is a control that creates a blurred, frosted‑glass background with configurable tint, blur, and shadow.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FluidBannerPage",
           "Title": "Fluid Banner",
           "Subtitle": "FluidBanner is a control that displays multiple images in a smooth, fluid banner.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/StackPanelHorizontal.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ColorShadowPage",
           "Title": "Color Shadow",
           "Subtitle": "ColorShadow is a control that draws an image along with a softly blurred, color-based shadow generated from the image itself.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
         },
         {
@@ -915,42 +885,36 @@
           "UniqueId": "DevWinUIGallery.Views.AudioWavePage",
           "Title": "Audio Wave",
           "Subtitle": "Audio visualizer",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Spectrum.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SpectrumVisualizerPage",
           "Title": "Spectrum Visualizer",
           "Subtitle": "Lightweight real-time audio visualizer capturing system or mic input, displaying dynamic waveforms and spectrum effects.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Spectrum.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimatedTextBlockPage",
           "Title": "Animated TextBlock",
           "Subtitle": "A TextBlock control which animates the text with customizable effects.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BlendedImagePage",
           "Title": "Blended Image",
           "Subtitle": "Create a dynamic blend of two images.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CountdownPage",
           "Title": "Countdown",
           "Subtitle": "Countdown is a circular animated timer with customizable border, gradient background, and center text showing remaining seconds or a label.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Countdown.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.CircleIconPage",
           "Title": "Circle Icon",
           "Subtitle": "CircleIcon is a circular control with customizable border, gradient background, and optional content.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
         },
         {
