@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.System;
+﻿using Windows.System;
 
 namespace DevWinUI;
 
@@ -27,13 +24,13 @@ public sealed partial class KeyVisual2 : Control
 
     public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(nameof(Content), typeof(object), typeof(KeyVisual2), new PropertyMetadata(default(string), OnContentChanged));
 
-    public State State
+    public KeyVisualState State
     {
-        get => (State)GetValue(StateProperty);
+        get => (KeyVisualState)GetValue(StateProperty);
         set => SetValue(StateProperty, value);
     }
 
-    public static readonly DependencyProperty StateProperty = DependencyProperty.Register(nameof(State), typeof(State), typeof(KeyVisual2), new PropertyMetadata(State.Normal, OnStateChanged));
+    public static readonly DependencyProperty StateProperty = DependencyProperty.Register(nameof(State), typeof(KeyVisualState), typeof(KeyVisual2), new PropertyMetadata(KeyVisualState.Normal, OnStateChanged));
 
     public bool RenderKeyAsGlyph
     {
@@ -73,11 +70,11 @@ public sealed partial class KeyVisual2 : Control
     {
         if (this != null)
         {
-            if (State == State.Error)
+            if (State == KeyVisualState.Error)
             {
                 VisualStateManager.GoToState(this, InvalidState, true);
             }
-            else if (State == State.Warning)
+            else if (State == KeyVisualState.Warning)
             {
                 VisualStateManager.GoToState(this, WarningState, true);
             }
@@ -204,7 +201,7 @@ public sealed partial class KeyVisual2 : Control
     }
 }
 
-public enum State
+public enum KeyVisualState
 {
     Normal,
     Error,
