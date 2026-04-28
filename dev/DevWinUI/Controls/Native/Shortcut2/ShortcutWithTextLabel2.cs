@@ -18,13 +18,13 @@ public sealed partial class ShortcutWithTextLabel2 : Control
 
     public static readonly DependencyProperty KeysProperty = DependencyProperty.Register(nameof(Keys), typeof(List<object>), typeof(ShortcutWithTextLabel2), new PropertyMetadata(default(string)));
 
-    public Placement LabelPlacement
+    public ShortcutWithTextLabel2Placement LabelPlacement
     {
-        get { return (Placement)GetValue(LabelPlacementProperty); }
+        get { return (ShortcutWithTextLabel2Placement)GetValue(LabelPlacementProperty); }
         set { SetValue(LabelPlacementProperty, value); }
     }
 
-    public static readonly DependencyProperty LabelPlacementProperty = DependencyProperty.Register(nameof(LabelPlacement), typeof(Placement), typeof(ShortcutWithTextLabel2), new PropertyMetadata(defaultValue: Placement.After, OnIsLabelPlacementChanged));
+    public static readonly DependencyProperty LabelPlacementProperty = DependencyProperty.Register(nameof(LabelPlacement), typeof(ShortcutWithTextLabel2Placement), typeof(ShortcutWithTextLabel2), new PropertyMetadata(defaultValue: ShortcutWithTextLabel2Placement.After, OnIsLabelPlacementChanged));
 
     public Style KeyVisualStyle
     {
@@ -48,7 +48,7 @@ public sealed partial class ShortcutWithTextLabel2 : Control
     {
         if (d is ShortcutWithTextLabel2 labelControl)
         {
-            if (labelControl.LabelPlacement == Placement.Before)
+            if (labelControl.LabelPlacement == ShortcutWithTextLabel2Placement.Before)
             {
                 VisualStateManager.GoToState(labelControl, "LabelBefore", true);
             }
@@ -59,7 +59,7 @@ public sealed partial class ShortcutWithTextLabel2 : Control
         }
     }
 
-    public enum Placement
+    public enum ShortcutWithTextLabel2Placement
     {
         Before,
         After,
