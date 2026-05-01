@@ -20,6 +20,8 @@ public partial class Shortcut : BaseShortcut
     public event EventHandler<ContentDialogButtonClickEventArgs> CloseButtonClick;
     public event EventHandler<ContentDialogButtonClickEventArgs> PrimaryButtonClick;
     public event EventHandler<ContentDialogButtonClickEventArgs> SecondaryButtonClick;
+    public event EventHandler<ContentDialogOpenedEventArgs> OpenedContentDialog;
+    public event EventHandler<ContentDialogClosedEventArgs> ClosedContentDialog;
     public event EventHandler<ContentDialogClosingEventArgs> ClosingContentDialog;
     public event EventHandler<ShortcutValidationEventArgs>? ValidateShortcut;
 
@@ -224,6 +226,10 @@ public partial class Shortcut : BaseShortcut
         };
         contentDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
 
+        contentDialog.Opened -= OnOpenedContentDialog;
+        contentDialog.Opened += OnOpenedContentDialog;
+        contentDialog.Closed -= OnClosedContentDialog;
+        contentDialog.Closed += OnClosedContentDialog;
         contentDialog.Closing -= OnClosingContentDialog;
         contentDialog.Closing += OnClosingContentDialog;
         contentDialog.PrimaryButtonClick -= OnSaveContentDialog;
@@ -282,6 +288,16 @@ public partial class Shortcut : BaseShortcut
     {
         canCloseDialog = true;
         CloseButtonClick?.Invoke(this, args);
+    }
+
+    private void OnOpenedContentDialog(ContentDialog sender, ContentDialogOpenedEventArgs args)
+    {
+        OpenedContentDialog?.Invoke(this, args);
+    }
+
+    private void OnClosedContentDialog(ContentDialog sender, ContentDialogClosedEventArgs args)
+    {
+        ClosedContentDialog?.Invoke(this, args);
     }
 
     private void OnClosingContentDialog(ContentDialog sender, ContentDialogClosingEventArgs args)
