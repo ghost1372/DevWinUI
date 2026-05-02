@@ -12,6 +12,7 @@ CreateSolidBrush
 DefSubclassProc
 DeleteObject
 DestroyWindow
+DispatchMessage
 DwmEnableBlurBehindWindow
 DwmExtendFrameIntoClientArea
 DwmGetWindowAttribute
@@ -33,6 +34,7 @@ GetCurrentThreadId
 GetDC
 GetDpiForWindow
 GetDpiForMonitor
+GetKeyState
 GetMessage
 GetModuleFileName
 GetModuleHandle
@@ -48,6 +50,7 @@ GetWindowText
 GetWindowThreadProcessId
 IDI_APPLICATION
 IsWindowEnabled
+KBDLLHOOKSTRUCT
 LoadIcon
 LoadImage
 LoadString
@@ -56,6 +59,7 @@ MonitorFromWindow
 MONITORINFOEXW
 MSLLHOOKSTRUCT
 OpenProcessToken
+PostThreadMessage
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
@@ -70,6 +74,7 @@ SHGetKnownFolderPath
 ShowWindow
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
+TranslateMessage
 WindowFromPoint
 WritePrivateProfileString
 WM_MOUSEMOVE
@@ -77,3 +82,8 @@ WM_LBUTTONDOWN
 WM_RBUTTONDOWN
 WM_MBUTTONDOWN
 WM_MOUSEWHEEL
+WM_QUIT
+WM_KEYDOWN
+WM_SYSKEYDOWN
+WM_KEYUP
+WM_SYSKEYUP
