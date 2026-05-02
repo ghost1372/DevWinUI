@@ -1,4 +1,5 @@
-﻿ClientToScreen
+﻿CallNextHookEx
+ClientToScreen
 CoCreateInstance
 CombineRgn
 CoWaitForMultipleObjects
@@ -21,6 +22,7 @@ FillRect
 FindWindowExW
 FindWindow
 GetActiveWindow
+GetAncestor
 GetClassName
 GetClientRect
 GetComputerName
@@ -31,6 +33,7 @@ GetCurrentThreadId
 GetDC
 GetDpiForWindow
 GetDpiForMonitor
+GetMessage
 GetModuleFileName
 GetModuleHandle
 GetMonitorInfo
@@ -51,12 +54,14 @@ LoadString
 MessageBox
 MonitorFromWindow
 MONITORINFOEXW
+MSLLHOOKSTRUCT
 OpenProcessToken
 RemoveWindowSubclass
 RtlGetVersion
 SendMessage
 SetEvent
 SetForegroundWindow
+SetWindowsHookEx
 SetWindowLong
 SetWindowPos
 SetWindowRgn
@@ -65,4 +70,10 @@ SHGetKnownFolderPath
 ShowWindow
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
+WindowFromPoint
 WritePrivateProfileString
+WM_MOUSEMOVE
+WM_LBUTTONDOWN
+WM_RBUTTONDOWN
+WM_MBUTTONDOWN
+WM_MOUSEWHEEL
