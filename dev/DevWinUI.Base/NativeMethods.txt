@@ -61,6 +61,13 @@ MSLLHOOKSTRUCT
 OpenProcessToken
 PostThreadMessage
 RemoveWindowSubclass
+RmStartSession
+RmJoinSession
+RmRegisterResources
+RmShutdown
+RmRestart
+RmEndSession
+RmGetList
 RtlGetVersion
 SendMessage
 SetEvent
