@@ -1,5 +1,6 @@
 ﻿using Windows.System;
 using Windows.Win32.UI.WindowsAndMessaging;
+using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 
@@ -10,20 +11,10 @@ public sealed partial class GlobalKeyboardHook : IDisposable
     public event EventHandler<GlobalKeyEventArgs>? KeyPressed;
 
     private Thread? _thread;
-    private HHOOK _hook;
     private uint _threadId;
     private bool _running;
-    private UnhookWindowsHookExSafeHandle? _hookId;
-    private static GlobalKeyboardHook Current { get; set; }
-
-    public GlobalKeyboardHook()
-    {
-        if (Current == null)
-        {
-            Current = this;
-        }
-    }
-
+    private IntPtr _hookId = IntPtr.Zero;
+    private HookProc _HookProcedure;
     public void Start()
     {
         if (_running)
@@ -46,26 +37,29 @@ public sealed partial class GlobalKeyboardHook : IDisposable
 
         _running = false;
 
-        if (_threadId != 0)
+        if (_hookId != IntPtr.Zero)
         {
-            PInvoke.PostThreadMessage(_threadId, PInvoke.WM_QUIT, 0, 0);
+            PInvoke.UnhookWindowsHookEx(new HHOOK(_hookId));
+            _hookId = IntPtr.Zero;
         }
 
-        _thread?.Join();
-        _thread = null;
+        if (_threadId != 0)
+        {
+            PInvoke.PostThreadMessage(_threadId, PInvoke.WM_QUIT, UIntPtr.Zero, IntPtr.Zero);
+            _thread?.Join();
+            _thread = null;
+            _threadId = 0;
+        }
     }
 
     private unsafe void ThreadProc()
     {
         _threadId = PInvoke.GetCurrentThreadId();
+        _HookProcedure = new HookProc(HookProcCallBack);
 
-        delegate* unmanaged[Stdcall]<int, WPARAM, LPARAM, LRESULT> callback = &HookCallback;
+        _hookId = NativeMethods.SetWindowsHookEx((int)WINDOWS_HOOK_ID.WH_KEYBOARD_LL, _HookProcedure, IntPtr.Zero, 0);
 
-        _hook = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_KEYBOARD_LL, callback, HINSTANCE.Null, 0);
-
-        _hookId = new UnhookWindowsHookExSafeHandle(_hook);
-
-        if (_hook.IsNull)
+        if (_hookId == IntPtr.Zero)
             throw new InvalidOperationException("Failed to install keyboard hook.");
 
         MSG msg;
@@ -75,38 +69,37 @@ public sealed partial class GlobalKeyboardHook : IDisposable
             PInvoke.DispatchMessage(msg);
         }
 
-        PInvoke.UnhookWindowsHookEx(_hook);
-        _hook = default;
+        PInvoke.UnhookWindowsHookEx(new HHOOK(_hookId));
+        _hookId = IntPtr.Zero;
     }
 
-    [UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvStdcall) })]
-    private static LRESULT HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
+    public int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
     {
-        if (nCode >= 0)
-        {
-            var data = System.Runtime.InteropServices.Marshal
+        if (nCode < 0)
+            return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
+
+        var data = System.Runtime.InteropServices.Marshal
                .PtrToStructure<KBDLLHOOKSTRUCT>(lParam);
 
-            var key = (VirtualKey)data.vkCode;
+        var key = (VirtualKey)data.vkCode;
 
-            var args = new GlobalKeyEventArgs(key);
+        var args = new GlobalKeyEventArgs(key);
 
-            switch ((uint)wParam.Value)
-            {
-                case PInvoke.WM_KEYDOWN:
-                case PInvoke.WM_SYSKEYDOWN:
-                    Current?.KeyDown?.Invoke(Current, args);
-                    Current?.KeyPressed?.Invoke(Current, args);
-                    break;
+        switch ((uint)wParam)
+        {
+            case PInvoke.WM_KEYDOWN:
+            case PInvoke.WM_SYSKEYDOWN:
+                KeyDown?.Invoke(this, args);
+                KeyPressed?.Invoke(this, args);
+                break;
 
-                case PInvoke.WM_KEYUP:
-                case PInvoke.WM_SYSKEYUP:
-                    Current?.KeyUp?.Invoke(Current, args);
-                    break;
-            }
+            case PInvoke.WM_KEYUP:
+            case PInvoke.WM_SYSKEYUP:
+                KeyUp?.Invoke(this, args);
+                break;
         }
 
-        return PInvoke.CallNextHookEx(Current?._hookId, nCode, wParam, lParam);
+        return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
     }
 
     public void Dispose()
