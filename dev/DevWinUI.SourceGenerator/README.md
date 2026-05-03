@@ -29,13 +29,13 @@ Install-Package DevWinUI.SourceGenerator
 ```
 
 ## Example
-For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)"/>`, for `NavigationPageMappings` you need to define `<AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)"/>` and for `StringsPropertyGenerator` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)"/>`
+For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>`, for `NavigationPageMappings` you need to define `<AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>` and for `StringsPropertyGenerator` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>`
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
-  <AdditionalFiles Include="**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
-  <AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)"/>
+  <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
+  <AdditionalFiles Include="Views\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
+  <AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
 </ItemGroup>
 ```
 
