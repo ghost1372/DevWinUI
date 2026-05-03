@@ -3,7 +3,7 @@
 namespace DevWinUI;
 public static partial class NativeMethods
 {
-    [LibraryImport("user32.dll", EntryPoint = "SetWindowsHookExA")]
+    [LibraryImport("user32.dll", EntryPoint = "SetWindowsHookExW")]
     internal static partial IntPtr SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hMod, uint dwThreadId);
 
     [LibraryImport("user32.dll")]
