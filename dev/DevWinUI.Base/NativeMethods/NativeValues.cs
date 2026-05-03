@@ -2,6 +2,7 @@
 public static partial class NativeValues
 {
     public delegate IntPtr WNDPROC(IntPtr hWnd, NativeValues.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
+    public delegate int HookProc(int code, IntPtr wParam, IntPtr lParam);
 
     public static partial class ExternDll
     {

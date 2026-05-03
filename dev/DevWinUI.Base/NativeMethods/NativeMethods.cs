@@ -3,6 +3,15 @@
 namespace DevWinUI;
 public static partial class NativeMethods
 {
+    [LibraryImport("user32.dll", EntryPoint = "SetWindowsHookExA")]
+    internal static partial IntPtr SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hMod, uint dwThreadId);
+
+    [LibraryImport("user32.dll")]
+    internal static partial int CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+    [LibraryImport("kernel32.dll", EntryPoint = "GetModuleHandleW", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+    internal static partial IntPtr GetModuleHandle(string lpModuleName);
+
     [LibraryImport(ExternDll.User32)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static partial bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);

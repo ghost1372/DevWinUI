@@ -1,4 +1,5 @@
 ﻿using Windows.Win32.UI.WindowsAndMessaging;
+using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 
@@ -9,32 +10,19 @@ public sealed partial class GlobalMouseHook : IDisposable
 
     private Thread? _hookThread;
     private bool _running;
-    private FreeLibrarySafeHandle hModule;
-    private UnhookWindowsHookExSafeHandle? _hookId;
-    private static GlobalMouseHook Current { get; set; }
+    private IntPtr _hookId = IntPtr.Zero;
     public bool IsAppLevelHook { get; set; } = false;
     public IntPtr TargetWindowHwnd { get; set; } = IntPtr.Zero;
+    private uint _hookThreadId;
+    private HookProc _HookProcedure;
+    public GlobalMouseHook() => Init(IntPtr.Zero, false);
 
-    public GlobalMouseHook()
-    {
-        TargetWindowHwnd = IntPtr.Zero;
-        IsAppLevelHook = false;
-        Init();
-    }
+    public GlobalMouseHook(IntPtr hwnd) => Init(hwnd, true);
 
-    public GlobalMouseHook(IntPtr hwnd)
+    private void Init(IntPtr hwnd, bool isAppLevel)
     {
         TargetWindowHwnd = hwnd;
-        IsAppLevelHook = true;
-        Init();
-    }
-
-    private void Init()
-    {
-        if (Current == null)
-        {
-            Current = this;
-        }
+        IsAppLevelHook = isAppLevel;
     }
 
     public void Start()
@@ -50,94 +38,88 @@ public sealed partial class GlobalMouseHook : IDisposable
 
         _hookThread.Start();
     }
-
-
-    private unsafe void HookLoop()
+    private void HookLoop()
     {
-        delegate* unmanaged[Stdcall]<int, WPARAM, LPARAM, LRESULT> callback = &HookCallback;
+        _hookThreadId = PInvoke.GetCurrentThreadId();
+        _HookProcedure = new HookProc(HookProcCallBack);
 
         using var process = System.Diagnostics.Process.GetCurrentProcess();
         using var module = process.MainModule!;
 
-        hModule = PInvoke.GetModuleHandle(module.ModuleName);
+        var _hModule = module != null ? NativeMethods.GetModuleHandle(module.ModuleName) : IntPtr.Zero;
+        _hookId = NativeMethods.SetWindowsHookEx((int)WINDOWS_HOOK_ID.WH_MOUSE_LL, _HookProcedure, _hModule, 0);
 
-        _hookId = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_MOUSE_LL, callback, hModule, 0);
-
-        // Message loop
-        while (PInvoke.GetMessage(out MSG msg, HWND.Null, 0, 0))
+        MSG msg;
+        while (PInvoke.GetMessage(out msg, HWND.Null, 0, 0))
         {
-            // no dispatch needed for hook-only loop
+            // loop until WM_QUIT
         }
-
     }
-
-    [UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvStdcall) })]
-    private static LRESULT HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
+    public int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
     {
-        if (nCode >= 0)
+        if (nCode < 0)
+            return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
+
+        var data = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
+        int x = data.pt.X;
+        int y = data.pt.Y;
+
+        if (IsAppLevelHook)
         {
-            var data = System.Runtime.InteropServices.Marshal
-                .PtrToStructure<MSLLHOOKSTRUCT>(lParam);
+            if (TargetWindowHwnd == IntPtr.Zero)
+                throw new NullReferenceException($"{nameof(TargetWindowHwnd)} is null. Please ensure that the window handle (HWND) is properly set before proceeding.");
 
-            int x = data.pt.X;
-            int y = data.pt.Y;
-
-            if (Current.IsAppLevelHook)
-            {
-                var hwnd = PInvoke.WindowFromPoint(new System.Drawing.Point(x, y));
-
-                hwnd = PInvoke.GetAncestor(hwnd, GET_ANCESTOR_FLAGS.GA_ROOT);
-
-                if (hwnd != Current?.TargetWindowHwnd)
-                {
-                    return PInvoke.CallNextHookEx(Current?._hookId, nCode, wParam, lParam);
-                }
-            }
-
-            var hookLevel = Current.IsAppLevelHook ? HookLevel.Application : HookLevel.Global;
-            switch ((uint)wParam)
-            {
-                case PInvoke.WM_MOUSEMOVE:
-                    Current?.MouseMove?.Invoke(Current, new MouseMoveEventArgs(hookLevel, x, y));
-                    break;
-
-                case PInvoke.WM_LBUTTONDOWN:
-                    Current?.MouseClick?.Invoke(Current, new MouseClickEventArgs(hookLevel, MouseButton.Left, x, y));
-                    break;
-
-                case PInvoke.WM_RBUTTONDOWN:
-                    Current?.MouseClick?.Invoke(Current, new MouseClickEventArgs(hookLevel, MouseButton.Right, x, y));
-                    break;
-
-                case PInvoke.WM_MBUTTONDOWN:
-                    Current?.MouseClick?.Invoke(Current, new MouseClickEventArgs(hookLevel, MouseButton.Middle, x, y));
-                    break;
-
-                case PInvoke.WM_MOUSEWHEEL:
-                    int delta = (short)((data.mouseData >> 16) & 0xffff);
-                    Current?.MouseClick?.Invoke(Current, new MouseClickEventArgs(hookLevel, MouseButton.Wheel, x, y, delta));
-                    break;
-            }
-
+            var hwnd = PInvoke.WindowFromPoint(new System.Drawing.Point(x, y));
+            hwnd = PInvoke.GetAncestor(hwnd, GET_ANCESTOR_FLAGS.GA_ROOT);
+            if (hwnd != TargetWindowHwnd)
+                return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
 
-        return PInvoke.CallNextHookEx(Current?._hookId, nCode, wParam, lParam);
+        var hookLevel = IsAppLevelHook ? HookLevel.Application : HookLevel.Global;
+
+        switch ((uint)wParam)
+        {
+            case PInvoke.WM_MOUSEMOVE:
+                MouseMove?.Invoke(this, new MouseMoveEventArgs(hookLevel, x, y));
+                break;
+            case PInvoke.WM_LBUTTONDOWN:
+                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Left, x, y));
+                break;
+            case PInvoke.WM_RBUTTONDOWN:
+                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Right, x, y));
+                break;
+            case PInvoke.WM_MBUTTONDOWN:
+                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Middle, x, y));
+                break;
+            case PInvoke.WM_MOUSEWHEEL:
+                int delta = (short)((data.mouseData >> 16) & 0xffff);
+                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Wheel, x, y, delta));
+                break;
+        }
+
+        return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
     }
+
     public void Stop()
     {
         if (!_running) return;
 
         _running = false;
 
-        if (_hookId is not null && !_hookId.IsInvalid)
+        if (_hookId != IntPtr.Zero)
         {
-            _hookId.Dispose();
-            _hookId = null;
+            PInvoke.UnhookWindowsHookEx(new HHOOK(_hookId));
+            _hookId = IntPtr.Zero;
+        }
+
+        if (_hookThreadId != 0)
+        {
+            PInvoke.PostThreadMessage(_hookThreadId, PInvoke.WM_QUIT, UIntPtr.Zero, IntPtr.Zero);
+            _hookThread?.Join();
+            _hookThread = null;
+            _hookThreadId = 0;
         }
     }
 
-    public void Dispose()
-    {
-        Stop();
-    }
+    public void Dispose() => Stop();
 }
