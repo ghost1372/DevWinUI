@@ -11,18 +11,18 @@ public sealed partial class GlobalMouseHook : IDisposable
     private Thread? _hookThread;
     private bool _running;
     private IntPtr _hookId = IntPtr.Zero;
-    public bool IsAppLevelHook { get; set; } = false;
-    public IntPtr TargetWindowHwnd { get; set; } = IntPtr.Zero;
+    public HookLevel Level { get; set; } = HookLevel.Global;
+    public IntPtr TargetWindowHandle { get; set; } = IntPtr.Zero;
     private uint _hookThreadId;
     private HookProc _HookProcedure;
-    public GlobalMouseHook() => Init(IntPtr.Zero, false);
+    public GlobalMouseHook() => Init(IntPtr.Zero, HookLevel.Global);
 
-    public GlobalMouseHook(IntPtr hwnd) => Init(hwnd, true);
+    public GlobalMouseHook(IntPtr hwnd) => Init(hwnd, HookLevel.Application);
 
-    private void Init(IntPtr hwnd, bool isAppLevel)
+    private void Init(IntPtr hwnd, HookLevel level)
     {
-        TargetWindowHwnd = hwnd;
-        IsAppLevelHook = isAppLevel;
+        TargetWindowHandle = hwnd;
+        this.Level = level;
     }
 
     public void Start()
@@ -64,36 +64,34 @@ public sealed partial class GlobalMouseHook : IDisposable
         int x = data.pt.X;
         int y = data.pt.Y;
 
-        if (IsAppLevelHook)
+        if (Level == HookLevel.Application)
         {
-            if (TargetWindowHwnd == IntPtr.Zero)
-                throw new NullReferenceException($"{nameof(TargetWindowHwnd)} is null. Please ensure that the window handle (HWND) is properly set before proceeding.");
+            if (TargetWindowHandle == IntPtr.Zero)
+                throw new NullReferenceException($"{nameof(TargetWindowHandle)} is null. Please ensure that the window handle (HWND) is properly set before proceeding.");
 
             var hwnd = PInvoke.WindowFromPoint(new System.Drawing.Point(x, y));
             hwnd = PInvoke.GetAncestor(hwnd, GET_ANCESTOR_FLAGS.GA_ROOT);
-            if (hwnd != TargetWindowHwnd)
+            if (hwnd != TargetWindowHandle)
                 return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
-
-        var hookLevel = IsAppLevelHook ? HookLevel.Application : HookLevel.Global;
 
         switch ((uint)wParam)
         {
             case PInvoke.WM_MOUSEMOVE:
-                MouseMove?.Invoke(this, new MouseMoveEventArgs(hookLevel, x, y));
+                MouseMove?.Invoke(this, new MouseMoveEventArgs(Level, x, y));
                 break;
             case PInvoke.WM_LBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Left, x, y));
+                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Left, x, y));
                 break;
             case PInvoke.WM_RBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Right, x, y));
+                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Right, x, y));
                 break;
             case PInvoke.WM_MBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Middle, x, y));
+                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Middle, x, y));
                 break;
             case PInvoke.WM_MOUSEWHEEL:
                 int delta = (short)((data.mouseData >> 16) & 0xffff);
-                MouseClick?.Invoke(this, new MouseClickEventArgs(hookLevel, MouseButton.Wheel, x, y, delta));
+                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Wheel, x, y, delta));
                 break;
         }
 
