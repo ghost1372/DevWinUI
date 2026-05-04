@@ -67,6 +67,7 @@ DevWinUI/
         Themes/ # Styles, templates, and resources
     DevWinUI.Base/ # Core Library
     DevWinUI.ContextMenu/ # Cross-platform context menu logic
+    DevWinUI.SourceGenerator/ # Source Generators 
     DevWinUI.Gallery/ # Demo app for controls
   VSIX/ # Source code for Visual Studio item templates
   Output/ # Generated NuGet packages
