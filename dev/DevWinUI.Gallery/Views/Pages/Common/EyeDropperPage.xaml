@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.EyeDropperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="eyeDropper" DocType="Core">
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        var eyeDropper = new EyeDropper();#nl#
+                        eyeDropper.Start();#nl#
+                        eyeDropper.ColorPicked += (s, color) =&gt; #nl#
+                        {#nl#
+                        // Do something the color#nl#
+                        };#nl#
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <StackPanel Spacing="10">
+                    <Button x:Name="BtnPick" Click="BtnPick_Click" Content="Pick a Color" />
+                    <Grid Width="300" Height="40" Padding="2" HorizontalAlignment="Center" Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}" BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{StaticResource OverlayCornerRadius}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="PreviewBox" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" />
+
+                        <TextBlock x:Name="TxtHex" Grid.Column="1" Margin="5,0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="#FFFFFFFF" />
+                    </Grid>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.EyeDropperPage",
+          "Title": "Eye Dropper",
+          "IsNew": true,
+          "Subtitle": "Pick a color from everywhere",
+          "ImagePath": "ms-appx:///Assets/Fluent/ColorPicker.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.NTPClientPage",
           "Title": "NTP Client",
           "IsNew": true,
