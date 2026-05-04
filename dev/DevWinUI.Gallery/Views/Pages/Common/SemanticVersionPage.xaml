@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="semanticVersion" DocType="Core">
+            <local:ControlExample DocPage="common/semanticVersion" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         SemanticVersion.TryParse("1.2.3-apha.1+build.1.2", out SemanticVersion version);

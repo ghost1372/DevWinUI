@@ -9,7 +9,7 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/RainbowFramePage_cs.txt" DocPage="rainbowFrame" DocType="Core">
+            <local:ControlExample CSharpSource="Features/RainbowFramePage_cs.txt" DocPage="common/rainbowFrame" DocType="Core">
                 <StackPanel Margin="10" Spacing="10">
                     <Button x:Name="btnFixed" Click="btnFixed_Click" Content="Change Window Frame Color to Red" />
                     <Button x:Name="btnRainbow" Click="btnRainbow_Click" Content="Start Rainbow" />

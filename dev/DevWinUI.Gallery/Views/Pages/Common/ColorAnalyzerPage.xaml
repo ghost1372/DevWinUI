@@ -16,7 +16,7 @@
     </Page.Resources>
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="colorAnalyzer" DocType="Core" XamlSource="Features/ColorAnalyzer_xaml.txt">
+            <local:ControlExample DocPage="common/colorAnalyzer" DocType="Core" XamlSource="Features/ColorAnalyzer_xaml.txt">
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <Button x:Name="BtnChange" MinWidth="200" HorizontalAlignment="Center" Click="BtnChange_Click" Content="Change Image" />

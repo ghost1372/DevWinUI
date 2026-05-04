@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="eyeDropper" DocType="Core">
+            <local:ControlExample DocPage="common/eyeDropper" DocType="Core">
                 <local:ControlExample.CSharp>
                     <x:String>
                         var eyeDropper = new EyeDropper();#nl#

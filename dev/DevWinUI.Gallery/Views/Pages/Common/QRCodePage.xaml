@@ -9,7 +9,7 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="qRCode" DocType="Core" HeaderText="QRCode">
+            <local:ControlExample DocPage="common/qRCode" DocType="Core" HeaderText="QRCode">
                 <local:ControlExample.CSharp>
                     <x:String>
                         var standardQr = QRCode.Create("DevWinUI", ErrorCorrectionLevel.High);
