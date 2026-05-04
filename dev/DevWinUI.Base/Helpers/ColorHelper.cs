@@ -1,6 +1,15 @@
 ﻿namespace DevWinUI;
 public static partial class ColorHelper
 {
+    public static Color GetColorAt(int x, int y)
+    {
+        var desk = PInvoke.GetDesktopWindow();
+        var dc = PInvoke.GetWindowDC(desk);
+        var a = PInvoke.GetPixel(dc, x, y);
+        PInvoke.ReleaseDC(desk, dc);
+        return Color.FromArgb(255, (byte)((a >> 0) & 0xff), (byte)((a >> 8) & 0xff), (byte)((a >> 16) & 0xff));
+    }
+
     public static Color ChangeAlpha(Color color, double alpha)
     {
         double safeAlpha = Math.Max(Math.Min(alpha, 1.0), 0.0);

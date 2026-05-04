@@ -31,6 +31,7 @@ GetCurrentProcess
 GetCursorPos
 GetCurrentThreadId
 GetDC
+GetDesktopWindow
 GetDpiForWindow
 GetDpiForMonitor
 GetKeyState
@@ -38,10 +39,12 @@ GetMessage
 GetModuleFileName
 GetModuleHandle
 GetMonitorInfo
+GetPixel
 GetPrivateProfileString
 GetStockObject
 GetSystemMetrics
 GetTokenInformation
+GetWindowDC
 GetWindowLong
 GetWindowRect
 GetWindowRgnBox
@@ -59,6 +62,7 @@ MONITORINFOEXW
 MSLLHOOKSTRUCT
 OpenProcessToken
 PostThreadMessage
+ReleaseDC
 RemoveWindowSubclass
 RmStartSession
 RmJoinSession

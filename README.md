@@ -110,6 +110,9 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### EyeDropper
+![EyeDropper](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EyeDropper.png)
+
 ### NTPClient
 ![NTPClient](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/NTPClient.png)
 
