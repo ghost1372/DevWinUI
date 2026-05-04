@@ -198,7 +198,7 @@ namespace DevWinUIGallery.Views;
     <local:ControlExample DocPage="yourcontrol" HeaderText="YourControl">
         <local:ControlExample.Xaml>
             <x:String>
-                &lt;dev:YourControl Property="Value" /&gt;
+                <dev:YourControl Property="Value" />
             </x:String>
         </local:ControlExample.Xaml>
         <dev:YourControl />
