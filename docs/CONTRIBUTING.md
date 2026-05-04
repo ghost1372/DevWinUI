@@ -27,6 +27,16 @@ Ensure that your installation includes the appropriate workloads:
   - **.NET Desktop Development**
   - **WinUI Application Development**
 
+You can also import the configuration file (`.vsconfig` file) into a new or existing Visual Studio installation.
+
+Open the Visual Studio Installer and close Visual Studio. Most Installer operations require that the Visual Studio product itself is closed.
+
+On either the Installed tab or the Available tab, select More > Import configuration on the Visual Studio product card.
+
+Locate the .vsconfig file that you want to import, and then choose Review details.
+
+Verify that your selections are accurate, and then choose Modify.
+
 ### 2. 🛠️ SDKs
 
 Ensure that you have following installed:
@@ -35,6 +45,11 @@ Ensure that you have following installed:
 - .NET **9.x**
 - .Net **10.x**
 - Windows 10 SDK (10.0.19041)
+
+Windows 10 SDK 10.0.19041 does not exist in Visual Studio Installer, you need to download and install it manually from [here](https://learn.microsoft.com/en-us/windows/apps/windows-sdk/downloads)
+
+https://learn.microsoft.com/en-us/windows/apps/windows-sdk/downloads
+
 
 ### 3. Installed the **XAML Styler** extension (Optional for Building, Required for Contribute):  
   [XAML Styler for Visual Studio](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
