@@ -52,7 +52,7 @@ public sealed partial class GlobalKeyboardHook : IDisposable
         }
     }
 
-    private unsafe void ThreadProc()
+    private void ThreadProc()
     {
         _threadId = PInvoke.GetCurrentThreadId();
         _HookProcedure = new HookProc(HookProcCallBack);
@@ -73,7 +73,7 @@ public sealed partial class GlobalKeyboardHook : IDisposable
         _hookId = IntPtr.Zero;
     }
 
-    public int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
+    private int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
     {
         if (nCode < 0)
             return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);

@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public sealed partial class GlobalKeyEventArgs : EventArgs
+public sealed partial class KeyboardHookEventArgs : EventArgs
 {
     const int KEY_DOWN_MASK = 0x8000;
     public bool IsKeyDown(VirtualKey key)
@@ -30,7 +30,7 @@ public sealed partial class GlobalKeyEventArgs : EventArgs
         IsKeyDown(VirtualKey.RightWindows);
     public VirtualKey Key { get; }
 
-    public GlobalKeyEventArgs(VirtualKey key)
+    public KeyboardHookEventArgs(VirtualKey key)
     {
         Key = key;
     }

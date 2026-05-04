@@ -54,7 +54,7 @@ public sealed partial class GlobalMouseHook : IDisposable
             // loop until WM_QUIT
         }
     }
-    public int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
+    private int HookProcCallBack(int nCode, IntPtr wParam, IntPtr lParam)
     {
         if (nCode < 0)
             return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
