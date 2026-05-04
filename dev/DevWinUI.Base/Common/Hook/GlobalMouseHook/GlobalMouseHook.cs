@@ -5,8 +5,7 @@ namespace DevWinUI;
 
 public sealed partial class GlobalMouseHook : IDisposable
 {
-    public event EventHandler<MouseMoveEventArgs>? MouseMove;
-    public event EventHandler<MouseClickEventArgs>? MouseClick;
+    public event EventHandler<MouseHookEventArgs>? StatusChanged;
 
     private Thread? _hookThread;
     private bool _running;
@@ -75,25 +74,16 @@ public sealed partial class GlobalMouseHook : IDisposable
                 return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
 
-        switch ((uint)wParam)
+        int delta = 0;
+
+        MouseHookMessageType messageType = (MouseHookMessageType)wParam;
+
+        if (messageType == MouseHookMessageType.MouseWheel)
         {
-            case PInvoke.WM_MOUSEMOVE:
-                MouseMove?.Invoke(this, new MouseMoveEventArgs(Level, x, y));
-                break;
-            case PInvoke.WM_LBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Left, x, y));
-                break;
-            case PInvoke.WM_RBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Right, x, y));
-                break;
-            case PInvoke.WM_MBUTTONDOWN:
-                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Middle, x, y));
-                break;
-            case PInvoke.WM_MOUSEWHEEL:
-                int delta = (short)((data.mouseData >> 16) & 0xffff);
-                MouseClick?.Invoke(this, new MouseClickEventArgs(Level, MouseButton.Wheel, x, y, delta));
-                break;
+            delta = (short)((data.mouseData >> 16) & 0xffff);
         }
+
+        StatusChanged?.Invoke(this, new MouseHookEventArgs(Level, messageType, x, y, delta, (uint)wParam));
 
         return NativeMethods.CallNextHookEx(_hookId, nCode, wParam, lParam);
     }

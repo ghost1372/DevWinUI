@@ -1,5 +1,4 @@
-﻿CallNextHookEx
-ClientToScreen
+﻿ClientToScreen
 CoCreateInstance
 CombineRgn
 CoWaitForMultipleObjects
@@ -72,7 +71,6 @@ RtlGetVersion
 SendMessage
 SetEvent
 SetForegroundWindow
-SetWindowsHookEx
 SetWindowLong
 SetWindowPos
 SetWindowRgn
@@ -94,3 +92,6 @@ WM_KEYDOWN
 WM_SYSKEYDOWN
 WM_KEYUP
 WM_SYSKEYUP
+WM_LBUTTONUP
+WM_RBUTTONUP
+WM_MBUTTONUP
