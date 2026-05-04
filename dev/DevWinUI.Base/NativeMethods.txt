@@ -84,6 +84,7 @@ ShowWindow
 SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
 TranslateMessage
+UnhookWindowsHookEx
 WindowFromPoint
 WritePrivateProfileString
 WM_MOUSEMOVE
@@ -99,3 +100,4 @@ WM_SYSKEYUP
 WM_LBUTTONUP
 WM_RBUTTONUP
 WM_MBUTTONUP
+WINDOWS_HOOK_ID
