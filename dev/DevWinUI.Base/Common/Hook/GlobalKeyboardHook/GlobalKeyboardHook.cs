@@ -6,9 +6,9 @@ namespace DevWinUI;
 
 public sealed partial class GlobalKeyboardHook : IDisposable
 {
-    public event EventHandler<GlobalKeyEventArgs>? KeyDown;
-    public event EventHandler<GlobalKeyEventArgs>? KeyUp;
-    public event EventHandler<GlobalKeyEventArgs>? KeyPressed;
+    public event EventHandler<KeyboardHookEventArgs>? KeyDown;
+    public event EventHandler<KeyboardHookEventArgs>? KeyUp;
+    public event EventHandler<KeyboardHookEventArgs>? KeyPressed;
 
     private Thread? _thread;
     private uint _threadId;
@@ -83,7 +83,7 @@ public sealed partial class GlobalKeyboardHook : IDisposable
 
         var key = (VirtualKey)data.vkCode;
 
-        var args = new GlobalKeyEventArgs(key);
+        var args = new KeyboardHookEventArgs(key);
 
         switch ((uint)wParam)
         {
