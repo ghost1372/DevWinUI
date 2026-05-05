@@ -24,7 +24,7 @@
     
     <!-- -Preview -->
     <IsPreviewBuild>true</IsPreviewBuild>
-    <PreviewLabel>-Preview1</PreviewLabel>
+    <PreviewLabel>-Preview2</PreviewLabel>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
     
     <!-- The NuGet package version -->
