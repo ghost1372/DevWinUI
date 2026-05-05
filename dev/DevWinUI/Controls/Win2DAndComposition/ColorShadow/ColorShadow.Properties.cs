@@ -2,6 +2,21 @@
 
 public partial class ColorShadow
 {
+    public bool IsBreathing
+    {
+        get { return (bool)GetValue(IsBreathingProperty); }
+        set { SetValue(IsBreathingProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsBreathingProperty =
+        DependencyProperty.Register(nameof(IsBreathing), typeof(bool), typeof(ColorShadow), new PropertyMetadata(false, OnIsBreathingChanged));
+
+    private static void OnIsBreathingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var colorShadow = (ColorShadow)d;
+        colorShadow.UpdateIsBreathing();
+    }
+
     public static readonly DependencyProperty ColorShadowBlurRadiusProperty =
         DependencyProperty.Register(nameof(ColorShadowBlurRadius), typeof(double), typeof(ColorShadow),
             new PropertyMetadata(DefaultColorShadowBlurRadius, OnColorShadowBlurRadiusChanged));

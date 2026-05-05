@@ -39,6 +39,7 @@ public partial class ColorShadow : Control
     private bool _isLoading;
     private IImageMaskSurface _imageMaskSurface;
     private bool forceUpdateMask = false;
+    private ScalarKeyFrameAnimation _breathAnimation;
     public ColorShadow()
     {
         // Set the default Style Key
@@ -53,6 +54,8 @@ public partial class ColorShadow : Control
         // If the ImageUri property is already assigned a value and the image is already
         // loading, then go to the Loading state instead of the Initialized state.
         VisualStateManager.GoToState(this, _isLoading ? "Loading" : "Initialized", true);
+
+        UpdateIsBreathing();
     }
 
     private async Task<bool> OnImageUriChangedAsync(Uri imageUri)
@@ -377,5 +380,46 @@ public partial class ColorShadow : Control
         }
 
         return _generator.CreateImageSurface(canvasBitmap, canvasBitmap.Size, ImageSurfaceOptions.Default);
+    }
+
+    public void StartBreath(CompositionEasingFunction breathEasing = null, TimeSpan? breathDuration = null)
+    {
+        if (_colorShadowBrush == null || _breathAnimation != null)
+            return;
+
+        var easing = breathEasing ?? _compositor.CreateEaseInOutSineEasingFunction();
+
+        var animation = _compositor.CreateScalarKeyFrameAnimation();
+        animation.InsertKeyFrame(0f, (float)ColorShadowBlurRadius, easing);
+        animation.InsertKeyFrame(0.5f, (float)(ColorShadowBlurRadius * 3.5), easing); // expand
+        animation.InsertKeyFrame(1f, (float)ColorShadowBlurRadius, easing);           // shrink
+        animation.Duration = breathDuration ?? TimeSpan.FromSeconds(2);
+        animation.IterationBehavior = AnimationIterationBehavior.Forever;
+        animation.Direction = AnimationDirection.Alternate;
+
+        _colorShadowBrush.Properties.StartAnimation("Blur.BlurAmount", animation);
+
+        _breathAnimation = animation;
+    }
+
+    public void StopBreath()
+    {
+        if (_breathAnimation == null || _colorShadowBrush == null)
+            return;
+
+        _colorShadowBrush.Properties.StopAnimation("Blur.BlurAmount");
+        _breathAnimation = null;
+    }
+
+    private void UpdateIsBreathing()
+    {
+        if (IsBreathing)
+        {
+            StartBreath();
+        }
+        else
+        {
+            StopBreath();
+        }
     }
 }
