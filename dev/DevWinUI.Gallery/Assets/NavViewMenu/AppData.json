@@ -877,6 +877,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionShadowPage",
           "Title": "Composition Shadow",
+          "IsUpdated": true,
           "Subtitle": "Demonstrates how to apply drop shadows to Xaml elements",
           "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
         }
