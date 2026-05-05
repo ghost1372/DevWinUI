@@ -2,6 +2,50 @@
 
 public partial class CompositionShadow
 {
+    public bool IsBreathing
+    {
+        get { return (bool)GetValue(IsBreathingProperty); }
+        set { SetValue(IsBreathingProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsBreathingProperty =
+        DependencyProperty.Register(nameof(IsBreathing), typeof(bool), typeof(CompositionShadow), new PropertyMetadata(false, OnIsBreathingChanged));
+
+    private static void OnIsBreathingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (CompositionShadow)d;
+        control.UpdateIsBreathing();
+    }
+
+    public bool UseCornerRadius
+    {
+        get { return (bool)GetValue(UseCornerRadiusProperty); }
+        set { SetValue(UseCornerRadiusProperty, value); }
+    }
+
+    public static readonly DependencyProperty UseCornerRadiusProperty =
+        DependencyProperty.Register(nameof(UseCornerRadius), typeof(bool), typeof(CompositionShadow), new PropertyMetadata(false, OnUseCornerRadiusChanged));
+
+    private static void OnUseCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (CompositionShadow)d;
+        control.UpdateCornerRadius();
+    }
+
+    public new double CornerRadius
+    {
+        get => (double)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
+    }
+
+    public new static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(CompositionShadow), new PropertyMetadata(default(double), OnCornerRadiusChanged));
+
+    private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (CompositionShadow)d;
+        control.UpdateCornerRadius();
+    }
     public double BlurRadius
     {
         get => (double)GetValue(BlurRadiusProperty);

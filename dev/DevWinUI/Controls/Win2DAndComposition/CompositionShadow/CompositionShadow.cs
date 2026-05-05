@@ -54,6 +54,8 @@ public partial class CompositionShadow : Control
         }
 
         ConfigureShadowVisualForContent();
+        UpdateShadowMask();
+        UpdateCornerRadius();
     }
 
     private void CompositionShadow_Loaded(object sender, RoutedEventArgs e)
@@ -69,6 +71,11 @@ public partial class CompositionShadow : Control
     private void CompositionShadow_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         UpdateShadowSize();
+
+        if (IsRounded)
+            UpdateIsRounded();
+        else if (!_isCustomMask)
+            UpdateCornerRadius();
     }
 
     private void ConfigureShadowVisualForContent()
@@ -76,6 +83,10 @@ public partial class CompositionShadow : Control
         if (IsRounded)
         {
             UpdateIsRounded();
+        }
+        else if (!_isCustomMask)
+        {
+            UpdateCornerRadius();
         }
         else
         {
@@ -92,7 +103,48 @@ public partial class CompositionShadow : Control
             UpdateShadowOffset((float)OffsetX, (float)OffsetY, (float)OffsetZ);
         }
     }
+    private void UpdateCornerRadius()
+    {
+        Visual? visual = null;
 
+        if (Content != null)
+        {
+            visual = ElementCompositionPreview.GetElementVisual(Content);
+        }
+
+        if (_dropShadow == null || _isCustomMask || IsRounded || !UseCornerRadius)
+        {
+            visual?.Clip = null;
+            return;
+        }
+
+        float width = (float)this.ActualWidth;
+        float height = (float)this.ActualHeight;
+
+        if (width <= 0 || height <= 0)
+            return;
+
+        var geometry = compositor.CreateRoundedRectangleGeometry();
+        geometry.Size = new Vector2(width, height);
+        geometry.CornerRadius = new Vector2((float)CornerRadius, (float)CornerRadius);
+
+        var shape = compositor.CreateSpriteShape(geometry);
+        shape.FillBrush = compositor.CreateColorBrush(Colors.White);
+
+        var shapeVisual = compositor.CreateShapeVisual();
+        shapeVisual.Size = new Vector2(width, height);
+        shapeVisual.Shapes.Add(shape);
+
+        var visualSurface = compositor.CreateVisualSurface();
+        visualSurface.SourceVisual = shapeVisual;
+        visualSurface.SourceSize = new Vector2(width, height);
+
+        var maskBrush = compositor.CreateSurfaceBrush(visualSurface);
+
+        _dropShadow.Mask = maskBrush;
+
+        visual?.Clip = compositor.CreateGeometricClip(geometry);
+    }
     private void UpdateShadowMask()
     {
         if (_dropShadow == null)
@@ -171,6 +223,13 @@ public partial class CompositionShadow : Control
 
     private void UpdateIsRounded()
     {
+        Visual? visual = null;
+
+        if (Content != null)
+        {
+            visual = ElementCompositionPreview.GetElementVisual(Content);
+        }
+
         if (IsRounded)
         {
             float width = (float)this.ActualWidth;
@@ -195,9 +254,13 @@ public partial class CompositionShadow : Control
             var maskBrush = compositor.CreateSurfaceBrush(visualSurface);
 
             _dropShadow.Mask = maskBrush;
+
+            visual?.Clip = compositor.CreateGeometricClip(ellipse);
         }
         else
         {
+            visual?.Clip = null;
+
             UpdateShadowMask();
         }
     }
@@ -236,7 +299,17 @@ public partial class CompositionShadow : Control
 
         _dropShadow.StopAnimation("BlurRadius");
         breathAnimation = null;
+    }
 
-        _dropShadow.BlurRadius = 0;
+    private void UpdateIsBreathing()
+    {
+        if (IsBreathing)
+        {
+            StartBreath();
+        }
+        else
+        {
+            StopBreath();
+        }
     }
 }
