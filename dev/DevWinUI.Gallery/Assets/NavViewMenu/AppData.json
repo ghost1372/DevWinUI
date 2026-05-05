@@ -928,6 +928,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.SpeedGraphPage",
           "Title": "Speed Graph",
+          "IsUpdated": true,
           "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },

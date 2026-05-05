@@ -5103,7 +5103,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Color x:Key="SpeedGraphPauseBottomColor">#10e0e020</Color>
   <Color x:Key="SpeedGraphErrorTopColor">#e0ff1010</Color>
   <Color x:Key="SpeedGraphErrorBottomColor">#10b01010</Color>
-  <LinearGradientBrush x:Key="SpeedGraphPolygonShapeBrush" StartPoint="0,1" EndPoint="0,0">
+  <LinearGradientBrush x:Key="SpeedGraphBrush" StartPoint="0,1" EndPoint="0,0">
     <GradientStop Offset="0" Color="#108caeff" />
     <GradientStop Offset="1" Color="#e08caeff" />
   </LinearGradientBrush>
@@ -16982,46 +16982,43 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <VisualStateGroup x:Name="States">
                 <VisualState x:Name="Normal">
                   <Storyboard>
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphNormalBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphNormalTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphNormalBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphNormalTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedLine" Storyboard.TargetProperty="Opacity" To="0.3" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedText" Storyboard.TargetProperty="Opacity" To="1" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                   </Storyboard>
                 </VisualState>
-                <VisualState x:Name="PauseState">
+                <VisualState x:Name="Pause">
                   <Storyboard>
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphPauseBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphPauseTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphPauseBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphPauseTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedLine" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedText" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                   </Storyboard>
                 </VisualState>
-                <VisualState x:Name="ErrorState">
+                <VisualState x:Name="Error">
                   <Storyboard>
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphErrorBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
-                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_PolygonShape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphErrorTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource SpeedGraphErrorBottomColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
+                    <ColorAnimation EnableDependentAnimation="True" Storyboard.TargetName="PART_Shape" Storyboard.TargetProperty="(Polygon.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource SpeedGraphErrorTopColor}" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedLine" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                     <DoubleAnimation Storyboard.TargetName="PART_AverageSpeedText" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource SpeedGraphColorAnimationDuration}" />
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <wind2:CanvasControl x:Name="PART_CanvasControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClearColor="Transparent" />
-            <Polygon x:Name="PART_PolygonShape" Fill="{StaticResource SpeedGraphPolygonShapeBrush}" Points="" RenderTransformOrigin="0 1.0">
-              <Polygon.RenderTransform>
-                <ScaleTransform x:Name="PART_GraphScale" />
-              </Polygon.RenderTransform>
-            </Polygon>
-            <Line x:Name="PART_AverageSpeedLine" Opacity="0.3" Stroke="{ThemeResource SystemControlForegroundBaseHighBrush}" Visibility="{TemplateBinding SpeedLineVisibility}" X1="0" X2="10000">
-              <Line.RenderTransform>
-                <TranslateTransform x:Name="PART_LineTranslate" />
-              </Line.RenderTransform>
-            </Line>
-            <TextBlock x:Name="PART_AverageSpeedText" Margin="0,-20,10,0" HorizontalAlignment="Right" Opacity="0.8" Text="{TemplateBinding SpeedText}" Visibility="{TemplateBinding SpeedTextVisibility}">
-              <TextBlock.RenderTransform>
-                <TranslateTransform x:Name="PART_TextTranslate" />
-              </TextBlock.RenderTransform>
-            </TextBlock>
+            <Grid x:Name="PART_GraphGrid" Visibility="Collapsed">
+              <wind2:CanvasControl x:Name="PART_Canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClearColor="Transparent" />
+              <Polygon x:Name="PART_Shape" Fill="{StaticResource SpeedGraphBrush}" RenderTransformOrigin="0 1.0">
+                <Polygon.RenderTransform>
+                  <ScaleTransform x:Name="PART_GraphScale" />
+                </Polygon.RenderTransform>
+              </Polygon>
+              <Grid x:Name="PART_HostGrid">
+                <Line x:Name="PART_AverageSpeedLine" Opacity="0.3" Stroke="{ThemeResource SystemControlForegroundBaseHighBrush}" Visibility="{TemplateBinding SpeedLineVisibility}" X1="0" X2="10000" />
+                <TextBlock x:Name="PART_AverageSpeedText" Margin="0,-20,10,0" HorizontalAlignment="Right" Opacity="0.8" Text="{TemplateBinding SpeedText}" Visibility="{TemplateBinding SpeedTextVisibility}" />
+              </Grid>
+            </Grid>
+            <TextBlock x:Name="PART_SpeedGraphNoDataAvailableText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Opacity="0.5" Text="{TemplateBinding NoDataText}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

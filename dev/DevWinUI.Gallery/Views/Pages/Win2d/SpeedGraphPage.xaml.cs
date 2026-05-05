@@ -2,6 +2,9 @@
 
 public sealed partial class SpeedGraphPage : Page
 {
+    public ObservableCollection<SpeedGraphMode> SpeedGraphModeItems { get; set; } = new ObservableCollection<SpeedGraphMode>(Enum.GetValues<SpeedGraphMode>());
+    public ObservableCollection<SpeedGraphBackgroundMode> SpeedGraphBackgroundModeItems { get; set; } = new ObservableCollection<SpeedGraphBackgroundMode>(Enum.GetValues<SpeedGraphBackgroundMode>());
+
     private bool _isSimulating;
     private Random _random = new();
     public SpeedGraphPage()
@@ -11,19 +14,18 @@ public sealed partial class SpeedGraphPage : Page
 
     private async void BtnCopy_Click(object sender, RoutedEventArgs e)
     {
+        SpeedGraphSample.ResetGraph();
+
         ulong _totalBytes = 1024UL * 1024 * (ulong)NBFileSize.Value;
 
-        SpeedGraphSample.Normal();
+        SpeedGraphSample.NormalGraph();
 
         if (_isSimulating)
             return;
 
-        SpeedGraphSample.ResetGraph();
-
         _isSimulating = true;
 
         ulong copiedBytes = 0;
-        SpeedGraphSample.Total = _totalBytes;
 
         while (copiedBytes < _totalBytes)
         {
@@ -50,11 +52,16 @@ public sealed partial class SpeedGraphPage : Page
 
     private void BtnError_Click(object sender, RoutedEventArgs e)
     {
-        SpeedGraphSample.Error();
+        SpeedGraphSample.ErrorGraph();
     }
 
     private void BtnPause_Click(object sender, RoutedEventArgs e)
     {
-        SpeedGraphSample.Pause();
+        SpeedGraphSample.PauseGraph();
+    }
+
+    private void BtnNormal_Click(object sender, RoutedEventArgs e)
+    {
+        SpeedGraphSample.NormalGraph();
     }
 }

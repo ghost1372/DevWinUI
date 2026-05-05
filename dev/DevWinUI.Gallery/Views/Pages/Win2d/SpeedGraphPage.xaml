@@ -24,15 +24,31 @@
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
                         <Button x:Name="BtnCopy" Click="BtnCopy_Click" Content="Starting file copy simulation" />
-                        <Button x:Name="BtnError" Click="BtnError_Click" Content="Show Error" />
-                        <Button x:Name="BtnWarning" Click="BtnPause_Click" Content="Show Pause" />
+                        <Button x:Name="BtnError" Click="BtnError_Click" Content="Error" />
+                        <Button x:Name="BtnWarning" Click="BtnPause_Click" Content="Pause" />
+                        <Button x:Name="BtnNormal" Click="BtnNormal_Click" Content="Normal" />
                         <ToggleSwitch x:Name="TGShowLine" Header="Show Speed Line" IsOn="True" />
                         <ToggleSwitch x:Name="TGShowText" Header="Show Speed Text" IsOn="True" />
                         <ToggleSwitch x:Name="TGAutoUpdate" Header="Auto Update Speed Text" IsOn="True" />
+                        <ComboBox x:Name="CmbMode" Header="Mode" ItemsSource="{x:Bind SpeedGraphModeItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:SpeedGraphMode">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbBackgroundMode" Header="Background Mode" ItemsSource="{x:Bind SpeedGraphBackgroundModeItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:SpeedGraphBackgroundMode">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <NumberBox x:Name="NBFileSize" Header="File Size (MB)" Maximum="5000" Minimum="100" Value="500" />
+
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:SpeedGraph x:Name="SpeedGraphSample" AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}" SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <dev:SpeedGraph x:Name="SpeedGraphSample" AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}" BackgroundMode="{x:Bind ((dev:SpeedGraphBackgroundMode)CmbBackgroundMode.SelectedItem), Mode=OneWay}" Mode="{x:Bind ((dev:SpeedGraphMode)CmbMode.SelectedItem), Mode=OneWay}" SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
