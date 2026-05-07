@@ -2,7 +2,6 @@
 
 public sealed partial class SpeedGraphPage : Page
 {
-    public ObservableCollection<SpeedGraphMode> SpeedGraphModeItems { get; set; } = new ObservableCollection<SpeedGraphMode>(Enum.GetValues<SpeedGraphMode>());
     public ObservableCollection<SpeedGraphBackgroundMode> SpeedGraphBackgroundModeItems { get; set; } = new ObservableCollection<SpeedGraphBackgroundMode>(Enum.GetValues<SpeedGraphBackgroundMode>());
 
     private bool _isSimulating;

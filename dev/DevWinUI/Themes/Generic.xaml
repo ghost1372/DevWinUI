@@ -4967,7 +4967,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
         <ControlTemplate TargetType="local:Shortcut">
           <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
             <StackPanel Orientation="Horizontal">
-              <Button x:Name="PART_OpenDialog" Padding="0" CornerRadius="8">
+              <Button x:Name="PART_OpenDialog" Padding="0" CornerRadius="{ThemeResource ControlCornerRadius}">
                 <StackPanel Margin="12,6,12,6" Orientation="Horizontal" Spacing="16">
                   <ItemsControl VerticalAlignment="Center" IsEnabled="{TemplateBinding IsEnabled}" IsTabStop="False" ItemsSource="{TemplateBinding Keys}">
                     <ItemsControl.ItemsPanel>

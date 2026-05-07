@@ -51,7 +51,6 @@ public partial class SpeedGraph : Control
         SizeChanged += OnSizeChanged;
 
         UpdateBackgroundShape();
-        UpdateMode();
     }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -211,11 +210,6 @@ public partial class SpeedGraph : Control
     public void ErrorGraph()
     {
         VisualStateManager.GoToState(this, "Error", false);
-    }
-
-    private void UpdateMode()
-    {
-        m_graphData?.SetMode(Mode);
     }
 
     public PointCollection GetPoints()

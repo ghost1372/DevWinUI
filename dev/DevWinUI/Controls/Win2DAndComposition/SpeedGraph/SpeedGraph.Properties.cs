@@ -2,24 +2,6 @@
 
 public partial class SpeedGraph
 {
-    public SpeedGraphMode Mode
-    {
-        get { return (SpeedGraphMode)GetValue(ModeProperty); }
-        set { SetValue(ModeProperty, value); }
-    }
-
-    public static readonly DependencyProperty ModeProperty =
-        DependencyProperty.Register(nameof(Mode), typeof(SpeedGraphMode), typeof(SpeedGraph), new PropertyMetadata(SpeedGraphMode.StaticProgress, OnModeChanged));
-
-    private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (SpeedGraph)d;
-        if (ctl != null)
-        {
-            ctl.UpdateMode();
-        }
-    }
-
     public SpeedGraphBackgroundMode BackgroundMode
     {
         get { return (SpeedGraphBackgroundMode)GetValue(BackgroundModeProperty); }
