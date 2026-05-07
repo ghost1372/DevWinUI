@@ -10,7 +10,7 @@ public partial class ThemeService : IThemeService, IDisposable
     private readonly Dictionary<Window, FrameworkElement> _rootElements = new();
     private TaskCompletionSource<bool>? _initialization;
 
-    private readonly string ConfigFilePath = "CoreAppConfigV9.2.0.json";
+    private readonly string ConfigFilePath = "CoreAppConfigV10.0.0.json";
 
     private bool _useAutoSave = true;
     private bool _isBackdropEnabled = true;
