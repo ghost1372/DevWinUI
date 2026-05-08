@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.PasswordGeneratorPage",
+          "Title": "Password Generator",
+          "IsNew": true,
+          "Subtitle": "Creating strong and customizable passwords",
+          "ImagePath": "ms-appx:///Assets/Fluent/PasswordBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.EyeDropperPage",
           "Title": "Eye Dropper",
           "IsNew": true,

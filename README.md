@@ -110,6 +110,11 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### PasswordGenerator
+![PasswordGenerator](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PasswordGenerator2.gif)
+
+![PasswordGenerator](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PasswordGenerator.gif)
+
 ### EyeDropper
 ![EyeDropper](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EyeDropper.gif)
 
