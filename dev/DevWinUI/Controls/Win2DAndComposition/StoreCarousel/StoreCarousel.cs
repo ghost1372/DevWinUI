@@ -412,7 +412,7 @@ public partial class StoreCarousel : Control
         fadeRectangle.Width = image.ActualWidth * 0.4;
         fadeRectangle.Fill = new SolidColorBrush(color) { Opacity = 0.5 };
         actionButton.Background = new SolidColorBrush(ColorHelper.DarkenColor(color, 0.5f)) { Opacity = 0.9 };
-        actionButton.BorderBrush = CreateLinearGradiantBrush(color);
+        actionButton.BorderBrush = CreateLinearGradientBrush(color);
         actionButton.Resources["ButtonBackgroundPointerOver"] = new SolidColorBrush(color);
         actionButton.Resources["ButtonForegroundPointerOver"] = new SolidColorBrush(Colors.White);
 
@@ -420,7 +420,7 @@ public partial class StoreCarousel : Control
         previousBtnRectangle.Fill = new SolidColorBrush(ColorHelper.DarkenColor(color, 0.5f)) { Opacity = 0.9 };
     }
 
-    private LinearGradientBrush CreateLinearGradiantBrush(Color color)
+    private LinearGradientBrush CreateLinearGradientBrush(Color color)
     {
         var brush = new LinearGradientBrush
         {
