@@ -146,13 +146,14 @@ public partial class AudioWave : Control
                     .Select(gs => new CanvasGradientStop { Color = gs.Color, Position = gs.Position })
                     .ToArray();
 
-                var gradient = new CanvasLinearGradientBrush(args.DrawingSession, canvasStops)
+                using (var gradient = new CanvasLinearGradientBrush(args.DrawingSession, canvasStops)
                 {
                     StartPoint = new Vector2(x, 0),
                     EndPoint = new Vector2(x + actualBarWidth, 0)
-                };
-
-                s.FillRoundedRectangle(barRect, barRadiusX, barRadiusY, gradient);
+                })
+                {
+                    s.FillRoundedRectangle(barRect, barRadiusX, barRadiusY, gradient);
+                }
             }
 
             x += actualBarWidth + actualBarSpacing;
