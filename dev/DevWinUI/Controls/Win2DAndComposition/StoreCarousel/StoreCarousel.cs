@@ -425,7 +425,7 @@ public partial class StoreCarousel : Control
 
         if (image != null)
         {
-            color = image.ShadowColor;
+            color = image._shadowColor;
         }
 
         fadeRectangle.Width = image.ActualWidth * 0.4;

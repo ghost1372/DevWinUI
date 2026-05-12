@@ -7,7 +7,7 @@
 public sealed partial class ImageFrame : Control, IDisposable
 {
     private CanvasDevice device;
-    private Color _shadowColor = Colors.Transparent;
+    internal Color _shadowColor = Colors.Transparent;
     private Dictionary<Uri, Color?> cachedImagesColorDic = new Dictionary<Uri, Color?>();
     internal bool useImageEdgeOverContentColor = true;
     #region Enums
