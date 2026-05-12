@@ -96,7 +96,7 @@ public partial class LiveGraph : Control
         polygonsBrush[key] = brushData;
     }
 
-    public void ResetLivePolygon(string key)
+    public void ResetDynamicGraph(string key)
     {
         if (livePolygons.ContainsKey(key))
         {
