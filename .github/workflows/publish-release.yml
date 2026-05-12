@@ -60,7 +60,7 @@ jobs:
         platform: [x64] # Change platform if you want to build only a specific platform
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
@@ -70,7 +70,7 @@ jobs:
             10.x.x
 
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
+      uses: microsoft/setup-msbuild@v3
       with:
         vs-prerelease: true    
 
@@ -134,7 +134,7 @@ jobs:
         dotnet publish ${{ env.DEVWINUI_GALLERY_PROJECT_PATH }} -c Release -r win-$($runtimeIdentifier.ToLower()) /p:GITHUB_ACTIONS=true -p:Platform=${{ matrix.platform }} --self-contained ${{ env.PUBLISH_SELF_CONTAINED }} -p:PublishSingleFile=${{ env.PUBLISH_SINGLE_FILE }} -p:PublishReadyToRun=${{ env.PUBLISH_READY_TO_RUN }} -p:PublishTrimmed=${{ env.PUBLISH_TRIMMED }} -p:TrimMode=${{ env.PUBLISH_TRIM_MODE }} -p:PublishAot=${{ env.PUBLISH_AOT }} --output ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
 
     # Zipping folder and all files
-    - uses: vimtor/action-zip@v1.2
+    - uses: vimtor/action-zip@v1.3
       with:
         files: ${{ env.PUBLISH_OUTPUT_FOLDER }}/${{ matrix.platform }}
         recursive: true
@@ -163,7 +163,7 @@ jobs:
         echo "VSIX_IS_PREVIEW=${{ env.VSIX_IS_PREVIEW }}"
 
     # Uploading all zip files to access them in the 'release' job
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: artifacts-${{ matrix.platform }}
         path: ${{ env.APP_NAME }}-v${{ env.APP_VERSION }}-${{ matrix.platform }}.zip
@@ -194,12 +194,12 @@ jobs:
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       IS_PRE_RELEASE: ${{ needs.build.outputs.IS_PRE_RELEASE }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       # Downloading all zip files into the GitHub root directory (uploaded in 'build' job)
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           merge-multiple: true
 
