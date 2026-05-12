@@ -130,13 +130,17 @@ public partial class CircleIcon : Control
             Color = g.Color,
             Position = (float)g.Position
         }).ToArray();
-        var brush = new CanvasRadialGradientBrush(canvas, canvasStops, CanvasEdgeBehavior.Clamp, CanvasAlphaMode.Straight)
+
+        using (var brush = new CanvasRadialGradientBrush(canvas, canvasStops, CanvasEdgeBehavior.Clamp, CanvasAlphaMode.Straight)
         {
             Center = center,
             RadiusX = radius,
             RadiusY = radius
-        };
-        args.DrawingSession.FillCircle(center, radius, brush);
+        })
+        {
+            args.DrawingSession.FillCircle(center, radius, brush);
+        }
+
         args.DrawingSession.DrawCircle(center, radius, BorderStrokeColor, (float)BorderStrokeThickness);
     }
 }
