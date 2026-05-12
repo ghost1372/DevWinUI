@@ -699,7 +699,7 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Composition",
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
-      "Items": [
+      "Items": [        
         {
           "UniqueId": "DevWinUIGallery.Views.EdgeLightingPage",
           "Title": "Edge Lighting",
@@ -896,6 +896,13 @@
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.LiveGraphPage",
+          "Title": "Live Graph",
+          "Subtitle": "Draw Live/Static Graph",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.AudioWavePage",
           "Title": "Audio Wave",

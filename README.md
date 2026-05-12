@@ -110,6 +110,9 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### LiveGraph
+![LiveGraph](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LiveGraph.gif)
+
 ### PasswordGenerator
 ![PasswordGenerator](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PasswordGenerator2.gif)
 

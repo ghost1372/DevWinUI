@@ -144,6 +144,7 @@ Themes\Styles\Controls\KeyCharPresenter.xaml
 Themes\Styles\Controls\KeyVisual.xaml
 Themes\Styles\Controls\KeyVisual2.xaml
 Themes\Styles\Controls\LayoutTransformer.xaml
+Themes\Styles\Controls\LiveGraph.xaml
 Themes\Styles\Controls\LoadingIndicator.xaml
 Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\LoopingList.xaml
@@ -3000,6 +3001,20 @@ Themes\Styles\Controls\WaveProgressBar.xaml
         <ControlTemplate TargetType="local:LayoutTransformer">
           <Grid x:Name="TransformRoot" Background="{TemplateBinding Background}">
             <ContentPresenter x:Name="Presenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultLiveGraphStyle" TargetType="local:LiveGraph">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:LiveGraph">
+          <Grid>
+            <wind2:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClearColor="Transparent" />
+            <Grid x:Name="PART_HostGrid" Visibility="{TemplateBinding HighlightLineVisibility}">
+              <ContentPresenter Content="{TemplateBinding HighlightLineContent}" />
+            </Grid>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -15298,6 +15313,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
+  <Style BasedOn="{StaticResource DefaultLiveGraphStyle}" TargetType="local:LiveGraph" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style x:Key="DefaultLoopingListStyle" TargetType="local:LoopingList">
     <Setter Property="IsTabStop" Value="False" />

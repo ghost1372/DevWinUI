@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LiveGraphPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/liveGraph" HeaderText="Live Graph">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:LiveGraph /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        LiveGraph.AddStaticGraph("Key", points);
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button x:Name="BtnGreen" Width="130" Click="BtnGreen_Click" Content="Green Brush" />
+                            <Button x:Name="BtnBlue" Width="130" Click="BtnBlue_Click" Content="Blue Brush" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button x:Name="BtnRed" Width="130" Click="BtnRed_Click" Content="Red Brush" />
+                            <Button x:Name="BtnPurple" Width="130" Click="BtnPurple_Click" Content="Purple Brush" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <ToggleSwitch x:Name="TGShowLine" Header="Show Highlight Line" />
+                            <ToggleSwitch x:Name="TGBorderLess" Header="Show Border Line" IsOn="True" Toggled="OnToggled" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <ToggleSwitch x:Name="TGFillLess" Header="Show Only Border" Toggled="OnToggled" />
+                            <ToggleSwitch x:Name="TGDashDot" Header="Show Dashed Border" Toggled="OnToggled" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <ComboBox x:Name="CmbBackgroundMode" HorizontalAlignment="Stretch" Header="Background Mode" ItemsSource="{x:Bind LiveGraphBackgroundModeItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:LiveGraphBackgroundMode">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <ComboBox x:Name="CmbHighlightLineBehavior" HorizontalAlignment="Stretch" Header="Highlight Line Behavior" ItemsSource="{x:Bind HighlightLineBehaviorItems, Mode=OneWay}" SelectedIndex="4">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:HighlightLineBehavior">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <NumberBox x:Name="NBStrokeWidth" Header="Stroke Width" SpinButtonPlacementMode="Inline" ValueChanged="NBStrokeWidth_ValueChanged" Value="2" />
+                            <NumberBox x:Name="NBDotSpacing" Header="Dot Spacing" SpinButtonPlacementMode="Inline" Value="6" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <NumberBox x:Name="NBCrossSpacing" Header="Cross Spacing" SpinButtonPlacementMode="Inline" Value="30" />
+                            <NumberBox x:Name="NBHorizontalScrollDistance" Header="Horizontal Scroll Distance" SpinButtonPlacementMode="Inline" Value="1" />
+                        </StackPanel>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:LiveGraph x:Name="LiveGraphSample" Height="250" VerticalAlignment="Top" BackgroundMode="{x:Bind ((dev:LiveGraphBackgroundMode)CmbBackgroundMode.SelectedItem), Mode=OneWay}" CreateResources="LiveGraphSample_CreateResources" CrossSpacing="{x:Bind NBCrossSpacing.Value, Mode=OneWay}" DotSpacing="{x:Bind NBDotSpacing.Value, Mode=OneWay}" Draw="LiveGraphSample_Draw" HighlightLineBehavior="{x:Bind ((dev:HighlightLineBehavior)CmbHighlightLineBehavior.SelectedItem), Mode=OneWay}" HighlightLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalScrollDistance="{x:Bind NBHorizontalScrollDistance.Value, Mode=OneWay}">
+                    <dev:LiveGraph.HighlightLineContent>
+                        <Grid>
+                            <Line Opacity="0.4" Stroke="{ThemeResource SystemControlForegroundBaseHighBrush}" X1="0" X2="10000" />
+                            <TextBlock Margin="0,-20,10,0" HorizontalAlignment="Right" Opacity="0.8" Text="Memory Usage" />
+                        </Grid>
+                    </dev:LiveGraph.HighlightLineContent>
+                </dev:LiveGraph>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
