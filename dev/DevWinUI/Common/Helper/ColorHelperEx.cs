@@ -2,7 +2,7 @@
 
 internal static partial class ColorHelperEx
 {
-    public static async Task<Color> GetImageEdgeColorWithWin2DAsync(CanvasDevice device, Uri path)
+    public static async Task<(Color Color, CanvasBitmap CanvasBitmap)> GetImageEdgeColorWithWin2DAsync(CanvasDevice device, Uri path)
     {
         CanvasBitmap canvasBitmap = null;
         if ((RuntimeHelper.IsPackaged() && !path.IsFile) || path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps)
@@ -41,10 +41,10 @@ internal static partial class ColorHelperEx
         byte g = (byte)edgePixels.Average(c => c.G);
         byte b = (byte)edgePixels.Average(c => c.B);
 
-        return Color.FromArgb(255, r, g, b);
+        return (Color.FromArgb(255, r, g, b), canvasBitmap);
     }
 
-    public static async Task<Color> GetBalancedImageColorAsync(CanvasDevice device, Uri path, float edgeWeight = 0.7f)
+    public static async Task<(Color Color, CanvasBitmap CanvasBitmap)> GetBalancedImageColorAsync(CanvasDevice device, Uri path, float edgeWeight = 0.7f)
     {
         CanvasBitmap canvasBitmap = null;
         if ((RuntimeHelper.IsPackaged() && !path.IsFile) || path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps)
@@ -109,6 +109,6 @@ internal static partial class ColorHelperEx
         byte gFinal = (byte)(gEdge * edgeWeight + gCenter * (1 - edgeWeight));
         byte bFinal = (byte)(bEdge * edgeWeight + bCenter * (1 - edgeWeight));
 
-        return Color.FromArgb(255, rFinal, gFinal, bFinal);
+        return (Color.FromArgb(255, rFinal, gFinal, bFinal), canvasBitmap);
     }
 }

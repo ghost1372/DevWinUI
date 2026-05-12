@@ -71,7 +71,10 @@ public partial class StoreCarousel : Control
     private PausableDispatcherTimer timer;
     private bool isUpdatingPager;
     private int _previousIndex = -1;
-    bool isCallFromPipsPager = false;
+    private bool isCallFromPipsPager = false;
+
+    private CanvasDevice device;
+    private Dictionary<string, Color?> cachedImageColorDic = new Dictionary<string, Color?>();
 
     public event EventHandler<int> SelectedIndexChanged;
     public event EventHandler<StoreCarouselEventArgs> ItemClick;
@@ -83,6 +86,8 @@ public partial class StoreCarousel : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        device = CanvasDevice.GetSharedDevice();
 
         image = GetTemplateChild(PART_Image) as ImageFrame;
         sliderGrid = GetTemplateChild(PART_SliderGrid) as Grid;
@@ -178,6 +183,8 @@ public partial class StoreCarousel : Control
         timer.Tick -= OnTimerTick;
         timer.Stop();
         timer = null;
+
+        cachedImageColorDic.Clear();
     }
     private void ClearLights(FrameworkElement element)
     {
@@ -394,6 +401,7 @@ public partial class StoreCarousel : Control
     private void OnItemsSourceChanged(IList<StoreCarouselItem> newList)
     {
         imageList.Clear();
+        cachedImageColorDic.Clear();
 
         if (newList != null)
             imageList.AddRange(newList);
@@ -406,6 +414,7 @@ public partial class StoreCarousel : Control
             descriptionTextBlock.Text = item.Description;
             actionButtonTextBlock.Text = item.ActionButtonText;
             actionButton.Visibility = item.ShowActionButton ? Visibility.Visible : Visibility.Collapsed;
+            GetAllImageColorCache(newList);
             UpdateVisuals();
             RunTextAnimation();
         }
@@ -413,20 +422,44 @@ public partial class StoreCarousel : Control
         if (pipsPager != null)
             pipsPager.NumberOfPages = imageList.Count;
     }
+
+    private async void GetAllImageColorCache(IList<StoreCarouselItem> newList)
+    {
+        foreach (var item in newList)
+        {
+            cachedImageColorDic.TryGetValue(item.ImageSource, out var color);
+
+            if (color == null)
+            {
+                if (UseImageEdgeOverContentColor)
+                {
+                    var data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, new Uri(item.ImageSource));
+                    color = data.Color;
+                    data.CanvasBitmap.Dispose();
+                }
+                else
+                {
+                    var data = await ColorHelperEx.GetBalancedImageColorAsync(device, new Uri(item.ImageSource));
+                    color = data.Color;
+                    data.CanvasBitmap.Dispose();
+                }
+
+                cachedImageColorDic[item.ImageSource] = color;
+            }
+        }
+    }
+
     private async void UpdateVisuals()
     {
         var item = imageList[pipsPager.SelectedPageIndex];
-        var device = CanvasDevice.GetSharedDevice();
 
         Color color = Colors.Transparent;
 
-        if (UseImageEdgeOverContentColor)
+        cachedImageColorDic.TryGetValue(item.ImageSource, out var cachedColor);
+
+        if (cachedColor != null)
         {
-            color = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, new Uri(item.ImageSource));
-        }
-        else
-        {
-            color = await ColorHelperEx.GetBalancedImageColorAsync(device, new Uri(item.ImageSource));
+            color = (Color)cachedColor;
         }
 
         fadeRectangle.Width = image.ActualWidth * 0.4;

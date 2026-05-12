@@ -110,7 +110,9 @@ public sealed partial class ImageFrame : Control, IDisposable
             if (uri != null)
             {
                 var device = CanvasDevice.GetSharedDevice();
-                _shadowColor = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
+                var data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
+                _shadowColor = data.Color;
+                data.CanvasBitmap.Dispose();
             }
         }
         else

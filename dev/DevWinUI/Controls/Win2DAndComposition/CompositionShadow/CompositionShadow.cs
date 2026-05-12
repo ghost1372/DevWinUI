@@ -212,8 +212,9 @@ public partial class CompositionShadow : Control
         if (uri != null)
         {
             var device = CanvasDevice.GetSharedDevice();
-            var color = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
-            Color = color;
+            var data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
+            Color = data.Color;
+            data.CanvasBitmap.Dispose();
         }
         else
         {
