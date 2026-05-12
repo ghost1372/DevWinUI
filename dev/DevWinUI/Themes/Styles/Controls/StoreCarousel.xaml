@@ -142,20 +142,14 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <local:CompositionShadow x:Name="PART_PrimaryCompositionShadow" Grid.ColumnSpan="2" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
-                                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
-                                </Border>
+                            <local:CompositionShadow x:Name="PART_PrimaryCompositionShadow" Grid.ColumnSpan="2" BlurRadius="35" CornerRadius="8" ImageSourceForEdgeColor="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseCornerRadius="True" UseEdgeColorFromImage="True">
+                                <Image Source="{Binding PrimaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                             </local:CompositionShadow>
-                            <local:CompositionShadow x:Name="PART_SecondaryCompositionShadow" Grid.Row="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
-                                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
-                                </Border>
+                            <local:CompositionShadow x:Name="PART_SecondaryCompositionShadow" Grid.Row="1" BlurRadius="35" CornerRadius="8" ImageSourceForEdgeColor="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseCornerRadius="True" UseEdgeColorFromImage="True">
+                                <Image Source="{Binding SecondaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                             </local:CompositionShadow>
-                            <local:CompositionShadow x:Name="PART_TertiaryCompositionShadow" Grid.Row="1" Grid.Column="1" BlurRadius="35" CornerRadius="{ThemeResource OverlayCornerRadius}" ImageSourceForEdgeColor="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseEdgeColorFromImage="True">
-                                <Border CornerRadius="{ThemeResource OverlayCornerRadius}">
-                                    <Image Source="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
-                                </Border>
+                            <local:CompositionShadow x:Name="PART_TertiaryCompositionShadow" Grid.Row="1" Grid.Column="1" BlurRadius="35" CornerRadius="8" ImageSourceForEdgeColor="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseCornerRadius="True" UseEdgeColorFromImage="True">
+                                <Image Source="{Binding TertiaryImageSource, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="Fill" />
                             </local:CompositionShadow>
                         </Grid>
                     </Grid>
