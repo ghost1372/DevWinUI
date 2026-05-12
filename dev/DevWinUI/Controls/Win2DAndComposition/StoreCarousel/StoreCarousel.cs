@@ -157,12 +157,32 @@ public partial class StoreCarousel : Control
             timer.Start();
         }
 
+        ClearLights(sliderGrid);
+        ClearLights(primaryBox);
+        ClearLights(secondaryBox);
+        ClearLights(tertiaryBox);
+
         AddLights(sliderGrid);
         AddLights(primaryBox);
         AddLights(secondaryBox);
         AddLights(tertiaryBox);
+
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
     }
 
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        KeyDown -= OnKeyDown;
+        SizeChanged -= OnSizeChanged;
+        timer.Tick -= OnTimerTick;
+        timer.Stop();
+        timer = null;
+    }
+    private void ClearLights(FrameworkElement element)
+    {
+        element?.Lights.Clear();
+    }
     private void OnActionButtonClick(object sender, RoutedEventArgs e)
     {
         var item = imageList[_index];
