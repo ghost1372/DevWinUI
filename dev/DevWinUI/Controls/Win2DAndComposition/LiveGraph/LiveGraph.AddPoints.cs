@@ -2,7 +2,7 @@
 
 public partial class LiveGraph
 {
-    public void AddLivePoint(string key, GraphPoint point)
+    public void AddDynamicPoint(string key, GraphPoint point)
     {
         AddDynamicPoint(key, point, false);
     }

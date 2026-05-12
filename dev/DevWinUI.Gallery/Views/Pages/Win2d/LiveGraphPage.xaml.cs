@@ -21,7 +21,7 @@ public sealed partial class LiveGraphPage : Page
     private void LiveGraphSample_Draw(object sender, LiveGraphEventArgs e)
     {
         float cpuValue = (float)random.NextDouble() * 100f; // CPU usage 0-100%
-        LiveGraphSample.AddLivePoint(liveGraphKey, new GraphPoint { Value = cpuValue, Space = 6f });
+        LiveGraphSample.AddDynamicPoint(liveGraphKey, new GraphPoint { Value = cpuValue, Space = 6f });
     }
 
     private void LiveGraphSample_CreateResources(object sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl e)
