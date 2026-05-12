@@ -6,8 +6,10 @@
 [TemplatePart(Name = RenderBorder, Type = typeof(Border))]
 public sealed partial class ImageFrame : Control, IDisposable
 {
+    private CanvasDevice device;
     private Color _shadowColor = Colors.Transparent;
-
+    private Dictionary<Uri, Color?> cachedImagesColorDic = new Dictionary<Uri, Color?>();
+    internal bool useImageEdgeOverContentColor = true;
     #region Enums
 
     private enum ImageEngineState
@@ -109,10 +111,26 @@ public sealed partial class ImageFrame : Control, IDisposable
             var uri = GetUriFromSource();
             if (uri != null)
             {
-                var device = CanvasDevice.GetSharedDevice();
-                var data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
-                _shadowColor = data.Color;
-                data.CanvasBitmap.Dispose();
+                cachedImagesColorDic.TryGetValue(uri, out var color);
+                if (color == null)
+                {
+                    (Color Color, CanvasBitmap CanvasBitmap) data;
+
+                    if (useImageEdgeOverContentColor)
+                    {
+                        data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, uri);
+                    }
+                    else
+                    {
+                        data = await ColorHelperEx.GetBalancedImageColorAsync(device, uri);
+                    }
+
+                    cachedImagesColorDic[uri] = data.Color;
+                    color = data.Color;
+                    data.CanvasBitmap.Dispose();
+                }
+
+                _shadowColor = (Color)color;
             }
         }
         else
@@ -1070,6 +1088,8 @@ public sealed partial class ImageFrame : Control, IDisposable
         // generator events
         _generator?.Dispose();
         _generator = null;
+
+        cachedImagesColorDic.Clear();
     }
 
     #endregion
@@ -1083,7 +1103,17 @@ public sealed partial class ImageFrame : Control, IDisposable
     {
         base.OnApplyTemplate();
 
+        device = CanvasDevice.GetSharedDevice();
+
         _renderBorder = GetTemplateChild(RenderBorder) as Border;
+
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        cachedImagesColorDic.Clear();
     }
 
     /// <summary>

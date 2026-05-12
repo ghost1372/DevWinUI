@@ -73,9 +73,6 @@ public partial class StoreCarousel : Control
     private int _previousIndex = -1;
     private bool isCallFromPipsPager = false;
 
-    private CanvasDevice device;
-    private Dictionary<string, Color?> cachedImageColorDic = new Dictionary<string, Color?>();
-
     public event EventHandler<int> SelectedIndexChanged;
     public event EventHandler<StoreCarouselEventArgs> ItemClick;
     public StoreCarousel()
@@ -86,8 +83,6 @@ public partial class StoreCarousel : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-
-        device = CanvasDevice.GetSharedDevice();
 
         image = GetTemplateChild(PART_Image) as ImageFrame;
         sliderGrid = GetTemplateChild(PART_SliderGrid) as Grid;
@@ -183,8 +178,6 @@ public partial class StoreCarousel : Control
         timer.Tick -= OnTimerTick;
         timer.Stop();
         timer = null;
-
-        cachedImageColorDic.Clear();
     }
     private void ClearLights(FrameworkElement element)
     {
@@ -343,6 +336,7 @@ public partial class StoreCarousel : Control
         {
             FadeOutInArc(arc);
 
+            image.useImageEdgeOverContentColor = UseImageEdgeOverContentColor;
             image.Source = new Uri(item.ImageSource);
             titleTextBlock.Text = item.Title;
             descriptionTextBlock.Text = item.Description;
@@ -401,7 +395,6 @@ public partial class StoreCarousel : Control
     private void OnItemsSourceChanged(IList<StoreCarouselItem> newList)
     {
         imageList.Clear();
-        cachedImageColorDic.Clear();
 
         if (newList != null)
             imageList.AddRange(newList);
@@ -409,12 +402,13 @@ public partial class StoreCarousel : Control
         if (image != null && imageList.Count > 0)
         {
             var item = imageList[0];
+
+            image.useImageEdgeOverContentColor = UseImageEdgeOverContentColor;
             image.Source = new Uri(item.ImageSource);
             titleTextBlock.Text = item.Title;
             descriptionTextBlock.Text = item.Description;
             actionButtonTextBlock.Text = item.ActionButtonText;
             actionButton.Visibility = item.ShowActionButton ? Visibility.Visible : Visibility.Collapsed;
-            GetAllImageColorCache(newList);
             UpdateVisuals();
             RunTextAnimation();
         }
@@ -423,43 +417,15 @@ public partial class StoreCarousel : Control
             pipsPager.NumberOfPages = imageList.Count;
     }
 
-    private async void GetAllImageColorCache(IList<StoreCarouselItem> newList)
-    {
-        foreach (var item in newList)
-        {
-            cachedImageColorDic.TryGetValue(item.ImageSource, out var color);
-
-            if (color == null)
-            {
-                if (UseImageEdgeOverContentColor)
-                {
-                    var data = await ColorHelperEx.GetImageEdgeColorWithWin2DAsync(device, new Uri(item.ImageSource));
-                    color = data.Color;
-                    data.CanvasBitmap.Dispose();
-                }
-                else
-                {
-                    var data = await ColorHelperEx.GetBalancedImageColorAsync(device, new Uri(item.ImageSource));
-                    color = data.Color;
-                    data.CanvasBitmap.Dispose();
-                }
-
-                cachedImageColorDic[item.ImageSource] = color;
-            }
-        }
-    }
-
     private async void UpdateVisuals()
     {
         var item = imageList[pipsPager.SelectedPageIndex];
 
         Color color = Colors.Transparent;
 
-        cachedImageColorDic.TryGetValue(item.ImageSource, out var cachedColor);
-
-        if (cachedColor != null)
+        if (image != null)
         {
-            color = (Color)cachedColor;
+            color = image.ShadowColor;
         }
 
         fadeRectangle.Width = image.ActualWidth * 0.4;

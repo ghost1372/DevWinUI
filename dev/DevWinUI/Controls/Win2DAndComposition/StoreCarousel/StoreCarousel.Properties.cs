@@ -9,7 +9,16 @@ public partial class StoreCarousel
     }
 
     public static readonly DependencyProperty UseImageEdgeOverContentColorProperty =
-        DependencyProperty.Register(nameof(UseImageEdgeOverContentColor), typeof(bool), typeof(StoreCarousel), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(UseImageEdgeOverContentColor), typeof(bool), typeof(StoreCarousel), new PropertyMetadata(false, OnImageEdgeOverContentColor));
+
+    private static void OnImageEdgeOverContentColor(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (StoreCarousel)d;
+        if (ctl != null && ctl.image != null)
+        {
+            ctl.image.useImageEdgeOverContentColor = (bool)e.NewValue;
+        }
+    }
 
     public TimeSpan ShuffleDuration
     {
