@@ -16,25 +16,16 @@ public sealed partial class RestartManager : IDisposable
         SessionKey = sessionKey;
     }
 
-    public unsafe static RestartManager CreateSession()
+    public static RestartManager CreateSession()
     {
-        var sessionKey = Guid.NewGuid().ToString();
-
-        uint sessionHandle;
-        WIN32_ERROR result;
-        fixed (char* pKey = sessionKey)
-        {
-            result = PInvoke.RmStartSession(
-                &sessionHandle,
-                0,
-                (PWSTR)pKey
-            );
-        }
-
-        if (result != Windows.Win32.Foundation.WIN32_ERROR.ERROR_SUCCESS)
+        Span<char> sessionKeyBuffer = stackalloc char[(int)PInvoke.CCH_RM_SESSION_KEY + 1];
+        var result = StartSession(out var handle, sessionKeyBuffer);
+        if (result != WIN32_ERROR.ERROR_SUCCESS)
             throw new Win32Exception((int)result, $"RmStartSession failed ({result})");
 
-        return new RestartManager(sessionHandle, sessionKey);
+        var sessionKeyLength = sessionKeyBuffer.IndexOf('\0');
+        var sessionKey = sessionKeyLength >= 0 ? new string(sessionKeyBuffer[..sessionKeyLength]) : new string(sessionKeyBuffer);
+        return new RestartManager(handle, sessionKey);
     }
 
     /// <summary>Joins an existing Restart Manager session using the specified session key.</summary>
@@ -54,21 +45,12 @@ public sealed partial class RestartManager : IDisposable
     /// <param name="path">The full path of the file to register.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is <see langword="null"/>.</exception>
     /// <exception cref="Win32Exception">Thrown when the registration fails.</exception>
-    public unsafe void RegisterFile(string path)
+    public void RegisterFile(string path)
     {
         ArgumentNullException.ThrowIfNull(path);
 
         string[] resources = [path];
-        WIN32_ERROR result;
-        fixed (char* p0 = resources[0])
-        {
-            char** pcwstr = stackalloc char*[1];
-            pcwstr[0] = p0;
-
-            PCWSTR* pResources = (PCWSTR*)pcwstr;
-            result = PInvoke.RmRegisterResources(SessionHandle, (uint)resources.Length, pResources, 0, rgApplications: null, 0, rgsServiceNames: null);
-        }
-
+        var result = RegisterResources(SessionHandle, resources);
         if (result != WIN32_ERROR.ERROR_SUCCESS)
             throw new Win32Exception((int)result, $"RmRegisterResources failed ({result})");
     }
@@ -77,22 +59,11 @@ public sealed partial class RestartManager : IDisposable
     /// <param name="paths">An array of full file paths to register.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="paths"/> is <see langword="null"/>.</exception>
     /// <exception cref="Win32Exception">Thrown when the registration fails.</exception>
-    public unsafe void RegisterFiles(string[] paths)
+    public void RegisterFiles(string[] paths)
     {
         ArgumentNullException.ThrowIfNull(paths);
 
-
-        WIN32_ERROR result;
-        fixed (char* p0 = paths[0])
-        {
-            char** pcwstr = stackalloc char*[1];
-            pcwstr[0] = p0;
-
-            PCWSTR* pPaths = (PCWSTR*)pcwstr;
-            result = PInvoke.RmRegisterResources(SessionHandle, (uint)paths.LongLength, pPaths, 0, rgApplications: null, 0, rgsServiceNames: null);
-        }
-
-
+        var result = RegisterResources(SessionHandle, paths);
         if (result != WIN32_ERROR.ERROR_SUCCESS)
             throw new Win32Exception((int)result, $"RmRegisterResources failed ({result})");
     }
@@ -189,6 +160,46 @@ public sealed partial class RestartManager : IDisposable
         var result = PInvoke.RmRestart(SessionHandle, 0, callback);
         if (result != WIN32_ERROR.ERROR_SUCCESS)
             throw new Win32Exception((int)result, $"RmRestart failed ({result})");
+    }
+
+    private static unsafe WIN32_ERROR StartSession(out uint handle, Span<char> sessionKeyBuffer)
+    {
+        uint localHandle = 0;
+        fixed (char* sessionKeyBufferPtr = sessionKeyBuffer)
+        {
+            var result = PInvoke.RmStartSession(&localHandle, 0, new PWSTR(sessionKeyBufferPtr));
+            handle = localHandle;
+            return result;
+        }
+    }
+
+    private static unsafe WIN32_ERROR RegisterResources(uint sessionHandle, string[] paths)
+    {
+        if (paths.Length == 0)
+            return PInvoke.RmRegisterResources(sessionHandle, 0, (PCWSTR*)null, 0, (RM_UNIQUE_PROCESS*)null, 0, (PCWSTR*)null);
+
+        var handles = new GCHandle[paths.Length];
+        try
+        {
+            var pathPointers = stackalloc PCWSTR[paths.Length];
+            for (var i = 0; i < paths.Length; i++)
+            {
+                handles[i] = GCHandle.Alloc(paths[i], GCHandleType.Pinned);
+                pathPointers[i] = new PCWSTR((char*)handles[i].AddrOfPinnedObject());
+            }
+
+            return PInvoke.RmRegisterResources(sessionHandle, (uint)paths.Length, pathPointers, 0, (RM_UNIQUE_PROCESS*)null, 0, (PCWSTR*)null);
+        }
+        finally
+        {
+            foreach (var handle in handles)
+            {
+                if (handle.IsAllocated)
+                {
+                    handle.Free();
+                }
+            }
+        }
     }
 
     /// <summary>Ends the Restart Manager session and releases all resources.</summary>
