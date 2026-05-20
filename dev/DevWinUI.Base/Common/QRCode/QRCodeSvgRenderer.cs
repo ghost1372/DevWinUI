@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Security;
 
 namespace DevWinUI;
 
@@ -19,8 +18,6 @@ public static partial class QRCodeSvgRenderer
     {
         ArgumentNullException.ThrowIfNull(qrCode);
         ArgumentNullException.ThrowIfNull(options);
-        ArgumentException.ThrowIfNullOrWhiteSpace(options.DarkColor);
-        ArgumentException.ThrowIfNullOrWhiteSpace(options.LightColor);
 
         var moduleSize = options.ModuleSize;
         if (moduleSize <= 0)
@@ -51,12 +48,12 @@ public static partial class QRCodeSvgRenderer
         sb.Append("\" height=\"");
         sb.Append(totalHeightStr);
         sb.Append("\" fill=\"");
-        sb.Append(SecurityElement.Escape(options.LightColor));
+        sb.Append(options.LightColor.ToCssString());
         sb.Append("\"/>");
 
         // Dark modules as a single path
         sb.Append("<path fill=\"");
-        sb.Append(SecurityElement.Escape(options.DarkColor));
+        sb.Append(options.DarkColor.ToCssString());
         sb.Append("\" d=\"");
 
         for (var row = 0; row < qrCode.Height; row++)
@@ -96,8 +93,60 @@ public static partial class QRCodeSvgRenderer
             }
         }
 
-        sb.Append("\"/></svg>");
+        sb.Append("\"/>");
+
+        if (!string.IsNullOrEmpty(options.LogoImageHref))
+        {
+            if (options.LogoSizePercent is < 1 or > 100)
+                throw new ArgumentOutOfRangeException("options.LogoSizePercent", options.LogoSizePercent, "LogoSizePercent must be between 1 and 100.");
+
+            var logoSize = Math.Max(1L, (Math.Min(totalWidth, totalHeight) * options.LogoSizePercent) / 100L);
+            var logoX = (totalWidth - logoSize) / 2L;
+            var logoY = (totalHeight - logoSize) / 2L;
+
+            sb.Append("<image href=\"");
+            AppendXmlAttributeEscaped(sb, options.LogoImageHref);
+            sb.Append("\" x=\"");
+            sb.Append(logoX.ToString(CultureInfo.InvariantCulture));
+            sb.Append("\" y=\"");
+            sb.Append(logoY.ToString(CultureInfo.InvariantCulture));
+            sb.Append("\" width=\"");
+            sb.Append(logoSize.ToString(CultureInfo.InvariantCulture));
+            sb.Append("\" height=\"");
+            sb.Append(logoSize.ToString(CultureInfo.InvariantCulture));
+            sb.Append("\" preserveAspectRatio=\"xMidYMid meet\"/>");
+        }
+
+        sb.Append("</svg>");
 
         return sb.ToString();
+    }
+
+    private static void AppendXmlAttributeEscaped(StringBuilder sb, string value)
+    {
+        foreach (var ch in value)
+        {
+            switch (ch)
+            {
+                case '<':
+                    sb.Append("&lt;");
+                    break;
+                case '>':
+                    sb.Append("&gt;");
+                    break;
+                case '&':
+                    sb.Append("&amp;");
+                    break;
+                case '"':
+                    sb.Append("&quot;");
+                    break;
+                case '\'':
+                    sb.Append("&apos;");
+                    break;
+                default:
+                    sb.Append(ch);
+                    break;
+            }
+        }
     }
 }
