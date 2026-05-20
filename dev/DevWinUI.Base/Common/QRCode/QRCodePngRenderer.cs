@@ -88,10 +88,10 @@ public static partial class QRCodePngRenderer
                     && qrCode[sourceRow, sourceCol];
                 var color = isDark ? options.DarkColor : options.LightColor;
                 var pixelOffset = rowOffset + 1 + (col * 4);
-                result[pixelOffset] = color.Red;
-                result[pixelOffset + 1] = color.Green;
-                result[pixelOffset + 2] = color.Blue;
-                result[pixelOffset + 3] = color.Alpha;
+                result[pixelOffset] = color.R;
+                result[pixelOffset + 1] = color.G;
+                result[pixelOffset + 2] = color.B;
+                result[pixelOffset + 3] = color.A;
             }
         }
 

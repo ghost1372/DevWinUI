@@ -12,10 +12,10 @@ public sealed partial class QRCodeSvgOptions
     public int QuietZoneModules { get; set; } = 4;
 
     /// <summary>Gets or sets the color for dark modules. Default is <see cref="Color.Black"/>.</summary>
-    public Color DarkColor { get; set; } = Color.Black;
+    public Color DarkColor { get; set; } = Colors.Black;
 
     /// <summary>Gets or sets the color for light modules. Default is <see cref="Color.White"/>.</summary>
-    public Color LightColor { get; set; } = Color.White;
+    public Color LightColor { get; set; } = Colors.White;
 
     /// <summary>Gets or sets the image source for a centered logo in the SVG output (for example, a URL or a data URI).</summary>
     /// <remarks>Logo rendering is only supported by the SVG renderer.</remarks>

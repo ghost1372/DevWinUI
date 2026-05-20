@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DevWinUI;
 
 internal sealed partial class BitBuffer
 {
