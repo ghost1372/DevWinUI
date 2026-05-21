@@ -427,6 +427,8 @@ public partial class LiveGraph : Control
     {
         switch (backgroundMode)
         {
+            case LiveGraphBackgroundMode.None:
+                break;
             case LiveGraphBackgroundMode.Cross:
                 // Draw vertical lines
                 for (float x = offsetX; x < width; x += crossSpacing)

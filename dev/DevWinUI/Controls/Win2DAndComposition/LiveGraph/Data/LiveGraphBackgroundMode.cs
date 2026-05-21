@@ -2,6 +2,7 @@
 
 public enum LiveGraphBackgroundMode
 {
+    None,
     Cross,
     Dot
 }
