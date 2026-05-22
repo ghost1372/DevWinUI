@@ -22,6 +22,7 @@ Controls\Ported\LoopingSelector\LoopingSelector.xaml
 Controls\Ported\PagerControl\PagerControl.xaml
 Controls\Ported\SamplePanel\SamplePanel.xaml
 Controls\Ported\SettingsCard\SettingsCard.xaml
+Controls\Ported\SettingsCardAndExpander\SettingsCardAndExpander.xaml
 Controls\Ported\SettingsExpander\SettingsExpander.xaml
 Controls\Ported\Sidebar\SidebarStyles.xaml
 Controls\Ported\Sidebar\SidebarView.ThemeResources.xaml
@@ -18405,6 +18406,9 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter>
     </Style.Setters>
   </Style>
+  <Style x:Key="DefaultNestedSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard">
+    <Setter Property="Padding" Value="116,8,44,8" />
+  </Style>
   <Style x:Key="DefaultSettingsExpanderItemStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard">
     <Style.Setters>
       <Setter Property="BorderThickness" Value="{ThemeResource SettingsExpanderItemBorderThickness}" />
@@ -18825,6 +18829,11 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />
   <Style BasedOn="{StaticResource DefaultBreadcrumbBarItemStyle}" TargetType="local:BreadcrumbBarItem" />
   <Style BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard" />
+  <Style x:Key="DefaultNestedClickableSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsExpanderItemStyle}" TargetType="local:SettingsCard">
+    <Style.Setters>
+      <Setter Property="Padding" Value="116,8,16,8" />
+    </Style.Setters>
+  </Style>
   <Style x:Key="DefaultSettingsExpanderStyle" TargetType="local:SettingsExpander">
     <Style.Setters>
       <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
@@ -19105,5 +19114,36 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Style BasedOn="{StaticResource DefaultOutOfBoxPageStyle}" TargetType="local:OutOfBoxPage" />
   <Style BasedOn="{StaticResource DefaultPinBoxStyle}" TargetType="local:PinBox" />
   <Style BasedOn="{StaticResource DefaultStepBarStyle}" TargetType="local:StepBar" />
+  <Style x:Key="DefaultNestedSettingsExpanderStyle" BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander">
+    <Setter Property="Padding" Value="{StaticResource SettingsExpanderItemPadding}" />
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:SettingsExpander">
+          <Expander MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" CornerRadius="{TemplateBinding CornerRadius}" IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource SettingsExpanderExpanderStyle}">
+            <Expander.Header>
+              <local:SettingsCard Padding="{TemplateBinding Padding}" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Content="{TemplateBinding Content}" Description="{TemplateBinding Description}" FontFamily="{TemplateBinding FontFamily}" Header="{TemplateBinding Header}" HeaderIcon="{TemplateBinding HeaderIcon}" IsClickEnabled="False" />
+            </Expander.Header>
+            <Expander.Content>
+              <Grid CornerRadius="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CornerRadiusConverter}}">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ContentPresenter Content="{TemplateBinding ItemsHeader}" />
+                <ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Row="1" ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" TabFocusNavigation="Local">
+                  <ItemsRepeater.Layout>
+                    <StackLayout Orientation="Vertical" />
+                  </ItemsRepeater.Layout>
+                </ItemsRepeater>
+                <ContentPresenter Grid.Row="2" Content="{TemplateBinding ItemsFooter}" />
+              </Grid>
+            </Expander.Content>
+          </Expander>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander" />
 </ResourceDictionary>
