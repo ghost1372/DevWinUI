@@ -61,11 +61,6 @@ public sealed partial class MainWindow : Window
         HeaderAutoSuggestBox.Focus(FocusState.Programmatic);
     }
 
-    private void OnIconPointerPressed(object sender, PointerRoutedEventArgs e)
-    {
-        AppHelper.PostMessage(App.Hwnd, (uint)NativeValues.WindowMessage.WM_SYSCOMMAND, 0xF090, IntPtr.Zero);
-    }
-
     public void AddTrayIcon(string toolTip)
     {
         uint iconId = 123;

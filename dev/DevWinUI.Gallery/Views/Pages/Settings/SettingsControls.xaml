@@ -221,6 +221,20 @@
                     </dev:SettingsExpander>
                 </StackPanel>
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/settingsCard" HeaderText="Nested SettingsExpander">
+                <dev:SettingsExpander Description="Test Setting Expander Description" Header="Test Setting Expander Header" ItemContainerStyleSelector="{StaticResource CustomSettingsExpanderItemStyleSelector}">
+                    <dev:SettingsExpander.Items>
+                        <dev:SettingsCard Description="Test Setting Card Description" Header="Test Setting Card Header" />
+                        <dev:SettingsExpander Description="Test Nested Setting Expander Description" Header="Test Nested Setting Expander Header" ItemContainerStyleSelector="{StaticResource NestedCustomSettingsExpanderItemStyleSelector}">
+                            <dev:SettingsExpander.Items>
+                                <dev:SettingsCard Description="Test Nested Setting Card Description" Header="Test Nested Setting Card Header" />
+                            </dev:SettingsExpander.Items>
+                        </dev:SettingsExpander>
+                        <dev:SettingsCard Description="Test Setting Card Description" Header="Test Setting Card Header" />
+                    </dev:SettingsExpander.Items>
+                </dev:SettingsExpander>
+            </local:ControlExample>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

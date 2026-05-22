@@ -19114,6 +19114,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Style BasedOn="{StaticResource DefaultOutOfBoxPageStyle}" TargetType="local:OutOfBoxPage" />
   <Style BasedOn="{StaticResource DefaultPinBoxStyle}" TargetType="local:PinBox" />
   <Style BasedOn="{StaticResource DefaultStepBarStyle}" TargetType="local:StepBar" />
+  <local:CustomSettingsExpanderItemStyleSelector x:Key="NestedCustomSettingsExpanderItemStyleSelector" ClickableStyle="{StaticResource DefaultNestedClickableSettingsCardStyle}" DefaultStyle="{StaticResource DefaultNestedSettingsCardStyle}" />
   <Style x:Key="DefaultNestedSettingsExpanderStyle" BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander">
     <Setter Property="Padding" Value="{StaticResource SettingsExpanderItemPadding}" />
     <Setter Property="CornerRadius" Value="0" />
@@ -19146,4 +19147,5 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultSettingsExpanderStyle}" TargetType="local:SettingsExpander" />
+  <local:CustomSettingsExpanderItemStyleSelector x:Key="CustomSettingsExpanderItemStyleSelector" ClickableStyle="{StaticResource ClickableSettingsExpanderItemStyle}" DefaultStyle="{StaticResource DefaultSettingsExpanderItemStyle}" ExpanderStyle="{StaticResource DefaultNestedSettingsExpanderStyle}" />
 </ResourceDictionary>

@@ -13,12 +13,17 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TitleBar x:Name="AppTitleBar" Title="{x:Bind dev:ProcessInfoHelper.ProductNameDisplay}" IsBackButtonVisible="True" IsPaneToggleButtonVisible="True" Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefixDev}">
-
-            <!--  Temporary Fix TitleBar Icon  -->
-            <TitleBar.LeftHeader>
-                <ImageIcon Width="16" Height="16" Margin="2,0,14,0" PointerPressed="OnIconPointerPressed" Source="ms-appx:///Assets/AppIcon.png" />
-            </TitleBar.LeftHeader>
-            <AutoSuggestBox x:Name="HeaderAutoSuggestBox" MinWidth="320" VerticalAlignment="Center" PlaceholderText="Search" QueryIcon="Find" QuerySubmitted="OnQuerySubmitted" TextChanged="OnTextChanged">
+            <TitleBar.Resources>
+                <!--
+                    TitleBar.Content uses Center alignment by default. Override to
+                    Stretch so the AutoSuggestBox grows with the title bar.
+                -->
+                <HorizontalAlignment x:Key="TitleBarContentHorizontalAlignment">Stretch</HorizontalAlignment>
+            </TitleBar.Resources>
+            <TitleBar.IconSource>
+                <ImageIconSource ImageSource="ms-appx:///Assets/AppIcon.png" />
+            </TitleBar.IconSource>
+            <AutoSuggestBox x:Name="HeaderAutoSuggestBox" MaxWidth="580" HorizontalAlignment="Stretch" VerticalAlignment="Center" PlaceholderText="Search" QueryIcon="Find" QuerySubmitted="OnQuerySubmitted" TextChanged="OnTextChanged">
                 <AutoSuggestBox.KeyboardAccelerators>
                     <KeyboardAccelerator Key="F" Invoked="KeyboardAccelerator_Invoked" Modifiers="Control" />
                 </AutoSuggestBox.KeyboardAccelerators>

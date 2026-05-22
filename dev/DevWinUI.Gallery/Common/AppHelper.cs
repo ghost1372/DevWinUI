@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
 using Nucs.JsonSettings;
 using Nucs.JsonSettings.Fluent;
 using Nucs.JsonSettings.Modulation;
@@ -36,9 +35,5 @@ public static partial class AppHelper
 
         return (uniqueId, sectionId);
     }
-
-    [LibraryImport("user32.dll", EntryPoint = "PostMessageW", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static partial bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 }
 

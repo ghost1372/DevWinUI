@@ -17,12 +17,13 @@
                   IsBackButtonVisible="True"
                   IsPaneToggleButtonVisible="True"
                   Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
-            <AutoSuggestBox MinWidth="320"
-                            VerticalAlignment="Center"
-                            PlaceholderText="Search"
-                            QueryIcon="Find"
-                            QuerySubmitted="OnQuerySubmitted"
-                            TextChanged="OnTextChanged" />
+            <TitleBar.Resources>
+                <!--
+                    TitleBar.Content uses Center alignment by default. Override to
+                    Stretch so the AutoSuggestBox grows with the title bar.
+                -->
+                <HorizontalAlignment x:Key="TitleBarContentHorizontalAlignment">Stretch</HorizontalAlignment>
+            </TitleBar.Resources>
             <TitleBar.IconSource>
                 <ImageIconSource ImageSource="ms-appx:///Assets/AppIcon.png" />
             </TitleBar.IconSource>
@@ -31,11 +32,17 @@
                         Height="32"
                         Margin="0,0,4,0"
                         Click="ThemeButton_Click"
-                        Content="{dev:FontIcon GlyphCode=E793,
-                                               FontSize=16}"
+                        Content="{dev:FontIcon GlyphCode=E793, FontSize=16}"
                         Style="{ThemeResource SubtleButtonStyle}"
                         ToolTipService.ToolTip="Toggle Theme" />
             </TitleBar.RightHeader>
+            <AutoSuggestBox MaxWidth="580"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            PlaceholderText="Search"
+                            QueryIcon="Find"
+                            QuerySubmitted="OnQuerySubmitted"
+                            TextChanged="OnTextChanged" />
         </TitleBar>
         <NavigationView x:Name="NavView"
                         Grid.Row="1"
