@@ -2,6 +2,7 @@
 
 using System.ComponentModel;
 using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
 
@@ -796,16 +797,19 @@ public partial class ContentWindow : ContentControl
         }
     }
 
+    private UIElement? _lastFocusedElement;
     private void OnWindowActivated(object sender, WindowActivatedEventArgs args)
     {
         switch (args.WindowActivationState)
         {
             case WindowActivationState.Deactivated:
+                _lastFocusedElement = FocusManager.GetFocusedElement(XamlRoot) as UIElement;
                 Deactivated?.Invoke(this, EventArgs.Empty);
                 break;
 
             case WindowActivationState.CodeActivated:
             case WindowActivationState.PointerActivated:
+                (_lastFocusedElement ?? this).Focus(FocusState.Programmatic);
                 Activated?.Invoke(this, EventArgs.Empty);
                 break;
 
