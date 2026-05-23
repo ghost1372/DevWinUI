@@ -78,6 +78,7 @@ Themes\Styles\Controls\AccordionItem.xaml
 Themes\Styles\Controls\AnimatedGradient.xaml
 Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\AnimatedTextBlock.xaml
+Themes\Styles\Controls\AnimationPath.xaml
 Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\AudioWave.xaml
 Themes\Styles\Controls\BannerView.xaml
@@ -1846,6 +1847,18 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             <Image x:Name="PART_BottomImage" Opacity="1" Stretch="{TemplateBinding Stretch}" />
             <Image x:Name="PART_TopImage" Opacity="0" Stretch="{TemplateBinding Stretch}" />
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultAnimationPathStyle" TargetType="local:AnimationPath">
+    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="MinHeight" Value="100" />
+    <Setter Property="MinWidth" Value="100" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:AnimationPath">
+          <Border x:Name="PART_Border" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -13334,6 +13347,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultAnimationPathStyle}" TargetType="local:AnimationPath" />
   <Style BasedOn="{StaticResource DefaultArcProgressStyle}" TargetType="local:ArcProgress" />
   <Style BasedOn="{StaticResource DefaultAudioWaveStyle}" TargetType="local:AudioWave" />
   <Style BasedOn="{StaticResource DefaultBannerViewItemStyle}" TargetType="local:BannerViewItem" />

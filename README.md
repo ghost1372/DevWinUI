@@ -110,6 +110,9 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### AnimationPath
+![AnimationPath](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimationPath.gif)
+
 ### LiveGraph
 ![LiveGraph](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LiveGraph.gif)
 

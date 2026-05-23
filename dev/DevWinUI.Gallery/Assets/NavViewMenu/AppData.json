@@ -904,6 +904,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AnimationPathPage",
+          "Title": "Animation Path",
+          "Subtitle": "Achieve a fixed path animation effect",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LiveGraphPage",
           "Title": "Live Graph",
           "Subtitle": "Draw Live/Static Graph",
