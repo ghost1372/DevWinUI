@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.MorphingAnimationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/morphingAnimation">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:MorphingAnimation PrimaryData="{StaticResource TwitterGeometry}" SecondaryData="{StaticResource FaceBookGeometry}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemFillColorSuccess}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemFillColorCritical}" SecondaryData="{StaticResource FaceBookGeometry}" />
+                    <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemAccentColor}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemAccentColorDark1}" SecondaryData="{StaticResource FaceBookGeometry}" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

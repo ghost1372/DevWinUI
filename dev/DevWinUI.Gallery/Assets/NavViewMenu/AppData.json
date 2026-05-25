@@ -904,6 +904,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.MorphingAnimationPage",
+          "Title": "Morphing Animation",
+          "Subtitle": "Change a geometry with animation to a different geometry",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ConnectedAnimation.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.AnimationPathPage",
           "Title": "Animation Path",
           "Subtitle": "Achieve a fixed path animation effect",
