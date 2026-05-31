@@ -19,14 +19,14 @@ if (RuntimeHelper.IsPackaged())
         Exe = "$projectname$.exe"
     };
 
-    ContextMenuService menuService = new ContextMenuService();
+    var menuFolder = await ContextMenuService.CreateDefualtMenusFolderAsync();
+    ContextMenuService menuService = new ContextMenuService(menuFolder);
     await menuService.SaveAsync(menu);
 }
 """";
     public static string Windows11ContextMenuMVVMInitializer =
 """"
-var menuService = GetService<ContextMenuService>();
-if (menuService != null && RuntimeHelper.IsPackaged())
+if (RuntimeHelper.IsPackaged())
 {
     ContextMenuItem menu = new ContextMenuItem
     {
@@ -41,6 +41,8 @@ if (menuService != null && RuntimeHelper.IsPackaged())
         Exe = "$projectname$.exe"
     };
 
+    var menuFolder = await ContextMenuService.CreateDefualtMenusFolderAsync();
+    ContextMenuService menuService = new ContextMenuService(menuFolder);
     await menuService.SaveAsync(menu);
 }
 """";
