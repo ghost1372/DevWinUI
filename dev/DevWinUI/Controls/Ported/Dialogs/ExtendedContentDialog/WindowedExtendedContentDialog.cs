@@ -17,7 +17,7 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     public object? ExtendedHeader
     {
-        get => (object?) GetValue(ExtendedHeaderProperty);
+        get => (object?)GetValue(ExtendedHeaderProperty);
         set => SetValue(ExtendedHeaderProperty, value);
     }
 
@@ -30,12 +30,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnExtendedHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.ExtendedHeader = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.ExtendedHeader = e.NewValue;
     }
 
     public DataTemplate? ExtendedHeaderTemplate
     {
-        get => (DataTemplate?) GetValue(ExtendedHeaderTemplateProperty);
+        get => (DataTemplate?)GetValue(ExtendedHeaderTemplateProperty);
         set => SetValue(ExtendedHeaderTemplateProperty, value);
     }
 
@@ -48,12 +48,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnExtendedHeaderTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.ExtendedHeaderTemplate = (DataTemplate?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.ExtendedHeaderTemplate = (DataTemplate?)e.NewValue;
     }
 
     public object? Header
     {
-        get => (object?) GetValue(HeaderProperty);
+        get => (object?)GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
     }
 
@@ -66,12 +66,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.Header = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.Header = e.NewValue;
     }
 
     public DataTemplate? HeaderTemplate
     {
-        get => (DataTemplate?) GetValue(HeaderTemplateProperty);
+        get => (DataTemplate?)GetValue(HeaderTemplateProperty);
         set => SetValue(HeaderTemplateProperty, value);
     }
 
@@ -84,12 +84,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnHeaderTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.HeaderTemplate = (DataTemplate?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.HeaderTemplate = (DataTemplate?)e.NewValue;
     }
 
     public object? Content
     {
-        get => (object?) GetValue(ContentProperty);
+        get => (object?)GetValue(ContentProperty);
         set => SetValue(ContentProperty, value);
     }
 
@@ -102,12 +102,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.Content = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.Content = e.NewValue;
     }
 
     public DataTemplate? ContentTemplate
     {
-        get => (DataTemplate?) GetValue(ContentTemplateProperty);
+        get => (DataTemplate?)GetValue(ContentTemplateProperty);
         set => SetValue(ContentTemplateProperty, value);
     }
 
@@ -120,12 +120,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.ContentTemplate = (DataTemplate?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.ContentTemplate = (DataTemplate?)e.NewValue;
     }
 
     public object? PrimaryButtonContent
     {
-        get => (object?) GetValue(PrimaryButtonContentProperty);
+        get => (object?)GetValue(PrimaryButtonContentProperty);
         set => SetValue(PrimaryButtonContentProperty, value);
     }
 
@@ -138,12 +138,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnPrimaryButtonContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.PrimaryButtonContent = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.PrimaryButtonContent = e.NewValue;
     }
 
     public DataTemplate? PrimaryButtonTemplate
     {
-        get => (DataTemplate?) GetValue(PrimaryButtonTemplateProperty);
+        get => (DataTemplate?)GetValue(PrimaryButtonTemplateProperty);
         set => SetValue(PrimaryButtonTemplateProperty, value);
     }
 
@@ -156,7 +156,7 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     public object? SecondaryButtonContent
     {
-        get => (object?) GetValue(SecondaryButtonContentProperty);
+        get => (object?)GetValue(SecondaryButtonContentProperty);
         set => SetValue(SecondaryButtonContentProperty, value);
     }
 
@@ -169,12 +169,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnSecondaryButtonContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.SecondaryButtonContent = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.SecondaryButtonContent = e.NewValue;
     }
 
     public DataTemplate? SecondaryButtonTemplate
     {
-        get => (DataTemplate?) GetValue(SecondaryButtonTemplateProperty);
+        get => (DataTemplate?)GetValue(SecondaryButtonTemplateProperty);
         set => SetValue(SecondaryButtonTemplateProperty, value);
     }
 
@@ -187,12 +187,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnSecondaryButtonTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.SecondaryButtonTemplate = (DataTemplate?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.SecondaryButtonTemplate = (DataTemplate?)e.NewValue;
     }
 
     public object? CloseButtonContent
     {
-        get => (object?) GetValue(CloseButtonContentProperty);
+        get => (object?)GetValue(CloseButtonContentProperty);
         set => SetValue(CloseButtonContentProperty, value);
     }
 
@@ -205,12 +205,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnCloseButtonContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.CloseButtonContent = e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.CloseButtonContent = e.NewValue;
     }
 
     public DataTemplate? CloseButtonTemplate
     {
-        get => (DataTemplate?) GetValue(CloseButtonTemplateProperty);
+        get => (DataTemplate?)GetValue(CloseButtonTemplateProperty);
         set => SetValue(CloseButtonTemplateProperty, value);
     }
 
@@ -223,12 +223,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnCloseButtonTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.CloseButtonTemplate = (DataTemplate?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.CloseButtonTemplate = (DataTemplate?)e.NewValue;
     }
 
     public ICommand? PrimaryButtonCommand
     {
-        get => (ICommand?) GetValue(PrimaryButtonCommandProperty);
+        get => (ICommand?)GetValue(PrimaryButtonCommandProperty);
         set => SetValue(PrimaryButtonCommandProperty, value);
     }
 
@@ -241,12 +241,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnPrimaryButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d).PrimaryButtonCommand = (ICommand?) e.NewValue;
+        ((WindowedExtendedContentDialog)d).PrimaryButtonCommand = (ICommand?)e.NewValue;
     }
 
     public ICommand? SecondaryButtonCommand
     {
-        get => (ICommand?) GetValue(SecondaryButtonCommandProperty);
+        get => (ICommand?)GetValue(SecondaryButtonCommandProperty);
         set => SetValue(SecondaryButtonCommandProperty, value);
     }
 
@@ -259,12 +259,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnSecondaryButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d).SecondaryButtonCommand = (ICommand?) e.NewValue;
+        ((WindowedExtendedContentDialog)d).SecondaryButtonCommand = (ICommand?)e.NewValue;
     }
 
     public ICommand? CloseButtonCommand
     {
-        get => (ICommand?) GetValue(CloseButtonCommandProperty);
+        get => (ICommand?)GetValue(CloseButtonCommandProperty);
         set => SetValue(CloseButtonCommandProperty, value);
     }
 
@@ -277,12 +277,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnCloseButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d).CloseButtonCommand = (ICommand?) e.NewValue;
+        ((WindowedExtendedContentDialog)d).CloseButtonCommand = (ICommand?)e.NewValue;
     }
 
     public bool IsPrimaryButtonEnabled
     {
-        get => (bool) GetValue(IsPrimaryButtonEnabledProperty);
+        get => (bool)GetValue(IsPrimaryButtonEnabledProperty);
         set => SetValue(IsPrimaryButtonEnabledProperty, value);
     }
 
@@ -295,12 +295,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnIsPrimaryButtonEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.IsPrimaryButtonEnabled = (bool) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.IsPrimaryButtonEnabled = (bool)e.NewValue;
     }
 
     public bool IsSecondaryButtonEnabled
     {
-        get => (bool) GetValue(IsSecondaryButtonEnabledProperty);
+        get => (bool)GetValue(IsSecondaryButtonEnabledProperty);
         set => SetValue(IsSecondaryButtonEnabledProperty, value);
     }
 
@@ -313,12 +313,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnIsSecondaryButtonEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.IsSecondaryButtonEnabled = (bool) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.IsSecondaryButtonEnabled = (bool)e.NewValue;
     }
 
     public Orientation ButtonOrientation
     {
-        get => (Orientation) GetValue(ButtonOrientationProperty);
+        get => (Orientation)GetValue(ButtonOrientationProperty);
         set => SetValue(ButtonOrientationProperty, value);
     }
 
@@ -331,12 +331,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnButtonOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.ButtonOrientation = (Orientation) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.ButtonOrientation = (Orientation)e.NewValue;
     }
 
     public Style? PrimaryButtonStyle
     {
-        get => (Style?) GetValue(PrimaryButtonStyleProperty);
+        get => (Style?)GetValue(PrimaryButtonStyleProperty);
         set => SetValue(PrimaryButtonStyleProperty, value);
     }
 
@@ -349,12 +349,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnPrimaryButtonStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.PrimaryButtonStyle = (Style?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.PrimaryButtonStyle = (Style?)e.NewValue;
     }
 
     public Style? SecondaryButtonStyle
     {
-        get => (Style?) GetValue(SecondaryButtonStyleProperty);
+        get => (Style?)GetValue(SecondaryButtonStyleProperty);
         set => SetValue(SecondaryButtonStyleProperty, value);
     }
 
@@ -367,12 +367,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnSecondaryButtonStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.SecondaryButtonStyle = (Style?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.SecondaryButtonStyle = (Style?)e.NewValue;
     }
 
     public Style? CloseButtonStyle
     {
-        get => (Style?) GetValue(CloseButtonStyleProperty);
+        get => (Style?)GetValue(CloseButtonStyleProperty);
         set => SetValue(CloseButtonStyleProperty, value);
     }
 
@@ -385,12 +385,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnCloseButtonStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.CloseButtonStyle = (Style?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.CloseButtonStyle = (Style?)e.NewValue;
     }
 
     public string? PrimaryButtonAccessKey
     {
-        get => (string?) GetValue(PrimaryButtonAccessKeyProperty);
+        get => (string?)GetValue(PrimaryButtonAccessKeyProperty);
         set => SetValue(PrimaryButtonAccessKeyProperty, value);
     }
 
@@ -403,12 +403,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnPrimaryButtonAccessKeyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.PrimaryButtonAccessKey = (string?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.PrimaryButtonAccessKey = (string?)e.NewValue;
     }
 
     public string? SecondaryButtonAccessKey
     {
-        get => (string?) GetValue(SecondaryButtonAccessKeyProperty);
+        get => (string?)GetValue(SecondaryButtonAccessKeyProperty);
         set => SetValue(SecondaryButtonAccessKeyProperty, value);
     }
 
@@ -421,12 +421,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnSecondaryButtonAccessKeyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.SecondaryButtonAccessKey = (string?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.SecondaryButtonAccessKey = (string?)e.NewValue;
     }
 
     public string? CloseButtonAccessKey
     {
-        get => (string?) GetValue(CloseButtonAccessKeyProperty);
+        get => (string?)GetValue(CloseButtonAccessKeyProperty);
         set => SetValue(CloseButtonAccessKeyProperty, value);
     }
 
@@ -439,12 +439,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnCloseButtonAccessKeyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.CloseButtonAccessKey = (string?) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.CloseButtonAccessKey = (string?)e.NewValue;
     }
 
     public ContentDialogButton DefaultButton
     {
-        get => (ContentDialogButton) GetValue(DefaultButtonProperty);
+        get => (ContentDialogButton)GetValue(DefaultButtonProperty);
         set => SetValue(DefaultButtonProperty, value);
     }
 
@@ -457,12 +457,12 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private static void OnDefaultButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((WindowedExtendedContentDialog) d)._view.DefaultButton = (ContentDialogButton) e.NewValue;
+        ((WindowedExtendedContentDialog)d)._view.DefaultButton = (ContentDialogButton)e.NewValue;
     }
 
     public SystemBackdrop? SystemBackdrop
     {
-        get => (SystemBackdrop?) GetValue(SystemBackdropProperty);
+        get => (SystemBackdrop?)GetValue(SystemBackdropProperty);
         set => SetValue(SystemBackdropProperty, value);
     }
 
@@ -481,15 +481,13 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private readonly ExtendedContentDialogView _view = new();
     private DialogWindowBase? _window;
-    private TaskCompletionSource<ContentDialogResult>? _taskCompletionSource;
 
     public event EventHandler? PrimaryButtonClick;
     public event EventHandler? SecondaryButtonClick;
     public event EventHandler? CloseButtonClick;
 
-    public Task<ContentDialogResult> ShowAsync()
+    public async Task<ContentDialogResult> ShowAsync()
     {
-        _taskCompletionSource = new TaskCompletionSource<ContentDialogResult>();
         _window = new DialogWindowBase
         {
             Content = _view,
@@ -508,9 +506,9 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
         {
             dragMoveHelper.SetDragMove(_view);
         }
-        _window.Closed += OnWindowClosed;
-        _window.ShowDialog();
-        return _taskCompletionSource.Task;
+
+        await _window.ShowDialogAsync();
+        return Result;
     }
 
     private void OnPrimaryButtonClick(object? sender, EventArgs e)
@@ -529,10 +527,5 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
     {
         _window!.TryClose();
         CloseButtonClick?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void OnWindowClosed(object? sender, EventArgs e)
-    {
-        _taskCompletionSource?.SetResult(Result);
     }
 }

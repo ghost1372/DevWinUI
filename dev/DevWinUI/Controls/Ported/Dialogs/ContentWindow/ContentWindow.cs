@@ -9,6 +9,7 @@ namespace DevWinUI;
 public partial class ContentWindow : ContentControl
 {
     public ContentWindow() : this(new Window()) { }
+
     public ContentWindow(Window window)
     {
         DefaultStyleKey = typeof(ContentWindow);
@@ -35,7 +36,7 @@ public partial class ContentWindow : ContentControl
 
     public bool CanMinimize
     {
-        get => (bool) GetValue(CanMinimizeProperty);
+        get => (bool)GetValue(CanMinimizeProperty);
         set => SetValue(CanMinimizeProperty, value);
     }
 
@@ -48,7 +49,7 @@ public partial class ContentWindow : ContentControl
 
     public bool CanMaximize
     {
-        get => (bool) GetValue(CanMaximizeProperty);
+        get => (bool)GetValue(CanMaximizeProperty);
         set => SetValue(CanMaximizeProperty, value);
     }
 
@@ -61,7 +62,7 @@ public partial class ContentWindow : ContentControl
 
     public bool CanResize
     {
-        get => (bool) GetValue(CanResizeProperty);
+        get => (bool)GetValue(CanResizeProperty);
         set => SetValue(CanResizeProperty, value);
     }
 
@@ -74,7 +75,7 @@ public partial class ContentWindow : ContentControl
 
     public new double Width
     {
-        get => (double) GetValue(WidthProperty);
+        get => (double)GetValue(WidthProperty);
         set => SetValue(WidthProperty, value);
     }
 
@@ -87,16 +88,16 @@ public partial class ContentWindow : ContentControl
 
     private static void OnWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (!self.IsLoaded)
             return;
-        double newWidth = (double) e.NewValue;
+        double newWidth = (double)e.NewValue;
         self.Resize(new Size(newWidth, self.Height));
     }
 
     public new double Height
     {
-        get => (double) GetValue(HeightProperty);
+        get => (double)GetValue(HeightProperty);
         set => SetValue(HeightProperty, value);
     }
 
@@ -109,16 +110,16 @@ public partial class ContentWindow : ContentControl
 
     private static void OnHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (!self.IsLoaded)
             return;
-        double newHeight = (double) e.NewValue;
+        double newHeight = (double)e.NewValue;
         self.Resize(new Size(self.Width, newHeight));
     }
 
     public new double MinWidth
     {
-        get => (double) GetValue(MinWidthProperty);
+        get => (double)GetValue(MinWidthProperty);
         set => SetValue(MinWidthProperty, value);
     }
 
@@ -131,13 +132,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnMinWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMinimumWidth = self.DipToPixel((double) e.NewValue);
+        ContentWindow self = (ContentWindow)d;
+        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMinimumWidth = self.DipToPixel((double)e.NewValue);
     }
 
     public new double MaxWidth
     {
-        get => (double) GetValue(MaxWidthProperty);
+        get => (double)GetValue(MaxWidthProperty);
         set => SetValue(MaxWidthProperty, value);
     }
 
@@ -150,13 +151,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnMaxWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMaximumWidth = self.DipToPixel((double) e.NewValue);
+        ContentWindow self = (ContentWindow)d;
+        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMaximumWidth = self.DipToPixel((double)e.NewValue);
     }
 
     public new double MinHeight
     {
-        get => (double) GetValue(MinHeightProperty);
+        get => (double)GetValue(MinHeightProperty);
         set => SetValue(MinHeightProperty, value);
     }
 
@@ -169,13 +170,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnMinHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMinimumHeight = self.DipToPixel((double) e.NewValue);
+        ContentWindow self = (ContentWindow)d;
+        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMinimumHeight = self.DipToPixel((double)e.NewValue);
     }
 
     public new double MaxHeight
     {
-        get => (double) GetValue(MaxHeightProperty);
+        get => (double)GetValue(MaxHeightProperty);
         set => SetValue(MaxHeightProperty, value);
     }
 
@@ -188,13 +189,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnMaxHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMaximumHeight = self.DipToPixel((double) e.NewValue);
+        ContentWindow self = (ContentWindow)d;
+        (self.Window.AppWindow.Presenter as OverlappedPresenter)?.PreferredMaximumHeight = self.DipToPixel((double)e.NewValue);
     }
 
     public bool SizeToContent
     {
-        get => (bool) GetValue(SizeToContentProperty);
+        get => (bool)GetValue(SizeToContentProperty);
         set => SetValue(SizeToContentProperty, value);
     }
 
@@ -207,7 +208,7 @@ public partial class ContentWindow : ContentControl
 
     public WindowStartupLocation StartupLocation
     {
-        get => (WindowStartupLocation) GetValue(StartupLocationProperty);
+        get => (WindowStartupLocation)GetValue(StartupLocationProperty);
         set => SetValue(StartupLocationProperty, value);
     }
 
@@ -220,7 +221,7 @@ public partial class ContentWindow : ContentControl
 
     public string? Title
     {
-        get => (string?) GetValue(TitleProperty);
+        get => (string?)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
 
@@ -233,20 +234,20 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (e.NewValue is null)
         {
             self.Window.Title = string.Empty;
         }
         else
         {
-            self.Window.Title = (string) e.NewValue;
+            self.Window.Title = (string)e.NewValue;
         }
     }
 
     public SystemBackdrop? SystemBackdrop
     {
-        get => (SystemBackdrop?) GetValue(SystemBackdropProperty);
+        get => (SystemBackdrop?)GetValue(SystemBackdropProperty);
         set => SetValue(SystemBackdropProperty, value);
     }
 
@@ -259,13 +260,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnSystemBackdropChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        self.Window.SystemBackdrop = (SystemBackdrop?) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        self.Window.SystemBackdrop = (SystemBackdrop?)e.NewValue;
     }
 
     public bool ExtendsContentIntoTitleBar
     {
-        get => (bool) GetValue(ExtendsContentIntoTitleBarProperty);
+        get => (bool)GetValue(ExtendsContentIntoTitleBarProperty);
         set => SetValue(ExtendsContentIntoTitleBarProperty, value);
     }
 
@@ -278,8 +279,8 @@ public partial class ContentWindow : ContentControl
 
     private static void OnExtendsContentIntoTitleBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        bool newValue = (bool) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        bool newValue = (bool)e.NewValue;
         if (newValue)
         {
             self.Window.AppWindow.TitleBar.ButtonBackgroundColor = self.TitleBarButtonBackgroundColor;
@@ -303,7 +304,7 @@ public partial class ContentWindow : ContentControl
 
     public TitleBarHeightOption TitleBarHeightOption
     {
-        get => (TitleBarHeightOption) GetValue(TitleBarHeightOptionProperty);
+        get => (TitleBarHeightOption)GetValue(TitleBarHeightOptionProperty);
         set => SetValue(TitleBarHeightOptionProperty, value);
     }
 
@@ -316,13 +317,13 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarHeightOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        self.Window.AppWindow.TitleBar.PreferredHeightOption = (TitleBarHeightOption) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        self.Window.AppWindow.TitleBar.PreferredHeightOption = (TitleBarHeightOption)e.NewValue;
     }
 
     public Color TitleBarButtonBackgroundColor
     {
-        get => (Color) GetValue(TitleBarButtonBackgroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonBackgroundColorProperty);
         set => SetValue(TitleBarButtonBackgroundColorProperty, value);
     }
 
@@ -335,17 +336,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonBackgroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public Color TitleBarButtonForegroundColor
     {
-        get => (Color) GetValue(TitleBarButtonForegroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonForegroundColorProperty);
         set => SetValue(TitleBarButtonForegroundColorProperty, value);
     }
 
@@ -358,17 +359,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonForegroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public Color TitleBarButtonHoverBackgroundColor
     {
-        get => (Color) GetValue(TitleBarButtonHoverBackgroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonHoverBackgroundColorProperty);
         set => SetValue(TitleBarButtonHoverBackgroundColorProperty, value);
     }
 
@@ -381,17 +382,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonHoverBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonHoverBackgroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public Color TitleBarButtonHoverForegroundColor
     {
-        get => (Color) GetValue(TitleBarButtonHoverForegroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonHoverForegroundColorProperty);
         set => SetValue(TitleBarButtonHoverForegroundColorProperty, value);
     }
 
@@ -404,17 +405,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonHoverForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonHoverForegroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public Color TitleBarButtonPressedBackgroundColor
     {
-        get => (Color) GetValue(TitleBarButtonPressedBackgroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonPressedBackgroundColorProperty);
         set => SetValue(TitleBarButtonPressedBackgroundColorProperty, value);
     }
 
@@ -427,17 +428,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonPressedBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonPressedBackgroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public Color TitleBarButtonPressedForegroundColor
     {
-        get => (Color) GetValue(TitleBarButtonPressedForegroundColorProperty);
+        get => (Color)GetValue(TitleBarButtonPressedForegroundColorProperty);
         set => SetValue(TitleBarButtonPressedForegroundColorProperty, value);
     }
 
@@ -450,17 +451,17 @@ public partial class ContentWindow : ContentControl
 
     private static void OnTitleBarButtonPressedForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
+        ContentWindow self = (ContentWindow)d;
         if (self.Window.ExtendsContentIntoTitleBar)
         {
-            Color newColor = (Color) e.NewValue;
+            Color newColor = (Color)e.NewValue;
             self.Window.AppWindow.TitleBar.ButtonPressedForegroundColor = newColor.A == 0 ? null : newColor;
         }
     }
 
     public bool ShowInTaskbar
     {
-        get => (bool) GetValue(ShowInTaskbarProperty);
+        get => (bool)GetValue(ShowInTaskbarProperty);
         set => SetValue(ShowInTaskbarProperty, value);
     }
 
@@ -473,30 +474,30 @@ public partial class ContentWindow : ContentControl
 
     private static void OnShowInTaskbarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        self.Window.AppWindow.IsShownInSwitchers = (bool) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        self.Window.AppWindow.IsShownInSwitchers = (bool)e.NewValue;
     }
 
     private static void OnCanMinimizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        bool canMinimize = (bool) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        bool canMinimize = (bool)e.NewValue;
         self._styleHelper.CanMinimize = canMinimize;
         (self.Window.AppWindow.Presenter as OverlappedPresenter)?.IsMinimizable = canMinimize;
     }
 
     private static void OnCanMaximizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        bool canMaximize = (bool) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        bool canMaximize = (bool)e.NewValue;
         self._styleHelper.CanMaximize = canMaximize;
         (self.Window.AppWindow.Presenter as OverlappedPresenter)?.IsMaximizable = canMaximize;
     }
 
     private static void OnCanResizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ContentWindow self = (ContentWindow) d;
-        bool canResize = (bool) e.NewValue;
+        ContentWindow self = (ContentWindow)d;
+        bool canResize = (bool)e.NewValue;
         (self.Window.AppWindow.Presenter as OverlappedPresenter)?.IsResizable = canResize;
     }
 
@@ -537,7 +538,7 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    public double DpiScale => IsLoaded ? XamlRoot.RasterizationScale : (double) WindowHelper.GetDpiForWindow(_hwnd) / 96;
+    public double DpiScale => IsLoaded ? XamlRoot.RasterizationScale : (double)WindowHelper.GetDpiForWindow(_hwnd) / 96;
 
     public static Window? GetWindow(UIElement element) => GetContentWindow(element)?.Window;
 
@@ -599,13 +600,21 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    public void ShowDialog()
+    public async Task ShowDialogAsync()
     {
+        TaskCompletionSource taskCompletionSource = new();
+        Closed += OnClosed;
+        void OnClosed(object? sender, EventArgs e)
+        {
+            Closed -= OnClosed;
+            taskCompletionSource.SetResult();
+        }
         if (Owner is not null)
         {
             (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = true;
         }
         Show();
+        await taskCompletionSource.Task;
     }
 
     public void Hide()
@@ -798,6 +807,7 @@ public partial class ContentWindow : ContentControl
     }
 
     private UIElement? _lastFocusedElement;
+
     private void OnWindowActivated(object sender, WindowActivatedEventArgs args)
     {
         switch (args.WindowActivationState)
@@ -820,7 +830,7 @@ public partial class ContentWindow : ContentControl
 
     private void OnRequestedThemeChanged(DependencyObject d, DependencyProperty p)
     {
-        ElementTheme theme = (ElementTheme) d.GetValue(p);
+        ElementTheme theme = (ElementTheme)d.GetValue(p);
         Window.AppWindow.TitleBar.PreferredTheme = theme switch
         {
             ElementTheme.Default => TitleBarTheme.UseDefaultAppMode,
@@ -830,7 +840,7 @@ public partial class ContentWindow : ContentControl
         };
     }
 
-    private int DipToPixel(double dip) => (int) Math.Ceiling(dip * DpiScale);
+    private int DipToPixel(double dip) => (int)Math.Ceiling(dip * DpiScale);
 
     private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
     {

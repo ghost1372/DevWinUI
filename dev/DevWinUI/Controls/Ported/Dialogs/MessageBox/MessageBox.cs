@@ -8,7 +8,6 @@ public partial class MessageBox : DependencyObject
     {
         _window = new DialogWindowBase();
         _view = new MessageBoxView();
-        _taskCompletionSource = new TaskCompletionSource<MessageBoxResult>();
         _view.Loaded += OnViewLoaded;
         _window.SystemBackdrop = SystemBackdrop;
         _view.FlowDirection = FlowDirection;
@@ -20,7 +19,6 @@ public partial class MessageBox : DependencyObject
         {
             new DragMoveHelper(_window.Window).SetDragMove(_view);
         }
-        _window.Closed += OnWindowClosed;
         _view.ResultChanged += OnResultChanged;
     }
 
@@ -28,7 +26,7 @@ public partial class MessageBox : DependencyObject
 
     public string? Title
     {
-        get => (string?) GetValue(TitleProperty);
+        get => (string?)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
 
@@ -41,12 +39,12 @@ public partial class MessageBox : DependencyObject
 
     private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((MessageBox) d)._view.Title = (string?) e.NewValue;
+        ((MessageBox)d)._view.Title = (string?)e.NewValue;
     }
 
     public string? Message
     {
-        get => (string?) GetValue(MessageProperty);
+        get => (string?)GetValue(MessageProperty);
         set => SetValue(MessageProperty, value);
     }
 
@@ -59,12 +57,12 @@ public partial class MessageBox : DependencyObject
 
     private static void OnMessageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((MessageBox) d)._view.Message = (string?) e.NewValue;
+        ((MessageBox)d)._view.Message = (string?)e.NewValue;
     }
 
     public MessageBoxIcon Icon
     {
-        get => (MessageBoxIcon) GetValue(IconProperty);
+        get => (MessageBoxIcon)GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
 
@@ -77,12 +75,12 @@ public partial class MessageBox : DependencyObject
 
     private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((MessageBox) d)._view.Icon = (MessageBoxIcon) e.NewValue;
+        ((MessageBox)d)._view.Icon = (MessageBoxIcon)e.NewValue;
     }
 
     public MessageBoxButtons Buttons
     {
-        get => (MessageBoxButtons) GetValue(ButtonsProperty);
+        get => (MessageBoxButtons)GetValue(ButtonsProperty);
         set => SetValue(ButtonsProperty, value);
     }
 
@@ -95,12 +93,12 @@ public partial class MessageBox : DependencyObject
 
     private static void OnButtonsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((MessageBox) d)._view.Buttons = (MessageBoxButtons) e.NewValue;
+        ((MessageBox)d)._view.Buttons = (MessageBoxButtons)e.NewValue;
     }
 
     public MessageBoxDefaultButton DefaultButton
     {
-        get => (MessageBoxDefaultButton) GetValue(DefaultButtonProperty);
+        get => (MessageBoxDefaultButton)GetValue(DefaultButtonProperty);
         set => SetValue(DefaultButtonProperty, value);
     }
 
@@ -113,7 +111,7 @@ public partial class MessageBox : DependencyObject
 
     private static void OnDefaultButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((MessageBox) d)._view.DefaultButton = (MessageBoxDefaultButton) e.NewValue;
+        ((MessageBox)d)._view.DefaultButton = (MessageBoxDefaultButton)e.NewValue;
     }
 
     #endregion
@@ -126,22 +124,16 @@ public partial class MessageBox : DependencyObject
 
     private readonly DialogWindowBase _window;
     private readonly MessageBoxView _view;
-    private readonly TaskCompletionSource<MessageBoxResult> _taskCompletionSource;
 
-    public Task<MessageBoxResult> ShowAsync()
+    public async Task<MessageBoxResult> ShowAsync()
     {
-        _window.ShowDialog();
-        return _taskCompletionSource.Task;
+        await _window.ShowDialogAsync();
+        return _view.Result;
     }
 
     private void OnViewLoaded(object sender, RoutedEventArgs e)
     {
         _view.MaxWidth = double.PositiveInfinity;
-    }
-
-    private void OnWindowClosed(object? sender, EventArgs e)
-    {
-        _taskCompletionSource.SetResult(_view.Result);
     }
 
     private void OnResultChanged(object? sender, EventArgs e)
