@@ -1,15 +1,37 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 
 namespace DevWinUI;
 
 public partial class ContextMenuService
 {
-    private const string MenusFolderName = "custom_commands";
+    private readonly StorageFolder _menusFolder;
+
+    public static async Task<StorageFolder> CreateDefualtMenusFolderAsync()
+    {
+        var menusFolderName = "custom_commands";
+        var storageItem = await ApplicationData.Current.LocalFolder.TryGetItemAsync(menusFolderName);
+        if (storageItem is StorageFolder storageFolder)
+        {
+            return storageFolder;
+        }
+
+        if (storageItem is StorageFile storageFile)
+        {
+            await storageFile.RenameAsync(storageFile.Name, NameCollisionOption.GenerateUniqueName);
+        }
+
+        return await ApplicationData.Current.LocalFolder.CreateFolderAsync(menusFolderName, CreationCollisionOption.OpenIfExists);
+    }
+
+    public ContextMenuService(StorageFolder menusFolder)
+    {
+        _menusFolder = menusFolder;
+    }
 
     public async Task<List<ContextMenuItem>> QueryAllAsync()
     {
-        var configFolder = await GetMenusFolderAsync();
-        var files = await configFolder.GetFilesAsync();
+        var files = await _menusFolder.GetFilesAsync();
         var result = new List<ContextMenuItem>(files.Count);
         foreach (var file in files)
         {
@@ -43,24 +65,8 @@ public partial class ContextMenuService
 
     private async Task<StorageFile> CreateMenuFileAsync(string name, CreationCollisionOption creationCollisionOption)
     {
-        var folder = await GetMenusFolderAsync();
-        return await folder.CreateFileAsync(name, creationCollisionOption);
+        return await _menusFolder.CreateFileAsync(name, creationCollisionOption);
     }
-
-    public async Task<StorageFolder> GetMenusFolderAsync()
-    {
-        var storageItem = await ApplicationData.Current.LocalFolder.TryGetItemAsync(MenusFolderName);
-        switch (storageItem)
-        {
-            case StorageFile _:
-                throw new Exception($"Menus Folder Error,\"{storageItem.Path}\" is not a folder");
-            case StorageFolder storageFolder:
-                return storageFolder;
-            default:
-                return await ApplicationData.Current.LocalFolder.CreateFolderAsync(MenusFolderName, CreationCollisionOption.OpenIfExists);
-        }
-    }
-
     public async Task SaveAsync(ContextMenuItem item)
     {
         await SaveAsyncInternal(item, CreationCollisionOption.ReplaceExisting);
@@ -97,6 +103,7 @@ public partial class ContextMenuService
         item.File = menuFile;
         item.Enabled = true;
     }
+
     public async Task<ContextMenuItem> ReadAsync(StorageFile menuFile)
     {
         if (null == menuFile)
@@ -162,6 +169,7 @@ public partial class ContextMenuService
             throw new Exception("Menu is null");
         }
 
+        //TODO
         if (item.File == null)
         {
             return true;
@@ -169,6 +177,7 @@ public partial class ContextMenuService
 
         return IsEnabled(item.File);
     }
+
     private bool IsEnabled(StorageFile file)
     {
         if (null == file)
@@ -177,6 +186,7 @@ public partial class ContextMenuService
         }
         return file.Name.ToLower().EndsWith(".json") == true;
     }
+
     private bool IsDisabled(StorageFile file)
     {
         if (null == file)
@@ -185,6 +195,7 @@ public partial class ContextMenuService
         }
         return file.Name.ToLower().EndsWith(".json.disabled") == true;
     }
+
     public async Task<StorageFile> EnableAsync(ContextMenuItem item, bool enabled)
     {
         if (null == item)
@@ -214,8 +225,7 @@ public partial class ContextMenuService
 
     public async Task BuildToCacheAsync()
     {
-        var configFolder = await GetMenusFolderAsync();
-        var files = await configFolder.GetFilesAsync();
+        var files = await _menusFolder.GetFilesAsync();
 
         var menus = ApplicationData.Current.LocalSettings.CreateContainer("menus", ApplicationDataCreateDisposition.Always).Values;
         menus.Clear();
@@ -252,8 +262,8 @@ public partial class ContextMenuService
         if (menu.AcceptDirectoryFlag == (int)DirectoryMatchFlagEnum.None && menu.AcceptDirectory)
         {
             menu.AcceptDirectoryFlag = (int)DirectoryMatchFlagEnum.Directory |
-                                        (int)DirectoryMatchFlagEnum.Background |
-                                        (int)DirectoryMatchFlagEnum.Desktop;
+                                       (int)DirectoryMatchFlagEnum.Background |
+                                       (int)DirectoryMatchFlagEnum.Desktop;
         }
 
         return menu;
@@ -264,6 +274,7 @@ public partial class ContextMenuService
         var json = JsonUtil.Serialize(content);
         return json;
     }
+
     private (bool, string) CheckMenu(ContextMenuItem content)
     {
         if (string.IsNullOrEmpty(content.Title))
@@ -279,10 +290,14 @@ public partial class ContextMenuService
         return (true, string.Empty);
     }
 
+    public IStorageFolder GetMenusFolder()
+    {
+        return _menusFolder;
+    }
+
     public async void OpenMenusFolderAsync()
     {
-        var folder = await GetMenusFolderAsync();
-        _ = await Launcher.LaunchFolderAsync(folder);
+        _ = await Launcher.LaunchFolderAsync(_menusFolder);
     }
 
     public async void OpenMenuFileAsync(ContextMenuItem item)
@@ -310,30 +325,6 @@ public partial class ContextMenuService
 
     public async void ClearAllMenus()
     {
-        var folder = await GetMenusFolderAsync();
-        await folder.DeleteAsync();
-    }
-
-    public void ReplaceMenu(ContextMenuItem menuItem, ContextMenuItem newMenuItem)
-    {
-        PropertyInfo[] propsSource = typeof(ContextMenuItem).GetProperties();
-        foreach (PropertyInfo infoSource in propsSource)
-        {
-            object value = infoSource.GetValue(newMenuItem, null);
-            infoSource.SetValue(menuItem, value, null);
-        }
-    }
-
-    public async Task RefreshMenuAsync(ContextMenuItem menuItem)
-    {
-        var newMenuItem = await ReadAsync(menuItem.File);
-        ReplaceMenu(menuItem, newMenuItem);
-    }
-
-    public async Task<bool> CheckMenuExistsAsync(ContextMenuItem item)
-    {
-        var configFolder = await GetMenusFolderAsync();
-        var files = await configFolder.GetFilesAsync();
-        return files.Any(x => x.Name.Equals($"{item?.Title}.json", StringComparison.OrdinalIgnoreCase));
+        await _menusFolder.DeleteAsync();
     }
 }

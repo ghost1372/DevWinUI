@@ -41,11 +41,13 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     private string _acceptFileRegex;
 
     private int _acceptMultipleFilesFlag;
+    private int _acceptMultipleFilesRuleFlag;
     private string _pathDelimiter;
     private string _paramForMultipleFiles;
 
     private int _showWindowFlag;
     private string _workingDirectory;
+    private int _runAsFlag;
 
     [JsonPropertyOrder(0)]
     public string Title
@@ -90,6 +92,7 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     }
 
     [Obsolete()]
+    [JsonIgnore]
     [JsonPropertyOrder(20)]
     public bool AcceptDirectory
     {
@@ -107,6 +110,7 @@ public partial class ContextMenuItem : ContextMenuBaseModel
 
     [Obsolete()]
     [JsonPropertyOrder(30)]
+    [JsonIgnore]
     public bool AcceptFile
     {
         get => _acceptFile;
@@ -142,6 +146,13 @@ public partial class ContextMenuItem : ContextMenuBaseModel
         set => SetProperty(ref _acceptMultipleFilesFlag, value);
     }
 
+    [JsonPropertyOrder(41)]
+    public int AcceptMultipleFilesRuleFlag
+    {
+        get => _acceptMultipleFilesRuleFlag;
+        set => SetProperty(ref _acceptMultipleFilesRuleFlag, value);
+    }
+
     [JsonPropertyOrder(42)]
     public string PathDelimiter
     {
@@ -163,10 +174,41 @@ public partial class ContextMenuItem : ContextMenuBaseModel
         set => SetProperty(ref _showWindowFlag, value);
     }
 
+    [JsonPropertyOrder(51)]
+    public int RunAsFlag
+    {
+        get => _runAsFlag;
+        set => SetProperty(ref _runAsFlag, value);
+    }
+
     [JsonPropertyOrder(52)]
     public string WorkingDirectory
     {
         get => _workingDirectory;
         set => SetProperty(ref _workingDirectory, value);
+    }
+
+    public void CopyMenuFrom(ContextMenuItem other)
+    {
+        if (other == null)
+        {
+            return;
+        }
+        Title = other.Title;
+        Index = other.Index;
+        Exe = other.Exe;
+        Param = other.Param;
+        Icon = other.Icon;
+        IconDark = other.IconDark;
+        AcceptDirectoryFlag = other.AcceptDirectoryFlag;
+        AcceptFileFlag = other.AcceptFileFlag;
+        AcceptExts = other.AcceptExts;
+        AcceptFileRegex = other.AcceptFileRegex;
+        AcceptMultipleFilesFlag = other.AcceptMultipleFilesFlag;
+        PathDelimiter = other.PathDelimiter;
+        ParamForMultipleFiles = other.ParamForMultipleFiles;
+        ShowWindowFlag = other.ShowWindowFlag;
+        WorkingDirectory = other.WorkingDirectory;
+        RunAsFlag = other.RunAsFlag;
     }
 }
