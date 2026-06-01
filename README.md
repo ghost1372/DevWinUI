@@ -110,6 +110,9 @@ Install-Package DevWinUI.SourceGenerator
 
 ## 🕰️ History
 
+### BetterLyric
+![BetterLyric](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BetterLyric.gif)
+
 ### MorphingAnimation
 ![MorphingAnimation](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MorphingAnimation.gif)
 
