@@ -122,7 +122,7 @@ public partial class TextMotionBlurEffect : ITextEffect
         }
 
         CanvasCommandList cl = new CanvasCommandList(ds);
-        float newProgress = 1.0f - Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float newProgress = 1.0f - (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (CanvasDrawingSession clds = cl.CreateDrawingSession())
         {
@@ -169,7 +169,7 @@ public partial class TextMotionBlurEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         var oX = oldCluster.DrawBounds.X;
         var oY = oldCluster.DrawBounds.Y;
@@ -203,8 +203,8 @@ public partial class TextMotionBlurEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
-        float newProgress = 1.0f - Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
+        float newProgress = 1.0f - (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         CanvasCommandList oCl = new CanvasCommandList(ds);
 
@@ -286,7 +286,7 @@ public partial class TextMotionBlurEffect : ITextEffect
         }
 
         CanvasCommandList cl = new CanvasCommandList(ds);
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (CanvasDrawingSession clds = cl.CreateDrawingSession())
         {

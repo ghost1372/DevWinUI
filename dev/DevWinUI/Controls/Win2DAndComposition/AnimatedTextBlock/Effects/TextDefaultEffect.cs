@@ -123,7 +123,7 @@ public partial class TextDefaultEffect : ITextEffect
             return;
         }
 
-        float newProgress = Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float newProgress = (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
         using (ds.CreateLayer(newProgress))
         {
             ds.Transform = Matrix3x2.CreateScale(newProgress,
@@ -158,7 +158,7 @@ public partial class TextDefaultEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         var oX = oldCluster.DrawBounds.X;
         var oY = oldCluster.DrawBounds.Y;
@@ -192,8 +192,8 @@ public partial class TextDefaultEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
-        float newProgress = Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
+        float newProgress = (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (ds.CreateLayer(1.0f - oldProgress))
         {
@@ -248,7 +248,7 @@ public partial class TextDefaultEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (ds.CreateLayer(1.0f - oldProgress))
         {

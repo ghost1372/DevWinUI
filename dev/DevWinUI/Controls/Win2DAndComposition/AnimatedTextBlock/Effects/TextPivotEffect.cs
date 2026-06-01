@@ -122,7 +122,7 @@ public partial class TextPivotEffect : ITextEffect
         }
 
         CanvasCommandList cl = new CanvasCommandList(ds);
-        float newProgress = 1.0f - Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float newProgress = 1.0f - (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (CanvasDrawingSession clds = cl.CreateDrawingSession())
         {
@@ -167,7 +167,7 @@ public partial class TextPivotEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
         float pivotProgress = 0;
 
         var oX = oldCluster.DrawBounds.X;
@@ -180,7 +180,7 @@ public partial class TextPivotEffect : ITextEffect
 
         if (dX != 0)
         {
-            pivotProgress = Easing.UpdateProgress(oldCluster.Progress * 2.0f, Easing.EasingFunction.SinusoidalOut);
+            pivotProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress * 2.0f, AnimationEaseMode.Out, AnimationEasingHelper.EaseInSine);
             pivotProgress = (float)Math.Clamp(pivotProgress, 0, 0.5);
         }
 
@@ -228,8 +228,8 @@ public partial class TextPivotEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
-        float newProgress = 1.0f - Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
+        float newProgress = 1.0f - (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         CanvasCommandList oCl = new CanvasCommandList(ds);
 
@@ -310,7 +310,7 @@ public partial class TextPivotEffect : ITextEffect
         }
 
         CanvasCommandList cl = new CanvasCommandList(ds);
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.CubicOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
 
         using (CanvasDrawingSession clds = cl.CreateDrawingSession())
         {

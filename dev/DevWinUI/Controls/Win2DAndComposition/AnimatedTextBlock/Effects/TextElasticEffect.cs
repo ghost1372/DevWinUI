@@ -123,8 +123,8 @@ public partial class TextElasticEffect : ITextEffect
             return;
         }
 
-        float opacityProgress = Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
-        float bounceProgress = Easing.UpdateProgress((1.0f - newCluster.Progress), Easing.EasingFunction.ElasticIn);
+        float opacityProgress = (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
+        float bounceProgress = (float)AnimationEasingHelper.Ease<float>((1.0f - newCluster.Progress), AnimationEaseMode.In, AnimationEasingHelper.EaseInElastic);
         using (ds.CreateLayer(opacityProgress))
         {
             ds.Transform = Matrix3x2.CreateTranslation(0,
@@ -157,7 +157,7 @@ public partial class TextElasticEffect : ITextEffect
             return;
         }
 
-        float oldProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.ElasticOut);
+        float oldProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInElastic);
 
         var oX = oldCluster.DrawBounds.X;
         var oY = oldCluster.DrawBounds.Y;
@@ -191,11 +191,11 @@ public partial class TextElasticEffect : ITextEffect
             return;
         }
 
-        float oldOpacityProgress = Easing.UpdateProgress((1.0f - oldCluster.Progress), Easing.EasingFunction.CubicIn);
-        float oldBounceProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.ElasticOut);
+        float oldOpacityProgress = (float)AnimationEasingHelper.Ease<float>((1.0f - oldCluster.Progress), AnimationEaseMode.In, AnimationEasingHelper.EaseInCubic);
+        float oldBounceProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInElastic);
 
-        float newOpacityProgress = Easing.UpdateProgress(newCluster.Progress, Easing.EasingFunction.CubicOut);
-        float newBounceProgress = Easing.UpdateProgress((1.0f - newCluster.Progress), Easing.EasingFunction.ElasticIn);
+        float newOpacityProgress = (float)AnimationEasingHelper.Ease<float>(newCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInCubic);
+        float newBounceProgress = (float)AnimationEasingHelper.Ease<float>((1.0f - newCluster.Progress), AnimationEaseMode.In, AnimationEasingHelper.EaseInElastic);
 
         using (ds.CreateLayer(oldOpacityProgress))
         {
@@ -246,8 +246,8 @@ public partial class TextElasticEffect : ITextEffect
             return;
         }
 
-        float opacityProgress = Easing.UpdateProgress((1.0f - oldCluster.Progress), Easing.EasingFunction.CubicIn);
-        float bounceProgress = Easing.UpdateProgress(oldCluster.Progress, Easing.EasingFunction.ElasticOut);
+        float opacityProgress = (float)AnimationEasingHelper.Ease<float>((1.0f - oldCluster.Progress), AnimationEaseMode.In, AnimationEasingHelper.EaseInCubic);
+        float bounceProgress = (float)AnimationEasingHelper.Ease<float>(oldCluster.Progress, AnimationEaseMode.Out, AnimationEasingHelper.EaseInElastic);
 
         using (ds.CreateLayer(opacityProgress))
         {
