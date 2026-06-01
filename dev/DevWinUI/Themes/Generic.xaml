@@ -82,6 +82,7 @@ Themes\Styles\Controls\AnimationPath.xaml
 Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\AudioWave.xaml
 Themes\Styles\Controls\BannerView.xaml
+Themes\Styles\Controls\BetterLyric.xaml
 Themes\Styles\Controls\BlendedImage.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\BubbleButton.xaml
@@ -1924,6 +1925,20 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="{TemplateBinding CornerRadius}">
               <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
             </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultBetterLyricStyle" TargetType="local:BetterLyric">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:BetterLyric">
+          <Grid>
+            <wind2:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <ScrollViewer x:Name="PART_ScrollViewer" VerticalScrollBarVisibility="Hidden">
+              <Grid />
+            </ScrollViewer>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -13401,6 +13416,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultBetterLyricStyle}" TargetType="local:BetterLyric" />
   <Style BasedOn="{StaticResource DefaultBlendedImageStyle}" TargetType="local:BlendedImage" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />

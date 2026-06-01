@@ -4,6 +4,11 @@ public static partial class ColorExtensions
 {
     extension(Color color)
     {
+
+        public Color WithAlpha(byte alpha)
+        {
+            return Color.FromArgb(alpha, color.R, color.G, color.B);
+        }
         public Color ChangeAlpha(double alpha)
         {
             return ColorHelper.ChangeAlpha(color, alpha);

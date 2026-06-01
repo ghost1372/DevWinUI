@@ -301,4 +301,15 @@ public static partial class ColorHelper
         double luma = ((0.299 * color.R) + (0.587 * color.G) + (0.114 * color.B)) / (double)255;
         return luma > 0.5 ? Colors.Black : Colors.White;
     }
+
+    public static Color GetInterpolatedColor(double progress, Color startColor, Color targetColor)
+    {
+        byte Lerp(byte a, byte b) => (byte)(a + (progress * (b - a)));
+        return Color.FromArgb(
+            Lerp(startColor.A, targetColor.A),
+            Lerp(startColor.R, targetColor.R),
+            Lerp(startColor.G, targetColor.G),
+            Lerp(startColor.B, targetColor.B)
+        );
+    }
 }
