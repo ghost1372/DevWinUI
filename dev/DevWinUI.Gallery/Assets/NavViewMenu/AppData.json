@@ -904,6 +904,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BetterLyricPage",
+          "Title": "Better Lyric",
+          "Subtitle": "An elegant and deeply customizable lyrics visualizer",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/BetterLyric.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.MorphingAnimationPage",
           "Title": "Morphing Animation",
           "Subtitle": "Change a geometry with animation to a different geometry",

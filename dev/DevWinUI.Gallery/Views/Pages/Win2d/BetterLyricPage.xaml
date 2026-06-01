@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BetterLyricPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/animatedTextBlock" HeaderText="AnimatedTextBlock">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:BetterLyric x:Name="MyBetterLyric" CurrentLyricsData="{x:Bind CurrentLyricData}" CurrentIsPlaying="True" IsLyricsVisible="True" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid Height="400">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <dev:BetterLyric x:Name="MyBetterLyric" Margin="10" CurrentIsPlaying="{x:Bind TgCurrentIsPlaying.IsOn, Mode=OneWay}" IsLyricsVisible="{x:Bind TgIsLyricVisible.IsOn, Mode=OneWay}" />
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="16,0,16,16" VerticalAlignment="Bottom" Spacing="4">
+                        <Slider x:Name="ProgressSlider" PointerPressed="ProgressSlider_PointerPressed" PointerReleased="ProgressSlider_PointerReleased" ValueChanged="ProgressSlider_ValueChanged" />
+                        <TextBlock x:Name="PositionText" HorizontalAlignment="Center" FontSize="12" Opacity="0.7" />
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Column="1">
+                        <StackPanel Spacing="5">
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Styles" />
+                            <ToggleSwitch x:Name="TgIsLyricVisible" Header="Is Lyric Visible" IsOn="True" />
+                            <ToggleSwitch x:Name="TgCurrentIsPlaying" Header="Is Playing" IsOn="True" />
+
+                            <ComboBox x:Name="CmbLyricsAlignment" Header="Lyrics Alignment" SelectionChanged="CmbLyricsAlignment_SelectionChanged">
+                                <ComboBoxItem Content="Left" Tag="Left" />
+                                <ComboBoxItem Content="Center" Tag="Center" />
+                                <ComboBoxItem Content="Right" Tag="Right" />
+                            </ComboBox>
+
+                            <ComboBox x:Name="CmbLyricsLineContentOrientation" Header="Lyrics Line Content Orientation" SelectionChanged="CmbLyricsLineContentOrientation_SelectionChanged">
+                                <ComboBoxItem Content="Horizontal" Tag="Horizontal" />
+                                <ComboBoxItem Content="Vertical" Tag="Vertical" />
+                            </ComboBox>
+
+                            <ToggleSwitch Header="Auto Wrap" IsOn="{x:Bind MyBetterLyric.AutoWrap, Mode=TwoWay}" />
+
+                            <Slider Header="Center Top Offset" Maximum="99" Minimum="1" Value="{x:Bind MyBetterLyric.PlayingLineTopOffset, Mode=TwoWay}" />
+
+                            <dev:SettingsExpander Header="Line Spacing Factor">
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Line Overall Spacing Factor">
+                                        <Slider Maximum="2" Minimum="0" StepFrequency="0.1" Value="{x:Bind MyBetterLyric.LyricsLineOverallSpacingFactor, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Line Inner Spacing Factor">
+                                        <Slider Maximum="2" Minimum="-2" StepFrequency="0.1" Value="{x:Bind MyBetterLyric.LyricsLineInnerSpacingFactor, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+                            <dev:SettingsExpander Header="Lyrics Opacity">
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Phonetic Text">
+                                        <Slider Maximum="100" Minimum="0" StepFrequency="1" Value="{x:Bind MyBetterLyric.PhoneticLyricsOpacity, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Played Original Text">
+                                        <Slider Maximum="100" Minimum="0" StepFrequency="1" Value="{x:Bind MyBetterLyric.PlayedOriginalLyricsOpacity, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Unplayed Original Text">
+                                        <Slider Maximum="100" Minimum="0" StepFrequency="1" Value="{x:Bind MyBetterLyric.UnplayedOriginalLyricsOpacity, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Translated Text">
+                                        <Slider Maximum="100" Minimum="0" StepFrequency="1" Value="{x:Bind MyBetterLyric.TranslatedLyricsOpacity, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <ScrollViewer Grid.Column="2">
+                        <StackPanel Spacing="5">
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Effects" />
+
+                            <ComboBox x:Name="CmbWordByWord" Header="Word By Word Effect" SelectionChanged="CmbWordByWord_SelectionChanged">
+                                <ComboBoxItem Content="Auto" Tag="Auto" />
+                                <ComboBoxItem Content="Never" Tag="Never" />
+                                <ComboBoxItem Content="Always" Tag="Always" />
+                            </ComboBox>
+
+                            <ToggleSwitch Header="Blur Effect" IsOn="{x:Bind MyBetterLyric.IsLyricsBlurEffectEnabled, Mode=TwoWay}" />
+
+                            <ToggleSwitch Header="Fade Out Effect" IsOn="{x:Bind MyBetterLyric.IsLyricsFadeOutEffectEnabled, Mode=TwoWay}" />
+
+                            <ToggleSwitch Header="Out Of Sight Effect" IsOn="{x:Bind MyBetterLyric.IsLyricsOutOfSightEffectEnabled, Mode=TwoWay}" />
+
+                            <dev:SettingsExpander Header="Glow Effect">
+                                <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsLyricsGlowEffectEnabled, Mode=TwoWay}" />
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Scope">
+                                        <ComboBox x:Name="CmbLyricsGlowEffectScope" SelectionChanged="CmbLyricsGlowEffectScope_SelectionChanged">
+                                            <ComboBoxItem Content="LongDurationSyllable" Tag="LongDurationSyllable" />
+                                            <ComboBoxItem Content="LineStartToCurrentChar" Tag="LineStartToCurrentChar" />
+                                        </ComboBox>
+                                    </dev:SettingsCard>
+                                    <Slider Header="Long Syllable Duration" Maximum="1000" Minimum="0" Value="{x:Bind MyBetterLyric.LyricsGlowEffectLongSyllableDuration, Mode=TwoWay}" />
+                                    <ToggleSwitch Header="Auto Adjust" IsOn="{x:Bind MyBetterLyric.IsLyricsGlowEffectAmountAutoAdjust, Mode=TwoWay}" />
+                                    <Slider Header="Amount" IsEnabled="{x:Bind MyBetterLyric.IsLyricsGlowEffectAmountAutoAdjust, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}" Maximum="16" Minimum="0" Value="{x:Bind MyBetterLyric.LyricsGlowEffectAmount, Mode=TwoWay}" />
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+
+                            <dev:SettingsExpander Header="Scale Effect">
+                                <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsLyricsScaleEffectEnabled, Mode=TwoWay}" />
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Long Syllable Duration">
+                                        <Slider Maximum="1000" Minimum="0" Value="{x:Bind MyBetterLyric.LyricsScaleEffectLongSyllableDuration, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Auto Adjust">
+                                        <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsLyricsScaleEffectAmountAutoAdjust, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Amount" IsEnabled="{x:Bind MyBetterLyric.IsLyricsScaleEffectAmountAutoAdjust, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}">
+                                        <Slider Maximum="200" Minimum="100" Value="{x:Bind MyBetterLyric.LyricsScaleEffectAmount, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+
+                            <dev:SettingsExpander Header="Float Animation">
+                                <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsLyricsFloatAnimationEnabled, Mode=TwoWay}" />
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Auto Adjust">
+                                        <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsLyricsFloatAnimationAmountAutoAdjust, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Amount" IsEnabled="{x:Bind MyBetterLyric.IsLyricsFloatAnimationAmountAutoAdjust, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}">
+                                        <Slider Maximum="16" Minimum="0" Value="{x:Bind MyBetterLyric.LyricsFloatAnimationAmount, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Animation Duration">
+                                        <Slider Maximum="2000" Minimum="0" Value="{x:Bind MyBetterLyric.LyricsFloatAnimationDuration, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+
+                            <dev:SettingsExpander Header="Fan">
+                                <ToggleSwitch IsOn="{x:Bind MyBetterLyric.IsFanLyricsEnabled, Mode=TwoWay}" />
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard IsEnabled="{x:Bind MyBetterLyric.IsFanLyricsEnabled, Mode=OneWay}">
+                                        <Slider Maximum="90" Minimum="-90" Value="{x:Bind MyBetterLyric.FanLyricsAngle, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+
+                            <dev:SettingsExpander Header="3D Lyrics">
+                                <ToggleSwitch IsOn="{x:Bind MyBetterLyric.Is3DLyricsEnabled, Mode=TwoWay}" />
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="X" IsEnabled="{x:Bind MyBetterLyric.Is3DLyricsEnabled, Mode=OneWay}">
+                                        <Slider Maximum="90" Minimum="-90" Value="{x:Bind MyBetterLyric.Lyrics3DXAngle, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Y" IsEnabled="{x:Bind MyBetterLyric.Is3DLyricsEnabled, Mode=OneWay}">
+                                        <Slider Maximum="90" Minimum="-90" Value="{x:Bind MyBetterLyric.Lyrics3DYAngle, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Z" IsEnabled="{x:Bind MyBetterLyric.Is3DLyricsEnabled, Mode=OneWay}">
+                                        <Slider Maximum="90" Minimum="-90" Value="{x:Bind MyBetterLyric.Lyrics3DZAngle, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="3D Lyrics Auto Fit Layout">
+                                        <ToggleSwitch IsOn="{x:Bind MyBetterLyric.Lyrics3DAutoFitLayout, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="3D Lyrics Depth" IsEnabled="{x:Bind MyBetterLyric.Is3DLyricsEnabled, Mode=OneWay}">
+                                        <Slider Maximum="1000" Minimum="100" StepFrequency="10" Value="{x:Bind MyBetterLyric.Lyrics3DDepth, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+
+                            <dev:SettingsExpander Header="Scroll Easing">
+                                <ComboBox x:Name="CmbLyricsScrollEasingType" SelectionChanged="CmbLyricsScrollEasingType_SelectionChanged">
+                                    <ComboBoxItem Content="Linear" Tag="Linear" />
+                                    <ComboBoxItem Content="SmoothStep" Tag="SmoothStep" />
+                                    <ComboBoxItem Content="Sine" Tag="Sine" />
+                                    <ComboBoxItem Content="Quad" Tag="Quad" />
+                                    <ComboBoxItem Content="Cubic" Tag="Cubic" />
+                                    <ComboBoxItem Content="Quart" Tag="Quart" />
+                                    <ComboBoxItem Content="Quint" Tag="Quint" />
+                                    <ComboBoxItem Content="Expo" Tag="Expo" />
+                                    <ComboBoxItem Content="Circle" Tag="Circle" />
+                                    <ComboBoxItem Content="Back" Tag="Back" />
+                                    <ComboBoxItem Content="Elastic" Tag="Elastic" />
+                                    <ComboBoxItem Content="Bounce" Tag="Bounce" />
+                                </ComboBox>
+                                <dev:SettingsExpander.Items>
+                                    <dev:SettingsCard Header="Easing Mode">
+                                        <ComboBox x:Name="CmbLyricsScrollEasingMode" SelectionChanged="CmbLyricsScrollEasingMode_SelectionChanged">
+                                            <ComboBoxItem Content="In" Tag="In" />
+                                            <ComboBoxItem Content="Out" Tag="Out" />
+                                            <ComboBoxItem Content="InOut" Tag="InOut" />
+                                        </ComboBox>
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Scroll Top Duration">
+                                        <Slider Maximum="1000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollTopDuration, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Scroll Duration">
+                                        <Slider Maximum="1000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollDuration, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Scroll Bottom Duration">
+                                        <Slider Maximum="1000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollBottomDuration, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Scroll Top Delay">
+                                        <Slider Maximum="2000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollTopDelay, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                    <dev:SettingsCard Header="Scroll Bottom Delay">
+                                        <Slider Maximum="2000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollBottomDelay, Mode=TwoWay}" />
+                                    </dev:SettingsCard>
+                                </dev:SettingsExpander.Items>
+                            </dev:SettingsExpander>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
