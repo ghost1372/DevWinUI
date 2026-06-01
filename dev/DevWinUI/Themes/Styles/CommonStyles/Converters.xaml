@@ -3,6 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
+    <local:EmptyObjectToObjectConverter x:Name="EmptyObjectToObjectConverter" />
+    <local:EmptyStringToObjectConverter x:Name="EmptyStringToObjectConverter" />
+    <local:StringVisibilityConverter x:Name="StringVisibilityConverter" />
     <local:ValidationEnabledConverter x:Name="CanValidateConverter" />
     <local:BoolNegationConverter x:Key="BoolNegationConverter" />
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible" />
