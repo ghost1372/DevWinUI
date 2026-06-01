@@ -56,6 +56,6 @@ public sealed partial class UacStyleDialogWindowPage : Page
                 break;
         }
 
-        dialog.ShowDialog();
+        await dialog.ShowDialogAsync();
     }
 }
