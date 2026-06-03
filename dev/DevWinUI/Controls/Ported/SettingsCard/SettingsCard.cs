@@ -72,6 +72,8 @@ public partial class SettingsCard : ButtonBase
     public SettingsCard()
     {
         this.DefaultStyleKey = typeof(SettingsCard);
+
+        ActionIcon = new FontIcon { Glyph = "\ue974", MirroredWhenRightToLeft = true };
     }
 
     /// <inheritdoc />
