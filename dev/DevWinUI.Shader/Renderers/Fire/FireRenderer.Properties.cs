@@ -6,7 +6,6 @@ public partial class FireRenderer
 {
     private float speed = 1f;
     private float smokeSpeed = 1f;
-    private float brightness = 1f;
     private float particleSize = 1f;
     private float particleDensity = 15f;
     private float smokeAmount = 1f;
@@ -41,21 +40,6 @@ public partial class FireRenderer
     {
         var ctl = (FireRenderer)d;
         ctl.smokeSpeed = (float)(double)e.NewValue;
-    }
-
-    public double Brightness
-    {
-        get => brightness;
-        set => SetValue(BrightnessProperty, value);
-    }
-
-    public static readonly DependencyProperty BrightnessProperty =
-        DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(FireRenderer), new PropertyMetadata(1.0d, OnBrightnessChanged));
-
-    private static void OnBrightnessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (FireRenderer)d;
-        ctl.brightness = (float)(double)e.NewValue;
     }
 
     public double ParticleSize

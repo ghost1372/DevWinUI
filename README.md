@@ -129,49 +129,49 @@ Install-Package DevWinUI.Shader
 ## 🕰️ History
 
 ### CosmicShader
-![CosmicShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CosmicShader.gif)
+![CosmicShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/CosmicShader.gif)
 
 ### EdgeFeathering
-![EdgeFeathering](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EdgeFeatheringRenderer.gif)
+![EdgeFeathering](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/EdgeFeatheringRenderer.gif)
 
 ### StarNestShader
-![StarNestShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StarNestShader.gif)
+![StarNestShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/StarNestShader.gif)
 
 ### StarNoiseShader
-![StarNoiseShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StarNoiseShader.gif)
+![StarNoiseShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/StarNoiseShader.gif)
 
 ### SparkShader
-![SparkShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SparkShader.gif)
+![SparkShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/SparkShader.gif)
 
 ### FireShader
-![FireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FireShader.gif)
+![FireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/FireShader.gif)
 
 ### PureColorRenderer
-![PureColorRenderer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PureColorRenderer.png)
+![PureColorRenderer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/PureColorRenderer.png)
 
 ### MatrixShader
-![MatrixShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MatrixShader.gif)
+![MatrixShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/MatrixShader.gif)
 
 ### CoverShader
-![CoverShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CoverShader.gif)
+![CoverShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/CoverShader.gif)
 
 ### FluidShader
-![FluidShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FluidShader.gif)
+![FluidShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/FluidShader.gif)
 
 ### SeventiesMeltShader
-![SeventiesMeltShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SeventiesMeltShader.gif)
+![SeventiesMeltShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/SeventiesMeltShader.gif)
 
 ### IceAndFireShader
-![IceAndFireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/IceAndFireShader.gif)
+![IceAndFireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/IceAndFireShader.gif)
 
 ### RaindropShader
-![RaindropShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RaindropShader.gif)
+![RaindropShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/RaindropShader.gif)
 
 ### SnowShader
-![SnowShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnowShader.gif)
+![SnowShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/SnowShader.gif)
 
 ### FogShader
-![FogShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FogShader.gif)
+![FogShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/FogShader.gif)
 
 ### BetterLyric
 ![BetterLyric](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BetterLyric.gif)

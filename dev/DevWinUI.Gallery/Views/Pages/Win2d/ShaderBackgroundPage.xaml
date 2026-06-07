@@ -23,11 +23,10 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="5">
-                        <dev:UniformGrid Columns="3">
+                        <StackPanel Orientation="Horizontal">
                             <ToggleSwitch x:Name="TGBreathing" Header="Breathing" />
                             <ToggleSwitch x:Name="TGIsEdgeFeatheringEnabled" Header="Feathering" />
-                            <ToggleSwitch x:Name="TGEdgeFade" Header="Edge Fade" IsEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" />
-                        </dev:UniformGrid>
+                        </StackPanel>
                         <Slider x:Name="SldEdgeLeft" Header="Edge Feathering Left" Maximum="100" Value="25" />
                         <Slider x:Name="SldEdgeTop" Header="Edge Feathering Top" Maximum="100" Value="25" />
                         <Slider x:Name="SldEdgeRight" Header="Edge Feathering Right" Maximum="100" Value="25" />

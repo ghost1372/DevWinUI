@@ -6,7 +6,7 @@ using Windows.UI;
 
 namespace DevWinUI;
 
-public partial class EdgeFadeMaskRenderer : IDisposable
+internal partial class EdgeFadeMaskRenderer : IDisposable
 {
     private enum MaskRenderMode { None, EdgeFade, GradientStops }
 
