@@ -4,6 +4,7 @@
     <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
     <BaseNamespace>DevWinUI</BaseNamespace>
     <SourceGeneratorLibName>DevWinUI.SourceGenerator</SourceGeneratorLibName>
+    <ShaderLibName>DevWinUI.Shader</ShaderLibName>
     
     <!-- Major Version -->
     <LibraryMajorVersion>10</LibraryMajorVersion>
@@ -13,6 +14,7 @@
     <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
     <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
+    <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
     <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
@@ -20,6 +22,7 @@
     <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
+    <DevWinUI_Shader_PatchVersion>0</DevWinUI_Shader_PatchVersion>
     <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
@@ -31,6 +34,7 @@
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
     <CsWin32Version>0.3.275</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
+    <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>1.8.260204000</WASDKWinUIVersion>
 
     <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
@@ -63,12 +67,16 @@
     
     <!-- TargetFramework version -->
     <DebugTargetFramework>net10.0-windows10.0.19041.0</DebugTargetFramework>
+    <DebugShaderTargetFramework>net10.0-windows10.0.22621.0</DebugShaderTargetFramework>
 
     <GalleryTargetFramework>$(DebugTargetFramework)</GalleryTargetFramework>
     <GalleryTargetFramework Condition=" '$(Configuration)' == 'Release'">net10.0-windows10.0.26100.0</GalleryTargetFramework>
 
     <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) != $(GalleryAppName) ">net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0;net10.0-windows10.0.19041.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) != $(GalleryAppName)">$(DebugTargetFramework)</TargetFrameworks>
+
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) == $(ShaderLibName) ">net8.0-windows10.0.22621.0;net9.0-windows10.0.22621.0;net10.0-windows10.0.22621.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) == $(ShaderLibName)">$(DebugShaderTargetFramework)</TargetFrameworks>
 
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>

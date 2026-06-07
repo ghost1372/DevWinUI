@@ -1,0 +1,57 @@
+﻿using ComputeSharp.D2D1.WinUI;
+using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using System.Numerics;
+
+namespace DevWinUI;
+
+public partial class SnowRenderer : RendererBase
+{
+    private PixelShaderEffect<SnowShader>? _snowEffect;
+    private float _timeAccumulator = 0f;
+
+    public override void CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
+    {
+        Dispose();
+        _snowEffect = new PixelShaderEffect<SnowShader>();
+    }
+
+    public override void Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+    {
+        if (_snowEffect == null || !isEnabled) return;
+        TimeSpan elapsedTime = args.Timing.ElapsedTime;
+
+        UpdateBreathing(currentBassEnergy, breathingIntensity);
+        _timeAccumulator += (float)elapsedTime.TotalSeconds;
+    }
+
+    public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+    {
+        if (_snowEffect == null || !isEnabled) return;
+
+        var ds = args.DrawingSession;
+
+        float width = sender.ConvertDipsToPixels((float)sender.Size.Width, CanvasDpiRounding.Round);
+        float height = sender.ConvertDipsToPixels((float)sender.Size.Height, CanvasDpiRounding.Round);
+
+        var center = new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2);
+
+        _snowEffect.ConstantBuffer = new SnowShader(
+            _timeAccumulator,
+            new float2(width, height),
+            (float)snowFlakeOverlayAmount / 100f,
+            (float)snowFlakeOverlaySpeed
+        );
+
+        ApplyBreathingTransform(ds, center, isBreathingEffectEnabled);
+        ds.DrawImage(_snowEffect);
+        ResetTransform(ds, isBreathingEffectEnabled);
+    }
+
+    public override void Dispose()
+    {
+        _snowEffect?.Dispose();
+        _snowEffect = null;
+    }
+}

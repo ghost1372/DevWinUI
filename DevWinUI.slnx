@@ -60,4 +60,5 @@
   </Project>
   <Project Path="dev/DevWinUI.SourceGenerator/DevWinUI.SourceGenerator.csproj" Id="5d333619-af6e-4d59-80e3-7683db025f9c" />
   <Project Path="dev/DevWinUI/DevWinUI.csproj" Id="19a8b4a4-dcde-4a2f-9874-6a0315609ee8" />
+  <Project Path="dev/DevWinUI.Shader/DevWinUI.Shader.csproj" Id="68b5652b-853d-43d4-a055-b409e9d4091b" />
 </Solution>
