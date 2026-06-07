@@ -1,9 +1,11 @@
-﻿using Microsoft.Graphics.Canvas;
+﻿using System.Numerics;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using System.Numerics;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace DevWinUI;
@@ -23,17 +25,25 @@ public partial class CoverBackgroundRenderer : RendererBase
     private float _rotationAngle = 0f;
 
     private bool _needsCacheUpdate = false;
-
+    private byte[] coverImageBytes = null;
+    private CanvasAnimatedControl canvas;
     public CoverBackgroundRenderer()
     {
         _crossfadeTransition = new ValueTransition<double>(1.0, AnimationEasingHelper.GetInterpolatorByEasingType<double>(AnimationEasingType.Linear), 0.7);
     }
 
+    public override async void OnApplyTemplate()
+    {
+        await LoadCover();
+    }
+
     public override void CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
     {
+        canvas = sender;
+
         var tasks = new Task[]
        {
-            ReloadCoverBackgroundResourcesAsync()
+           LoadCover(),
        };
         args.TrackAsyncAction(Task.WhenAll(tasks).AsAsyncAction());
     }
@@ -233,23 +243,39 @@ public partial class CoverBackgroundRenderer : RendererBase
         _previousTargetCache = null;
     }
 
+    private async Task LoadCover()
+    {
+        var uri = PathHelper.GetFilePath(new Uri(coverImage));
+        if (RuntimeHelper.IsPackaged())
+        {
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            coverImageBytes = (await FileIO.ReadBufferAsync(file)).ToArray();
+        }
+        else
+        {
+            coverImageBytes = await File.ReadAllBytesAsync(uri.OriginalString);
+        }
+
+        await ReloadCoverBackgroundResourcesAsync();
+    }
+
     private async Task ReloadCoverBackgroundResourcesAsync()
     {
         try
         {
-            if (coverAlbumArtBytes == null || coverAlbumArtBytes.Length == 0) return;
+            if (coverImageBytes == null || coverImageBytes.Length == 0 || canvas == null || canvas.Device == null) return;
 
             using (var localMemoryStream = new InMemoryRandomAccessStream())
             {
                 using (var writer = new DataWriter(localMemoryStream.GetOutputStreamAt(0)))
                 {
-                    writer.WriteBytes(coverAlbumArtBytes);
+                    writer.WriteBytes(coverImageBytes);
                     await writer.StoreAsync();
                 }
 
                 localMemoryStream.Seek(0);
 
-                CanvasBitmap bitmap = await CanvasBitmap.LoadAsync(CanvasDevice.GetSharedDevice(), localMemoryStream);
+                CanvasBitmap bitmap = await CanvasBitmap.LoadAsync(canvas, localMemoryStream);
                 SetCoverBitmap(bitmap);
             }
         }

@@ -7,7 +7,7 @@ public partial class CoverBackgroundRenderer
     private int coverOverlayOpacity = 100;
     private int coverOverlayBlurAmount = 50;
     private int coverOverlaySpeed = 100;
-    private byte[] coverAlbumArtBytes = null;
+    private string coverImage = null;
 
     public int Opacity
     {
@@ -63,19 +63,22 @@ public partial class CoverBackgroundRenderer
         }
     }
    
-    public byte[] AlbumArtBytes
+    public string CoverImage
     {
-        get { return (byte[])GetValue(AlbumArtBytesProperty); }
-        set { SetValue(AlbumArtBytesProperty, value); }
+        get { return (string)GetValue(CoverImageProperty); }
+        set { SetValue(CoverImageProperty, value); }
     }
 
-    public static readonly DependencyProperty AlbumArtBytesProperty =
-        DependencyProperty.Register(nameof(AlbumArtBytes), typeof(byte[]), typeof(CoverBackgroundRenderer), new PropertyMetadata(null, OnAlbumArtBytesChanged));
+    public static readonly DependencyProperty CoverImageProperty =
+        DependencyProperty.Register(nameof(CoverImage), typeof(byte[]), typeof(CoverBackgroundRenderer), new PropertyMetadata(null, OnCoverImageChanged));
 
-    private static void OnAlbumArtBytesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCoverImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (CoverBackgroundRenderer)d;
-        ctl.coverAlbumArtBytes = (byte[])e.NewValue;
-        _ = ctl.ReloadCoverBackgroundResourcesAsync();
+        if (e.NewValue is string value && ctl.coverImage != value)
+        {
+            ctl.coverImage = value;
+            _ = ctl.LoadCover();
+        }
     }
 }

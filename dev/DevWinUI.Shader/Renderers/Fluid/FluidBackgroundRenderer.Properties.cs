@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Windows.UI;
 
 namespace DevWinUI;
@@ -8,10 +9,10 @@ public partial class FluidBackgroundRenderer
     private bool isFluidOverlayLightWaveEnabled = false;
     private bool isColorDitheringEnabled = true;
     private double fluidOverlayOpacity = 100.0;
-    private Color fluidAccentColor1;
-    private Color fluidAccentColor2;
-    private Color fluidAccentColor3;
-    private Color fluidAccentColor4;
+    private Color fluidAccentColor1 = Colors.Blue;
+    private Color fluidAccentColor2 = Colors.AliceBlue;
+    private Color fluidAccentColor3 = Colors.DarkBlue;
+    private Color fluidAccentColor4 = Colors.Orange;
 
     public bool IsLightWaveEnabled
     {
