@@ -35,6 +35,6 @@ See the [Gallery](https://github.com/Ghost1372/DevWinUI) app to see how to use i
 
 ## Documentation
 
-See Here for Online [Documentation](https://ghost1372.github.io/devWinUIshader/)
+See Here for Online [Documentation](https://ghost1372.github.io/DevWinUIShader/)
 
 ![GalleryApp](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GalleryApp.png)
