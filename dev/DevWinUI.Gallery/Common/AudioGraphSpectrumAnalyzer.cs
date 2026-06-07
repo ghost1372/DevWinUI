@@ -8,7 +8,7 @@ using Windows.Media.Render;
 
 namespace DevWinUIGallery.Common;
 
-public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
+public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDisposable
 {
     public event Action<float[]> SpectrumDataUpdated;
 
@@ -23,11 +23,26 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
     private readonly Complex[] _fftL = new Complex[FftLength];
     private readonly Complex[] _fftR = new Complex[FftLength];
 
-    private float[] _spectrum;
-    private double[] _window;
+    private float[] _window;
 
     private int _sampleRate;
     private bool _running;
+
+    public int Gain { get; set; } = 1;
+
+    private float[] _bufferA;
+    private float[] _bufferB;
+
+    private float[] _writeBuffer;
+    private float[] _readBuffer;
+
+    private readonly object _swapLock = new();
+
+    /// <summary>
+    /// Always safe snapshot for UI (Canvas Draw/Update polling).
+    /// Never modified while being read.
+    /// </summary>
+    public float[] LatestSpectrum => _readBuffer;
 
     public void Start()
     {
@@ -53,15 +68,15 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
         void GetBuffer(out byte* buffer, out uint capacity);
     }
 
-
     private async Task StartInternalAsync()
     {
         if (_running)
             return;
 
-        _window = new double[FftLength];
+        _window = new float[FftLength];
+
         for (int i = 0; i < FftLength; i++)
-            _window[i] = 0.54 - 0.46 * Math.Cos(2 * Math.PI * i / (FftLength - 1));
+            _window[i] = (float)(0.54 - 0.46 * Math.Cos(2 * Math.PI * i / (FftLength - 1)));
 
         var settings = new AudioGraphSettings(AudioRenderCategory.Media)
         {
@@ -89,6 +104,7 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
         _input.AddOutgoingConnection(_output);
 
         _graph.QuantumProcessed += OnQuantumProcessed;
+
         _running = true;
         _graph.Start();
     }
@@ -127,18 +143,42 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
         FFT(_fftR);
 
         int bins = FftLength / 2;
-        _spectrum ??= new float[bins * 2];
+
+        EnsureBuffers(bins);
+
+        var write = _writeBuffer;
 
         for (int i = 0; i < bins; i++)
         {
             float freq = i * _sampleRate / (float)FftLength;
-            float gain = Compensation(freq);
+            float gain = Compensation(freq) * Gain;
 
-            _spectrum[i] = (float)_fftL[i].Magnitude * gain;
-            _spectrum[i + bins] = (float)_fftR[i].Magnitude * gain;
+            write[i] = (float)_fftL[i].Magnitude * gain;
+            write[i + bins] = (float)_fftR[i].Magnitude * gain;
         }
 
-        SpectrumDataUpdated?.Invoke(_spectrum);
+        // swap buffers atomically
+        lock (_swapLock)
+        {
+            (_readBuffer, _writeBuffer) = (_writeBuffer, _readBuffer);
+        }
+
+        // event AFTER swap (safe snapshot)
+        SpectrumDataUpdated?.Invoke(_readBuffer);
+    }
+
+    private void EnsureBuffers(int size)
+    {
+        int len = size * 2;
+
+        if (_bufferA == null || _bufferA.Length != len)
+        {
+            _bufferA = new float[len];
+            _bufferB = new float[len];
+
+            _writeBuffer = _bufferA;
+            _readBuffer = _bufferB;
+        }
     }
 
     private static void FFT(Complex[] buffer)
@@ -151,6 +191,7 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
             int bit = n >> 1;
             for (; (i & bit) != 0; bit >>= 1)
                 i &= ~bit;
+
             i |= bit;
 
             if (j < i)
@@ -165,12 +206,15 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer
             for (int i = 0; i < n; i += len)
             {
                 Complex w = Complex.One;
+
                 for (int j = 0; j < len / 2; j++)
                 {
                     var u = buffer[i + j];
                     var v = buffer[i + j + len / 2] * w;
+
                     buffer[i + j] = u + v;
                     buffer[i + j + len / 2] = u - v;
+
                     w *= wlen;
                 }
             }
