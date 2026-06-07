@@ -18,13 +18,13 @@ public partial class SpectrumRenderer : RendererBase
         _spectrumGeometry?.Dispose();
         _spectrumGeometry = null;
 
-        if (!isEnabled || spectrumData == null || spectrumData.Length == 0) return;
+        if (!isEnabled || SpectrumData == null || SpectrumData.Length == 0) return;
 
         var ds = args.DrawingSession;
 
         var currentOpacity = spectrumOpacity / 100.0f;
 
-        _spectrumGeometry = CreateGeometry(sender, spectrumData, spectrumBarCount, spectrumPlacement, spectrumStyle, sender.Size.Width, sender.Size.Height, spectrumAlbumArtRect, spectrumCoverImageRadius);
+        _spectrumGeometry = CreateGeometry(sender, SpectrumData, spectrumBarCount, spectrumPlacement, spectrumStyle, sender.Size.Width, sender.Size.Height, spectrumAlbumArtRect, spectrumCoverImageRadius);
 
         if (_spectrumGeometry != null)
         {

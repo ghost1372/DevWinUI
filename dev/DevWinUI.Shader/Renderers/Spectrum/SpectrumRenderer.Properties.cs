@@ -7,7 +7,7 @@ namespace DevWinUI;
 
 public partial class SpectrumRenderer
 {
-    private float[]? spectrumData = null;
+    public float[]? SpectrumData { get; set; } = null;
     private int spectrumBarCount = 10;
     private bool isSpectrumGlowEffectEnabled = false;
     private int spectrumOpacity = 100;
@@ -16,21 +16,6 @@ public partial class SpectrumRenderer
     private Color spectrumColor = Colors.Blue;
     private Rect spectrumAlbumArtRect = default(Rect);
     private int spectrumCoverImageRadius = 12;
-
-    public float[]? Data
-    {
-        get { return (float[]?)GetValue(DataProperty); }
-        set { SetValue(DataProperty, value); }
-    }
-
-    public static readonly DependencyProperty DataProperty =
-        DependencyProperty.Register(nameof(Data), typeof(float[]), typeof(SpectrumRenderer), new PropertyMetadata(null, OnDataChanged));
-
-    private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var ctl = (SpectrumRenderer)d;
-        ctl.spectrumData = (float[])e.NewValue;
-    }
 
     public int BarCount
     {
