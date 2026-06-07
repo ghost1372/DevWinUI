@@ -38,13 +38,14 @@
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.Base?label=DevWinUI.Base)](https://www.nuget.org/packages/DevWinUI.Base)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.Base?label=DevWinUI.Base)](https://www.nuget.org/packages/DevWinUI.Base)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIBase)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUI/)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.ContextMenu?label=DevWinUI.ContextMenu)](https://www.nuget.org/packages/DevWinUI.ContextMenu)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.ContextMenu?label=DevWinUI.ContextMenu)](https://www.nuget.org/packages/DevWinUI.ContextMenu)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIContextMenu)|
+|[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.Shader?label=DevWinUI.Shader)](https://www.nuget.org/packages/DevWinUI.Shader)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.Shader?label=DevWinUI.Shader)](https://www.nuget.org/packages/DevWinUI.Shader)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIShader)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI.SourceGenerator)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.SourceGenerator?label=DevWinUI.SourceGenerator)](https://www.nuget.org/packages/DevWinUI.SourceGenerator)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUISourceGenerator)|
 
 </div>
 
 ##
 
-DevWinUI is a comprehensive collection of libraries, components, styles, and tools designed to help you build powerful WinUI 3 applications quickly and efficiently. Whether you’re creating modern desktop experiences for Windows 10, Windows 11, or future versions, DevWinUI brings together everything you need to accelerate development and deliver exceptional results.
+DevWinUI is a comprehensive collection of libraries, components, styles, shaders, and tools designed to help you build powerful WinUI 3 applications quickly and efficiently. Whether you’re creating modern desktop experiences for Windows 10, Windows 11, or future versions, DevWinUI brings together everything you need to accelerate development and deliver exceptional results.
 - **DevWinUI is built around WinUI 3:** Microsoft’s modern native UI framework that embraces Fluent Design principles. It enables beautiful, intuitive, and accessible interfaces with the latest patterns and controls.
 - **Accelerated development:** Leverage pre-built templates, scaffolding tools, and ready-to-use helper classes to streamline common tasks such as navigation, theming, and app lifecycle management. Get your project up and running in minutes while maintaining flexibility and control over your design.
 - **Optimized performance:** All components are purpose-built for high performance and reliability, ensuring smooth, responsive, and scalable applications that shine across devices and environments.
@@ -90,6 +91,8 @@ After installing, add the following resource to `App.xaml`
 <ResourceDictionary Source="ms-appx:///DevWinUI/Themes/Generic.xaml" />
 ```
 
+Note: This library uses `Microsoft.Graphics.Win2D` internally.
+
 ## 💻 DevWinUI.ContexMenu
 
 Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps which supports Package Identity. this means you can use it in WPF or WinForm with MSIX Packaging.
@@ -105,10 +108,70 @@ Some useful Source Generator
 Install-Package DevWinUI.SourceGenerator
 ```
 
+## DevWinUI.Shader
+DevWinUI.Shader is a high-performance rendering library for WinUI applications that enables GPU-accelerated animated backgrounds using HLSL compute shaders, powered by `ComputeSharp`, and rendered in real-time through `Win2D` `CanvasAnimatedControl`.
+It is designed for developers who want modern, fluid, and fully customizable visual backgrounds without sacrificing performance or UI responsiveness.
+
+Note: This library needs TargetFrameworks 22621+
+
+Note: This library uses
+`Microsoft.Graphics.Win2D`
+`ComputeSharp.D2D1.WinUI`
+internally.
+
+```
+Install-Package DevWinUI.Shader
+```
+
 ##
 ❤️ Special thanks to **Fatemeh sadat Ashian** for designing our icon. You can find her here: [Telegram](https://t.me/Setareh1380s), [Gmail](mailto:ashyfatii@gmail.com).
 
 ## 🕰️ History
+
+### CosmicShader
+![CosmicShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CosmicShader.gif)
+
+### EdgeFeathering
+![EdgeFeathering](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EdgeFeatheringRenderer.gif)
+
+### StarNestShader
+![StarNestShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StarNestShader.gif)
+
+### StarNoiseShader
+![StarNoiseShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StarNoiseShader.gif)
+
+### SparkShader
+![SparkShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SparkShader.gif)
+
+### FireShader
+![FireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FireShader.gif)
+
+### PureColorRenderer
+![PureColorRenderer](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PureColorRenderer.png)
+
+### MatrixShader
+![MatrixShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MatrixShader.gif)
+
+### CoverShader
+![CoverShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CoverShader.gif)
+
+### FluidShader
+![FluidShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FluidShader.gif)
+
+### SeventiesMeltShader
+![SeventiesMeltShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SeventiesMeltShader.gif)
+
+### IceAndFireShader
+![IceAndFireShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/IceAndFireShader.gif)
+
+### RaindropShader
+![RaindropShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RaindropShader.gif)
+
+### SnowShader
+![SnowShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/SnowShader.gif)
+
+### FogShader
+![FogShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FogShader.gif)
 
 ### BetterLyric
 ![BetterLyric](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BetterLyric.gif)

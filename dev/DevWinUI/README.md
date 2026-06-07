@@ -25,6 +25,7 @@
  
 ### Experience WinUI 3 quickly and easily with the help of DevWinUI, Everything you need to develop an application is gathered in one place.
 
+Note: This library uses `Microsoft.Graphics.Win2D` internally.
 
 ## Install
 ```

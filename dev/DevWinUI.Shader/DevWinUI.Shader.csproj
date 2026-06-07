@@ -4,7 +4,7 @@
     <PackageId>$(BaseNamespace).Shader</PackageId>
     <AssemblyName>$(BaseNamespace).Shader</AssemblyName>
     <Description>
-      Experience WinUI 3 quickly and easily with the help of DevWinUI.Shader, Everything you need to develop an application is gathered in one place. DevWinUI.Shader Includes Shaders.
+      A high-performance WinUI shader library powered by ComputeSharp and Win2D, enabling GPU-accelerated animated procedural backgrounds using custom HLSL compute shaders with smooth real-time rendering.
     </Description>
     <PackageTags>winui winui3 win11 xaml shader shaders computesharp DevWinUI DevWinUI.Controls projectreunion winappsdk windowsappsdk wasdk reunion win2d composition</PackageTags>
   </PropertyGroup>

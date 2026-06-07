@@ -22,9 +22,19 @@
 ---
 
 # DevWinUI.Shader
- 
+DevWinUI.Shader is a high-performance rendering library for WinUI applications that enables GPU-accelerated animated backgrounds using HLSL compute shaders, powered by `ComputeSharp`, and rendered in real-time through `Win2D` `CanvasAnimatedControl`.
+
+It is designed for developers who want modern, fluid, and fully customizable visual backgrounds without sacrificing performance or UI responsiveness.
+
+Note: This library needs TargetFrameworks 22621+
+
+Note: This library uses
+`Microsoft.Graphics.Win2D`
+`ComputeSharp.D2D1.WinUI`
+internally.
 
 ## Install
+
 ```
 Install-Package DevWinUI.Shader
 ```

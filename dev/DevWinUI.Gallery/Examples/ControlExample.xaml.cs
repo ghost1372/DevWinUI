@@ -122,6 +122,9 @@ public sealed partial class ControlExample : OptionsPageControl
             case DocType.Controls:
                 docTypeValue = "DevWinUI";
                 break;
+            case DocType.Shader:
+                docTypeValue = "Shader";
+                break;
             case DocType.ContextMenu:
                 docTypeValue = "DevWinUIContextMenu";
                 break;
@@ -153,5 +156,6 @@ public enum DocType
 {
     Core,
     Controls,
+    Shader,
     ContextMenu
 }

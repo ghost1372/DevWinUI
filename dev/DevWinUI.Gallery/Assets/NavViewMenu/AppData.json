@@ -904,6 +904,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ShaderBackgroundPage",
+          "Title": "Shader Background",
+          "Subtitle": "Render Shader as a Background",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BetterLyricPage",
           "Title": "Better Lyric",
           "Subtitle": "An elegant and deeply customizable lyrics visualizer",

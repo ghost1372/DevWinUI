@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ShaderBackgroundPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <InfoBar Title="Note: Most features can be configured and customized. Please refer to the documentation." IsClosable="False" IsOpen="True" Severity="Warning" />
+            <local:ControlExample DocPage="controls/shaderBackground">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ShaderBackground&gt; #nl#
+                        &lt;FogRenderer /&gt; #nl#
+                        &lt;SnowRenderer /&gt; #nl#
+                        &lt;/dev:ShaderBackground&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="5">
+                        <dev:UniformGrid Columns="3">
+                            <ToggleSwitch x:Name="TGBreathing" Header="Breathing" />
+                            <ToggleSwitch x:Name="TGIsEdgeFeatheringEnabled" Header="Feathering" />
+                            <ToggleSwitch x:Name="TGEdgeFade" Header="Edge Fade" IsEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" />
+                        </dev:UniformGrid>
+                        <Slider x:Name="SldEdgeLeft" Header="Edge Feathering Left" Maximum="100" Value="25" />
+                        <Slider x:Name="SldEdgeTop" Header="Edge Feathering Top" Maximum="100" Value="25" />
+                        <Slider x:Name="SldEdgeRight" Header="Edge Feathering Right" Maximum="100" Value="25" />
+                        <Slider x:Name="SldEdgeBottom" Header="Edge Feathering Bottom" Maximum="100" Value="25" />
+                        <dev:UniformGrid Columns="3">
+                            <ToggleSwitch x:Name="TGFog" Header="Fog" />
+                            <ToggleSwitch x:Name="TGSnow" Header="Snow" />
+                            <ToggleSwitch x:Name="TGRaindrop" Header="Rain drop" />
+                            <ToggleSwitch x:Name="TGIceAndFire" Header="Ice And Fire" IsOn="True" />
+                            <ToggleSwitch x:Name="TGSeventiesMelt" Header="Seventies Melt" IsOn="True" />
+                            <ToggleSwitch x:Name="TGFluid" Header="Fluid" />
+                            <ToggleSwitch x:Name="TGPureColor" Header="Pure Color" />
+                            <ToggleSwitch x:Name="TGCover" Header="Cover" />
+                            <ToggleSwitch x:Name="TGSpectrum" Header="Spectrum" />
+                            <ToggleSwitch x:Name="TGCosmic" Header="Cosmic" />
+                            <ToggleSwitch x:Name="TGMatrix" Header="Matrix" />
+                            <ToggleSwitch x:Name="TGFire" Header="Fire" />
+                            <ToggleSwitch x:Name="TGSpark" Header="Spark" />
+                            <ToggleSwitch x:Name="TGStarNoise" Header="Star Noise" />
+                            <ToggleSwitch x:Name="TGStarNest" Header="Star Nest" />
+                        </dev:UniformGrid>
+                    </StackPanel>
+
+                </local:ControlExample.Pane>
+                <dev:ShaderBackground x:Name="ShaderBackgroundSample" Draw="ShaderBackgroundSample_Draw" EdgeFeatheringBottom="{x:Bind (x:Int32)SldEdgeBottom.Value, Mode=OneWay}" EdgeFeatheringLeft="{x:Bind (x:Int32)SldEdgeLeft.Value, Mode=OneWay}" EdgeFeatheringRight="{x:Bind (x:Int32)SldEdgeRight.Value, Mode=OneWay}" EdgeFeatheringTop="{x:Bind (x:Int32)SldEdgeTop.Value, Mode=OneWay}" IsEdgeFeatheringEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" Update="ShaderBackgroundSample_Update">
+                    <dev:ShaderBackground.Renderers>
+                        <dev:CosmicRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCosmic.IsOn, Mode=OneWay}" />
+                        <dev:CoverBackgroundRenderer x:Name="CoverBackgroundSample" BassEnergy="5" CoverImage="ms-appx:///Assets/Profile/3.jpg" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCover.IsOn, Mode=OneWay}" />
+                        <dev:FireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFire.IsOn, Mode=OneWay}" />
+                        <dev:FluidBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFluid.IsOn, Mode=OneWay}" />
+                        <dev:FogRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFog.IsOn, Mode=OneWay}" />
+                        <dev:IceAndFireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGIceAndFire.IsOn, Mode=OneWay}" />
+                        <dev:MatrixRainRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGMatrix.IsOn, Mode=OneWay}" />
+                        <dev:PureColorBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPureColor.IsOn, Mode=OneWay}" Opacity="50" Color="Pink" />
+                        <dev:RaindropRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGRaindrop.IsOn, Mode=OneWay}" />
+                        <dev:SeventiesMeltRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSeventiesMelt.IsOn, Mode=OneWay}" />
+                        <dev:SnowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSnow.IsOn, Mode=OneWay}" />
+                        <dev:SparkRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpark.IsOn, Mode=OneWay}" />
+                        <dev:SpectrumRenderer x:Name="SpectrumRendererSample" BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpectrum.IsOn, Mode=OneWay}" />
+                        <dev:StarNestRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNest.IsOn, Mode=OneWay}" />
+                        <dev:StarNoiseRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNoise.IsOn, Mode=OneWay}" />
+                    </dev:ShaderBackground.Renderers>
+                </dev:ShaderBackground>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
