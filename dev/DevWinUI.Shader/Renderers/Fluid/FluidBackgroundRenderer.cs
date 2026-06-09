@@ -1,10 +1,10 @@
-﻿using ComputeSharp.D2D1.WinUI;
+﻿using System.Numerics;
+using ComputeSharp.D2D1.WinUI;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
-using System.Numerics;
 using Windows.UI;
 
 namespace DevWinUI;
@@ -38,6 +38,7 @@ public partial class FluidBackgroundRenderer : RendererBase
     private float3 _c1 = float3.Zero, _c2 = float3.Zero, _c3 = float3.Zero, _c4 = float3.Zero;
     private float _rnd1 = 0, _rnd2 = 0, _rnd3 = 0;
     private bool useHSVBlending = false;
+    private CanvasRenderTarget? _cachedRenderTarget;
     public override void OnApplyTemplate()
     {
         UpdatePalette();
@@ -70,9 +71,11 @@ public partial class FluidBackgroundRenderer : RendererBase
         _c4 = new float3(v4.X, v4.Y, v4.Z);
 
         UpdateBreathing(currentBassEnergy, breathingIntensity);
-        
 
-        _timeAccumulator += (float)elapsedTime.TotalSeconds;
+        if (!IsStatic)
+        {
+            _timeAccumulator += (float)elapsedTime.TotalSeconds;
+        }
     }
 
     public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -86,15 +89,41 @@ public partial class FluidBackgroundRenderer : RendererBase
         float width = sender.ConvertDipsToPixels((float)sender.Size.Width, CanvasDpiRounding.Round);
         float height = sender.ConvertDipsToPixels((float)sender.Size.Height, CanvasDpiRounding.Round);
 
-        _fluidEffect.ConstantBuffer = new FluidBackgroundShader(
-            new float2(width, height),
-            _timeAccumulator,
-            _c1, _c2, _c3, _c4,
-            _rnd1, _rnd2, _rnd3,
-            useHSVBlending,
-            isFluidOverlayLightWaveEnabled,
-            isColorDitheringEnabled
-        );
+        ICanvasImage? sourceToDraw;
+
+        if (IsStatic)
+        {
+            bool needsUpdateCache = _cachedRenderTarget == null ||
+                _cachedRenderTarget.Size.Width != sender.Size.Width ||
+                _cachedRenderTarget.Size.Height != sender.Size.Height;
+
+            if (needsUpdateCache)
+            {
+                UpdateShaderConstantBuffer(width, height);
+
+                _cachedRenderTarget?.Dispose();
+                _cachedRenderTarget = new CanvasRenderTarget(sender, (float)sender.Size.Width, (float)sender.Size.Height, sender.Dpi);
+
+                using (var cacheDs = _cachedRenderTarget.CreateDrawingSession())
+                {
+                    cacheDs.Clear(Colors.Transparent);
+                    cacheDs.DrawImage(_fluidEffect);
+                }
+            }
+
+            sourceToDraw = _cachedRenderTarget;
+        }
+        else
+        {
+            if (_cachedRenderTarget != null)
+            {
+                _cachedRenderTarget.Dispose();
+                _cachedRenderTarget = null;
+            }
+
+            UpdateShaderConstantBuffer(width, height);
+            sourceToDraw = _fluidEffect;
+        }
 
         var center = new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2);
 
@@ -102,13 +131,13 @@ public partial class FluidBackgroundRenderer : RendererBase
 
         if (currentOpacity >= 1.0)
         {
-            ds.DrawImage(_fluidEffect);
+            ds.DrawImage(sourceToDraw);
         }
         else
         {
             using var opacityEffect = new OpacityEffect
             {
-                Source = _fluidEffect,
+                Source = sourceToDraw,
                 Opacity = (float)currentOpacity
             };
             ds.DrawImage(opacityEffect);
@@ -117,10 +146,25 @@ public partial class FluidBackgroundRenderer : RendererBase
         ResetTransform(ds, isBreathingEffectEnabled);
     }
 
+    private void UpdateShaderConstantBuffer(float width, float height)
+    {
+        _fluidEffect!.ConstantBuffer = new FluidBackgroundShader(
+            new float2(width, height),
+            _timeAccumulator,
+            _c1, _c2, _c3, _c4,
+            _rnd1, _rnd2, _rnd3,
+            useHSVBlending,
+            isFluidOverlayLightWaveEnabled,
+            isColorDitheringEnabled
+        );
+    }
+
     public override void Dispose()
     {
         _fluidEffect?.Dispose();
         _fluidEffect = null;
+        _cachedRenderTarget?.Dispose();
+        _cachedRenderTarget = null;
     }
 
     private void UpdatePalette()

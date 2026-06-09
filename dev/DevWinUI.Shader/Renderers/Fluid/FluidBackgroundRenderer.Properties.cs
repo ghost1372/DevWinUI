@@ -8,6 +8,7 @@ public partial class FluidBackgroundRenderer
 {
     private bool isFluidOverlayLightWaveEnabled = false;
     private bool isColorDitheringEnabled = true;
+    public bool isStatic { get; set; } = false;
     private double fluidOverlayOpacity = 100.0;
     private Color fluidAccentColor1 = Colors.Blue;
     private Color fluidAccentColor2 = Colors.AliceBlue;
@@ -42,6 +43,21 @@ public partial class FluidBackgroundRenderer
     {
         var ctl = (FluidBackgroundRenderer)d;
         ctl.isColorDitheringEnabled = (bool)e.NewValue;
+    }
+
+    public bool IsStatic
+    {
+        get { return (bool)GetValue(IsStaticProperty); }
+        set { SetValue(IsStaticProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsStaticProperty =
+        DependencyProperty.Register(nameof(IsStatic), typeof(bool), typeof(FluidBackgroundRenderer), new PropertyMetadata(false, OnIsStaticChanged));
+
+    private static void OnIsStaticChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (FluidBackgroundRenderer)d;
+        ctl.isStatic = (bool)e.NewValue;
     }
 
     public double Opacity
