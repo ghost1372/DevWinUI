@@ -377,6 +377,8 @@ public partial class BetterLyric : Control
         DisposeRenderLyricsLines();
         _renderLyricsLines = currentLyricsData?.LyricsLines.Select(x => new RenderLyricsLine(x)).ToList();
 
+        EnsureRenderLyricsLinesPreservedAnimation();
+
         if (_renderLyricsLines == null) return;
 
         CalculateLanes(_renderLyricsLines);
@@ -449,6 +451,45 @@ public partial class BetterLyric : Control
             (renderLyricsHeight, renderLyricsWidth) = (renderLyricsWidth, renderLyricsHeight);
             renderLyricsStartX += (renderLyricsHeight - renderLyricsWidth) / 2;
             renderLyricsStartY += (renderLyricsWidth - renderLyricsHeight) / 2;
+        }
+    }
+
+    private void EnsureRenderLyricsLinesPreservedAnimation()
+    {
+        if (_renderLyricsLines == null) return;
+
+        if (!isLyricsScaleEffectEnabled && !isLyricsGlowEffectEnabled) return;
+
+        int animationPadding = (int)BetterLyricTimeSpanHelper.AnimationDuration.TotalMilliseconds;
+        int longSyllableThreshold = Math.Max(
+            lyricsScaleEffectLongSyllableDuration,
+            lyricsGlowEffectLongSyllableDuration
+        );
+
+        var lines = _renderLyricsLines;
+        for (int i = 0; i < lines.Count; i++)
+        {
+            var line = lines[i];
+            if (line == null) continue;
+
+            bool isLastLine = i + 1 >= lines.Count;
+            var nextLineStartMs = isLastLine ? (int)currentLyricsData.Duration.TotalMilliseconds : lines[i + 1].StartMs;
+
+            bool isLongSyllable = line.PrimaryRenderSyllables.LastOrDefault()?.DurationMs > longSyllableThreshold;
+
+            if (line.EndMs.HasValue && isLongSyllable)
+            {
+                if (isLastLine || line.EndMs > nextLineStartMs)
+                {
+                    line.EndMs += animationPadding;
+                }
+                else
+                {
+                    int targetEndMs = line.EndMs.Value + animationPadding;
+
+                    line.EndMs = Math.Max(line.EndMs.Value, Math.Min(targetEndMs, nextLineStartMs));
+                }
+            }
         }
     }
 }

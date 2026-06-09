@@ -119,6 +119,7 @@ public partial class BetterLyric
     {
         var ctl = (BetterLyric)d;
         ctl.isLyricsGlowEffectEnabled = (bool)e.NewValue;
+        ctl.RequestRelayout();
     }
 
 
@@ -151,6 +152,7 @@ public partial class BetterLyric
     {
         var ctl = (BetterLyric)d;
         ctl.lyricsGlowEffectLongSyllableDuration = (int)e.NewValue;
+        ctl.RequestRelayout();
     }
 
 
@@ -215,6 +217,7 @@ public partial class BetterLyric
     {
         var ctl = (BetterLyric)d;
         ctl.isLyricsScaleEffectEnabled = (bool)e.NewValue;
+        ctl.RequestRelayout();
     }
 
 
@@ -231,6 +234,7 @@ public partial class BetterLyric
     {
         var ctl = (BetterLyric)d;
         ctl.lyricsScaleEffectLongSyllableDuration = (int)e.NewValue;
+        ctl.RequestRelayout();
     }
 
 

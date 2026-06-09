@@ -80,7 +80,7 @@ public partial class BetterLyric
                 ? 1.15
                 : lyricsScaleEffectAmount / 100.0;
 
-            var maxAnimationDurationMs = Math.Max(line.EndMs ?? 0 - currentPositionMs, 0);
+            var maxAnimationDurationMs = Math.Max((line.EndMs ?? 0) - currentPositionMs, 0);
 
             bool isSecondaryLinePlaying = line.GetIsPlaying(currentPositionMs);
             bool isSecondaryLinePlayingChanged = line.IsPlayingLastFrame != isSecondaryLinePlaying;
@@ -286,6 +286,8 @@ public partial class BetterLyric
                     bool isSyllablePlaying = syllable.GetIsPlaying(currentPositionMs);
                     bool isSyllablePlayingChanged = syllable.IsPlayingLastFrame != isSyllablePlaying;
 
+                    var desiredAnimationDurationMs = Math.Max((syllable.EndMs ?? 0) - currentPositionMs, 0);
+
                     if (isSyllablePlayingChanged)
                     {
                         // 缩放
@@ -295,7 +297,7 @@ public partial class BetterLyric
                             {
                                 if (syllable.DurationMs >= lyricsScaleEffectLongSyllableDuration)
                                 {
-                                    var (inDuration, outDuration) = CalculateSegmentDuration(syllable.DurationMs / 1000.0, maxAnimationDurationMs / 1000.0);
+                                    var (inDuration, outDuration) = CalculateSegmentDuration(desiredAnimationDurationMs / 1000.0, maxAnimationDurationMs / 1000.0);
                                     renderChar.ScaleTransition.Start(
                                         new BetterLyricKeyframe<double>(targetCharScale, inDuration),
                                         new BetterLyricKeyframe<double>(1.0, outDuration)
@@ -310,7 +312,7 @@ public partial class BetterLyric
                         {
                             foreach (var renderChar in syllable.ChildrenRenderLyricsChars)
                             {
-                                var (inDuration, outDuration) = CalculateSegmentDuration(syllable.DurationMs / 1000.0, maxAnimationDurationMs / 1000.0);
+                                var (inDuration, outDuration) = CalculateSegmentDuration(desiredAnimationDurationMs / 1000.0, maxAnimationDurationMs / 1000.0);
                                 renderChar.GlowTransition.Start(
                                     new BetterLyricKeyframe<double>(targetCharGlow, inDuration),
                                     new BetterLyricKeyframe<double>(0, outDuration)
@@ -397,8 +399,14 @@ public partial class BetterLyric
     {
         // 缓入动画时长尽量接近 desiredDuration
         var inDuration = Math.Min(desiredDuration, maxDuration);
-        // 缓出动画时长保证合法
+        // 缓出动画时长保证有合理的时长
         var outDuration = Math.Min(maxDuration - inDuration, BetterLyricTimeSpanHelper.AnimationDuration.TotalSeconds);
+        //// 缓出动画时长过短时调整缓入动画时长以保证有合理的缓出动画
+        if (outDuration == 0)
+        {
+            outDuration = inDuration / 3 * 1;
+            inDuration = outDuration * 2;
+        }
         return (inDuration, outDuration);
     }
 }

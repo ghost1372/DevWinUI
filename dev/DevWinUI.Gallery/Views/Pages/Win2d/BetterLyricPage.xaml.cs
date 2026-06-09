@@ -9,7 +9,6 @@ public sealed partial class BetterLyricPage : Page
     private DispatcherQueueTimer? _playbackTimer = App.Current.Resources.DispatcherQueue.CreateTimer();
     private bool _isDraggingSlider = false;
 
-    private int TotalMs => MyBetterLyric.CurrentLyricsData?.LyricsLines.Max(l => l.EndMs) ?? 0;
     public BetterLyricPage()
     {
         InitializeComponent();
@@ -32,7 +31,7 @@ public sealed partial class BetterLyricPage : Page
 
     private void ApplyLyricsDataToSlider()
     {
-        var totalMs = TotalMs;
+        var totalMs = (int)MyBetterLyric?.CurrentLyricsData?.Duration.TotalMilliseconds;
         ProgressSlider.Minimum = 0;
         ProgressSlider.Maximum = totalMs;
         ProgressSlider.StepFrequency = 100;
@@ -52,7 +51,7 @@ public sealed partial class BetterLyricPage : Page
                 if (_isDraggingSlider) return;
 
                 var newMs = ProgressSlider.Value + 100;
-                if (newMs > TotalMs) newMs = 0;
+                if (newMs > (int)MyBetterLyric?.CurrentLyricsData?.Duration.TotalMilliseconds) newMs = 0;
 
                 ProgressSlider.Value = newMs;
             };
@@ -69,8 +68,7 @@ public sealed partial class BetterLyricPage : Page
         MyBetterLyric.CurrentPosition = TimeSpan.FromMilliseconds(ms);
 
         var current = TimeSpan.FromMilliseconds(ms);
-        var total = TimeSpan.FromMilliseconds(TotalMs);
-        PositionText.Text = $"{(int)current.TotalMinutes}:{current.Seconds:D2} / {(int)total.TotalMinutes}:{total.Seconds:D2}";
+        PositionText.Text = $"{(int)current.TotalMinutes}:{current.Seconds:D2} / {(int)(int)MyBetterLyric?.CurrentLyricsData?.Duration.TotalMinutes}:{(int)MyBetterLyric?.CurrentLyricsData?.Duration.Seconds:D2}";
     }
 
     private void ProgressSlider_PointerPressed(object sender, PointerRoutedEventArgs e)
