@@ -35,7 +35,7 @@
     <CsWin32Version>0.3.275</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
-    <WASDKWinUIVersion>1.8.260204000</WASDKWinUIVersion>
+    <WASDKWinUIVersion>2.2.1</WASDKWinUIVersion>
 
     <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
 
