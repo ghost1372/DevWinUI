@@ -100,8 +100,7 @@ public partial class ThemeService
     {
         try
         {
-            GlobalData.Config.ElementTheme = theme;
-            GlobalData.Save();
+            applicationData.LocalSettings.Values[ElementThemeSettingKey] = theme.ToString();
         }
         catch { }
     }
@@ -110,7 +109,11 @@ public partial class ThemeService
     {
         try
         {
-            return GlobalData.Config.ElementTheme;
+            var result = applicationData.LocalSettings.Values[ElementThemeSettingKey];
+            if (result != null)
+            {
+                return GeneralHelper.GetEnum<ElementTheme>(result.ToString());
+            }
         }
         catch { }
 

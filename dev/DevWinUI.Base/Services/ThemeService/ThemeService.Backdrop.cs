@@ -117,8 +117,7 @@ public partial class ThemeService
     {
         try
         {
-            GlobalData.Config.BackdropType = backdropType;
-            GlobalData.Save();
+            applicationData.LocalSettings.Values[BackdropTypeSettingKey] = backdropType.ToString();
         }
         catch { }
     }
@@ -126,7 +125,11 @@ public partial class ThemeService
     {
         try
         {
-            return GlobalData.Config.BackdropType;
+            var result = applicationData.LocalSettings.Values[BackdropTypeSettingKey];
+            if (result != null)
+            {
+                return GeneralHelper.GetEnum<BackdropType>(result.ToString());
+            }
         }
         catch { }
 

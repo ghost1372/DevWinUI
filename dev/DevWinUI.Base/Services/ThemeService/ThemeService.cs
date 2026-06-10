@@ -10,36 +10,23 @@ public partial class ThemeService : IThemeService, IDisposable
     private readonly Dictionary<Window, FrameworkElement> _rootElements = new();
     private TaskCompletionSource<bool>? _initialization;
 
-    private readonly string ConfigFilePath = "CoreAppConfig.json";
-
     private bool _useAutoSave = true;
     private bool _isBackdropEnabled = true;
 
     private ElementTheme _userDefinedTheme = ElementTheme.Default;
     private BackdropType _userDefinedBackdrop = BackdropType.Mica;
-    private string _userDefinedFileName = null;
-    public ThemeService() { }
+    private Microsoft.Windows.Storage.ApplicationData applicationData;
+    private readonly string BackdropTypeSettingKey = "BackdropType";
+    private readonly string ElementThemeSettingKey = "ElementTheme";
+    public ThemeService()
+    {
+        applicationData = RuntimeHelper.IsPackaged()
+            ? Microsoft.Windows.Storage.ApplicationData.GetDefault()
+            : Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
+    }
 
     public ThemeService Initialize(Window window)
     {
-        string RootPath = Path.Combine(PathHelper.GetAppDataFolderPath(), ProcessInfoHelper.ProductName);
-        string AppConfigPath = Path.Combine(RootPath, ConfigFilePath);
-
-        if (_useAutoSave)
-        {
-            if (!string.IsNullOrEmpty(_userDefinedFileName))
-            {
-                AppConfigPath = _userDefinedFileName;
-            }
-
-            GlobalData.SavePath = AppConfigPath;
-            if (!Directory.Exists(RootPath))
-            {
-                Directory.CreateDirectory(RootPath);
-            }
-            GlobalData.Init();
-        }
-
         WindowHelper.TrackWindow(window);
         WindowHelper.ActiveWindows.CollectionChanged -= ActiveWindows_CollectionChanged;
         WindowHelper.ActiveWindows.CollectionChanged += ActiveWindows_CollectionChanged;

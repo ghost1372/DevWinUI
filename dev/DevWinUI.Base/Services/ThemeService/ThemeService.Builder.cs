@@ -1,10 +1,9 @@
 ﻿namespace DevWinUI;
 public partial class ThemeService
 {
-    public ThemeService ConfigureAutoSave(bool isEnabled, string? fileName = null)
+    public ThemeService ConfigureAutoSave(bool isEnabled)
     {
         _useAutoSave = isEnabled;
-        _userDefinedFileName = fileName;
         return this;
     }
 

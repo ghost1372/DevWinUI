@@ -30,7 +30,7 @@ public interface IThemeService
     void OnBackdropRadioButtonChecked(object sender);
     void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel);
     void Dispose();
-    ThemeService ConfigureAutoSave(bool isEnabled, string? fileName = null);
+    ThemeService ConfigureAutoSave(bool isEnabled);
     ThemeService ConfigureElementTheme(ElementTheme theme);
     ThemeService ConfigureBackdrop(BackdropType backdropType);
     ThemeService ConfigureBackdrop(BackdropType backdropType, bool isEnabled);
