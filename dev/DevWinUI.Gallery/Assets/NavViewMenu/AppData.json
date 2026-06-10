@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.MaterialAttachPage",
+          "Title": "Material Attach",
+          "IsNew": true,
+          "Subtitle": "Use Acrylic Background for Some controls",
+          "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BarcodePage",
           "Title": "BarCode",
           "IsNew": true,

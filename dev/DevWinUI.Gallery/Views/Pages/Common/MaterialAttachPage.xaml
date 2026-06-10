@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.MaterialAttachPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="ComboBox">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;ComboBox dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <ComboBox x:Name="ComboBox1" Grid.Row="1" HorizontalAlignment="Stretch" dev:MaterialAttach.UseAcrylicBackground="True" />
+                    <ComboBox x:Name="ComboBox2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" />
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="AutoSuggestBox">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;AutoSuggestBox dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <AutoSuggestBox x:Name="AutoSuggestBox1" Grid.Row="1" HorizontalAlignment="Stretch" dev:MaterialAttach.UseAcrylicBackground="True" />
+                    <AutoSuggestBox x:Name="AutoSuggestBox2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" />
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="CommandBar">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;CommandBar dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <CommandBar Grid.Row="1" HorizontalAlignment="Stretch" dev:MaterialAttach.UseAcrylicBackground="True" OverflowButtonVisibility="Visible">
+                        <CommandBar.Resources>
+                            <Style TargetType="CommandBarFlyoutCommandBar">
+                                <Setter Property="Template" Value="{StaticResource CommandBarFlyoutCommandBarWithSystemBackdropStyle}" />
+                            </Style>
+                        </CommandBar.Resources>
+                        <AppBarButton Icon="Add" Label="Add" />
+                        <AppBarButton Icon="Edit" Label="Edit" />
+                        <AppBarButton Icon="Delete" Label="Delete" />
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Icon="Add" Label="Add" />
+                            <AppBarButton Icon="Add" Label="Add" />
+                            <AppBarButton Icon="Edit" Label="Edit" />
+                            <AppBarButton Icon="Edit" Label="Edit" />
+                            <AppBarButton Icon="Delete" Label="Delete" />
+                            <AppBarButton Icon="Delete" Label="Delete" />
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                    <CommandBar Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" OverflowButtonVisibility="Visible">
+                        <AppBarButton Icon="Add" Label="Add" />
+                        <AppBarButton Icon="Edit" Label="Edit" />
+                        <AppBarButton Icon="Delete" Label="Delete" />
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Icon="Add" Label="Add" />
+                            <AppBarButton Icon="Add" Label="Add" />
+                            <AppBarButton Icon="Edit" Label="Edit" />
+                            <AppBarButton Icon="Edit" Label="Edit" />
+                            <AppBarButton Icon="Delete" Label="Delete" />
+                            <AppBarButton Icon="Delete" Label="Delete" />
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="ToolTip">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;ToolTip dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <Button Grid.Row="1" HorizontalAlignment="Stretch" Content="ToolTip">
+                        <ToolTipService.ToolTip>
+                            <ToolTip dev:MaterialAttach.UseAcrylicBackground="True" Content="Simple................ ToolTip" />
+                        </ToolTipService.ToolTip>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Content="ToolTip">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Simple................ ToolTip" />
+                        </ToolTipService.ToolTip>
+                    </Button>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="Flyout">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;Flyout dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <Button Grid.Row="1" HorizontalAlignment="Stretch" Content="Flyout">
+                        <Button.Flyout>
+                            <Flyout dev:MaterialAttach.UseAcrylicBackground="True">
+                                <StackPanel>
+                                    <TextBlock Margin="0,0,0,12" Style="{ThemeResource BaseTextBlockStyle}" Text="All items will be removed. Do you want to continue?" />
+                                    <Button Content="Yes, empty my cart" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Content="Flyout">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Margin="0,0,0,12" Style="{ThemeResource BaseTextBlockStyle}" Text="All items will be removed. Do you want to continue?" />
+                                    <Button Content="Yes, empty my cart" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="Date/Time Picker">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;Style BasedOn="{StaticResource TimePickerFlyoutPresenterWithSystemBackdropElementStyle}" TargetType="TimePickerFlyoutPresenter" /&gt; #nl#
+                        &lt;Style BasedOn="{StaticResource DatePickerFlyoutPresenterWithSystemBackdropElementStyle}" TargetType="DatePickerFlyoutPresenter"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Spacing="10">
+                        <TimePicker>
+                            <TimePicker.Resources>
+                                <Style BasedOn="{StaticResource TimePickerFlyoutPresenterWithSystemBackdropElementStyle}" TargetType="TimePickerFlyoutPresenter" />
+                            </TimePicker.Resources>
+                        </TimePicker>
+                        <DatePicker>
+                            <DatePicker.Resources>
+                                <Style BasedOn="{StaticResource DatePickerFlyoutPresenterWithSystemBackdropElementStyle}" TargetType="DatePickerFlyoutPresenter" />
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Spacing="10">
+                        <TimePicker />
+                        <DatePicker />
+                    </StackPanel>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="attach/materialAttach" HeaderText="MediaTransportControls">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;MediaTransportControls dev:MaterialAttach.UseAcrylicBackground="True"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Grid ColumnSpacing="10" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                    <MediaPlayerElement Grid.Row="1" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">
+                        <MediaPlayerElement.TransportControls>
+                            <MediaTransportControls dev:MaterialAttach.UseAcrylicBackground="True" IsCompact="False" IsFastForwardButtonVisible="True" IsFastForwardEnabled="True" IsFastRewindButtonVisible="True" IsFastRewindEnabled="True" IsPlaybackRateButtonVisible="True" IsPlaybackRateEnabled="True" IsSeekBarVisible="True" IsSeekEnabled="True" IsSkipBackwardButtonVisible="True" IsSkipBackwardEnabled="True" IsSkipForwardButtonVisible="True" IsSkipForwardEnabled="True" IsStopButtonVisible="True" IsStopEnabled="True" IsVolumeButtonVisible="True" IsVolumeEnabled="True" IsZoomButtonVisible="True" IsZoomEnabled="True" Visibility="Visible" />
+                        </MediaPlayerElement.TransportControls>
+                    </MediaPlayerElement>
+                    <MediaPlayerElement Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">
+                        <MediaPlayerElement.TransportControls>
+                            <MediaTransportControls IsCompact="False" IsFastForwardButtonVisible="True" IsFastForwardEnabled="True" IsFastRewindButtonVisible="True" IsFastRewindEnabled="True" IsPlaybackRateButtonVisible="True" IsPlaybackRateEnabled="True" IsSeekBarVisible="True" IsSeekEnabled="True" IsSkipBackwardButtonVisible="True" IsSkipBackwardEnabled="True" IsSkipForwardButtonVisible="True" IsSkipForwardEnabled="True" IsStopButtonVisible="True" IsStopEnabled="True" IsVolumeButtonVisible="True" IsVolumeEnabled="True" IsZoomButtonVisible="True" IsZoomEnabled="True" Visibility="Visible" />
+                        </MediaPlayerElement.TransportControls>
+                    </MediaPlayerElement>
+                </Grid>
+            </local:ControlExample>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
