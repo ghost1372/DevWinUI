@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.Windows.Storage;
+
+namespace DevWinUI;
 public partial class PathHelper
 {
     /// <summary>
@@ -97,15 +99,24 @@ public partial class PathHelper
     /// <summary>
     /// Return ApplicationData Folder Path for Packaged and UnPackaged Mode Automatically
     /// </summary>
-    /// <param name="forceUnpackagedMode"></param>
+    /// <param name="forceLegacyPath"></param>
     /// <returns></returns>
-    public static string GetAppDataFolderPath(bool forceUnpackagedMode = false)
+    public static string GetAppDataFolderPath(bool forceLegacyPath = false)
     {
-        var unpackaged = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        if (forceUnpackagedMode)
-            return unpackaged;
+        var applicationData = RuntimeHelper.IsPackaged()
+            ? Microsoft.Windows.Storage.ApplicationData.GetDefault()
+            : Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
 
-        return PackageHelper.IsPackaged ? Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalFolder.Path : unpackaged;
+        var legacyPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        if (forceLegacyPath)
+            return legacyPath;
+
+        if (!Directory.Exists(applicationData.LocalPath))
+        {
+            Directory.CreateDirectory(applicationData.LocalPath);
+        }
+
+        return applicationData.LocalPath ?? legacyPath;
     }
 
     /// <summary>
