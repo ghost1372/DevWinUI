@@ -128,6 +128,30 @@ Install-Package DevWinUI.Shader
 
 ## 🕰️ History
 
+### WavyBackgroundShader
+![WavyBackgroundShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/WavyBackgroundShader.gif)
+
+### WallpaperShader
+![WallpaperShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/WallpaperShader.gif)
+
+### TriangleGradientBackgroundShader
+![TriangleGradientBackgroundShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/TriangleGradientBackgroundShader.gif)
+
+### ResidualBackgroundRadiationShader
+![ResidualBackgroundRadiationShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/ResidualBackgroundRadiationShader.gif)
+
+### PS3XMBBackgroundShader
+![PS3XMBBackgroundShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/PS3XMBBackgroundShader.gif)
+
+### GradientFlowShader
+![GradientFlowShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/GradientFlowShader.gif)
+
+### ColourfulBubblesShader
+![ColourfulBubblesShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/ColourfulBubblesShader.gif)
+
+### AbstractMovementBackgroundShader
+![AbstractMovementBackgroundShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/AbstractMovementBackgroundShader.gif)
+
 ### MaterialAttach (ComboBox, AutoSuggestBox, CommandBar, MediaTransportControls, ToolTip, Flyout, DatePicker, TimePicker)
 ![MaterialAttach](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MaterialAttach.png)
 

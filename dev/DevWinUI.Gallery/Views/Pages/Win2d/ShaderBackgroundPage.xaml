@@ -47,6 +47,14 @@
                             <ToggleSwitch x:Name="TGSpark" Header="Spark" />
                             <ToggleSwitch x:Name="TGStarNoise" Header="Star Noise" />
                             <ToggleSwitch x:Name="TGStarNest" Header="Star Nest" />
+                            <ToggleSwitch x:Name="TGAbstractMove" Header="Abstract" />
+                            <ToggleSwitch x:Name="TGColourfulBubbles" Header="Bubbles" />
+                            <ToggleSwitch x:Name="TGGradientFlow" Header="Flow" />
+                            <ToggleSwitch x:Name="TGPS3XMB" Header="PS3XMB" />
+                            <ToggleSwitch x:Name="TGResidual" Header="Radiation" />
+                            <ToggleSwitch x:Name="TGTriangleGradient" Header="Triangle" />
+                            <ToggleSwitch x:Name="TGWallpaper" Header="Wallpaper" />
+                            <ToggleSwitch x:Name="TGWavyBackground" Header="Wavy" />
                         </dev:UniformGrid>
                     </StackPanel>
 
@@ -68,6 +76,14 @@
                         <dev:SpectrumRenderer x:Name="SpectrumRendererSample" BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpectrum.IsOn, Mode=OneWay}" />
                         <dev:StarNestRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNest.IsOn, Mode=OneWay}" />
                         <dev:StarNoiseRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNoise.IsOn, Mode=OneWay}" />
+                        <dev:AbstractMovementBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGAbstractMove.IsOn, Mode=OneWay}" />
+                        <dev:ColourfulBubblesRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGColourfulBubbles.IsOn, Mode=OneWay}" />
+                        <dev:GradientFlowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGGradientFlow.IsOn, Mode=OneWay}" />
+                        <dev:PS3XMBBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPS3XMB.IsOn, Mode=OneWay}" />
+                        <dev:ResidualBackgroundRadiationRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGResidual.IsOn, Mode=OneWay}" />
+                        <dev:TriangleGradientBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGTriangleGradient.IsOn, Mode=OneWay}" />
+                        <dev:WallpaperRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWallpaper.IsOn, Mode=OneWay}" />
+                        <dev:WavyBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWavyBackground.IsOn, Mode=OneWay}" />
                     </dev:ShaderBackground.Renderers>
                 </dev:ShaderBackground>
             </local:ControlExample>
