@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ParallaxTiltPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DevWinUIGallery.Models"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/parallaxTilt" HeaderText="ParallaxTilt">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ParallaxTilt &gt; #nl#
+                        &lt;Button Content="Button" /&gt; #nl#
+                        &lt;/dev:ParallaxTilt&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <NumberBox x:Name="NBAngle" Header="MaxTiltAngle" SpinButtonPlacementMode="Inline" Value="15" />
+                        <NumberBox x:Name="NBDepth" Header="ParallaxDepth" SpinButtonPlacementMode="Inline" Value="10" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ParallaxTilt Height="300" MaxTiltAngle="{x:Bind NBAngle.Value, Mode=OneWay}" ParallaxDepth="{x:Bind NBDepth.Value, Mode=OneWay}">
+                    <Image Source="ms-appx:///Assets/Profile/6.jpg" />
+                </dev:ParallaxTilt>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

@@ -210,6 +210,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ParallaxTiltPage",
+          "Title": "Parallax Tilt",
+          "Subtitle": "Parallax Effect",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.RichButtonPage",
           "Title": "Rich Button",
           "Subtitle": "A Button with More Options",

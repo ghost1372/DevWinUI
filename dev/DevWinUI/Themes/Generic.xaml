@@ -157,6 +157,7 @@ Themes\Styles\Controls\MorphingAnimation.xaml
 Themes\Styles\Controls\OptionsPageControl.xaml
 Themes\Styles\Controls\OutOfBoxPage.xaml
 Themes\Styles\Controls\OverviewPageHeader.xaml
+Themes\Styles\Controls\ParallaxTilt.xaml
 Themes\Styles\Controls\Particle.xaml
 Themes\Styles\Controls\PerspectiveHost.xaml
 Themes\Styles\Controls\PerspectiveZoom.xaml
@@ -4855,6 +4856,24 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 <ContentControl MaxHeight="{TemplateBinding FooterMaxHeight}" Margin="{TemplateBinding FooterContentMargin}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{TemplateBinding Footer}" />
               </Expander>
             </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultParallaxTiltStyle" TargetType="local:ParallaxTilt">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ParallaxTilt">
+          <Grid x:Name="PART_RootGrid" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+            <Grid.Projection>
+              <PlaneProjection x:Name="PART_TiltProjection" />
+            </Grid.Projection>
+            <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}">
+              <ContentPresenter.RenderTransform>
+                <CompositeTransform x:Name="PART_ParallaxTransform" />
+              </ContentPresenter.RenderTransform>
+            </ContentPresenter>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -16836,6 +16855,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultParallaxTiltStyle}" TargetType="local:ParallaxTilt" />
   <Style BasedOn="{StaticResource DefaultParticleStyle}" TargetType="local:Particle" />
   <Style BasedOn="{StaticResource DefaultPerspectiveHostStyle}" TargetType="local:PerspectiveHost" />
   <Style BasedOn="{StaticResource DefaultPerspectiveZoomStyle}" TargetType="local:PerspectiveZoom" />

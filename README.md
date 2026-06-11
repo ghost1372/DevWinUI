@@ -128,6 +128,9 @@ Install-Package DevWinUI.Shader
 
 ## 🕰️ History
 
+### ParallaxTilt
+![ParallaxTilt](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ParallaxTilt.gif)
+
 ### WavyBackgroundShader
 ![WavyBackgroundShader](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Shaders/WavyBackgroundShader.gif)
 
