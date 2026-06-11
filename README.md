@@ -22,7 +22,6 @@
 
 <p align="center">
 <img alt="build" src="https://img.shields.io/github/actions/workflow/status/Ghost1372/DevWinUI/publish-release.yml?logo=github"/>
-<img alt="releaseDate" src="https://img.shields.io/github/release-date/Ghost1372/DevWinUI?logo=github&link=https%3A%2F%2Fgithub.com%2FGhost1372%2FDevWinUI%2Freleases"/>
 <a style="text-decoration:none" href="https://www.nuget.org/packages/DevWinUI">
     <img src="https://img.shields.io/nuget/v/DevWinUI?logo=Nuget" alt="DevWinUI NuGet" /></a>
 </p>
@@ -33,7 +32,7 @@
 	
 |Packages|Download/Installation|Documentation|
 |:---|:---|:---:|
-|[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/MahdiHosseini.DevWinUITemplates?label=DevWinUI-Templates)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Marketplace](https://img.shields.io/visual-studio-marketplace/d/MahdiHosseini.DevWinUITemplates?logo=visual%20studio&label=DevWinUI-Templates)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://github.com/Ghost1372/DevWinUI)|
+|[![Visual Studio Marketplace Version](https://img.shields.io/badge/DevWinUI-Templates-blue)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Marketplace](https://img.shields.io/badge/DevWinUI-Templates-blue)](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.DevWinUITemplates)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://github.com/Ghost1372/DevWinUI)|
 ||||
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI.Base?label=DevWinUI.Base)](https://www.nuget.org/packages/DevWinUI.Base)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI.Base?label=DevWinUI.Base)](https://www.nuget.org/packages/DevWinUI.Base)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUIBase)|
 |[![NuGet Version](https://img.shields.io/nuget/v/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![NuGet Download](https://img.shields.io/nuget/dt/DevWinUI?label=DevWinUI)](https://www.nuget.org/packages/DevWinUI)|[![Document](https://img.shields.io/badge/See%20Here-%20?logo=github&label=Document&color=red)](https://Ghost1372.github.io/DevWinUI/)|
