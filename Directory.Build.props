@@ -26,8 +26,8 @@
     <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
-    <IsPreviewBuild>true</IsPreviewBuild>
-    <PreviewLabel>-Preview4</PreviewLabel>
+    <IsPreviewBuild>false</IsPreviewBuild>
+    <PreviewLabel>-Preview1</PreviewLabel>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
     
     <!-- The NuGet package version -->
