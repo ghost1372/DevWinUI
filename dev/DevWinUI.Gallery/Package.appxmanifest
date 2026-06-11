@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="e7e0b312-f00a-403d-9966-f9296c54ae69"
-    Publisher="CN=Mahdi"
-    Version="1.0.0.0" />
+    Name="34768MahdiHosseini.DevWinUIGalleryApp"
+    Publisher="CN=EBE7C7BF-0B02-4AC9-AAE4-FC932096CBF0"
+    Version="10.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="e7e0b312-f00a-403d-9966-f9296c54ae69" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="c8a22099-7591-4331-9b73-230da5b9f5d9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DevWinUI Gallery App</DisplayName>
-    <PublisherDisplayName>Mahdi</PublisherDisplayName>
+    <PublisherDisplayName>Mahdi Hosseini</PublisherDisplayName>
 	<Logo>Assets\Store\StoreLogo.png</Logo>
   </Properties>
 
