@@ -32,7 +32,7 @@
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
-    <CsWin32Version>0.3.275</CsWin32Version>
+    <CsWin32Version>0.3.287</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.2.1</WASDKWinUIVersion>
