@@ -50,8 +50,8 @@ public partial class BetterLyric : Control
     
     private List<RenderLyricsLine>? _renderLyricsLines = null;
 
-    private DispatcherQueueTimer _layoutTimer;
-    private DispatcherQueueTimer _scrollWheelDebounceTimer;
+    private readonly Debouncer _layoutDebouncer = new();
+    private Debouncer _scrollWheelDebounceTimer;
     private bool _isLayoutChanged = false;
     private bool _isNowPlayingPaletteChanged = false;
 
@@ -67,9 +67,6 @@ public partial class BetterLyric : Control
     public BetterLyric()
     {
         DefaultStyleKey = typeof(BetterLyric);
-
-        _layoutTimer = DispatcherQueue.CreateTimer();
-        _scrollWheelDebounceTimer = DispatcherQueue.CreateTimer();
     }
     protected override void OnApplyTemplate()
     {
@@ -187,11 +184,11 @@ public partial class BetterLyric : Control
             value = Math.Clamp(value, -_canvasYScrollTransition.Value - CalculateActualHeight(_renderLyricsLines), -_canvasYScrollTransition.Value);
             _mouseYScrollTransition.Start(value);
 
-            _scrollWheelDebounceTimer.Debounce(() =>
+           _ = _scrollWheelDebounceTimer.RunAsync(() =>
             {
                 _mouseYScrollTransition.Start(0);
                 isMouseScrolling = false;
-            }, TimeSpan.FromSeconds(3));
+            }, (int?)TimeSpan.FromSeconds(3).TotalMilliseconds);
         }
     }
 
@@ -395,10 +392,10 @@ public partial class BetterLyric : Control
 
     private void RequestRelayout()
     {
-        _layoutTimer.Debounce(() =>
+        _ = _layoutDebouncer.RunAsync(() =>
         {
             _isLayoutChanged = true;
-        }, TimeSpan.FromMilliseconds(400));
+        });
     }
 
     private void ResetPlaybackState()
