@@ -1,8 +1,11 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.UI.Xaml.Markup;
+
+namespace DevWinUI;
 
 [TemplatePart(Name = nameof(PART_ScrollBackBtn), Type = typeof(Button))]
 [TemplatePart(Name = nameof(PART_ScrollForwardBtn), Type = typeof(Button))]
 [TemplatePart(Name = nameof(PART_Scroller), Type = typeof(ScrollViewer))]
+[ContentProperty(Name = nameof(Source))]
 public partial class HorizontalScrollContainer : Control
 {
     private const string PART_Scroller = "PART_Scroller";
