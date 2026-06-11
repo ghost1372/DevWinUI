@@ -77,6 +77,10 @@ Install this package to access core utilities, including services, helpers, exte
 ```
 Install-Package DevWinUI.Base
 ```
+Or
+```
+dotnet add package DevWinUI.Base
+```
 
 ## 💻 DevWinUI
 Install this package for custom controls, styles, XAML resources, and more. It also includes `DevWinUI.Base`.
@@ -84,6 +88,11 @@ Install this package for custom controls, styles, XAML resources, and more. It a
 ```
 Install-Package DevWinUI
 ```
+Or
+```
+dotnet add package DevWinUI
+```
+
 After installing, add the following resource to `App.xaml`
 
 ```xml
@@ -99,12 +108,20 @@ Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps 
 ```
 Install-Package DevWinUI.ContextMenu
 ```
+Or
+```
+dotnet add package DevWinUI.ContextMenu
+```
 
 ## 💻 DevWinUI.SourceGenerator
 
 Some useful Source Generator
 ```
 Install-Package DevWinUI.SourceGenerator
+```
+Or
+```
+dotnet add package DevWinUI.SourceGenerator
 ```
 
 ## DevWinUI.Shader
@@ -120,6 +137,10 @@ internally.
 
 ```
 Install-Package DevWinUI.Shader
+```
+Or
+```
+dotnet add package DevWinUI.Shader
 ```
 
 ##

@@ -29,6 +29,11 @@
 ```
 Install-Package DevWinUI.Base
 ```
+Or
+```
+dotnet add package DevWinUI.Base
+```
+
 
 ## ⚠️ Important: Package Renaming (v10.0.0+)
 

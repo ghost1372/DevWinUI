@@ -38,6 +38,10 @@ internally.
 ```
 Install-Package DevWinUI.Shader
 ```
+Or
+```
+dotnet add package DevWinUI.Shader
+```
 
 ## Demo
 

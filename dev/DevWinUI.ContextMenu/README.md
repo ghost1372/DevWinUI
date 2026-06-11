@@ -27,6 +27,10 @@ Add a new ContextMenu for Windows 11/10. You can use it in any .Net >= 8.0 apps 
 ```
 Install-Package DevWinUI.ContextMenu
 ```
+Or
+```
+dotnet add package DevWinUI.ContextMenu
+```
 
 read the docs to see how to use it
 

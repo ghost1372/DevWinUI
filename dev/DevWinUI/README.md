@@ -31,6 +31,10 @@ Note: This library uses `Microsoft.Graphics.Win2D` internally.
 ```
 Install-Package DevWinUI
 ```
+Or
+```
+dotnet add package DevWinUI
+```
 
 After installing, add the following resource to app.xaml
 
