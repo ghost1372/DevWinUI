@@ -123,7 +123,7 @@ public sealed partial class ControlExample : OptionsPageControl
                 docTypeValue = "DevWinUI";
                 break;
             case DocType.Shader:
-                docTypeValue = "Shader";
+                docTypeValue = "DevWinUIShader";
                 break;
             case DocType.ContextMenu:
                 docTypeValue = "DevWinUIContextMenu";
