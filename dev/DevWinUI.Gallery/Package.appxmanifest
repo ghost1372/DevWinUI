@@ -10,7 +10,7 @@
   <Identity
     Name="34768MahdiHosseini.DevWinUIGalleryApp"
     Publisher="CN=EBE7C7BF-0B02-4AC9-AAE4-FC932096CBF0"
-    Version="10.0.0.0" />
+    Version="10.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="c8a22099-7591-4331-9b73-230da5b9f5d9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

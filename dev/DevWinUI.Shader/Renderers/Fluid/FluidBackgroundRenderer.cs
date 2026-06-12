@@ -72,7 +72,7 @@ public partial class FluidBackgroundRenderer : RendererBase
 
         UpdateBreathing(currentBassEnergy, breathingIntensity);
 
-        if (!IsStatic)
+        if (!isStatic)
         {
             _timeAccumulator += (float)elapsedTime.TotalSeconds;
         }
@@ -91,7 +91,7 @@ public partial class FluidBackgroundRenderer : RendererBase
 
         ICanvasImage? sourceToDraw;
 
-        if (IsStatic)
+        if (isStatic)
         {
             bool needsUpdateCache = _cachedRenderTarget == null ||
                 _cachedRenderTarget.Size.Width != sender.Size.Width ||

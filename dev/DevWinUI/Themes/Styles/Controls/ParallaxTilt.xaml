@@ -10,17 +10,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:ParallaxTilt">
                     <Grid x:Name="PART_RootGrid" Background="Transparent" RenderTransformOrigin="0.5,0.5">
-
-                        <Grid.Projection>
-                            <PlaneProjection x:Name="PART_TiltProjection" />
-                        </Grid.Projection>
-
                         <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}">
                             <ContentPresenter.RenderTransform>
                                 <CompositeTransform x:Name="PART_ParallaxTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

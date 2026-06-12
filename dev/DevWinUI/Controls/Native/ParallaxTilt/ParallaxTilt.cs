@@ -7,10 +7,9 @@ namespace DevWinUI;
 public partial class ParallaxTilt : ContentControl
 {
     private const string PART_RootGrid = "PART_RootGrid";
-    private const string PART_TiltProjection = "PART_TiltProjection";
     private const string PART_ParallaxTransform = "PART_ParallaxTransform";
     private Grid rootGrid;
-    private PlaneProjection planeProjection;
+    private readonly PlaneProjection planeProjection = new PlaneProjection();
     private CompositeTransform compositeTransform;
 
     public static readonly DependencyProperty MaxTiltAngleProperty =
@@ -52,8 +51,9 @@ public partial class ParallaxTilt : ContentControl
     {
         base.OnApplyTemplate();
         rootGrid = GetTemplateChild(PART_RootGrid) as Grid;
-        planeProjection = GetTemplateChild(PART_TiltProjection) as PlaneProjection;
         compositeTransform = GetTemplateChild(PART_ParallaxTransform) as CompositeTransform;
+
+        rootGrid.Projection = planeProjection;
 
         CompositionTarget.Rendering -= OnRendering;
         CompositionTarget.Rendering += OnRendering;
@@ -70,7 +70,7 @@ public partial class ParallaxTilt : ContentControl
         PointerExited -= OnPointerExited;
         PointerExited += OnPointerExited;
     }
-    
+
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         CompositionTarget.Rendering -= OnRendering;
@@ -113,7 +113,7 @@ public partial class ParallaxTilt : ContentControl
     }
 
     private void OnRendering(object? sender, object e)
-    {
+    {        
         const double lerpFactor = 0.15;
 
         if (Math.Abs(_targetRotationX - _currentRotationX) > 0.01 ||
@@ -124,10 +124,10 @@ public partial class ParallaxTilt : ContentControl
             _currentTranslateX += (_targetTranslateX - _currentTranslateX) * lerpFactor;
             _currentTranslateY += (_targetTranslateY - _currentTranslateY) * lerpFactor;
 
-            planeProjection.RotationX = _currentRotationX;
-            planeProjection.RotationY = _currentRotationY;
-            compositeTransform.TranslateX = _currentTranslateX;
-            compositeTransform.TranslateY = _currentTranslateY;
+            planeProjection?.RotationX = _currentRotationX;
+            planeProjection?.RotationY = _currentRotationY;
+            compositeTransform?.TranslateX = _currentTranslateX;
+            compositeTransform?.TranslateY = _currentTranslateY;
         }
     }
 }

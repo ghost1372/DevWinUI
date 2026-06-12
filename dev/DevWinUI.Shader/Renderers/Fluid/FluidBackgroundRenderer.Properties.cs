@@ -8,7 +8,7 @@ public partial class FluidBackgroundRenderer
 {
     private bool isFluidOverlayLightWaveEnabled = false;
     private bool isColorDitheringEnabled = true;
-    public bool isStatic { get; set; } = false;
+    private bool isStatic = false;
     private double fluidOverlayOpacity = 100.0;
     private Color fluidAccentColor1 = Colors.Blue;
     private Color fluidAccentColor2 = Colors.AliceBlue;
