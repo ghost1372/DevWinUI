@@ -34,6 +34,7 @@ public partial class NavigationServiceEx
         if (_mainBreadcrumb != null)
         {
             _mainBreadcrumb.Visibility = Visibility.Collapsed;
+            breadcrumbNavigator.SettingsPageType = _settingsPage;
             _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
 
             _useBreadcrumbBar = true;

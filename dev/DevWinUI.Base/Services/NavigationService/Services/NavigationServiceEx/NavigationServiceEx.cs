@@ -80,6 +80,8 @@ public partial class NavigationServiceEx : INavigationServiceEx
             {
                 pageTitle = item.Content.ToString();
             }
+            // Inform breadcrumb navigator to prepare the special entrance behavior for settings
+            _mainBreadcrumb?.PrepareForSettingsEntrance();
             NavigateTo(_settingsPage, pageTitle);
         }
         else

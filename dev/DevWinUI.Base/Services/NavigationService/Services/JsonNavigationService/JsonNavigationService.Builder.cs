@@ -212,6 +212,7 @@ public partial class JsonNavigationService
         if (_mainBreadcrumb != null)
         {
             _mainBreadcrumb.Visibility = Visibility.Collapsed;
+            _mainBreadcrumb.SettingsPageType = _settingsPage;
             _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
 
             _useBreadcrumbBar = true;
