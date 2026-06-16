@@ -76,6 +76,16 @@ public partial class FluidBackgroundRenderer : RendererBase
         {
             _timeAccumulator += (float)elapsedTime.TotalSeconds;
         }
+
+        if (is3DEnabled)
+        {
+            Vector3 center = new Vector3((float)sender.Size.Width / 2, (float)sender.Size.Height / 2, 0);
+            base.UpdateParallaxMatrix(center, isAutoParallax: true);
+        }
+        else
+        {
+            base.ResetParallaxMatrix();
+        }
     }
 
     public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -131,7 +141,7 @@ public partial class FluidBackgroundRenderer : RendererBase
 
         if (currentOpacity >= 1.0)
         {
-            ds.DrawImage(sourceToDraw);
+            base.DrawWithParallax(ds, sourceToDraw);
         }
         else
         {
@@ -140,7 +150,7 @@ public partial class FluidBackgroundRenderer : RendererBase
                 Source = sourceToDraw,
                 Opacity = (float)currentOpacity
             };
-            ds.DrawImage(opacityEffect);
+            base.DrawWithParallax(ds, opacityEffect);
         }
 
         ResetTransform(ds, isBreathingEffectEnabled);

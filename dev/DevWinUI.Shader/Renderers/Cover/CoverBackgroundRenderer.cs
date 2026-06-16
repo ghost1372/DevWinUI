@@ -103,6 +103,15 @@ public partial class CoverBackgroundRenderer : RendererBase
             _previousTargetCache = null;
         }
 
+        if (is3DEnabled)
+        {
+            Vector3 center = new Vector3((float)sender.Size.Width / 2, (float)sender.Size.Height / 2, 0);
+            base.UpdateParallaxMatrix(center, isAutoParallax: true);
+        }
+        else
+        {
+            base.ResetParallaxMatrix();
+        }
     }
     public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
     {
@@ -134,16 +143,19 @@ public partial class CoverBackgroundRenderer : RendererBase
 
         ApplyBreathingTransform(ds, screenCenter, isBreathingEffectEnabled);
 
-        if (isCrossfading)
+        if (!_threeDimMatrix.IsIdentity)
         {
-            DrawCachedLayer(ds, _previousTargetCache, screenCenter, angle, baseAlpha);
+            using var commandList = new CanvasCommandList(sender);
+            using (var layerDs = commandList.CreateDrawingSession())
+            {
+                Draw2DComposition(layerDs, screenCenter, angle, baseAlpha, fadeProgress, isCrossfading);
+            }
 
-            float newLayerAlpha = baseAlpha * (float)fadeProgress;
-            DrawCachedLayer(ds, _currentTargetCache, screenCenter, angle, newLayerAlpha);
+            base.DrawWithParallax(ds, commandList);
         }
-        else if (_currentTargetCache != null)
+        else
         {
-            DrawCachedLayer(ds, _currentTargetCache, screenCenter, angle, baseAlpha);
+            Draw2DComposition(ds, screenCenter, angle, baseAlpha, fadeProgress, isCrossfading);
         }
 
         ResetTransform(ds, isBreathingEffectEnabled);
@@ -228,7 +240,20 @@ public partial class CoverBackgroundRenderer : RendererBase
 
         ds.Transform = previousTransform;
     }
+    private void Draw2DComposition(CanvasDrawingSession ds, Vector2 screenCenter, float angle, float baseAlpha, double fadeProgress, bool isCrossfading)
+    {
+        if (isCrossfading)
+        {
+            DrawCachedLayer(ds, _previousTargetCache, screenCenter, angle, baseAlpha);
 
+            float newLayerAlpha = baseAlpha * (float)fadeProgress;
+            DrawCachedLayer(ds, _currentTargetCache, screenCenter, angle, newLayerAlpha);
+        }
+        else if (_currentTargetCache != null)
+        {
+            DrawCachedLayer(ds, _currentTargetCache, screenCenter, angle, baseAlpha);
+        }
+    }
     public override void Dispose()
     {
         _currentBitmap?.Dispose();

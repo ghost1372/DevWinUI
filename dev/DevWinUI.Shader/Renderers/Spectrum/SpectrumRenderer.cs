@@ -1,10 +1,10 @@
-﻿using Microsoft.Graphics.Canvas;
+﻿using System.Numerics;
+using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
-using System.Numerics;
 using Windows.Foundation;
 using Windows.UI;
 
@@ -32,16 +32,40 @@ public partial class SpectrumRenderer : RendererBase
                 ? new Vector2((float)(spectrumAlbumArtRect.X + spectrumAlbumArtRect.Width / 2), (float)(spectrumAlbumArtRect.Y + spectrumAlbumArtRect.Height / 2))
                 : new Vector2((float)sender.Size.Width / 2, spectrumPlacement == SpectrumPlacement.Bottom ? (float)sender.Size.Height : 0);
 
-            ApplyBreathingTransform(ds, center, isBreathingEffectEnabled);
+            if (!_threeDimMatrix.IsIdentity)
+            {
+                using var commandList = new CanvasCommandList(sender);
+                using (var layerDs = commandList.CreateDrawingSession())
+                {
+                    Draw2DComposition(layerDs, center, isBreathingEffectEnabled, spectrumColor, isSpectrumGlowEffectEnabled, currentOpacity, spectrumPlacement, spectrumStyle, sender.Size.Height, spectrumAlbumArtRect);
+                }
 
-            DrawGeometry(ds, _spectrumGeometry, spectrumColor, isSpectrumGlowEffectEnabled, currentOpacity, spectrumPlacement, spectrumStyle, sender.Size.Height, spectrumAlbumArtRect);
-
-            ResetTransform(ds, isBreathingEffectEnabled);
+                base.DrawWithParallax(ds, commandList);
+            }
+            else
+            {
+                Draw2DComposition(ds, center, isBreathingEffectEnabled, spectrumColor, isSpectrumGlowEffectEnabled, currentOpacity, spectrumPlacement, spectrumStyle, sender.Size.Height, spectrumAlbumArtRect);
+            }
         }
     }
     public override void Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
     {
         UpdateBreathing(currentBassEnergy, breathingIntensity);
+
+        if (is3DEnabled)
+        {
+            Vector2 trueCenter2D = spectrumPlacement == SpectrumPlacement.AroundAlbumArt
+                ? new Vector2((float)(spectrumAlbumArtRect.X + spectrumAlbumArtRect.Width / 2), (float)(spectrumAlbumArtRect.Y + spectrumAlbumArtRect.Height / 2))
+                : new Vector2((float)sender.Size.Width / 2, spectrumPlacement == SpectrumPlacement.Bottom ? (float)sender.Size.Height : 0);
+
+            Vector3 center3D = new Vector3(trueCenter2D.X, trueCenter2D.Y, 0);
+
+            base.UpdateParallaxMatrix(center3D, isAutoParallax: true);
+        }
+        else
+        {
+            base.ResetParallaxMatrix();
+        }
     }
     private CanvasGeometry? CreateGeometry(
         ICanvasResourceCreator creator,
@@ -366,7 +390,26 @@ public partial class SpectrumRenderer : RendererBase
 
         brush.Dispose();
     }
+    private void Draw2DComposition(
+            CanvasDrawingSession ds,
+            Vector2 center,
+            bool isBreathingEffectEnabled,
+            Color fillColor,
+            bool isGlowEffectEnabled,
+            float opacity,
+            SpectrumPlacement placement,
+            SpectrumStyle style,
+            double canvasHeight,
+            Rect albumRect)
+    {
+        if (_spectrumGeometry == null) return;
 
+        ApplyBreathingTransform(ds, center, isBreathingEffectEnabled);
+
+        DrawGeometry(ds, _spectrumGeometry, fillColor, isGlowEffectEnabled, opacity, placement, style, canvasHeight, albumRect);
+
+        ResetTransform(ds, isBreathingEffectEnabled);
+    }
     public override void Dispose()
     {
         _spectrumGeometry?.Dispose();

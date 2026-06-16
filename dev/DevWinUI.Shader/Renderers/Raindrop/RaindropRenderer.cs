@@ -1,8 +1,8 @@
-﻿using ComputeSharp.D2D1.WinUI;
+﻿using System.Numerics;
+using ComputeSharp.D2D1.WinUI;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using System.Numerics;
 
 namespace DevWinUI;
 
@@ -26,6 +26,16 @@ public partial class RaindropRenderer : RendererBase
         TimeSpan elapsedTime = args.Timing.ElapsedTime;
 
         _timeAccumulator += (float)elapsedTime.TotalSeconds;
+
+        if (is3DEnabled)
+        {
+            Vector3 center = new Vector3((float)sender.Size.Width / 2, (float)sender.Size.Height / 2, 0);
+            base.UpdateParallaxMatrix(center, isAutoParallax: true);
+        }
+        else
+        {
+            base.ResetParallaxMatrix();
+        }
     }
 
     public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -50,7 +60,7 @@ public partial class RaindropRenderer : RendererBase
         );
 
         ApplyBreathingTransform(ds, center, isBreathingEffectEnabled);
-        ds.DrawImage(_raindropEffect);
+        base.DrawWithParallax(ds, _raindropEffect);
         ResetTransform(ds, isBreathingEffectEnabled);
     }
 
