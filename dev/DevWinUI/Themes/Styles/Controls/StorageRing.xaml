@@ -139,9 +139,9 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="PART_Container" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource StorageRingBackgroundBrush}" BackgroundSizing="OuterBorderEdge">
 
-                            <RingShape x:Name="PART_TrackRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Background}" StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}" StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}" StrokeThickness="{TemplateBinding TrackRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
+                            <local:RingShape x:Name="PART_TrackRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Background}" StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}" StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}" StrokeThickness="{TemplateBinding TrackRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
-                            <RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
+                            <local:RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
                         </Grid>
                     </Border>
