@@ -89,8 +89,8 @@
         <Setter Property="Foreground" Value="{ThemeResource StorageRingValueBrush}" />
         <Setter Property="ValueRingThickness" Value="{ThemeResource StorageRingValueRingThickness}" />
         <Setter Property="TrackRingThickness" Value="{ThemeResource StorageRingTrackRingThickness}" />
-        <Setter Property="Width" Value="128" />
-        <Setter Property="Height" Value="128" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
         <Setter Property="MinAngle" Value="0" />
         <Setter Property="MaxAngle" Value="360" />
         <Setter Property="StartAngle" Value="0" />
@@ -115,45 +115,33 @@
                                 <VisualState x:Name="Safe" />
 
                                 <VisualState x:Name="Caution">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCautionBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCautionBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCautionBrush}" />
+                                        <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCautionBrush}" />
+                                    </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Critical">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCriticalBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCriticalBrush}" />
+                                        <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
+                                    </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                                        <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                                    </VisualState.Setters>
                                 </VisualState>
 
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="PART_Container" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource StorageRingBackgroundBrush}" BackgroundSizing="OuterBorderEdge">
 
-                            <local:RingShape x:Name="PART_TrackRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Background}" StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}" StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}" StrokeThickness="{TemplateBinding TrackRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
+                            <RingShape x:Name="PART_TrackRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Background}" StrokeEndLineCap="{ThemeResource StorageRingTrackEndCap}" StrokeStartLineCap="{ThemeResource StorageRingTrackStartCap}" StrokeThickness="{TemplateBinding TrackRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
-                            <local:RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
+                            <RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
 
                         </Grid>
                     </Border>

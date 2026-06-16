@@ -46,14 +46,14 @@
                         </Grid.ColumnDefinitions>
 
                         <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem" Grid.Column="0" Padding="{StaticResource BreadcrumbBarRootItemPadding}" ChevronToolTip="{TemplateBinding RootItemChevronToolTip}" CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}" ItemToolTip="{TemplateBinding RootItemToolTip}">
-                            <ContentPresenter Content="{Binding RootItem, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                            <ContentPresenter Content="{TemplateBinding RootItem}" />
                         </local:BreadcrumbBarItem>
 
                         <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem" Grid.Column="1" Margin="{StaticResource BreadcrumbBarItemMargin}" IsEllipsis="True" ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}" Visibility="Collapsed">
                             <FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}" Glyph="&#xE712;" />
                         </local:BreadcrumbBarItem>
 
-                        <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                        <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding ItemsSource}" />
 
                     </Grid>
                 </ControlTemplate>
