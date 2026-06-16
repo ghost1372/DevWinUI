@@ -29,7 +29,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                        <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Header}" />
 
                         <Grid x:Name="PART_RootPanel" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid.ColumnDefinitions>
@@ -37,11 +37,11 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                            <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{TemplateBinding MainContent}" />
 
                             <StackPanel Grid.Column="1" Width="{StaticResource SamplePanelSideContentWidth}" Padding="{TemplateBinding Padding}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" Spacing="12">
 
-                                <ContentPresenter Margin="0,12,0,0" Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                <ContentPresenter Margin="0,12,0,0" Content="{TemplateBinding SideContent}" />
 
                             </StackPanel>
                         </Grid>
