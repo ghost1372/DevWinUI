@@ -101,6 +101,7 @@ public partial class MatrixRainRenderer
     {
         var ctl = (MatrixRainRenderer)d;
         ctl.matrixRainFontSize = (double)e.NewValue;
+        ctl.InvalidateGlyphLayouts();
     }
 
     public string Glyphs
@@ -116,5 +117,6 @@ public partial class MatrixRainRenderer
     {
         var ctl = (MatrixRainRenderer)d;
         ctl.matrixRainGlyphs = (string)e.NewValue;
+        ctl.InvalidateGlyphLayouts();
     }
 }
