@@ -462,7 +462,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
@@ -764,7 +764,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
@@ -1049,7 +1049,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="SystemControlBackgroundBaseLowBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemColorHotlightColorBrush" />
@@ -5346,34 +5346,22 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <VisualStateGroup x:Name="ControlStates">
                 <VisualState x:Name="Safe" />
                 <VisualState x:Name="Caution">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueCautionBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackCautionBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Critical">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueCriticalBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackCriticalBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueDisabledBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackDisabledBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
@@ -5398,8 +5386,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="Foreground" Value="{ThemeResource StorageRingValueBrush}" />
     <Setter Property="ValueRingThickness" Value="{ThemeResource StorageRingValueRingThickness}" />
     <Setter Property="TrackRingThickness" Value="{ThemeResource StorageRingTrackRingThickness}" />
-    <Setter Property="Width" Value="128" />
-    <Setter Property="Height" Value="128" />
+    <Setter Property="Width" Value="16" />
+    <Setter Property="Height" Value="16" />
     <Setter Property="MinAngle" Value="0" />
     <Setter Property="MaxAngle" Value="360" />
     <Setter Property="StartAngle" Value="0" />
@@ -5421,34 +5409,22 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <VisualStateGroup x:Name="ControlStates">
                 <VisualState x:Name="Safe" />
                 <VisualState x:Name="Caution">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCautionBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCautionBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Critical">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCriticalBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
@@ -5853,12 +5829,12 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem" Grid.Column="0" Padding="{StaticResource BreadcrumbBarRootItemPadding}" ChevronToolTip="{TemplateBinding RootItemChevronToolTip}" CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}" ItemToolTip="{TemplateBinding RootItemToolTip}">
-              <ContentPresenter Content="{Binding RootItem, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              <ContentPresenter Content="{TemplateBinding RootItem}" />
             </local:BreadcrumbBarItem>
             <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem" Grid.Column="1" Margin="{StaticResource BreadcrumbBarItemMargin}" IsEllipsis="True" ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}" Visibility="Collapsed">
               <FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}" Glyph="" />
             </local:BreadcrumbBarItem>
-            <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding ItemsSource}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -6477,15 +6453,15 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Header}" />
             <Grid x:Name="PART_RootPanel" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
-              <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{TemplateBinding MainContent}" />
               <StackPanel Grid.Column="1" Width="{StaticResource SamplePanelSideContentWidth}" Padding="{TemplateBinding Padding}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" Spacing="12">
-                <ContentPresenter Margin="0,12,0,0" Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                <ContentPresenter Margin="0,12,0,0" Content="{TemplateBinding SideContent}" />
               </StackPanel>
             </Grid>
           </Grid>

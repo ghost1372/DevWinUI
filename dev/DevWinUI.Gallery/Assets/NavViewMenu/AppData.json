@@ -20,6 +20,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Extensions.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TextBlockHelperPage",
+          "Title": "TextBlock Helper",
+          "IsNew": true,
+          "Subtitle": "Animate TextBlock Text when Changed",
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.MaterialAttachPage",
           "Title": "Material Attach",
           "IsNew": true,
