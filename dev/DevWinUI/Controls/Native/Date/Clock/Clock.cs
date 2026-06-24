@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Input;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
@@ -108,6 +109,9 @@ public partial class Clock : Control
         _grid.PointerWheelChanged += OnGridPointerWheelChanged;
 
         _grid.PointerMoved += OnGridPointerMoved;
+
+        _blockTime.Tapped -= OnBlockTimeTapped;
+        _blockTime.Tapped += OnBlockTimeTapped;
 
         _rotateTransformClock = new RotateTransform();
         _minuteHandLine.RenderTransform = _rotateTransformClock;
@@ -293,4 +297,29 @@ public partial class Clock : Control
     private void ButtonAm_OnClick(object sender, RoutedEventArgs e) => Update();
 
     private void ButtonPm_OnClick(object sender, RoutedEventArgs e) => Update();
+
+    private void OnBlockTimeTapped(object sender, TappedRoutedEventArgs e)
+    {
+        if (!isTemplateApplied || _blockTime == null)
+            return;
+
+        var flyout = new Flyout();
+        var timePicker = new TimePicker
+        {
+            SelectedTime = new TimeSpan(SelectedTime.Hour, SelectedTime.Minute, SelectedTime.Second)
+        };
+
+        flyout.Content = timePicker;
+        flyout.Closed += (s, args) =>
+        {
+            if (timePicker.SelectedTime is TimeSpan ts)
+            {
+                Update(new DateTime(
+                    SelectedTime.Year, SelectedTime.Month, SelectedTime.Day,
+                    ts.Hours, ts.Minutes, ts.Seconds));
+            }
+        };
+
+        flyout.ShowAt(_blockTime);
+    }
 }

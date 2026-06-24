@@ -5,18 +5,18 @@
 <!--
 Source files:
 Controls\Ported\BreadcrumbBar\BreadcrumbBar.xaml
-Controls\Ported\Dialogs\ContentDialog\ContentDialogView.xaml
 Controls\Ported\Dialogs\ContentDialog\ContentDialogView_themeresources.xaml
+Controls\Ported\Dialogs\ContentDialog\ContentDialogView.xaml
 Controls\Ported\Dialogs\ContentDialog\ContentDialogWindow.xaml
-Controls\Ported\Dialogs\ContentWindow\ContentWindow.xaml
 Controls\Ported\Dialogs\ContentWindow\ContentWindow_themeresources.xaml
+Controls\Ported\Dialogs\ContentWindow\ContentWindow.xaml
 Controls\Ported\Dialogs\DialogWindowBase.xaml
 Controls\Ported\Dialogs\ExtendedContentDialog\ExtendedContentDialogView.xaml
 Controls\Ported\Dialogs\ExtendedContentDialog\ExtendedContentDialogWindow.xaml
-Controls\Ported\Dialogs\MessageBox\MessageBoxView.xaml
 Controls\Ported\Dialogs\MessageBox\MessageBoxView_themeresources.xaml
-Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView.xaml
+Controls\Ported\Dialogs\MessageBox\MessageBoxView.xaml
 Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView_themeresources.xaml
+Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView.xaml
 Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogWindow.xaml
 Controls\Ported\LoopingSelector\LoopingSelector.xaml
 Controls\Ported\PagerControl\PagerControl.xaml
@@ -96,6 +96,7 @@ Themes\Styles\Controls\CheckBoxWithDescriptionControl.xaml
 Themes\Styles\Controls\CheckUpdateControl.xaml
 Themes\Styles\Controls\CircleIcon.xaml
 Themes\Styles\Controls\Clock.xaml
+Themes\Styles\Controls\ClockPicker.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
 Themes\Styles\Controls\ColorPalette.xaml
@@ -462,7 +463,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
@@ -764,7 +765,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="ControlFillColorTransparentBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemFillColorCautionBrush" />
@@ -1049,7 +1050,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
       <x:Double x:Key="StorageBarValueHeight">6</x:Double>
       <x:Double x:Key="StorageBarTrackHeight">2</x:Double>
-      <Thickness x:Key="StorageBarPadding">0,4,0,4</Thickness>
+      <Thickness x:Key="StorageBarPadding">4,4,4,4</Thickness>
       <StaticResource x:Key="StorageBarBackgroundBrush" ResourceKey="SystemControlBackgroundBaseLowBrush" />
       <StaticResource x:Key="StorageBarValueBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="StorageBarValueCautionBrush" ResourceKey="SystemColorHotlightColorBrush" />
@@ -1100,6 +1101,10 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <CornerRadius x:Key="BreadcrumbBarItemCornerRadius">2,2,2,2</CornerRadius>
   <CornerRadius x:Key="BreadcrumbBarChevronCornerRaduis">2,2,2,2</CornerRadius>
   <CornerRadius x:Key="BreadcrumbBarRootItemCornerRadius">16,2,2,16</CornerRadius>
+  <Thickness x:Key="ContentDialogViewTitlePadding">24,24,24,0</Thickness>
+  <Thickness x:Key="ContentDialogViewContentPadding">24,0,24,24</Thickness>
+  <Color x:Key="ContentDialogViewCommandSpaceBackground">#0F000000</Color>
+  <Color x:Key="ContentDialogViewSeparatorBorderColor">#19000000</Color>
   <x:Double x:Key="ContentDialogViewButtonSpacing">8</x:Double>
   <Style TargetType="local:ContentDialogView">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
@@ -1246,10 +1251,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Thickness x:Key="ContentDialogViewTitlePadding">24,24,24,0</Thickness>
-  <Thickness x:Key="ContentDialogViewContentPadding">24,0,24,24</Thickness>
-  <Color x:Key="ContentDialogViewCommandSpaceBackground">#0F000000</Color>
-  <Color x:Key="ContentDialogViewSeparatorBorderColor">#19000000</Color>
   <Style x:Key="ContentWindowDefaultStyle" TargetType="local:ContentWindow">
     <Setter Property="TitleBarButtonForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
     <Setter Property="TitleBarButtonHoverForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
@@ -1312,7 +1313,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <local:MessageBoxDefaultButtonToContentDialogButtonConverter x:Key="MessageBoxDefaultButtonToContentDialogButtonConverter" />
   <x:Double x:Key="MessageBoxIconFontSize">36</x:Double>
   <Thickness x:Key="MessageBoxIconMargin">0,0,12,0</Thickness>
   <x:String x:Key="MessageBoxIconBackgroundGlyph"></x:String>
@@ -1322,6 +1322,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <x:String x:Key="MessageBoxErrorIconGlyph"></x:String>
   <x:String x:Key="MessageBoxWarningIconGlyph"></x:String>
   <x:String x:Key="MessageBoxSuccessIconGlyph"></x:String>
+  <local:MessageBoxDefaultButtonToContentDialogButtonConverter x:Key="MessageBoxDefaultButtonToContentDialogButtonConverter" />
   <x:Double x:Key="PagerControlNumberPanelButtonWidth">32</x:Double>
   <x:Double x:Key="SamplePanelSideContentWidth">360</x:Double>
   <Thickness x:Key="SamplePanelPadding">24</Thickness>
@@ -5346,34 +5347,22 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <VisualStateGroup x:Name="ControlStates">
                 <VisualState x:Name="Safe" />
                 <VisualState x:Name="Caution">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueCautionBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackCautionBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Critical">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueCriticalBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackCriticalBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarValueDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackBar" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageBarTrackDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueBar.Background" Value="{ThemeResource StorageBarValueDisabledBrush}" />
+                    <Setter Target="PART_TrackBar.Background" Value="{ThemeResource StorageBarTrackDisabledBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
@@ -5398,8 +5387,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="Foreground" Value="{ThemeResource StorageRingValueBrush}" />
     <Setter Property="ValueRingThickness" Value="{ThemeResource StorageRingValueRingThickness}" />
     <Setter Property="TrackRingThickness" Value="{ThemeResource StorageRingTrackRingThickness}" />
-    <Setter Property="Width" Value="128" />
-    <Setter Property="Height" Value="128" />
+    <Setter Property="Width" Value="16" />
+    <Setter Property="Height" Value="16" />
     <Setter Property="MinAngle" Value="0" />
     <Setter Property="MaxAngle" Value="360" />
     <Setter Property="StartAngle" Value="0" />
@@ -5421,34 +5410,22 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <VisualStateGroup x:Name="ControlStates">
                 <VisualState x:Name="Safe" />
                 <VisualState x:Name="Caution">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCautionBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCautionBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCautionBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Critical">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingValueCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource StorageRingValueCriticalBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource StorageRingTrackCriticalBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ValueRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TrackRingShape" Storyboard.TargetProperty="Stroke">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
+                  <VisualState.Setters>
+                    <Setter Target="PART_ValueRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                    <Setter Target="PART_TrackRingShape.Stroke" Value="{ThemeResource ControlStrongStrokeColorDisabledBrush}" />
+                  </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
@@ -5853,12 +5830,12 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <local:BreadcrumbBarItem x:Name="PART_RootBreadcrumbBarItem" Grid.Column="0" Padding="{StaticResource BreadcrumbBarRootItemPadding}" ChevronToolTip="{TemplateBinding RootItemChevronToolTip}" CornerRadius="{StaticResource BreadcrumbBarRootItemCornerRadius}" ItemToolTip="{TemplateBinding RootItemToolTip}">
-              <ContentPresenter Content="{Binding RootItem, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              <ContentPresenter Content="{TemplateBinding RootItem}" />
             </local:BreadcrumbBarItem>
             <local:BreadcrumbBarItem x:Name="PART_EllipsisBreadcrumbBarItem" Grid.Column="1" Margin="{StaticResource BreadcrumbBarItemMargin}" IsEllipsis="True" ToolTipService.ToolTip="{TemplateBinding EllipsisButtonToolTip}" Visibility="Collapsed">
               <FontIcon FontSize="{StaticResource BreadcrumbBarEllipsisFontSize}" Glyph="" />
             </local:BreadcrumbBarItem>
-            <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            <ItemsRepeater x:Name="PART_MainItemsRepeater" Grid.Column="2" Margin="{StaticResource BreadcrumbBarItemMargin}" HorizontalAlignment="Left" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding ItemsSource}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -6477,15 +6454,15 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+            <TextBlock Grid.Row="0" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Header}" />
             <Grid x:Name="PART_RootPanel" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
-              <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{Binding MainContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              <ContentPresenter Grid.Column="0" Padding="{TemplateBinding Padding}" Content="{TemplateBinding MainContent}" />
               <StackPanel Grid.Column="1" Width="{StaticResource SamplePanelSideContentWidth}" Padding="{TemplateBinding Padding}" Background="{ThemeResource LayerFillColorDefaultBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="1,0,0,0" Spacing="12">
-                <ContentPresenter Margin="0,12,0,0" Content="{Binding SideContent, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                <ContentPresenter Margin="0,12,0,0" Content="{TemplateBinding SideContent}" />
               </StackPanel>
             </Grid>
           </Grid>
@@ -14960,6 +14937,162 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultCircleIconStyle}" TargetType="local:CircleIcon" />
   <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
+  <Style x:Key="DefaultClockPickerStyle" TargetType="local:ClockPicker">
+    <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
+    <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource CalendarDatePickerBorderThemeThickness}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="FocusVisualMargin" Value="-3" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="PlaceholderText" Value="select a time" />
+    <Setter Property="ConfirmButtonContent" Value="Confirm" />
+    <Setter Property="ConfirmButtonStyle" Value="{StaticResource AccentButtonStyle}" />
+    <Setter Property="ShowConfirmButton" Value="True" />
+    <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
+    <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ClockPicker">
+          <Grid x:Name="PART_Root">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TimeText" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerTextForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClockGlyph" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerCalendarGlyphForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TimeText" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerTextForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClockGlyph" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerCalendarGlyphForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBackgroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerBorderBrushDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerHeaderForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TimeText" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerTextForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClockGlyph" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerCalendarGlyphForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="FocusStates">
+                <VisualState x:Name="Unfocused" />
+                <VisualState x:Name="PointerFocused" />
+                <VisualState x:Name="Focused" />
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="SelectionStates">
+                <VisualState x:Name="Unselected" />
+                <VisualState x:Name="Selected">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TimeText" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerTextForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClockGlyph" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CalendarDatePickerTextForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="HeaderStates">
+                <VisualState x:Name="TopHeader" />
+                <VisualState x:Name="LeftHeader">
+                  <VisualState.Setters>
+                    <Setter Target="HeaderContentPresenter.(Grid.Row)" Value="1" />
+                    <Setter Target="HeaderContentPresenter.(Grid.Column)" Value="0" />
+                    <Setter Target="HeaderContentPresenter.(Grid.ColumnSpan)" Value="1" />
+                    <Setter Target="HeaderContentPresenter.Margin" Value="{StaticResource CalendarDatePickerLeftHeaderMargin}" />
+                    <Setter Target="HeaderContentPresenter.MaxWidth" Value="{StaticResource CalendarDatePickerLeftHeaderMaxWidth}" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <FlyoutBase.AttachedFlyout>
+              <Flyout Placement="Bottom" ShouldConstrainToRootBounds="False">
+                <Flyout.FlyoutPresenterStyle>
+                  <Style TargetType="FlyoutPresenter">
+                    <Setter Property="MaxHeight" Value="Infinity" />
+                    <Setter Property="MaxWidth" Value="Infinity" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="IsDefaultShadowEnabled" Value="True" />
+                    <Setter Property="BorderBrush" Value="{ThemeResource CalendarDatePickerBorderBrush}" />
+                    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+                    <Setter Property="Template">
+                      <Setter.Value>
+                        <ControlTemplate TargetType="FlyoutPresenter">
+                          <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}" />
+                        </ControlTemplate>
+                      </Setter.Value>
+                    </Setter>
+                  </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <Grid BorderBrush="{ThemeResource CalendarDatePickerBorderBrush}" BorderThickness="{TemplateBinding FlyoutBorderThickness}" CornerRadius="{ThemeResource ControlCornerRadius}">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                  <local:Clock x:Name="PART_ClockView" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" BorderThickness="{TemplateBinding ClockBorderThickness}" />
+                </Grid>
+              </Flyout>
+            </FlyoutBase.AttachedFlyout>
+            <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="{StaticResource CalendarDatePickerTopHeaderMargin}" VerticalAlignment="Top" x:DeferLoadStrategy="Lazy" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" TextWrapping="Wrap" Visibility="Collapsed" />
+            <Border x:Name="Background" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="32" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
+            <TextBlock x:Name="TimeText" Grid.Row="1" Grid.Column="1" Padding="12,0,0,2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding PlaceholderText}" />
+            <FontIcon x:Name="ClockGlyph" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="12" Foreground="{ThemeResource CalendarDatePickerCalendarGlyphForeground}" Glyph="" />
+            <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Load="False" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
   <Style BasedOn="{StaticResource DefaultColorPaletteStyle}" TargetType="local:ColorPalette" />
@@ -20092,6 +20225,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultCheckBoxWithDescriptionControlStyle}" TargetType="local:CheckBoxWithDescriptionControl" />
   <Style BasedOn="{StaticResource DefaultCheckUpdateControlStyle}" TargetType="local:CheckUpdateControl" />
+  <Style BasedOn="{StaticResource DefaultClockPickerStyle}" TargetType="local:ClockPicker" />
   <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}" TargetType="local:ColorPaletteItem" />
   <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">
     <Setter Property="Template" Value="{StaticResource ComapreSliderHorizontalTemplate}" />

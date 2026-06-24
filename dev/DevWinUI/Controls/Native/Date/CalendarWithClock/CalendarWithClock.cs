@@ -34,6 +34,10 @@ public partial class CalendarWithClock : DateTimeBase
     {
         get
         {
+            if (!string.IsNullOrEmpty(DateTimeFormat))
+            {
+                return SelectedDateTime.ToString(DateTimeFormat);
+            }
             return $"{SelectedDateFormatted} - {SelectedDateTime.TimeOfDay.ToString(@"hh\:mm\:ss")}";
         }
     }

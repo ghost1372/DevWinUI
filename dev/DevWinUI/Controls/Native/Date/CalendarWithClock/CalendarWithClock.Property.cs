@@ -107,4 +107,13 @@ public partial class CalendarWithClock
             ctl.OnShowAccentBorderOnHeader((bool)e.NewValue);
         }
     }
+
+    public string DateTimeFormat
+    {
+        get { return (string)GetValue(DateTimeFormatProperty); }
+        set { SetValue(DateTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty DateTimeFormatProperty =
+        DependencyProperty.Register(nameof(DateTimeFormat), typeof(string), typeof(CalendarWithClock), new PropertyMetadata(default(string)));
 }

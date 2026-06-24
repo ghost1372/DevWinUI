@@ -180,4 +180,38 @@ public partial class DateTimePicker
             ctl.UpdateSelectedTime();
         }
     }
+
+    public string DateTimeFormat
+    {
+        get { return (string)GetValue(DateTimeFormatProperty); }
+        set { SetValue(DateTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty DateTimeFormatProperty =
+        DependencyProperty.Register(nameof(DateTimeFormat), typeof(string), typeof(DateTimePicker), new PropertyMetadata(default(string), OnDateTimeFormatChanged));
+
+    private static void OnDateTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock != null)
+        {
+            ctl.calendarWithClock.DateTimeFormat = (string)e.NewValue;
+        }
+    }
+
+    public string ClockTimeFormat
+    {
+        get { return (string)GetValue(ClockTimeFormatProperty); }
+        set { SetValue(ClockTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockTimeFormatProperty =
+        DependencyProperty.Register(nameof(ClockTimeFormat), typeof(string), typeof(DateTimePicker), new PropertyMetadata(default(string), OnClockTimeFormatChanged));
+
+    private static void OnClockTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock?.GetClock() is Clock clock)
+        {
+            clock.TimeFormat = (string)e.NewValue;
+        }
+    }
 }
