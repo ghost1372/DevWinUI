@@ -71,6 +71,7 @@ public partial class CalendarWithClock : DateTimeBase
 
         if (timePicker != null)
         {
+            timePicker.MinuteIncrement = MinuteIncrement;
             timePicker.SelectedTimeChanged -= OnTimePickerSelectedTimeChanged;
             timePicker.SelectedTimeChanged += OnTimePickerSelectedTimeChanged;
             timePicker.SelectedTime = SelectedTime;
@@ -82,6 +83,7 @@ public partial class CalendarWithClock : DateTimeBase
             {
                 clock.SelectedTime = SelectedDateTime.DateTime;
             }
+            clock.MinuteIncrement = MinuteIncrement;
 
             clock.SelectedTimeChanged -= OnClockSelectedTimeChanged;
             clock.SelectedTimeChanged += OnClockSelectedTimeChanged;

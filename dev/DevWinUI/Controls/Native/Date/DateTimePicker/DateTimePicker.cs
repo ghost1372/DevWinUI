@@ -70,6 +70,7 @@ public partial class DateTimePicker : DateTimeBase
                 calendarWithClock.SelectedTime = SelectedTime;
                 calendarWithClock.SelectedDateTime = SelectedDateTime;
                 calendarWithClock.DateTimeFormat = DateTimeFormat;
+                calendarWithClock.MinuteIncrement = MinuteIncrement;
                 if (calendarWithClock.GetClock() is Clock clock)
                 {
                     clock.TimeFormat = ClockTimeFormat ?? clock.TimeFormat;

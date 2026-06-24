@@ -1,3 +1,5 @@
+using Microsoft.UI.Xaml.Controls.Primitives;
+
 namespace DevWinUI;
 
 public partial class ClockPicker
@@ -53,6 +55,49 @@ public partial class ClockPicker
             ctl.OnSelectedTimeOnlyChanged();
         }
     }
+
+    public TimeSpan Time
+    {
+        get { return (TimeSpan)GetValue(TimeProperty); }
+        set { SetValue(TimeProperty, value); }
+    }
+
+    public static readonly DependencyProperty TimeProperty =
+        DependencyProperty.Register(nameof(Time), typeof(TimeSpan), typeof(ClockPicker), new PropertyMetadata(TimeSpan.Zero, OnTimeChanged));
+
+    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ClockPicker ctl)
+        {
+            ctl.OnTimeChanged();
+        }
+    }
+
+    public int MinuteIncrement
+    {
+        get { return (int)GetValue(MinuteIncrementProperty); }
+        set { SetValue(MinuteIncrementProperty, value); }
+    }
+
+    public static readonly DependencyProperty MinuteIncrementProperty =
+        DependencyProperty.Register(nameof(MinuteIncrement), typeof(int), typeof(ClockPicker), new PropertyMetadata(1, OnMinuteIncrementChanged));
+
+    private static void OnMinuteIncrementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ClockPicker ctl && ctl.clock != null)
+        {
+            ctl.clock.MinuteIncrement = (int)e.NewValue;
+        }
+    }
+
+    public LightDismissOverlayMode LightDismissOverlayMode
+    {
+        get { return (LightDismissOverlayMode)GetValue(LightDismissOverlayModeProperty); }
+        set { SetValue(LightDismissOverlayModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty LightDismissOverlayModeProperty =
+        DependencyProperty.Register(nameof(LightDismissOverlayMode), typeof(LightDismissOverlayMode), typeof(ClockPicker), new PropertyMetadata(LightDismissOverlayMode.Auto));
 
     public string PlaceholderText
     {

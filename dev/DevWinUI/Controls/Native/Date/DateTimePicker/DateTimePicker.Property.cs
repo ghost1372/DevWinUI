@@ -214,4 +214,21 @@ public partial class DateTimePicker
             clock.TimeFormat = (string)e.NewValue;
         }
     }
+
+    public int MinuteIncrement
+    {
+        get { return (int)GetValue(MinuteIncrementProperty); }
+        set { SetValue(MinuteIncrementProperty, value); }
+    }
+
+    public static readonly DependencyProperty MinuteIncrementProperty =
+        DependencyProperty.Register(nameof(MinuteIncrement), typeof(int), typeof(DateTimePicker), new PropertyMetadata(1, OnMinuteIncrementChanged));
+
+    private static void OnMinuteIncrementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock != null)
+        {
+            ctl.calendarWithClock.MinuteIncrement = (int)e.NewValue;
+        }
+    }
 }

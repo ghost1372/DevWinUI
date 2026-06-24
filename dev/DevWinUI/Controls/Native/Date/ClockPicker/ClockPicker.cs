@@ -18,6 +18,7 @@ public partial class ClockPicker : Control
 
     public event EventHandler<RoutedEventArgs> ConfirmClick;
     public event EventHandler<TimeSpan> SelectedTimeChanged;
+    public event EventHandler<ClockPickerSelectedValueChangedEventArgs> SelectedTimeValueChanged;
 
     private ContentPresenter headerContentPresenter;
     private ContentPresenter descriptionContentPresenter;
@@ -69,6 +70,7 @@ public partial class ClockPicker : Control
             clock.SelectedTimeChanged += Clock_SelectedTimeChanged;
 
             clock.TimeFormat = TimeFormat;
+            clock.MinuteIncrement = MinuteIncrement;
             UpdateClockTime();
         }
 
@@ -83,9 +85,14 @@ public partial class ClockPicker : Control
             {
                 isUpdating = true;
                 var timeSpan = new TimeSpan(e.Hour, e.Minute, e.Second);
+                var oldTime = SelectedTime;
                 SelectedTime = timeSpan;
                 SelectedTimeOnly = TimeOnly.FromTimeSpan(timeSpan);
                 SelectedTimeChanged?.Invoke(this, timeSpan);
+
+                var args = new ClockPickerSelectedValueChangedEventArgs(oldTime, timeSpan);
+                SelectedTimeValueChanged?.Invoke(this, args);
+
                 UpdatePlaceholder();
             }
             finally
@@ -133,6 +140,7 @@ public partial class ClockPicker : Control
     {
         if (sender is FlyoutBase flyout)
         {
+            flyout.LightDismissOverlayMode = LightDismissOverlayMode;
             flyout.Opened -= Flyout_Opened;
         }
     }
@@ -158,7 +166,27 @@ public partial class ClockPicker : Control
             if (SelectedTime.HasValue)
             {
                 SelectedTimeOnly = TimeOnly.FromTimeSpan(SelectedTime.Value);
+                Time = SelectedTime.Value;
             }
+            UpdateClockTime();
+            UpdatePlaceholder();
+        }
+        finally
+        {
+            isUpdating = false;
+        }
+    }
+
+    private void OnTimeChanged()
+    {
+        if (isUpdating)
+            return;
+
+        try
+        {
+            isUpdating = true;
+            SelectedTime = Time;
+            SelectedTimeOnly = TimeOnly.FromTimeSpan(Time);
             UpdateClockTime();
             UpdatePlaceholder();
         }
@@ -251,4 +279,16 @@ public partial class ClockPicker : Control
     {
         return clock;
     }
+}
+
+public class ClockPickerSelectedValueChangedEventArgs : EventArgs
+{
+    internal ClockPickerSelectedValueChangedEventArgs(TimeSpan? oldTime, TimeSpan? newTime)
+    {
+        OldTime = oldTime;
+        NewTime = newTime;
+    }
+
+    public TimeSpan? OldTime { get; }
+    public TimeSpan? NewTime { get; }
 }

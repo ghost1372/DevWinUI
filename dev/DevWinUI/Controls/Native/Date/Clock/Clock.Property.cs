@@ -39,6 +39,13 @@ public partial class Clock
         set => SetValue(TimeFormatProperty, value);
     }
 
+    public static readonly DependencyProperty MinuteIncrementProperty =
+        DependencyProperty.Register(nameof(MinuteIncrement), typeof(int), typeof(Clock), new PropertyMetadata(1));
+    public int MinuteIncrement
+    {
+        get => (int)GetValue(MinuteIncrementProperty);
+        set => SetValue(MinuteIncrementProperty, Math.Clamp(value, 1, 60));
+    }
 
     public static readonly DependencyProperty CenterPointFillProperty =
         DependencyProperty.Register(nameof(CenterPointFill), typeof(SolidColorBrush), typeof(Clock), new PropertyMetadata(default(SolidColorBrush)));
