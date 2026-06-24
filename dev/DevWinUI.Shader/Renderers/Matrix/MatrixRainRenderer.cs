@@ -13,6 +13,17 @@ public partial class MatrixRainRenderer : RendererBase
     private float _timeAccumulator = 0f;
     private bool useWin2DFont = true;
 
+    // Cached per-frame resources — recreated only when font/size/canvas dimensions change.
+    // Avoids allocating CanvasTextFormat + CanvasTextLayout + ch.ToString() on every Draw call.
+    private CanvasTextFormat? _cachedTextFormat;
+    private float _cachedFormatFontSize;
+    private string? _cachedFormatFontFamily;
+
+    private CanvasTextLayout?[]? _glyphLayouts;
+    private float _cachedLayoutCellW;
+    private float _cachedLayoutCellH;
+    private string[]? _glyphStrings;
+
     public override void CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
     {
         Dispose();
@@ -56,12 +67,74 @@ public partial class MatrixRainRenderer : RendererBase
     public override void Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
     {
         if (!useWin2DFont && _effect == null) return;
-        
+
         UpdateBreathing(currentBassEnergy, breathingIntensity);
 
         TimeSpan elapsedTime = args.Timing.ElapsedTime;
 
         _timeAccumulator += (float)elapsedTime.TotalSeconds;
+    }
+
+    private CanvasTextFormat GetOrCreateTextFormat()
+    {
+        var fontFamily = matrixRainFontFamily ?? "Segoe UI";
+        var fontSize = (float)matrixRainFontSize;
+        if (_cachedTextFormat == null
+            || _cachedFormatFontFamily != fontFamily
+            || _cachedFormatFontSize != fontSize)
+        {
+            _cachedTextFormat?.Dispose();
+            InvalidateGlyphLayouts();
+            _cachedTextFormat = new CanvasTextFormat
+            {
+                FontFamily = fontFamily,
+                FontSize = fontSize,
+                HorizontalAlignment = CanvasHorizontalAlignment.Left,
+                VerticalAlignment = CanvasVerticalAlignment.Top,
+                Options = CanvasDrawTextOptions.EnableColorFont
+            };
+            _cachedFormatFontFamily = fontFamily;
+            _cachedFormatFontSize = fontSize;
+        }
+        return _cachedTextFormat;
+    }
+
+    private void InvalidateGlyphLayouts()
+    {
+        if (_glyphLayouts != null)
+        {
+            foreach (var l in _glyphLayouts)
+                l?.Dispose();
+        }
+        _glyphLayouts = null;
+        _cachedLayoutCellW = 0f;
+        _cachedLayoutCellH = 0f;
+    }
+
+    private CanvasTextLayout GetOrCreateGlyphLayout(
+        ICanvasResourceCreator device, int charIndex, float cellW, float cellH, CanvasTextFormat fmt)
+    {
+        int count = matrixRainGlyphs.Length;
+        if (_glyphLayouts == null
+            || _glyphLayouts.Length != count
+            || _cachedLayoutCellW != cellW
+            || _cachedLayoutCellH != cellH)
+        {
+            InvalidateGlyphLayouts();
+            _glyphLayouts = new CanvasTextLayout[count];
+            _cachedLayoutCellW = cellW;
+            _cachedLayoutCellH = cellH;
+
+            // Pre-build single-char strings once to avoid ToString() allocations per glyph per frame.
+            _glyphStrings = new string[count];
+            for (int i = 0; i < count; i++)
+                _glyphStrings[i] = matrixRainGlyphs[i].ToString();
+        }
+
+        if (_glyphLayouts[charIndex] == null)
+            _glyphLayouts[charIndex] = new CanvasTextLayout(device, _glyphStrings![charIndex], fmt, cellW, cellH);
+
+        return _glyphLayouts[charIndex]!;
     }
 
     public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -83,15 +156,7 @@ public partial class MatrixRainRenderer : RendererBase
             int cols = (int)MathF.Ceiling(width / cellW);
             int rows = (int)MathF.Ceiling(height / cellH);
 
-            var textFormat = new CanvasTextFormat
-            {
-                FontFamily = matrixRainFontFamily ?? "Segoe UI",
-                FontSize = (float)matrixRainFontSize,
-                HorizontalAlignment = CanvasHorizontalAlignment.Left,
-                VerticalAlignment = CanvasVerticalAlignment.Top,
-                Options = CanvasDrawTextOptions.EnableColorFont
-            };
-
+            var textFormat = GetOrCreateTextFormat();
 
             // Precompute center for breathing transform
             var center = new Vector2(width / 2f, height / 2f);
@@ -171,14 +236,12 @@ public partial class MatrixRainRenderer : RendererBase
 
                     var col = Windows.UI.Color.FromArgb(finalA, (byte)Math.Max(0f, Math.Min(255f, finalRgb.X * 255f)), (byte)Math.Max(0f, Math.Min(255f, finalRgb.Y * 255f)), (byte)Math.Max(0f, Math.Min(255f, finalRgb.Z * 255f)));
 
-                    using (var layout = new CanvasTextLayout(ds, ch.ToString(), textFormat, cellW, cellH))
-                    {
-                        float offsetX = MathF.Max(0, (cellW - (float)layout.LayoutBounds.Width) / 2f);
-                        float offsetY = MathF.Max(0, (cellH - (float)layout.LayoutBounds.Height) / 2f);
+                    var layout = GetOrCreateGlyphLayout(sender, charIndex, cellW, cellH, textFormat);
+                    float offsetX = MathF.Max(0, (cellW - (float)layout.LayoutBounds.Width) / 2f);
+                    float offsetY = MathF.Max(0, (cellH - (float)layout.LayoutBounds.Height) / 2f);
 
-                        // Draw the glyph with computed color
-                        ds.DrawTextLayout(layout, px + offsetX, py + offsetY, col);
-                    }
+                    // Draw the glyph with computed color
+                    ds.DrawTextLayout(layout, px + offsetX, py + offsetY, col);
                 }
             }
 
@@ -210,6 +273,10 @@ public partial class MatrixRainRenderer : RendererBase
 
     public override void Dispose()
     {
+        _cachedTextFormat?.Dispose();
+        _cachedTextFormat = null;
+        InvalidateGlyphLayouts();
+        _glyphStrings = null;
         _effect?.Dispose();
         _effect = null;
     }
