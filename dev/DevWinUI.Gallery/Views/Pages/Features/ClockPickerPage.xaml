@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.ClockPage"
+<Page x:Class="DevWinUIGallery.Views.ClockPickerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,21 +7,19 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/clock" HeaderText="Analog Clock">
+            <local:ControlExample DocPage="controls/clockPicker" HeaderText="ClockPicker">
                 <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:Clock /&gt;</x:String>
+                    <x:String>&lt;dev:ClockPicker /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <StackPanel>
-                        <TextBlock x:Name="Txt" />
-                        <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm:ss" />
-                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTimeFormat" Header="TimeFormat" Text="HH:mm:ss" />
+                        <NumberBox x:Name="MinuteIncrementNB" Header="Minute Increment" Maximum="15" Value="1" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Clock HorizontalAlignment="Left" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" SelectedTimeChanged="Clock_SelectedTimeChanged" TimeFormat="{x:Bind TxtTimeFormat1.Text, Mode=OneWay}" />
+                <dev:ClockPicker x:Name="ClockPickerSample" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB.Value, Mode=OneWay}" TimeFormat="{x:Bind TxtTimeFormat.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
