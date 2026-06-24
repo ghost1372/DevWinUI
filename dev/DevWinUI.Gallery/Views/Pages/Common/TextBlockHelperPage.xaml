@@ -21,7 +21,7 @@
                         <ComboBox x:Name="CmbType" Header="Slide Direction" ItemsSource="{x:Bind TextBlockSlideDirectionItems, Mode=OneWay}" SelectedIndex="0" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <TextBlock x:Name="TextBlockSample" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleLargeTextBlockStyle}" />
+                <TextBlock x:Name="TextBlockSample" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
