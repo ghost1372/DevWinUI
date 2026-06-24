@@ -300,19 +300,22 @@ public partial class Clock : Control
 
     private void OnBlockTimeTapped(object sender, TappedRoutedEventArgs e)
     {
+        ShowTimePickerFlyout();
+    }
+
+    internal void ShowTimePickerFlyout()
+    {
         if (!isTemplateApplied || _blockTime == null)
             return;
 
-        var flyout = new Flyout();
-        var timePicker = new TimePicker
+        var flyout = new TimePickerFlyout
         {
-            SelectedTime = new TimeSpan(SelectedTime.Hour, SelectedTime.Minute, SelectedTime.Second)
+            Time = new TimeSpan(SelectedTime.Hour, SelectedTime.Minute, SelectedTime.Second)
         };
 
-        flyout.Content = timePicker;
         flyout.Closed += (s, args) =>
         {
-            if (timePicker.SelectedTime is TimeSpan ts)
+            if (flyout.Time is TimeSpan ts)
             {
                 Update(new DateTime(
                     SelectedTime.Year, SelectedTime.Month, SelectedTime.Day,

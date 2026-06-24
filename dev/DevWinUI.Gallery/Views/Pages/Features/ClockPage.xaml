@@ -19,6 +19,17 @@
                 </local:ControlExample.Pane>
                 <dev:Clock HorizontalAlignment="Left" SelectedTimeChanged="Clock_SelectedTimeChanged" />
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/clockPicker" HeaderText="ClockPicker with TimePicker">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:ClockPicker /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTimeFormat" Header="TimeFormat" Text="HH:mm:ss" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ClockPicker x:Name="ClockPickerSample" TimeFormat="{x:Bind TxtTimeFormat.Text, Mode=OneWay}" />
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

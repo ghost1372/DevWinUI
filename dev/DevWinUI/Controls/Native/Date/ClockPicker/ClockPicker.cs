@@ -123,7 +123,17 @@ public partial class ClockPicker : Control
         {
             flyout.Closed -= Flyout_Closed;
             flyout.Closed += Flyout_Closed;
+            flyout.Opened -= Flyout_Opened;
+            flyout.Opened += Flyout_Opened;
             FlyoutBase.ShowAttachedFlyout(rootGrid);
+        }
+    }
+
+    private void Flyout_Opened(object sender, object e)
+    {
+        if (sender is FlyoutBase flyout)
+        {
+            flyout.Opened -= Flyout_Opened;
         }
     }
 
@@ -194,7 +204,7 @@ public partial class ClockPicker : Control
     {
         if (SelectedTime.HasValue)
         {
-            PlaceholderText = SelectedTime.Value.ToString(TimeFormat);
+            PlaceholderText = DateTime.Today.Add(SelectedTime.Value).ToString(TimeFormat);
         }
     }
 
