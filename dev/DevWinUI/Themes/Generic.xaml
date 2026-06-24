@@ -5,18 +5,18 @@
 <!--
 Source files:
 Controls\Ported\BreadcrumbBar\BreadcrumbBar.xaml
-Controls\Ported\Dialogs\ContentDialog\ContentDialogView_themeresources.xaml
 Controls\Ported\Dialogs\ContentDialog\ContentDialogView.xaml
+Controls\Ported\Dialogs\ContentDialog\ContentDialogView_themeresources.xaml
 Controls\Ported\Dialogs\ContentDialog\ContentDialogWindow.xaml
-Controls\Ported\Dialogs\ContentWindow\ContentWindow_themeresources.xaml
 Controls\Ported\Dialogs\ContentWindow\ContentWindow.xaml
+Controls\Ported\Dialogs\ContentWindow\ContentWindow_themeresources.xaml
 Controls\Ported\Dialogs\DialogWindowBase.xaml
 Controls\Ported\Dialogs\ExtendedContentDialog\ExtendedContentDialogView.xaml
 Controls\Ported\Dialogs\ExtendedContentDialog\ExtendedContentDialogWindow.xaml
-Controls\Ported\Dialogs\MessageBox\MessageBoxView_themeresources.xaml
 Controls\Ported\Dialogs\MessageBox\MessageBoxView.xaml
-Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView_themeresources.xaml
+Controls\Ported\Dialogs\MessageBox\MessageBoxView_themeresources.xaml
 Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView.xaml
+Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogView_themeresources.xaml
 Controls\Ported\Dialogs\UacStyleDialog\UacStyleDialogWindow.xaml
 Controls\Ported\LoopingSelector\LoopingSelector.xaml
 Controls\Ported\PagerControl\PagerControl.xaml
@@ -1101,10 +1101,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <CornerRadius x:Key="BreadcrumbBarItemCornerRadius">2,2,2,2</CornerRadius>
   <CornerRadius x:Key="BreadcrumbBarChevronCornerRaduis">2,2,2,2</CornerRadius>
   <CornerRadius x:Key="BreadcrumbBarRootItemCornerRadius">16,2,2,16</CornerRadius>
-  <Thickness x:Key="ContentDialogViewTitlePadding">24,24,24,0</Thickness>
-  <Thickness x:Key="ContentDialogViewContentPadding">24,0,24,24</Thickness>
-  <Color x:Key="ContentDialogViewCommandSpaceBackground">#0F000000</Color>
-  <Color x:Key="ContentDialogViewSeparatorBorderColor">#19000000</Color>
   <x:Double x:Key="ContentDialogViewButtonSpacing">8</x:Double>
   <Style TargetType="local:ContentDialogView">
     <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
@@ -1251,6 +1247,10 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Thickness x:Key="ContentDialogViewTitlePadding">24,24,24,0</Thickness>
+  <Thickness x:Key="ContentDialogViewContentPadding">24,0,24,24</Thickness>
+  <Color x:Key="ContentDialogViewCommandSpaceBackground">#0F000000</Color>
+  <Color x:Key="ContentDialogViewSeparatorBorderColor">#19000000</Color>
   <Style x:Key="ContentWindowDefaultStyle" TargetType="local:ContentWindow">
     <Setter Property="TitleBarButtonForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
     <Setter Property="TitleBarButtonHoverForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
@@ -1313,6 +1313,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <local:MessageBoxDefaultButtonToContentDialogButtonConverter x:Key="MessageBoxDefaultButtonToContentDialogButtonConverter" />
   <x:Double x:Key="MessageBoxIconFontSize">36</x:Double>
   <Thickness x:Key="MessageBoxIconMargin">0,0,12,0</Thickness>
   <x:String x:Key="MessageBoxIconBackgroundGlyph"></x:String>
@@ -1322,7 +1323,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <x:String x:Key="MessageBoxErrorIconGlyph"></x:String>
   <x:String x:Key="MessageBoxWarningIconGlyph"></x:String>
   <x:String x:Key="MessageBoxSuccessIconGlyph"></x:String>
-  <local:MessageBoxDefaultButtonToContentDialogButtonConverter x:Key="MessageBoxDefaultButtonToContentDialogButtonConverter" />
   <x:Double x:Key="PagerControlNumberPanelButtonWidth">32</x:Double>
   <x:Double x:Key="SamplePanelSideContentWidth">360</x:Double>
   <Thickness x:Key="SamplePanelPadding">24</Thickness>
@@ -14952,7 +14952,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="ConfirmButtonStyle" Value="{StaticResource AccentButtonStyle}" />
     <Setter Property="ShowConfirmButton" Value="True" />
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
-    <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
+    <Setter Property="ClockBorderThickness" Value="0" />
+    <Setter Property="FlyoutBorderThickness" Value="1" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ClockPicker">
@@ -15079,7 +15080,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
                   <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
-                  <local:Clock x:Name="PART_ClockView" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" BorderThickness="{TemplateBinding ClockBorderThickness}" />
+                  <local:Clock x:Name="PART_ClockView" Margin="0" HorizontalAlignment="Stretch" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
                 </Grid>
               </Flyout>
             </FlyoutBase.AttachedFlyout>
