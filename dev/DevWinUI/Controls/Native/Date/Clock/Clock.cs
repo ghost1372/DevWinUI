@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Input;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
@@ -109,6 +110,9 @@ public partial class Clock : Control
 
         _grid.PointerMoved += OnGridPointerMoved;
 
+        _blockTime.Tapped -= OnBlockTimeTapped;
+        _blockTime.Tapped += OnBlockTimeTapped;
+
         _rotateTransformClock = new RotateTransform();
         _minuteHandLine.RenderTransform = _rotateTransformClock;
 
@@ -162,7 +166,7 @@ public partial class Clock : Control
             {
                 minuteAngle = minuteAngle + 360;
             }
-            minuteAngle = minuteAngle - minuteAngle % 6;
+            minuteAngle = minuteAngle - minuteAngle % (6 * MinuteIncrement);
             _rotateTransformClock.Angle = minuteAngle;
             Update();
         }
@@ -173,13 +177,14 @@ public partial class Clock : Control
         var minuteAngle = (int)_rotateTransformClock.Angle;
         var delta = e.GetCurrentPoint(_grid).Properties.MouseWheelDelta;
 
+        var step = 6 * MinuteIncrement;
         if (delta < 0)
         {
-            minuteAngle += 6;
+            minuteAngle += step;
         }
         else
         {
-            minuteAngle -= 6;
+            minuteAngle -= step;
         }
         if (minuteAngle < 0)
         {
@@ -260,7 +265,8 @@ public partial class Clock : Control
             _buttonAm.IsChecked = true;
         }
 
-        _rotateTransformClock.Angle = minutes * 6;
+        var snappedMinutes = (minutes / MinuteIncrement) * MinuteIncrement;
+        _rotateTransformClock.Angle = snappedMinutes * 6;
 
         var hour12 = hour24 % 12;
         if (hour12 == 0) hour12 = 12;
@@ -293,4 +299,33 @@ public partial class Clock : Control
     private void ButtonAm_OnClick(object sender, RoutedEventArgs e) => Update();
 
     private void ButtonPm_OnClick(object sender, RoutedEventArgs e) => Update();
+
+    private void OnBlockTimeTapped(object sender, TappedRoutedEventArgs e)
+    {
+        ShowTimePickerFlyout();
+    }
+
+    internal void ShowTimePickerFlyout()
+    {
+        if (!isTemplateApplied || _blockTime == null)
+            return;
+
+        var flyout = new TimePickerFlyout
+        {
+            Time = new TimeSpan(SelectedTime.Hour, SelectedTime.Minute, SelectedTime.Second),
+            MinuteIncrement = MinuteIncrement
+        };
+
+        flyout.Closed += (s, args) =>
+        {
+            if (flyout.Time is TimeSpan ts)
+            {
+                Update(new DateTime(
+                    SelectedTime.Year, SelectedTime.Month, SelectedTime.Day,
+                    ts.Hours, ts.Minutes, ts.Seconds));
+            }
+        };
+
+        flyout.ShowAt(_blockTime);
+    }
 }

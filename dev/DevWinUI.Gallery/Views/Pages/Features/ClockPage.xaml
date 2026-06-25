@@ -15,9 +15,13 @@
                     <x:String>&lt;dev:Clock /&gt;</x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
-                    <TextBlock x:Name="Txt" />
+                    <StackPanel>
+                        <TextBlock x:Name="Txt" />
+                        <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm:ss" />
+                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
+                    </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Clock HorizontalAlignment="Left" SelectedTimeChanged="Clock_SelectedTimeChanged" />
+                <dev:Clock HorizontalAlignment="Left" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" SelectedTimeChanged="Clock_SelectedTimeChanged" TimeFormat="{x:Bind TxtTimeFormat1.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

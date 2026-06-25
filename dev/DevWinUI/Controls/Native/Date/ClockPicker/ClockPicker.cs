@@ -7,29 +7,31 @@ namespace DevWinUI;
 [TemplatePart(Name = DescriptionPresenter, Type = typeof(ContentPresenter))]
 [TemplatePart(Name = PART_Root, Type = typeof(Grid))]
 [TemplatePart(Name = PART_ConfirmButton, Type = typeof(Button))]
-[TemplatePart(Name = PART_CalendarWithClockView, Type = typeof(CalendarWithClock))]
-public partial class DateTimePicker : DateTimeBase
+[TemplatePart(Name = PART_ClockView, Type = typeof(Clock))]
+public partial class ClockPicker : Control
 {
     private const string HeaderContentPresenter = "HeaderContentPresenter";
     private const string DescriptionPresenter = "DescriptionPresenter";
     private const string PART_Root = "PART_Root";
     private const string PART_ConfirmButton = "PART_ConfirmButton";
-    private const string PART_CalendarWithClockView = "PART_CalendarWithClockView";
+    private const string PART_ClockView = "PART_ClockView";
 
     public event EventHandler<RoutedEventArgs> ConfirmClick;
-    public event EventHandler<DateTimeOffset> SelectedTimeChanged;
+    public event EventHandler<TimeSpan> SelectedTimeChanged;
+    public event EventHandler<ClockPickerSelectedValueChangedEventArgs> SelectedTimeValueChanged;
 
     private ContentPresenter headerContentPresenter;
     private ContentPresenter descriptionContentPresenter;
     private Grid rootGrid;
     private Button confirmButton;
-    private CalendarWithClock calendarWithClock;
+    internal Clock clock;
     private bool isUpdating;
 
-    public DateTimePicker()
+    public ClockPicker()
     {
-        this.DefaultStyleKey = typeof(DateTimePicker);
+        this.DefaultStyleKey = typeof(ClockPicker);
     }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -42,7 +44,7 @@ public partial class DateTimePicker : DateTimeBase
 
         rootGrid = GetTemplateChild(PART_Root) as Grid;
         confirmButton = GetTemplateChild(PART_ConfirmButton) as Button;
-        calendarWithClock = GetTemplateChild(PART_CalendarWithClockView) as CalendarWithClock;
+        clock = GetTemplateChild(PART_ClockView) as Clock;
 
         if (rootGrid != null)
         {
@@ -62,41 +64,36 @@ public partial class DateTimePicker : DateTimeBase
             confirmButton.Click += OnConfirmButton;
         }
 
-        if (calendarWithClock != null)
+        if (clock != null)
         {
-            try
-            {
-                isUpdating = true;
-                calendarWithClock.SelectedTime = SelectedTime;
-                calendarWithClock.SelectedDateTime = SelectedDateTime;
-                calendarWithClock.DateTimeFormat = DateTimeFormat;
-                calendarWithClock.MinuteIncrement = MinuteIncrement;
-                if (calendarWithClock.GetClock() is Clock clock)
-                {
-                    clock.TimeFormat = ClockTimeFormat ?? clock.TimeFormat;
-                }
-            }
-            finally
-            {
-                calendarWithClock.SelectedTimeChanged -= CalendarWithClock_SelectedTimeChanged;
-                calendarWithClock.SelectedTimeChanged += CalendarWithClock_SelectedTimeChanged;
-                isUpdating = false;
-            }
+            clock.SelectedTimeChanged -= Clock_SelectedTimeChanged;
+            clock.SelectedTimeChanged += Clock_SelectedTimeChanged;
+
+            clock.TimeFormat = TimeFormat;
+            clock.MinuteIncrement = MinuteIncrement;
+            UpdateClockTime();
         }
 
         UpdateTemplate();
     }
 
-    private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
+    private void Clock_SelectedTimeChanged(object sender, DateTime e)
     {
-        if (!isUpdating && calendarWithClock != null)
+        if (!isUpdating && clock != null)
         {
             try
             {
                 isUpdating = true;
-                SelectedDateTime = e;
-                SelectedTime = e.TimeOfDay;
-                SelectedTimeChanged?.Invoke(this, e);
+                var timeSpan = new TimeSpan(e.Hour, e.Minute, e.Second);
+                var oldTime = SelectedTime;
+                SelectedTime = timeSpan;
+                SelectedTimeOnly = TimeOnly.FromTimeSpan(timeSpan);
+                SelectedTimeChanged?.Invoke(this, timeSpan);
+
+                var args = new ClockPickerSelectedValueChangedEventArgs(oldTime, timeSpan);
+                SelectedTimeValueChanged?.Invoke(this, args);
+
+                UpdatePlaceholder();
             }
             finally
             {
@@ -133,7 +130,18 @@ public partial class DateTimePicker : DateTimeBase
         {
             flyout.Closed -= Flyout_Closed;
             flyout.Closed += Flyout_Closed;
+            flyout.Opened -= Flyout_Opened;
+            flyout.Opened += Flyout_Opened;
             FlyoutBase.ShowAttachedFlyout(rootGrid);
+        }
+    }
+
+    private void Flyout_Opened(object sender, object e)
+    {
+        if (sender is FlyoutBase flyout)
+        {
+            flyout.LightDismissOverlayMode = LightDismissOverlayMode;
+            flyout.Opened -= Flyout_Opened;
         }
     }
 
@@ -147,42 +155,85 @@ public partial class DateTimePicker : DateTimeBase
         VisualStateManager.GoToState(this, "Normal", true);
     }
 
-    private void UpdateSelectedTime()
+    private void OnSelectedTimeChanged()
     {
-        if (!isUpdating && calendarWithClock != null)
+        if (isUpdating)
+            return;
+
+        try
         {
-            try
+            isUpdating = true;
+            if (SelectedTime.HasValue)
             {
-                isUpdating = true;
-                calendarWithClock.SelectedTime = SelectedTime;
-                UpdatePlaceholder();
+                SelectedTimeOnly = TimeOnly.FromTimeSpan(SelectedTime.Value);
+                Time = SelectedTime.Value;
             }
-            finally
-            {
-                isUpdating = false;
-            }
+            UpdateClockTime();
+            UpdatePlaceholder();
+        }
+        finally
+        {
+            isUpdating = false;
         }
     }
-    private void UpdateSelectedDate()
+
+    private void OnTimeChanged()
     {
-        if (!isUpdating && calendarWithClock != null)
+        if (isUpdating)
+            return;
+
+        try
         {
-            try
+            isUpdating = true;
+            SelectedTime = Time;
+            SelectedTimeOnly = TimeOnly.FromTimeSpan(Time);
+            UpdateClockTime();
+            UpdatePlaceholder();
+        }
+        finally
+        {
+            isUpdating = false;
+        }
+    }
+
+    private void OnSelectedTimeOnlyChanged()
+    {
+        if (isUpdating)
+            return;
+
+        try
+        {
+            isUpdating = true;
+            if (SelectedTimeOnly.HasValue)
             {
-                isUpdating = true;
-                calendarWithClock.SelectedDateTime = SelectedDateTime;
-                UpdatePlaceholder();
+                SelectedTime = SelectedTimeOnly.Value.ToTimeSpan();
             }
-            finally
-            {
-                isUpdating = false;
-            }
+            UpdateClockTime();
+            UpdatePlaceholder();
+        }
+        finally
+        {
+            isUpdating = false;
+        }
+    }
+
+    private void UpdateClockTime()
+    {
+        if (clock != null && SelectedTime.HasValue)
+        {
+            var now = DateTime.Now;
+            clock.SelectedTime = new DateTime(
+                now.Year, now.Month, now.Day,
+                SelectedTime.Value.Hours, SelectedTime.Value.Minutes, SelectedTime.Value.Seconds);
         }
     }
 
     private void UpdatePlaceholder()
     {
-        PlaceholderText = $"{calendarWithClock.SelectedDateTimeString}";
+        if (SelectedTime.HasValue)
+        {
+            PlaceholderText = DateTime.Today.Add(SelectedTime.Value).ToString(TimeFormat);
+        }
     }
 
     private void UpdateHeaderVisibility()
@@ -207,35 +258,35 @@ public partial class DateTimePicker : DateTimeBase
 
     private void UpdateTemplate()
     {
-        if (calendarWithClock != null)
+        if (clock != null)
         {
-            if (ClockMode == ClockMode.TimePicker)
+            if (ShowConfirmButton)
             {
-                FlyoutBorderThickness = new Thickness(1);
-                FlyoutCornerRadius = new CornerRadius(4);
-                calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 4);
-                calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 4, 0);
+                FlyoutCornerRadius = new CornerRadius(0);
+                clock.ClockCornerRadius = new CornerRadius(4, 4, 0, 0);
             }
             else
             {
-                FlyoutBorderThickness = new Thickness(0);
-                FlyoutCornerRadius = new CornerRadius(0);
-                if (ShowConfirmButton)
-                {
-                    calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 0);
-                    calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 0, 0);
-                }
-                else
-                {
-                    calendarWithClock.CalendarViewCornerRadius = new CornerRadius(4, 0, 0, 4);
-                    calendarWithClock.ClockCornerRadius = new CornerRadius(0, 4, 4, 0);
-                }
+                FlyoutCornerRadius = new CornerRadius(4);
+                clock.ClockCornerRadius = new CornerRadius(4);
             }
         }
     }
 
-    public CalendarWithClock GetCalendarWithClock()
+    public Clock GetClock()
     {
-        return calendarWithClock;
+        return clock;
     }
+}
+
+public class ClockPickerSelectedValueChangedEventArgs : EventArgs
+{
+    internal ClockPickerSelectedValueChangedEventArgs(TimeSpan? oldTime, TimeSpan? newTime)
+    {
+        OldTime = oldTime;
+        NewTime = newTime;
+    }
+
+    public TimeSpan? OldTime { get; }
+    public TimeSpan? NewTime { get; }
 }

@@ -148,6 +148,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### ClockPicker
+![ClockPicker](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ClockPicker.gif)
+  
 ### TextBlockHelper
 ![TextBlockHelper](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextBlockHelper.gif)
 

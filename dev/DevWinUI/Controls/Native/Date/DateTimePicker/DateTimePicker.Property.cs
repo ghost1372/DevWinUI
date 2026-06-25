@@ -180,4 +180,55 @@ public partial class DateTimePicker
             ctl.UpdateSelectedTime();
         }
     }
+
+    public string DateTimeFormat
+    {
+        get { return (string)GetValue(DateTimeFormatProperty); }
+        set { SetValue(DateTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty DateTimeFormatProperty =
+        DependencyProperty.Register(nameof(DateTimeFormat), typeof(string), typeof(DateTimePicker), new PropertyMetadata(default(string), OnDateTimeFormatChanged));
+
+    private static void OnDateTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock != null)
+        {
+            ctl.calendarWithClock.DateTimeFormat = (string)e.NewValue;
+        }
+    }
+
+    public string ClockTimeFormat
+    {
+        get { return (string)GetValue(ClockTimeFormatProperty); }
+        set { SetValue(ClockTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty ClockTimeFormatProperty =
+        DependencyProperty.Register(nameof(ClockTimeFormat), typeof(string), typeof(DateTimePicker), new PropertyMetadata(default(string), OnClockTimeFormatChanged));
+
+    private static void OnClockTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock?.GetClock() is Clock clock)
+        {
+            clock.TimeFormat = (string)e.NewValue;
+        }
+    }
+
+    public int MinuteIncrement
+    {
+        get { return (int)GetValue(MinuteIncrementProperty); }
+        set { SetValue(MinuteIncrementProperty, value); }
+    }
+
+    public static readonly DependencyProperty MinuteIncrementProperty =
+        DependencyProperty.Register(nameof(MinuteIncrement), typeof(int), typeof(DateTimePicker), new PropertyMetadata(1, OnMinuteIncrementChanged));
+
+    private static void OnMinuteIncrementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DateTimePicker ctl && ctl?.calendarWithClock != null)
+        {
+            ctl.calendarWithClock.MinuteIncrement = (int)e.NewValue;
+        }
+    }
 }

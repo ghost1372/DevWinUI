@@ -107,4 +107,38 @@ public partial class CalendarWithClock
             ctl.OnShowAccentBorderOnHeader((bool)e.NewValue);
         }
     }
+
+    public string DateTimeFormat
+    {
+        get { return (string)GetValue(DateTimeFormatProperty); }
+        set { SetValue(DateTimeFormatProperty, value); }
+    }
+
+    public static readonly DependencyProperty DateTimeFormatProperty =
+        DependencyProperty.Register(nameof(DateTimeFormat), typeof(string), typeof(CalendarWithClock), new PropertyMetadata(default(string)));
+
+    public int MinuteIncrement
+    {
+        get { return (int)GetValue(MinuteIncrementProperty); }
+        set { SetValue(MinuteIncrementProperty, value); }
+    }
+
+    public static readonly DependencyProperty MinuteIncrementProperty =
+        DependencyProperty.Register(nameof(MinuteIncrement), typeof(int), typeof(CalendarWithClock), new PropertyMetadata(1, OnMinuteIncrementChanged));
+
+    private static void OnMinuteIncrementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is CalendarWithClock ctl)
+        {
+            var value = (int)e.NewValue;
+            if (ctl.clock != null)
+            {
+                ctl.clock.MinuteIncrement = value;
+            }
+            if (ctl.timePicker != null)
+            {
+                ctl.timePicker.MinuteIncrement = value;
+            }
+        }
+    }
 }

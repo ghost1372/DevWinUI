@@ -217,6 +217,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ClockPickerPage",
+          "Title": "Clock Picker",
+          "Subtitle": "Pick a Time from Clock Picker",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ParallaxTiltPage",
           "Title": "Parallax Tilt",
           "Subtitle": "Parallax Effect",
