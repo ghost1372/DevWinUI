@@ -42,8 +42,8 @@
             <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
                 <ui:ImageIcon Width="72" Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
                 <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource TitleTextBlockStyle}" Text="Documentation" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.Base" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIBase/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUI/" />
+                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.Base" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIBase/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.ContextMenu" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.Shader" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIShader/" />
                 <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.SourceGenerator" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUISourceGenerator/" />
