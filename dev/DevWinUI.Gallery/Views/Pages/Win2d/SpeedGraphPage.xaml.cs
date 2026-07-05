@@ -68,6 +68,7 @@ public sealed partial class SpeedGraphPage : Page
 
     private async void BtnCopy_Click2(object sender, RoutedEventArgs e)
     {
+        SpeedGraphSample2.Points.Clear();
         ulong _totalBytes = 1024UL * 1024 * (ulong)NBFileSize2.Value;
 
         SpeedGraphSample2.SetGraphNormal();
