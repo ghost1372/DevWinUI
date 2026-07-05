@@ -43,6 +43,31 @@
                 </local:ControlExample.Pane>
                 <dev:SpeedGraph x:Name="SpeedGraphSample" AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}" BackgroundMode="{x:Bind ((dev:SpeedGraphBackgroundMode)CmbBackgroundMode.SelectedItem), Mode=OneWay}" SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
             </local:ControlExample>
+            <local:ControlExample DocPage="controls/speedGraph2" HeaderText="Speed Graph 2">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SpeedGraph2 x:Name="SpeedGraphSample2" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        SpeedGraphSample2.Points.Add(new Vector2(percent, speed));
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button x:Name="BtnCopy2" Click="BtnCopy_Click2" Content="Starting file copy simulation" />
+                        <Button x:Name="BtnError2" Click="BtnError_Click2" Content="Error" />
+                        <Button x:Name="BtnWarning2" Click="BtnPause_Click2" Content="Warning" />
+                        <Button x:Name="BtnSuccess2" Click="BtnSuccess_Click2" Content="Success" />
+                        <Button x:Name="BtnNormal2" Click="BtnNormal_Click" Content="Normal" />
+                        <NumberBox x:Name="NBFileSize2" Header="File Size (MB)" Maximum="5000" Minimum="100" Value="500" />
+
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:SpeedGraph2 x:Name="SpeedGraphSample2" />
+            </local:ControlExample>
+
         </StackPanel>
     </ScrollViewer>
 
