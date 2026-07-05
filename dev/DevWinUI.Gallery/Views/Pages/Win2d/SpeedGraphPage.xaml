@@ -65,7 +65,7 @@
 
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:SpeedGraph2 x:Name="SpeedGraphSample2" Height="50" HorizontalAlignment="Stretch" />
+                <dev:SpeedGraph2 x:Name="SpeedGraphSample2" HorizontalAlignment="Stretch" />
             </local:ControlExample>
 
         </StackPanel>
