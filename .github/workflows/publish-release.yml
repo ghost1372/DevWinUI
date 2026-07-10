@@ -1,4 +1,4 @@
-﻿name: Publish Release
+﻿name: Publish Gallery Release
 
 on:
   push:
