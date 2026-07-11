@@ -1,0 +1,46 @@
+﻿name: Publish VSIX Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      Configuration: Release
+      VsixManifestPath: VSIX\DevWinUI_Template\DevWinUI_Template\source.extension.vsixmanifest
+      VsixSourcePath: VSIX\DevWinUI_Template\DevWinUI_Template\source.extension.cs
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v3
+
+      - name: Restore
+        run: msbuild /t:Restore
+
+      - name: Version stamp
+        uses: madskristensen/vsix-version-stamp@v2
+        with:
+          manifest-file: ${{ env.VsixManifestPath }}
+          vsix-token-source-file: ${{ env.VsixSourcePath }}
+
+      - name: Build
+        run: msbuild /p:Configuration=$(Configuration)
+
+      - name: Publish to VSIX Gallery
+        uses: madskristensen/publish-vsixgallery@v1
+        with:
+          vsix-file: '**/*.vsix'
+
+      - name: Publish to Marketplace
+        uses: madskristensen/publish-marketplace@v2
+        with:
+          extension-file: '**/*.vsix'
+          publish-manifest-file: vs-publish.json
+          personal-access-code: ${{ secrets.VS_MARKETPLACE_TOKEN }}

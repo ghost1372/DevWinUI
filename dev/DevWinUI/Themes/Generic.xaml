@@ -14952,7 +14952,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="ConfirmButtonStyle" Value="{StaticResource AccentButtonStyle}" />
     <Setter Property="ShowConfirmButton" Value="True" />
     <Setter Property="ClockCornerRadius" Value="0,4,4,0" />
-    <Setter Property="ClockBorderThickness" Value="0,1,1,1" />
+    <Setter Property="ClockBorderThickness" Value="0" />
+    <Setter Property="FlyoutBorderThickness" Value="1" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ClockPicker">
@@ -15079,7 +15080,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
                   <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
-                  <local:Clock x:Name="PART_ClockView" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" BorderThickness="{TemplateBinding ClockBorderThickness}" />
+                  <local:Clock x:Name="PART_ClockView" Margin="0" HorizontalAlignment="Stretch" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
                 </Grid>
               </Flyout>
             </FlyoutBase.AttachedFlyout>

@@ -217,6 +217,8 @@ public partial class BetterLyric : Control
         _lyricsRenderer.Dispose();
         DisposeRenderLyricsLines();
         _edgeFadeMaskRenderer.Dispose();
+        _scrollWheelDebounceTimer?.Dispose();
+        _layoutDebouncer?.Dispose();
     }
 
     private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)

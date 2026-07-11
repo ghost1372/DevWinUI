@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml.Controls.Primitives;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
@@ -262,13 +262,11 @@ public partial class ClockPicker : Control
         {
             if (ShowConfirmButton)
             {
-                FlyoutBorderThickness = new Thickness(0);
                 FlyoutCornerRadius = new CornerRadius(0);
                 clock.ClockCornerRadius = new CornerRadius(4, 4, 0, 0);
             }
             else
             {
-                FlyoutBorderThickness = new Thickness(1);
                 FlyoutCornerRadius = new CornerRadius(4);
                 clock.ClockCornerRadius = new CornerRadius(4);
             }

@@ -10,12 +10,12 @@
     <LibraryMajorVersion>10</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>1</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>1</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
     <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
     <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>1</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
     <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>

@@ -1,26 +1,24 @@
-using Microsoft.UI.Xaml.Controls.Primitives;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class ClockPicker
 {
-    internal CornerRadius FlyoutCornerRadius
+    public CornerRadius FlyoutCornerRadius
     {
         get { return (CornerRadius)GetValue(FlyoutCornerRadiusProperty); }
         set { SetValue(FlyoutCornerRadiusProperty, value); }
     }
 
-    internal static readonly DependencyProperty FlyoutCornerRadiusProperty =
+    public static readonly DependencyProperty FlyoutCornerRadiusProperty =
         DependencyProperty.Register(nameof(FlyoutCornerRadius), typeof(CornerRadius), typeof(ClockPicker), new PropertyMetadata(new CornerRadius(0)));
 
-    internal Thickness FlyoutBorderThickness
+    public Thickness FlyoutBorderThickness
     {
         get { return (Thickness)GetValue(FlyoutBorderThicknessProperty); }
         set { SetValue(FlyoutBorderThicknessProperty, value); }
     }
 
-    internal static readonly DependencyProperty FlyoutBorderThicknessProperty =
-        DependencyProperty.Register(nameof(FlyoutBorderThickness), typeof(Thickness), typeof(ClockPicker), new PropertyMetadata(new Thickness(0)));
+    public static readonly DependencyProperty FlyoutBorderThicknessProperty =
+        DependencyProperty.Register(nameof(FlyoutBorderThickness), typeof(Thickness), typeof(ClockPicker), new PropertyMetadata(new Thickness(1)));
 
     public TimeSpan? SelectedTime
     {
@@ -219,7 +217,7 @@ public partial class ClockPicker
     }
 
     public static readonly DependencyProperty ClockBorderThicknessProperty =
-        DependencyProperty.Register(nameof(ClockBorderThickness), typeof(Thickness), typeof(ClockPicker), new PropertyMetadata(new Thickness(0, 1, 1, 1)));
+        DependencyProperty.Register(nameof(ClockBorderThickness), typeof(Thickness), typeof(ClockPicker), new PropertyMetadata(new Thickness(0)));
 
     public CornerRadius ClockCornerRadius
     {
