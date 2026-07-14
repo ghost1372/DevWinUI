@@ -124,11 +124,11 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
     }
     private string GetString(string key, string language)
     {
-        return StringExtensions.GetLocalizedResourceInternal(key, language);
+        return StringExtensions.GetBaseLocalizedResourceInternal(key, language);
     }
     private string GetString(string key, string language, int value)
     {
-        var candidate = StringExtensions.GetLocalizedResourceInternal(key, language);
+        var candidate = StringExtensions.GetBaseLocalizedResourceInternal(key, language);
 
         return candidate != null ? string.Format(candidate, value) : key;
     }

@@ -31,6 +31,14 @@ public static partial class StringExtensions
         {
             return GetLocalizedResource(value, language, "DevWinUI/Resources");
         }
+        internal string GetBaseLocalizedResourceInternal()
+        {
+            return GetLocalizedResource(value, "DevWinUI.Base/Resources");
+        }
+        internal string GetBaseLocalizedResourceInternal(string language)
+        {
+            return GetLocalizedResource(value, language, "DevWinUI.Base/Resources");
+        }
 
         public TEnum GetLocalizedEnum<TEnum>() where TEnum : struct, Enum
         {
