@@ -53,14 +53,10 @@ public static partial class TaskbarHelper
         {
             unsafe
             {
+                Guid clsid = CLSID_TaskbarList;
+                Guid iid = IID_ITaskbarList3;
                 void* ppv;
-                HRESULT hr = PInvoke.CoCreateInstance(
-                    in CLSID_TaskbarList,
-                    null,
-                    Windows.Win32.System.Com.CLSCTX.CLSCTX_INPROC_SERVER,
-                    in IID_ITaskbarList3,
-                    out ppv);
-
+                var hr = PInvoke.CoCreateInstance(&clsid, null, Windows.Win32.System.Com.CLSCTX.CLSCTX_INPROC_SERVER, &iid, &ppv);
                 if (hr.Succeeded && ppv != null)
                 {
                     taskbarInstance = (ITaskbarList3)new StrategyBasedComWrappers().GetOrCreateObjectForComInstance((IntPtr)ppv, CreateObjectFlags.None);
