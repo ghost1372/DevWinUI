@@ -24,7 +24,7 @@ public sealed partial class AppLanguageItem
         if (systemDefault || string.IsNullOrEmpty(code))
         {
             Code = new CultureInfo(code).Name;
-            Name = "UseSystemSetting".GetLocalizedResource();
+            Name = "UseSystemSetting".GetLocalizedResourceInternal();
         }
         else
         {

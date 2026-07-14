@@ -3,7 +3,6 @@
 [StructLayout(LayoutKind.Auto)]
 public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IEquatable<RelativeDate>
 {
-    public readonly ResourceHelper resourceHelper;
     private TimeProvider TimeProvider { get; }
     private DateTime DateTime { get; }
 
@@ -12,7 +11,6 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
         if (dateTime.Kind == DateTimeKind.Unspecified)
             throw new ArgumentException("Cannot determine if the argument is a local datetime or UTC datetime", nameof(dateTime));
 
-        resourceHelper = new ResourceHelper();
         DateTime = dateTime.ToUniversalTime();
         TimeProvider = timeProvider ?? TimeProvider.System;
     }
@@ -126,11 +124,11 @@ public readonly struct RelativeDate : IComparable, IComparable<RelativeDate>, IE
     }
     private string GetString(string key, string language)
     {
-        return resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
+        return StringExtensions.GetLocalizedResourceInternal(key, language);
     }
     private string GetString(string key, string language, int value)
     {
-        var candidate = resourceHelper.GetStringFromResource(key, language, "DevWinUI/Resources");
+        var candidate = StringExtensions.GetLocalizedResourceInternal(key, language);
 
         return candidate != null ? string.Format(candidate, value) : key;
     }

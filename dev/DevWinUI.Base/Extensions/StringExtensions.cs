@@ -1,26 +1,35 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace DevWinUI;
 
 public static partial class StringExtensions
 {
-    private static readonly ConcurrentDictionary<string, string> cachedResources = new();
-    private static readonly ResourceMap resourcesTree = new ResourceManager().MainResourceMap.TryGetSubtree("Resources");
+    private static readonly ResourceHelper resourceHelper = new();
+    private static readonly ConcurrentDictionary<(string Key, string? Language, string? FileName), string> _cache = new();
 
     extension(string value)
     {
+        public string GetLocalizedResource(string language, string fileName)
+        {
+            return _cache.GetOrAdd((value, language, fileName), static (key, helper) => helper.GetStringFromResource(key.Key, key.Language, key.FileName), resourceHelper);
+        }
+
+        public string GetLocalizedResource(string fileName)
+        {
+            return _cache.GetOrAdd((value, null, fileName), static (key, helper) => helper.GetStringFromResource(key.Key, key.Language, key.FileName), resourceHelper);
+        }
         public string GetLocalizedResource()
         {
-            if (cachedResources.TryGetValue(value, out var resource))
-            {
-                return resource;
-            }
-
-            resource = resourcesTree?.TryGetValue(value)?.ValueAsString;
-
-            return cachedResources[value] = resource ?? string.Empty;
+            return GetLocalizedResource(value, "Resources");
+        }
+        internal string GetLocalizedResourceInternal()
+        {
+            return GetLocalizedResource(value, "DevWinUI/Resources");
+        }
+        internal string GetLocalizedResourceInternal(string language)
+        {
+            return GetLocalizedResource(value, language, "DevWinUI/Resources");
         }
 
         public TEnum GetLocalizedEnum<TEnum>() where TEnum : struct, Enum
