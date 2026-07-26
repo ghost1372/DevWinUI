@@ -42,11 +42,27 @@ public partial class DropdownColorPicker : Control
         UpdateFlyoutOptions();
         OnColorChanged();
 
-        Unloaded -= OnDropdownColorPickerUnlaoded;
-        Unloaded += OnDropdownColorPickerUnlaoded;
+        Loaded -= OnDropdownColorPickerLoaded;
+        Loaded += OnDropdownColorPickerLoaded;
+        Unloaded -= OnDropdownColorPickerUnloaded;
+        Unloaded += OnDropdownColorPickerUnloaded;
     }
 
-    private void OnDropdownColorPickerUnlaoded(object sender, RoutedEventArgs e)
+    private void OnDropdownColorPickerLoaded(object sender, RoutedEventArgs e)
+    {
+        if (colorPicker != null)
+        {
+            colorPicker.ColorChanged -= OnColorPickerColorChanged;
+            colorPicker.ColorChanged += OnColorPickerColorChanged;
+        }
+        if (ColorPalette != null)
+        {
+            ColorPalette.ColorChanged -= OnColorPaletteColorChanged;
+            ColorPalette.ColorChanged += OnColorPaletteColorChanged;
+        }
+    }
+
+    private void OnDropdownColorPickerUnloaded(object sender, RoutedEventArgs e)
     {
         if (colorPicker != null)
             colorPicker.ColorChanged -= OnColorPickerColorChanged;
