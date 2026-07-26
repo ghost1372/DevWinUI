@@ -55,15 +55,19 @@ public partial class DropdownColorPicker : Control
             colorPicker.ColorChanged -= OnColorPickerColorChanged;
             colorPicker.ColorChanged += OnColorPickerColorChanged;
         }
+        if (ColorPalette != null)
+        {
+            ColorPalette.ColorChanged -= OnColorPaletteColorChanged;
+            ColorPalette.ColorChanged += OnColorPaletteColorChanged;
+        }
     }
 
     private void OnDropdownColorPickerUnloaded(object sender, RoutedEventArgs e)
     {
         if (colorPicker != null)
-        {
             colorPicker.ColorChanged -= OnColorPickerColorChanged;
+        if (ColorPalette != null)
             ColorPalette.ColorChanged -= OnColorPaletteColorChanged;
-        }
     }
 
     private void UpdateFlyoutOptions()
