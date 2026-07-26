@@ -44,8 +44,8 @@ public partial class DropdownColorPicker : Control
 
         Loaded -= OnDropdownColorPickerLoaded;
         Loaded += OnDropdownColorPickerLoaded;
-        Unloaded -= OnDropdownColorPickerUnlaoded;
-        Unloaded += OnDropdownColorPickerUnlaoded;
+        Unloaded -= OnDropdownColorPickerUnloaded;
+        Unloaded += OnDropdownColorPickerUnloaded;
     }
 
     private void OnDropdownColorPickerLoaded(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ public partial class DropdownColorPicker : Control
         }
     }
 
-    private void OnDropdownColorPickerUnlaoded(object sender, RoutedEventArgs e)
+    private void OnDropdownColorPickerUnloaded(object sender, RoutedEventArgs e)
     {
         if (colorPicker != null)
         {
