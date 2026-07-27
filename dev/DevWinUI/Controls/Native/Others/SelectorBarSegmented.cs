@@ -149,7 +149,6 @@ public partial class SelectorBarSegmented : SelectorBar
 
         UpdateItemsView(Orientation);
         UpdateSelectedIndex(SelectedIndex);
-        SyncItemsStates();
     }
 
     private void _ItemsView_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs args)
