@@ -1,5 +1,4 @@
-﻿
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 [TemplatePart(Name = PART_ItemsView, Type = typeof(ItemsView))]
 public partial class SelectorBarSegmented : SelectorBar
@@ -39,12 +38,17 @@ public partial class SelectorBarSegmented : SelectorBar
 
         if (value < 0)
         {
-            SelectedItem = Items.Where(item => item.IsSelected = true).FirstOrDefault();
+            SelectedItem = Items.FirstOrDefault(item => item.IsSelected == true);
         }
         else
         {
+            if (value >= Items.Count)
+                return;
+
             SelectedItem = Items[value];
         }
+
+        SyncItemsStates();
     }
     public ItemsViewSelectionMode SelectionMode
     {
@@ -96,7 +100,42 @@ public partial class SelectorBarSegmented : SelectorBar
         style = Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style;
         Resources.Remove(typeof(SelectorBarItem));
         Resources.Add(typeof(SelectorBarItem), style);
+
+        this.IsEnabledChanged += SelectorBarSegmented_IsEnabledChanged;
+        this.Loaded += SelectorBarSegmented_Loaded;
     }
+
+    private void SelectorBarSegmented_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        SyncItemsStates();
+    }
+
+    private void SelectorBarSegmented_Loaded(object sender, RoutedEventArgs e)
+    {
+        SyncItemsStates();
+    }
+
+    public void SyncItemsStates()
+    {
+        if (Items == null || Items.Count == 0) return;
+        bool enabled = IsEnabled;
+        int selectedIdx = SelectedIndex;
+        if (selectedIdx < 0 && SelectedItem != null)
+        {
+            selectedIdx = Items.IndexOf(SelectedItem);
+        }
+
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i] is SelectorBarItem item)
+            {
+                item.IsSelected = (i == selectedIdx);
+                item.IsEnabled = enabled;
+                VisualStateManager.GoToState(item, enabled ? "Enabled" : "Disabled", false);
+            }
+        }
+    }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -110,6 +149,7 @@ public partial class SelectorBarSegmented : SelectorBar
 
         UpdateItemsView(Orientation);
         UpdateSelectedIndex(SelectedIndex);
+        SyncItemsStates();
     }
 
     private void _ItemsView_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs args)
