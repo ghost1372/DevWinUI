@@ -12,7 +12,7 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var additionalFiles = context
-            .AdditionalTextsProvider.Where(af => af.Path.EndsWith(".json", StringComparison.OrdinalIgnoreCase));
+            .AdditionalTextsProvider.Where(af => af.Path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) && !string.Equals(Path.GetFileName(af.Path), "NativeMethods.json", StringComparison.OrdinalIgnoreCase));
 
         var compilationProvider = context.CompilationProvider;
 

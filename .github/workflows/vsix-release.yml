@@ -1,9 +1,6 @@
 ﻿name: Publish VSIX Release
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
