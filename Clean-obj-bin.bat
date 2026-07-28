@@ -14,10 +14,6 @@ for /r "%BASE_DIR%" %%d in (.) do (
         echo Deleting folder: "%%d\obj"
         rmdir /s /q "%%d\obj"
     )
-	if exist "%%d\Output" (
-        echo Deleting folder: "%%d\Output"
-        rmdir /s /q "%%d\Output"
-    )
 )
 
 echo Done.
