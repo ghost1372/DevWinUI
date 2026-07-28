@@ -399,3 +399,5 @@ FodyWeavers.xsd
 # output folder
 /output/
 /src/output/
+/AlexDocs
+/CLAUDE.md
