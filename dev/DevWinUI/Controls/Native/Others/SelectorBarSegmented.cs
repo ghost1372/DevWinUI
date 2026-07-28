@@ -48,7 +48,7 @@ public partial class SelectorBarSegmented : SelectorBar
             SelectedItem = Items[value];
         }
 
-        SyncItemStates();
+        SyncItemsState();
     }
     public ItemsViewSelectionMode SelectionMode
     {
@@ -107,12 +107,12 @@ public partial class SelectorBarSegmented : SelectorBar
 
     private void SelectorBarSegmented_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
-        SyncItemStates();
+        SyncItemsState();
     }
 
     private void SelectorBarSegmented_Loaded(object sender, RoutedEventArgs e)
     {
-        SyncItemStates();
+        SyncItemsState();
     }
 
     public void SyncItemsState()
