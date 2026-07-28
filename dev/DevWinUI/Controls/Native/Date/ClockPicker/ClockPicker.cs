@@ -26,6 +26,7 @@ public partial class ClockPicker : Control
     private Button confirmButton;
     internal Clock clock;
     private bool isUpdating;
+    private bool openedViaKeyboard;
 
     public ClockPicker()
     {
@@ -56,6 +57,12 @@ public partial class ClockPicker : Control
             rootGrid.PointerReleased += OnPointerReleased;
             rootGrid.PointerPressed -= OnPointerPressed;
             rootGrid.PointerPressed += OnPointerPressed;
+
+            if (FlyoutBase.GetAttachedFlyout(rootGrid) is Flyout attachedFlyout && attachedFlyout.Content is UIElement flyoutContent)
+            {
+                flyoutContent.KeyDown -= OnFlyoutContentKeyDown;
+                flyoutContent.KeyDown += OnFlyoutContentKeyDown;
+            }
         }
 
         if (confirmButton != null)
@@ -88,6 +95,7 @@ public partial class ClockPicker : Control
                 var oldTime = SelectedTime;
                 SelectedTime = timeSpan;
                 SelectedTimeOnly = TimeOnly.FromTimeSpan(timeSpan);
+                Time = timeSpan;
                 SelectedTimeChanged?.Invoke(this, timeSpan);
 
                 var args = new ClockPickerSelectedValueChangedEventArgs(oldTime, timeSpan);
@@ -111,6 +119,22 @@ public partial class ClockPicker : Control
         }
     }
 
+    private void OnFlyoutContentKeyDown(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == Windows.System.VirtualKey.Enter)
+        {
+            if (ShowConfirmButton)
+            {
+                OnConfirmButton(sender, e);
+            }
+            else if (rootGrid != null)
+            {
+                FlyoutBase.GetAttachedFlyout(rootGrid).Hide();
+            }
+            e.Handled = true;
+        }
+    }
+
     private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
     {
         VisualStateManager.GoToState(this, "PointerOver", true);
@@ -124,6 +148,23 @@ public partial class ClockPicker : Control
     private void OnPointerReleased(object sender, PointerRoutedEventArgs e)
     {
         VisualStateManager.GoToState(this, "Normal", true);
+        openedViaKeyboard = false;
+        ShowFlyout();
+    }
+
+    protected override void OnKeyDown(KeyRoutedEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (e.Key is Windows.System.VirtualKey.Enter or Windows.System.VirtualKey.Space)
+        {
+            openedViaKeyboard = true;
+            ShowFlyout();
+            e.Handled = true;
+        }
+    }
+
+    private void ShowFlyout()
+    {
         FlyoutBase flyout = FlyoutBase.GetAttachedFlyout(rootGrid);
 
         if (flyout != null)
@@ -141,7 +182,17 @@ public partial class ClockPicker : Control
         if (sender is FlyoutBase flyout)
         {
             flyout.LightDismissOverlayMode = LightDismissOverlayMode;
-            flyout.Opened -= Flyout_Opened;
+        }
+
+        if (SelectedTime == null)
+        {
+            SelectedTime = DateTimeBase.TimeNow;
+        }
+
+        //Only steer focus (keyboard focus visuals) when the flyout was opened via keyboard.
+        if (openedViaKeyboard)
+        {
+            clock?.FocusSelectedHour();
         }
     }
 

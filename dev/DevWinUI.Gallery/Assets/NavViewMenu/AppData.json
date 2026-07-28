@@ -596,6 +596,12 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.RealClockPage",
+          "Title": "Real Clock",
+          "Subtitle": "A non-interactive analog clock that shows the actual time, with time zone support",
+          "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DateTimePickerPage",
           "Title": "Date Time Picker",
           "Subtitle": "Pick a Date and Time with CalendarWithClock",

@@ -59,6 +59,11 @@ public partial class CalendarWithClock : DateTimeBase
 
         UpdateTemplate();
 
+        if (SelectedTime == null)
+        {
+            SelectedTime = TimeNow;
+        }
+
         rootGrid = GetTemplateChild(PART_Root) as Grid;
         timePicker = GetTemplateChild(PART_TimePicker) as TimePicker;
         clock = GetTemplateChild(PART_Clock) as Clock;

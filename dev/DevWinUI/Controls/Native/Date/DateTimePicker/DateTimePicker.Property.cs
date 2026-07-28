@@ -171,7 +171,7 @@ public partial class DateTimePicker
     }
 
     public static readonly DependencyProperty SelectedTimeProperty =
-        DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan?), typeof(DateTimeBase), new PropertyMetadata(TimeNow, OnSelectedTimeChanged));
+        DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan?), typeof(DateTimeBase), new PropertyMetadata(null, OnSelectedTimeChanged));
 
     private static void OnSelectedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

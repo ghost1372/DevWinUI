@@ -131,6 +131,10 @@ public partial class DateTimePicker : DateTimeBase
 
         if (flyout != null)
         {
+            if (SelectedTime == null)
+            {
+                SelectedTime = TimeNow;
+            }
             flyout.Closed -= Flyout_Closed;
             flyout.Closed += Flyout_Closed;
             FlyoutBase.ShowAttachedFlyout(rootGrid);
