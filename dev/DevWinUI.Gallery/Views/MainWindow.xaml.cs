@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Windowing;
+﻿using Microsoft.UI.Input;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Input;
 using WinRT;
 
@@ -33,6 +34,28 @@ public sealed partial class MainWindow : Window
                 .ConfigureAutoSuggestBox(HeaderAutoSuggestBox)
                 .ConfigureTitleBar(AppTitleBar)
                 .ConfigureBreadcrumbBar(BreadCrumbNav, BreadcrumbPageMappings.PageDictionary);
+        }
+    }
+
+    private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        PointerPointProperties props = e.GetCurrentPoint(null).Properties;
+
+        if (props.IsXButton1Pressed)
+        {
+            if (NavFrame.CanGoBack)
+            {
+                NavFrame.GoBack();
+                e.Handled = true;
+            }
+        }
+        else if (props.IsXButton2Pressed)
+        {
+            if (NavFrame.CanGoForward)
+            {
+                NavFrame.GoForward();
+                e.Handled = true;
+            }
         }
     }
 
