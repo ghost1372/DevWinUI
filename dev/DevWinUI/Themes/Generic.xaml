@@ -19155,7 +19155,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     <Setter Property="Glyph" Value="" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
   </Style>
-  <Style x:Key="ValidatingTextBoxStyle" TargetType="TextBox">
+  <Style x:Key="ValidatingTextBoxStyle" BasedOn="DefaultDevWinUITextBoxStyle" TargetType="TextBox">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="TextBox">
