@@ -187,7 +187,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ValidatingDevWinUITextBoxStyle" TargetType="local:TextBox">
+    <Style x:Key="ValidatingDevWinUITextBoxStyle" BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextBox">
