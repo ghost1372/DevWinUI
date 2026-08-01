@@ -35,7 +35,7 @@ public partial class LiveGraph : Control
     private List<UserPolygon> polygons = new();
     private Dictionary<string, UserPolygon> livePolygons = new();
     private Dictionary<string, GraphBrushData> polygonsBrush = new();
-
+    private readonly object m_graphMutex = new();
     private TimeSpan highlightLineAnimationDuration = TimeSpan.FromMilliseconds(300);
     private HighlightLineBehavior highlightLineBehavior = HighlightLineBehavior.EachPoint;
     private LiveGraphBackgroundMode backgroundMode = LiveGraphBackgroundMode.Cross;
@@ -174,7 +174,7 @@ public partial class LiveGraph : Control
                     for (int i = 0; i < polygon.Points.Count; i++)
                     {
                         var point = polygon.Points[i];
-                        point.y *= scaleY;
+                        point.Y *= scaleY;
                         polygon.Points[i] = point;
                     }
                     polygon.CurrentY *= scaleY;
