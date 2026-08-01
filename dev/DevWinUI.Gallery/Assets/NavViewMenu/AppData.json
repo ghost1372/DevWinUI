@@ -598,6 +598,7 @@
         {
           "UniqueId": "DevWinUIGallery.Views.RealClockPage",
           "Title": "Real Clock",
+          "IsNew": true,
           "Subtitle": "A non-interactive analog clock that shows the actual time, with time zone support",
           "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
         },

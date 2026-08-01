@@ -1,9 +1,10 @@
-using Microsoft.UI.Xaml.Shapes;
+﻿using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 [TemplatePart(Name = ElementButtonAm, Type = typeof(RadioButton))]
 [TemplatePart(Name = ElementButtonPm, Type = typeof(RadioButton))]
 [TemplatePart(Name = ElementBorderTitle, Type = typeof(Border))]
+[TemplatePart(Name = ElementSecondHandLine, Type = typeof(Line))]
 [TemplatePart(Name = ElementMinuteHandLine, Type = typeof(Line))]
 [TemplatePart(Name = ElementPanelNum, Type = typeof(CirclePanel))]
 [TemplatePart(Name = ElementTimeStr, Type = typeof(TextBlock))]
@@ -13,6 +14,7 @@ public partial class RealClock : Control
     private const string ElementButtonPm = "PART_ButtonPm";
     private const string ElementBorderTitle = "PART_BorderTitle";
     private const string ElementMinuteHandLine = "PART_MinuteHand";
+    private const string ElementSecondHandLine = "PART_SecondHand";
     private const string ElementPanelNum = "PART_PanelNum";
     private const string ElementTimeStr = "PART_TimeStr";
 
@@ -20,8 +22,10 @@ public partial class RealClock : Control
 
     private ClockRadioButton _buttonPm;
 
+    private Line _secondHandLine;
     private Line _minuteHandLine;
 
+    private RotateTransform _secondHandRotateTransform;
     private RotateTransform _rotateTransformClock;
 
     private CirclePanel _circlePanel;
@@ -49,6 +53,7 @@ public partial class RealClock : Control
 
         _buttonAm = GetTemplateChild(ElementButtonAm) as ClockRadioButton;
         _buttonPm = GetTemplateChild(ElementButtonPm) as ClockRadioButton;
+        _secondHandLine = GetTemplateChild(ElementSecondHandLine) as Line;
         _minuteHandLine = GetTemplateChild(ElementMinuteHandLine) as Line;
         _circlePanel = GetTemplateChild(ElementPanelNum) as CirclePanel;
         _blockTime = GetTemplateChild(ElementTimeStr) as TextBlock;
@@ -57,6 +62,9 @@ public partial class RealClock : Control
 
         _rotateTransformClock = new RotateTransform();
         _minuteHandLine.RenderTransform = _rotateTransformClock;
+
+        _secondHandRotateTransform = new RotateTransform();
+        _secondHandLine.RenderTransform = _secondHandRotateTransform;
 
         _hourButtonList = new List<ClockRadioButton>();
         _circlePanel.Children.Clear();
@@ -81,12 +89,17 @@ public partial class RealClock : Control
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         Update();
+
         if (_timer == null)
         {
-            _timer = new DispatcherTimer();
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+
             _timer.Tick += OnTimerTick;
         }
-        _timer.Interval = GetIntervalToNextMinute();
+
         _timer.Start();
     }
 
@@ -98,18 +111,12 @@ public partial class RealClock : Control
     private void OnTimerTick(object sender, object e)
     {
         Update();
-        _timer.Interval = GetIntervalToNextMinute();
-    }
-
-    private static TimeSpan GetIntervalToNextMinute()
-    {
-        return TimeSpan.FromSeconds(61 - DateTime.Now.Second);
     }
 
     private bool CheckNull()
     {
         if (_buttonPm == null || _buttonAm == null ||
-            _minuteHandLine == null || _circlePanel == null ||
+            _secondHandLine == null || _minuteHandLine == null || _circlePanel == null ||
             _blockTime == null) return false;
 
         return true;
@@ -132,15 +139,17 @@ public partial class RealClock : Control
             _buttonAm.IsChecked = true;
         }
 
-        _rotateTransformClock.Angle = time.Minute * 6;
+        _secondHandRotateTransform.Angle = (float)(time.Second * 6 + time.Millisecond * 0.006);
+
+        _rotateTransformClock.Angle = (float)(time.Minute * 6 + time.Second * 0.1);
 
         var hour12 = time.Hour % 12;
         if (hour12 == 0) hour12 = 12;
+
         _hourButtonList[hour12 - 1].IsChecked = true;
 
         _blockTime.Text = time.ToString(TimeFormat);
     }
-
     private TimeZoneInfo ResolveTimeZone()
     {
         if (string.IsNullOrEmpty(TimeZoneId)) return TimeZoneInfo.Local;
