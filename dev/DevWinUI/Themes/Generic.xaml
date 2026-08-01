@@ -15017,7 +15017,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 <ColumnDefinition />
               </Grid.ColumnDefinitions>
               <Border Name="PART_BorderTitle" Grid.ColumnSpan="3" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding TitleBorderBackground}" CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
-                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
+                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" TextAlignment="Center" />
               </Border>
               <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                 <Grid Name="PART_Grid" Margin="10">
@@ -18981,7 +18981,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <RowDefinition Height="Auto" />
               <RowDefinition Height="*" />
               <RowDefinition Height="Auto" />
-              <!--<RowDefinition Height="*" />-->
+              <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />
@@ -19059,17 +19059,17 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 </VisualState>
                 <VisualState x:Name="ButtonCollapsed" />
               </VisualStateGroup>
-              <!--<VisualStateGroup x:Name="ValidationStates">
-                                <VisualState x:Name="NoValidation" />
-                                <VisualState x:Name="ValidationEnabled">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Path=(local:Validation.ValidationProvider), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CanValidateConverter}}" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Target="ErrorsRepeater.Visibility" Value="Visible" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>-->
+              <VisualStateGroup x:Name="ValidationStates">
+                <VisualState x:Name="NoValidation" />
+                <VisualState x:Name="ValidationEnabled">
+                  <VisualState.StateTriggers>
+                    <StateTrigger IsActive="{Binding Path=(local:Validation.ValidationProvider), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CanValidateConverter}}" />
+                  </VisualState.StateTriggers>
+                  <VisualState.Setters>
+                    <Setter Target="ErrorsRepeater.Visibility" Value="Visible" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{ThemeResource TextBoxTopHeaderMargin}" VerticalAlignment="Top" x:DeferLoadStrategy="Lazy" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontWeight="Normal" Foreground="{ThemeResource TextControlHeaderForeground}" TextWrapping="Wrap" Visibility="Collapsed" />
             <Border x:Name="BorderElement" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="2" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
@@ -19084,7 +19084,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               <ContentPresenter x:Name="ContentContentPresenter" Grid.Column="1" VerticalAlignment="Stretch" Content="{TemplateBinding Content}" />
             </Grid>
             <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
-            <!--<ItemsRepeater x:Name="ErrorsRepeater" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" ItemTemplate="{Binding Path=(local:Validation.ErrorTemplate), RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding Path=(local:Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}" />-->
+            <ItemsRepeater x:Name="ErrorsRepeater" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" ItemTemplate="{Binding Path=(local:Validation.ErrorTemplate), RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding Path=(local:Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

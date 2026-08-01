@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Page x:Class="DevWinUIGallery.Views.RealClockPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample HeaderText="Real Clock (Local Time)">
+            <local:ControlExample DocPage="controls/realClock" HeaderText="Real Clock (Local Time)">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:RealClock /&gt;</x:String>
                 </local:ControlExample.Xaml>
@@ -21,7 +21,7 @@
                 </local:ControlExample.Pane>
                 <dev:RealClock HorizontalAlignment="Left" TimeFormat="{x:Bind TxtTimeFormat1.Text, Mode=OneWay}" />
             </local:ControlExample>
-            <local:ControlExample HeaderText="Real Clock with a different Time Zone">
+            <local:ControlExample DocPage="controls/realClock" HeaderText="Real Clock with a different Time Zone">
                 <local:ControlExample.Xaml>
                     <x:String>&lt;dev:RealClock TimeZoneId="Tokyo Standard Time" /&gt;</x:String>
                 </local:ControlExample.Xaml>

@@ -148,6 +148,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### RealClock
+![RealClock](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RealClock.gif)
+
 ### ClockPicker
 ![ClockPicker](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ClockPicker.gif)
   
