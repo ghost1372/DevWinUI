@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
+
 [TemplatePart(Name = ElementButtonAm, Type = typeof(RadioButton))]
 [TemplatePart(Name = ElementButtonPm, Type = typeof(RadioButton))]
 [TemplatePart(Name = ElementBorderTitle, Type = typeof(Border))]
@@ -19,28 +20,26 @@ public partial class RealClock : Control
     private const string ElementTimeStr = "PART_TimeStr";
 
     private ClockRadioButton _buttonAm;
-
     private ClockRadioButton _buttonPm;
-
     private Line _secondHandLine;
     private Line _minuteHandLine;
-
     private RotateTransform _secondHandRotateTransform;
     private RotateTransform _rotateTransformClock;
-
     private CirclePanel _circlePanel;
-
     private List<ClockRadioButton> _hourButtonList;
-
     private TextBlock _blockTime;
-
-    private DispatcherTimer _timer;
+    private bool _isRenderingSubscribed;
+    private int _selectedHourIndex = -1;
+    private bool? _isPm;
+    private string _lastTimeText;
+    private string _resolvedTimeZoneId;
+    private TimeZoneInfo _resolvedTimeZone = TimeZoneInfo.Local;
 
     protected bool isTemplateApplied;
 
     public RealClock()
     {
-        this.DefaultStyleKey = typeof(RealClock);
+        DefaultStyleKey = typeof(RealClock);
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -81,34 +80,42 @@ public partial class RealClock : Control
             _circlePanel.Children.Add(hourButton);
         }
 
-        isTemplateApplied = true;
+        _selectedHourIndex = -1;
+        _isPm = null;
+        _lastTimeText = null;
 
+        isTemplateApplied = true;
         Update();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         Update();
-
-        if (_timer == null)
-        {
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(100)
-            };
-
-            _timer.Tick += OnTimerTick;
-        }
-
-        _timer.Start();
+        StartRenderingUpdates();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        _timer?.Stop();
+        StopRenderingUpdates();
     }
 
-    private void OnTimerTick(object sender, object e)
+    private void StartRenderingUpdates()
+    {
+        if (_isRenderingSubscribed) return;
+
+        CompositionTarget.Rendering += OnCompositionTargetRendering;
+        _isRenderingSubscribed = true;
+    }
+
+    private void StopRenderingUpdates()
+    {
+        if (!_isRenderingSubscribed) return;
+
+        CompositionTarget.Rendering -= OnCompositionTargetRendering;
+        _isRenderingSubscribed = false;
+    }
+
+    private void OnCompositionTargetRendering(object sender, object e)
     {
         Update();
     }
@@ -126,41 +133,69 @@ public partial class RealClock : Control
     {
         if (!isTemplateApplied) return;
 
-        var time = TimeZoneInfo.ConvertTime(DateTime.Now, ResolveTimeZone());
+        var time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, ResolveTimeZone());
 
-        if (time.Hour >= 12)
+        var isPm = time.Hour >= 12;
+        if (_isPm != isPm)
         {
-            _buttonPm.IsChecked = true;
-            _buttonAm.IsChecked = false;
-        }
-        else
-        {
-            _buttonPm.IsChecked = false;
-            _buttonAm.IsChecked = true;
+            _buttonPm.IsChecked = isPm;
+            _buttonAm.IsChecked = !isPm;
+            _isPm = isPm;
         }
 
-        _secondHandRotateTransform.Angle = (float)(time.Second * 6 + time.Millisecond * 0.006);
+        var second = time.TimeOfDay.TotalSeconds % 60;
+        _secondHandRotateTransform.Angle = second * 6.0;
 
-        _rotateTransformClock.Angle = (float)(time.Minute * 6 + time.Second * 0.1);
+        var minute = time.TimeOfDay.TotalMinutes % 60;
+        _rotateTransformClock.Angle = minute * 6.0;
 
         var hour12 = time.Hour % 12;
         if (hour12 == 0) hour12 = 12;
 
-        _hourButtonList[hour12 - 1].IsChecked = true;
+        var hourIndex = hour12 - 1;
+        if (hourIndex != _selectedHourIndex)
+        {
+            if (_selectedHourIndex >= 0 && _selectedHourIndex < _hourButtonList.Count)
+            {
+                _hourButtonList[_selectedHourIndex].IsChecked = false;
+            }
 
-        _blockTime.Text = time.ToString(TimeFormat);
+            _hourButtonList[hourIndex].IsChecked = true;
+            _selectedHourIndex = hourIndex;
+        }
+
+        var timeText = time.ToString(TimeFormat);
+        if (!string.Equals(_lastTimeText, timeText, StringComparison.Ordinal))
+        {
+            _blockTime.Text = timeText;
+            _lastTimeText = timeText;
+        }
     }
+
     private TimeZoneInfo ResolveTimeZone()
     {
-        if (string.IsNullOrEmpty(TimeZoneId)) return TimeZoneInfo.Local;
+        if (string.IsNullOrWhiteSpace(TimeZoneId))
+        {
+            _resolvedTimeZoneId = null;
+            _resolvedTimeZone = TimeZoneInfo.Local;
+            return _resolvedTimeZone;
+        }
+
+        if (string.Equals(_resolvedTimeZoneId, TimeZoneId, StringComparison.Ordinal))
+        {
+            return _resolvedTimeZone;
+        }
 
         try
         {
-            return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
+            _resolvedTimeZone = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
         }
         catch (Exception)
         {
-            return TimeZoneInfo.Local;
+            _resolvedTimeZone = TimeZoneInfo.Local;
         }
+
+        _resolvedTimeZoneId = TimeZoneId;
+        return _resolvedTimeZone;
     }
 }

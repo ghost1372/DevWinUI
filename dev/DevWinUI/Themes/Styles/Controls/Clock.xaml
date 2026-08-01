@@ -61,7 +61,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Border Name="PART_BorderTitle" Grid.ColumnSpan="3" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding TitleBorderBackground}" CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
-                                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
+                                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" TextAlignment="Center" />
                             </Border>
                             <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid Name="PART_Grid" Margin="10">
