@@ -166,6 +166,7 @@ Themes\Styles\Controls\PinBox.xaml
 Themes\Styles\Controls\ProfileControl.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
+Themes\Styles\Controls\RealClock.xaml
 Themes\Styles\Controls\RedirectVisualView.xaml
 Themes\Styles\Controls\RichButton.xaml
 Themes\Styles\Controls\SegmentedSlider.xaml
@@ -2104,71 +2105,12 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Margin" Value="8,0" />
-    <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
-    <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
-    <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-    <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-    <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
-    <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
-    <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
-    <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
-    <Setter Property="CenterPointFill" Value="White" />
-    <Setter Property="VerticalContentAlignment" Value="Center" />
-    <Setter Property="HorizontalContentAlignment" Value="Center" />
-    <Setter Property="ClockHeight" Value="250" />
-    <Setter Property="ClockWidth" Value="250" />
-    <Setter Property="Diameter" Value="130" />
-    <Setter Property="OffsetAngle" Value="-60" />
-    <Setter Property="CenterPointHeight" Value="8" />
-    <Setter Property="CenterPointWidth" Value="8" />
-    <Setter Property="HorizontalAlignment" Value="Center" />
-    <Setter Property="HeaderMargin" Value="4" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:Clock">
-          <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
-            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding ClockCornerRadius}" />
-            <Grid>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="49.5" />
-                <RowDefinition />
-                <RowDefinition Height="40" />
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-              </Grid.ColumnDefinitions>
-              <Border Name="PART_BorderTitle" Grid.ColumnSpan="3" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding TitleBorderBackground}" CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
-                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
-              </Border>
-              <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                <Grid Name="PART_Grid" Margin="10">
-                  <Border Width="178" Height="178" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ClockBackground}" CornerRadius="90" />
-                  <!--  Numbers Panel  -->
-                  <local:CirclePanel x:Name="PART_PanelNum" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Diameter="{TemplateBinding Diameter}" KeepVertical="True" OffsetAngle="{TemplateBinding OffsetAngle}" />
-                  <!--  Minute Hand  -->
-                  <Line x:Name="PART_MinuteHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding MinuteHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-55" />
-                  <!--  Center Ellipse  -->
-                  <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
-                </Grid>
-              </Viewbox>
-              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" />
-              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" />
-            </Grid>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
   <Style x:Key="DefaultClockRadioButtonStyle" TargetType="local:ClockRadioButton">
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
     <Setter Property="Width" Value="30" />
     <Setter Property="Height" Value="30" />
     <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="RadioButton">
@@ -2195,6 +2137,45 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             </VisualStateManager.VisualStateGroups>
             <Ellipse x:Name="Ellipse" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Transparent" />
             <TextBlock x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" />
+            <Ellipse x:Name="FocusRing" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" Stroke="{ThemeResource TextFillColorPrimaryBrush}" StrokeThickness="2.5" Visibility="Collapsed" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="AmPmClockRadioButtonStyle" TargetType="local:ClockRadioButton">
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="Width" Value="44" />
+    <Setter Property="Height" Value="44" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="RadioButton">
+          <Grid x:Name="RootGrid" Background="Transparent">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver" />
+                <VisualState x:Name="Pressed" />
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="CheckStates">
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonForeground}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Unchecked" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Ellipse x:Name="Ellipse" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Transparent" />
+            <TextBlock x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" />
+            <Ellipse x:Name="FocusRing" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" Stroke="{ThemeResource TextFillColorPrimaryBrush}" StrokeThickness="2.5" Visibility="Collapsed" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -4934,6 +4915,68 @@ Themes\Styles\Controls\WaveProgressBar.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultRealClockStyle" TargetType="local:RealClock">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Margin" Value="8,0" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
+    <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
+    <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="SecondHandBackground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+    <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
+    <Setter Property="CenterPointFill" Value="White" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="ClockHeight" Value="250" />
+    <Setter Property="ClockWidth" Value="250" />
+    <Setter Property="Diameter" Value="130" />
+    <Setter Property="OffsetAngle" Value="-60" />
+    <Setter Property="CenterPointHeight" Value="8" />
+    <Setter Property="CenterPointWidth" Value="8" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="HeaderMargin" Value="4" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:RealClock">
+          <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" IsHitTestVisible="False">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding ClockCornerRadius}" />
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="49.5" />
+                <RowDefinition />
+                <RowDefinition Height="40" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <Border Name="PART_BorderTitle" Grid.ColumnSpan="3" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding TitleBorderBackground}" CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
+                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" TextAlignment="Center" />
+              </Border>
+              <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid Margin="10">
+                  <Border Width="178" Height="178" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ClockBackground}" CornerRadius="90" />
+                  <!--  Numbers Panel  -->
+                  <local:CirclePanel x:Name="PART_PanelNum" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Diameter="{TemplateBinding Diameter}" KeepVertical="True" OffsetAngle="{TemplateBinding OffsetAngle}" />
+                  <!--  Minute Hand  -->
+                  <Line x:Name="PART_MinuteHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding MinuteHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-55" />
+                  <Line x:Name="PART_SecondHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding SecondHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-65" />
+                  <!--  Center Ellipse  -->
+                  <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
+                </Grid>
+              </Viewbox>
+              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" IsHitTestVisible="False" />
+              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" IsHitTestVisible="False" />
+            </Grid>
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -14935,7 +14978,68 @@ Themes\Styles\Controls\WaveProgressBar.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultCircleIconStyle}" TargetType="local:CircleIcon" />
-  <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
+  <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Margin" Value="8,0" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
+    <Setter Property="Background" Value="{ThemeResource CalendarViewBackground}" />
+    <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+    <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
+    <Setter Property="CenterPointFill" Value="White" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="ClockHeight" Value="250" />
+    <Setter Property="ClockWidth" Value="250" />
+    <Setter Property="Diameter" Value="130" />
+    <Setter Property="OffsetAngle" Value="-60" />
+    <Setter Property="CenterPointHeight" Value="8" />
+    <Setter Property="CenterPointWidth" Value="8" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="HeaderMargin" Value="4" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Clock">
+          <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding ClockCornerRadius}" />
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="49.5" />
+                <RowDefinition />
+                <RowDefinition Height="40" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <Border Name="PART_BorderTitle" Grid.ColumnSpan="3" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding TitleBorderBackground}" CornerRadius="{TemplateBinding TitleBorderCornerRadius}">
+                <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" />
+              </Border>
+              <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid Name="PART_Grid" Margin="10">
+                  <Border Width="178" Height="178" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ClockBackground}" CornerRadius="90" />
+                  <!--  Numbers Panel  -->
+                  <local:CirclePanel x:Name="PART_PanelNum" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Diameter="{TemplateBinding Diameter}" KeepVertical="True" OffsetAngle="{TemplateBinding OffsetAngle}" />
+                  <!--  Minute Hand  -->
+                  <Line x:Name="PART_MinuteHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding MinuteHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-55" />
+                  <!--  Center Ellipse  -->
+                  <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
+                </Grid>
+              </Viewbox>
+              <!--  Keyboard focus target for the minute hand; arrow keys step by MinuteIncrement  -->
+              <ContentControl x:Name="PART_MinuteFocus" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsHitTestVisible="False" IsTabStop="True" TabIndex="2" UseSystemFocusVisuals="False" />
+              <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="44" Height="44" Margin="-34.5,0,0,5.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" Style="{StaticResource AmPmClockRadioButtonStyle}" TabIndex="3" />
+              <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="44" Height="44" Margin="0,0,-34.5,5.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" Style="{StaticResource AmPmClockRadioButtonStyle}" TabIndex="4" />
+            </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultClockPickerStyle" TargetType="local:ClockPicker">
     <Setter Property="Foreground" Value="{ThemeResource CalendarDatePickerTextForeground}" />
     <Setter Property="Background" Value="{ThemeResource CalendarDatePickerBackground}" />
@@ -15078,7 +15182,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
-                  <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                  <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" TabIndex="5" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                   <local:Clock x:Name="PART_ClockView" Margin="0" HorizontalAlignment="Stretch" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
                 </Grid>
               </Flyout>
@@ -17704,6 +17808,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultRealClockStyle}" TargetType="local:RealClock" />
   <Style BasedOn="{StaticResource DefaultRedirectVisualViewStyle}" TargetType="local:RedirectVisualView" />
   <Style x:Key="DefaultRichButtonStyle" TargetType="local:RichButton">
     <Setter Property="TitleForeground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -20065,6 +20170,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultCheckBoxWithDescriptionControlStyle}" TargetType="local:CheckBoxWithDescriptionControl" />
   <Style BasedOn="{StaticResource DefaultCheckUpdateControlStyle}" TargetType="local:CheckUpdateControl" />
+  <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
   <Style BasedOn="{StaticResource DefaultClockPickerStyle}" TargetType="local:ClockPicker" />
   <Style BasedOn="{StaticResource DefaultColorPaletteItemStyle}" TargetType="local:ColorPaletteItem" />
   <Style x:Key="DefaultCompareSliderStyle" TargetType="local:CompareSlider">

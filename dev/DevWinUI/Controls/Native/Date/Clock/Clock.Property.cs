@@ -27,6 +27,11 @@ public partial class Clock
 
     private void OnSelectedTimeChanged(DateTime dateTime)
     {
+        //Refresh the visuals when SelectedTime is set externally; Update() sets SelectedTime itself, so guard against re-entrancy.
+        if (!_isUpdatingSelectedTime)
+        {
+            Update(dateTime);
+        }
         SelectedTimeChanged?.Invoke(this, dateTime);
     }
 

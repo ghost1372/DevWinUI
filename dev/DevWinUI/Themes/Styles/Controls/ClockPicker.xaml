@@ -147,7 +147,7 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                    <Button x:Name="PART_ConfirmButton" Grid.Row="1" HorizontalAlignment="Stretch" Content="{TemplateBinding ConfirmButtonContent}" CornerRadius="0,0,4,4" Style="{TemplateBinding ConfirmButtonStyle}" TabIndex="5" Visibility="{Binding ShowConfirmButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                                     <local:Clock x:Name="PART_ClockView" Margin="0" HorizontalAlignment="Stretch" BorderThickness="{TemplateBinding ClockBorderThickness}" ClockCornerRadius="{TemplateBinding ClockCornerRadius}" />
                                 </Grid>
                             </Flyout>

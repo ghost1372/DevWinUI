@@ -2,27 +2,10 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
-    <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default">
-            <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
-            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="HighContrast">
-            <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
-            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
-            <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
-            <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
 
-    <Style BasedOn="{StaticResource DefaultClockStyle}" TargetType="local:Clock" />
+    <Style BasedOn="{StaticResource DefaultRealClockStyle}" TargetType="local:RealClock" />
 
-    <Style x:Key="DefaultClockStyle" TargetType="local:Clock">
+    <Style x:Key="DefaultRealClockStyle" TargetType="local:RealClock">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Margin" Value="8,0" />
         <Setter Property="BorderBrush" Value="{ThemeResource CalendarViewBorderBrush}" />
@@ -30,6 +13,7 @@
         <Setter Property="ClockCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderCornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
         <Setter Property="TitleBorderBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
+        <Setter Property="SecondHandBackground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
         <Setter Property="MinuteHandBackground" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
         <Setter Property="CenterPointStroke" Value="{ThemeResource SysemAccentControlBackgroundBrush}" />
         <Setter Property="ClockBackground" Value="{ThemeResource ClockCircleBackgroundBrush}" />
@@ -46,8 +30,8 @@
         <Setter Property="HeaderMargin" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Clock">
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                <ControlTemplate TargetType="local:RealClock">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" IsHitTestVisible="False">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding ClockCornerRadius}" />
                         <Grid>
                             <Grid.RowDefinitions>
@@ -64,7 +48,7 @@
                                 <TextBlock x:Name="PART_TimeStr" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Foreground="{ThemeResource TextOnAccentForegroundBrush}" TextAlignment="Center" />
                             </Border>
                             <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="{TemplateBinding ClockWidth}" Height="{TemplateBinding ClockHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid Name="PART_Grid" Margin="10">
+                                <Grid Margin="10">
                                     <Border Width="178" Height="178" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ClockBackground}" CornerRadius="90" />
 
                                     <!--  Numbers Panel  -->
@@ -72,17 +56,15 @@
 
                                     <!--  Minute Hand  -->
                                     <Line x:Name="PART_MinuteHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding MinuteHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-55" />
+                                    <Line x:Name="PART_SecondHand" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding SecondHandBackground}" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="-65" />
 
                                     <!--  Center Ellipse  -->
                                     <Ellipse Width="{TemplateBinding CenterPointWidth}" Height="{TemplateBinding CenterPointHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{TemplateBinding CenterPointFill}" Stroke="{TemplateBinding CenterPointStroke}" StrokeThickness="2" />
                                 </Grid>
                             </Viewbox>
 
-                            <!--  Keyboard focus target for the minute hand; arrow keys step by MinuteIncrement  -->
-                            <ContentControl x:Name="PART_MinuteFocus" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsHitTestVisible="False" IsTabStop="True" TabIndex="2" UseSystemFocusVisuals="False" />
-
-                            <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="44" Height="44" Margin="-34.5,0,0,5.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" Style="{StaticResource AmPmClockRadioButtonStyle}" TabIndex="3" />
-                            <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="44" Height="44" Margin="0,0,-34.5,5.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" Style="{StaticResource AmPmClockRadioButtonStyle}" TabIndex="4" />
+                            <local:ClockRadioButton x:Name="PART_ButtonAm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="-30,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="am" IsChecked="True" IsHitTestVisible="False" />
+                            <local:ClockRadioButton x:Name="PART_ButtonPm" Grid.RowSpan="3" Grid.ColumnSpan="3" Width="35" Height="35" Margin="0,0,-30,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="pm" IsHitTestVisible="False" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>

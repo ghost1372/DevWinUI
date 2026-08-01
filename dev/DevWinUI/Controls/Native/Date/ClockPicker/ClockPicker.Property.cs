@@ -27,7 +27,7 @@ public partial class ClockPicker
     }
 
     public static readonly DependencyProperty SelectedTimeProperty =
-        DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan?), typeof(ClockPicker), new PropertyMetadata(DateTimeBase.TimeNow, OnSelectedTimeChanged));
+        DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan?), typeof(ClockPicker), new PropertyMetadata(null, OnSelectedTimeChanged));
 
     private static void OnSelectedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -44,7 +44,7 @@ public partial class ClockPicker
     }
 
     public static readonly DependencyProperty SelectedTimeOnlyProperty =
-        DependencyProperty.Register(nameof(SelectedTimeOnly), typeof(TimeOnly?), typeof(ClockPicker), new PropertyMetadata(TimeOnly.FromDateTime(DateTime.Now), OnSelectedTimeOnlyChanged));
+        DependencyProperty.Register(nameof(SelectedTimeOnly), typeof(TimeOnly?), typeof(ClockPicker), new PropertyMetadata(null, OnSelectedTimeOnlyChanged));
 
     private static void OnSelectedTimeOnlyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -191,7 +191,7 @@ public partial class ClockPicker
     }
 
     public static readonly DependencyProperty TimeFormatProperty =
-        DependencyProperty.Register(nameof(TimeFormat), typeof(string), typeof(ClockPicker), new PropertyMetadata("HH:mm:ss", OnTimeFormatChanged));
+        DependencyProperty.Register(nameof(TimeFormat), typeof(string), typeof(ClockPicker), new PropertyMetadata("t", OnTimeFormatChanged));
 
     private static void OnTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
