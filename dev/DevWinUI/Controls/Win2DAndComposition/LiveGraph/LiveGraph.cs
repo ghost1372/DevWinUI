@@ -35,7 +35,7 @@ public partial class LiveGraph : Control
     private List<UserPolygon> polygons = new();
     private Dictionary<string, UserPolygon> livePolygons = new();
     private Dictionary<string, GraphBrushData> polygonsBrush = new();
-
+    private readonly object m_graphMutex = new();
     private TimeSpan highlightLineAnimationDuration = TimeSpan.FromMilliseconds(300);
     private HighlightLineBehavior highlightLineBehavior = HighlightLineBehavior.EachPoint;
     private LiveGraphBackgroundMode backgroundMode = LiveGraphBackgroundMode.Cross;
@@ -141,20 +141,49 @@ public partial class LiveGraph : Control
     }
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        ResizeGraphPoints((float)e.NewSize.Height, (float)e.PreviousSize.Height);
+        ResizeGraphPoints((float)e.NewSize.Width, (float)e.NewSize.Height, (float)e.PreviousSize.Width, (float)e.PreviousSize.Height);
     }
-    private void ResizeGraphPoints(float newHeight, float oldHeight)
+    private void ResizeGraphPoints(float newWidth, float newHeight, float oldWidth, float oldHeight)
     {
-        if (oldHeight <= 0) return; // avoid division by zero
-
-        float scaleY = newHeight / oldHeight;
-
-        foreach (var polygon in polygons)
+        bool hasWidthChange = 
+            oldWidth > 0.0f &&
+            float.IsFinite(newWidth) &&
+            float.IsFinite(oldWidth);
+        
+        bool hasHeightChange = 
+            oldHeight > 0.0f &&
+            float.IsFinite(newHeight) &&
+            float.IsFinite(oldHeight);
+        
+        if (!hasWidthChange && !hasHeightChange)
         {
-            for (int i = 0; i < polygon.Points.Count; i++)
+            return;
+        }
+
+        float widthDelta = hasWidthChange ? newWidth - oldWidth : 0.0f;
+        float scaleY = hasHeightChange ? newHeight / oldHeight : 1.0f;
+
+        lock (m_graphMutex)
+        {
+            foreach (var polygon in polygons)
             {
-                var p = polygon.Points[i];
-                polygon.Points[i] = new Vector2(p.X, p.Y * scaleY);
+                polygon.OffsetX += widthDelta;
+
+                if (hasHeightChange)
+                {
+                    for (int i = 0; i < polygon.Points.Count; i++)
+                    {
+                        var point = polygon.Points[i];
+                        point.Y *= scaleY;
+                        polygon.Points[i] = point;
+                    }
+                    polygon.CurrentY *= scaleY;
+                }
+            }
+
+            if (hasHeightChange && currentLineY.HasValue)
+            {
+                currentLineY = currentLineY.Value * scaleY;
             }
         }
     }
