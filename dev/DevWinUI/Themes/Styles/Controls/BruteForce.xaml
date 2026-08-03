@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style TargetType="local:BruteForce">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BruteForce">
+                    <ItemsRepeater x:Name="PART_ItemsRepeater">
+                        <ItemsRepeater.Layout>
+                            <StackLayout Orientation="Horizontal" Spacing="{TemplateBinding Spacing}" />
+                        </ItemsRepeater.Layout>
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate>
+                                <local:BruteForceItem Text="{Binding}" />
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:BruteForceItem">
+        <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="15,15" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="{ThemeResource TitleTextBlockFontSize}" />
+        <Setter Property="FontFamily" Value="XamlAutoFontFamily" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Width" Value="60" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BruteForceItem">
+                    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CharacterStates">
+                                <VisualState x:Name="Pending">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CharacterText" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+
+                                </VisualState>
+
+                                <VisualState x:Name="Success">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CharacterText" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Warning">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CharacterText" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Error">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CharacterText" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <TextBlock x:Name="CharacterText" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Style="{ThemeResource TitleTextBlockStyle}" Text="{TemplateBinding Text}" TextAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
