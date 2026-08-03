@@ -6,6 +6,10 @@ namespace DevWinUI;
 
 public abstract partial class SegmentChar : Control
 {
+    private bool deferVisualUpdates;
+    private bool requiresCharacterUpdate;
+    private bool requiresMatrixRedraw;
+
     public event PointerEventHandler SegmentPointerPressed;
     public event PointerEventHandler SegmentPointerReleased;
     public event PointerEventHandler SegmentPointerEntered;
@@ -68,6 +72,61 @@ public abstract partial class SegmentChar : Control
     protected virtual int Rows {  get; set; }
     protected virtual void ReDrawMatrix() { }
     protected abstract void CollectSegments();
+
+    internal void SynchronizeAppearanceFrom(DigitalSegment control)
+    {
+        deferVisualUpdates = true;
+
+        Angle = control.Angle;
+        ColonBackground = control.ColonBackground;
+        ColonForeground = control.ColonForeground;
+        SegmentForeground = control.SegmentForeground;
+        SegmentBackground = control.SegmentBackground;
+        Stroke = control.Stroke;
+        StrokeThickness = control.StrokeThickness;
+        IsColonBlink = control.IsColonBlink;
+        MatrixDotGap = control.MatrixDotGap;
+        IsMatrixSquare = control.IsMatrixSquare;
+        MatrixDotSize = control.MatrixDotSize;
+
+        deferVisualUpdates = false;
+
+        if (requiresMatrixRedraw)
+        {
+            requiresMatrixRedraw = false;
+            ReDrawMatrix();
+            CollectSegments();
+        }
+
+        if (requiresCharacterUpdate)
+        {
+            requiresCharacterUpdate = false;
+            UpdateCharacter();
+        }
+    }
+
+    private void OnCharacterAppearanceChanged()
+    {
+        if (deferVisualUpdates)
+        {
+            requiresCharacterUpdate = true;
+            return;
+        }
+
+        UpdateCharacter();
+    }
+
+    private void OnMatrixAppearanceChanged()
+    {
+        if (deferVisualUpdates)
+        {
+            requiresMatrixRedraw = true;
+            return;
+        }
+
+        ReDrawMatrix();
+        CollectSegments();
+    }
 
     protected virtual void UpdateCharacter()
     {

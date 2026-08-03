@@ -1,12 +1,15 @@
 ﻿namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_Panel), Type = typeof(StackPanel))]
+[TemplatePart(Name = nameof(PART_Repeater), Type = typeof(ItemsRepeater))]
 public partial class DigitalSegment : Control
 {
-    private const string PART_Panel = "PART_Panel";
-    private StackPanel panel;
-    private DispatcherTimer scrollTimer;
-    private int scrollIndex = 0;
+    private const string PART_Repeater = "PART_Repeater";
+    private ItemsRepeater? repeater;
+    private DispatcherTimer? scrollTimer;
+    private string scrollBuffer = string.Empty;
+    private int scrollIndex;
+
+    private ObservableCollection<SegmentChar> Digits { get; } = [];
 
     public DigitalSegment()
     {
@@ -15,10 +18,8 @@ public partial class DigitalSegment : Control
 
     private void UpdateText()
     {
-        if(panel == null || Model == null)
+        if (repeater == null || Model == null)
             return;
-
-        panel.Children.Clear();
 
         int count = SymbolCount > 0 ? SymbolCount : (Text?.Length ?? 0);
 
@@ -29,28 +30,42 @@ public partial class DigitalSegment : Control
             if (!string.IsNullOrEmpty(Text) && i < Text.Length)
                 charToShow = Text[i].ToString();
 
-            var digit = Model.Clone();
-            digit.Angle = this.Angle;
-            digit.ColonBackground = this.ColonBackground;
-            digit.ColonForeground = this.ColonForeground;
-            digit.SegmentForeground = this.SegmentForeground;
-            digit.SegmentBackground = this.SegmentBackground;
-            digit.Stroke = this.Stroke;
-            digit.StrokeThickness = this.StrokeThickness;
-            digit.IsColonBlink = this.IsColonBlink;
-            digit.MatrixDotGap = this.MatrixDotGap;
-            digit.IsMatrixSquare = this.IsMatrixSquare;
-            digit.MatrixDotSize = this.MatrixDotSize;
-            digit.Character = charToShow;
+            SegmentChar digit;
+            if (i < Digits.Count && Digits[i].GetType() == Model.GetType())
+            {
+                digit = Digits[i];
+            }
+            else
+            {
+                digit = Model.Clone();
 
-            panel.Children.Add(digit);
+                if (i < Digits.Count)
+                    Digits[i] = digit;
+                else
+                    Digits.Add(digit);
+            }
+
+            digit.SynchronizeAppearanceFrom(this);
+            digit.Character = charToShow;
+        }
+
+        while (Digits.Count > count)
+            Digits.RemoveAt(Digits.Count - 1);
+
+        string updatedScrollBuffer = string.IsNullOrEmpty(Text) ? string.Empty : Text + new string(' ', Digits.Count);
+        if (!string.Equals(scrollBuffer, updatedScrollBuffer, StringComparison.Ordinal))
+        {
+            scrollBuffer = updatedScrollBuffer;
+            scrollIndex = 0;
         }
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        panel = GetTemplateChild(PART_Panel) as StackPanel;
+        repeater = GetTemplateChild(PART_Repeater) as ItemsRepeater;
+        if (repeater != null)
+            repeater.ItemsSource = Digits;
 
         UpdateText();
     }
@@ -83,17 +98,16 @@ public partial class DigitalSegment : Control
 
     private string GetScrollingBuffer()
     {
-        int visibleCount = panel?.Children.Count ?? 0;
-        return Text + new string(' ', visibleCount);
+        return scrollBuffer;
     }
 
     private void ScrollStep(object sender, object e)
     {
-        if (string.IsNullOrEmpty(Text) || panel == null || panel.Children.Count == 0)
+        if (string.IsNullOrEmpty(Text) || Digits.Count == 0)
             return;
 
         string buffer = GetScrollingBuffer();
-        int visibleCount = panel.Children.Count;
+        int visibleCount = Digits.Count;
 
         for (int i = 0; i < visibleCount; i++)
         {
@@ -108,8 +122,7 @@ public partial class DigitalSegment : Control
                 charIndex = (scrollIndex - (visibleCount - 1 - i) + buffer.Length) % buffer.Length;
             }
 
-            var digit = (SegmentChar)panel.Children[i];
-            digit.Character = buffer[charIndex].ToString();
+            Digits[i].Character = buffer[charIndex].ToString();
         }
 
         if (ScrollDirection == DigitalSegmentScrollDirection.RightToLeft)

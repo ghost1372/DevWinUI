@@ -18,7 +18,7 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty SegmentForegroundProperty =
-        DependencyProperty.Register(nameof(SegmentForeground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).UpdateCharacter()));
+        DependencyProperty.Register(nameof(SegmentForeground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
     public Brush SegmentBackground
     {
@@ -27,7 +27,7 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty SegmentBackgroundProperty =
-        DependencyProperty.Register(nameof(SegmentBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).UpdateCharacter()));
+        DependencyProperty.Register(nameof(SegmentBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
 
     public Brush ColonForeground
@@ -37,7 +37,7 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty ColonForegroundProperty =
-        DependencyProperty.Register(nameof(ColonForeground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).UpdateCharacter()));
+        DependencyProperty.Register(nameof(ColonForeground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
     public Brush ColonBackground
     {
@@ -46,7 +46,7 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty ColonBackgroundProperty =
-        DependencyProperty.Register(nameof(ColonBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).UpdateCharacter()));
+        DependencyProperty.Register(nameof(ColonBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
 
     public double StrokeThickness
@@ -73,7 +73,7 @@ public partial class SegmentChar
         set => SetValue(CharacterProperty, value);
     }
     public static readonly DependencyProperty CharacterProperty = 
-        DependencyProperty.Register(nameof(Character), typeof(string), typeof(SegmentChar),new PropertyMetadata("", (d, e) => ((SegmentChar)d).UpdateCharacter()));
+        DependencyProperty.Register(nameof(Character), typeof(string), typeof(SegmentChar),new PropertyMetadata("", (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
     public double MatrixDotSize
     {
@@ -81,7 +81,7 @@ public partial class SegmentChar
         set => SetValue(MatrixDotSizeProperty, value);
     }
     public static readonly DependencyProperty MatrixDotSizeProperty =
-        DependencyProperty.Register(nameof(MatrixDotSize), typeof(double), typeof(SegmentChar),new PropertyMetadata(12.0, (d, e) => ((SegmentChar)d).ReDrawMatrix()));
+        DependencyProperty.Register(nameof(MatrixDotSize), typeof(double), typeof(SegmentChar),new PropertyMetadata(12.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
 
     public double MatrixDotGap
     {
@@ -90,7 +90,7 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty MatrixDotGapProperty =
-        DependencyProperty.Register(nameof(MatrixDotGap), typeof(double), typeof(SegmentChar),new PropertyMetadata(4.0, (d, e) => ((SegmentChar)d).ReDrawMatrix()));
+        DependencyProperty.Register(nameof(MatrixDotGap), typeof(double), typeof(SegmentChar),new PropertyMetadata(4.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
 
     public bool IsMatrixSquare
     {
@@ -98,7 +98,7 @@ public partial class SegmentChar
         set => SetValue(IsMatrixSquareProperty, value);
     }
     public static readonly DependencyProperty IsMatrixSquareProperty =
-        DependencyProperty.Register(nameof(IsMatrixSquare), typeof(bool), typeof(SegmentChar),new PropertyMetadata(false, (d, e) => ((SegmentChar)d).ReDrawMatrix()));
+        DependencyProperty.Register(nameof(IsMatrixSquare), typeof(bool), typeof(SegmentChar),new PropertyMetadata(false, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
     
     public bool IsColonBlink
     {
