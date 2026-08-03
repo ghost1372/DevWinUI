@@ -24,6 +24,10 @@ public partial class TextBox : Microsoft.UI.Xaml.Controls.TextBox
         }
     }
 
+    public TextBox()
+    {
+        DefaultStyleKey = typeof(TextBox);
+    }
     private void UpdateCursor()
     {
         if (Content != null)

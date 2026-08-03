@@ -139,11 +139,12 @@
                                 <VisualState x:Name="ButtonCollapsed" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ValidationStates">
-                                <VisualState x:Name="NoValidation" />
+                                <VisualState x:Name="NoValidation">
+                                    <VisualState.Setters>
+                                        <Setter Target="ErrorsRepeater.Visibility" Value="Collapsed" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState x:Name="ValidationEnabled">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Path=(local:Validation.ValidationProvider), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CanValidateConverter}}" />
-                                    </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Target="ErrorsRepeater.Visibility" Value="Visible" />
                                     </VisualState.Setters>
@@ -156,7 +157,7 @@
                         <TextBlock x:Name="PlaceholderTextContentPresenter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}" IsHitTestVisible="False" Text="{TemplateBinding PlaceholderText}" TextAlignment="{TemplateBinding TextAlignment}" TextWrapping="{TemplateBinding TextWrapping}" />
                         <Button x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Width="30" Padding="{ThemeResource HelperButtonThemePadding}" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" FontSize="{TemplateBinding FontSize}" IsTabStop="False" Style="{StaticResource DeleteButtonStyle}" Visibility="Collapsed" />
                         <ContentPresenter x:Name="DescriptionPresenter" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
-                        <ItemsRepeater x:Name="ErrorsRepeater" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Load="False" ItemTemplate="{Binding Path=(local:Validation.ErrorTemplate), RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding Path=(local:Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ItemsRepeater x:Name="ErrorsRepeater" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
