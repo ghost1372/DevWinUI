@@ -148,6 +148,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### BruteForce
+![BruteForce](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BruteForce.gif)
+
 ### RealClock
 ![RealClock](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RealClock.gif)
 

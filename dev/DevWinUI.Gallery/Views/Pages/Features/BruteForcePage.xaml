@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BruteForcePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/bruteForce">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:BruteForce x:Name="BruteForceSample" Password="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.CSharp>
+                    <x:String>
+                        BruteForceSample.UpdateCharacterState(index, BruteForceState.Success);
+                    </x:String>
+                </local:ControlExample.CSharp>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtPassword" PlaceholderText="Password" Text="DevWinUI" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:BruteForce x:Name="BruteForceSample" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" />
+                    <dev:BruteForce x:Name="BruteForceSample2" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" RenderDelay="00:00:00.001" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>
