@@ -1,16 +1,18 @@
-﻿using Nucs.JsonSettings.Modulation;
+﻿using Nucs.JsonSettings.Autosave;
 using Nucs.JsonSettings.Examples;
+using Nucs.JsonSettings.Modulation;
+using Nucs.JsonSettings.NotifyChanges;
 
 namespace $safeprojectname$.Common;
 
 
-[GenerateAutoSaveOnChange]
+[Autosave, NotifyChanges]
 public partial class AppConfig : NotifiyingJsonSettings, IVersionable
 {
     [EnforcedVersion("1.0.0.0")]
     public Version Version { get; set; } = new Version(1, 0, 0, 0);
 
-    private string fileName { get; set; } = Constants.AppConfigPath;
+    public override string FileName { get; set; } = Constants.AppConfigPath;
     $DeveloperModeConfig$$AppUpdateConfig$
 
     // Docs: https://github.com/Nucs/JsonSettings

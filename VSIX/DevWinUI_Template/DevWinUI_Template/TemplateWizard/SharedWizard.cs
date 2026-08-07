@@ -193,8 +193,9 @@ public class SharedWizard
 
             if (WizardConfig.UseJsonSettings)
             {
-                _nuGetPackages.Add(new Library("nucs.JsonSettings", WizardConfig.UsePreReleaseVersion));
-                _nuGetPackages.Add(new Library("nucs.JsonSettings.AutoSaveGenerator", WizardConfig.UsePreReleaseVersion));
+                _nuGetPackages.Add(new Library("nucs.JsonSettings"));
+                _nuGetPackages.Add(new Library("nucs.JsonSettings.Autosave"));
+                _nuGetPackages.Add(new Library("nucs.JsonSettings.NotifyChanges"));
             }
 
             _nuGetPackages = _nuGetPackages.Distinct().ToList();
@@ -281,7 +282,7 @@ public class SharedWizard
                 if (WizardConfig.UseJsonSettings && WizardConfig.UseDeveloperModeSetting && WizardConfig.UseSettingsPage && WizardConfig.UseGeneralSettingPage)
                 {
                     replacementsDictionary.AddIfNotExists("$GoToLogPathEvent$", Environment.NewLine + Environment.NewLine + PredefinedCodes.GoToLogPathEvent);
-                    replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "private bool useDeveloperMode { get; set; }");
+                    replacementsDictionary.AddIfNotExists("$DeveloperModeConfig$", Environment.NewLine + "public bool UseDeveloperMode { get; set; }");
                 }
                 else
                 {
@@ -449,7 +450,7 @@ public class SharedWizard
 
             if (WizardConfig.UseAppUpdatePage && WizardConfig.UseSettingsPage)
             {
-                replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """private string lastUpdateCheck { get; set; }""");
+                replacementsDictionary.Add("$AppUpdateConfig$", Environment.NewLine + """public string LastUpdateCheck { get; set; }""");
             }
             else
             {
