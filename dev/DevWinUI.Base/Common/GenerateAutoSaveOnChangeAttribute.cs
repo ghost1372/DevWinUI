@@ -5,6 +5,7 @@
 /// not inherited.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+[Obsolete("This attribute is deprecated and will be removed in the next update. Please use the nucs.JsonSettings.AutoSave package instead.")]
 public class GenerateAutoSaveOnChangeAttribute : Attribute
 {
 }
