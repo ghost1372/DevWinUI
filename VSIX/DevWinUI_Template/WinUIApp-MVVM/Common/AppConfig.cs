@@ -1,5 +1,4 @@
 ﻿using Nucs.JsonSettings.Autosave;
-using Nucs.JsonSettings.Examples;
 using Nucs.JsonSettings.Modulation;
 using Nucs.JsonSettings.NotifyChanges;
 
