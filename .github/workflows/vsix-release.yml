@@ -28,7 +28,7 @@ jobs:
           vsix-token-source-file: ${{ env.VsixSourcePath }}
 
       - name: Build
-        run: msbuild /p:Configuration=$(Configuration)
+        run: msbuild /p:Configuration=Release
 
       - name: Publish to VSIX Gallery
         uses: madskristensen/publish-vsixgallery@v1
