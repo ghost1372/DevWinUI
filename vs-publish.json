@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/vsix-publish",
+  "categories": [ "Coding", "templates" ],
+  "identity": {
+    "internalName": "DevWinUI-Template"
+  },
+  "overview": "README.md",
+  "priceCategory": "free",
+  "publisher": "MahdiHosseini",
+  "private": false,
+  "qna": true,
+  "repo": "https://github.com/ghost1372/DevWinUI"
+}
