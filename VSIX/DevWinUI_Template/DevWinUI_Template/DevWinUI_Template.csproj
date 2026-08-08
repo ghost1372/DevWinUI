@@ -69,6 +69,11 @@
     <Compile Include="Common\WizardConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DevWinUI_TemplatePackage.cs" />
+    <Compile Include="source.extension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
+    </Compile>
     <Compile Include="TemplateWizard\SharedWizard.cs" />
     <Compile Include="TemplateWizard\TemplateConfig.cs" />
     <Compile Include="TemplateWizard\WinUIAppBlankUnitTestWizard.cs" />
@@ -122,6 +127,8 @@
     <None Include="key.snk" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
+      <Generator>VsixManifestGenerator</Generator>
+      <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
