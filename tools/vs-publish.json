@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/vsix-publish",
-  "categories": [ "Coding", "templates" ],
+  "categories": [ "Coding" ],
   "identity": {
     "internalName": "DevWinUI-Template",
     "tags": [ "WindowsAppSDK", "WinAppSDK", "WinUI", "DevWinUI", "XAML", "C#", "Managed", "winui3", "wasdk", "windows app sdk", "windowsappsdk", "winuicommunity", "settingsui", "components", "titlebar", "navigationview", "theme", "mvvm", "template", "winui" ]
