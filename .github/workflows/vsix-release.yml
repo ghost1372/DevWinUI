@@ -11,6 +11,7 @@ jobs:
       Configuration: Release
       VsixManifestPath: VSIX\DevWinUI_Template\DevWinUI_Template\source.extension.vsixmanifest
       VsixSourcePath: VSIX\DevWinUI_Template\DevWinUI_Template\source.extension.cs
+      VsixJsonPath: tools\vs-publish.json
 
     steps:
       - uses: actions/checkout@v6
@@ -45,5 +46,5 @@ jobs:
         uses: madskristensen/publish-marketplace@v2
         with:
           extension-file: ${{ env.VSIX_FILE }}
-          publish-manifest-file: vs-publish.json
+          publish-manifest-file: ${{ env.VsixJsonPath }}
           personal-access-code: ${{ secrets.VS_MARKETPLACE_TOKEN }}
