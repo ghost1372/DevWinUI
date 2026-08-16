@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls.Primitives;
+﻿using System.Xml.Linq;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.Win32.UI.WindowsAndMessaging;
 using WinRT;
 using static DevWinUI.NativeValues;
@@ -8,10 +9,16 @@ namespace DevWinUI;
 public partial class SystemTrayIcon : IDisposable
 {
     private const uint TrayIconCallbackId = 0x8765;
+
+    // Message broadcast by explorer.exe to all top-level windows when it (re)starts, so apps know
+    // to re-create any tray icons, since Explorer restarting clears out all previously registered icons.
+    private static readonly uint WM_TASKBARCREATED = PInvoke.RegisterWindowMessage("TaskbarCreated");
+
     private readonly Window _window;
     private readonly nint _windowHandle;
     private readonly WindowMessageMonitor _monitor;
     private IconId currentIcon;
+    private HICON _ownedIconHandle;
     private string _tooltip;
     private FrameworkElement _root;
     private FlyoutBase? _currentFlyout;
@@ -39,7 +46,6 @@ public partial class SystemTrayIcon : IDisposable
 
         _window.AppWindow.Presenter.As<OverlappedPresenter>().IsAlwaysOnTop = true;
         _monitor = new WindowMessageMonitor(_windowHandle);
-        _monitor.WindowMessageReceived -= WindowMessageReceived;
         _monitor.WindowMessageReceived += WindowMessageReceived;
     }
 
@@ -63,6 +69,7 @@ public partial class SystemTrayIcon : IDisposable
             _monitor.Dispose();
         }
         RemoveFromTray(TrayIconId);
+        ReleaseOwnedIcon();
     }
 
     private void CheckDisposed()
@@ -91,6 +98,14 @@ public partial class SystemTrayIcon : IDisposable
 
     private unsafe void WindowMessageReceived(object? sender, WindowMessageEventArgs e)
     {
+        if (WM_TASKBARCREATED != 0 && e.Message.MessageId == WM_TASKBARCREATED)
+        {
+            // explorer.exe was restarted and cleared out any previously registered tray icons.
+            // Re-add ourselves to the tray if we're supposed to be visible.
+            if (_isVisible)
+                AddToTray(TrayIconId);
+            return;
+        }
         switch (e.MessageType)
         {
             case (uint)WindowMessage.WM_GETMINMAXINFO:
@@ -222,39 +237,107 @@ public partial class SystemTrayIcon : IDisposable
 
     public unsafe void SetIcon(string iconPath)
     {
-        fixed (char* nameLocal = iconPath)
+        CheckDisposed();
+        if (iconPath is null)
+            throw new ArgumentNullException(nameof(iconPath));
+
+        string resolvedIconPath = IconPathHelper.ResolvePath(iconPath);
+        int size = Math.Max((int)(WindowHelper.GetDpiForWindow(_windowHandle) / 6d), 1);
+        switch (GetIconFileType(resolvedIconPath))
         {
-            var size = (int)(WindowHelper.GetDpiForWindow(_windowHandle) / 6d);
-            var id = Windows.Win32.PInvoke.LoadImage(HINSTANCE.Null, nameLocal, GDI_IMAGE_TYPE.IMAGE_ICON, size, size, IMAGE_FLAGS.LR_LOADFROMFILE);
-            if (id.IsNull)
-                throw new ArgumentException($"Failed to load icon from {iconPath}");
-            SetIcon(new IconId((ulong)id.Value));
+            case IconFileType.Ico:
+                fixed (char* nameLocal = resolvedIconPath)
+                {
+                    var id = PInvoke.LoadImage(HINSTANCE.Null, nameLocal, GDI_IMAGE_TYPE.IMAGE_ICON, size, size, IMAGE_FLAGS.LR_LOADFROMFILE);
+                    if (id.IsNull)
+                        throw new ArgumentException($"Failed to load icon from {iconPath}", nameof(iconPath));
+                    SetIconCore(new IconId((ulong)id.Value), new HICON(id.Value));
+                }
+                break;
+            case IconFileType.Svg:
+                var svgHandle = SvgIconHelper.CreateIconFromSvg(resolvedIconPath, (uint)size, (uint)size);
+                SetIconCore(new IconId((ulong)svgHandle.Value), svgHandle);
+                break;
+            default:
+                throw new ArgumentException($"Unsupported icon file format for {iconPath}", nameof(iconPath));
         }
     }
 
     public void SetIcon(IconId iconId)
     {
+        CheckDisposed();
+        SetIconCore(iconId, HICON.Null);
+    }
+
+    private void SetIconCore(IconId iconId, HICON ownedIconHandle)
+    {
+        ReleaseOwnedIcon();
+        _ownedIconHandle = ownedIconHandle;
         currentIcon = iconId;
         if (IsVisible)
             UpdateIcon();
     }
-    public void SetTheme(ElementTheme elementTheme)
+
+    private void ReleaseOwnedIcon()
     {
-        if (_window != null && _window.Content is FrameworkElement element)
+        if (!_ownedIconHandle.IsNull)
         {
-            element.RequestedTheme = elementTheme;
+            PInvoke.DestroyIcon(_ownedIconHandle);
+            _ownedIconHandle = HICON.Null;
         }
     }
+
+    private static IconFileType GetIconFileType(string iconPath)
+    {
+        string extension = Path.GetExtension(iconPath);
+        if (extension.Equals(".ico", StringComparison.OrdinalIgnoreCase))
+            return IconFileType.Ico;
+        if (extension.Equals(".svg", StringComparison.OrdinalIgnoreCase))
+            return IconFileType.Svg;
+
+        using FileStream stream = File.OpenRead(iconPath);
+        Span<byte> header = stackalloc byte[4];
+        int bytesRead = stream.Read(header);
+        if (bytesRead >= 4 &&
+            header[0] == 0x00 &&
+            header[1] == 0x00 &&
+            header[2] == 0x01 &&
+            header[3] == 0x00)
+        {
+            return IconFileType.Ico;
+        }
+
+        stream.Position = 0;
+        using StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: 256, leaveOpen: false);
+        char[] textBuffer = new char[256];
+        int textLength = reader.Read(textBuffer, 0, textBuffer.Length);
+        string text = new string(textBuffer, 0, textLength).TrimStart();
+        if (text.StartsWith("<svg", StringComparison.OrdinalIgnoreCase) ||
+            text.Contains("<svg", StringComparison.OrdinalIgnoreCase))
+        {
+            return IconFileType.Svg;
+        }
+
+        return IconFileType.Unknown;
+    }
+
+    private enum IconFileType
+    {
+        Unknown,
+        Ico,
+        Svg
+    }
+
     private void AddToTray(uint iconId)
     {
         if (currentIcon.Value == 0) // Fallback to default icon
         {
-            var lresult = Windows.Win32.PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(_windowHandle), (uint)DevWinUI.NativeValues.WindowMessage.WM_GETICON, 1, (nint)0);
+            var lresult = PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(_windowHandle), (uint)DevWinUI.NativeValues.WindowMessage.WM_GETICON, 1, (nint)0);
             if (lresult > 0)
                 currentIcon = new IconId((ulong)lresult.Value);
             else
             {
-                lresult = Windows.Win32.PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(_windowHandle), (uint)DevWinUI.NativeValues.WindowMessage.WM_GETICON, 0, (nint)0);
+                lresult = PInvoke.SendMessage(new Windows.Win32.Foundation.HWND(_windowHandle), (uint)DevWinUI.NativeValues.WindowMessage.WM_GETICON, 0, (nint)0);
                 if (lresult > 0)
                     currentIcon = new IconId((ulong)lresult.Value);
             }
@@ -267,7 +350,7 @@ public partial class SystemTrayIcon : IDisposable
         }
         else // Fall back to default application icon
         {
-            var icon = Windows.Win32.PInvoke.LoadIcon(Windows.Win32.Foundation.HINSTANCE.Null, lpIconName: Windows.Win32.PInvoke.IDI_APPLICATION);
+            var icon = PInvoke.LoadIcon(Windows.Win32.Foundation.HINSTANCE.Null, lpIconName: PInvoke.IDI_APPLICATION);
             hicon = new HICON((nint)icon);
         }
 
@@ -403,4 +486,10 @@ public partial class SystemTrayIcon : IDisposable
     public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? LeftDoubleClick;
 
     public event Windows.Foundation.TypedEventHandler<SystemTrayIcon, SystemTrayIconEventArgs>? RightDoubleClick;
+
+    public void SetTheme(ElementTheme elementTheme)
+    {
+        if (_window != null && _window.Content is FrameworkElement element)
+            element.RequestedTheme = elementTheme;
+    }
 }
