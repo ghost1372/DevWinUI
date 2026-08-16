@@ -650,33 +650,16 @@ public class SharedWizard
         {
             try
             {
-                if (NugetClientHelper.IsInternetAvailable())
+                try
                 {
-                    var packageMeta = await NugetClientHelper.GetPackageMetaDataAsync(packageId.Name, packageId.IncludePreRelease);
-                    var isCacheAvailable = NugetClientHelper.IsCacheAvailableForPackage(packageId.Name, packageMeta.Identity.Version.ToString());
-
-                    if (isCacheAvailable)
-                    {
-                        await Task.Run(() => installer.InstallLatestPackage(NugetClientHelper.globalPackagesFolder, _project, packageId.Name, packageId.IncludePreRelease, false));
-                    }
-                    else
-                    {
-                        try
-                        {
-                            await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, packageId.IncludePreRelease, false));
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            if (!packageId.IncludePreRelease)
-                            {
-                                await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, true, false));
-                            }
-                        }
-                    }
+                    await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, packageId.IncludePreRelease, false));
                 }
-                else
+                catch (InvalidOperationException)
                 {
-                    await Task.Run(() => installer.InstallLatestPackage(NugetClientHelper.globalPackagesFolder, _project, packageId.Name, packageId.IncludePreRelease, false));
+                    if (!packageId.IncludePreRelease)
+                    {
+                        await Task.Run(() => installer.InstallLatestPackage(null, _project, packageId.Name, true, false));
+                    }
                 }
             }
             catch (Exception ex)
