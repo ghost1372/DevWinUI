@@ -95,8 +95,6 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
             fileNamesStringBuilder.AppendLine($"//{file.Path}");
         }
 
-        if (entries.Count == 0) return;
-
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
         {
