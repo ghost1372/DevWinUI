@@ -66,8 +66,6 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
             }
         }
 
-        if (pageNames.Count == 0)
-            return;
 
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
