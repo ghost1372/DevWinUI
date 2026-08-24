@@ -8,7 +8,9 @@
       "IsSpecialSection": false,
       "ShowItemsWithoutGroup": true,
       "IsExpanded": false,
-      "Items": [ "$HomeLandingMenuItem$" ]
+      "Items": [
+        "$HomeLandingMenuItem$"
+      ]
     }
   ]
 }
