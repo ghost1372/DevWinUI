@@ -323,6 +323,8 @@ public class WinUIAppMVVMNavigationWizard : IWizard
         {
             replacementsDictionary.Add("$ExtraNuGetPackages$", string.Empty);
         }
+
+        WizardConfig.Current.NuGetPackages.Clear();
     }
 
     public bool ShouldAddProjectItem(string filePath)
