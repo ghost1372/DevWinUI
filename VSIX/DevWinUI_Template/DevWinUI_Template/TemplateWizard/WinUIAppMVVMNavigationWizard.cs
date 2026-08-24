@@ -236,15 +236,13 @@ public class WinUIAppMVVMNavigationWizard : IWizard
 
         // JSON does not allow comments; when the home page is disabled, omit the item instead of emitting a commented-out object.
         replacementsDictionary.Add("$HomeLandingMenuItem$", WizardConfig.Current.UseHomeLandingPage
-        ? """
-          {
-            "UniqueId": "$safeprojectname$.Views.HomeLandingPage",
-            "Title": "$safeprojectname$",
-            "Subtitle": "$safeprojectname$",
-            "ImagePath": "ms-appx:///Assets/AppIcon.png",
-            "HideItem": true
-          }
-          """
+        ? "{" + Environment.NewLine +
+          "\t\t\t\t\t\"UniqueId\": \"$safeprojectname$.Views.HomeLandingPage\"," + Environment.NewLine +
+          "\t\t\t\t\t\"Title\": \"$safeprojectname$\"," + Environment.NewLine +
+          "\t\t\t\t\t\"Subtitle\": \"$safeprojectname$\"," + Environment.NewLine +
+          "\t\t\t\t\t\"ImagePath\": \"ms-appx:///Assets/AppIcon.png\"," + Environment.NewLine +
+          "\t\t\t\t\t\"HideItem\": true" + Environment.NewLine +
+          "\t\t\t\t}"
         : string.Empty);
 
         var hasBreadcrumbPages = WizardConfig.Current.UseSettingsPage && (
