@@ -22,13 +22,5 @@ public partial class App : Application
         ThemeService = new ThemeService().Initialize(MainWindow);
 
         MainWindow.Activate();
-
-        InitializeApp();
-    }
-
-    private $AsyncKeyword$void InitializeApp()
-    {
-        $Windows11ContextMenuInitializer$$ConfigLogger$$UnhandeledException$
     }
 }
-

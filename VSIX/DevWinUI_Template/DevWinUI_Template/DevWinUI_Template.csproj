@@ -1,273 +1,85 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{84913AE7-791A-451D-B4C6-C2C93207D9FF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevWinUI_Template</RootNamespace>
-    <AssemblyName>DevWinUI_Template</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <GeneratePkgDefFile>true</GeneratePkgDefFile>
-    <UseCodebase>true</UseCodebase>
-    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
-    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
-    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
-    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
-    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
-    <StartAction>Program</StartAction>
-    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/rootsuffix Exp</StartArguments>
-    <LangVersion>Latest</LangVersion>
-    <NoWarn>VSTHRD100;CS8632;NU1603;NU1903;NU1902;NU1900</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Common\Constants.cs" />
-    <Compile Include="Common\Extensions\DictionaryExtension.cs" />
-    <Compile Include="Common\Helper.cs" />
-    <Compile Include="Common\Options\ColorsDicOption.cs" />
-    <Compile Include="Common\Options\ConfigCodes.cs" />
-    <Compile Include="Common\Options\DictionaryOption.cs" />
-    <Compile Include="Common\Options\GlobalUsingOption.cs" />
-    <Compile Include="Common\Options\SerilogOption.cs" />
-    <Compile Include="Common\PredefinedCodes.cs" />
-    <Compile Include="Common\PreDefinedLibrary.cs" />
-    <Compile Include="Common\VSDocumentHelper.cs" />
-    <Compile Include="Common\WidthAdjustConverter.cs" />
-    <Compile Include="Common\WizardConfig.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DevWinUI_TemplatePackage.cs" />
-    <Compile Include="TemplateWizard\SharedWizard.cs" />
-    <Compile Include="TemplateWizard\TemplateConfig.cs" />
-    <Compile Include="TemplateWizard\WinUIAppBlankUnitTestWizard.cs" />
-    <Compile Include="TemplateWizard\WinUIAppBlankWizard.cs" />
-    <Compile Include="TemplateWizard\WinUIAppMVVMNavigationWizard.cs" />
-    <Compile Include="TemplateWizard\WinUIAppMVVMWizard.cs" />
-    <Compile Include="TemplateWizard\WinUIAppNavigationWizard.cs" />
-    <Compile Include="TemplateWizard\WinUIAppWizard.cs" />
-    <Compile Include="Theme\Controls\SettingsControl.cs" />
-    <Compile Include="Theme\Controls\SettingsControlWithExpander.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\AppxManifestPage.xaml.cs">
-      <DependentUpon>AppxManifestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\DashboardPage.xaml.cs">
-      <DependentUpon>DashboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\FilePage.xaml.cs">
-      <DependentUpon>FilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\LibrariesPage.xaml.cs">
-      <DependentUpon>LibrariesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\PagesPage.xaml.cs">
-      <DependentUpon>PagesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\ResourcePage.xaml.cs">
-      <DependentUpon>ResourcePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Startup\StartupToolWindow.cs" />
-    <Compile Include="Views\Startup\StartupToolWindowControl.xaml.cs">
-      <DependentUpon>StartupToolWindowControl.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\header.png" />
-    <Resource Include="Assets\store.png" />
-    <Resource Include="Assets\WASDK.png" />
-    <Resource Include="Assets\GalleryApp.png" />
-    <Content Include="Files\.editorconfig">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Files\dotnet-release.yml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Files\settings.xamlstyler">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <None Include="key.snk" />
-    <None Include="source.extension.vsixmanifest">
-      <SubType>Designer</SubType>
-      <Generator>VsixManifestGenerator</Generator>
-      <LastGenOutput>source.extension.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" ExcludeAssets="runtime">
-      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <Version>17.4.33103.184</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
-      <Version>17.10.40170</Version>
-    </PackageReference>
-    <PackageReference Include="NuGet.VisualStudio" GeneratePathProperty="true">
-      <Version>17.14.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VSSDK.BuildTools">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-      <Version>17.10.2185</Version>
-    </PackageReference>
-    <PackageReference Include="WPF-UI">
-      <Version>4.3.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\AppIcon.ico">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Assets\AppIcon.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Resource Include="Assets\AppTitleBar.png" />
-    <Content Include="Assets\Preview.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <!--<ExtensionDependencies Condition=" '$(ExcludeRestorePackageImports)' != 'true' " Include="$(PkgNuget_VisualStudio)\**\NuGet.VisualStudio.dll" />-->
-    <!--<Content Include="@(ExtensionDependencies)">
-      <VSIXSubPath>.</VSIXSubPath>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>-->
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Theme\Controls\SettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Theme\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Theme\TextBlockStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\AppxManifestPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\LibrariesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\PagesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\ResourcePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\DashboardPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\FilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Startup\StartupToolWindowControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WinUIApp-Blank-UnitTest\WinUIApp-Blank-UnitTest.csproj">
-      <Project>{B8948970-C773-4711-9839-BA3A311A2F2A}</Project>
-      <Name>WinUIApp-Blank-UnitTest</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-    <ProjectReference Include="..\WinUIApp-Blank\WinUIApp-Blank.csproj">
-      <Project>{AAF6A3C7-A34B-440C-A31B-04A6E07CB344}</Project>
-      <Name>WinUIApp-Blank</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-    <ProjectReference Include="..\WinUIApp-MVVM-NavigationView\WinUIApp-MVVM-NavigationView.csproj">
-      <Project>{0E3DECEA-492D-4FF6-B77E-4E68E6AFFA90}</Project>
-      <Name>WinUIApp-MVVM-NavigationView</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-    <ProjectReference Include="..\WinUIApp-MVVM\WinUIApp-MVVM.csproj">
-      <Project>{DF24DC85-9ED7-4697-85A0-AD2BED5E7916}</Project>
-      <Name>WinUIApp-MVVM</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-    <ProjectReference Include="..\WinUIApp-NavigationView\WinUIApp-NavigationView.csproj">
-      <Project>{4C1692FF-C0B8-49FB-948D-090160E0E63A}</Project>
-      <Name>WinUIApp-NavigationView</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-    <ProjectReference Include="..\WinUIApp\WinUIApp.csproj">
-      <Project>{D9C038B7-6A62-4945-A030-4AC7597F53CA}</Project>
-      <Name>WinUIApp</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<UseWPF>true</UseWPF>
+
+		<!-- VSIX settings -->
+		<VSSDKBuildToolsAutoSetup>true</VSSDKBuildToolsAutoSetup>
+		<VsixDeployOnDebug>true</VsixDeployOnDebug>
+		<GeneratePkgDefFile>true</GeneratePkgDefFile>
+		<DelaySign>False</DelaySign>
+
+		<AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+
+		<SignAssembly>True</SignAssembly>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Resource Include="Assets\header.png" />
+		<Resource Include="Assets\store.png" />
+		<Resource Include="Assets\WASDK.png" />
+		<Resource Include="Assets\GalleryApp.png" />
+		<Resource Include="Assets\check.png" />
+		<Content Include="Files\.editorconfig">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+		<Content Include="Files\dotnet-release.yml">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+		<Content Include="Files\settings.xamlstyler">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+		<None Include="key.snk" />
+		<None Include="source.extension.vsixmanifest">
+			<SubType>Designer</SubType>
+			<Generator>VsixManifestGenerator</Generator>
+			<LastGenOutput>source.extension.cs</LastGenOutput>
+		</None>
+		<Content Include="Assets\AppIcon.ico">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+		<Content Include="Assets\AppIcon.png">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+		<Resource Include="Assets\AppTitleBar.png" />
+		<Content Include="Assets\Preview.png">
+			<IncludeInVSIX>true</IncludeInVSIX>
+		</Content>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectCapability Include="CreateVsixContainer" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.10.40170" />
+		<PackageReference Include="Microsoft.VSSDK.BuildTools" Version="18.9.820" />
+		<PackageReference Include="WPF-UI" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\WinUIApp-MVVM-NavigationView\WinUIApp-MVVM-NavigationView.csproj">
+			<Project>{0E3DECEA-492D-4FF6-B77E-4E68E6AFFA90}</Project>
+			<Name>WinUIApp-MVVM-NavigationView</Name>
+			<VSIXSubPath>ProjectTemplates</VSIXSubPath>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+		</ProjectReference>
+		<ProjectReference Include="..\WinUIApp\WinUIApp.csproj">
+			<Project>{D9C038B7-6A62-4945-A030-4AC7597F53CA}</Project>
+			<Name>WinUIApp</Name>
+			<VSIXSubPath>ProjectTemplates</VSIXSubPath>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
 </Project>

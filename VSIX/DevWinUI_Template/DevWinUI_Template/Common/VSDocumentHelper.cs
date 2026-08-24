@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.Xml;
-using EnvDTE;
+﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using System.IO;
+using System.Xml;
 
-namespace DevWinUI_Template.Options;
+namespace DevWinUI_Template;
 
 public static class VSDocumentHelper
 {

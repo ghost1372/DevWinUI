@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="14.2.0" Language="en-US" Publisher="Mahdi Hosseini" />
+    <Identity Id="DevWinUI_Template.18eb89b1-bd1f-4e22-9196-6ea05b8ca61d" Version="15.0.0" Language="en-US" Publisher="Mahdi Hosseini" />
     <DisplayName>DevWinUI Templates for WinUI</DisplayName>
-    <Description xml:space="preserve">DevWinUI  Project Template, help you quickly create a new WinUI 3 App with DevWinUI  and MVVM Packages. We prepare your project with the following features: NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).
-We also always use the latest version of WindowsAppSDK. 
-Jump right into coding your project, and let us prepare project for you.</Description>
+    <Description xml:space="preserve">DevWinUI  Project Template, help you quickly create a new WinUI App with DevWinUI  and MVVM Packages. We prepare your project with the following features: NavigationView, Custom TitleBar, HomeLandingPage and Settings Page (with Theme settings).</Description>
     <MoreInfo>https://github.com/Ghost1372/DevWinUI</MoreInfo>
     <GettingStartedGuide>https://github.com/Ghost1372/DevWinUI</GettingStartedGuide>
     <ReleaseNotes>https://github.com/Ghost1372/DevWinUI</ReleaseNotes>
@@ -45,11 +43,7 @@ Jump right into coding your project, and let us prepare project for you.</Descri
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" d:Source="Project" d:ProjectName="%CurrentProject%" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp;TemplateProjectOutputGroup|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp-Blank" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp-Blank;TemplateProjectOutputGroup|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp-Blank-UnitTest" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp-Blank-UnitTest;TemplateProjectOutputGroup|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp-MVVM" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp-MVVM;TemplateProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp-MVVM-NavigationView" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp-MVVM-NavigationView;TemplateProjectOutputGroup|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="WinUIApp-NavigationView" d:VsixSubPath="ProjectTemplates" d:TargetPath="|WinUIApp-NavigationView;TemplateProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.Assembly" Path="|%CurrentProject%|" TargetVersion="[17.0, 19.0)" d:Source="Project" d:ProjectName="%CurrentProject%" />
   </Assets>
 </PackageManifest>

@@ -12,67 +12,113 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Theme/Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Theme/Dark.xaml" />
                 <ResourceDictionary Source="/DevWinUI_Template;component/Theme/Generic.xaml" />
                 <ResourceDictionary Source="/DevWinUI_Template;component/Theme/TextBlockStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="HyperlinkButtonForegroundPointerOver" Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextBodyUnselectedKey}}" />
+            <SolidColorBrush x:Key="DeveloperInfoBackgroundBrush" Color="#FFEAF2FA" />
+            <SolidColorBrush x:Key="DeveloperInfoBorderBrush" Color="#FF5B91C5" />
+
+            <Style x:Key="InfoCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowBackgroundKey}}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowBorderKey}}" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Margin" Value="0,0,8,8" />
+            </Style>
+
+            <Style x:Key="ResourceLinkButtonStyle" BasedOn="{StaticResource DefaultUiHyperlinkButtonStyle}" TargetType="{x:Type ui:HyperlinkButton}">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Foreground" Value="{DynamicResource SystemAccentColorBrush}" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer>
-        <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+    <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="12,12,12,8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Viewbox Grid.Column="2" Height="130" Margin="10,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/header.png" />
-            </Viewbox>
-            <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                <TextBlock Margin="10" FontWeight="Thin" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource DisplayTextBlockStyle}" Text="Welcome to DevWinUI!" />
-                <TextBlock FontSize="16" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource BodyTextBlockStyle}" Text="DevWinUI is a collection of useful classes, controls, styles, and codes for WinUI 3 apps." TextWrapping="Wrap" />
-            </StackPanel>
 
-            <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
-                <ui:ImageIcon Width="72" Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
-                <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource TitleTextBlockStyle}" Text="Documentation" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUI/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.Base" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIBase/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.ContextMenu" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.Shader" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIShader/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="DevWinUI.SourceGenerator" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUISourceGenerator/" />
-            </StackPanel>
+            <Border Margin="0,0,0,12" Padding="16" Background="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowBackgroundKey}}" BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowBorderKey}}" BorderThickness="1" CornerRadius="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
-                <ui:ImageIcon Width="72" Source="pack://application:,,,/DevWinUI_Template;component/Assets/GalleryApp.png" />
-                <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource TitleTextBlockStyle}" Text="DevWinUI Gallery App" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="Source Code" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/ghost1372/DevWinUI/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="Latest Build" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/ghost1372/DevWinUI/releases/" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="Nightly Build" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/ghost1372/DevWinUI/actions/" />
-                <ui:HyperlinkButton x:Name="MSStoreHyperLink" HorizontalAlignment="Center" Content="Microsoft Store" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true&amp;mode=mini" />
-                <Viewbox Width="160" Margin="0,5,0,0" Cursor="Hand">
-                    <ui:ImageIcon PreviewMouseLeftButtonDown="ImageIcon_PreviewMouseLeftButtonDown" Source="pack://application:,,,/DevWinUI_Template;component/Assets/store.png" />
-                </Viewbox>
-            </StackPanel>
+                    <ui:ImageIcon Width="60" Height="60" Margin="0,0,16,0" Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
 
-            <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center">
-                <ui:ImageIcon Width="72" Source="pack://application:,,,/DevWinUI_Template;component/Assets/WASDK.png" />
-                <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource TitleTextBlockStyle}" Text="More" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WinUI/WASDK Release notes" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Note24}" NavigateUri="https://learn.microsoft.com/windows/apps/windows-app-sdk/release-channels" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WinUI/WASDK Documentation" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Document24}" NavigateUri="https://learn.microsoft.com/windows/apps/desktop" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WindowsAppSDK Source Code" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/microsoft/WindowsAppSDK" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WindowsAppSDK Samples" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/microsoft/WindowsAppSDK-Samples" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WinUI 3 Source Code" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/microsoft/Microsoft-UI-Xaml" />
-                <ui:HyperlinkButton HorizontalAlignment="Center" Content="WinUI Gallery" Cursor="Hand" FontWeight="Bold" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/microsoft/WinUI-Gallery" />
-            </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock FontWeight="Thin" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource TitleTextBlockStyle}" Text="Welcome to DevWinUI!" />
+                        <TextBlock Margin="0,6,0,0" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource BaseTextBlockStyle}" Text="Useful WinUI controls, helpers, styles, and templates to speed up your app development." TextWrapping="Wrap" />
+                    </StackPanel>
 
-            <ui:InfoBar Title="Developer" Grid.Row="3" Grid.ColumnSpan="3" IsClosable="False" IsOpen="True" Message="Mahdi Hosseini" Severity="Success" />
+                    <Viewbox Grid.Column="2" Width="120" Margin="12,0,0,0" VerticalAlignment="Center">
+                        <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/header.png" />
+                    </Viewbox>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource InfoCardStyle}">
+                    <StackPanel>
+                        <ui:ImageIcon Width="32" Height="32" Margin="0,0,0,8" Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
+                        <TextBlock Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource SubtitleTextBlockStyle}" Text="Documentation" />
+                        <ui:HyperlinkButton Margin="0,8,0,0" Content="DevWinUI" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUI/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="DevWinUI.Base" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIBase/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="DevWinUI.ContextMenu" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUIContextMenu/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="DevWinUI.SourceGenerator" Icon="{ui:SymbolIcon Link24}" NavigateUri="https://ghost1372.github.io/DevWinUISourceGenerator/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource InfoCardStyle}">
+                    <StackPanel>
+                        <ui:ImageIcon Width="32" Height="32" Margin="0,0,0,8" Source="pack://application:,,,/DevWinUI_Template;component/Assets/GalleryApp.png" />
+                        <TextBlock Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource SubtitleTextBlockStyle}" Text="Gallery App" />
+                        <ui:HyperlinkButton Margin="0,8,0,0" Content="Source Code" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/ghost1372/DevWinUI/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="Latest Build" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/ghost1372/DevWinUI/releases/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="Nightly Build" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/ghost1372/DevWinUI/actions/" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton x:Name="MSStoreHyperLink" Content="Microsoft Store" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://apps.microsoft.com/detail/DevWinUI%20Gallery%20App/9nmx5x5dlsrq?launch=true&amp;mode=mini" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <Viewbox Width="150" Height="42" Margin="0,8,0,0" Cursor="Hand">
+                            <ui:ImageIcon PreviewMouseLeftButtonDown="ImageIcon_PreviewMouseLeftButtonDown" Source="pack://application:,,,/DevWinUI_Template;component/Assets/store.png" />
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource InfoCardStyle}">
+                    <StackPanel>
+                        <ui:ImageIcon Width="32" Height="32" Margin="0,0,0,8" Source="pack://application:,,,/DevWinUI_Template;component/Assets/WASDK.png" />
+                        <TextBlock Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource SubtitleTextBlockStyle}" Text="More resources" />
+                        <ui:HyperlinkButton Margin="0,8,0,0" Content="WinUI release notes" Icon="{ui:SymbolIcon Note24}" NavigateUri="https://learn.microsoft.com/windows/apps/windows-app-sdk/release-channels" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="WinUI docs" Icon="{ui:SymbolIcon Document24}" NavigateUri="https://learn.microsoft.com/windows/apps/desktop" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="WindowsAppSDK samples" Icon="{ui:SymbolIcon Code24}" NavigateUri="https://github.com/microsoft/WindowsAppSDK-Samples" Style="{StaticResource ResourceLinkButtonStyle}" />
+                        <ui:HyperlinkButton Content="WinUI Gallery" Icon="{ui:SymbolIcon WindowApps24}" NavigateUri="https://github.com/microsoft/WinUI-Gallery" Style="{StaticResource ResourceLinkButtonStyle}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="2" Margin="10,20,10,10" Padding="10" VerticalAlignment="Center" Background="{DynamicResource {x:Static vsshell:VsBrushes.AccentPaleKey}}" BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.AccentBorderKey}}" BorderThickness="1" CornerRadius="4" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                <TextBlock Foreground="{DynamicResource {x:Static vsshell:VsBrushes.StartPageTextBodyUnselectedKey}}" Style="{StaticResource SubtitleTextBlockStyle}" Text="Developer: Mahdi Hosseini" />
+            </Border>
         </Grid>
     </ScrollViewer>
 </UserControl>

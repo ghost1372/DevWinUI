@@ -6,374 +6,257 @@
                  xmlns:pages="clr-namespace:DevWinUI_Template"
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                  Title="DevWinUI Wizard"
-                 Height="700"
+                 Width="900"
+                 Height="650"
+                 MinWidth="900"
+                 MinHeight="650"
                  ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
                  ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                  Closing="Window_Closing"
                  ExtendsContentIntoTitleBar="True"
                  Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                 SnapsToDevicePixels="True"
                  Topmost="False"
+                 UseLayoutRounding="True"
                  WindowBackdropType="Mica"
                  WindowCornerPreference="Round"
                  WindowStartupLocation="CenterScreen">
     <ui:FluentWindow.Resources>
         <ResourceDictionary>
-            <ControlTemplate x:Key="LeftCompactNavigationViewItemTemplate2"
-                             TargetType="{x:Type ui:NavigationViewItem}">
+            <pages:MenuItemToPageConverter x:Key="MenuItemToPageConverter" />
+
+            <ControlTemplate x:Key="NullViewTemplate" TargetType="{x:Type ui:ListView}">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Border x:Name="MainBorder"
-                            Grid.Row="0"
-                            MinWidth="40"
-                            MinHeight="40"
-                            Margin="0"
-                            Padding="0,12,0,12"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{DynamicResource CardBorderThemeThickness}"
-                            CornerRadius="{TemplateBinding Border.CornerRadius}">
-                        <Border.Style>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPointerOver}" />
-                                        <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
-
-                                    </Trigger>
-
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <Grid Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <ContentPresenter x:Name="IconContentPresenter"
-                                                  Margin="-1,0,0,0"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Content="{TemplateBinding Icon}"
-                                                  Focusable="False"
-                                                  TextElement.FontSize="16"
-                                                  TextElement.Foreground="{DynamicResource NavigationViewItemForeground}" />
-                            </Grid>
-
-                            <Rectangle x:Name="ActiveRectangle"
-                                       Grid.Column="0"
-                                       Width="3"
-                                       Height="16"
-                                       Margin="0"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"
-                                       Fill="{DynamicResource NavigationViewSelectionIndicatorForeground}"
-                                       Opacity="0.0"
-                                       RadiusX="2"
-                                       RadiusY="2" />
-
-                            <ContentPresenter x:Name="ElementContentPresenter"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding Content}"
-                                              TextElement.FontSize="14"
-                                              TextElement.Foreground="{TemplateBinding Foreground}" />
-
-                            <ContentPresenter x:Name="PART_InfoBadge"
-                                              Grid.Column="2"
-                                              Margin="0"
-                                              Content="{TemplateBinding InfoBadge}" />
-
-                            <Grid x:Name="PART_ChevronGrid"
-                                  Grid.Column="3"
-                                  Width="0"
-                                  Visibility="Collapsed">
-                                <ui:SymbolIcon x:Name="ChevronIcon"
-                                               Margin="0"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="{StaticResource NavigationViewItemChevronSize}"
-                                               Foreground="{DynamicResource NavigationViewItemForeground}"
-                                               RenderTransformOrigin="0.5, 0.5"
-                                               Symbol="ChevronDown24">
-                                    <ui:SymbolIcon.RenderTransform>
-                                        <RotateTransform Angle="0" />
-                                    </ui:SymbolIcon.RenderTransform>
-                                </ui:SymbolIcon>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                    <ItemsControl x:Name="MenuItemsPresenter"
-                                  Grid.Row="1"
-                                  Focusable="False"
-                                  ItemsSource="{TemplateBinding MenuItems}"
-                                  KeyboardNavigation.DirectionalNavigation="Contained"
-                                  Opacity="0.0"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                  Visibility="Collapsed">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Margin="0"
-                                            IsItemsHost="True" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.Resources>
-                            <Style BasedOn="{StaticResource NavigationViewItemDefaultStyle}"
-                                   TargetType="{x:Type ui:NavigationViewItem}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ui:NavigationViewItem}">
-                                            <Border x:Name="MainBorder"
-                                                    Height="40"
-                                                    HorizontalAlignment="Stretch"
-                                                    BorderThickness="1"
-                                                    CornerRadius="4">
-                                                <Grid Margin="30,0,0,0"
-                                                      HorizontalAlignment="Stretch">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*"
-                                                                          MinWidth="180" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <Rectangle x:Name="ActiveRectangle"
-                                                               Grid.Column="0"
-                                                               Width="3"
-                                                               Height="16"
-                                                               Margin="0"
-                                                               HorizontalAlignment="Left"
-                                                               VerticalAlignment="Center"
-                                                               Fill="{DynamicResource NavigationViewSelectionIndicatorForeground}"
-                                                               Opacity="0.0"
-                                                               RadiusX="2"
-                                                               RadiusY="2" />
-
-                                                    <ContentPresenter x:Name="IconContentPresenter"
-                                                                      Grid.Column="1"
-                                                                      Margin="6,0,3,0"
-                                                                      HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"
-                                                                      Content="{TemplateBinding Icon}"
-                                                                      Focusable="False"
-                                                                      TextElement.FontSize="18"
-                                                                      TextElement.Foreground="{DynamicResource NavigationViewItemForeground}"
-                                                                      Visibility="{TemplateBinding Icon,
-                                                                                                   Converter={StaticResource NullToVisibilityConverter}}" />
-                                                    <ContentPresenter x:Name="ElementContentPresenter"
-                                                                      Grid.Column="2"
-                                                                      Margin="10,0,0,0"
-                                                                      HorizontalAlignment="Stretch"
-                                                                      VerticalAlignment="Center"
-                                                                      Content="{TemplateBinding Content}"
-                                                                      TextElement.FontSize="14"
-                                                                      TextElement.Foreground="{TemplateBinding Foreground}" />
-
-                                                    <ContentPresenter Grid.Column="3"
-                                                                      Content="{TemplateBinding InfoBadge}" />
-                                                </Grid>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsActive" Value="True">
-                                                    <Setter TargetName="ActiveRectangle" Property="Opacity" Value="1.0" />
-                                                    <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource NavigationViewItemBackgroundSelected}" />
-                                                </Trigger>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPointerOver}" />
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPressed}" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ItemsControl.Resources>
-                    </ItemsControl>
+                    <ui:PassiveScrollViewer x:Name="PART_ContentHost" CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                        <ItemsPresenter />
+                    </ui:PassiveScrollViewer>
+                    <Rectangle x:Name="PART_DisabledVisual" Opacity="0" RadiusX="2" RadiusY="2" Stretch="Fill" Stroke="Transparent" StrokeThickness="0" Visibility="Collapsed">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{DynamicResource ControlFillColorDefault}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
                 </Grid>
                 <ControlTemplate.Triggers>
-
-                    <Trigger Property="IsPaneOpen" Value="True">
-                        <Setter TargetName="PART_InfoBadge" Property="Grid.Column" Value="2" />
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="PART_DisabledVisual" Property="Visibility" Value="Visible" />
                     </Trigger>
-                    <Trigger Property="IsPaneOpen" Value="False">
-                        <Setter TargetName="PART_InfoBadge" Property="Grid.Column" Value="0" />
-                        <Setter TargetName="PART_InfoBadge" Property="VerticalAlignment" Value="Top" />
-                        <Setter TargetName="PART_InfoBadge" Property="HorizontalAlignment" Value="Right" />
-                    </Trigger>
-
-                    <Trigger Property="InfoBadge" Value="{x:Null}">
-                        <Setter TargetName="PART_InfoBadge" Property="Margin" Value="0" />
-                        <Setter TargetName="PART_InfoBadge" Property="Visibility" Value="Collapsed" />
-                    </Trigger>
-                    <Trigger Property="HasMenuItems" Value="True">
-                        <Setter TargetName="PART_ChevronGrid" Property="Visibility" Value="Visible" />
-                        <Setter TargetName="PART_ChevronGrid" Property="Width" Value="40" />
-                    </Trigger>
-                    <Trigger Property="IsExpanded" Value="True">
-                        <Setter TargetName="MenuItemsPresenter" Property="Visibility" Value="Visible" />
-                        <Trigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="MenuItemsPresenter"
-                                                     Storyboard.TargetProperty="(ItemsControl.Opacity)"
-                                                     From="0.0"
-                                                     To="1.0"
-                                                     Duration="00:00:00.167" />
-                                    <DoubleAnimation Storyboard.TargetName="ChevronIcon"
-                                                     Storyboard.TargetProperty="(Control.RenderTransform).(RotateTransform.Angle)"
-                                                     To="-180"
-                                                     Duration="00:00:00.167" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.EnterActions>
-                        <Trigger.ExitActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="MenuItemsPresenter"
-                                                     Storyboard.TargetProperty="(ItemsControl.Opacity)"
-                                                     From="1.0"
-                                                     To="0.0"
-                                                     Duration="00:00:00.167" />
-                                    <DoubleAnimation Storyboard.TargetName="ChevronIcon"
-                                                     Storyboard.TargetProperty="(Control.RenderTransform).(RotateTransform.Angle)"
-                                                     To="0"
-                                                     Duration="00:00:00.167" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.ExitActions>
-                    </Trigger>
-
-                    <Trigger Property="IsActive" Value="True">
-                        <Setter TargetName="ActiveRectangle" Property="Opacity" Value="1.0" />
-                        <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource CardBackground}" />
-                        <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
-                        <!--<Setter TargetName="IconContentPresenter" Property="Filled" Value="True" /> -->
-                        <!--<Setter TargetName="IconContentPresenter" Property="Foreground" Value="{DynamicResource SystemAccentBrush}" />-->
-                    </Trigger>
-                    <Trigger Property="Icon" Value="{x:Null}">
-                        <Setter TargetName="IconContentPresenter" Property="Visibility" Value="Collapsed" />
-                    </Trigger>
-                    <MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="IsMouseOver" Value="True" />
-                            <Condition Property="IsActive" Value="False" />
-                        </MultiTrigger.Conditions>
-                        <MultiTrigger.Setters>
-                            <Setter TargetName="IconContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource NavigationViewItemForegroundPointerOver}" />
-                            <Setter TargetName="ElementContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource NavigationViewItemForegroundPointerOver}" />
-                        </MultiTrigger.Setters>
-                    </MultiTrigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>
+
+            <ControlTemplate x:Key="GridViewScrollViewerTemplate" TargetType="ScrollViewer">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <DockPanel Margin="{TemplateBinding Control.Padding}">
+                        <ScrollViewer DockPanel.Dock="Top" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                            <!--  margin-left matched to listviewitem.padding  -->
+                            <ui:GridViewHeaderRowPresenter Margin="4" AllowsColumnReorder="{Binding Path=View.AllowsColumnReorder, RelativeSource={RelativeSource AncestorType=ListView}}" ColumnHeaderContainerStyle="{Binding Path=View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource AncestorType=ListView}}" ColumnHeaderContextMenu="{Binding Path=View.ColumnHeaderContextMenu, RelativeSource={RelativeSource AncestorType=ListView}}" ColumnHeaderTemplate="{Binding Path=View.ColumnHeaderTemplate, RelativeSource={RelativeSource AncestorType=ListView}}" ColumnHeaderToolTip="{Binding Path=View.ColumnHeaderToolTip, RelativeSource={RelativeSource AncestorType=ListView}}" Columns="{Binding Path=View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                        <ScrollContentPresenter Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" KeyboardNavigation.DirectionalNavigation="Local" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </DockPanel>
+                    <ScrollBar Name="PART_HorizontalScrollBar" Grid.Row="1" Cursor="Arrow" Maximum="{TemplateBinding ScrollViewer.ScrollableWidth}" Minimum="0" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" Value="{Binding Path=HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                    <ScrollBar Name="PART_VerticalScrollBar" Grid.Column="1" Cursor="Arrow" Maximum="{TemplateBinding ScrollViewer.ScrollableHeight}" Minimum="0" Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" Value="{Binding Path=VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                    <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="False">
+                        <Rectangle Width="1" DockPanel.Dock="Left" Fill="#FFFFFFFF" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" />
+                        <Rectangle Height="1" DockPanel.Dock="Top" Fill="#FFFFFFFF" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" />
+                    </DockPanel>
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="GridViewTemplate" TargetType="{x:Type ui:ListView}">
+                <Border Name="Bd" Background="Transparent" BorderBrush="{TemplateBinding Border.BorderBrush}" BorderThickness="{TemplateBinding Border.BorderThickness}">
+                    <ui:PassiveScrollViewer Padding="{TemplateBinding Control.Padding}" CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}" Focusable="False" Template="{DynamicResource GridViewScrollViewerTemplate}">
+                        <ItemsPresenter />
+                    </ui:PassiveScrollViewer>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ControlFillColorDisabledBrush}" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <Style x:Key="ListViewStyle" TargetType="{x:Type ui:ListView}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+                <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True" />
+                <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=ViewState, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static ui:ListViewViewState.Default}">
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel CacheLength="{TemplateBinding VirtualizingPanel.CacheLength}" CacheLengthUnit="{TemplateBinding VirtualizingPanel.CacheLengthUnit}" IsVirtualizing="{TemplateBinding VirtualizingPanel.IsVirtualizing}" IsVirtualizingWhenGrouping="{TemplateBinding VirtualizingPanel.IsVirtualizing}" ScrollUnit="{TemplateBinding VirtualizingPanel.ScrollUnit}" VirtualizationMode="{TemplateBinding VirtualizingPanel.VirtualizationMode}" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template" Value="{DynamicResource NullViewTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ViewState, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static ui:ListViewViewState.GridView}">
+                        <Setter Property="Template" Value="{DynamicResource GridViewTemplate}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <ControlTemplate x:Key="NullViewItemTemplate" TargetType="{x:Type ui:ListViewItem}">
+                <Border x:Name="Border" Margin="0" Padding="0" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="{TemplateBinding Border.CornerRadius}">
+                    <Grid>
+                        <ContentPresenter Margin="{TemplateBinding Padding}" />
+                        <Rectangle x:Name="ActiveRectangle" Width="4" Margin="6,8,0,8" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="{DynamicResource ListViewItemSelectedIndicatorBrush}" RadiusX="2" RadiusY="2" Visibility="Collapsed" />
+                    </Grid>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsEnabled" Value="True" />
+                            <Condition Property="IsMouseOver" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource ListViewItemPointerOverBrush}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible" />
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource ListViewItemSelectedBrush}" />
+                        <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ListViewItemSelectedBorderBrush}" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="GridViewItemTemplate" TargetType="{x:Type ui:ListViewItem}">
+                <Border x:Name="Border" Margin="0" Padding="0" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="{TemplateBinding Border.CornerRadius}">
+                    <Grid>
+                        <ui:GridViewRowPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" Columns="{TemplateBinding GridView.ColumnCollection}" Content="{TemplateBinding ContentControl.Content}" />
+                        <Rectangle x:Name="ActiveRectangle" Width="4" Margin="6,8,0,8" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="{DynamicResource ListViewItemSelectedIndicatorBrush}" RadiusX="2" RadiusY="2" Visibility="Collapsed" />
+                    </Grid>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsEnabled" Value="True" />
+                            <Condition Property="IsMouseOver" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource ListViewItemPointerOverBrush}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible" />
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource ListViewItemSelectedBrush}" />
+                        <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ListViewItemSelectedBorderBrush}" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <Style x:Key="ListViewItemStyle" TargetType="{x:Type ui:ListViewItem}">
+                <Setter Property="Foreground" Value="{DynamicResource ListViewItemForeground}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+                <Setter Property="Margin" Value="0,0,0,8" />
+                <Setter Property="Padding" Value="12,10" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=ViewState, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" Value="Default">
+                        <Setter Property="Template" Value="{DynamicResource NullViewItemTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ViewState, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" Value="GridView">
+                        <Setter Property="Template" Value="{DynamicResource GridViewItemTemplate}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style BasedOn="{StaticResource ListViewStyle}" TargetType="{x:Type ui:ListView}" />
+            <Style BasedOn="{StaticResource ListViewItemStyle}" TargetType="{x:Type ui:ListViewItem}" />
         </ResourceDictionary>
     </ui:FluentWindow.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <ui:NavigationView x:Name="RootNavigation"
-                           Grid.Row="1"
-                           IsBackButtonVisible="Collapsed"
-                           ItemTemplate="{DynamicResource LeftCompactNavigationViewItemTemplate2}">
-            <ui:NavigationView.Header>
-                <StackPanel>
-                    <StackPanel Margin="10"
-                                HorizontalAlignment="Right"
-                                Orientation="Horizontal">
-                        <ui:Button MinWidth="200"
-                                   Margin="10,0"
-                                   Click="btnCancel_Click"
-                                   Content="Cancel [Esc]"
-                                   Cursor="Hand"
-                                   IsCancel="True">
-                            <ui:Button.Icon>
-                                <ui:SymbolIcon Symbol="Dismiss24" />
-                            </ui:Button.Icon>
-                        </ui:Button>
-                        <ui:Button MinWidth="200"
-                                   Appearance="Primary"
-                                   Click="btnCreate_Click"
-                                   Content="Create Project [Enter]"
-                                   Cursor="Hand"
-                                   Foreground="WhiteSmoke"
-                                   IsDefault="True">
-                            <ui:Button.Icon>
-                                <ui:SymbolIcon Symbol="New24" />
-                            </ui:Button.Icon>
-                        </ui:Button>
-                    </StackPanel>
-                    <Separator />
-                </StackPanel>
-            </ui:NavigationView.Header>
-            <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Dashboard"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:DashboardPage}">
-
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Home24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Library"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:LibrariesPage}">
-
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Library24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Files"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:FilePage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="AppsAddIn24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem x:Name="NviPage"
-                                       Content="Pages"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:PagesPage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="TabDesktopNewPage20" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="XAML Resources"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:ResourcePage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="ChannelShare24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="AppxManifest"
-                                       NavigationCacheMode="Enabled"
-                                       TargetPageType="{x:Type pages:AppxManifestPage}">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="VirtualNetwork20" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-            </ui:NavigationView.MenuItems>
-        </ui:NavigationView>
-
-        <ui:TitleBar x:Name="AppTitleBar"
-                     Title="DevWinUI Wizard"
-                     Grid.Row="0">
+        <ui:TitleBar Title="DevWinUI Wizard">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon Source="pack://application:,,,/DevWinUI_Template;component/Assets/AppTitleBar.png" />
             </ui:TitleBar.Icon>
         </ui:TitleBar>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
+                <TextBlock Margin="20,10,0,0" FontSize="24" FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="Create a DevWinUI Project" />
+                <TextBlock Margin="20,5,0,25" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Configure your project settings and choose the components you need." />
+            </StackPanel>
+            <ui:ListView x:Name="MainLV" Grid.Row="1" Margin="10">
+                <ui:ListView.ItemTemplate>
+                    <DataTemplate DataType="model:NavigationMenuModel">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.RowSpan="2" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Ellipse x:Name="StepCircle" Fill="#1AFFFFFF" Stroke="#66FFFFFF" StrokeThickness="1.5" />
+                                <TextBlock x:Name="StepNumberText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="White" Text="{Binding StepNumber}" />
+                                <Image x:Name="CheckIcon" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" Source="pack://application:,,,/DevWinUI_Template;component/Assets/check.png" Stretch="Uniform" Visibility="Collapsed" />
+                            </Grid>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" FontSize="16" FontWeight="SemiBold" Foreground="White" Text="{Binding Name}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="#C8FFFFFF" Text="{Binding Title}" />
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                <Setter TargetName="StepCircle" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="StepNumberText" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="CheckIcon" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                <Setter TargetName="StepCircle" Property="Fill" Value="#66B98CFF" />
+                                <Setter TargetName="StepCircle" Property="Stroke" Value="#FFB98CFF" />
+                                <Setter TargetName="StepNumberText" Property="Foreground" Value="White" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ui:ListView.ItemTemplate>
+            </ui:ListView>
+
+            <ui:NavigationViewItemSeparator Grid.Row="1" Grid.Column="1" Margin="0,5,5,0" />
+
+            <Frame x:Name="ContentFrame" Grid.Row="1" Grid.Column="2" Content="{Binding CurrentPage, RelativeSource={RelativeSource AncestorType=Window}}" NavigationUIVisibility="Hidden" />
+        </Grid>
+        <Grid Grid.Row="2" Background="{DynamicResource ControlFillColorDefaultBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnCancel" Grid.Column="0" Width="200" Margin="10,10,0,10" Click="BtnCancel_Click" Content="Cancel" IsCancel="True" />
+            <Button x:Name="BtnPrev" Grid.Column="2" Width="150" Margin="0,10,0,10" Click="BtnPrev_Click" Content="Previous" />
+            <Button x:Name="BtnNext" Grid.Column="3" Width="150" Margin="10,10,10,10" Click="BtnNext_Click" Content="Next" />
+            <Button x:Name="BtnCreate" Grid.Column="4" Width="150" Margin="0,10,10,10" Click="BtnCreate_Click" Content="Create" IsDefault="True" />
+        </Grid>
     </Grid>
+
 </ui:FluentWindow>

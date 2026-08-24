@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace DevWinUI_Template.Options;
+namespace DevWinUI_Template;
 
 public class ColorsDicOption
 {
-    public void ConfigColorsDic(Dictionary<string, string> replacementsDictionary, bool useHomeLandingPage)
+    public void ConfigColorsDic(Dictionary<string, string> replacementsDictionary)
     {
-        if (useHomeLandingPage)
+        if (WizardConfig.Current.UseHomeLandingPage)
         {
             replacementsDictionary.Add("$HeaderCoverLight$", """<x:String x:Key="HeaderCover">/Assets/Cover/CoverLight.png</x:String>""");
             replacementsDictionary.Add("$HeaderCoverDark$", """<x:String x:Key="HeaderCover">/Assets/Cover/CoverDark.png</x:String>""");

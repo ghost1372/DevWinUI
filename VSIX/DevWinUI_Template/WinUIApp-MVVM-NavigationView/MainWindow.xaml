@@ -12,11 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TitleBar x:Name="AppTitleBar"
-                  Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                  IsBackButtonVisible="True"
-                  IsPaneToggleButtonVisible="True"
-                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+        <TitleBar x:Name="AppTitleBar" Title="{x:Bind dev:ProcessInfoHelper.ProductName}" IsBackButtonVisible="True" IsPaneToggleButtonVisible="True" Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
             <TitleBar.Resources>
                 <!--
                     TitleBar.Content uses Center alignment by default. Override to
@@ -28,26 +24,11 @@
                 <ImageIconSource ImageSource="ms-appx:///Assets/AppIcon.png" />
             </TitleBar.IconSource>
             <TitleBar.RightHeader>
-                <Button x:Name="ThemeButton"
-                        Height="32"
-                        Margin="0,0,4,0"
-                        Click="ThemeButton_Click"
-                        Content="{dev:FontIcon GlyphCode=E793, FontSize=16}"
-                        Style="{ThemeResource SubtleButtonStyle}"
-                        ToolTipService.ToolTip="Toggle Theme" />
+                <Button x:Name="ThemeButton" Height="32" Margin="0,0,4,0" Click="ThemeButton_Click" Content="{dev:FontIcon GlyphCode=E793, FontSize=16}" Style="{ThemeResource SubtleButtonStyle}" ToolTipService.ToolTip="Toggle Theme" />
             </TitleBar.RightHeader>
-            <AutoSuggestBox MaxWidth="580"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            PlaceholderText="Search"
-                            QueryIcon="Find"
-                            QuerySubmitted="OnQuerySubmitted"
-                            TextChanged="OnTextChanged" />
+            <AutoSuggestBox MaxWidth="580" HorizontalAlignment="Stretch" VerticalAlignment="Center" PlaceholderText="Search" QueryIcon="Find" QuerySubmitted="OnQuerySubmitted" TextChanged="OnTextChanged" />
         </TitleBar>
-        <NavigationView x:Name="NavView"
-                        Grid.Row="1"
-                        IsBackButtonVisible="Collapsed"
-                        IsPaneToggleButtonVisible="False">
+        <NavigationView x:Name="NavView" Grid.Row="1" IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False">
             <NavigationView.Header>
                 <dev:BreadcrumbNavigator x:Name="BreadCrumbNav" />
             </NavigationView.Header>

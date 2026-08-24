@@ -12,9 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TitleBar x:Name="AppTitleBar"
-                  Title="{x:Bind dev:ProcessInfoHelper.ProductName}"
-                  Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
+        <TitleBar x:Name="AppTitleBar" Title="{x:Bind dev:ProcessInfoHelper.ProductName}" Subtitle="{x:Bind dev:ProcessInfoHelper.VersionWithPrefix}">
             <TitleBar.IconSource>
                 <ImageIconSource ImageSource="ms-appx:///Assets/AppIcon.png" />
             </TitleBar.IconSource>

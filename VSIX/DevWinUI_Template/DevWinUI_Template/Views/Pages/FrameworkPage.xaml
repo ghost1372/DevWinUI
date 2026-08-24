@@ -1,0 +1,45 @@
+﻿<Page x:Class="DevWinUI_Template.FrameworkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="clr-namespace:DevWinUI_Template.Models"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <Grid Margin="10,10,40,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ListView x:Name="RadioLV" Grid.Row="1" Background="Transparent" BorderThickness="0" ItemContainerStyle="{StaticResource NoTemplateListViewItemStyle}" SelectedValue="{Binding DotNetVersion, Mode=TwoWay}" SelectedValuePath="Value" SelectionChanged="RadioLV_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="local:RadioCardModel">
+                    <local:RadioCard Title="{Binding Title}" CornerRadius="{Binding CornerRadius}" IsActive="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" Severity="{Binding Severity}" Subtitle="{Binding Subtitle}" Tag="{Binding Tag}">
+                        <local:RadioCard.Content>
+                            <RadioButton IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" />
+                        </local:RadioCard.Content>
+                    </local:RadioCard>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Items>
+                <model:RadioCardModel Title=".NET 11.0" Severity="Warning" Subtitle="Latest features, not recommended for new projects." Tag="Preview" Value="net11.0" />
+                <model:RadioCardModel Title=".NET 10.0" Severity="Success" Subtitle="Latest features, recommended for new projects." Tag="LTS" Value="net10.0" />
+                <model:RadioCardModel Title=".NET 9.0" Severity="Warning" Subtitle="LTS" Tag="STM" Value="net9.0" />
+                <model:RadioCardModel Title=".NET 8.0" Severity="Error" Subtitle="Maintenance" Tag="LTS" Value="net8.0" />
+            </ListView.Items>
+        </ListView>
+        <StackPanel>
+            <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource TitleTextBlockStyle}" Text="Target Framework" />
+            <ComboBox x:Name="cmbTargetFrameworkVersion" MinWidth="250" Margin="0,10,0,0" SelectedIndex="0" SelectedValue="{Binding TargetFrameworkVersion, Mode=TwoWay}" SelectedValuePath="Tag" ToolTip="Choose TargetFramework Version">
+                <ComboBoxItem Content="26100 (Recommended)" Tag="26100" ToolTip="26100" />
+                <ComboBoxItem Content="22621" Tag="22621" ToolTip="22621" />
+                <ComboBoxItem Content="22000" Tag="22000" ToolTip="22000" />
+                <ComboBoxItem Content="19041" Tag="19041" ToolTip="19041" />
+            </ComboBox>
+            <TextBlock Margin="0,20,0,10" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource TitleTextBlockStyle}" Text=".Net Version" />
+        </StackPanel>
+    </Grid>
+
+</Page>

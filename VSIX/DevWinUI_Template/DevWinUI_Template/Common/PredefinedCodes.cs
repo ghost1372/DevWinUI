@@ -2,51 +2,6 @@
 
 public static class PredefinedCodes
 {
-    public static string Windows11ContextMenuInitializer =
-""""
-if (RuntimeHelper.IsPackaged())
-{
-    ContextMenuItem menu = new ContextMenuItem
-    {
-        Title = "Open $projectname$ Here",
-        Param = @"""{path}""",
-        AcceptFileFlag = (int)FileMatchFlagEnum.All,
-        AcceptDirectoryFlag = (int)(DirectoryMatchFlagEnum.Directory | DirectoryMatchFlagEnum.Background | DirectoryMatchFlagEnum.Desktop),
-        AcceptMultipleFilesFlag = (int)FilesMatchFlagEnum.Each,
-        Index = 0,
-        Enabled = true,
-        Icon = ProcessInfoHelper.GetFileVersionInfo().FileName,
-        Exe = "$projectname$.exe"
-    };
-
-    var menuFolder = await ContextMenuService.CreateDefualtMenusFolderAsync();
-    ContextMenuService menuService = new ContextMenuService(menuFolder);
-    await menuService.SaveAsync(menu);
-}
-"""";
-    public static string Windows11ContextMenuMVVMInitializer =
-""""
-if (RuntimeHelper.IsPackaged())
-{
-    ContextMenuItem menu = new ContextMenuItem
-    {
-        Title = "Open $projectname$ Here",
-        Param = @"""{path}""",
-        AcceptFileFlag = (int)FileMatchFlagEnum.All,
-        AcceptDirectoryFlag = (int)(DirectoryMatchFlagEnum.Directory | DirectoryMatchFlagEnum.Background | DirectoryMatchFlagEnum.Desktop),
-        AcceptMultipleFilesFlag = (int)FilesMatchFlagEnum.Each,
-        Index = 0,
-        Enabled = true,
-        Icon = ProcessInfoHelper.GetFileVersionInfo().FileName,
-        Exe = "$projectname$.exe"
-    };
-
-    var menuFolder = await ContextMenuService.CreateDefualtMenusFolderAsync();
-    ContextMenuService menuService = new ContextMenuService(menuFolder);
-    await menuService.SaveAsync(menu);
-}
-"""";
-
     public static readonly string SettingsCardCommentCode =
 """
 <!-- <dev:SettingsCard Description="Your Description"
@@ -66,15 +21,6 @@ if (RuntimeHelper.IsPackaged())
                               Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
                               CommandParameter="{dev:NavigationParameter PageType=views:MySettingPage, BreadCrumbHeader='My Setting'}" /> -->
 """;
-    public static readonly string AboutSettingCode =
-"""
-<dev:SettingsCard Description="About $safeprojectname$ and Developer"
-                              Header="About us"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Info.png}"
-                              IsClickEnabled="True"
-                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
-                              CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage, BreadCrumbHeader='About us'}" />
-""";
     public static readonly string AboutSettingMVVMCode =
 """
 <dev:SettingsCard Description="About $safeprojectname$ and Developer"
@@ -83,16 +29,6 @@ if (RuntimeHelper.IsPackaged())
                               IsClickEnabled="True"
                               Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
                               CommandParameter="{dev:NavigationParameter PageType=views:AboutUsSettingPage, BreadCrumbHeader='About us'}" />
-""";
-
-    public static readonly string AppUpdateSettingCode =
-"""
-<dev:SettingsCard Description="Check for Updates"
-                              Header="Update App"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Update.png}"
-                              IsClickEnabled="True"
-                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
-                              CommandParameter="{dev:NavigationParameter PageType=views:AppUpdateSettingPage, BreadCrumbHeader='Update App'}" />
 """;
 
     public static readonly string AppUpdateSettingMVVMCode =
@@ -105,16 +41,6 @@ if (RuntimeHelper.IsPackaged())
                               CommandParameter="{dev:NavigationParameter PageType=views:AppUpdateSettingPage, BreadCrumbHeader='Update App'}" />
 """;
 
-    public static readonly string GeneralSettingCode =
-"""
-<dev:SettingsCard Description="Change your app Settings"
-                              Header="General"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/General.png}"
-                              IsClickEnabled="True"
-                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
-                              CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage, BreadCrumbHeader='General'}" />
-""";
-
     public static readonly string GeneralSettingMVVMCode =
 """
 <dev:SettingsCard Description="Change your app Settings"
@@ -123,16 +49,6 @@ if (RuntimeHelper.IsPackaged())
                               IsClickEnabled="True"
                               Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
                               CommandParameter="{dev:NavigationParameter PageType=views:GeneralSettingPage, BreadCrumbHeader='General'}" />
-""";
-
-    public static readonly string ThemeSettingCode =
-"""
-<dev:SettingsCard Description="Explore the different ways to customize the appearance and behavior of your app. You can change the material, theme, accent, and more options to suit your style and preference."
-                              Header="Appearance &amp; behavior"
-                              HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/Theme.png}"
-                              IsClickEnabled="True"
-                              Command="{x:Bind local:App.Current.NavService.NavigateToCommand}"
-                              CommandParameter="{dev:NavigationParameter PageType=views:ThemeSettingPage, BreadCrumbHeader='Appearance &amp; behavior'}" />
 """;
 
     public static readonly string ThemeSettingMVVMCode =
@@ -196,12 +112,5 @@ if (RuntimeHelper.IsPackaged())
           <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="false" DisplayName="$safeprojectname$" />
         </uap5:Extension>
       </Extensions>
-"""";
-
-    public static readonly string StartupTaskInContextMenu =
-""""
-        <uap5:Extension Category="windows.startupTask">
-          <uap5:StartupTask TaskId="$safeprojectname$StartOnLoginTask" Enabled="false" DisplayName="$safeprojectname$" />
-        </uap5:Extension>
 """";
 }

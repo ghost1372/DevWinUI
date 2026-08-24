@@ -20,19 +20,17 @@ public class ConfigCodes
     bool UseDeveloperModeSetting;
     bool UseStartupSetting;
     bool UseJsonSetting;
-    bool UseContextMenu;
-    public ConfigCodes(bool UseAboutPage, bool UseAppUpdatePage, bool UseGeneralSettingPage, bool UseHomeLandingPage, bool UseSettingsPage, bool UseThemeSettingPage, bool UseDeveloperModeSetting, bool UseJsonSetting, bool useContextMenu, bool UseStartupSetting)
+    public ConfigCodes()
     {
-        this.UseAboutPage = UseAboutPage;
-        this.UseAppUpdatePage = UseAppUpdatePage;
-        this.UseGeneralSettingPage = UseGeneralSettingPage;
-        this.UseHomeLandingPage = UseHomeLandingPage;
-        this.UseSettingsPage = UseSettingsPage;
-        this.UseThemeSettingPage = UseThemeSettingPage;
-        this.UseDeveloperModeSetting = UseDeveloperModeSetting;
-        this.UseJsonSetting = UseJsonSetting;
-        this.UseStartupSetting = UseStartupSetting;
-        UseContextMenu = useContextMenu;
+        this.UseAboutPage = WizardConfig.Current.UseAboutPage;
+        this.UseAppUpdatePage = WizardConfig.Current.UseAppUpdatePage;
+        this.UseGeneralSettingPage = WizardConfig.Current.UseGeneralSettingPage;
+        this.UseHomeLandingPage = WizardConfig.Current.UseHomeLandingPage;
+        this.UseSettingsPage = WizardConfig.Current.UseSettingsPage;
+        this.UseThemeSettingPage = WizardConfig.Current.UseThemeSettingPage;
+        this.UseDeveloperModeSetting = WizardConfig.Current.UseDeveloperModeSetting;
+        this.UseJsonSetting = WizardConfig.Current.UseJsonSettings;
+        this.UseStartupSetting = WizardConfig.Current.UseStartupSetting;
     }
 
     public string GetConfigJson()
@@ -104,11 +102,6 @@ public class ConfigCodes
 
     public void ConfigAllMVVM(string safeProjectName)
     {
-        if (UseContextMenu)
-        {
-            ServiceDic.Add(nameof(UseContextMenu), "services.AddSingleton<ContextMenuService>();");
-        }
-
         if (UseGeneralSettingPage)
         {
             var generalCode = PredefinedCodes.GeneralSettingMVVMCode;
@@ -165,56 +158,8 @@ public class ConfigCodes
     {
         return content?.Replace("$safeprojectname$", safeProjectName);
     }
-    public void ConfigAll(string safeProjectName)
-    {
-        if (UseGeneralSettingPage)
-        {
-            var generalCode = PredefinedCodes.GeneralSettingCode;
-            generalCode = FixWithRealNamespace(generalCode, safeProjectName);
-            SettingsPageOptionsDic.Add(nameof(UseGeneralSettingPage), generalCode);
-        }
 
-        if (UseThemeSettingPage)
-        {
-            var themeCode = PredefinedCodes.ThemeSettingCode;
-            themeCode = FixWithRealNamespace(themeCode, safeProjectName);
-            SettingsPageOptionsDic.Add(nameof(UseThemeSettingPage), themeCode);
-        }
-
-        if (UseAppUpdatePage)
-        {
-            var appUpdateCode = PredefinedCodes.AppUpdateSettingCode;
-            appUpdateCode = FixWithRealNamespace(appUpdateCode, safeProjectName);
-            SettingsPageOptionsDic.Add(nameof(UseAppUpdatePage), appUpdateCode);
-        }
-
-        if (UseAboutPage)
-        {
-            var aboutCode = PredefinedCodes.AboutSettingCode;
-            aboutCode = FixWithRealNamespace(aboutCode, safeProjectName);
-
-            SettingsPageOptionsDic.Add(nameof(UseAboutPage), aboutCode);
-        }
-
-        if (UseHomeLandingPage)
-        {
-            ConfigJsonDic.Add(nameof(UseHomeLandingPage), ".ConfigureDefaultPage(typeof(HomeLandingPage));");
-        }
-
-        if (UseSettingsPage)
-        {
-            ConfigJsonDic.Add(nameof(UseSettingsPage), ".ConfigureSettingsPage(typeof(SettingsPage));");
-        }
-
-        if (SettingsPageOptionsDic.Count == 0)
-        {
-            var commentCode = PredefinedCodes.SettingsCardCommentCode;
-            commentCode = FixWithRealNamespace(commentCode, safeProjectName);
-            SettingsPageOptionsDic.Add("comment", commentCode);
-        }
-    }
-
-    public void ConfigGeneral(bool useFileLogger, bool useDebugLogger)
+    public void ConfigGeneral()
     {
         if (UseSettingsPage && UseGeneralSettingPage)
         {
@@ -224,11 +169,11 @@ public class ConfigCodes
             }
             if (UseDeveloperModeSetting)
             {
-                if (!UseJsonSetting || (!useFileLogger && !useDebugLogger))
+                if (!UseJsonSetting || (!WizardConfig.Current.UseFileLogger && !WizardConfig.Current.UseDebugLogger))
                 {
                     GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode);
                 }
-                else if (UseJsonSetting && (useFileLogger || useDebugLogger))
+                else if (UseJsonSetting && (WizardConfig.Current.UseFileLogger || WizardConfig.Current.UseDebugLogger))
                 {
                     GeneralSettingsPageOptionsDic.Add(nameof(UseDeveloperModeSetting), Environment.NewLine + PredefinedCodes.DeveloperModeSettingCode2);
                 }

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace DevWinUI_Template.Options;
+using System.Linq;
+namespace DevWinUI_Template;
 
 public class SerilogOption
 {
-    public bool UseFileLogger { get; set; } = false;
-    public bool UseDebugLogger { get; set; } = false;
-    public void ConfigSerilog(Dictionary<string, string> replacementsDictionary, Dictionary<string, Library> libs, bool useJsonSetting, bool useDeveloperMode)
+    public void ConfigSerilog(Dictionary<string, string> replacementsDictionary)
     {
-        if (libs.ContainsKey("Serilog.Sinks.File"))
+        var hasFileLib = WizardConfig.Current.NuGetPackages.Any(x => x.PackageName.Equals("Serilog.Sinks.File", StringComparison.OrdinalIgnoreCase));
+        var hasDebugLib = WizardConfig.Current.NuGetPackages.Any(x => x.PackageName.Equals("Serilog.Sinks.Debug", StringComparison.OrdinalIgnoreCase));
+
+        if (hasFileLib)
         {
-            UseFileLogger = true;
+            WizardConfig.Current.UseFileLogger = true;
             replacementsDictionary.Add("$SerilogFilePath$", Environment.NewLine + """public static readonly string LogFilePath = Path.Combine(LogDirectoryPath, "Log.txt");""");
             replacementsDictionary.Add("$SerilogFile$", Environment.NewLine + "            .WriteTo.File(Constants.LogFilePath, rollingInterval: RollingInterval.Day)");
         }
@@ -21,9 +22,10 @@ public class SerilogOption
             replacementsDictionary.Add("$SerilogFilePath$", "");
         }
 
-        if (libs.ContainsKey("Serilog.Sinks.Debug"))
+        if (hasDebugLib)
         {
-            UseDebugLogger = true;
+            WizardConfig.Current.UseDebugLogger = true;
+
             replacementsDictionary.Add("$SerilogDebug$", Environment.NewLine + "            .WriteTo.Debug()");
         }
         else
@@ -31,11 +33,11 @@ public class SerilogOption
             replacementsDictionary.Add("$SerilogDebug$", "");
         }
 
-        if (libs.ContainsKey("Serilog.Sinks.Debug") || libs.ContainsKey("Serilog.Sinks.File"))
+        if (hasDebugLib || hasFileLib)
         {
             replacementsDictionary.Add("$SerilogDirectoryPath$", Environment.NewLine + """public static readonly string LogDirectoryPath = Path.Combine(RootDirectoryPath, "Log");""");
             replacementsDictionary.Add("$UnhandeledException$", Environment.NewLine + Environment.NewLine + """UnhandledException += (s, e) => Logger?.Error(e.Exception, "UnhandledException");""");
-            if (useJsonSetting && useDeveloperMode)
+            if (WizardConfig.Current.UseJsonSettings && WizardConfig.Current.UseDeveloperModeSetting)
             {
                 replacementsDictionary.Add("$ConfigLogger$", Environment.NewLine + Environment.NewLine + """
                     if (Settings.UseDeveloperMode)

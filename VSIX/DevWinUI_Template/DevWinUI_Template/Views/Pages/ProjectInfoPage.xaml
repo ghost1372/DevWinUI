@@ -1,0 +1,30 @@
+﻿<Page x:Class="DevWinUI_Template.ProjectInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DevWinUI_Template"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <Grid Margin="0,0,10,10">
+            <StackPanel>
+                <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource TitleTextBlockStyle}" Text="Project Information" />
+                <TextBlock Margin="0,10,0,5" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="Solution Folder Name (Leave it empty if you dont want a solution folder)" />
+                <ui:TextBox PlaceholderText="Solution Folder Name" Text="{Binding SolutionFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ui:NavigationViewItemSeparator />
+                <TextBlock Margin="0,0,0,10" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource TitleTextBlockStyle}" Text="Additional Options" />
+                <CheckBox Content="Show DevWinUI Overview Window" IsChecked="{Binding ShowStartupToolWindow, Mode=TwoWay}" ToolTip="Open the DevWinUI overview window after project creation." />
+                <CheckBox Content="Add JsonSettings" IsChecked="{Binding UseJsonSettings, Mode=TwoWay}" />
+                <CheckBox Content="Enable nullable reference types" IsChecked="{Binding EnableNullableReferenceTypes, Mode=TwoWay}" />
+                <CheckBox Content="Add Github Action (Workflow) yml file" IsChecked="{Binding UseGithubWorkflowFile, Mode=TwoWay}" ToolTip="Add a yml file in your project. (ProjectFolder/.github/workflows/dotnet-release.yml)" />
+                <CheckBox Content="Add .editorConfig File" IsChecked="{Binding UseEditorConfigFile, Mode=TwoWay}" ToolTip="Maintaining consistent coding styles between different editors and IDEs." />
+                <CheckBox Content="Add settings.xamlstyler File" IsChecked="{Binding UseXamlStylerFile, Mode=TwoWay}" ToolTip="Config file for XamlStyler Extension which can format your XAML source code." />
+                <CheckBox Content="Disable virtualization for registry" IsChecked="{Binding RegistryVirtualizationDisabled, Mode=TwoWay}" ToolTip="If disabled, other apps can read or write the same registry entries as your application." />
+                <CheckBox Content="Disable virtualization for file system" IsChecked="{Binding FileVirtualizationDisabled, Mode=TwoWay}" ToolTip="If disabled, other apps can read or write the same file system entries as your application." />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

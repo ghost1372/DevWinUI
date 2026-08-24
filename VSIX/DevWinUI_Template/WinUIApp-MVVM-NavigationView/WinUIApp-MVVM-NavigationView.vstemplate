@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-	<Name>WinUI App (MVVM + NavigationView)</Name>
+	<Name>DevWinUI App (MVVM)</Name>
 	<Description>Creates a new WinUI App with DevWinUI, MVVM Packages and NavigationView.</Description>
 	<Icon>TemplateIcon.ico</Icon>
 	<TemplateID>WinUIApp-MVVM-NavigationView-{F8D06623-1F58-4E3F-98F6-15178E4BB860}</TemplateID>
@@ -24,7 +24,7 @@
 	<ProjectTypeTag>WinUI</ProjectTypeTag>
 	<ProjectTypeTag>DevWinUI</ProjectTypeTag>
   </TemplateData>
-  <TemplateContent PreferedSolutionConfiguration="Debug|x86">
+  <TemplateContent PreferedSolutionConfiguration="Debug|x64">
 	<Project File="ProjectTemplate.csproj" ReplaceParameters="true">
 	  <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">Properties\launchSettings.json</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="win-arm64.pubxml">Properties\PublishProfiles\win-arm64.pubxml</ProjectItem>
@@ -34,7 +34,6 @@
 	  <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
-	  <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.WinContextMenu.appxmanifest</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="GlobalUsings.cs">GlobalUsings.cs</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="MainWindow.xaml">MainWindow.xaml</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="MainWindow.xaml.cs">MainWindow.xaml.cs</ProjectItem>
@@ -106,8 +105,6 @@
 	  <Folder Name="Themes" TargetFolderName="Themes">
 		<ProjectItem ReplaceParameters="true" TargetFileName="Styles.xaml">Styles.xaml</ProjectItem>
 		<ProjectItem ReplaceParameters="true" TargetFileName="ThemeResources.xaml">ThemeResources.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="Fonts.xaml">Fonts.xaml</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="Converters.xaml">Converters.xaml</ProjectItem>
 	  </Folder>
 		
 	  <Folder Name="Models" TargetFolderName="Models"/>
@@ -119,9 +116,14 @@
 		<ProjectItem ReplaceParameters="true" TargetFileName="LoggerSetup.cs">LoggerSetup.cs</ProjectItem>
 	  </Folder>
 	</Project>
-	<CustomParameters>
-	  <CustomParameter Name="$NuGetPackages$" Value="Microsoft.WindowsAppSDK;Microsoft.Windows.SDK.BuildTools;DevWinUI;DevWinUI.SourceGenerator;CommunityToolkit.Mvvm;Microsoft.Extensions.DependencyInjection;Microsoft.Windows.CsWinRT"/>
-	</CustomParameters>
+	  <CustomParameters>
+		  <CustomParameter Name="$WindowsAppSdkVersion$" Value="*" />
+		  <CustomParameter Name="$WindowsSdkBuildToolsVersion$" Value="*" />
+		  <CustomParameter Name="$DevWinUIVersion$" Value="*" />
+		  <CustomParameter Name="$CommunityToolkitVersion$" Value="*" />
+		  <CustomParameter Name="$DependencyInjectionVersion$" Value="*" />
+		  <CustomParameter Name="$CsWinRTVersion$" Value="*" />
+	  </CustomParameters>
   </TemplateContent>
   <WizardExtension>
 	<!-- Generates Publisher name for appxmanifest -->

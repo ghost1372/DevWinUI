@@ -50,9 +50,9 @@ public partial class App : Application
         InitializeApp();
     }
 
-    private $AsyncKeyword$void InitializeApp()
+    private void InitializeApp()
     {
-        $Windows11ContextMenuMVVMInitializer$$ConfigLogger$$UnhandeledException$
+        $ConfigLogger$$UnhandeledException$
     }
 }
 

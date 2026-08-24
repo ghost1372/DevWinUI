@@ -8,87 +8,28 @@
       d:DesignHeight="450"
       d:DesignWidth="800"
       mc:Ignorable="d">
-    <ScrollViewer Margin="5"
-                  VerticalAlignment="Top">
-        <StackPanel>
-            <Separator Margin="0,10,0,5"
-                       HorizontalAlignment="Stretch" />
-            <local:SettingsControl x:Name="tgHomePage"
-                                   Title="Add Home Landing Page"
-                                   Description="Will create a landing page for your application's home screen. "
-                                   Toggled="tgHomePage_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="ChannelAdd24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgSettingsPage"
-                                   Title="Add SettingsPage"
-                                   Description="Will create a settings page with a BreadCrumbBar for your application"
-                                   Toggled="tgSettingsPage_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="CubeAdd20" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgGeneralSettingPage"
-                                   Title="A: Add General Setting Page"
-                                   Margin="20,0,0,0"
-                                   Description="Will create an empty general settings page within your application."
-                                   IsEnabled="{Binding ElementName=tgSettingsPage, Path=IsOn}"
-                                   Toggled="tgGeneralSettingPage_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="AppGeneric24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgStartup"
-                                   Title="A.1: Add Startup app Setting Option"
-                                   Margin="40,0,0,0"
-                                   Description="Will create a Startup app setting in General page"
-                                   IsEnabled="{Binding ElementName=tgGeneralSettingPage, Path=IsOn}"
-                                   Toggled="tgStartup_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="Window24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgDeveloperMode"
-                                   Title="A.2: Add Developer Mode Setting Option"
-                                   Margin="40,0,0,0"
-                                   Description="Will create a developer mode setting in General page"
-                                   IsEnabled="{Binding ElementName=tgGeneralSettingPage, Path=IsOn}"
-                                   Toggled="tgDeveloperMode_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="DeveloperBoard24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgThemeSetting"
-                                   Title="B: Add Theme Setting Page"
-                                   Margin="20,0,0,0"
-                                   Description="Will create a theme settings page"
-                                   IsEnabled="{Binding ElementName=tgSettingsPage, Path=IsOn}"
-                                   Toggled="tgThemeSetting_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="DarkTheme24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgAppUpdate"
-                                   Title="C: Add App Update Page"
-                                   Margin="20,0,0,0"
-                                   Description="Will create an App Update page that user check for updates"
-                                   IsEnabled="{Binding ElementName=tgSettingsPage, Path=IsOn}"
-                                   Toggled="tgAppUpdate_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="PhoneUpdate24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
-            <local:SettingsControl x:Name="tgAboutSetting"
-                                   Title="D: Add About Page"
-                                   Margin="20,0,0,0"
-                                   Description="By activating this option, your application will include an 'About' page."
-                                   IsEnabled="{Binding ElementName=tgSettingsPage, Path=IsOn}"
-                                   Toggled="tgAboutSetting_Toggled">
-                <local:SettingsControl.Icon>
-                    <ui:SymbolIcon Symbol="AppsListDetail24" />
-                </local:SettingsControl.Icon>
-            </local:SettingsControl>
+    <Page.Resources>
+        <local:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
+    </Page.Resources>
+    <Grid Margin="0,0,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,0,10">
+            <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" Style="{StaticResource TitleTextBlockStyle}" Text="Pages/Views" />
+            <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="Select the pages and views you want to include in your project" />
         </StackPanel>
-    </ScrollViewer>
+        <ListView x:Name="CheckLV" Grid.Row="1" Background="Transparent" BorderThickness="0" ItemContainerStyle="{StaticResource NoTemplateListViewItemStyle}" PreviewMouseWheel="CheckLV_PreviewMouseWheel" SelectionChanged="CheckLV_SelectionChanged" SelectionMode="Multiple">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="model:CheckCardModel">
+                    <local:CheckCard Title="{Binding Title}" Margin="0,0,40,0" CornerRadius="{Binding CornerRadius}" Icon="{Binding Icon}" IsActive="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" IsEnabled="{Binding IsEnabled}" Opacity="{Binding IsEnabled, Converter={StaticResource BoolToOpacityConverter}}" Subtitle="{Binding Subtitle}">
+                        <local:CheckCard.Content>
+                            <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" IsEnabled="{Binding IsEnabled}" />
+                        </local:CheckCard.Content>
+                    </local:CheckCard>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>
