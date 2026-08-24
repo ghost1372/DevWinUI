@@ -9,7 +9,7 @@
       "ShowItemsWithoutGroup": true,
       "IsExpanded": false,
       "Items": [
-        "$HomeLandingMenuItem$"
+        $HomeLandingMenuItem$
       ]
     }
   ]
