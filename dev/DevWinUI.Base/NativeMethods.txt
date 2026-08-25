@@ -102,6 +102,7 @@ SwitchToThisWindow
 TOKEN_ELEVATION_TYPE
 TranslateMessage
 UnhookWindowsHookEx
+VirtualProtect
 WICBitmapLockFlags
 WICRect
 WindowFromPoint
