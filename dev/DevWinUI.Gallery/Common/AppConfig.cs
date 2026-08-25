@@ -1,5 +1,5 @@
-﻿using Nucs.JsonSettings.Autosave;
-using Nucs.JsonSettings.Examples;
+﻿using Nucs.JsonSettings;
+using Nucs.JsonSettings.Autosave;
 using Nucs.JsonSettings.Modulation;
 
 namespace DevWinUIGallery.Common;
