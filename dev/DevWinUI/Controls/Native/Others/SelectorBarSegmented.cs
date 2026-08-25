@@ -103,8 +103,25 @@ public partial class SelectorBarSegmented : SelectorBar
 
         this.IsEnabledChanged += SelectorBarSegmented_IsEnabledChanged;
         this.Loaded += SelectorBarSegmented_Loaded;
+
+        this.SelectionChanged += SelectorBarSegmented_SelectionChanged;
     }
 
+    private void SelectorBarSegmented_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+    {
+        if (SelectedItem == null)
+        {
+            SelectedIndex = -1;
+            return;
+        }
+
+        var index = Items.IndexOf(SelectedItem);
+
+        if (index >= 0 && index != SelectedIndex)
+        {
+            SelectedIndex = index;
+        }
+    }
     private void SelectorBarSegmented_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
         SyncItemsState();
