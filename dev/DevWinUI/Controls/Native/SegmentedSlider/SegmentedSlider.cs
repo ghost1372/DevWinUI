@@ -26,6 +26,16 @@ public partial class SegmentedSlider : Control
     public SegmentedSlider()
     {
         DefaultStyleKey = typeof(SegmentedSlider);
+
+        if (SegmentTitles == null)
+        {
+            SegmentTitles = new ObservableCollection<string>();
+        }
+
+        if (TimeSegments == null)
+        {
+            TimeSegments = new ObservableCollection<SegmentedSliderTimeInfo>();
+        }
     }
 
     protected override void OnApplyTemplate()
@@ -47,6 +57,12 @@ public partial class SegmentedSlider : Control
 
         SizeChanged -= OnSizeChanged;
         SizeChanged += OnSizeChanged;
+
+        itemsRepeater.ElementPrepared -= ItemsRepeater_ElementPrepared;
+        itemsRepeater.ElementPrepared += ItemsRepeater_ElementPrepared;
+
+        itemsRepeater.ElementIndexChanged -= ItemsRepeater_ElementIndexChanged;
+        itemsRepeater.ElementIndexChanged += ItemsRepeater_ElementIndexChanged;
 
         _isTemplateReady = true;
 
@@ -76,7 +92,7 @@ public partial class SegmentedSlider : Control
         UpdateThumbPosition();
         UpdateSegmentsFill();
     }
-    
+
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
         if (!_isTemplateReady || itemsRepeater == null || horizontalThumb == null)
@@ -125,6 +141,29 @@ public partial class SegmentedSlider : Control
 
             ValueChanged?.Invoke(this, Value);
         }
+    }
+
+    private void OnSegmentTitlesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        UpdateSegments();
+    }
+
+    private void OnTimeSegmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        NormalizeTimeSegments();
+        UpdateSegments();
+    }
+
+    private void ItemsRepeater_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
+    {
+        UpdateThumbPosition();
+        UpdateSegmentsFill();
+    }
+
+    private void ItemsRepeater_ElementIndexChanged(ItemsRepeater sender, ItemsRepeaterElementIndexChangedEventArgs args)
+    {
+        UpdateThumbPosition();
+        UpdateSegmentsFill();
     }
 
     private void InitSelectedTime()
@@ -435,7 +474,7 @@ public partial class SegmentedSlider : Control
 
         internalSegments = normalized;
     }
-    
+
     private void UpdateSegmentLabelsVisibility()
     {
         if (itemsRepeater == null)
@@ -558,7 +597,7 @@ public partial class SegmentedSlider : Control
 
         return segments;
     }
-    
+
     // not set yet
     private void SetSegmentRectanglesStyle()
     {

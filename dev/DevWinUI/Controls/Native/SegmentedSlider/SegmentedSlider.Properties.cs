@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using System.Collections.Specialized;
+
+namespace DevWinUI;
 
 public partial class SegmentedSlider
 {
@@ -106,19 +108,25 @@ public partial class SegmentedSlider
         }
     }
 
-    public IList<string> SegmentTitles
+    public ObservableCollection<string> SegmentTitles
     {
-        get => (IList<string>)GetValue(SegmentTitlesProperty);
+        get => (ObservableCollection<string>)GetValue(SegmentTitlesProperty);
         set => SetValue(SegmentTitlesProperty, value);
     }
 
     public static readonly DependencyProperty SegmentTitlesProperty =
-        DependencyProperty.Register(nameof(SegmentTitles), typeof(IList<string>), typeof(SegmentedSlider), new PropertyMetadata(null, OnSegmentTitlesChanged));
+        DependencyProperty.Register(nameof(SegmentTitles), typeof(ObservableCollection<string>), typeof(SegmentedSlider), new PropertyMetadata(null, OnSegmentTitlesChanged));
 
     private static void OnSegmentTitlesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is SegmentedSlider slider)
         {
+            if (e.OldValue is INotifyCollectionChanged oldCollection)
+                oldCollection.CollectionChanged -= slider.OnSegmentTitlesCollectionChanged;
+
+            if (e.NewValue is INotifyCollectionChanged newCollection)
+                newCollection.CollectionChanged += slider.OnSegmentTitlesCollectionChanged;
+
             slider.UpdateSegments();
         }
     }
@@ -138,19 +146,25 @@ public partial class SegmentedSlider
             slider.UpdateSegments();
     }
 
-    public IList<SegmentedSliderTimeInfo> TimeSegments
+    public ObservableCollection<SegmentedSliderTimeInfo> TimeSegments
     {
-        get => (IList<SegmentedSliderTimeInfo>)GetValue(TimeSegmentsProperty);
+        get => (ObservableCollection<SegmentedSliderTimeInfo>)GetValue(TimeSegmentsProperty);
         set => SetValue(TimeSegmentsProperty, value);
     }
 
     public static readonly DependencyProperty TimeSegmentsProperty =
-        DependencyProperty.Register(nameof(TimeSegments), typeof(IList<SegmentedSliderTimeInfo>), typeof(SegmentedSlider), new PropertyMetadata(null, OnTimeSegmentsChanged));
+        DependencyProperty.Register(nameof(TimeSegments), typeof(ObservableCollection<SegmentedSliderTimeInfo>), typeof(SegmentedSlider), new PropertyMetadata(null, OnTimeSegmentsChanged));
 
     private static void OnTimeSegmentsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is SegmentedSlider slider)
         {
+            if (e.OldValue is INotifyCollectionChanged oldCollection)
+                oldCollection.CollectionChanged -= slider.OnTimeSegmentsCollectionChanged;
+
+            if (e.NewValue is INotifyCollectionChanged newCollection)
+                newCollection.CollectionChanged += slider.OnTimeSegmentsCollectionChanged;
+
             slider.NormalizeTimeSegments();
             slider.UpdateSegments();
         }
