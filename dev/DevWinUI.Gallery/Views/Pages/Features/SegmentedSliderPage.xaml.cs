@@ -9,7 +9,7 @@ public sealed partial class SegmentedSliderPage : Page
     {
         InitializeComponent();
 
-        SegmentedSliderSample.SegmentTitles = new List<string>
+        SegmentedSliderSample.SegmentTitles = new ObservableCollection<string>
         {
             "Very Low",
             "Low",
@@ -18,7 +18,7 @@ public sealed partial class SegmentedSliderPage : Page
             "Very High",
         };
 
-        SegmentedSliderTimeSample.TimeSegments = new List<SegmentedSliderTimeInfo>
+        SegmentedSliderTimeSample.TimeSegments = new ObservableCollection<SegmentedSliderTimeInfo>
         {
             new SegmentedSliderTimeInfo
             {
