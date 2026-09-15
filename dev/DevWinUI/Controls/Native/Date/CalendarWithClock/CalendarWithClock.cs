@@ -79,22 +79,17 @@ public partial class CalendarWithClock : DateTimeBase
             timePicker.MinuteIncrement = MinuteIncrement;
             timePicker.SelectedTimeChanged -= OnTimePickerSelectedTimeChanged;
             timePicker.SelectedTimeChanged += OnTimePickerSelectedTimeChanged;
-            timePicker.SelectedTime = SelectedTime;
         }
 
         if (clock != null)
         {
-            if (SelectedDateTime != default)
-            {
-                clock.SelectedTime = SelectedDateTime.DateTime;
-            }
             clock.MinuteIncrement = MinuteIncrement;
 
             clock.SelectedTimeChanged -= OnClockSelectedTimeChanged;
             clock.SelectedTimeChanged += OnClockSelectedTimeChanged;
         }
 
-        UpdateCalendarView();
+        UpdateSelectedDateTime();
         UpdateGridRowsAndColumns(TimePickerDisplayMode);
         OnShowAccentBorderOnHeader(ShowAccentBorderOnHeader);
     }
@@ -167,10 +162,34 @@ public partial class CalendarWithClock : DateTimeBase
             }
         }
     }
+    private void UpdateSelectedDateTime()
+    {
+        if (isUpdating) { return; }
+        try
+        {
+            isUpdating = true;
+            SelectedTime = SelectedDateTime.TimeOfDay;
+            if (timePicker != null)
+            {
+                timePicker.SelectedTime = SelectedTime;
+            }
+            if (clock != null)
+            {
+                clock.SelectedTime = SelectedDateTime.DateTime;
+            }
+            UpdateCalendarView();
+        }
+        finally
+        {
+            isUpdating = false;
+        }
+    }
+
     private void UpdateCalendarView()
     {
         if (calendarView != null)
         {
+            var wasUpdating = isUpdating;
             try
             {
                 isUpdating = true;
@@ -180,7 +199,7 @@ public partial class CalendarWithClock : DateTimeBase
             }
             finally
             {
-                isUpdating = false;
+                isUpdating = wasUpdating;
             }
         }
     }

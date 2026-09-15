@@ -75,6 +75,8 @@ public partial class DateTimePicker : DateTimeBase
                 {
                     clock.TimeFormat = ClockTimeFormat ?? clock.TimeFormat;
                 }
+
+                UpdatePlaceholder();
             }
             finally
             {
@@ -169,13 +171,19 @@ public partial class DateTimePicker : DateTimeBase
     }
     private void UpdateSelectedDate()
     {
-        if (!isUpdating && calendarWithClock != null)
+        if (!isUpdating)
         {
             try
             {
                 isUpdating = true;
-                calendarWithClock.SelectedDateTime = SelectedDateTime;
-                UpdatePlaceholder();
+                // Restored values can arrive before the flyout's template exists.
+                SelectedTime = SelectedDateTime.TimeOfDay;
+                if (calendarWithClock != null)
+                {
+                    calendarWithClock.SelectedDateTime = SelectedDateTime;
+                    UpdatePlaceholder();
+                }
+                System.Diagnostics.Debug.WriteLine("[DateTimePicker] SelectedDateTime synchronized value=" + SelectedDateTime.ToString("O"));
             }
             finally
             {

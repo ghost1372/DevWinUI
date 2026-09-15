@@ -47,13 +47,24 @@ public partial class CalendarWithClock
     {
         if (d is CalendarWithClock ctl && !ctl.isUpdating)
         {
-            ctl.UpdateDateTimeOffset();
-
-            // Sync TimePicker's SelectedTime with the new value
-            if (ctl.timePicker != null)
+            if (!ctl.SelectedTime.HasValue)
             {
-                ctl.timePicker.SelectedTime = ctl.SelectedTime;
+                try
+                {
+                    ctl.isUpdating = true;
+                    if (ctl.timePicker != null)
+                    {
+                        ctl.timePicker.SelectedTime = null;
+                    }
+                }
+                finally
+                {
+                    ctl.isUpdating = false;
+                }
+                return;
             }
+            ctl.UpdateDateTimeOffset();
+            ctl.UpdateSelectedDateTime();
         }
     }
 
@@ -68,7 +79,7 @@ public partial class CalendarWithClock
     {
         if (d is CalendarWithClock ctl && !ctl.isUpdating)
         {
-            ctl.UpdateCalendarView();
+            ctl.UpdateSelectedDateTime();
         }
     }
 
