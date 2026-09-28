@@ -51,7 +51,7 @@ public partial class BetterLyric : Control
     private List<RenderLyricsLine>? _renderLyricsLines = null;
 
     private readonly Debouncer _layoutDebouncer = new();
-    private Debouncer _scrollWheelDebounceTimer;
+    private readonly Debouncer _scrollWheelDebounceTimer =new();
     private bool _isLayoutChanged = false;
     private bool _isNowPlayingPaletteChanged = false;
 
