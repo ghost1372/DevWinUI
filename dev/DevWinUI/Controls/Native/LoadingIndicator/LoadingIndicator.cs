@@ -33,7 +33,16 @@ public partial class LoadingIndicator : Control
     private void SetLoadingIndicatorMode(LoadingIndicatorMode loadingIndicatorMode)
     {
         var styleName = GetLoadingIndicatorModeDescription(loadingIndicatorMode);
-        Style = Application.Current.Resources[styleName] as Style;
+        if (string.IsNullOrWhiteSpace(styleName))
+        {
+            return;
+        }
+
+        var style = Application.Current.Resources[styleName] as Style;
+        if (style is not null && Style != style)
+        {
+            Style = style;
+        }
     }
 
     protected Border PART_Border;
@@ -74,6 +83,11 @@ public partial class LoadingIndicator : Control
 
         if (li.PART_Border == null)
         {
+            li.ApplyTemplate();
+        }
+
+        if (li.PART_Border == null)
+        {
             return;
         }
 
@@ -105,12 +119,13 @@ public partial class LoadingIndicator : Control
     public LoadingIndicator()
     {
         this.DefaultStyleKey = typeof(LoadingIndicator);
-
-        SetLoadingIndicatorMode(Mode);
     }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        SetLoadingIndicatorMode(Mode);
 
         PART_Border = (Border)GetTemplateChild(TemplateBorderName);
 
