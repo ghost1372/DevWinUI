@@ -31,6 +31,22 @@
                         </StackPanel>
                     </local:ControlExample>
 
+                    <local:ControlExample DocPage="styles/#PillRadioButton" HeaderText="PillRadioButton">
+                        <local:ControlExample.Xaml>
+                            <x:String>
+                                &lt;RadioButton Content="Recent" GroupName="Filter" IsChecked="True" Style="{StaticResource PillRadioButtonStyle}"/&gt;
+                            </x:String>
+                        </local:ControlExample.Xaml>
+                        <StackPanel Spacing="10">
+                            <InfoBar Title="PillRadioButtonStyle" IsClosable="False" />
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <RadioButton Content="Recent" GroupName="PillRadioButtonExample" IsChecked="True" Style="{StaticResource PillRadioButtonStyle}" />
+                                <RadioButton Content="New" GroupName="PillRadioButtonExample" Style="{StaticResource PillRadioButtonStyle}" />
+                                <RadioButton Content="Fav" GroupName="PillRadioButtonExample" Style="{StaticResource PillRadioButtonStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </local:ControlExample>
+
                     <local:ControlExample DocPage="styles/#ComboBox" HeaderText="ComboBox">
                         <local:ControlExample.Xaml>
                             <x:String>
