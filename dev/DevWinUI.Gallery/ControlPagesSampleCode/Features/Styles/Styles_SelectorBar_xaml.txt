@@ -1,0 +1,10 @@
+<SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}">
+    <SelectorBarItem Text="Recent" />
+    <SelectorBarItem Text="New" />
+    <SelectorBarItem Text="Fav" />
+</SelectorBar>
+<SelectorBar Style="{StaticResource PillSelectorBarStyle}">
+    <SelectorBarItem Text="Recent" />
+    <SelectorBarItem Text="New" />
+    <SelectorBarItem Text="Fav" />
+</SelectorBar>
