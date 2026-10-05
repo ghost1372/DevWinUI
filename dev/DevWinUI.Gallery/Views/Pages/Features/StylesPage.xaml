@@ -15,15 +15,14 @@
         <TabViewItem Header="General" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-                    <local:ControlExample DocPage="styles/#SelectorBar" HeaderText="SelectorBar">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
+                    <local:ControlExample DocPage="styles/#SelectorBar" HeaderText="SelectorBar" XamlSource="Features/Styles/Styles_SelectorBar_xaml.txt">
                         <StackPanel Spacing="10">
-                            <InfoBar Title="TokenViewSelectorBarStyle" IsClosable="False" />
                             <SelectorBar Style="{StaticResource TokenViewSelectorBarStyle}">
+                                <SelectorBarItem Text="Recent" />
+                                <SelectorBarItem Text="New" />
+                                <SelectorBarItem Text="Fav" />
+                            </SelectorBar>
+                            <SelectorBar Style="{StaticResource PillSelectorBarStyle}">
                                 <SelectorBarItem Text="Recent" />
                                 <SelectorBarItem Text="New" />
                                 <SelectorBarItem Text="Fav" />
@@ -31,19 +30,18 @@
                         </StackPanel>
                     </local:ControlExample>
 
-                    <local:ControlExample DocPage="styles/#PillRadioButton" HeaderText="PillRadioButton">
-                        <local:ControlExample.Xaml>
-                            <x:String>
-                                &lt;RadioButton Content="Recent" GroupName="Filter" IsChecked="True" Style="{StaticResource PillRadioButtonStyle}"/&gt;
-                            </x:String>
-                        </local:ControlExample.Xaml>
+                    <local:ControlExample DocPage="styles/#PillRadioButton" HeaderText="RadioButton" XamlSource="Features/Styles/Styles_RadioButton_xaml.txt">
                         <StackPanel Spacing="10">
-                            <InfoBar Title="PillRadioButtonStyle" IsClosable="False" />
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <RadioButton Content="Recent" GroupName="PillRadioButtonExample" IsChecked="True" Style="{StaticResource PillRadioButtonStyle}" />
-                                <RadioButton Content="New" GroupName="PillRadioButtonExample" Style="{StaticResource PillRadioButtonStyle}" />
-                                <RadioButton Content="Fav" GroupName="PillRadioButtonExample" Style="{StaticResource PillRadioButtonStyle}" />
-                            </StackPanel>
+                            <RadioButtons HorizontalAlignment="Left" MaxColumns="3">
+                                <RadioButton Content="Recent" Style="{StaticResource TokenViewRadioButtonStyle}" />
+                                <RadioButton Content="New" Style="{StaticResource TokenViewRadioButtonStyle}" />
+                                <RadioButton Content="Fav" Style="{StaticResource TokenViewRadioButtonStyle}" />
+                            </RadioButtons>
+                            <RadioButtons HorizontalAlignment="Left" MaxColumns="3">
+                                <RadioButton Content="Recent" Style="{StaticResource PillRadioButtonStyle}" />
+                                <RadioButton Content="New" Style="{StaticResource PillRadioButtonStyle}" />
+                                <RadioButton Content="Fav" Style="{StaticResource PillRadioButtonStyle}" />
+                            </RadioButtons>
                         </StackPanel>
                     </local:ControlExample>
 

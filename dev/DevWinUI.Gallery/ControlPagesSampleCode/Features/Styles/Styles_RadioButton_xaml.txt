@@ -1,0 +1,18 @@
+<RadioButtons HorizontalAlignment="Left"
+              MaxColumns="3">
+    <RadioButton Content="Recent"
+                 Style="{StaticResource TokenViewRadioButtonStyle}" />
+    <RadioButton Content="New"
+                 Style="{StaticResource TokenViewRadioButtonStyle}" />
+    <RadioButton Content="Fav"
+                 Style="{StaticResource TokenViewRadioButtonStyle}" />
+</RadioButtons>
+<RadioButtons HorizontalAlignment="Left"
+              MaxColumns="3">
+    <RadioButton Content="Recent"
+                 Style="{StaticResource PillRadioButtonStyle}" />
+    <RadioButton Content="New"
+                 Style="{StaticResource PillRadioButtonStyle}" />
+    <RadioButton Content="Fav"
+                 Style="{StaticResource PillRadioButtonStyle}" />
+</RadioButtons>

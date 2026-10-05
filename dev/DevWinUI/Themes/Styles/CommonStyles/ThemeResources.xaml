@@ -34,6 +34,55 @@
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
             <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+            <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
+            <StaticResource x:Key="PillItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+
+            <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+            <x:Double x:Key="PillItemBorderSize">1</x:Double>
+            <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+            <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+            <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -66,6 +115,55 @@
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+            <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
+            <StaticResource x:Key="PillItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+
+            <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+            <x:Double x:Key="PillItemBorderSize">1</x:Double>
+            <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+            <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+            <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="HighContrast">
@@ -87,8 +185,60 @@
             <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
             <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
             <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+            <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+            <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+            <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
+            <StaticResource x:Key="PillItemBackground" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SystemControlHighlightAccentBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="PillItemBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="SystemControlHighlightBaseMediumLowBrush" />
+            <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="SystemControlHighlightAltTransparentBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+            <StaticResource x:Key="PillItemForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+            <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
+            <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
+            <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="SystemControlHighlightAltChromeWhiteBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+
+            <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+            <x:Double x:Key="PillItemBorderSize">1</x:Double>
+            <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+            <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+            <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
+
+    <BackgroundSizing x:Key="PillRadioButtonBackgroundSizing">InnerBorderEdge</BackgroundSizing>
+    <BackgroundSizing x:Key="PillRadioButtonCheckedBackgroundSizing">InnerBorderEdge</BackgroundSizing>
 
     <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Offset="0.1" Color="#FFFFFF" />
