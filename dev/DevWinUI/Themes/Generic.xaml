@@ -68,6 +68,7 @@ Themes\Styles\CommonStyles\MaterialAttach.xaml
 Themes\Styles\CommonStyles\MenuFlyout.xaml
 Themes\Styles\CommonStyles\NavigationView.xaml
 Themes\Styles\CommonStyles\Panel.xaml
+Themes\Styles\CommonStyles\RadioButton.xaml
 Themes\Styles\CommonStyles\SelectorBar.xaml
 Themes\Styles\CommonStyles\TabViewItem.xaml
 Themes\Styles\CommonStyles\TextBlock.xaml
@@ -202,6 +203,7 @@ Themes\Styles\Controls\WanderingParticles.xaml
 Themes\Styles\Controls\Watermark.xaml
 Themes\Styles\Controls\WaveformTimeline.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
+Themes\Styles\Controls\WelcomeHero.xaml
 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" xmlns:local="using:DevWinUI" xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives" xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:wind2="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)">
   <ResourceDictionary.ThemeDictionaries>
@@ -341,25 +343,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPointerOver" ResourceKey="ControlSolidFillColorDefaultBrush" />
       <StaticResource x:Key="RailNavigationViewItemForegroundSelectedPressed" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPressed" ResourceKey="ControlSolidFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
-      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
-      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
-      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TabViewItemRoundedSelectedBorderBrush" ResourceKey="CardStrokeColorDefault" />
       <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0" Color="#FF000000" />
@@ -390,6 +373,54 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
+      <StaticResource x:Key="PillItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+      <x:Double x:Key="PillItemBorderSize">1</x:Double>
+      <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+      <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+      <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -640,25 +671,6 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPointerOver" ResourceKey="ControlSolidFillColorDefaultBrush" />
       <StaticResource x:Key="RailNavigationViewItemForegroundSelectedPressed" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPressed" ResourceKey="ControlSolidFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
-      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
-      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
-      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
-      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
       <StaticResource x:Key="TabViewItemRoundedSelectedBorderBrush" ResourceKey="CardStrokeColorDefault" />
       <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0" Color="#FFFFFFFF" />
@@ -689,6 +701,54 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
       <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBackgroundPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPointerOverSelected" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemBorderBrushPressedSelected" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="TokenItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
+      <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
+      <StaticResource x:Key="PillItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SubtleFillColorTransparentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SubtleFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="AccentFillColorTertiaryBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="AccentFillColorDisabledBrush" />
+      <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+      <x:Double x:Key="PillItemBorderSize">1</x:Double>
+      <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+      <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+      <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
@@ -940,6 +1000,24 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPointerOver" ResourceKey="SystemControlHighlightListLowBrush" />
       <StaticResource x:Key="RailNavigationViewItemForegroundSelectedPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
       <StaticResource x:Key="RailNavigationViewItemBackgroundSelectedPressed" ResourceKey="SystemControlHighlightListMediumBrush" />
+      <SolidColorBrush x:Key="TabViewItemRoundedSelectedBorderBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF000000" />
+        <GradientStop Offset="0.05" Color="#FF000000" />
+        <GradientStop Offset="0.35" Color="#FF000000" />
+        <GradientStop Offset="0.55" Color="#FF000000" />
+        <GradientStop Offset="0.95" Color="#00000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="CardGradient3Brush" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
+      <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
+      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
+      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
+      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
       <StaticResource x:Key="TokenItemBackground" ResourceKey="ControlFillColorDefaultBrush" />
       <StaticResource x:Key="TokenItemBackgroundPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
       <StaticResource x:Key="TokenItemBackgroundPressed" ResourceKey="ControlFillColorSecondaryBrush" />
@@ -959,24 +1037,35 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <StaticResource x:Key="TokenItemForegroundPointerOverSelected" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
       <StaticResource x:Key="TokenItemForegroundPressedSelected" ResourceKey="TextOnAccentFillColorSecondaryBrush" />
       <Thickness x:Key="TokenItemBorderThickness">1</Thickness>
-      <SolidColorBrush x:Key="TabViewItemRoundedSelectedBorderBrush" Color="{ThemeResource SystemColorHighlightColor}" />
-      <LinearGradientBrush x:Key="OverlayRadialGradient" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0" Color="#FF000000" />
-        <GradientStop Offset="0.05" Color="#FF000000" />
-        <GradientStop Offset="0.35" Color="#FF000000" />
-        <GradientStop Offset="0.55" Color="#FF000000" />
-        <GradientStop Offset="0.95" Color="#00000000" />
-        <GradientStop Offset="1" Color="#00000000" />
-      </LinearGradientBrush>
-      <SolidColorBrush x:Key="CardGradient3Brush" Color="{ThemeResource CardBackgroundFillColorDefault}" />
-      <SolidColorBrush x:Key="CardGradient2Brush" Color="Transparent" />
-      <SolidColorBrush x:Key="CardGradient1Brush" Color="Transparent" />
-      <AcrylicBrush x:Key="GlassAcrylicBackground" TintLuminosityOpacity="0.4" TintOpacity="0.4" />
-      <SolidColorBrush x:Key="GlassAcrylicBorderBrush" Opacity="0.8" Color="White" />
-      <SolidColorBrush x:Key="HeaderTextInverseBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextPrimaryBrush" Color="{ThemeResource TextFillColorInverse}" />
-      <SolidColorBrush x:Key="HeaderTextFixPrimaryBrush" Color="{ThemeResource TextFillColorPrimary}" />
-      <SolidColorBrush x:Key="HeaderTextFixInverseBrush" Color="{ThemeResource TextFillColorInverse}" />
+      <StaticResource x:Key="PillItemBackground" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <StaticResource x:Key="PillItemBackgroundPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="PillItemBackgroundPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="PillItemBackgroundDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelected" ResourceKey="SystemControlHighlightAccentBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="PillItemBackgroundSelectedDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+      <StaticResource x:Key="PillItemBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPointerOver" ResourceKey="SystemControlHighlightBaseMediumLowBrush" />
+      <StaticResource x:Key="PillItemBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="PillItemBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelected" ResourceKey="SystemControlHighlightAltTransparentBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPointerOver" ResourceKey="SystemColorButtonTextColorBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="PillItemBorderBrushSelectedDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+      <StaticResource x:Key="PillItemForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <StaticResource x:Key="PillItemForegroundPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
+      <StaticResource x:Key="PillItemForegroundPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
+      <StaticResource x:Key="PillItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <StaticResource x:Key="PillItemForegroundSelected" ResourceKey="SystemControlHighlightAltChromeWhiteBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPointerOver" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedPressed" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="PillItemForegroundSelectedDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <x:Double x:Key="PillItemCornerRadius">16</x:Double>
+      <x:Double x:Key="PillItemBorderSize">1</x:Double>
+      <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
+      <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
+      <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -1734,6 +1823,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <x:Double x:Key="RailNavigationViewPaneHeaderRowMinHeight">0</x:Double>
   <x:Double x:Key="RailNavigationViewItemOnLeftMinHeight">58</x:Double>
   <x:Double x:Key="RailNavigationViewItemContentPresenterMargin">0</x:Double>
+  <x:Double x:Key="PageMaxWidth">1000</x:Double>
   <Style x:Key="BorderPanel" TargetType="Border">
     <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
     <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
@@ -1782,6 +1872,8 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Thickness x:Key="TabViewItemRoundedSelectedBorderThickness">1</Thickness>
   <x:Double x:Key="SecondaryTextFontSize">12</x:Double>
   <x:Double x:Key="HeaderTextFontSize">12</x:Double>
+  <BackgroundSizing x:Key="PillRadioButtonBackgroundSizing">InnerBorderEdge</BackgroundSizing>
+  <BackgroundSizing x:Key="PillRadioButtonCheckedBackgroundSizing">InnerBorderEdge</BackgroundSizing>
   <LinearGradientBrush x:Key="LightTextGradient" StartPoint="0,0" EndPoint="1,1">
     <GradientStop Offset="0.1" Color="#FFFFFF" />
     <GradientStop Offset="0.3" Color="#E9E9E9" />
@@ -13703,6 +13795,13 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Style x:Key="SuccessBorderPanelStyle" BasedOn="{StaticResource BaseBorderInfoPanelStyle}" TargetType="Border">
     <Setter Property="Background" Value="{ThemeResource InfoBarSuccessSeverityBackgroundBrush}" />
   </Style>
+  <Style x:Key="PageStyle" TargetType="Grid">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+    <Setter Property="CornerRadius" Value="8,8,0,0" />
+    <Setter Property="MaxWidth" Value="{StaticResource PageMaxWidth}" />
+  </Style>
   <Style x:Key="CardGridStyle" TargetType="Grid">
     <Style.Setters>
       <Setter Property="Padding" Value="12" />
@@ -13745,6 +13844,248 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       <Setter Property="Background" Value="{ThemeResource CardGradient2Brush}" />
     </Style.Setters>
   </Style>
+  <Style x:Key="TokenViewRadioButtonStyle" TargetType="RadioButton">
+    <Setter Property="Background" Value="{ThemeResource TokenItemBackground}" />
+    <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <Setter Property="Foreground" Value="{ThemeResource TokenItemForeground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource TokenItemBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{ThemeResource TokenItemBorderThickness}" />
+    <Setter Property="Padding" Value="11,5,11,6" />
+    <Setter Property="CornerRadius" Value="16" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="FocusVisualMargin" Value="{ThemeResource SelectorBarItemFocusVisualMargin}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="RadioButton">
+          <Grid x:Name="PART_ContainerRoot" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid.BackgroundTransition>
+              <BrushTransition Duration="0:0:0.083" />
+            </Grid.BackgroundTransition>
+            <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled" />
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPointerOverSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemForegroundPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBackgroundPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContainerRoot" Storyboard.TargetProperty="BorderBrush">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TokenItemBorderBrushPressedSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedDisabled" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="PillRadioButtonStyle" TargetType="RadioButton">
+    <Setter Property="Background" Value="{ThemeResource PillItemBackground}" />
+    <Setter Property="BackgroundSizing" Value="{ThemeResource PillRadioButtonBackgroundSizing}" />
+    <Setter Property="Foreground" Value="{ThemeResource PillItemForeground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource PillItemBorderBrush}" />
+    <Setter Property="Padding" Value="16,4,16,6" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="FocusVisualMargin" Value="0" />
+    <Setter Property="MinWidth" Value="100" />
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="CornerRadius" Value="16" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="RadioButton">
+          <Grid>
+            <Grid.Children>
+              <Rectangle x:Name="BackgroundRectangle" AutomationProperties.AccessibilityView="Raw" Fill="{TemplateBinding Background}" RadiusX="{ThemeResource PillRadioButtonCornerRadius}" RadiusY="{ThemeResource PillRadioButtonCornerRadius}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{ThemeResource PillRadioButtonBorderSize}" />
+              <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderThickness="{ThemeResource PillRadioButtonBorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter.BackgroundTransition>
+                  <BrushTransition Duration="0:0:0.083" />
+                </ContentPresenter.BackgroundTransition>
+              </ContentPresenter>
+            </Grid.Children>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillRadioButtonCheckedBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillRadioButtonCheckedBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BackgroundSizing">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillRadioButtonCheckedBackgroundSizing}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CheckedDisabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="TokenViewSelectorBarItemStyle" TargetType="SelectorBarItem">
     <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
     <Setter Property="Background" Value="{ThemeResource TokenItemBackground}" />
@@ -13775,6 +14116,14 @@ Themes\Styles\Controls\WaveProgressBar.xaml
             <Grid.BackgroundTransition>
               <BrushTransition Duration="0:0:0.083" />
             </Grid.BackgroundTransition>
+            <StackPanel Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
+              <ContentPresenter x:Name="PART_IconVisual" Margin="{ThemeResource SelectorBarItemIconVisualMargin}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                <ContentPresenter.RenderTransform>
+                  <ScaleTransform x:Name="IconTransform" ScaleX="{ThemeResource SelectorBarItemIconScale}" ScaleY="{ThemeResource SelectorBarItemIconScale}" />
+                </ContentPresenter.RenderTransform>
+              </ContentPresenter>
+              <TextBlock x:Name="PART_TextVisual" Margin="{ThemeResource SelectorBarItemTextVisualMargin}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
+            </StackPanel>
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CombinedStates">
                 <VisualState x:Name="UnselectedNormal" />
@@ -13864,14 +14213,157 @@ Themes\Styles\Controls\WaveProgressBar.xaml
                 <VisualState x:Name="Disabled" />
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <StackPanel Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
-              <ContentPresenter x:Name="PART_IconVisual" Margin="{ThemeResource SelectorBarItemIconVisualMargin}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
-                <ContentPresenter.RenderTransform>
-                  <ScaleTransform x:Name="IconTransform" ScaleX="{ThemeResource SelectorBarItemIconScale}" ScaleY="{ThemeResource SelectorBarItemIconScale}" />
-                </ContentPresenter.RenderTransform>
-              </ContentPresenter>
-              <TextBlock x:Name="PART_TextVisual" Margin="{ThemeResource SelectorBarItemTextVisualMargin}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
-            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="PillSelectorBarItemStyle" TargetType="SelectorBarItem">
+    <Setter Property="Background" Value="{ThemeResource PillItemBackground}" />
+    <Setter Property="Foreground" Value="{ThemeResource PillItemForeground}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource PillItemBorderBrush}" />
+    <Setter Property="Padding" Value="16,4,16,6" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FocusVisualMargin" Value="0" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="SelectorBarItem">
+          <Grid>
+            <Grid.Children>
+              <Rectangle x:Name="BackgroundRectangle" AutomationProperties.AccessibilityView="Raw" Fill="{TemplateBinding Background}" RadiusX="{ThemeResource PillItemCornerRadius}" RadiusY="{ThemeResource PillItemCornerRadius}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{ThemeResource PillItemBorderSize}" />
+              <StackPanel Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Spacing="{ThemeResource SelectorBarItemSpacing}">
+                <ContentPresenter x:Name="PART_IconVisual" Margin="{ThemeResource SelectorBarItemIconVisualMargin}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                  <ContentPresenter.RenderTransform>
+                    <ScaleTransform x:Name="IconTransform" ScaleX="{ThemeResource SelectorBarItemIconScale}" ScaleY="{ThemeResource SelectorBarItemIconScale}" />
+                  </ContentPresenter.RenderTransform>
+                </ContentPresenter>
+                <TextBlock x:Name="PART_TextVisual" Margin="{ThemeResource SelectorBarItemTextVisualMargin}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" TextWrapping="Wrap" />
+              </StackPanel>
+            </Grid.Children>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CombinedStates">
+                <VisualState x:Name="UnselectedNormal" />
+                <VisualState x:Name="UnselectedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="UnselectedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="UnselectedDisabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedNormal">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelected}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedPointerOver">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedPressed">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SelectedDisabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_TextVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconVisual" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemForegroundSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBackgroundSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PillItemBorderBrushSelectedDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -19390,6 +19882,29 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultWelcomeHeroStyle" TargetType="local:WelcomeHero">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:WelcomeHero">
+          <Grid>
+            <Grid x:Name="PART_SceneHost" Background="Transparent" />
+            <!--  Dock-style name label for the hovered tool  -->
+            <Canvas IsHitTestVisible="False">
+              <Border x:Name="PART_LabelPill" Padding="10,5,10,6" Background="{ThemeResource ToolTipBackground}" BorderBrush="{ThemeResource ToolTipBorderBrush}" BorderThickness="{ThemeResource ToolTipBorderThemeThickness}" CornerRadius="{ThemeResource OverlayCornerRadius}" Opacity="0">
+                <Border.OpacityTransition>
+                  <ScalarTransition Duration="0:0:0.14" />
+                </Border.OpacityTransition>
+                <Border.TranslationTransition>
+                  <Vector3Transition Duration="0:0:0.18" />
+                </Border.TranslationTransition>
+                <TextBlock x:Name="PART_LabelText" Foreground="{ThemeResource ToolTipForeground}" Style="{StaticResource CaptionTextBlockStyle}" />
+              </Border>
+            </Canvas>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultBreadcrumbBarStyle}" TargetType="local:BreadcrumbBar" />
   <Style x:Key="DefaultBreadcrumbBarItemStyle" TargetType="local:BreadcrumbBarItem">
     <Setter Property="Background" Value="{ThemeResource BreadcrumbBarBackgroundBrush}" />
@@ -20214,6 +20729,34 @@ Themes\Styles\Controls\WaveProgressBar.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="PillSelectorBarStyle" TargetType="SelectorBar">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="TabNavigation" Value="Once" />
+    <Setter Property="Padding" Value="{ThemeResource SelectorBarPadding}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="SelectorBar">
+          <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" ColumnDefinitions="Auto" CornerRadius="{TemplateBinding CornerRadius}" RowDefinitions="Auto">
+            <Grid.Resources>
+              <Style BasedOn="{StaticResource PillSelectorBarItemStyle}" TargetType="SelectorBarItem" />
+            </Grid.Resources>
+            <Grid.ChildrenTransitions>
+              <TransitionCollection>
+                <RepositionThemeTransition />
+              </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <ItemsView x:Name="PART_ItemsView" MaxWidth="{TemplateBinding MaxWidth}" MaxHeight="{TemplateBinding MaxHeight}" Padding="{TemplateBinding Padding}" ItemsSource="{TemplateBinding Items}" TabNavigation="{TemplateBinding TabNavigation}">
+              <ItemsView.Layout>
+                <StackLayout Orientation="Horizontal" Spacing="8" />
+              </ItemsView.Layout>
+            </ItemsView>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" TargetType="local:AnimatedTextBlock" />
   <Style BasedOn="{StaticResource DefaultBannerViewStyle}" TargetType="local:BannerView" />
   <Style BasedOn="{StaticResource DefaultBreadcrumbNavigatorStyle}" TargetType="local:BreadcrumbNavigator" />
@@ -20366,6 +20909,7 @@ Themes\Styles\Controls\WaveProgressBar.xaml
   <Style BasedOn="{StaticResource DefaultStoreCarouselStyle}" TargetType="local:StoreCarousel" />
   <Style BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox" />
   <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />
+  <Style BasedOn="{StaticResource DefaultWelcomeHeroStyle}" TargetType="local:WelcomeHero" />
   <Style BasedOn="{StaticResource DefaultBreadcrumbBarItemStyle}" TargetType="local:BreadcrumbBarItem" />
   <Style BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="local:SettingsCard" />
   <Style x:Key="DefaultNestedClickableSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsExpanderItemStyle}" TargetType="local:SettingsCard">

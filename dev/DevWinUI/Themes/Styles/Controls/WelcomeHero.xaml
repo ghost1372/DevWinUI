@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultWelcomeHeroStyle}" TargetType="local:WelcomeHero" />
+
+    <Style x:Key="DefaultWelcomeHeroStyle" TargetType="local:WelcomeHero">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:WelcomeHero">
+                    <Grid>
+                        <Grid x:Name="PART_SceneHost" Background="Transparent" />
+
+                        <!--  Dock-style name label for the hovered tool  -->
+                        <Canvas IsHitTestVisible="False">
+                            <Border x:Name="PART_LabelPill" Padding="10,5,10,6" Background="{ThemeResource ToolTipBackground}" BorderBrush="{ThemeResource ToolTipBorderBrush}" BorderThickness="{ThemeResource ToolTipBorderThemeThickness}" CornerRadius="{ThemeResource OverlayCornerRadius}" Opacity="0">
+                                <Border.OpacityTransition>
+                                    <ScalarTransition Duration="0:0:0.14" />
+                                </Border.OpacityTransition>
+                                <Border.TranslationTransition>
+                                    <Vector3Transition Duration="0:0:0.18" />
+                                </Border.TranslationTransition>
+                                <TextBlock x:Name="PART_LabelText" Foreground="{ThemeResource ToolTipForeground}" Style="{StaticResource CaptionTextBlockStyle}" />
+                            </Border>
+                        </Canvas>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

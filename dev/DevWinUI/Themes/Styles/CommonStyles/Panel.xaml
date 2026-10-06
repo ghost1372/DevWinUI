@@ -3,6 +3,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
+    <x:Double x:Key="PageMaxWidth">1000</x:Double>
+
     <Style x:Key="BorderPanel" TargetType="Border">
         <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}" />
         <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
@@ -57,6 +59,13 @@
         <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="1,1,0,0" />
         <Setter Property="CornerRadius" Value="8" />
+    </Style>
+    <Style x:Key="PageStyle" TargetType="Grid">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+        <Setter Property="CornerRadius" Value="8,8,0,0" />
+        <Setter Property="MaxWidth" Value="{StaticResource PageMaxWidth}" />
     </Style>
 
     <Style x:Key="StackPanelStyle" TargetType="StackPanel">
