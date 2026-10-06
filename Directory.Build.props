@@ -10,20 +10,20 @@
     <LibraryMajorVersion>10</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>4</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>4</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>5</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>5</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
     <DevWinUI_SourceGenerator_MinorVersion>2</DevWinUI_SourceGenerator_MinorVersion>
     <DevWinUI_Shader_MinorVersion>1</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>4</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>5</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>2</DevWinUI_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
     <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
     <DevWinUI_Shader_PatchVersion>0</DevWinUI_Shader_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>2</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
@@ -32,7 +32,7 @@
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
-    <CsWin32Version>0.3.335</CsWin32Version>
+    <CsWin32Version>0.3.347</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.3.6</WASDKWinUIVersion>
