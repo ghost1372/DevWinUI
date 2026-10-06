@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//http://github.com/microsoft/powerToys
+
+namespace DevWinUI;
 
 /// <summary>
 /// A module shown in the Welcome hero.

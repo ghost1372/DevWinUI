@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//http://github.com/microsoft/powerToys
+
+namespace DevWinUI;
 
 /// <summary>
 /// How the Welcome hero enters the screen.

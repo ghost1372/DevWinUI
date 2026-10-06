@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//http://github.com/microsoft/powerToys
+
+namespace DevWinUI;
 
 /// <summary>
 /// The Composition visual tree behind the Welcome hero ("Warp").

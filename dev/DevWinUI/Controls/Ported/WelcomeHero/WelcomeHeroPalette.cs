@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//http://github.com/microsoft/powerToys
+
+namespace DevWinUI;
 
 /// <summary>
 /// Theme-dependent colors of the Welcome hero.

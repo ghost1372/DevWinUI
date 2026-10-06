@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WelcomeHeroPage3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Grid Padding="20" Style="{StaticResource PageStyle}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
+            <!--
+                This simulates a module's settings page. Navigating here and back to
+                BlankPage1 (Welcome) demonstrates that the hero only plays its full
+                "Intro" animation once per app window: the second time BlankPage1 is
+                constructed, WelcomeHeroPlayback.Settle is used instead.
+            -->
+            <TextBlock x:Name="ModuleTitleText" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+
+            <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This is a stand-in for a module's settings page." />
+
+            <Button HorizontalAlignment="Center" Click="BackButton_Click" Content="Back to Welcome" />
+        </StackPanel>
+    </Grid>
+</Page>

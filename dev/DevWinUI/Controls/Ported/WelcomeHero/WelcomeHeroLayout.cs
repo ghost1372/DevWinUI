@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿//http://github.com/microsoft/powerToys
+
+namespace DevWinUI;
 
 /// <summary>
 /// Geometry of the Welcome hero: a diamond lattice of glass tiles that fans out of the

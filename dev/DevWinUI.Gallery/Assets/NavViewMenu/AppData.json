@@ -748,7 +748,14 @@
       "SectionId": "DevWinUIGallery.Views.DemoSectionPage",
       "Title": "Composition",
       "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png",
-      "Items": [        
+      "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.WelcomeHeroPage",
+          "Title": "WelcomeHero",
+          "Subtitle": "Powertoys WelcomeHero Composition Effects",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ImplicitTransition.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.EdgeLightingPage",
           "Title": "Edge Lighting",
