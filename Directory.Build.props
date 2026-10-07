@@ -10,12 +10,12 @@
     <LibraryMajorVersion>10</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>5</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>5</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>6</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>6</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
     <DevWinUI_SourceGenerator_MinorVersion>2</DevWinUI_SourceGenerator_MinorVersion>
-    <DevWinUI_Shader_MinorVersion>1</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>5</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Shader_MinorVersion>6</DevWinUI_Shader_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>6</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
     <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
@@ -71,10 +71,10 @@
 
     <GalleryTargetFramework>$(DebugShaderAndGalleryTargetFramework)</GalleryTargetFramework>
 
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) != $(GalleryAppName) ">$(DebugTargetFramework)</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) != $(GalleryAppName) ">net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0;net10.0-windows10.0.19041.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) != $(GalleryAppName)">$(DebugTargetFramework)</TargetFrameworks>
 
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) == $(ShaderLibName) ">$(DebugShaderAndGalleryTargetFramework)</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) == $(ShaderLibName) ">net8.0-windows10.0.22621.0;net9.0-windows10.0.22621.0;net10.0-windows10.0.22621.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) == $(ShaderLibName)">$(DebugShaderAndGalleryTargetFramework)</TargetFrameworks>
 
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
