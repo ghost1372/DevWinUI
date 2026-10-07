@@ -5,7 +5,6 @@ using Windows.Win32.System.Memory;
 
 namespace DevWinUI;
 
-[Experimental(diagnosticId:"DEVWINUI000", Message = "This API is experimental and may change or be removed in future versions.")]
 public static unsafe partial class SystemCompositionHelper
 {
     private const int ExpectedState = 2;
