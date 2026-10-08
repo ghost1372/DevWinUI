@@ -158,7 +158,6 @@ public partial class Shortcut : BaseShortcut
             shortcut.IsError = IsError;
             shortcut.ErrorTitle = ErrorTitle;
             shortcut.ErrorToolTip = ErrorToolTip;
-            shortcut.KeysMargin = KeysMargin;
         }
     }
     
@@ -198,7 +197,6 @@ public partial class Shortcut : BaseShortcut
 
         shortcut.Keys = null;
         shortcut.Keys = Keys;
-        shortcut.KeysMargin = KeysMargin;
 
         shortcut.InfoTitle = InfoTitle;
         shortcut.InfoToolTip = InfoToolTip;
