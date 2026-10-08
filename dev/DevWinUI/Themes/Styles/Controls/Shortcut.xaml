@@ -41,11 +41,10 @@
     <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
 
     <Style x:Key="DefaultShortcutPreview" TargetType="local:ShortcutPreview">
-        <Setter Property="MinHeight" Value="220" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ShortcutPreview">
-                    <Grid MinHeight="{TemplateBinding MinHeight}" RowSpacing="12">
+                    <Grid RowSpacing="12">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
