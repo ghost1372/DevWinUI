@@ -1,4 +1,5 @@
-﻿using static DevWinUI.NativeValues;
+﻿using Windows.Win32.UI.WindowsAndMessaging;
+using static DevWinUI.NativeValues;
 
 namespace DevWinUI;
 public static partial class NativeMethods
@@ -131,5 +132,16 @@ public static partial class NativeMethods
             bool __result = Shell_NotifyIcon64(dwMessage, lpDataLocal);
             return __result;
         }
+    }
+
+    internal static uint MouseHoverTime() => QueryUInt(SYSTEM_PARAMETERS_INFO_ACTION.SPI_GETMOUSEHOVERTIME);
+
+    internal static uint MessageDurationSeconds() => QueryUInt(SYSTEM_PARAMETERS_INFO_ACTION.SPI_GETMESSAGEDURATION);
+
+    private static unsafe uint QueryUInt(SYSTEM_PARAMETERS_INFO_ACTION action)
+    {
+        uint value = 0;
+        PInvoke.SystemParametersInfo(action, 0, &value, 0);
+        return value;
     }
 }

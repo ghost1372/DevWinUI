@@ -151,6 +151,9 @@ dotnet add package DevWinUI.Shader
 ### WelcomeHero
 ![WelcomeHero](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WelcomeHero.gif)
 
+### ModernWindowCaptionButtonToolTip
+![ModernWindowCaptionButtonToolTip](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ModernWindowCaptionButtonToolTip.gif)
+
 ### RadioButton Style
 ![RadioButton Style](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/RadioButtonStyle.gif)
 
