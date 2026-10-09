@@ -107,7 +107,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
         InternalLocalizationHelper.InitializeInternalLocalization(_resourceManager, _resourceContext);
 
-        ConfigureJsonBase(JsonFilePath, _pathType, _orderItems);
+        ConfigureJsonBase(JsonFilePath, DataSource.Instance.UseTaskForDeserialization, _pathType, _orderItems);
     }
 
     private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

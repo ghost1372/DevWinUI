@@ -19,6 +19,7 @@ public sealed partial class DataSource
     private PathType _pathType;
 
     private static readonly object _lock = new();
+    public bool UseTaskForDeserialization { get; set; }
 
     #region Singleton
 
@@ -92,7 +93,16 @@ public sealed partial class DataSource
         }
 
         var jsonText = await LoadText(_jsonFilePath, _pathType);
-        var controlInfoDataGroup = JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root;
+
+        Root? controlInfoDataGroup = null;
+        if (UseTaskForDeserialization)
+        {
+            controlInfoDataGroup = await Task.Run(() => JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root);
+        }
+        else
+        {
+            controlInfoDataGroup = JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root;
+        }
 
         lock (_lock)
         {

@@ -13,125 +13,83 @@ public partial class JsonNavigationService
 
         return this; // Enable chaining
     }
-    private async void ConfigureJsonBase(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
+    private const string DefaultJsonPath = @"Assets\NavViewMenu\AppData.json";
+
+    private async void ConfigureJsonBase(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems)
     {
         JsonFilePath = jsonFilePath;
         _pathType = pathType;
         _orderItems = orderItems;
+        DataSource.Instance.UseTaskForDeserialization = useTaskForDeserialization;
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
         AddNavigationMenuItems(orderItems);
     }
-    public JsonNavigationService ConfigureJsonFile()
+
+    private JsonNavigationService ConfigureJsonCore(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager = null, ResourceContext resourceContext = null)
     {
         EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        var resourceContext = resourceManager.CreateResourceContext();
+        if (resourceManager == null || resourceContext == null)
+        {
+            resourceManager = new ResourceManager();
+            resourceContext = resourceManager.CreateResourceContext();
+        }
         _resourceContext = resourceContext;
         _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
+        ConfigureJsonBase(jsonFilePath, useTaskForDeserialization, pathType, orderItems);
         return this;
     }
+
+    public JsonNavigationService ConfigureJsonFile()
+        => ConfigureJsonCore(DefaultJsonPath, false, PathType.Relative, OrderItemsType.AscendingTopLevel);
+    public JsonNavigationService ConfigureJsonFile(bool useTaskForDeserialization)
+        => ConfigureJsonCore(DefaultJsonPath, useTaskForDeserialization, PathType.Relative, OrderItemsType.AscendingTopLevel);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath)
-    {
-        EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        var resourceContext = resourceManager.CreateResourceContext();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, PathType.Relative, OrderItemsType.AscendingTopLevel);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, PathType.Relative, OrderItemsType.AscendingTopLevel);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems)
-    {
-        EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        var resourceContext = resourceManager.CreateResourceContext();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, PathType.Relative, orderItems);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, OrderItemsType orderItems)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, PathType.Relative, orderItems);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType)
-    {
-        EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        var resourceContext = resourceManager.CreateResourceContext();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, pathType, OrderItemsType.AscendingTopLevel);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, PathType pathType)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, pathType, OrderItemsType.AscendingTopLevel);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems)
-    {
-        EnsureInitialized();
-        var resourceManager = new ResourceManager();
-        var resourceContext = resourceManager.CreateResourceContext();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, pathType, orderItems);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, pathType, orderItems);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, pathType, orderItems);
 
     public JsonNavigationService ConfigureJsonFile(ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(@"Assets\NavViewMenu\AppData.json", PathType.Relative, OrderItemsType.AscendingTopLevel);
-        return this;
-    }
+        => ConfigureJsonCore(DefaultJsonPath, false, PathType.Relative, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
+    public JsonNavigationService ConfigureJsonFile(bool useTaskForDeserialization, ResourceManager resourceManager, ResourceContext resourceContext)
+        => ConfigureJsonCore(DefaultJsonPath, useTaskForDeserialization, PathType.Relative, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, PathType.Relative, OrderItemsType.AscendingTopLevel);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, PathType.Relative, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, ResourceManager resourceManager, ResourceContext resourceContext)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, PathType.Relative, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, PathType.Relative, orderItems);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, PathType.Relative, orderItems, resourceManager, resourceContext);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, PathType.Relative, orderItems, resourceManager, resourceContext);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, pathType, OrderItemsType.AscendingTopLevel);
-        return this;
-    }
+        => ConfigureJsonCore(jsonFilePath, false, pathType, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, ResourceManager resourceManager, ResourceContext resourceContext)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, pathType, OrderItemsType.AscendingTopLevel, resourceManager, resourceContext);
 
     public JsonNavigationService ConfigureJsonFile(string jsonFilePath, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
-    {
-        EnsureInitialized();
-        _resourceContext = resourceContext;
-        _resourceManager = resourceManager;
-        InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, pathType, orderItems);
-        return this;
-    }
-
+        => ConfigureJsonCore(jsonFilePath, false, pathType, orderItems, resourceManager, resourceContext);
+    public JsonNavigationService ConfigureJsonFile(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager, ResourceContext resourceContext)
+        => ConfigureJsonCore(jsonFilePath, useTaskForDeserialization, pathType, orderItems, resourceManager, resourceContext);
     public JsonNavigationService ConfigureDefaultPage(Type defaultPage)
     {
         EnsureInitialized();
@@ -219,38 +177,32 @@ public partial class JsonNavigationService
             _mainBreadcrumb.ChangeBreadcrumbVisibility(false);
         }
     }
-    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    private JsonNavigationService ConfigureBreadcrumbBarCore(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions? headerVisibilityOptions = null, NavigationTransitionInfo navigationTransitionInfo = null)
     {
         EnsureInitialized();
+        if (headerVisibilityOptions.HasValue)
+        {
+            breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions.Value;
+        }
+        if (navigationTransitionInfo != null)
+        {
+            breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
+        }
         ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
         return this;
     }
+
+    public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+        => ConfigureBreadcrumbBarCore(breadcrumbNavigator, pageDictionary);
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions)
-    {
-        EnsureInitialized();
-        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
-        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
-        return this;
-    }
+        => ConfigureBreadcrumbBarCore(breadcrumbNavigator, pageDictionary, headerVisibilityOptions);
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, NavigationTransitionInfo navigationTransitionInfo)
-    {
-        EnsureInitialized();
-        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
-        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
-        return this;
-    }
+        => ConfigureBreadcrumbBarCore(breadcrumbNavigator, pageDictionary, null, navigationTransitionInfo);
 
     public JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions headerVisibilityOptions, NavigationTransitionInfo navigationTransitionInfo)
-    {
-        EnsureInitialized();
-        breadcrumbNavigator.HeaderVisibilityOptions = headerVisibilityOptions;
-        breadcrumbNavigator.NavigationTransitionInfo = navigationTransitionInfo;
-        ConfigureBreadcrumbBarBase(breadcrumbNavigator, pageDictionary);
-        return this;
-    }
-
+        => ConfigureBreadcrumbBarCore(breadcrumbNavigator, pageDictionary, headerVisibilityOptions, navigationTransitionInfo);
     private void ConfigureTitleBarBase(TitleBar titleBar, bool autoManageBackButtonVisibility)
     {
         _titleBar = titleBar;
@@ -293,6 +245,7 @@ public partial class JsonNavigationService
         _fontFamilyForGlyph = fontFamily;
         return this;
     }
+
     private void EnsureInitialized()
     {
         if (!_isInitialized)
