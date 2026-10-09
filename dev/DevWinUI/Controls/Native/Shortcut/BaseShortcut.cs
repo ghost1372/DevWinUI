@@ -8,7 +8,7 @@ public partial class BaseShortcut : Control
     }
 
     public static readonly DependencyProperty KeysMarginProperty =
-        DependencyProperty.Register(nameof(KeysMargin), typeof(Thickness), typeof(BaseShortcut), new PropertyMetadata(new Thickness(0, 64, 0, 0), OnPropertyChanged));
+        DependencyProperty.Register(nameof(KeysMargin), typeof(Thickness), typeof(BaseShortcut), new PropertyMetadata(new Thickness(0, 24, 0, 24), OnPropertyChanged));
 
     public string Title
     {
