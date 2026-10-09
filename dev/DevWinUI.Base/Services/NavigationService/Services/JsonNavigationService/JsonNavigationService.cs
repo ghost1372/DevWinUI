@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+﻿using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 
 namespace DevWinUI;
 
@@ -118,7 +119,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             {
                 pageTitle = item.Content.ToString();
             }
-            NavigateTo(SettingsPageKey, pageTitle);
+            DeferNavigation(sender, SettingsItem, () => NavigateTo(SettingsPageKey, pageTitle));
         }
         else
         {
@@ -128,8 +129,25 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                                 ? SectionPageKey
                                 : dataInfo.UniqueId;
 
-                NavigateTo(targetKey, dataInfo);
+                DeferNavigation(sender, selectedItem, () => NavigateTo(targetKey, dataInfo));
             }
+        }
+    }
+
+    // Lets NavigationView draw the selection indicator before the page is created
+    private void DeferNavigation(NavigationView sender, object? selected, Action navigate)
+    {
+        var queue = sender.DispatcherQueue;
+        if (queue == null || !queue.TryEnqueue(DispatcherQueuePriority.Low, () =>
+        {
+            // Skip if the selection changed (back, another click) while waiting
+            if (ReferenceEquals(_navigationView, sender) && ReferenceEquals(sender.SelectedItem, selected))
+            {
+                navigate();
+            }
+        }))
+        {
+            navigate();
         }
     }
 
