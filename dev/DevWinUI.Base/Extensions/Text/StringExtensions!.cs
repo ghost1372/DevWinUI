@@ -44,6 +44,11 @@ public static partial class StringExtensions
     /// </summary>
     private static readonly Regex RemoveHtmlStylesRegex = new(@"(?s)<style.*?(/>|</style>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
+    private static readonly Regex EmailRegexInstance = new(EmailRegex);
+    private static readonly Regex PhoneNumberRegexInstance = new(PhoneNumberRegex);
+    private static readonly Regex CharactersRegexInstance = new(CharactersRegex);
+    private static readonly Regex RemoveHtmlTagsRegexInstance = new(RemoveHtmlTagsRegex);
+
     extension(string value)
     {
         /// <summary>
@@ -51,7 +56,7 @@ public static partial class StringExtensions
         /// </summary>
         /// <param name="value">The string to test.</param>
         /// <returns><c>true</c> for a valid email address; otherwise, <c>false</c>.</returns>
-        public bool IsEmail() => Regex.IsMatch(value, EmailRegex);
+        public bool IsEmail() => EmailRegexInstance.IsMatch(value);
 
         /// <summary>
         /// Determines whether a string is a valid decimal number.
@@ -78,14 +83,14 @@ public static partial class StringExtensions
         /// </summary>
         /// <param name="value">The string to test.</param>
         /// <returns><c>true</c> for a valid phone number; otherwise, <c>false</c>.</returns>
-        public bool IsPhoneNumber() => Regex.IsMatch(value, PhoneNumberRegex);
+        public bool IsPhoneNumber() => PhoneNumberRegexInstance.IsMatch(value);
 
         /// <summary>
         /// Determines whether a string contains only letters.
         /// </summary>
         /// <param name="value">The string to test.</param>
         /// <returns><c>true</c> if the string contains only letters; otherwise, <c>false</c>.</returns>
-        public bool IsCharacterString() => Regex.IsMatch(value, CharactersRegex);
+        public bool IsCharacterString() => CharactersRegexInstance.IsMatch(value);
 
         /// <summary>
         /// Returns a string with HTML comments, scripts, styles, and tags removed.
@@ -103,7 +108,7 @@ public static partial class StringExtensions
             string? ret = value.FixHtml();
 
             // Remove html tags
-            ret = new Regex(RemoveHtmlTagsRegex).Replace(ret, string.Empty);
+            ret = RemoveHtmlTagsRegexInstance.Replace(ret, string.Empty);
 
             return WebUtility.HtmlDecode(ret);
         }

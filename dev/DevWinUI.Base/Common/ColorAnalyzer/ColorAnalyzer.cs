@@ -40,7 +40,7 @@ public partial class ColorAnalyzer : DependencyObject
         var kClusters = KMeansCluster(samples, k, out var counts);
         var weights = counts.Select(x => (float)x / samples.Length).ToArray();
         var dbCluster = DBScan.Cluster(kClusters, mergeDistance, 0, ref weights);
-        var colorData = dbCluster.Select((vectorColor, i) => new AnalyzedColor(vectorColor.ToColor(), weights[i]));
+        var colorData = dbCluster.Select((vectorColor, i) => new AnalyzedColor(vectorColor.ToColor(), weights[i])).ToArray();
 
         // Update analyzers on the UI thread
         foreach (var analyzer in Analyzers)
@@ -87,28 +87,27 @@ public partial class ColorAnalyzer : DependencyObject
 
         // Create a stream from the bitmap
         var pixels = await bitmap.GetPixelsAsync();
-        var pixelByteStream = pixels.AsStream();
+        var pixelBytes = pixels.ToArray();
 
         // Something went wrong
-        if (pixelByteStream.Length == 0)
+        if (pixelBytes.Length == 0)
             return [];
 
         // Read the stream into a a color array
         const int bytesPerPixel = 4;
-        var samples = new Vector3[(int)pixelByteStream.Length / bytesPerPixel];
+        var samples = new Vector3[pixelBytes.Length / bytesPerPixel];
 
         // Iterate through the stream reading a pixel (4 bytes) at a time
         // and storing them as a Vector3. Opacity info is dropped.
         int colorIndex = 0;
-        Span<byte> pixelBytes = stackalloc byte[bytesPerPixel];
-        while (pixelByteStream.Read(pixelBytes) == bytesPerPixel)
+        for (int offset = 0; offset + bytesPerPixel <= pixelBytes.Length; offset += bytesPerPixel)
         {
             // Skip fully transparent pixels
-            if (pixelBytes[3] == 0)
+            if (pixelBytes[offset + 3] == 0)
                 continue;
 
             // Take the red, green, and blue channels to make a floating-point space color.
-            samples[colorIndex] = new Vector3(pixelBytes[2], pixelBytes[1], pixelBytes[0]) / byte.MaxValue;
+            samples[colorIndex] = new Vector3(pixelBytes[offset + 2], pixelBytes[offset + 1], pixelBytes[offset]) / byte.MaxValue;
             colorIndex++;
         }
 

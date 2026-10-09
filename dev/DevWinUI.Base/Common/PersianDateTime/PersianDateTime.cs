@@ -155,6 +155,9 @@ public partial class PersianDateTime : IConvertible
     private const string PersianDatePattern =
         @"^$|^([1][0-9]{3}[/\/]([0][1-6])[/\/]([0][1-9]|[12][0-9]|[3][01])|[1][0-9]{3}[/\/]([0][7-9]|[1][012])[/\/]([0][1-9]|[12][0-9]|(30)))$";
 
+    private static readonly Regex TimeRegex = new(TimePattern);
+    private static readonly Regex PersianDateRegex = new(PersianDatePattern);
+
     #endregion
 
 
@@ -175,12 +178,12 @@ public partial class PersianDateTime : IConvertible
 
     public bool IsTimeValid(string time)
     {
-        return Regex.IsMatch(time, TimePattern);
+        return TimeRegex.IsMatch(time);
     }
 
     public bool IsPersianDateValid(string persianDate)
     {
-        return Regex.IsMatch(persianDate, PersianDatePattern);
+        return PersianDateRegex.IsMatch(persianDate);
     }
 
     public PersianDateTime(string shamsiDate = "1399/10/03 20:43:00")
