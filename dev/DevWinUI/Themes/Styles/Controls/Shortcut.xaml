@@ -53,7 +53,7 @@
 
                         <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" />
 
-                        <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
+                        <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" Spacing="8" />
