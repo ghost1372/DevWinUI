@@ -62,6 +62,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
     private NavigationView MainNavigation { get; set; }
     private Frame MainFrame { get; set; }
     private Dictionary<Type, BreadcrumbPageConfig> PageDictionary;
+    private bool? _lastVisible;
     private bool _settingsDelayApplied = false;
     private bool _applySettingsDelayNextNavigation = false;
 
@@ -125,11 +126,11 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         {
             int currentIndex = BreadCrumbs.IndexOf(currentItem);
 
-            // Filter items from beginning to the current item
-            var filteredItems = BreadCrumbs.Take(currentIndex + 1).ToList();
-
-            // Update BreadCrumbs with the filtered items
-            BreadCrumbs = new(filteredItems);
+            // Trim in place; recreating the collection rebuilds the whole BreadcrumbBar
+            for (int i = BreadCrumbs.Count - 1; i > currentIndex; i--)
+            {
+                BreadCrumbs.RemoveAt(i);
+            }
         }
         HandleBackRequested(e.SourcePageType);
     }
@@ -157,12 +158,11 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         bool isHeaderVisibile = false;
         bool clearNavigation = false;
 
-        var item = PageDictionary.FirstOrDefault(x => x.Key == targetPageType);
-        if (item.Value != null)
+        if (PageDictionary.TryGetValue(targetPageType, out var item) && item != null)
         {
-            pageTitleAttached = item.Value.PageTitle;
-            isHeaderVisibile = item.Value.IsHeaderVisible;
-            clearNavigation = item.Value.ClearNavigation;
+            pageTitleAttached = item.PageTitle;
+            isHeaderVisibile = item.IsHeaderVisible;
+            clearNavigation = item.ClearNavigation;
         }
         else
         {
@@ -224,11 +224,10 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         if (PageDictionary == null)
             return;
 
-        var item = PageDictionary.FirstOrDefault(x => x.Key == sourcePageType);
         bool isHeaderVisible = false;
-        if (item.Value != null)
+        if (sourcePageType != null && PageDictionary.TryGetValue(sourcePageType, out var item) && item != null)
         {
-            isHeaderVisible = item.Value.IsHeaderVisible;
+            isHeaderVisible = item.IsHeaderVisible;
         }
 
         ChangeBreadcrumbVisibility(isHeaderVisible, sourcePageType);
@@ -248,10 +247,9 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         object parameter = (args.Item as BreadcrumbStep).Parameter;
         Type targetPageType = (args.Item as BreadcrumbStep).Page;
 
-        var item = PageDictionary.FirstOrDefault(x => x.Key == targetPageType);
-        if (item.Value != null)
+        if (targetPageType != null && PageDictionary.TryGetValue(targetPageType, out var item) && item != null)
         {
-            isHeaderVisibile = item.Value.IsHeaderVisible;
+            isHeaderVisibile = item.IsHeaderVisible;
         }
 
         ChangeBreadcrumbVisibility(isHeaderVisibile, targetPageType);
@@ -306,6 +304,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
             {
                 // mark early to avoid re-entrancy/race applying delay multiple times
                 _settingsDelayApplied = true;
+                _lastVisible = IsBreadcrumbVisible;
                 // Reserve layout space while waiting for transition: make invisible but occupy space
                 Visibility = Visibility.Visible;
                 Opacity = 0; // make invisible
@@ -324,6 +323,13 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
             }
             else
             {
+                // Already in the requested state, avoid starting another storyboard
+                if (_lastVisible == IsBreadcrumbVisible)
+                {
+                    return;
+                }
+                _lastVisible = IsBreadcrumbVisible;
+
                 if (IsBreadcrumbVisible)
                 {
                     Visibility = Visibility.Visible;
@@ -349,7 +355,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         {
             To = to,
             Duration = new Duration(TimeSpan.FromMilliseconds(durationMilliseconds)),
-            EnableDependentAnimation = true,
+            
         };
         Storyboard.SetTarget(fade, this);
         Storyboard.SetTargetProperty(fade, "(UIElement.Opacity)");
@@ -374,13 +380,13 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
             {
                 To = 0,
                 Duration = new Duration(TimeSpan.FromMilliseconds(durationMilliseconds)),
-                EnableDependentAnimation = true,
+                
             };
             var taY = new DoubleAnimation()
             {
                 To = 0,
                 Duration = new Duration(TimeSpan.FromMilliseconds(durationMilliseconds)),
-                EnableDependentAnimation = true,
+                
             };
 
             // If hiding, animate back to offset, else animate from offset to 0
