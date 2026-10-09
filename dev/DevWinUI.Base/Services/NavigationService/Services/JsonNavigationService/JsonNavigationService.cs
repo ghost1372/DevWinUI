@@ -57,11 +57,21 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            if (_navigationView.SelectedItem is NavigationViewItem currentItem && currentItem.Tag is string currentTag && !string.IsNullOrEmpty(currentTag) && e.Parameter is BaseDataInfo dataInfo)
+            if (e.Parameter is BaseDataInfo dataInfo && !string.IsNullOrEmpty(dataInfo.UniqueId))
             {
-                if (e.NavigationMode == NavigationMode.Back || !currentTag.Equals(dataInfo.UniqueId))
+                // Frame already navigated (e.g. back/forward), so selection must not navigate again
+                _lastParameterUsed = e.Parameter;
+                if (_navigationView.SelectedItem is not NavigationViewItem currentItem || !dataInfo.UniqueId.Equals(currentItem.Tag as string))
                 {
-                    EnsureNavigationSelection(dataInfo.UniqueId);
+                    _suppressSelectionNavigation = true;
+                    try
+                    {
+                        EnsureNavigationSelection(dataInfo.UniqueId);
+                    }
+                    finally
+                    {
+                        _suppressSelectionNavigation = false;
+                    }
                 }
             }
         }
@@ -76,6 +86,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             _navigationView.SelectionChanged -= OnNavigationViewSelectionChanged;
         }
 
+        _itemMap.Clear();
         _pageKeyToTypeMap?.Clear();
         _pageKeyToTypeMap = null;
         FrameNavigated -= OnNavigated;
@@ -94,6 +105,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
+        if (_suppressSelectionNavigation)
+        {
+            return;
+        }
+
         if (args.IsSettingsSelected)
         {
             string pageTitle = string.Empty;
@@ -139,7 +155,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         if (args.ChosenSuggestion != null && args.ChosenSuggestion is DataItem infoDataItem)
         {
-            var hasChangedSelection = EnsureItemIsVisibleInNavigation(infoDataItem.Title);
+            var hasChangedSelection = SelectItemById(infoDataItem.UniqueId);
 
             // In case the menu selection has changed, it means that it has triggered
             // the selection changed event, that will navigate to the page already
@@ -209,61 +225,60 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     }
     public void EnsureNavigationSelection(string id)
     {
-        foreach (object rawGroup in this.AllMenuItems)
+        if (string.IsNullOrEmpty(id) || _navigationView == null || !_itemMap.TryGetValue(id, out var entry))
         {
-            if (rawGroup is NavigationViewItem group)
-            {
-                if ((string)group.Tag == id)
-                {
-                    group.IsSelected = true;
-                    _navigationView.SelectedItem = group;
+            return;
+        }
 
-                    if (group.MenuItems.Count > 0)
-                    {
-                        group.IsExpanded = true;
-                    }
-                    return;
-                }
+        var (item, parent) = entry;
+        if (parent != null)
+        {
+            parent.IsExpanded = true;
+        }
+        else if (item.MenuItems.Count > 0)
+        {
+            item.IsExpanded = true;
+        }
 
-                if (group.MenuItems.Count > 0)
-                {
-                    foreach (object rawItem in group.MenuItems)
-                    {
-                        EnsureNavigationSelectionBase(rawItem, id, group);
-                    }
-                }
-            }
+        if (!ReferenceEquals(_navigationView.SelectedItem, item))
+        {
+            _navigationView.SelectedItem = item;
         }
     }
 
-    private bool EnsureNavigationSelectionBase(object rawItem, string id, NavigationViewItem parentGroup)
+    // Returns true when the selection changed (so SelectionChanged will navigate)
+    private bool SelectItemById(string id)
     {
-        if (rawItem is NavigationViewItem item)
+        if (string.IsNullOrEmpty(id) || _navigationView == null || !_itemMap.TryGetValue(id, out var entry))
         {
-            if ((string)item.Tag == id)
-            {
-                _navigationView.SelectedItem = item;
-                item.IsSelected = true;
-
-                if (parentGroup.MenuItems.Count > 0)
-                {
-                    parentGroup.IsExpanded = true;
-                }
-                return true;
-            }
-
-            if (item.MenuItems.Count > 0)
-            {
-                foreach (var rawInnerItem in item.MenuItems)
-                {
-                    if (EnsureNavigationSelectionBase(rawInnerItem, id, parentGroup))
-                    {
-                        return true;
-                    }
-                }
-            }
+            return false;
         }
-        return false;
+
+        var (item, parent) = entry;
+        if (ReferenceEquals(_navigationView.SelectedItem, item))
+        {
+            return false;
+        }
+
+        if (parent != null && _navigationView.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
+        {
+            // In Top mode the child is not visible, so select the parent without navigating to it
+            _suppressSelectionNavigation = true;
+            try
+            {
+                _navigationView.SelectedItem = parent;
+            }
+            finally
+            {
+                _suppressSelectionNavigation = false;
+            }
+            parent.StartBringIntoView();
+            return false;
+        }
+
+        EnsureNavigationSelection(id);
+        item.StartBringIntoView();
+        return true;
     }
 
     public bool EnsureItemIsVisibleInNavigation(string name)
@@ -313,8 +328,6 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                                 {
                                     item.IsExpanded = true;
                                 }
-                                // Ensure parent is expanded so we actually show the selection indicator
-                                _navigationView.UpdateLayout();
                                 // Set selected item
                                 _navigationView.SelectedItem = child;
                                 child.StartBringIntoView();

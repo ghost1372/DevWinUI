@@ -10,6 +10,10 @@ public partial class JsonNavigationService
     }
     private void AddNavigationMenuItems(OrderItemsType orderItems)
     {
+        _itemMap.Clear();
+        var menuItems = new List<object>();
+        var footerItems = new List<object>();
+
         foreach (var group in GetOrderedDataGroups(orderItems).Where(i => !i.IsSpecialSection && !i.HideGroup))
         {
             var itemGroup = new NavigationViewItem()
@@ -28,6 +32,7 @@ public partial class JsonNavigationService
 
             AutomationProperties.SetName(itemGroup, group.Title);
             AutomationProperties.SetAutomationId(itemGroup, group.UniqueId);
+            _itemMap[group.UniqueId] = (itemGroup, null);
 
             foreach (var item in GetOrderedDataItems(group.Items, orderItems).Where(i => !i.HideNavigationViewItem))
             {
@@ -48,22 +53,23 @@ public partial class JsonNavigationService
 
                 AutomationProperties.SetName(itemInGroup, item.Title);
                 AutomationProperties.SetAutomationId(itemInGroup, item.UniqueId);
+                _itemMap[item.UniqueId] = (itemInGroup, group.ShowItemsWithoutGroup ? null : itemGroup);
 
                 if (group.ShowItemsWithoutGroup)
                 {
                     if (group.IsFooterNavigationViewItem)
                     {
-                        _navigationView.FooterMenuItems.Add(itemInGroup);
+                        footerItems.Add(itemInGroup);
                     }
                     else
                     {
                         if (group.IsNavigationViewItemHeader)
                         {
-                            _navigationView.MenuItems.Add(new NavigationViewItemHeader { Content = itemInGroup.Content });
+                            menuItems.Add(new NavigationViewItemHeader { Content = itemInGroup.Content });
                         }
                         else
                         {
-                            _navigationView.MenuItems.Add(itemInGroup);
+                            menuItems.Add(itemInGroup);
                         }
                     }
                 }
@@ -77,20 +83,29 @@ public partial class JsonNavigationService
             {
                 if (group.IsFooterNavigationViewItem)
                 {
-                    _navigationView.FooterMenuItems.Add(itemGroup);
+                    footerItems.Add(itemGroup);
                 }
                 else
                 {
                     if (group.IsNavigationViewItemHeader)
                     {
-                        _navigationView.MenuItems.Add(new NavigationViewItemHeader { Content = itemGroup.Content });
+                        menuItems.Add(new NavigationViewItemHeader { Content = itemGroup.Content });
                     }
                     else
                     {
-                        _navigationView.MenuItems.Add(itemGroup);
+                        menuItems.Add(itemGroup);
                     }
                 }
             }
+        }
+
+        foreach (var item in menuItems)
+        {
+            _navigationView.MenuItems.Add(item);
+        }
+        foreach (var item in footerItems)
+        {
+            _navigationView.FooterMenuItems.Add(item);
         }
 
         EnsureNavigationSelection(_defaultPage?.ToString());
@@ -182,12 +197,13 @@ public partial class JsonNavigationService
         return null;
     }
 
+    private FontFamily? _glyphFontFamily;
     private FontIcon GetFontIcon(string glyph)
     {
         var fontIcon = new FontIcon();
         if (!string.IsNullOrEmpty(_fontFamilyForGlyph))
         {
-            fontIcon.FontFamily = new FontFamily(_fontFamilyForGlyph);
+            fontIcon.FontFamily = _glyphFontFamily ??= new FontFamily(_fontFamilyForGlyph);
         }
         var _glyph = GeneralHelper.GetGlyph(glyph);
         if (!string.IsNullOrEmpty(_glyph))
