@@ -14,38 +14,42 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            // Set Items once to avoid rebuilding the GridView twice
-            Items = DataSource.Instance.Groups
-                .Where(group => !group.HideGroup && !group.IsSpecialSection)
-                .SelectMany(group => group.Items)
-                .Where(item => !item.HideItem)
-                .OrderBy(i => i.Title)
-                .ToList();
+            GetData(i => i.Title);
         }
     }
 
     public void GetData()
     {
-        var allItems = DataSource.Instance.Groups
+        Items = GetAllItems().ToList();
+    }
+
+    /// <summary>
+    /// Loads and orders the items in one step, so Items is only set once.
+    /// </summary>
+    public void GetData(Func<DataItem, object> orderBy, bool descending = false)
+    {
+        var items = GetAllItems();
+        if (orderBy != null)
+        {
+            items = descending ? items.OrderByDescending(orderBy) : items.OrderBy(orderBy);
+        }
+
+        Items = items.ToList();
+    }
+
+    private static IEnumerable<DataItem> GetAllItems()
+    {
+        return DataSource.Instance.Groups
             .Where(group => !group.HideGroup && !group.IsSpecialSection)
             .SelectMany(group => group.Items)
-            .Where(item => !item.HideItem)
-            .ToList();
-
-        Items = allItems;
+            .Where(item => !item.HideItem);
     }
 
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
-        var allItems = DataSource.Instance.Groups
-            .Where(group => !group.HideGroup && !group.IsSpecialSection)
-            .SelectMany(group => group.Items)
-            .Where(item => !item.HideItem)
-            .ToList();
-
-        Items = allItems;
+        Items = GetAllItems().ToList();
     }
 
     public void OrderBy(Func<DataItem, object> orderby = null)

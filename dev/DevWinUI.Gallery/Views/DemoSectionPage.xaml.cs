@@ -10,8 +10,7 @@ public sealed partial class DemoSectionPage : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         var item = AppHelper.GetUniqueIdAndSectionId(e.Parameter);
-        sectionPage.GetData(item.UniqueId, item.SectionId);
-        sectionPage.OrderBy(i => i.Title);
+        sectionPage.GetData(item.UniqueId, item.SectionId, i => i.Title);
     }
     private void SectionPage_OnItemClick(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
