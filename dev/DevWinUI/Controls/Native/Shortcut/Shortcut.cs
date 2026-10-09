@@ -158,6 +158,7 @@ public partial class Shortcut : BaseShortcut
             shortcut.IsError = IsError;
             shortcut.ErrorTitle = ErrorTitle;
             shortcut.ErrorToolTip = ErrorToolTip;
+            shortcut.KeysMargin = KeysMargin;
         }
     }
     
@@ -197,6 +198,7 @@ public partial class Shortcut : BaseShortcut
 
         shortcut.Keys = null;
         shortcut.Keys = Keys;
+        shortcut.KeysMargin = KeysMargin;
 
         shortcut.InfoTitle = InfoTitle;
         shortcut.InfoToolTip = InfoToolTip;
@@ -236,8 +238,6 @@ public partial class Shortcut : BaseShortcut
         contentDialog.SecondaryButtonClick += OnResetContentDialog;
         contentDialog.CloseButtonClick -= OnCancelContentDialog;
         contentDialog.CloseButtonClick += OnCancelContentDialog;
-        contentDialog.SizeChanged -= OnContentDialogSizeChanged;
-        contentDialog.SizeChanged += OnContentDialogSizeChanged;
         await contentDialog.ShowAsyncQueue();
     }
 
@@ -250,11 +250,6 @@ public partial class Shortcut : BaseShortcut
             UpdatePreviewKeys();
             _windowsKeyPressed = false;
         }
-    }
-
-    private void OnContentDialogSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        shortcut?.SetMinWidth(e.NewSize.Width);
     }
 
     private IconElement CreateDefaultIcon()
@@ -300,7 +295,6 @@ public partial class Shortcut : BaseShortcut
 
     private void OnClosingContentDialog(ContentDialog sender, ContentDialogClosingEventArgs args)
     {
-        contentDialog?.SizeChanged -= OnContentDialogSizeChanged;
         args.Cancel = !canCloseDialog;
         canCloseDialog = false;
         ClosingContentDialog?.Invoke(this, args);
