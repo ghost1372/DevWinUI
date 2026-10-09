@@ -14,8 +14,13 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            GetData();
-            OrderBy(i => i.Title);
+            // Set Items once to avoid rebuilding the GridView twice
+            Items = DataSource.Instance.Groups
+                .Where(group => !group.HideGroup && !group.IsSpecialSection)
+                .SelectMany(group => group.Items)
+                .Where(item => !item.HideItem)
+                .OrderBy(i => i.Title)
+                .ToList();
         }
     }
 

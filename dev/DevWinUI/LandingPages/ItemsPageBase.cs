@@ -34,7 +34,7 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
 
     protected void OnItemGridViewContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
     {
-        if (sender.ContainerFromItem(sender.Items.LastOrDefault()) is GridViewItem container)
+        if (args.ItemIndex == sender.Items.Count - 1 && args.ItemContainer is GridViewItem container)
         {
             container.XYFocusDown = container;
         }

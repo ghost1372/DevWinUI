@@ -196,39 +196,41 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         {
             var suggestions = new List<DataItem>();
 
-            var querySplit = sender.Text.Split(" ");
+            var querySplit = sender.Text.Split(' ');
             foreach (var group in DataSource.Instance.Groups)
             {
-                var matchingItems = group.Items.Where(
-                    item =>
-                    {
-                        // Idea: check for every word entered (separated by space) if it is in the name, 
-                        // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button"
-                        // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words
-                        bool flag = item.IncludedInBuild;
-                        foreach (string queryToken in querySplit)
-                        {
-                            // Check if token is not in string
-                            if (item.Title.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
-                            {
-                                // Token is not in string, so we ignore this item.
-                                flag = false;
-                            }
-                        }
-                        return flag;
-                    });
-                foreach (var item in matchingItems)
+                foreach (var item in group.Items)
                 {
-                    if (string.IsNullOrEmpty(item.ImagePath))
+                    // Every word entered (separated by space) must be in the title,
+                    // e.g. "split button" only matches titles containing both "split" and "button"
+                    if (!item.IncludedInBuild || item.Title == null)
                     {
-                        item.ImagePath = _autoSuggestBoxNotFoundImagePath;
+                        continue;
                     }
-                    suggestions.Add(item);
+
+                    bool match = true;
+                    foreach (string queryToken in querySplit)
+                    {
+                        if (item.Title.IndexOf(queryToken, StringComparison.OrdinalIgnoreCase) < 0)
+                        {
+                            match = false;
+                            break;
+                        }
+                    }
+
+                    if (match)
+                    {
+                        if (string.IsNullOrEmpty(item.ImagePath))
+                        {
+                            item.ImagePath = _autoSuggestBoxNotFoundImagePath;
+                        }
+                        suggestions.Add(item);
+                    }
                 }
             }
             if (suggestions.Count > 0)
             {
-                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title).ToList();
+                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.OrdinalIgnoreCase)).ThenBy(i => i.Title, StringComparer.CurrentCulture).ToList();
             }
             else
             {
