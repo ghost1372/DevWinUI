@@ -58,16 +58,22 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            if (e.Parameter is BaseDataInfo dataInfo && !string.IsNullOrEmpty(dataInfo.UniqueId))
+            var selectionId = (e.Parameter as BaseDataInfo)?.UniqueId;
+            if (string.IsNullOrEmpty(selectionId))
+            {
+                selectionId = _pendingSelectionId;
+            }
+
+            if (!string.IsNullOrEmpty(selectionId) && _itemMap.ContainsKey(selectionId))
             {
                 // Frame already navigated (e.g. back/forward), so selection must not navigate again
                 _lastParameterUsed = e.Parameter;
-                if (_navigationView.SelectedItem is not NavigationViewItem currentItem || !dataInfo.UniqueId.Equals(currentItem.Tag as string))
+                if (_navigationView.SelectedItem is not NavigationViewItem currentItem || !selectionId.Equals(currentItem.Tag as string))
                 {
                     _suppressSelectionNavigation = true;
                     try
                     {
-                        EnsureNavigationSelection(dataInfo.UniqueId);
+                        EnsureNavigationSelection(selectionId);
                     }
                     finally
                     {

@@ -60,7 +60,17 @@ public partial class JsonNavigationService
     public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
     {
         var pageType = GetPageType(pageKey);
-        return Navigate(pageType, parameter, clearNavigation, transitionInfo);
+
+        // Pages navigated by key (e.g. from a section page) may pass no BaseDataInfo, so remember the key to sync the selection
+        _pendingSelectionId = pageKey;
+        try
+        {
+            return Navigate(pageType, parameter, clearNavigation, transitionInfo);
+        }
+        finally
+        {
+            _pendingSelectionId = null;
+        }
     }
 
     public bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
