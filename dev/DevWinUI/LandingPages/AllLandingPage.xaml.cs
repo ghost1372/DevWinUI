@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using Microsoft.UI.Dispatching;
+
+namespace DevWinUI;
 public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
@@ -14,7 +16,8 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            GetData(i => i.Title);
+            // Let the page and navigation icons render first; the empty state is shown meanwhile
+            DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () => GetData(i => i.Title));
         }
     }
 

@@ -51,7 +51,8 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            GetData();
+            // Let the page and navigation icons render first; the empty state is shown meanwhile
+            DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () => GetData());
         }
     }
 
