@@ -119,4 +119,31 @@ public abstract partial class ItemsPageBase
 
     public static readonly DependencyProperty FooterMarginProperty =
         DependencyProperty.Register(nameof(FooterMargin), typeof(Thickness), typeof(ItemsPageBase), new PropertyMetadata(new Thickness(16, 34, 48, 0)));
+
+    public IconElement EmptyIcon
+    {
+        get => (IconElement)GetValue(EmptyIconProperty);
+        set => SetValue(EmptyIconProperty, value);
+    }
+
+    public static readonly DependencyProperty EmptyIconProperty =
+        DependencyProperty.Register(nameof(EmptyIcon), typeof(IconElement), typeof(ItemsPageBase), new PropertyMetadata(null));
+
+    public string EmptyTitle
+    {
+        get => (string)GetValue(EmptyTitleProperty);
+        set => SetValue(EmptyTitleProperty, value);
+    }
+
+    public static readonly DependencyProperty EmptyTitleProperty =
+        DependencyProperty.Register(nameof(EmptyTitle), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(null));
+
+    public string EmptySubtitle
+    {
+        get => (string)GetValue(EmptySubtitleProperty);
+        set => SetValue(EmptySubtitleProperty, value);
+    }
+
+    public static readonly DependencyProperty EmptySubtitleProperty =
+        DependencyProperty.Register(nameof(EmptySubtitle), typeof(string), typeof(ItemsPageBase), new PropertyMetadata(null));
 }

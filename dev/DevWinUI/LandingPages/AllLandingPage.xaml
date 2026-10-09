@@ -44,5 +44,6 @@
                 </Grid>
             </GridView.Footer>
         </GridView>
+        <local:Empty Grid.Row="1" Icon="{x:Bind EmptyIcon, Mode=OneWay}" IsEmpty="{x:Bind IsEmpty, Mode=OneWay}" IsHitTestVisible="False" Subtitle="{x:Bind EmptySubtitle, Mode=OneWay}" Title="{x:Bind EmptyTitle, Mode=OneWay}" />
     </Grid>
 </local:ItemsPageBase>

@@ -117,6 +117,7 @@ Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\EdgeLighting.xaml
+Themes\Styles\Controls\Empty.xaml
 Themes\Styles\Controls\FlipBlock.xaml
 Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlipToReveal.xaml
@@ -16318,6 +16319,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultEdgeLightingStyle}" TargetType="local:EdgeLighting" />
+  <Style x:Key="DefaultEmptyStyle" TargetType="local:Empty">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Empty">
+          <StackPanel MaxWidth="480" Padding="24" Spacing="8">
+            <ContentPresenter MaxWidth="128" MaxHeight="128" HorizontalAlignment="Center" Content="{TemplateBinding Icon}" Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="{TemplateBinding Title}" TextAlignment="Center" TextWrapping="Wrap" Visibility="{Binding Title, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+            <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{TemplateBinding Subtitle}" TextAlignment="Center" TextWrapping="Wrap" Visibility="{Binding Subtitle, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="BorderBrush" Value="Gray" />
@@ -20802,6 +20819,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
   <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
   <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
+  <Style BasedOn="{StaticResource DefaultEmptyStyle}" TargetType="local:Empty" />
   <Style BasedOn="{StaticResource DefaultFlipBlockStyle}" TargetType="local:FlipBlock" />
   <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
   <Style BasedOn="{StaticResource DefaultGooeyButtonStyle}" TargetType="local:GooeyButton" />
