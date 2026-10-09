@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 public partial class BaseShortcut : Control
 {
-        public Thickness KeysMargin
+    public Thickness KeysMargin
     {
         get { return (Thickness)GetValue(KeysMarginProperty); }
         set { SetValue(KeysMarginProperty, value); }
