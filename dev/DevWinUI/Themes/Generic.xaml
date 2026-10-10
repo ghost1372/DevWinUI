@@ -5277,37 +5277,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style x:Key="DefaultShortcutPreview" TargetType="local:ShortcutPreview">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:ShortcutPreview">
-          <Grid>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto" />
-              <RowDefinition Height="*" />
-              <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" />
-            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
-              <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                  <StackPanel Orientation="Horizontal" Spacing="8" />
-                </ItemsPanelTemplate>
-              </ItemsControl.ItemsPanel>
-              <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                  <local:KeyVisual AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsError="{Binding Tag, ElementName=KeysItemsControl}" IsTabStop="False" VisualType="Large" />
-                </DataTemplate>
-              </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <InfoBar Grid.Row="2" IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" />
-            <InfoBar Title="{TemplateBinding ErrorTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" />
-            <InfoBar Title="{TemplateBinding WarningTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" />
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
   <Style x:Key="DefaultShortcutWithTextLabel" TargetType="local:ShortcutWithTextLabel">
     <Setter Property="Template">
       <Setter.Value>
@@ -18871,7 +18840,37 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultShimmerStyle}" TargetType="local:Shimmer" />
   <Style BasedOn="{StaticResource DefaultShimmerTextBlockStyle}" TargetType="local:ShimmerTextBlock" />
   <Style BasedOn="{StaticResource DefaultShortcutStyle}" TargetType="local:Shortcut" />
-  <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
+  <Style x:Key="DefaultShortcutPreview" TargetType="local:ShortcutPreview">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ShortcutPreview">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" Visibility="{Binding Title, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+            <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal" Spacing="8" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <local:KeyVisual AutomationProperties.AccessibilityView="Raw" Content="{Binding}" IsError="{Binding Tag, ElementName=KeysItemsControl}" IsTabStop="False" VisualType="Large" />
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <InfoBar Grid.Row="2" IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" Visibility="{Binding InfoTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+            <InfoBar Title="{TemplateBinding ErrorTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" Visibility="{Binding ErrorTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+            <InfoBar Title="{TemplateBinding WarningTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" Visibility="{Binding WarningTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel}" TargetType="local:ShortcutWithTextLabel" />
   <Style x:Key="DefaultShortcutWithTextLabel2Style" TargetType="local:ShortcutWithTextLabel2">
     <Setter Property="KeyVisualStyle" Value="{StaticResource DefaultKeyVisualStyle}" />
@@ -20904,6 +20903,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultSegmentedSliderStyle}" TargetType="local:SegmentedSlider" />
   <Style BasedOn="{StaticResource DefaultSettingsGroupStyle}" TargetType="local:SettingsGroup" />
   <Style BasedOn="{StaticResource DefaultShieldStyle}" TargetType="local:Shield" />
+  <Style BasedOn="{StaticResource DefaultShortcutPreview}" TargetType="local:ShortcutPreview" />
   <Style BasedOn="{StaticResource DefaultShortcutWithTextLabel2Style}" TargetType="local:ShortcutWithTextLabel2" />
   <Style BasedOn="{StaticResource DefaultSimpleSettingsGroupStyle}" TargetType="local:SimpleSettingsGroup" />
   <Style BasedOn="{StaticResource DefaultSpectrumAnalyzerStyle}" TargetType="local:SpectrumAnalyzer" />
