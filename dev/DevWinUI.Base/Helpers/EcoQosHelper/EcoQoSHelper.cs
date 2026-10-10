@@ -7,7 +7,7 @@ namespace DevWinUI;
 /// </summary>
 public static unsafe partial class EcoQoSHelper
 {
-    private static void EnableEfficiencyMode()
+    public static void EnableEfficiencyMode()
     {
         EnableEfficiencyMode(EcoQosProcessPriority.IDLE_PRIORITY_CLASS);
     }
