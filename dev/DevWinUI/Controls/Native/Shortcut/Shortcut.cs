@@ -144,7 +144,7 @@ public partial class Shortcut : BaseShortcut
     {
         if (shortcut != null && contentDialog != null)
         {
-            contentDialog.Title = ContentDialogTitle;
+            contentDialog.Title = GetContentDialogTitle();
             contentDialog.PrimaryButtonText = PrimaryButtonText;
             contentDialog.SecondaryButtonText = SecondaryButtonText;
             contentDialog.CloseButtonText = CloseButtonText;
@@ -162,6 +162,11 @@ public partial class Shortcut : BaseShortcut
         }
     }
     
+    private string GetContentDialogTitle()
+    {
+        return string.IsNullOrEmpty(ContentDialogTitle) ? null : ContentDialogTitle;
+    }
+
     public Shortcut()
     {
         DefaultStyleKey = typeof(Shortcut);
@@ -216,7 +221,7 @@ public partial class Shortcut : BaseShortcut
         contentDialog = new ContentDialog
         {
             XamlRoot = XamlRoot,
-            Title = ContentDialogTitle,
+            Title = GetContentDialogTitle(),
             Content = shortcut,
             PrimaryButtonText = PrimaryButtonText,
             SecondaryButtonText = SecondaryButtonText,
