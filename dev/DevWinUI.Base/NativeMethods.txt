@@ -27,6 +27,7 @@ EnumWindows
 FillRect
 FindWindow
 FindWindowExW
+FlashWindowEx
 GetActiveWindow
 GetAncestor
 GetAsyncKeyState
