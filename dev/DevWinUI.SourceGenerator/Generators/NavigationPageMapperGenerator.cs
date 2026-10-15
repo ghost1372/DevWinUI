@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Immutable;
+using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using Microsoft.CodeAnalysis;
@@ -12,7 +13,9 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var additionalFiles = context
-            .AdditionalTextsProvider.Where(af => af.Path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) && !string.Equals(Path.GetFileName(af.Path), "NativeMethods.json", StringComparison.OrdinalIgnoreCase));
+            .AdditionalTextsProvider
+            .Where(af => af.Path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) && !string.Equals(Path.GetFileName(af.Path), "NativeMethods.json", StringComparison.OrdinalIgnoreCase))
+            .Collect();
 
         var compilationProvider = context.CompilationProvider;
 
@@ -39,33 +42,39 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
         });
     }
 
-    private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
+    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
     {
-        var jsonText = file.GetText(ctx.CancellationToken)?.ToString();
-        if (!TryDeserializeJson(jsonText ?? "", out var root))
+        var parsedFiles = new List<(AdditionalText File, Root Root)>();
+        foreach (var file in files
+                     .GroupBy(file => file.Path, StringComparer.OrdinalIgnoreCase)
+                     .Select(group => group.First())
+                     .OrderBy(file => file.Path, StringComparer.OrdinalIgnoreCase)
+                     .ThenBy(file => file.Path, StringComparer.Ordinal))
         {
-            ctx.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor(
-                    "DEVGEN1001",
-                    "NavigationPageMappings Skipped",
-                    $"Skipping {file.Path} because it's not valid JSON for NavigationPageMappings.",
-                    "SourceGenerator",
-                    DiagnosticSeverity.Warning,
-                    isEnabledByDefault: true),
-                Location.None));
-            return;
-        }
-
-        var pageNames = new List<string>();
-        foreach (var group in root.Groups)
-        {
-            foreach (var item in group.Items)
+            var jsonText = file.GetText(ctx.CancellationToken)?.ToString();
+            if (!TryDeserializeJson(jsonText ?? "", out var root))
             {
-                if (!string.IsNullOrEmpty(item.UniqueId))
-                    pageNames.Add(item.UniqueId);
+                ctx.ReportDiagnostic(Diagnostic.Create(
+                    new DiagnosticDescriptor(
+                        "DEVGEN1001",
+                        "NavigationPageMappings Skipped",
+                        $"Skipping {file.Path} because it's not valid JSON for NavigationPageMappings.",
+                        "SourceGenerator",
+                        DiagnosticSeverity.Warning,
+                        isEnabledByDefault: true),
+                    Location.None));
+                continue;
             }
+
+            parsedFiles.Add((file, root!));
         }
 
+        if (parsedFiles.Count == 0)
+            return;
+
+        var primaryFile = parsedFiles
+            .FirstOrDefault(item => string.Equals(Path.GetFileNameWithoutExtension(item.File.Path), "AppData", StringComparison.OrdinalIgnoreCase))
+            .File ?? parsedFiles[0].File;
 
         var projectNamespace = @namespace;
         if (string.IsNullOrEmpty(projectNamespace))
@@ -78,29 +87,63 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
             }
         }
 
-        // Generate source
-        var sb = new StringBuilder();
-        var sourceFiles = file.Path.Replace(projectDir, "");
+        var generatedClassNames = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var (file, root) in parsedFiles)
+        {
+            var className = ReferenceEquals(file, primaryFile)
+                ? "NavigationPageMappings"
+                : $"NavigationPageMappings{GetIdentifierSuffix(Path.GetFileNameWithoutExtension(file.Path))}";
 
-        _ = sb.AppendFullHeader($"//{sourceFiles}");
-        sb.AppendLine();
-        sb.AppendLine("using System;");
-        sb.AppendLine("using System.Collections.Generic;");
-        sb.AppendLine();
-        sb.AppendLine($"namespace {projectNamespace};");
-        sb.AppendLine("public partial class NavigationPageMappings");
-        sb.AppendLine("{");
-        sb.AppendLine("    public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>");
-        sb.AppendLine("    {");
+            var uniqueClassName = className;
+            var suffix = 2;
+            while (!generatedClassNames.Add(uniqueClassName))
+            {
+                uniqueClassName = $"{className}{suffix++}";
+            }
 
-        foreach (var pageName in pageNames)
-            sb.AppendLine($"        {{\"{pageName}\", typeof({pageName})}},");
+            var pageNames = new List<string>();
+            foreach (var group in root.Groups)
+            {
+                foreach (var item in group.Items)
+                {
+                    if (!string.IsNullOrEmpty(item.UniqueId))
+                        pageNames.Add(item.UniqueId);
+                }
+            }
 
-        sb.AppendLine("    };");
-        sb.AppendLine("}");
+            var sb = new StringBuilder();
+            var sourceFiles = file.Path.Replace(projectDir, "");
 
-        var fileName = $"NavigationPageMappings_{System.IO.Path.GetFileNameWithoutExtension(file.Path)}.g.cs";
-        ctx.AddSource(fileName, SourceText.From(sb.ToString(), Encoding.UTF8));
+            _ = sb.AppendFullHeader($"//{sourceFiles}");
+            sb.AppendLine();
+            sb.AppendLine("using System;");
+            sb.AppendLine("using System.Collections.Generic;");
+            sb.AppendLine();
+            sb.AppendLine($"namespace {projectNamespace};");
+            sb.AppendLine($"public partial class {uniqueClassName}");
+            sb.AppendLine("{");
+            sb.AppendLine("    public static Dictionary<string, Type> PageDictionary { get; } = new Dictionary<string, Type>");
+            sb.AppendLine("    {");
+
+            foreach (var pageName in pageNames)
+                sb.AppendLine($"        {{\"{pageName}\", typeof({pageName})}},");
+
+            sb.AppendLine("    };");
+            sb.AppendLine("}");
+
+            ctx.AddSource($"{uniqueClassName}.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+        }
+    }
+
+    private static string GetIdentifierSuffix(string value)
+    {
+        var suffix = new StringBuilder(value.Length);
+        foreach (var character in value)
+        {
+            suffix.Append(char.IsLetterOrDigit(character) || character == '_' ? character : '_');
+        }
+
+        return suffix.Length == 0 ? "File" : suffix.ToString();
     }
 
     private static bool TryDeserializeJson(string jsonText, out DevWinUI.Root? root)
