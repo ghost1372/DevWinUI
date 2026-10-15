@@ -32,7 +32,7 @@ public partial class RealClock
         set => SetValue(TimeFormatProperty, value);
     }
     public static readonly DependencyProperty TimeFormatProperty = DependencyProperty.Register(
-        nameof(TimeFormat), typeof(string), typeof(RealClock), new PropertyMetadata("HH:mm", OnTimeFormatChanged));
+        nameof(TimeFormat), typeof(string), typeof(RealClock), new PropertyMetadata(DateTimeBase.GetTimeFormat(), OnTimeFormatChanged));
     private static void OnTimeFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (RealClock)d;

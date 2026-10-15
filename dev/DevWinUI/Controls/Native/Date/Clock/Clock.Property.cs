@@ -36,7 +36,7 @@ public partial class Clock
     }
 
     public static readonly DependencyProperty TimeFormatProperty = DependencyProperty.Register(
-        nameof(TimeFormat), typeof(string), typeof(Clock), new PropertyMetadata("HH:mm:ss"));
+        nameof(TimeFormat), typeof(string), typeof(Clock), new PropertyMetadata(DateTimeBase.GetTimeFormat(includeSeconds: true)));
 
     public string TimeFormat
     {

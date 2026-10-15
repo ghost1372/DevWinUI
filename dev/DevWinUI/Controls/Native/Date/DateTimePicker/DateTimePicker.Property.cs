@@ -195,6 +195,7 @@ public partial class DateTimePicker
         if (d is DateTimePicker ctl && ctl?.calendarWithClock != null)
         {
             ctl.calendarWithClock.DateTimeFormat = (string)e.NewValue;
+            ctl.UpdatePlaceholder();
         }
     }
 

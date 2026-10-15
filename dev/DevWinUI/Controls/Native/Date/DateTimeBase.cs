@@ -1,4 +1,5 @@
-﻿using Windows.Globalization;
+﻿using System.Globalization;
+using Windows.Globalization;
 using DayOfWeek = Windows.Globalization.DayOfWeek;
 
 namespace DevWinUI;
@@ -7,6 +8,12 @@ namespace DevWinUI;
 public abstract partial class DateTimeBase : Control
 {
     public static TimeSpan? TimeNow => new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+
+    internal static string GetTimeFormat(bool includeSeconds = false)
+    {
+        var hourFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains('H') ? "HH" : "hh";
+        return includeSeconds ? $"{hourFormat}:mm:ss" : $"{hourFormat}:mm";
+    }
 
     public bool IsGroupLabelVisible
     {
