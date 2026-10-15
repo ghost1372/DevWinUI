@@ -18,45 +18,50 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:InfoCard">
                     <Grid x:Name="controlRoot" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ColumnSpacing="16" CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="LayoutVisualStates">
-                                <VisualState x:Name="WideLayout">
-                                    <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters />
-                                </VisualState>
-                                <VisualState x:Name="NarrowLayout">
-                                    <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="0" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Target="controlRoot.Width" Value="Auto" />
-                                        <Setter Target="controlRoot.Height" Value="120" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <local:ImageEx x:Name="gridImage" Grid.RowSpan="2" Width="36" Margin="8,12,16,0" VerticalAlignment="Top" AutomationProperties.Name="{TemplateBinding Title}" Source="{TemplateBinding Icon}" Stretch="Uniform" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="LayoutVisualStates">
+                                    <VisualState x:Name="WideLayout">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters />
+                                    </VisualState>
+                                    <VisualState x:Name="NarrowLayout">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="controlRoot.Width" Value="Auto" />
+                                            <Setter Target="controlRoot.Height" Value="120" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <local:ImageEx x:Name="gridImage" Grid.RowSpan="2" Width="36" Margin="8,12,16,0" VerticalAlignment="Top" AutomationProperties.Name="{TemplateBinding Title}" Source="{TemplateBinding Icon}" Stretch="Uniform" />
 
-                        <TextBlock x:Name="titleText" Grid.Column="1" Margin="0,12,0,0" VerticalAlignment="Bottom" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemTitleFontSize}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Title}" TextLineBounds="TrimToCapHeight" TextWrapping="NoWrap" />
-                        <TextBlock x:Name="subtitleText" Grid.Row="1" Grid.Column="1" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemSubtitleFontSize}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" RelativePanel.Below="titleText" Style="{StaticResource CaptionTextBlockStyle}" Text="{TemplateBinding Description}" TextTrimming="WordEllipsis">
-                            <ToolTipService.ToolTip>
-                                <ToolTip Visibility="{Binding ElementName=subtitleText, Path=IsTextTrimmed}">
-                                    <TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" />
-                                </ToolTip>
-                            </ToolTipService.ToolTip>
-                        </TextBlock>
-                        <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding InfoBadge}" />
+                            <TextBlock x:Name="titleText" Grid.Column="1" Margin="0,12,0,0" VerticalAlignment="Bottom" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemTitleFontSize}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{TemplateBinding Title}" TextLineBounds="TrimToCapHeight" TextWrapping="NoWrap" />
+                            <TextBlock x:Name="subtitleText" Grid.Row="1" Grid.Column="1" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="{ThemeResource LandingItemSubtitleFontSize}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" RelativePanel.Below="titleText" Style="{StaticResource CaptionTextBlockStyle}" Text="{TemplateBinding Description}" TextTrimming="WordEllipsis">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip Visibility="{Binding ElementName=subtitleText, Path=IsTextTrimmed}">
+                                        <TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" />
+                                    </ToolTip>
+                                </ToolTipService.ToolTip>
+                            </TextBlock>
+                            <ContentPresenter Grid.Column="2" VerticalAlignment="Top" Content="{TemplateBinding InfoBadge}" />
+                        </Grid>
+                        <Border Margin="-8" Padding="8,4" VerticalAlignment="Bottom" AutomationProperties.AccessibilityView="Raw" Background="{ThemeResource SystemFillColorCautionBackgroundBrush}" CornerRadius="0,0,7,7" Visibility="{Binding IsTagVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource SystemFillColorCautionBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
