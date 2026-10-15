@@ -10,41 +10,51 @@ public partial class PageServiceEx : IPageServiceEx
 
     public virtual Type GetPageType(string key)
     {
-        if (key == null)
-            return null;
-
-        Type? pageType;
-        lock (_pageKeyToTypeMap)
+        var pageMap = _pageKeyToTypeMap;
+        if (key == null || pageMap == null)
         {
-            if (!_pageKeyToTypeMap.TryGetValue(key, out pageType))
-            {
-                return pageType;
-            }
+            return null;
         }
 
-        return pageType;
+        lock (pageMap)
+        {
+            return pageMap.TryGetValue(key, out var pageType) ? pageType : null;
+        }
     }
 
     public virtual void SetDefaultPage(Type pageType)
     {
-        if (pageType != null)
+        var pageMap = _pageKeyToTypeMap;
+        if (pageType != null && pageMap != null)
         {
-            _pageKeyToTypeMap?.TryAdd(DefaultPageKey, pageType);
+            lock (pageMap)
+            {
+                pageMap.TryAdd(DefaultPageKey, pageType);
+            }
         }
     }
 
     public virtual void SetSettingsPage(Type pageType)
     {
-        if (pageType != null)
+        var pageMap = _pageKeyToTypeMap;
+        if (pageType != null && pageMap != null)
         {
-            _pageKeyToTypeMap?.TryAdd(SettingsPageKey, pageType);
+            lock (pageMap)
+            {
+                pageMap.TryAdd(SettingsPageKey, pageType);
+            }
         }
     }
+
     internal virtual void SetSectionPage(Type pageType)
     {
-        if (pageType != null)
+        var pageMap = _pageKeyToTypeMap;
+        if (pageType != null && pageMap != null)
         {
-            _pageKeyToTypeMap?.TryAdd(SectionPageKey, pageType);
+            lock (pageMap)
+            {
+                pageMap.TryAdd(SectionPageKey, pageType);
+            }
         }
     }
 }

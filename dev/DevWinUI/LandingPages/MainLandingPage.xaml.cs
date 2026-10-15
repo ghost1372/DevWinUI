@@ -1,8 +1,9 @@
 ﻿namespace DevWinUI;
-public sealed partial class MainLandingPage : ItemsPageBase
+
+public sealed partial class MainLandingPage : ItemsPageBase, INavigationPageRefreshable
 {
     internal static MainLandingPage Instance { get; private set; }
-
+    void INavigationPageRefreshable.Refresh() => GetData();
     public string PreviewGroupText
     {
         get => (string)GetValue(PreviewGroupTextProperty);
@@ -51,8 +52,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            // Let the page and navigation icons render first; the empty state is shown meanwhile
-            DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () => GetData());
+            GetData();
         }
     }
 
@@ -110,43 +110,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
     public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder, bool useOrderByDescending, Func<DataItem, object> orderby)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
-
-        var allItems = DataSource.Instance.Groups
-            .Where(group => !group.HideGroup)
-            .SelectMany(group => group.Items)
-            .Where(item => item.BadgeString != null && !item.HideItem);
-
-        if (useOrder)
-        {
-            if (orderby == null)
-            {
-                if (useOrderByDescending)
-                {
-                    Items = allItems.OrderByDescending(i => i.Title).ToList();
-                }
-                else
-                {
-                    Items = allItems.OrderBy(i => i.Title).ToList();
-                }
-            }
-            else
-            {
-                if (useOrderByDescending)
-                {
-                    Items = allItems.OrderByDescending(orderby).ToList();
-                }
-                else
-                {
-                    Items = allItems.OrderBy(orderby).ToList();
-                }
-            }
-        }
-        else
-        {
-            Items = allItems.ToList();
-        }
-
-        GetCollectionViewSource().Source = FormatData();
+        GetData(useOrder, useOrderByDescending, orderby);
     }
     public async Task GetDataAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
@@ -168,52 +132,48 @@ public sealed partial class MainLandingPage : ItemsPageBase
 
     public ObservableCollection<GroupInfoList> FormatData()
     {
-        // Flatten the items list to include nested items
-        var allItems = new List<DataItem>();
-        foreach (var item in this.Items)
+        if (Items == null)
         {
-            allItems.Add(item);
+            return null;
         }
 
-        // Group the flattened items by BadgeString
-        var query = from item in allItems
-                    group item by item.BadgeString into g
-                    orderby g.Key
-                    select new GroupInfoList(g) { Key = g.Key };
+        var groupList = new ObservableCollection<GroupInfoList>(
+            Items.GroupBy(item => item.BadgeString)
+                .OrderBy(group => group.Key)
+                .Select(group => new GroupInfoList(group) { Key = group.Key }));
 
-        ObservableCollection<GroupInfoList> groupList = new(query);
-
-        if (groupList.Any())
+        if (groupList.Count == 0)
         {
-            // Move "Preview" to the back of the list
-            foreach (var item in groupList?.ToList())
-            {
-                if (item?.Key.ToString() == "Preview")
-                {
-                    groupList?.Remove(item);
-                    groupList?.Insert(groupList.Count, item);
-                }
-            }
-
-            // Update group titles based on the key
-            foreach (var item in groupList)
-            {
-                switch (item.Key.ToString())
-                {
-                    case "New":
-                        item.Title = NewGroupText;
-                        break;
-                    case "Updated":
-                        item.Title = UpdatedGroupText;
-                        break;
-                    case "Preview":
-                        item.Title = PreviewGroupText;
-                        break;
-                }
-            }
-
-            return groupList;
+            return null;
         }
-        return null;
+
+        for (var i = 0; i < groupList.Count; i++)
+        {
+            if (string.Equals(groupList[i].Key as string, "Preview", StringComparison.Ordinal))
+            {
+                var previewGroup = groupList[i];
+                groupList.RemoveAt(i);
+                groupList.Add(previewGroup);
+                break;
+            }
+        }
+
+        foreach (var item in groupList)
+        {
+            switch (item.Key as string)
+            {
+                case "New":
+                    item.Title = NewGroupText;
+                    break;
+                case "Updated":
+                    item.Title = UpdatedGroupText;
+                    break;
+                case "Preview":
+                    item.Title = PreviewGroupText;
+                    break;
+            }
+        }
+
+        return groupList;
     }
 }

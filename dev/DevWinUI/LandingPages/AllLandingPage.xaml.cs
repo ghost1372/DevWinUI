@@ -1,9 +1,10 @@
 ﻿using Microsoft.UI.Dispatching;
 
 namespace DevWinUI;
-public sealed partial class AllLandingPage : ItemsPageBase
+public sealed partial class AllLandingPage : ItemsPageBase, INavigationPageRefreshable
 {
     internal static AllLandingPage Instance { get; private set; }
+    void INavigationPageRefreshable.Refresh() => GetData(i => i.Title);
     public AllLandingPage()
     {
         this.InitializeComponent();
@@ -16,8 +17,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
     {
         if (CanExecuteInternalCommand)
         {
-            // Let the page and navigation icons render first; the empty state is shown meanwhile
-            DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () => GetData(i => i.Title));
+            GetData(i => i.Title);
         }
     }
 

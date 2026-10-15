@@ -33,8 +33,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         _navigationView.SelectionChanged -= OnNavigationViewSelectionChanged;
         _navigationView.SelectionChanged += OnNavigationViewSelectionChanged;
 
-        var settingItem = (NavigationViewItem)SettingsItem;
-        if (settingItem != null)
+        if (SettingsItem is NavigationViewItem settingItem)
         {
             settingItem.Icon = GetAnimatedSettingsIcon();
         }
@@ -45,6 +44,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
+        if (_navigationView == null || Frame == null)
+        {
+            return;
+        }
+
         _navigationView.IsBackEnabled = CanGoBack;
 
         if (_isTitlebarConfigured && _autoManageBackButtonVisibility)
@@ -58,8 +62,10 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
         else
         {
-            var selectionId = (e.Parameter as BaseDataInfo)?.UniqueId;
-            if (string.IsNullOrEmpty(selectionId))
+            var selectionId = e.SourcePageType == _defaultPage
+               ? _defaultPage?.ToString()
+               : (e.Parameter as BaseDataInfo)?.UniqueId;
+            if (string.IsNullOrEmpty(selectionId) && _pendingSelectionPageType == e.SourcePageType)
             {
                 selectionId = _pendingSelectionId;
             }
@@ -70,6 +76,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 _lastParameterUsed = e.Parameter;
                 if (_navigationView.SelectedItem is not NavigationViewItem currentItem || !selectionId.Equals(currentItem.Tag as string))
                 {
+                    var wasSelectionSuppressed = _suppressSelectionNavigation;
                     _suppressSelectionNavigation = true;
                     try
                     {
@@ -77,7 +84,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                     }
                     finally
                     {
-                        _suppressSelectionNavigation = false;
+                        _suppressSelectionNavigation = wasSelectionSuppressed;
                     }
                 }
             }
@@ -99,7 +106,13 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         FrameNavigated -= OnNavigated;
         _navigationView = null;
         Frame = null;
-        DataSource.Instance.Groups.Clear();
+        _jsonConfigurationVersion++;
+        _suppressSelectionNavigation = false;
+        _pendingSelectionId = null;
+        _pendingSelectionPageType = null;
+        _lastParameterUsed = null;
+        _pendingClearNavigations.Clear();
+        DataSource.Instance.Reset();
     }
     public void ReInitialize()
     {
@@ -107,7 +120,8 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
         InternalLocalizationHelper.InitializeInternalLocalization(_resourceManager, _resourceContext);
 
-        ConfigureJsonBase(JsonFilePath, DataSource.Instance.UseTaskForDeserialization, _pathType, _orderItems);
+        var configurationVersion = ++_jsonConfigurationVersion;
+        _jsonLoadTask = ConfigureJsonBase(JsonFilePath, DataSource.Instance.UseTaskForDeserialization, _pathType, _orderItems, configurationVersion);
     }
 
     private void OnNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -143,6 +157,12 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     // Lets NavigationView draw the selection indicator before the page is created
     private void DeferNavigation(NavigationView sender, object? selected, Action navigate)
     {
+        if (!_deferNavigation)
+        {
+            navigate();
+            return;
+        }
+
         var queue = sender.DispatcherQueue;
         if (queue == null || !queue.TryEnqueue(DispatcherQueuePriority.Low, () =>
         {
@@ -194,9 +214,15 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
         {
-            var suggestions = new List<DataItem>();
+            var query = sender.Text.Trim();
+            if (query.Length == 0)
+            {
+                _autoSuggestBox.ItemsSource = null;
+                return;
+            }
 
-            var querySplit = sender.Text.Split(' ');
+            var suggestions = new List<DataItem>();
+            var querySplit = query.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             foreach (var group in DataSource.Instance.Groups)
             {
                 foreach (var item in group.Items)
@@ -230,7 +256,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
             if (suggestions.Count > 0)
             {
-                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.OrdinalIgnoreCase)).ThenBy(i => i.Title, StringComparer.CurrentCulture).ToList();
+                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(query, StringComparison.OrdinalIgnoreCase)).ThenBy(i => i.Title, StringComparer.CurrentCulture).ToList();
             }
             else
             {
@@ -245,7 +271,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         }
     }
 
-    public async void GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative)
+    public async Task GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
     }
@@ -289,6 +315,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
         if (parent != null && _navigationView.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
         {
             // In Top mode the child is not visible, so select the parent without navigating to it
+            var wasSelectionSuppressed = _suppressSelectionNavigation;
             _suppressSelectionNavigation = true;
             try
             {
@@ -296,7 +323,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
             finally
             {
-                _suppressSelectionNavigation = false;
+                _suppressSelectionNavigation = wasSelectionSuppressed;
             }
             parent.StartBringIntoView();
             return false;
@@ -309,69 +336,61 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     public bool EnsureItemIsVisibleInNavigation(string name)
     {
-        bool changedSelection = false;
-        foreach (object rawItem in this.AllMenuItems)
+        if (_navigationView == null || string.IsNullOrEmpty(name))
         {
-            // Check if we encountered the separator
-            if (!(rawItem is NavigationViewItem))
+            return false;
+        }
+
+        foreach (var rawItem in _navigationView.MenuItems)
+        {
+            if (rawItem is NavigationViewItem item && SelectNavigationItemByName(item, name))
             {
-                // Skipping this item
+                return true;
+            }
+        }
+
+        foreach (var rawItem in _navigationView.FooterMenuItems)
+        {
+            if (rawItem is NavigationViewItem item && SelectNavigationItemByName(item, name))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool SelectNavigationItemByName(NavigationViewItem item, string name)
+    {
+        if (string.Equals(item.Content as string, name, StringComparison.Ordinal))
+        {
+            _navigationView.SelectedItem = item;
+            return true;
+        }
+
+        foreach (var rawChild in item.MenuItems)
+        {
+            if (rawChild is not NavigationViewItem child ||
+                !string.Equals(child.Content as string, name, StringComparison.Ordinal))
+            {
                 continue;
             }
 
-            var item = rawItem as NavigationViewItem;
-
-            // Check if we are this category
-            if ((string)item.Content == name)
+            if (_navigationView.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
             {
                 _navigationView.SelectedItem = item;
-                changedSelection = true;
+                item.StartBringIntoView();
             }
-            // We are not :/
             else
             {
-                // Maybe one of our items is?
-                if (item.MenuItems.Count != 0)
-                {
-                    foreach (NavigationViewItem child in item.MenuItems)
-                    {
-                        if ((string)child.Content == name)
-                        {
-                            // We are the item corresponding to the selected one, update selection!
+                item.IsExpanded = true;
+                _navigationView.SelectedItem = child;
+                child.StartBringIntoView();
+            }
 
-                            // Deal with differences in displaymodes
-                            if (_navigationView.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
-                            {
-                                // In Topmode, the child is not visible, so set parent as selected
-                                // Everything else does not work unfortunately
-                                _navigationView.SelectedItem = item;
-                                item.StartBringIntoView();
-                            }
-                            else
-                            {
-                                // Expand so we animate
-                                if (item.MenuItems.Count > 0)
-                                {
-                                    item.IsExpanded = true;
-                                }
-                                // Set selected item
-                                _navigationView.SelectedItem = child;
-                                child.StartBringIntoView();
-                            }
-                            // Set to true to also skip out of outer for loop
-                            changedSelection = true;
-                            // Break out of child iteration for loop
-                            break;
-                        }
-                    }
-                }
-            }
-            // We updated selection, break here!
-            if (changedSelection)
-            {
-                break;
-            }
+            return true;
         }
-        return changedSelection;
+
+        return false;
     }
 }

@@ -15,15 +15,24 @@ public partial class JsonNavigationService
     }
     private const string DefaultJsonPath = @"Assets\NavViewMenu\AppData.json";
 
-    private async void ConfigureJsonBase(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems)
+    private async Task ConfigureJsonBase(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, int configurationVersion)
     {
         JsonFilePath = jsonFilePath;
         _pathType = pathType;
         _orderItems = orderItems;
         DataSource.Instance.UseTaskForDeserialization = useTaskForDeserialization;
+
+        if (Frame?.Content == null && _defaultPage != null)
+        {
+            NavigateTo(_defaultPage);
+        }
+
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
-        AddNavigationMenuItems(orderItems);
+        if (configurationVersion == _jsonConfigurationVersion)
+        {
+            AddNavigationMenuItems(orderItems);
+        }
     }
 
     private JsonNavigationService ConfigureJsonCore(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager = null, ResourceContext resourceContext = null)
@@ -37,9 +46,12 @@ public partial class JsonNavigationService
         _resourceContext = resourceContext;
         _resourceManager = resourceManager;
         InternalLocalizationHelper.InitializeInternalLocalization(resourceManager, resourceContext);
-        ConfigureJsonBase(jsonFilePath, useTaskForDeserialization, pathType, orderItems);
+        var configurationVersion = ++_jsonConfigurationVersion;
+        _jsonLoadTask = ConfigureJsonBase(jsonFilePath, useTaskForDeserialization, pathType, orderItems, configurationVersion);
         return this;
     }
+
+    public Task WhenReadyAsync() => _jsonLoadTask;
 
     public JsonNavigationService ConfigureJsonFile()
         => ConfigureJsonCore(DefaultJsonPath, false, PathType.Relative, OrderItemsType.AscendingTopLevel);
@@ -95,6 +107,7 @@ public partial class JsonNavigationService
         EnsureInitialized();
 
         _defaultPage = defaultPage;
+        SetDefaultPage(defaultPage);
 
         return this;
     }
@@ -118,8 +131,22 @@ public partial class JsonNavigationService
 
         return this;
     }
+
+    public JsonNavigationService ConfigureDefer(bool defer)
+    {
+        EnsureInitialized();
+        _deferNavigation = defer;
+        return this;
+    }
+
     private void ConfigureAutoSuggestBoxBase(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string autoSuggestBoxNotFoundString = null, string autoSuggestBoxNotFoundImagePath = null)
     {
+        if (_autoSuggestBox != null)
+        {
+            _autoSuggestBox.TextChanged -= OnAutoSuggestBox_TextChanged;
+            _autoSuggestBox.QuerySubmitted -= OnAutoSuggestBox_QuerySubmitted;
+        }
+
         _autoSuggestBox = autoSuggestBox;
 
         if (_autoSuggestBox != null)
@@ -205,6 +232,12 @@ public partial class JsonNavigationService
         => ConfigureBreadcrumbBarCore(breadcrumbNavigator, pageDictionary, headerVisibilityOptions, navigationTransitionInfo);
     private void ConfigureTitleBarBase(TitleBar titleBar, bool autoManageBackButtonVisibility)
     {
+        if (_titleBar != null)
+        {
+            _titleBar.BackRequested -= OnBackRequested;
+            _titleBar.PaneToggleRequested -= OnPaneToggleRequested;
+        }
+
         _titleBar = titleBar;
         titleBar.BackRequested -= OnBackRequested;
         titleBar.BackRequested += OnBackRequested;
