@@ -113,6 +113,7 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine("using System;");
         sb.AppendLine("using System.Collections.Generic;");
+        sb.AppendLine("using DevWinUI;");
         sb.AppendLine();
         sb.AppendLine($"namespace {projectNamespace};");
         sb.AppendLine("public partial class BreadcrumbPageMappings");
