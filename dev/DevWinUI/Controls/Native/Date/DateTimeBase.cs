@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Windows.Globalization;
+﻿using Windows.Globalization;
 using DayOfWeek = Windows.Globalization.DayOfWeek;
 
 namespace DevWinUI;
@@ -11,8 +10,12 @@ public abstract partial class DateTimeBase : Control
 
     internal static string GetTimeFormat(bool includeSeconds = false)
     {
-        var hourFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains('H') ? "HH" : "hh";
-        return includeSeconds ? $"{hourFormat}:mm:ss" : $"{hourFormat}:mm";
+        bool is24Hour = DateTimeHelper.Is24HourFormat();
+        var hourFormat = is24Hour ? "HH" : "hh";
+        var secondsFormat = includeSeconds ? ":ss" : string.Empty;
+        var designator = is24Hour ? string.Empty : " tt";
+
+        return $"{hourFormat}:mm{secondsFormat}{designator}";
     }
 
     public bool IsGroupLabelVisible
