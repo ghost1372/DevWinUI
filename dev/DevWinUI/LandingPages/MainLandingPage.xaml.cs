@@ -1,9 +1,8 @@
 ﻿namespace DevWinUI;
 
-public sealed partial class MainLandingPage : ItemsPageBase, INavigationPageRefreshable
+public sealed partial class MainLandingPage : ItemsPageBase
 {
     internal static MainLandingPage Instance { get; private set; }
-    void INavigationPageRefreshable.Refresh() => GetData();
     public string PreviewGroupText
     {
         get => (string)GetValue(PreviewGroupTextProperty);
@@ -44,15 +43,57 @@ public sealed partial class MainLandingPage : ItemsPageBase, INavigationPageRefr
     {
         this.InitializeComponent();
         Instance = this;
-        Loading -= MainLandingPage_Loading;
-        Loading += MainLandingPage_Loading;
+        DataSource.Instance.ParsingCompleted += OnDataSourceParsingCompleted;
+        Loaded -= MainLandingPage_Loaded;
+        Loaded += MainLandingPage_Loaded;
+        Unloaded -= MainLandingPage_Unloaded;
+        Unloaded += MainLandingPage_Unloaded;
     }
 
-    private void MainLandingPage_Loading(FrameworkElement sender, object args)
+    private void MainLandingPage_Loaded(object sender, RoutedEventArgs e)
     {
+        if (IsEmpty)
+        {
+            DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            DataSource.Instance.ParsingCompleted += OnDataSourceParsingCompleted;
+        }
+
+        RefreshIfEmpty();
+    }
+
+    private void MainLandingPage_Unloaded(object sender, RoutedEventArgs e)
+    {
+        DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+    }
+
+    private void OnDataSourceParsingCompleted(object? sender, EventArgs e)
+    {
+        if (DispatcherQueue.HasThreadAccess)
+        {
+            RefreshIfEmpty();
+        }
+        else
+        {
+            DispatcherQueue.TryEnqueue(RefreshIfEmpty);
+        }
+    }
+
+    private void RefreshIfEmpty()
+    {
+        if (!IsEmpty)
+        {
+            DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            return;
+        }
+
         if (CanExecuteInternalCommand)
         {
             GetData();
+
+            if (!IsEmpty)
+            {
+                DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            }
         }
     }
 

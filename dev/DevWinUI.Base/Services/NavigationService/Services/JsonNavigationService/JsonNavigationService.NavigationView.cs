@@ -134,10 +134,6 @@ public partial class JsonNavigationService
             {
                 NavigateTo(_defaultPage);
             }
-            else if (currentPage.IsLoaded && currentPage is INavigationPageRefreshable { IsEmpty: true } refreshablePage)
-            {
-                refreshablePage.Refresh();
-            }
         }
         else
         {

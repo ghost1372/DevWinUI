@@ -27,6 +27,9 @@ public sealed partial class DataSource
     private readonly SemaphoreSlim _loadSemaphore = new(1, 1);
     public bool UseTaskForDeserialization { get; set; }
 
+    /// <summary>Raised after parsed navigation data has been committed to <see cref="Groups"/>.</summary>
+    public event EventHandler? ParsingCompleted;
+
     #region Singleton
 
     private static readonly DataSource _instance;
@@ -147,6 +150,7 @@ public sealed partial class DataSource
 
     private async Task GetControlInfoDataAsync(string jsonFilePath, PathType pathType, bool useTaskForDeserialization)
     {
+        var parsingCompleted = false;
         await _loadSemaphore.WaitAsync();
         try
         {
@@ -253,11 +257,17 @@ public sealed partial class DataSource
                 _loadedPathType = pathType;
                 _loadedGroupCount = Groups.Count;
                 _isLoaded = true;
+                parsingCompleted = true;
             }
         }
         finally
         {
             _loadSemaphore.Release();
+        }
+
+        if (parsingCompleted)
+        {
+            ParsingCompleted?.Invoke(this, EventArgs.Empty);
         }
     }
 
