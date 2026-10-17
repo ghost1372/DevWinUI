@@ -149,6 +149,7 @@ public partial class Shortcut : BaseShortcut
             contentDialog.SecondaryButtonText = SecondaryButtonText;
             contentDialog.CloseButtonText = CloseButtonText;
             shortcut.Title = Title;
+            shortcut.TitleTemplate = TitleTemplate;
             shortcut.IsInfo = IsInfo;
             shortcut.InfoTitle = InfoTitle;
             shortcut.InfoToolTip = InfoToolTip;
@@ -159,6 +160,8 @@ public partial class Shortcut : BaseShortcut
             shortcut.ErrorTitle = ErrorTitle;
             shortcut.ErrorToolTip = ErrorToolTip;
             shortcut.KeysMargin = KeysMargin;
+            shortcut.Footer = Footer;
+            shortcut.FooterTemplate = FooterTemplate;
         }
     }
     
@@ -213,6 +216,11 @@ public partial class Shortcut : BaseShortcut
         shortcut.IsError = IsError;
 
         shortcut.Title = Title;
+        shortcut.TitleTemplate = TitleTemplate;
+
+        shortcut.Footer = Footer;
+        shortcut.FooterTemplate = FooterTemplate;
+
         contentDialog = new ContentDialog
         {
             XamlRoot = XamlRoot,
@@ -290,6 +298,13 @@ public partial class Shortcut : BaseShortcut
 
     private void OnClosedContentDialog(ContentDialog sender, ContentDialogClosedEventArgs args)
     {
+        // A UIElement title or footer can only have one parent, so release it before the next dialog creates a new preview
+        if (sender.Content is ShortcutPreview preview)
+        {
+            preview.Title = null;
+            preview.Footer = null;
+        }
+
         ClosedContentDialog?.Invoke(this, args);
     }
 
