@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace DevWinUI;
+
 public partial class JsonNavigationService
 {
     private Frame? _frame;
@@ -61,15 +62,21 @@ public partial class JsonNavigationService
     {
         var pageType = GetPageType(pageKey);
 
-        // Pages navigated by key (e.g. from a section page) may pass no BaseDataInfo, so remember the key to sync the selection
         _pendingSelectionId = pageKey;
+        _pendingSelectionPageType = pageType;
+        var navigationSucceeded = false;
         try
         {
-            return Navigate(pageType, parameter, clearNavigation, transitionInfo);
+            navigationSucceeded = Navigate(pageType, parameter, clearNavigation, transitionInfo);
+            return navigationSucceeded;
         }
         finally
         {
-            _pendingSelectionId = null;
+            if (!navigationSucceeded && _pendingSelectionId == pageKey && _pendingSelectionPageType == pageType)
+            {
+                _pendingSelectionId = null;
+                _pendingSelectionPageType = null;
+            }
         }
     }
 
@@ -87,48 +94,93 @@ public partial class JsonNavigationService
 
         if (Frame != null && (Frame.CurrentSourcePageType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
-            Frame.Tag = clearNavigation;
-
-            if (_useBreadcrumbBar)
+            var frameContentBeforeNavigationAOTSafe = Frame.Content;
+            var pendingClearNavigationId = 0L;
+            if (clearNavigation)
             {
-                _mainBreadcrumb.AddNewItem(pageType, parameter);
+                pendingClearNavigationId = ++_pendingClearNavigationSequence;
+                _pendingClearNavigations.Add((pendingClearNavigationId, pageType, parameter));
             }
 
-            var frameContentBeforeNavigationAOTSafe = Frame.Content;
-
-            var navigated = Frame.Navigate(pageType, parameter, transitionInfo);
-            if (navigated)
+            var navigationSucceeded = false;
+            try
             {
-                _lastParameterUsed = parameter;
-
-                if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
+                var navigated = Frame.Navigate(pageType, parameter, transitionInfo);
+                navigationSucceeded = navigated;
+                if (navigated)
                 {
-                    viewModel.OnNavigatedFrom();
+                    if (_useBreadcrumbBar)
+                    {
+                        _mainBreadcrumb.AddNewItem(pageType, parameter);
+                    }
+
+                    _lastParameterUsed = parameter;
+
+                    if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
+                    {
+                        viewModel.OnNavigatedFrom();
+                    }
+                }
+
+                return navigated;
+            }
+            finally
+            {
+                if (!navigationSucceeded && pendingClearNavigationId != 0)
+                {
+                    for (var i = 0; i < _pendingClearNavigations.Count; i++)
+                    {
+                        if (_pendingClearNavigations[i].Id == pendingClearNavigationId)
+                        {
+                            _pendingClearNavigations.RemoveAt(i);
+                            break;
+                        }
+                    }
                 }
             }
-
-            return navigated;
         }
 
         return false;
     }
     private void OnFrameNavigated(object sender, NavigationEventArgs e)
     {
-        if (sender is Frame frame)
+        if (sender is not Frame frame)
         {
-            var clearNavigation = (bool)frame.Tag;
-            if (clearNavigation)
-            {
-                frame.BackStack.Clear();
-            }
+            return;
+        }
 
-            // This is AOT Safe
+        for (var i = 0; i < _pendingClearNavigations.Count; i++)
+        {
+            var pendingNavigation = _pendingClearNavigations[i];
+            if (pendingNavigation.PageType == e.SourcePageType && Equals(pendingNavigation.Parameter, e.Parameter))
+            {
+                _pendingClearNavigations.RemoveAt(i);
+                frame.BackStack.Clear();
+                break;
+            }
+        }
+
+        var pendingSelectionId = _pendingSelectionId;
+        var pendingSelectionPageType = _pendingSelectionPageType;
+        var completesPendingSelection = pendingSelectionPageType == e.SourcePageType;
+        try
+        {
             if (Frame?.Content is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
                 viewModel.OnNavigatedTo(e.Parameter);
             }
 
             FrameNavigated?.Invoke(sender, e);
+        }
+        finally
+        {
+            if (completesPendingSelection &&
+                _pendingSelectionId == pendingSelectionId &&
+                _pendingSelectionPageType == pendingSelectionPageType)
+            {
+                _pendingSelectionId = null;
+                _pendingSelectionPageType = null;
+            }
         }
     }
 }

@@ -38,6 +38,15 @@ public partial class InfoCard : Control
     public static readonly DependencyProperty InfoBadgeProperty =
         DependencyProperty.Register(nameof(InfoBadge), typeof(InfoBadge), typeof(InfoCard), new PropertyMetadata(null));
 
+    public bool IsTagVisible
+    {
+        get { return (bool)GetValue(IsTagVisibleProperty); }
+        set { SetValue(IsTagVisibleProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsTagVisibleProperty =
+        DependencyProperty.Register(nameof(IsTagVisible), typeof(bool), typeof(InfoCard), new PropertyMetadata(false));
+
     public InfoCard()
     {
         DefaultStyleKey = typeof(InfoCard);

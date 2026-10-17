@@ -17,9 +17,18 @@ public sealed partial class DataSource
 {
     private string _jsonFilePath;
     private PathType _pathType;
+    private string _loadedJsonFilePath;
+    private PathType _loadedPathType;
+    private int _loadedGroupCount;
+    private bool _isLoaded;
+    private long _resetVersion;
 
     private static readonly object _lock = new();
+    private readonly SemaphoreSlim _loadSemaphore = new(1, 1);
     public bool UseTaskForDeserialization { get; set; }
+
+    /// <summary>Raised after parsed navigation data has been committed to <see cref="Groups"/>.</summary>
+    public event EventHandler? ParsingCompleted;
 
     #region Singleton
 
@@ -50,11 +59,20 @@ public sealed partial class DataSource
 
     public async Task<IEnumerable<DataGroup>> GetGroupsAsync(string jsonFilePath, PathType pathType = PathType.Relative)
     {
-        _jsonFilePath = jsonFilePath;
-        _pathType = pathType;
-        await _instance.GetControlInfoDataAsync();
+        ArgumentException.ThrowIfNullOrWhiteSpace(jsonFilePath);
+        await _instance.GetControlInfoDataAsync(jsonFilePath, pathType, UseTaskForDeserialization);
 
         return _instance.Groups;
+    }
+
+    public void Reset()
+    {
+        lock (_lock)
+        {
+            Groups.Clear();
+            _isLoaded = false;
+            _resetVersion++;
+        }
     }
 
     public static async Task<DataGroup> GetGroupAsync(string uniqueId)
@@ -64,7 +82,7 @@ public sealed partial class DataSource
         DataGroup match = null;
         foreach (var group in _instance.Groups)
         {
-            if (group.UniqueId.Equals(uniqueId))
+            if (string.Equals(group.UniqueId, uniqueId, StringComparison.Ordinal))
             {
                 if (match != null) return null;
                 match = group;
@@ -80,7 +98,7 @@ public sealed partial class DataSource
         {
             foreach (var item in group.Items)
             {
-                if (item.UniqueId.Equals(uniqueId)) return item;
+                if (string.Equals(item.UniqueId, uniqueId, StringComparison.Ordinal)) return item;
             }
         }
         return null;
@@ -94,7 +112,7 @@ public sealed partial class DataSource
         {
             foreach (var item in group.Items)
             {
-                if (item.UniqueId.Equals(uniqueId))
+                if (string.Equals(item.UniqueId, uniqueId, StringComparison.Ordinal))
                 {
                     if (match != null) return null;
                     match = group;
@@ -107,30 +125,70 @@ public sealed partial class DataSource
 
     private async Task GetControlInfoDataAsync()
     {
+        string jsonFilePath;
+        PathType pathType;
+        bool useTaskForDeserialization;
         lock (_lock)
         {
-            if (this.Groups.Count != 0)
+            if (_isLoaded && Groups.Count == _loadedGroupCount)
             {
                 return;
             }
+
+            jsonFilePath = _jsonFilePath;
+            pathType = _pathType;
+            useTaskForDeserialization = UseTaskForDeserialization;
         }
 
-        var jsonText = await LoadText(_jsonFilePath, _pathType);
-
-        Root? controlInfoDataGroup = null;
-        if (UseTaskForDeserialization)
+        if (string.IsNullOrWhiteSpace(jsonFilePath))
         {
-            controlInfoDataGroup = await Task.Run(() => JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root);
-        }
-        else
-        {
-            controlInfoDataGroup = JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root;
+            throw new InvalidOperationException("Configure a JSON file before requesting navigation data.");
         }
 
-        lock (_lock)
+        await GetControlInfoDataAsync(jsonFilePath, pathType, useTaskForDeserialization);
+    }
+
+    private async Task GetControlInfoDataAsync(string jsonFilePath, PathType pathType, bool useTaskForDeserialization)
+    {
+        var parsingCompleted = false;
+        await _loadSemaphore.WaitAsync();
+        try
         {
-            foreach (var group in controlInfoDataGroup.Groups)
+            long resetVersion;
+            lock (_lock)
             {
+                if (_isLoaded && Groups.Count == _loadedGroupCount && _loadedPathType == pathType && string.Equals(_loadedJsonFilePath, jsonFilePath, StringComparison.Ordinal))
+                {
+                    return;
+                }
+
+                resetVersion = _resetVersion;
+            }
+
+            var jsonText = await LoadText(jsonFilePath, pathType);
+            var controlInfoData = useTaskForDeserialization
+                ? await Task.Run(() => JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root)
+                : JsonSerializer.Deserialize(jsonText, typeof(Root), RootContext.Default) as Root;
+
+            if (controlInfoData?.Groups == null)
+            {
+                throw new JsonException("The navigation JSON must contain a Groups array.");
+            }
+
+            var groupIds = new HashSet<string>(StringComparer.Ordinal);
+            var itemIds = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var group in controlInfoData.Groups)
+            {
+                if (group == null)
+                {
+                    throw new JsonException("The navigation JSON contains a null group.");
+                }
+                if (string.IsNullOrWhiteSpace(group.UniqueId) || !groupIds.Add(group.UniqueId))
+                {
+                    throw new JsonException($"Navigation group ID '{group.UniqueId}' is empty or duplicated.");
+                }
+
+                group.Items ??= new ObservableCollection<DataItem>();
                 if (group.UsexUid)
                 {
                     group.Title = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Title);
@@ -138,54 +196,78 @@ public sealed partial class DataSource
                     group.Subtitle = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Subtitle);
                     group.Description = InternalLocalizationHelper.GetLocalizedText(group.LocalizeId, ResourceType.Description);
                 }
-            }
-            controlInfoDataGroup.Groups.SelectMany(group => group.Items.Select(item => new { Group = group, Item = item })).ToList().ForEach(x =>
-            {
-                var group = x.Group;
-                var item = x.Item;
-#nullable enable
-                string? badgeString = item switch
-                {
-                    { IsNew: true } => "New",
-                    { IsUpdated: true } => "Updated",
-                    { IsPreview: true } => "Preview",
-                    _ => null
-                };
 
-                if (item.DataInfoBadge == null)
+                foreach (var item in group.Items)
                 {
-                    item.DataInfoBadge = new DataInfoBadge();
-                }
+                    if (item == null)
+                    {
+                        throw new JsonException($"Navigation group '{group.UniqueId}' contains a null item.");
+                    }
+                    if (string.IsNullOrWhiteSpace(item.UniqueId) || !itemIds.Add(item.UniqueId))
+                    {
+                        throw new JsonException($"Navigation item ID '{item.UniqueId}' is empty or duplicated.");
+                    }
 
-                if (group.UseBuiltInLandingPageInfoBadgeStyle)
-                {
-                    if (string.IsNullOrEmpty(item.DataInfoBadge.LandingPageInfoBadgeStyle) && !string.IsNullOrEmpty(badgeString))
+                    string? badgeString = item switch
+                    {
+                        { IsNew: true } => "New",
+                        { IsUpdated: true } => "Updated",
+                        { IsPreview: true } => "Preview",
+                        _ => null
+                    };
+
+                    item.DataInfoBadge ??= new DataInfoBadge();
+                    if (group.UseBuiltInLandingPageInfoBadgeStyle &&
+                        string.IsNullOrEmpty(item.DataInfoBadge.LandingPageInfoBadgeStyle) &&
+                        !string.IsNullOrEmpty(badgeString))
                     {
                         item.DataInfoBadge.LandingPageInfoBadgeStyle = group.DefaultBuiltInLandingPageInfoBadgeStyle;
                     }
+
+                    item.DataInfoBadge.IsLandingPageInfoBadgeHidden =
+                        item.DataInfoBadge.IsLandingPageInfoBadgeHidden == true || string.IsNullOrEmpty(badgeString) ? false : true;
+                    item.BadgeString = badgeString;
+
+                    if (item.UsexUid)
+                    {
+                        item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title);
+                        item.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.SecondaryTitle);
+                        item.Subtitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Subtitle);
+                        item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description);
+                    }
                 }
+            }
 
-                item.DataInfoBadge.IsLandingPageInfoBadgeHidden = item.DataInfoBadge?.IsLandingPageInfoBadgeHidden == true || string.IsNullOrEmpty(badgeString) ? false : true;
-
-                item.BadgeString = badgeString;
-                
-                if (item.UsexUid)
-                {
-                    item.Title = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Title);
-                    item.SecondaryTitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.SecondaryTitle);
-                    item.Subtitle = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Subtitle);
-                    item.Description = InternalLocalizationHelper.GetLocalizedText(item.LocalizeId, ResourceType.Description);
-                }
-#nullable disable
-    });
-
-            foreach (var group in controlInfoDataGroup.Groups)
+            lock (_lock)
             {
-                if (!Groups.Any(g => g.Title == group.Title))
+                if (resetVersion != _resetVersion)
+                {
+                    return;
+                }
+
+                Groups.Clear();
+                foreach (var group in controlInfoData.Groups)
                 {
                     Groups.Add(group);
                 }
+
+                _jsonFilePath = jsonFilePath;
+                _pathType = pathType;
+                _loadedJsonFilePath = jsonFilePath;
+                _loadedPathType = pathType;
+                _loadedGroupCount = Groups.Count;
+                _isLoaded = true;
+                parsingCompleted = true;
             }
+        }
+        finally
+        {
+            _loadSemaphore.Release();
+        }
+
+        if (parsingCompleted)
+        {
+            ParsingCompleted?.Invoke(this, EventArgs.Empty);
         }
     }
 

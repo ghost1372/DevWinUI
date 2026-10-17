@@ -8,6 +8,16 @@ public abstract partial class DateTimeBase : Control
 {
     public static TimeSpan? TimeNow => new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
 
+    internal static string GetTimeFormat(bool includeSeconds = false)
+    {
+        bool is24Hour = DateTimeHelper.Is24HourFormat();
+        var hourFormat = is24Hour ? "HH" : "hh";
+        var secondsFormat = includeSeconds ? ":ss" : string.Empty;
+        var designator = is24Hour ? string.Empty : " tt";
+
+        return $"{hourFormat}:mm{secondsFormat}{designator}";
+    }
+
     public bool IsGroupLabelVisible
     {
         get { return (bool)GetValue(IsGroupLabelVisibleProperty); }

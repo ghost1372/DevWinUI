@@ -24,42 +24,16 @@ public partial class GeneralHelper
     /// </remarks>
     public static bool IsFirstRun()
     {
-        if (PackageHelper.IsPackaged)
-        {
-            var settings = Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalSettings;
-            if (settings.Values.TryGetValue(firstRunKey, out object keyExist) &&
+        var settings = GetApplicationData().LocalSettings;
+
+        if (settings.Values.TryGetValue(firstRunKey, out object keyExist) &&
                 keyExist is bool isFirstRun && isFirstRun)
-            {
-                return false;
-            }
-
-            settings.Values[firstRunKey] = true;
-            return true;
-        }
-        else
         {
-            //Todo: Replace Registry with Microsoft.Windows.Storage.ApplicationData.GetForUnPackaged()
-            return IsFirstRunForUnPackaged();
-        }
-    }
-
-    private static bool IsFirstRunForUnPackaged()
-    {
-        string registryPath = $@"Software\{ProcessInfoHelper.Publisher}\{ProcessInfoHelper.ProductNameAndVersion}";
-
-        using var key = Registry.CurrentUser.OpenSubKey(registryPath, writable: true) ??
-                        Registry.CurrentUser.CreateSubKey(registryPath);
-
-        if (key == null) return false;
-
-        var value = key.GetValue(firstRunKey);
-        if (value == null || value.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            key.SetValue(firstRunKey, "False", RegistryValueKind.String);
-            return true;
+            return false;
         }
 
-        return false;
+        settings.Values[firstRunKey] = true;
+        return true;
     }
 
     /// <summary>
@@ -69,15 +43,9 @@ public partial class GeneralHelper
     /// <exception cref="NotImplementedException">Thrown when attempting to access application data for an unpackaged app, which is not yet implemented.</exception>
     public static Microsoft.Windows.Storage.ApplicationData GetApplicationData()
     {
-        if (PackageHelper.IsPackaged)
-        {
-            return Microsoft.Windows.Storage.ApplicationData.GetDefault();
-        }
-        else
-        {
-            throw new NotImplementedException("Microsoft has not implemented GetForUnpackaged in Microsoft.Windows.Storage.ApplicationData yet.");
-            //return Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
-        }
+        return RuntimeHelper.IsPackaged()
+            ? Microsoft.Windows.Storage.ApplicationData.GetDefault()
+            : Microsoft.Windows.Storage.ApplicationData.GetForUnpackaged(ProcessInfoHelper.Publisher, ProcessInfoHelper.ProductName);
     }
 
     /// <summary>

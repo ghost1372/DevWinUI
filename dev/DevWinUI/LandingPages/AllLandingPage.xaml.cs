@@ -1,23 +1,63 @@
-﻿using Microsoft.UI.Dispatching;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 public sealed partial class AllLandingPage : ItemsPageBase
 {
     internal static AllLandingPage Instance { get; private set; }
+
     public AllLandingPage()
     {
         this.InitializeComponent();
         Instance = this;
-        Loading -= AllLandingPage_Loading;
-        Loading += AllLandingPage_Loading;
+        DataSource.Instance.ParsingCompleted += OnDataSourceParsingCompleted;
+        Loaded -= AllLandingPage_Loaded;
+        Loaded += AllLandingPage_Loaded;
+        Unloaded -= AllLandingPage_Unloaded;
+        Unloaded += AllLandingPage_Unloaded;
     }
 
-    private void AllLandingPage_Loading(FrameworkElement sender, object args)
+    private void AllLandingPage_Loaded(object sender, RoutedEventArgs e)
     {
+        if (IsEmpty)
+        {
+            DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            DataSource.Instance.ParsingCompleted += OnDataSourceParsingCompleted;
+        }
+
+        RefreshIfEmpty();
+    }
+
+    private void AllLandingPage_Unloaded(object sender, RoutedEventArgs e)
+    {
+        DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+    }
+
+    private void OnDataSourceParsingCompleted(object? sender, EventArgs e)
+    {
+        if (DispatcherQueue.HasThreadAccess)
+        {
+            RefreshIfEmpty();
+        }
+        else
+        {
+            DispatcherQueue.TryEnqueue(RefreshIfEmpty);
+        }
+    }
+
+    private void RefreshIfEmpty()
+    {
+        if (!IsEmpty)
+        {
+            DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            return;
+        }
+
         if (CanExecuteInternalCommand)
         {
-            // Let the page and navigation icons render first; the empty state is shown meanwhile
-            DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () => GetData(i => i.Title));
+            GetData(i => i.Title);
+
+            if (!IsEmpty)
+            {
+                DataSource.Instance.ParsingCompleted -= OnDataSourceParsingCompleted;
+            }
         }
     }
 

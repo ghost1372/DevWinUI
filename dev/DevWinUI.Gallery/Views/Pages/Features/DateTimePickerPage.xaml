@@ -20,7 +20,7 @@
                         <ToggleSwitch x:Name="ShowConfirmButton" Header="ShowConfirmButton" IsOn="True" />
                         <TextBox x:Name="TxtConfirm" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
                         <TextBox x:Name="TxtDateTimeFormat" Header="DateTimeFormat" PlaceholderText="e.g. yyyy-MM-dd HH:mm:ss" />
-                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Value="1" Maximum="15" />
+                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
                         <Button Click="ShowDateTimeForOne" Content="Show Selected DateTime" />
                         <TextBlock x:Name="TxtDateTime1" />
                     </StackPanel>
@@ -41,7 +41,7 @@
                         </RadioButtons>
                         <ToggleSwitch x:Name="ShowConfirmButton2" Header="ShowConfirmButton" IsOn="True" />
                         <TextBox x:Name="TxtConfirm2" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
-                        <NumberBox x:Name="MinuteIncrementNB2" Header="Minute Increment" Value="1" Maximum="15" />
+                        <NumberBox x:Name="MinuteIncrementNB2" Header="Minute Increment" Maximum="15" Value="1" />
                         <Button Click="ShowDateTimeForTwo" Content="Show selected DateTime" />
                         <TextBlock x:Name="TxtDateTime2" />
                     </StackPanel>

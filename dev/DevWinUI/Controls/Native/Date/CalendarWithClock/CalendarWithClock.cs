@@ -38,7 +38,7 @@ public partial class CalendarWithClock : DateTimeBase
             {
                 return SelectedDateTime.ToString(DateTimeFormat);
             }
-            return $"{SelectedDateFormatted} - {SelectedDateTime.TimeOfDay.ToString(@"hh\:mm\:ss")}";
+            return $"{SelectedDateFormatted} - {SelectedDateTime.ToString(DateTimeBase.GetTimeFormat(includeSeconds: true))}";
         }
     }
 

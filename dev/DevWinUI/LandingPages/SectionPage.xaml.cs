@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public sealed partial class SectionPage : ItemsPageBase
 {
     public SectionPage()
@@ -35,25 +36,54 @@ public sealed partial class SectionPage : ItemsPageBase
     /// </summary>
     public void GetData(string uniqueId, string sectionId, Func<DataItem, object> orderBy, bool descending = false)
     {
-        var matches = DataSource.Instance.Groups.Where((group) => !string.IsNullOrEmpty(group.UniqueId) && !string.IsNullOrEmpty(group.SectionId) && group.UniqueId.Equals(uniqueId) && group.SectionId.Equals(sectionId));
-        if (matches.Count() == 1)
-            GetItems(matches.First(), orderBy, descending);
+        var group = FindUniqueGroup(uniqueId, sectionId);
+        if (group != null)
+        {
+            GetItems(group, orderBy, descending);
+        }
     }
 
     public void GetData(string uniqueId, string sectionId)
     {
-        var matches = DataSource.Instance.Groups.Where((group) => !string.IsNullOrEmpty(group.UniqueId) && !string.IsNullOrEmpty(group.SectionId) && group.UniqueId.Equals(uniqueId) && group.SectionId.Equals(sectionId));
-        if (matches.Count() == 1)
-            GetItems(matches.First());
+        var group = FindUniqueGroup(uniqueId, sectionId);
+        if (group != null)
+        {
+            GetItems(group);
+        }
     }
 
-    public async void GetDataAsync(string uniqueId, string sectionId, string jsonFilePath, PathType pathType = PathType.Relative)
+    public async Task GetDataAsync(string uniqueId, string sectionId, string jsonFilePath, PathType pathType = PathType.Relative)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
 
-        var matches = DataSource.Instance.Groups.Where((group) => !string.IsNullOrEmpty(group.UniqueId) && !string.IsNullOrEmpty(group.SectionId) && group.UniqueId.Equals(uniqueId) && group.SectionId.Equals(sectionId));
-        if (matches.Count() == 1)
-            GetItems(matches.First());
+        var group = FindUniqueGroup(uniqueId, sectionId);
+        if (group != null)
+        {
+            GetItems(group);
+        }
+    }
+
+    private static DataGroup FindUniqueGroup(string uniqueId, string sectionId)
+    {
+        DataGroup match = null;
+        foreach (var group in DataSource.Instance.Groups)
+        {
+            if (string.IsNullOrEmpty(group.UniqueId) || string.IsNullOrEmpty(group.SectionId) ||
+                !string.Equals(group.UniqueId, uniqueId, StringComparison.Ordinal) ||
+                !string.Equals(group.SectionId, sectionId, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            if (match != null)
+            {
+                return null;
+            }
+
+            match = group;
+        }
+
+        return match;
     }
 
     private void GetItems(DataGroup group, Func<DataItem, object> orderBy = null, bool descending = false)

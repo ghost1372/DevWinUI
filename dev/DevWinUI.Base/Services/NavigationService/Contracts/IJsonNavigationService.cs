@@ -14,7 +14,8 @@ public interface IJsonNavigationService
     bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
     bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
     bool GoBack();
-    void GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative);
+    Task GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative);
+    Task WhenReadyAsync();
     void Reset();
     void ReInitialize();
     void EnsureNavigationSelection(string id);
@@ -42,6 +43,7 @@ public interface IJsonNavigationService
     JsonNavigationService ConfigureDefaultPage(Type defaultPage);
     JsonNavigationService ConfigureSettingsPage(Type settingsPage);
     JsonNavigationService ConfigureSectionPage(Type sectionPage);
+    JsonNavigationService ConfigureDefer(bool defer);
     JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox);
     JsonNavigationService ConfigureAutoSuggestBox(AutoSuggestBox autoSuggestBox, bool useItemTemplate, string notFoundString, string notFoundImagePath);
     JsonNavigationService ConfigureBreadcrumbBar(BreadcrumbNavigator breadcrumbBar, Dictionary<Type, BreadcrumbPageConfig> pageDictionary);

@@ -33,11 +33,12 @@ dotnet add package DevWinUI.SourceGenerator
 ```
 
 ## Example
-For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="@(Page)" />`, for `NavigationPageMappings` you need to define `<AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>` and for `StringsPropertyGenerator` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>`
+For generating `BreadcrumbPageMappings` you need to define `<AdditionalFiles Include="@(Page)" />`, for navigation mappings add each JSON file as an `AdditionalFile`, and for `StringsPropertyGenerator` you need to define `<AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>`. Each valid JSON file generates its own mapping class. A single file keeps the `NavigationPageMappings` name; with multiple files, `AppData.json` (or the first file by path if absent) generates `NavigationPageMappings`, while other files use their filename as a suffix (for example, `AppDataGlyph.json` generates `NavigationPageMappingsAppDataGlyph`).
 
 ```xml
 <ItemGroup>
   <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
+  <AdditionalFiles Include="Assets\NavViewMenu\AppDataGlyph.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
   <AdditionalFiles Include="@(Page)" />
   <AdditionalFiles Include="Strings\en-US\Resources.resw" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
 </ItemGroup>
