@@ -10,14 +10,23 @@ public partial class BaseShortcut : Control
     public static readonly DependencyProperty KeysMarginProperty =
         DependencyProperty.Register(nameof(KeysMargin), typeof(Thickness), typeof(BaseShortcut), new PropertyMetadata(new Thickness(0, 24, 0, 24), OnPropertyChanged));
 
-    public string Title
+    public object Title
     {
-        get { return (string)GetValue(TitleProperty); }
+        get { return GetValue(TitleProperty); }
         set { SetValue(TitleProperty, value); }
     }
 
     public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register(nameof(Title), typeof(string), typeof(BaseShortcut), new PropertyMetadata("Press a combination of keys to change this shortcut", OnPropertyChanged));
+        DependencyProperty.Register(nameof(Title), typeof(object), typeof(BaseShortcut), new PropertyMetadata("Press a combination of keys to change this shortcut", OnPropertyChanged));
+
+    public DataTemplate TitleTemplate
+    {
+        get { return (DataTemplate)GetValue(TitleTemplateProperty); }
+        set { SetValue(TitleTemplateProperty, value); }
+    }
+
+    public static readonly DependencyProperty TitleTemplateProperty =
+        DependencyProperty.Register(nameof(TitleTemplate), typeof(DataTemplate), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
 
 
     public List<object> Keys
@@ -107,6 +116,24 @@ public partial class BaseShortcut : Control
 
     public static readonly DependencyProperty InfoToolTipProperty =
         DependencyProperty.Register(nameof(InfoToolTip), typeof(string), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
+
+    public object Footer
+    {
+        get { return GetValue(FooterProperty); }
+        set { SetValue(FooterProperty, value); }
+    }
+
+    public static readonly DependencyProperty FooterProperty =
+        DependencyProperty.Register(nameof(Footer), typeof(object), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
+
+    public DataTemplate FooterTemplate
+    {
+        get { return (DataTemplate)GetValue(FooterTemplateProperty); }
+        set { SetValue(FooterTemplateProperty, value); }
+    }
+
+    public static readonly DependencyProperty FooterTemplateProperty =
+        DependencyProperty.Register(nameof(FooterTemplate), typeof(DataTemplate), typeof(BaseShortcut), new PropertyMetadata(null, OnPropertyChanged));
 
     private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

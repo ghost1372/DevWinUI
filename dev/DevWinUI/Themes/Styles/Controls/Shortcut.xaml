@@ -49,9 +49,10 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Text="{TemplateBinding Title}" TextWrapping="Wrap" Visibility="{Binding Title, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+                        <ContentPresenter Grid.Row="0" Content="{TemplateBinding Title}" ContentTemplate="{TemplateBinding TitleTemplate}" TextWrapping="Wrap" Visibility="{Binding Title, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
 
                         <ItemsControl x:Name="KeysItemsControl" Grid.Row="1" Margin="{TemplateBinding KeysMargin}" HorizontalAlignment="Center" ItemsSource="{TemplateBinding Keys}" Tag="{TemplateBinding IsError}">
                             <ItemsControl.ItemsPanel>
@@ -69,6 +70,8 @@
                         <InfoBar Grid.Row="2" IsClosable="False" IsIconVisible="False" IsOpen="{TemplateBinding IsInfo}" IsTabStop="{TemplateBinding IsInfo}" Message="{TemplateBinding InfoTitle}" Severity="Informational" ToolTipService.ToolTip="{TemplateBinding InfoToolTip}" Visibility="{Binding InfoTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
                         <InfoBar Title="{TemplateBinding ErrorTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsError}" IsTabStop="{TemplateBinding IsError}" Severity="Error" ToolTipService.ToolTip="{TemplateBinding ErrorToolTip}" Visibility="{Binding ErrorTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
                         <InfoBar Title="{TemplateBinding WarningTitle}" Grid.Row="2" IsClosable="False" IsOpen="{TemplateBinding IsWarning}" IsTabStop="{TemplateBinding IsWarning}" Severity="Warning" ToolTipService.ToolTip="{TemplateBinding WarningToolTip}" Visibility="{Binding WarningTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
+
+                        <ContentPresenter Grid.Row="3" Content="{TemplateBinding Footer}" ContentTemplate="{TemplateBinding FooterTemplate}" TextWrapping="Wrap" Visibility="{Binding Footer, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
