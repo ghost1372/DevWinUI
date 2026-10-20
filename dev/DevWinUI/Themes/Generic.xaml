@@ -148,6 +148,7 @@ Themes\Styles\Controls\IndeterminateProgressBar.xaml
 Themes\Styles\Controls\InfoCard.xaml
 Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml
 Themes\Styles\Controls\IsEnabledTextBlock.xaml
+Themes\Styles\Controls\IssueLabel.xaml
 Themes\Styles\Controls\KeyCharPresenter.xaml
 Themes\Styles\Controls\KeyVisual.xaml
 Themes\Styles\Controls\KeyVisual2.xaml
@@ -436,6 +437,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="ImageOpacity">0.8</x:Double>
       <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <SolidColorBrush x:Key="IssueLabelBlueBackgroundBrush" Color="#0c2d6b" />
+      <SolidColorBrush x:Key="IssueLabelBlueBorderBrush" Color="#1f6feb" />
+      <SolidColorBrush x:Key="IssueLabelBlueForegroundBrush" Color="#79c0ff" />
+      <SolidColorBrush x:Key="IssueLabelGreenBackgroundBrush" Color="#12261e" />
+      <SolidColorBrush x:Key="IssueLabelGreenBorderBrush" Color="#238636" />
+      <SolidColorBrush x:Key="IssueLabelGreenForegroundBrush" Color="#3fb950" />
+      <SolidColorBrush x:Key="IssueLabelYellowBackgroundBrush" Color="#3b2300" />
+      <SolidColorBrush x:Key="IssueLabelYellowBorderBrush" Color="#9e6a03" />
+      <SolidColorBrush x:Key="IssueLabelYellowForegroundBrush" Color="#d29922" />
+      <SolidColorBrush x:Key="IssueLabelRedBackgroundBrush" Color="#3d0d0d" />
+      <SolidColorBrush x:Key="IssueLabelRedBorderBrush" Color="#da3633" />
+      <SolidColorBrush x:Key="IssueLabelRedForegroundBrush" Color="#ff7b72" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBackgroundBrush" Color="#3d1f00" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBorderBrush" Color="#bc4c00" />
+      <SolidColorBrush x:Key="IssueLabelOrangeForegroundBrush" Color="#ff9a5c" />
+      <SolidColorBrush x:Key="IssueLabelPinkBackgroundBrush" Color="#3a1630" />
+      <SolidColorBrush x:Key="IssueLabelPinkBorderBrush" Color="#bf3989" />
+      <SolidColorBrush x:Key="IssueLabelPinkForegroundBrush" Color="#f778ba" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBackgroundBrush" Color="#27123a" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBorderBrush" Color="#8957e5" />
+      <SolidColorBrush x:Key="IssueLabelPurpleForegroundBrush" Color="#d2a8ff" />
+      <SolidColorBrush x:Key="IssueLabelGrayBackgroundBrush" Color="#212830" />
+      <SolidColorBrush x:Key="IssueLabelGrayBorderBrush" Color="#3d444d" />
+      <SolidColorBrush x:Key="IssueLabelGrayForegroundBrush" Color="#9198a1" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
@@ -767,6 +792,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="ImageOpacity">0.9</x:Double>
       <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <SolidColorBrush x:Key="IssueLabelBlueBackgroundBrush" Color="#ddf4ff" />
+      <SolidColorBrush x:Key="IssueLabelBlueBorderBrush" Color="#80ccff" />
+      <SolidColorBrush x:Key="IssueLabelBlueForegroundBrush" Color="#0550ae" />
+      <SolidColorBrush x:Key="IssueLabelGreenBackgroundBrush" Color="#dafbe1" />
+      <SolidColorBrush x:Key="IssueLabelGreenBorderBrush" Color="#4ac26b" />
+      <SolidColorBrush x:Key="IssueLabelGreenForegroundBrush" Color="#1a7f37" />
+      <SolidColorBrush x:Key="IssueLabelYellowBackgroundBrush" Color="#fff8c5" />
+      <SolidColorBrush x:Key="IssueLabelYellowBorderBrush" Color="#d4a72c" />
+      <SolidColorBrush x:Key="IssueLabelYellowForegroundBrush" Color="#9a6700" />
+      <SolidColorBrush x:Key="IssueLabelRedBackgroundBrush" Color="#ffebe9" />
+      <SolidColorBrush x:Key="IssueLabelRedBorderBrush" Color="#ff8182" />
+      <SolidColorBrush x:Key="IssueLabelRedForegroundBrush" Color="#cf222e" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBackgroundBrush" Color="#fff1e5" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBorderBrush" Color="#ff9a5c" />
+      <SolidColorBrush x:Key="IssueLabelOrangeForegroundBrush" Color="#bc4c00" />
+      <SolidColorBrush x:Key="IssueLabelPinkBackgroundBrush" Color="#ffeff7" />
+      <SolidColorBrush x:Key="IssueLabelPinkBorderBrush" Color="#f778ba" />
+      <SolidColorBrush x:Key="IssueLabelPinkForegroundBrush" Color="#bf3989" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBackgroundBrush" Color="#fbefff" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBorderBrush" Color="#d8b9ff" />
+      <SolidColorBrush x:Key="IssueLabelPurpleForegroundBrush" Color="#8250df" />
+      <SolidColorBrush x:Key="IssueLabelGrayBackgroundBrush" Color="#f6f8fa" />
+      <SolidColorBrush x:Key="IssueLabelGrayBorderBrush" Color="#d1d9e0" />
+      <SolidColorBrush x:Key="IssueLabelGrayForegroundBrush" Color="#59636e" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
@@ -1081,6 +1130,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="ImageOpacity">0.8</x:Double>
       <StaticResource x:Key="HomePageHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="HomePageHeaderSubtitleForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <SolidColorBrush x:Key="IssueLabelBlueBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelBlueBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelBlueForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelGreenBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelGreenBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelGreenForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelYellowBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelYellowBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelYellowForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelRedBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelRedBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelRedForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelOrangeBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelOrangeForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelPinkBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelPinkBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelPinkForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelPurpleBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelPurpleForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelGrayBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="IssueLabelGrayBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="IssueLabelGrayForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
       <StaticResource x:Key="LoopingListSpacerFill" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="LoopingListSpacerFillDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
       <StaticResource x:Key="LoopingListHeaderForeground" ResourceKey="SystemColorButtonTextColorBrush" />
@@ -3043,6 +3116,111 @@ Themes\Styles\Controls\WelcomeHero.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <TextBlock x:Name="Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" IsTextSelectionEnabled="{TemplateBinding IsTextSelectionEnabled}" Text="{TemplateBinding Text}" TextWrapping="WrapWholeWords" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultIssueLabelStyle" TargetType="local:IssueLabel">
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="8,2" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:IssueLabel">
+          <Grid>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="SeverityStates">
+                <VisualState x:Name="SeveritySuccess">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorSuccessBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorSuccessBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityWarning">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCautionBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityError">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCriticalBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityGreen">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelGreenBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelGreenBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelGreenForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityYellow">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelYellowBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelYellowBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelYellowForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityRed">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelRedBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelRedBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelRedForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityBlue">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelBlueBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelBlueBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelBlueForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityOrange">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelOrangeBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelOrangeBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelOrangeForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityPink">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelPinkBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelPinkBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelPinkForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityPurple">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelPurpleBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelPurpleBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelPurpleForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SeverityGray">
+                  <VisualState.Setters>
+                    <Setter Target="SeverityBorder.Background" Value="{ThemeResource IssueLabelGrayBackgroundBrush}" />
+                    <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource IssueLabelGrayBorderBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource IssueLabelGrayForegroundBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="SeverityBorder" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border x:Name="LabelBorder" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+              <Grid>
+                <ContentPresenter x:Name="SeverityTitle" Margin="{TemplateBinding Margin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Title}" ContentTemplate="{TemplateBinding TitleTemplate}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
+                <ContentPresenter x:Name="LabelTitle" Margin="{TemplateBinding Margin}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Title}" ContentTemplate="{TemplateBinding TitleTemplate}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Visibility="Collapsed" />
+              </Grid>
+            </Border>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -17086,6 +17264,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
     <Setter Property="FontSize" Value="12" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultIssueLabelStyle}" TargetType="local:IssueLabel" />
   <Style BasedOn="{StaticResource DefaultKeyCharPresenterStyle}" TargetType="local:KeyCharPresenter" />
   <Style x:Key="WindowsKeyCharPresenterStyle" BasedOn="{StaticResource DefaultKeyCharPresenterStyle}" TargetType="local:KeyCharPresenter">
     <!--  Scale to visually align the height of the Windows logo and text  -->
