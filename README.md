@@ -148,6 +148,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### BlinkingSquares
+![BlinkingSquares](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlinkingSquares.gif)
+
+### IssueLabel
+![IssueLabel](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/IssueLabel.png)
+
 ### WelcomeHero
 ![WelcomeHero](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WelcomeHero.gif)
 

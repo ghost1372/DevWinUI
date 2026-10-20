@@ -57,7 +57,7 @@ public sealed partial class IssueLabel : Control
 
     private void UpdateForegroundVisual()
     {
-        var hasCustomForeground = Foreground is not null;
+        var hasCustomForeground = !ReferenceEquals(ReadLocalValue(ForegroundProperty), DependencyProperty.UnsetValue);
 
         if (GetTemplateChild("SeverityTitle") is FrameworkElement severityTitle)
         {

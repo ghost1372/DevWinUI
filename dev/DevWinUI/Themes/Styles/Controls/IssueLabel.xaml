@@ -104,21 +104,21 @@
                                     <VisualState.Setters>
                                         <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorSuccessBackgroundBrush}" />
                                         <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorSuccessBrush}" />
-                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="SeverityWarning">
                                     <VisualState.Setters>
                                         <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCautionBackgroundBrush}" />
                                         <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCautionBrush}" />
-                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="SeverityError">
                                     <VisualState.Setters>
                                         <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCriticalBackgroundBrush}" />
                                         <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCriticalBrush}" />
-                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="SeverityGreen">

@@ -22,56 +22,48 @@
         {
           "UniqueId": "DevWinUIGallery.Views.TextBlockHelperPage",
           "Title": "TextBlock Helper",
-          "IsNew": true,
           "Subtitle": "Animate TextBlock Text when Changed",
           "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MaterialAttachPage",
           "Title": "Material Attach",
-          "IsNew": true,
           "Subtitle": "Use Acrylic Background for Some controls",
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BarcodePage",
           "Title": "BarCode",
-          "IsNew": true,
           "Subtitle": "Generate BarCode",
           "ImagePath": "ms-appx:///Assets/Fluent/QRCode.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.PasswordGeneratorPage",
           "Title": "Password Generator",
-          "IsNew": true,
           "Subtitle": "Creating strong and customizable passwords",
           "ImagePath": "ms-appx:///Assets/Fluent/PasswordBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.EyeDropperPage",
           "Title": "Eye Dropper",
-          "IsNew": true,
           "Subtitle": "Pick a color from everywhere",
           "ImagePath": "ms-appx:///Assets/Fluent/ColorPicker.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.NTPClientPage",
           "Title": "NTP Client",
-          "IsNew": true,
           "Subtitle": "Querying NTP servers to retrieve accurate network time",
           "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.QRCodePage",
           "Title": "QR Code",
-          "IsNew": true,
           "Subtitle": "Generate QR Code",
           "ImagePath": "ms-appx:///Assets/Fluent/QRCode.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.UacStyleDialogWindowPage",
           "Title": "Uac Style Dialog Window",
-          "IsNew": true,
           "Subtitle": "A dialog control with UAC Style",
           "ImagePath": "ms-appx:///Assets/Fluent/ContentDialog.png"
         },
@@ -217,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.IssueLabelPage",
+          "Title": "Issue Label",
+          "Subtitle": "Displays compact labels with semantic severity and theme-aware colors.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BruteForcePage",
           "Title": "Brute Force",
           "Subtitle": "Displays characters in individual boxes with a randomized animation, creating a visual brute-force effect as the characters rapidly change.",
@@ -227,28 +226,24 @@
           "UniqueId": "DevWinUIGallery.Views.ClockPickerPage",
           "Title": "Clock Picker",
           "Subtitle": "Pick a Time from Clock Picker",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Clock.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.ParallaxTiltPage",
           "Title": "Parallax Tilt",
           "Subtitle": "Parallax Effect",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.RichButtonPage",
           "Title": "Rich Button",
           "Subtitle": "A Button with More Options",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.SpoilerPage",
           "Title": "Spoiler",
           "Subtitle": "Show/Hide a Content.",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
         },
         {
@@ -315,7 +310,6 @@
           "UniqueId": "DevWinUIGallery.Views.LoadingIndicatorPage",
           "Title": "Loading Indicator",
           "Subtitle": "Loading Indicator",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
@@ -515,7 +509,6 @@
           "UniqueId": "DevWinUIGallery.Views.KeyVisualPage",
           "Title": "KeyVisual",
           "Subtitle": "KeyVisual",
-          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/keyboardManager.png"
         },
         {
@@ -760,7 +753,6 @@
           "UniqueId": "DevWinUIGallery.Views.EdgeLightingPage",
           "Title": "Edge Lighting",
           "Subtitle": "Edge Lighting",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
         {
@@ -940,7 +932,6 @@
         {
           "UniqueId": "DevWinUIGallery.Views.CompositionShadowPage",
           "Title": "Composition Shadow",
-          "IsUpdated": true,
           "Subtitle": "Demonstrates how to apply drop shadows to Xaml elements",
           "ImagePath": "ms-appx:///Assets/Fluent/ThemeShadow.png"
         }
@@ -953,38 +944,40 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BlinkingSquaresPage",
+          "Title": "Blinking Squares",
+          "Subtitle": "A composition-driven twinkling square field with configurable direction and density.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ShaderBackgroundPage",
           "Title": "Shader Background",
           "Subtitle": "Render Shader as a Background",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.BetterLyricPage",
           "Title": "Better Lyric",
           "Subtitle": "An elegant and deeply customizable lyrics visualizer",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/BetterLyric.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.MorphingAnimationPage",
           "Title": "Morphing Animation",
           "Subtitle": "Change a geometry with animation to a different geometry",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ConnectedAnimation.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.AnimationPathPage",
           "Title": "Animation Path",
           "Subtitle": "Achieve a fixed path animation effect",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LiveGraphPage",
           "Title": "Live Graph",
           "Subtitle": "Draw Live/Static Graph",
-          "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },
         {
@@ -1026,7 +1019,6 @@
         {
           "UniqueId": "DevWinUIGallery.Views.SpeedGraphPage",
           "Title": "Speed Graph",
-          "IsUpdated": true,
           "Subtitle": "A dynamic, animated graph control inspired by the Windows 11 copy dialog.",
           "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
         },

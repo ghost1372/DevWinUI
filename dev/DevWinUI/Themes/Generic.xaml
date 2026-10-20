@@ -86,6 +86,7 @@ Themes\Styles\Controls\AudioWave.xaml
 Themes\Styles\Controls\BannerView.xaml
 Themes\Styles\Controls\BetterLyric.xaml
 Themes\Styles\Controls\BlendedImage.xaml
+Themes\Styles\Controls\BlinkingSquares.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\BruteForce.xaml
 Themes\Styles\Controls\BubbleButton.xaml
@@ -2127,6 +2128,19 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultBlinkingSquaresStyle" TargetType="local:BlinkingSquares">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:BlinkingSquares">
+          <Grid Background="{TemplateBinding Background}" IsHitTestVisible="False">
+            <wind2:CanvasAnimatedControl x:Name="PART_DrawingCanvas" ClearColor="Transparent" IsHitTestVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="BreadcrumbBarItemStyle" TargetType="BreadcrumbBarItem">
     <Setter Property="FontSize" Value="28" />
     <Setter Property="FontWeight" Value="SemiBold" />
@@ -3139,21 +3153,21 @@ Themes\Styles\Controls\WelcomeHero.xaml
                   <VisualState.Setters>
                     <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorSuccessBackgroundBrush}" />
                     <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorSuccessBrush}" />
-                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorSuccessBrush}" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SeverityWarning">
                   <VisualState.Setters>
                     <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCautionBackgroundBrush}" />
                     <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCautionBrush}" />
-                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SeverityError">
                   <VisualState.Setters>
                     <Setter Target="SeverityBorder.Background" Value="{ThemeResource SystemFillColorCriticalBackgroundBrush}" />
                     <Setter Target="SeverityBorder.BorderBrush" Value="{ThemeResource SystemFillColorCriticalBrush}" />
-                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+                    <Setter Target="SeverityTitle.Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SeverityGreen">
@@ -15297,6 +15311,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultBetterLyricStyle}" TargetType="local:BetterLyric" />
   <Style BasedOn="{StaticResource DefaultBlendedImageStyle}" TargetType="local:BlendedImage" />
+  <Style BasedOn="{StaticResource DefaultBlinkingSquaresStyle}" TargetType="local:BlinkingSquares" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />

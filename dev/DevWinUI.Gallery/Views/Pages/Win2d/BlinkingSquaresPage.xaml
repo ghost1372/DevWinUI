@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BlinkingSquaresPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/blinkingSquares" HeaderText="Blinking Squares">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:BlinkingSquares Direction="Right" GridSize="52" SquareColor="Red" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbDirection" Header="Direction" ItemsSource="{x:Bind BlinkingSquaresDirectionItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SldGridSize" Header="Grid Size" Maximum="100" Minimum="8" StepFrequency="1" Value="52" />
+                        <Slider x:Name="SldSquareDensity" Header="Square Density" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.9" />
+                        <Slider x:Name="SldTwinkleSpeed" Header="Twinkle Speed" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1.4" />
+                        <Slider x:Name="SldTwinkleStrength" Header="Twinkle Strength" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.94" />
+                        <Slider x:Name="SldIntensity" Header="Intensity" Maximum="2" Minimum="0" StepFrequency="0.1" Value="1" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:BlinkingSquares x:Name="Preview" Direction="{x:Bind ((dev:BlinkingSquaresDirection)CmbDirection.SelectedItem), Mode=OneWay}" GridSize="{x:Bind (x:Int32)SldGridSize.Value, Mode=OneWay}" SquareDensity="{x:Bind SldSquareDensity.Value, Mode=OneWay}" Intensity="{x:Bind SldIntensity.Value, Mode=OneWay}" TwinkleSpeed="{x:Bind SldTwinkleSpeed.Value, Mode=OneWay}" TwinkleStrength="{x:Bind SldTwinkleStrength.Value, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

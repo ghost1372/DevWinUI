@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.IssueLabelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/issueLabel" HeaderText="Issue Label">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:IssueLabel Title="Bug" Severity="Error" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtTitle" Header="Title" Text="Bug" />
+                        <ComboBox x:Name="CmbSeverity" Header="Severity" ItemsSource="{x:Bind SeverityItems, Mode=OneWay}" SelectedIndex="2" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.SelectedItem), Mode=OneWay}" />
+                    <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" HorizontalAlignment="Left" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.SelectedItem), Mode=OneWay}" />
+                </StackPanel>
+            </local:ControlExample>
+            <local:ControlExample DocPage="controls/issueLabel" HeaderText="Severity Variants">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:IssueLabel Title="Warning" Severity="Warning" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+
+                <dev:UniformGrid ColumnSpacing="10" Columns="4" RowSpacing="10">
+                    <dev:IssueLabel Title="Success" Severity="Success" />
+                    <dev:IssueLabel Title="Warning" Severity="Warning" />
+                    <dev:IssueLabel Title="Error" Severity="Error" />
+                    <dev:IssueLabel Title="Green" Severity="Green" />
+                    <dev:IssueLabel Title="Blue" Severity="Blue" />
+                    <dev:IssueLabel Title="Yellow" Severity="Yellow" />
+                    <dev:IssueLabel Title="Orange" Severity="Orange" />
+                    <dev:IssueLabel Title="Red" Severity="Red" />
+                    <dev:IssueLabel Title="Pink" Severity="Pink" />
+                    <dev:IssueLabel Title="Purple" Severity="Purple" />
+                    <dev:IssueLabel Title="Gray" Severity="Gray" />
+                </dev:UniformGrid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

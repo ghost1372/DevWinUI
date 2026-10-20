@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <Style BasedOn="{StaticResource DefaultBlinkingSquaresStyle}" TargetType="local:BlinkingSquares" />
+
+    <Style x:Key="DefaultBlinkingSquaresStyle" TargetType="local:BlinkingSquares">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BlinkingSquares">
+                    <Grid Background="{TemplateBinding Background}" IsHitTestVisible="False">
+                        <win2d:CanvasAnimatedControl x:Name="PART_DrawingCanvas" ClearColor="Transparent" IsHitTestVisible="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
