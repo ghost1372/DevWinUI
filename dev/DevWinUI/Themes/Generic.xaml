@@ -156,6 +156,7 @@ Themes\Styles\Controls\KeyVisual2.xaml
 Themes\Styles\Controls\LayoutTransformer.xaml
 Themes\Styles\Controls\LiveGraph.xaml
 Themes\Styles\Controls\LoadingIndicator.xaml
+Themes\Styles\Controls\LoadingState.xaml
 Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\LoopingList.xaml
 Themes\Styles\Controls\Magnifier.xaml
@@ -5082,6 +5083,44 @@ Themes\Styles\Controls\WelcomeHero.xaml
                 <Ellipse x:Name="E4" Canvas.Left="13.4" Canvas.Top="13.4" Width="10" Height="10" Fill="{TemplateBinding Foreground}" />
               </Canvas>
             </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultLoadingStateStyle" TargetType="local:LoadingState">
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:LoadingState">
+          <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <Grid VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ColumnSpacing="3" RowSpacing="3">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="6" />
+                  <RowDefinition Height="6" />
+                  <RowDefinition Height="6" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="6" />
+                  <ColumnDefinition Width="6" />
+                  <ColumnDefinition Width="6" />
+                </Grid.ColumnDefinitions>
+                <Rectangle x:Name="PART_Cell0" Grid.Row="0" Grid.Column="0" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell1" Grid.Row="0" Grid.Column="1" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell2" Grid.Row="0" Grid.Column="2" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell3" Grid.Row="1" Grid.Column="0" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell4" Grid.Row="1" Grid.Column="1" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell5" Grid.Row="1" Grid.Column="2" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell6" Grid.Row="2" Grid.Column="0" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell7" Grid.Row="2" Grid.Column="1" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+                <Rectangle x:Name="PART_Cell8" Grid.Row="2" Grid.Column="2" Width="6" Height="6" Fill="{TemplateBinding Foreground}" RadiusX="1" RadiusY="1" />
+              </Grid>
+              <TextBlock x:Name="PART_Label" VerticalAlignment="Center" AutomationProperties.LiveSetting="Polite" FontSize="{TemplateBinding FontSize}" TextTrimming="CharacterEllipsis" />
+              <TextBlock x:Name="PART_Timer" VerticalAlignment="Center" FontFamily="Cascadia Mono, Consolas" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="0:00" Typography.NumeralAlignment="Tabular" />
+            </StackPanel>
           </Border>
         </ControlTemplate>
       </Setter.Value>
@@ -17493,6 +17532,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
   <Style BasedOn="{StaticResource DefaultLiveGraphStyle}" TargetType="local:LiveGraph" />
+  <Style BasedOn="{StaticResource DefaultLoadingStateStyle}" TargetType="local:LoadingState" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
   <Style x:Key="DefaultLoopingListStyle" TargetType="local:LoopingList">
     <Setter Property="IsTabStop" Value="False" />
