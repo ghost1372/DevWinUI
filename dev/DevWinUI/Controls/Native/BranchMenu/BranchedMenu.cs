@@ -18,38 +18,10 @@ public sealed partial class BranchedMenu : Control
 
     private static readonly FontFamily IconFont = new("Segoe Fluent Icons, Segoe MDL2 Assets");
 
-    private sealed class Section
-    {
-        public int Index;
-        public bool HasChildren;
-        public bool IsOpen;
-        public double ContentHeight;
-        public Button Header = null!;
-        public TextBlock Label = null!;
-        public FontIcon? Chevron;
-        public Grid? Wrapper;
-        public RotateTransform? Rotate;
-        public Storyboard? FoldStoryboard;
-    }
-
-    private sealed class Entry
-    {
-        public string Value = "";
-        public object Item = null!;
-        public Section Section = null!;
-        public Button Button = null!;
-        public TextBlock Label = null!;
-        public FontIcon? Icon;
-        public Path? Accent;
-        public double Dash;
-        public Storyboard? DrawStoryboard;
-        public bool IsHeader;
-    }
-
-    private readonly List<Section> _sections = new();
-    private readonly List<Entry> _entries = new();
+    private readonly List<BranchedMenuSection> _sections = new();
+    private readonly List<BranchedMenuEntry> _entries = new();
     private readonly List<Path> _branches = new();
-    private readonly Dictionary<string, Entry> _lookup = new();
+    private readonly Dictionary<string, BranchedMenuEntry> _lookup = new();
     private readonly SolidColorBrush _lineFallback = new();
     private readonly SolidColorBrush _transparent = new(Colors.Transparent);
     private readonly CubicEase _ease = new() { EasingMode = EasingMode.EaseInOut };
@@ -58,7 +30,7 @@ public sealed partial class BranchedMenu : Control
     private Grid? _root;
     private Rectangle? _rail;
     private Ellipse? _marker;
-    private Entry? _active;
+    private BranchedMenuEntry? _active;
     private Storyboard? _slideStoryboard;
     private INotifyCollectionChanged? _itemsSource;
     private bool _sliding;
@@ -193,7 +165,7 @@ public sealed partial class BranchedMenu : Control
         {
             var item = items[i];
             var children = item.Children;
-            var section = new Section
+            var section = new BranchedMenuSection
             {
                 Index = i,
                 HasChildren = children is { Count: > 0 },
@@ -250,7 +222,7 @@ public sealed partial class BranchedMenu : Control
 
             if (!section.HasChildren)
             {
-                var leaf = new Entry
+                var leaf = new BranchedMenuEntry
                 {
                     Value = item.Value ?? item.Label,
                     Item = item,
@@ -349,7 +321,7 @@ public sealed partial class BranchedMenu : Control
                 button.Content = rowGrid;
                 rows.Children.Add(button);
 
-                var entry = new Entry
+                var entry = new BranchedMenuEntry
                 {
                     Value = child.Value,
                     Item = child,
@@ -421,7 +393,7 @@ public sealed partial class BranchedMenu : Control
             SetActive(first, animate: false, raise: false);
     }
 
-    private void Register(Entry entry)
+    private void Register(BranchedMenuEntry entry)
     {
         _entries.Add(entry);
         _lookup.TryAdd(entry.Value, entry);
@@ -469,7 +441,7 @@ public sealed partial class BranchedMenu : Control
         return double.IsNaN(width) || width <= 0 ? double.PositiveInfinity : width;
     }
 
-    private void SetActive(Entry next, bool animate, bool raise)
+    private void SetActive(BranchedMenuEntry next, bool animate, bool raise)
     {
         if (!ReferenceEquals(_active, next))
         {
@@ -483,7 +455,7 @@ public sealed partial class BranchedMenu : Control
         if (raise) ItemSelected?.Invoke(this, new BranchedMenuSelectedEventArgs(next.Value, next.Item));
     }
 
-    private void Deactivate(Entry entry)
+    private void Deactivate(BranchedMenuEntry entry)
     {
         ApplyStyle(entry, active: false);
         entry.DrawStoryboard?.Stop();
@@ -491,7 +463,7 @@ public sealed partial class BranchedMenu : Control
         if (entry.Accent != null) entry.Accent.Visibility = Visibility.Collapsed;
     }
 
-    private void ApplyStyle(Entry entry, bool active)
+    private void ApplyStyle(BranchedMenuEntry entry, bool active)
     {
         var brush = active ? EffectiveAccent : EffectiveInk;
 
@@ -508,7 +480,7 @@ public sealed partial class BranchedMenu : Control
         AutomationProperties.SetItemStatus(entry.Button, active ? "Selected" : "");
     }
 
-    private void DrawAccent(Entry entry, bool animate)
+    private void DrawAccent(BranchedMenuEntry entry, bool animate)
     {
         var accent = entry.Accent;
         if (accent is null) return;
@@ -545,7 +517,7 @@ public sealed partial class BranchedMenu : Control
         storyboard.Begin();
     }
 
-    private double MarkerY(Section section)
+    private double MarkerY(BranchedMenuSection section)
     {
         double y = 0;
         for (int i = 0; i < section.Index; i++)
@@ -607,7 +579,7 @@ public sealed partial class BranchedMenu : Control
         if (Math.Abs(Canvas.GetTop(_marker) - y) > 0.25) Canvas.SetTop(_marker, y);
     }
 
-    private void Toggle(Section section)
+    private void Toggle(BranchedMenuSection section)
     {
         if (!section.HasChildren || section.Wrapper is null) return;
 
