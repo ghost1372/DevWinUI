@@ -331,6 +331,7 @@
           "UniqueId": "DevWinUIGallery.Views.LoadingIndicatorPage",
           "Title": "Loading Indicator",
           "Subtitle": "Loading Indicator",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
