@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
-using System.Diagnostics;
 
 namespace DevWinUI;
 
@@ -19,7 +19,6 @@ public sealed partial class StatusMark : ContentControl
     private Rectangle? _strikeRect;
     private ScaleTransform? _strikeScale;
 
-    private readonly Stopwatch _clock = Stopwatch.StartNew();
     private readonly CanvasStrokeStyle _round = new()
     {
         StartCap = CanvasCapStyle.Round,
@@ -32,7 +31,8 @@ public sealed partial class StatusMark : ContentControl
     private static readonly Vector2[] CrossB = { new(15.5f, 8.5f), new(8.5f, 15.5f) };
 
     private bool _loaded, _offscreen, _rendering, _snapped;
-    private double _lastTime, _time;
+    private TimeSpan _lastRenderingTime;
+    private double _time;
     private string? _lastAutoName;
 
     private double _join, _arc, _cDone, _cErr, _fill, _check, _cross, _strike, _strikeWait;
@@ -217,7 +217,7 @@ public sealed partial class StatusMark : ContentControl
         _canvas?.Invalidate();
         if (!_rendering && NeedsFrames())
         {
-            _lastTime = _clock.Elapsed.TotalSeconds;
+            _lastRenderingTime = TimeSpan.Zero;
             CompositionTarget.Rendering += OnRendering;
             _rendering = true;
         }
@@ -232,9 +232,15 @@ public sealed partial class StatusMark : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        double now = _clock.Elapsed.TotalSeconds;
-        double dt = Math.Min(now - _lastTime, 0.05);
-        _lastTime = now; _time = now;
+        var now = ((RenderingEventArgs)e).RenderingTime;
+        if (now == _lastRenderingTime) return;
+
+        double dt = _lastRenderingTime == TimeSpan.Zero
+            ? 1.0 / 60
+            : Math.Min((now - _lastRenderingTime).TotalSeconds, 0.05);
+        _lastRenderingTime = now;
+        _time = now.TotalSeconds;
+
         if (!CanRender) { StopLoop(); return; }
 
         Update(dt);
