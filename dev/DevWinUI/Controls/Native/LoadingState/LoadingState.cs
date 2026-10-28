@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Shapes;
-using System.Diagnostics;
 
 namespace DevWinUI;
 
@@ -16,7 +15,7 @@ public sealed partial class LoadingState : Control
     private readonly Rectangle?[] _cells = new Rectangle?[CellCount];
 
     private DispatcherQueueTimer? _timer;
-    private long _startTimestamp = Stopwatch.GetTimestamp();
+    private long _startTicks = Environment.TickCount64;
     private TextBlock? _label;
     private TextBlock? _timerText;
     private Storyboard? _shimmer;
@@ -34,11 +33,11 @@ public sealed partial class LoadingState : Control
         Unloaded += OnUnloaded;
     }
 
-    public TimeSpan Elapsed => Stopwatch.GetElapsedTime(_startTimestamp);
+    public TimeSpan Elapsed => TimeSpan.FromMilliseconds(Environment.TickCount64 - _startTicks);
 
     public void Restart()
     {
-        _startTimestamp = Stopwatch.GetTimestamp();
+        _startTicks = Environment.TickCount64;
         UpdateTimerText();
     }
 

@@ -15,12 +15,12 @@ public sealed partial class LoadingState
 
     public LoadingStateMode Mode
     {
-        get { return (LoadingStateMode)GetValue(VariantProperty); }
-        set { SetValue(VariantProperty, value); }
+        get { return (LoadingStateMode)GetValue(ModeProperty); }
+        set { SetValue(ModeProperty, value); }
     }
 
-    public static readonly DependencyProperty VariantProperty =
-        DependencyProperty.Register(nameof(Mode), typeof(LoadingStateMode), typeof(LoadingState), new PropertyMetadata(LoadingStateMode.Drive, OnVariantChanged));
+    public static readonly DependencyProperty ModeProperty =
+        DependencyProperty.Register(nameof(Mode), typeof(LoadingStateMode), typeof(LoadingState), new PropertyMetadata(LoadingStateMode.Drive, OnModeChanged));
 
     public bool ShowElapsed
     {
@@ -39,7 +39,7 @@ public sealed partial class LoadingState
         AutomationProperties.SetName(control, label);
     }
 
-    private static void OnVariantChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var control = (LoadingState)d;
         control.BuildGrid();
