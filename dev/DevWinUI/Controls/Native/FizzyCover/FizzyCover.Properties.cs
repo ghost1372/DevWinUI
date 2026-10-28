@@ -164,15 +164,6 @@ public sealed partial class FizzyCover
     public static readonly DependencyProperty FillDurationProperty =
         DependencyProperty.Register(nameof(FillDuration), typeof(double), typeof(FizzyCover), new PropertyMetadata(0.7));
 
-    public bool Debug
-    {
-        get { return (bool)GetValue(DebugProperty); }
-        set { SetValue(DebugProperty, value); }
-    }
-
-    public static readonly DependencyProperty DebugProperty =
-        DependencyProperty.Register(nameof(Debug), typeof(bool), typeof(FizzyCover), new PropertyMetadata(false, (d, _) => ((FizzyCover)d).ApplyDebug()));
-
     public Color InkColor
     {
         get { return (Color)GetValue(InkColorProperty); }
@@ -196,7 +187,6 @@ public sealed partial class FizzyCover
     private static void OnRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var self = (FizzyCover)d;
-        self.ApplyDebug();
         self.Kick();
     }
 

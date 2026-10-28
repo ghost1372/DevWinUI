@@ -12,8 +12,6 @@ namespace DevWinUI;
 [TemplatePart(Name = PartInvHost, Type = typeof(Grid))]
 [TemplatePart(Name = PartInvContent, Type = typeof(ContentPresenter))]
 [TemplatePart(Name = PartOutline, Type = typeof(Rectangle))]
-[TemplatePart(Name = PartDebugNear, Type = typeof(Rectangle))]
-[TemplatePart(Name = PartDebugWake, Type = typeof(Rectangle))]
 public sealed partial class FizzyCover : ContentControl
 {
     private const string PartRoot = "PART_Root";
@@ -24,14 +22,12 @@ public sealed partial class FizzyCover : ContentControl
     private const string PartInvHost = "PART_InvHost";
     private const string PartInvContent = "PART_InvContent";
     private const string PartOutline = "PART_Outline";
-    private const string PartDebugNear = "PART_DebugNear";
-    private const string PartDebugWake = "PART_DebugWake";
 
     private const double OutlineWidth = 1.5;
     private const double VisTauMs = 150;
 
     private Grid? _root, _host, _invHost;
-    private Rectangle? _fill, _outline, _debugNear, _debugWake;
+    private Rectangle? _fill, _outline;
     private TranslateTransform? _fillShift;
     private Canvas? _canvasParticles;
     private ContentPresenter? _content, _invContent;
@@ -110,8 +106,6 @@ public sealed partial class FizzyCover : ContentControl
         _invHost = GetTemplateChild(PartInvHost) as Grid;
         _invContent = GetTemplateChild(PartInvContent) as ContentPresenter;
         _outline = GetTemplateChild(PartOutline) as Rectangle;
-        _debugNear = GetTemplateChild(PartDebugNear) as Rectangle;
-        _debugWake = GetTemplateChild(PartDebugWake) as Rectangle;
 
         _fillShift = new TranslateTransform();
         if (_fill != null) _fill.RenderTransform = _fillShift;
@@ -125,7 +119,6 @@ public sealed partial class FizzyCover : ContentControl
 
         UpdateMirror();
         ApplyColors();
-        ApplyDebug();
         QueueParticles();
     }
 
@@ -168,18 +161,6 @@ public sealed partial class FizzyCover : ContentControl
         Kick();
     }
 
-    private void ApplyDebug()
-    {
-        if (_debugNear == null || _debugWake == null) return;
-        var v = Debug ? Visibility.Visible : Visibility.Collapsed;
-        _debugNear.Visibility = v;
-        _debugWake.Visibility = v;
-        _debugNear.Margin = new Thickness(-Proximity);
-        _debugWake.Margin = new Thickness(-(Proximity + WakeMargin));
-        _debugNear.RadiusX = _debugNear.RadiusY = CornerR(_h) + Proximity;
-        _debugWake.RadiusX = _debugWake.RadiusY = CornerR(_h) + Proximity + WakeMargin;
-    }
-
     private void ApplyShape() => OnSized(_w, _h);
 
     private void OnSized(double w, double h)
@@ -207,7 +188,6 @@ public sealed partial class FizzyCover : ContentControl
             _outline.Margin = new Thickness(OutlineWidth / 2);
             _outline.RadiusX = _outline.RadiusY = Math.Max(0, r - OutlineWidth / 2);
         }
-        ApplyDebug();
         Paint(0, EaseInOutCubic(_progress), move: false);
         Kick();
     }

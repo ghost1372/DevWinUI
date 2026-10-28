@@ -8,7 +8,7 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="MarkerColor" Value="{ThemeResource ControlStrongStrokeColorDefault}" />
         <Setter Property="TextColor" Value="{ThemeResource TextFillColorSecondary}" />
-        <Setter Property="AccentColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="AccentColor" Value="{ThemeResource SystemAccentColor}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>

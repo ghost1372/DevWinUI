@@ -16,8 +16,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:FizzyCover">
                     <Grid x:Name="PART_Root">
-                        <Rectangle x:Name="PART_DebugWake" Fill="Transparent" IsHitTestVisible="False" Stroke="#99FFAA00" StrokeDashArray="4 4" StrokeThickness="1" Visibility="Collapsed" />
-                        <Rectangle x:Name="PART_DebugNear" Fill="Transparent" IsHitTestVisible="False" Stroke="#9900CCFF" StrokeDashArray="4 4" StrokeThickness="1" Visibility="Collapsed" />
                         <Grid x:Name="PART_Host" Background="Transparent">
                             <Rectangle x:Name="PART_Fill" IsHitTestVisible="False" />
                             <Canvas x:Name="PART_Particles" IsHitTestVisible="False" />

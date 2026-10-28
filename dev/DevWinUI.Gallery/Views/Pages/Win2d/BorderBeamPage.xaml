@@ -14,7 +14,7 @@
             <local:ControlExample DocPage="controls/borderBeam" HeaderText="BorderBeam">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:BorderBeam /&gt;                        
+                        &lt;dev:BorderBeam /&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
