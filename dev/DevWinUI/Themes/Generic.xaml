@@ -116,6 +116,7 @@ Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\DepthLayerView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
+Themes\Styles\Controls\DonutChart.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\EdgeLighting.xaml
 Themes\Styles\Controls\Empty.xaml
@@ -2754,6 +2755,27 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <SkewTransform AngleX="{Binding Angle, RelativeSource={RelativeSource Mode=TemplatedParent}}" AngleY="0" />
             </Canvas.RenderTransform>
           </Canvas>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultDonutChartStyle" TargetType="local:DonutChart">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:DonutChart">
+          <StackPanel Orientation="Horizontal">
+            <Grid x:Name="PART_Plot" Width="{TemplateBinding Diameter}" Height="{TemplateBinding Diameter}">
+              <Canvas x:Name="PART_Canvas" />
+              <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
+                <TextBlock x:Name="PART_Total" HorizontalAlignment="Center" FontWeight="SemiBold" TextAlignment="Center" />
+                <TextBlock x:Name="PART_Caption" HorizontalAlignment="Center" Opacity="0.7" Text="{TemplateBinding CenterLabel}" TextAlignment="Center" />
+              </StackPanel>
+            </Grid>
+            <StackPanel x:Name="PART_Legend" Margin="16,0,0,0" VerticalAlignment="Center" Spacing="4" />
+          </StackPanel>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -16476,6 +16498,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultDonutChartStyle}" TargetType="local:DonutChart" />
   <Style x:Key="DefaultDropdownColorPickerStyle" TargetType="local:DropdownColorPicker">
     <Setter Property="Background" Value="Gray" />
     <Setter Property="Foreground" Value="LightGray" />

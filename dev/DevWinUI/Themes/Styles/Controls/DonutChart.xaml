@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultDonutChartStyle}" TargetType="local:DonutChart" />
+
+    <Style x:Key="DefaultDonutChartStyle" TargetType="local:DonutChart">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DonutChart">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid x:Name="PART_Plot" Width="{TemplateBinding Diameter}" Height="{TemplateBinding Diameter}">
+                            <Canvas x:Name="PART_Canvas" />
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
+                                <TextBlock x:Name="PART_Total" HorizontalAlignment="Center" FontWeight="SemiBold" TextAlignment="Center" />
+                                <TextBlock x:Name="PART_Caption" HorizontalAlignment="Center" Opacity="0.7" Text="{TemplateBinding CenterLabel}" TextAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel x:Name="PART_Legend" Margin="16,0,0,0" VerticalAlignment="Center" Spacing="4" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
