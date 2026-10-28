@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.System;
 
@@ -13,20 +12,7 @@ public sealed partial class LineSidebar : Control
     private const double MarkerThickness = 2;
     private const double TickThickness = 1;
 
-    private sealed class Node
-    {
-        public bool IsTick;
-        public int ItemIndex;
-        public ContentControl Row = null!;
-        public Rectangle? Marker;
-        public ScaleTransform? Scale;
-        public TranslateTransform? Shift;
-        public SolidColorBrush? LabelBrush;
-        public TextBlock? IndexText;
-        public double Cur, Target;
-    }
-
-    private readonly List<Node> _nodes = new();
+    private readonly List<LineSidebarNode> _nodes = new();
 
     private Grid? _host;
     private Grid? _root;
@@ -117,7 +103,7 @@ public sealed partial class LineSidebar : Control
             };
             AutomationProperties.SetName(row, text);
 
-            var node = new Node { ItemIndex = i, Row = row };
+            var node = new LineSidebarNode { ItemIndex = i, Row = row };
 
             if (showMarker)
             {
@@ -203,7 +189,7 @@ public sealed partial class LineSidebar : Control
                     IsHitTestVisible = false,
                 };
                 grid.Children.Add(tick);
-                _nodes.Add(new Node { IsTick = true, ItemIndex = i, Row = row, Marker = tick, Scale = tickScale });
+                _nodes.Add(new LineSidebarNode { IsTick = true, ItemIndex = i, Row = row, Marker = tick, Scale = tickScale });
             }
         }
 
@@ -307,7 +293,7 @@ public sealed partial class LineSidebar : Control
         if (!moving) StopLoop();
     }
 
-    private double ComputeTarget(Node n)
+    private double ComputeTarget(LineSidebarNode n)
     {
         double pinned = 0;
         if (!n.IsTick && (n.ItemIndex == ActiveIndex || n.ItemIndex == _focusIndex)) pinned = 1;
@@ -332,7 +318,7 @@ public sealed partial class LineSidebar : Control
         return Math.Max(pinned, prox);
     }
 
-    private double CenterY(Node n)
+    private double CenterY(LineSidebarNode n)
     {
         try
         {
@@ -347,7 +333,7 @@ public sealed partial class LineSidebar : Control
         }
     }
 
-    private void Apply(Node n)
+    private void Apply(LineSidebarNode n)
     {
         double e = n.Cur;
         double maxShift = MaxShift;

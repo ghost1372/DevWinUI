@@ -31,19 +31,6 @@ public sealed partial class FizzyCover : ContentControl
     private const double OutlineWidth = 1.5;
     private const double VisTauMs = 150;
 
-    private sealed class Particle
-    {
-        public Shape El = null!;
-        public SolidColorBrush Brush = null!;
-        public CompositeTransform T = null!;
-        public double X, Y;
-        public double Speed;
-        public double Phase, Freq;
-        public double Rot, SpinRate;
-        public double Size;
-        public uint Argb;
-    }
-
     private Grid? _root, _host, _invHost;
     private Rectangle? _fill, _outline, _debugNear, _debugWake;
     private TranslateTransform? _fillShift;
@@ -52,7 +39,7 @@ public sealed partial class FizzyCover : ContentControl
     private RectangleGeometry? _invClip;
     private CompositionRoundedRectangleGeometry? _geo;
 
-    private readonly List<Particle> _particles = new();
+    private readonly List<FizzyCoverParticle> _particles = new();
     private readonly SolidColorBrush _fillBrush = new(Colors.White);
     private readonly SolidColorBrush _contentBrush = new(Colors.White);
     private readonly SolidColorBrush _invBrush = new(Colors.Black);
@@ -261,7 +248,7 @@ public sealed partial class FizzyCover : ContentControl
             el.IsHitTestVisible = false;
             _canvasParticles.Children.Add(el);
 
-            _particles.Add(new Particle
+            _particles.Add(new FizzyCoverParticle
             {
                 El = el,
                 Brush = brush,

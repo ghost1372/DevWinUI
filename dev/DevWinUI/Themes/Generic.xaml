@@ -88,6 +88,7 @@ Themes\Styles\Controls\BetterLyric.xaml
 Themes\Styles\Controls\BlendedImage.xaml
 Themes\Styles\Controls\BlinkingSquares.xaml
 Themes\Styles\Controls\BorderBeam.xaml
+Themes\Styles\Controls\BranchedMenu.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\BruteForce.xaml
 Themes\Styles\Controls\BubbleButton.xaml
@@ -2158,6 +2159,16 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:BorderBeam">
           <Grid x:Name="PART_Host" IsHitTestVisible="False" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultBranchedMenuStyle" TargetType="local:BranchedMenu">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:BranchedMenu">
+          <Grid x:Name="PART_Host" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -15491,6 +15502,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultBlendedImageStyle}" TargetType="local:BlendedImage" />
   <Style BasedOn="{StaticResource DefaultBlinkingSquaresStyle}" TargetType="local:BlinkingSquares" />
   <Style BasedOn="{StaticResource DefaultBorderBeamStyle}" TargetType="local:BorderBeam" />
+  <Style BasedOn="{StaticResource DefaultBranchedMenuStyle}" TargetType="local:BranchedMenu" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />

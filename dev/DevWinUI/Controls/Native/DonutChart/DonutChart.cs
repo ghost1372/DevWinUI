@@ -36,18 +36,7 @@ public sealed partial class DonutChart : Control
         Microsoft.UI.ColorHelper.FromArgb(255, 0x84, 0xCC, 0x16),
     };
 
-    private sealed class Slice
-    {
-        public required Path Path { get; init; }
-        public required Button LegendItem { get; init; }
-        public double Value { get; init; }
-        public double StartAngle { get; init; }
-        public double EndAngle { get; init; }
-        public Vector3 Lift { get; init; }
-    }
-
-    private readonly List<Slice> _slices = new();
-
+    private readonly List<DonutSlice> _slices = new();
     private Canvas? _canvas;
     private TextBlock? _totalText;
     private TextBlock? _captionText;
@@ -182,7 +171,7 @@ public sealed partial class DonutChart : Control
             var legendItem = CreateLegendItem(index, item.Label, Format(item.Value), color);
             _legendPanel.Children.Add(legendItem);
 
-            _slices.Add(new Slice
+            _slices.Add(new DonutSlice
             {
                 Path = path,
                 LegendItem = legendItem,
