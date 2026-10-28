@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using Microsoft.UI.Xaml.Automation;
+﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.System;
 
@@ -27,7 +27,6 @@ public sealed partial class LineSidebar : Control
     }
 
     private readonly List<Node> _nodes = new();
-    private readonly Stopwatch _sw = Stopwatch.StartNew();
 
     private Grid? _host;
     private Grid? _root;
@@ -269,7 +268,7 @@ public sealed partial class LineSidebar : Control
     {
         if (_running || _nodes.Count == 0) return;
         _running = true;
-        _last = _sw.Elapsed;
+        _last = TimeSpan.Zero;
         CompositionTarget.Rendering += OnRendering;
     }
 
@@ -282,8 +281,12 @@ public sealed partial class LineSidebar : Control
 
     private void OnRendering(object? sender, object e)
     {
-        var now = _sw.Elapsed;
-        double dt = Math.Min(100, (now - _last).TotalMilliseconds);
+        var now = ((RenderingEventArgs)e).RenderingTime;
+        if (now == _last) return;
+
+        double dt = _last == TimeSpan.Zero
+            ? 1000.0 / 60
+            : Math.Min(100, (now - _last).TotalMilliseconds);
         _last = now;
 
         double smoothing = Smoothing;
