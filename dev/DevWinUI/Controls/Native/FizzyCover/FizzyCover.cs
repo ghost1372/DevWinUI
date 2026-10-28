@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.UI.Xaml.Input;
+﻿using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Color = Windows.UI.Color;
 
@@ -67,7 +67,6 @@ public sealed partial class FizzyCover : ContentControl
     private bool _hasPointer;
     private Point _cursor;
 
-    private readonly Stopwatch _sw = Stopwatch.StartNew();
     private TimeSpan _last;
     private bool _running;
     private bool _visible = true;
@@ -365,7 +364,7 @@ public sealed partial class FizzyCover : ContentControl
     {
         if (_running || !_visible || !IsLoaded || _root == null) return;
         _running = true;
-        _last = _sw.Elapsed;
+        _last = TimeSpan.Zero;
         CompositionTarget.Rendering += OnRendering;
     }
 
@@ -386,8 +385,12 @@ public sealed partial class FizzyCover : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        var now = _sw.Elapsed;
-        double dt = Math.Min(100, (now - _last).TotalMilliseconds);
+        var now = ((RenderingEventArgs)e).RenderingTime;
+        if (now == _last) return;
+
+        double dt = _last == TimeSpan.Zero
+            ? 1000.0 / 60
+            : Math.Min(100, (now - _last).TotalMilliseconds);
         _last = now;
 
         double target = TargetFill();
