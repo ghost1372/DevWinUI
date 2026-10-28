@@ -87,6 +87,7 @@ Themes\Styles\Controls\BannerView.xaml
 Themes\Styles\Controls\BetterLyric.xaml
 Themes\Styles\Controls\BlendedImage.xaml
 Themes\Styles\Controls\BlinkingSquares.xaml
+Themes\Styles\Controls\BorderBeam.xaml
 Themes\Styles\Controls\BreadcrumbNavigator.xaml
 Themes\Styles\Controls\BruteForce.xaml
 Themes\Styles\Controls\BubbleButton.xaml
@@ -2147,6 +2148,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultBorderBeamStyle" TargetType="local:BorderBeam">
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="CornerRadius" Value="12" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:BorderBeam">
+          <Grid x:Name="PART_Host" IsHitTestVisible="False" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="BreadcrumbBarItemStyle" TargetType="BreadcrumbBarItem">
     <Setter Property="FontSize" Value="28" />
     <Setter Property="FontWeight" Value="SemiBold" />
@@ -3430,6 +3445,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
           <Grid x:Name="TransformRoot" Background="{TemplateBinding Background}">
             <ContentPresenter x:Name="Presenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultLineSidebarStyle" TargetType="local:LineSidebar">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="MarkerColor" Value="{ThemeResource ControlStrongStrokeColorDefault}" />
+    <Setter Property="TextColor" Value="{ThemeResource TextFillColorSecondary}" />
+    <Setter Property="AccentColor" Value="{ThemeResource TextFillColorPrimary}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:LineSidebar">
+          <Grid x:Name="PART_Host" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -15461,6 +15490,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultBetterLyricStyle}" TargetType="local:BetterLyric" />
   <Style BasedOn="{StaticResource DefaultBlendedImageStyle}" TargetType="local:BlendedImage" />
   <Style BasedOn="{StaticResource DefaultBlinkingSquaresStyle}" TargetType="local:BlinkingSquares" />
+  <Style BasedOn="{StaticResource DefaultBorderBeamStyle}" TargetType="local:BorderBeam" />
   <Style x:Key="DefaultBreadcrumbNavigatorStyle" TargetType="local:BreadcrumbNavigator">
     <Setter Property="FontSize" Value="48" />
     <Setter Property="FontWeight" Value="Medium" />
@@ -17643,6 +17673,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultLayoutTransformerStyle}" TargetType="local:LayoutTransformer" />
+  <Style BasedOn="{StaticResource DefaultLineSidebarStyle}" TargetType="local:LineSidebar" />
   <Style BasedOn="{StaticResource DefaultLiveGraphStyle}" TargetType="local:LiveGraph" />
   <Style BasedOn="{StaticResource DefaultLoadingStateStyle}" TargetType="local:LoadingState" />
   <Style BasedOn="{StaticResource DefaultLongShadowTextBlockStyle}" TargetType="local:LongShadowTextBlock" />
