@@ -211,23 +211,23 @@
         {
           "UniqueId": "DevWinUIGallery.Views.LoadingStatePage",
           "Title": "LoadingState",
-          "Subtitle": "",
+          "Subtitle": "Pixel-grid wavefront loader with a shimmering label and a live elapsed timer.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.FizzyCoverPage",
           "Title": "Fizzy Cover",
-          "Subtitle": "",
+          "Subtitle": "A control that starts to fizz as your pointer approaches, then floods with rising particles and inverts on hover.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.LineSidebarPage",
           "Title": "Line Sidebar",
-          "Subtitle": "",
+          "Subtitle": "List navigation with a rail of markers.",
           "IsNew": true,
-          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.IssueLabelPage",
