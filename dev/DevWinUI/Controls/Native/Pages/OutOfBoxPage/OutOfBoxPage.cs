@@ -25,6 +25,10 @@ public partial class OutOfBoxPage : Control
     private const string PART_SecondaryLinksHeaderPresenter = "PART_SecondaryLinksHeaderPresenter";
     private const string PART_SecondaryLinksHeaderTextBlock = "PART_SecondaryLinksHeaderTextBlock";
 
+    private static readonly OutOfBoxItemTemplate DefaultItemTemplateResources = new();
+    private static readonly DataTemplate DefaultLinksItemTemplate =
+        (DataTemplate)DefaultItemTemplateResources["OutOfBoxLinksItemTemplate"];
+
     private ContentPresenter titlePresenter;
     private TextBlock titleTextBlock;
     private ContentPresenter descriptionPresenter;
@@ -184,7 +188,7 @@ public partial class OutOfBoxPage : Control
     }
 
     public static readonly DependencyProperty PrimaryLinksItemTemplateProperty =
-        DependencyProperty.Register(nameof(PrimaryLinksItemTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(PrimaryLinksItemTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(DefaultLinksItemTemplate));
 
     public DataTemplate SecondaryLinksItemTemplate
     {
@@ -193,7 +197,7 @@ public partial class OutOfBoxPage : Control
     }
 
     public static readonly DependencyProperty SecondaryLinksItemTemplateProperty =
-        DependencyProperty.Register(nameof(SecondaryLinksItemTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(SecondaryLinksItemTemplate), typeof(DataTemplate), typeof(OutOfBoxPage), new PropertyMetadata(DefaultLinksItemTemplate));
 
     public bool UseTopHeroImage
     {
@@ -232,8 +236,6 @@ public partial class OutOfBoxPage : Control
 
         if (Application.Current.Resources["OutOfBoxLeftHeroImageTemplate"] is ControlTemplate leftHeroImageTemplate)
             this.LeftHeroImageTemplate = leftHeroImageTemplate;
-
-        Application.Current.Resources.MergedDictionaries.AddIfNotExists(new OutOfBoxItemTemplate());
 
         if (PrimaryLinks == null)
         {
