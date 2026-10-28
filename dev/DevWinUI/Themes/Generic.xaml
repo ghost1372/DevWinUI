@@ -193,6 +193,7 @@ Themes\Styles\Controls\SpeedGraph.xaml
 Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\Spoiler.xaml
 Themes\Styles\Controls\Stars.xaml
+Themes\Styles\Controls\StatusMark.xaml
 Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\StorageBar.xaml
 Themes\Styles\Controls\StorageRing.xaml
@@ -5638,6 +5639,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <PerspectiveTransform3D />
             </Border.Transform3D>
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultStatusMarkStyle" TargetType="local:StatusMark">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:StatusMark">
+          <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+            <wind2:CanvasControl x:Name="PART_Canvas" Width="20" Height="20" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+            <Grid x:Name="PART_LabelHost" VerticalAlignment="Center">
+              <TextBlock x:Name="PART_Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Label}" TextWrapping="NoWrap" />
+              <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" />
+              <!--  Strike-through line, scaled in from the left  -->
+              <Rectangle x:Name="PART_Strike" Height="1.5" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsHitTestVisible="False" Opacity="0" RenderTransformOrigin="0,0.5">
+                <Rectangle.RenderTransform>
+                  <ScaleTransform ScaleX="0" />
+                </Rectangle.RenderTransform>
+              </Rectangle>
+            </Grid>
+          </StackPanel>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -19430,6 +19455,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultStarsStyle}" TargetType="local:Stars" />
+  <Style BasedOn="{StaticResource DefaultStatusMarkStyle}" TargetType="local:StatusMark" />
   <Style x:Key="StepBarItemHorizontalStyle" TargetType="local:StepBarItem">
     <Setter Property="Margin" Value="10,0" />
     <Setter Property="BorderThickness" Value="2" />
