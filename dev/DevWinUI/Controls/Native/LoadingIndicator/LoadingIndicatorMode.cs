@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 
 namespace DevWinUI;
+
 public enum LoadingIndicatorMode
 {
     [Description("LoadingIndicatorWaveStyle")]
@@ -53,4 +54,64 @@ public enum LoadingIndicatorMode
 
     [Description("LoadingIndicatorTwistStyle")]
     Twist,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Atom,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Flower,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Pixel,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    HollowDots,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    IntersectingCircles,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Orbit,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Radar,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    ScalingSquares,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    HalfCircle,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    TrinityRings,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    FulfillingSquare,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    CirclesToRhombuses,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Semipolar,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    SelfBuildingSquare,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    SwappingSquares,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    FulfillingBouncingCircle,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Fingerprint,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    Spring,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    LoopingRhombuses,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    BreedingRhombus,
 }
