@@ -209,6 +209,27 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.LoadingStatePage",
+          "Title": "LoadingState",
+          "Subtitle": "",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FizzyCoverPage",
+          "Title": "Fizzy Cover",
+          "Subtitle": "",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LineSidebarPage",
+          "Title": "Line Sidebar",
+          "Subtitle": "",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.IssueLabelPage",
           "Title": "Issue Label",
           "Subtitle": "Displays compact labels with semantic severity and theme-aware colors.",

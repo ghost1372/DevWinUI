@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Color = Windows.UI.Color;
 

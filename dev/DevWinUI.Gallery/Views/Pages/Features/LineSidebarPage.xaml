@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.LineSidebarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/lineSidebar" HeaderText="LineSidebar">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:LineSidebar Items="{x:Bind Items}"/&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbFalloff" Header="Falloff" ItemsSource="{x:Bind Falloffs}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TgShowMarker" Header="Show Marker" IsOn="True" />
+                        <ToggleSwitch x:Name="TgShowIndex" Header="Show Index" IsOn="True" />
+                        <ToggleSwitch x:Name="TgScaleTick" Header="Scale Tick" IsOn="True" />
+                        <Slider x:Name="SliderItemGap" Header="Item Gap" Maximum="40" Minimum="4" Value="14" />
+                        <Slider x:Name="SliderMarkerLength" Header="Marker Length" Maximum="60" Minimum="10" Value="28" />
+                        <Slider x:Name="SliderMaxShift" Header="Max Shift" Maximum="40" Minimum="0" Value="12" />
+                        <Slider x:Name="SliderRadius" Header="Proximity Radius" Maximum="300" Minimum="0" Value="120" />
+                        <Slider x:Name="SliderSmoothing" Header="Smoothing (ms)" Maximum="300" Minimum="0" Value="80" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="16">
+                    <dev:LineSidebar x:Name="MySidebar" Padding="24" HorizontalAlignment="Left" Falloff="{x:Bind ((dev:LineSidebarFalloff)CmbFalloff.SelectedItem), Mode=OneWay}" ItemClick="OnItemClick" ItemGap="{x:Bind SliderItemGap.Value, Mode=OneWay}" Items="{x:Bind Items}" MarkerLength="{x:Bind SliderMarkerLength.Value, Mode=OneWay}" MaxShift="{x:Bind SliderMaxShift.Value, Mode=OneWay}" ProximityRadius="{x:Bind SliderRadius.Value, Mode=OneWay}" ScaleTick="{x:Bind TgScaleTick.IsOn, Mode=OneWay}" ShowIndex="{x:Bind TgShowIndex.IsOn, Mode=OneWay}" ShowMarker="{x:Bind TgShowMarker.IsOn, Mode=OneWay}" Smoothing="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
+                    <TextBlock x:Name="TxtClicked" Opacity="0.7" Text="Clicked: none" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

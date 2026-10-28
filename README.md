@@ -148,6 +148,15 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### FizzyCover
+![FizzyCover](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FizzyCover.gif)
+
+### LineSidebar
+![LineSidebar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LineSidebar.gif)
+
+### LoadingState
+![LoadingState](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoadingState.gif)
+
 ### BorderBeam
 ![BorderBeam](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BorderBeam.gif)
 
