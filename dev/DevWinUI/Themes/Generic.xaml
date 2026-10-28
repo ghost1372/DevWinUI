@@ -120,6 +120,7 @@ Themes\Styles\Controls\DonutChart.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\EdgeLighting.xaml
 Themes\Styles\Controls\Empty.xaml
+Themes\Styles\Controls\FizzyCover.xaml
 Themes\Styles\Controls\FlipBlock.xaml
 Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlipToReveal.xaml
@@ -192,6 +193,7 @@ Themes\Styles\Controls\SpectrumVisualizer.xaml
 Themes\Styles\Controls\SpeedGraph.xaml
 Themes\Styles\Controls\SplitCircle.xaml
 Themes\Styles\Controls\Spoiler.xaml
+Themes\Styles\Controls\StarBorder.xaml
 Themes\Styles\Controls\Stars.xaml
 Themes\Styles\Controls\StatusMark.xaml
 Themes\Styles\Controls\StepBar.xaml
@@ -2791,6 +2793,33 @@ Themes\Styles\Controls\WelcomeHero.xaml
           <Border x:Name="PART_Border">
             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTransitions="{TemplateBinding ContentTransitions}" />
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultFizzyBorderStyle" TargetType="local:FizzyCover">
+    <Setter Property="Padding" Value="28,14,28,14" />
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:FizzyCover">
+          <Grid x:Name="PART_Root">
+            <Rectangle x:Name="PART_DebugWake" Fill="Transparent" IsHitTestVisible="False" Stroke="#99FFAA00" StrokeDashArray="4 4" StrokeThickness="1" Visibility="Collapsed" />
+            <Rectangle x:Name="PART_DebugNear" Fill="Transparent" IsHitTestVisible="False" Stroke="#9900CCFF" StrokeDashArray="4 4" StrokeThickness="1" Visibility="Collapsed" />
+            <Grid x:Name="PART_Host" Background="Transparent">
+              <Rectangle x:Name="PART_Fill" IsHitTestVisible="False" />
+              <Canvas x:Name="PART_Particles" IsHitTestVisible="False" />
+              <ContentPresenter x:Name="PART_Content" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
+              <Grid x:Name="PART_InvHost" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" Visibility="Collapsed">
+                <ContentPresenter x:Name="PART_InvContent" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
+              </Grid>
+            </Grid>
+            <Rectangle x:Name="PART_Outline" Fill="Transparent" IsHitTestVisible="False" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -5630,6 +5659,24 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <GradientStop Offset="1" Color="#e08caeff" />
   </LinearGradientBrush>
   <Duration x:Key="SpeedGraphColorAnimationDuration">0:0:0.3</Duration>
+  <Style x:Key="DefaultStarBorderStyle" TargetType="local:StarBorder">
+    <Setter Property="Padding" Value="16" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:StarBorder">
+          <Grid x:Name="PART_Root">
+            <Border x:Name="PART_Surface">
+              <ContentPresenter x:Name="PART_Content" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+            </Border>
+            <wind2:CanvasControl x:Name="PART_Canvas" Margin="-12" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultStarsStyle" TargetType="local:Stars">
     <Setter Property="Template">
       <Setter.Value>
@@ -16599,6 +16646,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultFizzyBorderStyle}" TargetType="local:FizzyCover" />
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="BorderBrush" Value="Gray" />
@@ -19454,6 +19502,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultStarBorderStyle}" TargetType="local:StarBorder" />
   <Style BasedOn="{StaticResource DefaultStarsStyle}" TargetType="local:Stars" />
   <Style BasedOn="{StaticResource DefaultStatusMarkStyle}" TargetType="local:StatusMark" />
   <Style x:Key="StepBarItemHorizontalStyle" TargetType="local:StepBarItem">
