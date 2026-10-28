@@ -148,6 +148,15 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### BorderBeam
+![BorderBeam](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BorderBeam.gif)
+
+### BranchedMenu
+![BranchedMenu](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BranchedMenu.gif)
+
+### DonutChart
+![DonutChart](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DonutChart.gif)
+
 ### BlinkingSquares
 ![BlinkingSquares](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BlinkingSquares.gif)
 

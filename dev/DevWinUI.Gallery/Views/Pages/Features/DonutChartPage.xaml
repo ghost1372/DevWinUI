@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DonutChartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/donutChart" HeaderText="DonutChart">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:DonutChart Data="{x:Bind Data}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderDiameter" Header="Diameter" Maximum="320" Minimum="120" Value="220" />
+                        <Slider x:Name="SliderThickness" Header="Thickness" Maximum="80" Minimum="8" Value="28" />
+                        <Slider x:Name="SliderGap" Header="Gap" Maximum="0.2" Minimum="0" StepFrequency="0.01" Value="0.03" />
+                        <Slider x:Name="SliderCorner" Header="Slice Corner Radius" Maximum="12" Minimum="0" StepFrequency="0.5" Value="4" />
+                        <TextBox x:Name="TxtCenterLabel" Header="Center Label" Text="Total" />
+                        <ToggleSwitch x:Name="TgShowLegend" Header="Show Legend" IsOn="True" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Click="AddSlice_Click" Content="Add slice" />
+                            <Button Click="RemoveSlice_Click" Content="Remove slice" />
+                        </StackPanel>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:DonutChart CenterLabel="{x:Bind TxtCenterLabel.Text, Mode=OneWay}" Data="{x:Bind Data}" Diameter="{x:Bind SliderDiameter.Value, Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" ShowLegend="{x:Bind TgShowLegend.IsOn, Mode=OneWay}" SliceCornerRadius="{x:Bind SliderCorner.Value, Mode=OneWay}" Thickness="{x:Bind SliderThickness.Value, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

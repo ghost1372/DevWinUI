@@ -457,6 +457,20 @@
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.DonutChartPage",
+          "Title": "Donut Chart",
+          "Subtitle": "An animated donut chart with hover highlighting and an interactive legend",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BranchedMenuPage",
+          "Title": "Branched Menu",
+          "Subtitle": "A collapsible tree menu with animated branch lines and a sliding selection marker",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
           "Title": "Dropdown Color Picker",
           "Subtitle": "A color selection control that opens a dropdown palette",
@@ -1093,6 +1107,13 @@
           "Title": "Gooey",
           "Subtitle": "Gooey",
           "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BorderBeamPage",
+          "Title": "Border Beam",
+          "Subtitle": "A glowing beam of light that travels around the border of an element",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         }
       ]
     },
