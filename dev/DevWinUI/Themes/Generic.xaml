@@ -3395,6 +3395,21 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="LoadingIndicatorEpicStyle" TargetType="local:LoadingIndicator">
+    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:LoadingIndicator">
+          <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Canvas x:Name="PART_Root" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="LoadingIndicatorDoubleBounceStyle" TargetType="local:LoadingIndicator">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
     <Setter Property="VerticalAlignment" Value="Center" />
