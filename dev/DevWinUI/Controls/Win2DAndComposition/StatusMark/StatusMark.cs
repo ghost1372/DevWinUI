@@ -7,7 +7,6 @@ namespace DevWinUI;
 
 /// <summary>
 /// Task status glyph: dashed ring, spinning or progress arc, then a closed ring with a check or cross.
-/// Inspired by the Status Mark component from React Bits.
 /// </summary>
 public sealed partial class StatusMark : ContentControl
 {
