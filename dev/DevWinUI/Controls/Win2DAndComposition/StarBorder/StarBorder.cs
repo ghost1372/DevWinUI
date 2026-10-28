@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.UI.Xaml.Input;
+﻿using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 
 namespace DevWinUI;
 
@@ -18,7 +18,6 @@ public sealed partial class StarBorder : ContentControl
     private Border? _surface;
     private ContentPresenter? _content;
 
-    private readonly Stopwatch _clock = Stopwatch.StartNew();
     private readonly Random _rng = new();
     private readonly CanvasStrokeStyle _flat = new() { StartCap = CanvasCapStyle.Flat, EndCap = CanvasCapStyle.Flat };
     private readonly Vector2[] _trailPts = new Vector2[TrailSegments + 1];
@@ -29,7 +28,8 @@ public sealed partial class StarBorder : ContentControl
     private Perimeter? _path;
     private bool _loaded, _offscreen, _rendering;
     private bool _pointerOver, _keyboardFocus, _hovered;
-    private double _lastTime, _time, _phase, _speedFactor = 1, _lapRemaining, _sparkleAcc;
+    private TimeSpan _lastRenderingTime;
+    private double _time, _phase, _speedFactor = 1, _lapRemaining, _sparkleAcc;
     private double _brighten, _brightenTarget, _reveal = 1, _revealTarget = 1;
 
     public StarBorder()
@@ -181,7 +181,7 @@ public sealed partial class StarBorder : ContentControl
         _canvas?.Invalidate();
         if (!_rendering && NeedsFrames())
         {
-            _lastTime = _clock.Elapsed.TotalSeconds;
+            _lastRenderingTime = TimeSpan.Zero;
             CompositionTarget.Rendering += OnRendering;
             _rendering = true;
         }
@@ -196,12 +196,16 @@ public sealed partial class StarBorder : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        double now = _clock.Elapsed.TotalSeconds;
-        double dt = Math.Min(now - _lastTime, 0.05);
-        _lastTime = now;
+        var now = ((RenderingEventArgs)e).RenderingTime;
+        if (now == _lastRenderingTime) return;
+
+        double dt = _lastRenderingTime == TimeSpan.Zero
+            ? 1.0 / 60
+            : Math.Min((now - _lastRenderingTime).TotalSeconds, 0.05);
+        _lastRenderingTime = now;
         if (!CanRender) { StopLoop(); return; }
 
-        _time = now;
+        _time = now.TotalSeconds;
         Update(dt);
         _canvas?.Invalidate();
         if (!NeedsFrames()) StopLoop();
