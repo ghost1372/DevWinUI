@@ -980,6 +980,20 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.StarBorderPage",
+          "Title": "Star Border",
+          "Subtitle": "A control with a twinkling star that travels its border, leaving a fading trail and stardust.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StatusMarkPage",
+          "Title": "Status Mark",
+          "Subtitle": "Task status glyph that morphs from a dashed ring to a spinning or progress arc, then a closed ring with a check or cross.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlinkingSquaresPage",
           "Title": "Blinking Squares",
           "Subtitle": "A composition-driven twinkling square field with configurable direction and density.",

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.StarBorderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/starBorder" HeaderText="StarBorder">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:StarBorder Width="220" Height="64" &gt;#nl#
+                        &lt;TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Star Border" /&gt;#nl#
+                        &lt;/dev:StarBorder&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderDuration" Header="Duration (seconds)" Maximum="12" Minimum="0.5" StepFrequency="0.5" Value="4" />
+                        <Slider x:Name="SliderStars" Header="Stars" Maximum="6" Minimum="1" StepFrequency="1" Value="1" />
+                        <Slider x:Name="SliderTrailLength" Header="Trail Length" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.3" />
+                        <Slider x:Name="SliderLineThickness" Header="Line Thickness" Maximum="6" Minimum="1" StepFrequency="0.5" Value="1" />
+                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="40" Minimum="0" StepFrequency="1" Value="12" />
+                        <Slider x:Name="SliderGlow" Header="Glow" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.6" />
+                        <ComboBox x:Name="CmbDirection" Header="Direction" ItemsSource="{x:Bind DirectionItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbHoverMode" Header="Hover Mode" ItemsSource="{x:Bind HoverModeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbTheme" Header="Theme" ItemsSource="{x:Bind ThemeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ToggleSwitch x:Name="TgSparkle" Header="Sparkle" />
+                        <ToggleSwitch x:Name="TgClickPulse" Header="Click Pulse" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Padding="40" Spacing="10">
+                    <dev:StarBorder x:Name="MyStarBorder" Width="220" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" ClickPulse="{x:Bind TgClickPulse.IsOn, Mode=OneWay}" Direction="{x:Bind ((dev:StarDirection)CmbDirection.SelectedItem), Mode=OneWay}" Glow="{x:Bind SliderGlow.Value, Mode=OneWay}" HoverMode="{x:Bind ((dev:StarHoverMode)CmbHoverMode.SelectedItem), Mode=OneWay}" LineThickness="{x:Bind SliderLineThickness.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" Sparkle="{x:Bind TgSparkle.IsOn, Mode=OneWay}" StarColor="Gold" Stars="{x:Bind (x:Int32)SliderStars.Value, Mode=OneWay}" Theme="{x:Bind ((dev:StarBorderTheme)CmbTheme.SelectedItem), Mode=OneWay}" TrailColor="DeepSkyBlue" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Star Border" />
+                    </dev:StarBorder>
+                      <dev:StarBorder Width="160" Height="56" HoverMode="Brighten" StarColor="#7C3AED" Theme="Light" TrailColor="#EC4899">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Brighten" />
+                    </dev:StarBorder>
+                    <dev:StarBorder Width="160" Height="56" HoverMode="Reveal" Sparkle="True" StarColor="Gold" Stars="3" TrailColor="Orange">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Reveal" />
+                    </dev:StarBorder>
+                    <dev:StarBorder Width="160" Height="56" Direction="CounterClockwise" Radius="32" StarColor="#22C55E" TrailColor="#06B6D4" Duration="2">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Pill" />
+                    </dev:StarBorder>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

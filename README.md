@@ -148,6 +148,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### StatusMark
+![StatusMark](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StatusMark.gif)
+
+### StarBorder
+![StarBorder](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StarBorder.gif)
+
 ### FizzyCover
 ![FizzyCover](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FizzyCover.gif)
 

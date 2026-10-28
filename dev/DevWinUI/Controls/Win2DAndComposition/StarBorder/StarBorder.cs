@@ -2,9 +2,6 @@
 
 namespace DevWinUI;
 
-/// <summary>
-/// A button with a twinkling star that travels its outline, with a fading trail and stardust.
-/// </summary>
 public sealed partial class StarBorder : ContentControl
 {
     private const float GlowPad = 12f;

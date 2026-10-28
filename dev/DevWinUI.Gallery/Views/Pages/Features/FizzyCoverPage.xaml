@@ -20,8 +20,6 @@
                     <StackPanel Spacing="10">
                         <ComboBox x:Name="CmbTrigger" Header="Trigger" ItemsSource="{x:Bind Triggers}" SelectedIndex="0" />
                         <ComboBox x:Name="CmbShape" Header="Particle Shape" ItemsSource="{x:Bind Shapes}" SelectedIndex="0" />
-                        <ToggleSwitch x:Name="TgPressed" Header="Pressed" IsOn="{x:Bind MyFizzyCover.Pressed, Mode=TwoWay}" />
-                        <ToggleSwitch x:Name="TgDebug" Header="Debug" />
                         <Slider x:Name="SliderRadius" Header="Radius" Maximum="40" Minimum="0" Value="24" />
 
                         <dev:SettingsExpander Header="Range">
@@ -79,7 +77,7 @@
                         </dev:SettingsExpander>
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:FizzyCover x:Name="MyFizzyCover" Width="250" Height="50" HorizontalAlignment="Left" ActiveAlpha="{x:Bind SliderActiveAlpha.Value, Mode=OneWay}" ActiveSpeed="{x:Bind SliderActiveSpeed.Value, Mode=OneWay}" Content="Hover me" Count="{x:Bind ToInt(SliderCount.Value), Mode=OneWay}" Crest="{x:Bind SliderCrest.Value, Mode=OneWay}" Debug="{x:Bind TgDebug.IsOn, Mode=OneWay}" Drift="{x:Bind SliderDrift.Value, Mode=OneWay}" FillDuration="{x:Bind SliderFill.Value, Mode=OneWay}" IdleSpeed="{x:Bind SliderIdleSpeed.Value, Mode=OneWay}" ParticleShape="{x:Bind ((dev:FizzyShape)CmbShape.SelectedItem), Mode=OneWay}" Proximity="{x:Bind SliderProximity.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RestAlpha="{x:Bind SliderRestAlpha.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Spin="{x:Bind SliderSpin.Value, Mode=OneWay}" Trigger="{x:Bind ((dev:FizzyTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Variation="{x:Bind SliderVariation.Value, Mode=OneWay}" WakeMargin="{x:Bind SliderWake.Value, Mode=OneWay}" />
+                <dev:FizzyCover x:Name="MyFizzyCover" Width="250" Height="50" HorizontalAlignment="Left" ActiveAlpha="{x:Bind SliderActiveAlpha.Value, Mode=OneWay}" ActiveSpeed="{x:Bind SliderActiveSpeed.Value, Mode=OneWay}" Content="Hover me" Count="{x:Bind ToInt(SliderCount.Value), Mode=OneWay}" Crest="{x:Bind SliderCrest.Value, Mode=OneWay}" Drift="{x:Bind SliderDrift.Value, Mode=OneWay}" FillDuration="{x:Bind SliderFill.Value, Mode=OneWay}" IdleSpeed="{x:Bind SliderIdleSpeed.Value, Mode=OneWay}" ParticleShape="{x:Bind ((dev:FizzyShape)CmbShape.SelectedItem), Mode=OneWay}" Proximity="{x:Bind SliderProximity.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RestAlpha="{x:Bind SliderRestAlpha.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Spin="{x:Bind SliderSpin.Value, Mode=OneWay}" Trigger="{x:Bind ((dev:FizzyTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Variation="{x:Bind SliderVariation.Value, Mode=OneWay}" WakeMargin="{x:Bind SliderWake.Value, Mode=OneWay}" />
             </local:ControlExample>
 
             <local:ControlExample DocPage="controls/fizzyCover" HeaderText="Toggle with inverted content">

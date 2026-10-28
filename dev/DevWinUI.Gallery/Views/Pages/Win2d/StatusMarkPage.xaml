@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.StatusMarkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/statusMark" HeaderText="StatusMark">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:StatusMark Label="Build project" Status="Running" Progress="40" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button Click="OnSimulateClick" Content="Simulate task" />
+
+                        <ComboBox x:Name="CmbStatus" Header="Status" ItemsSource="{x:Bind StatusItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TgDeterminate" Header="Determinate Progress" />
+                        <Slider x:Name="SliderProgress" Header="Progress" IsEnabled="{x:Bind TgDeterminate.IsOn, Mode=OneWay}" Maximum="100" Minimum="0" Value="40" />
+                        <Slider x:Name="SliderGlyphSize" Header="Glyph Size" Maximum="64" Minimum="12" StepFrequency="1" Value="20" />
+                        <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="4" Minimum="0.5" StepFrequency="0.25" Value="2" />
+                        <Slider x:Name="SliderDashes" Header="Dashes" Maximum="16" Minimum="3" StepFrequency="1" Value="8" />
+                        <Slider x:Name="SliderSpinDuration" Header="Spin Duration (ms)" Maximum="3000" Minimum="300" StepFrequency="50" Value="1100" />
+                        <Slider x:Name="SliderArcLength" Header="Arc Length" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.68" />
+                        <Slider x:Name="SliderDrawDuration" Header="Draw Duration (ms)" Maximum="1000" Minimum="50" StepFrequency="10" Value="240" />
+                        <Slider x:Name="SliderFillOpacity" Header="Fill Opacity" Maximum="0.5" Minimum="0" StepFrequency="0.01" Value="0.06" />
+                        <ToggleSwitch x:Name="TgStrike" Header="Strike" IsOn="True" />
+                        <Slider x:Name="SliderStrikeDelay" Header="Strike Delay (ms)" IsEnabled="{x:Bind TgStrike.IsOn, Mode=OneWay}" Maximum="1000" Minimum="0" StepFrequency="20" Value="60" />
+                        <ToggleSwitch x:Name="TgReduceMotion" Header="Reduce Motion" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Padding="20" HorizontalAlignment="Center" Spacing="12">
+                    <dev:StatusMark x:Name="MyStatusMark" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" ArcLength="{x:Bind SliderArcLength.Value, Mode=OneWay}" Dashes="{x:Bind (x:Int32)SliderDashes.Value, Mode=OneWay}" DrawDuration="{x:Bind SliderDrawDuration.Value, Mode=OneWay}" FillOpacity="{x:Bind SliderFillOpacity.Value, Mode=OneWay}" GlyphSize="{x:Bind SliderGlyphSize.Value, Mode=OneWay}" Label="Build project" Progress="{x:Bind GetProgress(TgDeterminate.IsOn, SliderProgress.Value), Mode=OneWay}" ReduceMotion="{x:Bind TgReduceMotion.IsOn, Mode=OneWay}" SpinDuration="{x:Bind SliderSpinDuration.Value, Mode=OneWay}" Status="{x:Bind ((dev:StatusMarkStatus)CmbStatus.SelectedItem), Mode=OneWay}" Strike="{x:Bind TgStrike.IsOn, Mode=OneWay}" StrikeDelay="{x:Bind SliderStrikeDelay.Value, Mode=OneWay}" StrokeWidth="{x:Bind SliderStrokeWidth.Value, Mode=OneWay}" />
+
+                    <dev:StatusMark Label="Pending task" Status="Pending" />
+                    <dev:StatusMark Label="Running task" Status="Running" />
+                    <dev:StatusMark Label="Uploading" Progress="65" Status="Running" />
+                    <dev:StatusMark Label="Completed task" Status="Done" />
+                    <dev:StatusMark Label="Failed task" Status="Failed" />
+                    <dev:StatusMark Label="Cancelled task" Status="Cancelled" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
