@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultLineSidebarStyle}" TargetType="local:LineSidebar" />
+
+    <Style x:Key="DefaultLineSidebarStyle" TargetType="local:LineSidebar">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="MarkerColor" Value="{ThemeResource ControlStrongStrokeColorDefault}" />
+        <Setter Property="TextColor" Value="{ThemeResource TextFillColorSecondary}" />
+        <Setter Property="AccentColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LineSidebar">
+                    <Grid x:Name="PART_Host" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
