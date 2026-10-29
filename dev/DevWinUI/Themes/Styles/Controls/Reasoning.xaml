@@ -165,11 +165,11 @@
                                 <TextBlock x:Name="PART_PreviewText" FontSize="12" Foreground="{ThemeResource ReasoningSecondaryForeground}" TextTrimming="CharacterEllipsis" />
                             </Grid>
 
-                            <local:Collapsible x:Name="PART_Panel">
+                            <local:CollapsibleGrid x:Name="PART_Panel">
                                 <Border x:Name="PART_BodyHost" Padding="12,0,12,12">
                                     <ContentPresenter Content="{TemplateBinding Body}" FontSize="13" Foreground="{ThemeResource ReasoningSecondaryForeground}" TextWrapping="Wrap" />
                                 </Border>
-                            </local:Collapsible>
+                            </local:CollapsibleGrid>
                         </StackPanel>
                     </Border>
                 </ControlTemplate>
@@ -212,7 +212,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ReasoningStep">
-                    <local:Collapsible x:Name="PART_Reveal">
+                    <local:CollapsibleGrid x:Name="PART_Reveal">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="StatusStates">
                                 <VisualState x:Name="Pending" />
@@ -249,11 +249,11 @@
                                 </Grid>
                             </local:ReasoningTrigger>
 
-                            <local:Collapsible x:Name="PART_DetailsPanel">
+                            <local:CollapsibleGrid x:Name="PART_DetailsPanel">
                                 <ItemsPresenter Margin="26,6,0,2" />
-                            </local:Collapsible>
+                            </local:CollapsibleGrid>
                         </StackPanel>
-                    </local:Collapsible>
+                    </local:CollapsibleGrid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
