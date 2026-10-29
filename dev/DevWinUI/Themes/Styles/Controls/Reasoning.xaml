@@ -279,25 +279,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ReasoningStepSources">
-                    <ItemsControl IsTabStop="False" ItemsSource="{TemplateBinding Sources}">
+                    <ItemsControl IsTabStop="False" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding Sources}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Spacing="4" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <HyperlinkButton CornerRadius="12" NavigateUri="{Binding Url}" Style="{StaticResource ReasoningLinkButtonStyle}">
-                                    <Border Padding="8,4" BorderBrush="{ThemeResource ReasoningBorderBrush}" BorderThickness="1" CornerRadius="12">
-                                        <StackPanel Orientation="Horizontal" Spacing="6">
-                                            <FontIcon VerticalAlignment="Center" FontSize="11" Foreground="{ThemeResource ReasoningSecondaryForeground}" Glyph="&#xE774;" />
-                                            <TextBlock FontSize="12" Foreground="{ThemeResource ReasoningPrimaryForeground}" Text="{Binding Title}" />
-                                            <TextBlock FontSize="12" Foreground="{ThemeResource ReasoningSecondaryForeground}" Text="{Binding Host}" />
-                                        </StackPanel>
-                                    </Border>
-                                </HyperlinkButton>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ControlTemplate>
             </Setter.Value>
