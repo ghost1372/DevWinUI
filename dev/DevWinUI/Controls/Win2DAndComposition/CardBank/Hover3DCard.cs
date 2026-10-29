@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class Hover3DCard : ContentControl
 {
@@ -41,8 +39,7 @@ public partial class Hover3DCard : ContentControl
         DependencyProperty.Register(nameof(SmoothingMs), typeof(double), typeof(Hover3DCard), new PropertyMetadata(60.0));
 
     private readonly Visual _visual;
-    private readonly Stopwatch _clock = new();
-    private long _lastTicks;
+    private TimeSpan? _lastTime;
     private bool _rendering;
 
     private float _cx, _cy, _cs = 1f;
@@ -92,8 +89,7 @@ public partial class Hover3DCard : ContentControl
         }
 
         _rendering = true;
-        _clock.Restart();
-        _lastTicks = 0;
+        _lastTime = null;
         CompositionTarget.Rendering += OnRendering;
     }
 
@@ -110,9 +106,15 @@ public partial class Hover3DCard : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        long now = _clock.ElapsedTicks;
-        float dt = (float)((now - _lastTicks) / (double)Stopwatch.Frequency * 1000.0);
-        _lastTicks = now;
+        TimeSpan time = ((RenderingEventArgs)e).RenderingTime;
+        if (_lastTime is not TimeSpan last)
+        {
+            _lastTime = time;
+            return;
+        }
+
+        float dt = (float)Math.Max(0.0, (time - last).TotalMilliseconds);
+        _lastTime = time;
 
         float k = 1f - MathF.Exp(-dt / (float)Math.Max(1.0, SmoothingMs));
         _cx += (_tx - _cx) * k;
