@@ -148,6 +148,66 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### DiffView
+![DiffView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DiffView.gif)
+
+### CardBank
+![CardBank](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardBank.gif)
+
+### AnimatedToc
+![AnimatedToc](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimatedToc.gif)
+
+### ExpandingCards
+![ExpandingCards](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ExpandingCards.gif)
+
+### GithubActivityGrid
+![GithubActivityGrid](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GithubActivityGrid.gif)
+
+### EyeTracking
+![EyeTracking](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/EyeTracking.gif)
+
+### FillButton
+![FillButton](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FillButton.gif)
+
+### HoldToConfirm
+![HoldToConfirm](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/HoldToConfirm.gif)
+
+### LoadingIndicator
+![LoadingIndicator](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoadingIndicator.gif)
+
+### Hover3DCard
+![Hover3DCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Hover3DCard.gif)
+
+### MorphingWizard
+![MorphingWizard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MorphingWizard.gif)
+
+### OrbitCardStack
+![OrbitCardStack](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/OrbitCardStack.gif)
+
+### ScrambledText
+![ScrambledText](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ScrambledText.gif)
+
+### ShowMore
+![ShowMore](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ShowMore.gif)
+
+### TableOfContents
+![TableOfContents](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TableOfContents.gif)
+
+### TextHighlight
+![TextHighlight](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextHighlight.gif)
+
+### TextScribble
+![TextScribble](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TextScribble.gif)
+
+### UnderlineAnimation
+![UnderlineAnimation](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/UnderlineAnimation.gif)
+
+### ColorArchive
+![ColorArchive](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorArchive.gif)
+
+### ScrollSplitCard
+![ScrollSplitCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ScrollSplitCard.gif)
+
 ### StatusMark
 ![StatusMark](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StatusMark.gif)
 
@@ -732,9 +792,6 @@ dotnet add package DevWinUI.Shader
 
 ### IndeterminateProgressBar
 ![IndeterminateProgressBar](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/IndeterminateProgressBar.gif)
-
-### LoadingIndicator
-![LoadingIndicator](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/LoadingIndicator.gif)
 
 ### ThemeService / Backdrop TintColor
 ![ThemeService](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TintColor.gif)
