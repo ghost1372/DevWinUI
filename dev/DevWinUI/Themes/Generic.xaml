@@ -124,6 +124,7 @@ Themes\Styles\Controls\DonutChart.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\EdgeLighting.xaml
 Themes\Styles\Controls\Empty.xaml
+Themes\Styles\Controls\EyeTracking.xaml
 Themes\Styles\Controls\FizzyCover.xaml
 Themes\Styles\Controls\FlipBlock.xaml
 Themes\Styles\Controls\FlipSide.xaml
@@ -451,6 +452,24 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="#E8E2DC" />
+      <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="#0A0E17" />
+      <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="#4A6741" />
+      <SolidColorBrush x:Key="EyeTrackingIrisAccentBrush" Color="#6B8F62" />
+      <SolidColorBrush x:Key="EyeTrackingPupilBrush" Color="#0A0A0A" />
+      <SolidColorBrush x:Key="EyeTrackingOutlineBrush" Color="#D1D5DB" />
+      <SolidColorBrush x:Key="EyeTrackingRimBrush" Color="#40FFFFFF" />
+      <SolidColorBrush x:Key="EyeTrackingVeinBrush" Color="#96BE3C3C" />
+      <SolidColorBrush x:Key="EyeTrackingHighlightBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="EyeTrackingShadeBrush" Color="#000000" />
+      <LinearGradientBrush x:Key="EyeTrackingUpperEyelidShadeBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#78000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="EyeTrackingLowerEyelidShadeBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00000000" />
+        <GradientStop Offset="1" Color="#2D000000" />
+      </LinearGradientBrush>
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -814,6 +833,24 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="#F5F0EB" />
+      <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="#0A0E17" />
+      <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="#4A6741" />
+      <SolidColorBrush x:Key="EyeTrackingIrisAccentBrush" Color="#6B8F62" />
+      <SolidColorBrush x:Key="EyeTrackingPupilBrush" Color="#0A0A0A" />
+      <SolidColorBrush x:Key="EyeTrackingOutlineBrush" Color="#111111" />
+      <SolidColorBrush x:Key="EyeTrackingRimBrush" Color="#463C2828" />
+      <SolidColorBrush x:Key="EyeTrackingVeinBrush" Color="#96BE3C3C" />
+      <SolidColorBrush x:Key="EyeTrackingHighlightBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="EyeTrackingShadeBrush" Color="#000000" />
+      <LinearGradientBrush x:Key="EyeTrackingUpperEyelidShadeBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#78000000" />
+        <GradientStop Offset="1" Color="#00000000" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="EyeTrackingLowerEyelidShadeBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00000000" />
+        <GradientStop Offset="1" Color="#2D000000" />
+      </LinearGradientBrush>
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -1166,6 +1203,18 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="FileDiffSelectionForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="EyeTrackingIrisAccentBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="EyeTrackingPupilBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="EyeTrackingOutlineBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="EyeTrackingRimBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="EyeTrackingVeinBrush" Color="{ThemeResource SystemColorGrayTextColor}" />
+      <SolidColorBrush x:Key="EyeTrackingHighlightBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="EyeTrackingShadeBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="EyeTrackingUpperEyelidShadeBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="EyeTrackingLowerEyelidShadeBrush" Color="Transparent" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -2945,6 +2994,32 @@ Themes\Styles\Controls\WelcomeHero.xaml
           <Border x:Name="PART_Border">
             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTransitions="{TemplateBinding ContentTransitions}" />
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultEyeTrackingStyle" TargetType="local:EyeTracking">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ScleraBrush" Value="{ThemeResource EyeTrackingScleraBrush}" />
+    <Setter Property="CyberScleraBrush" Value="{ThemeResource EyeTrackingCyberScleraBrush}" />
+    <Setter Property="IrisBrush" Value="{ThemeResource EyeTrackingIrisBrush}" />
+    <Setter Property="IrisAccentBrush" Value="{ThemeResource EyeTrackingIrisAccentBrush}" />
+    <Setter Property="PupilBrush" Value="{ThemeResource EyeTrackingPupilBrush}" />
+    <Setter Property="OutlineBrush" Value="{ThemeResource EyeTrackingOutlineBrush}" />
+    <Setter Property="RimBrush" Value="{ThemeResource EyeTrackingRimBrush}" />
+    <Setter Property="VeinBrush" Value="{ThemeResource EyeTrackingVeinBrush}" />
+    <Setter Property="HighlightBrush" Value="{ThemeResource EyeTrackingHighlightBrush}" />
+    <Setter Property="ShadeBrush" Value="{ThemeResource EyeTrackingShadeBrush}" />
+    <Setter Property="UpperEyelidShadeBrush" Value="{ThemeResource EyeTrackingUpperEyelidShadeBrush}" />
+    <Setter Property="LowerEyelidShadeBrush" Value="{ThemeResource EyeTrackingLowerEyelidShadeBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:EyeTracking">
+          <Grid Margin="8">
+            <Canvas x:Name="PART_Root" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -16892,6 +16967,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultEyeTrackingStyle}" TargetType="local:EyeTracking" />
   <Style BasedOn="{StaticResource DefaultFizzyCoverStyle}" TargetType="local:FizzyCover" />
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
