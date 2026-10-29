@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="FillButtonForeground" Color="#0A0A0A" />
+            <SolidColorBrush x:Key="FillButtonBackground" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="FillButtonPrimary" Color="#171717" />
+            <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#FAFAFA" />
+            <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#DFDFDF" />
+            <SolidColorBrush x:Key="FillButtonBorder" Color="#E5E5E5" />
+            <SolidColorBrush x:Key="FillButtonRing" Color="#A1A1A1" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="FillButtonForeground" Color="#FAFAFA" />
+            <SolidColorBrush x:Key="FillButtonBackground" Color="#0A0A0A" />
+            <SolidColorBrush x:Key="FillButtonPrimary" Color="#E5E5E5" />
+            <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#171717" />
+            <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
+            <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
+            <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="FillButtonForeground" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="FillButtonBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="FillButtonPrimary" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="FillButtonPrimaryForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="FillButtonSoftBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="FillButtonBorder" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="FillButtonRing" ResourceKey="SystemColorButtonTextColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultFillButtonStyle}" TargetType="local:FillButton" />
+
+    <Style x:Key="DefaultFillButtonStyle" TargetType="local:FillButton">
+        <Setter Property="Foreground" Value="{ThemeResource FillButtonForeground}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="UseSystemFocusVisuals" Value="False" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FillButton">
+                    <Grid x:Name="PART_Root" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Root.Opacity" Value="0.5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="ToneStates">
+                                <VisualState x:Name="Soft">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Surface.Background" Value="{ThemeResource FillButtonSoftBackground}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Outline">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Surface.Background" Value="{ThemeResource FillButtonBackground}" />
+                                        <Setter Target="PART_Surface.BorderBrush" Value="{ThemeResource FillButtonBorder}" />
+                                        <Setter Target="PART_Surface.BorderThickness" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="PART_RingOffset" Margin="-2" AutomationProperties.AccessibilityView="Raw" BorderBrush="{ThemeResource FillButtonBackground}" BorderThickness="2" IsHitTestVisible="False" Visibility="Collapsed" />
+                        <Border x:Name="PART_Ring" Margin="-4" AutomationProperties.AccessibilityView="Raw" BorderBrush="{ThemeResource FillButtonRing}" BorderThickness="2" IsHitTestVisible="False" Visibility="Collapsed" />
+
+                        <Border x:Name="PART_Surface">
+                            <Grid x:Name="PART_Clip">
+                                <Grid x:Name="PART_Layer" Margin="4" IsHitTestVisible="False">
+                                    <Rectangle x:Name="PART_Fill" Fill="{ThemeResource FillButtonPrimary}" IsHitTestVisible="False" />
+
+                                    <Grid x:Name="PART_Track" IsHitTestVisible="False">
+                                        <Grid x:Name="PART_IconCell" HorizontalAlignment="Left" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw">
+                                            <Viewbox x:Name="PART_DefaultIcon" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform">
+                                                <Canvas Width="16" Height="16">
+                                                    <Path Data="M3,8 L13,8 M9,4 L13,8 L9,12" Stroke="{ThemeResource FillButtonPrimaryForeground}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="1.5" />
+                                                </Canvas>
+                                            </Viewbox>
+                                            <Viewbox x:Name="PART_CustomIcon" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Visibility="Collapsed">
+                                                <ContentPresenter Content="{TemplateBinding Icon}" Foreground="{ThemeResource FillButtonPrimaryForeground}" />
+                                            </Viewbox>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+
+                                <ContentPresenter x:Name="PART_Label" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" TextWrapping="NoWrap" />
+
+                                <ContentPresenter x:Name="PART_FillLabel" Margin="4,4,0,4" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" Foreground="{ThemeResource FillButtonPrimaryForeground}" IsHitTestVisible="False" TextWrapping="NoWrap" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
