@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.OrbitCardStackPage",
+          "Title": "Orbit Card Stack",
+          "Subtitle": "A fanned stack of cards that opens into an arc, row or grid on hover or focus",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ReasoningPage",
           "Title": "Reasoning",
           "Subtitle": "A collapsible thinking panel with animated steps, sources, search results and code changes",
