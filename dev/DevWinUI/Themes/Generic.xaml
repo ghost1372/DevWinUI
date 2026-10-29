@@ -117,6 +117,7 @@ Themes\Styles\Controls\Countdown.xaml
 Themes\Styles\Controls\CoverFlow.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\DepthLayerView.xaml
+Themes\Styles\Controls\DiffView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
 Themes\Styles\Controls\DonutChart.xaml
@@ -437,6 +438,17 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#202020" />
+      <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#113A1B" />
+      <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#450C0F" />
+      <SolidColorBrush x:Key="FileDiffAddedAccentBrush" Color="#2EA043" />
+      <SolidColorBrush x:Key="FileDiffRemovedAccentBrush" Color="#E5484D" />
+      <SolidColorBrush x:Key="FileDiffPlaceholderBackgroundBrush" Color="#1D2125" />
+      <SolidColorBrush x:Key="FileDiffAddedHighlightBrush" Color="#22863A" />
+      <SolidColorBrush x:Key="FileDiffRemovedHighlightBrush" Color="#B31D28" />
+      <SolidColorBrush x:Key="FileDiffHighlightForegroundBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="FileDiffSelectionBackgroundBrush" Color="#CC0A5AD7" />
+      <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -789,6 +801,17 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#E6FFEC" />
+      <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#FFEBE9" />
+      <SolidColorBrush x:Key="FileDiffAddedAccentBrush" Color="#1A7F37" />
+      <SolidColorBrush x:Key="FileDiffRemovedAccentBrush" Color="#CF222E" />
+      <SolidColorBrush x:Key="FileDiffPlaceholderBackgroundBrush" Color="#F6F8FA" />
+      <SolidColorBrush x:Key="FileDiffAddedHighlightBrush" Color="#ABF2BC" />
+      <SolidColorBrush x:Key="FileDiffRemovedHighlightBrush" Color="#FFC1C0" />
+      <StaticResource x:Key="FileDiffHighlightForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <SolidColorBrush x:Key="FileDiffSelectionBackgroundBrush" Color="#CC0A5AD7" />
+      <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -1130,6 +1153,17 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="FileDiffSelectionBaseBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="FileDiffAddedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="FileDiffRemovedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="FileDiffAddedAccentBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="FileDiffRemovedAccentBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="FileDiffPlaceholderBackgroundBrush" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <StaticResource x:Key="FileDiffAddedHighlightBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="FileDiffRemovedHighlightBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="FileDiffHighlightForegroundBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="FileDiffSelectionBackgroundBrush" ResourceKey="SystemColorHotlightColorBrush" />
+      <StaticResource x:Key="FileDiffSelectionForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -2671,6 +2705,72 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <x:String x:Key="FileDiffApproximateText">approximate</x:String>
+  <x:String x:Key="FileDiffInlineText">Inline</x:String>
+  <x:String x:Key="FileDiffBeforeText">Before</x:String>
+  <x:String x:Key="FileDiffAfterText">After</x:String>
+  <x:String x:Key="FileDiffCopyText">Copy</x:String>
+  <x:String x:Key="FileDiffSelectAllText">Select all</x:String>
+  <x:String x:Key="FileDiffExpanderFormat">⋯  {0:N0} unchanged lines</x:String>
+  <x:String x:Key="FileDiffExpandAutomationFormat">Expand {0} unchanged lines</x:String>
+  <x:String x:Key="FileDiffAddedLineFormat">Added: {0}</x:String>
+  <x:String x:Key="FileDiffRemovedLineFormat">Removed: {0}</x:String>
+  <x:String x:Key="FileDiffFileAutomationFormat">File diff: {0}</x:String>
+  <x:String x:Key="FileDiffSummaryAutomationFormat">{0} added, {1} removed</x:String>
+  <DataTemplate x:Key="DiffRowTemplate">
+    <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}" Background="{Binding Background, Mode=OneTime}">
+      <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Width="8" />
+        <TextBlock Grid.Column="1" Width="{Binding OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding OldNumber, Mode=OneTime}" Visibility="{Binding OldGutterVisibility, Mode=OneTime}" />
+        <TextBlock Grid.Column="2" Width="{Binding NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding NewNumber, Mode=OneTime}" Visibility="{Binding NewGutterVisibility, Mode=OneTime}" />
+        <TextBlock Grid.Column="3" Width="24" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Marker, Mode=OneTime}" />
+        <TextBlock Grid.Column="4" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Mode=OneTime}" TextWrapping="{Binding Wrapping, Mode=OneTime}" />
+      </Grid>
+      <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="SplitRowTemplate">
+    <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}">
+      <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="1" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="{Binding Left.Background, Mode=OneTime}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="1" Width="{Binding Left.OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Left.OldNumber, Mode=OneTime}" Visibility="{Binding Left.OldGutterVisibility, Mode=OneTime}" />
+          <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Left.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Left.Marker, Mode=OneTime}" />
+          <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Left, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Left.Wrapping, Mode=OneTime}" />
+        </Grid>
+        <Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <Grid Grid.Column="2" Background="{Binding Right.Background, Mode=OneTime}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="1" Width="{Binding Right.NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Right.NewNumber, Mode=OneTime}" Visibility="{Binding Right.NewGutterVisibility, Mode=OneTime}" />
+          <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Right.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Right.Marker, Mode=OneTime}" />
+          <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Right, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Right.Wrapping, Mode=OneTime}" />
+        </Grid>
+      </Grid>
+      <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Expander, Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
+    </Grid>
+  </DataTemplate>
   <Style x:Key="DefaultDigitalSegmentStyle" TargetType="local:DigitalSegment">
     <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
     <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
@@ -16544,6 +16644,85 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultDepthLayerViewStyle}" TargetType="local:DepthLayerView" />
+  <Style x:Key="DefaultDiffViewStyle" TargetType="local:DiffView">
+    <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="FontFamily" Value="Cascadia Mono, Consolas" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="IsTabStop" Value="True" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="AddedBackground" Value="{ThemeResource FileDiffAddedBackgroundBrush}" />
+    <Setter Property="RemovedBackground" Value="{ThemeResource FileDiffRemovedBackgroundBrush}" />
+    <Setter Property="AddedAccent" Value="{ThemeResource FileDiffAddedAccentBrush}" />
+    <Setter Property="RemovedAccent" Value="{ThemeResource FileDiffRemovedAccentBrush}" />
+    <Setter Property="PlaceholderBackground" Value="{ThemeResource FileDiffPlaceholderBackgroundBrush}" />
+    <Setter Property="AddedHighlight" Value="{ThemeResource FileDiffAddedHighlightBrush}" />
+    <Setter Property="RemovedHighlight" Value="{ThemeResource FileDiffRemovedHighlightBrush}" />
+    <Setter Property="HighlightForeground" Value="{ThemeResource FileDiffHighlightForegroundBrush}" />
+    <Setter Property="SelectionBackground" Value="{ThemeResource FileDiffSelectionBackgroundBrush}" />
+    <Setter Property="SelectionForeground" Value="{ThemeResource FileDiffSelectionForegroundBrush}" />
+    <Setter Property="ApproximateText" Value="{StaticResource FileDiffApproximateText}" />
+    <Setter Property="InlineText" Value="{StaticResource FileDiffInlineText}" />
+    <Setter Property="BeforeText" Value="{StaticResource FileDiffBeforeText}" />
+    <Setter Property="AfterText" Value="{StaticResource FileDiffAfterText}" />
+    <Setter Property="CopyText" Value="{StaticResource FileDiffCopyText}" />
+    <Setter Property="SelectAllText" Value="{StaticResource FileDiffSelectAllText}" />
+    <Setter Property="ExpanderFormat" Value="{StaticResource FileDiffExpanderFormat}" />
+    <Setter Property="ExpandAutomationFormat" Value="{StaticResource FileDiffExpandAutomationFormat}" />
+    <Setter Property="AddedLineFormat" Value="{StaticResource FileDiffAddedLineFormat}" />
+    <Setter Property="RemovedLineFormat" Value="{StaticResource FileDiffRemovedLineFormat}" />
+    <Setter Property="FileAutomationFormat" Value="{StaticResource FileDiffFileAutomationFormat}" />
+    <Setter Property="SummaryAutomationFormat" Value="{StaticResource FileDiffSummaryAutomationFormat}" />
+    <Setter Property="SelectionBase" Value="{ThemeResource FileDiffSelectionBaseBrush}" />
+    <Setter Property="UnifiedRowTemplate" Value="{StaticResource DiffRowTemplate}" />
+    <Setter Property="SplitRowTemplate" Value="{StaticResource SplitRowTemplate}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:DiffView">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <Border x:Name="PART_HeaderBorder" Padding="12,4" Background="{ThemeResource SubtleFillColorSecondaryBrush}" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,0,0,1" CornerRadius="7,7,0,0">
+                <Grid ColumnSpacing="12">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <FontIcon Grid.Column="0" AutomationProperties.AccessibilityView="Raw" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Glyph="" />
+                  <TextBlock x:Name="PART_FilenameText" Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                  <StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                    <TextBlock x:Name="PART_AddedText" FontWeight="SemiBold" Foreground="{TemplateBinding AddedAccent}" />
+                    <TextBlock x:Name="PART_RemovedText" FontWeight="SemiBold" Foreground="{TemplateBinding RemovedAccent}" />
+                    <TextBlock x:Name="PART_ApproxText" Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{TemplateBinding ApproximateText}" Visibility="Collapsed" />
+                  </StackPanel>
+                  <SelectorBar x:Name="PART_UnifiedSwitcher" Grid.Column="3" VerticalAlignment="Center" FontFamily="{ThemeResource ContentControlThemeFontFamily}" FontSize="12">
+                    <SelectorBarItem x:Name="PART_InlineItem" AutomationProperties.Name="{TemplateBinding InlineText}" Text="{TemplateBinding InlineText}" />
+                    <SelectorBarItem x:Name="PART_BeforeItem" AutomationProperties.Name="{TemplateBinding BeforeText}" Text="{TemplateBinding BeforeText}" />
+                    <SelectorBarItem x:Name="PART_AfterItem" AutomationProperties.Name="{TemplateBinding AfterText}" Text="{TemplateBinding AfterText}" />
+                  </SelectorBar>
+                </Grid>
+              </Border>
+              <ScrollViewer x:Name="PART_Scroller" Grid.Row="1" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
+                <ItemsRepeater x:Name="PART_Repeater" Background="Transparent">
+                  <ItemsRepeater.Layout>
+                    <StackLayout Orientation="Vertical" Spacing="0" />
+                  </ItemsRepeater.Layout>
+                </ItemsRepeater>
+              </ScrollViewer>
+              <ProgressBar x:Name="PART_BusyBar" Grid.Row="1" VerticalAlignment="Top" IsIndeterminate="True" Visibility="Collapsed" />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultDigitalSegmentStyle}" TargetType="local:DigitalSegment" />
   <Style BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}" TargetType="local:SixteenSegmentChar" />
   <Style x:Key="WideSixteenSegmentCharStyle" BasedOn="{StaticResource DefaultSixteenSegmentCharStyle}" TargetType="local:SixteenSegmentChar">
@@ -21238,6 +21417,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Content" Value="" />
   </Style>
   <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
+  <Style BasedOn="{StaticResource DefaultDiffViewStyle}" TargetType="local:DiffView" />
   <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
   <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
   <Style BasedOn="{StaticResource DefaultEmptyStyle}" TargetType="local:Empty" />
