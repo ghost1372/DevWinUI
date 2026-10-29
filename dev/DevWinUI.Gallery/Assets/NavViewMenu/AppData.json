@@ -209,6 +209,48 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.UnderlineAnimationPage",
+          "Title": "Underline Animation",
+          "Subtitle": "Text with an animated underline in slide, center, fill, wavy or gradient styles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/HyperlinkButton.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextScribblePage",
+          "Title": "Text Scribble",
+          "Subtitle": "Hand-drawn scribble, underline, strike-through, circle or box marks drawn around text",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextHighlightPage",
+          "Title": "Text Highlight",
+          "Subtitle": "A marker-style highlight that sweeps across text, line by line",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.AnimatedTocPage",
+          "Title": "Animated Toc",
+          "Subtitle": "A table of contents with a spring-animated rail that bends through nested levels",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorArchiveScrollPage",
+          "Title": "Color Archive Scroll",
+          "Subtitle": "A scroll-driven project archive that morphs its background and card colors per item",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GitHubActivityGridPage",
+          "Title": "GitHub Activity Grid",
+          "Subtitle": "A contribution heatmap with a reveal animation, hover tooltips and a legend",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.LoadingStatePage",
           "Title": "LoadingState",
           "Subtitle": "Pixel-grid wavefront loader with a shimmering label and a live elapsed timer.",

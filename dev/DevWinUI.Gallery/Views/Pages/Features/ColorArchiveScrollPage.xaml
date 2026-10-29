@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ColorArchiveScrollPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/colorArchiveScroll" HeaderText="ColorArchiveScroll">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ColorArchiveScroll Projects="{x:Bind Projects}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbProject" HorizontalAlignment="Stretch" DisplayMemberPath="Name" Header="Active Project" ItemsSource="{x:Bind Projects}" SelectionChanged="OnProjectSelectionChanged" />
+                        <ComboBox x:Name="CmbPreviewSize" HorizontalAlignment="Stretch" Header="Preview Size" ItemsSource="{x:Bind PreviewSizeItems, Mode=OneWay}" SelectedIndex="2" />
+                        <ToggleSwitch x:Name="TsShowPreview" Header="Show Preview" IsOn="True" />
+                        <ToggleSwitch x:Name="TsShowRuler" Header="Show Ruler" IsOn="True" />
+                        <ToggleSwitch x:Name="TsInfiniteScroll" Header="Infinite Scroll" IsOn="True" />
+                        <ToggleSwitch x:Name="TsEnableSound" Header="Enable Sound" IsOn="False" />
+                        <ToggleSwitch x:Name="TsReduceMotion" Header="Reduce Motion" IsOn="False" />
+                        <Slider x:Name="SliderActiveAnchor" Header="Active Anchor" Maximum="0.9" Minimum="0.2" StepFrequency="0.01" Value="0.68" />
+                        <Slider x:Name="SliderRowLeading" Header="Row Leading" Maximum="3" Minimum="1.2" StepFrequency="0.1" Value="1.9" />
+                        <Slider x:Name="SliderScrollThreshold" Header="Scroll Threshold" Maximum="200" Minimum="20" Value="90" />
+                        <TextBlock x:Name="TxtActive" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Scroll, drag or tap the ruler to change the active project" TextWrapping="Wrap" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ColorArchiveScroll x:Name="Archive" Height="560" ActiveAnchor="{x:Bind SliderActiveAnchor.Value, Mode=OneWay}" ActiveChanged="OnActiveChanged" EnableSound="{x:Bind TsEnableSound.IsOn, Mode=OneWay}" InfiniteScroll="{x:Bind TsInfiniteScroll.IsOn, Mode=OneWay}" PreviewSize="{x:Bind ((dev:ColorArchivePreviewSize)CmbPreviewSize.SelectedItem), Mode=OneWay}" Projects="{x:Bind Projects}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" RowLeading="{x:Bind SliderRowLeading.Value, Mode=OneWay}" ScrollThreshold="{x:Bind SliderScrollThreshold.Value, Mode=OneWay}" ShowPreview="{x:Bind TsShowPreview.IsOn, Mode=OneWay}" ShowRuler="{x:Bind TsShowRuler.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

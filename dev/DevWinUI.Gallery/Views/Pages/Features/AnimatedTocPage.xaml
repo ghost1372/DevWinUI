@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.AnimatedTocPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/animatedToc" HeaderText="AnimatedToc">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:AnimatedToc Title="On this page" SelectedIndex="0"&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Introduction" Depth="0" Href="#introduction" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Getting started" Depth="0" Href="#getting-started" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Installation" Depth="1" Href="#installation" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Configuration" Depth="1" Href="#configuration" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Usage" Depth="0" Href="#usage" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Basic usage" Depth="1" Href="#basic-usage" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="Theming" Depth="2" Href="#theming" /&gt; #nl#
+                        &lt;dev:AnimatedTocItem Label="API reference" Depth="0" Href="#api-reference" /&gt; #nl#
+                        &lt;/dev:AnimatedToc&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbSelectedItem" HorizontalAlignment="Stretch" DisplayMemberPath="Label" Header="Selected Item" ItemsSource="{x:Bind Toc.Items}" SelectedIndex="{x:Bind Toc.SelectedIndex, Mode=TwoWay}" />
+                        <Slider x:Name="SliderRowHeight" Header="Row Height" Maximum="72" Minimum="32" Value="48" />
+                        <Slider x:Name="SliderIndent" Header="Indent" Maximum="48" Minimum="8" Value="24" />
+                        <TextBox x:Name="TxtTitle" Header="Title" Text="On this page" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:AnimatedToc x:Name="Toc" Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Width="280" HorizontalAlignment="Left" Indent="{x:Bind SliderIndent.Value, Mode=OneWay}" RowHeight="{x:Bind SliderRowHeight.Value, Mode=OneWay}">
+                        <dev:AnimatedTocItem Depth="0" Href="#introduction" Label="Introduction" />
+                        <dev:AnimatedTocItem Depth="0" Href="#getting-started" Label="Getting started" />
+                        <dev:AnimatedTocItem Depth="1" Href="#installation" Label="Installation" />
+                        <dev:AnimatedTocItem Depth="1" Href="#configuration" Label="Configuration" />
+                        <dev:AnimatedTocItem Depth="0" Href="#usage" Label="Usage" />
+                        <dev:AnimatedTocItem Depth="1" Href="#basic-usage" Label="Basic usage" />
+                        <dev:AnimatedTocItem Depth="2" Href="#theming" Label="Theming" />
+                        <dev:AnimatedTocItem Depth="0" Href="#api-reference" Label="API reference" />
+                    </dev:AnimatedToc>
+                    <dev:AnimatedToc Title="Release notes" Width="280" HorizontalAlignment="Left" ProgressBrush="{ThemeResource SystemFillColorSuccessBrush}" RailBrush="{ThemeResource ControlStrokeColorDefaultBrush}" SelectedIndex="1">
+                        <dev:AnimatedTocItem Label="Overview" />
+                        <dev:AnimatedTocItem Label="New features" />
+                        <dev:AnimatedTocItem Label="Breaking changes" />
+                        <dev:AnimatedTocItem Depth="1" Label="Migration" />
+                    </dev:AnimatedToc>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
