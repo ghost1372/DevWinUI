@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.TableOfContentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="ParagraphStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/tableOfContents" HeaderText="TableOfContents">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;Grid ColumnDefinitions="*,220" ColumnSpacing="24"&gt; #nl#
+                        &lt;ScrollViewer x:Name="ContentScroller"&gt; #nl#
+                        &lt;StackPanel&gt; #nl#
+                        &lt;TextBlock dev:TableOfContents.HeadingId="intro" Text="Introduction" /&gt; #nl#
+                        &lt;TextBlock dev:TableOfContents.HeadingId="usage" Text="Usage" /&gt; #nl#
+                        &lt;/StackPanel&gt; #nl#
+                        &lt;/ScrollViewer&gt; #nl#
+                        &lt;dev:TableOfContents Grid.Column="1" Root="{x:Bind ContentScroller}" Items="{x:Bind TocItems}" Kind="Curve" ScrollOffset="24" /&gt; #nl#
+                        &lt;/Grid&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtLabel" Header="Label" Text="On this page" />
+                        <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SliderOffset" Header="Scroll Offset" Maximum="120" Minimum="0" Value="24" />
+                        <Slider x:Name="SliderFontSize" Header="Link Font Size" Maximum="20" Minimum="10" Value="13" />
+                        <ToggleSwitch x:Name="TglIndicator" Header="Indicator" IsOn="True" />
+                        <ToggleSwitch x:Name="TglTrack" Header="Track Scroll" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAnimation" Header="Is Animation Enabled" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Height="420" ColumnDefinitions="*,220" ColumnSpacing="24">
+                    <ScrollViewer x:Name="ContentScroller" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Padding="0,0,16,300" Spacing="10">
+                            <TextBlock dev:TableOfContents.HeadingId="intro" Style="{StaticResource SubtitleTextBlockStyle}" Text="Introduction" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="This sample page shows how a table of contents follows the scroll position of a ScrollViewer. Each heading is tagged with an attached HeadingId and the rail highlights every heading that is currently visible." />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Clicking a link scrolls the matching heading into view, offset by the ScrollOffset property so it does not sit flush against the top edge." />
+
+                            <TextBlock Margin="0,16,0,0" dev:TableOfContents.HeadingId="install" Style="{StaticResource SubtitleTextBlockStyle}" Text="Installation" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Add the DevWinUI package to your project, then declare the DevWinUI namespace in your XAML. The control has no other setup requirements." />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Paragraphs like this one only exist to give the page enough height to scroll, so the indicator has room to travel along the rail." />
+
+                            <TextBlock Margin="0,12,0,0" dev:TableOfContents.HeadingId="requirements" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Requirements" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="A WinUI 3 app targeting a supported Windows 10 or Windows 11 version. Level three headings are drawn indented, and the rail bends where the depth changes." />
+
+                            <TextBlock Margin="0,16,0,0" dev:TableOfContents.HeadingId="usage" Style="{StaticResource SubtitleTextBlockStyle}" Text="Usage" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Set Root to the ScrollViewer that hosts your content and Items to the list of headings. Use Depth 2 for top level entries and Depth 3 for nested ones." />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="If your headings are not discoverable through the visual tree, assign TargetResolver and return the element for each id yourself." />
+
+                            <TextBlock Margin="0,12,0,0" dev:TableOfContents.HeadingId="basic" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Basic usage" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="The simplest setup needs only Root and Items. Everything else has a sensible default and follows the active theme." />
+
+                            <TextBlock Margin="0,12,0,0" dev:TableOfContents.HeadingId="advanced" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Advanced usage" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Switch Kind between Curve and Straight to change how the rail connects different depths, or turn off Indicator to hide the moving dot. Listen to ActiveChanged to react when the visible headings change." />
+
+                            <TextBlock Margin="0,16,0,0" dev:TableOfContents.HeadingId="faq" Style="{StaticResource SubtitleTextBlockStyle}" Text="FAQ" />
+                            <TextBlock Style="{StaticResource ParagraphStyle}" Text="Call Refresh after you change the content of the ScrollViewer so the control re-resolves its heading targets. Without it, the control keeps the targets it found earlier." />
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Column="1" Spacing="8">
+                        <dev:TableOfContents x:Name="Sample" ActiveChanged="Sample_ActiveChanged" Indicator="{x:Bind TglIndicator.IsOn, Mode=OneWay}" IsAnimationEnabled="{x:Bind TglAnimation.IsOn, Mode=OneWay}" ItemInvoked="Sample_ItemInvoked" Items="{x:Bind TocItems}" Kind="{x:Bind ((dev:TableOfContentsKind)CmbKind.SelectedItem), Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LinkFontSize="{x:Bind SliderFontSize.Value, Mode=OneWay}" Root="{x:Bind ContentScroller}" ScrollOffset="{x:Bind SliderOffset.Value, Mode=OneWay}" TrackScroll="{x:Bind TglTrack.IsOn, Mode=OneWay}" />
+                        <TextBlock x:Name="StatusText" Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="Active: intro" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -209,6 +209,20 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TableOfContentsPage",
+          "Title": "Table Of Contents",
+          "Subtitle": "A scroll-tracking table of contents with a curved or straight rail, moving indicator and click-to-scroll links",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.Hover3DCardPage",
+          "Title": "Hover 3D Card",
+          "Subtitle": "A content card that tilts toward the pointer in 3D with a smooth hover scale",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BankCardPage",
           "Title": "Bank Card",
           "Subtitle": "A payment card that tilts in 3D on hover with a moving glare, number masking and optional chip",

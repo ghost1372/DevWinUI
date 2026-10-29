@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.Hover3DCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/hover3DCard" HeaderText="Hover3DCard">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Hover3DCard &gt; #nl#
+                        &lt;Border&gt; #nl#
+                        &lt;TextBlock Text="Hover me" /&gt; #nl#
+                        &lt;/Border&gt; #nl#
+                        &lt;/dev:Hover3DCard&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderTilt" Header="Max Tilt" Maximum="30" Minimum="0" Value="8" />
+                        <Slider x:Name="SliderScale" Header="Hover Scale" Maximum="1.3" Minimum="1" StepFrequency="0.01" Value="1.05" />
+                        <Slider x:Name="SliderPerspective" Header="Perspective" Maximum="3000" Minimum="400" StepFrequency="100" Value="1200" />
+                        <Slider x:Name="SliderSmoothing" Header="Smoothing (ms)" Maximum="300" Minimum="1" Value="60" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Hover3DCard Width="320" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" HoverScale="{x:Bind SliderScale.Value, Mode=OneWay}" MaxTilt="{x:Bind SliderTilt.Value, Mode=OneWay}" Perspective="{x:Bind SliderPerspective.Value, Mode=OneWay}" SmoothingMs="{x:Bind SliderSmoothing.Value, Mode=OneWay}">
+                    <Border Padding="20" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="12">
+                        <StackPanel VerticalAlignment="Center" Spacing="6">
+                            <FontIcon FontSize="32" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Glyph="&#xE734;" />
+                            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Hover 3D Card" />
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Move the pointer across the card to tilt it." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </dev:Hover3DCard>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
