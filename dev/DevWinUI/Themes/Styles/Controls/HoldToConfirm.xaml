@@ -1,0 +1,178 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="HoldToConfirmDefaultBackground" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultFillForeground" ResourceKey="AccentFillColorDefaultBrush" />
+
+            <StaticResource x:Key="HoldToConfirmDestructiveBackground" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveFillForeground" ResourceKey="SystemFillColorCriticalBrush" />
+
+            <StaticResource x:Key="HoldToConfirmSecondaryBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryFillBackground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryFillForeground" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="HoldToConfirmDefaultBackground" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDefaultForeground" Color="{ThemeResource SystemColorHighlightTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDefaultFillBackground" Color="{ThemeResource SystemColorHighlightTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDefaultFillForeground" Color="{ThemeResource SystemColorHighlightColor}" />
+
+            <SolidColorBrush x:Key="HoldToConfirmDestructiveBackground" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDestructiveForeground" Color="{ThemeResource SystemColorHighlightTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDestructiveFillBackground" Color="{ThemeResource SystemColorHighlightTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmDestructiveFillForeground" Color="{ThemeResource SystemColorHighlightColor}" />
+
+            <SolidColorBrush x:Key="HoldToConfirmSecondaryBackground" Color="{ThemeResource SystemColorButtonFaceColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmSecondaryForeground" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmSecondaryFillBackground" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmSecondaryFillForeground" Color="{ThemeResource SystemColorButtonFaceColor}" />
+            <SolidColorBrush x:Key="HoldToConfirmSecondaryBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultHoldToConfirmStyle}" TargetType="local:HoldToConfirm" />
+
+    <Style x:Key="DefaultHoldToConfirmStyle" TargetType="local:HoldToConfirm">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HoldToConfirm">
+                    <Grid x:Name="PART_Root">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Root.Opacity" Value="0.5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="VariantStates">
+                                <VisualState x:Name="VariantDefault" />
+                                <VisualState x:Name="VariantDestructive">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BaseFace.Background" Value="{ThemeResource HoldToConfirmDestructiveBackground}" />
+                                        <Setter Target="PART_BaseLabelA.Foreground" Value="{ThemeResource HoldToConfirmDestructiveForeground}" />
+                                        <Setter Target="PART_BaseLabelB.Foreground" Value="{ThemeResource HoldToConfirmDestructiveForeground}" />
+                                        <Setter Target="PART_BaseGlyph.Foreground" Value="{ThemeResource HoldToConfirmDestructiveForeground}" />
+                                        <Setter Target="PART_BaseTick.Stroke" Value="{ThemeResource HoldToConfirmDestructiveForeground}" />
+                                        <Setter Target="PART_FillFace.Background" Value="{ThemeResource HoldToConfirmDestructiveFillBackground}" />
+                                        <Setter Target="PART_FillFace.BorderBrush" Value="{ThemeResource HoldToConfirmDestructiveFillBackground}" />
+                                        <Setter Target="PART_FillLabelA.Foreground" Value="{ThemeResource HoldToConfirmDestructiveFillForeground}" />
+                                        <Setter Target="PART_FillLabelB.Foreground" Value="{ThemeResource HoldToConfirmDestructiveFillForeground}" />
+                                        <Setter Target="PART_FillGlyph.Foreground" Value="{ThemeResource HoldToConfirmDestructiveFillForeground}" />
+                                        <Setter Target="PART_FillTick.Stroke" Value="{ThemeResource HoldToConfirmDestructiveFillForeground}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="VariantSecondary">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BaseFace.Background" Value="{ThemeResource HoldToConfirmSecondaryBackground}" />
+                                        <Setter Target="PART_BaseFace.BorderBrush" Value="{ThemeResource HoldToConfirmSecondaryBorderBrush}" />
+                                        <Setter Target="PART_BaseLabelA.Foreground" Value="{ThemeResource HoldToConfirmSecondaryForeground}" />
+                                        <Setter Target="PART_BaseLabelB.Foreground" Value="{ThemeResource HoldToConfirmSecondaryForeground}" />
+                                        <Setter Target="PART_BaseGlyph.Foreground" Value="{ThemeResource HoldToConfirmSecondaryForeground}" />
+                                        <Setter Target="PART_BaseTick.Stroke" Value="{ThemeResource HoldToConfirmSecondaryForeground}" />
+                                        <Setter Target="PART_FillFace.Background" Value="{ThemeResource HoldToConfirmSecondaryFillBackground}" />
+                                        <Setter Target="PART_FillFace.BorderBrush" Value="{ThemeResource HoldToConfirmSecondaryFillBackground}" />
+                                        <Setter Target="PART_FillLabelA.Foreground" Value="{ThemeResource HoldToConfirmSecondaryFillForeground}" />
+                                        <Setter Target="PART_FillLabelB.Foreground" Value="{ThemeResource HoldToConfirmSecondaryFillForeground}" />
+                                        <Setter Target="PART_FillGlyph.Foreground" Value="{ThemeResource HoldToConfirmSecondaryFillForeground}" />
+                                        <Setter Target="PART_FillTick.Stroke" Value="{ThemeResource HoldToConfirmSecondaryFillForeground}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="SizeStates">
+                                <VisualState x:Name="SizeDefault" />
+                                <VisualState x:Name="SizeSm">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BaseFace.MinHeight" Value="28" />
+                                        <Setter Target="PART_BaseFace.Padding" Value="12,0" />
+                                        <Setter Target="PART_BaseLabelA.FontSize" Value="12" />
+                                        <Setter Target="PART_BaseLabelB.FontSize" Value="12" />
+                                        <Setter Target="PART_BaseGlyph.FontSize" Value="12" />
+                                        <Setter Target="PART_FillFace.MinHeight" Value="28" />
+                                        <Setter Target="PART_FillFace.Padding" Value="12,0" />
+                                        <Setter Target="PART_FillLabelA.FontSize" Value="12" />
+                                        <Setter Target="PART_FillLabelB.FontSize" Value="12" />
+                                        <Setter Target="PART_FillGlyph.FontSize" Value="12" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="SizeLg">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BaseFace.MinHeight" Value="44" />
+                                        <Setter Target="PART_BaseFace.Padding" Value="24,0" />
+                                        <Setter Target="PART_BaseLabelA.FontSize" Value="16" />
+                                        <Setter Target="PART_BaseLabelB.FontSize" Value="16" />
+                                        <Setter Target="PART_BaseGlyph.FontSize" Value="16" />
+                                        <Setter Target="PART_FillFace.MinHeight" Value="44" />
+                                        <Setter Target="PART_FillFace.Padding" Value="24,0" />
+                                        <Setter Target="PART_FillLabelA.FontSize" Value="16" />
+                                        <Setter Target="PART_FillLabelB.FontSize" Value="16" />
+                                        <Setter Target="PART_FillGlyph.FontSize" Value="16" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="PART_BaseFace" MinHeight="36" Padding="16,0" AutomationProperties.AccessibilityView="Raw" Background="{ThemeResource HoldToConfirmDefaultBackground}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid x:Name="PART_BaseIconSlot" Width="0" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Grid Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <FontIcon x:Name="PART_BaseGlyph" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="{ThemeResource HoldToConfirmDefaultForeground}" Visibility="Collapsed" />
+                                        <Path x:Name="PART_BaseTick" HorizontalAlignment="Left" VerticalAlignment="Top" Data="M 3,8.5 L 6.5,12 L 13,4.5" Stroke="{ThemeResource HoldToConfirmDefaultForeground}" StrokeDashArray="8,8" StrokeDashOffset="8" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="2" Visibility="Collapsed" />
+                                    </Grid>
+                                </Grid>
+
+                                <Grid x:Name="PART_BaseLabelHost" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock x:Name="PART_BaseLabelA" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource HoldToConfirmDefaultForeground}" TextWrapping="NoWrap" />
+                                    <TextBlock x:Name="PART_BaseLabelB" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource HoldToConfirmDefaultForeground}" TextWrapping="NoWrap" Visibility="Collapsed" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="PART_FillFace" MinHeight="36" Padding="16,0" AutomationProperties.AccessibilityView="Raw" Background="{ThemeResource HoldToConfirmDefaultFillBackground}" BorderBrush="{ThemeResource HoldToConfirmDefaultFillBackground}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="False">
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid x:Name="PART_FillIconSlot" Width="0" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Grid Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <FontIcon x:Name="PART_FillGlyph" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="{ThemeResource HoldToConfirmDefaultFillForeground}" Visibility="Collapsed" />
+                                        <Path x:Name="PART_FillTick" HorizontalAlignment="Left" VerticalAlignment="Top" Data="M 3,8.5 L 6.5,12 L 13,4.5" Stroke="{ThemeResource HoldToConfirmDefaultFillForeground}" StrokeDashArray="8,8" StrokeDashOffset="8" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="2" Visibility="Collapsed" />
+                                    </Grid>
+                                </Grid>
+
+                                <Grid x:Name="PART_FillLabelHost" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock x:Name="PART_FillLabelA" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource HoldToConfirmDefaultFillForeground}" TextWrapping="NoWrap" />
+                                    <TextBlock x:Name="PART_FillLabelB" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource HoldToConfirmDefaultFillForeground}" TextWrapping="NoWrap" Visibility="Collapsed" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
