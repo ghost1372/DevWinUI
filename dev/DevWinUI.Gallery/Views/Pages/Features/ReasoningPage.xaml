@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ReasoningPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/reasoning" HeaderText="Reasoning">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Reasoning Duration="12" Kind="Outline"&gt; #nl#
+                        &lt;dev:ReasoningSteps&gt; #nl#
+                        &lt;dev:ReasoningStep Label="Understand the request" Status="Done"&gt; #nl#
+                        &lt;dev:ReasoningStepDetails Text="Identify the controls and the pages they need." /&gt; #nl#
+                        &lt;/dev:ReasoningStep&gt; #nl#
+                        &lt;dev:ReasoningStep Label="Search for references" Status="Done"&gt; #nl#
+                        &lt;dev:ReasoningStepSources Sources="{x:Bind Sources}" /&gt; #nl#
+                        &lt;/dev:ReasoningStep&gt; #nl#
+                        &lt;dev:ReasoningStep Label="Write the answer" Status="Active" /&gt; #nl#
+                        &lt;/dev:ReasoningSteps&gt; #nl#
+                        &lt;/dev:Reasoning&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbKind" HorizontalAlignment="Stretch" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ToggleSwitch Header="Thinking" IsOn="{x:Bind ReasoningMain.Thinking, Mode=TwoWay}" />
+                        <TextBox x:Name="TxtThinkingLabel" Header="Thinking Label" Text="Thinking" />
+                        <TextBox x:Name="TxtDurationLabel" Header="Completed Duration Label" Text="Thought for {0}" />
+                        <ToggleSwitch Header="Animations" IsOn="True" Toggled="OnAnimationToggled" />
+                        <Button HorizontalAlignment="Stretch" Click="OnSimulateClick" Content="Run Simulation" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Reasoning x:Name="ReasoningMain" MaxWidth="640" HorizontalAlignment="Left" CompletedDurationLabel="{x:Bind TxtDurationLabel.Text, Mode=OneWay}" Kind="{x:Bind ((dev:ReasoningKind)CmbKind.SelectedItem), Mode=OneWay}" ThinkingLabel="{x:Bind TxtThinkingLabel.Text, Mode=OneWay}" Duration="12">
+                    <dev:ReasoningSteps>
+                        <dev:ReasoningStep x:Name="Step1" Label="Understand the request" Status="Done">
+                            <dev:ReasoningStepDetails Text="Identify the controls that were shared and decide which sample pages they need." />
+                        </dev:ReasoningStep>
+                        <dev:ReasoningStep x:Name="Step2" Label="Search for references" Status="Done">
+                            <dev:ReasoningStepSources Sources="{x:Bind Sources}" />
+                        </dev:ReasoningStep>
+                        <dev:ReasoningStep x:Name="Step3" Label="Review the control API" Status="Done">
+                            <dev:ReasoningRows Kind="Steps" Rows="{x:Bind StepRows}" />
+                        </dev:ReasoningStep>
+                        <dev:ReasoningStep x:Name="Step4" Label="Write the answer" Status="Done">
+                            <dev:ReasoningStepImage Alt="Application icon" Source="{x:Bind SampleImage}" />
+                        </dev:ReasoningStep>
+                    </dev:ReasoningSteps>
+                </dev:Reasoning>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/reasoning" HeaderText="Search rows">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Reasoning Duration="8" Kind="Card" DefaultOpen="True"&gt; #nl#
+                        &lt;dev:ReasoningRows Kind="Search" #nl#
+                        Query="WinUI 3 animation performance" #nl#
+                        Rows="{x:Bind SearchRows}" /&gt; #nl#
+                        &lt;/dev:Reasoning&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <dev:Reasoning MaxWidth="640" HorizontalAlignment="Left" DefaultOpen="True" Kind="Card" Duration="8">
+                    <dev:ReasoningRows Kind="Search" Query="WinUI 3 animation performance" Rows="{x:Bind SearchRows}" />
+                </dev:Reasoning>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/reasoning" HeaderText="Coding rows">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Reasoning Duration="21" DefaultOpen="True"&gt; #nl#
+                        &lt;dev:ReasoningRows Kind="Coding" #nl#
+                        Rows="{x:Bind CodingRows}" #nl#
+                        SelectedIndex="0" /&gt; #nl#
+                        &lt;/dev:Reasoning&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <StackPanel MaxWidth="640" HorizontalAlignment="Left" Spacing="8">
+                    <dev:Reasoning DefaultOpen="True" Duration="21">
+                        <dev:ReasoningRows x:Name="CodingRowsHost" Kind="Coding" Rows="{x:Bind CodingRows}" SelectedIndex="0" />
+                    </dev:Reasoning>
+                    <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        <Run Text="Selected index:" />
+                        <Run Text="{x:Bind CodingRowsHost.SelectedIndex, Mode=OneWay}" />
+                    </TextBlock>
+                </StackPanel>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/reasoning" HeaderText="Plain text">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Reasoning DefaultOpen="True" Duration="75" Kind="Inline"&gt; #nl#
+                        &lt;TextBlock Text="Any content can be used as the body." TextWrapping="Wrap" /&gt; #nl#
+                        &lt;/dev:Reasoning&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <dev:Reasoning MaxWidth="640" HorizontalAlignment="Left" DefaultOpen="True" Kind="Inline" Duration="75">
+                    <TextBlock Text="Any content can be used as the body. The label switches to the formatted duration once thinking has finished." TextWrapping="Wrap" />
+                </dev:Reasoning>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

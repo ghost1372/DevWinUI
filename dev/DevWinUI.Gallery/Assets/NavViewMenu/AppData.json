@@ -209,6 +209,34 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ReasoningPage",
+          "Title": "Reasoning",
+          "Subtitle": "A collapsible thinking panel with animated steps, sources, search results and code changes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ShowMorePage",
+          "Title": "Show More",
+          "Subtitle": "Clamps long content to a number of lines and offers an expander only when it overflows",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ScrambledTextPage",
+          "Title": "Scrambled Text",
+          "Subtitle": "Text that scrambles, lifts, blurs or magnifies letters around the pointer",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ScrollSplitCardPage",
+          "Title": "Scroll Split Card",
+          "Subtitle": "A card row that splits apart and flips over as you scroll",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ScrollViewer.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.UnderlineAnimationPage",
           "Title": "Underline Animation",
           "Subtitle": "Text with an animated underline in slide, center, fill, wavy or gradient styles",

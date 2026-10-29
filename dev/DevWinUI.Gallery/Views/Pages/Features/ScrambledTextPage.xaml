@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ScrambledTextPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/scrambledText" HeaderText="ScrambledText">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ScrambledText Effect="Scramble" Text="Move your pointer across this text" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbEffect" HorizontalAlignment="Stretch" Header="Effect" ItemsSource="{x:Bind EffectItems, Mode=OneWay}" SelectedIndex="0" />
+                        <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="Move your pointer across this text" TextWrapping="Wrap" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="64" Minimum="14" Value="32" />
+                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="300" Minimum="20" Value="100" />
+                        <Slider x:Name="SliderStrength" Header="Strength" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderTrail" Header="Trail (s)" Maximum="2" Minimum="0.1" StepFrequency="0.1" Value="0.6" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1.2" />
+                        <Slider x:Name="SliderSpeed" Header="Speed" Maximum="3" Minimum="0.1" StepFrequency="0.1" Value="0.5" />
+                        <TextBox x:Name="TxtScrambleChars" Header="Scramble Chars" Text=".:" />
+                        <ToggleSwitch x:Name="TsClickBurst" Header="Click Burst" IsOn="True" />
+                        <ToggleSwitch x:Name="TsIntro" Header="Intro" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="24">
+                    <dev:ScrambledText MaxWidth="640" HorizontalAlignment="Left" ClickBurst="{x:Bind TsClickBurst.IsOn, Mode=OneWay}" Effect="{x:Bind ((dev:ScrambledTextEffect)CmbEffect.SelectedItem), Mode=OneWay}" FontSize="{x:Bind SliderFontSize.Value, Mode=OneWay}" Intro="{x:Bind TsIntro.IsOn, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" ScrambleChars="{x:Bind TxtScrambleChars.Text, Mode=OneWay}" ScrambleColor="{ThemeResource AccentTextFillColorPrimaryBrush}" Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" Strength="{x:Bind SliderStrength.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" Trail="{x:Bind SliderTrail.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+
+                    <dev:ScrambledText Effect="Scramble" FontSize="28" ScrambleColor="{ThemeResource AccentTextFillColorPrimaryBrush}" Text="Scramble the letters" />
+                    <dev:ScrambledText Effect="Lift" FontSize="28" Text="Lift the letters" />
+                    <dev:ScrambledText Effect="Blur" FontSize="28" Text="Blur the letters" />
+                    <dev:ScrambledText Effect="Magnify" FontSize="28" Text="Magnify the letters" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
