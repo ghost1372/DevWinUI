@@ -3,6 +3,15 @@
                     xmlns:local="using:DevWinUI">
 
     <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="FillButtonForeground" Color="#FAFAFA" />
+            <SolidColorBrush x:Key="FillButtonBackground" Color="#0A0A0A" />
+            <SolidColorBrush x:Key="FillButtonPrimary" Color="#E5E5E5" />
+            <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#171717" />
+            <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
+            <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
+            <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
+        </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="FillButtonForeground" Color="#0A0A0A" />
             <SolidColorBrush x:Key="FillButtonBackground" Color="#FFFFFF" />
@@ -12,17 +21,6 @@
             <SolidColorBrush x:Key="FillButtonBorder" Color="#E5E5E5" />
             <SolidColorBrush x:Key="FillButtonRing" Color="#A1A1A1" />
         </ResourceDictionary>
-
-        <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="FillButtonForeground" Color="#FAFAFA" />
-            <SolidColorBrush x:Key="FillButtonBackground" Color="#0A0A0A" />
-            <SolidColorBrush x:Key="FillButtonPrimary" Color="#E5E5E5" />
-            <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#171717" />
-            <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
-            <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
-            <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
-        </ResourceDictionary>
-
         <ResourceDictionary x:Key="HighContrast">
             <StaticResource x:Key="FillButtonForeground" ResourceKey="SystemColorButtonTextColorBrush" />
             <StaticResource x:Key="FillButtonBackground" ResourceKey="SystemColorButtonFaceColorBrush" />

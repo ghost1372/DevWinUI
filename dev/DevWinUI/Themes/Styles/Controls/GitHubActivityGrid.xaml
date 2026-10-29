@@ -4,13 +4,20 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
+            <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
+            <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
+            <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#10B981" />
+            <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#6EE7B7" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#EEF0F2" />
             <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#A7F3D0" />
             <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#34D399" />
             <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#059669" />
             <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#065F46" />
         </ResourceDictionary>
-        <ResourceDictionary x:Key="Dark">
+        <ResourceDictionary x:Key="HighContrast">
             <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
             <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
             <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />

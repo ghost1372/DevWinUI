@@ -4,20 +4,18 @@
                     xmlns:local="using:DevWinUI">
 
     <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
+            <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
+            <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
+            <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
+        </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
             <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
             <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
             <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
         </ResourceDictionary>
-
-        <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
-            <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
-            <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
-            <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
-        </ResourceDictionary>
-
         <ResourceDictionary x:Key="HighContrast">
             <SolidColorBrush x:Key="GlowingBorderBrush1" Color="{ThemeResource SystemColorHighlightColor}" />
             <SolidColorBrush x:Key="GlowingBorderBrush2" Color="{ThemeResource SystemColorHighlightColor}" />
