@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/tools/AppData.Schema.json",
   "Groups": [
     {
@@ -208,6 +208,20 @@
       "ImagePath": "ms-appx:///Assets/Fluent/RatingControl.png",
       "IsSpecialSection": false,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.HoldToConfirmPage",
+          "Title": "Hold To Confirm",
+          "Subtitle": "A press-and-hold button that fills while held and morphs into a confirmed state, with spring-back on release",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.EyeTrackingPage",
+          "Title": "Eye Tracking",
+          "Subtitle": "Animated eyes that follow the pointer, blink and react in realistic, cartoon, minimal or cyber styles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.OrbitCardStackPage",
           "Title": "Orbit Card Stack",

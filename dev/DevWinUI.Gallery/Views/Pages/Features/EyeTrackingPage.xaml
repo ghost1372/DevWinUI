@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.EyeTrackingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/eyeTracking" HeaderText="EyeTracking">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:EyeTracking Kind="Realistic" EyeCount="2" EyeSize="120" Gap="40" PupilRange="0.7" BlinkInterval="4000" GlobalMouseTracking="True" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SliderEyeCount" Header="Eye Count" Maximum="6" Minimum="1" Value="2" />
+                        <Slider x:Name="SliderEyeSize" Header="Eye Size" Maximum="240" Minimum="40" Value="120" />
+                        <Slider x:Name="SliderGap" Header="Gap" Maximum="120" Minimum="0" Value="40" />
+                        <Slider x:Name="SliderPupilRange" Header="Pupil Range" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.7" />
+                        <Slider x:Name="SliderBlinkInterval" Header="Blink Interval (ms)" Maximum="10000" Minimum="0" StepFrequency="250" Value="4000" />
+                        <ToggleSwitch x:Name="TglGlobalMouse" Header="Global Mouse Tracking" IsOn="True" />
+                        <ToggleSwitch x:Name="TglIdle" Header="Idle Animation" IsOn="True" />
+                        <ToggleSwitch x:Name="TglReactive" Header="Reactive Pupil" IsOn="True" />
+                        <ToggleSwitch x:Name="TglReflection" Header="Show Reflection" IsOn="True" />
+                        <ToggleSwitch x:Name="TglIrisDetail" Header="Show Iris Detail" IsOn="True" />
+                        <ToggleSwitch x:Name="TglEyelids" Header="Show Eyelids" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:EyeTracking HorizontalAlignment="Center" VerticalAlignment="Center" BlinkInterval="{x:Bind SliderBlinkInterval.Value, Mode=OneWay}" EyeCount="{x:Bind ToInt(SliderEyeCount.Value), Mode=OneWay}" EyeSize="{x:Bind SliderEyeSize.Value, Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" GlobalMouseTracking="{x:Bind TglGlobalMouse.IsOn, Mode=OneWay}" IdleAnimation="{x:Bind TglIdle.IsOn, Mode=OneWay}" Kind="{x:Bind ((dev:EyeKind)CmbKind.SelectedItem), Mode=OneWay}" PupilRange="{x:Bind SliderPupilRange.Value, Mode=OneWay}" ReactivePupil="{x:Bind TglReactive.IsOn, Mode=OneWay}" ShowEyelids="{x:Bind TglEyelids.IsOn, Mode=OneWay}" ShowIrisDetail="{x:Bind TglIrisDetail.IsOn, Mode=OneWay}" ShowReflection="{x:Bind TglReflection.IsOn, Mode=OneWay}" />
+                    <Grid>
+                        <dev:EyeTracking EyeSize="120" Kind="Realistic" />
+                        <dev:EyeTracking IrisBrush="{ThemeResource CyberIrisBrush}" Kind="Cyber" />
+                    </Grid>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
