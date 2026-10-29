@@ -20,6 +20,32 @@
             <SolidColorBrush x:Key="BankCardForegroundBrush" Color="#FFFFFF" />
             <SolidColorBrush x:Key="BankCardLabelBrush" Color="#A6FFFFFF" />
         </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <LinearGradientBrush x:Key="BankCardBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#F2F4FA" />
+                <GradientStop Offset="1" Color="#C7D0EE" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="BankCardChipBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#F4D77B" />
+                <GradientStop Offset="1" Color="#C9A23F" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="BankCardGlareBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0.30" Color="#00FFFFFF" />
+                <GradientStop Offset="0.50" Color="#99FFFFFF" />
+                <GradientStop Offset="0.70" Color="#00FFFFFF" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="BankCardForegroundBrush" Color="#1B2238" />
+            <SolidColorBrush x:Key="BankCardLabelBrush" Color="#991B2238" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="BankCardBackgroundBrush" Color="{ThemeResource SystemColorButtonFaceColor}" />
+            <SolidColorBrush x:Key="BankCardChipBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="BankCardGlareBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="BankCardForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+            <SolidColorBrush x:Key="BankCardLabelBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+        </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
     <Style BasedOn="{StaticResource DefaultBankCardStyle}" TargetType="local:BankCard" />
