@@ -220,6 +220,7 @@ Themes\Styles\Controls\TextBox.xaml
 Themes\Styles\Controls\TextGlitchEffect.xaml
 Themes\Styles\Controls\TextHighlight.xaml
 Themes\Styles\Controls\TextMorphEffect.xaml
+Themes\Styles\Controls\TextScribble.xaml
 Themes\Styles\Controls\Timeline.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\Validation.xaml
@@ -675,6 +676,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#FF6A55" />
+      <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#FF6A55" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
     </ResourceDictionary>
@@ -1118,6 +1120,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#E8432E" />
+      <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#E8432E" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
     </ResourceDictionary>
@@ -1537,6 +1540,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
     </ResourceDictionary>
@@ -7190,6 +7194,21 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:TextMorphEffect">
           <wind2:CanvasControl x:Name="PART_Canvas" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultTextScribbleStyle" TargetType="local:TextScribble">
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="MarkBrush" Value="{ThemeResource TextScribbleMarkBrush}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:TextScribble">
+          <Grid x:Name="PART_Root" Background="Transparent">
+            <TextBlock x:Name="PART_Text" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" TextWrapping="{TemplateBinding TextWrapping}" />
+            <Canvas x:Name="PART_Layer" IsHitTestVisible="False" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -21614,6 +21633,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultTextGlitchEffect3Style}" TargetType="local:TextGlitchEffect3" />
   <Style BasedOn="{StaticResource DefaultTextHighlightStyle}" TargetType="local:TextHighlight" />
   <Style BasedOn="{StaticResource DefaultTextMorphEffectStyle}" TargetType="local:TextMorphEffect" />
+  <Style BasedOn="{StaticResource DefaultTextScribbleStyle}" TargetType="local:TextScribble" />
   <Style BasedOn="{StaticResource DefaultTimelineStyle}" TargetType="local:Timeline" />
   <Style x:Key="MajorHourTickStyle" BasedOn="{StaticResource HourTickStyle}" TargetType="Line">
     <Setter Property="StrokeThickness" Value="2" />
