@@ -1,0 +1,154 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="ScrollSplitCardPrimaryForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardSecondaryForeground" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseBackground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseForeground" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <SolidColorBrush x:Key="ScrollSplitCardFilledBorderBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartForeground" Color="#FFFFFFFF" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush0" Color="#6D28D9" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush1" Color="#0F766E" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush2" Color="#C2410C" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="ScrollSplitCardPrimaryForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardSecondaryForeground" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseBackground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseForeground" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <SolidColorBrush x:Key="ScrollSplitCardFilledBorderBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartForeground" Color="#FFFFFFFF" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush0" Color="#6D28D9" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush1" Color="#0F766E" />
+            <SolidColorBrush x:Key="ScrollSplitCardChartBrush2" Color="#C2410C" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardPrimaryForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardSecondaryForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseBackground" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardInverseForeground" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardFilledBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardChartForeground" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardChartBrush0" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardChartBrush1" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="ScrollSplitCardChartBrush2" ResourceKey="SystemColorHighlightColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultScrollSplitCardStyle}" TargetType="local:ScrollSplitCard" />
+
+    <Style x:Key="DefaultScrollSplitCardStyle" TargetType="local:ScrollSplitCard">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ScrollSplitCard">
+                    <Grid x:Name="PART_Frame">
+                        <Grid x:Name="PART_Stage" IsHitTestVisible="False">
+                            <Grid x:Name="PART_Row" Margin="24,0,24,44" VerticalAlignment="Center" />
+                            <StackPanel x:Name="PART_Hint" Margin="0,0,0,16" HorizontalAlignment="Center" VerticalAlignment="Bottom" AutomationProperties.AccessibilityView="Raw" Orientation="Horizontal" Spacing="6">
+                                <TextBlock x:Name="PART_HintText" FontSize="12" Foreground="{ThemeResource ScrollSplitCardSecondaryForeground}" />
+                                <FontIcon FontSize="10" Foreground="{ThemeResource ScrollSplitCardSecondaryForeground}" Glyph="&#xE70D;" />
+                            </StackPanel>
+                            <TextBlock x:Name="PART_End" Margin="0,0,0,14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource ScrollSplitCardPrimaryForeground}" />
+                        </Grid>
+
+                        <ScrollViewer x:Name="PART_Scroll" Background="Transparent" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" IsTabStop="True" UseSystemFocusVisuals="True" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Enabled" ZoomMode="Disabled">
+                            <Border x:Name="PART_Track" Background="Transparent" />
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultScrollSplitCardPanelStyle}" TargetType="local:ScrollSplitCardPanel" />
+
+    <Style x:Key="DefaultScrollSplitCardPanelStyle" TargetType="local:ScrollSplitCardPanel">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ScrollSplitCardPanel">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ToneStates">
+                                <VisualState x:Name="Card" />
+                                <VisualState x:Name="Inverse">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Back.Background" Value="{ThemeResource ScrollSplitCardInverseBackground}" />
+                                        <Setter Target="PART_Back.BorderBrush" Value="{ThemeResource ScrollSplitCardFilledBorderBrush}" />
+                                        <Setter Target="PART_Title.Foreground" Value="{ThemeResource ScrollSplitCardInverseForeground}" />
+                                        <Setter Target="PART_Eyebrow.Foreground" Value="{ThemeResource ScrollSplitCardInverseForeground}" />
+                                        <Setter Target="PART_Description.Foreground" Value="{ThemeResource ScrollSplitCardInverseForeground}" />
+                                        <Setter Target="PART_Eyebrow.Opacity" Value="0.72" />
+                                        <Setter Target="PART_Description.Opacity" Value="0.72" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Chart">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Back.BorderBrush" Value="{ThemeResource ScrollSplitCardFilledBorderBrush}" />
+                                        <Setter Target="PART_Title.Foreground" Value="{ThemeResource ScrollSplitCardChartForeground}" />
+                                        <Setter Target="PART_Eyebrow.Foreground" Value="{ThemeResource ScrollSplitCardChartForeground}" />
+                                        <Setter Target="PART_Description.Foreground" Value="{ThemeResource ScrollSplitCardChartForeground}" />
+                                        <Setter Target="PART_Eyebrow.Opacity" Value="0.8" />
+                                        <Setter Target="PART_Description.Opacity" Value="0.8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="PaletteStates">
+                                <VisualState x:Name="NoPalette" />
+                                <VisualState x:Name="Palette0">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Back.Background" Value="{ThemeResource ScrollSplitCardChartBrush0}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Palette1">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Back.Background" Value="{ThemeResource ScrollSplitCardChartBrush1}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Palette2">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Back.Background" Value="{ThemeResource ScrollSplitCardChartBrush2}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="PART_Back" Padding="{TemplateBinding Padding}" Background="{ThemeResource ScrollSplitCardBackBackground}" BorderBrush="{ThemeResource ScrollSplitCardBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Opacity="0">
+                            <Grid RowSpacing="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock x:Name="PART_Eyebrow" CharacterSpacing="60" FontSize="11" FontWeight="SemiBold" Foreground="{ThemeResource ScrollSplitCardSecondaryForeground}" />
+                                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Spacing="6">
+                                    <TextBlock x:Name="PART_Title" FontSize="{TemplateBinding TitleFontSize}" FontWeight="SemiBold" Foreground="{ThemeResource ScrollSplitCardPrimaryForeground}" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PART_Description" FontSize="{TemplateBinding BodyFontSize}" Foreground="{ThemeResource ScrollSplitCardSecondaryForeground}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="PART_Front" AutomationProperties.AccessibilityView="Raw" Background="{ThemeResource ScrollSplitCardFrontBackground}">
+                            <Border x:Name="PART_Image" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
