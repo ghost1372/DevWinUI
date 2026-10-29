@@ -220,6 +220,7 @@ Themes\Styles\Controls\StepBar.xaml
 Themes\Styles\Controls\StorageBar.xaml
 Themes\Styles\Controls\StorageRing.xaml
 Themes\Styles\Controls\StoreCarousel.xaml
+Themes\Styles\Controls\TableOfContents.xaml
 Themes\Styles\Controls\TextBlockStrokeView.xaml
 Themes\Styles\Controls\TextBox.xaml
 Themes\Styles\Controls\TextGlitchEffect.xaml
@@ -712,6 +713,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
+      <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+      <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#FF6A55" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#FF6A55" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -1187,6 +1193,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
+      <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+      <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#E8432E" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#E8432E" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -1638,6 +1649,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselTitleForegroundBrush" Color="{StaticResource StoreCarouselTitleForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselDescriptionForegroundBrush" Color="{StaticResource StoreCarouselDescriptionForegroundColor}" />
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
+      <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="SystemColorHotlightColorBrush" />
+      <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="SystemColorHotlightColorBrush" />
+      <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="UnderlineAnimationGradientBrush" Color="{ThemeResource SystemColorHighlightColor}" />
@@ -7323,6 +7339,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <local:RingShape x:Name="PART_ValueRingShape" IsCircle="True" MaxAngle="{TemplateBinding MaxAngle}" MinAngle="{TemplateBinding MinAngle}" Stroke="{TemplateBinding Foreground}" StrokeEndLineCap="{ThemeResource StorageRingValueEndCap}" StrokeStartLineCap="{ThemeResource StorageRingValueStartCap}" StrokeThickness="{TemplateBinding ValueRingThickness}" SweepDirection="Clockwise" UseLayoutRounding="True" />
             </Grid>
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TableOfContentsLinkButtonStyle" TargetType="Button">
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid Background="{ThemeResource TableOfContentsLinkHitTestBrush}">
+            <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -21859,6 +21891,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultTableOfContentsStyle" TargetType="local:TableOfContents">
+    <Setter Property="LinkForeground" Value="{ThemeResource TableOfContentsLinkForeground}" />
+    <Setter Property="ActiveLinkForeground" Value="{ThemeResource TableOfContentsActiveLinkForeground}" />
+    <Setter Property="AccentBrush" Value="{ThemeResource TableOfContentsAccentBrush}" />
+    <Setter Property="TrackBrush" Value="{ThemeResource TableOfContentsTrackBrush}" />
+    <Setter Property="LinkStyle" Value="{StaticResource TableOfContentsLinkButtonStyle}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:TableOfContents">
+          <Grid AutomationProperties.LandmarkType="Navigation" AutomationProperties.Name="{TemplateBinding Label}" Background="{TemplateBinding Background}">
+            <StackPanel x:Name="PART_Rows" Margin="20,0,0,0" />
+            <Canvas Width="20" HorizontalAlignment="Left" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False">
+              <Path x:Name="PART_Track" Stroke="{TemplateBinding TrackBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="1.5" />
+              <Canvas x:Name="PART_AccentHost" Width="20">
+                <Path x:Name="PART_Accent" Stroke="{TemplateBinding AccentBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="1.5" />
+              </Canvas>
+              <Ellipse x:Name="PART_Dot" Width="7" Height="7" Fill="{TemplateBinding AccentBrush}" Opacity="0" />
+            </Canvas>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultTextBlockStrokeViewStyle}" TargetType="local:TextBlockStrokeView" />
   <Style x:Key="DefaultDevWinUITextBoxStyle" TargetType="local:TextBox">
     <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
@@ -23310,6 +23366,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="ShowStepIndex" Value="True" />
   </Style>
   <Style BasedOn="{StaticResource DefaultStoreCarouselStyle}" TargetType="local:StoreCarousel" />
+  <Style BasedOn="{StaticResource DefaultTableOfContentsStyle}" TargetType="local:TableOfContents" />
   <Style BasedOn="{StaticResource DefaultDevWinUITextBoxStyle}" TargetType="local:TextBox" />
   <Style BasedOn="{StaticResource DefaultWaveProgressBarStyle}" TargetType="local:WaveProgressBar" />
   <Style BasedOn="{StaticResource DefaultWelcomeHeroStyle}" TargetType="local:WelcomeHero" />
