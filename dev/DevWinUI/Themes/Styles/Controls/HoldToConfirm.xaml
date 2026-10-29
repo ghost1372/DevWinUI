@@ -21,6 +21,24 @@
             <StaticResource x:Key="HoldToConfirmSecondaryBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
         </ResourceDictionary>
 
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="HoldToConfirmDefaultBackground" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDefaultFillForeground" ResourceKey="AccentFillColorDefaultBrush" />
+
+            <StaticResource x:Key="HoldToConfirmDestructiveBackground" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmDestructiveFillForeground" ResourceKey="SystemFillColorCriticalBrush" />
+
+            <StaticResource x:Key="HoldToConfirmSecondaryBackground" ResourceKey="ControlFillColorDefaultBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryFillBackground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryFillForeground" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="HoldToConfirmSecondaryBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+
         <ResourceDictionary x:Key="HighContrast">
             <SolidColorBrush x:Key="HoldToConfirmDefaultBackground" Color="{ThemeResource SystemColorHighlightColor}" />
             <SolidColorBrush x:Key="HoldToConfirmDefaultForeground" Color="{ThemeResource SystemColorHighlightTextColor}" />
