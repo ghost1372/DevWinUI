@@ -18,12 +18,11 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbProject" HorizontalAlignment="Stretch" DisplayMemberPath="Name" Header="Active Project" ItemsSource="{x:Bind Projects}" SelectionChanged="OnProjectSelectionChanged" />
                         <ComboBox x:Name="CmbPreviewSize" HorizontalAlignment="Stretch" Header="Preview Size" ItemsSource="{x:Bind PreviewSizeItems, Mode=OneWay}" SelectedIndex="2" />
                         <ToggleSwitch x:Name="TsShowPreview" Header="Show Preview" IsOn="True" />
                         <ToggleSwitch x:Name="TsShowRuler" Header="Show Ruler" IsOn="True" />
                         <ToggleSwitch x:Name="TsInfiniteScroll" Header="Infinite Scroll" IsOn="True" />
-                        <ToggleSwitch x:Name="TsEnableSound" Header="Enable Sound" IsOn="False" />
+                        <ToggleSwitch x:Name="TsEnableSound" Header="Enable Sound" IsOn="True" />
                         <ToggleSwitch x:Name="TsReduceMotion" Header="Reduce Motion" IsOn="False" />
                         <Slider x:Name="SliderActiveAnchor" Header="Active Anchor" Maximum="0.9" Minimum="0.2" StepFrequency="0.01" Value="0.68" />
                         <Slider x:Name="SliderRowLeading" Header="Row Leading" Maximum="3" Minimum="1.2" StepFrequency="0.1" Value="1.9" />

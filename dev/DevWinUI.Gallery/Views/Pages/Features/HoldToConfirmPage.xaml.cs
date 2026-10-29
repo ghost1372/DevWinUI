@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class HoldToConfirmPage : Page
 {
@@ -10,7 +10,7 @@ public sealed partial class HoldToConfirmPage : Page
         InitializeComponent();
     }
 
-    private static string GetGlyph(bool isOn) => isOn ? "\uE72E" : string.Empty;
+    private string GetGlyph(bool isOn) => isOn ? "\uE72E" : string.Empty;
 
     private void Sample_Confirm(HoldToConfirm sender, object? args)
     {

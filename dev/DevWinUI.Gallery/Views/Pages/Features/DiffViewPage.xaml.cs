@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class DiffViewPage : Page
 {
@@ -101,7 +101,7 @@ public sealed partial class DiffViewPage : Page
         InitializeComponent();
     }
 
-    private static int ToInt(double value) => (int)value;
+    private int ToInt(double value) => (int)value;
 
     private void ReplayButton_Click(object sender, RoutedEventArgs e)
     {

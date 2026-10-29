@@ -27,7 +27,6 @@
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
                     <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbSelectedItem" HorizontalAlignment="Stretch" DisplayMemberPath="Label" Header="Selected Item" ItemsSource="{x:Bind Toc.Items}" SelectedIndex="{x:Bind Toc.SelectedIndex, Mode=TwoWay}" />
                         <Slider x:Name="SliderRowHeight" Header="Row Height" Maximum="72" Minimum="32" Value="48" />
                         <Slider x:Name="SliderIndent" Header="Indent" Maximum="48" Minimum="8" Value="24" />
                         <TextBox x:Name="TxtTitle" Header="Title" Text="On this page" />

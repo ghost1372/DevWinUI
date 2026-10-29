@@ -12,7 +12,7 @@ public sealed partial class GitHubActivityGridPage : Page
         InitializeComponent();
     }
 
-    private static int? GetMaxCount(double value) => double.IsNaN(value) ? null : (int)value;
+    private int? GetMaxCount(double value) => double.IsNaN(value) ? null : (int)value;
 
     private void OnRegenerateClick(object sender, RoutedEventArgs e)
     {
@@ -21,7 +21,7 @@ public sealed partial class GitHubActivityGridPage : Page
         PaletteGrid.Days = Days;
     }
 
-    private static List<ActivityDay> CreateDays(int seed)
+    private List<ActivityDay> CreateDays(int seed)
     {
         var random = new Random(seed);
         var today = DateTime.Today;

@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ScrollSplitCardPage : Page
 {
@@ -21,8 +21,5 @@ public sealed partial class ScrollSplitCardPage : Page
         InitializeComponent();
     }
 
-    private static IReadOnlyList<ScrollSplitCardItem> GetCards(double count) => AllCards[..(int)count];
-
-    private static Uri? GetUri(string value) =>
-        Uri.TryCreate(value, UriKind.Absolute, out var uri) ? uri : null;
+    private IReadOnlyList<ScrollSplitCardItem> GetCards(double count) => AllCards[..(int)count];
 }

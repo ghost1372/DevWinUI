@@ -36,7 +36,7 @@
                         <Button HorizontalAlignment="Stretch" Click="OnSimulateClick" Content="Run Simulation" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <dev:Reasoning x:Name="ReasoningMain" MaxWidth="640" HorizontalAlignment="Left" CompletedDurationLabel="{x:Bind TxtDurationLabel.Text, Mode=OneWay}" Kind="{x:Bind ((dev:ReasoningKind)CmbKind.SelectedItem), Mode=OneWay}" ThinkingLabel="{x:Bind TxtThinkingLabel.Text, Mode=OneWay}" Duration="12">
+                <dev:Reasoning x:Name="ReasoningMain" MaxWidth="640" CompletedDurationLabel="{x:Bind TxtDurationLabel.Text, Mode=OneWay}" Kind="{x:Bind ((dev:ReasoningKind)CmbKind.SelectedItem), Mode=OneWay}" ThinkingLabel="{x:Bind TxtThinkingLabel.Text, Mode=OneWay}" Duration="12">
                     <dev:ReasoningSteps>
                         <dev:ReasoningStep x:Name="Step1" Label="Understand the request" Status="Done">
                             <dev:ReasoningStepDetails Text="Identify the controls that were shared and decide which sample pages they need." />

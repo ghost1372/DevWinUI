@@ -23,7 +23,7 @@ public sealed partial class OrbitCardStackPage : Page
         IconStack.ImageFactory = (item, index) => new FontIcon { Glyph = Glyphs[index % Glyphs.Length], FontSize = 40 };
     }
 
-    private static OrbitCardLabels GetLabels(string link) => new(Link: link);
+    private OrbitCardLabels GetLabels(string link) => new(Link: link);
 
     private void OnValueChanged(OrbitCardStack sender, int value)
     {

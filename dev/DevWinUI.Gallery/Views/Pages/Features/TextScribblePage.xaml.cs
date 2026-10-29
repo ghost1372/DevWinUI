@@ -10,12 +10,12 @@ public sealed partial class TextScribblePage : Page
         InitializeComponent();
     }
 
-    private static bool? GetDrawn(int index) => index switch
+    private bool? GetDrawn(int index) => index switch
     {
         1 => true,
         2 => false,
         _ => null
     };
 
-    private static int? GetIterations(double value) => double.IsNaN(value) ? null : (int)value;
+    private int? GetIterations(double value) => double.IsNaN(value) ? null : (int)value;
 }

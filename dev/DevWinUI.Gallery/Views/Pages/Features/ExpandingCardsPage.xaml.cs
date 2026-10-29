@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ExpandingCardsPage : Page
 {
@@ -7,7 +7,7 @@ public sealed partial class ExpandingCardsPage : Page
         InitializeComponent();
     }
 
-    private static int ToInt(double value) => (int)value;
+    private int ToInt(double value) => (int)value;
 
-    private static CornerRadius ToCornerRadius(double value) => new CornerRadius(value);
+    private CornerRadius ToCornerRadius(double value) => new CornerRadius(value);
 }

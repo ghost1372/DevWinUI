@@ -6692,6 +6692,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultReasoningStepSourcesStyle" TargetType="local:ReasoningStepSources">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ReasoningStepSources">
+          <ItemsControl IsTabStop="False" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsSource="{TemplateBinding Sources}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Spacing="4" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultReasoningStepImageStyle" TargetType="local:ReasoningStepImage">
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="Template">
@@ -20604,35 +20620,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultReasoningStepsStyle}" TargetType="local:ReasoningSteps" />
   <Style BasedOn="{StaticResource DefaultReasoningStepStyle}" TargetType="local:ReasoningStep" />
   <Style BasedOn="{StaticResource DefaultReasoningStepDetailsStyle}" TargetType="local:ReasoningStepDetails" />
-  <Style x:Key="DefaultReasoningStepSourcesStyle" TargetType="local:ReasoningStepSources">
-    <Setter Property="IsTabStop" Value="False" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:ReasoningStepSources">
-          <ItemsControl IsTabStop="False" ItemsSource="{TemplateBinding Sources}">
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <StackPanel Spacing="4" />
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-              <DataTemplate>
-                <HyperlinkButton CornerRadius="12" NavigateUri="{Binding Url}" Style="{StaticResource ReasoningLinkButtonStyle}">
-                  <Border Padding="8,4" BorderBrush="{ThemeResource ReasoningBorderBrush}" BorderThickness="1" CornerRadius="12">
-                    <StackPanel Orientation="Horizontal" Spacing="6">
-                      <FontIcon VerticalAlignment="Center" FontSize="11" Foreground="{ThemeResource ReasoningSecondaryForeground}" Glyph="" />
-                      <TextBlock FontSize="12" Foreground="{ThemeResource ReasoningPrimaryForeground}" Text="{Binding Title}" />
-                      <TextBlock FontSize="12" Foreground="{ThemeResource ReasoningSecondaryForeground}" Text="{Binding Host}" />
-                    </StackPanel>
-                  </Border>
-                </HyperlinkButton>
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+  <Style BasedOn="{StaticResource DefaultReasoningStepSourcesStyle}" TargetType="local:ReasoningStepSources" />
   <Style BasedOn="{StaticResource DefaultReasoningStepImageStyle}" TargetType="local:ReasoningStepImage" />
   <Style BasedOn="{StaticResource DefaultReasoningRowsStyle}" TargetType="local:ReasoningRows" />
   <Style x:Key="DefaultReasoningRowItemStyle" TargetType="local:ReasoningRowItem">
@@ -23329,7 +23317,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultProgressButtonStyle}" TargetType="local:ProgressButton" />
   <Style BasedOn="{StaticResource DefaultProgressRingStyle}" TargetType="local:ProgressRing" />
-  <Style BasedOn="{StaticResource DefaultReasoningStepSourcesStyle}" TargetType="local:ReasoningStepSources" />
   <Style BasedOn="{StaticResource DefaultReasoningRowItemStyle}" TargetType="local:ReasoningRowItem" />
   <Style BasedOn="{StaticResource DefaultRichButtonStyle}" TargetType="local:RichButton" />
   <Style BasedOn="{StaticResource DefaultSegmentedSliderStyle}" TargetType="local:SegmentedSlider" />

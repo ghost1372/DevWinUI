@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class FillButtonPage : Page
 {
@@ -12,9 +12,9 @@ public sealed partial class FillButtonPage : Page
         InitializeComponent();
     }
 
-    private static object? GetIcon(bool isOn) => isOn ? new FontIcon { Glyph = "\uE710" } : null;
+    private object? GetIcon(bool isOn) => isOn ? new FontIcon { Glyph = "\uE710" } : null;
 
-    private static Uri? GetUri(bool isOn) => isOn ? SampleUri : null;
+    private Uri? GetUri(bool isOn) => isOn ? SampleUri : null;
 
     private void Sample_Click(object sender, RoutedEventArgs e)
     {

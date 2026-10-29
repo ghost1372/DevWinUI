@@ -9,7 +9,7 @@ public sealed partial class TextHighlightPage : Page
         InitializeComponent();
     }
 
-    private static bool? GetDrawn(int index) => index switch
+    private bool? GetDrawn(int index) => index switch
     {
         1 => true,
         2 => false,

@@ -20,7 +20,7 @@
                     <StackPanel Spacing="10">
                         <TextBox x:Name="TxtBankName" Header="Bank Name" Text="DevWinUI Bank" />
                         <TextBox x:Name="TxtNumber" Header="Card Number" Text="4242 4242 4242 4242" />
-                        <TextBox x:Name="TxtHolder" Header="Card Holder" Text="Jane Doe" />
+                        <TextBox x:Name="TxtHolder" Header="Card Holder" Text="Mahdi Hosseini" />
                         <TextBox x:Name="TxtExpiry" Header="Expiration" Text="12/29" />
                         <TextBox x:Name="TxtCvv" Header="CVV2" Text="123" />
                         <Slider x:Name="SliderTilt" Header="Max Tilt" Maximum="25" Minimum="0" Value="8" />
@@ -32,12 +32,13 @@
                         <ToggleSwitch x:Name="TglChip" Header="Show Chip" IsOn="True" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <ScrollViewer Height="600">
-                    <StackPanel Spacing="10">
-                        <dev:BankCard Width="340" Height="214" HorizontalAlignment="Center" VerticalAlignment="Center" BankName="{x:Bind TxtBankName.Text, Mode=OneWay}" CardHolder="{x:Bind TxtHolder.Text, Mode=OneWay}" CardNumber="{x:Bind TxtNumber.Text, Mode=OneWay}" Cvv2="{x:Bind TxtCvv.Text, Mode=OneWay}" Expiration="{x:Bind TxtExpiry.Text, Mode=OneWay}" HoverScale="{x:Bind SliderScale.Value, Mode=OneWay}" MaskNumber="{x:Bind TglMask.IsOn, Mode=OneWay}" MaxTilt="{x:Bind SliderTilt.Value, Mode=OneWay}" Perspective="{x:Bind SliderPerspective.Value, Mode=OneWay}" ShowChip="{x:Bind TglChip.IsOn, Mode=OneWay}" ShowCvv="{x:Bind TglCvv.IsOn, Mode=OneWay}" SmoothingMs="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
+                <ScrollViewer>
+                    <dev:UniformGrid Columns="2">
+                        <dev:BankCard HorizontalAlignment="Center" VerticalAlignment="Center" BankName="{x:Bind TxtBankName.Text, Mode=OneWay}" CardHolder="{x:Bind TxtHolder.Text, Mode=OneWay}" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="{x:Bind TxtNumber.Text, Mode=OneWay}" Cvv2="{x:Bind TxtCvv.Text, Mode=OneWay}" Expiration="{x:Bind TxtExpiry.Text, Mode=OneWay}" HoverScale="{x:Bind SliderScale.Value, Mode=OneWay}" MaskNumber="{x:Bind TglMask.IsOn, Mode=OneWay}" MaxTilt="{x:Bind SliderTilt.Value, Mode=OneWay}" Perspective="{x:Bind SliderPerspective.Value, Mode=OneWay}" ShowChip="{x:Bind TglChip.IsOn, Mode=OneWay}" ShowCvv="{x:Bind TglCvv.IsOn, Mode=OneWay}" SmoothingMs="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
 
-                        <dev:BankCard CardHolder="Jane Doe" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" />
-                        <dev:BankCard BankName="Mellat Bank" CardHolder="Jane Doe" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" ShowCvv="True" />
+                        <dev:BankCard BankName="Mellat Bank" CardHolder="Mahdi Hosseini" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" ShowCvv="True" />
+                        <dev:BankCard BackgroundImage="ms-appx:///Assets/BannerView/3.jpeg" CardHolder="Mahdi Hosseini" CardNumber="378282246310005" Cvv2="1234" Expiration="12/27" />
+
                         <dev:BankCard CardHolder="John Smith" CardNumber="5555555555554444" Cvv2="456" Expiration="01/30" MaskNumber="True">
                             <dev:BankCard.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -47,9 +48,8 @@
                             </dev:BankCard.Background>
                         </dev:BankCard>
 
-                        <dev:BankCard BackgroundImage="ms-appx:///Assets/BannerView/3.jpeg" CardHolder="Mahdi Hosseini" CardNumber="378282246310005" Cvv2="1234" Expiration="12/27" />
 
-                    </StackPanel>
+                    </dev:UniformGrid>
                 </ScrollViewer>
             </local:ControlExample>
         </StackPanel>

@@ -30,10 +30,10 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <dev:ExpandingCards Height="360" CardCornerRadius="{x:Bind ToCornerRadius(SliderCornerRadius.Value), Mode=OneWay}" CollapsedFlex="{x:Bind SliderCollapsedFlex.Value, Mode=OneWay}" DefaultActiveIndex="{x:Bind ToInt(SliderActiveIndex.Value), Mode=OneWay}" ExpandedFlex="{x:Bind SliderExpandedFlex.Value, Mode=OneWay}" ReduceMotion="{x:Bind TglReduceMotion.IsOn, Mode=OneWay}">
-                    <dev:ExpandingCardItem Title="Mountains" Alt="Snowy mountain peaks" Source="https://picsum.photos/seed/dwu-mountains/900/700" />
-                    <dev:ExpandingCardItem Title="Forest" Alt="Dense green forest" Source="https://picsum.photos/seed/dwu-forest/900/700" />
-                    <dev:ExpandingCardItem Title="Ocean" Alt="Waves on a beach" Source="https://picsum.photos/seed/dwu-ocean/900/700" />
-                    <dev:ExpandingCardItem Title="Desert" Alt="Sand dunes at sunset" Source="https://picsum.photos/seed/dwu-desert/900/700" />
+                    <dev:ExpandingCardItem Title="Mountains" Alt="Snowy mountain peaks" Source="ms-appx:///Assets/BannerView/1.jpeg" />
+                    <dev:ExpandingCardItem Title="Forest" Alt="Dense green forest" Source="ms-appx:///Assets/BannerView/3.jpeg" />
+                    <dev:ExpandingCardItem Title="Ocean" Alt="Waves on a beach" Source="ms-appx:///Assets/BannerView/4.jpeg" />
+                    <dev:ExpandingCardItem Title="Desert" Alt="Sand dunes at sunset" Source="ms-appx:///Assets/BannerView/7.jpeg" />
                 </dev:ExpandingCards>
             </local:ControlExample>
         </StackPanel>

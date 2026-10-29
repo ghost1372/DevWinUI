@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class EyeTrackingPage : Page
 {
@@ -9,5 +9,5 @@ public sealed partial class EyeTrackingPage : Page
         InitializeComponent();
     }
 
-    private static int ToInt(double value) => (int)value;
+    private int ToInt(double value) => (int)value;
 }

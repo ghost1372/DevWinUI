@@ -36,7 +36,7 @@
                         <Button Click="GoToStep3_Click" Content="Go to step 3" />
                     </StackPanel>
                 </local:ControlExample.Pane>
-                <StackPanel HorizontalAlignment="Center" Spacing="12">
+                <StackPanel MinHeight="500" HorizontalAlignment="Center" Spacing="12">
                     <dev:MorphingWizard x:Name="Sample" Width="440" BackText="{x:Bind TxtBack.Text, Mode=OneWay}" Completed="Sample_Completed" ContinueText="{x:Bind TxtContinue.Text, Mode=OneWay}" CounterFormat="{x:Bind TxtCounter.Text, Mode=OneWay}" FinishText="{x:Bind TxtFinish.Text, Mode=OneWay}" ResetOnCompleted="{x:Bind TglReset.IsOn, Mode=OneWay}" StepChanged="Sample_StepChanged">
                         <dev:MorphingWizardStep Id="welcome" Label="Welcome">
                             <StackPanel Spacing="8">

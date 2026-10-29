@@ -1,4 +1,4 @@
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ShowMorePage : Page
 {
@@ -15,5 +15,5 @@ public sealed partial class ShowMorePage : Page
         InitializeComponent();
     }
 
-    private static int GetLines(double value) => (int)value;
+    private int GetLines(double value) => (int)value;
 }
