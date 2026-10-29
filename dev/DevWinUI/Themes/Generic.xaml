@@ -517,11 +517,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
         <GradientStop Offset="0" Color="#00000000" />
         <GradientStop Offset="1" Color="#2D000000" />
       </LinearGradientBrush>
-      <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#EEF0F2" />
-      <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#A7F3D0" />
-      <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#34D399" />
-      <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#059669" />
-      <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#065F46" />
+      <SolidColorBrush x:Key="FillButtonForeground" Color="#FAFAFA" />
+      <SolidColorBrush x:Key="FillButtonBackground" Color="#0A0A0A" />
+      <SolidColorBrush x:Key="FillButtonPrimary" Color="#E5E5E5" />
+      <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#171717" />
+      <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
+      <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
+      <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
+      <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
+      <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
+      <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
+      <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#10B981" />
+      <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#6EE7B7" />
+      <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
+      <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
+      <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
+      <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
       <StaticResource x:Key="GooeyButtonBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
@@ -672,6 +683,23 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="SelectorBarSegmentedItemBorderBrushDisabled" ResourceKey="ControlAltFillColorSecondaryBrush" />
       <Thickness x:Key="SelectorBarSegmentedBorderThickness">1</Thickness>
       <StaticResource x:Key="ShimmerBackground" ResourceKey="ControlAltFillColorTertiaryBrush" />
+      <SolidColorBrush x:Key="ShowMoreRing" Color="#737373" />
+      <LinearGradientBrush x:Key="ShowMoreVeilBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00202020" />
+        <GradientStop Offset="0.2" Color="#1A202020" />
+        <GradientStop Offset="0.4" Color="#5A202020" />
+        <GradientStop Offset="0.6" Color="#A5202020" />
+        <GradientStop Offset="0.8" Color="#E4202020" />
+        <GradientStop Offset="1" Color="#FF202020" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="ShowMoreSecondaryVeilBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#001C1C1C" />
+        <GradientStop Offset="0.2" Color="#1A1C1C1C" />
+        <GradientStop Offset="0.4" Color="#5A1C1C1C" />
+        <GradientStop Offset="0.6" Color="#A51C1C1C" />
+        <GradientStop Offset="0.8" Color="#E41C1C1C" />
+        <GradientStop Offset="1" Color="#FF1C1C1C" />
+      </LinearGradientBrush>
       <StaticResource x:Key="StepBarItemInActiveBorderBrush" ResourceKey="ControlStrongStrokeColorDefault" />
       <StaticResource x:Key="StepBarItemActiveBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="StorageBarCornerRadius" ResourceKey="OverlayCornerRadius" />
@@ -991,6 +1019,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#DFDFDF" />
       <SolidColorBrush x:Key="FillButtonBorder" Color="#E5E5E5" />
       <SolidColorBrush x:Key="FillButtonRing" Color="#A1A1A1" />
+      <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#EEF0F2" />
+      <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#A7F3D0" />
+      <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#34D399" />
+      <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#059669" />
+      <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#065F46" />
       <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
       <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
       <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
@@ -1451,6 +1484,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="FillButtonSoftBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="FillButtonBorder" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="FillButtonRing" ResourceKey="SystemColorButtonTextColorBrush" />
+      <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
+      <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
+      <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
+      <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#10B981" />
+      <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#6EE7B7" />
       <SolidColorBrush x:Key="GlowingBorderBrush1" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="GlowingBorderBrush2" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="GlowingBorderBrush3" Color="{ThemeResource SystemColorHighlightColor}" />
@@ -1659,41 +1697,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="UnderlineAnimationGradientBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
-    </ResourceDictionary>
-    <ResourceDictionary x:Key="Dark">
-      <SolidColorBrush x:Key="FillButtonForeground" Color="#FAFAFA" />
-      <SolidColorBrush x:Key="FillButtonBackground" Color="#0A0A0A" />
-      <SolidColorBrush x:Key="FillButtonPrimary" Color="#E5E5E5" />
-      <SolidColorBrush x:Key="FillButtonPrimaryForeground" Color="#171717" />
-      <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
-      <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
-      <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
-      <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
-      <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
-      <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
-      <SolidColorBrush x:Key="ActivityGridLevel3Brush" Color="#10B981" />
-      <SolidColorBrush x:Key="ActivityGridLevel4Brush" Color="#6EE7B7" />
-      <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
-      <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
-      <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
-      <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
-      <SolidColorBrush x:Key="ShowMoreRing" Color="#737373" />
-      <LinearGradientBrush x:Key="ShowMoreVeilBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#00202020" />
-        <GradientStop Offset="0.2" Color="#1A202020" />
-        <GradientStop Offset="0.4" Color="#5A202020" />
-        <GradientStop Offset="0.6" Color="#A5202020" />
-        <GradientStop Offset="0.8" Color="#E4202020" />
-        <GradientStop Offset="1" Color="#FF202020" />
-      </LinearGradientBrush>
-      <LinearGradientBrush x:Key="ShowMoreSecondaryVeilBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#001C1C1C" />
-        <GradientStop Offset="0.2" Color="#1A1C1C1C" />
-        <GradientStop Offset="0.4" Color="#5A1C1C1C" />
-        <GradientStop Offset="0.6" Color="#A51C1C1C" />
-        <GradientStop Offset="0.8" Color="#E41C1C1C" />
-        <GradientStop Offset="1" Color="#FF1C1C1C" />
-      </LinearGradientBrush>
     </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
   <x:Double x:Key="BreadcrumbBarHeight">34</x:Double>
@@ -6607,11 +6610,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <Grid x:Name="PART_PreviewHost" Margin="34,0,12,8" Visibility="Collapsed">
                 <TextBlock x:Name="PART_PreviewText" FontSize="12" Foreground="{ThemeResource ReasoningSecondaryForeground}" TextTrimming="CharacterEllipsis" />
               </Grid>
-              <local:Collapsible x:Name="PART_Panel">
+              <local:CollapsibleGrid x:Name="PART_Panel">
                 <Border x:Name="PART_BodyHost" Padding="12,0,12,12">
                   <ContentPresenter Content="{TemplateBinding Body}" FontSize="13" Foreground="{ThemeResource ReasoningSecondaryForeground}" TextWrapping="Wrap" />
                 </Border>
-              </local:Collapsible>
+              </local:CollapsibleGrid>
             </StackPanel>
           </Border>
         </ControlTemplate>
@@ -6647,7 +6650,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:ReasoningStep">
-          <local:Collapsible x:Name="PART_Reveal">
+          <local:CollapsibleGrid x:Name="PART_Reveal">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="StatusStates">
                 <VisualState x:Name="Pending" />
@@ -6682,11 +6685,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
                   </Grid>
                 </Grid>
               </local:ReasoningTrigger>
-              <local:Collapsible x:Name="PART_DetailsPanel">
+              <local:CollapsibleGrid x:Name="PART_DetailsPanel">
                 <ItemsPresenter Margin="26,6,0,2" />
-              </local:Collapsible>
+              </local:CollapsibleGrid>
             </StackPanel>
-          </local:Collapsible>
+          </local:CollapsibleGrid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
