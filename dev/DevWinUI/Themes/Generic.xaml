@@ -188,6 +188,7 @@ Themes\Styles\Controls\RealClock.xaml
 Themes\Styles\Controls\Reasoning.xaml
 Themes\Styles\Controls\RedirectVisualView.xaml
 Themes\Styles\Controls\RichButton.xaml
+Themes\Styles\Controls\ScrumbledText.xaml
 Themes\Styles\Controls\SegmentedSlider.xaml
 Themes\Styles\Controls\SelectorBarSegmented.xaml
 Themes\Styles\Controls\SettingsGroup.xaml
@@ -593,6 +594,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemFillColorSuccessBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentBackground" ResourceKey="ControlStrongFillColorDefaultBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentForeground" ResourceKey="SystemAccentColorLight1" />
       <x:Double x:Key="SegmentedSliderTrackThemeHeight">4</x:Double>
@@ -1004,6 +1007,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemFillColorSuccessBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentBackground" ResourceKey="ControlStrongFillColorDefaultBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentForeground" ResourceKey="SystemAccentColor" />
       <x:Double x:Key="SegmentedSliderTrackThemeHeight">4</x:Double>
@@ -1405,6 +1410,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="SystemColorHotlightColorBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentBackground" ResourceKey="SystemControlForegroundBaseMediumLowBrush" />
       <StaticResource x:Key="SegmentedSliderSegmentForeground" ResourceKey="SystemAccentColorDark3" />
       <x:Double x:Key="SegmentedSliderTrackThemeHeight">4</x:Double>
@@ -6392,6 +6399,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <Canvas x:Name="ChildHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </Grid>
           </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultScrambledTextStyle" TargetType="local:ScrambledText">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="FontFamily" Value="Consolas" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{ThemeResource ScrambledTextForeground}" />
+    <Setter Property="ScrambleColor" Value="{ThemeResource ScrambledTextScrambleForeground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ScrambledText">
+          <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+            <local:WordWrapPanel x:Name="PART_Host" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -19869,6 +19892,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultScrambledTextStyle}" TargetType="local:ScrambledText" />
   <Style x:Key="DefaultSegmentedSliderStyle" TargetType="local:SegmentedSlider">
     <Setter Property="Template">
       <Setter.Value>
