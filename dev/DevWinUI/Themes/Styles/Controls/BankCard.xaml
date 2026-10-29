@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <LinearGradientBrush x:Key="BankCardBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#1F2A44" />
+                <GradientStop Offset="1" Color="#4B3F8F" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="BankCardChipBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#F4D77B" />
+                <GradientStop Offset="1" Color="#C9A23F" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="BankCardGlareBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0.30" Color="#00FFFFFF" />
+                <GradientStop Offset="0.50" Color="#45FFFFFF" />
+                <GradientStop Offset="0.70" Color="#00FFFFFF" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="BankCardForegroundBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="BankCardLabelBrush" Color="#A6FFFFFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultBankCardStyle}" TargetType="local:BankCard" />
+
+    <Style x:Key="DefaultBankCardStyle" TargetType="local:BankCard">
+        <Setter Property="Width" Value="340" />
+        <Setter Property="Height" Value="214" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="Background" Value="{ThemeResource BankCardBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource BankCardForegroundBrush}" />
+        <Setter Property="LabelForeground" Value="{ThemeResource BankCardLabelBrush}" />
+        <Setter Property="ChipBackground" Value="{ThemeResource BankCardChipBrush}" />
+        <Setter Property="GlareBrush" Value="{ThemeResource BankCardGlareBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BankCard">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Border x:Name="ImageLayer" CornerRadius="{TemplateBinding CornerRadius}" />
+
+                        <Rectangle x:Name="GlareLayer" IsHitTestVisible="False" Opacity="0" />
+
+                        <Grid Padding="{TemplateBinding Padding}" IsHitTestVisible="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <TextBlock x:Name="BankNameText" Margin="0,0,80,0" HorizontalAlignment="Left" VerticalAlignment="Center" CharacterSpacing="40" FontSize="16" FontWeight="SemiBold" Foreground="{TemplateBinding Foreground}" TextTrimming="CharacterEllipsis" />
+                                <Image x:Name="LogoImage" Height="34" MaxWidth="70" HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Uniform" />
+                            </Grid>
+
+                            <Border x:Name="ChipPart" Grid.Row="1" Width="44" Height="32" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{TemplateBinding ChipBackground}" CornerRadius="6" />
+
+                            <TextBlock x:Name="NumberText" Grid.Row="2" Margin="0,0,0,14" CharacterSpacing="60" FontFamily="Consolas" FontSize="22" Foreground="{TemplateBinding Foreground}" />
+
+                            <Grid Grid.Row="3" ColumnSpacing="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel VerticalAlignment="Bottom">
+                                    <TextBlock FontSize="9" Foreground="{TemplateBinding LabelForeground}" Text="CARD HOLDER" />
+                                    <TextBlock x:Name="HolderText" FontSize="14" Foreground="{TemplateBinding Foreground}" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                                    <TextBlock FontSize="9" Foreground="{TemplateBinding LabelForeground}" Text="EXPIRES" />
+                                    <TextBlock x:Name="ExpiryText" FontFamily="Consolas" FontSize="14" Foreground="{TemplateBinding Foreground}" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                                    <TextBlock FontSize="9" Foreground="{TemplateBinding LabelForeground}" Text="CVV2" />
+                                    <TextBlock x:Name="CvvText" FontFamily="Consolas" FontSize="14" Foreground="{TemplateBinding Foreground}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
