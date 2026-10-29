@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-public sealed class ScrollSplitCardPanel : Control
+public sealed partial class ScrollSplitCardPanel : Control
 {
     public ScrollSplitCardItem? Item
     {
