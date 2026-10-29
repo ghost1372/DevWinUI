@@ -209,6 +209,27 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.BankCardPage",
+          "Title": "Bank Card",
+          "Subtitle": "A payment card that tilts in 3D on hover with a moving glare, number masking and optional chip",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FillButtonPage",
+          "Title": "Fill Button",
+          "Subtitle": "A call to action whose icon tile expands into a full fill on hover or focus and swaps the label",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.MorphingWizardPage",
+          "Title": "Morphing Wizard",
+          "Subtitle": "A multi-step wizard with sliding steps, a segmented progress bar and a spring-animated card height",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ExpandingCardsPage",
           "Title": "Expanding Cards",
           "Subtitle": "A row of image cards where the hovered, focused or selected card smoothly expands and the others collapse",
@@ -1084,6 +1105,13 @@
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.GlowingBorderPage",
+          "Title": "Glowing Border",
+          "Subtitle": "An animated gradient border with a cursor-following glow and beam, spin and pulse modes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.StarBorderPage",
           "Title": "Star Border",

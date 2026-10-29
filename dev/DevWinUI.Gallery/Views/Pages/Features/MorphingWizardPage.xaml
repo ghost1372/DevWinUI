@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.MorphingWizardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/morphingWizard" HeaderText="MorphingWizard">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:MorphingWizard &gt;
+                        &lt;dev:MorphingWizardStep Id="account" Label="Account"&gt; #nl#
+                        &lt;StackPanel Spacing="8"&gt; #nl#
+                        &lt;TextBlock Text="Create your account" /&gt; #nl#
+                        &lt;TextBox Header="Email" /&gt; #nl#
+                        &lt;/StackPanel&gt; #nl#
+                        &lt;/dev:MorphingWizardStep&gt; #nl#
+                        &lt;dev:MorphingWizardStep Id="done" Label="Done"&gt; #nl#
+                        &lt;TextBlock Text="All set!" /&gt; #nl#
+                        &lt;/dev:MorphingWizardStep&gt; #nl#
+                        &lt;/dev:MorphingWizard&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtBack" Header="Back Text" Text="Back" />
+                        <TextBox x:Name="TxtContinue" Header="Continue Text" Text="Continue" />
+                        <TextBox x:Name="TxtFinish" Header="Finish Text" Text="Finish" />
+                        <TextBox x:Name="TxtCounter" Header="Counter Format" Text="Step {0} of {1}" />
+                        <ToggleSwitch x:Name="TglReset" Header="Reset On Completed" IsOn="True" />
+                        <Button Click="GoToStep3_Click" Content="Go to step 3" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel HorizontalAlignment="Center" Spacing="12">
+                    <dev:MorphingWizard x:Name="Sample" Width="440" BackText="{x:Bind TxtBack.Text, Mode=OneWay}" Completed="Sample_Completed" ContinueText="{x:Bind TxtContinue.Text, Mode=OneWay}" CounterFormat="{x:Bind TxtCounter.Text, Mode=OneWay}" FinishText="{x:Bind TxtFinish.Text, Mode=OneWay}" ResetOnCompleted="{x:Bind TglReset.IsOn, Mode=OneWay}" StepChanged="Sample_StepChanged">
+                        <dev:MorphingWizardStep Id="welcome" Label="Welcome">
+                            <StackPanel Spacing="8">
+                                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Welcome aboard" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This wizard slides between steps and springs its height to fit each one." TextWrapping="Wrap" />
+                            </StackPanel>
+                        </dev:MorphingWizardStep>
+                        <dev:MorphingWizardStep Id="account" Label="Account">
+                            <StackPanel Spacing="12">
+                                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Create your account" />
+                                <TextBox Header="Name" PlaceholderText="Jane Doe" />
+                                <TextBox Header="Email" PlaceholderText="jane@example.com" />
+                                <PasswordBox Header="Password" />
+                            </StackPanel>
+                        </dev:MorphingWizardStep>
+                        <dev:MorphingWizardStep Id="preferences" Label="Preferences">
+                            <StackPanel Spacing="8">
+                                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Pick your preferences" />
+                                <CheckBox Content="Email notifications" IsChecked="True" />
+                                <CheckBox Content="Weekly digest" />
+                                <CheckBox Content="Product updates" />
+                            </StackPanel>
+                        </dev:MorphingWizardStep>
+                        <dev:MorphingWizardStep Id="done" Label="Done">
+                            <StackPanel Spacing="8">
+                                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="You're all set" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Press Finish to complete the wizard." />
+                            </StackPanel>
+                        </dev:MorphingWizardStep>
+                    </dev:MorphingWizard>
+                    <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Step 1" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

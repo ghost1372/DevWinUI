@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BankCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/bankCard" HeaderText="BankCard">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:BankCard Width="340" Height="214" BankName="DevWinUI Bank" CardNumber="4242 4242 4242 4242" CardHolder="Jane Doe" Expiration="12/29" Cvv2="123" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtBankName" Header="Bank Name" Text="DevWinUI Bank" />
+                        <TextBox x:Name="TxtNumber" Header="Card Number" Text="4242 4242 4242 4242" />
+                        <TextBox x:Name="TxtHolder" Header="Card Holder" Text="Jane Doe" />
+                        <TextBox x:Name="TxtExpiry" Header="Expiration" Text="12/29" />
+                        <TextBox x:Name="TxtCvv" Header="CVV2" Text="123" />
+                        <Slider x:Name="SliderTilt" Header="Max Tilt" Maximum="25" Minimum="0" Value="8" />
+                        <Slider x:Name="SliderScale" Header="Hover Scale" Maximum="1.3" Minimum="1" StepFrequency="0.01" Value="1.05" />
+                        <Slider x:Name="SliderPerspective" Header="Perspective" Maximum="3000" Minimum="400" StepFrequency="100" Value="1200" />
+                        <Slider x:Name="SliderSmoothing" Header="Smoothing (ms)" Maximum="300" Minimum="1" Value="60" />
+                        <ToggleSwitch x:Name="TglMask" Header="Mask Number" IsOn="False" />
+                        <ToggleSwitch x:Name="TglCvv" Header="Show CVV" IsOn="False" />
+                        <ToggleSwitch x:Name="TglChip" Header="Show Chip" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ScrollViewer Height="600">
+                    <StackPanel Spacing="10">
+                        <dev:BankCard Width="340" Height="214" HorizontalAlignment="Center" VerticalAlignment="Center" BankName="{x:Bind TxtBankName.Text, Mode=OneWay}" CardHolder="{x:Bind TxtHolder.Text, Mode=OneWay}" CardNumber="{x:Bind TxtNumber.Text, Mode=OneWay}" Cvv2="{x:Bind TxtCvv.Text, Mode=OneWay}" Expiration="{x:Bind TxtExpiry.Text, Mode=OneWay}" HoverScale="{x:Bind SliderScale.Value, Mode=OneWay}" MaskNumber="{x:Bind TglMask.IsOn, Mode=OneWay}" MaxTilt="{x:Bind SliderTilt.Value, Mode=OneWay}" Perspective="{x:Bind SliderPerspective.Value, Mode=OneWay}" ShowChip="{x:Bind TglChip.IsOn, Mode=OneWay}" ShowCvv="{x:Bind TglCvv.IsOn, Mode=OneWay}" SmoothingMs="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
+
+                        <dev:BankCard CardHolder="Jane Doe" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" />
+                        <dev:BankCard BankName="Mellat Bank" CardHolder="Jane Doe" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" ShowCvv="True" />
+                        <dev:BankCard CardHolder="John Smith" CardNumber="5555555555554444" Cvv2="456" Expiration="01/30" MaskNumber="True">
+                            <dev:BankCard.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Offset="0" Color="#0F2027" />
+                                    <GradientStop Offset="1" Color="#2C5364" />
+                                </LinearGradientBrush>
+                            </dev:BankCard.Background>
+                        </dev:BankCard>
+
+                        <dev:BankCard BackgroundImage="ms-appx:///Assets/BannerView/3.jpeg" CardHolder="Mahdi Hosseini" CardNumber="378282246310005" Cvv2="1234" Expiration="12/27" />
+
+                    </StackPanel>
+                </ScrollViewer>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

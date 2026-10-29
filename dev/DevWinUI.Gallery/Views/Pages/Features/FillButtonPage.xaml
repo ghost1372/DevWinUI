@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.FillButtonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/fillButton" HeaderText="FillButton">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:FillButton Content="Get started" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtContent" Header="Content" Text="Get started" />
+                        <ComboBox x:Name="CmbTone" Header="Tone" ItemsSource="{x:Bind ToneItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TglIcon" Header="Custom Icon" IsOn="False" />
+                        <ToggleSwitch x:Name="TglLink" Header="Navigate Uri" IsOn="False" />
+                        <ToggleSwitch x:Name="TglEnabled" Header="Is Enabled" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel HorizontalAlignment="Center" Spacing="12">
+                    <dev:FillButton Click="Sample_Click" Content="{x:Bind TxtContent.Text, Mode=OneWay}" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.SelectedItem), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.SelectedItem), Mode=OneWay}" />
+                    <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Hover or focus the button" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
