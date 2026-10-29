@@ -103,6 +103,7 @@ Themes\Styles\Controls\CircleIcon.xaml
 Themes\Styles\Controls\Clock.xaml
 Themes\Styles\Controls\ClockPicker.xaml
 Themes\Styles\Controls\ClockRadioButton.xaml
+Themes\Styles\Controls\ColorArchiveScroll.xaml
 Themes\Styles\Controls\ColorfulShimmingEffect.xaml
 Themes\Styles\Controls\ColorPalette.xaml
 Themes\Styles\Controls\ColorPaletteItem.xaml
@@ -2460,6 +2461,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
             <Ellipse x:Name="Ellipse" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Transparent" />
             <TextBlock x:Name="ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" />
             <Ellipse x:Name="FocusRing" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" Stroke="{ThemeResource TextFillColorPrimaryBrush}" StrokeThickness="2.5" Visibility="Collapsed" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultColorArchiveScrollStyle" TargetType="local:ColorArchiveScroll">
+    <Setter Property="FontSize" Value="44" />
+    <Setter Property="MinHeight" Value="520" />
+    <Setter Property="IsTabStop" Value="True" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ColorArchiveScroll">
+          <Grid x:Name="PART_Root">
+            <Canvas x:Name="PART_Rows" />
+            <Canvas>
+              <Rectangle x:Name="PART_RulerHit" Fill="Transparent" />
+              <Border x:Name="PART_Card" Background="#22000000" CornerRadius="14" RenderTransformOrigin="0.5,0.5">
+                <Grid>
+                  <Image x:Name="PART_ImageFront" Stretch="UniformToFill" />
+                  <Image x:Name="PART_ImageBack" Opacity="0" Stretch="UniformToFill" />
+                </Grid>
+              </Border>
+            </Canvas>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -16111,6 +16136,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultClockRadioButtonStyle}" TargetType="local:ClockRadioButton" />
+  <Style BasedOn="{StaticResource DefaultColorArchiveScrollStyle}" TargetType="local:ColorArchiveScroll" />
   <Style BasedOn="{StaticResource DefaultColorfulShimmingEffectStyle}" TargetType="local:ColorfulShimmingEffect" />
   <Style BasedOn="{StaticResource DefaultColorPaletteStyle}" TargetType="local:ColorPalette" />
   <Style x:Key="DefaultColorPaletteItemStyle" TargetType="local:ColorPaletteItem">
