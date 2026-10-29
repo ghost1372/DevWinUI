@@ -11,6 +11,21 @@
             <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="#FFFFFF" />
             <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="#FFFFFF" />
         </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <LinearGradientBrush x:Key="ExpandingCardsScrimBrush" StartPoint="0,0.45" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#00000000" />
+                <GradientStop Offset="1" Color="#B3000000" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="#1A1A1A" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="ExpandingCardsScrimBrush" Color="{ThemeResource SystemColorWindowColor}" />
+            <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+        </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
     <Style BasedOn="{StaticResource DefaultExpandingCardsStyle}" TargetType="local:ExpandingCards" />
