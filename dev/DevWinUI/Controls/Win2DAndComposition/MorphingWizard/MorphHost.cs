@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 /// <summary>
 /// Stacks its children and reports a height that springs toward the natural height of <see cref="Current"/>.
@@ -17,7 +15,7 @@ public sealed partial class MorphHost : Panel
     private double _height = double.NaN;
     private double _target;
     private double _velocity;
-    private long _lastTicks;
+    private TimeSpan? _lastTime;
     private bool _running;
 
     public MorphHost()
@@ -119,7 +117,7 @@ public sealed partial class MorphHost : Panel
         }
 
         _running = true;
-        _lastTicks = Stopwatch.GetTimestamp();
+        _lastTime = null;
         CompositionTarget.Rendering += OnFrame;
     }
 
@@ -146,9 +144,15 @@ public sealed partial class MorphHost : Panel
 
     private void OnFrame(object? sender, object e)
     {
-        long now = Stopwatch.GetTimestamp();
-        double dt = Math.Min((now - _lastTicks) / (double)Stopwatch.Frequency, MaxFrameSeconds);
-        _lastTicks = now;
+        TimeSpan time = ((RenderingEventArgs)e).RenderingTime;
+        if (_lastTime is not TimeSpan last)
+        {
+            _lastTime = time;
+            return;
+        }
+
+        double dt = Math.Clamp((time - last).TotalSeconds, 0, MaxFrameSeconds);
+        _lastTime = time;
 
         double stiffness = Stiffness;
         double damping = Damping;
