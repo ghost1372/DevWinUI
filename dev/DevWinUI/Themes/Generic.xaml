@@ -224,6 +224,7 @@ Themes\Styles\Controls\TextMorphEffect.xaml
 Themes\Styles\Controls\TextScribble.xaml
 Themes\Styles\Controls\Timeline.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
+Themes\Styles\Controls\UnderlineAnimation.xaml
 Themes\Styles\Controls\Validation.xaml
 Themes\Styles\Controls\WanderingParticles.xaml
 Themes\Styles\Controls\Watermark.xaml
@@ -686,6 +687,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#FF6A55" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#FF6A55" />
+      <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0" Color="#F43F5E" />
+        <GradientStop Offset="1" Color="#8B5CF6" />
+      </LinearGradientBrush>
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
     </ResourceDictionary>
@@ -1138,6 +1143,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#E8432E" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#E8432E" />
+      <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0" Color="#F43F5E" />
+        <GradientStop Offset="1" Color="#8B5CF6" />
+      </LinearGradientBrush>
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
     </ResourceDictionary>
@@ -1566,6 +1575,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="StoreCarouselNavButtonForegroundBrush" Color="{StaticResource StoreCarouselNavButtonForegroundColor}" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="UnderlineAnimationGradientBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
     </ResourceDictionary>
@@ -7449,6 +7459,27 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
   </Storyboard>
+  <Style x:Key="DefaultUnderlineAnimationStyle" TargetType="local:UnderlineAnimation">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+    <Setter Property="GradientBrush" Value="{ThemeResource UnderlineAnimationGradientBrush}" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:UnderlineAnimation">
+          <Grid Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+            <Canvas x:Name="PART_Layer" IsHitTestVisible="False" />
+            <TextBlock x:Name="PART_TextBlock" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" TextWrapping="{TemplateBinding TextWrapping}">
+              <Run x:Name="PART_Run" />
+            </TextBlock>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultWanderingParticlesStyle" TargetType="local:WanderingParticles">
     <Setter Property="Template">
       <Setter.Value>
@@ -21737,6 +21768,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Glyph" Value="" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultUnderlineAnimationStyle}" TargetType="local:UnderlineAnimation" />
   <Style x:Key="ValidatingTextBoxStyle" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
     <Setter Property="Template">
       <Setter.Value>
