@@ -81,6 +81,7 @@ Themes\Styles\Controls\AccordionItem.xaml
 Themes\Styles\Controls\AnimatedGradient.xaml
 Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\AnimatedTextBlock.xaml
+Themes\Styles\Controls\AnimatedToc.xaml
 Themes\Styles\Controls\AnimationPath.xaml
 Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\AudioWave.xaml
@@ -446,6 +447,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
       <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
       <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
+      <StaticResource x:Key="AnimatedTocForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocRailBrush" ResourceKey="TextFillColorTertiaryBrush" />
+      <StaticResource x:Key="AnimatedTocProgressBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocItemForeground" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="AnimatedTocSelectedItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -894,6 +903,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
       <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
       <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
+      <StaticResource x:Key="AnimatedTocForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocRailBrush" ResourceKey="TextFillColorTertiaryBrush" />
+      <StaticResource x:Key="AnimatedTocProgressBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocItemForeground" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="AnimatedTocSelectedItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
+      <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SubtleFillColorTertiaryBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
@@ -1324,6 +1341,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <x:Double x:Key="PillRadioButtonCornerRadius">16</x:Double>
       <Thickness x:Key="PillRadioButtonBorderThickness">1</Thickness>
       <x:Double x:Key="PillRadioButtonBorderSize">1</x:Double>
+      <StaticResource x:Key="AnimatedTocForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="AnimatedTocRailBrush" ResourceKey="SystemColorGrayTextColorBrush" />
+      <StaticResource x:Key="AnimatedTocProgressBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="AnimatedTocItemForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="AnimatedTocSelectedItemForeground" ResourceKey="SystemColorHotlightColorBrush" />
+      <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -16778,6 +16803,75 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultAnimatedTocStyle" TargetType="local:AnimatedToc">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Foreground" Value="{ThemeResource AnimatedTocForeground}" />
+    <Setter Property="RailBrush" Value="{ThemeResource AnimatedTocRailBrush}" />
+    <Setter Property="ProgressBrush" Value="{ThemeResource AnimatedTocProgressBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:AnimatedToc">
+          <StackPanel x:Name="PART_Root" Spacing="12">
+            <StackPanel.Resources>
+              <x:Double x:Key="TocDotSize">16</x:Double>
+              <x:Double x:Key="TocRailPadding">12</x:Double>
+              <x:Double x:Key="TocLabelGap">16</x:Double>
+              <x:Double x:Key="TocRowEndPadding">12</x:Double>
+              <Style x:Key="TocLabelStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                <Setter Property="Foreground" Value="{ThemeResource AnimatedTocItemForeground}" />
+              </Style>
+              <Style x:Key="TocSelectedLabelStyle" BasedOn="{StaticResource TocLabelStyle}" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{ThemeResource AnimatedTocSelectedItemForeground}" />
+              </Style>
+              <Style x:Key="TocRowStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                      <Grid x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="{ThemeResource ControlCornerRadius}">
+                        <VisualStateManager.VisualStateGroups>
+                          <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="PointerOver">
+                              <VisualState.Setters>
+                                <Setter Target="Root.Background" Value="{ThemeResource AnimatedTocRowHoverBackground}" />
+                              </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                              <VisualState.Setters>
+                                <Setter Target="Root.Background" Value="{ThemeResource AnimatedTocRowPressedBackground}" />
+                              </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled" />
+                          </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
+                      </Grid>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+            </StackPanel.Resources>
+            <TextBlock x:Name="PART_Title" Margin="12,0,0,0" FontWeight="SemiBold" />
+            <Grid>
+              <StackPanel x:Name="PART_Rows" />
+              <Canvas x:Name="PART_Rail" HorizontalAlignment="Left" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False">
+                <Path x:Name="PART_RailBase" Stroke="{TemplateBinding RailBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="2" />
+                <Path x:Name="PART_RailProgress" Stroke="{TemplateBinding ProgressBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="2" />
+                <Ellipse x:Name="PART_Dot" Width="{StaticResource TocDotSize}" Height="{StaticResource TocDotSize}" Fill="{TemplateBinding ProgressBrush}" Stroke="{ThemeResource AnimatedTocDotStroke}" StrokeThickness="3" />
+              </Canvas>
+            </Grid>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style BasedOn="{StaticResource DefaultAnimationPathStyle}" TargetType="local:AnimationPath" />
   <Style BasedOn="{StaticResource DefaultArcProgressStyle}" TargetType="local:ArcProgress" />
   <Style BasedOn="{StaticResource DefaultAudioWaveStyle}" TargetType="local:AudioWave" />
@@ -22733,6 +22827,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultAnimatedTextBlockStyle}" TargetType="local:AnimatedTextBlock" />
+  <Style BasedOn="{StaticResource DefaultAnimatedTocStyle}" TargetType="local:AnimatedToc" />
   <Style BasedOn="{StaticResource DefaultBannerViewStyle}" TargetType="local:BannerView" />
   <Style BasedOn="{StaticResource DefaultBreadcrumbNavigatorStyle}" TargetType="local:BreadcrumbNavigator" />
   <Style BasedOn="{StaticResource DefaultBubbleButtonStyle}" TargetType="local:BubbleButton" />
