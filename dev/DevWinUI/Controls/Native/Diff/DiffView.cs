@@ -1390,17 +1390,4 @@ public sealed partial class DiffView : Control
         };
         return menu;
     }
-
-    private sealed class DiffCommand(Action<object?> execute) : ICommand
-    {
-        public event EventHandler? CanExecuteChanged
-        {
-            add { }
-            remove { }
-        }
-
-        public bool CanExecute(object? parameter) => parameter is DiffRow { IsExpander: true };
-
-        public void Execute(object? parameter) => execute(parameter);
-    }
 }
