@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
+            <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
+            <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
+            <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="GlowingBorderBrush1" Color="#ff1100" />
+            <SolidColorBrush x:Key="GlowingBorderBrush2" Color="#f97316" />
+            <SolidColorBrush x:Key="GlowingBorderBrush3" Color="#fbbf24" />
+            <SolidColorBrush x:Key="GlowingBorderBrush4" Color="#fb7185" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="GlowingBorderBrush1" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GlowingBorderBrush2" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GlowingBorderBrush3" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GlowingBorderBrush4" Color="{ThemeResource SystemColorHighlightColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultGlowingBorderStyle}" TargetType="local:GlowingBorder" />
+
+    <Style x:Key="DefaultGlowingBorderStyle" TargetType="local:GlowingBorder">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        <Setter Property="GlowBrush1" Value="{ThemeResource GlowingBorderBrush1}" />
+        <Setter Property="GlowBrush2" Value="{ThemeResource GlowingBorderBrush2}" />
+        <Setter Property="GlowBrush3" Value="{ThemeResource GlowingBorderBrush3}" />
+        <Setter Property="GlowBrush4" Value="{ThemeResource GlowingBorderBrush4}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:GlowingBorder">
+                    <Grid x:Name="PART_Root">
+                        <canvas:CanvasControl x:Name="PART_Canvas" AutomationProperties.AccessibilityView="Raw" ClearColor="Transparent" IsHitTestVisible="False" />
+
+                        <Border x:Name="PART_ContentBox" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
