@@ -82,7 +82,11 @@ public sealed partial class DiffView : Control
     private ProgressBar? _busyBar;
     private ScrollViewer? _scroller;
     private ItemsRepeater? _repeater;
-
+    private static readonly DiffViewTemplates DefaultItemTemplateResources = new();
+    private static readonly DataTemplate DefaultUnifiedRowItemTemplate =
+        (DataTemplate)DefaultItemTemplateResources["DiffUnifiedRowTemplate"];
+    private static readonly DataTemplate DefaultSplitRowItemTemplate =
+        (DataTemplate)DefaultItemTemplateResources["DiffSplitRowTemplate"];
     public DiffView()
     {
         DefaultStyleKey = typeof(DiffView);

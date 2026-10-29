@@ -252,7 +252,7 @@ public sealed partial class DiffView
     }
 
     public static readonly DependencyProperty UnifiedRowTemplateProperty =
-        DependencyProperty.Register(nameof(UnifiedRowTemplate), typeof(DataTemplate), typeof(DiffView), new PropertyMetadata(null, OnRowsChanged));
+        DependencyProperty.Register(nameof(UnifiedRowTemplate), typeof(DataTemplate), typeof(DiffView), new PropertyMetadata(DefaultUnifiedRowItemTemplate, OnRowsChanged));
 
     public DataTemplate? SplitRowTemplate
     {
@@ -261,7 +261,7 @@ public sealed partial class DiffView
     }
 
     public static readonly DependencyProperty SplitRowTemplateProperty =
-        DependencyProperty.Register(nameof(SplitRowTemplate), typeof(DataTemplate), typeof(DiffView), new PropertyMetadata(null, OnRowsChanged));
+        DependencyProperty.Register(nameof(SplitRowTemplate), typeof(DataTemplate), typeof(DiffView), new PropertyMetadata(DefaultSplitRowItemTemplate, OnRowsChanged));
 
     public Brush? SelectionBase
     {

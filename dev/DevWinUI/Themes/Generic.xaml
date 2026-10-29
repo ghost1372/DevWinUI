@@ -977,6 +977,21 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SolidBackgroundFillColorBaseBrush" />
       <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <LinearGradientBrush x:Key="BankCardBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#F2F4FA" />
+        <GradientStop Offset="1" Color="#C7D0EE" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="BankCardChipBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#F4D77B" />
+        <GradientStop Offset="1" Color="#C9A23F" />
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="BankCardGlareBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.30" Color="#00FFFFFF" />
+        <GradientStop Offset="0.50" Color="#99FFFFFF" />
+        <GradientStop Offset="0.70" Color="#00FFFFFF" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="BankCardForegroundBrush" Color="#1B2238" />
+      <SolidColorBrush x:Key="BankCardLabelBrush" Color="#991B2238" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
@@ -994,6 +1009,12 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <LinearGradientBrush x:Key="ExpandingCardsScrimBrush" StartPoint="0,0.45" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00000000" />
+        <GradientStop Offset="1" Color="#B3000000" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="#1A1A1A" />
       <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="#F5F0EB" />
       <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="#0A0E17" />
       <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="#4A6741" />
@@ -1032,6 +1053,19 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="GooeyButtonForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
       <StaticResource x:Key="GooeyButtonItemBackgroundBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="GooeyButtonItemForegroundBrush" ResourceKey="SystemControlForegroundAltHighBrush" />
+      <StaticResource x:Key="HoldToConfirmDefaultBackground" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="HoldToConfirmDefaultForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmDefaultFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmDefaultFillForeground" ResourceKey="AccentFillColorDefaultBrush" />
+      <StaticResource x:Key="HoldToConfirmDestructiveBackground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="HoldToConfirmDestructiveForeground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmDestructiveFillBackground" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmDestructiveFillForeground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="HoldToConfirmSecondaryBackground" ResourceKey="ControlFillColorDefaultBrush" />
+      <StaticResource x:Key="HoldToConfirmSecondaryForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmSecondaryFillBackground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="HoldToConfirmSecondaryFillForeground" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="HoldToConfirmSecondaryBorderBrush" ResourceKey="ControlStrokeColorDefaultBrush" />
       <LinearGradientBrush x:Name="BackgroundGradient" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0.0" Color="#CED8E4" />
         <GradientStop Offset="1.0" Color="#D5DBE3" />
@@ -1448,6 +1482,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <SolidColorBrush x:Key="BankCardBackgroundBrush" Color="{ThemeResource SystemColorButtonFaceColor}" />
+      <SolidColorBrush x:Key="BankCardChipBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="BankCardGlareBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="BankCardForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
+      <SolidColorBrush x:Key="BankCardLabelBrush" Color="{ThemeResource SystemColorButtonTextColor}" />
       <StaticResource x:Key="ProgressCompletedBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
@@ -1465,6 +1504,9 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="FileDiffSelectionForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+      <SolidColorBrush x:Key="ExpandingCardsScrimBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="{ThemeResource SystemColorWindowColor}" />
       <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="{ThemeResource SystemColorWindowColor}" />
       <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="{ThemeResource SystemColorHighlightColor}" />
@@ -3172,60 +3214,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <x:String x:Key="FileDiffRemovedLineFormat">Removed: {0}</x:String>
   <x:String x:Key="FileDiffFileAutomationFormat">File diff: {0}</x:String>
   <x:String x:Key="FileDiffSummaryAutomationFormat">{0} added, {1} removed</x:String>
-  <DataTemplate x:Key="DiffRowTemplate">
-    <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}" Background="{Binding Background, Mode=OneTime}">
-      <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Width="8" />
-        <TextBlock Grid.Column="1" Width="{Binding OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding OldNumber, Mode=OneTime}" Visibility="{Binding OldGutterVisibility, Mode=OneTime}" />
-        <TextBlock Grid.Column="2" Width="{Binding NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding NewNumber, Mode=OneTime}" Visibility="{Binding NewGutterVisibility, Mode=OneTime}" />
-        <TextBlock Grid.Column="3" Width="24" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Marker, Mode=OneTime}" />
-        <TextBlock Grid.Column="4" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Mode=OneTime}" TextWrapping="{Binding Wrapping, Mode=OneTime}" />
-      </Grid>
-      <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
-    </Grid>
-  </DataTemplate>
-  <DataTemplate x:Key="SplitRowTemplate">
-    <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}">
-      <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="1" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="{Binding Left.Background, Mode=OneTime}">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="24" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-          <TextBlock Grid.Column="1" Width="{Binding Left.OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Left.OldNumber, Mode=OneTime}" Visibility="{Binding Left.OldGutterVisibility, Mode=OneTime}" />
-          <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Left.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Left.Marker, Mode=OneTime}" />
-          <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Left, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Left.Wrapping, Mode=OneTime}" />
-        </Grid>
-        <Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
-        <Grid Grid.Column="2" Background="{Binding Right.Background, Mode=OneTime}">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="24" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-          <TextBlock Grid.Column="1" Width="{Binding Right.NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Right.NewNumber, Mode=OneTime}" Visibility="{Binding Right.NewGutterVisibility, Mode=OneTime}" />
-          <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Right.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Right.Marker, Mode=OneTime}" />
-          <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Right, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Right.Wrapping, Mode=OneTime}" />
-        </Grid>
-      </Grid>
-      <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Expander, Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
-    </Grid>
-  </DataTemplate>
   <Style x:Key="DefaultDigitalSegmentStyle" TargetType="local:DigitalSegment">
     <Setter Property="SegmentForeground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
     <Setter Property="SegmentBackground" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
@@ -18252,8 +18240,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="FileAutomationFormat" Value="{StaticResource FileDiffFileAutomationFormat}" />
     <Setter Property="SummaryAutomationFormat" Value="{StaticResource FileDiffSummaryAutomationFormat}" />
     <Setter Property="SelectionBase" Value="{ThemeResource FileDiffSelectionBaseBrush}" />
-    <Setter Property="UnifiedRowTemplate" Value="{StaticResource DiffRowTemplate}" />
-    <Setter Property="SplitRowTemplate" Value="{StaticResource SplitRowTemplate}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:DiffView">

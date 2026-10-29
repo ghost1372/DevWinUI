@@ -59,80 +59,6 @@
     <x:String x:Key="FileDiffFileAutomationFormat">File diff: {0}</x:String>
     <x:String x:Key="FileDiffSummaryAutomationFormat">{0} added, {1} removed</x:String>
 
-    <DataTemplate x:Key="DiffRowTemplate">
-        <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}" Background="{Binding Background, Mode=OneTime}">
-
-            <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Border Grid.Column="0" Width="8" />
-
-                <TextBlock Grid.Column="1" Width="{Binding OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding OldNumber, Mode=OneTime}" Visibility="{Binding OldGutterVisibility, Mode=OneTime}" />
-
-                <TextBlock Grid.Column="2" Width="{Binding NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding NewNumber, Mode=OneTime}" Visibility="{Binding NewGutterVisibility, Mode=OneTime}" />
-
-                <TextBlock Grid.Column="3" Width="24" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Marker, Mode=OneTime}" />
-
-                <TextBlock Grid.Column="4" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Mode=OneTime}" TextWrapping="{Binding Wrapping, Mode=OneTime}" />
-            </Grid>
-
-            <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="SplitRowTemplate">
-        <Grid MinHeight="22" AutomationProperties.Name="{Binding AutomationName, Mode=OneTime}">
-
-            <Grid Visibility="{Binding CodeVisibility, Mode=OneTime}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="1" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="0" Background="{Binding Left.Background, Mode=OneTime}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="24" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="1" Width="{Binding Left.OldGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Left.OldNumber, Mode=OneTime}" Visibility="{Binding Left.OldGutterVisibility, Mode=OneTime}" />
-
-                    <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Left.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Left.Marker, Mode=OneTime}" />
-
-                    <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Left, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Left.Wrapping, Mode=OneTime}" />
-                </Grid>
-
-                <Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
-                <Grid Grid.Column="2" Background="{Binding Right.Background, Mode=OneTime}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="24" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="1" Width="{Binding Right.NewGutterWidth, Mode=OneTime}" Padding="0,0,8,0" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorTertiaryBrush}" HorizontalTextAlignment="Right" IsTextSelectionEnabled="False" Text="{Binding Right.NewNumber, Mode=OneTime}" Visibility="{Binding Right.NewGutterVisibility, Mode=OneTime}" />
-
-                    <TextBlock Grid.Column="2" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Foreground="{Binding Right.AccentBrush, Mode=OneTime}" HorizontalTextAlignment="Center" IsTextSelectionEnabled="False" Text="{Binding Right.Marker, Mode=OneTime}" />
-
-                    <TextBlock Grid.Column="3" Padding="0,2,12,2" VerticalAlignment="Center" local:DiffHighlight.Row="{Binding Right, Mode=OneTime}" TextTrimming="CharacterEllipsis" TextWrapping="{Binding Right.Wrapping, Mode=OneTime}" />
-                </Grid>
-            </Grid>
-
-            <Button Padding="12,3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Command="{Binding ExpandCommand, Mode=OneTime}" CommandParameter="{Binding Expander, Mode=OneTime}" Content="{Binding ExpanderText, Mode=OneTime}" CornerRadius="0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="{Binding ExpanderVisibility, Mode=OneTime}" />
-        </Grid>
-    </DataTemplate>
-
     <Style BasedOn="{StaticResource DefaultDiffViewStyle}" TargetType="local:DiffView" />
 
     <Style x:Key="DefaultDiffViewStyle" TargetType="local:DiffView">
@@ -167,8 +93,6 @@
         <Setter Property="FileAutomationFormat" Value="{StaticResource FileDiffFileAutomationFormat}" />
         <Setter Property="SummaryAutomationFormat" Value="{StaticResource FileDiffSummaryAutomationFormat}" />
         <Setter Property="SelectionBase" Value="{ThemeResource FileDiffSelectionBaseBrush}" />
-        <Setter Property="UnifiedRowTemplate" Value="{StaticResource DiffRowTemplate}" />
-        <Setter Property="SplitRowTemplate" Value="{StaticResource SplitRowTemplate}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DiffView">
