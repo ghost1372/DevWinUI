@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <LinearGradientBrush x:Key="ExpandingCardsScrimBrush" StartPoint="0,0.45" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#00000000" />
+                <GradientStop Offset="1" Color="#B3000000" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="#FFFFFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultExpandingCardsStyle}" TargetType="local:ExpandingCards" />
+
+    <Style x:Key="DefaultExpandingCardsStyle" TargetType="local:ExpandingCards">
+        <Setter Property="Height" Value="420" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="UseSystemFocusVisuals" Value="False" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CardCornerRadius" Value="24" />
+        <Setter Property="TitleForeground" Value="{ThemeResource ExpandingCardsTitleBrush}" />
+        <Setter Property="ScrimBrush" Value="{ThemeResource ExpandingCardsScrimBrush}" />
+        <Setter Property="FocusBrush" Value="{ThemeResource ExpandingCardsFocusBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ExpandingCards">
+                    <Border Background="{TemplateBinding Background}">
+                        <local:FlexRowPanel x:Name="PART_Row" Gap="{TemplateBinding Gap}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultExpandingCardFrameStyle}" TargetType="local:ExpandingCardFrame" />
+
+    <Style x:Key="DefaultExpandingCardFrameStyle" TargetType="local:ExpandingCardFrame">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="CornerRadius" Value="24" />
+        <Setter Property="Foreground" Value="{ThemeResource ExpandingCardsTitleBrush}" />
+        <Setter Property="ScrimBrush" Value="{ThemeResource ExpandingCardsScrimBrush}" />
+        <Setter Property="FocusBrush" Value="{ThemeResource ExpandingCardsFocusBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ExpandingCardFrame">
+                    <Border x:Name="RootBorder" CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="FocusHidden" />
+                                <VisualState x:Name="FocusVisible">
+                                    <VisualState.Setters>
+                                        <Setter Target="FocusRing.Visibility" Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid>
+                            <Border Background="{TemplateBinding ScrimBrush}" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="False" Opacity="{TemplateBinding Progress}" />
+
+                            <TextBlock Margin="20,0,20,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22" FontWeight="SemiBold" Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="{TemplateBinding TitleOpacity}" Text="{TemplateBinding Title}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+
+                            <Border x:Name="FocusRing" BorderBrush="{TemplateBinding FocusBrush}" BorderThickness="2" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -124,6 +124,7 @@ Themes\Styles\Controls\DonutChart.xaml
 Themes\Styles\Controls\DropdownColorPicker.xaml
 Themes\Styles\Controls\EdgeLighting.xaml
 Themes\Styles\Controls\Empty.xaml
+Themes\Styles\Controls\ExpandingCards.xaml
 Themes\Styles\Controls\EyeTracking.xaml
 Themes\Styles\Controls\FizzyCover.xaml
 Themes\Styles\Controls\FlipBlock.xaml
@@ -456,6 +457,12 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FileDiffSelectionForegroundBrush" Color="#FFFFFF" />
       <StaticResource x:Key="DropdownColorPickerHeaderForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="DropdownColorPickerHeaderForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+      <LinearGradientBrush x:Key="ExpandingCardsScrimBrush" StartPoint="0,0.45" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00000000" />
+        <GradientStop Offset="1" Color="#B3000000" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="ExpandingCardsTitleBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="ExpandingCardsFocusBrush" Color="#FFFFFF" />
       <SolidColorBrush x:Key="EyeTrackingScleraBrush" Color="#E8E2DC" />
       <SolidColorBrush x:Key="EyeTrackingCyberScleraBrush" Color="#0A0E17" />
       <SolidColorBrush x:Key="EyeTrackingIrisBrush" Color="#4A6741" />
@@ -3116,6 +3123,55 @@ Themes\Styles\Controls\WelcomeHero.xaml
         <ControlTemplate TargetType="local:EdgeLighting">
           <Border x:Name="PART_Border">
             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultExpandingCardsStyle" TargetType="local:ExpandingCards">
+    <Setter Property="Height" Value="420" />
+    <Setter Property="IsTabStop" Value="True" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="CardCornerRadius" Value="24" />
+    <Setter Property="TitleForeground" Value="{ThemeResource ExpandingCardsTitleBrush}" />
+    <Setter Property="ScrimBrush" Value="{ThemeResource ExpandingCardsScrimBrush}" />
+    <Setter Property="FocusBrush" Value="{ThemeResource ExpandingCardsFocusBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ExpandingCards">
+          <Border Background="{TemplateBinding Background}">
+            <local:FlexRowPanel x:Name="PART_Row" Gap="{TemplateBinding Gap}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultExpandingCardFrameStyle" TargetType="local:ExpandingCardFrame">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="CornerRadius" Value="24" />
+    <Setter Property="Foreground" Value="{ThemeResource ExpandingCardsTitleBrush}" />
+    <Setter Property="ScrimBrush" Value="{ThemeResource ExpandingCardsScrimBrush}" />
+    <Setter Property="FocusBrush" Value="{ThemeResource ExpandingCardsFocusBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ExpandingCardFrame">
+          <Border x:Name="RootBorder" CornerRadius="{TemplateBinding CornerRadius}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="FocusStates">
+                <VisualState x:Name="FocusHidden" />
+                <VisualState x:Name="FocusVisible">
+                  <VisualState.Setters>
+                    <Setter Target="FocusRing.Visibility" Value="Visible" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Border Background="{TemplateBinding ScrimBrush}" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="False" Opacity="{TemplateBinding Progress}" />
+              <TextBlock Margin="20,0,20,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22" FontWeight="SemiBold" Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="{TemplateBinding TitleOpacity}" Text="{TemplateBinding Title}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+              <Border x:Name="FocusRing" BorderBrush="{TemplateBinding FocusBrush}" BorderThickness="2" CornerRadius="{TemplateBinding CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" />
+            </Grid>
           </Border>
         </ControlTemplate>
       </Setter.Value>
@@ -17595,6 +17651,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultExpandingCardsStyle}" TargetType="local:ExpandingCards" />
+  <Style BasedOn="{StaticResource DefaultExpandingCardFrameStyle}" TargetType="local:ExpandingCardFrame" />
   <Style BasedOn="{StaticResource DefaultEyeTrackingStyle}" TargetType="local:EyeTracking" />
   <Style BasedOn="{StaticResource DefaultFizzyCoverStyle}" TargetType="local:FizzyCover" />
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
