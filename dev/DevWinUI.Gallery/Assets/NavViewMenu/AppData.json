@@ -209,6 +209,20 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.ExpandingCardsPage",
+          "Title": "Expanding Cards",
+          "Subtitle": "A row of image cards where the hovered, focused or selected card smoothly expands and the others collapse",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DiffViewPage",
+          "Title": "Diff View",
+          "Subtitle": "A virtualized text diff viewer with unified and split modes, intra-line highlights, collapsible context and text selection",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.HoldToConfirmPage",
           "Title": "Hold To Confirm",
           "Subtitle": "A press-and-hold button that fills while held and morphs into a confirmed state, with spring-back on release",

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DiffViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/diffView" HeaderText="DiffView">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:DiffView Filename="OrderService.cs" OldText="{x:Bind OldSample}" NewText="{x:Bind NewSample}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtFilename" Header="Filename" Text="OrderService.cs" />
+                        <ComboBox x:Name="CmbViewMode" Header="View Mode" ItemsSource="{x:Bind ViewModeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbUnifiedMode" Header="Unified Mode" ItemsSource="{x:Bind UnifiedModeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SliderContext" Header="Context Lines" Maximum="10" Minimum="0" Value="3" />
+                        <Slider x:Name="SliderMaxHeight" Header="Max Body Height" Maximum="800" Minimum="150" StepFrequency="10" Value="480" />
+                        <ToggleSwitch x:Name="TglHeader" Header="Show Header" IsOn="True" />
+                        <ToggleSwitch x:Name="TglLineNumbers" Header="Show Line Numbers" IsOn="True" />
+                        <ToggleSwitch x:Name="TglCollapse" Header="Collapse Unchanged" IsOn="True" />
+                        <ToggleSwitch x:Name="TglWrap" Header="Wrap Lines" IsOn="False" />
+                        <ToggleSwitch x:Name="TglHighlight" Header="Highlight Changes" IsOn="True" />
+                        <ToggleSwitch x:Name="TglSwitcher" Header="Show Mode Switcher" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAnimated" Header="Is Animated" IsOn="True" />
+                        <ToggleSwitch x:Name="TglSingleLine" Header="Use Single Line Selection" IsOn="False" />
+                        <Button Click="ReplayButton_Click" Content="Replay" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:DiffView x:Name="Sample" AddedLineFormat="Added: {0}" AfterText="After" ApproximateText="Approximate diff" BeforeText="Before" CollapseUnchanged="{x:Bind TglCollapse.IsOn, Mode=OneWay}" ContextLines="{x:Bind ToInt(SliderContext.Value), Mode=OneWay}" CopyText="Copy" ExpandAutomationFormat="Expand {0} unchanged lines" ExpanderFormat="Show {0} unchanged lines" FileAutomationFormat="Diff of {0}" Filename="{x:Bind TxtFilename.Text, Mode=OneWay}" HighlightChanges="{x:Bind TglHighlight.IsOn, Mode=OneWay}" InlineText="Inline" IsAnimated="{x:Bind TglAnimated.IsOn, Mode=OneWay}" MaxBodyHeight="{x:Bind SliderMaxHeight.Value, Mode=OneWay}" NewText="{x:Bind NewSample}" OldText="{x:Bind OldSample}" RemovedLineFormat="Removed: {0}" SelectAllText="Select all" ShowHeader="{x:Bind TglHeader.IsOn, Mode=OneWay}" ShowLineNumbers="{x:Bind TglLineNumbers.IsOn, Mode=OneWay}" ShowModeSwitcher="{x:Bind TglSwitcher.IsOn, Mode=OneWay}" SummaryAutomationFormat="{}{0} additions, {1} removals" UnifiedMode="{x:Bind ((dev:DiffUnifiedMode)CmbUnifiedMode.SelectedItem), Mode=OneWay}" UseSingleLineSelection="{x:Bind TglSingleLine.IsOn, Mode=OneWay}" ViewMode="{x:Bind ((dev:DiffViewMode)CmbViewMode.SelectedItem), Mode=OneWay}" WrapLines="{x:Bind TglWrap.IsOn, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

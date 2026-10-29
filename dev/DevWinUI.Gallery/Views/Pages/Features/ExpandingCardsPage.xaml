@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ExpandingCardsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/expandingCards" HeaderText="ExpandingCards">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ExpandingCards &gt; #nl#
+                        &lt;dev:ExpandingCardItem Title="Mountains" Source="ms-appx:///Assets/mountains.jpg" /&gt; #nl#
+                        &lt;dev:ExpandingCardItem Title="Forest" Source="ms-appx:///Assets/forest.jpg" /&gt; #nl#
+                        &lt;dev:ExpandingCardItem Title="Ocean" Source="ms-appx:///Assets/ocean.jpg" /&gt; #nl#
+                        &lt;/dev:ExpandingCards&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderActiveIndex" Header="Default Active Index" Maximum="3" Minimum="0" Value="0" />
+                        <Slider x:Name="SliderExpandedFlex" Header="Expanded Flex" Maximum="10" Minimum="2" StepFrequency="0.2" Value="5.4" />
+                        <Slider x:Name="SliderCollapsedFlex" Header="Collapsed Flex" Maximum="3" Minimum="0.5" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderCornerRadius" Header="Card Corner Radius" Maximum="48" Minimum="0" Value="24" />
+                        <ToggleSwitch x:Name="TglReduceMotion" Header="Reduce Motion" IsOn="False" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ExpandingCards Height="360" CardCornerRadius="{x:Bind ToCornerRadius(SliderCornerRadius.Value), Mode=OneWay}" CollapsedFlex="{x:Bind SliderCollapsedFlex.Value, Mode=OneWay}" DefaultActiveIndex="{x:Bind ToInt(SliderActiveIndex.Value), Mode=OneWay}" ExpandedFlex="{x:Bind SliderExpandedFlex.Value, Mode=OneWay}" ReduceMotion="{x:Bind TglReduceMotion.IsOn, Mode=OneWay}">
+                    <dev:ExpandingCardItem Title="Mountains" Alt="Snowy mountain peaks" Source="https://picsum.photos/seed/dwu-mountains/900/700" />
+                    <dev:ExpandingCardItem Title="Forest" Alt="Dense green forest" Source="https://picsum.photos/seed/dwu-forest/900/700" />
+                    <dev:ExpandingCardItem Title="Ocean" Alt="Waves on a beach" Source="https://picsum.photos/seed/dwu-ocean/900/700" />
+                    <dev:ExpandingCardItem Title="Desert" Alt="Sand dunes at sunset" Source="https://picsum.photos/seed/dwu-desert/900/700" />
+                </dev:ExpandingCards>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
