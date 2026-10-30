@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Style BaseOn="{StaticResource DefaultRadarStyle}" TargetType="local:Radar" />
+    <Style BasedOn="{StaticResource DefaultRadarStyle}" TargetType="local:Radar" />
 
     <Style x:Key="DefaultRadarStyle" TargetType="local:Radar">
         <Setter Property="Foreground" Value="{ThemeResource RadarForegroundBrush}" />
