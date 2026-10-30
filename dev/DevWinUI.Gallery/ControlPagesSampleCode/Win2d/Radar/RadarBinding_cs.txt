@@ -1,0 +1,23 @@
+public ObservableCollection<RadarAircraft> Aircraft { get; } = new()
+{
+    new RadarAircraft("AC-101", 30, 0.8, 6),
+    new RadarAircraft("AC-102", 140, 0.55, -4),
+    new RadarAircraft("AC-103", 250, 0.9, 8),
+};
+
+public RadarAircraftMapper Mapper { get; } = new();
+
+public sealed class RadarAircraftMapper : IRadarBlipMapper
+{
+    public void Map(object item, RadarBlip blip)
+    {
+        var aircraft = (RadarAircraft)item;
+
+        blip.Angle = aircraft.Bearing;
+        blip.Distance = aircraft.Range;
+        blip.Heading = aircraft.Bearing + (aircraft.Speed >= 0 ? 90 : -90);
+        blip.Label = aircraft.Callsign;
+        blip.Marker = RadarMarker.Plane;
+        blip.State = aircraft.IsAlert ? RadarBlipState.Alert : RadarBlipState.Normal;
+    }
+}

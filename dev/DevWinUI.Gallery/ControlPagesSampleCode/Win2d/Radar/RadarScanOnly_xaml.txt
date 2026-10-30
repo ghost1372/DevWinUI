@@ -1,0 +1,28 @@
+<dev:Radar BlipVisibility="ScanOnly"
+           Clutter="0.1"
+           ScanFade="2"
+           TargetBrush="{ThemeResource FriendlyBrush}"
+           TargetVisibility="ScanOnly"
+           Targets="5">
+
+    <dev:RadarBlip Angle="40"
+                   Distance="1.15"
+                   Duration="14"
+                   EndDistance="0"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Marker="Plane"
+                   Motion="Linear"
+                   Repeat="Loop" />
+
+    <dev:RadarBlip Angle="150"
+                   Distance="0.65"
+                   Foreground="{ThemeResource HostileBrush}"
+                   Marker="Diamond"
+                   Size="3.5" />
+
+    <dev:RadarBlip Angle="260"
+                   Distance="0.5"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Marker="Square"
+                   Visibility="Always" />
+</dev:Radar>

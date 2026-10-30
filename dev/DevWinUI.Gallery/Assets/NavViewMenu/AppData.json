@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/tools/AppData.Schema.json",
   "Groups": [
     {
@@ -1126,6 +1126,13 @@
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.RadarPage",
+          "Title": "Radar",
+          "Subtitle": "A radar display with sweep and pulse modes, moving blips, scan-only visibility, zones, jammed sectors and phosphor afterglow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Circle.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.FlightStatusCardPage",
           "Title": "Flight Status Card",

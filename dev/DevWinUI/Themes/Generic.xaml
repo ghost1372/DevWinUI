@@ -20859,7 +20859,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style BaseOn="{StaticResource DefaultRadarStyle}" TargetType="local:Radar" />
+  <Style BasedOn="{StaticResource DefaultRadarStyle}" TargetType="local:Radar" />
   <Style BasedOn="{StaticResource DefaultRealClockStyle}" TargetType="local:RealClock" />
   <Style BasedOn="{StaticResource ReasoningFlatButtonStyle}" TargetType="local:ReasoningTrigger" />
   <Style BasedOn="{StaticResource DefaultReasoningStyle}" TargetType="local:Reasoning" />

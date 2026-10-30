@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.RadarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="AircraftBrush" Color=" #FFB020" />
+                    <SolidColorBrush x:Key="HostileBrush" Color=" #FF5C5C" />
+                    <SolidColorBrush x:Key="FriendlyBrush" Color=" #5CC8FF" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="AircraftBrush" Color="#B86E00" />
+                    <SolidColorBrush x:Key="HostileBrush" Color="#C42B1C" />
+                    <SolidColorBrush x:Key="FriendlyBrush" Color="#005FB8" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="HighContrast">
+                    <StaticResource x:Key="AircraftBrush" ResourceKey="SystemColorHighlightColorBrush" />
+                    <StaticResource x:Key="HostileBrush" ResourceKey="SystemColorHighlightColorBrush" />
+                    <StaticResource x:Key="FriendlyBrush" ResourceKey="SystemColorHighlightColorBrush" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+
+            <local:ControlExample DocPage="controls/radar" HeaderText="Radar">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Radar Mode="Sweep" Speed="1" Trail="0.35" RingCount="6" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbMode" Header="Mode" ItemsSource="{x:Bind ModeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SliderSpeed" Header="Speed" Maximum="3" Minimum="-3" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderTrail" Header="Trail" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.35" />
+                        <Slider x:Name="SliderRings" Header="Ring count" Maximum="12" Minimum="0" Value="6" />
+                        <Slider x:Name="SliderSpokes" Header="Spoke count" Maximum="36" Minimum="0" Value="12" />
+                        <Slider x:Name="SliderClutter" Header="Clutter" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.35" />
+                        <Slider x:Name="SliderGlow" Header="Glow" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
+                        <ToggleSwitch x:Name="TglTicks" Header="Ticks" IsOn="True" />
+                        <ToggleSwitch x:Name="TglMouse" Header="Mouse interaction" IsOn="True" />
+                        <ToggleSwitch x:Name="TglPaused" Header="Paused" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="380" Clutter="{x:Bind SliderClutter.Value, Mode=OneWay}" Glow="{x:Bind SliderGlow.Value, Mode=OneWay}" Mode="{x:Bind ((dev:RadarMode)CmbMode.SelectedItem), Mode=OneWay}" MouseInteraction="{x:Bind TglMouse.IsOn, Mode=OneWay}" Paused="{x:Bind TglPaused.IsOn, Mode=OneWay}" RingCount="{x:Bind ToInt(SliderRings.Value), Mode=OneWay}" Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" SpokeCount="{x:Bind ToInt(SliderSpokes.Value), Mode=OneWay}" TargetBrush="{ThemeResource FriendlyBrush}" Targets="4" Ticks="{x:Bind TglTicks.IsOn, Mode=OneWay}" Trail="{x:Bind SliderTrail.Value, Mode=OneWay}" />
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample HeaderText="Blips, labels, trails and states" XamlSource="Win2d/Radar/RadarBlips_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderTrailLength" Header="Trail length (seconds)" Maximum="20" Minimum="0" Value="6" />
+                        <ComboBox x:Name="CmbState" Header="State (Unknown contact)" ItemsSource="{x:Bind StateItems, Mode=OneWay}" SelectedIndex="2" />
+                        <ComboBox x:Name="CmbMarker" Header="Marker (Alpha contact)" ItemsSource="{x:Bind MarkerItems, Mode=OneWay}" SelectedIndex="3" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="380" Clutter="0.15" Targets="0">
+                        <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Label="AC-101&#x0a;FL350" Marker="Plane" Motion="Linear" Repeat="Loop" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="14" />
+
+                        <dev:RadarBlip Angle="300" Distance="0.8" EndAngle="60" EndDistance="0.3" Foreground="{ThemeResource AircraftBrush}" Label="AC-207" Marker="Plane" Motion="Linear" Repeat="PingPong" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="8" />
+
+                        <dev:RadarBlip Angle="120" Distance="0.6" Foreground="{ThemeResource HostileBrush}" Label="UNKNOWN" Marker="Diamond" Size="3.5" State="{x:Bind ((dev:RadarBlipState)CmbState.SelectedItem), Mode=OneWay}" />
+
+                        <dev:RadarBlip Angle="235" Distance="0.45" Foreground="{ThemeResource FriendlyBrush}" Label="ALPHA" Marker="{x:Bind ((dev:RadarMarker)CmbMarker.SelectedItem), Mode=OneWay}" State="Selected" />
+                    </dev:Radar>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample HeaderText="Scan-only visibility" XamlSource="Win2d/Radar/RadarScanOnly_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbTargetVisibility" Header="Target visibility" ItemsSource="{x:Bind VisibilityItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbBlipVisibility" Header="Blip visibility (default)" ItemsSource="{x:Bind VisibilityItems, Mode=OneWay}" SelectedIndex="1" />
+                        <Slider x:Name="SliderScanFade" Header="Scan fade" Maximum="6" Minimum="0.5" StepFrequency="0.1" Value="2" />
+                        <Slider x:Name="SliderScanTrail" Header="Trail" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.35" />
+                        <ComboBox x:Name="CmbScanMode" Header="Mode" ItemsSource="{x:Bind ModeItems, Mode=OneWay}" SelectedIndex="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="380" BlipVisibility="{x:Bind ((dev:RadarVisibility)CmbBlipVisibility.SelectedItem), Mode=OneWay}" Clutter="0.1" Mode="{x:Bind ((dev:RadarMode)CmbScanMode.SelectedItem), Mode=OneWay}" ScanFade="{x:Bind SliderScanFade.Value, Mode=OneWay}" TargetBrush="{ThemeResource FriendlyBrush}" TargetVisibility="{x:Bind ((dev:RadarVisibility)CmbTargetVisibility.SelectedItem), Mode=OneWay}" Targets="5" Trail="{x:Bind SliderScanTrail.Value, Mode=OneWay}">
+
+                        <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
+
+                        <dev:RadarBlip Angle="150" Distance="0.65" Foreground="{ThemeResource HostileBrush}" Marker="Diamond" Size="3.5" />
+
+                        <dev:RadarBlip Angle="260" Distance="0.5" Foreground="{ThemeResource AircraftBrush}" Marker="Square" Visibility="Always" />
+                    </dev:Radar>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample HeaderText="Zones, jammed sectors and scale" XamlSource="Win2d/Radar/RadarZones_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TglRangeLabels" Header="Range labels" IsOn="True" />
+                        <ToggleSwitch x:Name="TglCompass" Header="Compass" IsOn="True" />
+                        <ToggleSwitch x:Name="TglReadout" Header="Cursor readout" IsOn="True" />
+                        <Slider x:Name="SliderMaxRange" Header="Max range (km)" Maximum="500" Minimum="10" StepFrequency="10" Value="200" />
+                        <ToggleSwitch x:Name="TglZoneScan" Header="Corridor visible only when scanned" IsOn="True" />
+                        <Slider x:Name="SliderZoneFill" Header="Zone fill opacity" Maximum="0.5" Minimum="0" StepFrequency="0.02" Value="0.12" />
+                        <Slider x:Name="SliderJam" Header="Jam intensity" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.7" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="400" Clutter="0.1" MaxRange="{x:Bind SliderMaxRange.Value, Mode=OneWay}" RadarScale="0.8" RangeUnit="km" ShowCompass="{x:Bind TglCompass.IsOn, Mode=OneWay}" ShowRangeLabels="{x:Bind TglRangeLabels.IsOn, Mode=OneWay}" ShowReadout="{x:Bind TglReadout.IsOn, Mode=OneWay}" Targets="0">
+
+                        <dev:Radar.Zones>
+                            <dev:RadarZone Angle="200" Distance="0.55" FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{ThemeResource HostileBrush}" Label="RESTRICTED" Radius="0.18" Shape="Circle" />
+
+                            <dev:RadarZone FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{ThemeResource FriendlyBrush}" Label="CORRIDOR" Points="20,0.35 50,0.9 80,0.9 60,0.35" Shape="Polygon" Visibility="{x:Bind ZoneVisibility(TglZoneScan.IsOn), Mode=OneWay}" />
+                        </dev:Radar.Zones>
+
+                        <dev:Radar.Jams>
+                            <dev:RadarJam EndAngle="330" Foreground="{ThemeResource HostileBrush}" Intensity="{x:Bind SliderJam.Value, Mode=OneWay}" StartAngle="285" />
+                        </dev:Radar.Jams>
+
+                        <dev:RadarBlip Angle="310" Distance="0.6" Foreground="{ThemeResource AircraftBrush}" Label="JAMMED" Marker="Plane" />
+
+                        <dev:RadarBlip Angle="70" Distance="0.6" EndAngle="30" EndDistance="0.85" Foreground="{ThemeResource AircraftBrush}" Label="IN CORRIDOR" Marker="Plane" Motion="Linear" Repeat="PingPong" Duration="12" />
+                    </dev:Radar>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample HeaderText="Effects">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Radar Phosphor="0.5" Tilt="40" Fade="0.5" Grain="0.05" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderPhosphor" Header="Phosphor" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.5" />
+                        <Slider x:Name="SliderTilt" Header="Tilt" Maximum="80" Minimum="-80" Value="40" />
+                        <Slider x:Name="SliderFade" Header="Edge fade" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.5" />
+                        <Slider x:Name="SliderGrain" Header="Grain" Maximum="0.3" Minimum="0" StepFrequency="0.01" Value="0.05" />
+                        <Slider x:Name="SliderBrightness" Header="Brightness" Maximum="2" Minimum="0.2" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderLineWidth" Header="Line width" Maximum="4" Minimum="0.5" StepFrequency="0.25" Value="1" />
+                        <ToggleSwitch x:Name="TglLight" Header="Light mode" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="{x:Bind ThemeOf(TglLight.IsOn), Mode=OneWay}">
+                    <dev:Radar Height="400" Brightness="{x:Bind SliderBrightness.Value, Mode=OneWay}" CenterY="0.55" Fade="{x:Bind SliderFade.Value, Mode=OneWay}" Grain="{x:Bind SliderGrain.Value, Mode=OneWay}" LightMode="{x:Bind TglLight.IsOn, Mode=OneWay}" LineWidth="{x:Bind SliderLineWidth.Value, Mode=OneWay}" Phosphor="{x:Bind SliderPhosphor.Value, Mode=OneWay}" TargetBrush="{ThemeResource FriendlyBrush}" Targets="4" Tilt="{x:Bind SliderTilt.Value, Mode=OneWay}">
+
+                        <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
+                    </dev:Radar>
+                </Grid>
+            </local:ControlExample>
+
+            <local:ControlExample CSharpSource="Win2d/Radar/RadarBinding_cs.txt" HeaderText="Data binding" XamlSource="Win2d/Radar/RadarBinding_xaml.txt">
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="TglLive" Header="Live movement" IsOn="True" />
+                        <Button Click="AddAircraft_Click" Content="Add aircraft" />
+                        <Button Click="RemoveAircraft_Click" Content="Remove last aircraft" />
+                        <Button Click="ToggleAlert_Click" Content="Toggle alert on first aircraft" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="380" Clutter="0.1" ItemMapper="{x:Bind Mapper}" ItemsSource="{x:Bind Aircraft}" Targets="0" />
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

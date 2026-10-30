@@ -148,6 +148,15 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### Radar
+![Radar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Radar3.gif)
+
+### Radar
+![Radar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Radar2.gif)
+
+### Radar
+![Radar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Radar1.gif)
+
 ### FlightStatusCard
 ![FlightStatusCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/FlightStatusCard.gif)
 
