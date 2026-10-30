@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
-                    xmlns:local="using:DevWinUI">
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
@@ -222,7 +222,7 @@
 
                                 <Grid x:Name="TrackHost" Grid.Row="2" Grid.ColumnSpan="5" Height="58" Margin="0,30,0,0" VerticalAlignment="Bottom">
                                     <Border Background="{ThemeResource FlightCardTrackBrush}" BorderBrush="{ThemeResource FlightCardTrackBorderBrush}" BorderThickness="1" CornerRadius="29" />
-                                    <canvas:CanvasControl x:Name="PART_Canvas" Margin="1" IsHitTestVisible="False" />
+                                    <win2d:CanvasControl x:Name="PART_Canvas" Margin="1" IsHitTestVisible="False" />
                                     <TextBlock Margin="0,0,28,0" HorizontalAlignment="Right" VerticalAlignment="Center" CharacterSpacing="30" FontFamily="Consolas" FontSize="16" FontWeight="SemiBold" Foreground="{ThemeResource FlightCardMutedTextBrush}" Text="{TemplateBinding RemainingTime}" />
                                 </Grid>
                             </Grid>
