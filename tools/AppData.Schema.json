@@ -94,6 +94,11 @@
             "default": false,
             "description": "Indicates if this is a NavigationViewItemHeader"
           },
+          "IsSeparator": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if this is a NavigationViewItemSeparator"
+          },
           "IsFooterNavigationViewItem": {
             "type": "boolean",
             "default": false,
@@ -241,6 +246,11 @@
                   "type": "boolean",
                   "default": false,
                   "description": "Indicates if this is a NavigationViewItemHeader"
+                },
+                "IsSeparator": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Indicates if this is a NavigationViewItemSeparator"
                 },
                 "UsexUid": {
                   "type": "boolean",
