@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Input;
+using WinRT;
 
 namespace DevWinUI;
 
@@ -250,7 +251,7 @@ public sealed partial class HoldToConfirm : Control
     {
         if (_completing) return;
 
-        var frameTime = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan frameTime = e.As<RenderingEventArgs>().RenderingTime;
         double dt = _hasLastFrame ? Math.Min((frameTime - _lastFrame).TotalSeconds, MaxFrameTime) : 0;
         _lastFrame = frameTime;
         _hasLastFrame = true;

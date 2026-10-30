@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Shapes;
+using WinRT;
 
 namespace DevWinUI;
 
@@ -231,7 +232,7 @@ public sealed partial class StatusMark : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        var now = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan now = e.As<RenderingEventArgs>().RenderingTime;
         if (now == _lastRenderingTime) return;
 
         double dt = _lastRenderingTime == TimeSpan.Zero

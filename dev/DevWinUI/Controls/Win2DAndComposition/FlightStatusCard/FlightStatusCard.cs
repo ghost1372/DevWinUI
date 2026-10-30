@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Automation;
+using WinRT;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace DevWinUI;
@@ -396,7 +397,7 @@ public sealed partial class FlightStatusCard : Control
 
     private void OnRendering(object? sender, object e)
     {
-        TimeSpan now = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan now = e.As<RenderingEventArgs>().RenderingTime;
 
         if (!_hasStart)
         {

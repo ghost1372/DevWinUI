@@ -85,7 +85,7 @@ public sealed partial class RadarPage : Page
     }
 }
 
-public sealed class RadarAircraft : INotifyPropertyChanged
+public sealed partial class RadarAircraft : INotifyPropertyChanged
 {
     private string _callsign;
     private double _bearing;
@@ -137,7 +137,7 @@ public sealed class RadarAircraft : INotifyPropertyChanged
     }
 }
 
-public sealed class RadarAircraftMapper : IRadarBlipMapper
+public sealed partial class RadarAircraftMapper : IRadarBlipMapper
 {
     public void Map(object item, RadarBlip blip)
     {

@@ -106,7 +106,7 @@ public partial class Hover3DCard : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        TimeSpan time = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan time = e.As<RenderingEventArgs>().RenderingTime;
         if (_lastTime is not TimeSpan last)
         {
             _lastTime = time;

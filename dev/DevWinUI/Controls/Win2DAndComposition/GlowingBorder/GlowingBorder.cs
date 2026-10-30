@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Input;
+using WinRT;
 
 namespace DevWinUI;
 
@@ -236,7 +237,7 @@ public sealed partial class GlowingBorder : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        var frameTime = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan frameTime = e.As<RenderingEventArgs>().RenderingTime;
         double dt = _hasLastFrame ? Math.Clamp((frameTime - _lastFrame).TotalSeconds, 0, MaxFrameTime) : 0;
         _lastFrame = frameTime;
         _hasLastFrame = true;

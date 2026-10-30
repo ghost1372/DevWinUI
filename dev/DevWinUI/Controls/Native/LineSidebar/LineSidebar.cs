@@ -267,7 +267,7 @@ public sealed partial class LineSidebar : Control
 
     private void OnRendering(object? sender, object e)
     {
-        var now = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan now = e.As<RenderingEventArgs>().RenderingTime;
         if (now == _last) return;
 
         double dt = _last == TimeSpan.Zero

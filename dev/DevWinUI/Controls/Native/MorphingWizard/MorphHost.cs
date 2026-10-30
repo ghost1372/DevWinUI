@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using WinRT;
+
+namespace DevWinUI;
 
 /// <summary>
 /// Stacks its children and reports a height that springs toward the natural height of <see cref="Current"/>.
@@ -144,7 +146,7 @@ public sealed partial class MorphHost : Panel
 
     private void OnFrame(object? sender, object e)
     {
-        TimeSpan time = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan time = e.As<RenderingEventArgs>().RenderingTime;
         if (_lastTime is not TimeSpan last)
         {
             _lastTime = time;

@@ -270,7 +270,7 @@ public sealed partial class ScrambledText : Control
 
     private void OnRendering(object? sender, object e)
     {
-        var frameTime = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan frameTime = e.As<RenderingEventArgs>().RenderingTime;
         double dt = _hasLastFrame ? Math.Clamp((frameTime - _lastFrame).TotalSeconds, 0, MaxFrameTime) : 0;
         _lastFrame = frameTime;
         _hasLastFrame = true;

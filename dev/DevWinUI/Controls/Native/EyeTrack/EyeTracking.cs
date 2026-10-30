@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.Win32;
+using WinRT;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace DevWinUI;
@@ -495,7 +496,7 @@ public sealed partial class EyeTracking : Control
             return;
         }
 
-        double now = ((RenderingEventArgs)e).RenderingTime.TotalSeconds;
+        double now = e.As<RenderingEventArgs>().RenderingTime.TotalSeconds;
         if (_lastFrame < 0)
         {
             _lastFrame = now;

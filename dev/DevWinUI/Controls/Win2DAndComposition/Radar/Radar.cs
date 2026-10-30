@@ -575,7 +575,7 @@ public sealed partial class Radar : Control
 
     private void OnRendering(object? sender, object e)
     {
-        double now = ((RenderingEventArgs)e).RenderingTime.TotalSeconds;
+        double now = e.As<RenderingEventArgs>().RenderingTime.TotalSeconds;
         double dt = _lastTime < 0 ? 0 : Math.Min(now - _lastTime, 0.05);
         _lastTime = now;
 

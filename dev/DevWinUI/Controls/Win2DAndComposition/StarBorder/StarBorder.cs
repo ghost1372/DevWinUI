@@ -192,7 +192,7 @@ public sealed partial class StarBorder : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        var now = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan now = e.As<RenderingEventArgs>().RenderingTime;
         if (now == _lastRenderingTime) return;
 
         double dt = _lastRenderingTime == TimeSpan.Zero

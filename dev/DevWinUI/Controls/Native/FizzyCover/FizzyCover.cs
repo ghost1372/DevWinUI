@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
+using WinRT;
 using Color = Windows.UI.Color;
 
 namespace DevWinUI;
@@ -351,7 +352,7 @@ public sealed partial class FizzyCover : ContentControl
 
     private void OnRendering(object? sender, object e)
     {
-        var now = ((RenderingEventArgs)e).RenderingTime;
+        TimeSpan now = e.As<RenderingEventArgs>().RenderingTime;
         if (now == _last) return;
 
         double dt = _last == TimeSpan.Zero
