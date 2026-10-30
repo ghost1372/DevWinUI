@@ -170,8 +170,8 @@ dotnet add package DevWinUI.Shader
 ### DiffView
 ![DiffView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DiffView.gif)
 
-### CardBank
-![CardBank](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CardBank.gif)
+### BankCard
+![BankCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/BankCard.gif)
 
 ### AnimatedToc
 ![AnimatedToc](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AnimatedToc.gif)
@@ -221,8 +221,8 @@ dotnet add package DevWinUI.Shader
 ### UnderlineAnimation
 ![UnderlineAnimation](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/UnderlineAnimation.gif)
 
-### ColorArchive
-![ColorArchive](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorArchive.gif)
+### ColorArchiveScroll
+![ColorArchiveScroll](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ColorArchive.gif)
 
 ### ScrollSplitCard
 ![ScrollSplitCard](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ScrollSplitCard.gif)
