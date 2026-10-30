@@ -1,4 +1,6 @@
-﻿namespace DevWinUI;
+﻿using WinRT;
+
+namespace DevWinUI;
 
 public partial class Hover3DCard : ContentControl
 {

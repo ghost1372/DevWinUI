@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.System;
+using WinRT;
 
 namespace DevWinUI;
 

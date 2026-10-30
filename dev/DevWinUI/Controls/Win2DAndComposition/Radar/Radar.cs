@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using Windows.Graphics.DirectX;
+using WinRT;
 using DirectXPixelFormat = Windows.Graphics.DirectX.DirectXPixelFormat;
 
 namespace DevWinUI;
