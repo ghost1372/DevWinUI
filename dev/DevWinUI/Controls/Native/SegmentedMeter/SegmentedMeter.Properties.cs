@@ -106,7 +106,7 @@ public sealed partial class SegmentedMeter
     }
 
     public static readonly DependencyProperty AnimatedProperty =
-        DependencyProperty.Register(nameof(Animated), typeof(bool), typeof(SegmentedMeter), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(Animated), typeof(bool), typeof(SegmentedMeter), new PropertyMetadata(true));
 
     public object? StartContent
     {

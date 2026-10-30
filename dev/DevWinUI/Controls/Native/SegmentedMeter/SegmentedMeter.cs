@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using Microsoft.UI.Dispatching;
@@ -42,6 +43,7 @@ public sealed partial class SegmentedMeter : Control
     private const double FallbackThickness = 8;
     private const double FallbackMarkerSize = 8;
     private const double FallbackVerticalMinLength = 120;
+    private const double AnimationDuration = 450;
 
     private static readonly int KindCount = Enum.GetValues<MeterSegmentKind>().Length;
     private static readonly int SizeCount = Enum.GetValues<MeterBarSize>().Length;
@@ -58,10 +60,13 @@ public sealed partial class SegmentedMeter : Control
     private readonly ObservableCollection<MeterSegment> _segments = new();
     private readonly List<MeterSegment> _tracked = new();
     private readonly List<double> _fractions = new();
+    private readonly List<BarSlot> _bars = new();
+    private readonly Dictionary<MeterSegment, double> _previous = new();
     private readonly Style?[] _segmentStyles;
     private readonly Style?[] _iconStyles;
     private readonly double[] _thicknesses;
     private readonly DispatcherQueueHandler _rebuildHandler;
+    private readonly EventHandler<object> _renderingHandler;
 
     private FrameworkElement _root = null!;
     private ContentPresenter _start = null!;
@@ -71,11 +76,22 @@ public sealed partial class SegmentedMeter : Control
     private MeterLegendPanel _legend = null!;
     private ContentPresenter _end = null!;
 
+    private ColumnDefinition? _restColumn;
+    private RowDefinition? _restRow;
     private Style? _legendItemStyle;
     private Style? _legendLabelStyle;
     private Style? _legendValueStyle;
     private double _markerSize = FallbackMarkerSize;
     private double _verticalMinLength = FallbackVerticalMinLength;
+
+    private bool _barHorizontal;
+    private double _barRadius;
+    private double _barGap;
+    private int _shapeFirst;
+    private int _shapeLast;
+    private bool _shapeFull;
+    private long _animationStart;
+    private bool _animating;
 
     private bool _loaded;
     private bool _templated;
@@ -95,6 +111,7 @@ public sealed partial class SegmentedMeter : Control
         _iconStyles = new Style?[KindCount];
         _thicknesses = new double[SizeCount];
         _rebuildHandler = OnRebuildRequested;
+        _renderingHandler = OnRendering;
 
         _segments.CollectionChanged += OnSegmentsChanged;
         Loaded += OnLoaded;
@@ -162,6 +179,7 @@ public sealed partial class SegmentedMeter : Control
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         _loaded = false;
+        StopAnimation();
         DetachSegments();
     }
 
@@ -255,7 +273,9 @@ public sealed partial class SegmentedMeter : Control
 
         bool legend = BuildLegend();
         ArrangeBody(horizontal, legend);
-        BuildBar(horizontal, used);
+
+        if (BuildBar(horizontal, used)) StartAnimation();
+        else StopAnimation();
     }
 
     private double Fraction(double value)
@@ -326,12 +346,16 @@ public sealed partial class SegmentedMeter : Control
         }
     }
 
-    private void BuildBar(bool horizontal, double used)
+    private bool BuildBar(bool horizontal, double used)
     {
         double thickness = ResolveThickness();
         double radius = thickness / 2;
-        double gap = Math.Max(0, Gap);
-        bool full = used >= 1 - Tolerance;
+
+        _barHorizontal = horizontal;
+        _barRadius = radius;
+        _barGap = Math.Max(0, Gap);
+        _shapeFirst = -2;
+        _shapeLast = -2;
 
         _track.CornerRadius = new CornerRadius(radius);
 
@@ -348,49 +372,135 @@ public sealed partial class SegmentedMeter : Control
             _track.MinHeight = _verticalMinLength;
         }
 
+        _previous.Clear();
+        for (int i = 0; i < _bars.Count; i++) _previous[_bars[i].Segment] = _bars[i].Current;
+        _bars.Clear();
+
         _barGrid.Children.Clear();
         _barGrid.ColumnDefinitions.Clear();
         _barGrid.RowDefinitions.Clear();
 
-        int last = -1;
-        for (int i = _fractions.Count - 1; i >= 0; i--)
+        bool reveal = false;
+        if (_firstShow && used > 0)
         {
-            if (_fractions[i] > 0)
-            {
-                last = i;
-                break;
-            }
+            _firstShow = false;
+            reveal = Animated;
         }
+
+        bool animate = Animated && !reveal;
+        bool changed = false;
 
         Compositor? compositor = null;
         CubicBezierEasingFunction? easing = null;
 
-        if (_firstShow && last >= 0)
+        if (reveal)
         {
-            _firstShow = false;
-
-            if (Animated)
-            {
-                compositor = ElementCompositionPreview.GetElementVisual(_barGrid).Compositor;
-                easing = compositor.CreateCubicBezierEasingFunction(new Vector2(0.22f, 1f), new Vector2(0.36f, 1f));
-            }
+            compositor = ElementCompositionPreview.GetElementVisual(_barGrid).Compositor;
+            easing = compositor.CreateCubicBezierEasingFunction(new Vector2(0.22f, 1f), new Vector2(0.36f, 1f));
         }
 
         int ordinal = 0;
         for (int i = 0; i < _fractions.Count; i++)
         {
-            double fraction = _fractions[i];
-            if (fraction <= 0) continue;
-
             var segment = _segments[i];
-            bool isLast = i == last;
-            double start = ordinal == 0 ? radius : 0;
-            double end = isLast && full ? radius : 0;
-            double trailingGap = isLast ? 0 : gap;
+            double target = _fractions[i];
+            double from = target;
+
+            if (animate) from = _previous.TryGetValue(segment, out var shown) ? shown : 0;
+            if (target <= 0 && from <= 0) continue;
 
             var bar = new Border();
+            Paint(bar, ResolveKind(segment, i), segment.Fill);
+            ToolTipService.SetToolTip(bar, FormatTip(segment));
+
+            var length = new GridLength(from, GridUnitType.Star);
+            ColumnDefinition? column = null;
+            RowDefinition? row = null;
 
             if (horizontal)
+            {
+                column = new ColumnDefinition { Width = length };
+                _barGrid.ColumnDefinitions.Add(column);
+                Grid.SetColumn(bar, ordinal);
+            }
+            else
+            {
+                row = new RowDefinition { Height = length };
+                _barGrid.RowDefinitions.Add(row);
+                Grid.SetRow(bar, ordinal);
+            }
+
+            _barGrid.Children.Add(bar);
+            _bars.Add(new BarSlot(segment, bar, column, row, from, target));
+
+            if (from != target) changed = true;
+            if (compositor is not null && easing is not null) Reveal(bar, ordinal, compositor, easing, horizontal);
+
+            ordinal++;
+        }
+
+        _restColumn = null;
+        _restRow = null;
+
+        if (horizontal)
+        {
+            _restColumn = new ColumnDefinition();
+            _barGrid.ColumnDefinitions.Add(_restColumn);
+        }
+        else
+        {
+            _restRow = new RowDefinition();
+            _barGrid.RowDefinitions.Add(_restRow);
+        }
+
+        ApplyFractions();
+        return changed;
+    }
+
+    private void ApplyFractions()
+    {
+        double used = 0;
+        int first = -1;
+        int last = -1;
+
+        for (int i = 0; i < _bars.Count; i++)
+        {
+            double current = _bars[i].Current;
+
+            if (current > 0)
+            {
+                if (first < 0) first = i;
+                last = i;
+            }
+
+            used += current;
+        }
+
+        bool full = used >= 1 - Tolerance;
+
+        if (first != _shapeFirst || last != _shapeLast || full != _shapeFull)
+        {
+            _shapeFirst = first;
+            _shapeLast = last;
+            _shapeFull = full;
+            ApplyShape(first, last, full);
+        }
+
+        var rest = new GridLength(Math.Max(0, 1 - used), GridUnitType.Star);
+        if (_restColumn is not null) _restColumn.Width = rest;
+        if (_restRow is not null) _restRow.Height = rest;
+    }
+
+    private void ApplyShape(int first, int last, bool full)
+    {
+        for (int i = 0; i < _bars.Count; i++)
+        {
+            var bar = _bars[i].Element;
+            double start = i == first ? _barRadius : 0;
+            double end = i == last && full ? _barRadius : 0;
+            double trailingGap = i == last ? 0 : _barGap;
+
+            if (_barHorizontal)
             {
                 bar.Margin = new Thickness(0, 0, trailingGap, 0);
                 bar.CornerRadius = new CornerRadius(start, end, end, start);
@@ -400,35 +510,53 @@ public sealed partial class SegmentedMeter : Control
                 bar.Margin = new Thickness(0, 0, 0, trailingGap);
                 bar.CornerRadius = new CornerRadius(start, start, end, end);
             }
-
-            Paint(bar, ResolveKind(segment, i), segment.Fill);
-            ToolTipService.SetToolTip(bar, FormatTip(segment));
-
-            var length = new GridLength(fraction, GridUnitType.Star);
-            if (horizontal)
-            {
-                _barGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = length });
-                Grid.SetColumn(bar, ordinal);
-            }
-            else
-            {
-                _barGrid.RowDefinitions.Add(new RowDefinition { Height = length });
-                Grid.SetRow(bar, ordinal);
-            }
-
-            _barGrid.Children.Add(bar);
-
-            if (compositor is not null && easing is not null) Reveal(bar, ordinal, compositor, easing, horizontal);
-
-            ordinal++;
         }
+    }
 
-        if (!full)
+    private void StartAnimation()
+    {
+        _animationStart = Stopwatch.GetTimestamp();
+        if (_animating) return;
+
+        _animating = true;
+        Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += _renderingHandler;
+    }
+
+    private void StopAnimation()
+    {
+        if (!_animating) return;
+
+        _animating = false;
+        Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= _renderingHandler;
+    }
+
+    private void OnRendering(object? sender, object e)
+    {
+        if (!Active)
         {
-            var rest = new GridLength(1 - used, GridUnitType.Star);
-            if (horizontal) _barGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = rest });
-            else _barGrid.RowDefinitions.Add(new RowDefinition { Height = rest });
+            StopAnimation();
+            return;
         }
+
+        double progress = Math.Min(1, Stopwatch.GetElapsedTime(_animationStart).TotalMilliseconds / AnimationDuration);
+        double inverse = 1 - progress;
+        double eased = 1 - inverse * inverse * inverse;
+
+        for (int i = 0; i < _bars.Count; i++)
+        {
+            var slot = _bars[i];
+            if (slot.From == slot.To) continue;
+
+            slot.Current = progress >= 1 ? slot.To : slot.From + (slot.To - slot.From) * eased;
+
+            var length = new GridLength(slot.Current, GridUnitType.Star);
+            if (slot.Column is not null) slot.Column.Width = length;
+            else if (slot.Row is not null) slot.Row.Height = length;
+        }
+
+        ApplyFractions();
+
+        if (progress >= 1) StopAnimation();
     }
 
     private bool BuildLegend()
