@@ -2,6 +2,11 @@
 
 public sealed partial class ReasoningStepSources : Control
 {
+    private static readonly ReasoningTemplate DefaultItemTemplateResources = new();
+
+    private static readonly DataTemplate DefaultItemTemplate =
+        (DataTemplate)DefaultItemTemplateResources["DefaultReasoningStepSourcesItemTemplate"];
+
     public IReadOnlyList<ReasoningSource> Sources
     {
         get { return (IReadOnlyList<ReasoningSource>)GetValue(SourcesProperty); }
@@ -20,10 +25,6 @@ public sealed partial class ReasoningStepSources : Control
     public static readonly DependencyProperty ItemTemplateProperty =
         DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(ReasoningStepSources), new PropertyMetadata(DefaultItemTemplate));
 
-
-    private static readonly ReasoningTemplate DefaultItemTemplateResources = new();
-    private static readonly DataTemplate DefaultItemTemplate =
-        (DataTemplate)DefaultItemTemplateResources["DefaultReasoningStepSourcesItemTemplate"];
     public ReasoningStepSources()
     {
         DefaultStyleKey = typeof(ReasoningStepSources);
