@@ -148,6 +148,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### GlowingBorder
+![GlowingBorder](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/GlowingBorder.gif)
+
+### PlayStationParticles
+![PlayStationParticles](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PlayStationParticles.gif)
+
 ### DiffView
 ![DiffView](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/DiffView.gif)
 

@@ -187,6 +187,7 @@ Themes\Styles\Controls\Particle.xaml
 Themes\Styles\Controls\PerspectiveHost.xaml
 Themes\Styles\Controls\PerspectiveZoom.xaml
 Themes\Styles\Controls\PinBox.xaml
+Themes\Styles\Controls\PlayStationParticles.xaml
 Themes\Styles\Controls\ProfileControl.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
@@ -635,6 +636,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="#1D4ED8" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="#BE185D" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
+      <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="TextFillColorSecondary" />
@@ -1154,6 +1156,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="#1D4ED8" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="#BE185D" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
+      <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="ControlAAFillColorDefaultBrush" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="TextFillColorSecondary" />
@@ -1637,6 +1640,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="{ThemeResource SystemColorHighlightColor}" />
+      <StaticResource x:Key="PlayStationParticlesBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="SystemColorWindowTextColor" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="SystemColorWindowTextColor" />
@@ -6402,6 +6406,19 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <x:Double x:Key="PinBoxMinHeight">32</x:Double>
   <x:Double x:Key="PinBoxMinWidth">42</x:Double>
+  <Style x:Key="DefaultPlayStationParticlesStyle" TargetType="local:PlayStationParticles">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="AutomationProperties.AccessibilityView" Value="Raw" />
+    <Setter Property="ParticleBrush" Value="{ThemeResource PlayStationParticlesBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:PlayStationParticles">
+          <Grid x:Name="PART_Host" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultProfileControlStyle" TargetType="local:ProfileControl">
     <Setter Property="Width" Value="150" />
     <Setter Property="Height" Value="150" />
@@ -19993,6 +20010,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultPlayStationParticlesStyle}" TargetType="local:PlayStationParticles" />
   <Style BasedOn="{StaticResource DefaultProfileControlStyle}" TargetType="local:ProfileControl" />
   <Style x:Key="DefaultProgressButtonStyle" TargetType="local:ProgressButton">
     <Setter Property="Background" Value="{ThemeResource ToggleButtonBackground}" />
