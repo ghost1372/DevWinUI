@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DotMatrixTextPage",
+          "Title": "Dot Matrix Text",
+          "Subtitle": "Text rendered as a grid of lit and unlit dots with an optional glow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.TableOfContentsPage",
           "Title": "Table Of Contents",
           "Subtitle": "A scroll-tracking table of contents with a curved or straight rail, moving indicator and click-to-scroll links",
@@ -1119,6 +1126,13 @@
       "Title": "Features (Win2D)",
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.FlightStatusCardPage",
+          "Title": "Flight Status Card",
+          "Subtitle": "A flight progress card with dot-matrix airport codes, an animated progress track and a layout that adapts to its size",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },        
         {
           "UniqueId": "DevWinUIGallery.Views.PlayStationParticlesPage",
           "Title": "PlayStation Particles",

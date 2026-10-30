@@ -131,6 +131,7 @@ Themes\Styles\Controls\ExpandingCards.xaml
 Themes\Styles\Controls\EyeTracking.xaml
 Themes\Styles\Controls\FillButton.xaml
 Themes\Styles\Controls\FizzyCover.xaml
+Themes\Styles\Controls\FlightStatusCard.xaml
 Themes\Styles\Controls\FlipBlock.xaml
 Themes\Styles\Controls\FlipSide.xaml
 Themes\Styles\Controls\FlipToReveal.xaml
@@ -525,6 +526,29 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#292929" />
       <SolidColorBrush x:Key="FillButtonBorder" Color="#1AFFFFFF" />
       <SolidColorBrush x:Key="FillButtonRing" Color="#737373" />
+      <LinearGradientBrush x:Key="FlightCardBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF1F1F1F" />
+        <GradientStop Offset="1" Color="#FF141414" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="FlightCardBorderBrush" Color="#FF2B2B2B" />
+      <SolidColorBrush x:Key="FlightCardPatternBrush" Color="#16FFFFFF" />
+      <SolidColorBrush x:Key="FlightCardPrimaryTextBrush" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="FlightCardSecondaryTextBrush" Color="#FFB4B4B4" />
+      <SolidColorBrush x:Key="FlightCardMutedTextBrush" Color="#FF6B6B6B" />
+      <SolidColorBrush x:Key="FlightCardInfoBackgroundBrush" Color="#FF262626" />
+      <SolidColorBrush x:Key="FlightCardInfoBorderBrush" Color="#FF383838" />
+      <SolidColorBrush x:Key="FlightCardAccentBrush" Color="#FFB4F04A" />
+      <SolidColorBrush x:Key="FlightCardAccentInactiveBrush" Color="#FF303820" />
+      <SolidColorBrush x:Key="FlightCardHighlightBrush" Color="#FFFF6A13" />
+      <SolidColorBrush x:Key="FlightCardTrackBrush" Color="#FF212121" />
+      <SolidColorBrush x:Key="FlightCardTrackBorderBrush" Color="#FF2E2E2E" />
+      <LinearGradientBrush x:Key="FlightCardProgressBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0" Color="#FF9ADB00" />
+        <GradientStop Offset="1" Color="#FFC4F23A" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="FlightCardBadgeBrush" Color="#40FFFFFF" />
+      <SolidColorBrush x:Key="FlightCardBadgeGlyphBrush" Color="#F2FFFFFF" />
+      <SolidColorBrush x:Key="FlightCardGlowBrush" Color="#FFB5F000" />
       <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
       <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
       <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
@@ -1042,6 +1066,29 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="FillButtonSoftBackground" Color="#DFDFDF" />
       <SolidColorBrush x:Key="FillButtonBorder" Color="#E5E5E5" />
       <SolidColorBrush x:Key="FillButtonRing" Color="#A1A1A1" />
+      <LinearGradientBrush x:Key="FlightCardBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFF9F9F6" />
+        <GradientStop Offset="1" Color="#FFEEEEE9" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="FlightCardBorderBrush" Color="#FFDEDED8" />
+      <SolidColorBrush x:Key="FlightCardPatternBrush" Color="#14000000" />
+      <SolidColorBrush x:Key="FlightCardPrimaryTextBrush" Color="#FF121212" />
+      <SolidColorBrush x:Key="FlightCardSecondaryTextBrush" Color="#FF4A4A46" />
+      <SolidColorBrush x:Key="FlightCardMutedTextBrush" Color="#FF8A8A84" />
+      <SolidColorBrush x:Key="FlightCardInfoBackgroundBrush" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="FlightCardInfoBorderBrush" Color="#FFE1E1DB" />
+      <SolidColorBrush x:Key="FlightCardAccentBrush" Color="#FF78B300" />
+      <SolidColorBrush x:Key="FlightCardAccentInactiveBrush" Color="#FFDDE6C8" />
+      <SolidColorBrush x:Key="FlightCardHighlightBrush" Color="#FFE8590C" />
+      <SolidColorBrush x:Key="FlightCardTrackBrush" Color="#FFE6E6E0" />
+      <SolidColorBrush x:Key="FlightCardTrackBorderBrush" Color="#FFD6D6CF" />
+      <LinearGradientBrush x:Key="FlightCardProgressBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0" Color="#FF7DB800" />
+        <GradientStop Offset="1" Color="#FFC4F23A" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="FlightCardBadgeBrush" Color="#55FFFFFF" />
+      <SolidColorBrush x:Key="FlightCardBadgeGlyphBrush" Color="#FF1F2E00" />
+      <SolidColorBrush x:Key="FlightCardGlowBrush" Color="#FF9BD200" />
       <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#EEF0F2" />
       <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#A7F3D0" />
       <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#34D399" />
@@ -1529,6 +1576,23 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="FillButtonSoftBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="FillButtonBorder" ResourceKey="SystemColorButtonTextColorBrush" />
       <StaticResource x:Key="FillButtonRing" ResourceKey="SystemColorButtonTextColorBrush" />
+      <SolidColorBrush x:Key="FlightCardBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="FlightCardBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardPatternBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="FlightCardPrimaryTextBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardSecondaryTextBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardMutedTextBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardInfoBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="FlightCardInfoBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardAccentBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="FlightCardAccentInactiveBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="FlightCardHighlightBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+      <SolidColorBrush x:Key="FlightCardTrackBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="FlightCardTrackBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="FlightCardProgressBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="FlightCardBadgeBrush" Color="{ThemeResource SystemColorHighlightTextColor}" />
+      <SolidColorBrush x:Key="FlightCardBadgeGlyphBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="FlightCardGlowBrush" Color="Transparent" />
       <SolidColorBrush x:Key="ActivityGridLevel0Brush" Color="#262A30" />
       <SolidColorBrush x:Key="ActivityGridLevel1Brush" Color="#064E3B" />
       <SolidColorBrush x:Key="ActivityGridLevel2Brush" Color="#047857" />
@@ -3556,6 +3620,23 @@ Themes\Styles\Controls\WelcomeHero.xaml
               </Grid>
             </Grid>
             <Rectangle x:Name="PART_Outline" Fill="Transparent" IsHitTestVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultDotMatrixTextStyle" TargetType="local:DotMatrixText">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Foreground" Value="{ThemeResource FlightCardAccentBrush}" />
+    <Setter Property="InactiveForeground" Value="{ThemeResource FlightCardAccentInactiveBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:DotMatrixText">
+          <Grid>
+            <Path x:Name="PART_InactiveDots" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding InactiveForeground}" />
+            <Path x:Name="PART_Halo" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.2" Stroke="{TemplateBinding Foreground}" />
+            <Path x:Name="PART_Dots" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -18492,6 +18573,132 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultEyeTrackingStyle}" TargetType="local:EyeTracking" />
   <Style BasedOn="{StaticResource DefaultFillButtonStyle}" TargetType="local:FillButton" />
   <Style BasedOn="{StaticResource DefaultFizzyCoverStyle}" TargetType="local:FizzyCover" />
+  <Style BasedOn="{StaticResource DefaultDotMatrixTextStyle}" TargetType="local:DotMatrixText" />
+  <Style x:Key="DefaultFlightStatusCardStyle" TargetType="local:FlightStatusCard">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="GlowBrush" Value="{ThemeResource FlightCardGlowBrush}" />
+    <Setter Property="ProgressBrush" Value="{ThemeResource FlightCardProgressBrush}" />
+    <Setter Property="BadgeBrush" Value="{ThemeResource FlightCardBadgeBrush}" />
+    <Setter Property="BadgeGlyphBrush" Value="{ThemeResource FlightCardBadgeGlyphBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:FlightStatusCard">
+          <Border x:Name="PART_Root" Background="{ThemeResource FlightCardBackgroundBrush}" BorderBrush="{ThemeResource FlightCardBorderBrush}" BorderThickness="1" CornerRadius="40">
+            <Border.Resources>
+              <Style x:Key="CityText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{ThemeResource FlightCardSecondaryTextBrush}" />
+              </Style>
+              <Style x:Key="CaptionText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="CharacterSpacing" Value="40" />
+                <Setter Property="Foreground" Value="{ThemeResource FlightCardMutedTextBrush}" />
+              </Style>
+              <Style x:Key="HighlightText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="{ThemeResource FlightCardHighlightBrush}" />
+              </Style>
+            </Border.Resources>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="LayoutStates">
+                <VisualState x:Name="Wide" />
+                <VisualState x:Name="Medium">
+                  <VisualState.Setters>
+                    <Setter Target="InfoPanel.(Grid.Row)" Value="1" />
+                    <Setter Target="InfoPanel.(Grid.Column)" Value="0" />
+                    <Setter Target="InfoPanel.(Grid.ColumnSpan)" Value="5" />
+                    <Setter Target="InfoPanel.Margin" Value="0,24,0,0" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                  <VisualState.Setters>
+                    <Setter Target="Layout.Padding" Value="20,22" />
+                    <Setter Target="InfoPanel.(Grid.Row)" Value="1" />
+                    <Setter Target="InfoPanel.(Grid.Column)" Value="0" />
+                    <Setter Target="InfoPanel.(Grid.ColumnSpan)" Value="5" />
+                    <Setter Target="InfoPanel.Margin" Value="0,18,0,0" />
+                    <Setter Target="DepartureDots.DotSize" Value="4.5" />
+                    <Setter Target="DepartureDots.DotSpacing" Value="1.5" />
+                    <Setter Target="ArrivalDots.DotSize" Value="4.5" />
+                    <Setter Target="ArrivalDots.DotSpacing" Value="1.5" />
+                    <Setter Target="Arrow.Margin" Value="16,34,16,0" />
+                    <Setter Target="TrackHost.Margin" Value="0,22,0,0" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="InfoStates">
+                <VisualState x:Name="InfoVisible" />
+                <VisualState x:Name="InfoHidden">
+                  <VisualState.Setters>
+                    <Setter Target="InfoPanel.Visibility" Value="Collapsed" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Canvas IsHitTestVisible="False">
+                <Path x:Name="PART_Pattern" Stroke="{ThemeResource FlightCardPatternBrush}" StrokeDashCap="Round" />
+              </Canvas>
+              <Grid x:Name="Layout" Padding="32,30">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" MinWidth="24" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Top" Spacing="14">
+                  <local:DotMatrixText x:Name="DepartureDots" Text="{TemplateBinding DepartureCode}" />
+                  <StackPanel Spacing="3">
+                    <TextBlock Style="{StaticResource CityText}" Text="{TemplateBinding DepartureCity}" />
+                    <TextBlock Style="{StaticResource CaptionText}" Text="{TemplateBinding DepartureTime}" />
+                  </StackPanel>
+                </StackPanel>
+                <Path x:Name="Arrow" Grid.Column="1" Margin="32,50,32,0" VerticalAlignment="Top" Data="M1,6 H19 M13,1 L19,6 L13,11" Stroke="{ThemeResource FlightCardHighlightBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="2.5" />
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" Spacing="14">
+                  <local:DotMatrixText x:Name="ArrivalDots" Text="{TemplateBinding ArrivalCode}" />
+                  <StackPanel Spacing="3">
+                    <TextBlock Style="{StaticResource CityText}" Text="{TemplateBinding ArrivalCity}" />
+                    <TextBlock Style="{StaticResource CaptionText}" Text="{TemplateBinding ArrivalTime}" />
+                  </StackPanel>
+                </StackPanel>
+                <Border x:Name="InfoPanel" Grid.Column="4" Padding="18,20" VerticalAlignment="Top" Background="{ThemeResource FlightCardInfoBackgroundBrush}" BorderBrush="{ThemeResource FlightCardInfoBorderBrush}" BorderThickness="1" CornerRadius="16">
+                  <StackPanel>
+                    <Grid Margin="0,0,0,14" ColumnSpacing="16">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                      </Grid.ColumnDefinitions>
+                      <TextBlock FontSize="17" FontWeight="Bold" Foreground="{ThemeResource FlightCardPrimaryTextBrush}" Text="{TemplateBinding Eta}" />
+                      <FontIcon Grid.Column="1" VerticalAlignment="Center" FontSize="14" Foreground="{ThemeResource FlightCardMutedTextBrush}" Glyph="" />
+                    </Grid>
+                    <TextBlock Margin="0,0,0,6" FontSize="13" Foreground="{ThemeResource FlightCardMutedTextBrush}" Text="{TemplateBinding Timezone}" />
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                      <TextBlock Style="{StaticResource HighlightText}" Text="{TemplateBinding NextEvent}" />
+                      <TextBlock Style="{StaticResource HighlightText}" Text="{TemplateBinding NextEventTime}" />
+                    </StackPanel>
+                  </StackPanel>
+                </Border>
+                <Grid x:Name="TrackHost" Grid.Row="2" Grid.ColumnSpan="5" Height="58" Margin="0,30,0,0" VerticalAlignment="Bottom">
+                  <Border Background="{ThemeResource FlightCardTrackBrush}" BorderBrush="{ThemeResource FlightCardTrackBorderBrush}" BorderThickness="1" CornerRadius="29" />
+                  <canvas:CanvasControl x:Name="PART_Canvas" Margin="1" IsHitTestVisible="False" />
+                  <TextBlock Margin="0,0,28,0" HorizontalAlignment="Right" VerticalAlignment="Center" CharacterSpacing="30" FontFamily="Consolas" FontSize="16" FontWeight="SemiBold" Foreground="{ThemeResource FlightCardMutedTextBrush}" Text="{TemplateBinding RemainingTime}" />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultFlipBlockStyle" TargetType="local:FlipBlock">
     <Setter Property="CornerRadius" Value="4" />
     <Setter Property="BorderBrush" Value="Gray" />
@@ -23256,6 +23463,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
   <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
   <Style BasedOn="{StaticResource DefaultEmptyStyle}" TargetType="local:Empty" />
+  <Style BasedOn="{StaticResource DefaultFlightStatusCardStyle}" TargetType="local:FlightStatusCard" />
   <Style BasedOn="{StaticResource DefaultFlipBlockStyle}" TargetType="local:FlipBlock" />
   <Style BasedOn="{StaticResource DefaultFlyoutMenuButtonStyle}" TargetType="local:FlyoutMenuButton" />
   <Style BasedOn="{StaticResource DefaultGooeyButtonStyle}" TargetType="local:GooeyButton" />
