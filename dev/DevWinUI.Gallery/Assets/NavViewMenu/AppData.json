@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://raw.githubusercontent.com/Ghost1372/DevWinUI/refs/heads/main/tools/AppData.Schema.json",
   "Groups": [
     {
@@ -208,6 +208,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/RatingControl.png",
       "IsSpecialSection": false,
       "Items": [
+        {
+          "UniqueId": "DevWinUIGallery.Views.SegmentedMeterPage",
+          "Title": "Segmented Meter",
+          "Subtitle": "A horizontal or vertical meter that splits a whole into labeled, themed segments",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.DotMatrixTextPage",
           "Title": "Dot Matrix Text",

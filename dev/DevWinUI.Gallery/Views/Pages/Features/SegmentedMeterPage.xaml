@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SegmentedMeterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+
+            <local:ControlExample DocPage="controls/segmentedMeter" HeaderText="SegmentedMeter">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:SegmentedMeter&gt; #nl#
+                        &lt;dev:MeterSegment Label="Apps" Value="30" /&gt; #nl#
+                        &lt;dev:MeterSegment Label="Media" Value="20" /&gt; #nl#
+                        &lt;dev:MeterSegment Label="System" Value="10" /&gt; #nl#
+                        &lt;/dev:SegmentedMeter&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderApps" Header="Apps" Maximum="60" Minimum="0" Value="30" />
+                        <Slider x:Name="SliderMedia" Header="Media" Maximum="60" Minimum="0" Value="20" />
+                        <Slider x:Name="SliderSystem" Header="System" Maximum="60" Minimum="0" Value="10" />
+                        <Slider x:Name="SliderGap" Header="Gap" Maximum="12" Minimum="0" Value="2" />
+                        <ComboBox x:Name="CmbBarSize" Header="Bar Size" ItemsSource="{x:Bind BarSizeItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbOrientation" Header="Orientation" ItemsSource="{x:Bind OrientationItems, Mode=OneWay}" SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="Orientation">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbLegendPosition" Header="Legend Position" ItemsSource="{x:Bind LegendPositionItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbLegendOrientation" Header="Legend Orientation" ItemsSource="{x:Bind OrientationItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="Orientation">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ToggleSwitch x:Name="TglShowLegend" Header="Show Legend" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowValue" Header="Show Value" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Grid RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <dev:SegmentedMeter BarSize="{x:Bind ((dev:MeterBarSize)CmbBarSize.SelectedItem), Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" LegendOrientation="{x:Bind ((Orientation)CmbLegendOrientation.SelectedItem), Mode=OneWay}" LegendPosition="{x:Bind ((dev:MeterLegendPosition)CmbLegendPosition.SelectedItem), Mode=OneWay}" Orientation="{x:Bind ((Orientation)CmbOrientation.SelectedItem), Mode=OneWay}" ShowLegend="{x:Bind TglShowLegend.IsOn, Mode=OneWay}" ShowValue="{x:Bind TglShowValue.IsOn, Mode=OneWay}">
+                        <dev:MeterSegment Label="Apps" Value="{x:Bind SliderApps.Value, Mode=OneWay}" />
+                        <dev:MeterSegment Label="Media" Value="{x:Bind SliderMedia.Value, Mode=OneWay}" />
+                        <dev:MeterSegment Label="System" Value="{x:Bind SliderSystem.Value, Mode=OneWay}" />
+                    </dev:SegmentedMeter>
+                    <dev:SegmentedMeter Grid.Row="1" Animated="True" BarSize="Large" ShowValue="False">
+                        <dev:MeterSegment Kind="Success" Label="Done" Value="30" />
+                        <dev:MeterSegment Kind="Accent" Label="In progress" Value="15" />
+                        <dev:MeterSegment Kind="Danger" Label="Closed" Value="5" />
+                    </dev:SegmentedMeter>
+                    <dev:SegmentedMeter Grid.Row="2" LegendPosition="Start">
+                        <dev:MeterSegment Fill="#34D399" Icon="&#xE71D;" Label="Apps" Value="25" />
+                        <dev:MeterSegment Fill="#FBBF24" Icon="&#xE715;" Label="Messages" Value="15" />
+                        <dev:MeterSegment Fill="#60A5FA" Icon="&#xE8B2;" Label="Media" Value="20" />
+                    </dev:SegmentedMeter>
+                    <dev:SegmentedMeter Grid.Row="3" Height="240" HorizontalAlignment="Left" LegendOrientation="Vertical" Orientation="Vertical">
+                        <dev:MeterSegment Label="Apps" Value="30" />
+                        <dev:MeterSegment Label="Media" Value="20" />
+                    </dev:SegmentedMeter>
+                    <dev:SegmentedMeter Grid.Row="4" Maximum="200" Minimum="0">
+                        <dev:SegmentedMeter.StartContent>
+                            <TextBlock FontWeight="SemiBold" Text="Storage" />
+                        </dev:SegmentedMeter.StartContent>
+                        <dev:SegmentedMeter.EndContent>
+                            <TextBlock Text="Total: 200 GB" />
+                        </dev:SegmentedMeter.EndContent>
+                        <dev:MeterSegment Label="Photos" Value="60" />
+                        <dev:MeterSegment Label="Docs" Value="40" />
+                    </dev:SegmentedMeter>
+                </Grid>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
