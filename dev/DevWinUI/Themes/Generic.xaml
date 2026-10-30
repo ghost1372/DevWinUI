@@ -197,8 +197,8 @@ Themes\Styles\Controls\RealClock.xaml
 Themes\Styles\Controls\Reasoning.xaml
 Themes\Styles\Controls\RedirectVisualView.xaml
 Themes\Styles\Controls\RichButton.xaml
+Themes\Styles\Controls\ScrambledText.xaml
 Themes\Styles\Controls\ScrollSplitCard.xaml
-Themes\Styles\Controls\ScrumbledText.xaml
 Themes\Styles\Controls\SegmentedMeter.xaml
 Themes\Styles\Controls\SegmentedSlider.xaml
 Themes\Styles\Controls\SelectorBarSegmented.xaml
@@ -677,6 +677,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemFillColorSuccessBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="CardBackgroundFillColorDefaultBrush" />
       <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
@@ -689,8 +691,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush0" Color="#6D28D9" />
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush1" Color="#0F766E" />
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush2" Color="#C2410C" />
-      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedMeterTrackBackground" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SegmentedMeterForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedMeterAccentBackground" ResourceKey="AccentFillColorDefaultBrush" />
@@ -1229,6 +1229,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemFillColorSuccessBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="CardBackgroundFillColorDefaultBrush" />
       <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
@@ -1241,8 +1243,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush0" Color="#6D28D9" />
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush1" Color="#0F766E" />
       <SolidColorBrush x:Key="ScrollSplitCardChartBrush2" Color="#C2410C" />
-      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
-      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedMeterTrackBackground" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SegmentedMeterForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="SegmentedMeterAccentBackground" ResourceKey="AccentFillColorDefaultBrush" />
@@ -1739,6 +1739,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ReasoningSelectedBackground" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ReasoningAddedForeground" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="ReasoningRemovedForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="SystemColorHotlightColorBrush" />
       <StaticResource x:Key="ScrollSplitCardFrontBackground" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="ScrollSplitCardBackBackground" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="ScrollSplitCardBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
@@ -1751,8 +1753,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="ScrollSplitCardChartBrush0" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ScrollSplitCardChartBrush1" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ScrollSplitCardChartBrush2" ResourceKey="SystemColorHighlightColorBrush" />
-      <StaticResource x:Key="ScrambledTextForeground" ResourceKey="SystemColorWindowTextColorBrush" />
-      <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="SystemColorHotlightColorBrush" />
       <StaticResource x:Key="SegmentedMeterTrackBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="SegmentedMeterForeground" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="SegmentedMeterAccentBackground" ResourceKey="SystemColorHotlightColorBrush" />
@@ -6906,6 +6906,22 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultScrambledTextStyle" TargetType="local:ScrambledText">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="FontFamily" Value="Consolas" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{ThemeResource ScrambledTextForeground}" />
+    <Setter Property="ScrambleColor" Value="{ThemeResource ScrambledTextScrambleForeground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ScrambledText">
+          <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+            <local:WordWrapPanel x:Name="PART_Host" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultScrollSplitCardStyle" TargetType="local:ScrollSplitCard">
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="Template">
@@ -6995,22 +7011,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <Border x:Name="PART_Image" />
             </Border>
           </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  <Style x:Key="DefaultScrambledTextStyle" TargetType="local:ScrambledText">
-    <Setter Property="IsTabStop" Value="False" />
-    <Setter Property="FontFamily" Value="Consolas" />
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{ThemeResource ScrambledTextForeground}" />
-    <Setter Property="ScrambleColor" Value="{ThemeResource ScrambledTextScrambleForeground}" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:ScrambledText">
-          <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-            <local:WordWrapPanel x:Name="PART_Host" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
-          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -21008,9 +21008,9 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultScrambledTextStyle}" TargetType="local:ScrambledText" />
   <Style BasedOn="{StaticResource DefaultScrollSplitCardStyle}" TargetType="local:ScrollSplitCard" />
   <Style BasedOn="{StaticResource DefaultScrollSplitCardPanelStyle}" TargetType="local:ScrollSplitCardPanel" />
-  <Style BasedOn="{StaticResource DefaultScrambledTextStyle}" TargetType="local:ScrambledText" />
   <Style x:Key="DefaultSegmentedMeterStyle" TargetType="local:SegmentedMeter">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="IsTabStop" Value="False" />
