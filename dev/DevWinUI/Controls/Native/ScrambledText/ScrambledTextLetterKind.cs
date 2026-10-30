@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-public enum ScrumbledTextLetterKind
+public enum ScrambledTextLetterKind
 {
     Normal,
     Space,

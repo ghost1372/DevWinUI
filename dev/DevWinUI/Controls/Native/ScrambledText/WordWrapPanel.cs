@@ -6,7 +6,7 @@ public sealed partial class WordWrapPanel : Panel
         DependencyProperty.RegisterAttached("Word", typeof(int), typeof(WordWrapPanel), new PropertyMetadata(0));
 
     public static readonly DependencyProperty KindProperty =
-        DependencyProperty.RegisterAttached("Kind", typeof(ScrumbledTextLetterKind), typeof(WordWrapPanel), new PropertyMetadata(ScrumbledTextLetterKind.Normal));
+        DependencyProperty.RegisterAttached("Kind", typeof(ScrambledTextLetterKind), typeof(WordWrapPanel), new PropertyMetadata(ScrambledTextLetterKind.Normal));
 
     public static int GetWord(DependencyObject element)
     {
@@ -18,12 +18,12 @@ public sealed partial class WordWrapPanel : Panel
         element.SetValue(WordProperty, value);
     }
 
-    public static ScrumbledTextLetterKind GetKind(DependencyObject element)
+    public static ScrambledTextLetterKind GetKind(DependencyObject element)
     {
-        return (ScrumbledTextLetterKind)element.GetValue(KindProperty);
+        return (ScrambledTextLetterKind)element.GetValue(KindProperty);
     }
 
-    public static void SetKind(DependencyObject element, ScrumbledTextLetterKind value)
+    public static void SetKind(DependencyObject element, ScrambledTextLetterKind value)
     {
         element.SetValue(KindProperty, value);
     }
@@ -60,14 +60,14 @@ public sealed partial class WordWrapPanel : Panel
                 var child = children[end];
                 var kind = GetKind(child);
 
-                if (kind == ScrumbledTextLetterKind.Break)
+                if (kind == ScrambledTextLetterKind.Break)
                 {
                     lineBreak = true;
                 }
                 else
                 {
                     width += child.DesiredSize.Width;
-                    if (kind != ScrumbledTextLetterKind.Space) trimmedWidth = width;
+                    if (kind != ScrambledTextLetterKind.Space) trimmedWidth = width;
                     height = Math.Max(height, child.DesiredSize.Height);
                 }
 

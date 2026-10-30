@@ -24,7 +24,7 @@ public sealed partial class ScrambledText : Control
 
     private static readonly (double X, double Y)[] BlurDirections = { (1, 0), (-1, 0), (0, 1), (0, -1) };
 
-    private readonly List<ScrumbledTextLetter> _letters = new();
+    private readonly List<ScrambledTextLetter> _letters = new();
 
     private string[] _scrambleGlyphs = Array.Empty<string>();
     private WordWrapPanel? _host;
@@ -84,7 +84,7 @@ public sealed partial class ScrambledText : Control
             if (ch == '\n')
             {
                 var lineBreak = new Grid { IsHitTestVisible = false };
-                WordWrapPanel.SetKind(lineBreak, ScrumbledTextLetterKind.Break);
+                WordWrapPanel.SetKind(lineBreak, ScrambledTextLetterKind.Break);
                 WordWrapPanel.SetWord(lineBreak, word++);
                 _host.Children.Add(lineBreak);
                 continue;
@@ -92,7 +92,7 @@ public sealed partial class ScrambledText : Control
 
             var letter = MakeLetter(ch);
             WordWrapPanel.SetWord(letter.Cell, word);
-            WordWrapPanel.SetKind(letter.Cell, letter.IsSpace ? ScrumbledTextLetterKind.Space : ScrumbledTextLetterKind.Normal);
+            WordWrapPanel.SetKind(letter.Cell, letter.IsSpace ? ScrambledTextLetterKind.Space : ScrambledTextLetterKind.Normal);
             if (letter.IsSpace) word++;
             if (_waitingIntro) letter.Glyph.Opacity = 0;
 
@@ -101,7 +101,7 @@ public sealed partial class ScrambledText : Control
         }
     }
 
-    private static ScrumbledTextLetter MakeLetter(char ch)
+    private static ScrambledTextLetter MakeLetter(char ch)
     {
         string text = ch.ToString();
         bool isSpace = char.IsWhiteSpace(ch);
@@ -131,7 +131,7 @@ public sealed partial class ScrambledText : Control
         cell.Children.Add(sizer);
         cell.Children.Add(glyph);
 
-        return new ScrumbledTextLetter
+        return new ScrambledTextLetter
         {
             Cell = cell,
             Glyph = glyph,
@@ -243,7 +243,7 @@ public sealed partial class ScrambledText : Control
         StartRendering();
     }
 
-    private static double Distance(ScrumbledTextLetter letter, Point point)
+    private static double Distance(ScrambledTextLetter letter, Point point)
     {
         var slot = LayoutInformation.GetLayoutSlot(letter.Cell);
         double dx = slot.X + slot.Width / 2 - point.X;
@@ -342,7 +342,7 @@ public sealed partial class ScrambledText : Control
 
     private string RandomGlyph() => _scrambleGlyphs[Random.Shared.Next(_scrambleGlyphs.Length)];
 
-    private void SetScrambled(ScrumbledTextLetter letter, bool on)
+    private void SetScrambled(ScrambledTextLetter letter, bool on)
     {
         letter.ShowingScramble = on;
 
@@ -350,7 +350,7 @@ public sealed partial class ScrambledText : Control
         else letter.Glyph.ClearValue(TextBlock.ForegroundProperty);
     }
 
-    private void ApplyEffect(ScrumbledTextLetter letter)
+    private void ApplyEffect(ScrambledTextLetter letter)
     {
         double t = letter.Intensity;
 
@@ -371,7 +371,7 @@ public sealed partial class ScrambledText : Control
         }
     }
 
-    private void ApplyBlur(ScrumbledTextLetter letter, double t)
+    private void ApplyBlur(ScrambledTextLetter letter, double t)
     {
         if (t < 0.002)
         {
@@ -398,7 +398,7 @@ public sealed partial class ScrambledText : Control
         }
     }
 
-    private static void EnsureGhosts(ScrumbledTextLetter letter)
+    private static void EnsureGhosts(ScrambledTextLetter letter)
     {
         if (letter.Ghosts is not null) return;
 
@@ -420,7 +420,7 @@ public sealed partial class ScrambledText : Control
         }
     }
 
-    private static void HideGhosts(ScrumbledTextLetter letter)
+    private static void HideGhosts(ScrambledTextLetter letter)
     {
         if (letter.Ghosts is null) return;
         foreach (var ghost in letter.Ghosts) ghost.Visibility = Visibility.Collapsed;

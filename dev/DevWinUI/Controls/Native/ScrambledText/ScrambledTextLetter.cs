@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-internal sealed partial class ScrumbledTextLetter
+internal sealed partial class ScrambledTextLetter
 {
     public Grid Cell = null!;
     public TextBlock Glyph = null!;
