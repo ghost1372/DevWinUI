@@ -330,42 +330,38 @@ public sealed partial class GlowingBorder : ContentControl
                 {
                     if (_intensity < 0.002 || _poolBrush is null) break;
 
-                    color.Transform = SweepTransform(0, center, scale);
-
                     float radius = (float)Math.Max(1, Spot / 2);
                     _poolBrush.Opacity = (float)_intensity;
                     _poolBrush.Center = _pool + new Vector2(pad, pad);
                     _poolBrush.RadiusX = radius;
                     _poolBrush.RadiusY = radius;
 
-                    using (cds.CreateLayer(_poolBrush, ring))
-                    {
-                        cds.FillGeometry(ring, color);
-                    }
+                    color.Opacity = 1f;
+                    color.Transform = SweepTransform(0, center, scale);
+                    cds.FillGeometry(ring, color, _poolBrush);
                     break;
                 }
 
             case GlowingBorderKind.Beam:
                 {
-                    color.Transform = SweepTransform(angleDegrees, center, scale);
-                    using (cds.CreateLayer((float)BeamRestingOpacity, ring))
-                    {
-                        cds.FillGeometry(ring, color);
-                    }
+                    var transform = SweepTransform(angleDegrees, center, scale);
+
+                    color.Transform = transform;
+                    color.Opacity = (float)BeamRestingOpacity;
+                    cds.FillGeometry(ring, color);
 
                     if (_beamBrush is not null)
                     {
-                        _beamBrush.Transform = SweepTransform(angleDegrees, center, scale);
-                        using (cds.CreateLayer(_beamBrush, ring))
-                        {
-                            cds.FillGeometry(ring, color);
-                        }
+                        _beamBrush.Transform = transform;
+                        color.Opacity = 1f;
+                        cds.FillGeometry(ring, color, _beamBrush);
                     }
                     break;
                 }
 
             case GlowingBorderKind.Spin:
                 {
+                    color.Opacity = 1f;
                     color.Transform = SweepTransform(angleDegrees, center, scale);
                     cds.FillGeometry(ring, color);
                     break;
@@ -373,16 +369,13 @@ public sealed partial class GlowingBorder : ContentControl
 
             default:
                 {
+                    color.Opacity = breath;
                     color.Transform = SweepTransform(0, center, scale);
-                    using (cds.CreateLayer(breath, ring))
-                    {
-                        cds.FillGeometry(ring, color);
-                    }
+                    cds.FillGeometry(ring, color);
                     break;
                 }
         }
     }
-
     private static Matrix3x2 SweepTransform(float angleDegrees, Vector2 center, float scale) =>
         Matrix3x2.CreateTranslation(-SweepSize / 2f, -SweepSize / 2f)
         * Matrix3x2.CreateScale(scale)
