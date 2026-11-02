@@ -2623,7 +2623,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style x:Key="DefaultArcProgressStyle" TargetType="local:ArcProgress">
-    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="Foreground" Value="{ThemeResource AccentFillColorDefaultBrush}" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Width" Value="72" />
     <Setter Property="Height" Value="72" />
@@ -3131,6 +3131,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style x:Key="DefaultColorPaletteStyle" TargetType="local:ColorPalette">
     <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="IsItemClickEnabled" Value="True" />
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
@@ -18015,7 +18016,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
           <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Border>
         <Border CornerRadius="{TemplateBinding CornerRadius}">
-          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Top">
+          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Rectangle.Fill>
               <ImageBrush AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
             </Rectangle.Fill>
