@@ -22,9 +22,6 @@
 
     <FontWeight x:Key="DropdownColorPickerHeaderThemeFontWeight">Normal</FontWeight>
 
-
-    <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
-
     <Style x:Key="DefaultDropdownColorPickerStyle" TargetType="local:DropdownColorPicker">
         <Setter Property="Background" Value="Gray" />
         <Setter Property="Foreground" Value="LightGray" />
@@ -53,7 +50,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Margin="{ThemeResource DropdownColorPickerTopHeaderMargin}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontWeight="{ThemeResource DropdownColorPickerHeaderThemeFontWeight}" Foreground="{ThemeResource DropdownColorPickerHeaderForeground}" TextWrapping="Wrap" Visibility="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
-                        <Button Grid.Row="1" Padding="{TemplateBinding Padding}">
+                        <Button Grid.Row="1" Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}">
                             <StackPanel Orientation="Horizontal" Spacing="5">
                                 <Border Width="{TemplateBinding TintBoxWidth}" Height="{TemplateBinding TintBoxHeight}" Margin="{TemplateBinding TintBoxMargin}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding TintBoxCornerRadius}">
                                     <Grid>
@@ -83,4 +80,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
 </ResourceDictionary>
