@@ -1,6 +1,7 @@
 ﻿using Windows.ApplicationModel.DataTransfer;
 
 namespace DevWinUI;
+
 public partial class ColorPalette : GridView
 {
     public event EventHandler<ColorPaletteColorChangedEventArgs> ColorChanged;
@@ -341,19 +342,19 @@ public partial class ColorPalette : GridView
         {
             case ColorSetType.Custom:
                 ItemsSource = Colors;
-                internalColors = new(Colors);
+                internalColors = Colors;
                 break;
             case ColorSetType.Basic:
                 ItemsSource = BasicColors;
-                internalColors = new(BasicColors);
+                internalColors = BasicColors;
                 break;
             case ColorSetType.Extended:
                 ItemsSource = ExtendedColors;
-                internalColors = new(ExtendedColors);
+                internalColors = ExtendedColors;
                 break;
             case ColorSetType.Shades:
                 ItemsSource = ShadeColors;
-                internalColors = new(ShadeColors);
+                internalColors = ShadeColors;
                 break;
         }
 
@@ -389,12 +390,20 @@ public partial class ColorPalette : GridView
     {
         if (IsCopyColorCodeOnClickEnabled)
         {
-            if (SelectedItem is ColorPaletteItem color)
+            // ItemClick is raised before SelectedItem is updated, so use the clicked item.
+            if (e.ClickedItem is ColorPaletteItem color)
             {
-                var dataPackage = new DataPackage();
-                dataPackage.SetText(color.Color.ToString());
-                Clipboard.SetContent(dataPackage);
-                Clipboard.Flush();
+                try
+                {
+                    var dataPackage = new DataPackage();
+                    dataPackage.SetText(color.Color.ToString());
+                    Clipboard.SetContent(dataPackage);
+                    Clipboard.Flush();
+                }
+                catch (Exception)
+                {
+                    // Clipboard can be locked by another process.
+                }
             }
         }
     }
@@ -407,7 +416,32 @@ public partial class ColorPalette : GridView
             gridViewItem.IsEnabled = colorPaletteItem.IsEnabled;
             gridViewItem.MinHeight = 0;
             gridViewItem.MinWidth = 0;
+
+            // Items added after the palette was set up haven't received the palette settings yet.
+            ApplyItemSettings(colorPaletteItem);
         }
+    }
+
+    private void ApplyItemSettings(ColorPaletteItem item)
+    {
+        bool isTab = ItemShape == ColorItemShape.Tab;
+
+        item.InternalColors = ColorSet switch
+        {
+            ColorSetType.Custom => Colors,
+            ColorSetType.Basic => BasicColors,
+            ColorSetType.Extended => ExtendedColors,
+            ColorSetType.Shades => ShadeColors,
+            _ => item.InternalColors
+        };
+        item.MinHeight = isTab ? 100 : 0;
+        item.MinWidth = isTab ? 120 : 0;
+        item.Width = ItemWidth;
+        item.Height = ItemHeight;
+        item.ItemShape = ItemShape;
+        item.ShowHexCode = ShowHexCode;
+        item.ShowColorName = ShowColorName;
+        item.ShowToolTip = ShowToolTip;
     }
 
     private void UpdateItemTemplateAndSize()
@@ -438,6 +472,10 @@ public partial class ColorPalette : GridView
     private void UpdateSelectedColor()
     {
         if (internalColors == null)
+            return;
+
+        // Don't jump to another item that happens to share the same color.
+        if (SelectedItem is ColorPaletteItem current && current.Color.Equals(SelectedColor))
             return;
 
         var foundItem = internalColors.FirstOrDefault(c => c.Color.Equals(SelectedColor));
