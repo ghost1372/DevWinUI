@@ -1,10 +1,11 @@
 ﻿namespace DevWinUI;
+
 public partial class StepBar
 {
     public StepStatus Status
     {
-        get => (StepStatus)GetValue(StatusProperty);
-        set => SetValue(StatusProperty, value);
+        get { return (StepStatus)GetValue(StatusProperty); }
+        set { SetValue(StatusProperty, value); }
     }
 
     public static readonly DependencyProperty StatusProperty =
@@ -12,28 +13,13 @@ public partial class StepBar
 
     private static void OnStepStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.UpdateItems();
-        }
+        ((StepBar)d).UpdateItems();
     }
 
     public int StepIndex
     {
-        get => (int)GetValue(StepIndexProperty);
-        set
-        {
-            if (ItemsCount > 0)
-            {
-                int clampedValue = Math.Max(0, Math.Min(ItemsCount - 1, value));
-                SetValue(StepIndexProperty, clampedValue);
-            }
-            else
-            {
-                SetValue(StepIndexProperty, value);
-            }
-        }
+        get { return (int)GetValue(StepIndexProperty); }
+        set { SetValue(StepIndexProperty, ItemsCount > 0 ? Math.Clamp(value, 0, ItemsCount - 1) : value); }
     }
 
     public static readonly DependencyProperty StepIndexProperty =
@@ -41,31 +27,23 @@ public partial class StepBar
 
     private static void OnStepIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.OnStepIndexChanged((int)e.NewValue);
-        }
+        ((StepBar)d).OnStepIndexChanged((int)e.NewValue);
     }
 
     public Orientation Orientation
     {
-        get => (Orientation)GetValue(OrientationProperty);
-        set => SetValue(OrientationProperty, value);
+        get { return (Orientation)GetValue(OrientationProperty); }
+        set { SetValue(OrientationProperty, value); }
     }
+
     public static readonly DependencyProperty OrientationProperty =
         DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(StepBar), new PropertyMetadata(Orientation.Horizontal, OnOrientationChanged));
 
     private static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.UpdateItemsPanel();
-            ctl.UpdateProgressBarSize();
-            ctl.OnStepIndexChanged(ctl.StepIndex);
-            ctl.UpdateItems();
-        }
+        ctl.UpdateItemsPanel();
+        ctl.UpdateItems();
     }
 
     public StepBarHeaderDisplayMode HeaderDisplayMode
@@ -79,11 +57,7 @@ public partial class StepBar
 
     private static void OnHeaderDisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.UpdateHeaderDisplayMode();
-        }
+        ((StepBar)d).UpdateHeaderDisplayMode();
     }
 
     public bool ShowStepIndex
@@ -97,11 +71,7 @@ public partial class StepBar
 
     private static void OnShowStepIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.UpdateItems();
-        }
+        ((StepBar)d).UpdateItems();
     }
 
     public IconSource UnderWayIcon
@@ -111,7 +81,7 @@ public partial class StepBar
     }
 
     public static readonly DependencyProperty UnderWayIconProperty =
-        DependencyProperty.Register(nameof(UnderWayIcon), typeof(IconSource), typeof(StepBar), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(UnderWayIcon), typeof(IconSource), typeof(StepBar), new PropertyMetadata(null, OnIconChanged));
 
     public IconSource WaitingIcon
     {
@@ -142,17 +112,13 @@ public partial class StepBar
 
     private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBar)d;
-        if (ctl != null)
-        {
-            ctl.UpdateItems();
-        }
+        ((StepBar)d).UpdateItems();
     }
 
     public bool AutoSelectOnItemClick
     {
-        get => (bool)GetValue(AutoSelectOnItemClickProperty);
-        set => SetValue(AutoSelectOnItemClickProperty, value);
+        get { return (bool)GetValue(AutoSelectOnItemClickProperty); }
+        set { SetValue(AutoSelectOnItemClickProperty, value); }
     }
 
     public static readonly DependencyProperty AutoSelectOnItemClickProperty =

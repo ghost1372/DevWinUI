@@ -7,6 +7,8 @@ namespace DevWinUI;
 [ContentProperty(Name = nameof(Items))]
 [StyleTypedProperty(Property = nameof(ItemContainerStyle), StyleTargetType = typeof(StepBarItem))]
 [TemplatePart(Name = ElementProgressBar, Type = typeof(ProgressBar))]
+[TemplatePart(Name = ElementProgressBarBorder, Type = typeof(Border))]
+[TemplatePart(Name = ElementRootGridVertical, Type = typeof(Grid))]
 public partial class StepBar : ItemsControl
 {
     private const string ElementProgressBar = "PART_ProgressBar";
@@ -26,24 +28,6 @@ public partial class StepBar : ItemsControl
     public event EventHandler<int> StepChanged;
     public event EventHandler<StepBarItemClickEventArgs>? ItemClick;
 
-    private int _oriStepIndex = -1;
-    private void UpdateTemplate()
-    {
-        Template = Orientation switch
-        {
-            Orientation.Horizontal => HorizontalTemplate,
-            Orientation.Vertical => VerticalTemplate,
-            _ => Template
-        };
-
-        ItemContainerStyle = Orientation switch
-        {
-            Orientation.Horizontal => HorizontalItemContainerStyle,
-            Orientation.Vertical => VerticalItemContainerStyle,
-            _ => ItemContainerStyle
-        };
-    }
-
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ItemsPanelTemplate))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ControlTemplate))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Style))]
@@ -58,30 +42,27 @@ public partial class StepBar : ItemsControl
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StackPanel))]
     public StepBar()
     {
-        this.DefaultStyleKey = typeof(StepBar);
+        DefaultStyleKey = typeof(StepBar);
 
-        if (Application.Current.Resources["StepBarHorizontalControlTemplate"] is ControlTemplate horizontalTemplate)
-            this.HorizontalTemplate = horizontalTemplate;
+        HorizontalTemplate = GetResource<ControlTemplate>("StepBarHorizontalControlTemplate");
+        VerticalTemplate = GetResource<ControlTemplate>("StepBarVerticalControlTemplate");
+        HorizontalItemContainerStyle = GetResource<Style>("StepBarItemHorizontalStyle");
+        VerticalItemContainerStyle = GetResource<Style>("StepBarItemVerticalStyle");
+        HorizontalItemsPanelTemplate = GetResource<ItemsPanelTemplate>("StepBarHorizontalItemsPanelTemplate");
+        VerticalItemsPanelTemplate = GetResource<ItemsPanelTemplate>("StepBarVerticalItemsPanelTemplate");
 
-        if (Application.Current.Resources["StepBarVerticalControlTemplate"] is ControlTemplate verticalTemplate)
-            this.VerticalTemplate = verticalTemplate;
+        SizeChanged += OnSizeChanged;
+    }
 
-        if (Application.Current.Resources["StepBarItemHorizontalStyle"] is Style horizontalItemContainerStyle)
-            this.HorizontalItemContainerStyle = horizontalItemContainerStyle;
-
-        if (Application.Current.Resources["StepBarItemVerticalStyle"] is Style verticalItemContainerStyle)
-            this.VerticalItemContainerStyle = verticalItemContainerStyle;
-
-        if (Application.Current.Resources["StepBarHorizontalItemsPanelTemplate"] is ItemsPanelTemplate horizontalItemsPanelTemplate)
-            this.HorizontalItemsPanelTemplate = horizontalItemsPanelTemplate;
-
-        if (Application.Current.Resources["StepBarVerticalItemsPanelTemplate"] is ItemsPanelTemplate verticalItemsPanelTemplate)
-            this.VerticalItemsPanelTemplate = verticalItemsPanelTemplate;
+    private static T? GetResource<T>(string key) where T : class
+    {
+        return Application.Current.Resources.TryGetValue(key, out var value) ? value as T : null;
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
         progressBar = GetTemplateChild(ElementProgressBar) as ProgressBar;
         progressBarBorder = GetTemplateChild(ElementProgressBarBorder) as Border;
         rootGridVertical = GetTemplateChild(ElementRootGridVertical) as Grid;
@@ -90,31 +71,32 @@ public partial class StepBar : ItemsControl
         UpdateItemsPanel();
         UpdateHeaderDisplayMode();
         UpdateProgressBarVisualStates();
-        SizeChanged -= OnSizeChanged;
-        SizeChanged += OnSizeChanged;
     }
+
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        UpdateItems();
+        UpdateProgressBarSize();
     }
+
     protected override void OnItemsChanged(object e)
     {
         base.OnItemsChanged(e);
         UpdateItems();
     }
 
+    private void UpdateTemplate()
+    {
+        bool isHorizontal = Orientation == Orientation.Horizontal;
+
+        Template = (isHorizontal ? HorizontalTemplate : VerticalTemplate) ?? Template;
+        ItemContainerStyle = (isHorizontal ? HorizontalItemContainerStyle : VerticalItemContainerStyle) ?? ItemContainerStyle;
+    }
+
     private void UpdateItemsPanel()
     {
         UpdateTemplate();
 
-        if (Orientation == Orientation.Horizontal)
-        {
-            ItemsPanel = HorizontalItemsPanelTemplate;
-        }
-        else
-        {
-            ItemsPanel = VerticalItemsPanelTemplate;
-        }
+        ItemsPanel = (Orientation == Orientation.Horizontal ? HorizontalItemsPanelTemplate : VerticalItemsPanelTemplate) ?? ItemsPanel;
     }
 
     private void UpdateHeaderDisplayMode()
@@ -125,20 +107,18 @@ public partial class StepBar : ItemsControl
             {
                 return;
             }
-            switch (HeaderDisplayMode)
+
+            progressBar.HorizontalAlignment = HorizontalAlignment.Center;
+
+            if (HeaderDisplayMode == StepBarHeaderDisplayMode.Top)
             {
-                case StepBarHeaderDisplayMode.Top:
-                    progressBar.VerticalAlignment = VerticalAlignment.Bottom;
-                    progressBar.HorizontalAlignment = HorizontalAlignment.Center;
-                    progressBar.Margin = new Thickness(0, 0, 0, 20);
-                    break;
-                case StepBarHeaderDisplayMode.Left:
-                case StepBarHeaderDisplayMode.Right:
-                case StepBarHeaderDisplayMode.Bottom:
-                    progressBar.VerticalAlignment = VerticalAlignment.Top;
-                    progressBar.HorizontalAlignment = HorizontalAlignment.Center;
-                    progressBar.Margin = new Thickness(0, 20, 0, 0);
-                    break;
+                progressBar.VerticalAlignment = VerticalAlignment.Bottom;
+                progressBar.Margin = new Thickness(0, 0, 0, 20);
+            }
+            else
+            {
+                progressBar.VerticalAlignment = VerticalAlignment.Top;
+                progressBar.Margin = new Thickness(0, 20, 0, 0);
             }
         }
         else
@@ -147,18 +127,12 @@ public partial class StepBar : ItemsControl
             {
                 return;
             }
-            switch (HeaderDisplayMode)
-            {
-                case StepBarHeaderDisplayMode.Top:
-                case StepBarHeaderDisplayMode.Bottom:
-                case StepBarHeaderDisplayMode.Right:
-                    rootGridVertical.FlowDirection = FlowDirection.LeftToRight;
-                    break;
-                case StepBarHeaderDisplayMode.Left:
-                    rootGridVertical.FlowDirection = FlowDirection.RightToLeft;
-                    break;
-            }
+
+            rootGridVertical.FlowDirection = HeaderDisplayMode == StepBarHeaderDisplayMode.Left
+                ? FlowDirection.RightToLeft
+                : FlowDirection.LeftToRight;
         }
+
         UpdateItems();
     }
 
@@ -172,23 +146,22 @@ public partial class StepBar : ItemsControl
 
     private void UpdateProgressBarSize()
     {
-        int colOrRowCount = ItemsCount;
+        int count = ItemsCount;
+        if (count <= 0)
+        {
+            return;
+        }
 
         if (Orientation == Orientation.Horizontal)
         {
-            if (progressBar == null || colOrRowCount <= 0)
+            if (progressBar != null)
             {
-                return;
+                progressBar.Width = (count - 1) * (ActualWidth / count);
             }
-            progressBar.Width = (colOrRowCount - 1) * (ActualWidth / colOrRowCount);
         }
-        else
+        else if (progressBarBorder != null)
         {
-            if (progressBarBorder == null || colOrRowCount <= 0)
-            {
-                return;
-            }
-            progressBarBorder.Height = (colOrRowCount - 1) * (ActualHeight / colOrRowCount);
+            progressBarBorder.Height = (count - 1) * (ActualHeight / count);
         }
     }
 
@@ -201,26 +174,25 @@ public partial class StepBar : ItemsControl
         }
 
         SetProgressBarMaximumValue();
-        SetProgressBarValueWithAnimation(StepIndex);
 
         for (int i = 0; i < count; i++)
         {
             if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepBarItem)
             {
                 stepBarItem.Index = i + 1;
-                stepBarItem.Orientation = this.Orientation;
-                stepBarItem.HeaderDisplayMode = this.HeaderDisplayMode;
+                stepBarItem.Orientation = Orientation;
+                stepBarItem.HeaderDisplayMode = HeaderDisplayMode;
                 stepBarItem.ItemTemplate = ItemTemplate;
                 stepBarItem.ShowStepIndex = ShowStepIndex;
 
-                if (stepBarItem.WaitingIcon is null && this.WaitingIcon is not null)
-                    stepBarItem.WaitingIcon = this.WaitingIcon;
+                if (stepBarItem.WaitingIcon is null && WaitingIcon is not null)
+                    stepBarItem.WaitingIcon = WaitingIcon;
 
-                if (stepBarItem.UnderWayIcon is null && this.UnderWayIcon is not null)
-                    stepBarItem.UnderWayIcon = this.UnderWayIcon;
+                if (stepBarItem.UnderWayIcon is null && UnderWayIcon is not null)
+                    stepBarItem.UnderWayIcon = UnderWayIcon;
 
-                if (stepBarItem.CompleteIcon is null && this.CompleteIcon is not null)
-                    stepBarItem.CompleteIcon = this.CompleteIcon;
+                if (stepBarItem.CompleteIcon is null && CompleteIcon is not null)
+                    stepBarItem.CompleteIcon = CompleteIcon;
 
                 stepBarItem.DisplayMode = DisplayMode;
                 stepBarItem.Tapped -= OnItemTapped;
@@ -228,14 +200,14 @@ public partial class StepBar : ItemsControl
             }
         }
 
-        if (_oriStepIndex > 0)
+        int stepIndex = Math.Clamp(StepIndex, 0, count - 1);
+        if (stepIndex != StepIndex)
         {
-            StepIndex = _oriStepIndex;
-            _oriStepIndex = -1;
+            StepIndex = stepIndex;
         }
         else
         {
-            OnStepIndexChanged(StepIndex);
+            UpdateStepVisuals(stepIndex);
         }
 
         UpdateProgressBarSize();
@@ -243,53 +215,56 @@ public partial class StepBar : ItemsControl
 
     private void OnStepIndexChanged(int stepIndex)
     {
+        int count = ItemsCount;
+        if (count > 0)
+        {
+            int clamped = Math.Clamp(stepIndex, 0, count - 1);
+            if (clamped != stepIndex)
+            {
+                StepIndex = clamped;
+                return;
+            }
+        }
+
+        if (UpdateStepVisuals(stepIndex))
+        {
+            StepChanged?.Invoke(this, stepIndex);
+        }
+    }
+
+    private bool UpdateStepVisuals(int stepIndex)
+    {
         if (progressBar == null)
         {
-            return;
+            return false;
         }
 
         if (stepIndex < 0)
         {
             SetProgressBarValueWithAnimation(0);
-            return;
+            return false;
         }
 
-        for (int i = 0; i < stepIndex; i++)
+        UpdateProgressBarVisualStates();
+
+        int count = ItemsCount;
+        for (int i = 0; i < count; i++)
         {
-            if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepItemFinished)
+            if (ItemContainerGenerator.ContainerFromIndex(i) is not StepBarItem item)
             {
-                UpdateProgressBarVisualStates();
-                stepItemFinished.ProgressState = StepProgressState.Complete;
-                stepItemFinished.Status = Status;
+                continue;
             }
+
+            item.ProgressState = i < stepIndex
+                ? StepProgressState.Complete
+                : i > stepIndex
+                    ? StepProgressState.Waiting
+                    : i == count - 1 ? StepProgressState.Complete : StepProgressState.UnderWay;
+            item.Status = Status;
         }
 
-        for (int i = stepIndex + 1; i < ItemsCount; i++)
-        {
-            if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepItemFinished)
-            {
-                UpdateProgressBarVisualStates();
-                stepItemFinished.ProgressState = StepProgressState.Waiting;
-                stepItemFinished.Status = Status;
-            }
-        }
-
-        if (ItemContainerGenerator.ContainerFromIndex(stepIndex) is StepBarItem stepItemSelected)
-        {
-            UpdateProgressBarVisualStates();
-            if (stepIndex == ItemsCount - 1)
-            {
-                // Last step should be marked as complete
-                stepItemSelected.ProgressState = StepProgressState.Complete;
-            }
-            else
-            {
-                stepItemSelected.ProgressState = StepProgressState.UnderWay;
-            }
-            stepItemSelected.Status = Status;
-        }
-        SetProgressBarValueWithAnimation(StepIndex);
-        StepChanged?.Invoke(this, StepIndex);
+        SetProgressBarValueWithAnimation(stepIndex);
+        return true;
     }
 
     private void SetProgressBarValueWithAnimation(double toValue, int duration = 200)
@@ -298,7 +273,8 @@ public partial class StepBar : ItemsControl
         {
             return;
         }
-        var horizontalAnimation = new DoubleAnimation
+
+        var animation = new DoubleAnimation
         {
             From = progressBar.Value,
             To = toValue,
@@ -306,18 +282,19 @@ public partial class StepBar : ItemsControl
             EnableDependentAnimation = true
         };
 
-        Storyboard.SetTarget(horizontalAnimation, progressBar);
-        Storyboard.SetTargetProperty(horizontalAnimation, nameof(ProgressBar.Value));
+        Storyboard.SetTarget(animation, progressBar);
+        Storyboard.SetTargetProperty(animation, nameof(ProgressBar.Value));
 
-        var horizontalStoryboard = new Storyboard();
-        horizontalStoryboard.Children.Add(horizontalAnimation);
-        horizontalStoryboard.Begin();
+        var storyboard = new Storyboard();
+        storyboard.Children.Add(animation);
+        storyboard.Begin();
     }
 
     private void UpdateProgressBarVisualStates()
     {
         VisualStateManager.GoToState(this, Status.ToString(), true);
     }
+
     private void OnItemTapped(object sender, TappedRoutedEventArgs e)
     {
         if (sender is StepBarItem stepBarItem)
@@ -332,6 +309,8 @@ public partial class StepBar : ItemsControl
             }
         }
     }
+
     public void Next() => StepIndex++;
+
     public void Prev() => StepIndex--;
 }
