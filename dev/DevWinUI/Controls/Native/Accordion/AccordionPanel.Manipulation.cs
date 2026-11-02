@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
+
 public partial class AccordionPanel
 {
     private bool _isBusy = false;
@@ -10,7 +11,7 @@ public partial class AccordionPanel
 
     private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
-        if (!_isBusy)
+        if (!_isBusy && this.Children.Count > 0)
         {
             var point = e.GetCurrentPoint(this);
             int sign = Math.Sign(point.Properties.MouseWheelDelta);
@@ -34,7 +35,8 @@ public partial class AccordionPanel
 
     private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
-        if ((Math.Sign(e.Delta.Translation.Y) < 0 && this.SelectedIndex == this.Children.Count - 1))
+        if (this.Children.Count == 0 ||
+            (Math.Sign(e.Delta.Translation.Y) < 0 && this.SelectedIndex == this.Children.Count - 1))
         {
             e.Complete();
             return;
@@ -69,8 +71,14 @@ public partial class AccordionPanel
     private async void AnimateNext(AccordionItem control)
     {
         _isBusy = true;
-        await control.AnimateYAsync(GetTopBound());
-        _isBusy = false;
+        try
+        {
+            await control.AnimateYAsync(GetTopBound());
+        }
+        finally
+        {
+            _isBusy = false;
+        }
 
         if (!control.IsUp)
         {
@@ -82,8 +90,14 @@ public partial class AccordionPanel
     private async void AnimatePrev(AccordionItem control)
     {
         _isBusy = true;
-        await control.AnimateYAsync(0);
-        _isBusy = false;
+        try
+        {
+            await control.AnimateYAsync(0);
+        }
+        finally
+        {
+            _isBusy = false;
+        }
 
         if (control.IsUp)
         {
