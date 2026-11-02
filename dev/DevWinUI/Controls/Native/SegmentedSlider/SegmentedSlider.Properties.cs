@@ -15,11 +15,7 @@ public partial class SegmentedSlider
 
     private static void OnTitleHorizontalAlignmentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (SegmentedSlider)d;
-        if (ctl != null)
-        {
-            ctl.UpdateTitleHorizontalAlignment();
-        }
+        ((SegmentedSlider)d).UpdateTitleHorizontalAlignment();
     }
 
     public double Spacing
@@ -33,8 +29,8 @@ public partial class SegmentedSlider
 
     public TimeSpan SelectedTime
     {
-        get => (TimeSpan)GetValue(SelectedTimeProperty);
-        set => SetValue(SelectedTimeProperty, value);
+        get { return (TimeSpan)GetValue(SelectedTimeProperty); }
+        set { SetValue(SelectedTimeProperty, value); }
     }
 
     public static readonly DependencyProperty SelectedTimeProperty =
@@ -42,17 +38,13 @@ public partial class SegmentedSlider
 
     private static void OnSelectedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (SegmentedSlider)d;
-        if (ctl != null)
-        {
-            ctl.OnSelectedTimeChanged((TimeSpan)e.NewValue);
-        }
+        ((SegmentedSlider)d).OnSelectedTimeChanged((TimeSpan)e.NewValue);
     }
 
     public double Value
     {
-        get => (double)GetValue(ValueProperty);
-        set => SetValue(ValueProperty, value);
+        get { return (double)GetValue(ValueProperty); }
+        set { SetValue(ValueProperty, value); }
     }
 
     public static readonly DependencyProperty ValueProperty =
@@ -60,26 +52,27 @@ public partial class SegmentedSlider
 
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (SegmentedSlider)d;
-        if (ctl != null)
-        {
-            ctl.OnValueChanged();
-        }
+        ((SegmentedSlider)d).OnValueChanged();
     }
 
     public double Maximum
     {
-        get => (double)GetValue(MaximumProperty);
-        set => SetValue(MaximumProperty, value);
+        get { return (double)GetValue(MaximumProperty); }
+        set { SetValue(MaximumProperty, value); }
     }
 
     public static readonly DependencyProperty MaximumProperty =
-        DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(SegmentedSlider), new PropertyMetadata(100.0));
+        DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(SegmentedSlider), new PropertyMetadata(100.0, OnMaximumChanged));
+
+    private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((SegmentedSlider)d).OnMaximumChanged();
+    }
 
     public int SegmentCount
     {
-        get => (int)GetValue(SegmentCountProperty);
-        set => SetValue(SegmentCountProperty, value);
+        get { return (int)GetValue(SegmentCountProperty); }
+        set { SetValue(SegmentCountProperty, value); }
     }
 
     public static readonly DependencyProperty SegmentCountProperty =
@@ -87,14 +80,13 @@ public partial class SegmentedSlider
 
     private static void OnSegmentCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is SegmentedSlider slider)
-            slider.UpdateSegments();
+        ((SegmentedSlider)d).UpdateSegments();
     }
 
     public SegmentedSliderTitleVisibility TitleVisibility
     {
-        get => (SegmentedSliderTitleVisibility)GetValue(TitleVisibilityProperty);
-        set => SetValue(TitleVisibilityProperty, value);
+        get { return (SegmentedSliderTitleVisibility)GetValue(TitleVisibilityProperty); }
+        set { SetValue(TitleVisibilityProperty, value); }
     }
 
     public static readonly DependencyProperty TitleVisibilityProperty =
@@ -110,8 +102,8 @@ public partial class SegmentedSlider
 
     public ObservableCollection<string> SegmentTitles
     {
-        get => (ObservableCollection<string>)GetValue(SegmentTitlesProperty);
-        set => SetValue(SegmentTitlesProperty, value);
+        get { return (ObservableCollection<string>)GetValue(SegmentTitlesProperty); }
+        set { SetValue(SegmentTitlesProperty, value); }
     }
 
     public static readonly DependencyProperty SegmentTitlesProperty =
@@ -133,8 +125,8 @@ public partial class SegmentedSlider
 
     public TimeSpan TotalTime
     {
-        get => (TimeSpan)GetValue(TotalTimeProperty);
-        set => SetValue(TotalTimeProperty, value);
+        get { return (TimeSpan)GetValue(TotalTimeProperty); }
+        set { SetValue(TotalTimeProperty, value); }
     }
 
     public static readonly DependencyProperty TotalTimeProperty =
@@ -142,14 +134,15 @@ public partial class SegmentedSlider
 
     private static void OnTotalTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is SegmentedSlider slider)
-            slider.UpdateSegments();
+        var slider = (SegmentedSlider)d;
+        slider.NormalizeTimeSegments();
+        slider.UpdateSegments();
     }
 
     public ObservableCollection<SegmentedSliderTimeInfo> TimeSegments
     {
-        get => (ObservableCollection<SegmentedSliderTimeInfo>)GetValue(TimeSegmentsProperty);
-        set => SetValue(TimeSegmentsProperty, value);
+        get { return (ObservableCollection<SegmentedSliderTimeInfo>)GetValue(TimeSegmentsProperty); }
+        set { SetValue(TimeSegmentsProperty, value); }
     }
 
     public static readonly DependencyProperty TimeSegmentsProperty =
