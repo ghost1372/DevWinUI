@@ -93,7 +93,7 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
             if (layoutChildren)
                 LayoutChildren();
 
-            CoverFlowEventArgs e = new CoverFlowEventArgs() { Index = index, Item = items[index].Content };
+            CoverFlowEventArgs e = new CoverFlowEventArgs(index, items[index].Content);
 
             if (SelectedItemChanged != null)
                 SelectedItemChanged(e);
