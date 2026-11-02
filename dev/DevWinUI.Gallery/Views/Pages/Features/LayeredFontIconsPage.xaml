@@ -10,6 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <InfoBar Title="Can't see the icons?" IsClosable="False" IsOpen="True" Message="If the layered icons don't show up, your project probably has IconNoGridOptimization enabled in EnabledXamlOptionalChanges. That option removes the internal Grid from FontIcon, so LayeredFontIcons has nowhere to place its icons and fails to show them. Remove IconNoGridOptimization from the list and the icons will work again." Severity="Warning" />
             <local:ControlExample DocPage="controls/layeredFontIcons" HeaderText="LayeredFontIcons" XamlSource="Features/LayeredFontIconsPage_xaml.txt">
                 <dev:LayeredFontIcons>
                     <dev:LayeredFontIcons.FontIcons>
