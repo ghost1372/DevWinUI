@@ -7,6 +7,8 @@ public partial class DigitalSegment : Control
     private ItemsRepeater? repeater;
     private DispatcherTimer? scrollTimer;
     private string scrollBuffer = string.Empty;
+    private string? scrollBufferText;
+    private int scrollBufferSymbols = -1;
     private int scrollIndex;
 
     private ObservableCollection<SegmentChar> Digits { get; } = [];
@@ -36,17 +38,18 @@ public partial class DigitalSegment : Control
         if (repeater == null || Model == null)
             return;
 
-        int count = SymbolCount > 0 ? SymbolCount : (Text?.Length ?? 0);
+        string? text = Text;
+        int count = SymbolCount > 0 ? SymbolCount : (text?.Length ?? 0);
+        Type modelType = Model.GetType();
 
         for (int i = 0; i < count; i++)
         {
-            string charToShow = string.Empty;
-
-            if (!string.IsNullOrEmpty(Text) && i < Text.Length)
-                charToShow = Text[i].ToString();
+            string charToShow = !string.IsNullOrEmpty(text) && i < text.Length
+                ? DigitalSegmentHelper.CharToString(text[i])
+                : string.Empty;
 
             SegmentChar digit;
-            if (i < Digits.Count && Digits[i].GetType() == Model.GetType())
+            if (i < Digits.Count && Digits[i].GetType() == modelType)
             {
                 digit = Digits[i];
             }
@@ -67,10 +70,12 @@ public partial class DigitalSegment : Control
         while (Digits.Count > count)
             Digits.RemoveAt(Digits.Count - 1);
 
-        string updatedScrollBuffer = string.IsNullOrEmpty(Text) ? string.Empty : Text + new string(' ', Digits.Count);
-        if (!string.Equals(scrollBuffer, updatedScrollBuffer, StringComparison.Ordinal))
+        // Only rebuild the scroll buffer when its inputs changed.
+        if (scrollBufferSymbols != Digits.Count || !string.Equals(scrollBufferText, text, StringComparison.Ordinal))
         {
-            scrollBuffer = updatedScrollBuffer;
+            scrollBufferText = text;
+            scrollBufferSymbols = Digits.Count;
+            scrollBuffer = string.IsNullOrEmpty(text) ? string.Empty : text.PadRight(text.Length + Digits.Count);
             scrollIndex = 0;
         }
     }
@@ -90,12 +95,14 @@ public partial class DigitalSegment : Control
     {
         if (d is DigitalSegment ctl)
         {
-            if ((bool)e.NewValue)
+            // Not loaded yet: OnLoaded starts the timer.
+            if ((bool)e.NewValue && ctl.IsLoaded)
                 ctl.StartScrolling();
             else
                 ctl.StopScrolling();
         }
     }
+
     private void StartScrolling()
     {
         if (scrollTimer == null)
@@ -103,8 +110,14 @@ public partial class DigitalSegment : Control
             scrollTimer = new DispatcherTimer();
             scrollTimer.Tick += ScrollStep;
         }
+
         scrollTimer.Interval = ScrollSpeed;
         scrollTimer.Start();
+    }
+
+    private void StopScrolling()
+    {
+        scrollTimer?.Stop();
     }
 
     private void UpdateScrollSpeed()
@@ -120,52 +133,36 @@ public partial class DigitalSegment : Control
             layout.Spacing = Spacing;
     }
 
-    private void StopScrolling()
+    private void ScrollStep(object? sender, object e)
     {
-        scrollTimer?.Stop();
-    }
-
-    private string GetScrollingBuffer()
-    {
-        return scrollBuffer;
-    }
-
-    private void ScrollStep(object sender, object e)
-    {
-        if (string.IsNullOrEmpty(Text) || Digits.Count == 0)
-            return;
-
-        string buffer = GetScrollingBuffer();
-        if (buffer.Length == 0)
-            return;
-
+        string buffer = scrollBuffer;
         int visibleCount = Digits.Count;
+
+        if (buffer.Length == 0 || visibleCount == 0)
+            return;
+
+        bool rightToLeft = ScrollDirection == DigitalSegmentScrollDirection.RightToLeft;
 
         for (int i = 0; i < visibleCount; i++)
         {
-            int charIndex;
+            int charIndex = rightToLeft
+                ? (scrollIndex + i) % buffer.Length
+                : (scrollIndex - (visibleCount - 1 - i) + buffer.Length) % buffer.Length;
 
-            if (ScrollDirection == DigitalSegmentScrollDirection.RightToLeft)
-            {
-                charIndex = (scrollIndex + i) % buffer.Length;
-            }
-            else
-            {
-                charIndex = (scrollIndex - (visibleCount - 1 - i) + buffer.Length) % buffer.Length;
-            }
-
-            Digits[i].Character = buffer[charIndex].ToString();
+            Digits[i].Character = DigitalSegmentHelper.CharToString(buffer[charIndex]);
         }
 
-        if (ScrollDirection == DigitalSegmentScrollDirection.RightToLeft)
+        if (rightToLeft)
         {
             scrollIndex++;
-            if (scrollIndex >= buffer.Length) scrollIndex = 0;
+            if (scrollIndex >= buffer.Length)
+                scrollIndex = 0;
         }
         else
         {
             scrollIndex--;
-            if (scrollIndex < 0) scrollIndex = buffer.Length - 1;
+            if (scrollIndex < 0)
+                scrollIndex = buffer.Length - 1;
         }
     }
 }

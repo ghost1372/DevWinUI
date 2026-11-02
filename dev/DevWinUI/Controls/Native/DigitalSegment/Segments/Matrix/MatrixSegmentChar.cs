@@ -25,34 +25,41 @@ public abstract partial class MatrixSegmentChar : SegmentChar
         Columns = MatrixColumns;
         Rows = MatrixRows;
 
-        UpdateDraw();
-        CollectSegments();
-        UpdateCharacter();
-
-        if (IsPatternMakerEnabled)
-            RegisterPointerEvents();
+        RefreshMatrix();
     }
 
-    public void UpdateDraw() => ReDrawMatrix();
+    public void UpdateDraw() => RefreshMatrix();
 
-    protected override void ReDrawMatrix()
+    protected override void RefreshMatrix()
     {
-        if (canvas == null) return;
-
-        double cellW = MatrixDotSize;
-        double cellH = MatrixDotSize;
-        double gap = MatrixDotGap;
-
-        // Same lookup as UpdateCharacter (including the upper case fallback).
-        var pattern = DigitalSegmentHelper.GetCharPattern(GetPatternForCharacter(Character), Columns, Rows);
-        if (pattern == null)
-        {
-            canvas.Children.Clear();
+        if (canvas == null)
             return;
+
+        bool rebuilt = ReDrawMatrix();
+
+        if (rebuilt || Segments == null)
+        {
+            CollectSegments();
+
+            // Freshly created shapes have no handlers yet.
+            if (IsPatternMakerEnabled)
+                RegisterPointerEvents();
         }
 
-        // Reuse the existing shapes when only their appearance changed; only rebuild
-        // when the cell count or the shape type is different (up to 112 shapes per character).
+        // Fills and the active tags come from the pattern.
+        UpdateCharacter();
+    }
+
+    /// <summary>
+    /// Lays out the dots. Existing shapes are reused when only their appearance changed.
+    /// </summary>
+    /// <returns>True when the shape instances were replaced.</returns>
+    private bool ReDrawMatrix()
+    {
+        double cellSize = MatrixDotSize;
+        double gap = MatrixDotGap;
+        double step = cellSize + gap;
+
         int total = Columns * Rows;
         bool reuse = total > 0
             && canvas.Children.Count == total
@@ -64,11 +71,8 @@ public abstract partial class MatrixSegmentChar : SegmentChar
         int index = 0;
         for (int row = 0; row < Rows; row++)
         {
-            byte line = pattern[row];
             for (int col = 0; col < Columns; col++)
             {
-                bool isOn = ((line >> (Columns - 1 - col)) & 1) != 0;
-
                 Shape shape;
                 if (reuse)
                 {
@@ -80,20 +84,21 @@ public abstract partial class MatrixSegmentChar : SegmentChar
                     canvas.Children.Add(shape);
                 }
 
-                shape.Width = cellW;
-                shape.Height = cellH;
+                shape.Width = cellSize;
+                shape.Height = cellSize;
                 shape.Stroke = Stroke;
                 shape.StrokeThickness = StrokeThickness;
-                shape.Fill = isOn ? SegmentForeground : SegmentBackground;
 
-                Canvas.SetLeft(shape, col * (cellW + gap));
-                Canvas.SetTop(shape, row * (cellH + gap));
+                Canvas.SetLeft(shape, col * step);
+                Canvas.SetTop(shape, row * step);
                 index++;
             }
         }
 
-        canvas.Width = Columns * (cellW + gap);
-        canvas.Height = Rows * (cellH + gap) - gap;
+        canvas.Width = Columns * step;
+        canvas.Height = Rows * step - gap;
+
+        return !reuse;
     }
 
     protected override void CollectSegments()
@@ -101,20 +106,20 @@ public abstract partial class MatrixSegmentChar : SegmentChar
         if (canvas == null)
             return;
 
-        Segments = new List<(string Name, Shape Segment)>();
+        var list = new List<(string Name, Shape Segment)>(canvas.Children.Count);
 
         int index = 0;
         for (int row = 0; row < Rows; row++)
         {
             for (int col = 0; col < Columns; col++)
             {
-                string name = $"R{row + 1}C{col + 1}";
                 if (index < canvas.Children.Count && canvas.Children[index] is Shape shape)
-                {
-                    Segments.Add((name, shape));
-                }
+                    list.Add(($"R{row + 1}C{col + 1}", shape));
+
                 index++;
             }
         }
+
+        Segments = list;
     }
 }
