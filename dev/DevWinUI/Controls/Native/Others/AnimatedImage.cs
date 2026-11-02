@@ -15,8 +15,8 @@ public partial class AnimatedImage : Control
 
     public Uri ImageUrl
     {
-        get => (Uri)GetValue(ImageUrlProperty);
-        set => SetValue(ImageUrlProperty, value);
+        get { return (Uri)GetValue(ImageUrlProperty); }
+        set { SetValue(ImageUrlProperty, value); }
     }
 
     public static readonly DependencyProperty ImageUrlProperty =
@@ -24,8 +24,8 @@ public partial class AnimatedImage : Control
 
     public BitmapImage ImageSource
     {
-        get => (BitmapImage)GetValue(ImageSourceProperty);
-        set => SetValue(ImageSourceProperty, value);
+        get { return (BitmapImage)GetValue(ImageSourceProperty); }
+        set { SetValue(ImageSourceProperty, value); }
     }
 
     public static readonly DependencyProperty ImageSourceProperty =
@@ -33,8 +33,8 @@ public partial class AnimatedImage : Control
 
     public Stretch Stretch
     {
-        get => (Stretch)GetValue(StretchProperty);
-        set => SetValue(StretchProperty, value);
+        get { return (Stretch)GetValue(StretchProperty); }
+        set { SetValue(StretchProperty, value); }
     }
 
     public static readonly DependencyProperty StretchProperty =
@@ -99,7 +99,12 @@ public partial class AnimatedImage : Control
         if (_bottomImage.Source == newSource)
             return;
 
+        // Keep the top image in sync with what is currently shown. If a previous fade was
+        // interrupted, the top image still holds an older source and would flash it.
+        _topImage.Source = _bottomImage.Source;
         _bottomImage.Source = newSource;
+
+        _opacityAnimation.Duration = OpacityAnimationDuration;
 
         var topVisual = ElementCompositionPreview.GetElementVisual(_topImage);
 
@@ -115,6 +120,7 @@ public partial class AnimatedImage : Control
         {
             _topImage.Source = newSource;
             topVisual.Opacity = 1f;
+            _currentBatch = null;
         };
 
         _currentBatch.End();
