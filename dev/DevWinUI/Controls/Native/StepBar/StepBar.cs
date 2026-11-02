@@ -73,6 +73,23 @@ public partial class StepBar : ItemsControl
         UpdateProgressBarVisualStates();
     }
 
+    protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
+    {
+        base.PrepareContainerForItemOverride(element, item);
+
+        if (element is StepBarItem stepBarItem)
+        {
+            int index = ItemContainerGenerator.IndexFromContainer(stepBarItem);
+            if (index < 0)
+            {
+                index = Items.IndexOf(item);
+            }
+
+            ConfigureItem(stepBarItem, index);
+            ApplyProgressState(stepBarItem, index, ItemsCount, StepIndex);
+        }
+    }
+
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
         UpdateProgressBarSize();
@@ -165,6 +182,38 @@ public partial class StepBar : ItemsControl
         }
     }
 
+    private void ConfigureItem(StepBarItem stepBarItem, int index)
+    {
+        stepBarItem.Index = index + 1;
+        stepBarItem.Orientation = Orientation;
+        stepBarItem.HeaderDisplayMode = HeaderDisplayMode;
+        stepBarItem.ItemTemplate = ItemTemplate;
+        stepBarItem.ShowStepIndex = ShowStepIndex;
+        stepBarItem.DisplayMode = DisplayMode;
+
+        if (stepBarItem.WaitingIcon is null && WaitingIcon is not null)
+            stepBarItem.WaitingIcon = WaitingIcon;
+
+        if (stepBarItem.UnderWayIcon is null && UnderWayIcon is not null)
+            stepBarItem.UnderWayIcon = UnderWayIcon;
+
+        if (stepBarItem.CompleteIcon is null && CompleteIcon is not null)
+            stepBarItem.CompleteIcon = CompleteIcon;
+
+        stepBarItem.Tapped -= OnItemTapped;
+        stepBarItem.Tapped += OnItemTapped;
+    }
+
+    private void ApplyProgressState(StepBarItem item, int index, int count, int stepIndex)
+    {
+        item.ProgressState = index < stepIndex
+            ? StepProgressState.Complete
+            : index > stepIndex
+                ? StepProgressState.Waiting
+                : index == count - 1 ? StepProgressState.Complete : StepProgressState.UnderWay;
+        item.Status = Status;
+    }
+
     private void UpdateItems()
     {
         int count = ItemsCount;
@@ -179,24 +228,7 @@ public partial class StepBar : ItemsControl
         {
             if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepBarItem)
             {
-                stepBarItem.Index = i + 1;
-                stepBarItem.Orientation = Orientation;
-                stepBarItem.HeaderDisplayMode = HeaderDisplayMode;
-                stepBarItem.ItemTemplate = ItemTemplate;
-                stepBarItem.ShowStepIndex = ShowStepIndex;
-
-                if (stepBarItem.WaitingIcon is null && WaitingIcon is not null)
-                    stepBarItem.WaitingIcon = WaitingIcon;
-
-                if (stepBarItem.UnderWayIcon is null && UnderWayIcon is not null)
-                    stepBarItem.UnderWayIcon = UnderWayIcon;
-
-                if (stepBarItem.CompleteIcon is null && CompleteIcon is not null)
-                    stepBarItem.CompleteIcon = CompleteIcon;
-
-                stepBarItem.DisplayMode = DisplayMode;
-                stepBarItem.Tapped -= OnItemTapped;
-                stepBarItem.Tapped += OnItemTapped;
+                ConfigureItem(stepBarItem, i);
             }
         }
 
@@ -250,17 +282,10 @@ public partial class StepBar : ItemsControl
         int count = ItemsCount;
         for (int i = 0; i < count; i++)
         {
-            if (ItemContainerGenerator.ContainerFromIndex(i) is not StepBarItem item)
+            if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem item)
             {
-                continue;
+                ApplyProgressState(item, i, count, stepIndex);
             }
-
-            item.ProgressState = i < stepIndex
-                ? StepProgressState.Complete
-                : i > stepIndex
-                    ? StepProgressState.Waiting
-                    : i == count - 1 ? StepProgressState.Complete : StepProgressState.UnderWay;
-            item.Status = Status;
         }
 
         SetProgressBarValueWithAnimation(stepIndex);
