@@ -14,6 +14,21 @@ public partial class DigitalSegment : Control
     public DigitalSegment()
     {
         DefaultStyleKey = typeof(DigitalSegment);
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (IsScrolling)
+            StartScrolling();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        // A running DispatcherTimer keeps ticking (and keeps the control alive) after it leaves the tree.
+        StopScrolling();
     }
 
     private void UpdateText()
@@ -67,6 +82,7 @@ public partial class DigitalSegment : Control
         if (repeater != null)
             repeater.ItemsSource = Digits;
 
+        UpdateSpacing();
         UpdateText();
     }
 
@@ -85,10 +101,23 @@ public partial class DigitalSegment : Control
         if (scrollTimer == null)
         {
             scrollTimer = new DispatcherTimer();
-            scrollTimer.Interval = ScrollSpeed;
             scrollTimer.Tick += ScrollStep;
         }
+        scrollTimer.Interval = ScrollSpeed;
         scrollTimer.Start();
+    }
+
+    private void UpdateScrollSpeed()
+    {
+        if (scrollTimer != null)
+            scrollTimer.Interval = ScrollSpeed;
+    }
+
+    private void UpdateSpacing()
+    {
+        // The spacing lives on the layout of the repeater and can't be a TemplateBinding.
+        if (repeater?.Layout is StackLayout layout)
+            layout.Spacing = Spacing;
     }
 
     private void StopScrolling()
@@ -107,6 +136,9 @@ public partial class DigitalSegment : Control
             return;
 
         string buffer = GetScrollingBuffer();
+        if (buffer.Length == 0)
+            return;
+
         int visibleCount = Digits.Count;
 
         for (int i = 0; i < visibleCount; i++)

@@ -39,66 +39,60 @@ public abstract partial class MatrixSegmentChar : SegmentChar
     {
         if (canvas == null) return;
 
-        canvas.Children.Clear();
-
         double cellW = MatrixDotSize;
         double cellH = MatrixDotSize;
         double gap = MatrixDotGap;
 
-        double cursorX = 0;
-
-        if (!PatternTable.TryGetValue(Character, out string characterPattern))
-            characterPattern = DefaultPattern;
-
-        var pattern = DigitalSegmentHelper.GetCharPattern(characterPattern, Columns, Rows);
+        // Same lookup as UpdateCharacter (including the upper case fallback).
+        var pattern = DigitalSegmentHelper.GetCharPattern(GetPatternForCharacter(Character), Columns, Rows);
         if (pattern == null)
         {
-            cursorX += Columns * (cellW + gap);
+            canvas.Children.Clear();
             return;
         }
 
+        // Reuse the existing shapes when only their appearance changed; only rebuild
+        // when the cell count or the shape type is different (up to 112 shapes per character).
+        int total = Columns * Rows;
+        bool reuse = total > 0
+            && canvas.Children.Count == total
+            && (IsMatrixSquare ? canvas.Children[0] is Rectangle : canvas.Children[0] is Ellipse);
+
+        if (!reuse)
+            canvas.Children.Clear();
+
+        int index = 0;
         for (int row = 0; row < Rows; row++)
         {
             byte line = pattern[row];
             for (int col = 0; col < Columns; col++)
             {
                 bool isOn = ((line >> (Columns - 1 - col)) & 1) != 0;
-                double x = cursorX + col * (cellW + gap);
-                double y = row * (cellH + gap);
 
                 Shape shape;
-                if (IsMatrixSquare)
+                if (reuse)
                 {
-                    shape = new Rectangle
-                    {
-                        Width = cellW,
-                        Height = cellH,
-                        Stroke = Stroke,
-                        StrokeThickness = StrokeThickness,
-                        Fill = isOn ? SegmentForeground : SegmentBackground,
-                    };
+                    shape = (Shape)canvas.Children[index];
                 }
                 else
                 {
-                    shape = new Ellipse
-                    {
-                        Width = cellW,
-                        Height = cellH,
-                        Stroke = Stroke,
-                        StrokeThickness = StrokeThickness,
-                        Fill = isOn ? SegmentForeground : SegmentBackground,
-                    };
+                    shape = IsMatrixSquare ? new Rectangle() : new Ellipse();
+                    canvas.Children.Add(shape);
                 }
 
-                Canvas.SetLeft(shape, x);
-                Canvas.SetTop(shape, y);
-                canvas.Children.Add(shape);
+                shape.Width = cellW;
+                shape.Height = cellH;
+                shape.Stroke = Stroke;
+                shape.StrokeThickness = StrokeThickness;
+                shape.Fill = isOn ? SegmentForeground : SegmentBackground;
+
+                Canvas.SetLeft(shape, col * (cellW + gap));
+                Canvas.SetTop(shape, row * (cellH + gap));
+                index++;
             }
         }
 
-        cursorX += Columns * (cellW + gap);
-
-        canvas.Width = cursorX;
+        canvas.Width = Columns * (cellW + gap);
         canvas.Height = Rows * (cellH + gap) - gap;
     }
 
@@ -124,4 +118,3 @@ public abstract partial class MatrixSegmentChar : SegmentChar
         }
     }
 }
-

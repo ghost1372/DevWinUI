@@ -28,7 +28,7 @@ public abstract partial class SegmentChar : Control
 
     private void StartColonBlink()
     {
-        if (ColonTop == null || ColonBottom == null) return;
+        if (_blinkAnimation == null || ColonTop == null || ColonBottom == null) return;
 
         var visualTop = ElementCompositionPreview.GetElementVisual(ColonTop);
         var visualBottom = ElementCompositionPreview.GetElementVisual(ColonBottom);
@@ -68,8 +68,8 @@ public abstract partial class SegmentChar : Control
 
     protected abstract IReadOnlyDictionary<string, string> PatternTable { get; }
     protected abstract string DefaultPattern { get; }
-    protected virtual int Columns {  get; set; }
-    protected virtual int Rows {  get; set; }
+    protected virtual int Columns { get; set; }
+    protected virtual int Rows { get; set; }
     protected virtual void ReDrawMatrix() { }
     protected abstract void CollectSegments();
 
@@ -133,7 +133,15 @@ public abstract partial class SegmentChar : Control
         if (Segments == null || Segments.Count == 0)
             CollectSegments();
 
-        var key = Character ?? string.Empty;
+        ApplyPattern(GetPatternForCharacter(Character));
+    }
+
+    /// <summary>
+    /// Finds the pattern for a character: exact match, then upper case, then the default pattern.
+    /// </summary>
+    protected string GetPatternForCharacter(string character)
+    {
+        var key = character ?? string.Empty;
 
         if (!PatternTable.TryGetValue(key, out string pattern))
         {
@@ -143,7 +151,7 @@ public abstract partial class SegmentChar : Control
             }
         }
 
-        ApplyPattern(pattern);
+        return pattern;
     }
 
     protected void ApplyPattern(string pattern)
@@ -174,13 +182,16 @@ public abstract partial class SegmentChar : Control
         }
     }
 
-    private void UnRegisterPointerEvent()
+    private void UnregisterPointerEvents()
     {
         if (Segments == null || Segments.Count == 0)
             return;
 
         foreach (var item in Segments)
         {
+            if (item.Segment == null)
+                continue;
+
             item.Segment.PointerPressed -= OnPointerPressed;
             item.Segment.PointerEntered -= OnPointerEntered;
             item.Segment.PointerExited -= OnPointerExited;
@@ -204,13 +215,13 @@ public abstract partial class SegmentChar : Control
                 item.Segment.PointerEntered += OnPointerEntered;
 
                 item.Segment.PointerExited -= OnPointerExited;
-                item.Segment.PointerExited -= OnPointerExited;
+                item.Segment.PointerExited += OnPointerExited;
 
                 item.Segment.PointerMoved -= OnPointerMoved;
-                item.Segment.PointerMoved -= OnPointerMoved;
+                item.Segment.PointerMoved += OnPointerMoved;
 
                 item.Segment.PointerReleased -= OnPointerReleased;
-                item.Segment.PointerReleased -= OnPointerReleased;
+                item.Segment.PointerReleased += OnPointerReleased;
             }
         }
     }
@@ -247,7 +258,8 @@ public abstract partial class SegmentChar : Control
     {
         shape.Tag = isActive;
 
-        if (shape.Equals(DigitalSegmentHelper.COLON_TOP_KEY) || shape.Equals(DigitalSegmentHelper.COLON_BOTTOM_KEY))
+        // Compare the shape itself; comparing it with the key strings could never match.
+        if (ReferenceEquals(shape, ColonTop) || ReferenceEquals(shape, ColonBottom))
         {
             shape.Fill = isActive ? ColonForeground : ColonBackground;
         }
@@ -256,11 +268,14 @@ public abstract partial class SegmentChar : Control
             shape.Fill = isActive ? SegmentForeground : SegmentBackground;
         }
         string pattern = GetCurrentPattern();
-        PatternChanged?.Invoke(this, new SegmentEventArgs { Pattern = pattern });
+        PatternChanged?.Invoke(this, new SegmentEventArgs(pattern));
     }
     private string GetCurrentPattern()
     {
         var sb = new StringBuilder();
+
+        if (Segments == null)
+            return string.Empty;
 
         foreach (var (name, seg) in Segments)
         {

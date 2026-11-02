@@ -2,5 +2,10 @@
 
 public partial class SegmentEventArgs : EventArgs
 {
-    public string Pattern { get; set; }
+    public SegmentEventArgs(string pattern)
+    {
+        Pattern = pattern;
+    }
+
+    public string Pattern { get; }
 }

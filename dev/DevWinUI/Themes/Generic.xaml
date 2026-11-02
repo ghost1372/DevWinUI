@@ -3327,7 +3327,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:DigitalSegment">
           <Viewbox Stretch="Uniform">
-            <StackPanel x:Name="PART_Panel" Orientation="Horizontal" Spacing="{TemplateBinding Spacing}" />
+            <ItemsRepeater x:Name="PART_Repeater">
+              <ItemsRepeater.Layout>
+                <StackLayout Orientation="Horizontal" />
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
           </Viewbox>
         </ControlTemplate>
       </Setter.Value>
