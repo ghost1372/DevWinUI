@@ -14,7 +14,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:ArcProgress">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
-                        <Ellipse x:Name="PART_Elipse" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
+                        <Ellipse x:Name="PART_Ellipse" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
                         <Path Fill="{TemplateBinding Foreground}">
                             <Path.Data>
                                 <PathGeometry>

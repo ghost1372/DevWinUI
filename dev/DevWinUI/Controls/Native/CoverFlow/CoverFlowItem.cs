@@ -9,7 +9,7 @@ public partial class CoverFlowItem : ContentControl
     private const string PART_LayoutRoot = "PART_LayoutRoot";
     private const string PART_Animation = "PART_Animation";
     private const string PART_RotationKeyFrame = "PART_RotationKeyFrame";
-    private const string PART_OffestZKeyFrame = "PART_OffestZKeyFrame";
+    private const string PART_OffsetZKeyFrame = "PART_OffsetZKeyFrame";
     private const string PART_ScaleXKeyFrame = "PART_ScaleXKeyFrame";
     private const string PART_ScaleYKeyFrame = "PART_ScaleYKeyFrame";
     private const string PART_ScaleTransform = "PART_ScaleTransform";
@@ -19,7 +19,7 @@ public partial class CoverFlowItem : ContentControl
     private PlaneProjection planeProjection;
     private Storyboard animation;
     private ScaleTransform scaleTransform;
-    private EasingDoubleKeyFrame rotationKeyFrame, offestZKeyFrame, scaleXKeyFrame, scaleYKeyFrame;
+    private EasingDoubleKeyFrame rotationKeyFrame, offsetZKeyFrame, scaleXKeyFrame, scaleYKeyFrame;
 
     private double yRotation;
     private double zOffset;
@@ -100,7 +100,8 @@ public partial class CoverFlowItem : ContentControl
 
     public void SetValues(double x, int zIndex, double r, double z, double s, Duration d, EasingFunctionBase ease, bool useAnimation)
     {
-        if (rotationKeyFrame == null || offestZKeyFrame == null || scaleXKeyFrame == null || scaleYKeyFrame == null)
+        if (rotationKeyFrame == null || offsetZKeyFrame == null || scaleXKeyFrame == null || scaleYKeyFrame == null
+            || animation == null || xAnimation == null)
             return;
 
         if (useAnimation)
@@ -109,7 +110,7 @@ public partial class CoverFlowItem : ContentControl
                 Canvas.SetLeft(this, this.x);
 
             rotationKeyFrame.Value = r;
-            offestZKeyFrame.Value = z;
+            offsetZKeyFrame.Value = z;
             scaleYKeyFrame.Value = s;
             scaleXKeyFrame.Value = s;
             xAnimation.To = x;
@@ -118,7 +119,7 @@ public partial class CoverFlowItem : ContentControl
             {
                 duration = d;
                 rotationKeyFrame.KeyTime = KeyTime.FromTimeSpan(d.TimeSpan);
-                offestZKeyFrame.KeyTime = KeyTime.FromTimeSpan(d.TimeSpan);
+                offsetZKeyFrame.KeyTime = KeyTime.FromTimeSpan(d.TimeSpan);
                 scaleYKeyFrame.KeyTime = KeyTime.FromTimeSpan(d.TimeSpan);
                 scaleXKeyFrame.KeyTime = KeyTime.FromTimeSpan(d.TimeSpan);
                 xAnimation.Duration = d;
@@ -127,7 +128,7 @@ public partial class CoverFlowItem : ContentControl
             {
                 easingFunction = ease;
                 rotationKeyFrame.EasingFunction = ease;
-                offestZKeyFrame.EasingFunction = ease;
+                offsetZKeyFrame.EasingFunction = ease;
                 scaleYKeyFrame.EasingFunction = ease;
                 scaleXKeyFrame.EasingFunction = ease;
                 xAnimation.EasingFunction = ease;
@@ -150,7 +151,7 @@ public partial class CoverFlowItem : ContentControl
 
         animation = GetTemplateChild(PART_Animation) as Storyboard;
         rotationKeyFrame = GetTemplateChild(PART_RotationKeyFrame) as EasingDoubleKeyFrame;
-        offestZKeyFrame = GetTemplateChild(PART_OffestZKeyFrame) as EasingDoubleKeyFrame;
+        offsetZKeyFrame = GetTemplateChild(PART_OffsetZKeyFrame) as EasingDoubleKeyFrame;
         scaleXKeyFrame = GetTemplateChild(PART_ScaleXKeyFrame) as EasingDoubleKeyFrame;
         scaleYKeyFrame = GetTemplateChild(PART_ScaleYKeyFrame) as EasingDoubleKeyFrame;
         scaleTransform = GetTemplateChild(PART_ScaleTransform) as ScaleTransform;
@@ -163,6 +164,7 @@ public partial class CoverFlowItem : ContentControl
 
         if (contentPresenter != null)
         {
+            contentPresenter.Tapped -= ContentPresenter_Tapped;
             contentPresenter.Tapped += ContentPresenter_Tapped;
         }
 

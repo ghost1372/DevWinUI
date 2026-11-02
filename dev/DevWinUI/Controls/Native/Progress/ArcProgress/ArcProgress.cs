@@ -5,13 +5,13 @@ namespace DevWinUI;
 [TemplatePart(Name = nameof(PART_PathFigure), Type = typeof(PathFigure))]
 [TemplatePart(Name = nameof(PART_ArcSegment), Type = typeof(ArcSegment))]
 [TemplatePart(Name = nameof(PART_LineSegment), Type = typeof(LineSegment))]
-[TemplatePart(Name = nameof(PART_Elipse), Type = typeof(Ellipse))]
+[TemplatePart(Name = nameof(PART_Ellipse), Type = typeof(Ellipse))]
 public partial class ArcProgress : Control
 {
     private const string PART_PathFigure = "PART_PathFigure";
     private const string PART_ArcSegment = "PART_ArcSegment";
     private const string PART_LineSegment = "PART_LineSegment";
-    private const string PART_Elipse = "PART_Elipse";
+    private const string PART_Ellipse = "PART_Ellipse";
 
     private Storyboard storyboard;
     private PathFigure pathFigure;
@@ -127,7 +127,7 @@ public partial class ArcProgress : Control
         pathFigure = GetTemplateChild(PART_PathFigure) as PathFigure;
         arcSegment = GetTemplateChild(PART_ArcSegment) as ArcSegment;
         lineSegment = GetTemplateChild(PART_LineSegment) as LineSegment;
-        ellipse = GetTemplateChild(PART_Elipse) as Ellipse;
+        ellipse = GetTemplateChild(PART_Ellipse) as Ellipse;
 
         UpdateMetrics();
         UpdateDirection();

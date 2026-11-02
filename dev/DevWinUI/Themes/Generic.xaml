@@ -18016,7 +18016,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
           <Image x:Name="PART_BeforeImage" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding SourceImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Border>
         <Border CornerRadius="{TemplateBinding CornerRadius}">
-          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+          <Rectangle x:Name="PART_Rectangle" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Rectangle.Fill>
               <ImageBrush AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding TargetImage, RelativeSource={RelativeSource Mode=TemplatedParent}}" Stretch="UniformToFill" />
             </Rectangle.Fill>
