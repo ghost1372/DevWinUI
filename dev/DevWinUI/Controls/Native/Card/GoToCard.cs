@@ -2,10 +2,16 @@
 
 namespace DevWinUI;
 
+[TemplatePart(Name = nameof(PART_Button), Type = typeof(Button))]
+[TemplatePart(Name = nameof(PART_CloseButton), Type = typeof(Button))]
 public partial class GoToCard : Control
 {
     private const string PART_Button = "PART_Button";
     private const string PART_CloseButton = "PART_CloseButton";
+
+    private Button actionButton;
+    private Button closeButton;
+
     public IconSource Icon
     {
         get { return (IconSource)GetValue(IconProperty); }
@@ -98,11 +104,7 @@ public partial class GoToCard : Control
 
     private static void OnIsOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (GoToCard)d;
-        if (ctl != null)
-        {
-            ctl.OnIsOpenChanged();
-        }
+        ((GoToCard)d).UpdateVisibility();
     }
 
     public event EventHandler<RoutedEventArgs> ActionClick;
@@ -117,28 +119,36 @@ public partial class GoToCard : Control
     {
         base.OnApplyTemplate();
 
-        var btn = GetTemplateChild(PART_Button) as Button;
-        btn.Click -= OnButtonClicked;
-        btn.Click += OnButtonClicked;
+        if (actionButton != null)
+            actionButton.Click -= OnButtonClicked;
+        if (closeButton != null)
+            closeButton.Click -= OnCloseButtonClicked;
 
-        var btnClose = GetTemplateChild(PART_CloseButton) as Button;
-        btnClose.Click -= OnCloseButtonClicked;
-        btnClose.Click += OnCloseButtonClicked;
+        actionButton = GetTemplateChild(PART_Button) as Button;
+        closeButton = GetTemplateChild(PART_CloseButton) as Button;
+
+        if (actionButton != null)
+            actionButton.Click += OnButtonClicked;
+        if (closeButton != null)
+            closeButton.Click += OnCloseButtonClicked;
     }
-    private void OnIsOpenChanged()
+
+    private void UpdateVisibility()
     {
         Visibility = IsOpen ? Visibility.Visible : Visibility.Collapsed;
     }
+
     private async void OnButtonClicked(object sender, RoutedEventArgs e)
     {
         ActionClick?.Invoke(this, e);
 
-        if (!string.IsNullOrEmpty(LaunchUri))
+        if (Uri.TryCreate(LaunchUri, UriKind.Absolute, out var uri))
         {
-            _ = await Launcher.LaunchUriAsync(new Uri(LaunchUri));
+            await Launcher.LaunchUriAsync(uri);
         }
     }
-    private async void OnCloseButtonClicked(object sender, RoutedEventArgs e)
+
+    private void OnCloseButtonClicked(object sender, RoutedEventArgs e)
     {
         CloseRequested?.Invoke(this, e);
         IsOpen = false;
