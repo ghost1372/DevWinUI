@@ -31,22 +31,52 @@ public partial class Hatch : Control
 
     private const string CanvasElement = "PART_Canvas";
     private CanvasControl canvas;
+    private CanvasRenderTarget patternTarget;
+    private CanvasImageBrush patternBrush;
+    private HatchStyle patternStyle;
+    private Color patternColor;
+    private float patternDpi;
 
     public Hatch()
     {
         this.DefaultStyleKey = typeof(Hatch);
+
+        RegisterPropertyChangedCallback(ForegroundProperty, (s, dp) => InvalidateCanvas());
+        RegisterPropertyChangedCallback(BackgroundProperty, (s, dp) => InvalidateCanvas());
+        Unloaded += OnUnloaded;
     }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        if (canvas != null)
+        {
+            canvas.Draw -= OnCanvasDraw;
+            canvas.CreateResources -= OnCanvasCreateResources;
+        }
+
         canvas = GetTemplateChild(CanvasElement) as CanvasControl;
 
-        canvas.Draw -= OnCanvasDraw;
-        canvas.Draw += OnCanvasDraw;
-
-        RegisterPropertyChangedCallback(ForegroundProperty, (s, dp) => InvalidateCanvas());
-        RegisterPropertyChangedCallback(BackgroundProperty, (s, dp) => InvalidateCanvas());
+        if (canvas != null)
+        {
+            canvas.Draw += OnCanvasDraw;
+            canvas.CreateResources += OnCanvasCreateResources;
+        }
+    }
+    private void OnCanvasCreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
+    {
+        DisposePattern();
+    }
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        DisposePattern();
+    }
+    private void DisposePattern()
+    {
+        patternBrush?.Dispose();
+        patternBrush = null;
+        patternTarget?.Dispose();
+        patternTarget = null;
     }
     private void InvalidateCanvas()
     {
@@ -82,6 +112,24 @@ public partial class Hatch : Control
         // Fill the background
         session.FillRectangle(0, 0, (float)ActualWidth, (float)ActualHeight, backColor);
 
+        if (foreColor.A == 0)
+        {
+            return;
+        }
+
+        session.FillRectangle(0, 0, (float)ActualWidth, (float)ActualHeight, GetPatternBrush(session.Device, hatchStyle, foreColor));
+    }
+    private CanvasImageBrush GetPatternBrush(CanvasDevice device, HatchStyle hatchStyle, Color foreColor)
+    {
+        var dpi = GetAdjustedDpi();
+
+        if (patternBrush != null && patternStyle == hatchStyle && patternColor == foreColor && patternDpi == dpi)
+        {
+            return patternBrush;
+        }
+
+        DisposePattern();
+
         // Get the hatch pattern
         var hatchData = HatchGenerator.GetHatchData(hatchStyle);
 
@@ -89,32 +137,34 @@ public partial class Hatch : Control
         const int patternSize = 8;
 
         // Create a pixel grid using the hatch data
-        using (var offscreen = new CanvasRenderTarget(session.Device, patternSize, patternSize, GetAdjustedDpi()))
+        patternTarget = new CanvasRenderTarget(device, patternSize, patternSize, dpi);
+        using (var offscreenSession = patternTarget.CreateDrawingSession())
         {
-            using (var offscreenSession = offscreen.CreateDrawingSession())
+            offscreenSession.Clear(Colors.Transparent);
+            for (int y = 0; y < patternSize; y++)
             {
-                offscreenSession.Clear(Colors.Transparent);
-                for (int y = 0; y < patternSize; y++)
+                byte row = hatchData[y];
+                for (int x = 0; x < patternSize; x++)
                 {
-                    byte row = hatchData[y];
-                    for (int x = 0; x < patternSize; x++)
+                    if ((row & (1 << (7 - x))) != 0) // Check if the bit is set
                     {
-                        if ((row & (1 << (7 - x))) != 0) // Check if the bit is set
-                        {
-                            offscreenSession.FillRectangle(x, y, 1, 1, foreColor);
-                        }
+                        offscreenSession.FillRectangle(x, y, 1, 1, foreColor);
                     }
                 }
             }
-
-            // Use the generated pattern as a tiled brush
-            var tiledBrush = new CanvasImageBrush(session.Device, offscreen)
-            {
-                ExtendX = CanvasEdgeBehavior.Wrap,
-                ExtendY = CanvasEdgeBehavior.Wrap
-            };
-
-            session.FillRectangle(0, 0, (float)ActualWidth, (float)ActualHeight, tiledBrush);
         }
+
+        // Use the generated pattern as a tiled brush
+        patternBrush = new CanvasImageBrush(device, patternTarget)
+        {
+            ExtendX = CanvasEdgeBehavior.Wrap,
+            ExtendY = CanvasEdgeBehavior.Wrap
+        };
+
+        patternStyle = hatchStyle;
+        patternColor = foreColor;
+        patternDpi = dpi;
+
+        return patternBrush;
     }
 }
