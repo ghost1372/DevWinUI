@@ -4,11 +4,15 @@ namespace DevWinUI;
 
 public partial class BlurEffectManager : IDisposable
 {
+    private static readonly string[] BlurProperties = ["Blur.BlurAmount"];
+    private static readonly string[] BlurTintProperties = ["Blur.BlurAmount", "Tint.Color"];
+
     private readonly FrameworkElement _targetElement;
     private readonly Compositor _compositor;
     private SpriteVisual _blurVisual;
     private CompositionEffectBrush _blurBrush;
     private ManagedSurface _noiseSurface;
+    private string _loadedNoiseUri;
     private LinearEasingFunction _linearEasing;
 
     private bool _isTintEnabled = false;
@@ -35,7 +39,8 @@ public partial class BlurEffectManager : IDisposable
             if (_tintTarget != value)
             {
                 _tintTarget = value;
-                Refresh();
+                if (_isTintEnabled)
+                    Refresh();
             }
         }
     }
@@ -71,7 +76,8 @@ public partial class BlurEffectManager : IDisposable
             if (_surfaceSource != value)
             {
                 _surfaceSource = value;
-                Refresh();
+                if (_sourceType == BlurSourceType.Surface)
+                    Refresh();
             }
         }
     }
@@ -85,7 +91,8 @@ public partial class BlurEffectManager : IDisposable
             if (_surfaceBrushSource != value)
             {
                 _surfaceBrushSource = value;
-                Refresh();
+                if (_sourceType == BlurSourceType.Surface)
+                    Refresh();
             }
         }
     }
@@ -99,7 +106,8 @@ public partial class BlurEffectManager : IDisposable
             if (_visualSource != value)
             {
                 _visualSource = value;
-                Refresh();
+                if (_sourceType == BlurSourceType.Visual)
+                    Refresh();
             }
         }
     }
@@ -113,7 +121,8 @@ public partial class BlurEffectManager : IDisposable
             if (_customSourceBrush != value)
             {
                 _customSourceBrush = value;
-                Refresh();
+                if (_sourceType == BlurSourceType.Custom)
+                    Refresh();
             }
         }
     }
@@ -156,9 +165,10 @@ public partial class BlurEffectManager : IDisposable
         get => _blurAmount;
         set
         {
-            if (_blurAmount != value)
+            var clamped = Math.Max(0, value);
+            if (_blurAmount != clamped)
             {
-                _blurAmount = Math.Max(0, value);
+                _blurAmount = clamped;
                 if (_blurBrush != null)
                     _blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)_blurAmount);
             }
@@ -220,7 +230,8 @@ public partial class BlurEffectManager : IDisposable
             if (_blendMode != value)
             {
                 _blendMode = value;
-                Refresh();
+                if (_isTintEnabled)
+                    Refresh();
             }
         }
     }
@@ -235,7 +246,8 @@ public partial class BlurEffectManager : IDisposable
             if (_noiseBlendMode != value)
             {
                 _noiseBlendMode = value;
-                Refresh();
+                if (_useNoise)
+                    Refresh();
             }
         }
     }
@@ -250,7 +262,8 @@ public partial class BlurEffectManager : IDisposable
             if (_noiseStretch != value)
             {
                 _noiseStretch = value;
-                Refresh();
+                if (_noiseSurface != null)
+                    _noiseSurface.Brush.Stretch = _noiseStretch;
             }
         }
     }
@@ -290,12 +303,18 @@ public partial class BlurEffectManager : IDisposable
         _blurBrush = null;
         _blurVisual?.Dispose();
         _blurVisual = null;
+        ReleaseNoise();
     }
 
     public void Refresh()
     {
-        DisableBlur();
-        EnableBlur();
+        if (_blurVisual == null)
+            return;
+
+        var oldBrush = _blurBrush;
+        _blurBrush = BuildBrush();
+        _blurVisual.Brush = _blurBrush;
+        oldBrush?.Dispose();
     }
 
     private CompositionEffectBrush BuildBrush()
@@ -353,7 +372,7 @@ public partial class BlurEffectManager : IDisposable
             };
         }
 
-        var effectFactory = _compositor.CreateEffectFactory(currentEffect, GetAnimatableProperties());
+        var effectFactory = _compositor.CreateEffectFactory(currentEffect, IsTintEnabled ? BlurTintProperties : BlurProperties);
 
         var brush = effectFactory.CreateBrush();
 
@@ -375,6 +394,7 @@ public partial class BlurEffectManager : IDisposable
                 {
                     var visualSurface = _compositor.CreateVisualSurface();
                     visualSurface.SourceVisual = VisualSource;
+                    visualSurface.SourceSize = VisualSource.Size;
                     brush.SetSourceParameter("ImageSource", _compositor.CreateSurfaceBrush(visualSurface));
                 }
                 break;
@@ -392,13 +412,29 @@ public partial class BlurEffectManager : IDisposable
 
         if (UseNoise)
         {
-            _noiseSurface?.Brush?.Dispose();
-            _noiseSurface = ImageLoader.Instance.LoadFromUri(new Uri(NoiseUri));
+            if (_noiseSurface == null || _loadedNoiseUri != NoiseUri)
+            {
+                _noiseSurface?.Brush?.Dispose();
+                _noiseSurface = ImageLoader.Instance.LoadFromUri(new Uri(NoiseUri));
+                _loadedNoiseUri = NoiseUri;
+            }
+
             _noiseSurface.Brush.Stretch = _noiseStretch;
             brush.SetSourceParameter("NoiseImage", _noiseSurface.Brush);
         }
+        else if (_noiseSurface != null)
+        {
+            ReleaseNoise();
+        }
 
         return brush;
+    }
+
+    private void ReleaseNoise()
+    {
+        _noiseSurface?.Brush?.Dispose();
+        _noiseSurface = null;
+        _loadedNoiseUri = null;
     }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -462,8 +498,8 @@ public partial class BlurEffectManager : IDisposable
 
         PrepareForNewAnimation();
 
-        float current = (float)fallbackBlur;
-        _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out current);
+        if (_blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out float current) != CompositionGetValueStatus.Succeeded)
+            current = (float)fallbackBlur;
 
         var easing = GetEasing();
 
@@ -476,7 +512,9 @@ public partial class BlurEffectManager : IDisposable
 
         if (IsTintEnabled)
         {
-            _blurBrush.Properties.TryGetColor("Tint.Color", out Color startColor);
+            if (_blurBrush.Properties.TryGetColor("Tint.Color", out Color startColor) != CompositionGetValueStatus.Succeeded)
+                startColor = TintColor;
+
             Color transparent = Color.FromArgb(0, startColor.R, startColor.G, startColor.B);
 
             var tintAnim = _compositor.CreateColorKeyFrameAnimation();
@@ -498,7 +536,7 @@ public partial class BlurEffectManager : IDisposable
 
         // Force compositor to apply the final animated value before starting new one
         _blurBrush.Properties.InsertScalar("Blur.BlurAmount",
-            _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out float v1) == CompositionGetValueStatus.Succeeded ? v1 : 0f);
+            _blurBrush.Properties.TryGetScalar("Blur.BlurAmount", out float v1) == CompositionGetValueStatus.Succeeded ? v1 : (float)BlurAmount);
 
         if (IsTintEnabled)
         {
@@ -527,5 +565,7 @@ public partial class BlurEffectManager : IDisposable
     {
         _targetElement.SizeChanged -= OnSizeChanged;
         DisableBlur();
+        _linearEasing?.Dispose();
+        _linearEasing = null;
     }
 }
