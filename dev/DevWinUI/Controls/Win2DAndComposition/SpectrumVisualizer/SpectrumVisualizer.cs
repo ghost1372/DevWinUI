@@ -1,7 +1,6 @@
 ﻿//https://github.com/Johnwikix/SpectrumVisualization
 
 using Windows.Media.Control;
-using Windows.Storage.Streams;
 
 namespace DevWinUI;
 
@@ -18,15 +17,17 @@ public partial class SpectrumVisualizer : Control
     private CanvasTextFormat _titleTextFormat;
     private CanvasTextFormat _artistTextFormat;
 
-    private IRandomAccessStreamWithContentType _thumbnail;
     private ISpectrumAnalyzer _analyzer;
     private SpectrumType spectrumMode = SpectrumType.Round;
     private SpectrumColorType colorType = SpectrumColorType.GradientLoop;
 
     private float[] _currentSpectrum;
     private float[] _smoothedSpectrum;
+    private readonly Vector2[] _wavePoints;
+    private readonly Vector2[] _quadPoints = new Vector2[4];
     private readonly int _barCount = 128;
     private bool _disposed = false;
+    private int _mediaVersion = 0;
     private float _rotationOffset = 0f;
     private int _middleNum = 0;
     private bool _isMiddleIncreasing = true;
@@ -40,7 +41,7 @@ public partial class SpectrumVisualizer : Control
     private float _currentAverage = 0f;
     private float _centerX = 0f;
     private float _centerY = 0f;
-    
+
     private float rotationSpeed = 10.0f;
     private float coverOpacity = 1.0f;
     private float spectrumOpacity = 1.0f;
@@ -54,19 +55,43 @@ public partial class SpectrumVisualizer : Control
 
         _currentSpectrum = new float[_barCount];
         _smoothedSpectrum = new float[_barCount];
+        _wavePoints = new Vector2[_barCount];
     }
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        if (spectrumCanvasControl != null)
+        {
+            spectrumCanvasControl.Draw -= OnDraw;
+            spectrumCanvasControl.Update -= OnUpdate;
+            spectrumCanvasControl.CreateResources -= OnCreateResources;
+        }
+
         spectrumCanvasControl = GetTemplateChild(PART_SpectrumCanvasControl) as CanvasAnimatedControl;
+        if (spectrumCanvasControl == null) return;
+
         spectrumCanvasControl.Draw -= OnDraw;
         spectrumCanvasControl.Draw += OnDraw;
         spectrumCanvasControl.Update -= OnUpdate;
         spectrumCanvasControl.Update += OnUpdate;
+        spectrumCanvasControl.CreateResources -= OnCreateResources;
+        spectrumCanvasControl.CreateResources += OnCreateResources;
 
         InitializeText();
-        _ = InitializeSMTCAsync();
+        if (_sessionManager == null)
+        {
+            _ = InitializeSMTCAsync();
+        }
+    }
+
+    private void OnCreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+    {
+        _device = sender.Device;
+        if (_currentSession != null)
+        {
+            _ = GetCurrentMediaInfo();
+        }
     }
 
     private void InitializeText()
@@ -117,19 +142,19 @@ public partial class SpectrumVisualizer : Control
     {
         try
         {
+            if (_disposed || _sessionManager == null) return;
+
             if (_currentSession != null)
             {
                 _currentSession.MediaPropertiesChanged -= OnMediaPropertiesChanged;
-                _currentSession.PlaybackInfoChanged -= OnPlaybackInfoChanged;
             }
             var sessions = _sessionManager.GetSessions();
             _currentSession = sessions.Count > 0 ? sessions[0] : null;
             if (_currentSession != null)
             {
                 _currentSession.MediaPropertiesChanged += OnMediaPropertiesChanged;
-                _currentSession.PlaybackInfoChanged += OnPlaybackInfoChanged;
-                await GetCurrentMediaInfo();
             }
+            await GetCurrentMediaInfo();
         }
         catch (Exception)
         {
@@ -141,66 +166,81 @@ public partial class SpectrumVisualizer : Control
         await GetCurrentMediaInfo();
     }
 
-    private async void OnPlaybackInfoChanged(GlobalSystemMediaTransportControlsSession sender, PlaybackInfoChangedEventArgs args)
-    {
-        await GetCurrentMediaInfo();
-    }
-
     public async Task GetCurrentMediaInfo()
     {
-        if (_currentSession == null)
+        var version = Interlocked.Increment(ref _mediaVersion);
+        var session = _currentSession;
+        if (session == null)
         {
-            _albumArtBitmap = null;
+            _title = null;
+            _artist = null;
+            SetAlbumArt(null);
             return;
         }
         try
         {
-            _mediaProperties = await _currentSession.TryGetMediaPropertiesAsync();
-            _title = _mediaProperties?.Title;
-            _artist = _mediaProperties?.Artist;
+            var mediaProperties = await session.TryGetMediaPropertiesAsync();
+            if (version != _mediaVersion) return;
 
-            if (_mediaProperties != null && _mediaProperties.Thumbnail != null)
+            _mediaProperties = mediaProperties;
+            _title = mediaProperties?.Title;
+            _artist = mediaProperties?.Artist;
+
+            var thumbnail = mediaProperties?.Thumbnail;
+            var device = _device;
+            if (thumbnail == null || device == null)
             {
-                DispatcherQueue.TryEnqueue(async () => {
-                    try
-                    {
-                        _thumbnail = await _mediaProperties.Thumbnail.OpenReadAsync();
-                        _albumArtBitmap = await CanvasBitmap.LoadAsync(_device, _thumbnail);
-                    }
-                    catch (Exception)
-                    {
-                        try
-                        {
-                            _thumbnail = await _mediaProperties.Thumbnail.OpenReadAsync();
-                            _albumArtBitmap = await CanvasBitmap.LoadAsync(_device, _thumbnail);
-                        }
-                        catch (Exception)
-                        {
-                        }
-                    }
-                });
+                SetAlbumArt(null);
+                return;
             }
-            else
+
+            for (int attempt = 0; attempt < 2; attempt++)
             {
-                _albumArtBitmap = null;
+                try
+                {
+                    using var stream = await thumbnail.OpenReadAsync();
+                    var bitmap = await CanvasBitmap.LoadAsync(device, stream);
+                    if (version != _mediaVersion)
+                    {
+                        bitmap.Dispose();
+                        return;
+                    }
+                    SetAlbumArt(bitmap);
+                    return;
+                }
+                catch (Exception)
+                {
+                }
             }
         }
         catch (Exception)
         {
-            _albumArtBitmap = null;
+            if (version == _mediaVersion)
+            {
+                SetAlbumArt(null);
+            }
         }
     }
 
+    private void SetAlbumArt(CanvasBitmap bitmap)
+    {
+        if (_disposed)
+        {
+            bitmap?.Dispose();
+            bitmap = null;
+        }
+        Interlocked.Exchange(ref _albumArtBitmap, bitmap)?.Dispose();
+    }
 
     private void OnSpectrumDataUpdated(float[] spectrumData)
     {
+        if (spectrumData == null || spectrumData.Length == 0) return;
+
+        float scale = 250f * sensitivity;
         for (int i = 0; i < _barCount; i++)
         {
             int index = (int)((float)i / _barCount * spectrumData.Length);
-            if (index < spectrumData.Length)
-            {
-                _currentSpectrum[i] = spectrumData[index] * 250f * sensitivity;
-            }
+            _currentSpectrum[i] = spectrumData[index] * scale;
         }
     }
 
@@ -208,11 +248,19 @@ public partial class SpectrumVisualizer : Control
     {
         try
         {
-            _device = sender.Device;
             var session = args.DrawingSession;
             var size = sender.Size;
-            _currentAverage = _currentSpectrum.Average();
-            _smoothAverage = _smoothedSpectrum.Average();
+            float currentSum = 0f;
+            float smoothSum = 0f;
+            for (int i = 0; i < _barCount; i++)
+            {
+                currentSum += _currentSpectrum[i];
+                smoothSum += _smoothedSpectrum[i];
+            }
+            _currentAverage = currentSum / _barCount;
+            _smoothAverage = smoothSum / _barCount;
+            _centerX = (float)size.Width * 0.5f;
+            _centerY = (float)size.Height * 0.5f;
             if (_currentAverage > 0)
             {
                 _rotationOffset += 0.0001f * rotationSpeed;
@@ -242,8 +290,6 @@ public partial class SpectrumVisualizer : Control
                         _middleNum -= 1;
                     }
                 }
-                _centerX = (float)size.Width * 0.5f;
-                _centerY = (float)size.Height * 0.5f;
             }
 
             switch (spectrumMode)
@@ -270,23 +316,25 @@ public partial class SpectrumVisualizer : Control
         if (_smoothedSpectrum == null) return;
 
         float barWidth = (float)size.Width / _barCount;
+        float halfHeight = (float)size.Height / 2;
         float maxHeight = (float)size.Height * 0.3f;
+        float rectWidth = Math.Max(barWidth - 2, 0);
 
         for (int i = 0; i < _barCount; i++)
         {
             float x = i * barWidth;
             float height = Math.Max(Math.Min(_smoothedSpectrum[i], maxHeight), 0);
-            float y = (float)size.Height / 2 - height;
+            float y = halfHeight - height;
 
             var color = GetSpectrumColor(height / maxHeight, i);
 
             var rectUp = new Windows.Foundation.Rect(
                 x + 1, y,
-                barWidth - 2, height);
+                rectWidth, height);
 
             var rectDown = new Windows.Foundation.Rect(
-                x + 1, (float)size.Height / 2,
-                barWidth - 2, height);
+                x + 1, halfHeight,
+                rectWidth, height);
 
             session.FillRectangle(rectUp, color);
             session.FillRectangle(rectDown, color);
@@ -297,7 +345,7 @@ public partial class SpectrumVisualizer : Control
                     x, y - 5,
                     barWidth, height + 10);
                 var glowRectDown = new Windows.Foundation.Rect(
-                    x, (float)size.Height / 2 - 5,
+                    x, halfHeight - 5,
                     barWidth, height + 10);
 
                 var glowColor = Color.FromArgb((byte)(32 * spectrumOpacity), color.R, color.G, color.B);
@@ -305,6 +353,17 @@ public partial class SpectrumVisualizer : Control
                 session.FillRectangle(glowRectDown, glowColor);
             }
         }
+    }
+
+    private void FillRadialQuad(CanvasDrawingSession session, float innerRadius, float outerRadius, float cosStart, float sinStart, float cosEnd, float sinEnd, Color color)
+    {
+        _quadPoints[0] = new Vector2(_centerX + innerRadius * cosStart, _centerY + innerRadius * sinStart);
+        _quadPoints[1] = new Vector2(_centerX + innerRadius * cosEnd, _centerY + innerRadius * sinEnd);
+        _quadPoints[2] = new Vector2(_centerX + outerRadius * cosEnd, _centerY + outerRadius * sinEnd);
+        _quadPoints[3] = new Vector2(_centerX + outerRadius * cosStart, _centerY + outerRadius * sinStart);
+
+        using var geometry = CanvasGeometry.CreatePolygon(session, _quadPoints);
+        session.FillGeometry(geometry, color);
     }
 
     private void DrawRoundSpectrum(CanvasDrawingSession session, Windows.Foundation.Size size)
@@ -320,51 +379,18 @@ public partial class SpectrumVisualizer : Control
 
             float startAngle = i * angleStep + angleOffset - _rotationOffset;
             float endAngle = (i + 1) * angleStep - angleOffset - _rotationOffset;
+            float cosStart = MathF.Cos(startAngle);
+            float sinStart = MathF.Sin(startAngle);
+            float cosEnd = MathF.Cos(endAngle);
+            float sinEnd = MathF.Sin(endAngle);
             var color = GetSpectrumColor(height, i);
 
-            var polygonPoints = new List<Vector2>();
-
-            polygonPoints.Add(new Vector2(
-                _centerX + baseRadius * (float)Math.Cos(startAngle),
-                _centerY + baseRadius * (float)Math.Sin(startAngle)));
-
-            polygonPoints.Add(new Vector2(
-                _centerX + baseRadius * (float)Math.Cos(endAngle),
-                _centerY + baseRadius * (float)Math.Sin(endAngle)));
-
-            polygonPoints.Add(new Vector2(
-                _centerX + currentRadius * (float)Math.Cos(endAngle),
-                _centerY + currentRadius * (float)Math.Sin(endAngle)));
-
-            polygonPoints.Add(new Vector2(
-                _centerX + currentRadius * (float)Math.Cos(startAngle),
-                _centerY + currentRadius * (float)Math.Sin(startAngle)));
-
-            session.FillGeometry(CanvasGeometry.CreatePolygon(session, polygonPoints.ToArray()), color);
+            FillRadialQuad(session, baseRadius, currentRadius, cosStart, sinStart, cosEnd, sinEnd, color);
 
             if (height > 0.05f)
             {
                 var glowColor = Color.FromArgb((byte)(32 * spectrumOpacity), color.R, color.G, color.B);
-                float glowRadius = currentRadius + 10;
-                var glowPoints = new List<Vector2>();
-
-                glowPoints.Add(new Vector2(
-                    _centerX + currentRadius * (float)Math.Cos(startAngle),
-                    _centerY + currentRadius * (float)Math.Sin(startAngle)));
-
-                glowPoints.Add(new Vector2(
-                    _centerX + currentRadius * (float)Math.Cos(endAngle),
-                    _centerY + currentRadius * (float)Math.Sin(endAngle)));
-
-                glowPoints.Add(new Vector2(
-                    _centerX + glowRadius * (float)Math.Cos(endAngle),
-                    _centerY + glowRadius * (float)Math.Sin(endAngle)));
-
-                glowPoints.Add(new Vector2(
-                    _centerX + glowRadius * (float)Math.Cos(startAngle),
-                    _centerY + glowRadius * (float)Math.Sin(startAngle)));
-
-                session.FillGeometry(CanvasGeometry.CreatePolygon(session, glowPoints.ToArray()), glowColor);
+                FillRadialQuad(session, currentRadius, currentRadius + 10, cosStart, sinStart, cosEnd, sinEnd, glowColor);
             }
         }
     }
@@ -383,46 +409,49 @@ public partial class SpectrumVisualizer : Control
     private void DrawWaveform(CanvasDrawingSession session, Windows.Foundation.Size size)
     {
         if (_smoothedSpectrum == null) return;
-        var points = new Vector2[_barCount];
-        float centerX = (float)size.Width * 0.5f;
-        float centerY = (float)size.Height * 0.5f;
-        Vector2 center = new Vector2(centerX, centerY);
+        var points = _wavePoints;
+        float centerX = _centerX;
+        float centerY = _centerY;
 
-        float baseRadius = Math.Min(centerX, centerY) * 0.6f;
+        float baseRadius = Math.Min(centerX, centerY) * 0.6f + _smoothAverage * 10;
 
         for (int i = 0; i < _barCount; i++)
         {
             float angle = (float)i / (_barCount - 1) * 2 * (float)Math.PI - _rotationOffset;
-            float radius = baseRadius + _smoothedSpectrum.Average() * 10 + _smoothedSpectrum[i] * 0.5f;
+            float radius = baseRadius + _smoothedSpectrum[i] * 0.5f;
 
-            float x = centerX + radius * (float)Math.Cos(angle);
-            float y = centerY + radius * (float)Math.Sin(angle);
+            float x = centerX + radius * MathF.Cos(angle);
+            float y = centerY + radius * MathF.Sin(angle);
             points[i] = new Vector2(x, y);
         }
 
+        var lineColor = Color.FromArgb(128, 0, 255, 200);
         for (int i = 0; i < points.Length - 1; i++)
         {
-            session.DrawLine(points[i], points[i + 1], Color.FromArgb(128, 0, 255, 200), 2f);
+            session.DrawLine(points[i], points[i + 1], lineColor, 2f);
         }
 
         if (_barCount > 1)
         {
-            session.DrawLine(points[points.Length - 1], points[0], Color.FromArgb(128, 0, 255, 200), 2f);
+            session.DrawLine(points[points.Length - 1], points[0], lineColor, 2f);
         }
     }
 
     private void DrawAlbumArt(CanvasDrawingSession session, Windows.Foundation.Size size)
     {
+        var albumArt = _albumArtBitmap;
+        if (albumArt == null || !_showAlbumArt)
+        {
+            return;
+        }
+        var originalTransform = session.Transform;
         try
         {
-            if (_albumArtBitmap == null || !_showAlbumArt)
-            {
-                return;
-            }
             float baseRadius = Math.Min(_centerX, _centerY) * 0.5f;
-            var circleGeometry = CanvasGeometry.CreateCircle(session, _centerX, _centerY, baseRadius);
+            using var circleGeometry = CanvasGeometry.CreateCircle(session, _centerX, _centerY, baseRadius);
 
-            float imageAspectRatio = (float)_albumArtBitmap.SizeInPixels.Width / _albumArtBitmap.SizeInPixels.Height;
+            var pixelSize = albumArt.SizeInPixels;
+            float imageAspectRatio = (float)pixelSize.Width / pixelSize.Height;
             float targetWidth = baseRadius * 2;
             float targetHeight = baseRadius * 2;
 
@@ -440,13 +469,13 @@ public partial class SpectrumVisualizer : Control
             }
             drawX = _centerX - drawWidth / 2;
             drawY = _centerY - drawHeight / 2;
-            session.Transform = Matrix3x2.CreateRotation(-_rotationOffset, new Vector2(_centerX, _centerY)) * session.Transform;
+            session.Transform = Matrix3x2.CreateRotation(-_rotationOffset, new Vector2(_centerX, _centerY)) * originalTransform;
             using (session.CreateLayer(1.0f, circleGeometry))
             {
                 session.DrawImage(
-                    _albumArtBitmap,
+                    albumArt,
                     new Rect(drawX, drawY, drawWidth, drawHeight),
-                    new Rect(0, 0, _albumArtBitmap.SizeInPixels.Width, _albumArtBitmap.SizeInPixels.Height),
+                    new Rect(0, 0, pixelSize.Width, pixelSize.Height),
                     coverOpacity,
                     CanvasImageInterpolation.HighQualityCubic);
             }
@@ -454,11 +483,16 @@ public partial class SpectrumVisualizer : Control
         catch (Exception)
         {
         }
+        finally
+        {
+            session.Transform = originalTransform;
+        }
     }
 
     private void DrawTitleAndArtist(CanvasDrawingSession session, Windows.Foundation.Size size)
     {
         if (string.IsNullOrEmpty(_title) && string.IsNullOrEmpty(_artist)) return;
+        if (!_showTitle && !_showArtist) return;
 
         float maxTextWidth = Math.Min((float)size.Width, (float)size.Height) * 0.4f;
         float baseFontSize = 18f;
@@ -468,17 +502,18 @@ public partial class SpectrumVisualizer : Control
         _titleTextFormat.FontSize = newFontSize;
         _artistTextFormat.FontSize = newFontSize * 0.9f;
 
-        CanvasTextLayout titleLayout = new(_device, _title ?? string.Empty, _titleTextFormat, maxTextWidth, 20);
-        CanvasTextLayout artistLayout = new(_device, _artist ?? string.Empty, _artistTextFormat, maxTextWidth, 16);
+        using CanvasTextLayout titleLayout = new(session, _title ?? string.Empty, _titleTextFormat, maxTextWidth, 20);
+        using CanvasTextLayout artistLayout = new(session, _artist ?? string.Empty, _artistTextFormat, maxTextWidth, 16);
+        var fontColor = Color.FromArgb((byte)(255 * fontOpacity), 255, 255, 255);
 
         if (_showTitle)
         {
-            session.DrawTextLayout(titleLayout, new Vector2(centerX, centerY), Color.FromArgb((byte)(255 * fontOpacity), 255, 255, 255));
+            session.DrawTextLayout(titleLayout, new Vector2(centerX, centerY), fontColor);
         }
 
         if (_showArtist)
         {
-            session.DrawTextLayout(artistLayout, new Vector2(centerX, centerY + (float)titleLayout.LayoutBounds.Height), Color.FromArgb((byte)(255 * fontOpacity), 255, 255, 255));
+            session.DrawTextLayout(artistLayout, new Vector2(centerX, centerY + (float)titleLayout.LayoutBounds.Height), fontColor);
         }
     }
 
@@ -524,8 +559,35 @@ public partial class SpectrumVisualizer : Control
     {
         if (!_disposed)
         {
-            _analyzer?.Dispose();
             _disposed = true;
+
+            if (_analyzer != null)
+            {
+                _analyzer.SpectrumDataUpdated -= OnSpectrumDataUpdated;
+                _analyzer.Dispose();
+            }
+
+            if (_sessionManager != null)
+            {
+                _sessionManager.SessionsChanged -= OnSessionsChanged;
+            }
+
+            if (_currentSession != null)
+            {
+                _currentSession.MediaPropertiesChanged -= OnMediaPropertiesChanged;
+                _currentSession = null;
+            }
+
+            if (spectrumCanvasControl != null)
+            {
+                spectrumCanvasControl.Draw -= OnDraw;
+                spectrumCanvasControl.Update -= OnUpdate;
+                spectrumCanvasControl.CreateResources -= OnCreateResources;
+                spectrumCanvasControl.RemoveFromVisualTree();
+                spectrumCanvasControl = null;
+            }
+
+            SetAlbumArt(null);
         }
     }
 }
