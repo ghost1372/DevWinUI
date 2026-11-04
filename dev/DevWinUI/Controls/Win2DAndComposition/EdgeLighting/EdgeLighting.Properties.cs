@@ -52,7 +52,10 @@ public partial class EdgeLighting
         var ctl = (EdgeLighting)d;
         if (ctl != null)
         {
-            ctl.Build();
+            if (!ctl.IsRounded)
+            {
+                ctl.Build();
+            }
             ctl.UpdateBorderCornerRadius();
         }
     }
@@ -213,7 +216,7 @@ public partial class EdgeLighting
         var ctl = (EdgeLighting)d;
         if (ctl != null)
         {
-            ctl.Build();
+            ctl.UpdateAnimation();
         }
     }
 
@@ -231,7 +234,7 @@ public partial class EdgeLighting
         var ctl = (EdgeLighting)d;
         if (ctl != null)
         {
-            ctl.Build();
+            ctl.UpdateAnimation();
         }
     }
 
@@ -248,7 +251,7 @@ public partial class EdgeLighting
         var ctl = (EdgeLighting)d;
         if (ctl != null)
         {
-            ctl.Build();
+            ctl.UpdateAnimation();
         }
     }
     public bool IsRounded
