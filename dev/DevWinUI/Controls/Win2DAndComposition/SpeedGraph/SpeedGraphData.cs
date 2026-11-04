@@ -4,9 +4,11 @@ namespace DevWinUI;
 
 public partial class SpeedGraphData
 {
+    private const ulong InitialMax = 1024 * 1024;
+
     private Size _graphSize;
     private ulong _total;
-    private ulong _currentMax = 1024 * 1024;
+    private ulong _currentMax = InitialMax;
     private float _ratio = 1.0f;
     private double _currentPercent;
 
@@ -21,30 +23,31 @@ public partial class SpeedGraphData
         return (float)(_graphSize.Width * ((float)progressBytes / _total));
     }
 
-    private float GetY(ulong speed)
+    private float GetY(ulong speed, float ratio)
     {
-        return (float)(_graphSize.Height * (1.0f - (float)speed / _currentMax / _ratio));
+        return (float)(_graphSize.Height * (1.0f - (float)speed / _currentMax / ratio));
     }
 
-    private void AddInitialPointIfNeeded(ref uint count)
+    private void AddInitialPointIfNeeded(PointCollection points, ref uint count)
     {
         if (count == 0)
         {
-            polygon.Points.Add(new Point(0, _graphSize.Height));
+            points.Add(new Point(0, _graphSize.Height));
             count++;
         }
     }
-    public class SetSpeedResult
+    public struct SetSpeedResult
     {
-        public float NewScaleRatio { get; set; } = 1.0f;
-        public bool NeedAnimation { get; set; } = false;
+        public float NewScaleRatio { get; set; }
+        public bool NeedAnimation { get; set; }
     }
 
     public SetSpeedResult SetSpeed(double percent, ulong speed)
     {
-        var result = new SetSpeedResult();
+        var result = new SetSpeedResult { NewScaleRatio = 1.0f };
 
-        if (polygon.Points == null)
+        var points = polygon?.Points;
+        if (points == null)
             return result;
 
         if (_currentMax == 0 && speed == 0)
@@ -52,33 +55,35 @@ public partial class SpeedGraphData
 
         _currentPercent = percent;
 
-        uint count = (uint)polygon.Points.Count;
+        uint count = (uint)points.Count;
+        float ratio = _ratio;
 
         if (_currentMax < speed)
         {
             result.NewScaleRatio = (float)_currentMax / speed;
             _currentMax = speed;
+            ratio *= result.NewScaleRatio;
         }
 
-        float y = GetY(speed);
+        float y = GetY(speed, ratio);
 
-        float x = (float)(percent / 100.0 * _graphSize.Width);
+        float x = (float)(Math.Clamp(percent, 0.0, 100.0) / 100.0 * _graphSize.Width);
 
         switch (count)
         {
             case 0:
-                AddInitialPointIfNeeded(ref count);
-                polygon.Points.Add(new Point(x, y));
+                AddInitialPointIfNeeded(points, ref count);
+                points.Add(new Point(x, y));
                 break;
 
             case 2:
-                polygon.Points.Add(new Point(x, y));
-                polygon.Points.Add(new Point(x, _graphSize.Height));
+                points.Add(new Point(x, y));
+                points.Add(new Point(x, _graphSize.Height));
                 break;
 
             default:
-                polygon.Points[polygon.Points.Count - 1] = new Point(x, y);
-                polygon.Points.Add(new Point(x, _graphSize.Height));
+                points[(int)count - 1] = new Point(x, y);
+                points.Add(new Point(x, _graphSize.Height));
                 break;
         }
 
@@ -98,6 +103,14 @@ public partial class SpeedGraphData
         return _ratio;
     }
 
+    public void Reset()
+    {
+        polygon?.Points?.Clear();
+        _currentMax = InitialMax;
+        _ratio = 1.0f;
+        _currentPercent = 0;
+    }
+
     public float Height => (float)_graphSize.Height;
     public float Width => (float)_graphSize.Width;
 
@@ -108,6 +121,7 @@ public partial class SpeedGraphData
 
     public Point GetLastPoint()
     {
-        return polygon.Points[polygon.Points.Count - 2];
+        var points = polygon.Points;
+        return points[points.Count - 2];
     }
 }
