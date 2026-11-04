@@ -13,6 +13,8 @@ public partial class ConfettiCannonOptions
         "#ff36ff"
     ];
 
+    private static readonly List<Color> DefaultColorValues = DefaultColors.Select(ColorHelper.GetColorFromHex).ToList();
+
     public int ParticleCount { get; set; } = 50;
 
     public double Angle { get; set; } = 90;
@@ -46,6 +48,6 @@ public partial class ConfettiCannonOptions
         if (Colors is { Count: > 0 })
             return Colors;
 
-        return DefaultColors.Select(ColorHelper.GetColorFromHex).ToList();
+        return DefaultColorValues;
     }
 }
