@@ -1,10 +1,17 @@
-﻿using Windows.Foundation.Metadata;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class BannerView : FlipView
 {
     private const string ScrollingHost = "ScrollingHost";
+
+    private const string DistanceNode = "((scroll.Translation.X + target.Offset.X) / target.Size.X)";
+    private const string ClampedDistanceNode = $"Clamp({DistanceNode}, -1f, 1f)";
+    private const string ScaleExpression = $"1 - abs({ClampedDistanceNode}) * 0.1f";
+    private const string OffsetExpression = $"-{ClampedDistanceNode} * (prop.ItemsSpacing + prop.PerspectiveSpacing)";
+    private const string CenterPointExpression = $"Vector3((1 - {ClampedDistanceNode}) * target.Size.X * 0.5, prop.CenterPointY, 0f)";
+    private const string RotationExpression = $"0.2 * Pi * {ClampedDistanceNode}";
+
+    private readonly DispatcherTimer timer = new();
     private ScrollViewer scrollingHost;
 
     internal Compositor Compositor;
@@ -17,44 +24,50 @@ public partial class BannerView : FlipView
     private ExpressionAnimation panelPerspectiveExp;
     private CycleSelectionState CycleSelectionState;
 
-    private const string IndexNode = "(target.Offset.X / target.Size.X)";
-
-    private const string SelectedIndexNode = "(-scroll.Translation.X / target.Size.X)";
-
-    private const string DistanceNode = "((scroll.Translation.X + target.Offset.X) / target.Size.X)";
-
-    private static readonly string ClampedDistanceNode = $"Clamp({DistanceNode}, -1f, 1f)";
-
-    protected new bool IsLoaded { get; private set; }
-    private DispatcherTimer timer;
     public BannerView()
     {
         this.DefaultStyleKey = typeof(BannerView);
 
         RegisterPropertyChangedCallback(FlipView.VerticalContentAlignmentProperty, VerticalContentAlignmentPropertyChanged);
 
-        this.SelectionChanged -= OnSelectionChanged;
-        this.SelectionChanged += OnSelectionChanged;
-        this.Loaded -= OnLoaded;
-        this.Loaded += OnLoaded;
+        timer.Interval = Interval;
+        timer.Tick += Timer_Tick;
+
+        SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        IsLoaded = true;
         InitComposition();
         InitCycleSelectedIndex();
         UpdateSelectedIndex();
 
         if (ItemsPanelRoot is VirtualizingStackPanel vsp)
         {
-            vsp.CleanUpVirtualizedItemEvent += (s, a) =>
-            {
-                if (a.UIElement is BannerViewItem container && container.IsCycleItemContainer)
-                {
-                    a.Cancel = true;
-                }
-            };
+            vsp.CleanUpVirtualizedItemEvent -= OnCleanUpVirtualizedItem;
+            vsp.CleanUpVirtualizedItemEvent += OnCleanUpVirtualizedItem;
+        }
+
+        OnAutoShuffleChanged();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        timer.Stop();
+
+        if (ItemsPanelRoot is VirtualizingStackPanel vsp)
+        {
+            vsp.CleanUpVirtualizedItemEvent -= OnCleanUpVirtualizedItem;
+        }
+    }
+
+    private void OnCleanUpVirtualizedItem(object sender, CleanUpVirtualizedItemEventArgs e)
+    {
+        if (e.UIElement is BannerViewItem container && container.IsCycleItemContainer)
+        {
+            e.Cancel = true;
         }
     }
 
@@ -65,9 +78,8 @@ public partial class BannerView : FlipView
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (IsCycleEnable())
+        if (ItemsSource is ICycleCollection list)
         {
-            var list = GetCycleItemsSource();
             if (list.IsHeader(SelectedIndex))
             {
                 CycleSelectionState = CycleSelectionState.Footer;
@@ -81,7 +93,7 @@ public partial class BannerView : FlipView
 
     protected bool IsCycleEnable()
     {
-        return ItemsSource.GetType().GetGenericTypeDefinition() == typeof(CycleCollection<>);
+        return ItemsSource is ICycleCollection;
     }
 
     protected ICycleCollection GetCycleItemsSource()
@@ -93,31 +105,24 @@ public partial class BannerView : FlipView
     {
         base.OnApplyTemplate();
 
+        if (scrollingHost != null)
+        {
+            scrollingHost.ViewChanged -= ScrollingHost_ViewChanged;
+        }
+
         scrollingHost = GetTemplateChild(ScrollingHost) as ScrollViewer;
-        scrollingHost.ViewChanged -= ScrollingHost_ViewChanged;
-        scrollingHost.ViewChanged += ScrollingHost_ViewChanged;
 
-        timer = new DispatcherTimer();
-        timer.Interval = Interval;
-        timer.Tick -= Timer_Tick;
-        timer.Tick += Timer_Tick;
-
-        Unloaded -= OnUnloaded;
-        Unloaded += OnUnloaded;
-
-        OnAutoShuffleChanged();
-    }
-
-    private void OnUnloaded(object sender, RoutedEventArgs e)
-    {
-        timer?.Stop();
-        timer = null;
+        if (scrollingHost != null)
+        {
+            scrollingHost.ViewChanged += ScrollingHost_ViewChanged;
+        }
     }
 
     public void StopShuffle()
     {
         timer.Stop();
     }
+
     public void PlayShuffleForward()
     {
         if (!AutoShuffle)
@@ -138,32 +143,40 @@ public partial class BannerView : FlipView
 
     private void StartShuffleInternal()
     {
-        timer?.Start();
+        if (IsLoaded)
+        {
+            timer.Start();
+        }
     }
+
     private void Timer_Tick(object sender, object e)
     {
-        switch (ShiftingDirection)
+        int count = Items.Count;
+        if (count == 0)
+            return;
+
+        int next = SelectedIndex + (ShiftingDirection == CarouselShiftingDirection.Forward ? 1 : -1);
+
+        if (next < 0 || next >= count)
         {
-            case CarouselShiftingDirection.Forward:
-                SelectedIndex++;
-                break;
-            case CarouselShiftingDirection.Backward:
-                SelectedIndex--;
-                break;
+            if (IsCycleEnable())
+                return;
+
+            next = (next % count + count) % count;
         }
+
+        SelectedIndex = next;
     }
 
     private void ScrollingHost_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
     {
-        if (!e.IsIntermediate)
+        if (e.IsIntermediate || !IsLoaded || !IsCycleEnable())
+            return;
+
+        if (CycleSelectionState != CycleSelectionState.None)
         {
-            if (!IsLoaded) return;
-            if (!IsCycleEnable()) return;
-            if (CycleSelectionState != CycleSelectionState.None)
-            {
-                CycleSelectionState = CycleSelectionState.None;
-                UpdateSelectedIndex();
-            }
+            CycleSelectionState = CycleSelectionState.None;
+            UpdateSelectedIndex();
         }
     }
 
@@ -181,15 +194,9 @@ public partial class BannerView : FlipView
     {
         if (element is BannerViewItem container)
         {
-            if (IsCycleItem(item))
-            {
-                container.IsCycleItemContainer = true;
-            }
-            else
-            {
-                container.IsCycleItemContainer = false;
-            }
+            container.IsCycleItemContainer = IsCycleItem(item);
         }
+
         CreateAnimation((UIElement)element);
         base.PrepareContainerForItemOverride(element, item);
     }
@@ -200,76 +207,79 @@ public partial class BannerView : FlipView
         {
             container.IsCycleItemContainer = false;
         }
+
         base.ClearContainerForItemOverride(element, item);
     }
 
     private bool IsCycleItem(object item)
     {
-        if (IsCycleEnable())
-        {
-            var list = GetCycleItemsSource();
-            return list.IsCycleItem(item);
-        }
-        return false;
+        return ItemsSource is ICycleCollection list && list.IsCycleItem(item);
     }
 
     private void InitComposition()
     {
+        if (scrollingHost == null || ItemsPanelRoot == null)
+            return;
+
         Compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         scrollProps = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollingHost);
         thisVisual = ElementCompositionPreview.GetElementVisual(this);
         panelVisual = ElementCompositionPreview.GetElementVisual(ItemsPanelRoot);
+
+        perspectiveMatrixExp?.Dispose();
+        perspectiveMatrixExp = null;
+        panelPerspectiveExp?.Dispose();
+        panelPerspectiveExp = null;
+
         props = Compositor.CreatePropertySet();
         props.InsertMatrix4x4("perspective", Matrix4x4.Identity);
-        props.InsertScalar("ItemsSpacing", 0f);
+        props.InsertScalar("ItemsSpacing", (float)ItemsSpacing);
         props.InsertScalar("PerspectiveSpacing", 20f);
         props.InsertScalar("CenterPointY", 0f);
 
         UpdateCenterPoint();
 
-        for (int i = 0; i < ItemsPanelRoot.Children.Count; i++)
+        foreach (var child in ItemsPanelRoot.Children)
         {
-            CreateAnimation(ItemsPanelRoot.Children[i]);
+            CreateOffsetAnimation(child);
+            CreateCenterPointAnimation(child);
         }
 
         UpdateScale();
         UpdatePerspective();
-        UpdateItemSpacing();
     }
 
     private void UpdateCenterPoint()
     {
-        if (props != null)
+        if (props == null)
+            return;
+
+        var expression = VerticalContentAlignment switch
         {
-            ExpressionAnimation ex = null;
-            switch (VerticalContentAlignment)
-            {
-                case VerticalAlignment.Top:
-                    ex = Compositor.CreateExpressionAnimation("0f");
-                    break;
-                case VerticalAlignment.Bottom:
-                    ex = Compositor.CreateExpressionAnimation("target.Size.Y");
-                    break;
-                default:
-                    ex = Compositor.CreateExpressionAnimation("target.Size.Y / 2");
-                    break;
-            }
-            ex.SetReferenceParameter("target", ElementCompositionPreview.GetElementVisual(this));
-            props.StartAnimation("CenterPointY", ex);
-        }
+            VerticalAlignment.Top => "0f",
+            VerticalAlignment.Bottom => "target.Size.Y",
+            _ => "target.Size.Y / 2"
+        };
+
+        var ex = Compositor.CreateExpressionAnimation(expression);
+        ex.SetReferenceParameter("target", thisVisual);
+        props.StartAnimation("CenterPointY", ex);
     }
 
     private void CreateAnimation(UIElement element)
     {
-        if (scrollProps == null) return;
+        if (scrollProps == null)
+            return;
 
         CreateOffsetAnimation(element);
         CreateCenterPointAnimation(element);
+
         if (IsScaleEnable)
         {
             CreateScaleAnimation(element);
         }
+
         if (IsPerspectiveEnable)
         {
             CreateRotationAnimation(element);
@@ -280,7 +290,7 @@ public partial class BannerView : FlipView
     {
         var visual = ElementCompositionPreview.GetElementVisual(element);
 
-        var itemScaleExp = Compositor.CreateExpressionAnimation($"1 - abs({ClampedDistanceNode}) * 0.1f");
+        var itemScaleExp = Compositor.CreateExpressionAnimation(ScaleExpression);
         itemScaleExp.SetReferenceParameter("scroll", scrollProps);
         itemScaleExp.SetReferenceParameter("target", visual);
 
@@ -292,45 +302,20 @@ public partial class BannerView : FlipView
     {
         var visual = ElementCompositionPreview.GetElementVisual(element);
 
-        var itemOffsetExp = Compositor.CreateExpressionAnimation($"-{ClampedDistanceNode} * (prop.ItemsSpacing + prop.PerspectiveSpacing)");
+        var itemOffsetExp = Compositor.CreateExpressionAnimation(OffsetExpression);
         itemOffsetExp.SetReferenceParameter("prop", props);
         itemOffsetExp.SetReferenceParameter("scroll", scrollProps);
         itemOffsetExp.SetReferenceParameter("target", visual);
 
-        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 4))
-        {
-            ElementCompositionPreview.SetIsTranslationEnabled(element, true);
-            visual.StartAnimation("Translation.X", itemOffsetExp);
-        }
-        else if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
-        {
-            var child = VisualTreeHelper.GetChild(element, 0) as UIElement;
-            if (child == null)
-            {
-                ((FrameworkElement)element).Loaded += _Loaded;
-            }
-            else
-            {
-                _Loaded(null, null);
-            }
-
-            void _Loaded(object sender, RoutedEventArgs e)
-            {
-                child = VisualTreeHelper.GetChild(element, 0) as UIElement;
-                if (child != null)
-                {
-                    ElementCompositionPreview.GetElementVisual(child).StartAnimation("Offset.X", itemOffsetExp);
-                }
-            }
-        }
+        ElementCompositionPreview.SetIsTranslationEnabled(element, true);
+        visual.StartAnimation("Translation.X", itemOffsetExp);
     }
-
 
     private void CreateCenterPointAnimation(UIElement element)
     {
         var visual = ElementCompositionPreview.GetElementVisual(element);
 
-        var itemCenterPointExp = Compositor.CreateExpressionAnimation($"Vector3((1 - {ClampedDistanceNode}) * target.Size.X * 0.5, prop.CenterPointY, 0f)");
+        var itemCenterPointExp = Compositor.CreateExpressionAnimation(CenterPointExpression);
         itemCenterPointExp.SetReferenceParameter("prop", props);
         itemCenterPointExp.SetReferenceParameter("scroll", scrollProps);
         itemCenterPointExp.SetReferenceParameter("target", visual);
@@ -340,92 +325,84 @@ public partial class BannerView : FlipView
 
     private void CreateRotationAnimation(UIElement element)
     {
-        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 4))
-        {
-            var visual = ElementCompositionPreview.GetElementVisual(element);
+        var visual = ElementCompositionPreview.GetElementVisual(element);
 
-            var itemRotationExp = Compositor.CreateExpressionAnimation($"0.2 * Pi * {ClampedDistanceNode}");
-            itemRotationExp.SetReferenceParameter("scroll", scrollProps);
-            itemRotationExp.SetReferenceParameter("target", visual);
+        var itemRotationExp = Compositor.CreateExpressionAnimation(RotationExpression);
+        itemRotationExp.SetReferenceParameter("scroll", scrollProps);
+        itemRotationExp.SetReferenceParameter("target", visual);
 
-            visual.RotationAxis = new Vector3(0f, 1f, 0f);
-
-            visual.StartAnimation("RotationAngle", itemRotationExp);
-        }
+        visual.RotationAxis = new Vector3(0f, 1f, 0f);
+        visual.StartAnimation("RotationAngle", itemRotationExp);
     }
 
     private void InitCycleSelectedIndex()
     {
-        if (IsCycleEnable())
+        if (ItemsSource is ICycleCollection list && list.Count > 2)
         {
-            var list = GetCycleItemsSource();
-            if (list.Count > 2)
-            {
-                SelectedIndex = list.ConvertFromItemIndex(0);
-                OnCycleSelectionChanged(new SelectionChangedEventArgs(new object[] { }, new object[] { list[SelectedIndex] }));
-            }
+            SelectedIndex = list.ConvertFromItemIndex(0);
+            RaiseCycleSelectionChanged();
         }
     }
 
     private void UpdateSelectedIndex()
     {
-        if (IsCycleEnable())
+        if (ItemsSource is not ICycleCollection list)
+            return;
+
+        if (list.IsCycleItem(SelectedIndex))
         {
-            int index = -1;
-            var list = GetCycleItemsSource();
-            if (list.IsCycleItem(SelectedIndex))
-            {
-                index = list.ConvertFromItemIndex(list.ConvertToItemIndex(SelectedIndex));
-            }
+            int index = list.ConvertFromItemIndex(list.ConvertToItemIndex(SelectedIndex));
 
             if (index != -1)
             {
                 SelectedIndex = index;
                 UpdateLayout();
             }
+        }
 
-            OnCycleSelectionChanged(new SelectionChangedEventArgs(new object[] { }, new object[] { SelectedIndex }));
+        RaiseCycleSelectionChanged();
+    }
+
+    private void RaiseCycleSelectionChanged()
+    {
+        if (SelectedItem != null)
+        {
+            OnCycleSelectionChanged(new SelectionChangedEventArgs(Array.Empty<object>(), new object[] { SelectedItem }));
         }
     }
 
-
     private void UpdateItemSpacing()
     {
-        if (props != null)
-        {
-            props.InsertScalar("ItemsSpacing", (float)ItemsSpacing);
-        }
+        props?.InsertScalar("ItemsSpacing", (float)ItemsSpacing);
     }
 
     private void UpdateScale()
     {
-        if (ItemsPanelRoot != null)
+        if (scrollProps == null || ItemsPanelRoot == null)
+            return;
+
+        foreach (var item in ItemsPanelRoot.Children)
         {
             if (IsScaleEnable)
             {
-                foreach (var item in ItemsPanelRoot.Children)
-                {
-                    CreateScaleAnimation(item);
-                }
+                CreateScaleAnimation(item);
             }
             else
             {
-                foreach (var item in ItemsPanelRoot.Children)
-                {
-                    var visual = ElementCompositionPreview.GetElementVisual(item);
-                    visual.StopAnimation("Scale.X");
-                    visual.StopAnimation("Scale.Y");
-                    visual.Scale = Vector3.One;
-                }
+                var visual = ElementCompositionPreview.GetElementVisual(item);
+                visual.StopAnimation("Scale.X");
+                visual.StopAnimation("Scale.Y");
+                visual.Scale = Vector3.One;
             }
         }
     }
 
     private void UpdatePerspective()
     {
-        if (props == null) return;
+        if (props == null || ItemsPanelRoot == null)
+            return;
 
-        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 4) && IsPerspectiveEnable)
+        if (IsPerspectiveEnable)
         {
             props.InsertScalar("PerspectiveSpacing", 0f);
 
@@ -438,17 +415,14 @@ public partial class BannerView : FlipView
                 perspectiveMatrixExp.SetReferenceParameter("target", thisVisual);
             }
 
-
             if (panelPerspectiveExp == null)
             {
                 panelPerspectiveExp = Compositor.CreateExpressionAnimation("Matrix4x4.CreateFromTranslation(Vector3((scroll.Translation.X - target.Size.X / 2), -target.Size.Y / 2 , 0f)) * " +
-                                                                            "prop.perspective * " +
-                                                                            "Matrix4x4.CreateFromTranslation(Vector3((target.Size.X / 2 - scroll.Translation.X), target.Size.Y / 2, 0f))");
+                                                                           "prop.perspective * " +
+                                                                           "Matrix4x4.CreateFromTranslation(Vector3((target.Size.X / 2 - scroll.Translation.X), target.Size.Y / 2, 0f))");
                 panelPerspectiveExp.SetReferenceParameter("scroll", scrollProps);
-                panelPerspectiveExp.SetReferenceParameter("panel", panelVisual);
                 panelPerspectiveExp.SetReferenceParameter("target", thisVisual);
                 panelPerspectiveExp.SetReferenceParameter("prop", props);
-
             }
 
             props.StartAnimation("perspective", perspectiveMatrixExp);
@@ -463,8 +437,10 @@ public partial class BannerView : FlipView
         {
             props.InsertScalar("PerspectiveSpacing", 20f);
 
-            panelVisual.StopAnimation("TransformMatrix");
             props.StopAnimation("perspective");
+            props.InsertMatrix4x4("perspective", Matrix4x4.Identity);
+            panelVisual.StopAnimation("TransformMatrix");
+            panelVisual.TransformMatrix = Matrix4x4.Identity;
 
             foreach (var item in ItemsPanelRoot.Children)
             {
@@ -474,7 +450,6 @@ public partial class BannerView : FlipView
             }
         }
     }
-
 
     public event SelectionChangedEventHandler CycleSelectionChanged;
 

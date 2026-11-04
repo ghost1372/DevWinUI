@@ -19,6 +19,9 @@ public partial class BannerViewItem : FlipViewItem
         get => isCycleItemContainer;
         set
         {
+            if (isCycleItemContainer == value)
+                return;
+
             isCycleItemContainer = value;
             UpdateShadowAnimation();
         }
@@ -46,7 +49,7 @@ public partial class BannerViewItem : FlipViewItem
     {
         this.DefaultStyleKey = typeof(BannerViewItem);
         RegisterPropertyChangedCallback(FlipViewItem.IsSelectedProperty, IsSelectedPropertyChanged);
-        this.SizeChanged += (s, a) => UpdateShadow();
+        this.SizeChanged += OnSizeChanged;
     }
 
     protected override void OnApplyTemplate()
@@ -59,6 +62,11 @@ public partial class BannerViewItem : FlipViewItem
         InitComposition();
     }
 
+    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        UpdateShadow();
+    }
+
     private void IsSelectedPropertyChanged(DependencyObject sender, DependencyProperty dp)
     {
         if (dropShadow != null)
@@ -69,6 +77,12 @@ public partial class BannerViewItem : FlipViewItem
 
     private void InitComposition()
     {
+        if (shadowHost == null || backgroundRect == null)
+            return;
+
+        dropShadow?.Dispose();
+        imps?.Dispose();
+
         Compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         var visual = Compositor.CreateSpriteVisual();
@@ -98,20 +112,19 @@ public partial class BannerViewItem : FlipViewItem
 
     private void UpdateShadowAnimation()
     {
-        if (imps == null) return;
-        if (IsCycleItemContainer)
-        {
-            dropShadow.ImplicitAnimations = null;
-        }
-        else
-        {
-            dropShadow.ImplicitAnimations = imps;
-        }
+        if (dropShadow == null)
+            return;
+
+        dropShadow.ImplicitAnimations = IsCycleItemContainer ? null : imps;
     }
 
     private void UpdateShadow()
     {
-        if (dropShadow == null) return;
+        if (dropShadow == null || backgroundRect == null)
+            return;
+
+        var oldMask = dropShadow.Mask;
         dropShadow.Mask = backgroundRect.GetAlphaMask();
+        oldMask?.Dispose();
     }
 }
