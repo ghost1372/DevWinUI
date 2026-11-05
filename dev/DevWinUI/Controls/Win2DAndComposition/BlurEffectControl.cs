@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class BlurEffectControl : Control
 {
     private readonly BlurEffectManager _blurManager;
@@ -189,8 +190,8 @@ public partial class BlurEffectControl : Control
             _blurManager.CustomSourceBrush = CustomSourceBrush;
             _blurManager.NoiseUri = NoiseUri;
             _blurManager.SourceType = SourceType;
-            _blurManager.BlurAmount = BlurAmount;
-            _blurManager.UseNoise = UseNoise;
+            _blurManager.BlurAmount = double.IsNaN(BlurAmount) ? 0d : Math.Max(BlurAmount, 0d);
+            _blurManager.UseNoise = UseNoise && !string.IsNullOrWhiteSpace(NoiseUri);
             _blurManager.BorderMode = BorderMode;
             _blurManager.Optimization = Optimization;
             _blurManager.BlendMode = BlendMode;
