@@ -45,17 +45,18 @@ public partial class TextToBrushWrapper : Control
             new PropertyMetadata(default(string), OnTextChanged));
 
     private readonly CompositionGraphicsDevice _graphicsDevice;
-    private SpriteVisual _spriteTextVisual;
+    private Compositor _compositor;
 
     public TextToBrushWrapper()
     {
         _graphicsDevice = CanvasComposition.CreateCompositionGraphicsDevice(Compositor, CanvasDevice.GetSharedDevice());
-        _spriteTextVisual = Compositor.CreateSpriteVisual();
         DrawingSurface = _graphicsDevice.CreateDrawingSurface(new Size(10, 10),
             DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
         Brush = Compositor.CreateSurfaceBrush(DrawingSurface);
         RegisterPropertyChangedCallback(FontSizeProperty, (s, e) => { DrawSurface(); });
         RegisterPropertyChangedCallback(BackgroundProperty, (s, e) => { DrawSurface(); });
+        RegisterPropertyChangedCallback(FontFamilyProperty, (s, e) => { DrawSurface(); });
+        RegisterPropertyChangedCallback(FontWeightProperty, (s, e) => { DrawSurface(); });
         RegisterPropertyChangedCallback(HeightProperty, (s, e) =>
         {
             if (double.IsNaN(Height) || double.IsNaN(Width) || Width == 0 || Height == 0)
@@ -138,12 +139,11 @@ public partial class TextToBrushWrapper : Control
     }
 
     protected CompositionDrawingSurface DrawingSurface { get; }
-    private Compositor Compositor => ElementCompositionPreview.GetElementVisual(this).Compositor;
+    private Compositor Compositor => _compositor ??= ElementCompositionPreview.GetElementVisual(this).Compositor;
 
     protected void DrawSurface()
     {
-        if (double.IsNaN(Height) || double.IsNaN(Width) || Width == 0 || Height == 0 ||
-            string.IsNullOrWhiteSpace(Text) || DrawingSurface == null)
+        if (double.IsNaN(Height) || double.IsNaN(Width) || Width == 0 || Height == 0 || DrawingSurface == null)
             return;
 
         var width = (float)Width;
@@ -160,6 +160,9 @@ public partial class TextToBrushWrapper : Control
             if (Background is SolidColorBrush solidColorBrush)
                 session.FillRectangle(new Rect(0, 0, width, height), solidColorBrush.Color);
 
+            if (string.IsNullOrWhiteSpace(Text))
+                return;
+
             using (var textFormat = new CanvasTextFormat
             {
                 FontSize = (float)FontSize,
@@ -172,11 +175,7 @@ public partial class TextToBrushWrapper : Control
             {
                 using (var textLayout = new CanvasTextLayout(session, Text, textFormat, width, height))
                 {
-                    var fullSizeGeometry = CanvasGeometry.CreateRectangle(session, 0, 0, width, height);
-                    var textGeometry = CanvasGeometry.CreateText(textLayout);
-                    var finalGeometry = fullSizeGeometry.CombineWith(textGeometry, Matrix3x2.Identity,
-                        CanvasGeometryCombine.Exclude);
-                    using (var layer = session.CreateLayer(1, fullSizeGeometry))
+                    if (ShadowBlurAmount > 0)
                     {
                         using (var bitmap = new CanvasRenderTarget(session, width, height))
                         {
@@ -196,6 +195,12 @@ public partial class TextToBrushWrapper : Control
                             }
                         }
                     }
+                    else
+                    {
+                        session.Transform = Matrix3x2.CreateTranslation((float)ShadowOffsetX, (float)ShadowOffsetY);
+                        DrawText(session, textLayout, ShadowColor);
+                        session.Transform = Matrix3x2.Identity;
+                    }
 
                     DrawText(session, textLayout, FontColor);
                 }
@@ -207,6 +212,9 @@ public partial class TextToBrushWrapper : Control
     {
         if (ShowNonOutlineText)
             session.DrawTextLayout(textLayout, 0, 0, color);
+
+        if (StrokeWidth <= 0)
+            return;
 
         using (var textGeometry = CanvasGeometry.CreateText(textLayout))
         {
