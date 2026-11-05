@@ -51,7 +51,7 @@ public partial class StoreCarousel
         var ctl = (StoreCarousel)d;
         if (ctl != null && ctl.timer != null)
         {
-            if ((bool)e.NewValue)
+            if ((bool)e.NewValue && ctl.IsLoaded)
                 ctl.timer.Start();
             else
                 ctl.timer.Stop();

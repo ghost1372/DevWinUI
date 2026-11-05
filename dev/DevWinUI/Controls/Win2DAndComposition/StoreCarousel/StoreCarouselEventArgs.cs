@@ -2,11 +2,11 @@
 
 public partial class StoreCarouselEventArgs : EventArgs
 {
-    public string ImageSource { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public object Parameter { get; set; }
-    public bool IsThumbnail { get; set; }
+    public string ImageSource { get; }
+    public string Title { get; }
+    public string Description { get; }
+    public object Parameter { get; }
+    public bool IsThumbnail { get; }
     public StoreCarouselEventArgs(string title, string description, string imageSource, bool isThumbnail, object parameter)
     {
         this.Title = title;
