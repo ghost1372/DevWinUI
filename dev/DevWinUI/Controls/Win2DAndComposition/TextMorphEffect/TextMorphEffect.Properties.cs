@@ -4,6 +4,7 @@ using Microsoft.UI.Text;
 using Windows.UI.Text;
 
 namespace DevWinUI;
+
 public partial class TextMorphEffect
 {
     public static readonly DependencyProperty EasingProperty =
@@ -39,7 +40,7 @@ public partial class TextMorphEffect
     }
 
     public static readonly DependencyProperty BeginTimeProperty =
-        DependencyProperty.Register(nameof(BeginTime), typeof(TimeSpan), typeof(TextMorphEffect), new PropertyMetadata(TimeSpan.FromSeconds(2)));
+        DependencyProperty.Register(nameof(BeginTime), typeof(TimeSpan), typeof(TextMorphEffect), new PropertyMetadata(TimeSpan.FromSeconds(2), OnAnimationChanged));
     public TimeSpan BeginTime
     {
         get { return (TimeSpan)GetValue(BeginTimeProperty); }
