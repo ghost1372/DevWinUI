@@ -8,7 +8,7 @@ public sealed partial class EyeDropper
     private readonly DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
     private GlobalMouseHook hook = new GlobalMouseHook();
-    private EyeDropperPreviewWindow previewWindow = new EyeDropperPreviewWindow();
+    private EyeDropperPreviewWindow? previewWindow;
 
     public event EventHandler<Color> ColorPicked;
 
@@ -17,6 +17,7 @@ public sealed partial class EyeDropper
     private int mouseY;
     private int isUpdateQueued;
     private volatile bool isRunning;
+
     private bool isPreviewFrameRemoved;
 
     public void Start()
@@ -30,11 +31,8 @@ public sealed partial class EyeDropper
 
         PInvoke.GetCursorPos(out System.Drawing.Point mousePosition);
 
-        if (!isPreviewFrameRemoved)
-        {
-            RemovePreviewWindowFrame(previewWindow.hwnd);
-            isPreviewFrameRemoved = true;
-        }
+        previewWindow = new EyeDropperPreviewWindow();
+        RemovePreviewWindowFrame(previewWindow.hwnd);
 
         UpdatePreview(mousePosition.X, mousePosition.Y);
 
@@ -45,7 +43,6 @@ public sealed partial class EyeDropper
 
         hook.Start();
     }
-
     private void Hook_StatusChanged(object? sender, MouseHookEventArgs e)
     {
         if (e.MessageType == MouseHookMessageType.MouseMove)
@@ -92,7 +89,8 @@ public sealed partial class EyeDropper
 
         hook.StatusChanged -= Hook_StatusChanged;
 
-        previewWindow.AppWindow.Hide();
+        previewWindow?.Close();
+        previewWindow = null;
     }
 
     private void ProcessMouseMove()
@@ -107,6 +105,11 @@ public sealed partial class EyeDropper
 
     private void UpdatePreview(int mouseX, int mouseY)
     {
+        if (previewWindow is null)
+        {
+            return;
+        }
+
         selectedColor = ColorHelper.GetColorAt(mouseX, mouseY);
         previewWindow.UpdateColor(selectedColor);
         MovePreviewWindowToMouse(previewWindow.hwnd, mouseX, mouseY);
