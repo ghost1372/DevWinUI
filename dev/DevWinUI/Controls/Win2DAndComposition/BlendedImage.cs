@@ -15,6 +15,7 @@ public partial class BlendedImage : Control
     private IGaussianMaskSurface _rightGaussianSurface;
     private float _currentWidth;
     private float _currentHeight;
+    private int _rebuildVersion;
 
     public double BlurRadius
     {
@@ -97,35 +98,64 @@ public partial class BlendedImage : Control
 
         RebuildSurfaces();
     }
+
+    private float GetSplitValue()
+    {
+        var value = (float)SplitValue;
+        return float.IsNaN(value) ? 0f : Math.Clamp(value, 0f, 100f);
+    }
+
+    private float GetBlurRadius()
+    {
+        var value = (float)BlurRadius;
+        return float.IsNaN(value) ? 0f : Math.Max(value, 0f);
+    }
+
     private async void RebuildSurfaces()
     {
-        if (grid == null || _generator == null || PrimaryImageSource == null || SecondaryImageSource == null)
+        if (grid == null || _generator == null || PrimaryImageSource == null || SecondaryImageSource == null || _currentWidth <= 0 || _currentHeight <= 0)
             return;
 
+        var version = ++_rebuildVersion;
         var size = new Vector2(_currentWidth, _currentHeight);
+
+        var leftImageTask = _generator.CreateImageSurfaceAsync(
+            GeneralHelper.GetUriFromObjectSource(PrimaryImageSource),
+            size.ToSize(),
+            ImageSurfaceOptions.Default
+        );
+
+        var rightImageTask = _generator.CreateImageSurfaceAsync(
+            GeneralHelper.GetUriFromObjectSource(SecondaryImageSource),
+            size.ToSize(),
+            ImageSurfaceOptions.Default
+        );
+
+        var leftImageSurface = await leftImageTask;
+        var rightImageSurface = await rightImageTask;
+
+        if (version != _rebuildVersion)
+            return;
+
+        var splitValue = GetSplitValue();
+        var blurRadius = GetBlurRadius();
         _topOffset = -_currentHeight / 2f;
 
         // Create visuals again
         var leftImageVisual = _compositor.CreateSpriteVisual();
         leftImageVisual.Size = size;
 
-        var leftImageSurface =
-            await _generator.CreateImageSurfaceAsync(
-                GeneralHelper.GetUriFromObjectSource(PrimaryImageSource),
-                size.ToSize(),
-                ImageSurfaceOptions.Default
-            );
-
+        _leftGeometry?.Dispose();
         _leftGeometry = CanvasGeometry.CreateRectangle(
             _generator.Device,
-            new Rect(0f, 0f, 2f * (_currentWidth * (float)SplitValue) / 100f, 2f * _currentHeight)
+            new Rect(0f, 0f, 2f * (_currentWidth * splitValue) / 100f, 2f * _currentHeight)
         );
 
-        var leftOffset = -(_currentWidth * (float)SplitValue) / 100f;
+        var leftOffset = -(_currentWidth * splitValue) / 100f;
 
         var leftMaskedBrush = _compositor.CreateMaskBrush();
         leftMaskedBrush.Source = _compositor.CreateSurfaceBrush(leftImageSurface);
-        _leftGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _leftGeometry, new Vector2(leftOffset, _topOffset), (float)BlurRadius);
+        _leftGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _leftGeometry, new Vector2(leftOffset, _topOffset), blurRadius);
         leftMaskedBrush.Mask = _compositor.CreateSurfaceBrush(_leftGaussianSurface);
         leftImageVisual.Brush = leftMaskedBrush;
 
@@ -133,21 +163,15 @@ public partial class BlendedImage : Control
         var rightImageVisual = _compositor.CreateSpriteVisual();
         rightImageVisual.Size = size;
 
-        var rightImageSurface =
-            await _generator.CreateImageSurfaceAsync(
-                GeneralHelper.GetUriFromObjectSource(SecondaryImageSource),
-                size.ToSize(),
-                ImageSurfaceOptions.Default
-            );
-
+        _rightGeometry?.Dispose();
         _rightGeometry = CanvasGeometry.CreateRectangle(
             _generator.Device,
-            new Rect(0, 0, 2f * (_currentWidth * (100f - (float)SplitValue)) / 100f, 2f * _currentHeight)
+            new Rect(0, 0, 2f * (_currentWidth * (100f - splitValue)) / 100f, 2f * _currentHeight)
         );
 
         var rightMaskedBrush = _compositor.CreateMaskBrush();
         rightMaskedBrush.Source = _compositor.CreateSurfaceBrush(rightImageSurface);
-        _rightGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _rightGeometry, new Vector2(-leftOffset, _topOffset), (float)BlurRadius);
+        _rightGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _rightGeometry, new Vector2(-leftOffset, _topOffset), blurRadius);
         rightMaskedBrush.Mask = _compositor.CreateSurfaceBrush(_rightGaussianSurface);
         rightImageVisual.Brush = rightMaskedBrush;
 
@@ -167,11 +191,15 @@ public partial class BlendedImage : Control
             return;
         }
 
-        var leftOffset = -(_currentWidth * (float)SplitValue) / 100f;
-        _leftGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0f, 0f, 2f * (_currentWidth * (float)SplitValue) / 100f, 2f * _currentHeight));
-        _leftGaussianSurface.Redraw(_leftGeometry, new Vector2(leftOffset, _topOffset), (float)BlurRadius);
-        _rightGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0, 0, 2f * (_currentWidth * (100f - (float)SplitValue)) / 100, 2f * _currentHeight));
-        _rightGaussianSurface.Redraw(_rightGeometry, new Vector2(-leftOffset, _topOffset), (float)BlurRadius);
+        var splitValue = GetSplitValue();
+        var blurRadius = GetBlurRadius();
+        var leftOffset = -(_currentWidth * splitValue) / 100f;
+
+        _leftGeometry.Dispose();
+        _leftGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0f, 0f, 2f * (_currentWidth * splitValue) / 100f, 2f * _currentHeight));
+        _leftGaussianSurface.Redraw(_leftGeometry, new Vector2(leftOffset, _topOffset), blurRadius);
+        _rightGeometry.Dispose();
+        _rightGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0, 0, 2f * (_currentWidth * (100f - splitValue)) / 100, 2f * _currentHeight));
+        _rightGaussianSurface.Redraw(_rightGeometry, new Vector2(-leftOffset, _topOffset), blurRadius);
     }
 }
-
