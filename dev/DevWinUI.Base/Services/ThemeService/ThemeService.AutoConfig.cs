@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class ThemeService
 {
     public void OnThemeComboBoxSelectionChanged(object sender)
@@ -14,8 +15,8 @@ public partial class ThemeService
     public void SetThemeComboBoxDefaultItem(ComboBox themeComboBox)
     {
         var currentTheme = ElementTheme.ToString();
-        var item = themeComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme);
-        if (item != null && (ComboBoxItem)themeComboBox.SelectedItem != item)
+        var item = themeComboBox.Items.OfType<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme);
+        if (item != null && themeComboBox.SelectedItem != item)
         {
             themeComboBox.SelectedItem = item;
         }
@@ -36,8 +37,8 @@ public partial class ThemeService
     {
         var currentBackdrop = FixAcrylicBackdropTag(BackdropType.ToString());
 
-        var item = backdropComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentBackdrop);
-        if (item != null && (ComboBoxItem)backdropComboBox.SelectedItem != item)
+        var item = backdropComboBox.Items.OfType<ComboBoxItem>().FirstOrDefault(c => FixAcrylicBackdropTag(c?.Tag?.ToString()) == currentBackdrop);
+        if (item != null && backdropComboBox.SelectedItem != item)
         {
             backdropComboBox.SelectedItem = item;
         }
@@ -55,7 +56,7 @@ public partial class ThemeService
     public void SetThemeRadioButtonDefaultItem(Panel ThemePanel)
     {
         var currentTheme = ElementTheme.ToString();
-        var items = ThemePanel.Children.Cast<RadioButton>();
+        var items = ThemePanel.Children.OfType<RadioButton>();
         if (items != null)
         {
             var selectedItem = items.FirstOrDefault(c => c?.Tag?.ToString() == currentTheme);
@@ -80,11 +81,11 @@ public partial class ThemeService
     public void SetBackdropRadioButtonDefaultItem(Panel BackdropPanel)
     {
         var currentBackdrop = BackdropType.ToString();
-        var items = BackdropPanel.Children.Cast<RadioButton>();
+        var items = BackdropPanel.Children.OfType<RadioButton>();
         if (items != null)
         {
             currentBackdrop = FixAcrylicBackdropTag(currentBackdrop);
-            var selectedItem = items.FirstOrDefault(c => c?.Tag?.ToString() == currentBackdrop);
+            var selectedItem = items.FirstOrDefault(c => FixAcrylicBackdropTag(c?.Tag?.ToString()) == currentBackdrop);
             if (selectedItem != null)
             {
                 selectedItem.IsChecked = true;
