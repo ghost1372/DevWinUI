@@ -13,13 +13,32 @@ public sealed partial class EyeDropper
     public event EventHandler<Color> ColorPicked;
 
     private Color selectedColor;
+    private int mouseX;
+    private int mouseY;
+    private int isUpdateQueued;
+    private volatile bool isRunning;
+    private bool isPreviewFrameRemoved;
+
     public void Start()
     {
+        if (isRunning)
+        {
+            return;
+        }
+
+        isRunning = true;
+
         PInvoke.GetCursorPos(out System.Drawing.Point mousePosition);
 
-        previewWindow.Activate();
+        if (!isPreviewFrameRemoved)
+        {
+            RemovePreviewWindowFrame(previewWindow.hwnd);
+            isPreviewFrameRemoved = true;
+        }
 
-        MovePreviewWindowToMouse(mousePosition.X, mousePosition.Y);
+        UpdatePreview(mousePosition.X, mousePosition.Y);
+
+        previewWindow.Activate();
 
         hook.StatusChanged -= Hook_StatusChanged;
         hook.StatusChanged += Hook_StatusChanged;
@@ -31,38 +50,78 @@ public sealed partial class EyeDropper
     {
         if (e.MessageType == MouseHookMessageType.MouseMove)
         {
-            selectedColor = ColorHelper.GetColorAt(e.X, e.Y);
+            mouseX = e.X;
+            mouseY = e.Y;
+
+            if (Interlocked.Exchange(ref isUpdateQueued, 1) == 0 && !dispatcherQueue.TryEnqueue(ProcessMouseMove))
+            {
+                Volatile.Write(ref isUpdateQueued, 0);
+            }
+        }
+        else if (e.MessageType == MouseHookMessageType.LeftButtonDown)
+        {
             dispatcherQueue.TryEnqueue(() =>
             {
-                previewWindow.UpdateColor(selectedColor);
-                MovePreviewWindowToMouse(e.X, e.Y);
-            });
-        }
+                if (!isRunning)
+                {
+                    return;
+                }
 
-        if (e.MessageType == MouseHookMessageType.LeftButtonDown)
-        {
-            ColorPicked?.Invoke(this, selectedColor);
-            Stop();
+                selectedColor = ColorHelper.GetColorAt(e.X, e.Y);
+                StopCore();
+                ColorPicked?.Invoke(this, selectedColor);
+            });
         }
     }
 
     public void Stop()
     {
-        dispatcherQueue.TryEnqueue(() =>
-        {
-            hook.Stop();
-
-            hook.StatusChanged -= Hook_StatusChanged;
-
-            previewWindow.Close();
-        });
+        dispatcherQueue.TryEnqueue(StopCore);
     }
 
-    private void MovePreviewWindowToMouse(int mouseX, int mouseY)
+    private void StopCore()
     {
-        var currentStyle = NativeMethods.GetWindowLongPtr(previewWindow.hwnd, (int)WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+        if (!isRunning)
+        {
+            return;
+        }
+
+        isRunning = false;
+
+        hook.Stop();
+
+        hook.StatusChanged -= Hook_StatusChanged;
+
+        previewWindow.AppWindow.Hide();
+    }
+
+    private void ProcessMouseMove()
+    {
+        Volatile.Write(ref isUpdateQueued, 0);
+
+        if (isRunning)
+        {
+            UpdatePreview(mouseX, mouseY);
+        }
+    }
+
+    private void UpdatePreview(int mouseX, int mouseY)
+    {
+        selectedColor = ColorHelper.GetColorAt(mouseX, mouseY);
+        previewWindow.UpdateColor(selectedColor);
+        MovePreviewWindowToMouse(previewWindow.hwnd, mouseX, mouseY);
+    }
+
+    private static void RemovePreviewWindowFrame(IntPtr hwnd)
+    {
+        var currentStyle = NativeMethods.GetWindowLongPtr(hwnd, (int)WINDOW_LONG_PTR_INDEX.GWL_STYLE);
         currentStyle &= -12845057;
-        PInvoke.SetWindowLong(new HWND(previewWindow.hwnd), WINDOW_LONG_PTR_INDEX.GWL_STYLE, (int)currentStyle);
-        PInvoke.SetWindowPos(new HWND(previewWindow.hwnd), new HWND(IntPtr.Zero), mouseX, mouseY, 0, 0, SET_WINDOW_POS_FLAGS.SWP_DRAWFRAME | SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
+        PInvoke.SetWindowLong(new HWND(hwnd), WINDOW_LONG_PTR_INDEX.GWL_STYLE, (int)currentStyle);
+        PInvoke.SetWindowPos(new HWND(hwnd), new HWND(IntPtr.Zero), 0, 0, 0, 0, SET_WINDOW_POS_FLAGS.SWP_DRAWFRAME | SET_WINDOW_POS_FLAGS.SWP_NOMOVE | SET_WINDOW_POS_FLAGS.SWP_NOSIZE | SET_WINDOW_POS_FLAGS.SWP_NOZORDER | SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
+    }
+
+    private static void MovePreviewWindowToMouse(IntPtr hwnd, int mouseX, int mouseY)
+    {
+        PInvoke.SetWindowPos(new HWND(hwnd), new HWND(IntPtr.Zero), mouseX, mouseY, 0, 0, SET_WINDOW_POS_FLAGS.SWP_NOSIZE | SET_WINDOW_POS_FLAGS.SWP_NOZORDER | SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
     }
 }

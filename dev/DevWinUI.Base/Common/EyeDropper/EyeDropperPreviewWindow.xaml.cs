@@ -2,7 +2,10 @@
 
 internal sealed partial class EyeDropperPreviewWindow : Window
 {
-    public IntPtr hwnd {  get; private set; }
+    private readonly SolidColorBrush previewBrush = new SolidColorBrush();
+    private Color lastColor;
+
+    public IntPtr hwnd { get; private set; }
     public EyeDropperPreviewWindow()
     {
         this.InitializeComponent();
@@ -25,12 +28,19 @@ internal sealed partial class EyeDropperPreviewWindow : Window
         AppWindow.IsShownInSwitchers = false;
 
         WindowHelper.RemoveWindowBorderAndTitleBar(this);
+
+        PreviewBox.Background = previewBrush;
     }
 
     public void UpdateColor(Color color)
     {
-        PreviewBox.Background = new SolidColorBrush(color);
+        if (color == lastColor)
+        {
+            return;
+        }
+
+        lastColor = color;
+        previewBrush.Color = color;
         TxtHex.Text = ColorHelper.GetHexFromColor(color);
     }
 }
-
