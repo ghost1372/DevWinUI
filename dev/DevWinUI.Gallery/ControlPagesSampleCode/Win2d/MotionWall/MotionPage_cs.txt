@@ -1,0 +1,22 @@
+﻿Wall.ItemsSource = CreateItems();
+
+private static List<object?> CreateItems()
+{
+    var items = new List<object?>
+    {
+        new MotionWallItem { Source = "ms-appx:///Assets/1.jpg", Title = "Photo 1" },
+        new MotionWallItem { Source = "ms-appx:///Assets/2.jpg", Title = "Photo 2" },
+        new MotionWallItem
+        {
+            Text = "Open docs",
+            Title = "Opens the WinUI docs",
+            Href = new Uri("https://ghost1372.github.io")
+        },
+        new MotionWallItem { Text = "Text tile", Title = "Plain text tile" },
+        new MotionWallItem { Source = "ms-appx:///Assets/3.jpg", Title = "Photo 3" },
+        new MotionWallItem { Source = "ms-appx:///Assets/5.jpg", Title = "Photo 5" },
+        new MotionWallItem { Source = "ms-appx:///Assets/2.png", Title = "Photo 2p" }
+    };
+
+    return items;
+}

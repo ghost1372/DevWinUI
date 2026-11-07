@@ -900,7 +900,7 @@
           "Subtitle": "Growl",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBar.png"
-        },
+        },        
         {
           "UniqueId": "DevWinUIGallery.Views.OptionsPageControlPage",
           "Title": "Options Page Control",
@@ -1135,6 +1135,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.MotionPage",
+          "Title": "Motion Wall",
+          "Subtitle": "A perspective wall of moving lanes of image and text tiles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ItemsRepeater.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.RadarPage",
           "Title": "Radar",
           "Subtitle": "A radar display with sweep and pulse modes, moving blips, scan-only visibility, zones, jammed sectors and phosphor afterglow",
@@ -1147,7 +1154,7 @@
           "Subtitle": "A flight progress card with dot-matrix airport codes, an animated progress track and a layout that adapts to its size",
           "IsNew": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
-        },        
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.PlayStationParticlesPage",
           "Title": "PlayStation Particles",

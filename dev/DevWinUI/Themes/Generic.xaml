@@ -180,6 +180,7 @@ Themes\Styles\Controls\LoopingList.xaml
 Themes\Styles\Controls\Magnifier.xaml
 Themes\Styles\Controls\MorphingAnimation.xaml
 Themes\Styles\Controls\MorphingWizard.xaml
+Themes\Styles\Controls\MotionWall.xaml
 Themes\Styles\Controls\OptionsPageControl.xaml
 Themes\Styles\Controls\OrbitCard.xaml
 Themes\Styles\Controls\OutOfBoxPage.xaml
@@ -757,6 +758,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="MultiStepWizardProgressBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardSegmentForegroundBrush" ResourceKey="TextFillColorTertiaryBrush" />
       <StaticResource x:Key="MultiStepWizardActiveSegmentForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="MotionWallTileBackground" ResourceKey="ControlSolidFillColorDefaultBrush" />
+      <StaticResource x:Key="MotionWallTileForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="MotionWallLineBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+      <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="#060010" />
       <SolidColorBrush x:Key="OrbitCardBackground" Color="{ThemeResource SolidBackgroundFillColorSecondary}" />
       <SolidColorBrush x:Key="OrbitCardBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
       <SolidColorBrush x:Key="OrbitCardNameForeground" Color="{ThemeResource TextFillColorPrimary}" />
@@ -1418,6 +1423,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="MultiStepWizardProgressBrush" ResourceKey="AccentFillColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardSegmentForegroundBrush" ResourceKey="TextFillColorTertiaryBrush" />
       <StaticResource x:Key="MultiStepWizardActiveSegmentForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="MotionWallTileBackground" ResourceKey="ControlSolidFillColorDefaultBrush" />
+      <StaticResource x:Key="MotionWallTileForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="MotionWallLineBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+      <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="#FFFFFF" />
       <SolidColorBrush x:Key="OrbitCardBackground" Color="{ThemeResource SolidBackgroundFillColorSecondary}" />
       <SolidColorBrush x:Key="OrbitCardBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
       <SolidColorBrush x:Key="OrbitCardNameForeground" Color="{ThemeResource TextFillColorPrimary}" />
@@ -1986,6 +1995,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="MultiStepWizardProgressBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="MultiStepWizardSegmentForegroundBrush" ResourceKey="SystemColorGrayTextColorBrush" />
       <StaticResource x:Key="MultiStepWizardActiveSegmentForegroundBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="MotionWallTileBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <StaticResource x:Key="MotionWallTileForeground" ResourceKey="SystemColorButtonTextColorBrush" />
+      <StaticResource x:Key="MotionWallLineBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="{ThemeResource SystemColorWindowColor}" />
       <SolidColorBrush x:Key="OrbitCardBackground" Color="{ThemeResource SystemColorWindowColor}" />
       <SolidColorBrush x:Key="OrbitCardBorderBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
       <SolidColorBrush x:Key="OrbitCardNameForeground" Color="{ThemeResource SystemColorWindowTextColor}" />
@@ -7381,6 +7394,25 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:MorphingAnimation">
           <wind2:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClearColor="Transparent" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultMotionWallStyle" TargetType="local:MotionWall">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="TileBackground" Value="{ThemeResource MotionWallTileBackground}" />
+    <Setter Property="TileForeground" Value="{ThemeResource MotionWallTileForeground}" />
+    <Setter Property="LineBrush" Value="{ThemeResource MotionWallLineBrush}" />
+    <Setter Property="OverlayColor" Value="{ThemeResource MotionWallOverlayBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:MotionWall">
+          <Grid Background="{TemplateBinding Background}">
+            <wind2:CanvasAnimatedControl x:Name="PART_Canvas" AutomationProperties.AccessibilityView="Raw" ClearColor="Transparent" />
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -20931,6 +20963,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultMotionWallStyle}" TargetType="local:MotionWall" />
   <Style BasedOn="{StaticResource DefaultOptionsPageControlStyle}" TargetType="local:OptionsPageControl" />
   <Style BasedOn="{StaticResource DefaultOrbitCardStackStyle}" TargetType="local:OrbitCardStack" />
   <Style BasedOn="{StaticResource DefaultOrbitCardStyle}" TargetType="local:OrbitCard" />

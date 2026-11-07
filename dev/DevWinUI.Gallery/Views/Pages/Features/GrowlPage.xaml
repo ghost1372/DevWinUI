@@ -63,7 +63,7 @@
 
             <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part3_cs.txt" DocPage="controls/growl" HeaderText="GrowlCard" XamlSource="Features/Growl/GrowlPage_Card_xaml.txt">
                 <Grid Height="400">
-                    <dev:GrowlCard x:Name="Card" Title="{Binding Text, ElementName=TitleBox}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Text, ElementName=ContentBox}" Progress="64" ShowProgress="True" SubTitle="{Binding Text, ElementName=SubTitleBox}">
+                    <dev:GrowlCard x:Name="Card" Title="{x:Bind TitleBox.Text, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Bind ContentBox.Text, Mode=OneWay}" Progress="64" ShowProgress="True" SubTitle="{x:Bind SubTitleBox.Text, Mode=OneWay}">
                         <dev:GrowlCard.ActionContent>
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <Button Content="Later" />
@@ -87,17 +87,17 @@
 
                             <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Progress">
                                 <StackPanel Spacing="12">
-                                    <Slider Header="Progress" Maximum="{Binding ProgressMaximum, ElementName=Card}" Minimum="0" Value="{Binding Progress, ElementName=Card, Mode=TwoWay}" />
-                                    <NumberBox Header="ProgressMaximum" Minimum="1" SpinButtonPlacementMode="Inline" Value="{Binding ProgressMaximum, ElementName=Card, Mode=TwoWay}" />
+                                    <Slider Header="Progress" Maximum="{x:Bind Card.ProgressMaximum, Mode=OneWay}" Minimum="0" Value="{x:Bind Card.Progress, Mode=TwoWay}" />
+                                    <NumberBox Header="ProgressMaximum" Minimum="1" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.ProgressMaximum, Mode=TwoWay}" />
                                     <ComboBox HorizontalAlignment="Stretch" Header="ProgressType" SelectedIndex="0" SelectionChanged="ProgressType_SelectionChanged">
                                         <ComboBoxItem Content="Bar" />
                                         <ComboBoxItem Content="Ring" />
                                     </ComboBox>
-                                    <ToggleSwitch Header="ShowProgress" IsOn="{Binding ShowProgress, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowProgressText" IsOn="{Binding ShowProgressText, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressIndeterminate" IsOn="{Binding IsProgressIndeterminate, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressError" IsOn="{Binding IsProgressError, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressPaused" IsOn="{Binding IsProgressPaused, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowProgress" IsOn="{x:Bind Card.ShowProgress, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowProgressText" IsOn="{x:Bind Card.ShowProgressText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="IsProgressIndeterminate" IsOn="{x:Bind Card.IsProgressIndeterminate, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="IsProgressError" IsOn="{x:Bind Card.IsProgressError, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="IsProgressPaused" IsOn="{x:Bind Card.IsProgressPaused, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                                 </StackPanel>
                             </Expander>
 
@@ -112,9 +112,9 @@
                                         <CheckBox x:Name="AutoCloseInfo" Click="AutoCloseFlag_Click" Content="Info" />
                                     </StackPanel>
                                     <NumberBox Header="AutoCloseDuration (seconds)" Maximum="120" Minimum="1" SpinButtonPlacementMode="Inline" ValueChanged="DurationBox_ValueChanged" Value="5" />
-                                    <ToggleSwitch Header="ShowCountdown" IsOn="{Binding ShowCountdown, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowCountdownText" IsOn="{Binding ShowCountdownText, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="PauseAutoCloseOnPointerOver" IsOn="{Binding PauseAutoCloseOnPointerOver, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowCountdown" IsOn="{x:Bind Card.ShowCountdown, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowCountdownText" IsOn="{x:Bind Card.ShowCountdownText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="PauseAutoCloseOnPointerOver" IsOn="{x:Bind Card.PauseAutoCloseOnPointerOver, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                                     <ComboBox HorizontalAlignment="Stretch" Header="CountdownSeverity" SelectedIndex="0" SelectionChanged="CountdownSeverity_SelectionChanged">
                                         <ComboBoxItem Content="Default" />
                                         <ComboBoxItem Content="FollowCardSeverity" />
@@ -158,7 +158,7 @@
 
                             <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Indicator">
                                 <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="ShowIndicator" IsOn="{Binding ShowIndicator, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowIndicator" IsOn="{x:Bind Card.ShowIndicator, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                                     <ComboBox HorizontalAlignment="Stretch" Header="IndicatorPlacement" SelectedIndex="0" SelectionChanged="Placement_SelectionChanged">
                                         <ComboBoxItem Content="Top" />
                                         <ComboBoxItem Content="Left" />
@@ -170,8 +170,8 @@
                                         <ComboBoxItem Content="Outline" />
                                         <ComboBoxItem Content="Ring" />
                                     </ComboBox>
-                                    <ToggleSwitch Header="ShowIconContainer" IsOn="{Binding ShowIconContainer, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="IndicatorThickness" Maximum="16" Minimum="1" StepFrequency="1" Value="{Binding IndicatorThickness, ElementName=Card, Mode=TwoWay}" />
+                                    <ToggleSwitch Header="ShowIconContainer" IsOn="{x:Bind Card.ShowIconContainer, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <Slider Header="IndicatorThickness" Maximum="16" Minimum="1" StepFrequency="1" Value="{x:Bind Card.IndicatorThickness, Mode=TwoWay}" />
                                     <ComboBox HorizontalAlignment="Stretch" Header="ColorStyle" SelectedIndex="0" SelectionChanged="ColorStyle_SelectionChanged">
                                         <ComboBoxItem Content="Solid" />
                                         <ComboBoxItem Content="Gradient" />
@@ -194,23 +194,23 @@
                                         <ComboBoxItem Content="Card" />
                                         <ComboBoxItem Content="Banner" />
                                     </ComboBox>
-                                    <NumberBox Header="Width" Maximum="1200" Minimum="240" SpinButtonPlacementMode="Inline" Value="{Binding Width, ElementName=Card, Mode=TwoWay}" />
+                                    <NumberBox Header="Width" Maximum="1200" Minimum="240" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.Width, Mode=TwoWay}" />
                                 </StackPanel>
                             </Expander>
 
                             <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Visibility">
                                 <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="ShowGradientBackground" IsOn="{Binding ShowGradientBackground, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowGradientBackground" IsOn="{x:Bind Card.ShowGradientBackground, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                                     <ComboBox HorizontalAlignment="Stretch" Header="GradientIntensity" SelectedIndex="0" SelectionChanged="GradientIntensity_SelectionChanged">
                                         <ComboBoxItem Content="Normal" />
                                         <ComboBoxItem Content="Light" />
                                     </ComboBox>
-                                    <ToggleSwitch Header="ShowIcon" IsOn="{Binding ShowIcon, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowTitle" IsOn="{Binding ShowTitle, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowSubTitle" IsOn="{Binding ShowSubTitle, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowContent" IsOn="{Binding ShowContent, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowCloseButton" IsOn="{Binding ShowCloseButton, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowActionContent" IsOn="{Binding ShowActionContent, ElementName=Card, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowIcon" IsOn="{x:Bind Card.ShowIcon, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowTitle" IsOn="{x:Bind Card.ShowTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowSubTitle" IsOn="{x:Bind Card.ShowSubTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowContent" IsOn="{x:Bind Card.ShowContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowCloseButton" IsOn="{x:Bind Card.ShowCloseButton, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                    <ToggleSwitch Header="ShowActionContent" IsOn="{x:Bind Card.ShowActionContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                                 </StackPanel>
                             </Expander>
                         </StackPanel>

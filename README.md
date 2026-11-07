@@ -148,6 +148,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### MotionWall
+![MotionWall](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MotionWall.gif)
+![MotionWall](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MotionWall2.gif)
+![MotionWall](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MotionWall3.gif)
+![MotionWall](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MotionWall4.gif)
+
 ### Growl
 ![Growl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Growl.gif)
 ![Growl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Growl2.gif)

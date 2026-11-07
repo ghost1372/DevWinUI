@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="MotionWallTileBackground" ResourceKey="ControlSolidFillColorDefaultBrush" />
+            <StaticResource x:Key="MotionWallTileForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="MotionWallLineBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="#060010" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="MotionWallTileBackground" ResourceKey="ControlSolidFillColorDefaultBrush" />
+            <StaticResource x:Key="MotionWallTileForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="MotionWallLineBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="#FFFFFF" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="MotionWallTileBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="MotionWallTileForeground" ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="MotionWallLineBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <SolidColorBrush x:Key="MotionWallOverlayBrush" Color="{ThemeResource SystemColorWindowColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style x:Key="DefaultMotionWallStyle" TargetType="local:MotionWall">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="TileBackground" Value="{ThemeResource MotionWallTileBackground}" />
+        <Setter Property="TileForeground" Value="{ThemeResource MotionWallTileForeground}" />
+        <Setter Property="LineBrush" Value="{ThemeResource MotionWallLineBrush}" />
+        <Setter Property="OverlayColor" Value="{ThemeResource MotionWallOverlayBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MotionWall">
+                    <Grid Background="{TemplateBinding Background}">
+                        <win2d:CanvasAnimatedControl x:Name="PART_Canvas" AutomationProperties.AccessibilityView="Raw" ClearColor="Transparent" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultMotionWallStyle}" TargetType="local:MotionWall" />
+</ResourceDictionary>
