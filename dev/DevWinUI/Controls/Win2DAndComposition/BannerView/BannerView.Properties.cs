@@ -8,16 +8,7 @@ public partial class BannerView
         set { SetValue(IsPerspectiveEnableProperty, value); }
     }
     public static readonly DependencyProperty IsPerspectiveEnableProperty =
-        DependencyProperty.Register(nameof(IsPerspectiveEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
-        {
-            if (a.NewValue != a.OldValue)
-            {
-                if (s is BannerView sender)
-                {
-                    sender.UpdatePerspective();
-                }
-            }
-        }));
+        DependencyProperty.Register(nameof(IsPerspectiveEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) => ((BannerView)s).UpdatePerspective()));
 
     public bool IsScaleEnable
     {
@@ -25,16 +16,7 @@ public partial class BannerView
         set { SetValue(IsScaleEnableProperty, value); }
     }
     public static readonly DependencyProperty IsScaleEnableProperty =
-        DependencyProperty.Register(nameof(IsScaleEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) =>
-        {
-            if (a.NewValue != a.OldValue)
-            {
-                if (s is BannerView sender)
-                {
-                    sender.UpdateScale();
-                }
-            }
-        }));
+        DependencyProperty.Register(nameof(IsScaleEnable), typeof(bool), typeof(BannerView), new PropertyMetadata(false, (s, a) => ((BannerView)s).UpdateScale()));
 
     public double ItemsSpacing
     {
@@ -43,16 +25,7 @@ public partial class BannerView
     }
 
     public static readonly DependencyProperty ItemsSpacingProperty =
-        DependencyProperty.Register(nameof(ItemsSpacing), typeof(double), typeof(BannerView), new PropertyMetadata(0d, (s, a) =>
-        {
-            if (a.NewValue != a.OldValue)
-            {
-                if (s is BannerView sender)
-                {
-                    sender.UpdateItemSpacing();
-                }
-            }
-        }));
+        DependencyProperty.Register(nameof(ItemsSpacing), typeof(double), typeof(BannerView), new PropertyMetadata(0d, (s, a) => ((BannerView)s).UpdateItemSpacing()));
 
     public bool AutoShuffle
     {
@@ -66,10 +39,7 @@ public partial class BannerView
     private static void OnAutoShuffleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (BannerView)d;
-        if (ctl != null)
-        {
-            ctl.OnAutoShuffleChanged();
-        }
+        ctl.OnAutoShuffleChanged();
     }
 
     public TimeSpan Interval
@@ -84,10 +54,7 @@ public partial class BannerView
     private static void OnIntervalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (BannerView)d;
-        if (ctl != null && e.NewValue is TimeSpan timeSpan)
-        {
-            ctl.timer?.Interval = timeSpan;
-        }
+        ctl.timer.Interval = (TimeSpan)e.NewValue;
     }
 
     public CarouselShiftingDirection ShiftingDirection

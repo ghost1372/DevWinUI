@@ -2,6 +2,12 @@
 
 public partial class CoverFlowEventArgs : EventArgs
 {
-    public int Index { get; set; }
-    public object Item { get; set; }
+    public CoverFlowEventArgs(int index, object item)
+    {
+        Index = index;
+        Item = item;
+    }
+
+    public int Index { get; }
+    public object Item { get; }
 }

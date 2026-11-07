@@ -11,6 +11,7 @@ public partial class Watermark : Control
     private CanvasBitmap _canvasBitmap;
 
     private long _foregroundPropertyToken;
+    private long _fontFamilyPropertyToken;
     private long _fontSizePropertyToken;
     private long _fontStretchPropertyToken;
     private long _fontWeightPropertyToken;
@@ -21,12 +22,23 @@ public partial class Watermark : Control
         var ctl = (Watermark)d;
         if (ctl != null && ctl._Canvas != null)
         {
+            ctl._Canvas.Invalidate();
+        }
+    }
+
+    private static void OnMarkImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (Watermark)d;
+        if (ctl != null && ctl._Canvas != null)
+        {
             if (ctl.IsImage)
             {
-                ctl._Canvas.CreateResources -= ctl.OnCreateResourcesAsync;
-                ctl._Canvas.CreateResources += ctl.OnCreateResourcesAsync;
+                _ = ctl.LoadMarkImage();
             }
-            ctl._Canvas.Invalidate();
+            else
+            {
+                ctl._Canvas.Invalidate();
+            }
         }
     }
 
@@ -38,17 +50,19 @@ public partial class Watermark : Control
     {
         base.OnApplyTemplate();
 
+        if (_Canvas != null)
+        {
+            _Canvas.CreateResources -= OnCreateResourcesAsync;
+            _Canvas.Draw -= OnDraw;
+            _Canvas.SizeChanged -= OnCanvasSizeChanged;
+        }
+
         _Canvas = GetTemplateChild(PART_Canvas) as CanvasControl;
 
         if (_Canvas != null)
         {
-            _Canvas.CreateResources -= OnCreateResourcesAsync;
             _Canvas.CreateResources += OnCreateResourcesAsync;
-
-            _Canvas.Draw -= OnDraw;
             _Canvas.Draw += OnDraw;
-
-            _Canvas.SizeChanged -= OnCanvasSizeChanged;
             _Canvas.SizeChanged += OnCanvasSizeChanged;
             _Canvas.Invalidate();
         }
@@ -59,6 +73,7 @@ public partial class Watermark : Control
     private void UnRegisterChangedCallback()
     {
         UnregisterPropertyChangedCallback(ForegroundProperty, _foregroundPropertyToken);
+        UnregisterPropertyChangedCallback(FontFamilyProperty, _fontFamilyPropertyToken);
         UnregisterPropertyChangedCallback(FontSizeProperty, _fontSizePropertyToken);
         UnregisterPropertyChangedCallback(FontStretchProperty, _fontStretchPropertyToken);
         UnregisterPropertyChangedCallback(FontWeightProperty, _fontWeightPropertyToken);
@@ -67,6 +82,7 @@ public partial class Watermark : Control
     private void RegisterChangedCallback()
     {
         _foregroundPropertyToken = RegisterPropertyChangedCallback(ForegroundProperty, OnSystemPropertyChanged);
+        _fontFamilyPropertyToken = RegisterPropertyChangedCallback(FontFamilyProperty, OnSystemPropertyChanged);
         _fontSizePropertyToken = RegisterPropertyChangedCallback(FontSizeProperty, OnSystemPropertyChanged);
         _fontStretchPropertyToken = RegisterPropertyChangedCallback(FontStretchProperty, OnSystemPropertyChanged);
         _fontWeightPropertyToken = RegisterPropertyChangedCallback(FontWeightProperty, OnSystemPropertyChanged);
@@ -80,18 +96,9 @@ public partial class Watermark : Control
 
     public async Task LoadMarkImage(Uri uri)
     {
-        if (IsImage)
+        if (IsImage && _Canvas != null)
         {
-            if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
-            {
-                _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, uri);
-            }
-            else
-            {
-                using var fs = File.OpenRead(uri.LocalPath);
-                _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
-            }
-            _Canvas.Invalidate();
+            await LoadBitmap(uri);
         }
     }
     private async Task LoadMarkImage()
@@ -102,23 +109,37 @@ public partial class Watermark : Control
             {
                 if (MarkImage == null)
                 {
+                    _canvasBitmap?.Dispose();
+                    _canvasBitmap = null;
+                    _Canvas.Invalidate();
                     return;
                 }
 
-                if ((RuntimeHelper.IsPackaged() && !MarkImage.IsFile) || MarkImage.Scheme == Uri.UriSchemeHttp || MarkImage.Scheme == Uri.UriSchemeHttps)
-                {
-                    _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, MarkImage);
-                }
-                else
-                {
-                    using var fs = File.OpenRead(MarkImage.OriginalString);
-                    _canvasBitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
-                }
+                await LoadBitmap(MarkImage);
             }
             catch (Exception)
             {
             }
         }
+    }
+
+    private async Task LoadBitmap(Uri uri)
+    {
+        CanvasBitmap bitmap;
+
+        if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
+        {
+            bitmap = await CanvasBitmap.LoadAsync(_Canvas, uri);
+        }
+        else
+        {
+            using var fs = File.OpenRead(uri.LocalPath);
+            bitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
+        }
+
+        _canvasBitmap?.Dispose();
+        _canvasBitmap = bitmap;
+        _Canvas.Invalidate();
     }
 
     private void OnSystemPropertyChanged(DependencyObject sender, DependencyProperty dp)
@@ -141,39 +162,34 @@ public partial class Watermark : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        using var list = new CanvasCommandList(sender);
-        using var session = list.CreateDrawingSession();
-        using var tileEffect = new TileEffect();
-        tileEffect.Source = list;
+        if (IsImage ? _canvasBitmap == null : string.IsNullOrEmpty(Mark))
+        {
+            return;
+        }
 
-        using var blurEffect = new GaussianBlurEffect();
-        blurEffect.BlurAmount = Convert.ToSingle(BlurAmount);
-
-        using var shadowEffect = new ShadowEffect();
-        shadowEffect.BlurAmount = Convert.ToSingle(BlurAmount);
-        shadowEffect.ShadowColor = ShadowColor;
-
-        using var scale = new ScaleEffect();
-        scale.CacheOutput = true;
-        scale.CenterPoint = new Vector2(Convert.ToSingle(CenterPointX), Convert.ToSingle(CenterPointY));
-
-        var markScale = Convert.ToSingle(MarkScale);
+        var centerPoint = new Vector2((float)CenterPointX, (float)CenterPointY);
+        var markScale = (float)MarkScale;
 
         if (markScale < 0.1)
         {
             markScale = 1f;
         }
 
-        ICanvasImage graphicsEffect = null;
+        using var list = new CanvasCommandList(sender);
+        using var session = list.CreateDrawingSession();
+        using var tileEffect = new TileEffect();
+        tileEffect.Source = list;
+
+        using var scale = UseScale ? new ScaleEffect
+        {
+            CacheOutput = true,
+            CenterPoint = centerPoint,
+            Scale = new Vector2(markScale, markScale)
+        } : null;
 
         if (!IsImage)
         {
-            if (string.IsNullOrEmpty(Mark))
-            {
-                return;
-            }
-
-            using (var textFormat = new CanvasTextFormat
+            using var textFormat = new CanvasTextFormat
             {
                 FontFamily = FontFamily.Source,
                 FontSize = (float)FontSize,
@@ -181,84 +197,74 @@ public partial class Watermark : Control
                 FontStretch = FontStretch,
                 FontStyle = FontStyle,
                 FontWeight = FontWeight
-            })
-            using (var textLayout = new CanvasTextLayout(args.DrawingSession, Mark, textFormat, 0.0f, 0.0f))
+            };
+            using var textLayout = new CanvasTextLayout(args.DrawingSession, Mark, textFormat, 0.0f, 0.0f);
+
+            var textBounds = textLayout.LayoutBounds;
+            var color = Foreground is SolidColorBrush brush ? brush.Color : Colors.Black;
+
+            session.DrawTextLayout(textLayout, Vector2.Zero, color);
+
+            tileEffect.SourceRectangle = new Rect(0, 0, textBounds.Width + HorizontalSpacing, textBounds.Height + VerticalSpacing);
+
+            ICanvasImage graphicsEffect = tileEffect;
+
+            if (scale != null)
             {
-                var textBounds = textLayout.LayoutBounds;
-                var color = Foreground is SolidColorBrush ? (Foreground as SolidColorBrush).Color : Colors.Black;
-
-                session.DrawTextLayout(textLayout, new Vector2(0, 0), color);
-
-                tileEffect.SourceRectangle = new Rect(0, 0, textBounds.Width + HorizontalSpacing, textBounds.Height + VerticalSpacing);
-
-                graphicsEffect = tileEffect;
-
-                if (UseScale)
-                {
-                    scale.Source = tileEffect;
-                    scale.Scale = new Vector2(markScale, markScale);
-                    graphicsEffect = scale;
-                }
-
-                switch (MarkEffect)
-                {
-                    case WatermarkEffect.None:
-                        break;
-                    case WatermarkEffect.BlurEffect:
-                        blurEffect.Source = graphicsEffect;
-                        graphicsEffect = blurEffect;
-                        break;
-                    case WatermarkEffect.ShadowEffect:
-                        shadowEffect.Source = graphicsEffect;
-                        graphicsEffect = shadowEffect;
-                        break;
-                }
-
-                args.DrawingSession.Transform = Matrix3x2.CreateRotation(GetRadians(Angle), new Vector2(Convert.ToSingle(CenterPointX), Convert.ToSingle(CenterPointY)));
-                args.DrawingSession.DrawImage(graphicsEffect, new Vector2(0, 0));
+                scale.Source = tileEffect;
+                graphicsEffect = scale;
             }
+
+            using var markEffect = CreateMarkEffect(graphicsEffect);
+
+            args.DrawingSession.Transform = Matrix3x2.CreateRotation(GetRadians(Angle), centerPoint);
+            args.DrawingSession.DrawImage(markEffect ?? graphicsEffect, Vector2.Zero);
         }
         else
         {
-            if (_canvasBitmap != null)
+            ICanvasImage graphicsEffect = _canvasBitmap;
+            tileEffect.SourceRectangle = _canvasBitmap.Bounds;
+
+            if (scale != null)
             {
-                graphicsEffect = _canvasBitmap;
-                tileEffect.SourceRectangle = _canvasBitmap.Bounds;
-
-                if (UseScale)
-                {
-                    scale.Source = _canvasBitmap;
-                    scale.Scale = new Vector2(markScale, markScale);
-                    graphicsEffect = scale;
-                }
-
-                switch (MarkEffect)
-                {
-                    case WatermarkEffect.None:
-                        break;
-                    case WatermarkEffect.BlurEffect:
-                        blurEffect.Source = graphicsEffect;
-                        graphicsEffect = blurEffect;
-                        break;
-                    case WatermarkEffect.ShadowEffect:
-                        shadowEffect.Source = graphicsEffect;
-                        graphicsEffect = shadowEffect;
-                        break;
-                }
-
-                session.DrawImage(graphicsEffect);
-
-                if (UseScale)
-                {
-                    tileEffect.SourceRectangle = scale.GetBounds(sender);
-                }
-
-                args.DrawingSession.Transform = Matrix3x2.CreateRotation(GetRadians(Angle), new Vector2(Convert.ToSingle(CenterPointX), Convert.ToSingle(CenterPointY)));
-                args.DrawingSession.DrawImage(tileEffect);
+                scale.Source = _canvasBitmap;
+                graphicsEffect = scale;
             }
-        }
 
-        _Canvas.Invalidate();
+            using var markEffect = CreateMarkEffect(graphicsEffect);
+
+            session.DrawImage(markEffect ?? graphicsEffect);
+
+            if (scale != null)
+            {
+                tileEffect.SourceRectangle = scale.GetBounds(sender);
+            }
+
+            args.DrawingSession.Transform = Matrix3x2.CreateRotation(GetRadians(Angle), centerPoint);
+            args.DrawingSession.DrawImage(tileEffect);
+        }
+    }
+
+    private ICanvasImage CreateMarkEffect(ICanvasImage source)
+    {
+        switch (MarkEffect)
+        {
+            case WatermarkEffect.BlurEffect:
+                return new GaussianBlurEffect
+                {
+                    Source = source,
+                    BlurAmount = (float)BlurAmount
+                };
+            case WatermarkEffect.ShadowEffect:
+                return new ShadowEffect
+                {
+                    Source = source,
+                    BlurAmount = (float)BlurAmount,
+                    ShadowColor = ShadowColor
+                };
+            default:
+                return null;
+        }
     }
     private float GetRadians(double angle)
     {

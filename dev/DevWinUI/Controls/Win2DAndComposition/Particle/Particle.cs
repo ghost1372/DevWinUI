@@ -20,6 +20,12 @@ public partial class Particle : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+        if (_Canvas != null)
+        {
+            _Canvas.Draw -= OnDraw;
+            _Canvas.SizeChanged -= OnCanvasSizeChanged;
+        }
+
         _Canvas = GetTemplateChild(PART_Canvas) as CanvasControl;
         if (_Canvas != null)
         {
@@ -28,13 +34,42 @@ public partial class Particle : Control
             _Canvas.SizeChanged -= OnCanvasSizeChanged;
             _Canvas.SizeChanged += OnCanvasSizeChanged;
 
-            AddMouseHandle();
+            Loaded -= Particle_Loaded;
+            Loaded += Particle_Loaded;
+            Unloaded -= Particle_Unloaded;
+            Unloaded += Particle_Unloaded;
+
+            if (_IsPointerEnable)
+            {
+                AddMouseHandle();
+            }
 
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1);
             dispatcherTimer.Tick -= DispatcherTimer_Tick;
             dispatcherTimer.Tick += DispatcherTimer_Tick;
+
+            if (Paused)
+            {
+                _Canvas.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                dispatcherTimer.Start();
+            }
+        }
+    }
+
+    private void Particle_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (_Canvas != null && !Paused)
+        {
             dispatcherTimer.Start();
         }
+    }
+
+    private void Particle_Unloaded(object sender, RoutedEventArgs e)
+    {
+        dispatcherTimer.Stop();
     }
 
     private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
@@ -51,7 +86,7 @@ public partial class Particle : Control
     {
         IsPointerIn = true;
         PointerDrawCount = 0;
-        PointerPosition = TransformToVisual(this).TransformPoint(e.GetCurrentPoint(this).Position).ToVector2();
+        PointerPosition = e.GetCurrentPoint(this).Position.ToVector2();
     }
 
     private void DispatcherTimer_Tick(object sender, object e)
@@ -196,6 +231,7 @@ public partial class Particle : Control
                 else
                 {
                     sender.RemoveMouseHandle();
+                    sender.IsPointerIn = false;
                 }
 
                 sender.ReDrawCanvas();
@@ -224,8 +260,8 @@ public partial class Particle : Control
                     if (sender._Canvas != null)
                     {
                         sender._Canvas.Visibility = Visibility.Visible;
+                        sender.dispatcherTimer?.Start();
                     }
-                    sender.dispatcherTimer?.Start();
                 }
                 sender.ReDrawCanvas();
             }
@@ -264,27 +300,32 @@ public partial class Particle : Control
         try
         {
             ParticleLock.Enter(ref GotLock);
+            var session = args.DrawingSession;
             for (int i = 0; i < Particles.Count; i++)
             {
+                var particle = Particles[i];
+                var offset = particle.Offset.ToVector2();
                 for (int j = i + 1; j < Particles.Count; j++)
                 {
-                    var range = Particles[i].GetRange(Particles[j].Offset);
-                    if (range < 120)
+                    var other = Particles[j].Offset.ToVector2();
+                    var rangeSquared = Vector2.DistanceSquared(offset, other);
+                    if (rangeSquared < 14400f)
                     {
-                        args.DrawingSession.DrawLine(Particles[i].Offset.ToVector2(), Particles[j].Offset.ToVector2(), _LineColor, (120f - range) / 80f);
+                        session.DrawLine(offset, other, _LineColor, (120f - MathF.Sqrt(rangeSquared)) / 80f);
                     }
                 }
                 if (_IsPointerEnable && IsPointerIn)
                 {
-                    var pointerRange = Particles[i].GetRange(PointerPosition);
+                    var pointerRange = particle.GetRange(PointerPosition);
                     if (pointerRange < 120)
                     {
-                        args.DrawingSession.DrawLine(Particles[i].Offset.ToVector2(), PointerPosition, _LineColor, (120f - pointerRange) / 80f);
+                        session.DrawLine(offset, PointerPosition, _LineColor, (120f - pointerRange) / 80f);
                         if (pointerRange > 80)
                         {
-                            var tmp = PointerPosition - Particles[i].Offset.ToVector2();
-                            var pointerHead = (tmp / Math.Abs(Math.Max(tmp.X, tmp.Y)));
-                            Particles[i].Offset += new Vector3(pointerHead.X, pointerHead.Y, 0);
+                            var tmp = PointerPosition - offset;
+                            var pointerHead = tmp / Math.Max(Math.Abs(tmp.X), Math.Abs(tmp.Y));
+                            particle.Offset += new Vector3(pointerHead.X, pointerHead.Y, 0);
+                            offset = particle.Offset.ToVector2();
                         }
                     }
                     if (PointerDrawCount > 36000)
@@ -293,8 +334,8 @@ public partial class Particle : Control
                     }
                     PointerDrawCount++;
                 }
-                args.DrawingSession.FillCircle(Particles[i].Offset.ToVector2(), Particles[i].Offset.Z / 30, _ParticleColor);
-                Particles[i].NextStep();
+                session.FillCircle(offset, particle.Offset.Z / 30, _ParticleColor);
+                particle.NextStep();
             }
         }
         finally

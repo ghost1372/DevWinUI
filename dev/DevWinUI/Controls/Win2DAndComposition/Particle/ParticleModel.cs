@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 internal partial class ParticleModel
 {
     private static readonly Random rnd = new Random();
@@ -62,18 +63,16 @@ internal partial class ParticleModel
 
     public float GetRange(Vector3 sourceOffset)
     {
-        var X = Math.Abs(Offset.X - sourceOffset.X);
-        var Y = Math.Abs(Offset.Y - sourceOffset.Y);
-        var range = Convert.ToSingle(Math.Sqrt(X * X + Y * Y));
-        return range;
+        var X = Offset.X - sourceOffset.X;
+        var Y = Offset.Y - sourceOffset.Y;
+        return MathF.Sqrt(X * X + Y * Y);
     }
 
     public float GetRange(Vector2 sourceOffset)
     {
-        var X = Math.Abs(Offset.X - sourceOffset.X);
-        var Y = Math.Abs(Offset.Y - sourceOffset.Y);
-        var range = Convert.ToSingle(Math.Sqrt(X * X + Y * Y));
-        return range;
+        var X = Offset.X - sourceOffset.X;
+        var Y = Offset.Y - sourceOffset.Y;
+        return MathF.Sqrt(X * X + Y * Y);
     }
 
     public void ResetOffset(Vector3 Container)

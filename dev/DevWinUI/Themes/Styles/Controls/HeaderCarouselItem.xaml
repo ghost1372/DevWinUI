@@ -42,7 +42,6 @@
                             </StackPanel>
                         </Grid>
                     </Grid>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

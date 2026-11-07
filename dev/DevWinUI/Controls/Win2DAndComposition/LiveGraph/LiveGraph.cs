@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 
 [TemplatePart(Name = nameof(PART_HostGrid), Type = typeof(Grid))]
-[TemplatePart(Name = nameof(PART_HostGrid), Type = typeof(CanvasAnimatedControl))]
+[TemplatePart(Name = nameof(PART_Canvas), Type = typeof(CanvasAnimatedControl))]
 public partial class LiveGraph : Control
 {
     private const string PART_Canvas = "PART_Canvas";
@@ -47,6 +47,7 @@ public partial class LiveGraph : Control
 
     private Compositor compositor;
     private Visual gridVisual;
+    private CubicBezierEasingFunction highlightLineEasing;
     public LiveGraph()
     {
         this.DefaultStyleKey = typeof(LiveGraph);
@@ -58,8 +59,15 @@ public partial class LiveGraph : Control
 
         canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
         hostGrid = GetTemplateChild(PART_HostGrid) as Grid;
+
+        if (canvas == null || hostGrid == null)
+        {
+            return;
+        }
+
         gridVisual = ElementCompositionPreview.GetElementVisual(hostGrid);
         compositor = gridVisual.Compositor;
+        highlightLineEasing = null;
 
         UpdateDrawColor();
 
@@ -87,37 +95,47 @@ public partial class LiveGraph : Control
     {
         var key = Guid.NewGuid().ToString();
 
-        polygonsBrush[key] = brushData;
+        lock (m_graphMutex)
+        {
+            polygonsBrush[key] = brushData;
+        }
 
         return key;
     }
     public void UpdateGraphBrush(string key, GraphBrushData brushData)
     {
-        polygonsBrush[key] = brushData;
+        lock (m_graphMutex)
+        {
+            polygonsBrush[key] = brushData;
+        }
     }
 
     public void ResetDynamicGraph(string key)
     {
-        if (livePolygons.ContainsKey(key))
+        lock (m_graphMutex)
         {
-            livePolygons.Remove(key);
-
-            var brush = polygonsBrush[key];
-            brush?.Brush?.Dispose();
-            brush?.OpacityBrush?.Dispose();
-            brush?.BorderBrush?.Dispose();
-
-            polygonsBrush.Remove(key);
+            if (livePolygons.Remove(key))
+            {
+                if (polygonsBrush.Remove(key, out var brush))
+                {
+                    brush?.Brush?.Dispose();
+                    brush?.OpacityBrush?.Dispose();
+                    brush?.BorderBrush?.Dispose();
+                }
+            }
         }
     }
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        foreach (var item in polygonsBrush)
+        lock (m_graphMutex)
         {
-            item.Value?.Brush?.Dispose();
-            item.Value?.OpacityBrush?.Dispose();
-            item.Value?.BorderBrush?.Dispose();
-            item.Value?.IsDisposed = true;
+            foreach (var item in polygonsBrush)
+            {
+                item.Value?.Brush?.Dispose();
+                item.Value?.OpacityBrush?.Dispose();
+                item.Value?.BorderBrush?.Dispose();
+                item.Value?.IsDisposed = true;
+            }
         }
     }
 
@@ -145,16 +163,16 @@ public partial class LiveGraph : Control
     }
     private void ResizeGraphPoints(float newWidth, float newHeight, float oldWidth, float oldHeight)
     {
-        bool hasWidthChange = 
+        bool hasWidthChange =
             oldWidth > 0.0f &&
             float.IsFinite(newWidth) &&
             float.IsFinite(oldWidth);
-        
-        bool hasHeightChange = 
+
+        bool hasHeightChange =
             oldHeight > 0.0f &&
             float.IsFinite(newHeight) &&
             float.IsFinite(oldHeight);
-        
+
         if (!hasWidthChange && !hasHeightChange)
         {
             return;
@@ -189,15 +207,13 @@ public partial class LiveGraph : Control
     }
     private void UpdateHighlightLine()
     {
-        if ((polygons.Count == 0 && livePolygons.Count == 0) || highlightLineVisibility == Visibility.Collapsed || highlightLineContent == null)
+        if (polygons.Count == 0 || highlightLineVisibility == Visibility.Collapsed || highlightLineContent == null)
             return;
 
         float canvasWidth = (float)canvas.Size.Width;
 
-        // Combine polygons with livePolygon if exists
-        List<UserPolygon> allPolygons = new(polygons);
-        if (livePolygons.Count > 0)
-            allPolygons.AddRange(livePolygons.Values);
+        // Live polygons are already part of polygons
+        var allPolygons = polygons;
 
         switch (highlightLineBehavior)
         {
@@ -236,11 +252,12 @@ public partial class LiveGraph : Control
 
                 if (targetLineY.HasValue && targetLineY != currentLineY)
                 {
-                    currentLineY = targetLineY.Value;
+                    var lineY = targetLineY.Value;
+                    currentLineY = lineY;
                     _ = DispatcherQueue.TryEnqueue(() =>
                     {
-                        HighlightLineUpdated?.Invoke(this, currentLineY.Value);
-                        MoveHostGridWithAnimation(currentLineY.Value);
+                        HighlightLineUpdated?.Invoke(this, lineY);
+                        MoveHostGridWithAnimation(lineY);
                     });
                 }
                 break;
@@ -318,15 +335,20 @@ public partial class LiveGraph : Control
     }
     private void MoveHostGridWithAnimation(double y)
     {
+        highlightLineEasing ??= compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f));
+
         var animation = compositor.CreateScalarKeyFrameAnimation();
-        animation.InsertKeyFrame(1.0f, (float)y, compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f)));
+        animation.InsertKeyFrame(1.0f, (float)y, highlightLineEasing);
         animation.Duration = highlightLineAnimationDuration;
         gridVisual.StartAnimation("Offset.Y", animation);
     }
 
     private void UpdateClearColor()
     {
-        canvas.ClearColor = clearColor;
+        if (canvas != null)
+        {
+            canvas.ClearColor = clearColor;
+        }
     }
     private float NormalizeY(float percent, float height)
     {
@@ -338,6 +360,9 @@ public partial class LiveGraph : Control
         foreach (var polygon in polygons)
         {
             if (polygon.Points.Count < 2) continue;
+
+            if (!polygonsBrush.TryGetValue(polygon.Key, out var brush) || brush == null || brush.IsDisposed)
+                continue;
 
             using (var pathBuilder = new CanvasPathBuilder(ds.Device))
             {
@@ -396,35 +421,27 @@ public partial class LiveGraph : Control
                 pathBuilder.EndFigure(CanvasFigureLoop.Open);
 
                 // Create the geometry
-                var geometry = CanvasGeometry.CreatePath(pathBuilder);
+                using var geometry = CanvasGeometry.CreatePath(pathBuilder);
 
-                polygonsBrush.TryGetValue(polygon.Key, out var brush);
-
-                if (brush != null)
+                try
                 {
-                    if (brush.IsDisposed)
-                        return;
-
-                    try
+                    if (brush.Brush != null && brush.OpacityBrush != null)
                     {
-                        if (brush.Brush != null && brush.OpacityBrush != null)
-                        {
-                            ds.FillGeometry(geometry, brush.Brush, brush.OpacityBrush);
-                        }
-                        else if (brush.Brush != null && brush.OpacityBrush == null)
-                        {
-                            ds.FillGeometry(geometry, brush.Brush);
-                        }
-
-                        if (brush.BorderBrush != null)
-                        {
-                            ds.DrawGeometry(geometry, brush.BorderBrush, brush.StrokeWidth, brush.StrokeStyle);
-                        }
+                        ds.FillGeometry(geometry, brush.Brush, brush.OpacityBrush);
                     }
-                    catch (ObjectDisposedException)
+                    else if (brush.Brush != null && brush.OpacityBrush == null)
                     {
-                        return;
+                        ds.FillGeometry(geometry, brush.Brush);
                     }
+
+                    if (brush.BorderBrush != null)
+                    {
+                        ds.DrawGeometry(geometry, brush.BorderBrush, brush.StrokeWidth, brush.StrokeStyle);
+                    }
+                }
+                catch (ObjectDisposedException)
+                {
+                    continue;
                 }
             }
         }
@@ -446,11 +463,14 @@ public partial class LiveGraph : Control
 
         DrawBackground(ds, width, height);
 
-        UpdatePolygonsOffset();
+        lock (m_graphMutex)
+        {
+            UpdatePolygonsOffset();
 
-        DrawUserPolygons(ds, width, height);
+            DrawUserPolygons(ds, width, height);
 
-        UpdateHighlightLine(); // <--- this will move the line smoothly
+            UpdateHighlightLine(); // <--- this will move the line smoothly
+        }
     }
     private void DrawBackground(CanvasDrawingSession ds, float width, float height)
     {
@@ -459,6 +479,9 @@ public partial class LiveGraph : Control
             case LiveGraphBackgroundMode.None:
                 break;
             case LiveGraphBackgroundMode.Cross:
+                if (crossSpacing <= 0)
+                    break;
+
                 // Draw vertical lines
                 for (float x = offsetX; x < width; x += crossSpacing)
                 {
@@ -467,13 +490,13 @@ public partial class LiveGraph : Control
 
                 for (float y = 0; y < height; y += crossSpacing)
                 {
-                    for (float x = offsetX; x < width; x += crossSpacing)
-                    {
-                        ds.DrawLine(x, y, x + crossSpacing, y, drawColor, 1f);
-                    }
+                    ds.DrawLine(offsetX, y, width, y, drawColor, 1f);
                 }
                 break;
             case LiveGraphBackgroundMode.Dot:
+                if (dotSpacing <= 0)
+                    break;
+
                 for (float y = 0; y < height; y += dotSpacing)
                 {
                     for (float x = offsetX; x < width; x += dotSpacing)
@@ -495,6 +518,40 @@ public partial class LiveGraph : Control
             if (polygon.Points.Count > 0 && polygon.Points.Last().X + polygon.OffsetX < 0)
             {
                 polygons.RemoveAt(i);
+
+                if (polygon.Key != null && livePolygons.TryGetValue(polygon.Key, out var livePolygon) && livePolygon == polygon)
+                {
+                    livePolygons.Remove(polygon.Key);
+                }
+
+                if (i < currentPolygonIndex)
+                {
+                    currentPolygonIndex--;
+                }
+                else if (i == currentPolygonIndex)
+                {
+                    currentPointIndex = 0;
+                }
+
+                continue;
+            }
+
+            // Drop points that are off-screen, keeping the one that connects to the visible area
+            var points = polygon.Points;
+            int trim = 0;
+            while (trim + 1 < points.Count && points[trim + 1].X + polygon.OffsetX < 0)
+            {
+                trim++;
+            }
+
+            if (trim > 0)
+            {
+                points.RemoveRange(0, trim);
+
+                if (i == currentPolygonIndex)
+                {
+                    currentPointIndex = Math.Max(currentPointIndex - trim, 0);
+                }
             }
         }
     }

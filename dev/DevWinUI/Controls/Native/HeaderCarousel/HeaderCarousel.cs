@@ -6,23 +6,29 @@ public partial class HeaderCarousel : ItemsControl
 {
     private const string PART_ScrollViewer = "PART_ScrollViewer";
     private const string PART_BackDropImage = "PART_BackDropImage";
-    private ScrollViewer scrollViewer;
-    private AnimatedImage backDropImage;
-
-    public event EventHandler<HeaderCarouselEventArgs> ItemClick;
 
     private readonly Random random = new();
-    private DispatcherTimer selectionTimer = new();
+    private readonly DispatcherTimer selectionTimer = new();
     private readonly DispatcherTimer deselectionTimer = new();
     private readonly List<int> numbers = [];
+
+    private ScrollViewer scrollViewer;
+    private AnimatedImage backDropImage;
+    private BlurEffectManager _blurManager;
     private HeaderCarouselItem? selectedTile;
     private int currentIndex;
+    private bool _isSelecting;
 
-    private BlurEffectManager _blurManager;
+    public event EventHandler<HeaderCarouselEventArgs> ItemClick;
 
     public HeaderCarousel()
     {
         DefaultStyleKey = typeof(HeaderCarousel);
+
+        selectionTimer.Tick += SelectionTimer_Tick;
+        deselectionTimer.Tick += DeselectionTimer_Tick;
+        Loaded += HeaderCarousel_Loaded;
+        Unloaded += HeaderCarousel_Unloaded;
     }
 
     protected override void OnApplyTemplate()
@@ -35,17 +41,8 @@ public partial class HeaderCarousel : ItemsControl
         scrollViewer = GetTemplateChild(PART_ScrollViewer) as ScrollViewer;
         backDropImage = GetTemplateChild(PART_BackDropImage) as AnimatedImage;
 
-        Loaded -= HeaderCarousel_Loaded;
-        Loaded += HeaderCarousel_Loaded;
-        Unloaded -= HeaderCarousel_Unloaded;
-        Unloaded += HeaderCarousel_Unloaded;
-
-        if (backDropImage != null)
-        {
-            _blurManager = new BlurEffectManager(backDropImage);
-
-            ApplyBackdropBlur();
-        }
+        _blurManager = backDropImage != null ? new BlurEffectManager(backDropImage) : null;
+        ApplyBackdropBlur();
     }
 
     private void ApplyBackdropBlur()
@@ -56,7 +53,6 @@ public partial class HeaderCarousel : ItemsControl
         if (IsBlurEnabled)
         {
             _blurManager.BlurAmount = BlurAmount;
-
             _blurManager.EnableBlur();
         }
         else
@@ -65,29 +61,32 @@ public partial class HeaderCarousel : ItemsControl
         }
     }
 
-    private void HeaderCarousel_Unloaded(object sender, RoutedEventArgs e)
-    {
-        UnsubscribeToEvents();
-    }
-
     private void HeaderCarousel_Loaded(object sender, RoutedEventArgs e)
     {
-        selectionTimer.Tick -= SelectionTimer_Tick;
-        selectionTimer.Tick += SelectionTimer_Tick;
-        deselectionTimer.Tick -= DeselectionTimer_Tick;
-        deselectionTimer.Tick += DeselectionTimer_Tick;
-
+        SubscribeToEvents();
         ApplyAutoScroll();
     }
+
+    private void HeaderCarousel_Unloaded(object sender, RoutedEventArgs e)
+    {
+        selectionTimer.Stop();
+        deselectionTimer.Stop();
+        UnsubscribeFromEvents();
+    }
+
     protected override void OnItemsChanged(object e)
     {
         base.OnItemsChanged(e);
 
+        numbers.Clear();
+        currentIndex = 0;
+
         SubscribeToEvents();
     }
+
     private void SubscribeToEvents()
     {
-        foreach (HeaderCarouselItem tile in Items)
+        foreach (var tile in Items.OfType<HeaderCarouselItem>())
         {
             tile.PointerEntered -= Tile_PointerEntered;
             tile.PointerEntered += Tile_PointerEntered;
@@ -106,13 +105,9 @@ public partial class HeaderCarousel : ItemsControl
         }
     }
 
-    private void UnsubscribeToEvents()
+    private void UnsubscribeFromEvents()
     {
-        selectionTimer.Tick -= SelectionTimer_Tick;
-        deselectionTimer.Tick -= DeselectionTimer_Tick;
-        selectionTimer?.Stop();
-        deselectionTimer?.Stop();
-        foreach (HeaderCarouselItem tile in Items)
+        foreach (var tile in Items.OfType<HeaderCarouselItem>())
         {
             tile.PointerEntered -= Tile_PointerEntered;
             tile.PointerExited -= Tile_PointerExited;
@@ -138,25 +133,22 @@ public partial class HeaderCarousel : ItemsControl
 
     private async void SelectNextTile()
     {
-        if (Items.Count == 0)
-        {
+        var panel = ItemsPanelRoot;
+        if (Items.Count == 0 || panel == null || scrollViewer == null)
             return;
-        }
 
-        if (Items[GetNextUniqueRandom()] is HeaderCarouselItem tile)
-        {
-            selectedTile = tile;
-            var panel = ItemsPanelRoot;
-            if (panel != null)
-            {
-                GeneralTransform transform = selectedTile.TransformToVisual(panel);
-                Point point = transform.TransformPoint(new Point(0, 0));
-                scrollViewer.ChangeView(point.X - (scrollViewer.ActualWidth / 2) + (selectedTile.ActualSize.X / 2), null, null);
-                await Task.Delay(500);
-                SetTileVisuals();
-                deselectionTimer?.Start();
-            }
-        }
+        if (Items[GetNextUniqueRandom()] is not HeaderCarouselItem tile)
+            return;
+
+        selectedTile = tile;
+
+        Point point = tile.TransformToVisual(panel).TransformPoint(new Point(0, 0));
+        scrollViewer.ChangeView(point.X - (scrollViewer.ActualWidth / 2) + (tile.ActualSize.X / 2), null, null);
+
+        await Task.Delay(500);
+
+        SetTileVisuals();
+        deselectionTimer.Start();
     }
 
     private void DeselectionTimer_Tick(object? sender, object e)
@@ -167,26 +159,23 @@ public partial class HeaderCarousel : ItemsControl
             selectedTile = null;
         }
 
-        deselectionTimer?.Stop();
+        deselectionTimer.Stop();
 
         if (IsAutoScrollEnabled)
-            selectionTimer?.Start();
+            selectionTimer.Start();
     }
 
     private void ResetAndShuffle()
     {
         if (Items.Count == 0)
-        {
             return;
-        }
 
         numbers.Clear();
-        for (int i = 0; i <= Items.Count - 1; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
             numbers.Add(i);
         }
 
-        // Shuffle the list
         for (int i = numbers.Count - 1; i > 0; i--)
         {
             int j = random.Next(i + 1);
@@ -208,40 +197,42 @@ public partial class HeaderCarousel : ItemsControl
 
     private void SetTileVisuals()
     {
-        if (selectedTile != null)
-        {
-            selectedTile.IsSelected = true;
-            backDropImage.ImageUrl = new Uri(selectedTile.ImageUrl);
+        if (selectedTile == null)
+            return;
 
-            if (selectedTile.Foreground is LinearGradientBrush brush)
-            {
-                AnimateTitleGradient(brush);
-            }
+        selectedTile.IsSelected = true;
+
+        if (backDropImage != null && Uri.TryCreate(selectedTile.ImageUrl, UriKind.Absolute, out var imageUri))
+        {
+            backDropImage.ImageUrl = imageUri;
+        }
+
+        if (selectedTile.Foreground is LinearGradientBrush brush)
+        {
+            AnimateTitleGradient(brush);
         }
     }
 
     private void AnimateTitleGradient(LinearGradientBrush brush)
     {
-        //// Create a storyboard to hold the animations
-        Storyboard storyboard = new();
+        if (Header is not TextBlock { Foreground: LinearGradientBrush target })
+            return;
 
-        int i = 0;
-        foreach (GradientStop stop in brush.GradientStops)
+        Storyboard storyboard = new();
+        int count = Math.Min(brush.GradientStops.Count, target.GradientStops.Count);
+
+        for (int i = 0; i < count; i++)
         {
-            ColorAnimation colorAnimation1 = new()
+            ColorAnimation colorAnimation = new()
             {
-                To = stop.Color,
+                To = brush.GradientStops[i].Color,
                 Duration = new Duration(TimeSpan.FromMilliseconds(500)),
                 EnableDependentAnimation = true
             };
 
-            if (Header is TextBlock block && block.Foreground is LinearGradientBrush animatedGradientBrush)
-            {
-                Storyboard.SetTarget(colorAnimation1, animatedGradientBrush.GradientStops[i]);
-                Storyboard.SetTargetProperty(colorAnimation1, "Color");
-                storyboard.Children.Add(colorAnimation1);
-                i++;
-            }
+            Storyboard.SetTarget(colorAnimation, target.GradientStops[i]);
+            Storyboard.SetTargetProperty(colorAnimation, "Color");
+            storyboard.Children.Add(colorAnimation);
         }
 
         storyboard.Begin();
@@ -251,7 +242,7 @@ public partial class HeaderCarousel : ItemsControl
     {
         ((HeaderCarouselItem)sender).IsSelected = false;
         if (IsAutoScrollEnabled)
-            selectionTimer?.Start();
+            selectionTimer.Start();
     }
 
     private void Tile_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -260,24 +251,29 @@ public partial class HeaderCarousel : ItemsControl
         SelectTile();
     }
 
-    private bool _isSelecting = false;
-
     private async void SelectTile()
     {
-        if (_isSelecting) return;
+        if (_isSelecting)
+            return;
 
         _isSelecting = true;
-        await Task.Delay(100); // debounce small movements
-        selectionTimer.Stop();
-        deselectionTimer.Stop();
 
-        foreach (HeaderCarouselItem t in Items)
-            t.IsSelected = false;
+        try
+        {
+            await Task.Delay(100);
+            selectionTimer.Stop();
+            deselectionTimer.Stop();
 
-        await Task.Delay(360); // ensure animations finish
-        SetTileVisuals();
+            foreach (var tile in Items.OfType<HeaderCarouselItem>())
+                tile.IsSelected = false;
 
-        _isSelecting = false;
+            await Task.Delay(360);
+            SetTileVisuals();
+        }
+        finally
+        {
+            _isSelecting = false;
+        }
     }
 
     private void Tile_GotFocus(object sender, RoutedEventArgs e)
@@ -290,7 +286,7 @@ public partial class HeaderCarousel : ItemsControl
     {
         ((HeaderCarouselItem)sender).IsSelected = false;
         if (IsAutoScrollEnabled)
-            selectionTimer?.Start();
+            selectionTimer.Start();
     }
 
     private void ApplyAutoScroll()
@@ -302,8 +298,8 @@ public partial class HeaderCarousel : ItemsControl
         }
         else
         {
-            selectionTimer?.Stop();
-            deselectionTimer?.Stop();
+            selectionTimer.Stop();
+            deselectionTimer.Stop();
         }
     }
 }

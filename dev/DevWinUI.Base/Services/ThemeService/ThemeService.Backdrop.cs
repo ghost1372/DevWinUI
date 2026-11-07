@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class ThemeService
 {
     public async Task<bool> SetBackdropTypeWithoutSaveAsync()
@@ -32,15 +33,16 @@ public partial class ThemeService
     public async Task<bool> SetBackdropTypeWithoutSaveAsync(BackdropType backdropType)
     {
         var cachedAutoSave = _useAutoSave;
-        if (_useAutoSave)
-            _useAutoSave = false;
+        _useAutoSave = false;
 
-        var result = await SetBackdropTypeAsync(backdropType);
-
-        if (cachedAutoSave)
-            _useAutoSave = true;
-
-        return result;
+        try
+        {
+            return await SetBackdropTypeAsync(backdropType);
+        }
+        finally
+        {
+            _useAutoSave = cachedAutoSave;
+        }
     }
     public async Task<bool> SetBackdropTypeAsync(BackdropType backdropType)
     {
@@ -138,7 +140,7 @@ public partial class ThemeService
 
     public SystemBackdrop GetSystemBackdrop()
     {
-        return _rootElements?.Keys.FirstOrDefault().SystemBackdrop;
+        return _rootElements?.Keys.FirstOrDefault()?.SystemBackdrop;
     }
     public MicaSystemBackdrop GetMicaSystemBackdrop()
     {

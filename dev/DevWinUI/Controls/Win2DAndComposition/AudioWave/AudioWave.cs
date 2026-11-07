@@ -5,228 +5,385 @@ namespace DevWinUI;
 public partial class AudioWave : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private CanvasAnimatedControl canvas;
 
-    private double songPos_ = 0;
-    private double elapsedMs = 0;
+    private readonly object sync = new();
+    private CanvasAnimatedControl canvas;
     private float[] waveData;
 
+    private double elapsedMs;
     private double duration = TimeSpan.FromSeconds(4).TotalMilliseconds;
     private float barWidth = 6f;
     private float barSpacing = 3f;
-    private Color barBackground = Colors.Gray;
-    private List<CanvasGradientStop> barBackgroundGradientStops = null;
-    private List<CanvasGradientStop> barForegroundGradientStops = null;
-    private Color barForeground = Colors.DeepPink;
     private float barRadiusX = 3f;
     private float barRadiusY = 3f;
-    private AudioWaveState state = AudioWaveState.Stopped;
+    private Color barBackground = Colors.Gray;
+    private Color barForeground = Colors.DeepPink;
+    private CanvasGradientStop[] backgroundStops;
+    private CanvasGradientStop[] foregroundStops;
+    private CanvasLinearGradientBrush backgroundBrush;
+    private CanvasLinearGradientBrush foregroundBrush;
+    private volatile AudioWaveState state = AudioWaveState.Stopped;
+    private volatile bool isDragging;
+    private bool isSyncingProgress;
     private int lastProgress = -1;
-    private double manualProgress = -1; // -1 means no manual override
-    private bool isDragging = false;
-    private double dragPosition = 0;
+
     public Func<float[]> WaveDataProvider { get; set; }
     public event EventHandler<int> ProgressChanged;
 
     public AudioWave()
     {
         DefaultStyleKey = typeof(AudioWave);
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        waveData = WaveDataProvider?.Invoke();
+
+        DetachCanvas();
         canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
+        waveData = WaveDataProvider?.Invoke();
 
-        canvas.Draw -= OnCanvasDraw;
-        canvas.Draw += OnCanvasDraw;
-
-        canvas.Update -= OnCanvasUpdate;
-        canvas.Update += OnCanvasUpdate;
-
-        canvas.PointerPressed -= Canvas_PointerPressed;
-        canvas.PointerPressed += Canvas_PointerPressed;
-
-        canvas.PointerMoved -= Canvas_PointerMoved;
-        canvas.PointerMoved += Canvas_PointerMoved;
-
-        canvas.PointerReleased -= Canvas_PointerReleased;
-        canvas.PointerReleased += Canvas_PointerReleased;
+        if (IsLoaded)
+            AttachCanvas();
     }
 
-    private void Canvas_PointerPressed(object sender, PointerRoutedEventArgs e)
+    private void OnLoaded(object sender, RoutedEventArgs e) => AttachCanvas();
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        if (!CanSelectedByMouse)
+        isDragging = false;
+        DetachCanvas();
+        ReleaseBrushes();
+    }
+
+    private void AttachCanvas()
+    {
+        if (canvas == null)
             return;
 
-        var point = e.GetCurrentPoint(canvas);
+        DetachCanvas();
+
+        canvas.CreateResources += OnCanvasCreateResources;
+        canvas.Draw += OnCanvasDraw;
+        canvas.Update += OnCanvasUpdate;
+        canvas.SizeChanged += OnCanvasSizeChanged;
+        canvas.PointerPressed += OnCanvasPointerPressed;
+        canvas.PointerMoved += OnCanvasPointerMoved;
+        canvas.PointerReleased += OnCanvasPointerReleased;
+        canvas.PointerCanceled += OnCanvasPointerCanceled;
+        canvas.PointerCaptureLost += OnCanvasPointerCaptureLost;
+
+        UpdatePlaybackLoop();
+    }
+
+    private void DetachCanvas()
+    {
+        if (canvas == null)
+            return;
+
+        canvas.CreateResources -= OnCanvasCreateResources;
+        canvas.Draw -= OnCanvasDraw;
+        canvas.Update -= OnCanvasUpdate;
+        canvas.SizeChanged -= OnCanvasSizeChanged;
+        canvas.PointerPressed -= OnCanvasPointerPressed;
+        canvas.PointerMoved -= OnCanvasPointerMoved;
+        canvas.PointerReleased -= OnCanvasPointerReleased;
+        canvas.PointerCanceled -= OnCanvasPointerCanceled;
+        canvas.PointerCaptureLost -= OnCanvasPointerCaptureLost;
+    }
+
+    private void OnCanvasCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args) => ReleaseBrushes();
+
+    private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e) => canvas?.Invalidate();
+
+    private void OnCanvasPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        if (!CanSelectedByMouse || !canvas.CapturePointer(e.Pointer))
+            return;
+
         isDragging = true;
-        UpdateDragPosition(point.Position.X);
+        SeekToPointer(e);
     }
 
-    private void Canvas_PointerMoved(object sender, PointerRoutedEventArgs e)
+    private void OnCanvasPointerMoved(object sender, PointerRoutedEventArgs e)
     {
-        if (!isDragging || !CanSelectedByMouse) return;
-
-        var point = e.GetCurrentPoint(canvas);
-        UpdateDragPosition(point.Position.X);
+        if (isDragging)
+            SeekToPointer(e);
     }
 
-    private void UpdateDragPosition(double x)
+    private void OnCanvasPointerReleased(object sender, PointerRoutedEventArgs e)
     {
-        dragPosition = Math.Clamp(x, 0, canvas.Size.Width);
-        manualProgress = dragPosition / canvas.Size.Width;
+        if (!isDragging)
+            return;
+
+        SeekToPointer(e);
+        canvas.ReleasePointerCapture(e.Pointer);
+    }
+
+    private void OnCanvasPointerCanceled(object sender, PointerRoutedEventArgs e)
+    {
+        if (isDragging)
+            canvas.ReleasePointerCapture(e.Pointer);
+    }
+
+    private void OnCanvasPointerCaptureLost(object sender, PointerRoutedEventArgs e) => CompleteDrag();
+
+    private void SeekToPointer(PointerRoutedEventArgs e)
+    {
+        double width = canvas.ActualWidth;
+        if (width <= 0)
+            return;
+
+        Seek(e.GetCurrentPoint(canvas).Position.X / width);
+    }
+
+    private void Seek(double ratio)
+    {
+        lock (sync)
+            elapsedMs = Math.Clamp(ratio, 0, 1) * duration;
+
         canvas?.Invalidate();
     }
 
-    private void Canvas_PointerReleased(object sender, PointerRoutedEventArgs e)
+    private void CompleteDrag()
     {
-        if (!isDragging || !CanSelectedByMouse) return;
+        if (!isDragging)
+            return;
 
         isDragging = false;
 
-        dragPosition = Math.Clamp(dragPosition, 0, canvas.Size.Width);
-        manualProgress = dragPosition / canvas.Size.Width;
+        int percent;
+        lock (sync)
+            percent = (int)(GetProgress() * 100);
 
-        elapsedMs = manualProgress * duration;
+        Volatile.Write(ref lastProgress, percent);
+        PublishProgress(percent);
+    }
 
-        int progressPercent = (int)(manualProgress * 100);
-        lastProgress = progressPercent;
-        ProgressChanged?.Invoke(this, progressPercent);
+    private double GetProgress() => duration > 0 ? Math.Clamp(elapsedMs / duration, 0, 1) : 0;
+
+    private void OnCanvasDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+    {
+        var data = waveData;
+        float width = (float)sender.Size.Width;
+        float height = (float)sender.Size.Height;
+
+        if (data is not { Length: > 0 } || width <= 0 || height <= 0)
+            return;
+
+        var session = args.DrawingSession;
+        int totalBars = data.Length;
+
+        float totalWidth = totalBars * barWidth + barSpacing * (totalBars - 1);
+        float scale = Math.Min(1f, width / totalWidth);
+        float actualBarWidth = barWidth * scale;
+        float step = actualBarWidth + barSpacing * scale;
+        float centerY = height / 2f;
+        float x = 0f;
+
+        lock (sync)
+        {
+            var background = GetBrush(ref backgroundBrush, backgroundStops, sender);
+            var foreground = GetBrush(ref foregroundBrush, foregroundStops, sender);
+            int highlightCount = (int)(totalBars * GetProgress());
+
+            for (int i = 0; i < totalBars; i++)
+            {
+                float h = Math.Clamp(data[i], 0f, height);
+                float y = centerY - h / 2f;
+
+                bool active = i < highlightCount;
+                var brush = active ? foreground : background;
+
+                if (brush == null)
+                {
+                    session.FillRoundedRectangle(x, y, actualBarWidth, h, barRadiusX, barRadiusY, active ? barForeground : barBackground);
+                }
+                else
+                {
+                    brush.StartPoint = new Vector2(x, 0);
+                    brush.EndPoint = new Vector2(x + actualBarWidth, 0);
+                    session.FillRoundedRectangle(x, y, actualBarWidth, h, barRadiusX, barRadiusY, brush);
+                }
+
+                x += step;
+            }
+        }
+    }
+
+    private static CanvasLinearGradientBrush GetBrush(ref CanvasLinearGradientBrush brush, CanvasGradientStop[] stops, ICanvasResourceCreator creator)
+        => stops == null ? null : brush ??= new CanvasLinearGradientBrush(creator, stops);
+
+    private void OnCanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+    {
+        if (state != AudioWaveState.Playing || isDragging)
+            return;
+
+        int percent;
+        bool completed;
+
+        lock (sync)
+        {
+            elapsedMs += args.Timing.ElapsedTime.TotalMilliseconds;
+            completed = elapsedMs >= duration;
+
+            if (completed)
+                elapsedMs = duration;
+
+            percent = (int)(GetProgress() * 100);
+        }
+
+        if (Interlocked.Exchange(ref lastProgress, percent) != percent)
+            DispatcherQueue.TryEnqueue(() => PublishProgressIfCurrent(percent));
+
+        if (completed)
+        {
+            state = AudioWaveState.Paused;
+            DispatcherQueue.TryEnqueue(UpdatePlaybackLoop);
+        }
+    }
+
+    private void PublishProgressIfCurrent(int percent)
+    {
+        if (Volatile.Read(ref lastProgress) == percent)
+            PublishProgress(percent);
+    }
+
+    private void PublishProgress(int percent)
+    {
+        SyncProgress(percent);
+        ProgressChanged?.Invoke(this, percent);
+    }
+
+    private void SyncProgress(int percent)
+    {
+        isSyncingProgress = true;
+        try
+        {
+            Progress = percent;
+        }
+        finally
+        {
+            isSyncingProgress = false;
+        }
+    }
+
+    private void ApplyProgress(int percent)
+    {
+        if (isSyncingProgress)
+            return;
+
+        percent = Math.Clamp(percent, 0, 100);
+
+        lock (sync)
+            elapsedMs = percent / 100.0 * duration;
+
+        if (Interlocked.Exchange(ref lastProgress, percent) != percent)
+            ProgressChanged?.Invoke(this, percent);
 
         canvas?.Invalidate();
     }
 
-    private void OnCanvasDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+    private void ApplyDuration(double milliseconds)
     {
-        var s = args.DrawingSession;
-
-        int totalBars = waveData.Length;
-        float availableWidth = (float)sender.Size.Width;
-
-        float totalSpacing = barSpacing * (totalBars - 1);
-        float totalBarWidth = totalBars * barWidth;
-        float scale = Math.Min(1f, availableWidth / (totalBarWidth + totalSpacing));
-        float actualBarWidth = barWidth * scale;
-        float actualBarSpacing = barSpacing * scale;
-
-        float x = 0f;
-        float centerY = (float)sender.Size.Height / 2f;
-
-        double progress = (manualProgress >= 0)
-            ? manualProgress
-            : Math.Min(1.0, elapsedMs / duration);
-
-        int highlightCount = (int)(totalBars * progress);
-
-        for (int i = 0; i < totalBars; i++)
+        lock (sync)
         {
-            float h = Math.Max(0, waveData[i]);
+            duration = milliseconds;
+            elapsedMs = 0;
+        }
 
-            float top = centerY - h / 2f;
-            Rect barRect = new Rect(x, top, actualBarWidth, h);
+        Volatile.Write(ref lastProgress, -1);
+        SyncProgress(0);
+        canvas?.Invalidate();
+    }
 
-            Color color = barBackground;
-            List<CanvasGradientStop> stopsToUse = barBackgroundGradientStops;
+    private void ApplyBackgroundGradientStops(List<CanvasGradientStop> stops)
+    {
+        lock (sync)
+        {
+            backgroundStops = stops is { Count: > 0 } ? stops.ToArray() : null;
+            backgroundBrush?.Dispose();
+            backgroundBrush = null;
+        }
 
-            if ((state == AudioWaveState.Playing || state == AudioWaveState.Paused || manualProgress >= 0)
-                && i < highlightCount)
-            {
-                color = barForeground;
-                stopsToUse = barForegroundGradientStops;
-            }
+        canvas?.Invalidate();
+    }
 
-            if (stopsToUse == null)
-            {
-                s.FillRoundedRectangle(barRect, barRadiusX, barRadiusY, color);
-            }
-            else
-            {
-                CanvasGradientStop[] canvasStops = stopsToUse
-                    .Select(gs => new CanvasGradientStop { Color = gs.Color, Position = gs.Position })
-                    .ToArray();
+    private void ApplyForegroundGradientStops(List<CanvasGradientStop> stops)
+    {
+        lock (sync)
+        {
+            foregroundStops = stops is { Count: > 0 } ? stops.ToArray() : null;
+            foregroundBrush?.Dispose();
+            foregroundBrush = null;
+        }
 
-                using (var gradient = new CanvasLinearGradientBrush(args.DrawingSession, canvasStops)
-                {
-                    StartPoint = new Vector2(x, 0),
-                    EndPoint = new Vector2(x + actualBarWidth, 0)
-                })
-                {
-                    s.FillRoundedRectangle(barRect, barRadiusX, barRadiusY, gradient);
-                }
-            }
+        canvas?.Invalidate();
+    }
 
-            x += actualBarWidth + actualBarSpacing;
-
-            if (x > sender.Size.Width) break;
+    private void ReleaseBrushes()
+    {
+        lock (sync)
+        {
+            backgroundBrush?.Dispose();
+            backgroundBrush = null;
+            foregroundBrush?.Dispose();
+            foregroundBrush = null;
         }
     }
 
-    private void OnCanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+    private void UpdatePlaybackLoop()
     {
-        if (state != AudioWaveState.Playing)
+        if (canvas == null)
             return;
 
-        elapsedMs += args.Timing.ElapsedTime.TotalMilliseconds;
-        double progress = Math.Min(1.0, elapsedMs / duration);
-
-        songPos_ = sender.Size.Width * progress;
-
-        int progressPercent = (int)(progress * 100);
-        if (progressPercent != lastProgress)
-        {
-            lastProgress = progressPercent;
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                Progress = progressPercent;
-            });
-            ProgressChanged?.Invoke(this, progressPercent);
-        }
+        canvas.Paused = state != AudioWaveState.Playing;
+        canvas.Invalidate();
     }
+
     public void Start()
     {
-        manualProgress = -1;
+        if (state == AudioWaveState.Playing)
+            return;
 
-        if (state == AudioWaveState.Playing) return;
+        lock (sync)
+        {
+            if (elapsedMs >= duration)
+                elapsedMs = 0;
+        }
+
         state = AudioWaveState.Playing;
+        UpdatePlaybackLoop();
     }
 
     public void Pause()
     {
-        if (state != AudioWaveState.Playing) return;
+        if (state != AudioWaveState.Playing)
+            return;
+
         state = AudioWaveState.Paused;
+        UpdatePlaybackLoop();
     }
 
     public void Stop()
     {
         state = AudioWaveState.Stopped;
-        elapsedMs = 0;
-        songPos_ = 0;
-        lastProgress = -1;
+
+        lock (sync)
+            elapsedMs = 0;
+
+        Volatile.Write(ref lastProgress, -1);
+        SyncProgress(0);
+        UpdatePlaybackLoop();
     }
-    private void OnProgressChanged()
-    {
-        int percent = Progress;
 
-        percent = Math.Clamp(percent, 0, 100);
-
-        manualProgress = percent / 100.0;
-        elapsedMs = manualProgress * duration;
-
-        if (lastProgress != percent)
-        {
-            lastProgress = percent;
-            ProgressChanged?.Invoke(this, percent);
-        }
-
-        canvas?.Invalidate();
-    }
     public float[] GenerateSampleWaveData2(int count)
     {
         float[] sample = new float[count];
-        var rand = new Random();
         for (int i = 0; i < sample.Length; i++)
-            sample[i] = rand.Next(20, 80);
+            sample[i] = Random.Shared.Next(20, 80);
 
         return sample;
     }
@@ -234,22 +391,20 @@ public partial class AudioWave : Control
     public float[] GenerateSampleWaveData(int count)
     {
         float[] sample = new float[count];
-        var rand = new Random();
         float last = 50f;
         for (int i = 0; i < sample.Length; i++)
         {
-            float target = rand.Next(20, 80);
-
-            float h = last + (target - last) * 0.3f;
-
-            sample[i] = h;
-            last = h;
+            float target = Random.Shared.Next(20, 80);
+            last += (target - last) * 0.3f;
+            sample[i] = last;
         }
+
         return sample;
     }
 
     public void UpdateWaveData()
     {
         waveData = WaveDataProvider?.Invoke();
+        canvas?.Invalidate();
     }
 }

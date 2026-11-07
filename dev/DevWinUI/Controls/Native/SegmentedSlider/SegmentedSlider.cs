@@ -9,6 +9,7 @@ public partial class SegmentedSlider : Control
 {
     private const string PART_ItemsRepeater = "PART_ItemsRepeater";
     private const string PART_HorizontalThumb = "PART_HorizontalThumb";
+
     private ItemsRepeater itemsRepeater;
     private Thumb horizontalThumb;
 
@@ -21,106 +22,50 @@ public partial class SegmentedSlider : Control
     private int _lastSegmentIndex = -1;
     private bool _isTemplateReady;
     private bool _isSyncing;
+    private bool _isRefreshQueued;
     private IList<SegmentedSliderTimeInfo> internalSegments = new List<SegmentedSliderTimeInfo>();
 
     public SegmentedSlider()
     {
         DefaultStyleKey = typeof(SegmentedSlider);
 
-        if (SegmentTitles == null)
-        {
-            SegmentTitles = new ObservableCollection<string>();
-        }
+        SegmentTitles = new ObservableCollection<string>();
+        TimeSegments = new ObservableCollection<SegmentedSliderTimeInfo>();
 
-        if (TimeSegments == null)
-        {
-            TimeSegments = new ObservableCollection<SegmentedSliderTimeInfo>();
-        }
-    }
-
-    // Update a single prepared segment's fill using the prepared element only.
-    private void UpdateSingleSegmentFill(Grid hostGrid, int index)
-    {
-        if (hostGrid == null || itemsRepeater == null || Maximum <= 0)
-            return;
-
-        var trackRect = hostGrid.Children[0] as Rectangle;
-        var fillRect = hostGrid.Children[1] as Rectangle;
-        if (trackRect == null || fillRect == null)
-            return;
-
-        double trackWidth = itemsRepeater.ActualWidth;
-        if (trackWidth <= 0)
-            return;
-
-        int count = internalSegments.Count > 0 ? internalSegments.Count : SegmentCount;
-        double totalSpacing = Math.Max(0, count - 1) * Spacing;
-        double usableWidth = trackWidth - totalSpacing;
-        double totalFillPixels = (Value / Maximum) * (usableWidth + totalSpacing);
-
-        double segmentWidth = trackRect.ActualWidth;
-
-        double segmentStart = 0;
-        try
-        {
-            var transform = hostGrid.TransformToVisual(itemsRepeater);
-            if (transform != null)
-            {
-                var pt = transform.TransformPoint(new Windows.Foundation.Point(0, 0));
-                segmentStart = pt.X;
-            }
-        }
-        catch
-        {
-            // if transform fails, fall back to 0 which will still allow a best-effort fill
-            segmentStart = 0;
-        }
-
-        double segmentEnd = segmentStart + segmentWidth;
-
-        if (totalFillPixels >= segmentEnd)
-        {
-            fillRect.Width = segmentWidth;
-        }
-        else if (totalFillPixels <= segmentStart)
-        {
-            fillRect.Width = 0;
-        }
-        else
-        {
-            fillRect.Width = totalFillPixels - segmentStart;
-        }
+        PointerPressed += OnPointerPressed;
+        SizeChanged += OnSizeChanged;
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        if (horizontalThumb != null)
+        {
+            horizontalThumb.DragStarted -= HorizontalThumb_DragStarted;
+            horizontalThumb.DragCompleted -= HorizontalThumb_DragCompleted;
+            horizontalThumb.DragDelta -= HorizontalThumb_DragDelta;
+        }
+
+        if (itemsRepeater != null)
+        {
+            itemsRepeater.ElementPrepared -= ItemsRepeater_ElementPrepared;
+            itemsRepeater.ElementIndexChanged -= ItemsRepeater_ElementIndexChanged;
+        }
+
         itemsRepeater = GetTemplateChild(PART_ItemsRepeater) as ItemsRepeater;
         horizontalThumb = GetTemplateChild(PART_HorizontalThumb) as Thumb;
 
         if (horizontalThumb != null)
         {
-            horizontalThumb.DragStarted -= HorizontalThumb_DragStarted;
             horizontalThumb.DragStarted += HorizontalThumb_DragStarted;
-            horizontalThumb.DragCompleted -= HorizontalThumb_DragCompleted;
             horizontalThumb.DragCompleted += HorizontalThumb_DragCompleted;
-            horizontalThumb.DragDelta -= HorizontalThumb_DragDelta;
             horizontalThumb.DragDelta += HorizontalThumb_DragDelta;
         }
 
-        PointerPressed -= OnPointerPressed;
-        PointerPressed += OnPointerPressed;
-
-        SizeChanged -= OnSizeChanged;
-        SizeChanged += OnSizeChanged;
-
         if (itemsRepeater != null)
         {
-            itemsRepeater.ElementPrepared -= ItemsRepeater_ElementPrepared;
             itemsRepeater.ElementPrepared += ItemsRepeater_ElementPrepared;
-
-            itemsRepeater.ElementIndexChanged -= ItemsRepeater_ElementIndexChanged;
             itemsRepeater.ElementIndexChanged += ItemsRepeater_ElementIndexChanged;
         }
 
@@ -130,35 +75,40 @@ public partial class SegmentedSlider : Control
         InitSelectedTime();
         UpdateThumbPosition();
         UpdateSegmentsFill();
-        UpdateTitleHorizontalAlignment();
     }
+
+    private double GetThumbTravel()
+    {
+        return Math.Max(0, itemsRepeater.ActualWidth - horizontalThumb.ActualWidth);
+    }
+
+    private int GetSegmentCount()
+    {
+        return internalSegments.Count > 0 ? internalSegments.Count : SegmentCount;
+    }
+
+    private void QueueRefresh()
+    {
+        if (_isRefreshQueued || DispatcherQueue == null)
+            return;
+
+        _isRefreshQueued = DispatcherQueue.TryEnqueue(() =>
+        {
+            _isRefreshQueued = false;
+            UpdateThumbPosition();
+            UpdateSegmentsFill();
+        });
+    }
+
     private void OnPointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
     {
         if (itemsRepeater == null || horizontalThumb == null || Maximum <= 0)
             return;
 
-        // Get pointer position relative to the repeater (track)
-        var point = e.GetCurrentPoint(itemsRepeater);
-        double x = point.Position.X;
+        double x = e.GetCurrentPoint(itemsRepeater).Position.X;
+        double maxX = GetThumbTravel();
 
-        double trackWidth = itemsRepeater.ActualWidth;
-        double maxX = Math.Max(0, trackWidth - horizontalThumb.ActualWidth);
-
-        if (maxX <= 0)
-        {
-            Value = 0;
-            UpdateThumbPosition();
-            UpdateSegmentsFill();
-            return;
-        }
-
-        x = Math.Max(0, Math.Min(x, maxX));
-
-        Value = (x / maxX) * Maximum;
-
-        // Move thumb and update fill
-        UpdateThumbPosition();
-        UpdateSegmentsFill();
+        Value = maxX > 0 ? Math.Clamp(x, 0, maxX) / maxX * Maximum : 0;
     }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -182,42 +132,13 @@ public partial class SegmentedSlider : Control
 
     private void HorizontalThumb_DragDelta(object sender, DragDeltaEventArgs e)
     {
-        if (itemsRepeater == null || horizontalThumb == null)
+        if (itemsRepeater == null || horizontalThumb == null || Maximum <= 0)
             return;
 
-        if (Maximum > 0)
-        {
-            double trackWidth = itemsRepeater.ActualWidth;
-            double maxX = Math.Max(0, trackWidth - horizontalThumb.ActualWidth);
+        double maxX = GetThumbTravel();
+        double currentX = (horizontalThumb.RenderTransform as TranslateTransform)?.X ?? 0;
 
-            var transform = horizontalThumb.RenderTransform as TranslateTransform;
-            if (transform == null)
-            {
-                transform = new TranslateTransform();
-                horizontalThumb.RenderTransform = transform;
-            }
-
-            double currentX = transform.X;
-            currentX += e.HorizontalChange;
-
-            if (maxX <= 0)
-            {
-                currentX = 0;
-                Value = 0;
-                transform.X = currentX;
-                UpdateSegmentsFill();
-                return;
-            }
-
-            currentX = Math.Max(0, Math.Min(currentX, maxX));
-
-            Value = (currentX / maxX) * Maximum;
-            UpdateSegmentsFill();
-
-            transform.X = currentX;
-
-            ValueChanged?.Invoke(this, Value);
-        }
+        Value = maxX > 0 ? Math.Clamp(currentX + e.HorizontalChange, 0, maxX) / maxX * Maximum : 0;
     }
 
     private void OnSegmentTitlesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -235,24 +156,12 @@ public partial class SegmentedSlider : Control
     {
         UpdateThumbPosition();
 
-        // Update only the element that was just prepared to avoid calling
-        // GetOrCreateElement during the layout pass (which causes a COMException).
         if (args.Element is Grid hostGrid)
         {
-            UpdateSingleSegmentFill(hostGrid, args.Index);
+            UpdateSingleSegmentFill(hostGrid);
         }
 
-        // Defer a full update until after layout completes to ensure it's safe
-        // to create/measure elements if needed.
-        try
-        {
-            var dq = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
-            dq?.TryEnqueue(() => UpdateSegmentsFill());
-        }
-        catch
-        {
-            // Swallow any dispatcher errors; full update will occur on future layout passes.
-        }
+        QueueRefresh();
     }
 
     private void ItemsRepeater_ElementIndexChanged(ItemsRepeater sender, ItemsRepeaterElementIndexChangedEventArgs args)
@@ -263,32 +172,28 @@ public partial class SegmentedSlider : Control
 
     private void InitSelectedTime()
     {
-        if (TotalTime == TimeSpan.Zero || Maximum <= 0)
+        if (TotalTime == TimeSpan.Zero || Maximum <= 0 || internalSegments.Count == 0)
             return;
 
-        // Temporarily disable sync callbacks
         bool oldSync = _isSyncing;
         _isSyncing = true;
 
         try
         {
-            if (internalSegments.Count > 0)
-            {
-                if (SelectedTime > TotalTime)
-                    SelectedTime = TotalTime;
-                else if (SelectedTime < TimeSpan.Zero)
-                    SelectedTime = TimeSpan.Zero;
+            if (SelectedTime > TotalTime)
+                SelectedTime = TotalTime;
+            else if (SelectedTime < TimeSpan.Zero)
+                SelectedTime = TimeSpan.Zero;
 
-                if (SelectedTime > TimeSpan.Zero && Value == 0)
-                {
-                    Value = (SelectedTime.TotalMilliseconds / TotalTime.TotalMilliseconds) * Maximum;
-                    SelectedTimeChanged?.Invoke(this, SelectedTime);
-                }
-                else if (Value > 0 && SelectedTime == TimeSpan.Zero)
-                {
-                    SelectedTime = TimeSpan.FromMilliseconds((Value / Maximum) * TotalTime.TotalMilliseconds);
-                    SelectedTimeChanged?.Invoke(this, SelectedTime);
-                }
+            if (SelectedTime > TimeSpan.Zero && Value == 0)
+            {
+                Value = (SelectedTime.TotalMilliseconds / TotalTime.TotalMilliseconds) * Maximum;
+                SelectedTimeChanged?.Invoke(this, SelectedTime);
+            }
+            else if (Value > 0 && SelectedTime == TimeSpan.Zero)
+            {
+                SelectedTime = TimeSpan.FromMilliseconds((Value / Maximum) * TotalTime.TotalMilliseconds);
+                SelectedTimeChanged?.Invoke(this, SelectedTime);
             }
         }
         finally
@@ -296,31 +201,77 @@ public partial class SegmentedSlider : Control
             _isSyncing = oldSync;
         }
     }
+
     private void UpdateThumbPosition()
     {
         if (itemsRepeater == null || horizontalThumb == null)
             return;
 
+        var transform = horizontalThumb.RenderTransform as TranslateTransform;
+
         if (Maximum > 0)
         {
-            double trackWidth = itemsRepeater.ActualWidth;
-            double maxX = Math.Max(0, trackWidth - horizontalThumb.ActualWidth);
-
-            var transform = horizontalThumb.RenderTransform as TranslateTransform;
             if (transform == null)
             {
                 transform = new TranslateTransform();
                 horizontalThumb.RenderTransform = transform;
             }
 
-            double thumbX = maxX > 0 ? (Value / Maximum) * maxX : 0;
-            transform.X = thumbX;
+            double maxX = GetThumbTravel();
+            transform.X = maxX > 0 ? (Value / Maximum) * maxX : 0;
         }
-        else if (horizontalThumb.RenderTransform is TranslateTransform transform)
+        else if (transform != null)
         {
             transform.X = 0;
         }
     }
+
+    private static bool TryGetRectangles(Grid hostGrid, out Rectangle trackRect, out Rectangle fillRect)
+    {
+        trackRect = null;
+        fillRect = null;
+
+        if (hostGrid.Children.Count < 2)
+            return false;
+
+        trackRect = hostGrid.Children[0] as Rectangle;
+        fillRect = hostGrid.Children[1] as Rectangle;
+        return trackRect != null && fillRect != null;
+    }
+
+    private static void ApplyFill(Rectangle fillRect, double totalFillPixels, double segmentStart, double segmentWidth)
+    {
+        double width = Math.Clamp(totalFillPixels - segmentStart, 0, segmentWidth);
+        if (fillRect.Width != width)
+        {
+            fillRect.Width = width;
+        }
+    }
+
+    private void UpdateSingleSegmentFill(Grid hostGrid)
+    {
+        if (itemsRepeater == null || Maximum <= 0)
+            return;
+
+        if (!TryGetRectangles(hostGrid, out var trackRect, out var fillRect))
+            return;
+
+        double trackWidth = itemsRepeater.ActualWidth;
+        if (trackWidth <= 0)
+            return;
+
+        double segmentStart = 0;
+        try
+        {
+            segmentStart = hostGrid.TransformToVisual(itemsRepeater).TransformPoint(new Point(0, 0)).X;
+        }
+        catch
+        {
+        }
+
+        ApplyFill(fillRect, (Value / Maximum) * trackWidth, segmentStart, trackRect.ActualWidth);
+    }
+
     private void UpdateSegmentsFill()
     {
         if (itemsRepeater == null || Maximum <= 0)
@@ -330,92 +281,47 @@ public partial class SegmentedSlider : Control
         if (trackWidth <= 0)
             return;
 
-        int count = internalSegments.Count > 0 ? internalSegments.Count : SegmentCount;
+        int count = GetSegmentCount();
         if (count <= 0)
             return;
 
-        // total fill in pixels based on current Value
-        double totalSpacing = Math.Max(0, count - 1) * Spacing;
-        double usableWidth = trackWidth - totalSpacing;
-        double totalFillPixels = (Value / Maximum) * (usableWidth + totalSpacing);
-
+        double totalFillPixels = (Value / Maximum) * trackWidth;
         double filledSoFar = 0;
 
         for (int i = 0; i < count; i++)
         {
-            var element = itemsRepeater.GetOrCreateElement(i);
-            if (element is not Grid hostGrid)
-                continue;
-
-            var trackRect = hostGrid.Children[0] as Rectangle;
-            var fillRect = hostGrid.Children[1] as Rectangle;
-            if (trackRect == null || fillRect == null)
+            if (itemsRepeater.TryGetElement(i) is not Grid hostGrid || !TryGetRectangles(hostGrid, out var trackRect, out var fillRect))
                 continue;
 
             double segmentWidth = trackRect.ActualWidth;
-            double segmentStart = filledSoFar + (i * Spacing);
-            double segmentEnd = segmentStart + segmentWidth;
-
-            if (totalFillPixels >= segmentEnd)
-            {
-                // fully filled
-                fillRect.Width = segmentWidth;
-            }
-            else if (totalFillPixels <= segmentStart)
-            {
-                // not reached
-                fillRect.Width = 0;
-            }
-            else
-            {
-                // partially filled
-                fillRect.Width = totalFillPixels - segmentStart;
-            }
-
-            // move on to next segment
+            ApplyFill(fillRect, totalFillPixels, filledSoFar + (i * Spacing), segmentWidth);
             filledSoFar += segmentWidth;
         }
     }
+
     private void UpdateSegments()
     {
         if (itemsRepeater == null)
             return;
 
-        List<string> labels = new List<string>();
-        List<double> segmentWidths = new List<double>();
+        var labels = new List<string>();
+        var segmentWidths = new List<double>();
 
         if (internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
         {
-            // Time-based segments
             foreach (var seg in internalSegments)
             {
                 labels.Add(seg.Title);
-
-                double widthRatio = (seg.EndTime - seg.StartTime).TotalMilliseconds / TotalTime.TotalMilliseconds;
-                segmentWidths.Add(widthRatio);
+                segmentWidths.Add((seg.EndTime - seg.StartTime).TotalMilliseconds / TotalTime.TotalMilliseconds);
             }
         }
         else
         {
-            // Default logic with SegmentCount
-            if (SegmentTitles != null && SegmentTitles.Count > 0)
-            {
-                for (int i = 0; i < SegmentCount; i++)
-                {
-                    if (i < SegmentTitles.Count)
-                        labels.Add(SegmentTitles[i]);
-                    else
-                        labels.Add(null);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < SegmentCount; i++)
-                    labels.Add(null);
-            }
-
             for (int i = 0; i < SegmentCount; i++)
+            {
+                labels.Add(SegmentTitles != null && i < SegmentTitles.Count ? SegmentTitles[i] : null);
                 segmentWidths.Add(1.0 / SegmentCount);
+            }
         }
 
         itemsRepeater.ItemsSource = labels;
@@ -425,42 +331,27 @@ public partial class SegmentedSlider : Control
         {
             layout.ColumnWidths.Clear();
 
-            // Apply column widths (like GridLength Stars)
-            for (int i = 0; i < segmentWidths.Count; i++)
-                layout.ColumnWidths.Add(new GridLength(segmentWidths[i], GridUnitType.Star));
+            foreach (var width in segmentWidths)
+                layout.ColumnWidths.Add(new GridLength(width, GridUnitType.Star));
 
-            // Ensure Value remains valid after the segment count changed. Reductions
-            // in count can make the current Value map to a non-existing segment,
-            // so clamp and refresh visual state.
             if (Maximum > 0)
             {
                 if (Value < 0)
                     Value = 0;
-                if (Value > Maximum)
+                else if (Value > Maximum)
                     Value = Maximum;
             }
 
-            // Update visuals. Do a deferred full update to avoid layout-time element creation.
-            try
-            {
-                var dq = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
-                dq?.TryEnqueue(() =>
-                {
-                    UpdateThumbPosition();
-                    UpdateSegmentsFill();
-                });
-            }
-            catch
-            {
-                // swallow; Update will happen on next layout pass
-            }
+            QueueRefresh();
             itemsRepeater.InvalidateMeasure();
             itemsRepeater.InvalidateArrange();
         }
 
         UpdateSegmentLabelsVisibility();
+        UpdateTitleHorizontalAlignment();
         _lastSegmentIndex = -1;
     }
+
     private void OnSelectedTimeChanged(TimeSpan newTime)
     {
         if (internalSegments.Count == 0)
@@ -477,12 +368,10 @@ public partial class SegmentedSlider : Control
             else if (newTime > TotalTime)
                 newTime = TotalTime;
 
-            // Update Value to match SelectedTime
             var newValue = (newTime.TotalMilliseconds / TotalTime.TotalMilliseconds) * Maximum;
             if (Math.Abs(Value - newValue) > 0.001)
                 Value = newValue;
 
-            // Update the property itself in case it was out of bounds
             if (SelectedTime != newTime)
                 SetValue(SelectedTimeProperty, newTime);
         }
@@ -493,24 +382,51 @@ public partial class SegmentedSlider : Control
 
         SelectedTimeChanged?.Invoke(this, newTime);
     }
+
+    private void OnMaximumChanged()
+    {
+        if (!_isTemplateReady)
+            return;
+
+        if (Maximum > 0 && Value > Maximum)
+        {
+            Value = Maximum;
+            return;
+        }
+
+        UpdateThumbPosition();
+        UpdateSegmentsFill();
+    }
+
     private void OnValueChanged()
     {
-        if (_isSyncing || Maximum <= 0)
+        if (Maximum <= 0)
             return;
 
         if (Value < 0)
-            Value = 0;
-        else if (Value > Maximum)
-            Value = Maximum;
-
-        _isSyncing = true;
-
-        if (internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
         {
-            SelectedTime = TimeSpan.FromMilliseconds((Value / Maximum) * TotalTime.TotalMilliseconds);
+            Value = 0;
+            return;
         }
 
-        _isSyncing = false;
+        if (Value > Maximum)
+        {
+            Value = Maximum;
+            return;
+        }
+
+        if (!_isSyncing && internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
+        {
+            _isSyncing = true;
+            try
+            {
+                SelectedTime = TimeSpan.FromMilliseconds((Value / Maximum) * TotalTime.TotalMilliseconds);
+            }
+            finally
+            {
+                _isSyncing = false;
+            }
+        }
 
         if (_isTemplateReady)
         {
@@ -522,19 +438,12 @@ public partial class SegmentedSlider : Control
             {
                 _lastSegmentIndex = currentIndex;
 
-                var segments = GetSegments();
-                var currentSegment = (segments != null && currentIndex >= 0 && currentIndex < segments.Count)
-                    ? segments[currentIndex]
-                    : null;
-
-                SegmentedSliderTimeInfo timeInfo = null;
-                if (internalSegments != null && currentIndex >= 0 && currentIndex < internalSegments.Count)
-                {
-                    timeInfo = internalSegments[currentIndex];
-                }
-
+                var currentSegment = GetSegment(currentIndex);
                 if (currentSegment != null)
+                {
+                    var timeInfo = currentIndex < internalSegments.Count ? internalSegments[currentIndex] : null;
                     SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment, timeInfo));
+                }
 
                 UpdateSegmentLabelsVisibility();
             }
@@ -542,6 +451,7 @@ public partial class SegmentedSlider : Control
 
         ValueChanged?.Invoke(this, Value);
     }
+
     private void NormalizeTimeSegments()
     {
         if (TimeSegments == null || TimeSegments.Count == 0 || TotalTime == TimeSpan.Zero)
@@ -555,18 +465,12 @@ public partial class SegmentedSlider : Control
 
         foreach (var seg in TimeSegments.OrderBy(s => s.StartTime))
         {
-            var start = seg.StartTime;
-            var end = seg.EndTime;
+            var start = seg.StartTime < lastEnd ? lastEnd : seg.StartTime;
+            var end = seg.EndTime > TotalTime ? TotalTime : seg.EndTime;
 
-            // Fix backward overlap or incorrect start (e.g. user entered 0:20:0 instead of 0:30:0)
-            if (start < lastEnd)
-                start = lastEnd;
+            if (end <= start)
+                continue;
 
-            // Fix EndTimeSpan greater than TotalTimeSpan
-            if (end > TotalTime)
-                end = TotalTime;
-
-            // Fix missing gap between previous end and current start (insert a gap segment)
             if (start > lastEnd)
             {
                 normalized.Add(new SegmentedSliderTimeInfo
@@ -577,20 +481,15 @@ public partial class SegmentedSlider : Control
                 });
             }
 
-            // Ignore invalid zero-length or reversed segments
-            if (end > start)
+            normalized.Add(new SegmentedSliderTimeInfo
             {
-                normalized.Add(new SegmentedSliderTimeInfo
-                {
-                    StartTime = start,
-                    EndTime = end,
-                    Title = seg.Title
-                });
-                lastEnd = end;
-            }
+                StartTime = start,
+                EndTime = end,
+                Title = seg.Title
+            });
+            lastEnd = end;
         }
 
-        // If last segment doesn't reach TotalTimeSpan, add a final segment to cover the end
         if (lastEnd < TotalTime)
         {
             normalized.Add(new SegmentedSliderTimeInfo
@@ -604,72 +503,62 @@ public partial class SegmentedSlider : Control
         internalSegments = normalized;
     }
 
+    private IEnumerable<(int Index, Grid Grid)> EnumerateSegmentGrids()
+    {
+        if (itemsRepeater?.ItemsSource is not System.Collections.ICollection collection)
+            yield break;
+
+        for (int i = 0; i < collection.Count; i++)
+        {
+            if (itemsRepeater.GetOrCreateElement(i) is Grid hostGrid)
+                yield return (i, hostGrid);
+        }
+    }
+
     private void UpdateSegmentLabelsVisibility()
     {
         if (itemsRepeater == null)
             return;
 
-        int itemCount = itemsRepeater.ItemsSource is System.Collections.ICollection collection
-            ? collection.Count
-            : 0;
+        var visibility = TitleVisibility;
+        int currentIndex = visibility is SegmentedSliderTitleVisibility.VisibleCurrentSegment or SegmentedSliderTitleVisibility.VisibleCurrentAndPrevious
+            ? CurrentSegmentIndex()
+            : -1;
 
-        for (int i = 0; i < itemCount; i++)
+        foreach (var (index, hostGrid) in EnumerateSegmentGrids())
         {
-            var element = itemsRepeater.GetOrCreateElement(i);
-            if (element is Grid hostGrid)
+            if (hostGrid.Children.Count <= 2)
+                continue;
+
+            hostGrid.Children[2].Visibility = visibility switch
             {
-                if (hostGrid.Children.Count > 1)
-                {
-                    var textBlock = hostGrid.Children[2];
-                    if (textBlock != null)
-                    {
-                        switch (TitleVisibility)
-                        {
-                            case SegmentedSliderTitleVisibility.Collapsed:
-                                textBlock.Visibility = Visibility.Collapsed;
-                                break;
-                            case SegmentedSliderTitleVisibility.AlwaysVisible:
-                                textBlock.Visibility = Visibility.Visible;
-                                break;
-
-                            case SegmentedSliderTitleVisibility.VisibleCurrentSegment:
-                                textBlock.Visibility = i == CurrentSegmentIndex()
-                                    ? Visibility.Visible
-                                    : Visibility.Collapsed;
-                                break;
-
-                            case SegmentedSliderTitleVisibility.VisibleCurrentAndPrevious:
-                                textBlock.Visibility = i <= CurrentSegmentIndex()
-                                    ? Visibility.Visible
-                                    : Visibility.Collapsed;
-                                break;
-                        }
-                    }
-                }
-            }
+                SegmentedSliderTitleVisibility.Collapsed => Visibility.Collapsed,
+                SegmentedSliderTitleVisibility.AlwaysVisible => Visibility.Visible,
+                SegmentedSliderTitleVisibility.VisibleCurrentSegment => index == currentIndex ? Visibility.Visible : Visibility.Collapsed,
+                SegmentedSliderTitleVisibility.VisibleCurrentAndPrevious => index <= currentIndex ? Visibility.Visible : Visibility.Collapsed,
+                _ => hostGrid.Children[2].Visibility
+            };
         }
     }
+
     private void UpdateTitleHorizontalAlignment()
     {
-        var segments = GetSegments();
-        if (segments == null)
-            return;
-
-        foreach (var item in segments)
+        foreach (var (_, hostGrid) in EnumerateSegmentGrids())
         {
-            if (item.TitleTextBlock != null)
-                item.TitleTextBlock.HorizontalAlignment = TitleHorizontalAlignment;
+            if (hostGrid.Children.Count > 2 && hostGrid.Children[2] is TextBlock title)
+                title.HorizontalAlignment = TitleHorizontalAlignment;
         }
     }
+
     private int CurrentSegmentIndex()
     {
         if (Maximum <= 0)
             return 0;
 
-        // Time-based segments
+        double ratio = Value / Maximum;
+
         if (internalSegments.Count > 0 && TotalTime > TimeSpan.Zero)
         {
-            double ratio = Value / Maximum;
             TimeSpan currentTime = TimeSpan.FromMilliseconds(ratio * TotalTime.TotalMilliseconds);
 
             for (int i = 0; i < internalSegments.Count; i++)
@@ -679,17 +568,13 @@ public partial class SegmentedSlider : Control
                     return i;
             }
 
-            // if we passed all, return last
             return internalSegments.Count - 1;
         }
 
-        // Simple segment mode
         if (SegmentCount <= 0)
             return 0;
 
-        double simpleRatio = Value / Maximum;
-        int simpleIndex = (int)Math.Floor(simpleRatio * SegmentCount);
-        return Math.Min(simpleIndex, SegmentCount - 1);
+        return Math.Min((int)Math.Floor(ratio * SegmentCount), SegmentCount - 1);
     }
 
     public ItemsRepeater GetItemsRepeater()
@@ -697,32 +582,37 @@ public partial class SegmentedSlider : Control
         return itemsRepeater;
     }
 
-    public List<SegmentedSliderSegment> GetSegments()
+    private static SegmentedSliderSegment CreateSegment(Grid hostGrid)
     {
-        if (itemsRepeater == null || itemsRepeater.ItemsSource is not System.Collections.ICollection collection || collection.Count == 0)
+        return new SegmentedSliderSegment
+        {
+            TrackRectangle = hostGrid.Children[0] as Rectangle,
+            FillSegmentRectangle = hostGrid.Children[1] as Rectangle,
+            TitleTextBlock = hostGrid.Children[2] as TextBlock
+        };
+    }
+
+    private SegmentedSliderSegment GetSegment(int index)
+    {
+        if (itemsRepeater?.ItemsSource is not System.Collections.ICollection collection || index < 0 || index >= collection.Count)
             return null;
 
-        List<SegmentedSliderSegment> segments = new List<SegmentedSliderSegment>();
-        int itemCount = collection.Count;
+        return itemsRepeater.GetOrCreateElement(index) is Grid hostGrid && hostGrid.Children.Count > 2
+            ? CreateSegment(hostGrid)
+            : null;
+    }
 
-        for (int i = 0; i < itemCount; i++)
+    public List<SegmentedSliderSegment> GetSegments()
+    {
+        if (itemsRepeater?.ItemsSource is not System.Collections.ICollection { Count: > 0 })
+            return null;
+
+        var segments = new List<SegmentedSliderSegment>();
+
+        foreach (var (_, hostGrid) in EnumerateSegmentGrids())
         {
-            var element = itemsRepeater.GetOrCreateElement(i);
-            if (element is Grid hostGrid)
-            {
-                if (hostGrid.Children.Count > 1)
-                {
-                    var rect = hostGrid.Children[0] as Rectangle;
-                    var fillRect = hostGrid.Children[1] as Rectangle;
-                    var label = hostGrid.Children[2] as TextBlock;
-                    segments.Add(new SegmentedSliderSegment
-                    {
-                        TrackRectangle = rect,
-                        FillSegmentRectangle = fillRect,
-                        TitleTextBlock = label
-                    });
-                }
-            }
+            if (hostGrid.Children.Count > 2)
+                segments.Add(CreateSegment(hostGrid));
         }
 
         return segments;
@@ -742,17 +632,7 @@ public partial class SegmentedSlider : Control
             if (element is not Grid hostGrid)
                 continue;
 
-            // Find both rectangles
-            Rectangle? trackRect = null;
-            Rectangle? fillRect = null;
-
-            if (hostGrid.Children.Count >= 2)
-            {
-                trackRect = hostGrid.Children[0] as Rectangle;
-                fillRect = hostGrid.Children[1] as Rectangle;
-            }
-
-            if (trackRect == null || fillRect == null)
+            if (!TryGetRectangles(hostGrid, out var trackRect, out _))
                 continue;
 
             if (i == 0)
@@ -765,19 +645,17 @@ public partial class SegmentedSlider : Control
             }
             else
             {
-                bool isLastMiddle = (i == itemCount - 2);
-                ApplyMiddleSegmentClip(trackRect, isLastMiddle);
+                ApplyMiddleSegmentClip(trackRect, i == itemCount - 2);
             }
         }
     }
+
     private static void ApplyFirstSegmentClip(Rectangle rect)
     {
-
     }
 
     private static void ApplyMiddleSegmentClip(Rectangle rect, bool isLastItem)
     {
-
     }
 
     private static void ApplyLastSegmentClip(Rectangle rect)

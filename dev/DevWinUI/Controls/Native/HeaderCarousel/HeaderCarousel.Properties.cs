@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class HeaderCarousel
 {
     public bool IsAutoScrollEnabled
@@ -12,11 +13,7 @@ public partial class HeaderCarousel
 
     private static void OnIsAutoScrollEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (HeaderCarousel)d;
-        if (ctl != null)
-        {
-            ctl.ApplyAutoScroll();
-        }
+        ((HeaderCarousel)d).ApplyAutoScroll();
     }
 
     public Stretch ImageStretch
@@ -39,11 +36,7 @@ public partial class HeaderCarousel
 
     private static void OnSelectionDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (HeaderCarousel)d;
-        if (ctl != null)
-        {
-            ctl.selectionTimer.Interval = (TimeSpan)e.NewValue;
-        }
+        ((HeaderCarousel)d).selectionTimer.Interval = (TimeSpan)e.NewValue;
     }
 
     public TimeSpan DeSelectionDuration
@@ -57,16 +50,12 @@ public partial class HeaderCarousel
 
     private static void OnDeSelectionDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (HeaderCarousel)d;
-        if (ctl != null)
-        {
-            ctl.deselectionTimer.Interval = (TimeSpan)e.NewValue;
-        }
+        ((HeaderCarousel)d).deselectionTimer.Interval = (TimeSpan)e.NewValue;
     }
 
     public object Header
     {
-        get { return (object)GetValue(HeaderProperty); }
+        get { return GetValue(HeaderProperty); }
         set { SetValue(HeaderProperty, value); }
     }
 
@@ -75,7 +64,7 @@ public partial class HeaderCarousel
 
     public object SecondaryHeader
     {
-        get { return (object)GetValue(SecondaryHeaderProperty); }
+        get { return GetValue(SecondaryHeaderProperty); }
         set { SetValue(SecondaryHeaderProperty, value); }
     }
 
@@ -102,17 +91,16 @@ public partial class HeaderCarousel
 
     public bool IsBlurEnabled
     {
-        get { return (bool)GetValue(IsBlurBackgroundProperty); }
-        set { SetValue(IsBlurBackgroundProperty, value); }
+        get { return (bool)GetValue(IsBlurEnabledProperty); }
+        set { SetValue(IsBlurEnabledProperty, value); }
     }
 
-    public static readonly DependencyProperty IsBlurBackgroundProperty =
-        DependencyProperty.Register(nameof(IsBlurEnabled), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, IsBlurEnabledChanged));
+    public static readonly DependencyProperty IsBlurEnabledProperty =
+        DependencyProperty.Register(nameof(IsBlurEnabled), typeof(bool), typeof(HeaderCarousel), new PropertyMetadata(true, OnIsBlurEnabledChanged));
 
-    private static void IsBlurEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnIsBlurEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (HeaderCarousel)d;
-        ctl?.ApplyBackdropBlur();
+        ((HeaderCarousel)d).ApplyBackdropBlur();
     }
 
     public double BlurAmount
@@ -126,7 +114,6 @@ public partial class HeaderCarousel
 
     private static void OnBlurChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (HeaderCarousel)d;
-        ctl?.ApplyBackdropBlur();
+        ((HeaderCarousel)d).ApplyBackdropBlur();
     }
 }

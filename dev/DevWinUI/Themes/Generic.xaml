@@ -2623,7 +2623,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style x:Key="DefaultArcProgressStyle" TargetType="local:ArcProgress">
-    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
+    <Setter Property="Foreground" Value="{ThemeResource AccentFillColorDefaultBrush}" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Width" Value="72" />
     <Setter Property="Height" Value="72" />
@@ -2631,7 +2631,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:ArcProgress">
           <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
-            <Ellipse x:Name="PART_Elipse" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
+            <Ellipse x:Name="PART_Ellipse" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
             <Path Fill="{TemplateBinding Foreground}">
               <Path.Data>
                 <PathGeometry>
@@ -3131,6 +3131,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style x:Key="DefaultColorPaletteStyle" TargetType="local:ColorPalette">
     <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="IsItemClickEnabled" Value="True" />
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
@@ -3220,7 +3221,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
                   </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="LocalOffsetZ">
-                  <EasingDoubleKeyFrame x:Name="PART_OffestZKeyFrame" KeyTime="00:00:00.9" Value="0">
+                  <EasingDoubleKeyFrame x:Name="PART_OffsetZKeyFrame" KeyTime="00:00:00.9" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                       <CubicEase />
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -3326,7 +3327,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:DigitalSegment">
           <Viewbox Stretch="Uniform">
-            <StackPanel x:Name="PART_Panel" Orientation="Horizontal" Spacing="{TemplateBinding Spacing}" />
+            <ItemsRepeater x:Name="PART_Repeater">
+              <ItemsRepeater.Layout>
+                <StackLayout Orientation="Horizontal" />
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
           </Viewbox>
         </ControlTemplate>
       </Setter.Value>
@@ -3965,7 +3970,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:HeaderCarousel">
+  <Style x:Key="DefaultHeaderCarouselStyle" TargetType="local:HeaderCarousel">
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
@@ -3980,7 +3985,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
             <local:OpacityMaskView VerticalAlignment="Top" OpacityMask="{ThemeResource OverlayRadialGradient}">
               <local:AnimatedImage x:Name="PART_BackDropImage" Height="400" ImageUrl="ms-appx:///Assets/BackgroundBlur.png" Stretch="{TemplateBinding ImageStretch}" Visibility="Visible" />
             </local:OpacityMaskView>
-            <ScrollViewer x:Name="PART_ScrollViewer" Grid.Row="1" Margin="0,24,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
+            <ScrollViewer x:Name="PART_ScrollViewer" Margin="0,24,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
               <ItemsPresenter x:Name="PART_ItemsPresenter" />
             </ScrollViewer>
             <StackPanel Padding="24,12,24,24" HorizontalAlignment="Center" Orientation="Vertical" Spacing="12">
@@ -18566,7 +18571,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Margin="{ThemeResource DropdownColorPickerTopHeaderMargin}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontWeight="{ThemeResource DropdownColorPickerHeaderThemeFontWeight}" Foreground="{ThemeResource DropdownColorPickerHeaderForeground}" TextWrapping="Wrap" Visibility="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
-            <Button Grid.Row="1" Padding="{TemplateBinding Padding}">
+            <Button Grid.Row="1" Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}">
               <StackPanel Orientation="Horizontal" Spacing="5">
                 <Border Width="{TemplateBinding TintBoxWidth}" Height="{TemplateBinding TintBoxHeight}" Margin="{TemplateBinding TintBoxMargin}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding TintBoxCornerRadius}">
                   <Grid>
@@ -18596,6 +18601,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
   <Style BasedOn="{StaticResource DefaultEdgeLightingStyle}" TargetType="local:EdgeLighting" />
   <Style x:Key="DefaultEmptyStyle" TargetType="local:Empty">
     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -18980,7 +18986,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <StackPanel Orientation="Horizontal" Spacing="5">
                 <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{ThemeResource SystemAccentColor}" Style="{ThemeResource BaseTextBlockStyle}" Text="{TemplateBinding ActionTitle}" />
                 <Viewbox Width="12" VerticalAlignment="Center" Visibility="{Binding ShowActionIcon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
-                  <IconSourceElement x:Name="PART_ActionIcon" Grid.Column="0" Foreground="{ThemeResource SystemAccentColor}" IconSource="{TemplateBinding ActionIcon}" />
+                  <IconSourceElement x:Name="PART_ActionIcon" Foreground="{ThemeResource SystemAccentColor}" IconSource="{TemplateBinding ActionIcon}" />
                 </Viewbox>
               </StackPanel>
             </Button>
@@ -19263,6 +19269,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultHaloSliderStyle}" TargetType="local:HaloSlider" />
   <Style BasedOn="{StaticResource DefaultHaloTimePickerStyle}" TargetType="local:HaloTimePicker" />
   <Style BasedOn="{StaticResource DefaultHatchStyle}" TargetType="local:Hatch" />
+  <Style BasedOn="{StaticResource DefaultHeaderCarouselStyle}" TargetType="local:HeaderCarousel" />
   <Style BasedOn="{StaticResource DefaultCarouselItemStyle}" TargetType="local:HeaderCarouselItem" />
   <Style x:Key="DefaultHeaderTileStyle" TargetType="local:HeaderTile">
     <Setter Property="Width" Value="232" />
@@ -22175,13 +22182,13 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <local:CompositionShadow Width="{Binding ElementName=PART_PreviousBtn, Path=Width}" Height="{Binding ElementName=PART_PreviousBtn, Path=Height}" Margin="{Binding ElementName=PART_PreviousBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_PreviousBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_PreviousBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_PreviousBtn, Path=Visibility}">
                 <Rectangle x:Name="PART_PreviousBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
               </local:CompositionShadow>
-              <Button x:Name="PART_PreviousBtn" Width="32" Height="32" Margin="-10,0,0,0" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Backward" Visibility="Collapsed">
+              <Button x:Name="PART_PreviousBtn" Width="32" Height="32" Margin="-10,0,0,0" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Scroll Backward" Visibility="Collapsed">
                 <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
               </Button>
               <local:CompositionShadow Width="{Binding ElementName=PART_NextBtn, Path=Width}" Height="{Binding ElementName=PART_NextBtn, Path=Height}" Margin="{Binding ElementName=PART_NextBtn, Path=Margin}" HorizontalAlignment="{Binding ElementName=PART_NextBtn, Path=HorizontalAlignment}" VerticalAlignment="{Binding ElementName=PART_NextBtn, Path=VerticalAlignment}" BlurRadius="{ThemeResource StoreCarouselNavButtonBlurAmount}" Visibility="{Binding ElementName=PART_NextBtn, Path=Visibility}">
                 <Rectangle x:Name="PART_NextBtnRectangle" Opacity="{ThemeResource StoreCarouselNavButtonRectangleOpacity}" RadiusX="16" RadiusY="16" />
               </local:CompositionShadow>
-              <Button x:Name="PART_NextBtn" Width="32" Height="32" Margin="0,0,-10,0" HorizontalAlignment="Right" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Sroll Forward" Visibility="Collapsed">
+              <Button x:Name="PART_NextBtn" Width="32" Height="32" Margin="0,0,-10,0" HorizontalAlignment="Right" BorderThickness="{ThemeResource StoreCarouselNavButtonBorderThickness}" CornerRadius="16" Foreground="{ThemeResource StoreCarouselNavButtonForegroundColor}" ToolTipService.ToolTip="Scroll Forward" Visibility="Collapsed">
                 <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="" />
               </Button>
             </Grid>
@@ -23586,7 +23593,6 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <Style BasedOn="{StaticResource DefaultDateTimePickerStyle}" TargetType="local:DateTimePicker" />
   <Style BasedOn="{StaticResource DefaultDiffViewStyle}" TargetType="local:DiffView" />
   <Style BasedOn="{StaticResource DefaultDividerStyle}" TargetType="local:Divider" />
-  <Style BasedOn="{StaticResource DefaultDropdownColorPickerStyle}" TargetType="local:DropdownColorPicker" />
   <Style BasedOn="{StaticResource DefaultEmptyStyle}" TargetType="local:Empty" />
   <Style BasedOn="{StaticResource DefaultFlightStatusCardStyle}" TargetType="local:FlightStatusCard" />
   <Style BasedOn="{StaticResource DefaultFlipBlockStyle}" TargetType="local:FlipBlock" />

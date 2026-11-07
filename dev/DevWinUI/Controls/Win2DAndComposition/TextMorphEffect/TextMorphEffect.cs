@@ -11,6 +11,7 @@ public partial class TextMorphEffect : Control
     private GaussianBlurEffect _blurEffect;
     private Vector2 _centerPoint;
     private ColorMatrixEffect _colorMatrixEffect;
+    private CanvasSolidColorBrush _brush;
     private List<TextMorphItem> _morphItems;
 
     private CanvasTextFormat _textFormat;
@@ -95,6 +96,7 @@ public partial class TextMorphEffect : Control
             };
         }).Reverse().ToList();
 
+        _textFormat?.Dispose();
         _textFormat = new CanvasTextFormat
         {
             FontSize = Convert.ToSingle(FontSize),
@@ -120,6 +122,12 @@ public partial class TextMorphEffect : Control
         {
             BlurAmount = 0f;
         }
+
+        _colorMatrixEffect?.Dispose();
+        _blurEffect?.Dispose();
+        _brush?.Dispose();
+
+        _brush = new CanvasSolidColorBrush(sender, ColorBrush);
 
         _blurEffect = new GaussianBlurEffect
         {
@@ -157,25 +165,25 @@ public partial class TextMorphEffect : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        if (string.IsNullOrEmpty(Text))
+        if (string.IsNullOrEmpty(Text) || _morphItems == null || MorphSpeed <= 0)
         {
             return;
         }
 
-        var source = new CanvasCommandList(sender);
-        var totalTime = TimeSpan.FromSeconds((double)Environment.TickCount / MorphSpeed % 15);
+        var totalTime = TimeSpan.FromSeconds((double)Environment.TickCount64 / MorphSpeed % 15);
+
+        _brush.Color = ColorBrush;
 
         double maxProgress = 0;
+        using var source = new CanvasCommandList(sender);
         using (var drawingSession = source.CreateDrawingSession())
         {
             foreach (var item in _morphItems)
             {
                 var progress = item.Timeline.GetCurrentProgress(totalTime);
                 maxProgress = Math.Max(maxProgress, progress);
-                drawingSession.DrawText(item.Text, _centerPoint, new CanvasSolidColorBrush(sender, ColorBrush)
-                {
-                    Opacity = Convert.ToSingle(progress)
-                }, _textFormat);
+                _brush.Opacity = Convert.ToSingle(progress);
+                drawingSession.DrawText(item.Text, _centerPoint, _brush, _textFormat);
             }
         }
 

@@ -16,8 +16,7 @@ public partial class ContentSlider : ItemsControl
     private Button nextBtn;
     private Button prevBtn;
 
-    private TranslateTransform _oldTrans;
-    private TranslateTransform _newTrans;
+    private CubicBezierEasingFunction _easing;
 
     private List<object> itemCache = new();
     private int selectedIndex = 0;
@@ -60,16 +59,20 @@ public partial class ContentSlider : ItemsControl
 
     private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is ContentSlider view && e.NewValue is IEnumerable items)
+        if (d is ContentSlider view)
         {
-            var itemList = items.Cast<object>().ToList();
-            view.itemCache = itemList;
+            view.itemCache = e.NewValue is IEnumerable items ? items.Cast<object>().ToList() : new();
+            view.selectedIndex = 0;
+            view.SelectedItem = view.itemCache.Count > 0 ? view.itemCache[0] : null;
 
-            if (view.itemCache.Any())
+            if (view.pipsPager != null)
             {
-                view.selectedIndex = 0;
-                view.SelectedItem = view.itemCache[0];
-                view.pipsPager?.NumberOfPages = itemList.Count;
+                if (view.pipsPager.NumberOfPages > 0)
+                {
+                    view.pipsPager.SelectedPageIndex = 0;
+                }
+
+                view.pipsPager.NumberOfPages = view.itemCache.Count;
             }
         }
     }
@@ -83,39 +86,47 @@ public partial class ContentSlider : ItemsControl
     {
         base.OnApplyTemplate();
 
+        if (pipsPager != null)
+        {
+            pipsPager.SelectedIndexChanged -= OnPipsPagerSelectedIndexChanged;
+        }
+
+        if (nextBtn != null)
+        {
+            nextBtn.Click -= OnNextClick;
+        }
+
+        if (prevBtn != null)
+        {
+            prevBtn.Click -= OnPrevClick;
+        }
+
         pipsPager = GetTemplateChild(PART_Indicator) as PipsPager;
         oldPresenter = GetTemplateChild(PART_OldPresenter) as ContentPresenter;
         newPresenter = GetTemplateChild(PART_NewPresenter) as ContentPresenter;
         nextBtn = GetTemplateChild(PART_Next) as Button;
         prevBtn = GetTemplateChild(PART_Prev) as Button;
 
-        pipsPager.SelectedIndexChanged -= OnPipsPagerSelectedIndexChanged;
-        pipsPager.SelectedIndexChanged += OnPipsPagerSelectedIndexChanged;
-
-        nextBtn.Click -= OnNextClick;
-        nextBtn.Click += OnNextClick;
-
-        prevBtn.Click -= OnPrevClick;
-        prevBtn.Click += OnPrevClick;
-
-        if (oldPresenter != null && !(oldPresenter.RenderTransform is TranslateTransform))
+        if (pipsPager != null)
         {
-            _oldTrans = new TranslateTransform();
-            oldPresenter.RenderTransform = _oldTrans;
-        }
-        else
-        {
-            _oldTrans = (TranslateTransform)oldPresenter.RenderTransform;
+            pipsPager.NumberOfPages = itemCache.Count;
+
+            if (itemCache.Count > 0)
+            {
+                pipsPager.SelectedPageIndex = selectedIndex;
+            }
+
+            pipsPager.SelectedIndexChanged += OnPipsPagerSelectedIndexChanged;
         }
 
-        if (newPresenter != null && !(newPresenter.RenderTransform is TranslateTransform))
+        if (nextBtn != null)
         {
-            _newTrans = new TranslateTransform();
-            newPresenter.RenderTransform = _newTrans;
+            nextBtn.Click += OnNextClick;
         }
-        else
+
+        if (prevBtn != null)
         {
-            _newTrans = (TranslateTransform)newPresenter.RenderTransform;
+            prevBtn.Click += OnPrevClick;
         }
     }
 
@@ -137,16 +148,22 @@ public partial class ContentSlider : ItemsControl
         if (delta == 0)
             return;
 
+        if (isAnimating)
+        {
+            sender.SelectedPageIndex = selectedIndex;
+            return;
+        }
+
         SlideTo(delta);
     }
     public void SlideTo(int direction)
     {
-        if (isAnimating || itemCache.Count < 2)
+        if (direction == 0 || isAnimating || itemCache.Count < 2 || pipsPager == null || oldPresenter == null || newPresenter == null)
             return;
 
         isAnimating = true;
 
-        selectedIndex = (selectedIndex + direction + itemCache.Count) % itemCache.Count;
+        selectedIndex = ((selectedIndex + direction) % itemCache.Count + itemCache.Count) % itemCache.Count;
         pipsPager.SelectedPageIndex = selectedIndex;
 
         object nextItem = itemCache[selectedIndex];
@@ -167,16 +184,16 @@ public partial class ContentSlider : ItemsControl
         newVisual.Opacity = 1f;
         oldVisual.Opacity = 1f;
 
-        var easing = compositor.CreateCubicBezierEasingFunction(
+        _easing ??= compositor.CreateCubicBezierEasingFunction(
             new Vector2(0.4f, 0.0f),
             new Vector2(0.2f, 1.0f));
 
         var oldOffsetAnim = compositor.CreateScalarKeyFrameAnimation();
-        oldOffsetAnim.InsertKeyFrame(1f, -from, easing);
+        oldOffsetAnim.InsertKeyFrame(1f, -from, _easing);
         oldOffsetAnim.Duration = Duration;
 
         var newOffsetAnim = compositor.CreateScalarKeyFrameAnimation();
-        newOffsetAnim.InsertKeyFrame(1f, 0f, easing);
+        newOffsetAnim.InsertKeyFrame(1f, 0f, _easing);
         newOffsetAnim.Duration = Duration;
 
         var oldOpacityAnim = compositor.CreateScalarKeyFrameAnimation();

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace DevWinUI;
+
 public partial class StepBarItem : ContentControl
 {
     private const string ContentPresenterElement = "PART_Content";
@@ -9,6 +10,10 @@ public partial class StepBarItem : ContentControl
     private ContentPresenter contentPresenter;
     private Border border;
     private StackPanel panel;
+    private FontIconSource _completeIcon;
+    private FontIconSource _waitingIcon;
+    private FontIconSource _underWayIcon;
+
     internal bool ShowStepIndex
     {
         get { return (bool)GetValue(ShowStepIndexProperty); }
@@ -29,52 +34,44 @@ public partial class StepBarItem : ContentControl
 
     public int Index
     {
-        get => (int)GetValue(IndexProperty);
-        internal set => SetValue(IndexProperty, value);
+        get { return (int)GetValue(IndexProperty); }
+        internal set { SetValue(IndexProperty, value); }
     }
     public static readonly DependencyProperty IndexProperty =
         DependencyProperty.Register(nameof(Index), typeof(int), typeof(StepBarItem), new PropertyMetadata(-1));
 
     public StepProgressState ProgressState
     {
-        get => (StepProgressState)GetValue(ProgressStateProperty);
-        internal set => SetValue(ProgressStateProperty, value);
+        get { return (StepProgressState)GetValue(ProgressStateProperty); }
+        internal set { SetValue(ProgressStateProperty, value); }
     }
     public static readonly DependencyProperty ProgressStateProperty =
         DependencyProperty.Register(nameof(ProgressState), typeof(StepProgressState), typeof(StepBarItem), new PropertyMetadata(StepProgressState.Waiting, OnStatusChanged));
 
     public StepStatus Status
     {
-        get => (StepStatus)GetValue(StatusProperty);
-        internal set => SetValue(StatusProperty, value);
+        get { return (StepStatus)GetValue(StatusProperty); }
+        internal set { SetValue(StatusProperty, value); }
     }
     public static readonly DependencyProperty StatusProperty =
         DependencyProperty.Register(nameof(Status), typeof(StepStatus), typeof(StepBarItem), new PropertyMetadata(StepStatus.Info, OnStatusChanged));
 
     private static void OnStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBarItem)d;
-        if (ctl != null)
-        {
-            ctl.UpdateVisualStates();
-        }
+        ((StepBarItem)d).UpdateVisualStates();
     }
 
     public Orientation Orientation
     {
-        get => (Orientation)GetValue(OrientationProperty);
-        internal set => SetValue(OrientationProperty, value);
+        get { return (Orientation)GetValue(OrientationProperty); }
+        internal set { SetValue(OrientationProperty, value); }
     }
     public static readonly DependencyProperty OrientationProperty =
         DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(StepBarItem), new PropertyMetadata(Orientation.Horizontal, OnOrientationChanged));
 
     private static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBarItem)d;
-        if (ctl != null)
-        {
-            ctl.UpdateHeaderDisplayMode();
-        }
+        ((StepBarItem)d).UpdateHeaderDisplayMode();
     }
 
     public StepBarHeaderDisplayMode HeaderDisplayMode
@@ -88,11 +85,7 @@ public partial class StepBarItem : ContentControl
 
     private static void OnHeaderDisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBarItem)d;
-        if (ctl != null)
-        {
-            ctl.UpdateHeaderDisplayMode();
-        }
+        ((StepBarItem)d).UpdateHeaderDisplayMode();
     }
 
     internal IconSource Icon
@@ -133,12 +126,9 @@ public partial class StepBarItem : ContentControl
 
     private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBarItem)d;
-        if (ctl != null)
-        {
-            ctl.UpdateVisualStates();
-        }
+        ((StepBarItem)d).UpdateVisualStates();
     }
+
     internal bool ShowStepIcon
     {
         get { return (bool)GetValue(ShowStepIconProperty); }
@@ -159,19 +149,7 @@ public partial class StepBarItem : ContentControl
 
     private static void OnDisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (StepBarItem)d;
-        if (ctl != null)
-        {
-            switch ((StepBarDisplayMode)e.NewValue)
-            {
-                case StepBarDisplayMode.Index:
-                    ctl.ShowStepIcon = false;
-                    break;
-                case StepBarDisplayMode.Icon:
-                    ctl.ShowStepIcon = true;
-                    break;
-            }
-        }
+        ((StepBarItem)d).ShowStepIcon = (StepBarDisplayMode)e.NewValue == StepBarDisplayMode.Icon;
     }
 
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(StepBarItem))]
@@ -180,8 +158,9 @@ public partial class StepBarItem : ContentControl
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Border))]
     public StepBarItem()
     {
-        this.DefaultStyleKey = typeof(StepBarItem);
+        DefaultStyleKey = typeof(StepBarItem);
     }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -199,15 +178,14 @@ public partial class StepBarItem : ContentControl
         {
             case StepProgressState.Complete:
                 visualState = Status.ToString();
-                Icon = CompleteIcon ?? new FontIconSource() { Glyph = "\uE8FB" };
+                Icon = CompleteIcon ?? (_completeIcon ??= new FontIconSource() { Glyph = "\uE8FB" });
                 break;
             case StepProgressState.Waiting:
-                visualState = "Waiting";
-                Icon = WaitingIcon ?? new FontIconSource() { Glyph = "\uF16A" };
+                Icon = WaitingIcon ?? (_waitingIcon ??= new FontIconSource() { Glyph = "\uF16A" });
                 break;
             case StepProgressState.UnderWay:
                 visualState = Status.ToString();
-                Icon = UnderWayIcon ?? new FontIconSource() { Glyph = "\uE823" };
+                Icon = UnderWayIcon ?? (_underWayIcon ??= new FontIconSource() { Glyph = "\uE823" });
                 break;
         }
 
@@ -216,29 +194,22 @@ public partial class StepBarItem : ContentControl
 
     private void UpdateHeaderDisplayMode()
     {
-        if (contentPresenter == null || panel == null)
+        if (contentPresenter == null || panel == null || border == null || Orientation != Orientation.Horizontal)
         {
             return;
         }
-        if (Orientation == Orientation.Horizontal)
+
+        bool contentFirst = HeaderDisplayMode == StepBarHeaderDisplayMode.Top;
+        contentPresenter.Margin = contentFirst ? new Thickness(0, 0, 0, 5) : new Thickness(0, 5, 0, 0);
+
+        var children = panel.Children;
+        if (children.Count == 2 && ReferenceEquals(children[0], contentPresenter) == contentFirst)
         {
-            switch (HeaderDisplayMode)
-            {
-                case StepBarHeaderDisplayMode.Top:
-                    contentPresenter.Margin = new Thickness(0, 0, 0, 5);
-                    panel.Children.Clear();
-                    panel.Children.Add(contentPresenter);
-                    panel.Children.Add(border);
-                    break;
-                case StepBarHeaderDisplayMode.Left:
-                case StepBarHeaderDisplayMode.Right:
-                case StepBarHeaderDisplayMode.Bottom:
-                    contentPresenter.Margin = new Thickness(0, 5, 0, 0);
-                    panel.Children.Clear();
-                    panel.Children.Add(border);
-                    panel.Children.Add(contentPresenter);
-                    break;
-            }
+            return;
         }
+
+        children.Clear();
+        children.Add(contentFirst ? contentPresenter : border);
+        children.Add(contentFirst ? border : contentPresenter);
     }
 }

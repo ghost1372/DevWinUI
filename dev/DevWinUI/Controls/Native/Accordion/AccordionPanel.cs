@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class AccordionPanel : Panel
 {
     public AccordionPanel()
@@ -20,22 +21,44 @@ public partial class AccordionPanel : Panel
             this.TabHeight = sample.HeaderHeight;
         }
 
-        // Fallback height: based on TabHeight × visible tabs + extra padding
-        double fallbackHeight = MaxTabs * TabHeight + 100;
+        bool isHeightUnbounded = double.IsInfinity(availableSize.Height) || double.IsNaN(availableSize.Height);
+        double height = isHeightUnbounded ? GetFallbackHeight() : availableSize.Height;
 
-        if (double.IsInfinity(availableSize.Height) || double.IsNaN(availableSize.Height))
+        double maxWidth = MeasureItems(availableSize.Width, height);
+
+        // The header height is only known after the item template has been applied and
+        // the item measured, so the first pass uses a TabHeight of 0. Re-measure once with the real value.
+        if (sample != null && sample.HeaderHeight != this.TabHeight)
         {
-            availableSize = new Size(availableSize.Width, fallbackHeight);
+            this.TabHeight = sample.HeaderHeight;
+            if (isHeightUnbounded)
+            {
+                height = GetFallbackHeight();
+            }
+            maxWidth = MeasureItems(availableSize.Width, height);
         }
 
-        double contentHeight = GetContentHeight(availableSize.Height);
+        // Returning an infinite size from MeasureOverride throws.
+        double width = double.IsInfinity(availableSize.Width) ? maxWidth : availableSize.Width;
+        return new Size(width, height);
+    }
+
+    // Fallback height: based on TabHeight x visible tabs + extra padding
+    private double GetFallbackHeight()
+    {
+        return MaxTabs * TabHeight + 100;
+    }
+
+    private double MeasureItems(double width, double height)
+    {
+        double contentHeight = GetContentHeight(height);
+        double maxWidth = 0;
         foreach (var item in base.Children)
         {
-            var size = new Size(availableSize.Width, contentHeight);
-            item.Measure(size);
+            item.Measure(new Size(width, contentHeight));
+            maxWidth = Math.Max(maxWidth, item.DesiredSize.Width);
         }
-
-        return availableSize;
+        return maxWidth;
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -68,7 +91,7 @@ public partial class AccordionPanel : Panel
         }
 
         int index = Math.Max(0, this.SelectedIndex - 2);
-        index = Math.Min(index, base.Children.Count - 4);
+        index = Math.Max(0, Math.Min(index, base.Children.Count - 4));
         double cy = index * this.TabHeight;
         this.AnimateY(-cy);
 
@@ -77,7 +100,7 @@ public partial class AccordionPanel : Panel
 
     private double GetContentHeight(double availableHeight)
     {
-        return availableHeight - MaxTabs * TabHeight + TabHeight;
+        return Math.Max(0, availableHeight - MaxTabs * TabHeight + TabHeight);
     }
 
     private double GetTopBound()

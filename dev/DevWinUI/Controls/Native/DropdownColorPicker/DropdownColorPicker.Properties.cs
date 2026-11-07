@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace DevWinUI;
+
 public partial class DropdownColorPicker
 {
     public FlyoutPlacementMode FlyoutPlacement
@@ -14,11 +15,7 @@ public partial class DropdownColorPicker
 
     private static void OnFlyoutOptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (DropdownColorPicker)d;
-        if (ctl != null)
-        {
-            ctl.UpdateFlyoutOptions();
-        }
+        ((DropdownColorPicker)d).UpdateFlyoutOptions();
     }
 
     public FlyoutShowMode FlyoutShowMode
@@ -48,7 +45,6 @@ public partial class DropdownColorPicker
     public static readonly DependencyProperty FlyoutLightDismissOverlayModeProperty =
         DependencyProperty.Register(nameof(FlyoutLightDismissOverlayMode), typeof(LightDismissOverlayMode), typeof(DropdownColorPicker), new PropertyMetadata(LightDismissOverlayMode.Auto, OnFlyoutOptionsChanged));
 
-
     public ColorPalette ColorPalette
     {
         get { return (ColorPalette)GetValue(ColorPaletteProperty); }
@@ -61,20 +57,19 @@ public partial class DropdownColorPicker
     private static void OnColorPaletteChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (DropdownColorPicker)d;
-        if (ctl != null)
+
+        if (e.OldValue is ColorPalette oldPalette)
         {
-            if (e.OldValue is ColorPalette oldPalette)
-            {
-                oldPalette.ColorChanged -= ctl.OnColorPaletteColorChanged;
-            }
-
-            if (e.NewValue is ColorPalette newPalette)
-            {
-                newPalette.ColorChanged += ctl.OnColorPaletteColorChanged;
-            }
-
-            ctl.UpdateColorPalette();
+            oldPalette.ColorChanged -= ctl.OnColorPaletteColorChanged;
         }
+
+        if (e.NewValue is ColorPalette newPalette)
+        {
+            newPalette.ColorChanged -= ctl.OnColorPaletteColorChanged;
+            newPalette.ColorChanged += ctl.OnColorPaletteColorChanged;
+        }
+
+        ctl.UpdateColorPalette();
     }
 
     public bool IsColorCodeVisible
@@ -93,15 +88,11 @@ public partial class DropdownColorPicker
     }
 
     public static readonly DependencyProperty ColorProperty =
-        DependencyProperty.Register(nameof(Color), typeof(Color), typeof(DropdownColorPicker), new PropertyMetadata(ColorHelper.GetColorFromHex("#FFFFFF"), OnColorChanged));
+        DependencyProperty.Register(nameof(Color), typeof(Color), typeof(DropdownColorPicker), new PropertyMetadata(Colors.White, OnColorChanged));
 
     private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (DropdownColorPicker)d;
-        if (ctl != null)
-        {
-            ctl.OnColorChanged();
-        }
+        ((DropdownColorPicker)d).UpdateColor();
     }
 
     public bool IsMoreButtonVisible
@@ -212,7 +203,6 @@ public partial class DropdownColorPicker
     public static readonly DependencyProperty TintBoxMarginProperty =
         DependencyProperty.Register(nameof(TintBoxMargin), typeof(Thickness), typeof(DropdownColorPicker), new PropertyMetadata(new Thickness()));
 
-
     public CornerRadius TintBoxCornerRadius
     {
         get { return (CornerRadius)GetValue(TintBoxCornerRadiusProperty); }
@@ -242,7 +232,7 @@ public partial class DropdownColorPicker
 
     public object Header
     {
-        get { return (object)GetValue(HeaderProperty); }
+        get { return GetValue(HeaderProperty); }
         set { SetValue(HeaderProperty, value); }
     }
 
@@ -258,4 +248,3 @@ public partial class DropdownColorPicker
     public static readonly DependencyProperty HeaderTemplateProperty =
         DependencyProperty.Register(nameof(HeaderTemplate), typeof(DataTemplate), typeof(DropdownColorPicker), new PropertyMetadata(default(DataTemplate)));
 }
-

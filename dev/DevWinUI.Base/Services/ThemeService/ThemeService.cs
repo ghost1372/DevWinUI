@@ -2,6 +2,7 @@
 using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace DevWinUI;
+
 public partial class ThemeService : IThemeService, IDisposable
 {
     public event EventHandler<ElementTheme>? ThemeChanged;
@@ -18,6 +19,10 @@ public partial class ThemeService : IThemeService, IDisposable
     private Microsoft.Windows.Storage.ApplicationData applicationData;
     private readonly string BackdropTypeSettingKey = "BackdropType";
     private readonly string ElementThemeSettingKey = "ElementTheme";
+    private static readonly Windows.UI.Color DarkCaptionForegroundColor = Windows.UI.Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+    private static readonly Windows.UI.Color DarkCaptionHoverBackgroundColor = Windows.UI.Color.FromArgb(0x0F, 0xFF, 0xFF, 0xFF);
+    private static readonly Windows.UI.Color LightCaptionForegroundColor = Windows.UI.Color.FromArgb(0xFF, 0x19, 0x19, 0x19);
+    private static readonly Windows.UI.Color LightCaptionHoverBackgroundColor = Windows.UI.Color.FromArgb(0x09, 0x00, 0x00, 0x00);
     public ThemeService()
     {
         applicationData = RuntimeHelper.IsPackaged()
@@ -91,22 +96,17 @@ public partial class ThemeService : IThemeService, IDisposable
     }
 
     public bool IsDark => _rootElements?.Values.FirstOrDefault()?.ActualTheme == ElementTheme.Dark;
-    public ElementTheme ActualTheme => _rootElements.Values.FirstOrDefault().ActualTheme;
+    public ElementTheme ActualTheme => _rootElements.Values.FirstOrDefault()?.ActualTheme ?? ElementTheme.Default;
     public ElementTheme ElementTheme => GetInternalElementTheme();
     public BackdropType BackdropType => GetInternalBackdropType();
 
     private ElementTheme GetInternalElementTheme()
     {
-        if (_rootElements?.Values?.FirstOrDefault() != null)
-        {
-            return _rootElements.Values.FirstOrDefault().RequestedTheme;
-        }
-
-        return ElementTheme.Default;
+        return _rootElements.Values.FirstOrDefault()?.RequestedTheme ?? ElementTheme.Default;
     }
     private BackdropType GetInternalBackdropType()
     {
-        return GetInternalBackdropType(_rootElements?.Keys.FirstOrDefault().SystemBackdrop);
+        return GetInternalBackdropType(_rootElements?.Keys.FirstOrDefault()?.SystemBackdrop);
     }
 
     private BackdropType GetInternalBackdropType(SystemBackdrop systemBackdrop)
@@ -184,13 +184,18 @@ public partial class ThemeService : IThemeService, IDisposable
                     {
                         fe.Loaded -= OnLoaded;
                         var themeSet = await InternalSetElementThemeAsync(theme);
-                        CompleteInitialization(themeSet);
 
                         if (!successBackdrop)
                         {
-                            var backdropSet = await InternalSetBackdropTypeAsync(backdrop);
-                            CompleteInitialization(backdropSet);
+                            await InternalSetBackdropTypeAsync(backdrop);
                         }
+
+                        CompleteInitialization(themeSet);
+                    }
+
+                    if (fe.IsLoaded)
+                    {
+                        break;
                     }
 
                     fe.Loaded += OnLoaded;
@@ -237,17 +242,17 @@ public partial class ThemeService : IThemeService, IDisposable
         Windows.UI.Color buttonHoverBackgroundColor;
         if (ActualTheme == ElementTheme.Dark)
         {
-            buttonForegroundColor = DevWinUI.ColorHelper.GetColorFromHex("#FFFFFF");
-            buttonHoverForegroundColor = DevWinUI.ColorHelper.GetColorFromHex("#FFFFFF");
+            buttonForegroundColor = DarkCaptionForegroundColor;
+            buttonHoverForegroundColor = DarkCaptionForegroundColor;
 
-            buttonHoverBackgroundColor = DevWinUI.ColorHelper.GetColorFromHex("#0FFFFFFF");
+            buttonHoverBackgroundColor = DarkCaptionHoverBackgroundColor;
         }
         else
         {
-            buttonForegroundColor = DevWinUI.ColorHelper.GetColorFromHex("#191919");
-            buttonHoverForegroundColor = DevWinUI.ColorHelper.GetColorFromHex("#191919");
+            buttonForegroundColor = LightCaptionForegroundColor;
+            buttonHoverForegroundColor = LightCaptionForegroundColor;
 
-            buttonHoverBackgroundColor = DevWinUI.ColorHelper.GetColorFromHex("#09000000");
+            buttonHoverBackgroundColor = LightCaptionHoverBackgroundColor;
         }
         res["WindowCaptionForeground"] = buttonForegroundColor;
 
@@ -257,4 +262,3 @@ public partial class ThemeService : IThemeService, IDisposable
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = buttonHoverBackgroundColor;
     }
 }
-

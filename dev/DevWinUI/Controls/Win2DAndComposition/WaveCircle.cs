@@ -1,6 +1,7 @@
 ﻿// https://github.com/DinoChan
 
 namespace DevWinUI;
+
 public partial class WaveCircle : FrameworkElement
 {
     public static readonly DependencyProperty ColorBrushProperty =
@@ -31,10 +32,9 @@ public partial class WaveCircle : FrameworkElement
     private static void OnIsReverseAnimationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (WaveCircle)d;
-        if (ctl != null)
+        if (ctl != null && ctl.IsAnimate)
         {
-            ctl.IsAnimate = !ctl.IsAnimate;
-            ctl.IsAnimate = !ctl.IsAnimate;
+            ctl.DrawWaveCircle(ctl.RenderSize, true);
         }
     }
 
@@ -52,11 +52,18 @@ public partial class WaveCircle : FrameworkElement
         var ctl = (WaveCircle)d;
         if (ctl != null)
         {
+            if (ctl._colorBrush != null)
+            {
+                ctl._colorBrush.Color = ctl.ColorBrush;
+                return;
+            }
+
             ctl.DrawWaveCircle(ctl.RenderSize, ctl.IsAnimate);
         }
     }
 
     private ContainerVisual _containerVisual;
+    private CompositionColorBrush _colorBrush;
     private Visual _visual;
     public WaveCircle()
     {
@@ -72,7 +79,6 @@ public partial class WaveCircle : FrameworkElement
         ElementCompositionPreview.SetElementChildVisual(this, containerVisual);
 
         var rotationAnimation = visual.Compositor.CreateScalarKeyFrameAnimation();
-        rotationAnimation = visual.Compositor.CreateScalarKeyFrameAnimation();
         rotationAnimation.InsertKeyFrame(0.0f, 0.0f);
         //rotationAnimation.InsertKeyFrame(0.5f, 180.0f); // Rotate halfway
 
@@ -108,16 +114,25 @@ public partial class WaveCircle : FrameworkElement
 
     public void DrawWaveCircle(Size size, bool isAnimation)
     {
+        if (size.Width <= 0 || size.Height <= 0)
+        {
+            ElementCompositionPreview.SetElementChildVisual(this, null);
+            _containerVisual = null;
+            _colorBrush = null;
+            _visual = null;
+            return;
+        }
+
         var length = (float)Math.Min(size.Width, size.Height) * 0.95;
         var centerX = (float)size.Width / 2;
         var centerY = (float)size.Height / 2;
 
-        var points = new List<Vector2>();
+        int segments = 100;
+        var points = new List<Vector2>(segments + 1);
         var r = length / 2;
         var r2 = r * 1.06;
         var r3 = r * 0.951;
         int index = 0;
-        int segments = 100;
         for (int i = 0; i < segments; i += 2)
         {
             var x = r * Math.Cos(i * 2 * Math.PI / segments) + centerX;
@@ -153,16 +168,21 @@ public partial class WaveCircle : FrameworkElement
         var line3 = compositor.CreatePathGeometry();
         line3.Path = path;
         var shape3 = compositor.CreateSpriteShape(line3);
-        shape3.FillBrush = compositor.CreateColorBrush(ColorBrush);
+        _colorBrush = compositor.CreateColorBrush(ColorBrush);
+        shape3.FillBrush = _colorBrush;
         var visual = compositor.CreateShapeVisual();
         visual.Shapes.Add(shape3);
         visual.Size = size.ToVector2();
-        ElementCompositionPreview.SetElementChildVisual(this, visual);
         _visual = visual;
 
         if (isAnimation)
         {
             StartAnimation(visual);
+        }
+        else
+        {
+            ElementCompositionPreview.SetElementChildVisual(this, visual);
+            _containerVisual = null;
         }
     }
 }

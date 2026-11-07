@@ -5,13 +5,13 @@ namespace DevWinUI;
 [TemplatePart(Name = nameof(PART_PathFigure), Type = typeof(PathFigure))]
 [TemplatePart(Name = nameof(PART_ArcSegment), Type = typeof(ArcSegment))]
 [TemplatePart(Name = nameof(PART_LineSegment), Type = typeof(LineSegment))]
-[TemplatePart(Name = nameof(PART_Elipse), Type = typeof(Ellipse))]
+[TemplatePart(Name = nameof(PART_Ellipse), Type = typeof(Ellipse))]
 public partial class ArcProgress : Control
 {
     private const string PART_PathFigure = "PART_PathFigure";
     private const string PART_ArcSegment = "PART_ArcSegment";
     private const string PART_LineSegment = "PART_LineSegment";
-    private const string PART_Elipse = "PART_Elipse";
+    private const string PART_Ellipse = "PART_Ellipse";
 
     private Storyboard storyboard;
     private PathFigure pathFigure;
@@ -22,6 +22,7 @@ public partial class ArcProgress : Control
     private double _radius;
     private double _centerX;
     private double _centerY;
+    private double _lastAngle;
     public event EventHandler PercentageChanged;
     public ArcProgressInitialPosition InitialPosition
     {
@@ -30,7 +31,13 @@ public partial class ArcProgress : Control
     }
 
     public static readonly DependencyProperty InitialPositionProperty =
-        DependencyProperty.Register(nameof(InitialPosition), typeof(ArcProgressInitialPosition), typeof(ArcProgress), new PropertyMetadata(ArcProgressInitialPosition.Top));
+        DependencyProperty.Register(nameof(InitialPosition), typeof(ArcProgressInitialPosition), typeof(ArcProgress), new PropertyMetadata(ArcProgressInitialPosition.Top, OnInitialPositionChanged));
+
+    private static void OnInitialPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (ArcProgress)d;
+        ctl?.DrawArcSlice(ctl._lastAngle);
+    }
 
     public ArcProgressFillAnimationState FillStatus
     {
@@ -120,8 +127,9 @@ public partial class ArcProgress : Control
         pathFigure = GetTemplateChild(PART_PathFigure) as PathFigure;
         arcSegment = GetTemplateChild(PART_ArcSegment) as ArcSegment;
         lineSegment = GetTemplateChild(PART_LineSegment) as LineSegment;
-        ellipse = GetTemplateChild(PART_Elipse) as Ellipse;
+        ellipse = GetTemplateChild(PART_Ellipse) as Ellipse;
 
+        UpdateMetrics();
         UpdateDirection();
         DrawArcProgress(Percentage);
 
@@ -139,6 +147,13 @@ public partial class ArcProgress : Control
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
+        UpdateMetrics();
+        // Redraw so the arc follows the new size.
+        DrawArcSlice(_lastAngle);
+    }
+
+    private void UpdateMetrics()
+    {
         _centerX = ActualWidth / 2;
         _centerY = ActualHeight / 2;
         _radius = Math.Min(_centerX, _centerY);
@@ -148,6 +163,9 @@ public partial class ArcProgress : Control
     {
         double startValue = FillStatus == ArcProgressFillAnimationState.Filling ? 0 : 100;
         double endValue = FillStatus == ArcProgressFillAnimationState.Filling ? 100 : 0;
+
+        // Stop a running animation so its Completed handler can't overwrite the new one.
+        storyboard?.Stop();
 
         var animation = new DoubleAnimation
         {
@@ -186,13 +204,20 @@ public partial class ArcProgress : Control
     }
     public void DrawArcProgress(double percentage)
     {
+        if (double.IsNaN(percentage))
+        {
+            percentage = 0;
+        }
+
         double angle = Math.Min(Math.Max(percentage, 0), 100) * 3.6;
         DrawArcSlice(angle);
-        PercentageChanged?.Invoke(this, null);
+        PercentageChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void DrawArcSlice(double angle)
     {
+        _lastAngle = angle;
+
         if (pathFigure == null || arcSegment == null || lineSegment == null || ellipse == null)
         {
             return;

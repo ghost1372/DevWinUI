@@ -9,10 +9,12 @@ public partial class TextGlitchEffect : Control
 {
     private string PART_TextBackground = "PART_TextBackground";
     private Rectangle _rectangle;
-    private Compositor Compositor => ElementCompositionPreview.GetElementVisual(this).Compositor;
+    private Compositor _compositor;
+    private Compositor Compositor => _compositor ??= ElementCompositionPreview.GetElementVisual(this).Compositor;
     private SpriteVisual lineVisual;
     private TextToBrushWrapper secondaryWrapper;
     private TextToBrushWrapper primaryWrapper;
+    private Size _lastSize;
 
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -40,6 +42,11 @@ public partial class TextGlitchEffect : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+        if (_rectangle != null)
+        {
+            _rectangle.SizeChanged -= TextGlitchEffect_SizeChanged;
+        }
+
         _rectangle = GetTemplateChild(PART_TextBackground) as Rectangle;
         if (_rectangle != null)
         {
@@ -58,52 +65,53 @@ public partial class TextGlitchEffect : Control
     }
     private void TextGlitchEffect_SizeChanged(object sender, SizeChangedEventArgs e)
     {
+        if (RenderSize == _lastSize)
+        {
+            return;
+        }
+
         UpdateTextEffect();
     }
 
     private void UpdateTextEffect()
     {
-        if (_rectangle == null)
+        if (_rectangle == null || RenderSize.Width <= 0 || RenderSize.Height <= 0)
         {
             return;
         }
 
-        secondaryWrapper = CreateTextToBrushWrapper(SecondaryForeground, SecondaryBackground);
-        primaryWrapper = CreateTextToBrushWrapper(PrimaryForeground, PrimaryBackground);
+        StopOffsetAnimation(lineVisual);
+        StopOffsetAnimation(secondaryWrapper?.Brush);
+        StopOffsetAnimation(primaryWrapper?.Brush);
 
-        if (PrimaryTextToBrushWrapper != null)
+        if (string.IsNullOrEmpty(Text) && string.IsNullOrEmpty(PrimaryTextToBrushWrapper?.Text) && string.IsNullOrEmpty(SecondaryTextToBrushWrapper?.Text))
         {
-            primaryWrapper = PrimaryTextToBrushWrapper;
-        }
-
-        if (SecondaryTextToBrushWrapper != null)
-        {
-            secondaryWrapper = SecondaryTextToBrushWrapper;
-        }
-
-        if (string.IsNullOrEmpty(Text) && string.IsNullOrEmpty(primaryWrapper.Text) && string.IsNullOrEmpty(secondaryWrapper.Text))
-        {
+            ElementCompositionPreview.SetElementChildVisual(_rectangle, null);
+            _lastSize = default;
             return;
         }
+
+        secondaryWrapper = SecondaryTextToBrushWrapper ?? CreateTextToBrushWrapper(SecondaryForeground, SecondaryBackground);
+        primaryWrapper = PrimaryTextToBrushWrapper ?? CreateTextToBrushWrapper(PrimaryForeground, PrimaryBackground);
+        _lastSize = RenderSize;
+
+        var size = new Vector2(Convert.ToSingle(RenderSize.Width), Convert.ToSingle(RenderSize.Height));
 
         var imageVisual = Compositor.CreateSpriteVisual();
         imageVisual.Brush = CreateBrush(secondaryWrapper.Brush, primaryWrapper.Brush, this.BlendEffect);
-        imageVisual.Size = new Vector2(Convert.ToSingle(RenderSize.Width), Convert.ToSingle(RenderSize.Height));
+        imageVisual.Size = size;
 
         var containerVisual = Compositor.CreateContainerVisual();
 
         lineVisual = Compositor.CreateSpriteVisual();
         lineVisual.Brush = Compositor.CreateColorBrush(LineColor);
-        lineVisual.Size = new Vector2(Convert.ToSingle(RenderSize.Width), Convert.ToSingle(LineHeight));
+        lineVisual.Size = new Vector2(size.X, Convert.ToSingle(LineHeight));
 
         containerVisual.Children.InsertAtBottom(imageVisual);
         containerVisual.Children.InsertAtTop(lineVisual);
 
         ElementCompositionPreview.SetElementChildVisual(_rectangle, containerVisual);
 
-        StopOffsetAnimation(lineVisual);
-        StopOffsetAnimation(secondaryWrapper.Brush);
-        StopOffsetAnimation(primaryWrapper.Brush);
         StartAnimation();
     }
 
@@ -205,10 +213,10 @@ public partial class TextGlitchEffect : Control
         {
             Text = Text,
             FontSize = FontSize,
-            Width = Convert.ToSingle(RenderSize.Width),
-            Height = Convert.ToSingle(RenderSize.Height),
             FontColor = fontColor,
-            Background = background
+            Background = background,
+            Width = Convert.ToSingle(RenderSize.Width),
+            Height = Convert.ToSingle(RenderSize.Height)
         };
         return result;
     }
