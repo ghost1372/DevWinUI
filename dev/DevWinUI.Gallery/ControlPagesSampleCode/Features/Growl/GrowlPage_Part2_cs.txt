@@ -1,28 +1,17 @@
-﻿Growl.InfoGlobal("Hello");
+﻿Growl.ShowSuccessGlobal("Global notification", "Shown outside the app window", true, GrowlCardAutoClose.Default);
 
-// OR
-
-Growl.WarningGlobal("Hello", "Warning");
-
-// OR
-
-Growl.AskGlobal("Hello", (s, e) =>
+Growl.Show(new GrowlOptions
 {
-    Growl.Info("Clicked");
-    return true;
+    Title = "Global notification",
+    SubTitle = "Bottom right of the monitor under the cursor",
+    Severity = GrowlCardSeverity.Info,
+    Scope = GrowlScope.Global,
+    Position = GrowlPosition.BottomRight,
+    Monitor = GrowlMonitor.Cursor,
+    ShowAnimation = GrowlShowAnimation.Snap,
+    CloseAnimation = GrowlCloseAnimation.Snap,
+    AutoClose = GrowlCardAutoClose.Default,
+    ShowCountdown = true
 });
 
-// GrowlInfo
-
-Growl.InfoGlobal(new GrowlInfo
-{
-    ShowDateTime = true,
-    StaysOpen = true,
-    IsClosable = false,
-    Title = "Hello",
-    Message = "Info with GrowlInfo"
-});
-
-// Clear
-
-Growl.ClearGlobal();
+GrowlGlobal.ClearAll();

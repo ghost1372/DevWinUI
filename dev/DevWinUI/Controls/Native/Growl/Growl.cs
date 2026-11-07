@@ -1,318 +1,254 @@
 ﻿namespace DevWinUI;
 
-[TemplatePart(Name = PART_ConfirmButton, Type = typeof(Button))]
-[TemplatePart(Name = PART_CloseButton, Type = typeof(Button))]
-public partial class Growl : InfoBar
+public static partial class Growl
 {
-    private const string PART_ConfirmButton = "PART_ConfirmButton";
-    private const string PART_CloseButton = "PART_CloseButton";
-    private Button _confirmButton;
-    private Button _closeButton;
-
-    private DispatcherTimer timer;
-    private Func<object, RoutedEventArgs, bool> ConfirmButtonClicked;
-    private Func<object, RoutedEventArgs, bool> CloseButtonClicked;
-    private static Dictionary<string, Panel> PanelDic = new Dictionary<string, Panel>();
-    public static GrowlWindow GrowlWindow { get; private set; }
-    public static Panel GrowlPanel { get; set; }
-
-    public Growl()
+    private sealed partial class Entry
     {
-        this.DefaultStyleKey = typeof(Growl);
-        Closed += Growl_Closed;
-        Closing += Growl_Closing;
-        Translation += new Vector3(0, 0, 4);
-    }
-
-    protected override void OnApplyTemplate()
-    {
-        base.OnApplyTemplate();
-        _confirmButton = GetTemplateChild(PART_ConfirmButton) as Button;
-        _closeButton = GetTemplateChild(PART_CloseButton) as Button;
-
-        if (_confirmButton != null)
+        public Entry(GrowlHost host, string key)
         {
-            _confirmButton.Click -= OnConfirmButtonClick;
-            _confirmButton.Click += OnConfirmButtonClick;
+            Host = new WeakReference<GrowlHost>(host);
+            Key = key;
         }
 
-        if (_closeButton != null)
-        {
-            _closeButton.Click -= OnCloseButtonClick;
-            _closeButton.Click += OnCloseButtonClick;
-        }
+        public WeakReference<GrowlHost> Host { get; }
+
+        public string Key { get; set; }
+
+        public GrowlHost? Target => Host.TryGetTarget(out var host) ? host : null;
     }
 
-    private void Growl_Closing(InfoBar sender, InfoBarClosingEventArgs args)
-    {
-        IsOpen = true;
-    }
+    private static readonly object Gate = new();
+    private static readonly List<Entry> Entries = new();
+    private static WeakReference<GrowlHost>? _default;
 
-    private void Growl_Closed(InfoBar sender, InfoBarClosedEventArgs args)
+    public static GrowlHost? DefaultHost
     {
-        var panel = sender.Parent as Panel;
-        RemoveGrowlFromPanel(panel);
-    }
-
-    public static void Register(string token, Panel panel)
-    {
-        if (string.IsNullOrEmpty(token) || panel == null) return;
-        PanelDic[token] = panel;
-    }
-
-    public static void Unregister(Panel panel)
-    {
-        if (panel == null) return;
-        var first = PanelDic.FirstOrDefault(item => ReferenceEquals(panel, item.Value));
-        if (!string.IsNullOrEmpty(first.Key))
+        get
         {
-            PanelDic.Remove(first.Key);
-        }
-    }
-
-    private static void SetDefaultPanelTransition(Panel panel)
-    {
-        if (panel.ChildrenTransitions != null && panel.ChildrenTransitions.Count == 0)
-        {
-            var growlTransition = GetGrowlEnterTransition(panel);
-            SetPanelTransition(growlTransition, panel);
-        }
-    }
-    private static bool HasToken(DependencyObject element) => GetToken(element) != null;
-
-    private static void SetPanelTransition(GrowlTransition growlTransition, Panel panel)
-    {
-        var transitions = new TransitionCollection();
-        switch (growlTransition)
-        {
-            case GrowlTransition.AddDeleteThemeTransition:
-                transitions.Add(new AddDeleteThemeTransition());
-                break;
-            case GrowlTransition.ContentThemeTransition:
-                transitions.Add(new ContentThemeTransition());
-                break;
-            case GrowlTransition.EdgeUIThemeTransition:
-                transitions.Add(new EdgeUIThemeTransition());
-                break;
-            case GrowlTransition.EntranceThemeTransition:
-                transitions.Add(new EntranceThemeTransition());
-                break;
-            case GrowlTransition.NavigationThemeTransition:
-                transitions.Add(new NavigationThemeTransition());
-                break;
-            case GrowlTransition.PaneThemeTransition:
-                transitions.Add(new PaneThemeTransition());
-                break;
-            case GrowlTransition.PopupThemeTransition:
-                transitions.Add(new PopupThemeTransition());
-                break;
-            case GrowlTransition.ReorderThemeTransition:
-                transitions.Add(new ReorderThemeTransition());
-                break;
-            case GrowlTransition.RepositionThemeTransition:
-                transitions.Add(new RepositionThemeTransition());
-                break;
-        }
-
-        if (panel != null)
-        {
-            panel.ChildrenTransitions = transitions;
-        }
-    }
-
-    private void OnCloseButtonClick(object sender, RoutedEventArgs e)
-    {
-        if (CloseButtonClicked == null)
-        {
-            IsOpen = false;
-        }
-        else
-        {
-            bool result = CloseButtonClicked.Invoke(sender, e);
-            if (result)
+            lock (Gate)
             {
-                IsOpen = false;
+                Prune();
+
+                if (_default is not null && _default.TryGetTarget(out var host))
+                {
+                    return host;
+                }
+
+                return Entries.Count > 0 ? Entries[0].Target : null;
             }
         }
     }
 
-    private void RemoveGrowlFromPanel(Panel panel)
+    public static void Register(GrowlHost host, string? key = null, bool isDefault = false)
     {
-        if (panel == null)
+        ArgumentNullException.ThrowIfNull(host);
+
+        if (key is not null)
         {
-            return;
+            host.HostKey = key;
         }
 
-        var growlExitTransition = GetGrowlExitTransition(panel);
-        SetPanelTransition(growlExitTransition, panel);
+        var hostKey = host.HostKey ?? string.Empty;
 
-        panel.Children?.Remove(this);
+        lock (Gate)
+        {
+            Prune();
 
-        var growlEnterTransition = GetGrowlEnterTransition(panel);
-        SetPanelTransition(growlEnterTransition, panel);
-    }
-    private void OnConfirmButtonClick(object sender, RoutedEventArgs e)
-    {
-        if (ConfirmButtonClicked == null)
-        {
-            IsOpen = false;
-        }
-        else
-        {
-            bool result = ConfirmButtonClicked.Invoke(sender, e);
-            if (result)
+            if (hostKey.Length > 0)
             {
-                IsOpen = false;
+                Entries.RemoveAll(e => e.Target != host && e.Key == hostKey);
+            }
+
+            var entry = Find(host);
+
+            if (entry is null)
+            {
+                Entries.Add(new Entry(host, hostKey));
+            }
+            else
+            {
+                entry.Key = hostKey;
+            }
+
+            if (isDefault)
+            {
+                _default = new WeakReference<GrowlHost>(host);
+            }
+
+            ClearStaleDefault();
+        }
+    }
+
+    public static void Unregister(GrowlHost host)
+    {
+        lock (Gate)
+        {
+            Entries.RemoveAll(e => e.Target is null || e.Target == host);
+            ClearStaleDefault();
+        }
+    }
+
+    public static void Unregister(string key)
+    {
+        var host = GetHost(key);
+
+        if (host is not null)
+        {
+            Unregister(host);
+        }
+    }
+
+    public static void SetDefault(GrowlHost host)
+    {
+        Register(host, null, true);
+    }
+
+    public static GrowlHost? GetHost(string? key = null)
+    {
+        if (key is null)
+        {
+            return DefaultHost;
+        }
+
+        lock (Gate)
+        {
+            Prune();
+
+            return Entries.Find(e => e.Key == key)?.Target;
+        }
+    }
+
+    public static GrowlHost? GetHost(XamlRoot xamlRoot)
+    {
+        foreach (var host in Snapshot())
+        {
+            if (host.XamlRoot == xamlRoot)
+            {
+                return host;
             }
         }
+
+        return null;
     }
 
-    private void AddBlueInfoResource()
+    public static GrowlHandle Show(GrowlOptions options, string? hostKey = null)
     {
-        Resources.MergedDictionaries.Add(new ResourceDictionary
+        ArgumentNullException.ThrowIfNull(options);
+
+        return options.Scope == GrowlScope.Global
+            ? GrowlGlobal.Show(options)
+            : Resolve(hostKey).Show(options);
+    }
+
+    public static Task<GrowlHandle> ShowAsync(GrowlOptions options, string? hostKey = null)
+    {
+        ArgumentNullException.ThrowIfNull(options);
+
+        var queue = options.Scope == GrowlScope.Global ? GrowlGlobal.DispatcherQueue : Resolve(hostKey).DispatcherQueue;
+
+        if (queue is null)
         {
-            Source = new Uri("ms-appx:///DevWinUI/Themes/InfoBarInformationalColor.xaml")
+            return Task.FromException<GrowlHandle>(new InvalidOperationException("GrowlGlobal.DispatcherQueue must be set on the UI thread before using ShowAsync with global scope."));
+        }
+
+        if (queue.HasThreadAccess)
+        {
+            return Task.FromResult(Show(options, hostKey));
+        }
+
+        var source = new TaskCompletionSource<GrowlHandle>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        bool queued = queue.TryEnqueue(() =>
+        {
+            try
+            {
+                source.SetResult(Show(options, hostKey));
+            }
+            catch (Exception ex)
+            {
+                source.SetException(ex);
+            }
         });
+
+        if (!queued)
+        {
+            source.SetException(new InvalidOperationException("The dispatcher queue is shut down."));
+        }
+
+        return source.Task;
     }
 
-    private static void InitGrowl(GrowlInfo growlInfo, bool isForceSeverity = false, InfoBarSeverity forceSeverity = InfoBarSeverity.Informational)
+    internal static void UpdateKey(GrowlHost host, string key)
     {
-        var ctl = new Growl();
-        ctl.Title = growlInfo.Title;
-        ctl.Message = growlInfo.Message;
-        ctl.IsIconVisible = growlInfo.IsIconVisible;
-        ctl.IconSource = growlInfo.IconSource;
-        ctl.IsClosable = growlInfo.IsClosable;
-        ctl.Severity = isForceSeverity ? forceSeverity : growlInfo.Severity;
-        ctl.DateTime = growlInfo.DateTime;
-        if (string.IsNullOrEmpty(ctl.DateTime))
+        lock (Gate)
         {
-            ctl.DateTime = DateTimeOffset.Now.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-        ctl.ConfirmButtonText = growlInfo.ConfirmButtonText;
-        ctl.CloseButtonText = growlInfo.CloseButtonText;
-        ctl.ShowConfirmButton = growlInfo.ShowConfirmButton ? Visibility.Visible : Visibility.Collapsed;
-        ctl.ShowCloseButton = growlInfo.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
-        ctl.ShowDateTime = growlInfo.ShowDateTime && !string.IsNullOrEmpty(ctl.DateTime) ? Visibility.Visible : Visibility.Collapsed;
+            var entry = Find(host);
 
-        if (growlInfo.ShowConfirmButton || growlInfo.ShowCloseButton)
-        {
-            ctl.RootGridMargin = new Thickness(0, 0, 0, 10);
-        }
-
-        ctl.CloseButtonClicked = growlInfo.CloseButtonClicked;
-        ctl.ConfirmButtonClicked = growlInfo.ConfirmButtonClicked;
-
-        if (growlInfo.UseBlueColorForInfo)
-        {
-            ctl.AddBlueInfoResource();
-        }
-
-        if (!string.IsNullOrEmpty(growlInfo.Token) && PanelDic.TryGetValue(growlInfo.Token, out var panel))
-        {
-            panel.Children.Insert(0, ctl);
-            if (!growlInfo.StaysOpen)
+            if (entry is null)
             {
-                ctl.SetupTimer(growlInfo.WaitTime, panel);
+                return;
             }
-        }
-        else if (GrowlPanel != null)
-        {
-            GrowlPanel.Children.Insert(0, ctl);
-            if (!growlInfo.StaysOpen)
+
+            entry.Key = key;
+
+            if (key.Length > 0)
             {
-                ctl.SetupTimer(growlInfo.WaitTime, GrowlPanel);
+                Entries.RemoveAll(e => e != entry && e.Key == key);
             }
-        }
-    }
-    private static void InitGrowlGlobal(GrowlInfo growlInfo, bool isForceSeverity = false, InfoBarSeverity forceSeverity = InfoBarSeverity.Informational)
-    {
-        var ctl = new Growl();
-        ctl.Title = growlInfo.Title;
-        ctl.Message = growlInfo.Message;
-        ctl.IsIconVisible = growlInfo.IsIconVisible;
-        ctl.IconSource = growlInfo.IconSource;
-        ctl.IsClosable = growlInfo.IsClosable;
-        ctl.Severity = isForceSeverity ? forceSeverity : growlInfo.Severity;
-        ctl.DateTime = growlInfo.DateTime;
-        if (string.IsNullOrEmpty(ctl.DateTime))
-        {
-            ctl.DateTime = DateTimeOffset.Now.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-        ctl.ConfirmButtonText = growlInfo.ConfirmButtonText;
-        ctl.CloseButtonText = growlInfo.CloseButtonText;
-        ctl.ShowConfirmButton = growlInfo.ShowConfirmButton ? Visibility.Visible : Visibility.Collapsed;
-        ctl.ShowCloseButton = growlInfo.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
-        ctl.ShowDateTime = growlInfo.ShowDateTime && !string.IsNullOrEmpty(ctl.DateTime) ? Visibility.Visible : Visibility.Collapsed;
 
-        if (growlInfo.ShowConfirmButton || growlInfo.ShowCloseButton)
-        {
-            ctl.RootGridMargin = new Thickness(0, 0, 0, 10);
-        }
-
-        ctl.CloseButtonClicked = growlInfo.CloseButtonClicked;
-        ctl.ConfirmButtonClicked = growlInfo.ConfirmButtonClicked;
-
-        if (growlInfo.UseBlueColorForInfo)
-        {
-            ctl.AddBlueInfoResource();
-        }
-
-        if (GrowlWindow == null || GrowlWindow.WindowClosed)
-        {
-            GrowlWindow = new GrowlWindow();
-            GrowlWindow.MoveAndResizeWindow();
-        }
-
-        VisualStateManager.GoToState(ctl, growlInfo.Severity.ToString(), true);
-
-        SetPanelTransition(GrowlTransition.AddDeleteThemeTransition, GrowlWindow.GrowlPanel);
-
-        if (GrowlWindow.GrowlPanel != null)
-        {
-            GrowlWindow.GrowlPanel.Children.Insert(0, ctl);
-            if (!growlInfo.StaysOpen)
-            {
-                ctl.SetupTimer(growlInfo.WaitTime, GrowlWindow.GrowlPanel);
-            }
-        }
-
-        GrowlWindow?.Activate();
-    }
-
-    private void SetupTimer(TimeSpan timeSpan, Panel panel)
-    {
-        timer = new DispatcherTimer();
-        timer.Interval = timeSpan;
-        timer.Tick += (sender, e) =>
-        {
-            RemoveGrowlFromPanel(panel);
-            timer.Stop(); // Stop the timer after it's ticked
-        };
-        timer.Start();
-    }
-
-    private static void Clear(Panel panel) => panel?.Children.Clear();
-    public static void Clear(string token = "")
-    {
-        if (!string.IsNullOrEmpty(token))
-        {
-            if (PanelDic.TryGetValue(token, out var panel))
-            {
-                Clear(panel);
-            }
-        }
-        else
-        {
-            Clear(GrowlPanel);
+            ClearStaleDefault();
         }
     }
 
-    public static void ClearGlobal()
+    private static Entry? Find(GrowlHost host)
     {
-        if (GrowlWindow == null) return;
-        Clear(GrowlWindow.GrowlPanel);
-        GrowlWindow.Close();
-        GrowlWindow = null;
+        return Entries.Find(e => e.Target == host);
+    }
+
+    private static void Prune()
+    {
+        Entries.RemoveAll(e => e.Target is null);
+        ClearStaleDefault();
+    }
+
+    private static void ClearStaleDefault()
+    {
+        if (_default is not null && (!_default.TryGetTarget(out var host) || Find(host) is null))
+        {
+            _default = null;
+        }
+    }
+
+    private static List<GrowlHost> Snapshot()
+    {
+        lock (Gate)
+        {
+            Prune();
+
+            return Entries.Select(e => e.Target).OfType<GrowlHost>().ToList();
+        }
+    }
+
+    public static void ClearAll(string? hostKey = null)
+    {
+        GetHost(hostKey)?.ClearAll();
+    }
+
+    public static void ClearAllHosts()
+    {
+        GrowlGlobal.ClearAll();
+
+        foreach (var host in Snapshot())
+        {
+            host.ClearAll();
+        }
+    }
+
+    private static GrowlHost Resolve(string? key)
+    {
+        return GetHost(key) ?? throw new InvalidOperationException(
+            key is null
+                ? "No GrowlHost is registered."
+                : $"No GrowlHost is registered with key '{key}'.");
     }
 }

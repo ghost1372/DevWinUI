@@ -898,6 +898,7 @@
           "UniqueId": "DevWinUIGallery.Views.GrowlPage",
           "Title": "Growl",
           "Subtitle": "Growl",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBar.png"
         },
         {

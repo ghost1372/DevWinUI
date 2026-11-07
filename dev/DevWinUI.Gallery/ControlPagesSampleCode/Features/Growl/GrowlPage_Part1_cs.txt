@@ -1,48 +1,36 @@
-﻿Growl.Info("Hello");
+﻿Growl.SetDefault(DefaultHost);
 
-// OR
+Growl.ShowSuccess("Saved", "Your changes were saved.", true, GrowlCardAutoClose.Default);
 
-Growl.Info("Hello", "Info");
-
-// OR
-
-Growl.Ask("Hello", (s, e) =>
+Growl.Show(new GrowlOptions
 {
-    Growl.Info("Clicked");
-    return true;
+    Title = "Error",
+    Severity = GrowlCardSeverity.Error,
+    AutoClose = GrowlCardAutoClose.Default,
+    ShowCountdown = true
 });
 
-// GrowlInfo
-
-Growl.Warning(new GrowlInfo
+Growl.Show(new GrowlOptions
 {
-    ShowDateTime = true,
-    StaysOpen = true,
-    IsClosable = false,
-    Title = "Hello",
-    Message = "Warning with GrowlInfo"
+    Key = "messages",
+    Title = "3 new messages",
+    Severity = GrowlCardSeverity.Info
 });
 
-// Token
-
-Growl.ErrorWithToken("Hello", "Test");
-
-// OR
-
-Growl.Success(new GrowlInfo
+var handle = Growl.Show(new GrowlOptions
 {
-    ShowDateTime = true,
-    StaysOpen = true,
-    IsClosable = false,
-    Title = "Hello",
-    Message = "Success with GrowlInfo",
-    Token = "Test"
+    Title = "Downloading",
+    Severity = GrowlCardSeverity.Info,
+    ShowProgress = true
 });
 
-// Clear
+handle.Update(progress: 60);
+handle.Update(card => card.AutoClose = GrowlCardAutoClose.Success);
+handle.Update(title: "Downloaded", severity: GrowlCardSeverity.Success, showProgress: false, restartAutoClose: true);
 
-Growl.Clear();
+Growl.GetHost("Test")?.ShowInfo("Test host", "Shown on the host with key Test.", true, GrowlCardAutoClose.Default);
 
-// OR (if you use Token)
+DefaultHost.LayoutMode = GrowlHostLayoutMode.Stacked;
 
-Growl.Clear("Test");
+Growl.ClearAll();
+Growl.ClearAll("Test");
