@@ -148,6 +148,10 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### Growl
+![Growl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Growl.gif)
+![Growl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Growl2.gif)
+
 ### Radar
 ![Radar](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Radar3.gif)
 
@@ -875,9 +879,6 @@ dotnet add package DevWinUI.Shader
 
 ### Gravatar
 ![Gravatar](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Gravatar.gif)
-
-### Growl
-![Growl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Growl.gif)
 
 ### Transparent Backdrop
 ![Transparent Backdrop](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TransparentBackdrop.png)
