@@ -1,0 +1,56 @@
+﻿<ResourceDictionary x:Class="DevWinUI.SearchBoxTemplates"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <DataTemplate x:Key="SearchResultTemplate" x:DataType="local:SearchResultItem">
+        <Grid>
+            <Border Background="{ThemeResource SearchBoxSelectedItemBackgroundBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="{ThemeResource SearchBoxItemBorderThickness}" CornerRadius="{ThemeResource SearchBoxItemCornerRadius}" IsHitTestVisible="False" Visibility="{x:Bind local:SearchBox.ToVisibility(IsSelected), Mode=OneWay}" />
+
+            <StackPanel>
+                <Grid Padding="{ThemeResource SearchBoxItemPadding}" ColumnSpacing="{ThemeResource SearchBoxItemSpacing}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource SearchBoxItemIconColumnWidth}" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <FontIcon DataContextChanged="ResultIcon_DataContextChanged" FontSize="{ThemeResource SearchBoxItemIconSize}" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Glyph="{x:Bind Glyph}" />
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Subtitle}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="{ThemeResource SearchBoxItemActionSpacing}" Visibility="{x:Bind local:SearchBox.ToVisibility(IsSelected), Mode=OneWay}">
+                        <Button Width="{ThemeResource SearchBoxItemActionSize}" Height="{ThemeResource SearchBoxItemActionSize}" Padding="{ThemeResource SearchBoxItemActionPadding}" AutomationProperties.Name="{ThemeResource SearchBoxItemMoreText}" Click="MoreButton_Click" Content="&#xE712;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Style="{StaticResource SubtleButtonStyle}" Tag="{x:Bind}" ToolTipService.ToolTip="{ThemeResource SearchBoxItemMoreText}" />
+                        <Button Width="{ThemeResource SearchBoxItemActionSize}" Height="{ThemeResource SearchBoxItemActionSize}" Padding="{ThemeResource SearchBoxItemActionPadding}" AutomationProperties.Name="{ThemeResource SearchBoxItemOpenText}" Click="OpenItem_Click" Content="&#xE8A7;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Style="{StaticResource SubtleButtonStyle}" Tag="{x:Bind}" ToolTipService.ToolTip="{ThemeResource SearchBoxItemOpenText}" />
+                    </StackPanel>
+                </Grid>
+
+                <Border Margin="{ThemeResource SearchBoxDetailsMargin}" Padding="{ThemeResource SearchBoxDetailsPadding}" Background="{ThemeResource SubtleFillColorSecondaryBrush}" CornerRadius="{ThemeResource SearchBoxDetailsCornerRadius}" Visibility="{x:Bind ShowDetails, Mode=OneWay}">
+                    <StackPanel Spacing="{ThemeResource SearchBoxDetailsSpacing}">
+                        <Image MaxHeight="{ThemeResource SearchBoxPreviewMaxHeight}" Source="{x:Bind Preview}" Stretch="Uniform" Visibility="{x:Bind local:SearchBox.NullToCollapsed(Preview)}" />
+                        <ItemsControl ItemsSource="{x:Bind Details}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="local:SearchBoxDetailRow">
+                                    <StackPanel>
+                                        <Rectangle Height="{ThemeResource SearchBoxDetailDividerHeight}" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Visibility="{x:Bind local:SearchBox.ToVisibility(ShowDivider)}" />
+                                        <Grid Padding="{ThemeResource SearchBoxDetailRowPadding}" ColumnSpacing="{ThemeResource SearchBoxDetailRowSpacing}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind Name}" />
+                                            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Text="{x:Bind Value}" TextTrimming="CharacterEllipsis" />
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

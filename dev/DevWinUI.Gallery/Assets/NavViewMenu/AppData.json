@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.SearchBoxPage",
+          "Title": "SearchBox",
+          "Subtitle": "SearchBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/AutoSuggestBox.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.SegmentedMeterPage",
           "Title": "Segmented Meter",
           "Subtitle": "A horizontal or vertical meter that splits a whole into labeled, themed segments",
@@ -900,7 +907,7 @@
           "Subtitle": "Growl",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBar.png"
-        },        
+        },
         {
           "UniqueId": "DevWinUIGallery.Views.OptionsPageControlPage",
           "Title": "Options Page Control",

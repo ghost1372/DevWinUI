@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.SearchBoxPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample CSharpSource="Features/SearchBox/SearchBoxPage_cs.txt" DocPage="controls/searchBox" HeaderText="SearchBox" XamlSource="Features/SearchBox/SearchBoxPage_xaml.txt">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="5">
+                        <dev:SearchBox x:Name="Search" Width="260" MenuItemInvoked="Search_MenuItemInvoked" QueryChanged="Search_QueryChanged" ResultInvoked="Search_ResultInvoked" />
+
+                        <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Click the search box" />
+                    </StackPanel>
+                </Grid>
+                <local:ControlExample.Pane>
+                    <ScrollViewer Height="500">
+                        <StackPanel Margin="10" Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Click="Show_Click" Content="Show" />
+                                <Button Click="Hide_Click" Content="Hide" />
+                                <Button Click="ResetItems_Click" Content="Reset items" />
+                            </StackPanel>
+
+                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Text" IsExpanded="True">
+                                <StackPanel Spacing="12">
+                                    <TextBox Header="PlaceholderText" Text="{x:Bind Search.PlaceholderText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Header="NoResultsText" Text="{x:Bind Search.NoResultsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Header="NoResultsDescription" Text="{x:Bind Search.NoResultsDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </Expander>
+
+                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Flyout">
+                                <StackPanel Spacing="12">
+                                    <NumberBox Header="FlyoutWidth" Maximum="1200" Minimum="320" SpinButtonPlacementMode="Inline" ValueChanged="FlyoutWidth_ValueChanged" Value="640" />
+                                    <NumberBox Header="ResultsMaxHeight" Maximum="800" Minimum="120" SpinButtonPlacementMode="Inline" ValueChanged="ResultsMaxHeight_ValueChanged" Value="560" />
+                                    <ComboBox HorizontalAlignment="Stretch" Header="FlyoutPlacement" SelectedIndex="1" SelectionChanged="Placement_SelectionChanged">
+                                        <ComboBoxItem Content="Auto" />
+                                        <ComboBoxItem Content="Bottom" />
+                                        <ComboBoxItem Content="Top" />
+                                        <ComboBoxItem Content="Left" />
+                                        <ComboBoxItem Content="Right" />
+                                    </ComboBox>
+                                    <ToggleSwitch Header="ConstrainToAppBounds" IsOn="{x:Bind Search.ConstrainToAppBounds, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                </StackPanel>
+                            </Expander>
+
+                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Behavior">
+                                <StackPanel Spacing="12">
+                                    <ToggleSwitch Header="ShowPreviousSearch" IsOn="{x:Bind Search.ShowPreviousSearch, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
+                </local:ControlExample.Pane>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

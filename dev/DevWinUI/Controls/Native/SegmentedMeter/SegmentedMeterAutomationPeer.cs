@@ -2,7 +2,7 @@
 
 namespace DevWinUI;
 
-public sealed class SegmentedMeterAutomationPeer : FrameworkElementAutomationPeer
+public sealed partial class SegmentedMeterAutomationPeer : FrameworkElementAutomationPeer
 {
     private readonly SegmentedMeter _owner;
 

@@ -1,0 +1,39 @@
+Search.DefaultMenuItems.Add(new SearchMenuItem { Text = "Open", Glyph = "\uE8E5", Tag = "open" });
+Search.DefaultMenuItems.Add(new SearchMenuItem { IsSeparator = true });
+Search.DefaultMenuItems.Add(new SearchMenuItem { Text = "Remove from list", Glyph = "\uE74D", Tag = "remove" });
+
+Search.Results.Add(new SearchResultItem
+{
+    Title = "Italy 2026 Itinerary",
+    Subtitle = "25 minutes ago • Word",
+    Glyph = "\uE8A5",
+    IconBrush = new SolidColorBrush(Microsoft.UI.ColorHelper.FromArgb(255, 43, 87, 154)),
+    Details = new List<SearchBoxDetailRow>
+    {
+        new("Location", @"C:\Users\Casey\Documents"),
+        new("Author", "Casey Jensen")
+    }
+});
+
+private void Search_QueryChanged(object sender, SearchEventArgs e)
+{
+    Search.Results.Clear();
+
+    foreach (var item in _all.Where(i => i.Title.Contains(e.Query, StringComparison.OrdinalIgnoreCase)))
+    {
+        Search.Results.Add(item);
+    }
+}
+
+private void Search_ResultInvoked(object sender, SearchResultEventArgs e)
+{
+    StatusText.Text = e.Item != null ? $"Opened: {e.Item.Title}" : $"Search: {e.Query}";
+}
+
+private void Search_MenuItemInvoked(object sender, SearchMenuItemEventArgs e)
+{
+    if (e.MenuItem.Tag as string == "remove")
+    {
+        _all.Remove(e.Item);
+    }
+}
