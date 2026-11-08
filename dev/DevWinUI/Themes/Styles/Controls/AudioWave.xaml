@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI"
-                    xmlns:wind2="using:Microsoft.Graphics.Canvas.UI.Xaml">
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
     <Style BasedOn="{StaticResource DefaultAudioWaveStyle}" TargetType="local:AudioWave" />
 
@@ -13,7 +13,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AudioWave">
-                    <wind2:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                    <win2d:CanvasAnimatedControl x:Name="PART_Canvas" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
