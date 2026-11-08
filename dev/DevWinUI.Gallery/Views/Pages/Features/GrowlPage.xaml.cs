@@ -1,8 +1,4 @@
-﻿using DevWinUI;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class GrowlPage : Page
 {
