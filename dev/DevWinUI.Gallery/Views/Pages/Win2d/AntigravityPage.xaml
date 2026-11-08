@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.AntigravityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/antigravity" HeaderText="Antigravity">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Antigravity Height="480" ColorMode="Conic" ParticleCount="1500" ParticleShape="Capsule" MagnetRadius="170" RingRadius="120" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Button HorizontalAlignment="Stretch" Click="Replay_Click" Content="Replay" />
+
+                        <ComboBox x:Name="CmbShape" HorizontalAlignment="Stretch" Header="Particle Shape" ItemsSource="{x:Bind Shapes}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:AntigravityParticleShape">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbColorMode" HorizontalAlignment="Stretch" Header="Color Mode" ItemsSource="{x:Bind ColorModes}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:AntigravityColorMode">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Slider x:Name="SliderCount" Header="Particle Count" Maximum="5000" Minimum="0" StepFrequency="100" Value="1500" />
+                        <Slider x:Name="SliderSize" Header="Particle Size" Maximum="3" Minimum="0.1" StepFrequency="0.05" Value="0.9" />
+                        <Slider x:Name="SliderMagnet" Header="Magnet Radius" Maximum="400" Minimum="40" Value="170" />
+                        <Slider x:Name="SliderRing" Header="Ring Radius" Maximum="300" Minimum="0" Value="120" />
+                        <Slider x:Name="SliderWaveSpeed" Header="Wave Speed" Maximum="2" Minimum="0" StepFrequency="0.05" Value="0.4" />
+                        <Slider x:Name="SliderWaveAmplitude" Header="Wave Amplitude" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderWaveCount" Header="Wave Count" Maximum="12" Minimum="0" Value="3" />
+                        <Slider x:Name="SliderLerp" Header="Lerp Speed" Maximum="0.5" Minimum="0.01" StepFrequency="0.01" Value="0.05" />
+                        <Slider x:Name="SliderFieldStrength" Header="Field Strength" Maximum="40" Minimum="1" Value="10" />
+                        <Slider x:Name="SliderAmbient" Header="Ambient" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.25" />
+                        <Slider x:Name="SliderDepth" Header="Depth Factor" Maximum="2" Minimum="0" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderVariance" Header="Particle Variance" Maximum="1" Minimum="0" StepFrequency="0.05" Value="1" />
+                        <Slider x:Name="SliderPulse" Header="Pulse Speed" Maximum="10" Minimum="0" StepFrequency="0.5" Value="3" />
+                        <Slider x:Name="SliderRotation" Header="Rotation Speed" Maximum="5" Minimum="-5" StepFrequency="0.1" Value="0" />
+                        <Slider x:Name="SliderColorSpeed" Header="Color Speed" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.05" />
+                        <ToggleSwitch x:Name="TglAutoAnimate" Header="Auto Animate" IsOn="True" />
+                        <ToggleSwitch x:Name="TglInteractive" Header="Is Interactive" IsOn="True" />
+                        <ToggleSwitch x:Name="TglClickBurst" Header="Click Burst" IsOn="True" />
+                        <ToggleSwitch x:Name="TglIntro" Header="Intro" IsOn="True" />
+                        <ToggleSwitch x:Name="TglPaused" Header="Is Paused" IsOn="False" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Antigravity x:Name="AntigravitySample" Height="480" VerticalAlignment="Top" Ambient="{x:Bind SliderAmbient.Value, Mode=OneWay}" AutoAnimate="{x:Bind TglAutoAnimate.IsOn, Mode=OneWay}" ClickBurst="{x:Bind TglClickBurst.IsOn, Mode=OneWay}" ColorMode="{x:Bind ((dev:AntigravityColorMode)CmbColorMode.SelectedItem), Mode=OneWay}" ColorSpeed="{x:Bind SliderColorSpeed.Value, Mode=OneWay}" DepthFactor="{x:Bind SliderDepth.Value, Mode=OneWay}" FieldStrength="{x:Bind SliderFieldStrength.Value, Mode=OneWay}" Intro="{x:Bind TglIntro.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsPaused="{x:Bind TglPaused.IsOn, Mode=OneWay}" LerpSpeed="{x:Bind SliderLerp.Value, Mode=OneWay}" MagnetRadius="{x:Bind SliderMagnet.Value, Mode=OneWay}" ParticleCount="{x:Bind ToInt(SliderCount.Value), Mode=OneWay}" ParticleShape="{x:Bind ((dev:AntigravityParticleShape)CmbShape.SelectedItem), Mode=OneWay}" ParticleSize="{x:Bind SliderSize.Value, Mode=OneWay}" ParticleVariance="{x:Bind SliderVariance.Value, Mode=OneWay}" PulseSpeed="{x:Bind SliderPulse.Value, Mode=OneWay}" RingRadius="{x:Bind SliderRing.Value, Mode=OneWay}" RotationSpeed="{x:Bind SliderRotation.Value, Mode=OneWay}" WaveAmplitude="{x:Bind SliderWaveAmplitude.Value, Mode=OneWay}" WaveCount="{x:Bind ToInt(SliderWaveCount.Value), Mode=OneWay}" WaveSpeed="{x:Bind SliderWaveSpeed.Value, Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

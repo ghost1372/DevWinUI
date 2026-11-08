@@ -83,6 +83,7 @@ Themes\Styles\Controls\AnimatedImage.xaml
 Themes\Styles\Controls\AnimatedTextBlock.xaml
 Themes\Styles\Controls\AnimatedToc.xaml
 Themes\Styles\Controls\AnimationPath.xaml
+Themes\Styles\Controls\Antigravity.xaml
 Themes\Styles\Controls\ArcProgress.xaml
 Themes\Styles\Controls\AudioWave.xaml
 Themes\Styles\Controls\BankCard.xaml
@@ -468,6 +469,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SolidBackgroundFillColorBaseBrush" />
       <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <LinearGradientBrush x:Key="AntigravityPaletteBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#5227FF" />
+        <GradientStop Offset="0.5" Color="#FF9FFC" />
+        <GradientStop Offset="1" Color="#B497CF" />
+      </LinearGradientBrush>
       <LinearGradientBrush x:Key="BankCardBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Offset="0" Color="#1F2A44" />
         <GradientStop Offset="1" Color="#4B3F8F" />
@@ -1131,6 +1137,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SolidBackgroundFillColorBaseBrush" />
       <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SubtleFillColorSecondaryBrush" />
       <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SubtleFillColorTertiaryBrush" />
+      <LinearGradientBrush x:Key="AntigravityPaletteBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#5227FF" />
+        <GradientStop Offset="0.5" Color="#A265A0" />
+        <GradientStop Offset="1" Color="#947CAA" />
+      </LinearGradientBrush>
       <LinearGradientBrush x:Key="BankCardBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Offset="0" Color="#F2F4FA" />
         <GradientStop Offset="1" Color="#C7D0EE" />
@@ -1783,6 +1794,10 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="AnimatedTocDotStroke" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="AnimatedTocRowHoverBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="AnimatedTocRowPressedBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
+      <LinearGradientBrush x:Key="AntigravityPaletteBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="{ThemeResource SystemColorHighlightColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource SystemColorHotlightColor}" />
+      </LinearGradientBrush>
       <SolidColorBrush x:Key="BankCardBackgroundBrush" Color="{ThemeResource SystemColorButtonFaceColor}" />
       <SolidColorBrush x:Key="BankCardChipBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="BankCardGlareBrush" Color="Transparent" />
@@ -2911,6 +2926,19 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Setter.Value>
         <ControlTemplate TargetType="local:AnimationPath">
           <Border x:Name="PART_Border" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultAntigravityStyle" TargetType="local:Antigravity">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="AutomationProperties.AccessibilityView" Value="Raw" />
+    <Setter Property="Background" Value="{ThemeResource SolidBackgroundFillColorBaseBrush}" />
+    <Setter Property="Palette" Value="{ThemeResource AntigravityPaletteBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Antigravity">
+          <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -18463,6 +18491,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultAnimationPathStyle}" TargetType="local:AnimationPath" />
+  <Style BasedOn="{StaticResource DefaultAntigravityStyle}" TargetType="local:Antigravity" />
   <Style BasedOn="{StaticResource DefaultArcProgressStyle}" TargetType="local:ArcProgress" />
   <Style BasedOn="{StaticResource DefaultAudioWaveStyle}" TargetType="local:AudioWave" />
   <Style BasedOn="{StaticResource DefaultBankCardStyle}" TargetType="local:BankCard" />
