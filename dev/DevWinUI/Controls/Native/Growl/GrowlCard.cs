@@ -410,7 +410,7 @@ public sealed partial class GrowlCard : ContentControl
     {
         while (source is not null && !ReferenceEquals(source, this))
         {
-            if (source is ButtonBase or TextBox or PasswordBox or RichEditBox or AutoSuggestBox or NumberBox or ComboBox or ToggleSwitch or Slider or ListViewBase or CalendarDatePicker or DatePicker or TimePicker or RatingControl)
+            if (source is ButtonBase or Microsoft.UI.Xaml.Controls.TextBox or TextBox or PasswordBox or RichEditBox or AutoSuggestBox or NumberBox or ComboBox or ToggleSwitch or Slider or ListViewBase or CalendarDatePicker or DatePicker or TimePicker or RatingControl)
             {
                 return true;
             }
