@@ -195,6 +195,7 @@ Themes\Styles\Controls\PlayStationParticles.xaml
 Themes\Styles\Controls\ProfileControl.xaml
 Themes\Styles\Controls\ProgressButton.xaml
 Themes\Styles\Controls\ProgressRing.xaml
+Themes\Styles\Controls\ProgressStepper.xaml
 Themes\Styles\Controls\Radar.xaml
 Themes\Styles\Controls\RealClock.xaml
 Themes\Styles\Controls\Reasoning.xaml
@@ -786,6 +787,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
       <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
+      <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="#FFFFFFFF" />
+      <SolidColorBrush x:Key="ProgressStepperSecondaryBrush" Color="#C5FFFFFF" />
+      <SolidColorBrush x:Key="ProgressStepperTertiaryBrush" Color="#8BFFFFFF" />
+      <SolidColorBrush x:Key="ProgressStepperRailBrush" Color="#28FFFFFF" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessBrush" Color="#22C55E" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessFillBrush" Color="#2622C55E" />
+      <SolidColorBrush x:Key="ProgressStepperAccentBrush" Color="#3B82F6" />
+      <SolidColorBrush x:Key="ProgressStepperAccentTrackBrush" Color="#3C3B82F6" />
       <SolidColorBrush x:Key="RadarForegroundBrush" Color="#3EF09A" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="TextFillColorSecondary" />
@@ -1457,6 +1466,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
       <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="ControlAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="#E4000000" />
+      <SolidColorBrush x:Key="ProgressStepperSecondaryBrush" Color="#9E000000" />
+      <SolidColorBrush x:Key="ProgressStepperTertiaryBrush" Color="#72000000" />
+      <SolidColorBrush x:Key="ProgressStepperRailBrush" Color="#28000000" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessBrush" Color="#22C55E" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessFillBrush" Color="#2622C55E" />
+      <SolidColorBrush x:Key="ProgressStepperAccentBrush" Color="#3B82F6" />
+      <SolidColorBrush x:Key="ProgressStepperAccentTrackBrush" Color="#3C3B82F6" />
       <SolidColorBrush x:Key="RadarForegroundBrush" Color="#3EF09A" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="TextFillColorPrimary" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="TextFillColorSecondary" />
@@ -2034,6 +2051,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="{ThemeResource SystemColorHighlightColor}" />
       <StaticResource x:Key="PlayStationParticlesBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
+      <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="ProgressStepperSecondaryBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="ProgressStepperTertiaryBrush" Color="{ThemeResource SystemColorGrayTextColor}" />
+      <SolidColorBrush x:Key="ProgressStepperRailBrush" Color="{ThemeResource SystemColorGrayTextColor}" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+      <SolidColorBrush x:Key="ProgressStepperSuccessFillBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="ProgressStepperAccentBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="ProgressStepperAccentTrackBrush" Color="{ThemeResource SystemColorWindowColor}" />
       <StaticResource x:Key="RadarForegroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="ReasoningPrimaryForegroundColor" ResourceKey="SystemColorWindowTextColor" />
       <StaticResource x:Key="ReasoningSecondaryForegroundColor" ResourceKey="SystemColorWindowTextColor" />
@@ -7694,6 +7719,24 @@ Themes\Styles\Controls\WelcomeHero.xaml
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultProgressStepperStyle" TargetType="local:ProgressStepper">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="PrimaryForeground" Value="{ThemeResource ProgressStepperPrimaryBrush}" />
+    <Setter Property="SecondaryForeground" Value="{ThemeResource ProgressStepperSecondaryBrush}" />
+    <Setter Property="TertiaryForeground" Value="{ThemeResource ProgressStepperTertiaryBrush}" />
+    <Setter Property="RailBrush" Value="{ThemeResource ProgressStepperRailBrush}" />
+    <Setter Property="SuccessBrush" Value="{ThemeResource ProgressStepperSuccessBrush}" />
+    <Setter Property="SuccessFillBrush" Value="{ThemeResource ProgressStepperSuccessFillBrush}" />
+    <Setter Property="AccentBrush" Value="{ThemeResource ProgressStepperAccentBrush}" />
+    <Setter Property="AccentTrackBrush" Value="{ThemeResource ProgressStepperAccentTrackBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ProgressStepper">
+          <Border x:Name="PART_Host" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -21911,6 +21954,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultProgressStepperStyle}" TargetType="local:ProgressStepper" />
   <Style BasedOn="{StaticResource DefaultRadarStyle}" TargetType="local:Radar" />
   <Style BasedOn="{StaticResource DefaultRealClockStyle}" TargetType="local:RealClock" />
   <Style BasedOn="{StaticResource ReasoningFlatButtonStyle}" TargetType="local:ReasoningTrigger" />
