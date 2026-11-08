@@ -238,6 +238,7 @@ Themes\Styles\Controls\TextMorphEffect.xaml
 Themes\Styles\Controls\TextScribble.xaml
 Themes\Styles\Controls\Timeline.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
+Themes\Styles\Controls\TypeFlow.xaml
 Themes\Styles\Controls\UnderlineAnimation.xaml
 Themes\Styles\Controls\Validation.xaml
 Themes\Styles\Controls\VisualStepper.xaml
@@ -918,6 +919,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#FF6A55" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#FF6A55" />
+      <StaticResource x:Key="TypeFlowForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
         <GradientStop Offset="0" Color="#F43F5E" />
         <GradientStop Offset="1" Color="#8B5CF6" />
@@ -1600,6 +1603,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#E8432E" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#E8432E" />
+      <StaticResource x:Key="TypeFlowForeground" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
         <GradientStop Offset="0" Color="#F43F5E" />
         <GradientStop Offset="1" Color="#8B5CF6" />
@@ -2174,6 +2179,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <StaticResource x:Key="TypeFlowForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
       <SolidColorBrush x:Key="UnderlineAnimationGradientBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <StaticResource x:Key="VisualStepperTrackBrush" ResourceKey="SystemColorGrayTextColorBrush" />
       <StaticResource x:Key="VisualStepperProgressBrush" ResourceKey="SystemColorHighlightColorBrush" />
@@ -9099,6 +9106,30 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
   </Storyboard>
+  <Style x:Key="DefaultTypeFlowStyle" TargetType="local:TypeFlow">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Foreground" Value="{ThemeResource TypeFlowForeground}" />
+    <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:TypeFlow">
+          <TextBlock x:Name="PART_Body" CharacterSpacing="{TemplateBinding CharacterSpacing}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" IsTextSelectionEnabled="False" TextAlignment="{TemplateBinding TextAlignment}" TextWrapping="{TemplateBinding TextWrapping}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Disabled">
+                  <VisualState.Setters>
+                    <Setter Target="PART_Body.Foreground" Value="{ThemeResource TypeFlowForegroundDisabled}" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </TextBlock>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultUnderlineAnimationStyle" TargetType="local:UnderlineAnimation">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
@@ -23642,6 +23673,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Glyph" Value="" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultTypeFlowStyle}" TargetType="local:TypeFlow" />
   <Style BasedOn="{StaticResource DefaultUnderlineAnimationStyle}" TargetType="local:UnderlineAnimation" />
   <Style x:Key="ValidatingTextBoxStyle" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
     <Setter Property="Template">

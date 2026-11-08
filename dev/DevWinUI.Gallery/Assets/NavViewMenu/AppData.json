@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TypeFlowPage",
+          "Title": "Type Flow",
+          "Subtitle": "Types text out character by character with a natural, slightly random rhythm",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.VisualStepperPage",
           "Title": "Visual Stepper",
           "Subtitle": "A vertical step list with an animated progress rail and a crossfading detail card",
