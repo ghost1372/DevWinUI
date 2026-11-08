@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.System;
+﻿using Windows.System;
 
 namespace DevWinUIGallery;
 public sealed partial class ControlExample : OptionsPageControl
