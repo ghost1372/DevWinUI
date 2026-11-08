@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.VisualStepperPage",
+          "Title": "Visual Stepper",
+          "Subtitle": "A vertical step list with an animated progress rail and a crossfading detail card",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.ProgressStepperPage",
           "Title": "Progress Stepper",
           "Subtitle": "A vertical step indicator with animated status markers and expandable sub-steps",
