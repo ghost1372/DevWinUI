@@ -20,7 +20,7 @@
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PART_Rotator" Storyboard.TargetProperty="LocalOffsetZ">
-                                    <EasingDoubleKeyFrame x:Name="PART_OffestZKeyFrame" KeyTime="00:00:00.9" Value="0">
+                                    <EasingDoubleKeyFrame x:Name="PART_OffsetZKeyFrame" KeyTime="00:00:00.9" Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <CubicEase />
                                         </EasingDoubleKeyFrame.EasingFunction>

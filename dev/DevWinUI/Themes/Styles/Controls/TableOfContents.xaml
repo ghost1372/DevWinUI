@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="ControlStrongStrokeColorDefaultBrush" />
+            <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="TableOfContentsLinkForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="TableOfContentsActiveLinkForeground" ResourceKey="SystemColorHotlightColorBrush" />
+            <StaticResource x:Key="TableOfContentsAccentBrush" ResourceKey="SystemColorHotlightColorBrush" />
+            <StaticResource x:Key="TableOfContentsTrackBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style x:Key="TableOfContentsLinkButtonStyle" TargetType="Button">
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{ThemeResource TableOfContentsLinkHitTestBrush}">
+                        <ContentPresenter Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultTableOfContentsStyle}" TargetType="local:TableOfContents" />
+
+    <Style x:Key="DefaultTableOfContentsStyle" TargetType="local:TableOfContents">
+        <Setter Property="LinkForeground" Value="{ThemeResource TableOfContentsLinkForeground}" />
+        <Setter Property="ActiveLinkForeground" Value="{ThemeResource TableOfContentsActiveLinkForeground}" />
+        <Setter Property="AccentBrush" Value="{ThemeResource TableOfContentsAccentBrush}" />
+        <Setter Property="TrackBrush" Value="{ThemeResource TableOfContentsTrackBrush}" />
+        <Setter Property="LinkStyle" Value="{StaticResource TableOfContentsLinkButtonStyle}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TableOfContents">
+                    <Grid AutomationProperties.LandmarkType="Navigation" AutomationProperties.Name="{TemplateBinding Label}" Background="{TemplateBinding Background}">
+                        <StackPanel x:Name="PART_Rows" Margin="20,0,0,0" />
+                        <Canvas Width="20" HorizontalAlignment="Left" VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False">
+                            <Path x:Name="PART_Track" Stroke="{TemplateBinding TrackBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="1.5" />
+                            <Canvas x:Name="PART_AccentHost" Width="20">
+                                <Path x:Name="PART_Accent" Stroke="{TemplateBinding AccentBrush}" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeThickness="1.5" />
+                            </Canvas>
+                            <Ellipse x:Name="PART_Dot" Width="7" Height="7" Fill="{TemplateBinding AccentBrush}" Opacity="0" />
+                        </Canvas>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

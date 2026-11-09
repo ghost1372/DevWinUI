@@ -1,0 +1,48 @@
+<dev:Radar Clutter="0.1"
+           MaxRange="200"
+           RadarScale="0.8"
+           RangeUnit="km"
+           ShowCompass="True"
+           ShowRangeLabels="True"
+           ShowReadout="True"
+           Targets="0">
+
+    <dev:Radar.Zones>
+        <dev:RadarZone Angle="200"
+                       Distance="0.55"
+                       Foreground="{ThemeResource HostileBrush}"
+                       Label="RESTRICTED"
+                       Radius="0.18"
+                       Shape="Circle" />
+
+        <dev:RadarZone Foreground="{ThemeResource FriendlyBrush}"
+                       Label="CORRIDOR"
+                       Points="20,0.35 50,0.9 80,0.9 60,0.35"
+                       Shape="Polygon"
+                       Visibility="ScanOnly" />
+    </dev:Radar.Zones>
+
+    <dev:Radar.Jams>
+        <dev:RadarJam EndAngle="330"
+                      Foreground="{ThemeResource HostileBrush}"
+                      Intensity="0.7"
+                      StartAngle="285" />
+    </dev:Radar.Jams>
+
+    <dev:RadarBlip Angle="310"
+                   Distance="0.6"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Label="JAMMED"
+                   Marker="Plane" />
+
+    <dev:RadarBlip Angle="70"
+                   Distance="0.6"
+                   Duration="12"
+                   EndAngle="30"
+                   EndDistance="0.85"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Label="IN CORRIDOR"
+                   Marker="Plane"
+                   Motion="Linear"
+                   Repeat="PingPong" />
+</dev:Radar>

@@ -1,0 +1,39 @@
+<dev:Radar Clutter="0.15" Targets="0">
+    <dev:RadarBlip Angle="40"
+                   Distance="1.15"
+                   Duration="14"
+                   EndDistance="0"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Label="AC-101&#x0a;FL350"
+                   Marker="Plane"
+                   Motion="Linear"
+                   Repeat="Loop"
+                   TrailLength="6" />
+
+    <dev:RadarBlip Angle="300"
+                   Distance="0.8"
+                   Duration="8"
+                   EndAngle="60"
+                   EndDistance="0.3"
+                   Foreground="{ThemeResource AircraftBrush}"
+                   Label="AC-207"
+                   Marker="Plane"
+                   Motion="Linear"
+                   Repeat="PingPong"
+                   TrailLength="6" />
+
+    <dev:RadarBlip Angle="120"
+                   Distance="0.6"
+                   Foreground="{ThemeResource HostileBrush}"
+                   Label="UNKNOWN"
+                   Marker="Diamond"
+                   Size="3.5"
+                   State="Alert" />
+
+    <dev:RadarBlip Angle="235"
+                   Distance="0.45"
+                   Foreground="{ThemeResource FriendlyBrush}"
+                   Label="ALPHA"
+                   Marker="Triangle"
+                   State="Selected" />
+</dev:Radar>

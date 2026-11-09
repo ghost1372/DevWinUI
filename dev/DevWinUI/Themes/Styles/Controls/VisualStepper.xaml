@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="VisualStepperTrackBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <StaticResource x:Key="VisualStepperProgressBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="VisualStepperTrackBrush" ResourceKey="DividerStrokeColorDefaultBrush" />
+            <StaticResource x:Key="VisualStepperProgressBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="VisualStepperTrackBrush" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="VisualStepperProgressBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style x:Key="DefaultVisualStepperStyle" TargetType="local:VisualStepper">
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="TrackBrush" Value="{ThemeResource VisualStepperTrackBrush}" />
+        <Setter Property="ProgressBrush" Value="{ThemeResource VisualStepperProgressBrush}" />
+        <Setter Property="DescriptionForeground" Value="{ThemeResource VisualStepperDescriptionForegroundBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:VisualStepper">
+                    <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" ColumnSpacing="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="220" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel x:Name="PART_StepsPanel" VerticalAlignment="Center" Spacing="4" />
+
+                        <Grid x:Name="PART_CardHost" Grid.Column="1">
+                            <ContentPresenter x:Name="PART_CardA" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                                <ContentPresenter.OpacityTransition>
+                                    <ScalarTransition Duration="0:0:0.35" />
+                                </ContentPresenter.OpacityTransition>
+                            </ContentPresenter>
+                            <ContentPresenter x:Name="PART_CardB" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsHitTestVisible="False" Opacity="0">
+                                <ContentPresenter.OpacityTransition>
+                                    <ScalarTransition Duration="0:0:0.35" />
+                                </ContentPresenter.OpacityTransition>
+                            </ContentPresenter>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultVisualStepperStyle}" TargetType="local:VisualStepper" />
+</ResourceDictionary>

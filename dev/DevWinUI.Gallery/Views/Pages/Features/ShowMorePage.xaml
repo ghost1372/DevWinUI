@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ShowMorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/showMore" HeaderText="ShowMore">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ShowMore Label="Release notes" Lines="3" MaxExpandedHeight="320"&gt; #nl#
+                        &lt;TextBlock Text="{x:Bind LongText}" TextWrapping="Wrap" /&gt; #nl#
+                        &lt;/dev:ShowMore&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ToggleSwitch Header="Is Expanded" IsOn="{x:Bind Show.IsExpanded, Mode=TwoWay}" />
+                        <Slider x:Name="SliderLines" Header="Lines" Maximum="8" Minimum="1" Value="3" />
+                        <Slider x:Name="SliderMaxHeight" Header="Max Expanded Height" Maximum="600" Minimum="100" StepFrequency="10" Value="320" />
+                        <TextBox x:Name="TxtMoreLabel" Header="More Label" Text="Show more" />
+                        <TextBox x:Name="TxtLessLabel" Header="Less Label" Text="Show less" />
+                        <TextBox x:Name="TxtLabel" Header="Label (automation name)" Text="Release notes" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ShowMore x:Name="Show" MaxWidth="560" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LessLabel="{x:Bind TxtLessLabel.Text, Mode=OneWay}" Lines="{x:Bind GetLines(SliderLines.Value), Mode=OneWay}" MaxExpandedHeight="{x:Bind SliderMaxHeight.Value, Mode=OneWay}" MoreLabel="{x:Bind TxtMoreLabel.Text, Mode=OneWay}">
+                    <TextBlock Text="{x:Bind LongText}" TextWrapping="Wrap" />
+                </dev:ShowMore>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/showMore" HeaderText="Short content">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ShowMore Lines="3"&gt; #nl#
+                        &lt;TextBlock Text="This content fits within the line limit, so no toggle is shown." TextWrapping="Wrap" /&gt; #nl#
+                        &lt;/dev:ShowMore&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <dev:ShowMore MaxWidth="560" HorizontalAlignment="Left" Lines="3">
+                    <TextBlock Text="This content fits within the line limit, so no toggle is shown." TextWrapping="Wrap" />
+                </dev:ShowMore>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

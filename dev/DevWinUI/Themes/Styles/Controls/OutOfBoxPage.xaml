@@ -10,8 +10,6 @@
         <Setter Property="UseTopHeroImage" Value="False" />
         <Setter Property="ContentMargin" Value="32,8" />
         <Setter Property="SecondaryLinksMargin" Value="32,0" />
-        <Setter Property="PrimaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
-        <Setter Property="SecondaryLinksItemTemplate" Value="{StaticResource OutOfBoxLinksItemTemplate}" />
         <Setter Property="PrimaryLinkItemsPanelTemplate">
             <Setter.Value>
                 <ItemsPanelTemplate>

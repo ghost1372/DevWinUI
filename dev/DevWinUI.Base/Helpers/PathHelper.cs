@@ -1,8 +1,18 @@
-﻿using Microsoft.Windows.Storage;
+﻿using PickerLocationId = Microsoft.Windows.Storage.Pickers.PickerLocationId;
 
 namespace DevWinUI;
+
 public partial class PathHelper
 {
+    private static readonly Guid FolderIdDocuments = new("FDD39AD0-238F-46AF-ADB4-6C85480369C7");
+    private static readonly Guid FolderIdComputer = new("0AC0837C-BBF8-452A-850D-79D08E667CA7");
+    private static readonly Guid FolderIdDesktop = new("B4BFCC3A-DB2C-424C-B029-7FE99A87C641");
+    private static readonly Guid FolderIdDownloads = new("374DE290-123F-4565-9164-39C4925E467B");
+    private static readonly Guid FolderIdMusic = new("4BD8D571-6D19-48D3-BE97-422220080E43");
+    private static readonly Guid FolderIdPictures = new("33E28130-4E1E-4676-835A-98395C3BC3BB");
+    private static readonly Guid FolderIdVideos = new("18989B1D-99B5-455B-841C-AB7C74E4DDFC");
+    private static readonly Guid FolderIdObjects3D = new("31C0DD25-9439-4F12-BF41-7FF4EDA38722");
+
     /// <summary>
     /// Retrieves the file path of a specified file asynchronously based on the given path type.
     /// </summary>
@@ -39,15 +49,13 @@ public partial class PathHelper
             }
         }
 
-        // Determine if app is packaged
         bool isPackaged = RuntimeHelper.IsPackaged();
 
-        // Case 2: ms-appx:// scheme
         if (uri.IsAbsoluteUri && uri.Scheme == "ms-appx")
         {
             if (isPackaged)
             {
-                return uri; // Use as-is
+                return uri;
             }
             else
             {
@@ -141,45 +149,34 @@ public partial class PathHelper
     /// </summary>
     /// <param name="pickerLocationId">Specifies the location of the known folder to retrieve the path for.</param>
     /// <returns>Returns the path as a string, or an empty string if the path cannot be retrieved.</returns>
-    public static string GetKnownFolderPath(Microsoft.Windows.Storage.Pickers.PickerLocationId pickerLocationId)
+    public static string GetKnownFolderPath(PickerLocationId pickerLocationId)
     {
-        Guid folderId;
-
-        switch (pickerLocationId)
+        Guid? folderId = pickerLocationId switch
         {
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary:
-                folderId = new Guid("FDD39AD0-238F-46AF-ADB4-6C85480369C7"); // FOLDERID_Documents
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.ComputerFolder:
-                folderId = new Guid("0AC0837C-BBF8-452A-850D-79D08E667CA7"); // FOLDERID_ComputerFolder
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.Desktop:
-                folderId = new Guid("B4BFCC3A-DB2C-424C-B029-7FE99A87C641"); // FOLDERID_Desktop
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.Downloads:
-                folderId = new Guid("374DE290-123F-4565-9164-39C4925E467B"); // FOLDERID_Downloads
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.MusicLibrary:
-                folderId = new Guid("4BD8D571-6D19-48D3-BE97-422220080E43"); // FOLDERID_MusicLibrary
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.PicturesLibrary:
-                folderId = new Guid("33E28130-4E1E-4676-835A-98395C3BC3BB"); // FOLDERID_PicturesLibrary
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.VideosLibrary:
-                folderId = new Guid("18989B1D-99B5-455B-841C-AB7C74E4DDFC"); // FOLDERID_VideosLibrary
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.Objects3D:
-                folderId = new Guid("31C0DD25-9439-4F12-BF41-7FF4EDA38722"); // FOLDERID_Objects3D
-                break;
-            case Microsoft.Windows.Storage.Pickers.PickerLocationId.Unspecified:
-            default:
+            PickerLocationId.DocumentsLibrary => FolderIdDocuments,
+            PickerLocationId.ComputerFolder => FolderIdComputer,
+            PickerLocationId.Desktop => FolderIdDesktop,
+            PickerLocationId.Downloads => FolderIdDownloads,
+            PickerLocationId.MusicLibrary => FolderIdMusic,
+            PickerLocationId.PicturesLibrary => FolderIdPictures,
+            PickerLocationId.VideosLibrary => FolderIdVideos,
+            PickerLocationId.Objects3D => FolderIdObjects3D,
+            _ => null
+        };
+
+        return folderId is Guid id ? QueryKnownFolderPath(in id) : string.Empty;
+    }
+
+    private static string QueryKnownFolderPath(in Guid folderId)
+    {
+        HRESULT hr = PInvoke.SHGetKnownFolderPath(in folderId, 0, null, out CoTaskMemFreePWSTRSafeHandle handle);
+
+        using (handle)
+        {
+            if (hr.Failed)
                 return string.Empty;
+
+            return Marshal.PtrToStringUni(handle.DangerousGetHandle()) ?? string.Empty;
         }
-
-        PWSTR pszPath;
-        int hr = PInvoke.SHGetKnownFolderPath(in folderId, 0, null, out pszPath);
-        if (hr != 0) return string.Empty;
-
-        return pszPath.ToString();
     }
 }

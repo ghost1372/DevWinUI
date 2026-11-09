@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <Style BasedOn="{StaticResource DefaultStarBorderStyle}" TargetType="local:StarBorder" />
+
+    <Style x:Key="DefaultStarBorderStyle" TargetType="local:StarBorder">
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StarBorder">
+                    <Grid x:Name="PART_Root">
+                        <Border x:Name="PART_Surface">
+                            <ContentPresenter x:Name="PART_Content" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" />
+                        </Border>
+
+                        <win2d:CanvasControl x:Name="PART_Canvas" Margin="-12" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

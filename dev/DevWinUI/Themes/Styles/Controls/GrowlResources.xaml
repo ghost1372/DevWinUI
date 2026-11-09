@@ -1,0 +1,346 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="GrowlCardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardTitleForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardSubTitleForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardContentForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCountdownTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardSentTextForegroundBrush" ResourceKey="TextFillColorTertiaryBrush" />
+            <StaticResource x:Key="GrowlCardProgressTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCloseGlyphForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardAttentionIndicatorColor" ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="GrowlCardSuccessIndicatorColor" ResourceKey="SystemFillColorSuccess" />
+            <StaticResource x:Key="GrowlCardWarningIndicatorColor" ResourceKey="SystemFillColorCaution" />
+            <StaticResource x:Key="GrowlCardErrorIndicatorColor" ResourceKey="SystemFillColorCritical" />
+            <StaticResource x:Key="GrowlCardInfoIndicatorColor" ResourceKey="SystemFillColorNeutral" />
+            <StaticResource x:Key="GrowlCardAttentionIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardSuccessIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardWarningIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardErrorIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardInfoIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <LinearGradientBrush x:Key="GrowlCardAttentionIconBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+                <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="GrowlCardSuccessIconBackgroundBrush" Color="{ThemeResource SystemFillColorSuccess}" />
+            <SolidColorBrush x:Key="GrowlCardWarningIconBackgroundBrush" Color="{ThemeResource SystemFillColorCaution}" />
+            <SolidColorBrush x:Key="GrowlCardErrorIconBackgroundBrush" Color="{ThemeResource SystemFillColorCritical}" />
+            <SolidColorBrush x:Key="GrowlCardInfoIconBackgroundBrush" Color="{ThemeResource SystemFillColorNeutral}" />
+            <SolidColorBrush x:Key="GrowlCardCountdownBrush" Color="{ThemeResource SystemFillColorCaution}" />
+            <x:Double x:Key="GrowlCardGradientOpacity">0.22</x:Double>
+            <x:Double x:Key="GrowlCardGradientLightOpacity">0.1</x:Double>
+            <LinearGradientBrush x:Key="GrowlCardAttentionGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardAttentionIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardSuccessIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardWarningIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardErrorIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardInfoIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardAttentionGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight3}" />
+                <GradientStop Offset="0.5" Color="{ThemeResource SystemAccentColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark2}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#8BEFA9" />
+                <GradientStop Offset="0.5" Color="#3DD16F" />
+                <GradientStop Offset="1" Color="#17934A" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FFE08A" />
+                <GradientStop Offset="0.5" Color="#FFB92E" />
+                <GradientStop Offset="1" Color="#D9820B" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FF9E94" />
+                <GradientStop Offset="0.5" Color="#FF5A4F" />
+                <GradientStop Offset="1" Color="#C62828" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#C9CFD8" />
+                <GradientStop Offset="0.5" Color="#9AA3AF" />
+                <GradientStop Offset="1" Color="#5F6875" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardAttentionVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+                <GradientStop Offset="0.5" Color="{ThemeResource SystemAccentColor}" />
+                <GradientStop Offset="1" Color="#D946EF" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#A3E635" />
+                <GradientStop Offset="0.5" Color="#34D399" />
+                <GradientStop Offset="1" Color="#06B6D4" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FDE047" />
+                <GradientStop Offset="0.5" Color="#FB923C" />
+                <GradientStop Offset="1" Color="#F43F5E" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FB923C" />
+                <GradientStop Offset="0.5" Color="#F43F5E" />
+                <GradientStop Offset="1" Color="#D946EF" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#38BDF8" />
+                <GradientStop Offset="0.5" Color="#6366F1" />
+                <GradientStop Offset="1" Color="#A855F7" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardRainbowFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FF6B6B" />
+                <GradientStop Offset="0.1667" Color="#FFA94D" />
+                <GradientStop Offset="0.3333" Color="#FFE066" />
+                <GradientStop Offset="0.5" Color="#69DB7C" />
+                <GradientStop Offset="0.6667" Color="#4DABF7" />
+                <GradientStop Offset="0.8333" Color="#748FFC" />
+                <GradientStop Offset="1" Color="#DA77F2" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="GrowlCardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardTitleForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardSubTitleForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardContentForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCountdownTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardSentTextForegroundBrush" ResourceKey="TextFillColorTertiaryBrush" />
+            <StaticResource x:Key="GrowlCardProgressTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCloseGlyphForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardAttentionIndicatorColor" ResourceKey="SystemAccentColor" />
+            <StaticResource x:Key="GrowlCardSuccessIndicatorColor" ResourceKey="SystemFillColorSuccess" />
+            <StaticResource x:Key="GrowlCardWarningIndicatorColor" ResourceKey="SystemFillColorCaution" />
+            <StaticResource x:Key="GrowlCardErrorIndicatorColor" ResourceKey="SystemFillColorCritical" />
+            <StaticResource x:Key="GrowlCardInfoIndicatorColor" ResourceKey="SystemFillColorNeutral" />
+            <StaticResource x:Key="GrowlCardAttentionIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardSuccessIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardWarningIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardErrorIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardInfoIconForegroundBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <LinearGradientBrush x:Key="GrowlCardAttentionIconBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+                <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="GrowlCardSuccessIconBackgroundBrush" Color="{ThemeResource SystemFillColorSuccess}" />
+            <SolidColorBrush x:Key="GrowlCardWarningIconBackgroundBrush" Color="{ThemeResource SystemFillColorCaution}" />
+            <SolidColorBrush x:Key="GrowlCardErrorIconBackgroundBrush" Color="{ThemeResource SystemFillColorCritical}" />
+            <SolidColorBrush x:Key="GrowlCardInfoIconBackgroundBrush" Color="{ThemeResource SystemFillColorNeutral}" />
+            <SolidColorBrush x:Key="GrowlCardCountdownBrush" Color="{ThemeResource SystemFillColorCaution}" />
+            <x:Double x:Key="GrowlCardGradientOpacity">0.22</x:Double>
+            <x:Double x:Key="GrowlCardGradientLightOpacity">0.1</x:Double>
+            <LinearGradientBrush x:Key="GrowlCardAttentionGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardAttentionIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardSuccessIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardWarningIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardErrorIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardInfoIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardAttentionGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+                <GradientStop Offset="0.5" Color="{ThemeResource SystemAccentColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark2}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#6EE7A0" />
+                <GradientStop Offset="0.5" Color="#22C55E" />
+                <GradientStop Offset="1" Color="#15803D" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FCD34D" />
+                <GradientStop Offset="0.5" Color="#F59E0B" />
+                <GradientStop Offset="1" Color="#B45309" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FCA5A5" />
+                <GradientStop Offset="0.5" Color="#EF4444" />
+                <GradientStop Offset="1" Color="#B91C1C" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoGradientFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#CBD5E1" />
+                <GradientStop Offset="0.5" Color="#94A3B8" />
+                <GradientStop Offset="1" Color="#475569" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardAttentionVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight1}" />
+                <GradientStop Offset="0.5" Color="{ThemeResource SystemAccentColor}" />
+                <GradientStop Offset="1" Color="#C026D3" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#84CC16" />
+                <GradientStop Offset="0.5" Color="#10B981" />
+                <GradientStop Offset="1" Color="#0891B2" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FACC15" />
+                <GradientStop Offset="0.5" Color="#F97316" />
+                <GradientStop Offset="1" Color="#E11D48" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#F97316" />
+                <GradientStop Offset="0.5" Color="#E11D48" />
+                <GradientStop Offset="1" Color="#C026D3" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoVividFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#0EA5E9" />
+                <GradientStop Offset="0.5" Color="#4F46E5" />
+                <GradientStop Offset="1" Color="#9333EA" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardRainbowFillBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#F03E3E" />
+                <GradientStop Offset="0.1667" Color="#FD7E14" />
+                <GradientStop Offset="0.3333" Color="#FAB005" />
+                <GradientStop Offset="0.5" Color="#40C057" />
+                <GradientStop Offset="0.6667" Color="#228BE6" />
+                <GradientStop Offset="0.8333" Color="#4C6EF5" />
+                <GradientStop Offset="1" Color="#AE3EC9" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="GrowlCardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="GrowlCardTitleForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="GrowlCardSubTitleForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardContentForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCountdownTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardSentTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardProgressTextForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardCloseGlyphForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="GrowlCardAttentionIndicatorColor" ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="GrowlCardSuccessIndicatorColor" ResourceKey="SystemColorHighlightColor" />
+            <StaticResource x:Key="GrowlCardWarningIndicatorColor" ResourceKey="SystemColorWindowTextColor" />
+            <StaticResource x:Key="GrowlCardErrorIndicatorColor" ResourceKey="SystemColorWindowTextColor" />
+            <StaticResource x:Key="GrowlCardInfoIndicatorColor" ResourceKey="SystemColorHotlightColor" />
+            <StaticResource x:Key="GrowlCardAttentionIconForegroundBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="GrowlCardSuccessIconForegroundBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="GrowlCardWarningIconForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="GrowlCardErrorIconForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="GrowlCardInfoIconForegroundBrush" ResourceKey="SystemColorWindowColorBrush" />
+            <SolidColorBrush x:Key="GrowlCardAttentionIconBackgroundBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardSuccessIconBackgroundBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardWarningIconBackgroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardErrorIconBackgroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardInfoIconBackgroundBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardCountdownBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <x:Double x:Key="GrowlCardGradientOpacity">0</x:Double>
+            <x:Double x:Key="GrowlCardGradientLightOpacity">0</x:Double>
+            <LinearGradientBrush x:Key="GrowlCardAttentionGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardAttentionIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardSuccessGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardSuccessIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardWarningGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardWarningIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardErrorGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardErrorIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GrowlCardInfoGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="{ThemeResource GrowlCardInfoIndicatorColor}" />
+                <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorTertiary}" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="GrowlCardAttentionGradientFillBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardSuccessGradientFillBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardWarningGradientFillBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardErrorGradientFillBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardInfoGradientFillBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardAttentionVividFillBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardSuccessVividFillBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardWarningVividFillBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardErrorVividFillBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+            <SolidColorBrush x:Key="GrowlCardInfoVividFillBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+            <SolidColorBrush x:Key="GrowlCardRainbowFillBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <x:Double x:Key="GrowlCardWidth">380</x:Double>
+    <x:Double x:Key="GrowlCardIconSize">44</x:Double>
+    <x:Double x:Key="GrowlCardIconTintOpacity">0.16</x:Double>
+    <x:Double x:Key="GrowlCardRingOpacity">0.45</x:Double>
+    <x:Double x:Key="GrowlCardBannerIconSize">32</x:Double>
+    <x:Double x:Key="GrowlCardRingHostSize">44</x:Double>
+    <x:Double x:Key="GrowlCardRingSize">40</x:Double>
+    <x:Double x:Key="GrowlCardRingTextSize">11</x:Double>
+    <x:Double x:Key="GrowlCardBannerRingHostSize">32</x:Double>
+    <x:Double x:Key="GrowlCardBannerRingSize">30</x:Double>
+    <x:Double x:Key="GrowlCardBannerRingTextSize">9</x:Double>
+    <x:Double x:Key="GrowlCardTextSpacing">2</x:Double>
+    <x:Double x:Key="GrowlCardMetaSpacing">8</x:Double>
+    <x:Double x:Key="GrowlCardCountdownTextMinWidth">28</x:Double>
+    <x:Double x:Key="GrowlCardCloseButtonSize">32</x:Double>
+    <x:Double x:Key="GrowlCardCloseGlyphSize">12</x:Double>
+    <x:Double x:Key="GrowlCardGapHeight">14</x:Double>
+    <x:Double x:Key="GrowlCardBannerContentGapHeight">4</x:Double>
+    <x:Double x:Key="GrowlCardBannerProgressGapHeight">10</x:Double>
+
+    <Thickness x:Key="GrowlCardBorderThickness">1</Thickness>
+    <Thickness x:Key="GrowlCardIconBorderThickness">1</Thickness>
+    <Thickness x:Key="GrowlCardIconInset">10</Thickness>
+    <Thickness x:Key="GrowlCardBannerIconInset">5</Thickness>
+    <Thickness x:Key="GrowlCardBareIconInset">6</Thickness>
+    <Thickness x:Key="GrowlCardPadding">16</Thickness>
+    <Thickness x:Key="GrowlCardBannerPadding">14,10</Thickness>
+    <Thickness x:Key="GrowlCardIconMargin">0,0,12,0</Thickness>
+    <Thickness x:Key="GrowlCardRingMargin">12,0,0,0</Thickness>
+    <Thickness x:Key="GrowlCardCountdownTextMargin">8,8,0,0</Thickness>
+    <Thickness x:Key="GrowlCardBannerCountdownTextMargin">8,0,0,0</Thickness>
+    <Thickness x:Key="GrowlCardCloseButtonMargin">8,0,0,0</Thickness>
+    <Thickness x:Key="GrowlCardProgressTextMargin">12,0,0,0</Thickness>
+    <Thickness x:Key="GrowlCardBannerActionMargin">16,0,0,0</Thickness>
+
+    <StaticResource x:Key="GrowlCardCornerRadius" ResourceKey="OverlayCornerRadius" />
+    <StaticResource x:Key="GrowlCardIconCornerRadius" ResourceKey="ControlCornerRadius" />
+    <CornerRadius x:Key="GrowlCardInnerCornerRadius">7</CornerRadius>
+    <CornerRadius x:Key="GrowlCardIndicatorTopCornerRadius">7,7,0,0</CornerRadius>
+    <CornerRadius x:Key="GrowlCardIndicatorLeftCornerRadius">7,0,0,7</CornerRadius>
+    <CornerRadius x:Key="GrowlCardIndicatorRightCornerRadius">0,7,7,0</CornerRadius>
+    <CornerRadius x:Key="GrowlCardIndicatorBottomCornerRadius">0,0,7,7</CornerRadius>
+
+    <x:String x:Key="GrowlCardCloseText">Close</x:String>
+    <x:String x:Key="GrowlCardAgeNowText">now</x:String>
+    <x:String x:Key="GrowlCardAgeMinutesFormat">{0}m</x:String>
+    <x:String x:Key="GrowlCardAgeHoursFormat">{0}h</x:String>
+    <x:String x:Key="GrowlCardAgeDaysFormat">{0}d</x:String>
+    <x:String x:Key="GrowlCardAgeWeeksFormat">{0}w</x:String>
+    <x:String x:Key="GrowlCardAgeMonthsFormat">{0}mo</x:String>
+    <x:String x:Key="GrowlCardAgeYearsFormat">{0}y</x:String>
+    <x:String x:Key="GrowlCardCountdownSecondsFormat">{0}s</x:String>
+    <x:String x:Key="GrowlCardCountdownMinutesFormat">{0}:{1:00}</x:String>
+
+</ResourceDictionary>

@@ -10,6 +10,7 @@ public partial class ForegroundFocusEffects : Control
     private Compositor _compositor;
     private CompositionScopedBatch _scopeBatch;
     private ManagedSurface _maskSurface;
+    private CompositionBackdropBrush _backdropBrush;
 
     public FrameworkElement Content
     {
@@ -25,6 +26,11 @@ public partial class ForegroundFocusEffects : Control
         var ctl = (ForegroundFocusEffects)d;
         if (ctl != null)
         {
+            if (e.OldValue is FrameworkElement oldContent)
+            {
+                ElementCompositionPreview.SetElementChildVisual(oldContent, null);
+            }
+
             ctl.Init();
         }
     }
@@ -56,14 +62,12 @@ public partial class ForegroundFocusEffects : Control
     public static readonly DependencyProperty MaskSourceProperty =
         DependencyProperty.Register(nameof(MaskSource), typeof(Uri), typeof(ForegroundFocusEffects), new PropertyMetadata(new Uri("ms-appx:///Assets/Mask/ForegroundFocusMask.png"), OnMaskSourceChanged));
 
-    private static async void OnMaskSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnMaskSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (ForegroundFocusEffects)d;
-        if (ctl != null && ctl._maskSurface != null && e.NewValue != null)
+        if (ctl != null && (ctl._maskSurface != null || ctl.Effect == ForegroundFocusEffectTypes.Mask) && e.NewValue != null)
         {
-            ctl._maskSurface.Dispose();
-            ctl._maskSurface = await ImageLoader.Instance.LoadFromUriAsync((Uri)e.NewValue);
-            ctl.UpdateEffect();
+            ctl.LoadMaskSurface();
         }
     }
 
@@ -108,22 +112,68 @@ public partial class ForegroundFocusEffects : Control
         DefaultStyleKey = typeof(ForegroundFocusEffects);
     }
 
-    protected async override void OnApplyTemplate()
+    protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        InitializeVisual();
+
+        SizeChanged -= ForegroundFocusEffects_SizeChanged;
+        SizeChanged += ForegroundFocusEffects_SizeChanged;
+        Loaded -= ForegroundFocusEffects_Loaded;
+        Loaded += ForegroundFocusEffects_Loaded;
+        Unloaded -= ForegroundFocusEffects_Unloaded;
+        Unloaded += ForegroundFocusEffects_Unloaded;
+    }
+
+    private void InitializeVisual()
+    {
+        if (_destinationSprite != null)
+        {
+            return;
+        }
 
         _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
         ImageLoader.Initialize(_compositor);
         _destinationSprite = _compositor.CreateSpriteVisual();
-        _maskSurface = await ImageLoader.Instance.LoadFromUriAsync(MaskSource);
+        _backdropBrush = _compositor.CreateBackdropBrush();
 
         Init();
-
-        SizeChanged -= ForegroundFocusEffects_SizeChanged;
-        SizeChanged += ForegroundFocusEffects_SizeChanged;
-        Unloaded -= ForegroundFocusEffects_Unloaded;
-        Unloaded += ForegroundFocusEffects_Unloaded;
         UpdateEffect();
+    }
+
+    private async void LoadMaskSurface()
+    {
+        var sprite = _destinationSprite;
+        var source = MaskSource;
+
+        if (sprite == null || source == null)
+        {
+            return;
+        }
+
+        var surface = await ImageLoader.Instance.LoadFromUriAsync(source);
+
+        if (surface == null)
+        {
+            return;
+        }
+
+        if (sprite != _destinationSprite || source != MaskSource)
+        {
+            surface.Dispose();
+            return;
+        }
+
+        var oldSurface = _maskSurface;
+        _maskSurface = surface;
+        UpdateEffect();
+        oldSurface?.Dispose();
+    }
+
+    private void ForegroundFocusEffects_Loaded(object sender, RoutedEventArgs e)
+    {
+        InitializeVisual();
     }
 
     private void ForegroundFocusEffects_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -136,9 +186,11 @@ public partial class ForegroundFocusEffects : Control
             {
                 case ForegroundFocusEffectTypes.Mask:
                     {
-                        CompositionEffectBrush brush = (CompositionEffectBrush)_destinationSprite.Brush;
-                        CompositionSurfaceBrush surfaceBrush = (CompositionSurfaceBrush)brush.GetSourceParameter("SecondSource");
-                        surfaceBrush.CenterPoint = e.NewSize.ToVector2() * .5f;
+                        if (_destinationSprite.Brush is CompositionEffectBrush brush && brush.GetSourceParameter("SecondSource") is CompositionSurfaceBrush surfaceBrush)
+                        {
+                            surfaceBrush.CenterPoint = e.NewSize.ToVector2() * .5f;
+                        }
+
                         break;
                     }
                 default:
@@ -149,12 +201,23 @@ public partial class ForegroundFocusEffects : Control
 
     private void ForegroundFocusEffects_Unloaded(object sender, RoutedEventArgs e)
     {
-        ElementCompositionPreview.SetElementChildVisual(Content, null);
+        CleanupScopeBatch();
+
+        if (Content != null)
+        {
+            ElementCompositionPreview.SetElementChildVisual(Content, null);
+        }
 
         if (_destinationSprite != null)
         {
             _destinationSprite.Dispose();
             _destinationSprite = null;
+        }
+
+        if (_backdropBrush != null)
+        {
+            _backdropBrush.Dispose();
+            _backdropBrush = null;
         }
 
         if (_maskSurface != null)
@@ -171,7 +234,7 @@ public partial class ForegroundFocusEffects : Control
             return;
         }
 
-        _destinationSprite.Size = new Vector2((float)Content.ActualWidth, (float)Content.ActualHeight);
+        _destinationSprite.Size = new Vector2((float)ActualWidth, (float)ActualHeight);
 
         _destinationSprite.IsVisible = false;
 
@@ -180,7 +243,7 @@ public partial class ForegroundFocusEffects : Control
 
     private void UpdateEffect()
     {
-        if (_compositor != null)
+        if (_compositor != null && _destinationSprite != null)
         {
             IGraphicsEffect graphicsEffect = null;
             CompositionBrush secondaryBrush = null;
@@ -231,6 +294,14 @@ public partial class ForegroundFocusEffects : Control
                     break;
                 case ForegroundFocusEffectTypes.Mask:
                     {
+                        if (_maskSurface == null)
+                        {
+                            _destinationSprite.Brush?.Dispose();
+                            _destinationSprite.Brush = null;
+                            LoadMaskSurface();
+                            return;
+                        }
+
                         graphicsEffect = new CompositeEffect()
                         {
                             Mode = CanvasComposite.DestinationOver,
@@ -340,12 +411,18 @@ public partial class ForegroundFocusEffects : Control
                     break;
             }
 
+            if (graphicsEffect == null)
+            {
+                return;
+            }
+
             // Create the effect factory and instantiate a brush
             CompositionEffectFactory _effectFactory = _compositor.CreateEffectFactory(graphicsEffect, animatableProperties);
             CompositionEffectBrush brush = _effectFactory.CreateBrush();
+            _effectFactory.Dispose();
 
             // Set the destination brush as the source of the image content
-            brush.SetSourceParameter("ImageSource", _compositor.CreateBackdropBrush());
+            brush.SetSourceParameter("ImageSource", _backdropBrush);
 
             // If his effect uses a secondary brush, set it now
             if (secondaryBrush != null)
@@ -354,7 +431,9 @@ public partial class ForegroundFocusEffects : Control
             }
 
             // Update the destination layer with the fully configured brush
+            CompositionBrush oldBrush = _destinationSprite.Brush;
             _destinationSprite.Brush = brush;
+            oldBrush?.Dispose();
         }
     }
 
@@ -374,12 +453,22 @@ public partial class ForegroundFocusEffects : Control
             // Scope batch completion event has fired, hide the destination sprite and cleanup
             // the batch
             _destinationSprite.IsVisible = false;
+
+            if (Effect == ForegroundFocusEffectTypes.RainbowBlur && _destinationSprite.Brush is CompositionEffectBrush rainbowBrush)
+            {
+                rainbowBrush.StopAnimation("Base.Color");
+            }
         }
 
         CleanupScopeBatch();
     }
     public void ApplyEffect()
     {
+        if (_destinationSprite?.Brush == null)
+        {
+            return;
+        }
+
         // If we're in the middle of an animation, cancel it now
         if (_scopeBatch != null)
         {
@@ -414,7 +503,7 @@ public partial class ForegroundFocusEffects : Control
                     CompositionEffectBrush brush = (CompositionEffectBrush)_destinationSprite.Brush;
                     ColorKeyFrameAnimation coloAnimation = _compositor.CreateColorKeyFrameAnimation();
                     coloAnimation.InsertKeyFrame(0f, Color.FromArgb(255, 255, 255, 255));
-                    coloAnimation.InsertKeyFrame(0f, Color.FromArgb(255, 30, 30, 30));
+                    coloAnimation.InsertKeyFrame(1f, Color.FromArgb(255, 30, 30, 30));
                     coloAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(4000) : ApplyEffectDuration;
                     brush.StartAnimation("Base.Color", coloAnimation);
                     break;
@@ -452,6 +541,13 @@ public partial class ForegroundFocusEffects : Control
 
     public void RemoveEffect()
     {
+        if (_destinationSprite?.Brush == null)
+        {
+            return;
+        }
+
+        CleanupScopeBatch();
+
         // Start a scoped batch so we can register to completion event and hide the destination layer
         _scopeBatch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
 

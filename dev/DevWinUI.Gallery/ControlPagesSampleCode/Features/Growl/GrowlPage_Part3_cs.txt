@@ -1,0 +1,14 @@
+﻿Card.Severity = GrowlCardSeverity.Info;
+Card.AutoClose = GrowlCardAutoClose.Default;
+Card.AutoClose = GrowlCardAutoClose.Warning | GrowlCardAutoClose.Error;
+Card.AutoClose = GrowlCardAutoClose.All;
+Card.AutoClose = GrowlCardAutoClose.None;
+
+Card.AutoCloseDuration = TimeSpan.FromSeconds(5);
+Card.ShowCountdown = true;
+Card.ColorStyle = GrowlCardColorStyle.Rainbow;
+Card.DisplayMode = GrowlCardDisplayMode.Banner;
+Card.SentTimeVisibility = GrowlCardSentTimeVisibility.OnHover;
+Card.SentAt = DateTimeOffset.Now - TimeSpan.FromMinutes(40);
+
+Card.IsOpen = true;

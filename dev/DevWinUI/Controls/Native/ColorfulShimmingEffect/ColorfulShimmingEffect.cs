@@ -8,6 +8,7 @@ public partial class ColorfulShimmingEffect : ContentControl
 {
     private const string PART_Root = "PART_Root";
     private StackPanel _rootPanel;
+    private readonly List<PointLight> _lights = new();
     public List<ColorfulShimmingEffectItem> ColorfulShimmingEffectItems
     {
         get { return (List<ColorfulShimmingEffectItem>)GetValue(ColorfulShimmingEffectItemsProperty); }
@@ -53,11 +54,39 @@ public partial class ColorfulShimmingEffect : ContentControl
         }
         Loaded -= ColorfulShimmingEffect_Loaded;
         Loaded += ColorfulShimmingEffect_Loaded;
+
+        Unloaded -= ColorfulShimmingEffect_Unloaded;
+        Unloaded += ColorfulShimmingEffect_Unloaded;
+
+        SizeChanged -= ColorfulShimmingEffect_SizeChanged;
+        SizeChanged += ColorfulShimmingEffect_SizeChanged;
     }
 
     private void ColorfulShimmingEffect_Loaded(object sender, RoutedEventArgs e)
     {
         ShowShimmingEffect();
+    }
+
+    private void ColorfulShimmingEffect_Unloaded(object sender, RoutedEventArgs e)
+    {
+        // Stop the endless animations while the control is not in the tree.
+        ClearLights();
+    }
+
+    private void ColorfulShimmingEffect_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        // The light offsets depend on the size (and the effect can't start while the width is 0).
+        ShowShimmingEffect();
+    }
+
+    private void ClearLights()
+    {
+        foreach (var light in _lights)
+        {
+            light.Targets.RemoveAll();
+            light.Dispose();
+        }
+        _lights.Clear();
     }
 
     private static void OnPointsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -75,18 +104,31 @@ public partial class ColorfulShimmingEffect : ContentControl
         {
             return;
         }
+        // Remove the lights of a previous call, otherwise they stack up and keep animating.
+        ClearLights();
+
         var rootVisual = _rootPanel.GetVisualInternal();
 
         foreach (var item in ColorfulShimmingEffectItems)
         {
             var pointLight = CreatePointAndStartAnimation(item.Color, item.DelayTimeSpan, item.DurationTimeSpan, item.Z);
+            if (pointLight == null)
+            {
+                continue;
+            }
 
             pointLight.Targets.Add(rootVisual);
+            _lights.Add(pointLight);
         }
     }
 
     public PointLight CreatePointAndStartAnimation(Color color, TimeSpan delay, TimeSpan duration, double z)
     {
+        if (_rootPanel == null)
+        {
+            return null;
+        }
+
         var compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         var rootVisual = _rootPanel.GetVisualInternal();

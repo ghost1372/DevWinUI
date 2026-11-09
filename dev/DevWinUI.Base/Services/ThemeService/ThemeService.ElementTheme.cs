@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class ThemeService
 {
     public async Task<bool> SetElementThemeWithoutSaveAsync()
@@ -10,22 +11,23 @@ public partial class ThemeService
         }
         else if (ActualTheme == ElementTheme.Dark)
         {
-            requestedTheme |= ElementTheme.Light;
+            requestedTheme = ElementTheme.Light;
         }
         return await SetElementThemeWithoutSaveAsync(requestedTheme);
     }
     public async Task<bool> SetElementThemeWithoutSaveAsync(ElementTheme theme)
     {
         var cachedAutoSave = _useAutoSave;
-        if (_useAutoSave)
-            _useAutoSave = false;
+        _useAutoSave = false;
 
-        var result = await SetElementThemeAsync(theme);
-
-        if (cachedAutoSave)
-            _useAutoSave = true;
-
-        return result;
+        try
+        {
+            return await SetElementThemeAsync(theme);
+        }
+        finally
+        {
+            _useAutoSave = cachedAutoSave;
+        }
     }
     public async Task<bool> SetElementThemeAsync(ElementTheme theme)
     {

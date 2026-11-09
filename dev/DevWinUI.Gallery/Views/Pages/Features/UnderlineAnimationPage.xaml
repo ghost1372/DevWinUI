@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.UnderlineAnimationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <LinearGradientBrush x:Key="UnderlineGradientBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Offset="0" Color="{ThemeResource SystemAccentColorLight2}" />
+            <GradientStop Offset="1" Color="{ThemeResource SystemAccentColorDark1}" />
+        </LinearGradientBrush>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/underlineAnimation" HeaderText="UnderlineAnimation">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:UnderlineAnimation Text="Animated underline for any text" UnderlineText="any text" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbKind" HorizontalAlignment="Stretch" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                        <TextBox x:Name="TxtText" Header="Text" Text="Animated underline for any text" />
+                        <TextBox x:Name="TxtUnderlineText" Header="Underline Text" PlaceholderText="Empty underlines the whole text" Text="any text" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
+                        <Slider x:Name="SliderThickness" Header="Line Thickness" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderOffset" Header="Line Offset" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderDuration" Header="Duration (ms)" Maximum="1500" Minimum="100" StepFrequency="10" Value="420" />
+                        <ToggleSwitch x:Name="TsRest" Header="Rest" IsOn="False" />
+                        <ToggleSwitch x:Name="TsActive" Header="Active" IsOn="False" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:UnderlineAnimation Active="{x:Bind TsActive.IsOn, Mode=OneWay}" FontSize="{x:Bind SliderFontSize.Value, Mode=OneWay}" GradientBrush="{StaticResource UnderlineGradientBrush}" Kind="{x:Bind ((dev:UnderlineKind)CmbKind.SelectedItem), Mode=OneWay}" LineOffset="{x:Bind SliderOffset.Value, Mode=OneWay}" LineThickness="{x:Bind SliderThickness.Value, Mode=OneWay}" Rest="{x:Bind TsRest.IsOn, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" UnderlineText="{x:Bind TxtUnderlineText.Text, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+
+                    <dev:UnderlineAnimation FontSize="24" Kind="Wavy" NavigateUri="https://github.com/Ghost1372/DevWinUI" Text="Open DevWinUI on GitHub" />
+                    <StackPanel x:Name="TabsPanel" Orientation="Horizontal" Spacing="24">
+                        <dev:UnderlineAnimation Active="True" Click="OnTabClick" FontSize="20" Rest="True" Text="Overview" />
+                        <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Features" />
+                        <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Pricing" />
+                        <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Support" />
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

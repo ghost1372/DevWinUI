@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <Style BasedOn="{StaticResource DefaultStatusMarkStyle}" TargetType="local:StatusMark" />
+
+    <Style x:Key="DefaultStatusMarkStyle" TargetType="local:StatusMark">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StatusMark">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                        <win2d:CanvasControl x:Name="PART_Canvas" Width="20" Height="20" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+
+                        <Grid x:Name="PART_LabelHost" VerticalAlignment="Center">
+                            <TextBlock x:Name="PART_Label" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Label}" TextWrapping="NoWrap" />
+                            <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" />
+                            <!--  Strike-through line, scaled in from the left  -->
+                            <Rectangle x:Name="PART_Strike" Height="1.5" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsHitTestVisible="False" Opacity="0" RenderTransformOrigin="0,0.5">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="0" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

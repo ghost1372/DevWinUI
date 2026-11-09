@@ -6,7 +6,7 @@ public partial class Accordion : Control
     private const string PART_RectangleGeometry = "PART_RectangleGeometry";
 
     private RectangleGeometry _clip = null;
-    
+
     public Accordion()
     {
         this.DefaultStyleKey = typeof(Accordion);
@@ -54,10 +54,21 @@ public partial class Accordion : Control
         _clip = base.GetTemplateChild(PART_RectangleGeometry) as RectangleGeometry;
 
         base.OnApplyTemplate();
+
+        // SizeChanged may already have fired before the template was applied.
+        UpdateClip(new Size(this.ActualWidth, this.ActualHeight));
     }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        _clip.Rect = new Rect(new Point(), e.NewSize);
+        UpdateClip(e.NewSize);
+    }
+
+    private void UpdateClip(Size size)
+    {
+        if (_clip != null)
+        {
+            _clip.Rect = new Rect(new Point(), size);
+        }
     }
 }

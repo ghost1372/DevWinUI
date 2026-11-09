@@ -1,10 +1,15 @@
-﻿namespace DevWinUI;
+﻿using System.Runtime.InteropServices;
+
+namespace DevWinUI;
 
 internal partial class ConfettiEngine
 {
+    private static readonly List<string> DefaultShapes = new() { "square", "circle" };
+
     private readonly object _lock = new();
     private readonly Random _random = new();
     private readonly List<ConfettiParticle> _particles = new();
+    private readonly List<ConfettiParticle> _drawBuffer = new();
     private Size _lastSize;
     public int ParticleCount => _particles.Count;
 
@@ -14,9 +19,13 @@ internal partial class ConfettiEngine
         double radSpread = options.Spread * (Math.PI / 180);
 
         var colors = options.GetFinalColors();
+        var shapes = options.Shapes is { Count: > 0 } ? options.Shapes : DefaultShapes;
+        int totalTicks = Math.Max(1, options.Ticks);
 
         lock (_lock)
         {
+            _particles.EnsureCapacity(_particles.Count + Math.Max(0, options.ParticleCount));
+
             for (int i = 0; i < options.ParticleCount; i++)
             {
                 var p = new ConfettiParticle
@@ -28,8 +37,8 @@ internal partial class ConfettiEngine
                     Angle2D = -(float)radAngle + (float)(0.5 * radSpread - _random.NextDouble() * radSpread),
                     TiltAngle = (float)((_random.NextDouble() * (0.75 - 0.25) + 0.25) * Math.PI),
                     Color = colors[i % colors.Count],
-                    Shape = options.Shapes[_random.Next(options.Shapes.Count)],
-                    TotalTicks = options.Ticks,
+                    Shape = shapes[_random.Next(shapes.Count)],
+                    TotalTicks = totalTicks,
                     Decay = (float)options.Decay,
                     Drift = (float)options.Drift,
                     RandomValue = (float)(_random.NextDouble() + 2),
@@ -47,13 +56,23 @@ internal partial class ConfettiEngine
 
     public void Update(float dt, Size currentSize)
     {
+        if (currentSize.Width <= 0 || currentSize.Height <= 0)
+            return;
+
         _lastSize = currentSize;
+
+        // Normalize to 60 ticks per second so speed is independent of the refresh rate
+        float step = Math.Min(dt * 60f, 4f);
 
         lock (_lock)
         {
-            for (int i = _particles.Count - 1; i >= 0; i--)
+            var span = CollectionsMarshal.AsSpan(_particles);
+            int length = span.Length;
+            int write = 0;
+
+            for (int i = 0; i < length; i++)
             {
-                var c = _particles[i];
+                ref var c = ref span[i];
 
                 if (!c.Initialized)
                 {
@@ -63,9 +82,9 @@ internal partial class ConfettiEngine
                     c.Initialized = true;
                 }
 
-                c.Position.X += (float)(Math.Sin(c.Angle2D) * c.Velocity + c.Drift);
-                c.Position.Y += (float)(Math.Cos(c.Angle2D) * c.Velocity + c.Gravity);
-                c.Velocity *= c.Decay;
+                c.Position.X += (float)(Math.Sin(c.Angle2D) * c.Velocity + c.Drift) * step;
+                c.Position.Y += (float)(Math.Cos(c.Angle2D) * c.Velocity + c.Gravity) * step;
+                c.Velocity *= MathF.Pow(c.Decay, step);
 
                 if (c.Flat)
                 {
@@ -79,40 +98,42 @@ internal partial class ConfettiEngine
                 }
                 else
                 {
-                    c.Wobble += c.WobbleSpeed;
+                    c.Wobble += c.WobbleSpeed * step;
                     c.WobbleX = (float)(c.Position.X + 10 * c.Scalar * Math.Cos(c.Wobble));
                     c.WobbleY = (float)(c.Position.Y + 10 * c.Scalar * Math.Sin(c.Wobble));
 
-                    c.TiltAngle += 0.1f;
+                    c.TiltAngle += 0.1f * step;
                     c.TiltSin = (float)Math.Sin(c.TiltAngle);
                     c.TiltCos = (float)Math.Cos(c.TiltAngle);
                     c.RandomValue = (float)(_random.NextDouble() + 2);
                 }
 
-                float progress = (float)c.Tick++ / c.TotalTicks;
-                c.Opacity = 1 - progress;
+                c.Opacity = 1 - c.Tick / c.TotalTicks;
+                c.Tick += step;
 
                 if (c.IsCompleted)
-                {
-                    _particles.RemoveAt(i);
-                }
-                else
-                {
-                    _particles[i] = c;
-                }
+                    continue;
+
+                if (write != i)
+                    span[write] = c;
+
+                write++;
             }
+
+            if (write < length)
+                _particles.RemoveRange(write, length - write);
         }
     }
     public void Draw(CanvasDrawingSession ds)
     {
-        List<ConfettiParticle> snapshot;
         lock (_lock)
         {
             if (_particles.Count == 0) return;
-            snapshot = _particles.ToList();
+            _drawBuffer.Clear();
+            _drawBuffer.AddRange(_particles);
         }
 
-        foreach (var c in snapshot)
+        foreach (ref readonly var c in CollectionsMarshal.AsSpan(_drawBuffer))
         {
             var baseColor = c.Color;
             var color = Color.FromArgb((byte)(c.Opacity * 255), baseColor.R, baseColor.G, baseColor.B);
@@ -131,11 +152,10 @@ internal partial class ConfettiEngine
                         float angle = (float)(18 * c.Wobble);
 
                         var center = new Vector2(c.Position.X, c.Position.Y);
-                        using var ellipse = CanvasGeometry.CreateEllipse(ds, center, radiusX, radiusY);
 
                         var old = ds.Transform;
                         ds.Transform = Matrix3x2.CreateRotation((float)(angle * Math.PI / 180.0), center);
-                        ds.FillGeometry(ellipse, color);
+                        ds.FillEllipse(center, radiusX, radiusY, color);
                         ds.Transform = old;
                     }
                     break;
@@ -171,7 +191,7 @@ internal partial class ConfettiEngine
         float rot = (float)(Math.PI / 2 * 3);
         float step = (float)(Math.PI / spikes);
 
-        var pb = new CanvasPathBuilder(ds);
+        using var pb = new CanvasPathBuilder(ds);
 
         bool first = true;
         while (spikes-- > 0)

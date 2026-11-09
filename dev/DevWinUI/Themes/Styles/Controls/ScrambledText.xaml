@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ScrambledTextForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ScrambledTextForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="ScrambledTextScrambleForeground" ResourceKey="SystemColorHotlightColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style BasedOn="{StaticResource DefaultScrambledTextStyle}" TargetType="local:ScrambledText" />
+
+    <Style x:Key="DefaultScrambledTextStyle" TargetType="local:ScrambledText">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="FontFamily" Value="Consolas" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{ThemeResource ScrambledTextForeground}" />
+        <Setter Property="ScrambleColor" Value="{ThemeResource ScrambledTextScrambleForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ScrambledText">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <local:WordWrapPanel x:Name="PART_Host" AutomationProperties.AccessibilityView="Raw" IsHitTestVisible="False" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

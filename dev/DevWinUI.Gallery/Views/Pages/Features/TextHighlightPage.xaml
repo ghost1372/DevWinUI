@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.TextHighlightPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/textHighlight" HeaderText="TextHighlight">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:TextHighlight HighlightText="highlight wraps across lines" Text="A marker-style highlight wraps across lines and sweeps in from the left." /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbTrigger" HorizontalAlignment="Stretch" Header="Trigger" ItemsSource="{x:Bind TriggerItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
+                            <x:String>Auto (use Trigger)</x:String>
+                            <x:String>Drawn</x:String>
+                            <x:String>Hidden</x:String>
+                        </ComboBox>
+                        <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="A marker-style highlight wraps across lines and sweeps in from the left." TextWrapping="Wrap" />
+                        <TextBox x:Name="TxtHighlightText" Header="Highlight Text" PlaceholderText="Empty highlights the whole text" Text="highlight wraps across lines" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="48" Minimum="14" Value="24" />
+                        <Slider x:Name="SliderOpacity" Header="Band Opacity" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.4" />
+                        <Slider x:Name="SliderPadding" Header="Band Padding" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderRadius" Header="Band Corner Radius" Maximum="16" Minimum="0" StepFrequency="0.5" Value="4" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
+                        <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:TextHighlight MaxWidth="420" HorizontalAlignment="Left" BandCornerRadius="{x:Bind SliderRadius.Value, Mode=OneWay}" BandOpacity="{x:Bind SliderOpacity.Value, Mode=OneWay}" BandPadding="{x:Bind SliderPadding.Value, Mode=OneWay}" Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" Drawn="{x:Bind GetDrawn(CmbDrawn.SelectedIndex), Mode=OneWay}" FontSize="{x:Bind SliderFontSize.Value, Mode=OneWay}" HighlightBrush="{ThemeResource SystemFillColorCautionBrush}" HighlightText="{x:Bind TxtHighlightText.Text, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" Trigger="{x:Bind ((dev:TextHighlightTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+                    <dev:TextHighlight HorizontalAlignment="Left" FontSize="24" HighlightBrush="{ThemeResource AccentFillColorDefaultBrush}" HighlightText="Hover me" Text="Hover me to sweep the highlight" Trigger="Hover" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

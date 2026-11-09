@@ -1,6 +1,6 @@
 ﻿namespace DevWinUI;
 
-[TemplatePart(Name = nameof(PART_CanvasAnimation), Type = typeof(CanvasAnimatedControl))]
+[TemplatePart(Name = PART_CanvasAnimation, Type = typeof(CanvasAnimatedControl))]
 public partial class ConfettiCannon : Control
 {
     private const string PART_CanvasAnimation = "PART_CanvasAnimated";
@@ -49,54 +49,76 @@ public partial class ConfettiCannon : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _canvas = GetTemplateChild(PART_CanvasAnimation) as CanvasAnimatedControl;
 
-        _canvas.Draw -= OnDraw;
-        _canvas.Draw += OnDraw;
-
-        _canvas.Update -= OnUpdate;
-        _canvas.Update += OnUpdate;
-
-        Loaded += (_, __) =>
-        {
-            _canvas.Paused = false;
-        };
-
-        Unloaded += (_, __) =>
+        if (_canvas != null)
         {
             _canvas.Draw -= OnDraw;
             _canvas.Update -= OnUpdate;
-            _canvas.RemoveFromVisualTree();
-        };
+        }
+
+        _canvas = GetTemplateChild(PART_CanvasAnimation) as CanvasAnimatedControl;
+
+        if (_canvas == null)
+            return;
+
+        _canvas.ClearColor = ClearColor;
+        _canvas.IsFixedTimeStep = IsFixedTimeStep;
+
+        _canvas.Draw += OnDraw;
+        _canvas.Update += OnUpdate;
+
+        Loaded -= OnLoaded;
+        Loaded += OnLoaded;
+
+        Unloaded -= OnUnloaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (_canvas != null)
+            _canvas.Paused = _engine.ParticleCount == 0;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        if (_canvas == null)
+            return;
+
+        _canvas.Draw -= OnDraw;
+        _canvas.Update -= OnUpdate;
+        _canvas.RemoveFromVisualTree();
     }
 
     private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
     {
-        DispatcherQueue.TryEnqueue(() =>
+        _engine.Update((float)args.Timing.ElapsedTime.TotalSeconds, sender.Size);
+        int count = _engine.ParticleCount;
+
+        // Animation start
+        if (!_isAnimating && count > 0)
         {
-            int beforeCount = _engine.ParticleCount;
-            _engine?.Update((float)args.Timing.ElapsedTime.TotalSeconds, new Size(ActualWidth, ActualHeight));
-            int afterCount = _engine.ParticleCount;
-
-            // Animation start
-            if (!_isAnimating && afterCount > 0)
+            _isAnimating = true;
+            DispatcherQueue.TryEnqueue(() => AnimationStarted?.Invoke(this, EventArgs.Empty));
+        }
+        // Animation complete
+        else if (_isAnimating && count == 0)
+        {
+            _isAnimating = false;
+            DispatcherQueue.TryEnqueue(() =>
             {
-                _isAnimating = true;
-                AnimationStarted?.Invoke(this, EventArgs.Empty);
-            }
+                // Stop rendering while idle
+                if (_canvas != null && _engine.ParticleCount == 0)
+                    _canvas.Paused = true;
 
-            // Animation complete
-            if (_isAnimating && afterCount == 0)
-            {
-                _isAnimating = false;
                 AnimationCompleted?.Invoke(this, EventArgs.Empty);
-            }
-        });
+            });
+        }
     }
 
     private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
     {
-        _engine?.Draw(args.DrawingSession);
+        _engine.Draw(args.DrawingSession);
     }
 
     public void Fire()
@@ -107,6 +129,9 @@ public partial class ConfettiCannon : Control
     public void Fire(ConfettiCannonOptions options)
     {
         _engine.Enqueue(options);
+
+        if (_canvas != null)
+            _canvas.Paused = false;
     }
 
     public void FireBasic()
@@ -149,14 +174,14 @@ public partial class ConfettiCannon : Control
     {
         const int duration = 15 * 1000;
         var random = new Random();
-        var animationEnd = DateTime.Now + TimeSpan.FromMilliseconds(duration);
+        var animationEnd = DateTime.UtcNow + TimeSpan.FromMilliseconds(duration);
         var timer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(250)
         };
         timer.Tick += (_, __) =>
         {
-            double timeLeft = (animationEnd - DateTime.Now).TotalMilliseconds;
+            double timeLeft = (animationEnd - DateTime.UtcNow).TotalMilliseconds;
 
             if (timeLeft <= 0)
             {
@@ -187,6 +212,15 @@ public partial class ConfettiCannon : Control
 
     public void FireStars()
     {
+        var colors = new List<Color>
+        {
+            ColorHelper.GetColorFromHex("#FFE400"),
+            ColorHelper.GetColorFromHex("#FFBD00"),
+            ColorHelper.GetColorFromHex("#E89400"),
+            ColorHelper.GetColorFromHex("#FFCA6C"),
+            ColorHelper.GetColorFromHex("#FDFFB8")
+        };
+
         void Shoot()
         {
             Fire(new ConfettiCannonOptions
@@ -196,7 +230,7 @@ public partial class ConfettiCannon : Control
                 Gravity = 0,
                 Decay = 0.94,
                 StartVelocity = 30,
-                Colors = new() { ColorHelper.GetColorFromHex("#FFE400"), ColorHelper.GetColorFromHex("#FFBD00"), ColorHelper.GetColorFromHex("#E89400"), ColorHelper.GetColorFromHex("#FFCA6C"), ColorHelper.GetColorFromHex("#FDFFB8") },
+                Colors = colors,
                 ParticleCount = 40,
                 Scalar = 1.2,
                 Shapes = new() { "star" }
@@ -208,7 +242,7 @@ public partial class ConfettiCannon : Control
                 Gravity = 0,
                 Decay = 0.94,
                 StartVelocity = 30,
-                Colors = new() { ColorHelper.GetColorFromHex("#FFE400"), ColorHelper.GetColorFromHex("#FFBD00"), ColorHelper.GetColorFromHex("#E89400"), ColorHelper.GetColorFromHex("#FFCA6C"), ColorHelper.GetColorFromHex("#FDFFB8") },
+                Colors = colors,
                 ParticleCount = 10,
                 Scalar = 0.75,
                 Shapes = new() { "circle" }
@@ -224,13 +258,14 @@ public partial class ConfettiCannon : Control
         const int duration = 15 * 1000;
 
         var random = new Random();
-        DateTime animationEnd = DateTime.Now + TimeSpan.FromMilliseconds(duration);
+        DateTime animationEnd = DateTime.UtcNow + TimeSpan.FromMilliseconds(duration);
         double skew = 1;
+        var colors = new List<Color> { ColorHelper.GetColorFromHex("#ffffff") };
 
         var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
         timer.Tick += (_, __) =>
         {
-            double timeLeft = (animationEnd - DateTime.Now).TotalMilliseconds;
+            double timeLeft = (animationEnd - DateTime.UtcNow).TotalMilliseconds;
 
             if (timeLeft <= 0)
             {
@@ -247,7 +282,7 @@ public partial class ConfettiCannon : Control
                 StartVelocity = 0,
                 Ticks = ticks,
                 Origin = new Windows.Foundation.Point(random.NextDouble(), random.NextDouble() * skew - 0.2),
-                Colors = new() { ColorHelper.GetColorFromHex("#ffffff") },
+                Colors = colors,
                 Shapes = new() { "circle" },
                 Gravity = RandomInRange(0.4, 0.6),
                 Scalar = RandomInRange(0.4, 1),
@@ -261,12 +296,13 @@ public partial class ConfettiCannon : Control
     {
         const int duration = 15 * 1000;
 
-        DateTime animationEnd = DateTime.Now + TimeSpan.FromMilliseconds(duration);
+        DateTime animationEnd = DateTime.UtcNow + TimeSpan.FromMilliseconds(duration);
+        var colors = new List<Color> { ColorHelper.GetColorFromHex("#bb0000"), ColorHelper.GetColorFromHex("#ffffff") };
 
         var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
         timer.Tick += (_, __) =>
         {
-            double timeLeft = (animationEnd - DateTime.Now).TotalMilliseconds;
+            double timeLeft = (animationEnd - DateTime.UtcNow).TotalMilliseconds;
             if (timeLeft <= 0)
             {
                 timer.Stop();
@@ -279,7 +315,7 @@ public partial class ConfettiCannon : Control
                 Angle = 60,
                 Spread = 55,
                 Origin = new Windows.Foundation.Point(0, 0.5),
-                Colors = new() { ColorHelper.GetColorFromHex("#bb0000"), ColorHelper.GetColorFromHex("#ffffff") },
+                Colors = colors,
             });
             Fire(new ConfettiCannonOptions
             {
@@ -287,7 +323,7 @@ public partial class ConfettiCannon : Control
                 Angle = 120,
                 Spread = 55,
                 Origin = new Windows.Foundation.Point(1, 0.5),
-                Colors = new() { ColorHelper.GetColorFromHex("#bb0000"), ColorHelper.GetColorFromHex("#ffffff") },
+                Colors = colors,
             });
         };
         timer.Start();
@@ -295,8 +331,7 @@ public partial class ConfettiCannon : Control
 
     private double RandomInRange(double min, double max)
     {
-        var random = new Random();
-        return random.NextDouble() * (max - min) + min;
+        return Random.Shared.NextDouble() * (max - min) + min;
     }
 
     private static void SetTimeout(Action action, int delayMilliseconds)

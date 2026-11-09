@@ -14,16 +14,7 @@ public partial class AudioWave
     private static void OnDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is TimeSpan time)
-            {
-                ctl.duration = time.TotalMilliseconds;
-                ctl.elapsedMs = 0;
-                ctl.songPos_ = 0;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.ApplyDuration(((TimeSpan)e.NewValue).TotalMilliseconds);
     }
 
     public double BarWidth
@@ -34,18 +25,14 @@ public partial class AudioWave
 
     public static readonly DependencyProperty BarWidthProperty =
         DependencyProperty.Register(nameof(BarWidth), typeof(double), typeof(AudioWave), new PropertyMetadata(6.0d, OnBarWidthChanged));
+
     private static void OnBarWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is double width)
-            {
-                ctl.barWidth = (float)width;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barWidth = (float)(double)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
+
     public double BarSpacing
     {
         get { return (double)GetValue(BarSpacingProperty); }
@@ -54,17 +41,12 @@ public partial class AudioWave
 
     public static readonly DependencyProperty BarSpacingProperty =
         DependencyProperty.Register(nameof(BarSpacing), typeof(double), typeof(AudioWave), new PropertyMetadata(3.0d, OnBarSpacingChanged));
+
     private static void OnBarSpacingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is double space)
-            {
-                ctl.barSpacing = (float)space;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barSpacing = (float)(double)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
 
     public List<CanvasGradientStop> BarBackgroundGradientStops
@@ -75,18 +57,13 @@ public partial class AudioWave
 
     public static readonly DependencyProperty BarBackgroundGradientStopsProperty =
         DependencyProperty.Register(nameof(BarBackgroundGradientStops), typeof(List<CanvasGradientStop>), typeof(AudioWave), new PropertyMetadata(null, OnBarBackgroundGradientStopsChanged));
+
     private static void OnBarBackgroundGradientStopsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is List<CanvasGradientStop> stops)
-            {
-                ctl.barBackgroundGradientStops = stops;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.ApplyBackgroundGradientStops(e.NewValue as List<CanvasGradientStop>);
     }
+
     public Color BarBackground
     {
         get { return (Color)GetValue(BarBackgroundProperty); }
@@ -95,18 +72,14 @@ public partial class AudioWave
 
     public static readonly DependencyProperty BarBackgroundProperty =
         DependencyProperty.Register(nameof(BarBackground), typeof(Color), typeof(AudioWave), new PropertyMetadata(Colors.Gray, OnBarBackgroundChanged));
+
     private static void OnBarBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is Color color)
-            {
-                ctl.barBackground = color;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barBackground = (Color)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
+
     public List<CanvasGradientStop> BarForegroundGradientStops
     {
         get { return (List<CanvasGradientStop>)GetValue(BarForegroundGradientStopsProperty); }
@@ -115,18 +88,13 @@ public partial class AudioWave
 
     public static readonly DependencyProperty BarForegroundGradientStopsProperty =
         DependencyProperty.Register(nameof(BarForegroundGradientStops), typeof(List<CanvasGradientStop>), typeof(AudioWave), new PropertyMetadata(null, OnBarForegroundGradientStopsChanged));
+
     private static void OnBarForegroundGradientStopsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is List<CanvasGradientStop> stops)
-            {
-                ctl.barForegroundGradientStops = stops;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.ApplyForegroundGradientStops(e.NewValue as List<CanvasGradientStop>);
     }
+
     public Color BarForeground
     {
         get { return (Color)GetValue(BarForegroundProperty); }
@@ -139,14 +107,8 @@ public partial class AudioWave
     private static void OnBarForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is Color color)
-            {
-                ctl.barForeground = color;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barForeground = (Color)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
 
     public double BarRadiusX
@@ -161,14 +123,8 @@ public partial class AudioWave
     private static void OnBarRadiusXChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is double radius)
-            {
-                ctl.barRadiusX = (float)radius;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barRadiusX = (float)(double)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
 
     public double BarRadiusY
@@ -183,14 +139,8 @@ public partial class AudioWave
     private static void OnBarRadiusYChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            if (e.NewValue is double radius)
-            {
-                ctl.barRadiusY = (float)radius;
-                ctl.canvas?.Invalidate();
-            }
-        }
+        ctl.barRadiusY = (float)(double)e.NewValue;
+        ctl.canvas?.Invalidate();
     }
 
     public int Progress
@@ -205,10 +155,7 @@ public partial class AudioWave
     private static void OnProgressChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (AudioWave)d;
-        if (ctl != null)
-        {
-            ctl.OnProgressChanged();
-        }
+        ctl.ApplyProgress((int)e.NewValue);
     }
 
     public bool CanSelectedByMouse

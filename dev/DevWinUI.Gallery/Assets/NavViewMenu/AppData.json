@@ -209,6 +209,209 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.TypeFlowPage",
+          "Title": "Type Flow",
+          "Subtitle": "Types text out character by character with a natural, slightly random rhythm",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.VisualStepperPage",
+          "Title": "Visual Stepper",
+          "Subtitle": "A vertical step list with an animated progress rail and a crossfading detail card",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ProgressStepperPage",
+          "Title": "Progress Stepper",
+          "Subtitle": "A vertical step indicator with animated status markers and expandable sub-steps",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SearchBoxPage",
+          "Title": "SearchBox",
+          "Subtitle": "SearchBox",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/AutoSuggestBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.SegmentedMeterPage",
+          "Title": "Segmented Meter",
+          "Subtitle": "A horizontal or vertical meter that splits a whole into labeled, themed segments",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DotMatrixTextPage",
+          "Title": "Dot Matrix Text",
+          "Subtitle": "Text rendered as a grid of lit and unlit dots with an optional glow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TableOfContentsPage",
+          "Title": "Table Of Contents",
+          "Subtitle": "A scroll-tracking table of contents with a curved or straight rail, moving indicator and click-to-scroll links",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.Hover3DCardPage",
+          "Title": "Hover 3D Card",
+          "Subtitle": "A content card that tilts toward the pointer in 3D with a smooth hover scale",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BankCardPage",
+          "Title": "Bank Card",
+          "Subtitle": "A payment card that tilts in 3D on hover with a moving glare, number masking and optional chip",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FillButtonPage",
+          "Title": "Fill Button",
+          "Subtitle": "A call to action whose icon tile expands into a full fill on hover or focus and swaps the label",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.MorphingWizardPage",
+          "Title": "Morphing Wizard",
+          "Subtitle": "A multi-step wizard with sliding steps, a segmented progress bar and a spring-animated card height",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ExpandingCardsPage",
+          "Title": "Expanding Cards",
+          "Subtitle": "A row of image cards where the hovered, focused or selected card smoothly expands and the others collapse",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DiffViewPage",
+          "Title": "Diff View",
+          "Subtitle": "A virtualized text diff viewer with unified and split modes, intra-line highlights, collapsible context and text selection",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.HoldToConfirmPage",
+          "Title": "Hold To Confirm",
+          "Subtitle": "A press-and-hold button that fills while held and morphs into a confirmed state, with spring-back on release",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Button.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.EyeTrackingPage",
+          "Title": "Eye Tracking",
+          "Subtitle": "Animated eyes that follow the pointer, blink and react in realistic, cartoon, minimal or cyber styles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Image.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.OrbitCardStackPage",
+          "Title": "Orbit Card Stack",
+          "Subtitle": "A fanned stack of cards that opens into an arc, row or grid on hover or focus",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/FlipView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ReasoningPage",
+          "Title": "Reasoning",
+          "Subtitle": "A collapsible thinking panel with animated steps, sources, search results and code changes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/InfoBadge.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ShowMorePage",
+          "Title": "Show More",
+          "Subtitle": "Clamps long content to a number of lines and offers an expander only when it overflows",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/DropDownButton.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ScrambledTextPage",
+          "Title": "Scrambled Text",
+          "Subtitle": "Text that scrambles, lifts, blurs or magnifies letters around the pointer",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ScrollSplitCardPage",
+          "Title": "Scroll Split Card",
+          "Subtitle": "A card row that splits apart and flips over as you scroll",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ScrollViewer.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.UnderlineAnimationPage",
+          "Title": "Underline Animation",
+          "Subtitle": "Text with an animated underline in slide, center, fill, wavy or gradient styles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/HyperlinkButton.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextScribblePage",
+          "Title": "Text Scribble",
+          "Subtitle": "Hand-drawn scribble, underline, strike-through, circle or box marks drawn around text",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RichEditBox.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.TextHighlightPage",
+          "Title": "Text Highlight",
+          "Subtitle": "A marker-style highlight that sweeps across text, line by line",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/TextBlock.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.AnimatedTocPage",
+          "Title": "Animated Toc",
+          "Subtitle": "A table of contents with a spring-animated rail that bends through nested levels",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.ColorArchiveScrollPage",
+          "Title": "Color Archive Scroll",
+          "Subtitle": "A scroll-driven project archive that morphs its background and card colors per item",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Color.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GitHubActivityGridPage",
+          "Title": "GitHub Activity Grid",
+          "Subtitle": "A contribution heatmap with a reveal animation, hover tooltips and a legend",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/CalendarView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LoadingStatePage",
+          "Title": "LoadingState",
+          "Subtitle": "Pixel-grid wavefront loader with a shimmering label and a live elapsed timer.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FizzyCoverPage",
+          "Title": "Fizzy Cover",
+          "Subtitle": "A control that starts to fizz as your pointer approaches, then floods with rising particles and inverts on hover.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.LineSidebarPage",
+          "Title": "Line Sidebar",
+          "Subtitle": "List navigation with a rail of markers.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListView.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.IssueLabelPage",
           "Title": "Issue Label",
           "Subtitle": "Displays compact labels with semantic severity and theme-aware colors.",
@@ -317,6 +520,7 @@
           "UniqueId": "DevWinUIGallery.Views.LoadingIndicatorPage",
           "Title": "Loading Indicator",
           "Subtitle": "Loading Indicator",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
@@ -462,6 +666,20 @@
           "Title": "Arc Progress",
           "Subtitle": "A circular progress indicator that displays progress as a portion of an arc",
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.DonutChartPage",
+          "Title": "Donut Chart",
+          "Subtitle": "An animated donut chart with hover highlighting and an interactive legend",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BranchedMenuPage",
+          "Title": "Branched Menu",
+          "Subtitle": "A collapsible tree menu with animated branch lines and a sliding selection marker",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
@@ -715,6 +933,7 @@
           "UniqueId": "DevWinUIGallery.Views.GrowlPage",
           "Title": "Growl",
           "Subtitle": "Growl",
+          "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/InfoBar.png"
         },
         {
@@ -951,6 +1170,62 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.AntigravityPage",
+          "Title": "Antigravity",
+          "Subtitle": "An interactive particle field that lifts into a glowing ring around the pointer",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.MotionPage",
+          "Title": "Motion Wall",
+          "Subtitle": "A perspective wall of moving lanes of image and text tiles",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ItemsRepeater.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.RadarPage",
+          "Title": "Radar",
+          "Subtitle": "A radar display with sweep and pulse modes, moving blips, scan-only visibility, zones, jammed sectors and phosphor afterglow",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Circle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.FlightStatusCardPage",
+          "Title": "Flight Status Card",
+          "Subtitle": "A flight progress card with dot-matrix airport codes, an animated progress track and a layout that adapts to its size",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.PlayStationParticlesPage",
+          "Title": "PlayStation Particles",
+          "Subtitle": "A drifting, twinkling particle field inspired by the PlayStation welcome screen",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.GlowingBorderPage",
+          "Title": "Glowing Border",
+          "Subtitle": "An animated gradient border with a cursor-following glow and beam, spin and pulse modes",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StarBorderPage",
+          "Title": "Star Border",
+          "Subtitle": "A control with a twinkling star that travels its border, leaving a fading trail and stardust.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.StatusMarkPage",
+          "Title": "Status Mark",
+          "Subtitle": "Task status glyph that morphs from a dashed ring to a spinning or progress arc, then a closed ring with a check or cross.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.BlinkingSquaresPage",
           "Title": "Blinking Squares",
           "Subtitle": "A composition-driven twinkling square field with configurable direction and density.",
@@ -1100,6 +1375,13 @@
           "Title": "Gooey",
           "Subtitle": "Gooey",
           "ImagePath": "ms-appx:///Assets/Fluent/ParallaxView.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.BorderBeamPage",
+          "Title": "Border Beam",
+          "Subtitle": "A glowing beam of light that travels around the border of an element",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/RevealFocus.png"
         }
       ]
     },

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.TextScribblePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/textScribble" HeaderText="TextScribble">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:TextScribble MarkText="what matters" Text="Draw attention to what matters" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbType" HorizontalAlignment="Stretch" Header="Type" ItemsSource="{x:Bind TypeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbTrigger" HorizontalAlignment="Stretch" Header="Trigger" ItemsSource="{x:Bind TriggerItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
+                            <x:String>Auto (use Trigger)</x:String>
+                            <x:String>Drawn</x:String>
+                            <x:String>Hidden</x:String>
+                        </ComboBox>
+                        <TextBox x:Name="TxtText" Header="Text" Text="Draw attention to what matters" />
+                        <TextBox x:Name="TxtMarkText" Header="Mark Text" PlaceholderText="Empty marks the whole text" Text="what matters" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
+                        <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderMarkPadding" Header="Mark Padding" Maximum="16" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
+                        <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
+                        <NumberBox x:Name="NbIterations" Header="Iterations" Maximum="4" Minimum="1" PlaceholderText="Auto" SpinButtonPlacementMode="Compact" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="24">
+                    <dev:TextScribble Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" Drawn="{x:Bind GetDrawn(CmbDrawn.SelectedIndex), Mode=OneWay}" FontSize="{x:Bind SliderFontSize.Value, Mode=OneWay}" Iterations="{x:Bind GetIterations(NbIterations.Value), Mode=OneWay}" MarkBrush="{ThemeResource SystemFillColorCriticalBrush}" MarkPadding="{x:Bind SliderMarkPadding.Value, Mode=OneWay}" MarkText="{x:Bind TxtMarkText.Text, Mode=OneWay}" StrokeWidth="{x:Bind SliderStrokeWidth.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" Trigger="{x:Bind ((dev:TextScribbleTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Type="{x:Bind ((dev:TextScribbleType)CmbType.SelectedItem), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorCriticalBrush}" MarkText="Scribble" Text="Scribble over a word" Type="Scribble" />
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorSuccessBrush}" MarkText="Underline" Text="Underline a word" Type="Underline" />
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorCautionBrush}" MarkText="Strike" Text="Strike through a word" Type="StrikeThrough" />
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorCriticalBrush}" MarkText="Circle" Text="Circle a word" Type="Circle" />
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorAttentionBrush}" MarkText="Box" Text="Box a word" Type="Box" />
+                    <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorCriticalBrush}" MarkText="Hover" Text="Hover to draw the mark" Trigger="Hover" Type="Circle" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

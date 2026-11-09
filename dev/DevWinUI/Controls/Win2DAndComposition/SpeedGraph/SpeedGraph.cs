@@ -17,12 +17,19 @@ public partial class SpeedGraph : Control
     private const string PART_GraphScale = "PART_GraphScale";
     private const string PART_Shape = "PART_Shape";
 
+    private static readonly string[] speedUnits = { "B/s", "KB/s", "MB/s", "GB/s", "TB/s" };
+
     private CanvasControl canvas;
     private TextBlock noDataAvailableTextBlock;
     private Grid graphGrid;
     private Grid hostGrid;
     private ScaleTransform graphScale;
     private Polygon polygon;
+
+    private Storyboard scaleStoryboard;
+    private Microsoft.UI.Composition.Visual hostVisual;
+    private Microsoft.UI.Composition.ScalarKeyFrameAnimation offsetAnimation;
+    private Microsoft.UI.Composition.CubicBezierEasingFunction offsetEasing;
 
     private bool m_hasData;
     private TimeSpan speedLineAndTextAnimationDuration = TimeSpan.FromMilliseconds(300);
@@ -40,12 +47,22 @@ public partial class SpeedGraph : Control
         graphScale = GetTemplateChild(PART_GraphScale) as ScaleTransform;
         polygon = GetTemplateChild(PART_Shape) as Polygon;
 
-        m_graphData = new SpeedGraphData(polygon);
-        canvas.Draw -= OnCanvasDraw;
-        canvas.Draw += OnCanvasDraw;
+        scaleStoryboard = null;
+        offsetAnimation = null;
+        offsetEasing = null;
+        hostVisual = hostGrid != null ? ElementCompositionPreview.GetElementVisual(hostGrid) : null;
 
-        canvas.ActualThemeChanged -= OnCanvasActualThemeChanged;
-        canvas.ActualThemeChanged += OnCanvasActualThemeChanged;
+        m_hasData = false;
+        m_graphData = new SpeedGraphData(polygon);
+
+        if (canvas != null)
+        {
+            canvas.Draw -= OnCanvasDraw;
+            canvas.Draw += OnCanvasDraw;
+
+            canvas.ActualThemeChanged -= OnCanvasActualThemeChanged;
+            canvas.ActualThemeChanged += OnCanvasActualThemeChanged;
+        }
 
         SizeChanged -= OnSizeChanged;
         SizeChanged += OnSizeChanged;
@@ -55,12 +72,29 @@ public partial class SpeedGraph : Control
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        m_graphData?.NewSize(e.NewSize);
+        if (m_graphData == null)
+            return;
 
-        var scaleX = e.NewSize.Width / e.PreviousSize.Width;
-        var scaleY = e.NewSize.Height / e.PreviousSize.Height;
+        var newSize = e.NewSize;
+        if (newSize.Width <= 0 || newSize.Height <= 0)
+            return;
+
+        float oldWidth = m_graphData.Width;
+        float oldHeight = m_graphData.Height;
+        m_graphData.NewSize(newSize);
+
+        if (oldWidth <= 0 || oldHeight <= 0)
+            return;
+
+        float scaleX = (float)(newSize.Width / oldWidth);
+        float scaleY = (float)(newSize.Height / oldHeight);
+        if (scaleX == 1.0f && scaleY == 1.0f)
+            return;
 
         var points = GetPoints();
+        if (points == null)
+            return;
+
         for (int i = 0; i < points.Count; i++)
         {
             var p = points[i];
@@ -79,8 +113,9 @@ public partial class SpeedGraph : Control
 
         float width = (float)sender.ActualWidth;
         float height = (float)sender.ActualHeight;
+        int step = Math.Max(1, BackgroundShapeDistance);
 
-        Color color = ActualTheme == ElementTheme.Light
+        Color color = sender.ActualTheme == ElementTheme.Light
             ? Microsoft.UI.ColorHelper.FromArgb(32, 0, 0, 0)
             : Microsoft.UI.ColorHelper.FromArgb(32, 255, 255, 255);
 
@@ -88,9 +123,9 @@ public partial class SpeedGraph : Control
         {
             case SpeedGraphBackgroundMode.Dot:
                 {
-                    for (int x = 0; x < width; x += BackgroundShapeDistance)
+                    for (int x = 0; x < width; x += step)
                     {
-                        for (int y = 0; y < height; y += BackgroundShapeDistance)
+                        for (int y = 0; y < height; y += step)
                         {
                             ds.FillCircle(x, y, 1, color);
                         }
@@ -101,13 +136,13 @@ public partial class SpeedGraph : Control
             case SpeedGraphBackgroundMode.Cross:
                 {
                     // vertical lines
-                    for (int x = 0; x < width; x += BackgroundShapeDistance)
+                    for (int x = 0; x < width; x += step)
                     {
                         ds.DrawLine(x, 0, x, height, color, 1);
                     }
 
                     // horizontal lines
-                    for (int y = 0; y < height; y += BackgroundShapeDistance)
+                    for (int y = 0; y < height; y += step)
                     {
                         ds.DrawLine(0, y, width, y, color, 1);
                     }
@@ -119,6 +154,14 @@ public partial class SpeedGraph : Control
 
     public void SetSpeed(double percent, ulong speed)
     {
+        if (m_graphData == null)
+            return;
+
+        if (!m_hasData)
+        {
+            m_graphData.NewSize(new Size(ActualSize.X, ActualSize.Y));
+        }
+
         var result = m_graphData.SetSpeed(percent, speed);
         float newScaleRatio = result.NewScaleRatio;
         bool needAnimation = result.NeedAnimation;
@@ -126,13 +169,13 @@ public partial class SpeedGraph : Control
         if (newScaleRatio != 1.0f)
             ResizeGraphPoint(newScaleRatio);
 
+        if (AutoUpdateSpeedText)
+        {
+            SpeedText = GetSpeedReadable(speed);
+        }
+
         if (needAnimation)
         {
-            if (AutoUpdateSpeedText)
-            {
-                SpeedText = GetSpeedReadable(speed);
-            }
-
             MakeAnimation();
         }
 
@@ -141,7 +184,6 @@ public partial class SpeedGraph : Control
             graphGrid.Visibility = Visibility.Visible;
             noDataAvailableTextBlock.Visibility = Visibility.Collapsed;
 
-            m_graphData.NewSize(new Size(ActualSize.X, ActualSize.Y));
             m_hasData = true;
         }
     }
@@ -156,7 +198,7 @@ public partial class SpeedGraph : Control
         var scaleYAnimation = new DoubleAnimation
         {
             To = m_graphData.GetRatio(),
-            Duration = new Duration(TimeSpan.FromMilliseconds(300)),
+            Duration = new Duration(speedLineAndTextAnimationDuration),
             EasingFunction = easing
         };
 
@@ -169,17 +211,24 @@ public partial class SpeedGraph : Control
     private void ResizeGraphPoint(float ratio)
     {
         m_graphData.SetRatio(ratio);
-        var animation = CreateScaleAnimation();
-        animation.Begin();
+        scaleStoryboard = CreateScaleAnimation();
+        scaleStoryboard.Begin();
     }
     private void MakeAnimation(double y)
     {
-        var compositor = CompositionTarget.GetCompositorForCurrentThread();
-        var animation = compositor.CreateScalarKeyFrameAnimation();
-        animation.InsertKeyFrame(1.0f, (float)y, compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f)));
-        animation.Duration = speedLineAndTextAnimationDuration;
-        var gridVisual = ElementCompositionPreview.GetElementVisual(hostGrid);
-        gridVisual.StartAnimation("Offset.Y", animation);
+        if (hostVisual == null)
+            return;
+
+        if (offsetAnimation == null)
+        {
+            var compositor = hostVisual.Compositor;
+            offsetEasing = compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f));
+            offsetAnimation = compositor.CreateScalarKeyFrameAnimation();
+            offsetAnimation.Duration = speedLineAndTextAnimationDuration;
+        }
+
+        offsetAnimation.InsertKeyFrame(1.0f, (float)y, offsetEasing);
+        hostVisual.StartAnimation("Offset.Y", offsetAnimation);
     }
 
     private void MakeAnimation()
@@ -219,22 +268,42 @@ public partial class SpeedGraph : Control
 
     public void ResetGraph()
     {
-        SetSpeed(0, 0);
-        polygon?.Points.Clear();
+        if (m_graphData == null)
+            return;
+
+        scaleStoryboard?.Stop();
+        graphScale.ScaleY = 1.0;
+
+        if (hostVisual != null)
+        {
+            hostVisual.StopAnimation("Offset.Y");
+            var offset = hostVisual.Offset;
+            offset.Y = 0f;
+            hostVisual.Offset = offset;
+        }
+
+        m_graphData.Reset();
+
+        if (AutoUpdateSpeedText)
+        {
+            ClearValue(SpeedTextProperty);
+        }
+
+        graphGrid.Visibility = Visibility.Collapsed;
+        noDataAvailableTextBlock.Visibility = Visibility.Visible;
+        m_hasData = false;
     }
     private static string GetSpeedReadable(ulong bytesPerSecond)
     {
-        string[] units = { "B/s", "KB/s", "MB/s", "GB/s", "TB/s" };
-
         double size = bytesPerSecond;
         int unitIndex = 0;
 
-        while (size >= 1024 && unitIndex < units.Length - 1)
+        while (size >= 1024 && unitIndex < speedUnits.Length - 1)
         {
             size /= 1024;
             unitIndex++;
         }
 
-        return $"{size:0.##} {units[unitIndex]}";
+        return $"{size:0.##} {speedUnits[unitIndex]}";
     }
 }

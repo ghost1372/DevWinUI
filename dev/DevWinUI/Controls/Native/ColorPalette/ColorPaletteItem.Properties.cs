@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class ColorPaletteItem
 {
     internal string InternalColorName
@@ -18,7 +19,16 @@ public partial class ColorPaletteItem
     }
 
     internal static readonly DependencyProperty InternalColorsProperty =
-        DependencyProperty.Register(nameof(InternalColors), typeof(ObservableCollection<ColorPaletteItem>), typeof(ColorPaletteItem), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(InternalColors), typeof(ObservableCollection<ColorPaletteItem>), typeof(ColorPaletteItem), new PropertyMetadata(null, OnInternalColorsChanged));
+
+    private static void OnInternalColorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (ColorPaletteItem)d;
+        if (ctl != null)
+        {
+            ctl.UpdateColorName();
+        }
+    }
 
     public bool ShowHexCode
     {

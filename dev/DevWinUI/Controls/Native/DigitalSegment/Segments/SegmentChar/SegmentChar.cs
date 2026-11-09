@@ -1,14 +1,21 @@
-﻿using System.Text;
-using Microsoft.UI.Xaml.Input;
+﻿using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 
 public abstract partial class SegmentChar : Control
 {
+    private static readonly object ActiveTag = true;
+    private static readonly object InactiveTag = false;
+
     private bool deferVisualUpdates;
     private bool requiresCharacterUpdate;
     private bool requiresMatrixRedraw;
+
+    private List<(string Name, Shape Segment)> segments;
+    private Shape colonTop;
+    private Shape colonBottom;
+    private ScalarKeyFrameAnimation _blinkAnimation;
 
     public event PointerEventHandler SegmentPointerPressed;
     public event PointerEventHandler SegmentPointerReleased;
@@ -18,20 +25,61 @@ public abstract partial class SegmentChar : Control
 
     public event EventHandler<SegmentEventArgs> PatternChanged;
 
-    private ScalarKeyFrameAnimation _blinkAnimation;
-    protected Shape ColonTop => Segments?.FirstOrDefault(s => s.Name == DigitalSegmentHelper.COLON_TOP_KEY).Segment;
-    protected Shape ColonBottom => Segments?.FirstOrDefault(s => s.Name == DigitalSegmentHelper.COLON_BOTTOM_KEY).Segment;
-
     public abstract SegmentChar Clone();
 
-    protected List<(string Name, Shape Segment)> Segments { get; set; }
+    protected Shape ColonTop => colonTop;
+    protected Shape ColonBottom => colonBottom;
+
+    protected List<(string Name, Shape Segment)> Segments
+    {
+        get { return segments; }
+        set
+        {
+            segments = value;
+            CacheColonShapes();
+        }
+    }
+
+    protected abstract IReadOnlyDictionary<string, string> PatternTable { get; }
+    protected abstract string DefaultPattern { get; }
+    protected virtual int Columns { get; set; }
+    protected virtual int Rows { get; set; }
+    protected abstract void CollectSegments();
+
+    /// <summary>
+    /// Rebuilds the dot matrix (if needed) and re-applies the current character. No-op for non matrix characters.
+    /// </summary>
+    protected virtual void RefreshMatrix() { }
+
+    protected SegmentChar()
+    {
+        ActualThemeChanged += SegmentChar_ActualThemeChanged;
+    }
+
+    private void CacheColonShapes()
+    {
+        colonTop = null;
+        colonBottom = null;
+
+        if (segments == null)
+            return;
+
+        foreach (var (name, segment) in segments)
+        {
+            if (name == DigitalSegmentHelper.COLON_TOP_KEY)
+                colonTop = segment;
+            else if (name == DigitalSegmentHelper.COLON_BOTTOM_KEY)
+                colonBottom = segment;
+        }
+    }
 
     private void StartColonBlink()
     {
-        if (ColonTop == null || ColonBottom == null) return;
+        if (_blinkAnimation == null || colonTop == null || colonBottom == null)
+            return;
 
-        var visualTop = ElementCompositionPreview.GetElementVisual(ColonTop);
-        var visualBottom = ElementCompositionPreview.GetElementVisual(ColonBottom);
+        var visualTop = ElementCompositionPreview.GetElementVisual(colonTop);
+        var visualBottom = ElementCompositionPreview.GetElementVisual(colonBottom);
 
         visualTop.StartAnimation(nameof(visualTop.Opacity), _blinkAnimation);
         visualBottom.StartAnimation(nameof(visualBottom.Opacity), _blinkAnimation);
@@ -39,10 +87,11 @@ public abstract partial class SegmentChar : Control
 
     private void StopColonBlink()
     {
-        if (ColonTop == null || ColonBottom == null) return;
+        if (colonTop == null || colonBottom == null)
+            return;
 
-        var visualTop = ElementCompositionPreview.GetElementVisual(ColonTop);
-        var visualBottom = ElementCompositionPreview.GetElementVisual(ColonBottom);
+        var visualTop = ElementCompositionPreview.GetElementVisual(colonTop);
+        var visualBottom = ElementCompositionPreview.GetElementVisual(colonBottom);
 
         visualTop.StopAnimation(nameof(visualTop.Opacity));
         visualBottom.StopAnimation(nameof(visualBottom.Opacity));
@@ -51,11 +100,12 @@ public abstract partial class SegmentChar : Control
         visualTop.Opacity = 1;
         visualBottom.Opacity = 1;
     }
+
     protected virtual void InitColonAnimation()
     {
-        var _compositor = CompositionTarget.GetCompositorForCurrentThread();
+        var compositor = CompositionTarget.GetCompositorForCurrentThread();
 
-        _blinkAnimation = _compositor.CreateScalarKeyFrameAnimation();
+        _blinkAnimation = compositor.CreateScalarKeyFrameAnimation();
         _blinkAnimation.InsertKeyFrame(0.0f, 1f);
         _blinkAnimation.InsertKeyFrame(0.5f, 0f);
         _blinkAnimation.InsertKeyFrame(1.0f, 1f);
@@ -65,13 +115,6 @@ public abstract partial class SegmentChar : Control
         if (IsColonBlink)
             StartColonBlink();
     }
-
-    protected abstract IReadOnlyDictionary<string, string> PatternTable { get; }
-    protected abstract string DefaultPattern { get; }
-    protected virtual int Columns {  get; set; }
-    protected virtual int Rows {  get; set; }
-    protected virtual void ReDrawMatrix() { }
-    protected abstract void CollectSegments();
 
     internal void SynchronizeAppearanceFrom(DigitalSegment control)
     {
@@ -93,12 +136,12 @@ public abstract partial class SegmentChar : Control
 
         if (requiresMatrixRedraw)
         {
+            // RefreshMatrix also re-applies the character.
             requiresMatrixRedraw = false;
-            ReDrawMatrix();
-            CollectSegments();
+            requiresCharacterUpdate = false;
+            RefreshMatrix();
         }
-
-        if (requiresCharacterUpdate)
+        else if (requiresCharacterUpdate)
         {
             requiresCharacterUpdate = false;
             UpdateCharacter();
@@ -124,63 +167,67 @@ public abstract partial class SegmentChar : Control
             return;
         }
 
-        ReDrawMatrix();
-        CollectSegments();
+        RefreshMatrix();
     }
 
     protected virtual void UpdateCharacter()
     {
-        if (Segments == null || Segments.Count == 0)
+        if (segments == null || segments.Count == 0)
             CollectSegments();
 
-        var key = Character ?? string.Empty;
+        ApplyPattern(GetPatternForCharacter(Character));
+    }
 
-        if (!PatternTable.TryGetValue(key, out string pattern))
+    /// <summary>
+    /// Finds the pattern for a character: exact match, then upper case, then the default pattern.
+    /// </summary>
+    protected string GetPatternForCharacter(string character)
+    {
+        var key = character ?? string.Empty;
+
+        if (!PatternTable.TryGetValue(key, out string pattern) &&
+            !PatternTable.TryGetValue(key.ToUpperInvariant(), out pattern))
         {
-            if (!PatternTable.TryGetValue(key.ToUpperInvariant(), out pattern))
-            {
-                pattern = DefaultPattern;
-            }
+            pattern = DefaultPattern;
         }
 
-        ApplyPattern(pattern);
+        return pattern;
     }
 
     protected void ApplyPattern(string pattern)
     {
-        if (Segments == null || Segments.Count == 0)
+        if (segments == null || segments.Count == 0)
             return;
 
-        if (pattern.Length != Segments.Count)
-            throw new ArgumentException($"Pattern must be {Segments.Count} chars long.");
+        if (pattern.Length != segments.Count)
+            throw new ArgumentException($"Pattern must be {segments.Count} chars long.");
 
-        for (int i = 0; i < Segments.Count; i++)
+        for (int i = 0; i < segments.Count; i++)
         {
-            var (key, seg) = Segments[i];
-            if (seg == null) continue;
+            var seg = segments[i].Segment;
+            if (seg == null)
+                continue;
 
             bool active = pattern[i] == '1';
+            bool isColon = ReferenceEquals(seg, colonTop) || ReferenceEquals(seg, colonBottom);
 
-            seg.Tag = active;
-
-            if (key.Equals(DigitalSegmentHelper.COLON_TOP_KEY) || key.Equals(DigitalSegmentHelper.COLON_BOTTOM_KEY))
-            {
-                seg.Fill = active ? ColonForeground : ColonBackground;
-            }
-            else
-            {
-                seg.Fill = active ? SegmentForeground : SegmentBackground;
-            }
+            seg.Tag = active ? ActiveTag : InactiveTag;
+            seg.Fill = isColon
+                ? (active ? ColonForeground : ColonBackground)
+                : (active ? SegmentForeground : SegmentBackground);
         }
     }
 
-    private void UnRegisterPointerEvent()
+    private void UnregisterPointerEvents()
     {
-        if (Segments == null || Segments.Count == 0)
+        if (segments == null || segments.Count == 0)
             return;
 
-        foreach (var item in Segments)
+        foreach (var item in segments)
         {
+            if (item.Segment == null)
+                continue;
+
             item.Segment.PointerPressed -= OnPointerPressed;
             item.Segment.PointerEntered -= OnPointerEntered;
             item.Segment.PointerExited -= OnPointerExited;
@@ -188,66 +235,52 @@ public abstract partial class SegmentChar : Control
             item.Segment.PointerReleased -= OnPointerReleased;
         }
     }
+
     public void RegisterPointerEvents()
     {
-        if (Segments == null || Segments.Count == 0)
+        if (segments == null || segments.Count == 0)
             return;
 
-        foreach (var item in Segments)
+        foreach (var item in segments)
         {
-            if (item.Segment != null)
-            {
-                item.Segment.PointerPressed -= OnPointerPressed;
-                item.Segment.PointerPressed += OnPointerPressed;
+            var segment = item.Segment;
+            if (segment == null)
+                continue;
 
-                item.Segment.PointerEntered -= OnPointerEntered;
-                item.Segment.PointerEntered += OnPointerEntered;
+            segment.PointerPressed -= OnPointerPressed;
+            segment.PointerPressed += OnPointerPressed;
 
-                item.Segment.PointerExited -= OnPointerExited;
-                item.Segment.PointerExited -= OnPointerExited;
+            segment.PointerEntered -= OnPointerEntered;
+            segment.PointerEntered += OnPointerEntered;
 
-                item.Segment.PointerMoved -= OnPointerMoved;
-                item.Segment.PointerMoved -= OnPointerMoved;
+            segment.PointerExited -= OnPointerExited;
+            segment.PointerExited += OnPointerExited;
 
-                item.Segment.PointerReleased -= OnPointerReleased;
-                item.Segment.PointerReleased -= OnPointerReleased;
-            }
+            segment.PointerMoved -= OnPointerMoved;
+            segment.PointerMoved += OnPointerMoved;
+
+            segment.PointerReleased -= OnPointerReleased;
+            segment.PointerReleased += OnPointerReleased;
         }
     }
 
-    private void OnPointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-    {
-        SegmentPointerExited?.Invoke(sender, e);
-    }
-    private void OnPointerMoved(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-    {
-        SegmentPointerMoved?.Invoke(sender, e);
-    }
-    private void OnPointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-    {
-        SegmentPointerReleased?.Invoke(sender, e);
+    private void OnPointerExited(object sender, PointerRoutedEventArgs e) => SegmentPointerExited?.Invoke(sender, e);
+    private void OnPointerMoved(object sender, PointerRoutedEventArgs e) => SegmentPointerMoved?.Invoke(sender, e);
+    private void OnPointerReleased(object sender, PointerRoutedEventArgs e) => SegmentPointerReleased?.Invoke(sender, e);
+    private void OnPointerEntered(object sender, PointerRoutedEventArgs e) => SegmentPointerEntered?.Invoke(sender, e);
+    private void OnPointerPressed(object sender, PointerRoutedEventArgs e) => SegmentPointerPressed?.Invoke(sender, e);
 
-    }
-    private void OnPointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-    {
-        SegmentPointerEntered?.Invoke(sender, e);
-    }
-    private void OnPointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-    {
-        SegmentPointerPressed?.Invoke(sender, e);
-    }
     public void ToggleSegmentState(Shape shape)
     {
         bool isActive = (shape.Tag as bool?) ?? false;
-        isActive = !isActive;
-
-        SetSegmentState(shape, isActive);
+        SetSegmentState(shape, !isActive);
     }
+
     public void SetSegmentState(Shape shape, bool isActive)
     {
-        shape.Tag = isActive;
+        shape.Tag = isActive ? ActiveTag : InactiveTag;
 
-        if (shape.Equals(DigitalSegmentHelper.COLON_TOP_KEY) || shape.Equals(DigitalSegmentHelper.COLON_BOTTOM_KEY))
+        if (ReferenceEquals(shape, colonTop) || ReferenceEquals(shape, colonBottom))
         {
             shape.Fill = isActive ? ColonForeground : ColonBackground;
         }
@@ -255,29 +288,24 @@ public abstract partial class SegmentChar : Control
         {
             shape.Fill = isActive ? SegmentForeground : SegmentBackground;
         }
-        string pattern = GetCurrentPattern();
-        PatternChanged?.Invoke(this, new SegmentEventArgs { Pattern = pattern });
+
+        // Building the pattern string is only worth it when somebody listens.
+        PatternChanged?.Invoke(this, new SegmentEventArgs(GetCurrentPattern()));
     }
+
     private string GetCurrentPattern()
     {
-        var sb = new StringBuilder();
+        if (segments == null || segments.Count == 0)
+            return string.Empty;
 
-        foreach (var (name, seg) in Segments)
+        return string.Create(segments.Count, segments, static (span, list) =>
         {
-            bool active = (seg?.Tag as bool?) == true;
-            sb.Append(active ? "1" : "0");
-        }
-
-        return sb.ToString();
+            for (int i = 0; i < span.Length; i++)
+                span[i] = list[i].Segment?.Tag is true ? '1' : '0';
+        });
     }
 
     public void SetPattern(string pattern) => ApplyPattern(pattern);
-
-    protected SegmentChar()
-    {
-        ActualThemeChanged -= SegmentChar_ActualThemeChanged;
-        ActualThemeChanged += SegmentChar_ActualThemeChanged;
-    }
 
     private void SegmentChar_ActualThemeChanged(FrameworkElement sender, object args)
     {

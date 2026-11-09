@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ProgressStepperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/progressStepper" HeaderText="ProgressStepper">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:ProgressStepper Align="Left" Current="1" CurrentChild="1" ShowStepLabel="True" Steps="{x:Bind Steps}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbAlign" Header="Align" ItemsSource="{x:Bind AlignItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TglShowStepLabel" Header="Show Step Label" IsOn="True" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Click="OnBack" Content="Back" />
+                            <Button Click="OnNext" Content="Next" Style="{StaticResource AccentButtonStyle}" />
+                            <Button Click="OnReset" Content="Reset" />
+                        </StackPanel>
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:ProgressStepper x:Name="Stepper" MinWidth="320" HorizontalAlignment="Left" Align="{x:Bind ((dev:ProgressStepperStepperAlign)CmbAlign.SelectedItem), Mode=OneWay}" Current="1" CurrentChild="1" ShowStepLabel="{x:Bind TglShowStepLabel.IsOn, Mode=OneWay}" Steps="{x:Bind Steps}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -4,24 +4,24 @@ public partial class DigitalSegment
 {
     public double MatrixDotSize
     {
-        get => (double)GetValue(MatrixDotSizeProperty);
-        set => SetValue(MatrixDotSizeProperty, value);
+        get { return (double)GetValue(MatrixDotSizeProperty); }
+        set { SetValue(MatrixDotSizeProperty, value); }
     }
     public static readonly DependencyProperty MatrixDotSizeProperty =
         DependencyProperty.Register(nameof(MatrixDotSize), typeof(double), typeof(DigitalSegment), new PropertyMetadata(12.0, OnRedrawDigits));
 
     public double MatrixDotGap
     {
-        get => (double)GetValue(MatrixDotGapProperty);
-        set => SetValue(MatrixDotGapProperty, value);
+        get { return (double)GetValue(MatrixDotGapProperty); }
+        set { SetValue(MatrixDotGapProperty, value); }
     }
     public static readonly DependencyProperty MatrixDotGapProperty =
         DependencyProperty.Register(nameof(MatrixDotGap), typeof(double), typeof(DigitalSegment), new PropertyMetadata(4.0, OnRedrawDigits));
 
     public bool IsMatrixSquare
     {
-        get => (bool)GetValue(IsMatrixSquareProperty);
-        set => SetValue(IsMatrixSquareProperty, value);
+        get { return (bool)GetValue(IsMatrixSquareProperty); }
+        set { SetValue(IsMatrixSquareProperty, value); }
     }
     public static readonly DependencyProperty IsMatrixSquareProperty =
         DependencyProperty.Register(nameof(IsMatrixSquare), typeof(bool), typeof(DigitalSegment), new PropertyMetadata(false, OnRedrawDigits));
@@ -33,12 +33,20 @@ public partial class DigitalSegment
     }
 
     public static readonly DependencyProperty ScrollSpeedProperty =
-        DependencyProperty.Register(nameof(ScrollSpeed), typeof(TimeSpan), typeof(DigitalSegment), new PropertyMetadata(TimeSpan.FromMilliseconds(300)));
+        DependencyProperty.Register(nameof(ScrollSpeed), typeof(TimeSpan), typeof(DigitalSegment), new PropertyMetadata(TimeSpan.FromMilliseconds(300), OnScrollSpeedChanged));
+
+    private static void OnScrollSpeedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DigitalSegment ctl)
+        {
+            ctl.UpdateScrollSpeed();
+        }
+    }
 
     public bool IsScrolling
     {
-        get => (bool)GetValue(IsScrollingProperty);
-        set => SetValue(IsScrollingProperty, value);
+        get { return (bool)GetValue(IsScrollingProperty); }
+        set { SetValue(IsScrollingProperty, value); }
     }
 
     public static readonly DependencyProperty IsScrollingProperty =
@@ -46,8 +54,8 @@ public partial class DigitalSegment
 
     public DigitalSegmentScrollDirection ScrollDirection
     {
-        get => (DigitalSegmentScrollDirection)GetValue(ScrollDirectionProperty);
-        set => SetValue(ScrollDirectionProperty, value);
+        get { return (DigitalSegmentScrollDirection)GetValue(ScrollDirectionProperty); }
+        set { SetValue(ScrollDirectionProperty, value); }
     }
 
     public static readonly DependencyProperty ScrollDirectionProperty =
@@ -60,7 +68,15 @@ public partial class DigitalSegment
     }
 
     public static readonly DependencyProperty SpacingProperty =
-        DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(DigitalSegment), new PropertyMetadata(0.0));
+        DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(DigitalSegment), new PropertyMetadata(0.0, OnSpacingChanged));
+
+    private static void OnSpacingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DigitalSegment ctl)
+        {
+            ctl.UpdateSpacing();
+        }
+    }
 
     public double Angle
     {

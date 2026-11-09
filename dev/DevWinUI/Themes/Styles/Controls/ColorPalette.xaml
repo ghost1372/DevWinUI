@@ -7,6 +7,7 @@
 
     <Style x:Key="DefaultColorPaletteStyle" TargetType="local:ColorPalette">
         <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="IsItemClickEnabled" Value="True" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>

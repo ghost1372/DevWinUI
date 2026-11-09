@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Shapes;
+using System.Runtime.InteropServices;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace DevWinUI;
@@ -18,34 +19,39 @@ public partial class DropdownColorPicker : Control
     private ColorPicker colorPicker;
     private ContentPresenter contentPresenter;
     private Flyout flyout;
+    private bool isRaisingColorChanged;
 
     public event EventHandler<DropdownColorPickerColorChangedEventArgs> ColorChanged;
 
     public DropdownColorPicker()
     {
         DefaultStyleKey = typeof(DropdownColorPicker);
+        Loaded += OnDropdownColorPickerLoaded;
+        Unloaded += OnDropdownColorPickerUnloaded;
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        if (colorPicker != null)
+            colorPicker.ColorChanged -= OnColorPickerColorChanged;
+        if (flyout != null)
+            flyout.Closed -= OnFlyoutClosed;
+
         tintBox = GetTemplateChild(PART_Rectangle) as Rectangle;
         colorPicker = GetTemplateChild(PART_ColorPicker) as ColorPicker;
         contentPresenter = GetTemplateChild(PART_ContentPresenter) as ContentPresenter;
         flyout = GetTemplateChild(PART_Flyout) as Flyout;
 
-        colorPicker.ColorChanged -= OnColorPickerColorChanged;
-        colorPicker.ColorChanged += OnColorPickerColorChanged;
+        if (colorPicker != null)
+            colorPicker.ColorChanged += OnColorPickerColorChanged;
+        if (flyout != null)
+            flyout.Closed += OnFlyoutClosed;
 
         UpdateColorPalette();
         UpdateFlyoutOptions();
-        OnColorChanged();
-
-        Loaded -= OnDropdownColorPickerLoaded;
-        Loaded += OnDropdownColorPickerLoaded;
-        Unloaded -= OnDropdownColorPickerUnloaded;
-        Unloaded += OnDropdownColorPickerUnloaded;
+        UpdateColor();
     }
 
     private void OnDropdownColorPickerLoaded(object sender, RoutedEventArgs e)
@@ -70,18 +76,20 @@ public partial class DropdownColorPicker : Control
             ColorPalette.ColorChanged -= OnColorPaletteColorChanged;
     }
 
+    private void OnFlyoutClosed(object sender, object e)
+    {
+        UpdateFlyoutOptions();
+    }
+
     private void UpdateFlyoutOptions()
     {
-        if (flyout == null)
+        if (flyout == null || flyout.IsOpen)
             return;
 
-        if (!flyout.IsOpen)
-        {
-            flyout.ShouldConstrainToRootBounds = FlyoutShouldConstrainToRootBounds;
-            flyout.LightDismissOverlayMode = FlyoutLightDismissOverlayMode;
-            flyout.Placement = FlyoutPlacement;
-            flyout.ShowMode = FlyoutShowMode;
-        }
+        flyout.ShouldConstrainToRootBounds = FlyoutShouldConstrainToRootBounds;
+        flyout.LightDismissOverlayMode = FlyoutLightDismissOverlayMode;
+        flyout.Placement = FlyoutPlacement;
+        flyout.ShowMode = FlyoutShowMode;
     }
 
     private void UpdateColorPalette()
@@ -89,57 +97,78 @@ public partial class DropdownColorPicker : Control
         if (contentPresenter == null || colorPicker == null)
             return;
 
-        if (ColorPalette == null)
-        {
-            colorPicker.Visibility = Visibility.Visible;
-            contentPresenter.Visibility = Visibility.Collapsed;
-        }
-        else
-        {
-            contentPresenter.Visibility = Visibility.Visible;
-            colorPicker.Visibility = Visibility.Collapsed;
-        }
+        var hasPalette = ColorPalette != null;
+        colorPicker.Visibility = hasPalette ? Visibility.Collapsed : Visibility.Visible;
+        contentPresenter.Visibility = hasPalette ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void OnColorPickerColorChanged(ColorPicker sender, ColorChangedEventArgs args)
     {
-        RaiseColorChanged(new DropdownColorPickerColorChangedEventArgs(args.NewColor, args.ToString(), null));
+        if (isRaisingColorChanged)
+            return;
+
+        RaiseColorChanged(new DropdownColorPickerColorChangedEventArgs(args.NewColor, args.NewColor.ToString(), null));
     }
 
     private void OnColorPaletteColorChanged(object sender, ColorPaletteColorChangedEventArgs e)
     {
+        if (isRaisingColorChanged)
+            return;
+
         RaiseColorChanged(new DropdownColorPickerColorChangedEventArgs(e.Color, e.ColorName, e.ColorPaletteItem));
     }
 
     private void RaiseColorChanged(DropdownColorPickerColorChangedEventArgs args)
     {
-        Color = args.Color;
+        isRaisingColorChanged = true;
+        try
+        {
+            Color = args.Color;
+        }
+        finally
+        {
+            isRaisingColorChanged = false;
+        }
+
         ColorChanged?.Invoke(this, args);
 
         if (IsCopyColorCodeOnSelectEnabled)
+            CopyToClipboard(args.Color.ToString());
+    }
+
+    private static void CopyToClipboard(string text)
+    {
+        try
         {
             var dataPackage = new DataPackage();
-            dataPackage.SetText(args.Color.ToString());
+            dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
             Clipboard.Flush();
         }
+        catch (COMException)
+        {
+        }
+    }
 
+    private void UpdateTintBox()
+    {
         if (tintBox == null)
             return;
 
-        tintBox.Fill = new SolidColorBrush(args.Color);
+        if (tintBox.Fill is SolidColorBrush brush)
+            brush.Color = Color;
+        else
+            tintBox.Fill = new SolidColorBrush(Color);
     }
 
-    private void OnColorChanged()
+    private void UpdateColor()
     {
+        UpdateTintBox();
+
         if (colorPicker != null && !colorPicker.Color.Equals(Color))
-        {
             colorPicker.Color = Color;
-        }
 
         if (ColorPalette != null && !Equals(ColorPalette.SelectedColor, Color))
-        {
             ColorPalette.SelectedColor = Color;
-        }
     }
 }

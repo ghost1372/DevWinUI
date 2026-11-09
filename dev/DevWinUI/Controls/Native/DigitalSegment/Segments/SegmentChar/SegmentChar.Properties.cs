@@ -29,7 +29,6 @@ public partial class SegmentChar
     public static readonly DependencyProperty SegmentBackgroundProperty =
         DependencyProperty.Register(nameof(SegmentBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
-
     public Brush ColonForeground
     {
         get { return (Brush)GetValue(ColonForegroundProperty); }
@@ -48,7 +47,6 @@ public partial class SegmentChar
     public static readonly DependencyProperty ColonBackgroundProperty =
         DependencyProperty.Register(nameof(ColonBackground), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
-
     public double StrokeThickness
     {
         get { return (double)GetValue(StrokeThicknessProperty); }
@@ -56,8 +54,8 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty StrokeThicknessProperty =
-        DependencyProperty.Register(nameof(StrokeThickness), typeof(double), typeof(SegmentChar), new PropertyMetadata(0.0));
-    
+        DependencyProperty.Register(nameof(StrokeThickness), typeof(double), typeof(SegmentChar), new PropertyMetadata(0.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
+
     public Brush Stroke
     {
         get { return (Brush)GetValue(StrokeProperty); }
@@ -65,41 +63,44 @@ public partial class SegmentChar
     }
 
     public static readonly DependencyProperty StrokeProperty =
-        DependencyProperty.Register(nameof(Stroke), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Stroke), typeof(Brush), typeof(SegmentChar), new PropertyMetadata(null, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
 
     public string Character
     {
-        get => (string)GetValue(CharacterProperty);
-        set => SetValue(CharacterProperty, value);
+        get { return (string)GetValue(CharacterProperty); }
+        set { SetValue(CharacterProperty, value); }
     }
-    public static readonly DependencyProperty CharacterProperty = 
-        DependencyProperty.Register(nameof(Character), typeof(string), typeof(SegmentChar),new PropertyMetadata("", (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
+
+    public static readonly DependencyProperty CharacterProperty =
+        DependencyProperty.Register(nameof(Character), typeof(string), typeof(SegmentChar), new PropertyMetadata("", (d, e) => ((SegmentChar)d).OnCharacterAppearanceChanged()));
 
     public double MatrixDotSize
     {
-        get => (double)GetValue(MatrixDotSizeProperty);
-        set => SetValue(MatrixDotSizeProperty, value);
+        get { return (double)GetValue(MatrixDotSizeProperty); }
+        set { SetValue(MatrixDotSizeProperty, value); }
     }
+
     public static readonly DependencyProperty MatrixDotSizeProperty =
-        DependencyProperty.Register(nameof(MatrixDotSize), typeof(double), typeof(SegmentChar),new PropertyMetadata(12.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
+        DependencyProperty.Register(nameof(MatrixDotSize), typeof(double), typeof(SegmentChar), new PropertyMetadata(12.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
 
     public double MatrixDotGap
     {
-        get => (double)GetValue(MatrixDotGapProperty);
-        set => SetValue(MatrixDotGapProperty, value);
+        get { return (double)GetValue(MatrixDotGapProperty); }
+        set { SetValue(MatrixDotGapProperty, value); }
     }
 
     public static readonly DependencyProperty MatrixDotGapProperty =
-        DependencyProperty.Register(nameof(MatrixDotGap), typeof(double), typeof(SegmentChar),new PropertyMetadata(4.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
+        DependencyProperty.Register(nameof(MatrixDotGap), typeof(double), typeof(SegmentChar), new PropertyMetadata(4.0, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
 
     public bool IsMatrixSquare
     {
-        get => (bool)GetValue(IsMatrixSquareProperty);
-        set => SetValue(IsMatrixSquareProperty, value);
+        get { return (bool)GetValue(IsMatrixSquareProperty); }
+        set { SetValue(IsMatrixSquareProperty, value); }
     }
+
     public static readonly DependencyProperty IsMatrixSquareProperty =
-        DependencyProperty.Register(nameof(IsMatrixSquare), typeof(bool), typeof(SegmentChar),new PropertyMetadata(false, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
-    
+        DependencyProperty.Register(nameof(IsMatrixSquare), typeof(bool), typeof(SegmentChar), new PropertyMetadata(false, (d, e) => ((SegmentChar)d).OnMatrixAppearanceChanged()));
+
     public bool IsColonBlink
     {
         get { return (bool)GetValue(IsColonBlinkProperty); }
@@ -111,14 +112,12 @@ public partial class SegmentChar
 
     private static void OnIsBlinkChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = d as SegmentChar;
-        if (ctl != null)
-        {
-            if ((bool)e.NewValue)
-                ctl.StartColonBlink();
-            else
-                ctl.StopColonBlink();
-        }
+        var ctl = (SegmentChar)d;
+
+        if ((bool)e.NewValue)
+            ctl.StartColonBlink();
+        else
+            ctl.StopColonBlink();
     }
 
     public bool IsPatternMakerEnabled
@@ -133,16 +132,10 @@ public partial class SegmentChar
     private static void OnIsPatternMakerEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (SegmentChar)d;
-        if (ctl != null)
-        {
-            if ((bool)e.NewValue)
-            {
-                ctl.RegisterPointerEvents();
-            }
-            else
-            {
-                ctl.UnRegisterPointerEvent();
-            }
-        }
+
+        if ((bool)e.NewValue)
+            ctl.RegisterPointerEvents();
+        else
+            ctl.UnregisterPointerEvents();
     }
 }

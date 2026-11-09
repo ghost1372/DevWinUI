@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class BaseDataInfo
 {
     public string UniqueId { get; set; }
@@ -12,6 +13,7 @@ public partial class BaseDataInfo
     public string IconGlyph { get; set; }
     public string LocalizeId { get; set; }
     public bool IsNavigationViewItemHeader { get; set; }
+    public bool IsSeparator { get; set; }
     public bool UsexUid { get; set; }
     public bool HideNavigationViewItemIcon { get; set; }
     public DataInfoBadge DataInfoBadge { get; set; }

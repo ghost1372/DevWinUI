@@ -13,29 +13,32 @@ public partial class LiveGraph
         float height = (float)canvas.Size.Height;
         float canvasWidth = (float)canvas.Size.Width;
 
-        if (!livePolygons.TryGetValue(key, out var polygon))
-        {
-            // Create a new live polygon if it doesn't exist
-            polygon = new UserPolygon
-            {
-                OffsetX = 0,
-                IsRounded = isRounded,
-                Key = key
-            };
-
-            livePolygons[key] = polygon;
-            polygons.Add(polygon);
-        }
-
-        float startX = polygon.Points.Count > 0
-            ? polygon.Points.Last().X + point.Space
-            : canvasWidth + 10;
-
         float y = NormalizeY(point.Value, height);
 
-        polygon.CurrentY = y;
+        lock (m_graphMutex)
+        {
+            if (!livePolygons.TryGetValue(key, out var polygon))
+            {
+                // Create a new live polygon if it doesn't exist
+                polygon = new UserPolygon
+                {
+                    OffsetX = 0,
+                    IsRounded = isRounded,
+                    Key = key
+                };
 
-        polygon.Points.Add(new Vector2(startX, y));
+                livePolygons[key] = polygon;
+                polygons.Add(polygon);
+            }
+
+            float startX = polygon.Points.Count > 0
+                ? polygon.Points.Last().X + point.Space
+                : canvasWidth + 10;
+
+            polygon.CurrentY = y;
+
+            polygon.Points.Add(new Vector2(startX, y));
+        }
     }
 
     public void AddStaticPoints(string key, IEnumerable<GraphPoint> points)
@@ -44,7 +47,7 @@ public partial class LiveGraph
     }
     public void AddStaticPoints(string key, IEnumerable<GraphPoint> points, bool isRounded)
     {
-        if (canvas == null) return;
+        if (canvas == null || points == null) return;
 
         var height = (float)canvas.Size.Height;
         float startX = (float)canvas.Size.Width + 10; // start just outside view
@@ -59,10 +62,15 @@ public partial class LiveGraph
             currentX += p.Space; // move to next X
         }
 
+        if (newPolygon.Points.Count == 0) return;
+
         newPolygon.OffsetX = 0;
         newPolygon.IsRounded = isRounded;
         newPolygon.Key = key;
 
-        polygons.Add(newPolygon);
+        lock (m_graphMutex)
+        {
+            polygons.Add(newPolygon);
+        }
     }
 }

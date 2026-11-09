@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DotMatrixTextPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/dotMatrixText" HeaderText="DotMatrixText">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:DotMatrixText Text="HELLO" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <TextBox x:Name="TxtText" Header="Text" MaxLength="16" Text="HELLO" />
+                        <Slider x:Name="SliderDotSize" Header="Dot Size" Maximum="12" Minimum="2" StepFrequency="0.5" Value="5.5" />
+                        <Slider x:Name="SliderDotSpacing" Header="Dot Spacing" Maximum="8" Minimum="0" StepFrequency="0.5" Value="2.5" />
+                        <ToggleSwitch x:Name="ToggleGlow" Header="Is Glowing" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
+                    <StackPanel Spacing="20">
+                        <dev:DotMatrixText DotSize="{x:Bind SliderDotSize.Value, Mode=OneWay}" DotSpacing="{x:Bind SliderDotSpacing.Value, Mode=OneWay}" IsGlowing="{x:Bind ToggleGlow.IsOn, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+                        <dev:DotMatrixText Foreground="{ThemeResource SystemFillColorAttentionBrush}" InactiveForeground="{ThemeResource SystemFillColorAttentionBackgroundBrush}" Text="BOARDING" />
+                        <dev:DotMatrixText Foreground="{ThemeResource SystemFillColorSuccessBrush}" InactiveForeground="{ThemeResource SystemFillColorSuccessBackgroundBrush}" Text="READY" />
+                        <dev:DotMatrixText Foreground="{ThemeResource SystemFillColorCautionBrush}" InactiveForeground="{ThemeResource SystemFillColorCautionBackgroundBrush}" Text="DELAYED" />
+                        <dev:DotMatrixText Foreground="{ThemeResource SystemFillColorCriticalBrush}" InactiveForeground="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Text="CANCELED" />
+                    </StackPanel>
+                </ScrollViewer>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

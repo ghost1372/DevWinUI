@@ -11,7 +11,7 @@ namespace DevWinUI;
 /// Suggestions need to be provided by the SuggestionsSource property.
 /// </summary>
 [TemplatePart(Name = ContentElementControlName, Type = typeof(ContentControl))]
-public sealed partial class InlineAutoCompleteTextBox : TextBox
+public sealed partial class InlineAutoCompleteTextBox : Microsoft.UI.Xaml.Controls.TextBox
 {
     /// <summary>
     /// Identifies the <see cref="IsSuggestionCaseSensitive"/> dependency property.

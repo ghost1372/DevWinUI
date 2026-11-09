@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.BranchedMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/branchedMenu" HeaderText="BranchedMenu">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:BranchedMenu Items="{x:Bind MenuItems}" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderMaxWidth" Header="Menu Max Width" Maximum="400" Minimum="160" Value="240" />
+                        <Slider x:Name="SliderRowHeight" Header="Row Height" Maximum="56" Minimum="28" Value="36" />
+                        <Slider x:Name="SliderIndent" Header="Indent" Maximum="64" Minimum="20" Value="40" />
+                        <Slider x:Name="SliderTrunk" Header="Trunk" Maximum="30" Minimum="6" Value="14" />
+                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="20" Minimum="0" Value="10" />
+                        <Slider x:Name="SliderLineWidth" Header="Line Width" Maximum="4" Minimum="1" StepFrequency="0.5" Value="1.5" />
+                        <Slider x:Name="SliderDraw" Header="Draw Duration (ms)" Maximum="1500" Minimum="0" StepFrequency="50" Value="400" />
+                        <Slider x:Name="SliderFold" Header="Fold Duration (ms)" Maximum="1500" Minimum="0" StepFrequency="50" Value="300" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Click="ExpandAll_Click" Content="Expand all" />
+                            <Button Click="CollapseAll_Click" Content="Collapse all" />
+                        </StackPanel>
+                        <Button Click="SelectSettings_Click" Content="Select Settings" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="12">
+                    <dev:BranchedMenu x:Name="MyBranchedMenu" HorizontalAlignment="Left" DefaultActive="install" DrawDuration="{x:Bind ToInt(SliderDraw.Value), Mode=OneWay}" FoldDuration="{x:Bind ToInt(SliderFold.Value), Mode=OneWay}" Indent="{x:Bind SliderIndent.Value, Mode=OneWay}" Items="{x:Bind MenuItems}" LineWidth="{x:Bind SliderLineWidth.Value, Mode=OneWay}" MenuMaxWidth="{x:Bind SliderMaxWidth.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RowHeight="{x:Bind SliderRowHeight.Value, Mode=OneWay}" Trunk="{x:Bind SliderTrunk.Value, Mode=OneWay}" />
+                    <TextBlock x:Name="TxtSelected" Opacity="0.7" Text="Selected: install" />
+                    <TextBlock x:Name="TxtToggled" Opacity="0.7" Text="Toggled: none" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

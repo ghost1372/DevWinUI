@@ -212,7 +212,7 @@ public partial class SpectrumVisualizer
         var ctl = (SpectrumVisualizer)d;
         if (ctl != null)
         {
-            ctl.coverOpacity = (float)((double)e.NewValue);
+            ctl.coverOpacity = (float)Math.Clamp((double)e.NewValue, 0d, 1d);
             ctl.spectrumCanvasControl?.Invalidate();
         }
     }
@@ -231,7 +231,7 @@ public partial class SpectrumVisualizer
         var ctl = (SpectrumVisualizer)d;
         if (ctl != null)
         {
-            ctl.spectrumOpacity = (float)((double)e.NewValue);
+            ctl.spectrumOpacity = (float)Math.Clamp((double)e.NewValue, 0d, 1d);
             ctl.spectrumCanvasControl?.Invalidate();
         }
     }
@@ -249,7 +249,7 @@ public partial class SpectrumVisualizer
         var ctl = (SpectrumVisualizer)d;
         if (ctl != null)
         {
-            ctl.fontOpacity = (float)((double)e.NewValue);
+            ctl.fontOpacity = (float)Math.Clamp((double)e.NewValue, 0d, 1d);
             ctl.spectrumCanvasControl?.Invalidate();
         }
     }
@@ -268,7 +268,7 @@ public partial class SpectrumVisualizer
         var ctl = (SpectrumVisualizer)d;
         if (ctl != null)
         {
-            ctl.smoothingFactor = (float)((double)e.NewValue);
+            ctl.smoothingFactor = (float)Math.Clamp((double)e.NewValue, 0d, 1d);
             ctl.spectrumCanvasControl?.Invalidate();
         }
     }
@@ -315,6 +315,8 @@ public partial class SpectrumVisualizer
         get => _analyzer;
         set
         {
+            if (ReferenceEquals(_analyzer, value)) return;
+
             if (_analyzer != null)
             {
                 _analyzer.SpectrumDataUpdated -= OnSpectrumDataUpdated;
@@ -331,4 +333,3 @@ public partial class SpectrumVisualizer
         }
     }
 }
-

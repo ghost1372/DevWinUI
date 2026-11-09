@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.GlowingBorderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/glowingBorder" HeaderText="GlowingBorder">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:GlowingBorder Width="420" Height="200" &gt; #nl#
+                        &lt;TextBlock Text="Glowing Border" HorizontalAlignment="Center" VerticalAlignment="Center" /&gt; #nl#
+                        &lt;/dev:GlowingBorder&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="60" Minimum="0" Value="16" />
+                        <Slider x:Name="SliderThickness" Header="Ring Thickness" Maximum="8" Minimum="0.5" StepFrequency="0.5" Value="1.5" />
+                        <Slider x:Name="SliderRange" Header="Range (Cursor)" Maximum="400" Minimum="20" Value="160" />
+                        <Slider x:Name="SliderSpot" Header="Spot (Cursor)" Maximum="700" Minimum="50" Value="340" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="12" Minimum="1" StepFrequency="0.5" Value="4" />
+                        <Slider x:Name="SliderGlow" Header="Glow" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.6" />
+                        <Slider x:Name="SliderGlowSize" Header="Glow Size" Maximum="40" Minimum="0" Value="10" />
+                        <Slider x:Name="SliderInnerGlow" Header="Inner Glow" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:GlowingBorder Width="420" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Glow="{x:Bind SliderGlow.Value, Mode=OneWay}" GlowSize="{x:Bind SliderGlowSize.Value, Mode=OneWay}" InnerGlow="{x:Bind SliderInnerGlow.Value, Mode=OneWay}" Kind="{x:Bind ((dev:GlowingBorderKind)CmbKind.SelectedItem), Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" Range="{x:Bind SliderRange.Value, Mode=OneWay}" RingThickness="{x:Bind SliderThickness.Value, Mode=OneWay}" Spot="{x:Bind SliderSpot.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Glowing Border" />
+                        <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Move the pointer near the edge" />
+                    </StackPanel>
+                </dev:GlowingBorder>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

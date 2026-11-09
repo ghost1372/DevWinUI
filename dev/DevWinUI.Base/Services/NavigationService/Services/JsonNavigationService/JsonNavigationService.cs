@@ -229,7 +229,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
                 {
                     // Every word entered (separated by space) must be in the title,
                     // e.g. "split button" only matches titles containing both "split" and "button"
-                    if (!item.IncludedInBuild || item.Title == null)
+                    if (!item.IncludedInBuild || item.IsSeparator || item.Title == null)
                     {
                         continue;
                     }

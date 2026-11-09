@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class Watermark
 {
     public static readonly DependencyProperty MarkProperty =
@@ -58,7 +59,7 @@ public partial class Watermark
     }
 
     public static readonly DependencyProperty IsImageProperty =
-        DependencyProperty.Register(nameof(IsImage), typeof(bool), typeof(Watermark), new PropertyMetadata(false, OnValueChanged));
+        DependencyProperty.Register(nameof(IsImage), typeof(bool), typeof(Watermark), new PropertyMetadata(false, OnMarkImageChanged));
     public bool IsImage
     {
         get { return (bool)GetValue(IsImageProperty); }
@@ -66,7 +67,7 @@ public partial class Watermark
     }
 
     public static readonly DependencyProperty MarkImageProperty =
-        DependencyProperty.Register(nameof(MarkImage), typeof(Uri), typeof(Watermark), new PropertyMetadata(null, OnValueChanged));
+        DependencyProperty.Register(nameof(MarkImage), typeof(Uri), typeof(Watermark), new PropertyMetadata(null, OnMarkImageChanged));
     public Uri MarkImage
     {
         get { return (Uri)GetValue(MarkImageProperty); }

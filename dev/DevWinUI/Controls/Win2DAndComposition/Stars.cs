@@ -33,12 +33,41 @@ public partial class Stars : Control
 
         sky = GetTemplateChild(PART_Sky) as Border;
 
+        if (sky == null)
+        {
+            return;
+        }
+
         InitializeCompositionVariables();
         CreateStarsVisuals();
         StartSkyCanvasStartupAnimations();
 
+        Loaded -= OnLoaded;
+        Loaded += OnLoaded;
+
         Unloaded -= OnUnloaded;
         Unloaded += OnUnloaded;
+
+        if (Visibility == Visibility.Visible)
+        {
+            RunInclinometer();
+        }
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (!_isUnloading)
+        {
+            return;
+        }
+
+        _isUnloading = false;
+        UpdateSkyVisualSize();
+
+        if (Visibility == Visibility.Visible)
+        {
+            RunInclinometer();
+        }
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -73,9 +102,9 @@ public partial class Stars : Control
     private static void OnStarUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (Stars)d;
-        if (ctl != null)
+        if (ctl != null && ctl._circleBrush != null)
         {
-            ctl.InitializeCompositionVariables();
+            ctl.UpdateCircleSurface();
         }
     }
 
@@ -99,7 +128,10 @@ public partial class Stars : Control
     {
         if (_skyVisual == null) return;
 
-        UpdateVisual();
+        _skyVisual.Children.RemoveAll();
+        InitializeCompositionVariables();
+        CreateStarsVisuals();
+        StartSkyCanvasStartupAnimations();
     }
     public int NumberOfSmallTwinklingStars
     {
@@ -135,11 +167,11 @@ public partial class Stars : Control
         _skyVisual?.Children?.RemoveAll();
         CreateStarsVisuals();
     }
-    private async void OnInclinometerReadingChanged(Inclinometer sender, InclinometerReadingChangedEventArgs e)
+    private void OnInclinometerReadingChanged(Inclinometer sender, InclinometerReadingChangedEventArgs e)
     {
         DispatcherQueue.TryEnqueue(() =>
         {
-            _reading.InsertVector3("Offset", new Vector3(e.Reading.RollDegrees, e.Reading.PitchDegrees, 0.0f));
+            _reading?.InsertVector3("Offset", new Vector3(e.Reading.RollDegrees, e.Reading.PitchDegrees, 0.0f));
         });
     }
 
@@ -163,7 +195,10 @@ public partial class Stars : Control
     /// </summary>
     private void RunInclinometer()
     {
+        if (_inclinometer == null) return;
+
         _inclinometer.ReportInterval = _desiredReportInterval;
+        _inclinometer.ReadingChanged -= OnInclinometerReadingChanged;
         _inclinometer.ReadingChanged += OnInclinometerReadingChanged;
     }
 
@@ -199,7 +234,13 @@ public partial class Stars : Control
         _reading = _compositor.CreatePropertySet();
         _reading.InsertVector3("Offset", new Vector3(0.0f, 0.0f, 0.0f));
         _circleBrush = _compositor.CreateSurfaceBrush();
+        UpdateCircleSurface();
 
+        if (_inclinometer != null) SetupSkyVisualOffsetExpressionAnimation();
+    }
+
+    private void UpdateCircleSurface()
+    {
         if (string.IsNullOrEmpty(StarUri))
         {
             var assembly = typeof(Stars).Assembly;
@@ -210,8 +251,6 @@ public partial class Stars : Control
         {
             _circleBrush.Surface = LoadedImageSurface.StartLoadFromUri(new Uri(StarUri));
         }
-
-        if (_inclinometer != null) SetupSkyVisualOffsetExpressionAnimation();
     }
 
     private void SetupSkyVisualOffsetExpressionAnimation()
@@ -276,8 +315,9 @@ public partial class Stars : Control
 
     private SpriteVisual CreateStarVisual(float offsetZ, float diameter)
     {
-        float offsetX = _random.Create(-SkyVisualRadius.ToInt(), SkyVisualRadius.ToInt());
-        float offsetY = _random.Create(-SkyVisualRadius.ToInt(), SkyVisualRadius.ToInt());
+        int radius = SkyVisualRadius.ToInt();
+        float offsetX = _random.Create(-radius, radius);
+        float offsetY = _random.Create(-radius, radius);
 
         var starVisual = _compositor.CreateSpriteVisual();
         starVisual.Opacity = 0.0f;
@@ -322,7 +362,7 @@ public partial class Stars : Control
             duration,
             completed: () =>
             {
-                if (_isUnloading) return;
+                if (_isUnloading || starVisual.Parent == null) return;
                 StartStarVisualOffsetAnimation(starVisual, duration, offsetZ);
             });
     }

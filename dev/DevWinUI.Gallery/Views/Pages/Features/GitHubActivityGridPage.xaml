@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.GitHubActivityGridPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="OceanActivityLevel0Brush" Color="#EBEDF0" />
+                    <SolidColorBrush x:Key="OceanActivityLevel1Brush" Color="#C6D8F5" />
+                    <SolidColorBrush x:Key="OceanActivityLevel2Brush" Color="#8DB4EC" />
+                    <SolidColorBrush x:Key="OceanActivityLevel3Brush" Color="#4F86DA" />
+                    <SolidColorBrush x:Key="OceanActivityLevel4Brush" Color="#2457B2" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="OceanActivityLevel0Brush" Color="#21262D" />
+                    <SolidColorBrush x:Key="OceanActivityLevel1Brush" Color="#1C3A66" />
+                    <SolidColorBrush x:Key="OceanActivityLevel2Brush" Color="#23559E" />
+                    <SolidColorBrush x:Key="OceanActivityLevel3Brush" Color="#3478D6" />
+                    <SolidColorBrush x:Key="OceanActivityLevel4Brush" Color="#6BA4F5" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/gitHubActivityGrid" HeaderText="GitHubActivityGrid">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:GitHubActivityGrid CellGap="3" CellSize="12" Days="{x:Bind Days}" UnitPlural="contributions" UnitSingular="contribution" /&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderCellSize" Header="Cell Size" Maximum="24" Minimum="8" Value="12" />
+                        <Slider x:Name="SliderCellGap" Header="Cell Gap" Maximum="8" Minimum="0" Value="3" />
+                        <NumberBox x:Name="NbMaxCount" Header="Max Count" Maximum="50" Minimum="1" PlaceholderText="Auto" SpinButtonPlacementMode="Compact" />
+                        <TextBox x:Name="TxtUnitSingular" Header="Unit Singular" Text="contribution" />
+                        <TextBox x:Name="TxtUnitPlural" Header="Unit Plural" Text="contributions" />
+                        <TextBox x:Name="TxtLess" Header="Less Text" Text="Less" />
+                        <TextBox x:Name="TxtMore" Header="More Text" Text="More" />
+                        <ToggleSwitch x:Name="TsReduceMotion" Header="Reduce Motion" IsOn="False" />
+                        <Button HorizontalAlignment="Stretch" Click="OnRegenerateClick" Content="Regenerate Data" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="10">
+                    <dev:GitHubActivityGrid x:Name="ActivityGrid" CellGap="{x:Bind SliderCellGap.Value, Mode=OneWay}" CellSize="{x:Bind SliderCellSize.Value, Mode=OneWay}" Days="{x:Bind Days}" LessText="{x:Bind TxtLess.Text, Mode=OneWay}" MaxCount="{x:Bind GetMaxCount(NbMaxCount.Value), Mode=OneWay}" MoreText="{x:Bind TxtMore.Text, Mode=OneWay}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" UnitPlural="{x:Bind TxtUnitPlural.Text, Mode=OneWay}" UnitSingular="{x:Bind TxtUnitSingular.Text, Mode=OneWay}" />
+                    <dev:GitHubActivityGrid x:Name="PaletteGrid" Days="{x:Bind Days}" Level0Brush="{ThemeResource OceanActivityLevel0Brush}" Level1Brush="{ThemeResource OceanActivityLevel1Brush}" Level2Brush="{ThemeResource OceanActivityLevel2Brush}" Level3Brush="{ThemeResource OceanActivityLevel3Brush}" Level4Brush="{ThemeResource OceanActivityLevel4Brush}" UnitPlural="commits" UnitSingular="commit" />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

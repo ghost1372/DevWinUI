@@ -1,0 +1,4 @@
+<dev:Radar Clutter="0.1"
+           ItemMapper="{x:Bind Mapper}"
+           ItemsSource="{x:Bind Aircraft}"
+           Targets="0" />

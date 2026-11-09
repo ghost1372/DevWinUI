@@ -1,0 +1,6 @@
+<dev:SearchBox x:Name="Search"
+                Width="260"
+                MenuItemInvoked="Search_MenuItemInvoked"
+                PlaceholderText="Search"
+                QueryChanged="Search_QueryChanged"
+                ResultInvoked="Search_ResultInvoked" />
