@@ -178,6 +178,7 @@ Themes\Styles\Controls\LoadingIndicator.xaml
 Themes\Styles\Controls\LoadingState.xaml
 Themes\Styles\Controls\LongShadowTextBlock.xaml
 Themes\Styles\Controls\LoopingList.xaml
+Themes\Styles\Controls\MagicKeyboard.xaml
 Themes\Styles\Controls\Magnifier.xaml
 Themes\Styles\Controls\MorphingAnimation.xaml
 Themes\Styles\Controls\MorphingWizard.xaml
@@ -237,6 +238,7 @@ Themes\Styles\Controls\TextHighlight.xaml
 Themes\Styles\Controls\TextMorphEffect.xaml
 Themes\Styles\Controls\TextScribble.xaml
 Themes\Styles\Controls\Timeline.xaml
+Themes\Styles\Controls\Timeline2.xaml
 Themes\Styles\Controls\TransitioningContentControl.xaml
 Themes\Styles\Controls\TypeFlow.xaml
 Themes\Styles\Controls\UnderlineAnimation.xaml
@@ -760,6 +762,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
       <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
       <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+      <StaticResource x:Key="MagicKeyboardCustomChassisTop" ResourceKey="SolidBackgroundFillColorBase" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisBottom" ResourceKey="SolidBackgroundFillColorBase" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisStroke" ResourceKey="ControlStrongStrokeColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceTop" ResourceKey="ControlSolidFillColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceBottom" ResourceKey="ControlSolidFillColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomPressTop" ResourceKey="SolidBackgroundFillColorQuarternary" />
+      <StaticResource x:Key="MagicKeyboardCustomPressBottom" ResourceKey="SolidBackgroundFillColorQuarternary" />
+      <StaticResource x:Key="MagicKeyboardCustomEdge" ResourceKey="SolidBackgroundFillColorSecondary" />
+      <StaticResource x:Key="MagicKeyboardCustomLegend" ResourceKey="TextFillColorPrimary" />
+      <StaticResource x:Key="MagicKeyboardCustomDim" ResourceKey="TextFillColorSecondary" />
+      <StaticResource x:Key="MagicKeyboardCustomLedActive" ResourceKey="SystemFillColorSuccess" />
+      <StaticResource x:Key="MagicKeyboardPreviewBackground" ResourceKey="SolidBackgroundFillColorTertiaryBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewBorderBrush" ResourceKey="SurfaceStrokeColorFlyoutBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="MultiStepWizardCardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
@@ -919,6 +935,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#FF6A55" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#FF6A55" />
+      <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="AccentFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="Timeline2SecondaryBrush" Color="#A78BFA" />
+      <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemFillColorSuccessBrush" />
+      <SolidColorBrush x:Key="Timeline2InfoBrush" Color="{ThemeResource SystemAccentColorLight2}" />
+      <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemFillColorCautionBrush" />
+      <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="ControlStrongFillColorDisabledBrush" />
+      <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="TextFillColorTertiaryBrush" />
       <StaticResource x:Key="TypeFlowForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -1444,6 +1474,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
       <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
       <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+      <StaticResource x:Key="MagicKeyboardCustomChassisTop" ResourceKey="SolidBackgroundFillColorBase" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisBottom" ResourceKey="SolidBackgroundFillColorBase" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisStroke" ResourceKey="ControlStrongStrokeColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceTop" ResourceKey="ControlSolidFillColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceBottom" ResourceKey="ControlSolidFillColorDefault" />
+      <StaticResource x:Key="MagicKeyboardCustomPressTop" ResourceKey="SolidBackgroundFillColorQuarternary" />
+      <StaticResource x:Key="MagicKeyboardCustomPressBottom" ResourceKey="SolidBackgroundFillColorQuarternary" />
+      <StaticResource x:Key="MagicKeyboardCustomEdge" ResourceKey="SolidBackgroundFillColorSecondary" />
+      <StaticResource x:Key="MagicKeyboardCustomLegend" ResourceKey="TextFillColorPrimary" />
+      <StaticResource x:Key="MagicKeyboardCustomDim" ResourceKey="TextFillColorSecondary" />
+      <StaticResource x:Key="MagicKeyboardCustomLedActive" ResourceKey="SystemFillColorSuccess" />
+      <StaticResource x:Key="MagicKeyboardPreviewBackground" ResourceKey="SolidBackgroundFillColorTertiaryBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewBorderBrush" ResourceKey="SurfaceStrokeColorFlyoutBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="MultiStepWizardCardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardCardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
       <StaticResource x:Key="MultiStepWizardForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
@@ -1603,6 +1647,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="#E8432E" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="#E8432E" />
+      <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="AccentFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="Timeline2SecondaryBrush" Color="#7C3AED" />
+      <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemFillColorSuccessBrush" />
+      <SolidColorBrush x:Key="Timeline2InfoBrush" Color="{ThemeResource SystemAccentColorDark1}" />
+      <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemFillColorCautionBrush" />
+      <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemFillColorCriticalBrush" />
+      <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="ControlStrongFillColorDisabledBrush" />
+      <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+      <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="TextFillColorPrimaryBrush" />
+      <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="TextFillColorSecondaryBrush" />
+      <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="TextFillColorTertiaryBrush" />
       <StaticResource x:Key="TypeFlowForeground" ResourceKey="TextFillColorPrimaryBrush" />
       <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
       <LinearGradientBrush x:Key="UnderlineAnimationGradientBrush" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -2034,6 +2092,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <Thickness x:Key="LoopingListFirstHostThemeMargin">0,0,20,0</Thickness>
       <Thickness x:Key="LoopingListThirdHostThemeMargin">20,0,0,0</Thickness>
       <FontWeight x:Key="LoopingListHeaderThemeFontWeight">Normal</FontWeight>
+      <StaticResource x:Key="MagicKeyboardCustomChassisTop" ResourceKey="SystemColorWindowColor" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisBottom" ResourceKey="SystemColorWindowColor" />
+      <StaticResource x:Key="MagicKeyboardCustomChassisStroke" ResourceKey="SystemColorWindowTextColor" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceTop" ResourceKey="SystemColorButtonFaceColor" />
+      <StaticResource x:Key="MagicKeyboardCustomFaceBottom" ResourceKey="SystemColorButtonFaceColor" />
+      <StaticResource x:Key="MagicKeyboardCustomPressTop" ResourceKey="SystemColorHighlightColor" />
+      <StaticResource x:Key="MagicKeyboardCustomPressBottom" ResourceKey="SystemColorHighlightColor" />
+      <StaticResource x:Key="MagicKeyboardCustomEdge" ResourceKey="SystemColorWindowTextColor" />
+      <StaticResource x:Key="MagicKeyboardCustomLegend" ResourceKey="SystemColorButtonTextColor" />
+      <StaticResource x:Key="MagicKeyboardCustomDim" ResourceKey="SystemColorButtonTextColor" />
+      <StaticResource x:Key="MagicKeyboardCustomLedActive" ResourceKey="SystemColorHighlightColor" />
+      <StaticResource x:Key="MagicKeyboardPreviewBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="MagicKeyboardPreviewForeground" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="MultiStepWizardCardBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="MultiStepWizardCardBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="MultiStepWizardForegroundBrush" ResourceKey="SystemColorWindowTextColorBrush" />
@@ -2179,6 +2251,20 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="TableOfContentsLinkHitTestBrush" Color="Transparent" />
       <SolidColorBrush x:Key="TextHighlightBandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="TextScribbleMarkBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2SecondaryBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2InfoBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+      <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="SystemColorGrayTextColorBrush" />
+      <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="SystemColorGrayTextColorBrush" />
       <StaticResource x:Key="TypeFlowForeground" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="TypeFlowForegroundDisabled" ResourceKey="SystemColorGrayTextColorBrush" />
       <SolidColorBrush x:Key="UnderlineAnimationGradientBrush" Color="{ThemeResource SystemColorHighlightColor}" />
@@ -7442,6 +7528,66 @@ Themes\Styles\Controls\WelcomeHero.xaml
   <x:Double x:Key="LoopingListFlyoutPresenterItemHeight">40</x:Double>
   <Thickness x:Key="LoopingListFlyoutPresenterItemPadding">0,3,0,6</Thickness>
   <Thickness x:Key="LoopingListHostPadding">0,3,0,6</Thickness>
+  <Color x:Key="MagicKeyboardSilverChassisTop">#E4E5E8</Color>
+  <Color x:Key="MagicKeyboardSilverChassisBottom">#CFD1D5</Color>
+  <Color x:Key="MagicKeyboardSilverChassisStroke">#B5B7BB</Color>
+  <Color x:Key="MagicKeyboardSilverFaceTop">#FBFBFC</Color>
+  <Color x:Key="MagicKeyboardSilverFaceBottom">#EEEFF1</Color>
+  <Color x:Key="MagicKeyboardSilverPressTop">#E2E3E6</Color>
+  <Color x:Key="MagicKeyboardSilverPressBottom">#D6D8DC</Color>
+  <Color x:Key="MagicKeyboardSilverEdge">#A9ACB2</Color>
+  <Color x:Key="MagicKeyboardSilverLegend">#2B2B2E</Color>
+  <Color x:Key="MagicKeyboardSilverDim">#6E7076</Color>
+  <Color x:Key="MagicKeyboardSilverLedActive">#34C759</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayChassisTop">#6A6B70</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayChassisBottom">#55565B</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayChassisStroke">#3E3F43</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayFaceTop">#2E2E32</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayFaceBottom">#1F1F22</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayPressTop">#19191C</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayPressBottom">#101012</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayEdge">#0A0A0B</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayLegend">#E8E8EA</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayDim">#9A9BA1</Color>
+  <Color x:Key="MagicKeyboardSpaceGrayLedActive">#34C759</Color>
+  <Color x:Key="MagicKeyboardMidnightChassisTop">#2B3140</Color>
+  <Color x:Key="MagicKeyboardMidnightChassisBottom">#1D222E</Color>
+  <Color x:Key="MagicKeyboardMidnightChassisStroke">#12151C</Color>
+  <Color x:Key="MagicKeyboardMidnightFaceTop">#1A1E28</Color>
+  <Color x:Key="MagicKeyboardMidnightFaceBottom">#11141B</Color>
+  <Color x:Key="MagicKeyboardMidnightPressTop">#0C0E13</Color>
+  <Color x:Key="MagicKeyboardMidnightPressBottom">#08090C</Color>
+  <Color x:Key="MagicKeyboardMidnightEdge">#05060A</Color>
+  <Color x:Key="MagicKeyboardMidnightLegend">#DCE1EC</Color>
+  <Color x:Key="MagicKeyboardMidnightDim">#8A93A6</Color>
+  <Color x:Key="MagicKeyboardMidnightLedActive">#34C759</Color>
+  <Style x:Key="DefaultMagicKeyboardStyle" TargetType="local:MagicKeyboard">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:MagicKeyboard">
+          <Grid Background="{TemplateBinding Background}">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border x:Name="PART_Preview" Margin="0,0,0,12" Padding="18,8" HorizontalAlignment="Center" Background="{ThemeResource MagicKeyboardPreviewBackground}" BorderBrush="{ThemeResource MagicKeyboardPreviewBorderBrush}" BorderThickness="1" CornerRadius="12" IsHitTestVisible="False" Opacity="0" Visibility="Collapsed">
+              <Border.OpacityTransition>
+                <ScalarTransition Duration="0:0:0.18" />
+              </Border.OpacityTransition>
+              <TextBlock x:Name="PART_PreviewText" FontSize="20" FontWeight="SemiBold" Foreground="{ThemeResource MagicKeyboardPreviewForeground}" />
+            </Border>
+            <Viewbox Grid.Row="1" Stretch="Uniform">
+              <Grid x:Name="PART_Board">
+                <Border x:Name="PART_Chassis" BorderThickness="1" CornerRadius="22" />
+                <Canvas x:Name="PART_Canvas" />
+              </Grid>
+            </Viewbox>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultMagnifierStyle" TargetType="local:Magnifier">
     <Setter Property="Width" Value="180" />
     <Setter Property="Height" Value="180" />
@@ -8967,6 +9113,87 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Glyph" Value="" />
     <Setter Property="Foreground" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
     <Setter Property="HorizontalAlignment" Value="Center" />
+  </Style>
+  <Style x:Key="DefaultTimeline2Style" TargetType="local:Timeline2">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="PrimaryColorBrush" Value="{ThemeResource Timeline2PrimaryBrush}" />
+    <Setter Property="SecondaryColorBrush" Value="{ThemeResource Timeline2SecondaryBrush}" />
+    <Setter Property="SuccessColorBrush" Value="{ThemeResource Timeline2SuccessBrush}" />
+    <Setter Property="InfoColorBrush" Value="{ThemeResource Timeline2InfoBrush}" />
+    <Setter Property="WarningColorBrush" Value="{ThemeResource Timeline2WarningBrush}" />
+    <Setter Property="ErrorColorBrush" Value="{ThemeResource Timeline2ErrorBrush}" />
+    <Setter Property="NeutralColorBrush" Value="{ThemeResource Timeline2NeutralBrush}" />
+    <Setter Property="OnColorForeground" Value="{ThemeResource Timeline2OnColorBrush}" />
+    <Setter Property="OnNeutralForeground" Value="{ThemeResource Timeline2OnNeutralBrush}" />
+    <Setter Property="ElevatedBrush" Value="{ThemeResource Timeline2ElevatedBrush}" />
+    <Setter Property="SurfaceBrush" Value="{ThemeResource Timeline2SurfaceBrush}" />
+    <Setter Property="HighlightedForeground" Value="{ThemeResource Timeline2HighlightedBrush}" />
+    <Setter Property="MutedForeground" Value="{ThemeResource Timeline2MutedBrush}" />
+    <Setter Property="DimmedForeground" Value="{ThemeResource Timeline2DimmedBrush}" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <local:Timeline2Panel />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Timeline2">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <ItemsPresenter Padding="{TemplateBinding Padding}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultTimeline2ItemStyle" TargetType="local:Timeline2Item">
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="UseSystemFocusVisuals" Value="True" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Timeline2Item">
+          <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*" />
+              <RowDefinition Height="0" />
+              <RowDefinition Height="0" />
+            </Grid.RowDefinitions>
+            <ContentPresenter x:Name="PART_Opposite" FontSize="{ThemeResource BodyTextBlockFontSize}" TextWrapping="Wrap" Visibility="Collapsed" />
+            <Grid x:Name="PART_Separator">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <Border x:Name="PART_Marker">
+                <FontIcon x:Name="PART_Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsTextScaleFactorEnabled="False" Visibility="Collapsed" />
+              </Border>
+              <ContentPresenter x:Name="PART_MarkerPresenter" Visibility="Collapsed" />
+              <Border x:Name="PART_Connector" CornerRadius="1" />
+            </Grid>
+            <StackPanel x:Name="PART_Body">
+              <ContentPresenter x:Name="PART_Date" FontSize="{ThemeResource CaptionTextBlockFontSize}" LineHeight="20" TextWrapping="Wrap" Visibility="Collapsed" />
+              <ContentPresenter x:Name="PART_Title" FontSize="{ThemeResource BodyTextBlockFontSize}" FontWeight="Medium" TextWrapping="Wrap" Visibility="Collapsed" />
+              <ContentPresenter x:Name="PART_Description" FontSize="{ThemeResource BodyTextBlockFontSize}" TextWrapping="Wrap" Visibility="Collapsed" />
+              <ContentPresenter x:Name="PART_Content" HorizontalContentAlignment="Stretch" Visibility="Collapsed" />
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
   </Style>
   <Storyboard x:Key="Right2LeftTransition">
     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" From="50" To="0" Duration="0:0:0.4">
@@ -21082,6 +21309,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultMagicKeyboardStyle}" TargetType="local:MagicKeyboard" />
   <Style BasedOn="{StaticResource DefaultMagnifierStyle}" TargetType="local:Magnifier" />
   <Style BasedOn="{StaticResource DefaultMorphingAnimationStyle}" TargetType="local:MorphingAnimation" />
   <Style x:Key="DefaultMorphingWizardStyle" TargetType="local:MorphingWizard">
@@ -23673,6 +23901,8 @@ Themes\Styles\Controls\WelcomeHero.xaml
     <Setter Property="Glyph" Value="" />
     <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
   </Style>
+  <Style BasedOn="{StaticResource DefaultTimeline2Style}" TargetType="local:Timeline2" />
+  <Style BasedOn="{StaticResource DefaultTimeline2ItemStyle}" TargetType="local:Timeline2Item" />
   <Style BasedOn="{StaticResource DefaultTypeFlowStyle}" TargetType="local:TypeFlow" />
   <Style BasedOn="{StaticResource DefaultUnderlineAnimationStyle}" TargetType="local:UnderlineAnimation" />
   <Style x:Key="ValidatingTextBoxStyle" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
