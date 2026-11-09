@@ -44,13 +44,14 @@
 
 ##
 
-DevWinUI is a comprehensive collection of libraries, components, styles, shaders, and tools designed to help you build powerful WinUI 3 applications quickly and efficiently. Whether you’re creating modern desktop experiences for Windows 10, Windows 11, or future versions, DevWinUI brings together everything you need to accelerate development and deliver exceptional results.
-- **DevWinUI is built around WinUI 3:** Microsoft’s modern native UI framework that embraces Fluent Design principles. It enables beautiful, intuitive, and accessible interfaces with the latest patterns and controls.
+DevWinUI is a comprehensive collection of libraries, components, styles, shaders, and tools designed to help you build powerful WinUI applications quickly and efficiently. Whether you’re creating modern desktop experiences for Windows 10, Windows 11, or future versions, DevWinUI brings together everything you need to accelerate development and deliver exceptional results.
+- **DevWinUI is built around WinUI:** Microsoft’s modern native UI framework that embraces Fluent Design principles. It enables beautiful, intuitive, and accessible interfaces with the latest patterns and controls.
 - **Accelerated development:** Leverage pre-built templates, scaffolding tools, and ready-to-use helper classes to streamline common tasks such as navigation, theming, and app lifecycle management. Get your project up and running in minutes while maintaining flexibility and control over your design.
 - **Optimized performance:** All components are purpose-built for high performance and reliability, ensuring smooth, responsive, and scalable applications that shine across devices and environments.
 - **Native AOT Compatible:** 99% full compatible with Native AOT. DevWinUI adapts to system capabilities to ensure consistent functionality and a great user experience wherever your app runs.
 - **Designed for developers:** Whether you’re an experienced professional or just starting out, DevWinUI provides a unified and productive foundation to help you transform your ideas into powerful applications.
 - **Build faster:** Create smarter. Deliver extraordinary experiences.
+- **270+ controls** for WinUI
 
 ## 📚 Getting started with DevWinUI
 * [Developer documentation](https://Ghost1372.github.io/DevWinUI/)
@@ -147,6 +148,9 @@ dotnet add package DevWinUI.Shader
 ❤️ Special thanks to **Fatemeh sadat Ashian** for designing our icon. You can find her here: [Telegram](https://t.me/Setareh1380s), [Gmail](mailto:ashyfatii@gmail.com).
 
 ## 🕰️ History
+
+### CrystalBall Shader
+![CrystalBallShader](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CrystalBallShader.gif)
 
 ### Roadmap
 ![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap.gif)

@@ -3,7 +3,9 @@
                     xmlns:local="using:DevWinUI"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="local:ShaderBackground">
+    <Style BasedOn="{StaticResource DefaultShaderBackgroundStyle}" TargetType="local:ShaderBackground" />
+
+    <Style x:Key="DefaultShaderBackgroundStyle" TargetType="local:ShaderBackground">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ShaderBackground">

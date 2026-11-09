@@ -12,7 +12,7 @@
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
             <InfoBar Title="Note: Most features can be configured and customized. Please refer to the documentation." IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample DocType="Shader" DocPage="controls/shaderBackground">
+            <local:ControlExample DocPage="controls/shaderBackground" DocType="Shader">
                 <local:ControlExample.Xaml>
                     <x:String>
                         &lt;dev:ShaderBackground&gt; #nl#
@@ -32,6 +32,7 @@
                         <Slider x:Name="SldEdgeRight" Header="Edge Feathering Right" Maximum="100" Value="25" />
                         <Slider x:Name="SldEdgeBottom" Header="Edge Feathering Bottom" Maximum="100" Value="25" />
                         <dev:UniformGrid Columns="3">
+                            <ToggleSwitch x:Name="TGCrystalizedBall" Header="CrystalizedBall" />
                             <ToggleSwitch x:Name="TGFog" Header="Fog" />
                             <ToggleSwitch x:Name="TGSnow" Header="Snow" />
                             <ToggleSwitch x:Name="TGRaindrop" Header="Rain drop" />
@@ -84,6 +85,7 @@
                         <dev:TriangleGradientBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGTriangleGradient.IsOn, Mode=OneWay}" />
                         <dev:WallpaperRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWallpaper.IsOn, Mode=OneWay}" />
                         <dev:WavyBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWavyBackground.IsOn, Mode=OneWay}" />
+                        <dev:CrystalizedBallRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCrystalizedBall.IsOn, Mode=OneWay}" />
                     </dev:ShaderBackground.Renderers>
                 </dev:ShaderBackground>
             </local:ControlExample>
