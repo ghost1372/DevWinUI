@@ -1,0 +1,148 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <SolidColorBrush x:Key="Timeline2SecondaryBrush" Color="#A78BFA" />
+            <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemFillColorSuccessBrush" />
+            <SolidColorBrush x:Key="Timeline2InfoBrush" Color="{ThemeResource SystemAccentColorLight2}" />
+            <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemFillColorCautionBrush" />
+            <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="ControlStrongFillColorDisabledBrush" />
+            <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="TextFillColorTertiaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="AccentFillColorDefaultBrush" />
+            <SolidColorBrush x:Key="Timeline2SecondaryBrush" Color="#7C3AED" />
+            <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemFillColorSuccessBrush" />
+            <SolidColorBrush x:Key="Timeline2InfoBrush" Color="{ThemeResource SystemAccentColorDark1}" />
+            <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemFillColorCautionBrush" />
+            <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemFillColorCriticalBrush" />
+            <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="TextOnAccentFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="ControlStrongFillColorDisabledBrush" />
+            <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+            <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="TextFillColorTertiaryBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="Timeline2PrimaryBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2SecondaryBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2SuccessBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2InfoBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2WarningBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2ErrorBrush" ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="Timeline2NeutralBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="Timeline2OnColorBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="Timeline2OnNeutralBrush" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="Timeline2ElevatedBrush" ResourceKey="SystemColorGrayTextColorBrush" />
+            <StaticResource x:Key="Timeline2SurfaceBrush" ResourceKey="SystemColorWindowColorBrush" />
+            <StaticResource x:Key="Timeline2HighlightedBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="Timeline2MutedBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <StaticResource x:Key="Timeline2DimmedBrush" ResourceKey="SystemColorGrayTextColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style x:Key="DefaultTimeline2Style" TargetType="local:Timeline2">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="PrimaryColorBrush" Value="{ThemeResource Timeline2PrimaryBrush}" />
+        <Setter Property="SecondaryColorBrush" Value="{ThemeResource Timeline2SecondaryBrush}" />
+        <Setter Property="SuccessColorBrush" Value="{ThemeResource Timeline2SuccessBrush}" />
+        <Setter Property="InfoColorBrush" Value="{ThemeResource Timeline2InfoBrush}" />
+        <Setter Property="WarningColorBrush" Value="{ThemeResource Timeline2WarningBrush}" />
+        <Setter Property="ErrorColorBrush" Value="{ThemeResource Timeline2ErrorBrush}" />
+        <Setter Property="NeutralColorBrush" Value="{ThemeResource Timeline2NeutralBrush}" />
+        <Setter Property="OnColorForeground" Value="{ThemeResource Timeline2OnColorBrush}" />
+        <Setter Property="OnNeutralForeground" Value="{ThemeResource Timeline2OnNeutralBrush}" />
+        <Setter Property="ElevatedBrush" Value="{ThemeResource Timeline2ElevatedBrush}" />
+        <Setter Property="SurfaceBrush" Value="{ThemeResource Timeline2SurfaceBrush}" />
+        <Setter Property="HighlightedForeground" Value="{ThemeResource Timeline2HighlightedBrush}" />
+        <Setter Property="MutedForeground" Value="{ThemeResource Timeline2MutedBrush}" />
+        <Setter Property="DimmedForeground" Value="{ThemeResource Timeline2DimmedBrush}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <local:Timeline2Panel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Timeline2">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <ItemsPresenter Padding="{TemplateBinding Padding}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultTimeline2Style}" TargetType="local:Timeline2" />
+
+    <Style x:Key="DefaultTimeline2ItemStyle" TargetType="local:Timeline2Item">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Timeline2Item">
+                    <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0" />
+                            <RowDefinition Height="0" />
+                        </Grid.RowDefinitions>
+                        <ContentPresenter x:Name="PART_Opposite" FontSize="{ThemeResource BodyTextBlockFontSize}" TextWrapping="Wrap" Visibility="Collapsed" />
+
+                        <Grid x:Name="PART_Separator">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Border x:Name="PART_Marker">
+                                <FontIcon x:Name="PART_Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsTextScaleFactorEnabled="False" Visibility="Collapsed" />
+                            </Border>
+                            <ContentPresenter x:Name="PART_MarkerPresenter" Visibility="Collapsed" />
+                            <Border x:Name="PART_Connector" CornerRadius="1" />
+                        </Grid>
+
+                        <StackPanel x:Name="PART_Body">
+                            <ContentPresenter x:Name="PART_Date" FontSize="{ThemeResource CaptionTextBlockFontSize}" LineHeight="20" TextWrapping="Wrap" Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_Title" FontSize="{ThemeResource BodyTextBlockFontSize}" FontWeight="Medium" TextWrapping="Wrap" Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_Description" FontSize="{ThemeResource BodyTextBlockFontSize}" TextWrapping="Wrap" Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_Content" HorizontalContentAlignment="Stretch" Visibility="Collapsed" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultTimeline2ItemStyle}" TargetType="local:Timeline2Item" />
+</ResourceDictionary>

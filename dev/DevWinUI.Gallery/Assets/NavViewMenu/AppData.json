@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.Timeline2Page",
+          "Title": "Timeline2",
+          "Subtitle": "A vertical or horizontal event timeline with progress state, icon or avatar markers, and templated content.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Line.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.TypeFlowPage",
           "Title": "Type Flow",
           "Subtitle": "Types text out character by character with a natural, slightly random rhythm",
