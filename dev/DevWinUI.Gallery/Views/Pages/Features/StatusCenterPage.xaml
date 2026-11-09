@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Page x:Class="DevWinUIGallery.Views.StatusCenterPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:dev="using:DevWinUI" xmlns:local="using:DevWinUIGallery" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+<Page x:Class="DevWinUIGallery.Views.StatusCenterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
@@ -23,6 +30,10 @@
                             <ComboBoxItem Content="Left" Tag="Left" />
                             <ComboBoxItem Content="Right" Tag="Right" />
                             <ComboBoxItem Content="Full" Tag="Full" />
+                        </ComboBox>
+                        <ComboBox x:Name="CmbSizeUnit" HorizontalAlignment="Stretch" Header="Size unit" SelectionChanged="CmbSizeUnit_SelectionChanged">
+                            <ComboBoxItem Content="Binary (KiB, MiB, GiB)" Tag="BinaryUnits" />
+                            <ComboBoxItem Content="Decimal (KB, MB, GB)" Tag="DecimalUnits" />
                         </ComboBox>
                         <Grid ColumnSpacing="8" RowSpacing="8">
                             <Grid.ColumnDefinitions>
@@ -57,7 +68,7 @@
                     </StackPanel>
                 </local:ControlExample.Pane>
                 <Grid>
-                    <dev:StatusCenterButton x:Name="StatusCenterButtonDemo" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Right" VerticalAlignment="Top" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>

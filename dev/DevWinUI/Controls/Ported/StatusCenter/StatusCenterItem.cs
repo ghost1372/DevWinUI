@@ -1,4 +1,4 @@
-﻿// Copyright (c) Files Community
+// Copyright (c) Files Community
 // Licensed under the MIT License.
 
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -152,15 +152,15 @@ namespace DevWinUI
 			{
 				SetProperty(ref _ItemIconKind, value);
 
-				IconData = ConvertIconKind(value);
+				IconSource = ConvertIconKind(value);
 			}
 		}
 
-		private Geometry? _IconData;
-		public Geometry? IconData
+		private IconSource? _IconSource;
+		public IconSource? IconSource
 		{
-			get => _IconData;
-			set => SetProperty(ref _IconData, value);
+			get => _IconSource;
+			set => SetProperty(ref _IconSource, value);
 		}
 
 		public long TotalSize { get; set; }
@@ -172,6 +172,8 @@ namespace DevWinUI
 		public IEnumerable<string>? Source { get; set; }
 
 		public IEnumerable<string>? Destination { get; set; }
+
+		public Func<StatusCenterItem, StatusCenterItemProgressModel, (string Header, string SubHeader, string Message)>? UpdateStrings { get; set; }
 
 		private double _IconBackgroundCircleBorderOpacity;
 		public double IconBackgroundCircleBorderOpacity
@@ -264,7 +266,7 @@ namespace DevWinUI
 			OnPropertyChanged(nameof(HeaderTooltip));
 		}
 
-		private static Geometry? ConvertIconKind(StatusCenterItemIconKind iconKind)
+		private static IconSource? ConvertIconKind(StatusCenterItemIconKind iconKind)
 		{
 			var pathMarkup = iconKind switch
 			{
@@ -284,7 +286,10 @@ namespace DevWinUI
 			if (string.IsNullOrEmpty(pathMarkup))
 				return null;
 
-			return XamlBindingHelper.ConvertValue(typeof(Geometry), pathMarkup) as Geometry;
+			return new PathIconSource
+			{
+				Data = XamlBindingHelper.ConvertValue(typeof(Geometry), pathMarkup) as Geometry
+			};
 		}
 
 		private void ReportProgress(StatusCenterItemProgressModel value)
@@ -316,6 +321,7 @@ namespace DevWinUI
 			if (TotalSize < value.TotalSize)
 				TotalSize = value.TotalSize;
 
+			StatusCenterHelper.UpdateCardStrings(this, value);
 			OnPropertyChanged(nameof(HeaderTooltip));
 
 			if (!IsSpeedAndProgressAvailable)

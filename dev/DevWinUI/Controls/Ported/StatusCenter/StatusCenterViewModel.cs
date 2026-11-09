@@ -84,13 +84,7 @@ namespace DevWinUI
 
 		public StatusCenterViewModel()
 		{
-			StatusCenterItems.CollectionChanged += (s, e) =>
-			{
-				OnPropertyChanged(nameof(HasAnyItem));
-
-				if (StatusCenterItems.Count is 0)
-					ShowProgressRing = false;
-			};
+			StatusCenterItems.CollectionChanged += (s, e) => OnPropertyChanged(nameof(HasAnyItem));
 		}
 
 		public void OnStatusCenterFlyoutOpened()

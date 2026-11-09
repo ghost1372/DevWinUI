@@ -1,5 +1,13 @@
 ﻿<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
-<UserControl x:Class="DevWinUI.StatusCenterButton" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:converters="using:DevWinUI" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="using:DevWinUI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:triggers="using:CommunityToolkit.WinUI" mc:Ignorable="d">
+<UserControl x:Class="DevWinUI.StatusCenterButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:DevWinUI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:DevWinUI"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:CommunityToolkit.WinUI"
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -22,7 +30,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <Button x:Name="ShowStatusCenterButton" Padding="0" AccessKey="T" AccessKeyInvoked="Button_AccessKeyInvoked" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
+        <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
 
             <Grid Margin="-16">
                 <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{x:Bind ViewModel.ShowProgressRing, Converter={StaticResource VisibilityInvertConverter}, Mode=OneWay}" />

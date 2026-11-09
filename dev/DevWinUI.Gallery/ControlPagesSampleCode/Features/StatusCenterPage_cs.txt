@@ -1,69 +1,126 @@
-private void CopyFiles_Click(object sender, RoutedEventArgs e)
+private async void Copy_Click(object sender, RoutedEventArgs e)
 {
-    const string sourceFolder = @"C:\Users\Public\Documents";
-    const string destinationFolder = @"C:\Users\Public\Downloads";
+    string[] source =
+    [
+        @"C:\Users\Public\Documents\File 1.txt",
+        @"C:\Users\Public\Documents\File 2.txt",
+        @"C:\Users\Public\Documents\File 3.txt"
+    ];
+    string[] destination =
+    [
+        @"C:\Users\Public\Downloads\File 1.txt",
+        @"C:\Users\Public\Downloads\File 2.txt",
+        @"C:\Users\Public\Downloads\File 3.txt"
+    ];
+    var totalSize = source.Length * 64L * 1024 * 1024;
+    var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, source.Length, totalSize);
 
-    string[] source = [$@"{sourceFolder}\File 1.txt", $@"{sourceFolder}\File 2.txt"];
-    string[] destination = [$@"{destinationFolder}\File 1.txt", $@"{destinationFolder}\File 2.txt"];
+    var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
 
-    var cts = new CancellationTokenSource();
+    StatusCenterViewModel.Instance.RemoveItem(banner);
+    AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
+}
 
-    var item = StatusCenterViewModel.Instance.AddItem(
-        $"Copying {source.Length} items to \"Downloads\"",
-        $"Copying {source.Length} items from \"Documents\" to \"Downloads\"",
-        ReturnResult.InProgress,
-        source,
-        destination,
-        itemsCount: source.Length,
-        cancellationTokenSource: cts);
+private static StatusCenterItem AddCard_Copy(
+    ReturnResult returnStatus,
+    string[] source,
+    string[] destination,
+    long itemsCount = 0,
+    long totalSize = 0)
+{
+    var sourcePath = GetParentDir(source.FirstOrDefault());
+    var destinationPath = GetParentDir(destination.FirstOrDefault());
+    var destinationDirName = destinationPath.Split('\\').Last();
 
-    item.ItemIconKind = StatusCenterItemIconKind.Copy;
-    item.Progress.ItemsCount = source.Length;
-    item.Progress.EnumerationCompleted = true;
+    string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
 
-    item.Progress.PropertyChanged += (_, _) =>
-        item.Header = $"Copying {item.Progress.ProcessedItemsCount} of {item.Progress.ItemsCount} items to \"Downloads\"";
-
-    var timer = DispatcherQueue.CreateTimer();
-    timer.Interval = TimeSpan.FromSeconds(1);
-
-    timer.Tick += (t, _) =>
+    string Header(long count) => returnStatus switch
     {
-        if (item.CancellationToken.IsCancellationRequested)
-        {
-            t.Stop();
-            ShowResult(ReturnResult.Cancelled);
-            return;
-        }
-
-        item.Progress.AddProcessedItemsCount(1);
-        item.Progress.Report();
-
-        if (item.Progress.ProcessedItemsCount < item.Progress.ItemsCount)
-            return;
-
-        t.Stop();
-        ShowResult(ReturnResult.Success);
+        ReturnResult.Cancelled => $"Canceled copying {ItemsText(count)} to \"{destinationDirName}\"",
+        ReturnResult.Success => $"Copied {ItemsText(count)} to \"{destinationDirName}\"",
+        ReturnResult.Failed => $"Error copying {ItemsText(count)} to \"{destinationDirName}\"",
+        _ => $"Copying {ItemsText(count)} to \"{destinationDirName}\""
     };
 
-    timer.Start();
-
-    void ShowResult(ReturnResult result)
+    string SubHeader(long count) => returnStatus switch
     {
-        var verb = result is ReturnResult.Cancelled ? "Canceled copying" : "Copied";
+        ReturnResult.Cancelled => $"Canceled copying {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
+        ReturnResult.Success => $"Copied {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
+        ReturnResult.Failed => $"Failed to copy {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
+        _ => $"Copying {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\""
+    };
 
-        StatusCenterViewModel.Instance.RemoveItem(item);
+    string Message(StatusCenterItemProgressModel progress)
+        => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-        var completedItem = StatusCenterViewModel.Instance.AddItem(
-            $"{verb} {source.Length} items to \"Downloads\"",
-            $"{verb} {source.Length} items from \"Documents\" to \"Downloads\"",
-            result,
-            source,
-            destination,
-            canProvideProgress: false,
-            itemsCount: source.Length);
+    return StatusCenterHelper.AddCard(
+        returnStatus,
+        Header(itemsCount),
+        SubHeader(itemsCount),
+        "Discovering items...",
+        StatusCenterItemIconKind.Copy,
+        source,
+        destination,
+        itemsCount: itemsCount,
+        totalSize: totalSize,
+        update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+}
 
-        if (result is ReturnResult.Cancelled)
-            completedItem.ItemIconKind = StatusCenterItemIconKind.Copy;
+private static async Task<ReturnResult> SimulateFileOperationAsync(
+    IProgress<StatusCenterItemProgressModel> progress,
+    string[] source,
+    long totalSize,
+    CancellationToken cancellationToken)
+{
+    var progressModel = new StatusCenterItemProgressModel(
+        progress,
+        enumerationCompleted: true,
+        status: FileSystemStatusCode.InProgress,
+        itemsCount: source.Length)
+    {
+        TotalSize = totalSize
+    };
+    progressModel.Report(0);
+
+    try
+    {
+        var percentage = 0.0;
+
+        while (percentage < 100)
+        {
+            var delay = Random.Shared.Next(100, 140);
+            if (Random.Shared.Next(0, 15) == 0)
+                delay += Random.Shared.Next(150, 300);
+
+            await Task.Delay(delay, cancellationToken);
+
+            percentage = Math.Min(100, percentage + Random.Shared.Next(2, 5));
+
+            var processedItems = Math.Min(source.Length, (int)Math.Ceiling(source.Length * percentage / 100));
+            var pendingItems = processedItems - progressModel.ProcessedItemsCount;
+
+            if (pendingItems > 0)
+                progressModel.AddProcessedItemsCount(pendingItems);
+
+            if (source.Length > 0)
+                progressModel.FileName = Path.GetFileName(source[Math.Max(0, processedItems - 1)]);
+
+            progressModel.Report(percentage);
+        }
+
+        return ReturnResult.Success;
     }
+    catch (OperationCanceledException)
+    {
+        return ReturnResult.Cancelled;
+    }
+}
+
+private static string GetParentDir(string? path)
+{
+    if (string.IsNullOrEmpty(path))
+        return string.Empty;
+
+    var index = path.Contains('/', StringComparison.Ordinal) ? path.LastIndexOf('/') : path.LastIndexOf('\\');
+    return path[..(index != -1 ? index : path.Length)];
 }

@@ -280,7 +280,7 @@ public sealed partial class SpeedGraph2 : Control
         if (points == null || points.Count == 0)
         {
             highestValue = 0;
-            graphGeometry.Path = null;
+            graphVisual.IsVisible = false;
 
             line.StopAnimation("Offset.Y");
             line.Offset = new(0f, height - 4f, 0);
@@ -292,6 +292,7 @@ public sealed partial class SpeedGraph2 : Control
 
         var last = points[points.Count - 1];
 
+        graphVisual.IsVisible = true;
         graphGeometry.Path = CreatePathFromPoints(points);
 
         lineAnim.InsertKeyFrame(1f, YValue(last.Y), linearEasing);

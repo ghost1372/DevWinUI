@@ -4,39 +4,16 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class StatusCenterPage : Page
 {
-    private const string SourceRoot = @"C:\Users\Public\Documents";
-    private const string DestinationRoot = @"C:\Users\Public\Downloads";
-    private const string RepositoryUrl = "https://github.com/ghost1372/DevWinUI";
-    private const string RepositoryPath = $@"{SourceRoot}\DevWinUI";
-    private const long GitCloneObjectCount = 1024;
-    private const long Megabyte = 1024 * 1024;
-    private const double TimerIntervalSeconds = 0.1;
-    private const int IndeterminateDurationTicks = 30;
-    private const string DiscoveringItems = "Discovering items...";
-    private const string ProcessingItems = "Processing items...";
-
-    private static readonly long[] DemoSizes = [192, 160, 128, 96, 64];
-
-    private readonly List<DemoOperation> _operations = [];
-    private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromMilliseconds(100) };
-    private readonly Random _random = new();
-
     public StatusCenterPage()
     {
         InitializeComponent();
-
         CmbFlyoutPlacement.SelectedIndex = 0;
-
-        _timer.Tick += Timer_Tick;
-        Unloaded += (_, _) => _timer.Stop();
+        CmbSizeUnit.SelectedIndex = 0;
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
-
-        _timer.Stop();
-        _operations.Clear();
 
         var viewModel = StatusCenterViewModel.Instance;
 
@@ -46,536 +23,566 @@ public sealed partial class StatusCenterPage : Page
 
     private void CmbFlyoutPlacement_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (CmbFlyoutPlacement.SelectedItem is ComboBoxItem { Tag: string placement } &&
-            Enum.TryParse(placement, out FlyoutPlacementMode flyoutPlacement))
-            StatusCenterButtonDemo.FlyoutPlacement = flyoutPlacement;
+        if (CmbFlyoutPlacement.SelectedItem is ComboBoxItem { Tag: string placement } && Enum.TryParse(placement, out FlyoutPlacementMode flyoutPlacement))
+            StatusCenterButtonSample.FlyoutPlacement = flyoutPlacement;
     }
 
-    private void Copy_Click(object sender, RoutedEventArgs e)
+    private void CmbSizeUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var source = Items(3);
-        var destination = Destinations(3);
-        var totalSize = GetTotalSize(source.Length);
-
-        Start(AddCardCopy(ReturnResult.InProgress, source, destination, source.Length, totalSize), totalSize,
-            result => AddCardCopy(result, source, destination, source.Length, totalSize));
+        if (CmbSizeUnit.SelectedItem is ComboBoxItem { Tag: string sizeUnit } && Enum.TryParse(sizeUnit, out SizeUnitTypes sizeUnitType))
+            StatusCenterHelper.SizeUnitFormat = sizeUnitType;
     }
 
-    private void Move_Click(object sender, RoutedEventArgs e)
+    private async void Copy_Click(object sender, RoutedEventArgs e)
     {
-        var source = Items(4);
-        var destination = Destinations(4);
-        var totalSize = GetTotalSize(source.Length);
+        string[] source =
+        [
+            @"C:\Users\Public\Documents\File 1.txt",
+            @"C:\Users\Public\Documents\File 2.txt",
+            @"C:\Users\Public\Documents\File 3.txt"
+        ];
+        string[] destination =
+        [
+            @"C:\Users\Public\Downloads\File 1.txt",
+            @"C:\Users\Public\Downloads\File 2.txt",
+            @"C:\Users\Public\Downloads\File 3.txt"
+        ];
+        var totalSize = source.Length * 64L * 1024 * 1024;
+        var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, source.Length, totalSize);
 
-        Start(AddCardMove(ReturnResult.InProgress, source, destination, source.Length, totalSize), totalSize,
-            result => AddCardMove(result, source, destination, source.Length, totalSize));
+        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
-    private void Delete_Click(object sender, RoutedEventArgs e)
+    private async void Move_Click(object sender, RoutedEventArgs e)
     {
-        var source = Items(2);
-        var totalSize = GetTotalSize(source.Length);
+        string[] source =
+        [
+            @"C:\Users\Public\Documents\File 1.txt",
+            @"C:\Users\Public\Documents\File 2.txt",
+            @"C:\Users\Public\Documents\File 3.txt",
+            @"C:\Users\Public\Documents\File 4.txt"
+        ];
+        string[] destination =
+        [
+            @"C:\Users\Public\Downloads\File 1.txt",
+            @"C:\Users\Public\Downloads\File 2.txt",
+            @"C:\Users\Public\Downloads\File 3.txt",
+            @"C:\Users\Public\Downloads\File 4.txt"
+        ];
+        var totalSize = source.Length * 64L * 1024 * 1024;
+        var banner = AddCard_Move(ReturnResult.InProgress, source, destination, source.Length, totalSize);
 
-        Start(AddCardDelete(ReturnResult.InProgress, source, source.Length, totalSize), totalSize,
-            result => AddCardDelete(result, source, source.Length, totalSize));
+        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Move(result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
-    private void Recycle_Click(object sender, RoutedEventArgs e)
+    private async void Delete_Click(object sender, RoutedEventArgs e)
     {
-        var source = Items(5);
-        var totalSize = GetTotalSize(source.Length);
+        string[] source =
+        [
+            @"C:\Users\Public\Documents\File 1.txt",
+            @"C:\Users\Public\Documents\File 2.txt"
+        ];
+        var banner = AddCard_Delete(ReturnResult.InProgress, source, source.Length);
 
-        Start(AddCardRecycle(ReturnResult.InProgress, source, source.Length, totalSize), totalSize,
-            result => AddCardRecycle(result, source, source.Length, totalSize));
+        var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Delete(result, source, banner.TotalItemsCount);
     }
 
-    private void Compress_Click(object sender, RoutedEventArgs e)
+    private async void Recycle_Click(object sender, RoutedEventArgs e)
     {
-        var source = Items(3);
-        var totalSize = GetTotalSize(source.Length);
-        string[] destination = [$@"{DestinationRoot}\Archive.zip"];
+        string[] source =
+        [
+            @"C:\Users\Public\Documents\File 1.txt",
+            @"C:\Users\Public\Documents\File 2.txt",
+            @"C:\Users\Public\Documents\File 3.txt",
+            @"C:\Users\Public\Documents\File 4.txt",
+            @"C:\Users\Public\Documents\File 5.txt"
+        ];
+        var banner = AddCard_Recycle(ReturnResult.InProgress, source, source.Length);
 
-        Start(AddCardCompress(source, destination, ReturnResult.InProgress, source.Length, totalSize), totalSize,
-            result => AddCardCompress(source, destination, result, source.Length, totalSize));
+        var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Recycle(result, source, banner.TotalItemsCount);
     }
 
-    private void Extract_Click(object sender, RoutedEventArgs e)
+    private async void Compress_Click(object sender, RoutedEventArgs e)
     {
-        const long totalSize = 512 * Megabyte;
-        string[] source = [$@"{SourceRoot}\Archive.zip"];
-        string[] destination = [$@"{DestinationRoot}\Archive"];
+        string[] source =
+        [
+            @"C:\Users\Public\Documents\File 1.txt",
+            @"C:\Users\Public\Documents\File 2.txt",
+            @"C:\Users\Public\Documents\File 3.txt"
+        ];
+        string[] destination = [@"C:\Users\Public\Downloads\Archive.zip"];
+        var totalSize = source.Length * 48L * 1024 * 1024;
+        var banner = AddCard_Compress(source, destination, ReturnResult.InProgress, source.Length, totalSize);
 
-        Start(AddCardDecompress(source, destination, ReturnResult.InProgress, 1, totalSize), totalSize,
-            result => AddCardDecompress(source, destination, result, 1, totalSize));
+        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Compress(source, destination, result, source.Length, totalSize);
     }
 
-    private void InstallFont_Click(object sender, RoutedEventArgs e)
+    private async void Extract_Click(object sender, RoutedEventArgs e)
+    {
+        string[] source = [@"C:\Users\Public\Documents\Archive.zip"];
+        string[] destination = [@"C:\Users\Public\Downloads\Archive"];
+        const long totalSize = 256L * 1024 * 1024;
+        var banner = AddCard_Decompress(source, destination, ReturnResult.InProgress, 1, totalSize);
+
+        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_Decompress(source, destination, result, 1, totalSize);
+    }
+
+    private async void InstallFont_Click(object sender, RoutedEventArgs e)
     {
         const int fontCount = 2;
 
-        StartWithoutProgress(AddCardInstallFont([SourceRoot], ReturnResult.InProgress, fontCount, 0),
-            result => AddCardInstallFont([SourceRoot], result, fontCount, 0));
+        var banner = AddCard_InstallFont([@"C:\Users\Public\Documents"], ReturnResult.InProgress, fontCount);
+
+        var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_InstallFont([@"C:\Users\Public\Documents"], result, fontCount);
     }
 
-    private void EmptyRecycleBin_Click(object sender, RoutedEventArgs e)
+    private async void EmptyRecycleBin_Click(object sender, RoutedEventArgs e)
     {
-        StartWithoutProgress(AddCardEmptyRecycleBin(ReturnResult.InProgress, 0, 0),
-            result => AddCardEmptyRecycleBin(result, 0, 0));
+        var banner = AddCard_EmptyRecycleBin(ReturnResult.InProgress);
+
+        var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_EmptyRecycleBin(result);
     }
 
-    private void GitClone_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Clone, RepositoryUrl);
+    private async void GitClone_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Clone, "https://github.com/ghost1372/DevWinUI");
 
-    private void GitFetch_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Fetch, null);
+    private async void GitFetch_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Fetch, null);
 
-    private void GitPull_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Pull, null);
+    private async void GitPull_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Pull, null);
 
-    private void GitPush_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Push, null);
+    private async void GitPush_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Push, null);
 
-    private void GitSync_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Sync, null);
+    private async void GitSync_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Sync, null);
 
-    private void GitCheckout_Click(object sender, RoutedEventArgs e) => StartGit(GitOperationKind.Checkout, "main");
+    private async void GitCheckout_Click(object sender, RoutedEventArgs e)
+        => await RunGitAsync(GitStatusCenterOperationKind.Checkout, "main");
 
-    private void StartGit(GitOperationKind operationKind, string? operationTarget)
+    private static async Task RunGitAsync(GitStatusCenterOperationKind operationKind, string? operationTarget)
     {
-        var itemsCount = operationKind is GitOperationKind.Clone ? GitCloneObjectCount : 0;
+        var itemsCount = operationKind is GitStatusCenterOperationKind.Clone ? 1024 : 0;
 
-        Start(AddCardGit(operationKind, RepositoryPath, ReturnResult.InProgress, true, operationTarget, itemsCount), 0,
-            result => AddCardGit(operationKind, RepositoryPath, result, false, operationTarget, itemsCount), isGit: true);
+        var banner = AddCard_GitOperation(operationKind, @"C:\Users\Public\Documents\DevWinUI", ReturnResult.InProgress, true, operationTarget, itemsCount);
+
+        var result = await SimulateGitOperationAsync(operationKind, banner.ProgressEventSource, itemsCount, banner.CancellationToken);
+
+        StatusCenterViewModel.Instance.RemoveItem(banner);
+        AddCard_GitOperation(operationKind, @"C:\Users\Public\Documents\DevWinUI", result, false, operationTarget, itemsCount);
     }
 
-    private static StatusCenterItem AddCard(
-        ReturnResult status,
-        string header,
-        string subHeader,
-        string message,
-        StatusCenterItemIconKind iconKind,
-        string[]? source,
-        string[]? destination,
-        bool canProvideProgress,
-        long itemsCount,
-        long totalSize,
-        bool cancellable,
-        Func<StatusCenterItem, (string Header, string SubHeader, string Message)>? update)
+    private static StatusCenterItem AddCard_Copy(
+        ReturnResult returnStatus,
+        string[] source,
+        string[] destination,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        var cancellationTokenSource = cancellable ? new CancellationTokenSource() : null;
+        var sourcePath = GetParentDir(source.FirstOrDefault());
+        var destinationPath = GetParentDir(destination.FirstOrDefault());
+        var destinationDirName = destinationPath.Split('\\').Last();
 
-        var item = StatusCenterViewModel.Instance.AddItem(
-            header,
-            subHeader,
-            status,
-            source,
-            destination,
-            canProvideProgress,
-            itemsCount,
-            totalSize,
-            cancellationTokenSource);
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
 
-        if (status is ReturnResult.InProgress or ReturnResult.Cancelled)
-            item.ItemIconKind = iconKind;
-
-        item.Message = message;
-
-        if (update is not null)
-        {
-            item.Progress.PropertyChanged += (_, _) =>
-            {
-                var value = update(item);
-                item.Header = value.Header;
-                item.SubHeader = value.SubHeader;
-                item.Message = value.Message;
-            };
-        }
-
-        return item;
-    }
-
-    private static StatusCenterItem AddCardCopy(ReturnResult returnStatus, string[] source, string[] destination, long itemsCount, long totalSize)
-    {
-        var destinationDirName = GetLastSegment(GetParentDirectory(destination.FirstOrDefault()));
-        var sourcePath = GetParentDirectory(source.FirstOrDefault());
-        var destinationPath = GetParentDirectory(destination.FirstOrDefault());
-
-        return AddCard(
-            returnStatus,
-            CopyHeader(returnStatus, itemsCount, destinationDirName),
-            CopySubHeader(returnStatus, itemsCount, sourcePath, destinationPath),
-            DiscoveringItems,
-            StatusCenterItemIconKind.Copy,
-            source,
-            destination,
-            true,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (CopyHeader(returnStatus, item.TotalItemsCount, destinationDirName),
-                CopySubHeader(returnStatus, item.TotalItemsCount, sourcePath, destinationPath),
-                SizeMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardMove(ReturnResult returnStatus, string[] source, string[] destination, long itemsCount, long totalSize)
-    {
-        var destinationDirName = GetLastSegment(GetParentDirectory(destination.FirstOrDefault()));
-        var sourcePath = GetParentDirectory(source.FirstOrDefault());
-        var destinationPath = GetParentDirectory(destination.FirstOrDefault());
-
-        return AddCard(
-            returnStatus,
-            MoveHeader(returnStatus, itemsCount, destinationDirName),
-            MoveSubHeader(returnStatus, itemsCount, sourcePath, destinationPath),
-            DiscoveringItems,
-            StatusCenterItemIconKind.Move,
-            source,
-            destination,
-            true,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (MoveHeader(returnStatus, item.TotalItemsCount, destinationDirName),
-                MoveSubHeader(returnStatus, item.TotalItemsCount, sourcePath, destinationPath),
-                SizeMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardDelete(ReturnResult returnStatus, string[]? source, long itemsCount, long totalSize)
-    {
-        var sourcePath = GetParentDirectory(source?.FirstOrDefault());
-        var sourceDirName = GetLastSegment(sourcePath);
-
-        return AddCard(
-            returnStatus,
-            DeleteHeader(returnStatus, itemsCount, sourceDirName),
-            returnStatus is ReturnResult.Failed ? DeleteFailedSubHeader(itemsCount, sourcePath) : string.Empty,
-            DiscoveringItems,
-            StatusCenterItemIconKind.Delete,
-            source,
-            null,
-            true,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (DeleteHeader(returnStatus, item.TotalItemsCount, sourceDirName),
-                returnStatus is ReturnResult.Failed ? DeleteFailedSubHeader(item.TotalItemsCount, sourcePath) : string.Empty,
-                ItemsMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardRecycle(ReturnResult returnStatus, string[]? source, long itemsCount, long totalSize)
-    {
-        var sourcePath = GetParentDirectory(source?.FirstOrDefault());
-        var sourceDirName = GetLastSegment(sourcePath);
-
-        return AddCard(
-            returnStatus,
-            DeleteHeader(returnStatus, itemsCount, sourceDirName),
-            string.Empty,
-            DiscoveringItems,
-            StatusCenterItemIconKind.Recycle,
-            source,
-            null,
-            true,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (DeleteHeader(returnStatus, item.TotalItemsCount, sourceDirName), string.Empty, ItemsMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardCompress(string[] source, string[] destination, ReturnResult returnStatus, long itemsCount, long totalSize)
-    {
-        var destinationDirName = GetLastSegment(GetParentDirectory(destination.FirstOrDefault()));
-        var sourcePath = GetParentDirectory(source.FirstOrDefault());
-        var destinationPath = GetParentDirectory(destination.FirstOrDefault());
-
-        return AddCard(
-            returnStatus,
-            CompressHeader(returnStatus, itemsCount, destinationDirName),
-            CompressSubHeader(returnStatus, itemsCount, sourcePath, destinationPath),
-            DiscoveringItems,
-            StatusCenterItemIconKind.Compress,
-            source,
-            destination,
-            returnStatus is ReturnResult.InProgress,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (CompressHeader(returnStatus, item.TotalItemsCount, destinationDirName),
-                CompressSubHeader(returnStatus, item.TotalItemsCount, sourcePath, destinationPath),
-                ItemsMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardDecompress(string[] source, string[] destination, ReturnResult returnStatus, long itemsCount, long totalSize)
-    {
-        var sourceFileName = GetLastSegment(source.FirstOrDefault());
-        var destinationDirName = GetLastSegment(GetParentDirectory(destination.FirstOrDefault()));
-        var sourcePath = GetParentDirectory(source.FirstOrDefault());
-        var destinationPath = GetParentDirectory(destination.FirstOrDefault());
-
-        return AddCard(
-            returnStatus,
-            DecompressHeader(returnStatus, sourceFileName, destinationDirName),
-            DecompressSubHeader(returnStatus, sourceFileName, sourcePath, destinationPath),
-            DiscoveringItems,
-            StatusCenterItemIconKind.Extract,
-            source,
-            destination,
-            returnStatus is ReturnResult.InProgress,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (DecompressHeader(returnStatus, sourceFileName, destinationDirName),
-                DecompressSubHeader(returnStatus, sourceFileName, sourcePath, destinationPath),
-                SizeMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardInstallFont(string[] source, ReturnResult returnStatus, long itemsCount, long totalSize)
-    {
-        var sourcePath = GetParentDirectory(source.FirstOrDefault());
-
-        return AddCard(
-            returnStatus,
-            InstallFontHeader(returnStatus, itemsCount),
-            InstallFontSubHeader(returnStatus, itemsCount, sourcePath),
-            DiscoveringItems,
-            StatusCenterItemIconKind.InstallFont,
-            source,
-            [string.Empty],
-            false,
-            itemsCount,
-            totalSize,
-            false,
-            item => (InstallFontHeader(returnStatus, item.TotalItemsCount),
-                InstallFontSubHeader(returnStatus, item.TotalItemsCount, sourcePath),
-                SizeMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardEmptyRecycleBin(ReturnResult returnStatus, long itemsCount, long totalSize)
-    {
-        return AddCard(
-            returnStatus,
-            EmptyRecycleBinHeader(returnStatus),
-            returnStatus is ReturnResult.Failed ? "Failed to empty Recycle Bin" : string.Empty,
-            DiscoveringItems,
-            StatusCenterItemIconKind.Delete,
-            null,
-            null,
-            false,
-            itemsCount,
-            totalSize,
-            returnStatus is ReturnResult.InProgress,
-            item => (EmptyRecycleBinHeader(returnStatus),
-                returnStatus is ReturnResult.Failed ? "Failed to empty Recycle Bin" : string.Empty,
-                ItemsMessage(item)));
-    }
-
-    private static StatusCenterItem AddCardGit(GitOperationKind operationKind, string repositoryPath, ReturnResult returnStatus, bool canProvideProgress, string? operationTarget, long itemsCount)
-    {
-        var isClone = operationKind is GitOperationKind.Clone;
-        var displayPath = isClone ? GetParentDirectory(repositoryPath) : repositoryPath;
-        var repositoryName = Path.GetFileName(displayPath.TrimEnd('\\', '/'));
-
-        if (string.IsNullOrEmpty(repositoryName))
-            repositoryName = displayPath;
-
-        var subHeader = isClone
-            ? GitCloneSubHeader(returnStatus, itemsCount, operationTarget ?? string.Empty, displayPath)
-            : repositoryPath;
-
-        var item = AddCard(
-            returnStatus,
-            GitHeader(operationKind, returnStatus, operationTarget, repositoryName),
-            subHeader,
-            "0% complete",
-            StatusCenterItemIconKind.Git,
-            operationTarget is null ? null : [operationTarget],
-            [repositoryPath],
-            returnStatus is ReturnResult.InProgress && canProvideProgress,
-            itemsCount,
-            0,
-            returnStatus is ReturnResult.InProgress && operationKind is GitOperationKind.Clone,
-            item => (GitHeader(operationKind, returnStatus, operationTarget, repositoryName),
-                isClone
-                    ? GitCloneSubHeader(returnStatus, item.TotalItemsCount, operationTarget ?? string.Empty, displayPath)
-                    : subHeader,
-                GitMessage(item)));
-
-        if (returnStatus is ReturnResult.InProgress)
-            item.IsSpeedAndProgressAvailable = false;
-
-        return item;
-    }
-
-    private static string CopyHeader(ReturnResult status, long count, string destinationDirName)
-    {
-        return status switch
+        string Header(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled copying {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Success => $"Copied {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Failed => $"Error copying {ItemsText(count)} to \"{destinationDirName}\"",
             _ => $"Copying {ItemsText(count)} to \"{destinationDirName}\""
         };
-    }
 
-    private static string CopySubHeader(ReturnResult status, long count, string sourcePath, string destinationPath)
-    {
-        return status switch
+        string SubHeader(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled copying {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Success => $"Copied {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Failed => $"Failed to copy {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             _ => $"Copying {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\""
         };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            SubHeader(itemsCount),
+            "Discovering items...",
+            StatusCenterItemIconKind.Copy,
+            source,
+            destination,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
-    private static string MoveHeader(ReturnResult status, long count, string destinationDirName)
+    private static StatusCenterItem AddCard_Move(
+        ReturnResult returnStatus,
+        string[] source,
+        string[] destination,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        var sourcePath = GetParentDir(source.FirstOrDefault());
+        var destinationPath = GetParentDir(destination.FirstOrDefault());
+        var destinationDirName = destinationPath.Split('\\').Last();
+
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
+
+        string Header(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled moving {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Success => $"Moved {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Failed => $"Error moving {ItemsText(count)} to \"{destinationDirName}\"",
             _ => $"Moving {ItemsText(count)} to \"{destinationDirName}\""
         };
-    }
 
-    private static string MoveSubHeader(ReturnResult status, long count, string sourcePath, string destinationPath)
-    {
-        return status switch
+        string SubHeader(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled moving {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Success => $"Moved {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Failed => $"Failed to move {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             _ => $"Moving {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\""
         };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            SubHeader(itemsCount),
+            "Discovering items...",
+            StatusCenterItemIconKind.Move,
+            source,
+            destination,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
-    private static string DeleteHeader(ReturnResult status, long count, string sourceDirName)
+    private static StatusCenterItem AddCard_Delete(
+        ReturnResult returnStatus,
+        string[]? source,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        var sourcePath = GetParentDir(source?.FirstOrDefault());
+        var sourceDirName = sourcePath.Split('\\').Last();
+
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
+
+        string Header(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled deleting {ItemsText(count)} from \"{sourceDirName}\"",
             ReturnResult.Success => $"Deleted {ItemsText(count)} from \"{sourceDirName}\"",
             ReturnResult.Failed => $"Error deleting {ItemsText(count)} from \"{sourceDirName}\"",
             _ => $"Deleting {ItemsText(count)} from \"{sourceDirName}\""
         };
+
+        string SubHeader(long count) => returnStatus is ReturnResult.Failed
+            ? $"Failed to delete {ItemsText(count)} from \"{sourcePath}\""
+            : string.Empty;
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            SubHeader(itemsCount),
+            "Discovering items...",
+            StatusCenterItemIconKind.Delete,
+            source,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
-    private static string DeleteFailedSubHeader(long count, string sourcePath)
-        => $"Failed to delete {ItemsText(count)} from \"{sourcePath}\"";
-
-    private static string CompressHeader(ReturnResult status, long count, string destinationDirName)
+    private static StatusCenterItem AddCard_Recycle(
+        ReturnResult returnStatus,
+        string[]? source,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        var sourcePath = GetParentDir(source?.FirstOrDefault());
+        var sourceDirName = sourcePath.Split('\\').Last();
+
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
+
+        string Header(long count) => returnStatus switch
         {
-            ReturnResult.Cancelled => $"Canceled compressing {count} items to \"{destinationDirName}\"",
+            ReturnResult.Cancelled => $"Canceled deleting {ItemsText(count)} from \"{sourceDirName}\"",
+            ReturnResult.Success => $"Deleted {ItemsText(count)} from \"{sourceDirName}\"",
+            ReturnResult.Failed => $"Error deleting {ItemsText(count)} from \"{sourceDirName}\"",
+            _ => $"Deleting {ItemsText(count)} from \"{sourceDirName}\""
+        };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            string.Empty,
+            "Discovering items...",
+            StatusCenterItemIconKind.Recycle,
+            source,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (item, progress) => (Header(item.TotalItemsCount), string.Empty, Message(progress)));
+    }
+
+    private static StatusCenterItem AddCard_Compress(
+        string[] source,
+        string[] destination,
+        ReturnResult returnStatus,
+        long itemsCount = 0,
+        long totalSize = 0)
+    {
+        var sourcePath = GetParentDir(source.FirstOrDefault());
+        var destinationPath = GetParentDir(destination.FirstOrDefault());
+        var destinationDirName = destinationPath.Split('\\').Last();
+
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
+
+        string Header(long count) => returnStatus switch
+        {
+            ReturnResult.Cancelled => $"Canceled compressing {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Success => $"Compressed {ItemsText(count)} to \"{destinationDirName}\"",
             ReturnResult.Failed => $"Error compressing {ItemsText(count)} to \"{destinationDirName}\"",
             _ => $"Compressing {ItemsText(count)} to \"{destinationDirName}\""
         };
-    }
 
-    private static string CompressSubHeader(ReturnResult status, long count, string sourcePath, string destinationPath)
-    {
-        return status switch
+        string SubHeader(long count) => returnStatus switch
         {
-            ReturnResult.Cancelled => $"Canceled compressing {count} items from \"{sourcePath}\" to \"{destinationPath}\"",
+            ReturnResult.Cancelled => $"Canceled compressing {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Success => $"Compressed {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Failed => $"Failed to compress {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\"",
             _ => $"Compressing {ItemsText(count)} from \"{sourcePath}\" to \"{destinationPath}\""
         };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            SubHeader(itemsCount),
+            "Discovering items...",
+            StatusCenterItemIconKind.Compress,
+            source,
+            destination,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
-    private static string DecompressHeader(ReturnResult status, string sourceFileName, string destinationDirName)
+    private static StatusCenterItem AddCard_Decompress(
+        string[] source,
+        string[] destination,
+        ReturnResult returnStatus,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        var sourceFileName = source.First().Split('\\').Last();
+        var sourcePath = GetParentDir(source.FirstOrDefault());
+        var destinationPath = GetParentDir(destination.FirstOrDefault());
+        var destinationDirName = destinationPath.Split('\\').Last();
+
+        string Header() => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled extracting \"{sourceFileName}\" to \"{destinationDirName}\"",
             ReturnResult.Success => $"Extracted \"{sourceFileName}\" to \"{destinationDirName}\"",
             ReturnResult.Failed => $"Error extracting \"{sourceFileName}\" to \"{destinationDirName}\"",
             _ => $"Extracting \"{sourceFileName}\" to \"{destinationDirName}\""
         };
-    }
 
-    private static string DecompressSubHeader(ReturnResult status, string sourceFileName, string sourcePath, string destinationPath)
-    {
-        return status switch
+        string SubHeader() => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled extracting \"{sourceFileName}\" from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Success => $"Extracted \"{sourceFileName}\" from \"{sourcePath}\" to \"{destinationPath}\"",
             ReturnResult.Failed => $"Failed to extract \"{sourceFileName}\" from \"{sourcePath}\" to \"{destinationPath}\"",
             _ => $"Extracting \"{sourceFileName}\" from \"{sourcePath}\" to \"{destinationPath}\""
         };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(),
+            SubHeader(),
+            "Discovering items...",
+            StatusCenterItemIconKind.Extract,
+            source,
+            destination,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (_, progress) => (Header(), SubHeader(), Message(progress)));
     }
 
-    private static string InstallFontHeader(ReturnResult status, long count)
+    private static StatusCenterItem AddCard_InstallFont(
+        string[] source,
+        ReturnResult returnStatus,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        var sourcePath = GetParentDir(source.FirstOrDefault());
+
+        string FontsText(long count) => count == 1 ? "1 font" : $"{count} fonts";
+
+        string Header(long count) => returnStatus switch
         {
-            ReturnResult.Cancelled => $"Canceled installing {count} fonts",
+            ReturnResult.Cancelled => $"Canceled installing {FontsText(count)}",
             ReturnResult.Success => $"Installed {FontsText(count)}",
             ReturnResult.Failed => $"Error installing {FontsText(count)}",
             _ => $"Installing {FontsText(count)}"
         };
-    }
 
-    private static string InstallFontSubHeader(ReturnResult status, long count, string sourcePath)
-    {
-        return status switch
+        string SubHeader(long count) => returnStatus switch
         {
             ReturnResult.Cancelled => $"Canceled installing {FontsText(count)} from \"{sourcePath}\"",
             ReturnResult.Success => $"Installed {FontsText(count)} from \"{sourcePath}\"",
             ReturnResult.Failed => $"Failed to install {FontsText(count)} from \"{sourcePath}\"",
             _ => $"Installing {FontsText(count)} from \"{sourcePath}\""
         };
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+
+        var item = StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(itemsCount),
+            SubHeader(itemsCount),
+            "Discovering items...",
+            StatusCenterItemIconKind.InstallFont,
+            source,
+            (string[])[string.Empty],
+            false,
+            itemsCount,
+            totalSize,
+            (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+
+        if (returnStatus is ReturnResult.InProgress)
+            item.IsCancelable = false;
+
+        return item;
     }
 
-    private static string EmptyRecycleBinHeader(ReturnResult status)
+    private static StatusCenterItem AddCard_EmptyRecycleBin(
+        ReturnResult returnStatus,
+        long itemsCount = 0,
+        long totalSize = 0)
     {
-        return status switch
+        string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
+
+        string Header() => returnStatus switch
         {
             ReturnResult.Cancelled => "Canceled emptying Recycle Bin",
             ReturnResult.Success => "Emptied Recycle Bin",
             ReturnResult.Failed => "Error emptying Recycle Bin",
             _ => "Emptying Recycle Bin"
         };
+
+        string SubHeader() => returnStatus is ReturnResult.Failed
+            ? "Failed to empty Recycle Bin"
+            : string.Empty;
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+
+        return StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(),
+            SubHeader(),
+            "Discovering items...",
+            StatusCenterItemIconKind.Delete,
+            canProvideProgress: false,
+            itemsCount: itemsCount,
+            totalSize: totalSize,
+            update: (_, progress) => (Header(), SubHeader(), Message(progress)));
     }
 
-    private static string GitHeader(GitOperationKind operationKind, ReturnResult status, string? operationTarget, string repositoryName)
+    private static StatusCenterItem AddCard_GitOperation(
+        GitStatusCenterOperationKind operationKind,
+        string repositoryPath,
+        ReturnResult returnStatus,
+        bool canProvideProgress = false,
+        string? operationTarget = null,
+        long itemsCount = 0)
     {
-        return operationKind switch
+        var isClone = operationKind is GitStatusCenterOperationKind.Clone;
+        var displayPath = isClone ? GetParentDir(repositoryPath) : repositoryPath;
+        var repositoryName = Path.GetFileName(displayPath.TrimEnd('\\', '/'));
+
+        if (string.IsNullOrEmpty(repositoryName))
+            repositoryName = displayPath;
+
+        string Header() => operationKind switch
         {
-            GitOperationKind.Clone => status switch
+            GitStatusCenterOperationKind.Clone => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled cloning {operationTarget} to \"{repositoryName}\"",
                 ReturnResult.Success => $"Cloned \"{operationTarget}\" to \"{repositoryName}\"",
                 ReturnResult.Failed => $"Error cloning \"{operationTarget}\" to \"{repositoryName}\"",
                 _ => $"Cloning \"{operationTarget}\" to \"{repositoryName}\""
             },
-            GitOperationKind.Fetch => status switch
+            GitStatusCenterOperationKind.Fetch => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled fetching remote changes for \"{repositoryName}\"",
                 ReturnResult.Success => $"Fetched remote changes for \"{repositoryName}\"",
                 ReturnResult.Failed => $"Failed to fetch remote changes for \"{repositoryName}\"",
                 _ => $"Fetching remote changes for \"{repositoryName}\""
             },
-            GitOperationKind.Pull => status switch
+            GitStatusCenterOperationKind.Pull => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled pulling remote changes into \"{repositoryName}\"",
                 ReturnResult.Success => $"Pulled remote changes into \"{repositoryName}\"",
                 ReturnResult.Failed => $"Failed to pull remote changes into \"{repositoryName}\"",
                 _ => $"Pulling remote changes into \"{repositoryName}\""
             },
-            GitOperationKind.Push => status switch
+            GitStatusCenterOperationKind.Push => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled pushing local commits from \"{repositoryName}\"",
                 ReturnResult.Success => $"Pushed local commits from \"{repositoryName}\"",
                 ReturnResult.Failed => $"Failed to push local commits from \"{repositoryName}\"",
                 _ => $"Pushing local commits from \"{repositoryName}\""
             },
-            GitOperationKind.Sync => status switch
+            GitStatusCenterOperationKind.Sync => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled syncing local and remote commits for \"{repositoryName}\"",
                 ReturnResult.Success => $"Synced local and remote commits for \"{repositoryName}\"",
                 ReturnResult.Failed => $"Failed to sync local and remote commits for \"{repositoryName}\"",
                 _ => $"Syncing local and remote commits for \"{repositoryName}\""
             },
-            _ => status switch
+            _ => returnStatus switch
             {
                 ReturnResult.Cancelled => $"Canceled switching to \"{operationTarget}\" in \"{repositoryName}\"",
                 ReturnResult.Success => $"Switched to \"{operationTarget}\" in \"{repositoryName}\"",
@@ -583,166 +590,250 @@ public sealed partial class StatusCenterPage : Page
                 _ => $"Switching to \"{operationTarget}\" in \"{repositoryName}\""
             }
         };
+
+        string SubHeader(long count) => isClone
+            ? returnStatus switch
+            {
+                ReturnResult.Cancelled => $"Canceled cloning {count} from \"{operationTarget}\" to \"{displayPath}\"",
+                ReturnResult.Success => $"Cloned {count} from \"{operationTarget}\" to \"{displayPath}\"",
+                ReturnResult.Failed => $"Failed to clone {count} from \"{operationTarget}\" to \"{displayPath}\"",
+                _ => $"Cloning {count} from \"{operationTarget}\" to \"{displayPath}\""
+            }
+            : string.Empty;
+
+        string Message(StatusCenterItemProgressModel progress)
+            => $"{(int)(progress.Percentage ?? 0)}% complete";
+
+        var item = StatusCenterHelper.AddCard(
+            returnStatus,
+            Header(),
+            SubHeader(itemsCount),
+            "0% complete",
+            StatusCenterItemIconKind.Git,
+            operationTarget is null ? null : (string[])[operationTarget],
+            (string[])[repositoryPath],
+            returnStatus is ReturnResult.InProgress && canProvideProgress,
+            itemsCount,
+            update: (item, progress) => (Header(), SubHeader(item.TotalItemsCount), Message(progress)));
+
+        if (returnStatus is ReturnResult.InProgress)
+        {
+            item.IsSpeedAndProgressAvailable = false;
+            item.IsCancelable = operationKind is GitStatusCenterOperationKind.Clone;
+        }
+
+        return item;
     }
 
-    private static string GitCloneSubHeader(ReturnResult status, long count, string operationTarget, string displayPath)
+    private static async Task<ReturnResult> SimulateFileOperationAsync(
+        IProgress<StatusCenterItemProgressModel> progress,
+        string[] source,
+        long totalSize,
+        CancellationToken cancellationToken)
     {
-        return status switch
+        var progressModel = new StatusCenterItemProgressModel(
+            progress,
+            enumerationCompleted: true,
+            status: FileSystemStatusCode.InProgress,
+            itemsCount: source.Length)
         {
-            ReturnResult.Cancelled => $"Canceled cloning {count} from \"{operationTarget}\" to \"{displayPath}\"",
-            ReturnResult.Success => $"Cloned {count} from \"{operationTarget}\" to \"{displayPath}\"",
-            ReturnResult.Failed => $"Failed to clone {count} from \"{operationTarget}\" to \"{displayPath}\"",
-            _ => $"Cloning {count} from \"{operationTarget}\" to \"{displayPath}\""
+            TotalSize = totalSize
         };
-    }
+        progressModel.Report(0);
 
-    private static string SizeMessage(StatusCenterItem item)
-        => $"{ToSizeString(item.Progress.ProcessedSize)} of {ToSizeString(item.Progress.TotalSize)} processed";
-
-    private static string ItemsMessage(StatusCenterItem item)
-        => $"{item.Progress.ProcessedItemsCount}/{ItemsText(item.Progress.ItemsCount)} processed";
-
-    private static string GitMessage(StatusCenterItem item)
-        => $"{(int)(item.Progress.Percentage ?? 0)}% complete";
-
-    private void Start(StatusCenterItem item, long totalSize, Action<ReturnResult>? onResult, bool isGit = false)
-    {
-        item.Progress.TotalSize = totalSize;
-        item.Progress.ItemsCount = item.TotalItemsCount;
-        item.Progress.EnumerationCompleted = isGit;
-
-        string[] fileNames = totalSize > 0
-            ? item.Source?.Select(path => Path.GetFileName(path)).OfType<string>().ToArray() ?? []
-            : [];
-
-        if (fileNames.Length > 0)
-            item.Progress.FileName = fileNames[0];
-
-        _operations.Add(new DemoOperation(item, totalSize, fileNames, onResult, isGit: isGit));
-
-        if (!_timer.IsEnabled)
-            _timer.Start();
-    }
-
-    private void StartWithoutProgress(StatusCenterItem item, Action<ReturnResult>? onResult, int durationTicks = IndeterminateDurationTicks)
-    {
-        _operations.Add(new DemoOperation(item, 0, [], onResult, false, durationTicks));
-
-        if (!_timer.IsEnabled)
-            _timer.Start();
-    }
-
-    private void Timer_Tick(object? sender, object e)
-    {
-        for (var index = _operations.Count - 1; index >= 0; index--)
+        try
         {
-            var operation = _operations[index];
+            var percentage = 0.0;
 
-            if (operation.Item.CancellationToken.IsCancellationRequested)
+            while (percentage < 100)
             {
-                _operations.RemoveAt(index);
-                StatusCenterViewModel.Instance.RemoveItem(operation.Item);
-                operation.OnResult?.Invoke(ReturnResult.Cancelled);
-                continue;
+                var delay = Random.Shared.Next(100, 140);
+                if (Random.Shared.Next(0, 15) == 0)
+                    delay += Random.Shared.Next(150, 300);
+
+                await Task.Delay(delay, cancellationToken);
+
+                percentage = Math.Min(100, percentage + Random.Shared.Next(2, 5));
+
+                var processedItems = Math.Min(source.Length, (int)Math.Ceiling(source.Length * percentage / 100));
+                var pendingItems = processedItems - progressModel.ProcessedItemsCount;
+
+                if (pendingItems > 0)
+                    progressModel.AddProcessedItemsCount(pendingItems);
+
+                if (source.Length > 0)
+                    progressModel.FileName = Path.GetFileName(source[Math.Max(0, processedItems - 1)]);
+
+                progressModel.Report(percentage);
             }
 
-            if (operation.ReportsProgress)
+            return ReturnResult.Success;
+        }
+        catch (OperationCanceledException)
+        {
+            return ReturnResult.Cancelled;
+        }
+    }
+
+    private static async Task<ReturnResult> SimulateItemOperationAsync(
+        IProgress<StatusCenterItemProgressModel> progress,
+        string[] source,
+        CancellationToken cancellationToken)
+    {
+        var progressModel = new StatusCenterItemProgressModel(
+            progress,
+            enumerationCompleted: true,
+            status: FileSystemStatusCode.InProgress,
+            itemsCount: source.Length);
+        progressModel.Report(0);
+
+        try
+        {
+            for (var i = 0; i < source.Length; i++)
             {
-                var percentage = operation.TotalSize > 0
-                    ? Advance(operation)
-                    : operation.Percentage + 4;
+                var delay = Random.Shared.Next(200, 300);
+                await Task.Delay(delay, cancellationToken);
 
-                operation.Percentage = Math.Min(percentage, 100);
+                progressModel.AddProcessedItemsCount(1);
+                progressModel.FileName = Path.GetFileName(source[i]);
+                progressModel.Report((i + 1) * 100.0 / source.Length);
+            }
 
-                if (!operation.IsGit && !operation.Item.Progress.EnumerationCompleted)
-                    operation.Item.Progress.EnumerationCompleted = true;
+            return ReturnResult.Success;
+        }
+        catch (OperationCanceledException)
+        {
+            return ReturnResult.Cancelled;
+        }
+    }
 
-                operation.Item.Progress.Report(operation.IsGit ? Math.Min(operation.Percentage, 99) : operation.Percentage);
+    private static async Task<ReturnResult> SimulateIndeterminateOperationAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(Random.Shared.Next(1600, 2800), cancellationToken);
 
-                if (operation.IsDiscovering)
+            return ReturnResult.Success;
+        }
+        catch (OperationCanceledException)
+        {
+            return ReturnResult.Cancelled;
+        }
+    }
+
+    private static async Task<ReturnResult> SimulateGitOperationAsync(
+        GitStatusCenterOperationKind operationKind,
+        IProgress<StatusCenterItemProgressModel> progress,
+        long itemsCount,
+        CancellationToken cancellationToken)
+    {
+        var progressModel = new StatusCenterItemProgressModel(
+            progress,
+            enumerationCompleted: true,
+            status: FileSystemStatusCode.InProgress,
+            itemsCount: itemsCount);
+
+        try
+        {
+            switch (operationKind)
+            {
+                case GitStatusCenterOperationKind.Checkout:
                 {
-                    operation.IsDiscovering = false;
-                    operation.Item.Message = ProcessingItems;
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        await Task.Delay(Random.Shared.Next(80, 120), cancellationToken);
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(25, 40));
+                        progressModel.Report(percentage);
+                    }
+                    break;
                 }
+                case GitStatusCenterOperationKind.Fetch:
+                {
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        await Task.Delay(Random.Shared.Next(100, 140), cancellationToken);
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(18, 30));
+                        progressModel.Report(percentage);
+                    }
+                    break;
+                }
+                case GitStatusCenterOperationKind.Push:
+                {
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(14, 24));
+                        progressModel.Report(percentage);
+                    }
+                    break;
+                }
+                case GitStatusCenterOperationKind.Pull:
+                {
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(10, 18));
+                        progressModel.Report(percentage);
+                    }
+                    break;
+                }
+                case GitStatusCenterOperationKind.Sync:
+                {
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(7, 14));
+                        progressModel.Report(percentage);
+                    }
+                    break;
+                }
+                case GitStatusCenterOperationKind.Clone:
+                {
+                    var percentage = 0.0;
+                    while (percentage < 100)
+                    {
+                        var delay = Random.Shared.Next(100, 150);
+                        if (Random.Shared.Next(0, 12) == 0)
+                            delay += Random.Shared.Next(200, 450);
 
-                if (operation.Percentage < 100)
-                    continue;
+                        await Task.Delay(delay, cancellationToken);
+
+                        percentage = Math.Min(100, percentage + Random.Shared.Next(3, 7));
+
+                        var processedItems = Math.Min(itemsCount, (long)(itemsCount * percentage / 100));
+                        var pendingItems = processedItems - progressModel.ProcessedItemsCount;
+                        if (pendingItems > 0)
+                            progressModel.AddProcessedItemsCount(pendingItems);
+
+                        progressModel.Report(percentage);
+                    }
+                    break;
+                }
             }
-            else if (++operation.ElapsedTicks < operation.DurationTicks)
-            {
-                continue;
-            }
 
-            _operations.RemoveAt(index);
-
-            StatusCenterViewModel.Instance.RemoveItem(operation.Item);
-            operation.OnResult?.Invoke(ReturnResult.Success);
+            return ReturnResult.Success;
         }
-
-        if (_operations.Count is 0)
-            _timer.Stop();
-    }
-
-    private double Advance(DemoOperation operation)
-    {
-        var speed = _random.Next(8, 100) * (double)Megabyte;
-
-        operation.ProcessedSize = Math.Min(operation.TotalSize, operation.ProcessedSize + (long)(speed * TimerIntervalSeconds));
-
-        var percentage = operation.ProcessedSize * 100.0 / operation.TotalSize;
-
-        if (operation.FileNames.Length > 0)
+        catch (OperationCanceledException)
         {
-            var processedItems = Math.Min(operation.FileNames.Length, (int)(percentage * operation.FileNames.Length / 100));
-            var fileName = operation.FileNames[Math.Min(operation.FileNames.Length - 1, processedItems)];
-
-            if (operation.Item.Progress.FileName != fileName)
-                operation.Item.Progress.FileName = fileName;
-
-            if (processedItems > operation.ProcessedItems)
-            {
-                operation.Item.Progress.AddProcessedItemsCount(processedItems - operation.ProcessedItems);
-                operation.ProcessedItems = processedItems;
-            }
+            return ReturnResult.Cancelled;
         }
-
-        return percentage;
     }
 
-    private static string[] Items(int count) =>
-        Enumerable.Range(1, count).Select(index => $@"{SourceRoot}\File {index}.txt").ToArray();
-
-    private static string[] Destinations(int count) =>
-        Enumerable.Range(1, count).Select(index => $@"{DestinationRoot}\File {index}.txt").ToArray();
-
-    private static long GetTotalSize(int count) => DemoSizes.Take(count).Sum() * Megabyte;
-
-    private static string GetParentDirectory(string? path)
-        => string.IsNullOrEmpty(path) ? string.Empty : Path.GetDirectoryName(path) ?? string.Empty;
-
-    private static string GetLastSegment(string path)
-        => string.IsNullOrEmpty(path) ? string.Empty : path.Split('\\', '/')[^1];
-
-    private static string ItemsText(long count) => count == 1 ? "1 item" : $"{count} items";
-
-    private static string FontsText(long count) => count == 1 ? "1 font" : $"{count} fonts";
-
-    private static string ToSizeString(long size)
+    private static string GetParentDir(string? path)
     {
-        string[] units = ["B", "KB", "MB", "GB", "TB"];
-        double value = size;
-        var unit = 0;
+        if (string.IsNullOrEmpty(path))
+            return string.Empty;
 
-        while (value >= 1024 && unit < units.Length - 1)
-        {
-            value /= 1024;
-            unit++;
-        }
-
-        return unit is 0 ? $"{value:0} {units[unit]}" : $"{value:0.##} {units[unit]}";
+        var index = path.Contains('/', StringComparison.Ordinal) ? path.LastIndexOf('/') : path.LastIndexOf('\\');
+        return path[..(index != -1 ? index : path.Length)];
     }
 
-    private enum GitOperationKind
+    private enum GitStatusCenterOperationKind
     {
         Clone,
         Fetch,
@@ -750,32 +841,5 @@ public sealed partial class StatusCenterPage : Page
         Push,
         Sync,
         Checkout
-    }
-
-    private sealed class DemoOperation(StatusCenterItem item, long totalSize, string[] fileNames, Action<ReturnResult>? onResult, bool reportsProgress = true, int durationTicks = IndeterminateDurationTicks, bool isGit = false)
-    {
-        public StatusCenterItem Item { get; } = item;
-
-        public long TotalSize { get; } = totalSize;
-
-        public string[] FileNames { get; } = fileNames;
-
-        public Action<ReturnResult>? OnResult { get; } = onResult;
-
-        public bool ReportsProgress { get; } = reportsProgress;
-
-        public bool IsGit { get; } = isGit;
-
-        public bool IsDiscovering { get; set; } = !isGit;
-
-        public int DurationTicks { get; } = durationTicks;
-
-        public int ElapsedTicks { get; set; }
-
-        public long ProcessedSize { get; set; }
-
-        public int ProcessedItems { get; set; }
-
-        public double Percentage { get; set; }
     }
 }
