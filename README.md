@@ -148,6 +148,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### MagicKeyboard
+![MagicKeyboard](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MagicKeyboard.gif)
+
 ### TypeFlow
 ![TypeFlow](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TypeFlow.gif)
 
