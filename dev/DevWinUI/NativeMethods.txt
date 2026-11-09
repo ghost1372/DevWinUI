@@ -1,3 +1,7 @@
-﻿GetCursorPos
+﻿GetAsyncKeyState
+GetCursorPos
+GetKeyboardLayout
+MapVirtualKeyEx
 MessageBeep
 ScreenToClient
+ToUnicodeEx

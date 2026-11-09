@@ -675,6 +675,13 @@
           "ImagePath": "ms-appx:///Assets/Fluent/ListBox.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.MagicKeyboardPage",
+          "Title": "Magic Keyboard",
+          "Subtitle": "An on-screen keyboard that mirrors physical key presses with themeable skins",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/keyboardManager.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.DropdownColorPickerPage",
           "Title": "Dropdown Color Picker",
           "Subtitle": "A color selection control that opens a dropdown palette",
