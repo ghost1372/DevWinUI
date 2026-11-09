@@ -148,6 +148,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### Timeline2
+![Timeline2](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Timeline2.gif)
+
 ### MagicKeyboard
 ![MagicKeyboard](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/MagicKeyboard.gif)
 
