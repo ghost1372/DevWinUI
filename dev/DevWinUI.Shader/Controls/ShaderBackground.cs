@@ -1,8 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Numerics;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
@@ -25,12 +28,21 @@ public partial class ShaderBackground : Control
         DefaultStyleKey = typeof(ShaderBackground);
 
         Renderers.CollectionChanged += OnRenderersChanged;
+        ActualThemeChanged += OnActualThemeChanged;
+    }
+
+    private void OnActualThemeChanged(FrameworkElement sender, object args)
+    {
+        foreach (var item in Renderers)
+        {
+            item.ApplyHostTheme(ActualTheme);
+        }
     }
     private void OnRenderersChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.NewItems != null)
             foreach (RendererBase r in e.NewItems)
-            { }
+                r.ApplyHostTheme(ActualTheme);
 
         if (e.OldItems != null)
             foreach (RendererBase r in e.OldItems)
@@ -51,17 +63,61 @@ public partial class ShaderBackground : Control
         canvas.Update -= OnUpdate;
         canvas.Update += OnUpdate;
 
+        canvas.PointerMoved -= OnPointerMoved;
+        canvas.PointerMoved += OnPointerMoved;
+
+        canvas.PointerExited -= OnPointerExited;
+        canvas.PointerExited += OnPointerExited;
+
+        canvas.PointerPressed -= OnPointerPressed;
+        canvas.PointerPressed += OnPointerPressed;
+
         Unloaded -= OnUnloaded;
         Unloaded += OnUnloaded;
 
         foreach (var item in Renderers)
         {
+            item.ApplyHostTheme(ActualTheme);
             item.OnApplyTemplate();
+        }
+    }
+
+    private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
+    {
+        var pt = e.GetCurrentPoint(canvas).Position;
+        var position = new Vector2((float)pt.X, (float)pt.Y);
+
+        foreach (var item in Renderers)
+        {
+            item.OnPointerMoved(position);
+        }
+    }
+
+    private void OnPointerExited(object sender, PointerRoutedEventArgs e)
+    {
+        foreach (var item in Renderers)
+        {
+            item.OnPointerExited();
+        }
+    }
+
+    private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        var pt = e.GetCurrentPoint(canvas).Position;
+        var position = new Vector2((float)pt.X, (float)pt.Y);
+
+        foreach (var item in Renderers)
+        {
+            item.OnPointerPressed(position);
         }
     }
 
     private void OnUnloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
+        canvas.PointerMoved -= OnPointerMoved;
+        canvas.PointerExited -= OnPointerExited;
+        canvas.PointerPressed -= OnPointerPressed;
+
         canvas.Draw -= OnDraw;
         canvas.Update -= OnUpdate;
         canvas.CreateResources -= OnCreateResources;

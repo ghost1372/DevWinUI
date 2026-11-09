@@ -149,6 +149,9 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### CrystalBall Shader
+![CrystalBallShader](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/CrystalBallShader.gif)
+
 ### Roadmap
 ![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap.gif)
 ![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap2.gif)

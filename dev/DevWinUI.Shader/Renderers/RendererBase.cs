@@ -19,6 +19,13 @@ public partial class RendererBase : DependencyObject, IDisposable
     internal float currentBassEnergy = 0f;
     internal int breathingIntensity = 80;
     internal bool isBreathingEffectEnabled = false;
+    protected ElementTheme hostTheme = ElementTheme.Default;
+
+    internal void ApplyHostTheme(ElementTheme theme)
+    {
+        hostTheme = theme;
+        OnHostThemeChanged();
+    }
 
     public bool IsEnabled
     {
@@ -190,6 +197,26 @@ public partial class RendererBase : DependencyObject, IDisposable
     }
 
     public virtual void OnApplyTemplate()
+    {
+
+    }
+
+    protected virtual void OnHostThemeChanged()
+    {
+
+    }
+
+    public virtual void OnPointerMoved(Vector2 position)
+    {
+
+    }
+
+    public virtual void OnPointerExited()
+    {
+
+    }
+
+    public virtual void OnPointerPressed(Vector2 position)
     {
 
     }
