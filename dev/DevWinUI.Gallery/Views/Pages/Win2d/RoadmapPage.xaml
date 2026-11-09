@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.RoadmapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+
+            <local:ControlExample DocPage="controls/roadmap" HeaderText="Modes and placement">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Roadmap Mode="Simple"&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#F4623A" Content="Project started." Header="Kickoff" Label="2022" /&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#F5A623" Content="First public preview." Header="Preview" Label="2023" /&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#35BDE4" Content="Stable release." Header="Release" Label="2024" /&gt; #nl#
+                        &lt;/dev:Roadmap&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbMode" Header="Mode" ItemsSource="{x:Bind ModeItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbPlacement" Header="First item placement" ItemsSource="{x:Bind PlacementItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ToggleSwitch x:Name="TglAlternate" Header="Alternate placement" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ScrollViewer Height="420" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <dev:Roadmap AlternatePlacement="{x:Bind TglAlternate.IsOn, Mode=OneWay}" FirstItemPlacement="{x:Bind ((dev:RoadmapPlacement)CmbPlacement.SelectedItem), Mode=OneWay}" Mode="{x:Bind ((dev:RoadmapMode)CmbMode.SelectedItem), Mode=OneWay}">
+                        <dev:RoadmapItem Accent="#F4623A" Content="Project started and the first prototype was built." Glyph="&#xE734;" Header="Kickoff" Label="2022" />
+                        <dev:RoadmapItem Accent="#F5A623" Content="First public preview with early feedback." Glyph="&#xE713;" Header="Preview" Label="2023" />
+                        <dev:RoadmapItem Accent="#6FA35B" Content="Feature complete and ready for testing." Glyph="&#xE73E;" Header="Beta" Label="2024" />
+                        <dev:RoadmapItem Accent="#35BDE4" Content="Stable release with long-term support." Glyph="&#xE716;" Header="Release" Label="2025" />
+                        <dev:RoadmapItem Accent="#7C4DFF" Content="Next generation built on what we learned." Glyph="&#xE774;" Header="Next" Label="2026" />
+                    </dev:Roadmap>
+                </ScrollViewer>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/roadmap" HeaderText="Status and progress">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Roadmap Mode="Simple"&gt; #nl#
+                        &lt;dev:RoadmapItem Header="Design" Label="Q1" Status="Completed" /&gt; #nl#
+                        &lt;dev:RoadmapItem Header="Build" Label="Q2" Status="Active" /&gt; #nl#
+                        &lt;dev:RoadmapItem Header="Launch" Label="Q3" Status="Planned" /&gt; #nl#
+                        &lt;/dev:Roadmap&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbStatus" Header="Status of 'Build'" ItemsSource="{x:Bind StatusItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TglAnimateActive" Header="Animate active item" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <dev:Roadmap AnimateActive="{x:Bind TglAnimateActive.IsOn, Mode=OneWay}" Mode="Simple">
+                        <dev:RoadmapItem Accent="#35BDE4" Content="Wireframes and visual design approved." Header="Design" Label="Q1" Status="Completed" />
+                        <dev:RoadmapItem Accent="#F5A623" Content="Implementation is in progress." Header="Build" Label="Q2" Status="{x:Bind ((dev:RoadmapItemStatus)CmbStatus.SelectedItem), Mode=OneWay}" />
+                        <dev:RoadmapItem Accent="#6FA35B" Content="Public launch and announcement." Header="Launch" Label="Q3" Status="Planned" />
+                        <dev:RoadmapItem Accent="#7C4DFF" Content="Gather feedback and plan the next cycle." Header="Review" Label="Q4" Status="Planned" />
+                    </dev:Roadmap>
+                </ScrollViewer>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/roadmap" HeaderText="Neon and sci-fi effects">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Roadmap BootAnimation="On" Flicker="On" Mode="Neon" ScanBeam="On"&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#00E5FF" Header="Assembly" Label="T-120" Status="Completed" /&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#FF4081" Header="Transit" Label="T+7 mo" Status="Active" /&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#69F0AE" Header="Landing" Label="T+8 mo" Status="Planned" /&gt; #nl#
+                        &lt;/dev:Roadmap&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <Slider x:Name="SliderGlow" Header="Glow radius" Maximum="20" Minimum="0" Value="6" />
+                        <ComboBox x:Name="CmbScanlines" Header="Scanlines" ItemsSource="{x:Bind ToggleItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbGrid" Header="Grid backdrop" ItemsSource="{x:Bind ToggleItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbAxisFlow" Header="Axis flow" ItemsSource="{x:Bind ToggleItems, Mode=OneWay}" SelectedIndex="0" />
+                        <ComboBox x:Name="CmbScanBeam" Header="Scan beam" ItemsSource="{x:Bind ToggleItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ComboBox x:Name="CmbFlicker" Header="Flicker" ItemsSource="{x:Bind ToggleItems, Mode=OneWay}" SelectedIndex="0" />
+                        <Button Click="OnReplayBootClick" Content="Replay boot animation" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <Border Padding="24" Background="#0B1020" CornerRadius="8" RequestedTheme="Dark">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <dev:Roadmap x:Name="NeonRoadmap" AxisFlow="{x:Bind ((dev:RoadmapToggle)CmbAxisFlow.SelectedItem), Mode=OneWay}" Flicker="{x:Bind ((dev:RoadmapToggle)CmbFlicker.SelectedItem), Mode=OneWay}" GlowRadius="{x:Bind SliderGlow.Value, Mode=OneWay}" GridBackdrop="{x:Bind ((dev:RoadmapToggle)CmbGrid.SelectedItem), Mode=OneWay}" Mode="Neon" ScanBeam="{x:Bind ((dev:RoadmapToggle)CmbScanBeam.SelectedItem), Mode=OneWay}" Scanlines="{x:Bind ((dev:RoadmapToggle)CmbScanlines.SelectedItem), Mode=OneWay}">
+                            <dev:RoadmapItem Accent="#00E5FF" Content="Station construction and crew certification complete." Header="Orbital Assembly" Label="T-120" Status="Completed" />
+                            <dev:RoadmapItem Accent="#7C4DFF" Content="Fuel loaded, systems verified, window confirmed." Header="Launch" Label="T-0" Status="Completed" />
+                            <dev:RoadmapItem Accent="#FF4081" Content="Seven-month burn toward the red planet." Header="Transit" Label="T+7 mo" Status="Active" />
+                            <dev:RoadmapItem Accent="#00E5FF" Content="Descent, touchdown and first surface survey." Header="Landing" Label="T+8 mo" Status="Planned" />
+                            <dev:RoadmapItem Accent="#69F0AE" Content="Pressurised habitat online with a permanent crew." Header="First Habitat" Label="T+14 mo" Status="Planned" />
+                        </dev:Roadmap>
+                    </ScrollViewer>
+                </Border>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/roadmap" HeaderText="Proportional spacing with lanes">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Roadmap Distribution="Proportional" Mode="Boxed"&gt; #nl#
+                        &lt;dev:RoadmapItem Header="Alpha" Label="Jan" Value="0" /&gt; #nl#
+                        &lt;dev:RoadmapItem Header="Beta" Label="Mar" Value="2" /&gt; #nl#
+                        &lt;dev:RoadmapItem Header="1.0" Label="Oct" Value="9" /&gt; #nl#
+                        &lt;dev:Roadmap.Lanes&gt; #nl#
+                        &lt;dev:RoadmapLane Header="Stable channel"&gt; #nl#
+                        &lt;dev:RoadmapSegment Content="Feature" Tone="Success" /&gt; #nl#
+                        &lt;/dev:RoadmapLane&gt; #nl#
+                        &lt;/dev:Roadmap.Lanes&gt; #nl#
+                        &lt;/dev:Roadmap&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <dev:Roadmap Distribution="Proportional" LaneHeaderWidth="130" Mode="Boxed">
+                        <dev:RoadmapItem Content="First internal build" Header="Alpha" Label="Jan" Value="0" />
+                        <dev:RoadmapItem Content="Early adopters join" Header="Beta 1" Label="Mar" Value="2" />
+                        <dev:RoadmapItem Content="Stability and polish" Header="Beta 2" Label="Jun" Value="5" />
+                        <dev:RoadmapItem Content="Release candidate" Header="RC" Label="Sep" Value="8" />
+                        <dev:RoadmapItem Content="General availability" Header="1.0" Label="Oct" Value="9" />
+                        <dev:RoadmapItem Content="Fixes and new features" Header="1.1" Label="Feb" Value="13" />
+
+                        <dev:Roadmap.Lanes>
+                            <dev:RoadmapLane Header="Stable channel">
+                                <dev:RoadmapSegment Content="Feature" Tone="Success" />
+                                <dev:RoadmapSegment Content="Feature" Tone="Success" />
+                                <dev:RoadmapSegment Content="Feature" Tone="Success" />
+                            </dev:RoadmapLane>
+                            <dev:RoadmapLane Header="Preview channel">
+                                <dev:RoadmapSegment Content="Feature" Tone="Success" />
+                                <dev:RoadmapSegment Content="Preview" Tone="Caution" />
+                                <dev:RoadmapSegment Content="Preview" Tone="Caution" />
+                                <dev:RoadmapSegment Content="Blocked" Tone="Critical" />
+                            </dev:RoadmapLane>
+                        </dev:Roadmap.Lanes>
+                    </dev:Roadmap>
+                </ScrollViewer>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/roadmap" HeaderText="Icon mode with glow and axis flow">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Roadmap AxisFlow="On" GlowRadius="5" Mode="Icon"&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#00E5FF" Glyph="&amp;#xE734;" Header="Signal acquired" Label="Cycle 1" /&gt; #nl#
+                        &lt;dev:RoadmapItem Accent="#7C4DFF" Glyph="&amp;#xE713;" Header="Handshake" Label="Cycle 2" Status="Active" /&gt; #nl#
+                        &lt;/dev:Roadmap&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <Border Padding="24" Background="#0B1020" CornerRadius="8" RequestedTheme="Dark">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <dev:Roadmap AxisFlow="On" GlowRadius="5" Mode="Icon">
+                            <dev:RoadmapItem Accent="#00E5FF" Glyph="&#xE734;" Header="Signal acquired" Label="Cycle 1" />
+                            <dev:RoadmapItem Accent="#7C4DFF" Glyph="&#xE713;" Header="Handshake complete" Label="Cycle 2" Status="Active" />
+                            <dev:RoadmapItem Accent="#FF4081" Glyph="&#xE774;" Header="Network online" Label="Cycle 3" Status="Planned" />
+                        </dev:Roadmap>
+                    </ScrollViewer>
+                </Border>
+            </local:ControlExample>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
