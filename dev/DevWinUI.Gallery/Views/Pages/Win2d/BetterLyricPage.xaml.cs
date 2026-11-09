@@ -95,59 +95,41 @@ public sealed partial class BetterLyricPage : Page
     {
         var cmbItem = CmbLyricsAlignment.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<LyricsTextAlignmentType>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.LyricsAlignmentType = item;
-        }
+        MyBetterLyric.LyricsAlignmentType = item;
     }
 
     private void CmbLyricsLineContentOrientation_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {        
         var cmbItem = CmbLyricsLineContentOrientation.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<LyricsContentOrientation>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.LyricsLineContentOrientation = item;
-        }
+        MyBetterLyric.LyricsLineContentOrientation = item;
     }
 
     private void CmbWordByWord_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbItem = CmbWordByWord.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<LyricsWordByWordEffectMode>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.WordByWordEffectMode = item;
-        }
+        MyBetterLyric.WordByWordEffectMode = item;
     }
 
     private void CmbLyricsGlowEffectScope_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbItem = CmbLyricsGlowEffectScope.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<LyricEffectScope>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.LyricsGlowEffectScope = item;
-        }
+        MyBetterLyric.LyricsGlowEffectScope = item;
     }
 
     private void CmbLyricsScrollEasingType_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbItem = CmbLyricsScrollEasingType.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<AnimationEasingType>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.LyricsScrollEasingType = item;
-        }
+        MyBetterLyric.LyricsScrollEasingType = item;
     }
 
     private void CmbLyricsScrollEasingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var cmbItem = CmbLyricsScrollEasingMode.SelectedItem.As<ComboBoxItem>();
         var item = GeneralHelper.GetEnum<AnimationEaseMode>(cmbItem.Tag.ToString());
-        if (item != null)
-        {
-            MyBetterLyric.LyricsScrollEasingMode = item;
-        }
+        MyBetterLyric.LyricsScrollEasingMode = item;
     }
 }

@@ -1177,6 +1177,13 @@
       "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png",
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.RoadmapPage",
+          "Title": "Roadmap",
+          "Subtitle": "A horizontal timeline with status tracking, lanes and sci-fi effects",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.AntigravityPage",
           "Title": "Antigravity",
           "Subtitle": "An interactive particle field that lifts into a glowing ring around the pointer",

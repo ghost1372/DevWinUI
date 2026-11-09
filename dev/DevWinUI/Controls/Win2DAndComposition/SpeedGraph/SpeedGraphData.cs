@@ -7,7 +7,7 @@ public partial class SpeedGraphData
     private const ulong InitialMax = 1024 * 1024;
 
     private Size _graphSize;
-    private ulong _total;
+    private ulong _total = 0;
     private ulong _currentMax = InitialMax;
     private float _ratio = 1.0f;
     private double _currentPercent;

@@ -148,6 +148,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### Roadmap
+![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap.gif)
+![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap2.gif)
+![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap3.gif)
+![Roadmap](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Roadmap4.gif)
+
 ### Timeline2
 ![Timeline2](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Timeline2.gif)
 

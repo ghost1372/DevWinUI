@@ -447,7 +447,6 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
 
     private readonly ContentDialogView _view = new();
     private DialogWindowBase? _window;
-    private TaskCompletionSource<ContentDialogResult>? _taskCompletionSource;
 
     public event EventHandler? PrimaryButtonClick;
     public event EventHandler? SecondaryButtonClick;
