@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
-                    xmlns:local="using:DevWinUI">
+                    xmlns:local="using:DevWinUI"
+                    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
     <ResourceDictionary.ThemeDictionaries>
 
@@ -57,7 +57,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:ParticleGlobe">
                     <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <canvas:CanvasAnimatedControl x:Name="PART_Canvas" ClearColor="Transparent" />
+                        <win2d:CanvasAnimatedControl x:Name="PART_Canvas" ClearColor="Transparent" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
