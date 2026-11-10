@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.ParticleGlobePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/particleGlobe" HeaderText="ParticleGlobe">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbTheme" Header="Theme" ItemsSource="{x:Bind ThemeItems, Mode=OneWay}" SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:ParticleGlobeTheme">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbQuality" Header="Quality" ItemsSource="{x:Bind QualityItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:ParticleGlobeQuality">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Slider x:Name="SliderParticleCount" Header="Particles" Maximum="50000" Minimum="5000" StepFrequency="5000" Value="26000" />
+                        <Slider x:Name="SliderRotationSpeed" Header="Rotation Speed" Maximum="0.5" Minimum="0" StepFrequency="0.05" Value="0.12" />
+                        <ToggleSwitch x:Name="TglAutoRotate" Header="Auto Rotate" IsOn="True" />
+                        <ToggleSwitch x:Name="TglInteractive" Header="Interactive" IsOn="True" />
+                        <ToggleSwitch x:Name="TglStars" Header="Stars" IsOn="True" />
+                        <ToggleSwitch x:Name="TglGrid" Header="Grid" IsOn="True" />
+                        <ToggleSwitch x:Name="TglArcs" Header="Arcs" IsOn="True" />
+                        <ToggleSwitch x:Name="TglOrbits" Header="Orbit Rings" IsOn="True" />
+                        <ToggleSwitch x:Name="TglHud" Header="HUD" IsOn="True" />
+                        <ToggleSwitch x:Name="TglEvents" Header="Events" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="8">
+                    <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.SelectedItem), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.SelectedItem), Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Add sample event" Click="OnAddSampleEventClick" />
+                        <TextBlock x:Name="GlobeStatusText" VerticalAlignment="Center" Text="Drag to rotate and click a country to select it." />
+                    </StackPanel>
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

@@ -1205,6 +1205,20 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Circle.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.ParticleGlobePage",
+          "Title": "Particle Globe",
+          "Subtitle": "An interactive particle globe with selectable countries, animated events, themes and adjustable rendering quality",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Particle.png"
+        },
+        {
+          "UniqueId": "DevWinUIGallery.Views.WorldMapPage",
+          "Title": "World Map",
+          "Subtitle": "An interactive Win2D world map with country selection, hover tooltips, pan, zoom and customizable borders",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Canvas.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.FlightStatusCardPage",
           "Title": "Flight Status Card",
           "Subtitle": "A flight progress card with dot-matrix airport codes, an animated progress track and a layout that adapts to its size",
