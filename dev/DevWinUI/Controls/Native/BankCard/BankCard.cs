@@ -1,5 +1,5 @@
-﻿using Microsoft.UI.Xaml.Shapes;
-using System.Text;
+﻿using System.Text;
+using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
 

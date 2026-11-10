@@ -1,6 +1,4 @@
-﻿using Windows.UI;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public sealed partial class DonutChartDatum
 {

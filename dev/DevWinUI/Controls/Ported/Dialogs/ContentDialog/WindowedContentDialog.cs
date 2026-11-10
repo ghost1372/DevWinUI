@@ -1,7 +1,7 @@
 ﻿// https://github.com/SuGar0218/SuGarToolkit.WinUI3
 
-using Microsoft.UI.Xaml.Markup;
 using System.Windows.Input;
+using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 

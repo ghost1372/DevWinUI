@@ -1,6 +1,6 @@
-﻿using Microsoft.UI.Dispatching;
+﻿using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Collections.Specialized;
+using Microsoft.UI.Dispatching;
 
 namespace DevWinUI;
 

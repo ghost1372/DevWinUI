@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public sealed partial class SegmentedMeter
 {
