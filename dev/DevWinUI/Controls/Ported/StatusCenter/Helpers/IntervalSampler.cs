@@ -1,37 +1,36 @@
-// Copyright (c) Files Community
+﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-namespace DevWinUI
+namespace DevWinUI;
+
+internal sealed class IntervalSampler
 {
-	internal sealed class IntervalSampler
+	private readonly TimeSpan sampleInterval;
+	private DateTime nextRecordPoint;
+
+	public IntervalSampler(int millisecondsInterval) : this(TimeSpan.FromMilliseconds(millisecondsInterval))
 	{
-		private readonly TimeSpan sampleInterval;
-		private DateTime nextRecordPoint;
+	}
 
-		public IntervalSampler(int millisecondsInterval) : this(TimeSpan.FromMilliseconds(millisecondsInterval))
-		{
-		}
+	public IntervalSampler(TimeSpan interval)
+	{
+		sampleInterval = interval;
+		Reset();
+	}
 
-		public IntervalSampler(TimeSpan interval)
-		{
-			sampleInterval = interval;
-			Reset();
-		}
+	public void Reset()
+	{
+		nextRecordPoint = DateTime.UtcNow + sampleInterval;
+	}
 
-		public void Reset()
+	public bool CheckNow()
+	{
+		var utcNow = DateTime.UtcNow;
+		if (utcNow >= nextRecordPoint)
 		{
-			nextRecordPoint = DateTime.UtcNow + sampleInterval;
+			nextRecordPoint = utcNow + sampleInterval;
+			return true;
 		}
-
-		public bool CheckNow()
-		{
-			var utcNow = DateTime.UtcNow;
-			if (utcNow >= nextRecordPoint)
-			{
-				nextRecordPoint = utcNow + sampleInterval;
-				return true;
-			}
-			return false;
-		}
+		return false;
 	}
 }

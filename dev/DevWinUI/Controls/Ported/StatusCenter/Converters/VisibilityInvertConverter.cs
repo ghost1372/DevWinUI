@@ -3,24 +3,23 @@
 
 using WinRT;
 
-namespace DevWinUI
+namespace DevWinUI;
+
+internal sealed partial class VisibilityInvertConverter : IValueConverter
 {
-	internal sealed partial class VisibilityInvertConverter : IValueConverter
+	[DynamicWindowsRuntimeCast(typeof(Visibility))]
+	public object Convert(object value, Type targetType, object parameter, string language)
 	{
-		[DynamicWindowsRuntimeCast(typeof(Visibility))]
-		public object Convert(object value, Type targetType, object parameter, string language)
+		if (value is bool isVisible)
 		{
-			if (value is bool isVisible)
-			{
-				return isVisible ? Visibility.Collapsed : Visibility.Visible;
-			}
-
-			return (Visibility)value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+			return isVisible ? Visibility.Collapsed : Visibility.Visible;
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, string language)
-		{
-			throw new NotImplementedException();
-		}
+		return (Visibility)value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, string language)
+	{
+		throw new NotImplementedException();
 	}
 }

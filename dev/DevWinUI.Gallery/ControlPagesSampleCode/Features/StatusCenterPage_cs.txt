@@ -1,19 +1,10 @@
 private async void Copy_Click(object sender, RoutedEventArgs e)
 {
-    string[] source =
-    [
-        @"C:\Users\Public\Documents\File 1.txt",
-        @"C:\Users\Public\Documents\File 2.txt",
-        @"C:\Users\Public\Documents\File 3.txt"
-    ];
-    string[] destination =
-    [
-        @"C:\Users\Public\Downloads\File 1.txt",
-        @"C:\Users\Public\Downloads\File 2.txt",
-        @"C:\Users\Public\Downloads\File 3.txt"
-    ];
-    var totalSize = source.Length * 64L * 1024 * 1024;
-    var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, source.Length, totalSize);
+    var fileCount = Random.Shared.Next(3, 9);
+    string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
+    string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
+    var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
+    var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, 0, totalSize);
 
     var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
 
@@ -51,7 +42,9 @@ private static StatusCenterItem AddCard_Copy(
     };
 
     string Message(StatusCenterItemProgressModel progress)
-        => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+        => progress.Percentage is null
+            ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+            : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
     return StatusCenterHelper.AddCard(
         returnStatus,
@@ -59,31 +52,54 @@ private static StatusCenterItem AddCard_Copy(
         SubHeader(itemsCount),
         "Discovering items...",
         StatusCenterItemIconKind.Copy,
-        source,
-        destination,
         itemsCount: itemsCount,
         totalSize: totalSize,
-        update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+        update: (item, progress) => progress.EnumerationCompleted
+            ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
+            : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
 }
 
 private static async Task<ReturnResult> SimulateFileOperationAsync(
     IProgress<StatusCenterItemProgressModel> progress,
     string[] source,
     long totalSize,
-    CancellationToken cancellationToken)
+    CancellationToken cancellationToken,
+    bool simulateDiscovery = true)
 {
+    var itemTotal = simulateDiscovery ? Random.Shared.Next(1, 26) : source.Length;
     var progressModel = new StatusCenterItemProgressModel(
         progress,
-        enumerationCompleted: true,
-        status: FileSystemStatusCode.InProgress,
-        itemsCount: source.Length)
+        enumerationCompleted: !simulateDiscovery,
+        status: ReturnResult.InProgress,
+        itemsCount: simulateDiscovery ? 0 : itemTotal);
+
+    if (!simulateDiscovery)
     {
-        TotalSize = totalSize
-    };
-    progressModel.Report(0);
+        progressModel.TotalSize = totalSize;
+        progressModel.Report();
+    }
 
     try
     {
+        if (simulateDiscovery)
+        {
+            for (var discovered = 1; discovered <= itemTotal; discovered++)
+            {
+                await Task.Delay(Random.Shared.Next(120, 220), cancellationToken);
+                progressModel.ItemsCount = discovered;
+                progressModel.Report();
+            }
+        }
+
+        progressModel.TotalSize = totalSize;
+        progressModel.ItemsCount = itemTotal;
+        progressModel.EnumerationCompleted = true;
+        progressModel.Report();
+
+        await Task.Delay(Random.Shared.Next(50, 500), cancellationToken);
+        progressModel.Report(0);
+
+        var failAtPercentage = Random.Shared.Next(0, 100) < 20 ? Random.Shared.Next(40, 85) : double.MaxValue;
         var percentage = 0.0;
 
         while (percentage < 100)
@@ -96,25 +112,32 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
 
             percentage = Math.Min(100, percentage + Random.Shared.Next(2, 5));
 
-            var processedItems = Math.Min(source.Length, (int)Math.Ceiling(source.Length * percentage / 100));
+            var processedItems = Math.Min(itemTotal, (int)Math.Ceiling(itemTotal * percentage / 100));
             var pendingItems = processedItems - progressModel.ProcessedItemsCount;
 
             if (pendingItems > 0)
                 progressModel.AddProcessedItemsCount(pendingItems);
 
-            if (source.Length > 0)
-                progressModel.FileName = Path.GetFileName(source[Math.Max(0, processedItems - 1)]);
+            if (processedItems > 0)
+                progressModel.FileName = Path.GetFileName(source[(processedItems - 1) % source.Length]);
 
             progressModel.Report(percentage);
+
+            if (percentage >= failAtPercentage && percentage < 100)
+                return ReturnResult.Failed;
         }
 
         return ReturnResult.Success;
     }
     catch (OperationCanceledException)
     {
+        await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
         return ReturnResult.Cancelled;
     }
 }
+
+private static string[] FilePaths(string directory, int count)
+    => [.. Enumerable.Range(1, count).Select(i => $@"{directory}\File {i}.txt")];
 
 private static string GetParentDir(string? path)
 {

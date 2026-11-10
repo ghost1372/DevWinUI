@@ -11,16 +11,6 @@ public sealed partial class StatusCenterPage : Page
         CmbSizeUnit.SelectedIndex = 0;
     }
 
-    protected override void OnNavigatedFrom(NavigationEventArgs e)
-    {
-        base.OnNavigatedFrom(e);
-
-        var viewModel = StatusCenterViewModel.Instance;
-
-        for (var index = viewModel.StatusCenterItems.Count - 1; index >= 0; index--)
-            viewModel.RemoveItem(viewModel.StatusCenterItems[index]);
-    }
-
     private void CmbFlyoutPlacement_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (CmbFlyoutPlacement.SelectedItem is ComboBoxItem { Tag: string placement } && Enum.TryParse(placement, out FlyoutPlacementMode flyoutPlacement))
@@ -35,20 +25,11 @@ public sealed partial class StatusCenterPage : Page
 
     private async void Copy_Click(object sender, RoutedEventArgs e)
     {
-        string[] source =
-        [
-            @"C:\Users\Public\Documents\File 1.txt",
-            @"C:\Users\Public\Documents\File 2.txt",
-            @"C:\Users\Public\Documents\File 3.txt"
-        ];
-        string[] destination =
-        [
-            @"C:\Users\Public\Downloads\File 1.txt",
-            @"C:\Users\Public\Downloads\File 2.txt",
-            @"C:\Users\Public\Downloads\File 3.txt"
-        ];
-        var totalSize = source.Length * 64L * 1024 * 1024;
-        var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, source.Length, totalSize);
+        var fileCount = Random.Shared.Next(3, 9);
+        string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
+        string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
+        var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
+        var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
 
@@ -58,22 +39,11 @@ public sealed partial class StatusCenterPage : Page
 
     private async void Move_Click(object sender, RoutedEventArgs e)
     {
-        string[] source =
-        [
-            @"C:\Users\Public\Documents\File 1.txt",
-            @"C:\Users\Public\Documents\File 2.txt",
-            @"C:\Users\Public\Documents\File 3.txt",
-            @"C:\Users\Public\Documents\File 4.txt"
-        ];
-        string[] destination =
-        [
-            @"C:\Users\Public\Downloads\File 1.txt",
-            @"C:\Users\Public\Downloads\File 2.txt",
-            @"C:\Users\Public\Downloads\File 3.txt",
-            @"C:\Users\Public\Downloads\File 4.txt"
-        ];
-        var totalSize = source.Length * 64L * 1024 * 1024;
-        var banner = AddCard_Move(ReturnResult.InProgress, source, destination, source.Length, totalSize);
+        var fileCount = Random.Shared.Next(3, 9);
+        string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
+        string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
+        var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
+        var banner = AddCard_Move(ReturnResult.InProgress, source, destination, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
 
@@ -83,12 +53,9 @@ public sealed partial class StatusCenterPage : Page
 
     private async void Delete_Click(object sender, RoutedEventArgs e)
     {
-        string[] source =
-        [
-            @"C:\Users\Public\Documents\File 1.txt",
-            @"C:\Users\Public\Documents\File 2.txt"
-        ];
-        var banner = AddCard_Delete(ReturnResult.InProgress, source, source.Length);
+        var fileCount = Random.Shared.Next(4, 11);
+        string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
+        var banner = AddCard_Delete(ReturnResult.InProgress, source, 0);
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken);
 
@@ -98,15 +65,9 @@ public sealed partial class StatusCenterPage : Page
 
     private async void Recycle_Click(object sender, RoutedEventArgs e)
     {
-        string[] source =
-        [
-            @"C:\Users\Public\Documents\File 1.txt",
-            @"C:\Users\Public\Documents\File 2.txt",
-            @"C:\Users\Public\Documents\File 3.txt",
-            @"C:\Users\Public\Documents\File 4.txt",
-            @"C:\Users\Public\Documents\File 5.txt"
-        ];
-        var banner = AddCard_Recycle(ReturnResult.InProgress, source, source.Length);
+        var fileCount = Random.Shared.Next(6, 15);
+        string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
+        var banner = AddCard_Recycle(ReturnResult.InProgress, source, 0);
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken);
 
@@ -116,30 +77,27 @@ public sealed partial class StatusCenterPage : Page
 
     private async void Compress_Click(object sender, RoutedEventArgs e)
     {
-        string[] source =
-        [
-            @"C:\Users\Public\Documents\File 1.txt",
-            @"C:\Users\Public\Documents\File 2.txt",
-            @"C:\Users\Public\Documents\File 3.txt"
-        ];
+        var fileCount = Random.Shared.Next(3, 9);
+        string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
         string[] destination = [@"C:\Users\Public\Downloads\Archive.zip"];
-        var totalSize = source.Length * 48L * 1024 * 1024;
-        var banner = AddCard_Compress(source, destination, ReturnResult.InProgress, source.Length, totalSize);
+        var totalSize = fileCount * Random.Shared.NextInt64(24, 81) * 1024 * 1024;
+        var banner = AddCard_Compress(source, destination, ReturnResult.InProgress, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
 
         StatusCenterViewModel.Instance.RemoveItem(banner);
-        AddCard_Compress(source, destination, result, source.Length, totalSize);
+        AddCard_Compress(source, destination, result, banner.TotalItemsCount, totalSize);
     }
 
     private async void Extract_Click(object sender, RoutedEventArgs e)
     {
         string[] source = [@"C:\Users\Public\Documents\Archive.zip"];
         string[] destination = [@"C:\Users\Public\Downloads\Archive"];
-        const long totalSize = 256L * 1024 * 1024;
-        var banner = AddCard_Decompress(source, destination, ReturnResult.InProgress, 1, totalSize);
+        var totalSize = Random.Shared.NextInt64(128, 513) * 1024 * 1024;
+        var banner = AddCard_Decompress(source, destination, ReturnResult.InProgress, 0, totalSize);
 
-        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+        string[] entries = FilePaths(@"C:\Users\Public\Downloads\Archive", Random.Shared.Next(12, 37));
+        var result = await SimulateFileOperationAsync(banner.ProgressEventSource, entries, totalSize, banner.CancellationToken, simulateDiscovery: false);
 
         StatusCenterViewModel.Instance.RemoveItem(banner);
         AddCard_Decompress(source, destination, result, 1, totalSize);
@@ -227,7 +185,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -235,11 +195,11 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "Discovering items...",
             StatusCenterItemIconKind.Copy,
-            source,
-            destination,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
+                : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
     private static StatusCenterItem AddCard_Move(
@@ -272,7 +232,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -280,11 +242,11 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "Discovering items...",
             StatusCenterItemIconKind.Move,
-            source,
-            destination,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
+                : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
     private static StatusCenterItem AddCard_Delete(
@@ -311,7 +273,9 @@ public sealed partial class StatusCenterPage : Page
             : string.Empty;
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -319,10 +283,11 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "Discovering items...",
             StatusCenterItemIconKind.Delete,
-            source,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
+                : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
     private static StatusCenterItem AddCard_Recycle(
@@ -345,7 +310,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -353,10 +320,11 @@ public sealed partial class StatusCenterPage : Page
             string.Empty,
             "Discovering items...",
             StatusCenterItemIconKind.Recycle,
-            source,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (item, progress) => (Header(item.TotalItemsCount), string.Empty, Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(item.TotalItemsCount), string.Empty, Message(progress))
+                : ($"Discovered {ItemsText(item.TotalItemsCount)}", string.Empty, Message(progress)));
     }
 
     private static StatusCenterItem AddCard_Compress(
@@ -389,7 +357,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -397,11 +367,11 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "Discovering items...",
             StatusCenterItemIconKind.Compress,
-            source,
-            destination,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (item, progress) => (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
+                : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
     }
 
     private static StatusCenterItem AddCard_Decompress(
@@ -433,7 +403,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -441,11 +413,11 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(),
             "Discovering items...",
             StatusCenterItemIconKind.Extract,
-            source,
-            destination,
             itemsCount: itemsCount,
             totalSize: totalSize,
-            update: (_, progress) => (Header(), SubHeader(), Message(progress)));
+            update: (item, progress) => progress.EnumerationCompleted
+                ? (Header(), SubHeader(), Message(progress))
+                : ($"Discovered {item.TotalItemsCount} item{(item.TotalItemsCount == 1 ? string.Empty : "s")}", SubHeader(), Message(progress)));
     }
 
     private static StatusCenterItem AddCard_InstallFont(
@@ -475,7 +447,9 @@ public sealed partial class StatusCenterPage : Page
         };
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
         var item = StatusCenterHelper.AddCard(
             returnStatus,
@@ -483,8 +457,6 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "Discovering items...",
             StatusCenterItemIconKind.InstallFont,
-            source,
-            (string[])[string.Empty],
             false,
             itemsCount,
             totalSize,
@@ -516,7 +488,9 @@ public sealed partial class StatusCenterPage : Page
             : string.Empty;
 
         string Message(StatusCenterItemProgressModel progress)
-            => $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
+            => progress.Percentage is null
+                ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
+                : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
         return StatusCenterHelper.AddCard(
             returnStatus,
@@ -610,8 +584,6 @@ public sealed partial class StatusCenterPage : Page
             SubHeader(itemsCount),
             "0% complete",
             StatusCenterItemIconKind.Git,
-            operationTarget is null ? null : (string[])[operationTarget],
-            (string[])[repositoryPath],
             returnStatus is ReturnResult.InProgress && canProvideProgress,
             itemsCount,
             update: (item, progress) => (Header(), SubHeader(item.TotalItemsCount), Message(progress)));
@@ -629,20 +601,43 @@ public sealed partial class StatusCenterPage : Page
         IProgress<StatusCenterItemProgressModel> progress,
         string[] source,
         long totalSize,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        bool simulateDiscovery = true)
     {
+        var itemTotal = simulateDiscovery ? Random.Shared.Next(1, 26) : source.Length;
         var progressModel = new StatusCenterItemProgressModel(
             progress,
-            enumerationCompleted: true,
-            status: FileSystemStatusCode.InProgress,
-            itemsCount: source.Length)
+            enumerationCompleted: !simulateDiscovery,
+            status: ReturnResult.InProgress,
+            itemsCount: simulateDiscovery ? 0 : itemTotal);
+
+        if (!simulateDiscovery)
         {
-            TotalSize = totalSize
-        };
-        progressModel.Report(0);
+            progressModel.TotalSize = totalSize;
+            progressModel.Report();
+        }
 
         try
         {
+            if (simulateDiscovery)
+            {
+                for (var discovered = 1; discovered <= itemTotal; discovered++)
+                {
+                    await Task.Delay(Random.Shared.Next(120, 220), cancellationToken);
+                    progressModel.ItemsCount = discovered;
+                    progressModel.Report();
+                }
+            }
+
+            progressModel.TotalSize = totalSize;
+            progressModel.ItemsCount = itemTotal;
+            progressModel.EnumerationCompleted = true;
+            progressModel.Report();
+
+            await Task.Delay(Random.Shared.Next(50, 500), cancellationToken);
+            progressModel.Report(0);
+
+            var failAtPercentage = Random.Shared.Next(0, 100) < 20 ? Random.Shared.Next(40, 85) : double.MaxValue;
             var percentage = 0.0;
 
             while (percentage < 100)
@@ -655,22 +650,26 @@ public sealed partial class StatusCenterPage : Page
 
                 percentage = Math.Min(100, percentage + Random.Shared.Next(2, 5));
 
-                var processedItems = Math.Min(source.Length, (int)Math.Ceiling(source.Length * percentage / 100));
+                var processedItems = Math.Min(itemTotal, (int)Math.Ceiling(itemTotal * percentage / 100));
                 var pendingItems = processedItems - progressModel.ProcessedItemsCount;
 
                 if (pendingItems > 0)
                     progressModel.AddProcessedItemsCount(pendingItems);
 
-                if (source.Length > 0)
-                    progressModel.FileName = Path.GetFileName(source[Math.Max(0, processedItems - 1)]);
+                if (processedItems > 0)
+                    progressModel.FileName = Path.GetFileName(source[(processedItems - 1) % source.Length]);
 
                 progressModel.Report(percentage);
+
+                if (percentage >= failAtPercentage && percentage < 100)
+                    return ReturnResult.Failed;
             }
 
             return ReturnResult.Success;
         }
         catch (OperationCanceledException)
         {
+            await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
             return ReturnResult.Cancelled;
         }
     }
@@ -680,29 +679,51 @@ public sealed partial class StatusCenterPage : Page
         string[] source,
         CancellationToken cancellationToken)
     {
+        var itemTotal = Random.Shared.Next(1, 26);
         var progressModel = new StatusCenterItemProgressModel(
             progress,
-            enumerationCompleted: true,
-            status: FileSystemStatusCode.InProgress,
-            itemsCount: source.Length);
-        progressModel.Report(0);
+            enumerationCompleted: false,
+            status: ReturnResult.InProgress,
+            itemsCount: 0);
 
         try
         {
-            for (var i = 0; i < source.Length; i++)
+            for (var discovered = 1; discovered <= itemTotal; discovered++)
             {
-                var delay = Random.Shared.Next(200, 300);
-                await Task.Delay(delay, cancellationToken);
+                await Task.Delay(Random.Shared.Next(120, 220), cancellationToken);
+                progressModel.ItemsCount = discovered;
+                progressModel.Report();
+            }
 
+            progressModel.ItemsCount = itemTotal;
+            progressModel.EnumerationCompleted = true;
+            progressModel.Report();
+
+            await Task.Delay(Random.Shared.Next(50, 500), cancellationToken);
+            progressModel.Report(0);
+
+            var failAtPercentage = Random.Shared.Next(0, 100) < 20 ? Random.Shared.Next(40, 85) : double.MaxValue;
+            var processed = 0;
+
+            while (processed < itemTotal)
+            {
+                await Task.Delay(Random.Shared.Next(55, 85), cancellationToken);
+
+                processed++;
                 progressModel.AddProcessedItemsCount(1);
-                progressModel.FileName = Path.GetFileName(source[i]);
-                progressModel.Report((i + 1) * 100.0 / source.Length);
+                progressModel.FileName = Path.GetFileName(source[(processed - 1) % source.Length]);
+                var percentage = processed * 100.0 / itemTotal;
+                progressModel.Report(percentage);
+
+                if (percentage >= failAtPercentage && percentage < 100)
+                    return ReturnResult.Failed;
             }
 
             return ReturnResult.Success;
         }
         catch (OperationCanceledException)
         {
+            await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
             return ReturnResult.Cancelled;
         }
     }
@@ -713,10 +734,11 @@ public sealed partial class StatusCenterPage : Page
         {
             await Task.Delay(Random.Shared.Next(1600, 2800), cancellationToken);
 
-            return ReturnResult.Success;
+            return Random.Shared.Next(0, 100) < 20 ? ReturnResult.Failed : ReturnResult.Success;
         }
         catch (OperationCanceledException)
         {
+            await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
             return ReturnResult.Cancelled;
         }
     }
@@ -730,99 +752,123 @@ public sealed partial class StatusCenterPage : Page
         var progressModel = new StatusCenterItemProgressModel(
             progress,
             enumerationCompleted: true,
-            status: FileSystemStatusCode.InProgress,
+            status: ReturnResult.InProgress,
             itemsCount: itemsCount);
 
         try
         {
+            var failAtPercentage = Random.Shared.Next(0, 100) < 20 ? Random.Shared.Next(40, 90) : double.MaxValue;
+
             switch (operationKind)
             {
                 case GitStatusCenterOperationKind.Checkout:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        await Task.Delay(Random.Shared.Next(80, 120), cancellationToken);
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(25, 40));
-                        progressModel.Report(percentage);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            await Task.Delay(Random.Shared.Next(80, 120), cancellationToken);
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(25, 40));
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case GitStatusCenterOperationKind.Fetch:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        await Task.Delay(Random.Shared.Next(100, 140), cancellationToken);
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(18, 30));
-                        progressModel.Report(percentage);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            await Task.Delay(Random.Shared.Next(100, 140), cancellationToken);
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(18, 30));
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case GitStatusCenterOperationKind.Push:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(14, 24));
-                        progressModel.Report(percentage);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(14, 24));
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case GitStatusCenterOperationKind.Pull:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(10, 18));
-                        progressModel.Report(percentage);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(10, 18));
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case GitStatusCenterOperationKind.Sync:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(7, 14));
-                        progressModel.Report(percentage);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            await Task.Delay(Random.Shared.Next(110, 150), cancellationToken);
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(7, 14));
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case GitStatusCenterOperationKind.Clone:
-                {
-                    var percentage = 0.0;
-                    while (percentage < 100)
                     {
-                        var delay = Random.Shared.Next(100, 150);
-                        if (Random.Shared.Next(0, 12) == 0)
-                            delay += Random.Shared.Next(200, 450);
+                        var percentage = 0.0;
+                        while (percentage < 100)
+                        {
+                            var delay = Random.Shared.Next(100, 150);
+                            if (Random.Shared.Next(0, 12) == 0)
+                                delay += Random.Shared.Next(200, 450);
 
-                        await Task.Delay(delay, cancellationToken);
+                            await Task.Delay(delay, cancellationToken);
 
-                        percentage = Math.Min(100, percentage + Random.Shared.Next(3, 7));
+                            percentage = Math.Min(100, percentage + Random.Shared.Next(3, 7));
 
-                        var processedItems = Math.Min(itemsCount, (long)(itemsCount * percentage / 100));
-                        var pendingItems = processedItems - progressModel.ProcessedItemsCount;
-                        if (pendingItems > 0)
-                            progressModel.AddProcessedItemsCount(pendingItems);
+                            var processedItems = Math.Min(itemsCount, (long)(itemsCount * percentage / 100));
+                            var pendingItems = processedItems - progressModel.ProcessedItemsCount;
+                            if (pendingItems > 0)
+                                progressModel.AddProcessedItemsCount(pendingItems);
 
-                        progressModel.Report(percentage);
+                            progressModel.Report(percentage);
+
+                            if (percentage >= failAtPercentage && percentage < 100)
+                                return ReturnResult.Failed;
+                        }
+                        break;
                     }
-                    break;
-                }
             }
 
             return ReturnResult.Success;
         }
         catch (OperationCanceledException)
         {
+            await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
             return ReturnResult.Cancelled;
         }
     }
+
+    private static string[] FilePaths(string directory, int count)
+        => [.. Enumerable.Range(1, count).Select(i => $@"{directory}\File {i}.txt")];
 
     private static string GetParentDir(string? path)
     {

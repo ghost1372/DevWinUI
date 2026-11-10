@@ -1,22 +1,21 @@
-// Copyright (c) Files Community
+﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-namespace DevWinUI
+namespace DevWinUI;
+
+/// <summary>
+/// Defines constants that specify icon kind of Status Center item.
+/// </summary>
+public enum StatusCenterItemIconKind
 {
-	/// <summary>
-	/// Defines constants that specify icon kind of Status Center item.
-	/// </summary>
-	public enum StatusCenterItemIconKind
-	{
-		Copy,
-		Move,
-		Delete,
-		Recycle,
-		Extract,
-		Compress,
-		Successful,
-		Error,
-		Git,
-		InstallFont
-	}
+	Copy,
+	Move,
+	Delete,
+	Recycle,
+	Extract,
+	Compress,
+	Successful,
+	Error,
+	Git,
+	InstallFont
 }

@@ -3,124 +3,123 @@
 
 using WinRT;
 
-namespace DevWinUI
+namespace DevWinUI;
+
+public sealed partial class StatusCenterStateToBrushConverter : DependencyObject, IValueConverter
 {
-	public sealed partial class StatusCenterStateToBrushConverter : DependencyObject, IValueConverter
+	public static readonly DependencyProperty InProgressBackgroundBrushProperty =
+		DependencyProperty.Register(nameof(InProgressBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty InProgressForegroundBrushProperty =
+		DependencyProperty.Register(nameof(InProgressForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty SuccessfulBackgroundBrushProperty =
+		DependencyProperty.Register(nameof(SuccessfulBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty SuccessfulForegroundBrushProperty =
+		DependencyProperty.Register(nameof(SuccessfulForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty ErrorBackgroundBrushProperty =
+		DependencyProperty.Register(nameof(ErrorBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty ErrorForegroundBrushProperty =
+		DependencyProperty.Register(nameof(ErrorForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty CanceledBackgroundBrushProperty =
+		DependencyProperty.Register(nameof(CanceledBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty CanceledForegroundBrushProperty =
+		DependencyProperty.Register(nameof(CanceledForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public SolidColorBrush InProgressBackgroundBrush
 	{
-		public static readonly DependencyProperty InProgressBackgroundBrushProperty =
-			DependencyProperty.Register(nameof(InProgressBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(InProgressBackgroundBrushProperty);
+		set => SetValue(InProgressBackgroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty InProgressForegroundBrushProperty =
-			DependencyProperty.Register(nameof(InProgressForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush InProgressForegroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(InProgressForegroundBrushProperty);
+		set => SetValue(InProgressForegroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty SuccessfulBackgroundBrushProperty =
-			DependencyProperty.Register(nameof(SuccessfulBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush SuccessfulBackgroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(SuccessfulBackgroundBrushProperty);
+		set => SetValue(SuccessfulBackgroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty SuccessfulForegroundBrushProperty =
-			DependencyProperty.Register(nameof(SuccessfulForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush SuccessfulForegroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(SuccessfulForegroundBrushProperty);
+		set => SetValue(SuccessfulForegroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty ErrorBackgroundBrushProperty =
-			DependencyProperty.Register(nameof(ErrorBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush ErrorBackgroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(ErrorBackgroundBrushProperty);
+		set => SetValue(ErrorBackgroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty ErrorForegroundBrushProperty =
-			DependencyProperty.Register(nameof(ErrorForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush ErrorForegroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(ErrorForegroundBrushProperty);
+		set => SetValue(ErrorForegroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty CanceledBackgroundBrushProperty =
-			DependencyProperty.Register(nameof(CanceledBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush CanceledBackgroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(CanceledBackgroundBrushProperty);
+		set => SetValue(CanceledBackgroundBrushProperty, value);
+	}
 
-		public static readonly DependencyProperty CanceledForegroundBrushProperty =
-			DependencyProperty.Register(nameof(CanceledForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+	public SolidColorBrush CanceledForegroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(CanceledForegroundBrushProperty);
+		set => SetValue(CanceledForegroundBrushProperty, value);
+	}
 
-		public SolidColorBrush InProgressBackgroundBrush
+	public object? Convert(object value, Type targetType, object parameter, string language)
+	{
+		if (value is StatusCenterItemKind state)
 		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(InProgressBackgroundBrushProperty);
-			set => SetValue(InProgressBackgroundBrushProperty, value);
-		}
-
-		public SolidColorBrush InProgressForegroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(InProgressForegroundBrushProperty);
-			set => SetValue(InProgressForegroundBrushProperty, value);
-		}
-
-		public SolidColorBrush SuccessfulBackgroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(SuccessfulBackgroundBrushProperty);
-			set => SetValue(SuccessfulBackgroundBrushProperty, value);
-		}
-
-		public SolidColorBrush SuccessfulForegroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(SuccessfulForegroundBrushProperty);
-			set => SetValue(SuccessfulForegroundBrushProperty, value);
-		}
-
-		public SolidColorBrush ErrorBackgroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(ErrorBackgroundBrushProperty);
-			set => SetValue(ErrorBackgroundBrushProperty, value);
-		}
-
-		public SolidColorBrush ErrorForegroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(ErrorForegroundBrushProperty);
-			set => SetValue(ErrorForegroundBrushProperty, value);
-		}
-
-		public SolidColorBrush CanceledBackgroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(CanceledBackgroundBrushProperty);
-			set => SetValue(CanceledBackgroundBrushProperty, value);
-		}
-
-		public SolidColorBrush CanceledForegroundBrush
-		{
-			[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
-			get => (SolidColorBrush)GetValue(CanceledForegroundBrushProperty);
-			set => SetValue(CanceledForegroundBrushProperty, value);
-		}
-
-		public object? Convert(object value, Type targetType, object parameter, string language)
-		{
-			if (value is StatusCenterItemKind state)
+			if (bool.TryParse(parameter?.ToString(), out var isBackground) && isBackground)
 			{
-				if (bool.TryParse(parameter?.ToString(), out var isBackground) && isBackground)
+				return state switch
 				{
-					return state switch
-					{
-						StatusCenterItemKind.InProgress => InProgressBackgroundBrush,
-						StatusCenterItemKind.Successful => SuccessfulBackgroundBrush,
-						StatusCenterItemKind.Error => ErrorBackgroundBrush,
-						StatusCenterItemKind.Canceled => CanceledBackgroundBrush,
-						_ => CanceledBackgroundBrush
-					};
-				}
-				else
-				{
-					return state switch
-					{
-						StatusCenterItemKind.InProgress => InProgressForegroundBrush,
-						StatusCenterItemKind.Successful => SuccessfulForegroundBrush,
-						StatusCenterItemKind.Error => ErrorForegroundBrush,
-						StatusCenterItemKind.Canceled => CanceledForegroundBrush,
-						_ => CanceledForegroundBrush
-					};
-				}
+					StatusCenterItemKind.InProgress => InProgressBackgroundBrush,
+					StatusCenterItemKind.Successful => SuccessfulBackgroundBrush,
+					StatusCenterItemKind.Error => ErrorBackgroundBrush,
+					StatusCenterItemKind.Canceled => CanceledBackgroundBrush,
+					_ => CanceledBackgroundBrush
+				};
 			}
-
-			return null;
+			else
+			{
+				return state switch
+				{
+					StatusCenterItemKind.InProgress => InProgressForegroundBrush,
+					StatusCenterItemKind.Successful => SuccessfulForegroundBrush,
+					StatusCenterItemKind.Error => ErrorForegroundBrush,
+					StatusCenterItemKind.Canceled => CanceledForegroundBrush,
+					_ => CanceledForegroundBrush
+				};
+			}
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, string language)
-		{
-			throw new NotImplementedException();
-		}
+		return null;
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, string language)
+	{
+		throw new NotImplementedException();
 	}
 }

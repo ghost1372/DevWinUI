@@ -1,4 +1,4 @@
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public enum SizeUnitTypes
 {
@@ -18,8 +18,6 @@ public static class StatusCenterHelper
         string subHeader,
         string message,
         StatusCenterItemIconKind iconKind,
-        IEnumerable<string>? source = null,
-        IEnumerable<string>? destination = null,
         bool canProvideProgress = true,
         long itemsCount = 0,
         long totalSize = 0,
@@ -29,8 +27,6 @@ public static class StatusCenterHelper
             header,
             subHeader,
             status,
-            source,
-            destination,
             canProvideProgress,
             itemsCount,
             totalSize,

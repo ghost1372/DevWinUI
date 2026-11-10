@@ -3,46 +3,45 @@
 
 using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace DevWinUI
+namespace DevWinUI;
+
+public sealed partial class StatusCenterButton : UserControl
 {
-	public sealed partial class StatusCenterButton : UserControl
+	private bool _isOpen;
+
+	public static readonly DependencyProperty FlyoutPlacementProperty =
+		DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacementMode), typeof(StatusCenterButton), new PropertyMetadata(FlyoutPlacementMode.BottomEdgeAlignedRight, OnFlyoutPlacementChanged));
+
+	public StatusCenterViewModel ViewModel { get; } = StatusCenterViewModel.Instance;
+
+	public FlyoutPlacementMode FlyoutPlacement
 	{
-		private bool _isOpen;
+		get => (FlyoutPlacementMode)GetValue(FlyoutPlacementProperty);
+		set => SetValue(FlyoutPlacementProperty, value);
+	}
 
-		public static readonly DependencyProperty FlyoutPlacementProperty =
-			DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacementMode), typeof(StatusCenterButton), new PropertyMetadata(FlyoutPlacementMode.BottomEdgeAlignedRight, OnFlyoutPlacementChanged));
+	public void Open()
+	{
+		if (_isOpen)
+			StatusCenterFlyout.Hide();
+		else
+			StatusCenterFlyout.ShowAt(ShowStatusCenterButton);
+	}
 
-		public StatusCenterViewModel ViewModel { get; } = StatusCenterViewModel.Instance;
+	public StatusCenterButton()
+	{
+		InitializeComponent();
 
-		public FlyoutPlacementMode FlyoutPlacement
-		{
-			get => (FlyoutPlacementMode)GetValue(FlyoutPlacementProperty);
-			set => SetValue(FlyoutPlacementProperty, value);
-		}
+		StatusCenterFlyout.Placement = FlyoutPlacement;
+		StatusCenterFlyout.Opened += (_, _) => _isOpen = true;
+		StatusCenterFlyout.Closed += (_, _) => _isOpen = false;
 
-		public void Open()
-		{
-			if (_isOpen)
-				StatusCenterFlyout.Hide();
-			else
-				StatusCenterFlyout.ShowAt(ShowStatusCenterButton);
-		}
+		Loaded += (_, _) => ViewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
+	}
 
-		public StatusCenterButton()
-		{
-			InitializeComponent();
-
-			StatusCenterFlyout.Placement = FlyoutPlacement;
-			StatusCenterFlyout.Opened += (_, _) => _isOpen = true;
-			StatusCenterFlyout.Closed += (_, _) => _isOpen = false;
-
-			Loaded += (_, _) => ViewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
-		}
-
-		private static void OnFlyoutPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
-			if (d is StatusCenterButton { StatusCenterFlyout: not null } statusCenterButton)
-				statusCenterButton.StatusCenterFlyout.Placement = (FlyoutPlacementMode)e.NewValue;
-		}
+	private static void OnFlyoutPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is StatusCenterButton { StatusCenterFlyout: not null } statusCenterButton)
+			statusCenterButton.StatusCenterFlyout.Placement = (FlyoutPlacementMode)e.NewValue;
 	}
 }
