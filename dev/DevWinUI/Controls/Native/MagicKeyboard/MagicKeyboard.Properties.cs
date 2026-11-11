@@ -173,6 +173,24 @@ public sealed partial class MagicKeyboard
     public static readonly DependencyProperty SyncNumLockProperty =
         DependencyProperty.Register(nameof(SyncNumLock), typeof(bool), typeof(MagicKeyboard), new PropertyMetadata(true, (d, _) => ((MagicKeyboard)d).SyncNumFromSystem()));
 
+    public bool IsGlowEnabled
+    {
+        get { return (bool)GetValue(IsGlowEnabledProperty); }
+        set { SetValue(IsGlowEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsGlowEnabledProperty =
+        DependencyProperty.Register(nameof(IsGlowEnabled), typeof(bool), typeof(MagicKeyboard), new PropertyMetadata(true, (d, _) => ((MagicKeyboard)d).RefreshAllKeys()));
+
+    public Brush? GlowBrush
+    {
+        get { return (Brush?)GetValue(GlowBrushProperty); }
+        set { SetValue(GlowBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty GlowBrushProperty =
+        DependencyProperty.Register(nameof(GlowBrush), typeof(Brush), typeof(MagicKeyboard), new PropertyMetadata(null, (d, _) => ((MagicKeyboard)d).RefreshAllKeys()));
+
     public event TypedEventHandler<MagicKeyboard, MagicKeyEventArgs>? KeyEvent;
 
     private static void OnRebuildChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((MagicKeyboard)d).Rebuild();

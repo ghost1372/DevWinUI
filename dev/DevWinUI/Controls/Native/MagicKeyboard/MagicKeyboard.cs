@@ -94,6 +94,7 @@ public sealed partial class MagicKeyboard : Control
         }
     }
     private MagicKeyboardColors _t = MagicKeyboardColors.Fallback;
+    private Brush _glowFallback = new SolidColorBrush(MagicKeyboardColors.Fallback.LedActive);
     private bool _rebuildQueued;
     private UIElement? _hooked;
     private bool _caps, _num, _inView = true;
@@ -230,6 +231,7 @@ public sealed partial class MagicKeyboard : Control
         _keys.Clear();
         _canvas.Children.Clear();
         _t = LoadColors(EffectiveSkin());
+        _glowFallback = new SolidColorBrush(_t.LedActive);
         _chassis.Background = VGrad(_t.ChassisTop, _t.ChassisBottom);
         _chassis.BorderBrush = new SolidColorBrush(_t.ChassisStroke);
 
@@ -337,8 +339,12 @@ public sealed partial class MagicKeyboard : Control
 
         var dip = new TranslateTransform();
         var cap = new Grid { RenderTransform = dip };
+        var halo = MakeGlow(d, 6, 0.4);
+        cap.Children.Add(halo);
         cap.Children.Add(face);
         if (MakeRim(d) is { } rim) cap.Children.Add(rim);
+        var ring = d.Poly is null ? MakeGlow(d, 1.5, 1) : null;
+        if (ring is not null) cap.Children.Add(ring);
         var legend = MakeLegend(d, out var led, out var letterText, out var dualStack);
         legend.IsHitTestVisible = false;
         cap.Children.Add(legend);
@@ -348,7 +354,7 @@ public sealed partial class MagicKeyboard : Control
         root.Children.Add(edge);
         root.Children.Add(cap);
 
-        var kv = new MagicKeyboardKeyVisual { Def = d, Root = root, Face = face, Dip = dip, Led = led, Letter = letterText, Dual = dualStack, FaceTop = faceTop, FaceBottom = faceBottom };
+        var kv = new MagicKeyboardKeyVisual { Def = d, Root = root, Face = face, Halo = halo, Ring = ring, Dip = dip, Led = led, Letter = letterText, Dual = dualStack, FaceTop = faceTop, FaceBottom = faceBottom };
         string code = d.Code;
 
         root.PointerPressed += (s, e) =>
@@ -502,6 +508,50 @@ public sealed partial class MagicKeyboard : Control
         kv.Dip.Y = pressed ? 1.8 : 0;
         if (pressed) SetFill(kv.Face, _t.PressTop, _t.PressBottom);
         else SetFill(kv.Face, kv.FaceTop, kv.FaceBottom);
+
+        var glow = pressed && IsGlowEnabled ? Visibility.Visible : Visibility.Collapsed;
+        kv.Halo.Visibility = glow;
+        if (kv.Ring is not null) kv.Ring.Visibility = glow;
+        if (glow == Visibility.Visible)
+        {
+            var brush = GlowBrush ?? _glowFallback;
+            kv.Halo.Stroke = brush;
+            if (kv.Ring is not null) kv.Ring.Stroke = brush;
+        }
+    }
+
+    private void RefreshAllKeys()
+    {
+        foreach (var code in _keys.Keys.ToArray()) Refresh(code);
+    }
+
+    private static Path MakeGlow(KeyDef d, double thickness, double opacity)
+    {
+        PathGeometry geometry;
+        double extra = 0;
+
+        if (d.Poly is null)
+        {
+            double r = d.H < 40 ? 6 : 9;
+            geometry = RoundedRect(Gap, Gap, d.W - 2 * Gap, d.H - 2 * Gap, r);
+        }
+        else
+        {
+            var fig = new PathFigure { StartPoint = new Point(d.Poly[0].X, d.Poly[0].Y), IsClosed = true, IsFilled = true };
+            foreach (var p in d.Poly.Skip(1)) fig.Segments.Add(new LineSegment { Point = new Point(p.X, p.Y) });
+            geometry = new PathGeometry { Figures = { fig } };
+            extra = 2 * Radius;
+        }
+
+        return new Path
+        {
+            Data = geometry,
+            StrokeThickness = thickness + extra,
+            StrokeLineJoin = PenLineJoin.Round,
+            Opacity = opacity,
+            IsHitTestVisible = false,
+            Visibility = Visibility.Collapsed
+        };
     }
 
     private static readonly string[] ModifierCodes =
