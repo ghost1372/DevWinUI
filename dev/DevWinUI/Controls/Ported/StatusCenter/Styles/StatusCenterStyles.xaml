@@ -49,7 +49,16 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <converters:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{ThemeResource TextFillColorSecondaryBrush}" CanceledForegroundBrush="{ThemeResource TextFillColorSecondaryBrush}" ErrorBackgroundBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" ErrorForegroundBrush="{ThemeResource SystemFillColorCriticalBrush}" InProgressBackgroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" InProgressForegroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" PausedBackgroundBrush="{ThemeResource SystemFillColorCautionBackgroundBrush}" PausedForegroundBrush="{ThemeResource SystemFillColorCautionBrush}" SuccessfulBackgroundBrush="{ThemeResource SystemFillColorSuccessBackgroundBrush}" SuccessfulForegroundBrush="{ThemeResource SystemFillColorSuccessBrush}" />
+    <SolidColorBrush x:Key="StatusCenterInProgressBrush" Color="{ThemeResource App.Theme.FillColorAttention}" />
+    <SolidColorBrush x:Key="StatusCenterSuccessfulBackgroundBrush" Color="{ThemeResource SystemFillColorSuccessBackground}" />
+    <SolidColorBrush x:Key="StatusCenterSuccessfulBrush" Color="{ThemeResource SystemFillColorSuccess}" />
+    <SolidColorBrush x:Key="StatusCenterErrorBackgroundBrush" Color="{ThemeResource SystemFillColorCriticalBackground}" />
+    <SolidColorBrush x:Key="StatusCenterErrorBrush" Color="{ThemeResource SystemFillColorCritical}" />
+    <SolidColorBrush x:Key="StatusCenterPausedBackgroundBrush" Color="{ThemeResource SystemFillColorCautionBackground}" />
+    <SolidColorBrush x:Key="StatusCenterPausedBrush" Color="{ThemeResource SystemFillColorCaution}" />
+    <SolidColorBrush x:Key="StatusCenterCanceledBrush" Color="{ThemeResource TextFillColorSecondary}" />
+
+    <converters:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{StaticResource StatusCenterCanceledBrush}" CanceledForegroundBrush="{StaticResource StatusCenterCanceledBrush}" ErrorBackgroundBrush="{StaticResource StatusCenterErrorBackgroundBrush}" ErrorForegroundBrush="{StaticResource StatusCenterErrorBrush}" InProgressBackgroundBrush="{StaticResource StatusCenterInProgressBrush}" InProgressForegroundBrush="{StaticResource StatusCenterInProgressBrush}" PausedBackgroundBrush="{StaticResource StatusCenterPausedBackgroundBrush}" PausedForegroundBrush="{StaticResource StatusCenterPausedBrush}" SuccessfulBackgroundBrush="{StaticResource StatusCenterSuccessfulBackgroundBrush}" SuccessfulForegroundBrush="{StaticResource StatusCenterSuccessfulBrush}" />
 
     <wctconverters:BoolNegationConverter x:Key="BoolNegationConverter" />
     <wctconverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />

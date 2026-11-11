@@ -35,6 +35,51 @@ public sealed partial class SpeedGraph2 : Control
         ctl.ApplyGraphState();
     }
 
+    public Color? NormalColor
+    {
+        get => (Color?)GetValue(NormalColorProperty);
+        set => SetValue(NormalColorProperty, value);
+    }
+
+    public static readonly DependencyProperty NormalColorProperty =
+        DependencyProperty.Register(nameof(NormalColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
+
+    public Color? WarningColor
+    {
+        get => (Color?)GetValue(WarningColorProperty);
+        set => SetValue(WarningColorProperty, value);
+    }
+
+    public static readonly DependencyProperty WarningColorProperty =
+        DependencyProperty.Register(nameof(WarningColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
+
+    public Color? SuccessColor
+    {
+        get => (Color?)GetValue(SuccessColorProperty);
+        set => SetValue(SuccessColorProperty, value);
+    }
+
+    public static readonly DependencyProperty SuccessColorProperty =
+        DependencyProperty.Register(nameof(SuccessColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
+
+    public Color? ErrorColor
+    {
+        get => (Color?)GetValue(ErrorColorProperty);
+        set => SetValue(ErrorColorProperty, value);
+    }
+
+    public static readonly DependencyProperty ErrorColorProperty =
+        DependencyProperty.Register(nameof(ErrorColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
+
+    public Color? CustomColor
+    {
+        get => (Color?)GetValue(CustomColorProperty);
+        set => SetValue(CustomColorProperty, value);
+    }
+
+    public static readonly DependencyProperty CustomColorProperty =
+        DependencyProperty.Register(nameof(CustomColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
+
     private static void OnPointsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (SpeedGraph2)d;
@@ -168,24 +213,16 @@ public sealed partial class SpeedGraph2 : Control
 
     private void ApplyGraphState()
     {
-        switch (graphState)
+        var resources = Application.Current.Resources;
+
+        SetGraphColors(graphState switch
         {
-            case GraphState.Warning:
-                SetGraphColors(cautionColor);
-                break;
-            case GraphState.Success:
-                SetGraphColors(successColor);
-                break;
-            case GraphState.Error:
-                SetGraphColors(criticalColor);
-                break;
-            case GraphState.Custom:
-                SetGraphColors(customColor);
-                break;
-            default:
-                SetGraphColors(GetNormalAccentColor());
-                break;
-        }
+            GraphState.Warning => WarningColor ?? resources[cautionColor] as Color?,
+            GraphState.Success => SuccessColor ?? resources[successColor] as Color?,
+            GraphState.Error => ErrorColor ?? resources[criticalColor] as Color?,
+            GraphState.Custom => CustomColor ?? resources[customColor] as Color?,
+            _ => NormalColor
+        } ?? GetNormalAccentColor());
     }
 
     private void InitGraph()
@@ -348,29 +385,29 @@ public sealed partial class SpeedGraph2 : Control
 
     public void SetGraphNormal()
     {
-        SetGraphColors(GetNormalAccentColor());
         graphState = GraphState.Normal;
+        ApplyGraphState();
     }
     public void SetGraphSuccess()
     {
-        SetGraphColors(successColor);
         graphState = GraphState.Success;
+        ApplyGraphState();
     }
     public void SetGraphError()
     {
-        SetGraphColors(criticalColor);
         graphState = GraphState.Error;
+        ApplyGraphState();
     }
     public void SetGraphWarning()
     {
-        SetGraphColors(cautionColor);
         graphState = GraphState.Warning;
+        ApplyGraphState();
     }
     public void SetGraphColor(string colorResourceKey)
     {
         customColor = colorResourceKey;
-        SetGraphColors(colorResourceKey);
         graphState = GraphState.Custom;
+        ApplyGraphState();
     }
 
     private Color GetNormalAccentColor()
@@ -381,17 +418,6 @@ public sealed partial class SpeedGraph2 : Control
             ElementTheme.Dark => (Color)Application.Current.Resources["SystemAccentColorLight2"],
             ElementTheme.Default or _ => (Application.Current.Resources["AccentFillColorDefaultBrush"] as SolidColorBrush)!.Color
         };
-    }
-
-    private void SetGraphColors(string colorResourceKey)
-    {
-        if (backgroundBrush == null)
-            return;
-
-        if (!Application.Current.Resources.TryGetValue(colorResourceKey, out var resource) || resource is not Color accentColor)
-            return;
-
-        SetGraphColors(accentColor);
     }
 
     private void SetGraphColors(Color accentColor)

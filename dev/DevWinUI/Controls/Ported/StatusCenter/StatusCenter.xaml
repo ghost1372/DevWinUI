@@ -128,7 +128,7 @@
                             <Grid x:Name="MainGraphCartesianChartClipGrid" Height="88" Margin="4,4,4,12" VerticalAlignment="Top" BorderBrush="{ThemeResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
 
                                 <Grid Padding="-2,-2,-2,-2">
-                                    <local:SpeedGraph2 Points="{x:Bind SpeedGraphValues, Mode=OneWay}" State="{x:Bind SpeedGraphState, Mode=OneWay}" />
+                                    <local:SpeedGraph2 ErrorColor="{ThemeResource SystemFillColorCritical}" Points="{x:Bind SpeedGraphValues, Mode=OneWay}" State="{x:Bind SpeedGraphState, Mode=OneWay}" SuccessColor="{ThemeResource SystemFillColorSuccess}" WarningColor="{ThemeResource SystemFillColorCaution}" />
                                 </Grid>
 
                                 <!--  Speed Text  -->
@@ -169,7 +169,7 @@
                                 <Button x:Name="MoreOptionsButton" Width="32" Height="32" Padding="0" x:Load="{x:Bind HasActions, Mode=OneWay}" AutomationProperties.Name="More options..." Background="Transparent" BorderBrush="Transparent" ToolTipService.ToolTip="More options..." Visibility="{x:Bind IsInProgress, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                                     <Button.Flyout>
                                         <MenuFlyout>
-                                            <MenuFlyoutItem x:Name="PauseItemButton" Command="{x:Bind PauseCommand}" DataContext="{x:Bind}" Visibility="{x:Bind IsPausable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Text="{x:Bind PauseButtonText, Mode=OneWay}">
+                                            <MenuFlyoutItem x:Name="PauseItemButton" Command="{x:Bind PauseCommand}" DataContext="{x:Bind}" Text="{x:Bind PauseButtonText, Mode=OneWay}" Visibility="{x:Bind IsPausable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                                                 <MenuFlyoutItem.Icon>
                                                     <FontIcon FontSize="16" Glyph="{x:Bind PauseButtonIconGlyph, Mode=OneWay}" />
                                                 </MenuFlyoutItem.Icon>
