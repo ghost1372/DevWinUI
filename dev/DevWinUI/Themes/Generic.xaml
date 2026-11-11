@@ -121,6 +121,7 @@ Themes\Styles\Controls\Countdown.xaml
 Themes\Styles\Controls\CoverFlow.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\DepthLayerView.xaml
+Themes\Styles\Controls\Diagram.xaml
 Themes\Styles\Controls\DiffView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
@@ -501,6 +502,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="DiagramPatternBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramConnectorBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBackground" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeCaptionBrush" Color="{ThemeResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBackground" Color="{ThemeResource SystemFillColorAttentionBackground}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBorderBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramTogglerBackground" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+      <SolidColorBrush x:Key="DiagramTogglerBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramTogglerForeground" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="DiagramViewportStrokeBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.12" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramConflictBrush" Color="{ThemeResource SystemFillColorCritical}" />
       <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#202020" />
       <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#113A1B" />
       <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#450C0F" />
@@ -1243,6 +1257,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="DiagramPatternBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramConnectorBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBackground" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeCaptionBrush" Color="{ThemeResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBackground" Color="{ThemeResource SystemFillColorAttentionBackground}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBorderBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramTogglerBackground" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+      <SolidColorBrush x:Key="DiagramTogglerBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramTogglerForeground" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="DiagramViewportStrokeBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.12" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramConflictBrush" Color="{ThemeResource SystemFillColorCritical}" />
       <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#FFFFFF" />
       <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#E6FFEC" />
       <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#FFEBE9" />
@@ -1946,6 +1973,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="DiagramPatternBrush" ResourceKey="SystemControlForegroundBaseMediumBrush" />
+      <StaticResource x:Key="DiagramConnectorBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <StaticResource x:Key="DiagramNodeBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramNodeBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramNodeCaptionBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramSelectedNodeBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramSelectedNodeBorderBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="DiagramTogglerBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramTogglerBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramTogglerForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramViewportStrokeBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.2" Color="{ThemeResource SystemColorHighlightColor}" />
+      <StaticResource x:Key="DiagramConflictBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="FileDiffSelectionBaseBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="FileDiffAddedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="FileDiffRemovedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
@@ -20203,6 +20243,82 @@ Themes\Styles\Controls\WorldMap.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultDepthLayerViewStyle}" TargetType="local:DepthLayerView" />
+  <Style x:Key="DefaultDiagramStyle" TargetType="local:Diagram">
+    <Setter Property="PatternBrush" Value="{ThemeResource DiagramPatternBrush}" />
+    <Setter Property="ConnectorBrush" Value="{ThemeResource DiagramConnectorBrush}" />
+    <Setter Property="NodeBackground" Value="{ThemeResource DiagramNodeBackground}" />
+    <Setter Property="NodeBorderBrush" Value="{ThemeResource DiagramNodeBorderBrush}" />
+    <Setter Property="NodeCaptionForeground" Value="{ThemeResource DiagramNodeCaptionBrush}" />
+    <Setter Property="SelectedNodeBackground" Value="{ThemeResource DiagramSelectedNodeBackground}" />
+    <Setter Property="SelectedNodeBorderBrush" Value="{ThemeResource DiagramSelectedNodeBorderBrush}" />
+    <Setter Property="TogglerBackground" Value="{ThemeResource DiagramTogglerBackground}" />
+    <Setter Property="TogglerBorderBrush" Value="{ThemeResource DiagramTogglerBorderBrush}" />
+    <Setter Property="TogglerForeground" Value="{ThemeResource DiagramTogglerForeground}" />
+    <Setter Property="ViewportStroke" Value="{ThemeResource DiagramViewportStrokeBrush}" />
+    <Setter Property="ViewportFill" Value="{ThemeResource DiagramViewportFillBrush}" />
+    <Setter Property="ConflictBrush" Value="{ThemeResource DiagramConflictBrush}" />
+    <Setter Property="IsTabStop" Value="True" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Diagram">
+          <Grid x:Name="PART_Root" Background="Transparent">
+            <Canvas x:Name="PART_Back" IsHitTestVisible="False" />
+            <Grid x:Name="PART_World">
+              <Canvas x:Name="PART_Edges" />
+              <Canvas x:Name="PART_Nodes" />
+            </Grid>
+            <Grid x:Name="PART_Dock">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <StackPanel x:Name="PART_DockTopLeft" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockTopCenter" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockTopRight" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockBottomLeft" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+              <StackPanel x:Name="PART_DockBottomCenter" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              <StackPanel x:Name="PART_DockBottomRight" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+            </Grid>
+            <StackPanel x:Name="PART_Stash" Visibility="Collapsed">
+              <Border x:Name="PART_Controls" Margin="12" Padding="2" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8">
+                <StackPanel Orientation="Horizontal" Spacing="2">
+                  <Button x:Name="PART_ZoomOut" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Zoom out">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <TextBlock x:Name="PART_ZoomText" MinWidth="40" VerticalAlignment="Center" FontSize="12" HorizontalTextAlignment="Center" Text="100%" />
+                  <Button x:Name="PART_ZoomIn" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Zoom in">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <Button x:Name="PART_Fit" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Fit to content">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <Button x:Name="PART_Arrange" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Auto arrange">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                </StackPanel>
+              </Border>
+              <Border x:Name="PART_Minimap" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8">
+                <Canvas x:Name="PART_MiniCanvas" Width="200" Height="140" Background="Transparent" />
+              </Border>
+              <Border x:Name="PART_Legend" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8" Visibility="Collapsed" />
+              <Border x:Name="PART_Conflicts" MaxWidth="360" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding ConflictBrush}" BorderThickness="1" CornerRadius="8" Visibility="Collapsed" />
+              <Border x:Name="PART_Hint" Margin="12" Padding="16,8" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="20" IsHitTestVisible="False" Visibility="Collapsed">
+                <TextBlock x:Name="PART_HintText" FontSize="12" Foreground="{TemplateBinding NodeCaptionForeground}" TextTrimming="CharacterEllipsis" />
+              </Border>
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style BasedOn="{StaticResource DefaultDiagramStyle}" TargetType="local:Diagram" />
   <Style x:Key="DefaultDiffViewStyle" TargetType="local:DiffView">
     <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
