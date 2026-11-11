@@ -75,7 +75,7 @@
                                 <Border x:Name="SeverityBackgroundBorder" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, ConverterParameter=True, Mode=OneWay}" CornerRadius="16" Opacity="{x:Bind IconBackgroundCircleBorderOpacity, Mode=OneWay}" />
 
                                 <!--  State Icon 16x16  -->
-                                <IconSourceElement x:Name="SeverityForegroundIcon" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" IconSource="{x:Bind IconSource, Mode=OneWay}" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" />
+                                <IconSourceElement x:Name="SeverityForegroundIcon" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" IconSource="{x:Bind IconSource, Mode=OneWay}" />
 
                             </Grid>
 
@@ -122,13 +122,13 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  Main ProgressBar  -->
-                            <ProgressBar x:Name="MainProgressBar" Margin="4,4,4,4" VerticalAlignment="Top" Foreground="{ThemeResource App.Theme.FillColorAttentionBrush}" IsIndeterminate="{x:Bind IsIndeterminateProgress, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource NegateBoolToVisibilityConverter}, Mode=OneWay}" Value="{x:Bind ProgressPercentage, Mode=OneWay}" />
+                            <ProgressBar x:Name="MainProgressBar" Margin="4,4,4,4" VerticalAlignment="Top" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" IsIndeterminate="{x:Bind IsIndeterminateProgress, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource NegateBoolToVisibilityConverter}, Mode=OneWay}" Value="{x:Bind ProgressPercentage, Mode=OneWay}" />
 
                             <!--  Graph  -->
                             <Grid x:Name="MainGraphCartesianChartClipGrid" Height="88" Margin="4,4,4,12" VerticalAlignment="Top" BorderBrush="{ThemeResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
 
                                 <Grid Padding="-2,-2,-2,-2">
-                                    <local:SpeedGraph2 Points="{x:Bind SpeedGraphValues, Mode=OneWay}" />
+                                    <local:SpeedGraph2 Points="{x:Bind SpeedGraphValues, Mode=OneWay}" State="{x:Bind SpeedGraphState, Mode=OneWay}" />
                                 </Grid>
 
                                 <!--  Speed Text  -->
@@ -166,9 +166,14 @@
                             <Grid Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Top">
 
                                 <!--  More Options  -->
-                                <Button x:Name="MoreOptionsButton" Width="32" Height="32" Padding="0" x:Load="{x:Bind IsCancelable, Mode=OneWay}" AutomationProperties.Name="More options..." Background="Transparent" BorderBrush="Transparent" ToolTipService.ToolTip="More options..." Visibility="{x:Bind IsInProgress, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                <Button x:Name="MoreOptionsButton" Width="32" Height="32" Padding="0" x:Load="{x:Bind HasActions, Mode=OneWay}" AutomationProperties.Name="More options..." Background="Transparent" BorderBrush="Transparent" ToolTipService.ToolTip="More options..." Visibility="{x:Bind IsInProgress, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                                     <Button.Flyout>
                                         <MenuFlyout>
+                                            <MenuFlyoutItem x:Name="PauseItemButton" Command="{x:Bind PauseCommand}" DataContext="{x:Bind}" Visibility="{x:Bind IsPausable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Text="{x:Bind PauseButtonText, Mode=OneWay}">
+                                                <MenuFlyoutItem.Icon>
+                                                    <FontIcon FontSize="16" Glyph="{x:Bind PauseButtonIconGlyph, Mode=OneWay}" />
+                                                </MenuFlyoutItem.Icon>
+                                            </MenuFlyoutItem>
                                             <MenuFlyoutItem x:Name="CancelItemButton" Command="{x:Bind CancelCommand}" DataContext="{x:Bind}" IsEnabled="{x:Bind IsCancelable, Mode=OneWay}" Text="Cancel">
                                                 <MenuFlyoutItem.Icon>
                                                     <FontIcon FontSize="16" Glyph="&#xE711;" />

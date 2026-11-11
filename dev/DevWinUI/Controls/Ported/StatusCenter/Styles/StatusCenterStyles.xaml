@@ -49,7 +49,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <converters:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{ThemeResource TextFillColorSecondaryBrush}" CanceledForegroundBrush="{ThemeResource TextFillColorSecondaryBrush}" ErrorBackgroundBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" ErrorForegroundBrush="{ThemeResource SystemFillColorCriticalBrush}" InProgressBackgroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" InProgressForegroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" SuccessfulBackgroundBrush="{ThemeResource SystemFillColorSuccessBackgroundBrush}" SuccessfulForegroundBrush="{ThemeResource SystemFillColorSuccessBrush}" />
+    <converters:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{ThemeResource TextFillColorSecondaryBrush}" CanceledForegroundBrush="{ThemeResource TextFillColorSecondaryBrush}" ErrorBackgroundBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" ErrorForegroundBrush="{ThemeResource SystemFillColorCriticalBrush}" InProgressBackgroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" InProgressForegroundBrush="{ThemeResource App.Theme.FillColorAttentionBrush}" PausedBackgroundBrush="{ThemeResource SystemFillColorCautionBackgroundBrush}" PausedForegroundBrush="{ThemeResource SystemFillColorCautionBrush}" SuccessfulBackgroundBrush="{ThemeResource SystemFillColorSuccessBackgroundBrush}" SuccessfulForegroundBrush="{ThemeResource SystemFillColorSuccessBrush}" />
 
     <wctconverters:BoolNegationConverter x:Key="BoolNegationConverter" />
     <wctconverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />

@@ -25,6 +25,12 @@ public sealed partial class StatusCenterStateToBrushConverter : DependencyObject
 	public static readonly DependencyProperty ErrorForegroundBrushProperty =
 		DependencyProperty.Register(nameof(ErrorForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
 
+	public static readonly DependencyProperty PausedBackgroundBrushProperty =
+		DependencyProperty.Register(nameof(PausedBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
+	public static readonly DependencyProperty PausedForegroundBrushProperty =
+		DependencyProperty.Register(nameof(PausedForegroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
+
 	public static readonly DependencyProperty CanceledBackgroundBrushProperty =
 		DependencyProperty.Register(nameof(CanceledBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));
 
@@ -73,6 +79,20 @@ public sealed partial class StatusCenterStateToBrushConverter : DependencyObject
 		set => SetValue(ErrorForegroundBrushProperty, value);
 	}
 
+	public SolidColorBrush PausedBackgroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(PausedBackgroundBrushProperty);
+		set => SetValue(PausedBackgroundBrushProperty, value);
+	}
+
+	public SolidColorBrush PausedForegroundBrush
+	{
+		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
+		get => (SolidColorBrush)GetValue(PausedForegroundBrushProperty);
+		set => SetValue(PausedForegroundBrushProperty, value);
+	}
+
 	public SolidColorBrush CanceledBackgroundBrush
 	{
 		[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
@@ -98,6 +118,7 @@ public sealed partial class StatusCenterStateToBrushConverter : DependencyObject
 					StatusCenterItemKind.InProgress => InProgressBackgroundBrush,
 					StatusCenterItemKind.Successful => SuccessfulBackgroundBrush,
 					StatusCenterItemKind.Error => ErrorBackgroundBrush,
+					StatusCenterItemKind.Paused => PausedBackgroundBrush,
 					StatusCenterItemKind.Canceled => CanceledBackgroundBrush,
 					_ => CanceledBackgroundBrush
 				};
@@ -109,6 +130,7 @@ public sealed partial class StatusCenterStateToBrushConverter : DependencyObject
 					StatusCenterItemKind.InProgress => InProgressForegroundBrush,
 					StatusCenterItemKind.Successful => SuccessfulForegroundBrush,
 					StatusCenterItemKind.Error => ErrorForegroundBrush,
+					StatusCenterItemKind.Paused => PausedForegroundBrush,
 					StatusCenterItemKind.Canceled => CanceledForegroundBrush,
 					_ => CanceledForegroundBrush
 				};

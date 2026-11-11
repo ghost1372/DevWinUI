@@ -11,5 +11,6 @@ public enum StatusCenterItemKind
 	InProgress,
 	Successful,
 	Error,
+	Paused,
 	Canceled,
 }

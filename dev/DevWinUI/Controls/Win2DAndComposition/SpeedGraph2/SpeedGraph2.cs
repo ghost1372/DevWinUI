@@ -19,6 +19,22 @@ public sealed partial class SpeedGraph2 : Control
     public static readonly DependencyProperty PointsProperty =
         DependencyProperty.Register(nameof(Points), typeof(ObservableCollection<Vector2>), typeof(SpeedGraph2), new PropertyMetadata(null, OnPointsPropertyChanged));
 
+    public GraphState State
+    {
+        get => (GraphState)GetValue(StateProperty);
+        set => SetValue(StateProperty, value);
+    }
+
+    public static readonly DependencyProperty StateProperty =
+        DependencyProperty.Register(nameof(State), typeof(GraphState), typeof(SpeedGraph2), new PropertyMetadata(GraphState.Normal, OnStatePropertyChanged));
+
+    private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (SpeedGraph2)d;
+        ctl.graphState = (GraphState)e.NewValue;
+        ctl.ApplyGraphState();
+    }
+
     private static void OnPointsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (SpeedGraph2)d;
@@ -399,7 +415,7 @@ public sealed partial class SpeedGraph2 : Control
         graphStrokeBrush.Color = accentColor;
     }
 }
-internal enum GraphState
+public enum GraphState
 {
     Normal,
     Warning,

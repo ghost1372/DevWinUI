@@ -85,6 +85,17 @@
                         <Setter Target="StatusCenterIcon.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
+                <VisualState x:Name="TasksPaused">
+                    <VisualState.StateTriggers>
+                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="4" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MedianOperationProgressRing.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                        <Setter Target="MedianOperationProgressRing.Background" Value="{ThemeResource SubtleFillColorSecondaryBrush}" />
+                        <Setter Target="StatusCenterIcon.Visibility" Value="Collapsed" />
+                        <Setter Target="StatusInfoBadge.Style" Value="{StaticResource CautionValueInfoBadgeStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState x:Name="TasksCompletionWithFailure">
                     <VisualState.StateTriggers>
                         <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="3" />

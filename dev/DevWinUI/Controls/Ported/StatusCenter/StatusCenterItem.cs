@@ -119,12 +119,57 @@ public sealed partial class StatusCenterItem : ObservableObject
 		set => SetProperty(ref _IsIndeterminateProgress, value);
 	}
 
+	// This property will be true if the item card is for in-progress and the operation supports pausing.
+	private bool _IsPausable;
+	public bool IsPausable
+	{
+		get => _IsPausable;
+		set
+		{
+			SetProperty(ref _IsPausable, value);
+			OnPropertyChanged(nameof(HasActions));
+		}
+	}
+
+	public bool HasActions => IsCancelable || IsPausable;
+
+	private bool _IsPaused;
+	public bool IsPaused
+	{
+		get => _IsPaused;
+		set
+		{
+			if (!SetProperty(ref _IsPaused, value) || !IsInProgress)
+				return;
+
+			ItemKind = value ? StatusCenterItemKind.Paused : StatusCenterItemKind.InProgress;
+			OnPropertyChanged(nameof(SpeedGraphState));
+			OnPropertyChanged(nameof(PauseButtonText));
+			OnPropertyChanged(nameof(PauseButtonIconGlyph));
+			_viewModel.NotifyChanges();
+		}
+	}
+
+	public GraphState SpeedGraphState => IsPaused ? GraphState.Warning : GraphState.Normal;
+
+	public string PauseButtonText => IsPaused ? "Resume" : "Pause";
+
+	public string PauseButtonIconGlyph => IsPaused ? "\uE768" : "\uE769";
+
+	public Func<Task>? OnPauseAsync { get; set; }
+
+	public Func<Task>? OnResumeAsync { get; set; }
+
 	// This property will be true if the item card is for in-progress and the operation supports cancellation token also.
 	private bool _IsCancelable;
 	public bool IsCancelable
 	{
 		get => _IsCancelable;
-		set => SetProperty(ref _IsCancelable, value);
+		set
+		{
+			SetProperty(ref _IsCancelable, value);
+			OnPropertyChanged(nameof(HasActions));
+		}
 	}
 
 	// This property is not updated for now. Should be removed.
@@ -190,6 +235,8 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 	public readonly ObservableCollection<Vector2> SpeedGraphValues;
 
+	public ICommand PauseCommand { get; }
+
 	public ICommand CancelCommand { get; }
 
 	[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
@@ -214,6 +261,7 @@ public sealed partial class StatusCenterItem : ObservableObject
 		IconBackgroundCircleBorderOpacity = 1;
 		AnimatedIconState = "NormalOff";
 		SpeedGraphValues = [];
+		PauseCommand = new AsyncRelayCommand(ExecutePauseCommandAsync);
 		CancelCommand = new RelayCommand(ExecuteCancelCommand);
 
 		// Get the graph color
@@ -286,9 +334,9 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 	private void ReportProgress(StatusCenterItemProgressModel value)
 	{
-		// The operation has been canceled.
+		// The operation has been canceled or paused.
 		// Do update neither progress value nor text.
-		if (CancellationToken.IsCancellationRequested)
+		if (CancellationToken.IsCancellationRequested || IsPaused)
 			return;
 
 		// Update status code
@@ -381,6 +429,18 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 		// Update UI of the address bar
 		_viewModel.NotifyChanges();
+	}
+
+	public async Task ExecutePauseCommandAsync()
+	{
+		if (!IsPausable || !IsInProgress)
+			return;
+
+		IsPaused = !IsPaused;
+
+		var callback = IsPaused ? OnPauseAsync : OnResumeAsync;
+		if (callback is not null)
+			await callback();
 	}
 
 	public void ExecuteCancelCommand()

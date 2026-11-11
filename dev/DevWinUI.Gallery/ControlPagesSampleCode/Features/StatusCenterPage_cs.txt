@@ -1,4 +1,4 @@
-private async void Copy_Click(object sender, RoutedEventArgs e)
+﻿private async void Copy_Click(object sender, RoutedEventArgs e)
 {
     var fileCount = Random.Shared.Next(3, 9);
     string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
@@ -6,7 +6,7 @@ private async void Copy_Click(object sender, RoutedEventArgs e)
     var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
     var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, 0, totalSize);
 
-    var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken);
+    var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
     StatusCenterViewModel.Instance.RemoveItem(banner);
     AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
@@ -64,6 +64,7 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
     string[] source,
     long totalSize,
     CancellationToken cancellationToken,
+    StatusCenterItem item,
     bool simulateDiscovery = true)
 {
     var itemTotal = simulateDiscovery ? Random.Shared.Next(1, 26) : source.Length;
@@ -79,13 +80,15 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
         progressModel.Report();
     }
 
+    var pauseDelay = PauseAwareDelay(item);
+
     try
     {
         if (simulateDiscovery)
         {
             for (var discovered = 1; discovered <= itemTotal; discovered++)
             {
-                await Task.Delay(Random.Shared.Next(120, 220), cancellationToken);
+                await pauseDelay(Random.Shared.Next(120, 220), cancellationToken);
                 progressModel.ItemsCount = discovered;
                 progressModel.Report();
             }
@@ -96,7 +99,7 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
         progressModel.EnumerationCompleted = true;
         progressModel.Report();
 
-        await Task.Delay(Random.Shared.Next(50, 500), cancellationToken);
+        await pauseDelay(Random.Shared.Next(50, 500), cancellationToken);
         progressModel.Report(0);
 
         var failAtPercentage = Random.Shared.Next(0, 100) < 20 ? Random.Shared.Next(40, 85) : double.MaxValue;
@@ -108,7 +111,7 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
             if (Random.Shared.Next(0, 15) == 0)
                 delay += Random.Shared.Next(150, 300);
 
-            await Task.Delay(delay, cancellationToken);
+            await pauseDelay(delay, cancellationToken);
 
             percentage = Math.Min(100, percentage + Random.Shared.Next(2, 5));
 
@@ -134,6 +137,29 @@ private static async Task<ReturnResult> SimulateFileOperationAsync(
         await Task.Delay(Random.Shared.Next(50, 500), CancellationToken.None);
         return ReturnResult.Cancelled;
     }
+}
+
+private static Func<int, CancellationToken, Task> PauseAwareDelay(StatusCenterItem item)
+{
+    var resumeSignal = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+    item.OnPauseAsync = () =>
+    {
+        resumeSignal = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        return Task.CompletedTask;
+    };
+    item.OnResumeAsync = () =>
+    {
+        resumeSignal.TrySetResult();
+        return Task.CompletedTask;
+    };
+
+    return async (millisecondsDelay, cancellationToken) =>
+    {
+        while (item.IsPaused)
+            await resumeSignal.Task.WaitAsync(cancellationToken);
+
+        await Task.Delay(millisecondsDelay, cancellationToken);
+    };
 }
 
 private static string[] FilePaths(string directory, int count)

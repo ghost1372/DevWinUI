@@ -67,12 +67,16 @@ public sealed partial class StatusCenterViewModel : ObservableObject
 				i.FileSystemOperationReturnResult != ReturnResult.InProgress &&
 				i.FileSystemOperationReturnResult != ReturnResult.Success);
 
-			return (anyFailure, HasAnyItemInProgress) switch
+			var anyActiveOperation = StatusCenterItems.Any(i => i.IsInProgress && !i.IsPaused);
+			var anyPausedOperation = StatusCenterItems.Any(i => i.IsInProgress && i.IsPaused);
+
+			return (anyFailure, anyActiveOperation, anyPausedOperation) switch
 			{
-				(false, false) => 0, // All successful
-				(false, true) => 1,  // In progress
-				(true, true) => 2,   // In progress with an error
-				(true, false) => 3   // Completed with an error
+				(false, false, false) => 0,     // All successful
+				(false, true, _) => 1,          // In progress
+				(true, true, _) => 2,           // In progress with an error
+				(true, false, false) => 3,      // Completed with an error
+				(_, false, true) => 4           // Paused
 			};
 		}
 	}
