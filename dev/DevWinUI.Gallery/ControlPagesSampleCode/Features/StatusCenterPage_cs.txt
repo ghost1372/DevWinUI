@@ -46,7 +46,7 @@ private static StatusCenterItem AddCard_Copy(
             ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
             : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-    return StatusCenterHelper.AddCard(
+    var card = StatusCenterHelper.AddCard(
         returnStatus,
         Header(itemsCount),
         SubHeader(itemsCount),
@@ -57,6 +57,11 @@ private static StatusCenterItem AddCard_Copy(
         update: (item, progress) => progress.EnumerationCompleted
             ? (Header(item.TotalItemsCount), SubHeader(item.TotalItemsCount), Message(progress))
             : ($"Discovered {ItemsText(item.TotalItemsCount)}", SubHeader(item.TotalItemsCount), Message(progress)));
+
+    if (returnStatus is ReturnResult.InProgress)
+        card.IsPausable = true;
+
+    return card;
 }
 
 private static async Task<ReturnResult> SimulateFileOperationAsync(
