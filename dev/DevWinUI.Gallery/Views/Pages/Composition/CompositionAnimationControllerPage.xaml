@@ -13,18 +13,20 @@
             <local:ControlExample2 Title="CompositionAnimationController" CSharp="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt" Doc="common/compositionAnimationController" DocType="Core" Xaml="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Button x:Name="PlayButton" Click="PlayPause_Animation">
-                                <SymbolIcon x:Name="PlayIcon" Symbol="Play" />
-                            </Button>
-                            <Button x:Name="StopButton" Click="Stop_Animation">
-                                <SymbolIcon Symbol="Stop" />
-                            </Button>
-                            <Button x:Name="SpeedUp" Click="SpeedUp_Animation" Content="2.0x" />
-                            <Button x:Name="SlowDown" Click="SlowDown_Animation" Content="0.5x" />
-                            <Button x:Name="Reverse" Click="Reverse_Animation">
-                                <SymbolIcon Symbol="Back" />
-                            </Button>
+                        <StackPanel Spacing="10">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button x:Name="PlayButton" Click="PlayPause_Animation">
+                                    <SymbolIcon x:Name="PlayIcon" Symbol="Play" />
+                                </Button>
+                                <Button x:Name="StopButton" Click="Stop_Animation">
+                                    <SymbolIcon Symbol="Stop" />
+                                </Button>
+                                <Button x:Name="SpeedUp" Click="SpeedUp_Animation" Content="2.0x" />
+                                <Button x:Name="SlowDown" Click="SlowDown_Animation" Content="0.5x" />
+                                <Button x:Name="Reverse" Click="Reverse_Animation">
+                                    <SymbolIcon Symbol="Back" />
+                                </Button>
+                            </StackPanel>
                             <Slider x:Name="slider" Maximum="100" Minimum="0" TickFrequency="25" TickPlacement="BottomRight" />
                         </StackPanel>
                     </local:OptionPanel>
