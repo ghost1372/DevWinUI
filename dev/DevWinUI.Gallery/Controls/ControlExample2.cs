@@ -86,7 +86,7 @@ public sealed partial class ControlExample2 : Control
     private const string CSharpHostPart = "PART_CSharpHost";
     private const string GlowHostPart = "PART_GlowHost";
 
-    private const double CompactWidth = 760;
+    private const double CompactWidth = 660;
     private const float GlowInset = 12f;
     private const double SegmentChrome = 8;
     private const double SegmentPadding = 32;
