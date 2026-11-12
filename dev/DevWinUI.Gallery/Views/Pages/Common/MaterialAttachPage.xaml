@@ -234,20 +234,19 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+
 
                             <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
-                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
+                            <TextBlock Grid.Row="2" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
                             <MediaPlayerElement Grid.Row="1" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">
                                 <MediaPlayerElement.TransportControls>
                                     <MediaTransportControls dev:MaterialAttach.UseAcrylicBackground="True" IsCompact="False" IsFastForwardButtonVisible="True" IsFastForwardEnabled="True" IsFastRewindButtonVisible="True" IsFastRewindEnabled="True" IsPlaybackRateButtonVisible="True" IsPlaybackRateEnabled="True" IsSeekBarVisible="True" IsSeekEnabled="True" IsSkipBackwardButtonVisible="True" IsSkipBackwardEnabled="True" IsSkipForwardButtonVisible="True" IsSkipForwardEnabled="True" IsStopButtonVisible="True" IsStopEnabled="True" IsVolumeButtonVisible="True" IsVolumeEnabled="True" IsZoomButtonVisible="True" IsZoomEnabled="True" Visibility="Visible" />
                                 </MediaPlayerElement.TransportControls>
                             </MediaPlayerElement>
-                            <MediaPlayerElement Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">
+                            <MediaPlayerElement Grid.Row="3" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">
                                 <MediaPlayerElement.TransportControls>
                                     <MediaTransportControls IsCompact="False" IsFastForwardButtonVisible="True" IsFastForwardEnabled="True" IsFastRewindButtonVisible="True" IsFastRewindEnabled="True" IsPlaybackRateButtonVisible="True" IsPlaybackRateEnabled="True" IsSeekBarVisible="True" IsSeekEnabled="True" IsSkipBackwardButtonVisible="True" IsSkipBackwardEnabled="True" IsSkipForwardButtonVisible="True" IsSkipForwardEnabled="True" IsStopButtonVisible="True" IsStopEnabled="True" IsVolumeButtonVisible="True" IsVolumeEnabled="True" IsZoomButtonVisible="True" IsZoomEnabled="True" Visibility="Visible" />
                                 </MediaPlayerElement.TransportControls>
