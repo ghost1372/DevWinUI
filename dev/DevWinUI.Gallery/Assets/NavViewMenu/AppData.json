@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DiagramPage",
+          "Title": "Diagram",
+          "Subtitle": "Interactive diagrams with hierarchical and freeform layouts, typed pin connections, conflict diagnostics, selection, zoom, minimap and adjustable options.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.Timeline2Page",
           "Title": "Timeline2",
           "Subtitle": "A vertical or horizontal event timeline with progress state, icon or avatar markers, and templated content.",

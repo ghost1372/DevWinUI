@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.DiagramPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/diagram" HeaderText="Hierarchical Workflow">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Diagram Layout="Layered" Direction="TopToBottom" Collapsible="True" AutoFit="True" ShowMinimap="True"&gt;
+                        &lt;dev:Diagram.Root&gt;
+                        &lt;dev:DiagramNode Id="submitted" Title="Order submitted"&gt;
+                        &lt;dev:DiagramNode Id="validate" Title="Validate order"&gt;
+                        &lt;dev:DiagramNode Id="approved" Title="Approved" /&gt;
+                        &lt;dev:DiagramNode Id="review" Title="Needs review" /&gt;
+                        &lt;/dev:DiagramNode&gt;
+                        &lt;/dev:DiagramNode&gt;
+                        &lt;/dev:Diagram.Root&gt;
+                        &lt;/dev:Diagram&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbLayout" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramLayout">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbDirection" Header="Direction" ItemsSource="{x:Bind DirectionItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramDirection">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbEdgeStyle" Header="Edge Style" ItemsSource="{x:Bind EdgeStyleItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramEdgeStyle">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbBackground" Header="Background Pattern" ItemsSource="{x:Bind BackgroundItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramBackground">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbSelectionMode" Header="Selection Mode" ItemsSource="{x:Bind SelectionModeItems, Mode=OneWay}" SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramSelectionMode">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ToggleSwitch x:Name="TglCollapsible" Header="Collapsible" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAutoFit" Header="Auto Fit" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowControls" Header="Show Controls" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowMinimap" Header="Show Minimap" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAllowDrag" Header="Allow Drag" IsOn="True" />
+                        <ToggleSwitch x:Name="TglSnapToGrid" Header="Snap to Grid" />
+                        <ToggleSwitch x:Name="TglShowArrows" Header="Show Arrows" />
+                        <Slider x:Name="SliderLevelSpacing" Header="Level Spacing" Maximum="260" Minimum="40" StepFrequency="10" Value="150" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Diagram Height="460" VerticalAlignment="Top" AllowDrag="{x:Bind TglAllowDrag.IsOn, Mode=OneWay}" AutoFit="{x:Bind TglAutoFit.IsOn, Mode=OneWay}" BackgroundPattern="{x:Bind ((dev:DiagramBackground)CmbBackground.SelectedItem), Mode=OneWay}" Collapsible="{x:Bind TglCollapsible.IsOn, Mode=OneWay}" Direction="{x:Bind ((dev:DiagramDirection)CmbDirection.SelectedItem), Mode=OneWay}" EdgeStyle="{x:Bind ((dev:DiagramEdgeStyle)CmbEdgeStyle.SelectedItem), Mode=OneWay}" Layout="{x:Bind ((dev:DiagramLayout)CmbLayout.SelectedItem), Mode=OneWay}" LevelSpacing="{x:Bind SliderLevelSpacing.Value, Mode=OneWay}" SelectionMode="{x:Bind ((dev:DiagramSelectionMode)CmbSelectionMode.SelectedItem), Mode=OneWay}" ShowArrows="{x:Bind TglShowArrows.IsOn, Mode=OneWay}" ShowControls="{x:Bind TglShowControls.IsOn, Mode=OneWay}" ShowMinimap="{x:Bind TglShowMinimap.IsOn, Mode=OneWay}" SnapToGrid="{x:Bind TglSnapToGrid.IsOn, Mode=OneWay}">
+                    <dev:Diagram.Root>
+                        <dev:DiagramNode Title="Order submitted" Id="submitted" Subtitle="Online checkout">
+                            <dev:DiagramNode Title="Validate order" Id="validate" Subtitle="Check inventory and payment">
+                                <dev:DiagramNode Title="Approved" Id="approved" Subtitle="Reserve inventory">
+                                    <dev:DiagramNode Title="Pack and ship" Id="ship" />
+                                </dev:DiagramNode>
+                                <dev:DiagramNode Title="Needs review" Id="review" Subtitle="Request manual approval">
+                                    <dev:DiagramNode Title="Notify customer" Id="notify" />
+                                </dev:DiagramNode>
+                            </dev:DiagramNode>
+                        </dev:DiagramNode>
+                    </dev:Diagram.Root>
+                </dev:Diagram>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/diagram" HeaderText="Typed Data Flow and Conflicts">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Diagram Layout="Layered" Direction="LeftToRight" EdgeStyle="Orthogonal" ShowLegend="True" ShowPinTypes="True" ShowConflicts="True" AllowConnect="True" AllowConflictingConnections="True" AnimateEdges="True"&gt;
+                        &lt;dev:Diagram.Nodes&gt;
+                        &lt;dev:DiagramNode Id="read" Title="Read orders"&gt;
+                        &lt;dev:DiagramNode.Outputs&gt;&lt;dev:DiagramPin Id="text" Name="Text" Type="str" /&gt;&lt;/dev:DiagramNode.Outputs&gt;
+                        &lt;/dev:DiagramNode&gt;
+                        &lt;dev:DiagramNode Id="parse" Title="Parse rows"&gt;...&lt;/dev:DiagramNode&gt;
+                        &lt;/dev:Diagram.Nodes&gt;
+                        &lt;/dev:Diagram&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbPinShape" Header="Pin Shape" ItemsSource="{x:Bind PinShapeItems, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:DiagramPinShape">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ToggleSwitch x:Name="TglAllowConnect" Header="Allow Connections" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAllowConflictingConnections" Header="Allow Conflicting Connections" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowConflicts" Header="Show Conflicts" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowLegend" Header="Show Legend" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowPinTypes" Header="Show Pin Types" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowNodeIds" Header="Show Node IDs" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowHint" Header="Show Hint" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAnimateEdges" Header="Animate Edges" IsOn="True" />
+                        <ToggleSwitch x:Name="TglColorEdgesByType" Header="Color Edges by Type" IsOn="True" />
+                        <ToggleSwitch x:Name="TglAllowDelete" Header="Allow Delete" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <dev:Diagram Height="460" VerticalAlignment="Top" AllowConflictingConnections="{x:Bind TglAllowConflictingConnections.IsOn, Mode=OneWay}" AllowConnect="{x:Bind TglAllowConnect.IsOn, Mode=OneWay}" AllowDelete="{x:Bind TglAllowDelete.IsOn, Mode=OneWay}" AnimateEdges="{x:Bind TglAnimateEdges.IsOn, Mode=OneWay}" AutoFit="True" ColorEdgesByType="{x:Bind TglColorEdgesByType.IsOn, Mode=OneWay}" Direction="LeftToRight" EdgeStyle="Orthogonal" Layout="Layered" PinShape="{x:Bind ((dev:DiagramPinShape)CmbPinShape.SelectedItem), Mode=OneWay}" SelectionMode="Multiple" ShowConflicts="{x:Bind TglShowConflicts.IsOn, Mode=OneWay}" ShowHint="{x:Bind TglShowHint.IsOn, Mode=OneWay}" ShowLegend="{x:Bind TglShowLegend.IsOn, Mode=OneWay}" ShowMinimap="True" ShowNodeIds="{x:Bind TglShowNodeIds.IsOn, Mode=OneWay}" ShowPinTypes="{x:Bind TglShowPinTypes.IsOn, Mode=OneWay}">
+                    <dev:Diagram.Nodes>
+                        <dev:DiagramNode Title="Read orders" Id="read" Subtitle="orders.csv">
+                            <dev:DiagramNode.Outputs>
+                                <dev:DiagramPin Name="Text" Id="text" Type="str" />
+                            </dev:DiagramNode.Outputs>
+                        </dev:DiagramNode>
+                        <dev:DiagramNode Title="Parse rows" Id="parse" Subtitle="Convert text to records">
+                            <dev:DiagramNode.Inputs>
+                                <dev:DiagramPin Name="Text" Id="text" Type="str" />
+                            </dev:DiagramNode.Inputs>
+                            <dev:DiagramNode.Outputs>
+                                <dev:DiagramPin Name="Rows" Id="rows" Type="int" />
+                            </dev:DiagramNode.Outputs>
+                        </dev:DiagramNode>
+                        <dev:DiagramNode Title="Validate" Id="validate" Subtitle="Check row count">
+                            <dev:DiagramNode.Inputs>
+                                <dev:DiagramPin Name="Rows" Id="rows" Type="int" />
+                            </dev:DiagramNode.Inputs>
+                            <dev:DiagramNode.Outputs>
+                                <dev:DiagramPin Name="Valid" Id="valid" Type="bool" />
+                            </dev:DiagramNode.Outputs>
+                        </dev:DiagramNode>
+                        <dev:DiagramNode Title="Save batch" Id="save" Subtitle="Persist validated data">
+                            <dev:DiagramNode.Inputs>
+                                <dev:DiagramPin Name="Valid" Id="valid" Type="bool" />
+                            </dev:DiagramNode.Inputs>
+                        </dev:DiagramNode>
+                        <dev:DiagramNode Title="Export as text" Id="export" Subtitle="Intentional type mismatch">
+                            <dev:DiagramNode.Inputs>
+                                <dev:DiagramPin Name="Text" Id="text" Type="str" />
+                            </dev:DiagramNode.Inputs>
+                        </dev:DiagramNode>
+                    </dev:Diagram.Nodes>
+                    <dev:Diagram.Edges>
+                        <dev:DiagramEdge FromPin="text" IsAnimated="True" ToPin="text" From="read" To="parse" />
+                        <dev:DiagramEdge FromPin="rows" IsAnimated="True" ToPin="rows" From="parse" To="validate" />
+                        <dev:DiagramEdge FromPin="valid" IsAnimated="True" ToPin="valid" From="validate" To="save" />
+                        <dev:DiagramEdge FromPin="rows" Label="Intentional mismatch" ToPin="text" From="parse" To="export" />
+                    </dev:Diagram.Edges>
+                </dev:Diagram>
+            </local:ControlExample>
+
+            <local:ControlExample DocPage="controls/diagram" HeaderText="Freeform Board">
+                <local:ControlExample.Xaml>
+                    <x:String>
+                        &lt;dev:Diagram Layout="Free" BackgroundPattern="Grid" EdgeStyle="Bezier" ShowMinimap="True"&gt;
+                        &lt;dev:Diagram.Nodes&gt;
+                        &lt;dev:DiagramNode Id="design" Title="Design" CanvasX="80" CanvasY="90" /&gt;
+                        &lt;dev:DiagramNode Id="build" Title="Build" CanvasX="350" CanvasY="190" /&gt;
+                        &lt;/dev:Diagram.Nodes&gt;
+                        &lt;/dev:Diagram&gt;
+                    </x:String>
+                </local:ControlExample.Xaml>
+                <dev:Diagram Height="460" VerticalAlignment="Top" AllowDrag="True" AutoFit="True" BackgroundPattern="Grid" EdgeStyle="Bezier" Layout="Free" SelectionMode="Multiple" ShowControls="True" ShowMinimap="True">
+                    <dev:Diagram.Nodes>
+                        <dev:DiagramNode Title="Design" CanvasX="80" CanvasY="90" Id="design" Subtitle="Create the specification" />
+                        <dev:DiagramNode Title="Build" CanvasX="360" CanvasY="210" Id="build" Subtitle="Implement the feature" />
+                        <dev:DiagramNode Title="Test" CanvasX="650" CanvasY="90" Id="test" Subtitle="Verify the result" />
+                    </dev:Diagram.Nodes>
+                    <dev:Diagram.Edges>
+                        <dev:DiagramEdge Label="handoff" From="design" To="build" />
+                        <dev:DiagramEdge IsDashed="True" Label="review" From="build" To="test" />
+                    </dev:Diagram.Edges>
+                </dev:Diagram>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

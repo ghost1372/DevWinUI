@@ -149,6 +149,12 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+### Diagram
+![Diagram](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Diagram.gif)
+
+![Diagram](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Diagram2.gif)
+
+
 ### ParticleGlobe
 ![ParticleGlobe](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ParticleGlobe.gif)
 
