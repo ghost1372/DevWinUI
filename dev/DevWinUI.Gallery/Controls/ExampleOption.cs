@@ -72,6 +72,7 @@ public sealed partial class OptionPanel : StackPanel
     public OptionPanel()
     {
         Spacing = 16;
+        HorizontalAlignment = HorizontalAlignment.Stretch;
     }
 }
 
