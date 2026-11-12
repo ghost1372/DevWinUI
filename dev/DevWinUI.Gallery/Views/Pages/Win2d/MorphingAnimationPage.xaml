@@ -9,18 +9,16 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/morphingAnimation">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:MorphingAnimation PrimaryData="{StaticResource TwitterGeometry}" SecondaryData="{StaticResource FaceBookGeometry}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Orientation="Horizontal" Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="MorphingAnimation" Doc="controls/morphingAnimation">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:MorphingAnimation PrimaryData="{StaticResource TwitterGeometry}" SecondaryData="{StaticResource FaceBookGeometry}" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
                     <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemFillColorSuccess}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemFillColorCritical}" SecondaryData="{StaticResource FaceBookGeometry}" />
                     <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemAccentColor}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemAccentColorDark1}" SecondaryData="{StaticResource FaceBookGeometry}" />
                 </StackPanel>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

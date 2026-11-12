@@ -9,21 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/circleIcon" DocType="Controls" HeaderText="CircleIcon">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:CircleIcon /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="SldBorderThickness" Header="Border Thickness" Value="2" />
-                        <TextBox x:Name="TxtContent" Header="Content (Can be any object)" PlaceholderText="D" Text="D" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="CircleIcon" Doc="controls/circleIcon">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:CircleIcon /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Appearance">
+                        <local:OptionPanel>
+                            <Slider x:Name="SldBorderThickness" Header="Border Thickness" Value="2" />
+                            <TextBox x:Name="TxtContent" Header="Content (Can be any object)" PlaceholderText="D" Text="D" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
                 <dev:CircleIcon BorderStrokeThickness="{x:Bind SldBorderThickness.Value, Mode=OneWay}" Content="{x:Bind TxtContent.Text, Mode=OneWay}" />
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

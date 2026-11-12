@@ -9,32 +9,36 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/audioWave" HeaderText="AudioWave">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:AudioWave x:Name="AudioWaveSample" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        AudioWaveSample.WaveDataProvider = OnWaveDataProvider;
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Button x:Name="BtnFake" Width="200" Click="BtnFake_Click" Content="Generate Fake Data" />
-                        <Button x:Name="BtnFake2" Width="200" Click="BtnFake2_Click" Content="Generate Fake Data2" />
-                        <StackPanel Orientation="Horizontal" Spacing="5">
-                            <Button x:Name="BtnStart" Click="BtnStart_Click" Content="Start" />
-                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
-                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
-                        </StackPanel>
-                        <Slider x:Name="SldProgress" Maximum="100" Minimum="0" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="AudioWave" Doc="controls/audioWave">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:AudioWave x:Name="AudioWaveSample" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.CSharpCode>
+                    <x:String>AudioWaveSample.WaveDataProvider = OnWaveDataProvider;</x:String>
+                </local:ControlExample2.CSharpCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Data">
+                        <local:OptionPanel>
+                            <StackPanel Spacing="8">
+                                <Button x:Name="BtnFake" HorizontalAlignment="Stretch" Click="BtnFake_Click" Content="Generate Fake Data" />
+                                <Button x:Name="BtnFake2" HorizontalAlignment="Stretch" Click="BtnFake2_Click" Content="Generate Fake Data2" />
+                            </StackPanel>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Playback">
+                        <local:OptionPanel>
+                            <StackPanel Spacing="8">
+                                <Button x:Name="BtnStart" HorizontalAlignment="Stretch" Click="BtnStart_Click" Content="Start" />
+                                <Button x:Name="BtnPause" HorizontalAlignment="Stretch" Click="BtnPause_Click" Content="Pause" />
+                                <Button x:Name="BtnStop" HorizontalAlignment="Stretch" Click="BtnStop_Click" Content="Stop" />
+                            </StackPanel>
+                            <Slider x:Name="SldProgress" Header="Progress" Maximum="100" Minimum="0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
                 <dev:AudioWave x:Name="AudioWaveSample" Height="100" CanSelectedByMouse="True" Progress="{x:Bind (x:Int32)SldProgress.Value, Mode=OneWay}" />
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

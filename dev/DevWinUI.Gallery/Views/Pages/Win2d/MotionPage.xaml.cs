@@ -40,10 +40,6 @@ public sealed partial class MotionPage : Page
         MotionWall.EdgeFadeSizeProperty,
         MotionWall.EdgeFadeStrengthProperty
     };
-    public ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
-    public ObservableCollection<MotionWallDirection> DirectionItems { get; set; } = new ObservableCollection<MotionWallDirection>(Enum.GetValues<MotionWallDirection>());
-    public ObservableCollection<MotionWallDistribution> DistributionItems { get; set; } = new ObservableCollection<MotionWallDistribution>(Enum.GetValues<MotionWallDistribution>());
-    public ObservableCollection<MotionWallVarianceStyle> VarianceStyleItems { get; set; } = new ObservableCollection<MotionWallVarianceStyle>(Enum.GetValues<MotionWallVarianceStyle>());
 
     public MotionPage()
     {
@@ -87,10 +83,6 @@ public sealed partial class MotionPage : Page
     {
         LanesSlider.Value = Wall.Lanes;
         ItemsPerLaneBox.Value = Wall.ItemsPerLane;
-        OrientationBox.SelectedItem = Wall.Orientation;
-        DirectionBox.SelectedItem = Wall.Direction;
-        DistributionBox.SelectedItem = Wall.ItemDistribution;
-        VarianceStyleBox.SelectedItem = Wall.VarianceStyle;
     }
 
     private void Preset_Click(object sender, RoutedEventArgs e)

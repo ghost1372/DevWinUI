@@ -10,32 +10,30 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/animatedTextBlock" HeaderText="AnimatedTextBlock">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Text="DevWinUI" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        AnimatedTextBlockSample.TextEffect = new TextMotionBlurEffect();
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
-                        <ComboBox x:Name="CmbEffects" Header="Effect" ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}" SelectedIndex="0" SelectionChanged="CmbEffects_SelectionChanged">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="views:BuiltInEffect">
-                                    <TextBlock Text="{x:Bind Name}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Margin="10" Text="{x:Bind CmbText.SelectedItem, Mode=OneWay}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="AnimatedTextBlock" Doc="controls/animatedTextBlock">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Text="DevWinUI" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.CSharpCode>
+                    <x:String>AnimatedTextBlockSample.TextEffect = new TextMotionBlurEffect();</x:String>
+                </local:ControlExample2.CSharpCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Content">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
+                            <local:ChoiceOption x:Name="CmbEffects" Header="Effect" ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}" SelectedIndex="0" ValueChanged="CmbEffects_ValueChanged">
+                                <local:ChoiceOption.ItemTemplate>
+                                    <DataTemplate x:DataType="views:BuiltInEffect">
+                                        <TextBlock Text="{x:Bind Name}" />
+                                    </DataTemplate>
+                                </local:ChoiceOption.ItemTemplate>
+                            </local:ChoiceOption>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Margin="10" Text="{x:Bind CmbText.Value, Mode=OneWay}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

@@ -9,21 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/blendedImage" HeaderText="BlendedImage">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:BlendedImage PrimaryImageSource="ms-appx:///Assets/Image1.png" SecondaryImageSource="ms-appx:///Assets/Image2.png" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="SldBlur" Header="Blur Radius" Value="100" />
-                        <Slider x:Name="SldSplit" Header="Split Value" Value="50" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="BlendedImage" Doc="controls/blendedImage">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:BlendedImage PrimaryImageSource="ms-appx:///Assets/Image1.png" SecondaryImageSource="ms-appx:///Assets/Image2.png" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Blend">
+                        <local:OptionPanel>
+                            <Slider x:Name="SldBlur" Header="Blur Radius" Value="100" />
+                            <Slider x:Name="SldSplit" Header="Split Value" Value="50" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
                 <dev:BlendedImage x:Name="BlendedImageSample" Width="500" Height="400" BlurRadius="{x:Bind SldBlur.Value, Mode=OneWay}" SplitValue="{x:Bind SldSplit.Value, Mode=OneWay}" />
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

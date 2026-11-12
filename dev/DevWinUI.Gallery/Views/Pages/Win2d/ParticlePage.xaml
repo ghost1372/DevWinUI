@@ -9,22 +9,27 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/particle" DocType="Controls">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Particle IsPointerEnable="True" Density="6" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="tgMouseHover" Header="Mouse Hover" />
-                        <NumberBox x:Name="nbDensity" Header="Density" Maximum="9" Minimum="1" PlaceholderText="Density" SpinButtonPlacementMode="Inline" ValueChanged="nbDensity_ValueChanged" Value="6" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:Particle x:Name="particle" IsPointerEnable="{x:Bind tgMouseHover.IsOn, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Particle" Doc="controls/particle">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Particle">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="tgMouseHover" Header="Mouse Hover" />
+                            <NumberBox x:Name="nbDensity" Header="Density" Maximum="9" Minimum="1" PlaceholderText="Density" SpinButtonPlacementMode="Inline" Value="6" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Particle">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Particle IsPointerEnable="True" Density="6" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:Particle Density="{x:Bind (x:Int32)nbDensity.Value, Mode=OneWay}" IsPointerEnable="{x:Bind tgMouseHover.IsOn, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

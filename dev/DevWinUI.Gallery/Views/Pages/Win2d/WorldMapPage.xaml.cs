@@ -2,10 +2,6 @@
 
 public sealed partial class WorldMapPage : Page
 {
-    public ObservableCollection<WorldMapSelectionMode> SelectionModeItems { get; } = new(Enum.GetValues<WorldMapSelectionMode>());
-    public ObservableCollection<WorldMapHighlightColor> HighlightColorItems { get; } = new(Enum.GetValues<WorldMapHighlightColor>());
-    public ObservableCollection<WorldMapBorderStyle> BorderStyleItems { get; } = new(Enum.GetValues<WorldMapBorderStyle>());
-
     public WorldMapPage()
     {
         InitializeComponent();

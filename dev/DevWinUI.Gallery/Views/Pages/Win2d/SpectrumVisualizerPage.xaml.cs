@@ -2,9 +2,6 @@
 
 public sealed partial class SpectrumVisualizerPage : Page
 {
-    public ObservableCollection<SpectrumColorType> SpectrumColorTypeList { get; set; } = new ObservableCollection<SpectrumColorType>(Enum.GetValues<SpectrumColorType>());
-    public ObservableCollection<SpectrumType> SpectrumTypeList { get; set; } = new ObservableCollection<SpectrumType>(Enum.GetValues<SpectrumType>());
-
     public SpectrumVisualizerPage()
     {
         InitializeComponent();

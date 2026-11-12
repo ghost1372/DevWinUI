@@ -9,30 +9,42 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/flightStatusCard" HeaderText="FlightStatusCard">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:FlightStatusCard DepartureCode="JFK" DepartureCity="New York" DepartureTime="MON, 6:14 PM" ArrivalCode="IKA" ArrivalCity="Tehran" ArrivalTime="TUE, 1:44 PM" Eta="ETA 1:44 PM" Timezone="Tehran Time" NextEvent="BREAKFAST IN" NextEventTime="4:20H" RemainingTime="-6H 36M" Progress="45" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="SliderProgress" Header="Progress" Maximum="100" Minimum="0" Value="45" />
-                        <Slider x:Name="SliderWidth" Header="Container Width" Maximum="900" Minimum="120" Value="700" />
-                        <Slider x:Name="SliderHeight" Header="Container Height" Maximum="600" Minimum="100" Value="480" />
-                        <TextBox x:Name="TxtDepartureCode" Header="Departure Code" MaxLength="4" Text="JFK" />
-                        <TextBox x:Name="TxtDepartureCity" Header="Departure City" Text="New York" />
-                        <TextBox x:Name="TxtArrivalCode" Header="Arrival Code" MaxLength="4" Text="IKA" />
-                        <TextBox x:Name="TxtArrivalCity" Header="Arrival City" Text="Tehran" />
-                        <TextBox x:Name="TxtEta" Header="Eta" Text="ETA 1:44 PM" />
-                        <TextBox x:Name="TxtRemainingTime" Header="Remaining Time" Text="-6H 36M" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <Grid Width="{x:Bind SliderWidth.Value, Mode=OneWay}" Height="{x:Bind SliderHeight.Value, Mode=OneWay}" HorizontalAlignment="Left">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="FlightStatusCard" Doc="controls/flightStatusCard">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:FlightStatusCard DepartureCode="JFK" DepartureCity="New York" DepartureTime="MON, 6:14 PM" ArrivalCode="IKA" ArrivalCity="Tehran" ArrivalTime="TUE, 1:44 PM" Eta="ETA 1:44 PM" Timezone="Tehran Time" NextEvent="BREAKFAST IN" NextEventTime="4:20H" RemainingTime="-6H 36M" Progress="45" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Layout">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderWidth" Header="Container Width" Maximum="900" Minimum="120" Value="700" />
+                            <Slider x:Name="SliderHeight" Header="Container Height" Maximum="600" Minimum="100" Value="480" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Flight">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderProgress" Header="Progress" Maximum="100" Minimum="0" Value="45" />
+                            <TextBox x:Name="TxtEta" Header="Eta" Text="ETA 1:44 PM" />
+                            <TextBox x:Name="TxtRemainingTime" Header="Remaining Time" Text="-6H 36M" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Departure">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtDepartureCode" Header="Departure Code" MaxLength="4" Text="JFK" />
+                            <TextBox x:Name="TxtDepartureCity" Header="Departure City" Text="New York" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Arrival">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtArrivalCode" Header="Arrival Code" MaxLength="4" Text="IKA" />
+                            <TextBox x:Name="TxtArrivalCity" Header="Arrival City" Text="Tehran" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <Grid Width="{x:Bind SliderWidth.Value, Mode=OneWay}" Height="{x:Bind SliderHeight.Value, Mode=OneWay}" HorizontalAlignment="Center">
                     <dev:FlightStatusCard ArrivalCity="{x:Bind TxtArrivalCity.Text, Mode=OneWay}" ArrivalCode="{x:Bind TxtArrivalCode.Text, Mode=OneWay}" ArrivalTime="TUE, 1:44 PM" DepartureCity="{x:Bind TxtDepartureCity.Text, Mode=OneWay}" DepartureCode="{x:Bind TxtDepartureCode.Text, Mode=OneWay}" DepartureTime="MON, 6:14 PM" Eta="{x:Bind TxtEta.Text, Mode=OneWay}" NextEvent="BREAKFAST IN" NextEventTime="4:20H" Progress="{x:Bind SliderProgress.Value, Mode=OneWay}" RemainingTime="{x:Bind TxtRemainingTime.Text, Mode=OneWay}" Timezone="Tehran Time" />
                 </Grid>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

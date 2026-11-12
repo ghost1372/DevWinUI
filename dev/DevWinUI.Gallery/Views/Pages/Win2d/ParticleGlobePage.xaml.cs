@@ -2,9 +2,6 @@
 
 public sealed partial class ParticleGlobePage : Page
 {
-    public ObservableCollection<ParticleGlobeTheme> ThemeItems { get; } = new(Enum.GetValues<ParticleGlobeTheme>());
-    public ObservableCollection<ParticleGlobeQuality> QualityItems { get; } = new(Enum.GetValues<ParticleGlobeQuality>());
-    public ObservableCollection<ParticleGlobeFlatMapMode> FlatMapModeItems { get; } = new(Enum.GetValues<ParticleGlobeFlatMapMode>());
     public ObservableCollection<ParticleGlobeCountryOption> CountryItems { get; } = new()
     {
         new("United States", "USA"),
@@ -26,13 +23,13 @@ public sealed partial class ParticleGlobePage : Page
 
     private void OnGlobeCountryClicked(object sender, ParticleGlobeCountryEventArgs e)
     {
-        CmbCountry.SelectedItem = CountryItems.FirstOrDefault(country => country.Code == e.Code);
+        CmbCountry.Value = CountryItems.FirstOrDefault(country => country.Code == e.Code);
         GlobeStatusText.Text = $"Selected: {e.Name} ({e.Code})";
     }
 
-    private void OnCountrySelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void OnCountryValueChanged(ChoiceOption sender, object value)
     {
-        if (CmbCountry.SelectedItem is ParticleGlobeCountryOption country)
+        if (value is ParticleGlobeCountryOption country)
         {
             Globe.SelectedCountryCode = country.Code;
             GlobeStatusText.Text = $"Selected: {country.Name} ({country.Code})";

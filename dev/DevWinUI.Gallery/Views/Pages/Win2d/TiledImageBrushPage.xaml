@@ -9,25 +9,18 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="brushes/tiledImageBrush" DocType="Controls">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;Rectangle &gt;
-                        &lt;Rectangle.Fill&gt;
-                        &lt;dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" /&gt;
-                        &lt;/Rectangle.Fill&gt;
-                        &lt;/Rectangle &gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-
-                <Rectangle Height="400">
-                    <Rectangle.Fill>
-                        <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
-                    </Rectangle.Fill>
-                </Rectangle>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="TiledImageBrush" Doc="brushes/tiledImageBrush">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="TiledImageBrush" Xaml="Win2d/TiledImageBrush_xaml.txt">
+                        <Rectangle Height="400">
+                            <Rectangle.Fill>
+                                <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

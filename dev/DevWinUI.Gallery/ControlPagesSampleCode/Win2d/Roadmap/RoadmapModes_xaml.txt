@@ -1,0 +1,5 @@
+<dev:Roadmap Mode="Simple">
+    <dev:RoadmapItem Accent="#F4623A" Content="Project started." Header="Kickoff" Label="2022" />
+    <dev:RoadmapItem Accent="#F5A623" Content="First public preview." Header="Preview" Label="2023" />
+    <dev:RoadmapItem Accent="#35BDE4" Content="Stable release." Header="Release" Label="2024" />
+</dev:Roadmap>

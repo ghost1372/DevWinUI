@@ -10,11 +10,6 @@ public sealed partial class RadarPage : Page
     private readonly Random _random = new();
     private int _counter = 3;
 
-    public ObservableCollection<RadarMode> ModeItems { get; set; } = new ObservableCollection<RadarMode>(Enum.GetValues<RadarMode>());
-    public ObservableCollection<RadarVisibility> VisibilityItems { get; set; } = new ObservableCollection<RadarVisibility>(Enum.GetValues<RadarVisibility>());
-    public ObservableCollection<RadarBlipState> StateItems { get; set; } = new ObservableCollection<RadarBlipState>(Enum.GetValues<RadarBlipState>());
-    public ObservableCollection<RadarMarker> MarkerItems { get; set; } = new ObservableCollection<RadarMarker>(Enum.GetValues<RadarMarker>());
-
     public ObservableCollection<RadarAircraft> Aircraft { get; } = new()
     {
         new RadarAircraft("AC-101", 30, 0.8, 6),
@@ -29,11 +24,6 @@ public sealed partial class RadarPage : Page
         InitializeComponent();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
-    }
-
-    public int ToInt(double value)
-    {
-        return (int)Math.Round(value);
     }
 
     public RadarVisibility ZoneVisibility(bool scanOnly)

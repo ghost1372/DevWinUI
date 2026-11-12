@@ -7,97 +7,86 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Win2d/MotionWall/MotionPage_cs.txt" DocPage="controls/motionwall" HeaderText="MotionWall" XamlSource="Win2d/MotionWall/MotionPage_xaml.txt">
-                <StackPanel Spacing="8">
-                    <TextBlock x:Name="StatusText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Enable IsInteractive, then click a tile or focus the wall and use the arrow keys." TextWrapping="Wrap" />
-                    <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
-                        <dev:MotionWall x:Name="Wall" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" Direction="{x:Bind ((dev:MotionWallDirection)DirectionBox.SelectedItem), Mode=OneWay}" ItemDistribution="{x:Bind ((dev:MotionWallDistribution)DistributionBox.SelectedItem), Mode=OneWay}" Orientation="{x:Bind ((Orientation)OrientationBox.SelectedItem), Mode=OneWay}" VarianceStyle="{x:Bind ((dev:MotionWallVarianceStyle)VarianceStyleBox.SelectedItem), Mode=OneWay}" />
-                    </Border>
-                </StackPanel>
-                <local:ControlExample.Pane>
-                    <ScrollViewer Height="500">
-                        <StackPanel Margin="10" Spacing="8">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="MotionWall" CSharp="Win2d/MotionWall/MotionPage_cs.txt" Doc="controls/motionwall" Xaml="Win2d/MotionWall/MotionPage_xaml.txt">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Presets">
+                        <local:OptionPanel>
                             <dev:WrapPanel HorizontalSpacing="10" Orientation="Horizontal" VerticalSpacing="10">
                                 <Button Click="Preset_Click" Content="Default" Tag="default" />
                                 <Button Click="Preset_Click" Content="Marquee" Tag="marquee" />
                                 <Button Click="Preset_Click" Content="DriftWall" Tag="drift" />
                                 <Button Click="Preset_Click" Content="GridMotion" Tag="grid" />
                             </dev:WrapPanel>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Layout" IsExpanded="True">
-                                <StackPanel Spacing="12">
-                                    <ComboBox x:Name="OrientationBox" HorizontalAlignment="Stretch" Header="Orientation" ItemsSource="{x:Bind OrientationItems, Mode=OneWay}" SelectedIndex="0">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate x:DataType="Orientation">
-                                                <TextBlock Text="{x:Bind}" />
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <ComboBox x:Name="DistributionBox" HorizontalAlignment="Stretch" Header="ItemDistribution" ItemsSource="{x:Bind DistributionItems, Mode=OneWay}" SelectedIndex="0" />
-                                    <Slider x:Name="LanesSlider" Header="Lanes" Maximum="10" Minimum="1" StepFrequency="1" ValueChanged="LanesSlider_ValueChanged" Value="4" />
-                                    <NumberBox x:Name="ItemsPerLaneBox" Header="ItemsPerLane (0 = auto)" Minimum="0" SpinButtonPlacementMode="Inline" ValueChanged="ItemsPerLaneBox_ValueChanged" Value="0" />
-                                    <ToggleSwitch Header="AddEdgeLanes" IsOn="{x:Bind Wall.AddEdgeLanes, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="Gap" Maximum="64" Minimum="0" Value="{x:Bind Wall.Gap, Mode=TwoWay}" />
-                                    <Slider Header="TileCornerRadius" Maximum="48" Minimum="0" Value="{x:Bind Wall.TileCornerRadius, Mode=TwoWay}" />
-                                    <Slider Header="TileAspectRatio" Maximum="3" Minimum="0.5" StepFrequency="0.05" Value="{x:Bind Wall.TileAspectRatio, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Motion">
-                                <StackPanel Spacing="12">
-                                    <ComboBox x:Name="DirectionBox" HorizontalAlignment="Stretch" Header="Direction" ItemsSource="{x:Bind DirectionItems, Mode=OneWay}" SelectedIndex="0" />
-                                    <ComboBox x:Name="VarianceStyleBox" HorizontalAlignment="Stretch" Header="VarianceStyle" ItemsSource="{x:Bind VarianceStyleItems, Mode=OneWay}" SelectedIndex="0" />
-                                    <Slider Header="Speed" Maximum="300" Minimum="0" Value="{x:Bind Wall.Speed, Mode=TwoWay}" />
-                                    <Slider Header="LoopDuration" Maximum="120" Minimum="0" Value="{x:Bind Wall.LoopDuration, Mode=TwoWay}" />
-                                    <Slider Header="Variance" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Variance, Mode=TwoWay}" />
-                                    <Slider Header="MaxFrameRate" Maximum="144" Minimum="15" Value="{x:Bind Wall.MaxFrameRate, Mode=TwoWay}" />
-                                    <ToggleSwitch Header="RandomStart" IsOn="{x:Bind Wall.RandomStart, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="PauseOnHover" IsOn="{x:Bind Wall.PauseOnHover, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Perspective">
-                                <StackPanel Spacing="12">
-                                    <Slider Header="Tilt" Maximum="75" Minimum="-45" Value="{x:Bind Wall.Tilt, Mode=TwoWay}" />
-                                    <Slider Header="Turn" Maximum="45" Minimum="-45" Value="{x:Bind Wall.Turn, Mode=TwoWay}" />
-                                    <Slider Header="Roll" Maximum="45" Minimum="-45" Value="{x:Bind Wall.Roll, Mode=TwoWay}" />
-                                    <Slider Header="Perspective" Maximum="3000" Minimum="300" Value="{x:Bind Wall.Perspective, Mode=TwoWay}" />
-                                    <Slider Header="Depth" Maximum="600" Minimum="0" Value="{x:Bind Wall.Depth, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Interaction">
-                                <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="IsInteractive" IsOn="{x:Bind Wall.IsInteractive, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="Lift" Maximum="200" Minimum="0" Value="{x:Bind Wall.Lift, Mode=TwoWay}" />
-                                    <Slider Header="Spotlight" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Spotlight, Mode=TwoWay}" />
-                                    <Slider Header="Dim" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Dim, Mode=TwoWay}" />
-                                    <Slider Header="Parallax" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Parallax, Mode=TwoWay}" />
-                                    <Slider Header="PointerTilt" Maximum="1.5" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.PointerTilt, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Appearance">
-                                <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="Grayscale" IsOn="{x:Bind Wall.Grayscale, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowLines" IsOn="{x:Bind Wall.ShowLines, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="OverlayOpacity" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.OverlayOpacity, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Edge fade">
-                                <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="FadeEdges" IsOn="{x:Bind Wall.FadeEdges, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="EdgeFadeSize" Maximum="0.5" Minimum="0" StepFrequency="0.01" Value="{x:Bind Wall.EdgeFadeSize, Mode=TwoWay}" />
-                                    <Slider Header="EdgeFadeStrength" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.EdgeFadeStrength, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-                        </StackPanel>
-                    </ScrollViewer>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Layout">
+                        <local:OptionPanel>
+                            <local:ChoiceOption Header="Orientation" Value="{x:Bind Wall.Orientation, Mode=TwoWay}" />
+                            <local:ChoiceOption Header="ItemDistribution" Value="{x:Bind Wall.ItemDistribution, Mode=TwoWay}" />
+                            <Slider x:Name="LanesSlider" Header="Lanes" Maximum="10" Minimum="1" StepFrequency="1" ValueChanged="LanesSlider_ValueChanged" Value="4" />
+                            <NumberBox x:Name="ItemsPerLaneBox" Header="ItemsPerLane (0 = auto)" Minimum="0" SpinButtonPlacementMode="Inline" ValueChanged="ItemsPerLaneBox_ValueChanged" Value="0" />
+                            <ToggleSwitch Header="AddEdgeLanes" IsOn="{x:Bind Wall.AddEdgeLanes, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <Slider Header="Gap" Maximum="64" Minimum="0" Value="{x:Bind Wall.Gap, Mode=TwoWay}" />
+                            <Slider Header="TileCornerRadius" Maximum="48" Minimum="0" Value="{x:Bind Wall.TileCornerRadius, Mode=TwoWay}" />
+                            <Slider Header="TileAspectRatio" Maximum="3" Minimum="0.5" StepFrequency="0.05" Value="{x:Bind Wall.TileAspectRatio, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Motion">
+                        <local:OptionPanel>
+                            <local:ChoiceOption Header="Direction" Value="{x:Bind Wall.Direction, Mode=TwoWay}" />
+                            <local:ChoiceOption Header="VarianceStyle" Value="{x:Bind Wall.VarianceStyle, Mode=TwoWay}" />
+                            <Slider Header="Speed" Maximum="300" Minimum="0" Value="{x:Bind Wall.Speed, Mode=TwoWay}" />
+                            <Slider Header="LoopDuration" Maximum="120" Minimum="0" Value="{x:Bind Wall.LoopDuration, Mode=TwoWay}" />
+                            <Slider Header="Variance" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Variance, Mode=TwoWay}" />
+                            <Slider Header="MaxFrameRate" Maximum="144" Minimum="15" Value="{x:Bind Wall.MaxFrameRate, Mode=TwoWay}" />
+                            <ToggleSwitch Header="RandomStart" IsOn="{x:Bind Wall.RandomStart, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="PauseOnHover" IsOn="{x:Bind Wall.PauseOnHover, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Perspective">
+                        <local:OptionPanel>
+                            <Slider Header="Tilt" Maximum="75" Minimum="-45" Value="{x:Bind Wall.Tilt, Mode=TwoWay}" />
+                            <Slider Header="Turn" Maximum="45" Minimum="-45" Value="{x:Bind Wall.Turn, Mode=TwoWay}" />
+                            <Slider Header="Roll" Maximum="45" Minimum="-45" Value="{x:Bind Wall.Roll, Mode=TwoWay}" />
+                            <Slider Header="Perspective" Maximum="3000" Minimum="300" Value="{x:Bind Wall.Perspective, Mode=TwoWay}" />
+                            <Slider Header="Depth" Maximum="600" Minimum="0" Value="{x:Bind Wall.Depth, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Interaction">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="IsInteractive" IsOn="{x:Bind Wall.IsInteractive, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <Slider Header="Lift" Maximum="200" Minimum="0" Value="{x:Bind Wall.Lift, Mode=TwoWay}" />
+                            <Slider Header="Spotlight" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Spotlight, Mode=TwoWay}" />
+                            <Slider Header="Dim" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Dim, Mode=TwoWay}" />
+                            <Slider Header="Parallax" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.Parallax, Mode=TwoWay}" />
+                            <Slider Header="PointerTilt" Maximum="1.5" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.PointerTilt, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Appearance">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="Grayscale" IsOn="{x:Bind Wall.Grayscale, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowLines" IsOn="{x:Bind Wall.ShowLines, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <Slider Header="OverlayOpacity" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.OverlayOpacity, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Edge fade">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="FadeEdges" IsOn="{x:Bind Wall.FadeEdges, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <Slider Header="EdgeFadeSize" Maximum="0.5" Minimum="0" StepFrequency="0.01" Value="{x:Bind Wall.EdgeFadeSize, Mode=TwoWay}" />
+                            <Slider Header="EdgeFadeStrength" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.EdgeFadeStrength, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <StackPanel Spacing="8">
+                    <TextBlock x:Name="StatusText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Enable IsInteractive, then click a tile or focus the wall and use the arrow keys." TextWrapping="Wrap" />
+                    <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
+                        <dev:MotionWall x:Name="Wall" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" />
+                    </Border>
+                </StackPanel>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

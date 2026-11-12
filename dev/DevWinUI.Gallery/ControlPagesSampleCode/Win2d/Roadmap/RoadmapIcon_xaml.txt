@@ -1,0 +1,4 @@
+<dev:Roadmap AxisFlow="On" GlowRadius="5" Mode="Icon">
+    <dev:RoadmapItem Accent="#00E5FF" Glyph="&#xE734;" Header="Signal acquired" Label="Cycle 1" />
+    <dev:RoadmapItem Accent="#7C4DFF" Glyph="&#xE713;" Header="Handshake" Label="Cycle 2" Status="Active" />
+</dev:Roadmap>

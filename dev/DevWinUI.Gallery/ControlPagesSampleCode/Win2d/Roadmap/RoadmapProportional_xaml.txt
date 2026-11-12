@@ -1,0 +1,11 @@
+<dev:Roadmap Distribution="Proportional" Mode="Boxed">
+    <dev:RoadmapItem Header="Alpha" Label="Jan" Value="0" />
+    <dev:RoadmapItem Header="Beta" Label="Mar" Value="2" />
+    <dev:RoadmapItem Header="1.0" Label="Oct" Value="9" />
+
+    <dev:Roadmap.Lanes>
+        <dev:RoadmapLane Header="Stable channel">
+            <dev:RoadmapSegment Content="Feature" Tone="Success" />
+        </dev:RoadmapLane>
+    </dev:Roadmap.Lanes>
+</dev:Roadmap>

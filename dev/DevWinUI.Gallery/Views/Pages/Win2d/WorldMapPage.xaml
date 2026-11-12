@@ -9,47 +9,56 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/worldMap" HeaderText="WorldMap">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbSelectionMode" Header="Selection Mode" ItemsSource="{x:Bind SelectionModeItems, Mode=OneWay}" SelectedIndex="2">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:WorldMapSelectionMode">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbHighlightColor" Header="Highlight Color" ItemsSource="{x:Bind HighlightColorItems, Mode=OneWay}" SelectedIndex="4">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:WorldMapHighlightColor">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbBorderStyle" Header="Border Style" ItemsSource="{x:Bind BorderStyleItems, Mode=OneWay}" SelectedIndex="1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:WorldMapBorderStyle">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <Slider x:Name="SliderStrokeThickness" Header="Border Thickness" Maximum="2" Minimum="0.25" StepFrequency="0.25" Value="0.75" />
-                        <ToggleSwitch x:Name="TglToolTip" Header="Tool Tips" IsOn="True" />
-                        <ToggleSwitch x:Name="TglZoomControls" Header="Zoom Controls" IsOn="True" />
-                        <ToggleSwitch x:Name="TglPan" Header="Pan" IsOn="True" />
-                        <ToggleSwitch x:Name="TglZoom" Header="Zoom" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="8">
-                    <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.SelectedItem), Mode=OneWay}" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.SelectedItem), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.SelectedItem), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" CountryClicked="OnMapCountryClicked" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" />
-                    <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="WorldMap" Doc="controls/worldMap">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Selection">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbSelectionMode" Header="Selection Mode">
+                                <local:ChoiceOption.Value>
+                                    <dev:WorldMapSelectionMode>Multiple</dev:WorldMapSelectionMode>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color">
+                                <local:ChoiceOption.Value>
+                                    <dev:WorldMapHighlightColor>Cyan</dev:WorldMapHighlightColor>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Borders">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbBorderStyle" Header="Border Style">
+                                <local:ChoiceOption.Value>
+                                    <dev:WorldMapBorderStyle>Dashed</dev:WorldMapBorderStyle>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <Slider x:Name="SliderStrokeThickness" Header="Border Thickness" Maximum="2" Minimum="0.25" StepFrequency="0.25" Value="0.75" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Interaction">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TglToolTip" Header="Tool Tips" IsOn="True" />
+                            <ToggleSwitch x:Name="TglZoomControls" Header="Zoom Controls" IsOn="True" />
+                            <ToggleSwitch x:Name="TglPan" Header="Pan" IsOn="True" />
+                            <ToggleSwitch x:Name="TglZoom" Header="Zoom" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="WorldMap">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="8">
+                            <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.Value), Mode=OneWay}" CountryClicked="OnMapCountryClicked" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.Value), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.Value), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" />
+                            <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

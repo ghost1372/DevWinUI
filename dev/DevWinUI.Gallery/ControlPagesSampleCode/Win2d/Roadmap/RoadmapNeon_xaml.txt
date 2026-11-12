@@ -1,0 +1,8 @@
+<dev:Roadmap BootAnimation="On"
+             Flicker="On"
+             Mode="Neon"
+             ScanBeam="On">
+    <dev:RoadmapItem Accent="#00E5FF" Header="Assembly" Label="T-120" Status="Completed" />
+    <dev:RoadmapItem Accent="#FF4081" Header="Transit" Label="T+7 mo" Status="Active" />
+    <dev:RoadmapItem Accent="#69F0AE" Header="Landing" Label="T+8 mo" Status="Planned" />
+</dev:Roadmap>

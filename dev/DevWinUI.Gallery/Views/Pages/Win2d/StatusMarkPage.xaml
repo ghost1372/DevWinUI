@@ -9,43 +9,65 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/statusMark" HeaderText="StatusMark">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:StatusMark Label="Build project" Status="Running" Progress="40" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Button Click="OnSimulateClick" Content="Simulate task" />
-
-                        <ComboBox x:Name="CmbStatus" Header="Status" ItemsSource="{x:Bind StatusItems, Mode=OneWay}" SelectedIndex="1" />
-                        <ToggleSwitch x:Name="TgDeterminate" Header="Determinate Progress" />
-                        <Slider x:Name="SliderProgress" Header="Progress" IsEnabled="{x:Bind TgDeterminate.IsOn, Mode=OneWay}" Maximum="100" Minimum="0" Value="40" />
-                        <Slider x:Name="SliderGlyphSize" Header="Glyph Size" Maximum="64" Minimum="12" StepFrequency="1" Value="20" />
-                        <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="4" Minimum="0.5" StepFrequency="0.25" Value="2" />
-                        <Slider x:Name="SliderDashes" Header="Dashes" Maximum="16" Minimum="3" StepFrequency="1" Value="8" />
-                        <Slider x:Name="SliderSpinDuration" Header="Spin Duration (ms)" Maximum="3000" Minimum="300" StepFrequency="50" Value="1100" />
-                        <Slider x:Name="SliderArcLength" Header="Arc Length" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.68" />
-                        <Slider x:Name="SliderDrawDuration" Header="Draw Duration (ms)" Maximum="1000" Minimum="50" StepFrequency="10" Value="240" />
-                        <Slider x:Name="SliderFillOpacity" Header="Fill Opacity" Maximum="0.5" Minimum="0" StepFrequency="0.01" Value="0.06" />
-                        <ToggleSwitch x:Name="TgStrike" Header="Strike" IsOn="True" />
-                        <Slider x:Name="SliderStrikeDelay" Header="Strike Delay (ms)" IsEnabled="{x:Bind TgStrike.IsOn, Mode=OneWay}" Maximum="1000" Minimum="0" StepFrequency="20" Value="60" />
-                        <ToggleSwitch x:Name="TgReduceMotion" Header="Reduce Motion" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Padding="20" HorizontalAlignment="Center" Spacing="12">
-                    <dev:StatusMark x:Name="MyStatusMark" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" ArcLength="{x:Bind SliderArcLength.Value, Mode=OneWay}" Dashes="{x:Bind (x:Int32)SliderDashes.Value, Mode=OneWay}" DrawDuration="{x:Bind SliderDrawDuration.Value, Mode=OneWay}" FillOpacity="{x:Bind SliderFillOpacity.Value, Mode=OneWay}" GlyphSize="{x:Bind SliderGlyphSize.Value, Mode=OneWay}" Label="Build project" Progress="{x:Bind GetProgress(TgDeterminate.IsOn, SliderProgress.Value), Mode=OneWay}" ReduceMotion="{x:Bind TgReduceMotion.IsOn, Mode=OneWay}" SpinDuration="{x:Bind SliderSpinDuration.Value, Mode=OneWay}" Status="{x:Bind ((dev:StatusMarkStatus)CmbStatus.SelectedItem), Mode=OneWay}" Strike="{x:Bind TgStrike.IsOn, Mode=OneWay}" StrikeDelay="{x:Bind SliderStrikeDelay.Value, Mode=OneWay}" StrokeWidth="{x:Bind SliderStrokeWidth.Value, Mode=OneWay}" />
-
-                    <dev:StatusMark Label="Pending task" Status="Pending" />
-                    <dev:StatusMark Label="Running task" Status="Running" />
-                    <dev:StatusMark Label="Uploading" Progress="65" Status="Running" />
-                    <dev:StatusMark Label="Completed task" Status="Done" />
-                    <dev:StatusMark Label="Failed task" Status="Failed" />
-                    <dev:StatusMark Label="Cancelled task" Status="Cancelled" />
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="StatusMark" Doc="controls/statusMark">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Status">
+                        <local:OptionPanel>
+                            <Button Click="OnSimulateClick" Content="Simulate task" />
+                            <local:ChoiceOption x:Name="CmbStatus" Header="Status">
+                                <local:ChoiceOption.Value>
+                                    <dev:StatusMarkStatus>Running</dev:StatusMarkStatus>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <ToggleSwitch x:Name="TgDeterminate" Header="Determinate Progress" />
+                            <Slider x:Name="SliderProgress" Header="Progress" IsEnabled="{x:Bind TgDeterminate.IsOn, Mode=OneWay}" Maximum="100" Minimum="0" Value="40" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Glyph">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderGlyphSize" Header="Glyph Size" Maximum="64" Minimum="12" StepFrequency="1" Value="20" />
+                            <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="4" Minimum="0.5" StepFrequency="0.25" Value="2" />
+                            <Slider x:Name="SliderDashes" Header="Dashes" Maximum="16" Minimum="3" StepFrequency="1" Value="8" />
+                            <Slider x:Name="SliderFillOpacity" Header="Fill Opacity" Maximum="0.5" Minimum="0" StepFrequency="0.01" Value="0.06" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Motion">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderSpinDuration" Header="Spin Duration (ms)" Maximum="3000" Minimum="300" StepFrequency="50" Value="1100" />
+                            <Slider x:Name="SliderArcLength" Header="Arc Length" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.68" />
+                            <Slider x:Name="SliderDrawDuration" Header="Draw Duration (ms)" Maximum="1000" Minimum="50" StepFrequency="10" Value="240" />
+                            <ToggleSwitch x:Name="TgReduceMotion" Header="Reduce Motion" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Strike">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TgStrike" Header="Strike" IsOn="True" />
+                            <Slider x:Name="SliderStrikeDelay" Header="Strike Delay (ms)" IsEnabled="{x:Bind TgStrike.IsOn, Mode=OneWay}" Maximum="1000" Minimum="0" StepFrequency="20" Value="60" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="StatusMark">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:StatusMark Label="Build project" Status="Running" Progress="40" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:StatusMark Margin="20" HorizontalAlignment="Center" ArcLength="{x:Bind SliderArcLength.Value, Mode=OneWay}" Dashes="{x:Bind (x:Int32)SliderDashes.Value, Mode=OneWay}" DrawDuration="{x:Bind SliderDrawDuration.Value, Mode=OneWay}" FillOpacity="{x:Bind SliderFillOpacity.Value, Mode=OneWay}" GlyphSize="{x:Bind SliderGlyphSize.Value, Mode=OneWay}" Label="Build project" Progress="{x:Bind GetProgress(TgDeterminate.IsOn, SliderProgress.Value), Mode=OneWay}" ReduceMotion="{x:Bind TgReduceMotion.IsOn, Mode=OneWay}" SpinDuration="{x:Bind SliderSpinDuration.Value, Mode=OneWay}" Status="{x:Bind ((dev:StatusMarkStatus)CmbStatus.Value), Mode=OneWay}" Strike="{x:Bind TgStrike.IsOn, Mode=OneWay}" StrikeDelay="{x:Bind SliderStrikeDelay.Value, Mode=OneWay}" StrokeWidth="{x:Bind SliderStrokeWidth.Value, Mode=OneWay}" />
+                    </local:Sample>
+                    <local:Sample Title="Statuses" Xaml="Win2d/StatusMarkStatuses_xaml.txt">
+                        <StackPanel Padding="20" HorizontalAlignment="Center" Spacing="12">
+                            <dev:StatusMark Label="Pending task" Status="Pending" />
+                            <dev:StatusMark Label="Running task" Status="Running" />
+                            <dev:StatusMark Label="Uploading" Progress="65" Status="Running" />
+                            <dev:StatusMark Label="Completed task" Status="Done" />
+                            <dev:StatusMark Label="Failed task" Status="Failed" />
+                            <dev:StatusMark Label="Cancelled task" Status="Cancelled" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

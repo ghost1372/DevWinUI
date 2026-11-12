@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class PlayStationParticlesPage : Page
 {

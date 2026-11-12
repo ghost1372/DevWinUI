@@ -1,0 +1,28 @@
+<dev:StarBorder Width="160"
+                Height="56"
+                HoverMode="Brighten"
+                StarColor="#7C3AED"
+                Theme="Light"
+                TrailColor="#EC4899">
+    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Brighten" />
+</dev:StarBorder>
+
+<dev:StarBorder Width="160"
+                Height="56"
+                HoverMode="Reveal"
+                Sparkle="True"
+                StarColor="Gold"
+                Stars="3"
+                TrailColor="Orange">
+    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Reveal" />
+</dev:StarBorder>
+
+<dev:StarBorder Width="160"
+                Height="56"
+                Direction="CounterClockwise"
+                Duration="2"
+                Radius="32"
+                StarColor="#22C55E"
+                TrailColor="#06B6D4">
+    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Pill" />
+</dev:StarBorder>

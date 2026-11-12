@@ -1,0 +1,5 @@
+<dev:StarBorder Width="220" Height="64">
+    <TextBlock HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Text="Star Border" />
+</dev:StarBorder>

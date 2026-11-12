@@ -1,0 +1,6 @@
+<Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
+    <dev:PlayStationParticles Speed="1" />
+    <TextBlock Text="Welcome"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center" />
+</Grid>

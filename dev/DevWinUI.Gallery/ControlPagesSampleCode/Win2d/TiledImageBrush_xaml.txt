@@ -1,0 +1,5 @@
+<Rectangle>
+    <Rectangle.Fill>
+        <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
+    </Rectangle.Fill>
+</Rectangle>
