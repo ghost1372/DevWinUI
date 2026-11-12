@@ -18,7 +18,7 @@
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="SampleTextBox" Header="Enter Version string" PlaceholderText="1.2.3" TextChanged="SampleTextBox_TextChanged" />
-                        <ComboBox x:Name="SampleComboBox" Header="Choose Predefined Versions" SelectionChanged="SampleComboBox_SelectionChanged">
+                        <ComboBox x:Name="SampleComboBox" HorizontalAlignment="Stretch" Header="Choose Predefined Versions" SelectionChanged="SampleComboBox_SelectionChanged">
                             <ComboBoxItem Content="1.2.3" />
                             <ComboBoxItem Content="v1.2.3" />
                             <ComboBoxItem Content="1.2.3-alpha" />

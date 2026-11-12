@@ -812,7 +812,6 @@ public sealed partial class ControlExample2 : Control
 
         _xamlItem.Visibility = hasXaml ? Visibility.Visible : Visibility.Collapsed;
         _csharpItem.Visibility = hasCSharp ? Visibility.Visible : Visibility.Collapsed;
-        _codeSelector.Visibility = hasXaml || hasCSharp ? Visibility.Visible : Visibility.Collapsed;
         _footerExpander.Visibility = hasXaml || hasCSharp ? Visibility.Visible : Visibility.Collapsed;
 
         var codeSet = (hasXaml ? 1 : 0) | (hasCSharp ? 2 : 0);

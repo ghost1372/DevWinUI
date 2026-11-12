@@ -238,7 +238,6 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-
                             <TextBlock HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Acrylic Background" />
                             <TextBlock Grid.Row="2" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Normal Background" />
                             <MediaPlayerElement Grid.Row="1" HorizontalAlignment="Stretch" AreTransportControlsEnabled="True">

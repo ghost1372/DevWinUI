@@ -19,32 +19,32 @@
                     <local:OptionGroup Title="Message">
                         <local:OptionPanel>
                             <TextBox x:Name="txtTitle" Header="Title" PlaceholderText="Title" Text="Title" />
-                            <TextBox x:Name="txtContent" Header="Content" PlaceholderText="Content" Text="Content" />
-                            <ComboBox x:Name="CmbMessageBoxButtons" Header="MessageBox Buttons" ItemsSource="{x:Bind MessageBoxButtonItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbMessageBoxDefaultButton" Header="MessageBox Default Button" ItemsSource="{x:Bind MessageBoxDefaultButtonItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbMessageBoxIcon" Header="MessageBox Icon" ItemsSource="{x:Bind MessageBoxIconItems, Mode=OneWay}" SelectedIndex="0" />
+                            <TextBox x:Name="txtContent" HorizontalAlignment="Stretch" Header="Content" PlaceholderText="Content" Text="Content" />
+                            <local:ChoiceOption x:Name="CmbMessageBoxButtons" Header="MessageBox Buttons" />
+                            <local:ChoiceOption x:Name="CmbMessageBoxDefaultButton" Header="MessageBox Default Button" />
+                            <local:ChoiceOption x:Name="CmbMessageBoxIcon" Header="MessageBox Icon" />
                         </local:OptionPanel>
                     </local:OptionGroup>
 
                     <local:OptionGroup Title="Window">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbFlow" Header="FlowDirection" ItemsSource="{x:Bind FlowDirectionItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbWindowStartupLocation" Header="WindowStartupLocation" ItemsSource="{x:Bind WindowStartupLocationItems, Mode=OneWay}" SelectedIndex="2" />
+                            <local:ChoiceOption x:Name="CmbFlow" Header="FlowDirection" />
+                            <local:ChoiceOption x:Name="CmbWindowStartupLocation" Header="WindowStartupLocation" />
                             <ToggleSwitch x:Name="TGHasOwnerWindow" Header="Has Owner Window?" IsOn="True" />
                             <ToggleSwitch x:Name="TGHasTitleBar" Header="Has TitleBar?" IsOn="True" />
                             <ToggleSwitch x:Name="TGDragMove" Header="Drag by Content" IsOn="False" />
                             <ToggleSwitch x:Name="TGCanResize" Header="Can Resize?" IsOn="True" />
-                            <ComboBox x:Name="CmbUnderlayBackdrops" Header="Backdrop" ItemsSource="{x:Bind BackdropItems, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbUnderlayBackdrops" Header="Backdrop" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample2.OptionGroups>
                 <StackPanel Spacing="10">
-                    <Button Click="OnMessageBox" Content="Show MessageBox" Tag="None" />
-                    <Button Click="OnMessageBox" Content="Show Info MessageBox" Tag="Info" />
-                    <Button Click="OnMessageBox" Content="Show Error MessageBox" Tag="Error" />
-                    <Button Click="OnMessageBox" Content="Show Success MessageBox" Tag="Success" />
-                    <Button Click="OnMessageBox" Content="Show Warning MessageBox" Tag="Warning" />
-                    <Button Click="OnMessageBox" Content="Show Question MessageBox" Tag="Question" />
+                    <Button Click="OnMessageBox" Content="Show MessageBox" Tag="None" HorizontalAlignment="Stretch" />
+                    <Button Click="OnMessageBox" Content="Show Info MessageBox" Tag="Info" HorizontalAlignment="Stretch"/>
+                    <Button Click="OnMessageBox" Content="Show Error MessageBox" Tag="Error" HorizontalAlignment="Stretch"/>
+                    <Button Click="OnMessageBox" Content="Show Success MessageBox" Tag="Success" HorizontalAlignment="Stretch"/>
+                    <Button Click="OnMessageBox" Content="Show Warning MessageBox" Tag="Warning" HorizontalAlignment="Stretch"/>
+                    <Button Click="OnMessageBox" Content="Show Question MessageBox" Tag="Question" HorizontalAlignment="Stretch"/>
                     <TextBlock x:Name="TxtResult" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample2>

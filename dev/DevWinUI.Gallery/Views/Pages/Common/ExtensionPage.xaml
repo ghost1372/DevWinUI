@@ -15,18 +15,18 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Basic">
                         <local:OptionPanel>
-                            <Button MinWidth="200" Click="OnFadeIn" Content="Fade In" />
-                            <Button MinWidth="200" Click="OnAnimateWidth" Content="Animate Width" />
-                            <Button MinWidth="200" Click="OnAnimateHeight" Content="Animate Height" />
-                            <Button MinWidth="200" Click="OnGrow" Content="Grow" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFadeIn" Content="Fade In" />
+                            <Button HorizontalAlignment="Stretch" Click="OnAnimateWidth" Content="Animate Width" />
+                            <Button HorizontalAlignment="Stretch" Click="OnAnimateHeight" Content="Animate Height" />
+                            <Button HorizontalAlignment="Stretch" Click="OnGrow" Content="Grow" />
                         </local:OptionPanel>
                     </local:OptionGroup>
 
                     <local:OptionGroup Title="Transform">
                         <local:OptionPanel>
-                            <Button MinWidth="200" Click="OnRotate" Content="Rotate" />
-                            <Button MinWidth="200" Click="OnTranslate" Content="Translate" />
-                            <Button MinWidth="200" Click="OnSkew" Content="Skew" />
+                            <Button HorizontalAlignment="Stretch" Click="OnRotate" Content="Rotate" />
+                            <Button HorizontalAlignment="Stretch" Click="OnTranslate" Content="Translate" />
+                            <Button HorizontalAlignment="Stretch" Click="OnSkew" Content="Skew" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample2.OptionGroups>
