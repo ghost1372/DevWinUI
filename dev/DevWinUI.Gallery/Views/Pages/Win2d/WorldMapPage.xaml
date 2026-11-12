@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.WorldMapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample DocPage="controls/worldMap" HeaderText="WorldMap">
+                <local:ControlExample.Xaml>
+                    <x:String>&lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;</x:String>
+                </local:ControlExample.Xaml>
+                <local:ControlExample.Pane>
+                    <StackPanel Spacing="10">
+                        <ComboBox x:Name="CmbSelectionMode" Header="Selection Mode" ItemsSource="{x:Bind SelectionModeItems, Mode=OneWay}" SelectedIndex="2">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:WorldMapSelectionMode">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbHighlightColor" Header="Highlight Color" ItemsSource="{x:Bind HighlightColorItems, Mode=OneWay}" SelectedIndex="4">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:WorldMapHighlightColor">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbBorderStyle" Header="Border Style" ItemsSource="{x:Bind BorderStyleItems, Mode=OneWay}" SelectedIndex="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="dev:WorldMapBorderStyle">
+                                    <TextBlock Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Slider x:Name="SliderStrokeThickness" Header="Border Thickness" Maximum="2" Minimum="0.25" StepFrequency="0.25" Value="0.75" />
+                        <ToggleSwitch x:Name="TglToolTip" Header="Tool Tips" IsOn="True" />
+                        <ToggleSwitch x:Name="TglZoomControls" Header="Zoom Controls" IsOn="True" />
+                        <ToggleSwitch x:Name="TglPan" Header="Pan" IsOn="True" />
+                        <ToggleSwitch x:Name="TglZoom" Header="Zoom" IsOn="True" />
+                    </StackPanel>
+                </local:ControlExample.Pane>
+                <StackPanel Spacing="8">
+                    <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.SelectedItem), Mode=OneWay}" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.SelectedItem), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.SelectedItem), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" CountryClicked="OnMapCountryClicked" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" />
+                    <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
+                </StackPanel>
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

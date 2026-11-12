@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.UI.Xaml;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public sealed partial class DonutChart
 {

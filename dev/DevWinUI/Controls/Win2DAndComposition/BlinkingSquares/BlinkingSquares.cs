@@ -1,7 +1,4 @@
-﻿using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml.Shapes;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public sealed partial class BlinkingSquares : Control
 {

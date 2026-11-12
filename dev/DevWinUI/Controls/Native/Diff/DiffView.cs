@@ -1,12 +1,12 @@
-﻿using Microsoft.UI.Dispatching;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Input;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using VirtualKey = global::Windows.System.VirtualKey;

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Media3D;
 using EF = DevWinUI.ExpressionFunctions;
-using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
 

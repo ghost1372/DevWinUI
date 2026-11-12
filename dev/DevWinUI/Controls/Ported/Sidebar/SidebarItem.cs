@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using System.Collections;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using System.Collections;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace DevWinUI;
