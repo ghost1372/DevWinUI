@@ -11,28 +11,18 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample2 Title="CompositionShadow" Doc="controls/compositionShadow" Xaml="Composition/CompositionShadowPage_xaml.txt">
-                <local:ControlExample2.OptionGroups>
-                    <local:OptionGroup Title="Shadow">
-                        <local:OptionPanel>
-                            <Slider x:Name="ShadowSlider" Header="Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="1" />
-                            <Slider x:Name="BlurSlider" Header="Blur Radius" Maximum="100" Minimum="0" Value="16" />
-                            <local:ColorOption x:Name="ColorOptionSample" Header="Shadow Color" Value="Yellow" />
-                            <ToggleSwitch x:Name="TGIsRounded" Header="Is Rounded" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Position">
-                        <local:OptionPanel>
-                            <Slider x:Name="OffsetXSlider" Header="Offset X" Maximum="200" Minimum="-200" Value="2" />
-                            <Slider x:Name="OffsetYSlider" Header="Offset Y" Maximum="200" Minimum="-200" Value="2" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Animation and Mask">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TGMask" Header="Toggle Mask" Toggled="TGMask_Toggled" />
-                            <ToggleSwitch x:Name="TGBreath" Header="Breath" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TGMask" Header="Toggle Mask" Toggled="TGMask_Toggled" />
+                        <ToggleSwitch x:Name="TGBreath" Header="Breath" />
+                        <ToggleSwitch x:Name="TGIsRounded" Header="Is Rounded" IsOn="True" />
+                        <local:ColorOption x:Name="ColorOptionSample" Header="Shadow Color" Value="Yellow" />
+                        <Slider x:Name="OffsetXSlider" Header="Offset X" Maximum="200" Minimum="-200" Value="2" />
+                        <Slider x:Name="OffsetYSlider" Header="Offset Y" Maximum="200" Minimum="-200" Value="2" />
+                        <Slider x:Name="ShadowSlider" Header="Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="1" />
+                        <Slider x:Name="BlurSlider" Header="Blur Radius" Maximum="100" Minimum="0" Value="16" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <StackPanel Spacing="10">
                     <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" IsBreathing="{x:Bind TGBreath.IsOn, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}">
                         <TextBlock FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap">
