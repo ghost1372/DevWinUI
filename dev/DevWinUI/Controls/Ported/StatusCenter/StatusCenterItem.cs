@@ -190,6 +190,8 @@ public sealed partial class StatusCenterItem : ObservableObject
 	}
 
 	private StatusCenterItemIconKind _ItemIconKind;
+	private string? _iconPathMarkup;
+
 	public StatusCenterItemIconKind ItemIconKind
 	{
 		get => _ItemIconKind;
@@ -197,15 +199,41 @@ public sealed partial class StatusCenterItem : ObservableObject
 		{
 			SetProperty(ref _ItemIconKind, value);
 
-			IconSource = ConvertIconKind(value);
+			_iconPathMarkup = GetIconPathMarkup(value);
+			_IconSource = ConvertIconKind(_iconPathMarkup);
+			OnPropertyChanged(nameof(IconSource));
+			OnPropertyChanged(nameof(IconElement));
 		}
 	}
 
 	private IconSource? _IconSource;
+
 	public IconSource? IconSource
 	{
 		get => _IconSource;
-		set => SetProperty(ref _IconSource, value);
+		set
+		{
+			_iconPathMarkup = null;
+			if (SetProperty(ref _IconSource, value))
+				OnPropertyChanged(nameof(IconElement));
+		}
+	}
+
+	public IconElement? IconElement
+	{
+		get
+		{
+			if (_iconPathMarkup is { Length: > 0 } markup)
+				return XamlReader.Load(
+					$@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""{markup}"" />") as PathIcon;
+
+			return IconSource switch
+			{
+				PathIconSource { Data: { } data } => new PathIcon { Data = data },
+				{ } iconSource => iconSource.CreateIconElement(),
+				_ => null,
+			};
+		}
 	}
 
 	public long TotalSize { get; set; }
@@ -306,30 +334,28 @@ public sealed partial class StatusCenterItem : ObservableObject
 		OnPropertyChanged(nameof(HeaderTooltip));
 	}
 
-	private static PathIconSource? ConvertIconKind(StatusCenterItemIconKind iconKind)
+	private static string? GetIconPathMarkup(StatusCenterItemIconKind iconKind) => iconKind switch
 	{
-		var pathMarkup = iconKind switch
-		{
-			StatusCenterItemIconKind.Copy => Application.Current.Resources["App.Theme.PathIcon.ActionCopy"] as string,
-			StatusCenterItemIconKind.Move => Application.Current.Resources["App.Theme.PathIcon.ActionMove"] as string,
-			StatusCenterItemIconKind.Delete => Application.Current.Resources["App.Theme.PathIcon.ActionDelete"] as string,
-			StatusCenterItemIconKind.Recycle => Application.Current.Resources["App.Theme.PathIcon.ActionDelete"] as string,
-			StatusCenterItemIconKind.Extract => Application.Current.Resources["App.Theme.PathIcon.ActionExtract"] as string,
-			StatusCenterItemIconKind.Compress => Application.Current.Resources["App.Theme.PathIcon.ActionExtract"] as string,
-			StatusCenterItemIconKind.Successful => Application.Current.Resources["App.Theme.PathIcon.ActionSuccess"] as string,
-			StatusCenterItemIconKind.Error => Application.Current.Resources["App.Theme.PathIcon.ActionInfo"] as string,
-			StatusCenterItemIconKind.Git => Application.Current.Resources["App.Theme.PathIcon.ActionGit"] as string,
-			StatusCenterItemIconKind.InstallFont => Application.Current.Resources["App.Theme.PathIcon.ActionInstallFont"] as string,
-			_ => string.Empty,
-		};
+		StatusCenterItemIconKind.Copy => Application.Current.Resources["App.Theme.PathIcon.ActionCopy"] as string,
+		StatusCenterItemIconKind.Move => Application.Current.Resources["App.Theme.PathIcon.ActionMove"] as string,
+		StatusCenterItemIconKind.Delete => Application.Current.Resources["App.Theme.PathIcon.ActionDelete"] as string,
+		StatusCenterItemIconKind.Recycle => Application.Current.Resources["App.Theme.PathIcon.ActionDelete"] as string,
+		StatusCenterItemIconKind.Extract => Application.Current.Resources["App.Theme.PathIcon.ActionExtract"] as string,
+		StatusCenterItemIconKind.Compress => Application.Current.Resources["App.Theme.PathIcon.ActionExtract"] as string,
+		StatusCenterItemIconKind.Successful => Application.Current.Resources["App.Theme.PathIcon.ActionSuccess"] as string,
+		StatusCenterItemIconKind.Error => Application.Current.Resources["App.Theme.PathIcon.ActionInfo"] as string,
+		StatusCenterItemIconKind.Git => Application.Current.Resources["App.Theme.PathIcon.ActionGit"] as string,
+		StatusCenterItemIconKind.InstallFont => Application.Current.Resources["App.Theme.PathIcon.ActionInstallFont"] as string,
+		_ => string.Empty,
+	};
 
+	private static PathIconSource? ConvertIconKind(string? pathMarkup)
+	{
 		if (string.IsNullOrEmpty(pathMarkup))
 			return null;
 
-		return new PathIconSource
-		{
-			Data = XamlBindingHelper.ConvertValue(typeof(Geometry), pathMarkup) as Geometry
-		};
+		return XamlReader.Load(
+			$@"<PathIconSource xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""{pathMarkup}"" />") as PathIconSource;
 	}
 
 	private void ReportProgress(StatusCenterItemProgressModel value)

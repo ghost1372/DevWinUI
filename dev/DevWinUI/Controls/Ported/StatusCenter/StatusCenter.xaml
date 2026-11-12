@@ -75,7 +75,7 @@
                                 <Border x:Name="SeverityBackgroundBorder" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, ConverterParameter=True, Mode=OneWay}" CornerRadius="16" Opacity="{x:Bind IconBackgroundCircleBorderOpacity, Mode=OneWay}" />
 
                                 <!--  State Icon 16x16  -->
-                                <IconSourceElement x:Name="SeverityForegroundIcon" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" IconSource="{x:Bind IconSource, Mode=OneWay}" />
+                                <ContentControl x:Name="SeverityForegroundIcon" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" Content="{x:Bind IconElement, Mode=OneWay}" />
 
                             </Grid>
 
