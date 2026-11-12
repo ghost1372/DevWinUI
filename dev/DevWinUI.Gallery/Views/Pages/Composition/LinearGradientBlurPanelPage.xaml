@@ -9,28 +9,27 @@
       mc:Ignorable="d">
 
     <ScrollViewer CanContentRenderOutsideBounds="True">
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/linearGradientBlurPanel">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:LinearGradientBlurPanel TintColor="#99000000" MaxBlurAmount="64" StartPoint="{x:Bind StartPoint}" EndPoint="{x:Bind EndPoint}"/&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <RadioButtons x:Name="PointRadioButtons" ItemsSource="{x:Bind PointList, Mode=OneWay}" SelectedIndex="0" SelectionChanged="PointRadioButtons_SelectionChanged" />
-                        <Button Click="StartAnimationButton_Click" Content="Start Animation" />
-
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="LinearGradientBlurPanel" Doc="controls/linearGradientBlurPanel">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:LinearGradientBlurPanel TintColor="#99000000" MaxBlurAmount="64" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="PointOption" Header="Gradient Direction" ItemsSource="{x:Bind PointList, Mode=OneWay}" Value="{x:Bind PointList[0]}" />
                         <Slider x:Name="SlMaxBlurAmount" Header="Max Blur Amount" Value="64" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                        <Button HorizontalAlignment="Stretch" Click="StartAnimationButton_Click" Content="Start Animation" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <Border MaxWidth="400" MaxHeight="500" HorizontalAlignment="Stretch">
                     <Grid>
                         <Image Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Fill" />
-                        <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample" MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}" TintColor="#99000000">
+                        <dev:LinearGradientBlurPanel x:Name="LinearGradientBlurPanelSample" MaxBlurAmount="{x:Bind SlMaxBlurAmount.Value, Mode=OneWay}" TintColor="#99000000" StartPoint="{x:Bind GetStartPoint(PointOption.Value), Mode=OneWay}" EndPoint="{x:Bind GetEndPoint(PointOption.Value), Mode=OneWay}">
                             <Rectangle Width="50" Height="50" Margin="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#77c3f4" />
                         </dev:LinearGradientBlurPanel>
                     </Grid>
                 </Border>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

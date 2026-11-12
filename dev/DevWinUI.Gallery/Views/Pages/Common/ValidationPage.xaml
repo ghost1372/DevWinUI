@@ -21,7 +21,7 @@
 
                         <TextBox x:Name="MailBox" dev:Validation.ErrorTemplate="{StaticResource ValidationTemplate}" dev:Validation.ValidationPropertyName="Mail" dev:Validation.ValidationProvider="{x:Bind UserInfo}" PlaceholderText="Mail" Style="{StaticResource ValidatingTextBoxStyle}" Text="{x:Bind UserInfo.Mail, Mode=TwoWay}" />
 
-                        <Button x:Name="CoolButton" HorizontalAlignment="Center" Click="CoolButton_Click" Content="Cool button" IsEnabled="{x:Bind UserInfo.HasErrors.Equals(x:False), Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" />
+                        <Button x:Name="CoolButton" HorizontalAlignment="Stretch" Click="CoolButton_Click" Content="Cool button" IsEnabled="{x:Bind UserInfo.HasErrors.Equals(x:False), Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" />
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
                 <Frame Name="frame" Grid.Column="1" />

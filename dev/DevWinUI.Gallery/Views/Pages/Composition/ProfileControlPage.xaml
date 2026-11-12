@@ -9,19 +9,19 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/fluidBanner">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ProfileControl" Doc="controls/profileControl">
+                <local:ControlExample2.XamlCode>
                     <x:String>&lt;dev:ProfileControl Source="ms-appx:///Assets/Profile/1.jpg" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Button x:Name="BtnPrev" MinWidth="150" Click="BtnPrev_Click" Content="Previous" />
-                        <Button x:Name="BtnNext" MinWidth="150" Click="BtnNext_Click" Content="Next" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <Button x:Name="BtnPrev" HorizontalAlignment="Stretch" Click="BtnPrev_Click" Content="Previous" />
+                        <Button x:Name="BtnNext" HorizontalAlignment="Stretch" Click="BtnNext_Click" Content="Next" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <dev:ProfileControl x:Name="profile" Width="320" Height="320" HorizontalAlignment="Center" VerticalAlignment="Center" BorderGap="25" Stretch="Uniform" Tint="#efefef" />
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

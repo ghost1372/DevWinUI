@@ -10,16 +10,15 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/EasyCarouselPanel/EasyCarouselPanelPage_cs.txt" DocPage="controls/easyCarouselPanel" XamlSource="Composition/EasyCarouselPanel/EasyCarouselPanelPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="EasyCarouselPanel" CSharp="Composition/EasyCarouselPanel/EasyCarouselPanelPage_cs.txt" Doc="controls/easyCarouselPanel" Xaml="Composition/EasyCarouselPanel/EasyCarouselPanelPage_xaml.txt">
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoShift" Header="Auto Shift" />
                         <Slider x:Name="SldSpacing" Header="Item Spacing" Maximum="200" Minimum="0" Value="30" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
-            <dev:EasyCarouselPanel x:Name="EasyCarouselPanelSample" Height="150" Margin="10" VerticalAlignment="Top" AutoShift="{x:Bind TgAutoShift.IsOn, Mode=OneWay}" ItemSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}" ItemTapped="EasyCarouselPanelSample_ItemTapped" ItemWidth="300" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" SelectedIndex="0">
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
+                <dev:EasyCarouselPanel x:Name="EasyCarouselPanelSample" Height="150" Margin="10" VerticalAlignment="Top" AutoShift="{x:Bind TgAutoShift.IsOn, Mode=OneWay}" ItemSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}" ItemTapped="EasyCarouselPanelSample_ItemTapped" ItemWidth="300" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" SelectedIndex="0">
                 <dev:EasyCarouselPanel.ItemTemplate>
                     <DataTemplate x:DataType="models:SampleItemModel">
                         <Grid>
@@ -30,7 +29,8 @@
                         </Grid>
                     </DataTemplate>
                 </dev:EasyCarouselPanel.ItemTemplate>
-            </dev:EasyCarouselPanel>
+                </dev:EasyCarouselPanel>
+            </local:ControlExample2>
 
         </StackPanel>
     </ScrollViewer>

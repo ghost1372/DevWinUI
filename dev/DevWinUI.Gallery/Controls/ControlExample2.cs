@@ -250,7 +250,6 @@ public sealed partial class ControlExample2 : Control
             FlyoutPresenterStyle = CreateFlyoutPresenterStyle()
         };
 
-        _previewScrollViewer.SizeChanged += PreviewScrollViewer_SizeChanged;
         _samplePresenter.SizeChanged += SamplePresenter_SizeChanged;
         _sampleSelector.SelectionChanged += SampleSelector_SelectionChanged;
         _optionsSelector.SelectionChanged += OptionsSelector_SelectionChanged;
@@ -414,12 +413,6 @@ public sealed partial class ControlExample2 : Control
         _isCompact = compact;
         UpdateChrome();
     }
-
-    private void PreviewScrollViewer_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        _previewHost.MinWidth = e.NewSize.Width;
-    }
-
     private void SamplePresenter_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         UpdatePreviewHeight();

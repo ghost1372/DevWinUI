@@ -64,7 +64,7 @@
                                     <Border x:Name="PART_PreviewSurface" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" CornerRadius="8,0,0,0">
                                         <Grid>
                                             <Grid x:Name="PART_BackgroundHost" IsHitTestVisible="False" />
-                                            <ScrollViewer x:Name="PART_PreviewScrollViewer" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
+                                            <ScrollViewer x:Name="PART_PreviewScrollViewer" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
                                                 <Grid x:Name="PART_PreviewHost" MinHeight="260" Padding="24">
                                                     <dev:SwitchPresenter x:Name="PART_SamplePresenter" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                                                 </Grid>

@@ -8,20 +8,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <local:ControlExample DocPage="controls/welcomeHero">
-        <local:ControlExample.Xaml>
-            <x:String>&lt;dev:WelcomeHero x:Name="Hero"/&gt;</x:String>
-        </local:ControlExample.Xaml>
-        <local:ControlExample.CSharp>
-            <x:String>
-                Hero.LogoAsset = "ms-appx:///Assets/AppIcon.png";#nl#
-                Hero.Modules =[#nl#
-                new("ms-appx:///Assets/CommandPalette.png", "CmdPal", "Command Palette"),#nl#
-                new("ms-appx:///AdvancedPaste.png", "AdvancedPaste", "Advanced Paste"),#nl#
-                ];
-            </x:String>
-        </local:ControlExample.CSharp>
+    <local:ControlExample2 Title="WelcomeHero" Margin="24" Doc="controls/welcomeHero">
+        <local:ControlExample2.XamlCode>
+            <x:String>&lt;Frame x:Name="MainFrame" /&gt;</x:String>
+        </local:ControlExample2.XamlCode>
         <Frame x:Name="MainFrame" />
-    </local:ControlExample>
+    </local:ControlExample2>
 
 </Page>

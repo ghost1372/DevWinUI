@@ -1,0 +1,13 @@
+﻿<dev:ContentSlider ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}"
+					ViewportWidth="500">
+	<dev:ContentSlider.ItemTemplate>
+		<DataTemplate x:DataType="models:SampleItemModel">
+			<Grid>
+				<TextBlock HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Style="{ThemeResource TitleTextBlockStyle}"
+						   Text="{x:Bind Title}" />
+			</Grid>
+		</DataTemplate>
+	</dev:ContentSlider.ItemTemplate>
+</dev:ContentSlider>

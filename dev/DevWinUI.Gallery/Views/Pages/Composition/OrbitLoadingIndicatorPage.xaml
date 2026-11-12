@@ -8,16 +8,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/orbitLoadingIndicator">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="OrbitLoadingIndicator" Doc="controls/orbitLoadingIndicator">
+                <local:ControlExample2.XamlCode>
                     <x:String>&lt;dev:OrbitLoadingIndicator IsBusy="true" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TgIsBusy" Header="Is Busy" IsOn="True" />
-                </local:ControlExample.Pane>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TgIsBusy" Header="Is Busy" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <dev:OrbitLoadingIndicator Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" IsBusy="{x:Bind TgIsBusy.IsOn, Mode=OneWay}" />
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

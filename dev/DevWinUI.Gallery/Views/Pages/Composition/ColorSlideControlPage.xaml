@@ -9,16 +9,18 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/ColorSlideControl/ColorSlideControlPage_cs.txt" DocPage="controls/colorSlideControl" XamlSource="Composition/ColorSlideControl/ColorSlideControlPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <ColorPicker x:Name="ColorPickerSample" IsAlphaSliderVisible="False" IsAlphaTextInputVisible="False" IsColorChannelTextInputVisible="False" IsColorPreviewVisible="False" IsColorSliderVisible="False" IsHexInputVisible="False" IsMoreButtonVisible="False" Color="Orange" />
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ColorSlideControl" CSharp="Composition/ColorSlideControl/ColorSlideControlPage_cs.txt" Doc="controls/colorSlideControl" Xaml="Composition/ColorSlideControl/ColorSlideControlPage_xaml.txt">
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <local:ColorOption x:Name="ColorOptionSample" Header="Slide Color" IsAlphaEnabled="False" Value="Orange" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <Grid Height="200" VerticalAlignment="Top" SizeChanged="OnSizeChanged">
                     <Button x:Name="BtnStart" Width="170" Margin="0,0,0,10" VerticalAlignment="Top" Click="OnClick" Content="Start" />
-                    <dev:ColorSlideControl x:Name="ColorSlideSample" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
+                    <dev:ColorSlideControl x:Name="ColorSlideSample" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}" />
                 </Grid>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

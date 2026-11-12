@@ -1,17 +1,10 @@
-﻿using Microsoft.UI.Xaml.Media;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ImageFramePage : Page
 {
-    public ObservableCollection<ImageFrameTransitionMode> ImageFrameTransition { get; set; } = new ObservableCollection<ImageFrameTransitionMode>(Enum.GetValues<ImageFrameTransitionMode>());
-
-    public ObservableCollection<AlignmentX> ImageFrameAlignmentX { get; set; } = new ObservableCollection<AlignmentX>(Enum.GetValues<AlignmentX>());
-
-    public ObservableCollection<AlignmentY> ImageFrameAlignmentY { get; set; } = new ObservableCollection<AlignmentY>(Enum.GetValues<AlignmentY>());
-
     public BaseViewModel ViewModel { get; }
     private int _currentIndex = 0;
+
     public ImageFramePage()
     {
         ViewModel = App.GetService<BaseViewModel>();

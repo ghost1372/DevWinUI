@@ -1,0 +1,3 @@
+﻿AllGrid.Lights.Add(new AmbLight());
+AllGrid.Lights.Add(new RippleLight());
+AllGrid.Lights.Add(new HoverLight());

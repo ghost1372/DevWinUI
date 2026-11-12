@@ -254,7 +254,7 @@ public sealed partial class ColorOption : ExampleOption
     public static readonly DependencyProperty IsAlphaEnabledProperty =
         DependencyProperty.Register(nameof(IsAlphaEnabled), typeof(bool), typeof(ColorOption), new PropertyMetadata(true, OnChanged));
 
-    private readonly ColorPicker _picker = new();
+    private readonly ColorPicker _picker = new() { IsHexInputVisible = false, IsColorChannelTextInputVisible = false };
     private readonly SolidColorBrush _swatchBrush = new();
     private readonly TextBlock _hex = new() { VerticalAlignment = VerticalAlignment.Center };
     private bool _sync;

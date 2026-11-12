@@ -2,7 +2,8 @@
 <Page x:Class="DevWinUIGallery.Views.BarcodePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:DevWinUIGallery">
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:views="using:DevWinUIGallery.Views">
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
@@ -14,11 +15,15 @@
                 </local:ControlExample2.CSharpCode>
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
-                        <TextBox x:Name="TxtInput" Header="Input" PlaceholderText="Input" Text="DevWinUI" TextChanged="TxtInput_TextChanged" />
-                        <local:ChoiceOption x:Name="CmbType" Header="Barcode Type" ValueChanged="CmbType_ValueChanged" />
+                        <TextBox x:Name="TxtInput" Header="Input" PlaceholderText="Input" Text="DevWinUI" />
+                        <local:ChoiceOption x:Name="CmbType" Header="Barcode Type">
+                            <local:ChoiceOption.Value>
+                                <views:BarcodeType>Code128</views:BarcodeType>
+                            </local:ChoiceOption.Value>
+                        </local:ChoiceOption>
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
-                <Image x:Name="OutPutImg" />
+                <Image Source="{x:Bind GenerateImage(TxtInput.Text, CmbType.Value), Mode=OneWay}" />
             </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>

@@ -9,11 +9,11 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt" DocPage="common/compositionAnimationController" DocType="Core" XamlSource="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <StackPanel Orientation="Horizontal" Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="CompositionAnimationController" CSharp="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt" Doc="common/compositionAnimationController" DocType="Core" Xaml="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
                             <Button x:Name="PlayButton" Click="PlayPause_Animation">
                                 <SymbolIcon x:Name="PlayIcon" Symbol="Play" />
                             </Button>
@@ -25,15 +25,15 @@
                             <Button x:Name="Reverse" Click="Reverse_Animation">
                                 <SymbolIcon Symbol="Back" />
                             </Button>
+                            <Slider x:Name="slider" Maximum="100" Minimum="0" TickFrequency="25" TickPlacement="BottomRight" />
                         </StackPanel>
+                    </local:OptionPanel>
 
-                        <Slider x:Name="slider" Maximum="100" Minimum="0" TickFrequency="25" TickPlacement="BottomRight" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample2.Options>
                 <Canvas Height="300">
                     <Rectangle x:Name="Rectangle" Canvas.Left="20" Canvas.Top="20" Width="50" Height="50" Fill="Blue" />
                 </Canvas>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

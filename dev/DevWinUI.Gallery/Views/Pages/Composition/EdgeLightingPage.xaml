@@ -9,32 +9,39 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/edgeLighting">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="EdgeLighting" Doc="controls/edgeLighting">
+                <local:ControlExample2.XamlCode>
                     <x:String>&lt;dev:EdgeLighting Width="200" Height="200" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGIsRound" Header="Is Rounded?" />
-                        <ToggleSwitch x:Name="TGIsLighting" Header="Is Lighting" IsOn="True" />
-                        <Slider x:Name="SldRadius" Header="Corner Radius" Maximum="360" Minimum="0" Value="8" />
-                        <Slider x:Name="SldStrokeThickness" Header="Stroke Thickness" Maximum="100" Minimum="0" Value="10" />
-                        <dev:DropdownColorPicker x:Name="DpColorBorder" Header="Border Stroke Color" Color="#3C141414" />
-                        <dev:DropdownColorPicker x:Name="DpColorHighlight" Header="Highlight Color" Color="#FFFFFFFF" />
-                        <Slider x:Name="SldHighlightOffset" Header="Highlight Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0" />
-
-                        <dev:DropdownColorPicker x:Name="DpColorFade" Header="Fade Color" Color="#000078D7" />
-                        <Slider x:Name="SldFadeOffset" Header="Fade Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0.4" />
-
-                        <dev:DropdownColorPicker x:Name="DpColorMid" Header="Mid Color" Color="#FF0078D7" />
-                        <Slider x:Name="SldMidOffset" Header="Mid Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0.3" />
-
-                        <dev:DropdownColorPicker x:Name="DpColorTail" Header="Tail Color" Color="Transparent" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:EdgeLighting Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" BorderStrokeColor="{x:Bind DpColorBorder.Color, Mode=OneWay}" CornerRadius="{x:Bind SldRadius.Value, Mode=OneWay}" FadeColor="{x:Bind DpColorFade.Color, Mode=OneWay}" FadeOffset="{x:Bind SldFadeOffset.Value, Mode=OneWay}" HighlightColor="{x:Bind DpColorHighlight.Color, Mode=OneWay}" HighlightOffset="{x:Bind SldHighlightOffset.Value, Mode=OneWay}" IsLighting="{x:Bind TGIsLighting.IsOn, Mode=OneWay}" IsRounded="{x:Bind TGIsRound.IsOn, Mode=OneWay}" MidColor="{x:Bind DpColorMid.Color, Mode=OneWay}" MidOffset="{x:Bind SldMidOffset.Value, Mode=OneWay}" StrokeThickness="{x:Bind SldStrokeThickness.Value, Mode=OneWay}" TailColor="{x:Bind DpColorTail.Color, Mode=OneWay}" />
-            </local:ControlExample>
+                </local:ControlExample2.XamlCode>
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Lighting">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TGIsRound" Header="Is Rounded?" />
+                            <ToggleSwitch x:Name="TGIsLighting" Header="Is Lighting" IsOn="True" />
+                            <Slider x:Name="SldRadius" Header="Corner Radius" Maximum="360" Minimum="0" Value="8" />
+                            <Slider x:Name="SldStrokeThickness" Header="Stroke Thickness" Maximum="100" Minimum="0" Value="10" />
+                            <local:ColorOption x:Name="DpColorBorder" Header="Border Stroke Color" Value="#3C141414" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Highlight">
+                        <local:OptionPanel>
+                            <local:ColorOption x:Name="DpColorHighlight" Header="Highlight Color" Value="#FFFFFFFF" />
+                            <Slider x:Name="SldHighlightOffset" Header="Highlight Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Gradient">
+                        <local:OptionPanel>
+                            <local:ColorOption x:Name="DpColorFade" Header="Fade Color" Value="#000078D7" />
+                            <Slider x:Name="SldFadeOffset" Header="Fade Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0.4" />
+                            <local:ColorOption x:Name="DpColorMid" Header="Mid Color" Value="#FF0078D7" />
+                            <Slider x:Name="SldMidOffset" Header="Mid Offset" Maximum="1.0" Minimum="0" StepFrequency="0.1" Value="0.3" />
+                            <local:ColorOption x:Name="DpColorTail" Header="Tail Color" Value="Transparent" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <dev:EdgeLighting Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" BorderStrokeColor="{x:Bind DpColorBorder.Value, Mode=OneWay}" CornerRadius="{x:Bind SldRadius.Value, Mode=OneWay}" FadeColor="{x:Bind DpColorFade.Value, Mode=OneWay}" FadeOffset="{x:Bind SldFadeOffset.Value, Mode=OneWay}" HighlightColor="{x:Bind DpColorHighlight.Value, Mode=OneWay}" HighlightOffset="{x:Bind SldHighlightOffset.Value, Mode=OneWay}" IsLighting="{x:Bind TGIsLighting.IsOn, Mode=OneWay}" IsRounded="{x:Bind TGIsRound.IsOn, Mode=OneWay}" MidColor="{x:Bind DpColorMid.Value, Mode=OneWay}" MidOffset="{x:Bind SldMidOffset.Value, Mode=OneWay}" StrokeThickness="{x:Bind SldStrokeThickness.Value, Mode=OneWay}" TailColor="{x:Bind DpColorTail.Value, Mode=OneWay}" />
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

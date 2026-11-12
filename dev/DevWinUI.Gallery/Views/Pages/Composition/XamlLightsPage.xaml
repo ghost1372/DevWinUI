@@ -9,41 +9,32 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="common/lights" HeaderText="Combined Lights">
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        myGrid.Lights.Add(new AmbLight());#nl#
-                        myGrid.Lights.Add(new RippleLight());#nl#
-                        myGrid.Lights.Add(new HoverLight());
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <Grid x:Name="AllGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
-            </local:ControlExample>
-            <local:ControlExample DocPage="common/lights" HeaderText="AmbLight">
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        myGrid.Lights.Add(new AmbLight());
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <Grid x:Name="AmbGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
-            </local:ControlExample>
-            <local:ControlExample DocPage="common/lights" HeaderText="HoverLight">
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        myGrid.Lights.Add(new HoverLight());
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <Grid x:Name="HoverGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
-            </local:ControlExample>
-            <local:ControlExample DocPage="common/lights" HeaderText="RippleLight">
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        myGrid.Lights.Add(new RippleLight());
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <Grid x:Name="RippleGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Lights" Doc="common/lights" DocType="Core">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Combined Lights" CSharp="Composition/XamlLights_Combined_cs.txt">
+                        <Grid x:Name="AllGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
+                    </local:Sample>
+                    <local:Sample Title="AmbLight">
+                        <local:Sample.CSharpCode>
+                            <x:String>AmbGrid.Lights.Add(new AmbLight());</x:String>
+                        </local:Sample.CSharpCode>
+                        <Grid x:Name="AmbGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
+                    </local:Sample>
+                    <local:Sample Title="HoverLight">
+                        <local:Sample.CSharpCode>
+                            <x:String>HoverGrid.Lights.Add(new HoverLight());</x:String>
+                        </local:Sample.CSharpCode>
+                        <Grid x:Name="HoverGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
+                    </local:Sample>
+                    <local:Sample Title="RippleLight">
+                        <local:Sample.CSharpCode>
+                            <x:String>RippleGrid.Lights.Add(new RippleLight());</x:String>
+                        </local:Sample.CSharpCode>
+                        <Grid x:Name="RippleGrid" Width="400" Height="250" Style="{ThemeResource CardGridStyle}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

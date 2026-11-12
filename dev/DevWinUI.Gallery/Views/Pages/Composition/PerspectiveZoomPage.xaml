@@ -10,14 +10,16 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/PerspectiveZoom/PerspectiveZoomPage_cs.txt" DocPage="controls/perspectiveZoom" XamlSource="Composition/PerspectiveZoom/PerspectiveZoomPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="ZoomFactorSlider" Header="Zoom Factor" Maximum="1" Minimum="0" TickFrequency="0.1" Value="0.7" />
-                        <Slider x:Name="AngleSlider" Header="Angle Rotation" Maximum="360" Minimum="0" Value="45" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="PerspectiveZoom" CSharp="Composition/PerspectiveZoom/PerspectiveZoomPage_cs.txt" Doc="controls/perspectiveZoom" Xaml="Composition/PerspectiveZoom/PerspectiveZoomPage_xaml.txt">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Perspective">
+                        <local:OptionPanel>
+                            <Slider x:Name="ZoomFactorSlider" Header="Zoom Factor" Maximum="1" Minimum="0" TickFrequency="0.1" Value="0.7" />
+                            <Slider x:Name="AngleSlider" Header="Angle Rotation" Maximum="360" Minimum="0" Value="45" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
                 <dev:PerspectiveZoom x:Name="PerspectiveSample" RotationAngle="{x:Bind AngleSlider.Value, Mode=OneWay}" ZoomFactor="{x:Bind ZoomFactorSlider.Value, Mode=OneWay}">
 
                     <ListView IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
@@ -38,7 +40,7 @@
                     </ListView>
                 </dev:PerspectiveZoom>
 
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

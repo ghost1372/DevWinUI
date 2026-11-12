@@ -16,11 +16,11 @@
                 </local:ControlExample2.CSharpCode>
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
-                        <TextBox Name="TxtInput" PlaceholderText="Input" Text="DevWinUI" TextChanged="TxtInput_TextChanged" />
-                        <local:ChoiceOption x:Name="CmbError" Header="Error Correction Level" ValueChanged="CmbError_ValueChanged" />
+                        <TextBox Name="TxtInput" PlaceholderText="Input" Text="DevWinUI" />
+                        <local:ChoiceOption x:Name="CmbError" Header="Error Correction Level" />
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
-                <Image x:Name="OutPutImg" />
+                <Image Source="{x:Bind GenerateImage(TxtInput.Text, CmbError.Value), Mode=OneWay}" />
             </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>

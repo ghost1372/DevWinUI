@@ -10,8 +10,8 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/shyHeader" XamlSource="Composition/ShyHeaderPage_xaml.txt">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ShyHeader" Doc="controls/shyHeader" Xaml="Composition/ShyHeaderPage_xaml.txt">
                 <GridView Height="400" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                     <GridView.Header>
                         <dev:ShyHeader Title="Lorem Ipsum" BackgroundImage="ms-appx:///Assets/Others/Abstract.jpg" Description="Lorem ipsum dolor sit amet..." Subtitle="dolor sit amet">
@@ -33,7 +33,7 @@
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

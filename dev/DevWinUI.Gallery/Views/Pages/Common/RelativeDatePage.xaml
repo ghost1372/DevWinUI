@@ -17,12 +17,12 @@
                 </local:ControlExample2.CSharpCode>
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
-                        <DatePicker x:Name="DatePickerSample" SelectedDateChanged="DatePickerSample_SelectedDateChanged" />
+                        <DatePicker x:Name="DatePickerSample" />
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-                    <TextBlock x:Name="TextBlockSample" Style="{ThemeResource TitleTextBlockStyle}" />
-                    <TextBlock x:Name="TextBlockSample2" Style="{ThemeResource TitleTextBlockStyle}" />
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind GetPersian(DatePickerSample.SelectedDate), Mode=OneWay}" />
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind GetDefault(DatePickerSample.SelectedDate), Mode=OneWay}" />
                 </StackPanel>
             </local:ControlExample2>
         </StackPanel>

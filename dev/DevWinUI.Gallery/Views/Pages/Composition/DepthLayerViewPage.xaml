@@ -10,8 +10,11 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/depthLayerView">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="DepthLayerView" Doc="controls/depthLayerView">
+                <local:ControlExample2.XamlCode>
+                    <x:String>&lt;dev:DepthLayerView Items="{x:Bind ViewModel.DepthLayerData, Mode=OneWay}" SelectedIndex="{x:Bind ListViewSample.SelectedIndex, Mode=TwoWay}" /&gt;</x:String>
+                </local:ControlExample2.XamlCode>
                 <dev:DepthLayerView Height="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{x:Bind ViewModel.DepthLayerData, Mode=OneWay}" SelectedIndex="{x:Bind ListViewSample.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled">
                         <ListView x:Name="ListViewSample" Grid.Row="0" Margin="0,10" HorizontalAlignment="Center" ItemsSource="{x:Bind ViewModel.DepthLayerData, Mode=OneWay}" SelectedIndex="2" SelectionMode="Single">
@@ -30,7 +33,7 @@
                         </ListView>
                     </ScrollViewer>
                 </dev:DepthLayerView>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

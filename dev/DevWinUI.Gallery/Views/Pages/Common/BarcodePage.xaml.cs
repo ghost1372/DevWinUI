@@ -7,31 +7,13 @@ public sealed partial class BarcodePage : Page
     public BarcodePage()
     {
         InitializeComponent();
-        CmbType.Value = BarcodeType.Code128;
-        Loaded += OnLoaded;
     }
 
-    private void OnLoaded(object sender, RoutedEventArgs e)
+    private BitmapImage GenerateImage(string text, object value)
     {
-        Generate();
-    }
+        if (string.IsNullOrEmpty(text) || value is not BarcodeType type)
+            return null;
 
-    private void TxtInput_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Generate();
-    }
-
-    private void CmbType_ValueChanged(ChoiceOption sender, object value)
-    {
-        Generate();
-    }
-
-    private void Generate()
-    {
-        if (string.IsNullOrEmpty(TxtInput?.Text) || CmbType?.Value is not BarcodeType type)
-            return;
-
-        var text = TxtInput.Text;
         var barcode = type switch
         {
             BarcodeType.Code128 => Barcode.CreateCode128(text),
@@ -46,12 +28,12 @@ public sealed partial class BarcodePage : Page
         };
 
         if (barcode is null)
-            return;
+            return null;
 
         using var stream = new MemoryStream(barcode.ToPng());
         var bitmapImage = new BitmapImage();
         bitmapImage.SetSource(stream.AsRandomAccessStream());
-        OutPutImg.Source = bitmapImage;
+        return bitmapImage;
     }
 }
 

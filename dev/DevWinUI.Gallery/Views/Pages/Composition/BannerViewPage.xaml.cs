@@ -5,15 +5,13 @@ namespace DevWinUIGallery.Views;
 public sealed partial class BannerViewPage : Page
 {
     public BaseViewModel ViewModel { get; }
-    public CycleCollection<Uri> CycleList { get; set; }
-    public ObservableCollection<Uri> uris = new ObservableCollection<Uri>();
+    public CycleCollection<Uri> CycleList { get; }
+
     public BannerViewPage()
     {
         ViewModel = App.GetService<BaseViewModel>();
+        CycleList = new CycleCollection<Uri>(new ObservableCollection<Uri>(ViewModel.BannerViewData.Select(x => x.ImageUri)));
         InitializeComponent();
-
-        uris = new(ViewModel.BannerViewData.Select(x => x.ImageUri).ToList());
-        CycleList = new CycleCollection<Uri>(uris);
     }
 
     private void BtnPlayBackward_Click(object sender, RoutedEventArgs e)

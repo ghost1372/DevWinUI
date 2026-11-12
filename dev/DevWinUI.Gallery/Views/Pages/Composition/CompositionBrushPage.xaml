@@ -8,61 +8,65 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="brushes/imageEffectBrush" XamlSource="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush>
-                            <GradientStopCollection>
-                                <GradientStop Offset="0.2" Color="#485563" />
-                                <GradientStop Offset="0.8" Color="#29323C" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Margin="20,20,10,10" Background="Black">
-                        <Grid Padding="10">
-                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
-                                <Path.Fill>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ImageEffectBrush" Doc="brushes/imageEffectBrush">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ImageEffectBrush" Xaml="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
+                        <Grid>
+                            <Grid.Background>
+                                <LinearGradientBrush>
+                                    <GradientStopCollection>
+                                        <GradientStop Offset="0.2" Color="#485563" />
+                                        <GradientStop Offset="0.8" Color="#29323C" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="20,20,10,10" Background="Black">
+                                <Grid Padding="10">
+                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
+                                        <Path.Fill>
+                                            <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
+                                        </Path.Fill>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="20,10,10,20">
+                                <Grid.Background>
                                     <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
-                                </Path.Fill>
-                            </Path>
+                                </Grid.Background>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid Grid.Column="1" Margin="20,10,10,20">
-                        <Grid.Background>
-                            <dev:ImageEffectBrush ImageUri="ms-appx:///Assets/Landscapes/Landscape-12.jpg" />
-                        </Grid.Background>
-                    </Grid>
-                </Grid>
-            </local:ControlExample>
-            <local:ControlExample DocPage="brushes/blurEffectBrush" XamlSource="Composition/CompositionBrush/CompositionBrushPage_BlurEffectBrush_xaml.txt">
-                <Grid Width="350" HorizontalAlignment="Left">
-                    <Grid.Background>
-                        <LinearGradientBrush>
-                            <GradientStopCollection>
-                                <GradientStop Offset="0.2" Color="#485563" />
-                                <GradientStop Offset="0.8" Color="#29323C" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Grid Margin="10,10,20,20">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/Landscape-12.jpg" Stretch="UniformToFill" />
-                        </Grid.Background>
-                        <Grid Padding="10">
-                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
-                                <Path.Fill>
-                                    <dev:BlurEffectBrush FallbackColor="#80C0C0C0" />
-                                </Path.Fill>
-                            </Path>
+                    </local:Sample>
+                    <local:Sample Title="BlurEffectBrush" Xaml="Composition/CompositionBrush/CompositionBrushPage_BlurEffectBrush_xaml.txt">
+                        <Grid Width="350" HorizontalAlignment="Left">
+                            <Grid.Background>
+                                <LinearGradientBrush>
+                                    <GradientStopCollection>
+                                        <GradientStop Offset="0.2" Color="#485563" />
+                                        <GradientStop Offset="0.8" Color="#29323C" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid Margin="10,10,20,20">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/Landscape-12.jpg" Stretch="UniformToFill" />
+                                </Grid.Background>
+                                <Grid Padding="10">
+                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" Data="M200 20 a200 200 0 1 0 1 0m-1 100a100 100 0 1 1 -1 0" Stretch="Uniform">
+                                        <Path.Fill>
+                                            <dev:BlurEffectBrush FallbackColor="#80C0C0C0" />
+                                        </Path.Fill>
+                                    </Path>
+                                </Grid>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Grid>
-            </local:ControlExample>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

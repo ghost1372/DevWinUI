@@ -4,8 +4,6 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class ForegroundFocusEffectsPage : Page
 {
-    public ObservableCollection<ForegroundFocusEffectTypes> ForegroundFocusEffectItems { get; set; } = new ObservableCollection<ForegroundFocusEffectTypes>(Enum.GetValues<ForegroundFocusEffectTypes>());
-
     public BaseViewModel ViewModel { get; }
 
     public ForegroundFocusEffectsPage()

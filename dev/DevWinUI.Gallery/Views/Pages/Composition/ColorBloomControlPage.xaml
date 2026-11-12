@@ -9,16 +9,18 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt" DocPage="controls/colorBloomControl" XamlSource="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <ColorPicker x:Name="ColorPickerSample" IsAlphaSliderVisible="False" IsAlphaTextInputVisible="False" IsColorChannelTextInputVisible="False" IsColorPreviewVisible="False" IsColorSliderVisible="False" IsHexInputVisible="False" IsMoreButtonVisible="False" Color="Red" />
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ColorBloomControl" CSharp="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt" Doc="controls/colorBloomControl" Xaml="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <local:ColorOption x:Name="ColorOptionSample" Header="Bloom Color" IsAlphaEnabled="False" Value="Red" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <Grid Height="200" VerticalAlignment="Top" SizeChanged="OnSizeChanged">
                     <Button x:Name="BtnStart" Width="170" Margin="0,0,0,10" VerticalAlignment="Top" Click="OnClick" Content="Start" />
-                    <dev:ColorBloomControl x:Name="ColorBloomSample" Color="{x:Bind ColorPickerSample.Color, Mode=OneWay}" />
+                    <dev:ColorBloomControl x:Name="ColorBloomSample" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}" />
                 </Grid>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 
