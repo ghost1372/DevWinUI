@@ -164,7 +164,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty ToolbarPlacementProperty =
-        DependencyProperty.Register(nameof(ToolbarPlacement), typeof(ExampleToolbarPlacement), typeof(ControlExample2), new PropertyMetadata(ExampleToolbarPlacement.Side, OnChromeChanged));
+        DependencyProperty.Register(nameof(ToolbarPlacement), typeof(ExampleToolbarPlacement), typeof(ControlExample2), new PropertyMetadata(ExampleToolbarPlacement.Header, OnChromeChanged));
 
     public PreviewBackgroundPattern BackgroundPattern
     {
