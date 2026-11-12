@@ -393,6 +393,11 @@ public sealed partial class FluidBanner : Panel
         if (_compositor == null)
         {
             InitializeComposition();
+
+            if (ItemsSource != null)
+            {
+                DispatcherQueue.TryEnqueue(OnItemsSourceChanged);
+            }
         }
 
         return availableSize;
@@ -504,7 +509,8 @@ public sealed partial class FluidBanner : Panel
     /// <param name="e">RoutedEventArgs</param>
     private void OnBannerLoaded(object sender, RoutedEventArgs e)
     {
-        // Track the pointer pressed event
+        PointerPressed -= OnPointerPressed;
+        PointerMoved -= OnPointerMoved;
         PointerPressed += OnPointerPressed;
         PointerMoved += OnPointerMoved;
     }

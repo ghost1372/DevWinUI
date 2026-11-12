@@ -39,12 +39,12 @@
                     </local:OptionGroup>
                 </local:ControlExample2.OptionGroups>
                 <StackPanel Spacing="10">
-                    <Button Click="OnMessageBox" Content="Show MessageBox" Tag="None" HorizontalAlignment="Stretch" />
-                    <Button Click="OnMessageBox" Content="Show Info MessageBox" Tag="Info" HorizontalAlignment="Stretch"/>
-                    <Button Click="OnMessageBox" Content="Show Error MessageBox" Tag="Error" HorizontalAlignment="Stretch"/>
-                    <Button Click="OnMessageBox" Content="Show Success MessageBox" Tag="Success" HorizontalAlignment="Stretch"/>
-                    <Button Click="OnMessageBox" Content="Show Warning MessageBox" Tag="Warning" HorizontalAlignment="Stretch"/>
-                    <Button Click="OnMessageBox" Content="Show Question MessageBox" Tag="Question" HorizontalAlignment="Stretch"/>
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show MessageBox" Tag="None" />
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Info MessageBox" Tag="Info" />
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Error MessageBox" Tag="Error" />
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Success MessageBox" Tag="Success" />
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Warning MessageBox" Tag="Warning" />
+                    <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Question MessageBox" Tag="Question" />
                     <TextBlock x:Name="TxtResult" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
             </local:ControlExample2>

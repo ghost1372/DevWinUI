@@ -61,6 +61,32 @@ public partial class BannerView : FlipView
         {
             vsp.CleanUpVirtualizedItemEvent -= OnCleanUpVirtualizedItem;
         }
+
+        DisposeComposition();
+    }
+
+    private void DisposeComposition()
+    {
+        var perspective = perspectiveMatrixExp;
+        var panelPerspective = panelPerspectiveExp;
+        var properties = props;
+
+        perspectiveMatrixExp = null;
+        panelPerspectiveExp = null;
+        props = null;
+        scrollProps = null;
+        thisVisual = null;
+        panelVisual = null;
+
+        try
+        {
+            perspective?.Dispose();
+            panelPerspective?.Dispose();
+            properties?.Dispose();
+        }
+        catch (Exception ex) when (ex is ObjectDisposedException || ex is System.Runtime.InteropServices.COMException)
+        {
+        }
     }
 
     private void OnCleanUpVirtualizedItem(object sender, CleanUpVirtualizedItemEventArgs e)
@@ -221,16 +247,13 @@ public partial class BannerView : FlipView
         if (scrollingHost == null || ItemsPanelRoot == null)
             return;
 
+        DisposeComposition();
+
         Compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         scrollProps = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollingHost);
         thisVisual = ElementCompositionPreview.GetElementVisual(this);
         panelVisual = ElementCompositionPreview.GetElementVisual(ItemsPanelRoot);
-
-        perspectiveMatrixExp?.Dispose();
-        perspectiveMatrixExp = null;
-        panelPerspectiveExp?.Dispose();
-        panelPerspectiveExp = null;
 
         props = Compositor.CreatePropertySet();
         props.InsertMatrix4x4("perspective", Matrix4x4.Identity);
