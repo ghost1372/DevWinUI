@@ -151,10 +151,3 @@ public sealed partial class ControlExample : OptionsPageControl
         }
     }
 }
-public enum DocType
-{
-    Core,
-    Controls,
-    Shader,
-    ContextMenu
-}
