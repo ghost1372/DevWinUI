@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
+using Windows.Foundation;
 using Windows.UI;
 using TextBox = Microsoft.UI.Xaml.Controls.TextBox;
 
@@ -103,6 +104,8 @@ public sealed partial class CollectionOption : ExampleOption
     private readonly ListView _list = new() { MaxHeight = 140 };
     private readonly TextBox _input = new() { PlaceholderText = "New item" };
     private List<object> _default = new();
+    private INotifyCollectionChanged _observed;
+    private bool _suppress;
 
     public CollectionOption()
     {
@@ -135,6 +138,8 @@ public sealed partial class CollectionOption : ExampleOption
         set => SetValue(SourceProperty, value);
     }
 
+    public event TypedEventHandler<CollectionOption, IList> ValueChanged;
+
     public Func<int, object> ItemFactory { get; set; }
 
     private IList Items => Source as IList;
@@ -151,27 +156,64 @@ public sealed partial class CollectionOption : ExampleOption
             return;
         }
 
-        items.Clear();
-        foreach (var item in _default)
+        _suppress = true;
+        try
         {
-            items.Add(item);
+            items.Clear();
+            foreach (var item in _default)
+            {
+                items.Add(item);
+            }
+        }
+        finally
+        {
+            _suppress = false;
         }
 
         Refresh();
+        if (items is INotifyCollectionChanged)
+        {
+            RaiseValueChanged();
+        }
     }
 
     private void Bind()
     {
+        if (_observed is not null)
+        {
+            _observed.CollectionChanged -= OnCollectionChanged;
+        }
+
+        _observed = Items as INotifyCollectionChanged;
+        if (_observed is not null)
+        {
+            _observed.CollectionChanged += OnCollectionChanged;
+        }
+
         _list.ItemsSource = Items;
+        RaiseValueChanged();
     }
+
+    private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (!_suppress)
+        {
+            RaiseValueChanged();
+        }
+    }
+
+    private void RaiseValueChanged() => ValueChanged?.Invoke(this, Items);
 
     private void Refresh()
     {
-        if (Items is not null and not INotifyCollectionChanged)
+        if (Items is null or INotifyCollectionChanged)
         {
-            _list.ItemsSource = null;
-            _list.ItemsSource = Items;
+            return;
         }
+
+        _list.ItemsSource = null;
+        _list.ItemsSource = Items;
+        RaiseValueChanged();
     }
 
     private void Add()
@@ -203,7 +245,7 @@ public sealed partial class CollectionOption : ExampleOption
 public sealed partial class ColorOption : ExampleOption
 {
     public static readonly DependencyProperty ValueProperty =
-        DependencyProperty.Register(nameof(Value), typeof(Color), typeof(ColorOption), new PropertyMetadata(Microsoft.UI.Colors.Transparent, OnChanged));
+        DependencyProperty.Register(nameof(Value), typeof(Color), typeof(ColorOption), new PropertyMetadata(Microsoft.UI.Colors.Transparent, OnValueChanged));
 
     public static readonly DependencyProperty BrushProperty =
         DependencyProperty.Register(nameof(Brush), typeof(Brush), typeof(ColorOption), new PropertyMetadata(null, OnBrushChanged));
@@ -249,6 +291,8 @@ public sealed partial class ColorOption : ExampleOption
             Flyout = new Flyout { Content = _picker }
         });
     }
+
+    public event TypedEventHandler<ColorOption, Color> ValueChanged;
 
     public Color Value
     {
@@ -299,6 +343,13 @@ public sealed partial class ColorOption : ExampleOption
         ((ColorOption)d).Sync();
     }
 
+    private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (ColorOption)d;
+        option.Sync();
+        option.ValueChanged?.Invoke(option, (Color)e.NewValue);
+    }
+
     private static void OnBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var option = (ColorOption)d;
@@ -345,7 +396,7 @@ public sealed partial class ColorOption : ExampleOption
 public sealed partial class BrushOption : ExampleOption
 {
     public static readonly DependencyProperty ValueProperty =
-        DependencyProperty.Register(nameof(Value), typeof(Brush), typeof(BrushOption), new PropertyMetadata(null, (d, _) => ((BrushOption)d).Sync()));
+        DependencyProperty.Register(nameof(Value), typeof(Brush), typeof(BrushOption), new PropertyMetadata(null, OnValueChanged));
 
     public static readonly DependencyProperty ItemsProperty =
         DependencyProperty.Register(nameof(Items), typeof(DependencyObjectCollection), typeof(BrushOption), new PropertyMetadata(null));
@@ -377,6 +428,8 @@ public sealed partial class BrushOption : ExampleOption
         };
         SetEditor(_editor);
     }
+
+    public event TypedEventHandler<BrushOption, Brush> ValueChanged;
 
     public Brush Value
     {
@@ -416,6 +469,13 @@ public sealed partial class BrushOption : ExampleOption
         ("Purple", new SolidColorBrush(Microsoft.UI.Colors.MediumPurple)),
         ("Gray", new SolidColorBrush(Microsoft.UI.Colors.Gray))
     };
+
+    private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (BrushOption)d;
+        option.Sync();
+        option.ValueChanged?.Invoke(option, e.NewValue as Brush);
+    }
 
     private static bool Same(Brush a, Brush b)
     {
@@ -484,7 +544,7 @@ public sealed partial class BrushOption : ExampleOption
 public sealed partial class ChoiceOption : ExampleOption
 {
     public static readonly DependencyProperty ValueProperty =
-        DependencyProperty.Register(nameof(Value), typeof(object), typeof(ChoiceOption), new PropertyMetadata(null, OnChanged));
+        DependencyProperty.Register(nameof(Value), typeof(object), typeof(ChoiceOption), new PropertyMetadata(null, OnValueChanged));
 
     public static readonly DependencyProperty ItemsSourceProperty =
         DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(ChoiceOption), new PropertyMetadata(null, OnChanged));
@@ -528,6 +588,8 @@ public sealed partial class ChoiceOption : ExampleOption
         SetEditor(_editor);
     }
 
+    public event TypedEventHandler<ChoiceOption, object> ValueChanged;
+
     public object Value
     {
         get => GetValue(ValueProperty);
@@ -556,6 +618,13 @@ public sealed partial class ChoiceOption : ExampleOption
     private static void OnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         ((ChoiceOption)d).Sync();
+    }
+
+    private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (ChoiceOption)d;
+        option.Sync();
+        option.ValueChanged?.Invoke(option, e.NewValue);
     }
 
     private void Sync()
