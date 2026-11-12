@@ -128,8 +128,6 @@ public sealed partial class ControlExample2 : Control
     private Button _paneToggleButton;
     private Expander _footerExpander;
     private SelectorBar _codeSelector;
-    private SelectorBarItem _xamlItem;
-    private SelectorBarItem _csharpItem;
     private ContentControl _xamlHost;
     private ContentControl _csharpHost;
     private Grid _glowHost;
@@ -138,7 +136,6 @@ public sealed partial class ControlExample2 : Control
     private int _optionSlotIndex;
     private bool _updatingOptions;
     private bool _resetInHeader;
-    private bool _selectFirstCode;
     private int _codeSet = -1;
     private int _visibleCount;
     private bool _resetCompact;
@@ -242,8 +239,6 @@ public sealed partial class ControlExample2 : Control
         _paneToggleButton = GetTemplateChild(PaneToggleButtonPart) as Button;
         _footerExpander = GetTemplateChild(FooterExpanderPart) as Expander;
         _codeSelector = GetTemplateChild(CodeSelectorPart) as SelectorBar;
-        _xamlItem = _codeSelector?.Items.FirstOrDefault(x => Equals(x.Tag, "XAML"));
-        _csharpItem = _codeSelector?.Items.FirstOrDefault(x => Equals(x.Tag, "C#"));
         _xamlHost = GetTemplateChild(XamlHostPart) as ContentControl;
         _csharpHost = GetTemplateChild(CSharpHostPart) as ContentControl;
         _glowHost = GetTemplateChild(GlowHostPart) as Grid;
@@ -264,9 +259,6 @@ public sealed partial class ControlExample2 : Control
         _backgroundButton.Click += ToggleBackground_Click;
         _glowButton.Click += ToggleGlow_Click;
         _paneToggleButton.Click += TogglePane_Click;
-        _codeSelector.Loaded += CodeSelector_Loaded;
-        _xamlItem.Loaded += CodeSelectorItem_Loaded;
-        _csharpItem.Loaded += CodeSelectorItem_Loaded;
         _codeSelector.SelectionChanged += CodeSelector_SelectionChanged;
         _footerExpander.Expanding += FooterExpander_Expanding;
 
@@ -436,36 +428,16 @@ public sealed partial class ControlExample2 : Control
     private void FooterExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)
     {
         LoadCode();
-        EnsureCodeSelection();
-    }
-
-    private void CodeSelector_Loaded(object sender, RoutedEventArgs e)
-    {
-        EnsureCodeSelection();
-    }
-
-    private void CodeSelectorItem_Loaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is not SelectorBarItem item)
-        {
-            return;
-        }
-
-        if (Equals(item.Tag, "XAML"))
-        {
-            item.Visibility = HasCode(_xaml) ? Visibility.Visible : Visibility.Collapsed;
-        }
-        else if (Equals(item.Tag, "C#"))
-        {
-            item.Visibility = HasCode(_csharp) ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        EnsureCodeSelection();
     }
 
     private void CodeSelector_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
     {
-        var tag = sender.SelectedItem?.Tag as string;
+        UpdateCodeHosts();
+    }
+
+    private void UpdateCodeHosts()
+    {
+        var tag = _codeSelector.SelectedItem?.Tag as string;
         _xamlHost.Visibility = tag == "XAML" ? Visibility.Visible : Visibility.Collapsed;
         _csharpHost.Visibility = tag == "C#" ? Visibility.Visible : Visibility.Collapsed;
     }
@@ -474,7 +446,7 @@ public sealed partial class ControlExample2 : Control
     {
         _updatingSamples = true;
         _samplePresenter.Value = null;
-        _sampleSelector.Items.Clear();
+        _sampleSelector.ClearItems();
         _samples.Clear();
 
         foreach (var item in Samples)
@@ -494,7 +466,7 @@ public sealed partial class ControlExample2 : Control
         for (var i = 0; i < _samples.Count; i++)
         {
             cases.Add(new Case { Value = i, Content = _samples[i].Content });
-            _sampleSelector.Items.Add(new SelectorBarItem
+            _sampleSelector.AddItem(new SelectorBarItem
             {
                 Text = string.IsNullOrEmpty(_samples[i].Title) ? $"Sample {i + 1}" : _samples[i].Title,
                 Tag = i
@@ -531,7 +503,7 @@ public sealed partial class ControlExample2 : Control
 
         _optionHosts.Clear();
         _optionsHost.Children.Clear();
-        _optionsSelector.Items.Clear();
+        _optionsSelector.ClearItems();
         _optionGroups.Clear();
 
         foreach (var item in OptionGroups)
@@ -733,7 +705,7 @@ public sealed partial class ControlExample2 : Control
         }
 
         _updatingOptions = true;
-        _optionsSelector.SelectedItem = _optionsSelector.Items.FirstOrDefault(x => x.Tag is int tag && tag == index);
+        _optionsSelector.SelectedItem = _optionsSelector.FindItem(x => x.Tag is int tag && tag == index);
         _updatingOptions = false;
     }
 
@@ -743,17 +715,17 @@ public sealed partial class ControlExample2 : Control
         var pinned = overflow ? _visibleCount - 1 : _optionGroups.Count;
 
         _updatingOptions = true;
-        _optionsSelector.Items.Clear();
+        _optionsSelector.ClearItems();
         _optionsOverflowMenu.Items.Clear();
 
         for (var i = 0; i < pinned; i++)
         {
-            _optionsSelector.Items.Add(new SelectorBarItem { Text = GetOptionTitle(i), Tag = i });
+            _optionsSelector.AddItem(new SelectorBarItem { Text = GetOptionTitle(i), Tag = i });
         }
 
         if (overflow)
         {
-            _optionsSelector.Items.Add(new SelectorBarItem { Text = GetOptionTitle(_optionSlotIndex), Tag = _optionSlotIndex });
+            _optionsSelector.AddItem(new SelectorBarItem { Text = GetOptionTitle(_optionSlotIndex), Tag = _optionSlotIndex });
 
             for (var i = pinned; i < _optionGroups.Count; i++)
             {
@@ -810,16 +782,12 @@ public sealed partial class ControlExample2 : Control
         var hasXaml = HasCode(_xaml);
         var hasCSharp = HasCode(_csharp);
 
-        _xamlItem.Visibility = hasXaml ? Visibility.Visible : Visibility.Collapsed;
-        _csharpItem.Visibility = hasCSharp ? Visibility.Visible : Visibility.Collapsed;
-        _footerExpander.Visibility = hasXaml || hasCSharp ? Visibility.Visible : Visibility.Collapsed;
-
         var codeSet = (hasXaml ? 1 : 0) | (hasCSharp ? 2 : 0);
-        if (codeSet != _codeSet)
-        {
-            _codeSet = codeSet;
-            _selectFirstCode = true;
-        }
+        var codeSetChanged = codeSet != _codeSet;
+        _codeSet = codeSet;
+
+        RebuildCodeItems(hasXaml, hasCSharp, codeSetChanged);
+        _footerExpander.Visibility = codeSet != 0 ? Visibility.Visible : Visibility.Collapsed;
 
         _codeDirty = true;
         if (_footerExpander.IsExpanded)
@@ -828,7 +796,31 @@ public sealed partial class ControlExample2 : Control
         }
 
         UpdateChrome();
-        EnsureCodeSelection();
+    }
+
+    private void RebuildCodeItems(bool hasXaml, bool hasCSharp, bool selectFirst)
+    {
+        var previous = selectFirst ? null : _codeSelector.SelectedItem?.Tag as string;
+
+        _codeSelector.ClearItems();
+
+        if (hasXaml)
+        {
+            _codeSelector.AddItem(new SelectorBarItem { Text = "XAML", Tag = "XAML" });
+        }
+
+        if (hasCSharp)
+        {
+            _codeSelector.AddItem(new SelectorBarItem { Text = "C#", Tag = "C#" });
+        }
+
+        var selected = _codeSelector.FindItem(x => Equals(x.Tag, previous)) ?? _codeSelector.FindItem(_ => true);
+        if (selected != null)
+        {
+            _codeSelector.SelectedItem = selected;
+        }
+
+        UpdateCodeHosts();
     }
 
     private void LoadCode()
@@ -841,22 +833,6 @@ public sealed partial class ControlExample2 : Control
         _codeDirty = false;
         _xamlHost.Content = CreatePresenter(SampleCodePresenterType.XAML, _xaml);
         _csharpHost.Content = CreatePresenter(SampleCodePresenterType.CSharp, _csharp);
-    }
-
-    private void EnsureCodeSelection()
-    {
-        var first = _codeSelector.Items.FirstOrDefault(x => x.Visibility == Visibility.Visible);
-        if (first == null)
-        {
-            return;
-        }
-
-        var selected = _codeSelector.SelectedItem;
-        if (_selectFirstCode || selected == null || selected.Visibility != Visibility.Visible)
-        {
-            _codeSelector.SelectedItem = first;
-            _selectFirstCode = !_codeSelector.IsLoaded;
-        }
     }
 
     private static (string Code, string File) Resolve(string sampleCode, string sampleFile, string code, string file)

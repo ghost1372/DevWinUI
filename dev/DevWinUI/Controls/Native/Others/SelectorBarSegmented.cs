@@ -10,6 +10,8 @@ public partial class SelectorBarSegmented : SelectorBar
 
     private List<int> _selectedIndex;
 
+    private bool _syncingIndex;
+
     public IReadOnlyList<object> SelectedItems { get; internal set; }
 
     public int SelectedIndex
@@ -24,31 +26,52 @@ public partial class SelectorBarSegmented : SelectorBar
     private static void OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (SelectorBarSegmented)d;
-        if (ctl != null)
+        if (ctl != null && !ctl._syncingIndex)
         {
-            var value = (int)e.NewValue;
-
-            ctl.UpdateSelectedIndex(value);
+            ctl.UpdateSelectedIndex((int)e.NewValue);
         }
     }
+
     private void UpdateSelectedIndex(int value)
     {
-        if (Items == null || Items.Count == 0)
+        var items = Items;
+        if (items == null)
             return;
 
-        if (value < 0)
+        SelectorBarItem target = null;
+        var i = 0;
+        foreach (var item in items)
         {
-            SelectedItem = Items.FirstOrDefault(item => item.IsSelected == true);
-        }
-        else
-        {
-            if (value >= Items.Count)
-                return;
+            if (value < 0 ? item.IsSelected : i == value)
+            {
+                target = item;
+                break;
+            }
 
-            SelectedItem = Items[value];
+            i++;
         }
 
+        if (target == null || ReferenceEquals(target, SelectedItem))
+            return;
+
+        SelectedItem = target;
         SyncItemsState();
+    }
+
+    private void SetIndexFromSelection(int index)
+    {
+        if (index == SelectedIndex)
+            return;
+
+        _syncingIndex = true;
+        try
+        {
+            SelectedIndex = index;
+        }
+        finally
+        {
+            _syncingIndex = false;
+        }
     }
     public ItemsViewSelectionMode SelectionMode
     {
@@ -111,15 +134,14 @@ public partial class SelectorBarSegmented : SelectorBar
     {
         if (SelectedItem == null)
         {
-            SelectedIndex = -1;
+            SetIndexFromSelection(-1);
             return;
         }
 
         var index = Items.IndexOf(SelectedItem);
-
-        if (index >= 0 && index != SelectedIndex)
+        if (index >= 0)
         {
-            SelectedIndex = index;
+            SetIndexFromSelection(index);
         }
     }
     private void SelectorBarSegmented_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -134,22 +156,22 @@ public partial class SelectorBarSegmented : SelectorBar
 
     public void SyncItemsState()
     {
-        if (Items == null || Items.Count == 0) return;
+        var items = Items;
+        if (items == null) return;
         bool enabled = IsEnabled;
         int selectedIdx = SelectedIndex;
         if (selectedIdx < 0 && SelectedItem != null)
         {
-            selectedIdx = Items.IndexOf(SelectedItem);
+            selectedIdx = items.IndexOf(SelectedItem);
         }
 
-        for (int i = 0; i < Items.Count; i++)
+        var i = 0;
+        foreach (var item in items)
         {
-            if (Items[i] is SelectorBarItem item)
-            {
-                item.IsSelected = (i == selectedIdx);
-                item.IsEnabled = enabled;
-                VisualStateManager.GoToState(item, enabled ? "Enabled" : "Disabled", false);
-            }
+            item.IsSelected = (i == selectedIdx);
+            item.IsEnabled = enabled;
+            VisualStateManager.GoToState(item, enabled ? "Enabled" : "Disabled", false);
+            i++;
         }
     }
 

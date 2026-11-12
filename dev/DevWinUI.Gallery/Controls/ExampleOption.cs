@@ -402,9 +402,17 @@ public sealed partial class BrushOption : ExampleOption
     public static readonly DependencyProperty ItemsProperty =
         DependencyProperty.Register(nameof(Items), typeof(DependencyObjectCollection), typeof(BrushOption), new PropertyMetadata(null));
 
+    public static readonly DependencyProperty SelectedIndexProperty =
+        DependencyProperty.Register(nameof(SelectedIndex), typeof(int), typeof(BrushOption), new PropertyMetadata(-1, OnSelectedIndexChanged));
+
+    public static readonly DependencyProperty ItemTemplateProperty =
+        DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(BrushOption), new PropertyMetadata(null, OnItemTemplateChanged));
+
     private readonly ComboBox _editor = new() { HorizontalAlignment = HorizontalAlignment.Stretch };
     private bool _sync;
     private bool _fromEditor;
+    private bool _syncIndex;
+    private bool _tracking;
     private Brush _default;
 
     public BrushOption()
@@ -452,11 +460,75 @@ public sealed partial class BrushOption : ExampleOption
         set => SetValue(ItemsProperty, value);
     }
 
+    public int SelectedIndex
+    {
+        get { return (int)GetValue(SelectedIndexProperty); }
+        set { SetValue(SelectedIndexProperty, value); }
+    }
+
+    public DataTemplate ItemTemplate
+    {
+        get => (DataTemplate)GetValue(ItemTemplateProperty);
+        set => SetValue(ItemTemplateProperty, value);
+    }
+
     protected override void CaptureDefault()
     {
         Build();
+        ApplyIndex();
         _default = Value;
+        _tracking = true;
         Sync();
+        UpdateIndex();
+    }
+
+    private static void OnItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (BrushOption)d;
+        if (!option._tracking)
+        {
+            return;
+        }
+
+        option.Build();
+        option.Sync();
+        option.UpdateIndex();
+    }
+
+    private static void OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (BrushOption)d;
+        if (!option._syncIndex)
+        {
+            option.ApplyIndex();
+        }
+    }
+
+    private void ApplyIndex()
+    {
+        var index = SelectedIndex;
+        if (index >= 0 && index < _editor.Items.Count && _editor.Items[index] is ComboBoxItem { Tag: Brush brush })
+        {
+            Value = brush;
+        }
+    }
+
+    private void UpdateIndex()
+    {
+        if (!_tracking || _editor.Items.Count == 0)
+        {
+            return;
+        }
+
+        _syncIndex = true;
+        try
+        {
+            SelectedIndex = _editor.SelectedIndex;
+        }
+        finally
+        {
+            _syncIndex = false;
+        }
     }
 
     protected override void ResetValue() => Value = _default;
@@ -475,6 +547,7 @@ public sealed partial class BrushOption : ExampleOption
     {
         var option = (BrushOption)d;
         option.Sync();
+        option.UpdateIndex();
         option.ValueChanged?.Invoke(option, e.NewValue as Brush);
     }
 
@@ -483,10 +556,20 @@ public sealed partial class BrushOption : ExampleOption
         return ReferenceEquals(a, b) || (a is SolidColorBrush x && b is SolidColorBrush y && x.Color == y.Color);
     }
 
-    private static ComboBoxItem CreateItem(string title, Brush brush)
+    private ComboBoxItem CreateItem(string title, Brush brush)
     {
-        // Each item gets its own swatch brush; the Tag keeps the real brush.
         var swatch = brush is SolidColorBrush solid ? new SolidColorBrush(solid.Color) : brush;
+
+        if (ItemTemplate is { } template)
+        {
+            return new ComboBoxItem
+            {
+                Content = new BrushItem { Title = title, Brush = swatch },
+                ContentTemplate = template,
+                Tag = brush
+            };
+        }
+
         var panel = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
         panel.Children.Add(new Border { Width = 16, Height = 16, CornerRadius = new CornerRadius(8), Background = swatch });
         panel.Children.Add(new TextBlock { Text = title, VerticalAlignment = VerticalAlignment.Center });
@@ -550,30 +633,27 @@ public sealed partial class ChoiceOption : ExampleOption
     public static readonly DependencyProperty ItemsSourceProperty =
         DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(ChoiceOption), new PropertyMetadata(null, OnChanged));
 
+    public static readonly DependencyProperty SelectedIndexProperty =
+        DependencyProperty.Register(nameof(SelectedIndex), typeof(int), typeof(ChoiceOption), new PropertyMetadata(-1, OnSelectedIndexChanged));
+
+    public static readonly DependencyProperty ItemTemplateProperty =
+        DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(ChoiceOption), new PropertyMetadata(null, OnItemTemplateChanged));
+
     private readonly ComboBox _editor = new() { HorizontalAlignment = HorizontalAlignment.Stretch };
     private Type _enumType;
     private bool _sync;
     private bool _fromEditor;
+    private bool _syncIndex;
+    private bool _tracking;
     private object _default;
 
     public ChoiceOption()
     {
         _editor.SelectionChanged += (_, _) =>
         {
-            if (_sync || _editor.SelectedItem is not { } item)
+            if (_sync || _editor.SelectedItem is not { } item || !TryResolve(item, out var newValue))
             {
                 return;
-            }
-
-            object newValue = item;
-            if (_enumType != null)
-            {
-                if (item is not string name || !Enum.TryParse(_enumType, name, out var parsed))
-                {
-                    return;
-                }
-
-                newValue = parsed;
             }
 
             _fromEditor = true;
@@ -612,7 +692,25 @@ public sealed partial class ChoiceOption : ExampleOption
         set => SetValue(ItemsSourceProperty, value);
     }
 
-    protected override void CaptureDefault() => _default = Value;
+    public int SelectedIndex
+    {
+        get { return (int)GetValue(SelectedIndexProperty); }
+        set { SetValue(SelectedIndexProperty, value); }
+    }
+
+    public DataTemplate ItemTemplate
+    {
+        get => (DataTemplate)GetValue(ItemTemplateProperty);
+        set => SetValue(ItemTemplateProperty, value);
+    }
+
+    protected override void CaptureDefault()
+    {
+        ApplyIndex();
+        _default = Value;
+        _tracking = true;
+        UpdateIndex();
+    }
 
     protected override void ResetValue() => Value = _default;
 
@@ -621,11 +719,79 @@ public sealed partial class ChoiceOption : ExampleOption
         ((ChoiceOption)d).Sync();
     }
 
+    private static void OnItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (ChoiceOption)d;
+        option._sync = true;
+        try
+        {
+            option._editor.ItemTemplate = e.NewValue as DataTemplate;
+        }
+        finally
+        {
+            option._sync = false;
+        }
+    }
+
+    private static void OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var option = (ChoiceOption)d;
+        if (!option._syncIndex)
+        {
+            option.ApplyIndex();
+        }
+    }
+
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var option = (ChoiceOption)d;
         option.Sync();
+        option.UpdateIndex();
         option.ValueChanged?.Invoke(option, e.NewValue);
+    }
+
+    private bool TryResolve(object item, out object value)
+    {
+        value = item;
+        if (_enumType == null)
+        {
+            return true;
+        }
+
+        if (item is string name && Enum.TryParse(_enumType, name, out var parsed))
+        {
+            value = parsed;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ApplyIndex()
+    {
+        var index = SelectedIndex;
+        if (index >= 0 && index < _editor.Items.Count && TryResolve(_editor.Items[index], out var value))
+        {
+            Value = value;
+        }
+    }
+
+    private void UpdateIndex()
+    {
+        if (!_tracking || _editor.Items.Count == 0)
+        {
+            return;
+        }
+
+        _syncIndex = true;
+        try
+        {
+            SelectedIndex = _editor.SelectedIndex;
+        }
+        finally
+        {
+            _syncIndex = false;
+        }
     }
 
     private void Sync()

@@ -66,7 +66,7 @@
                                             <Grid x:Name="PART_BackgroundHost" IsHitTestVisible="False" />
                                             <ScrollViewer x:Name="PART_PreviewScrollViewer" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
                                                 <Grid x:Name="PART_PreviewHost" MinHeight="260" Padding="24">
-                                                    <dev:SwitchPresenter x:Name="PART_SamplePresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <dev:SwitchPresenter x:Name="PART_SamplePresenter" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ScrollViewer>
                                             <dev:SelectorBarSegmented x:Name="PART_SampleSelector" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top" />
@@ -138,10 +138,7 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <SelectorBar x:Name="PART_CodeSelector">
-                                            <SelectorBarItem Tag="XAML" Text="XAML" />
-                                            <SelectorBarItem Tag="C#" Text="C#" />
-                                        </SelectorBar>
+                                        <SelectorBar x:Name="PART_CodeSelector" />
                                         <Grid Grid.Row="1">
                                             <ContentControl x:Name="PART_XamlHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Visibility="Collapsed" />
                                             <ContentControl x:Name="PART_CSharpHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" animations:Implicit.HideAnimations="{StaticResource HideTransitions}" animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}" Visibility="Collapsed" />
