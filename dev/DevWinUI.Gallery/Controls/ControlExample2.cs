@@ -265,6 +265,8 @@ public sealed partial class ControlExample2 : Control
         _glowButton.Click += ToggleGlow_Click;
         _paneToggleButton.Click += TogglePane_Click;
         _codeSelector.Loaded += CodeSelector_Loaded;
+        _xamlItem.Loaded += CodeSelectorItem_Loaded;
+        _csharpItem.Loaded += CodeSelectorItem_Loaded;
         _codeSelector.SelectionChanged += CodeSelector_SelectionChanged;
         _footerExpander.Expanding += FooterExpander_Expanding;
 
@@ -439,6 +441,25 @@ public sealed partial class ControlExample2 : Control
 
     private void CodeSelector_Loaded(object sender, RoutedEventArgs e)
     {
+        EnsureCodeSelection();
+    }
+
+    private void CodeSelectorItem_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is not SelectorBarItem item)
+        {
+            return;
+        }
+
+        if (Equals(item.Tag, "XAML"))
+        {
+            item.Visibility = HasCode(_xaml) ? Visibility.Visible : Visibility.Collapsed;
+        }
+        else if (Equals(item.Tag, "C#"))
+        {
+            item.Visibility = HasCode(_csharp) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         EnsureCodeSelection();
     }
 
