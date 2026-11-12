@@ -13,16 +13,16 @@
             <local:ControlExample DocPage="controls/diagram" HeaderText="Hierarchical Workflow">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:Diagram Layout="Layered" Direction="TopToBottom" Collapsible="True" AutoFit="True" ShowMinimap="True"&gt;
-                        &lt;dev:Diagram.Root&gt;
-                        &lt;dev:DiagramNode Id="submitted" Title="Order submitted"&gt;
-                        &lt;dev:DiagramNode Id="validate" Title="Validate order"&gt;
-                        &lt;dev:DiagramNode Id="approved" Title="Approved" /&gt;
-                        &lt;dev:DiagramNode Id="review" Title="Needs review" /&gt;
-                        &lt;/dev:DiagramNode&gt;
-                        &lt;/dev:DiagramNode&gt;
-                        &lt;/dev:Diagram.Root&gt;
-                        &lt;/dev:Diagram&gt;
+                        &lt;dev:Diagram Layout="Layered" Direction="TopToBottom" Collapsible="True" AutoFit="True" ShowMinimap="True"&gt; #nl#
+                        &lt;dev:Diagram.Root&gt; #nl#
+                        &lt;dev:DiagramNode Id="submitted" Title="Order submitted"&gt; #nl#
+                        &lt;dev:DiagramNode Id="validate" Title="Validate order"&gt; #nl#
+                        &lt;dev:DiagramNode Id="approved" Title="Approved" /&gt; #nl#
+                        &lt;dev:DiagramNode Id="review" Title="Needs review" /&gt; #nl#
+                        &lt;/dev:DiagramNode&gt; #nl#
+                        &lt;/dev:DiagramNode&gt; #nl#
+                        &lt;/dev:Diagram.Root&gt; #nl#
+                        &lt;/dev:Diagram&gt; 
                     </x:String>
                 </local:ControlExample.Xaml>
                 <local:ControlExample.Pane>
@@ -91,13 +91,13 @@
             <local:ControlExample DocPage="controls/diagram" HeaderText="Typed Data Flow and Conflicts">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:Diagram Layout="Layered" Direction="LeftToRight" EdgeStyle="Orthogonal" ShowLegend="True" ShowPinTypes="True" ShowConflicts="True" AllowConnect="True" AllowConflictingConnections="True" AnimateEdges="True"&gt;
-                        &lt;dev:Diagram.Nodes&gt;
-                        &lt;dev:DiagramNode Id="read" Title="Read orders"&gt;
-                        &lt;dev:DiagramNode.Outputs&gt;&lt;dev:DiagramPin Id="text" Name="Text" Type="str" /&gt;&lt;/dev:DiagramNode.Outputs&gt;
-                        &lt;/dev:DiagramNode&gt;
-                        &lt;dev:DiagramNode Id="parse" Title="Parse rows"&gt;...&lt;/dev:DiagramNode&gt;
-                        &lt;/dev:Diagram.Nodes&gt;
+                        &lt;dev:Diagram Layout="Layered" Direction="LeftToRight" EdgeStyle="Orthogonal" ShowLegend="True" ShowPinTypes="True" ShowConflicts="True" AllowConnect="True" AllowConflictingConnections="True" AnimateEdges="True"&gt; #nl#
+                        &lt;dev:Diagram.Nodes&gt; #nl#
+                        &lt;dev:DiagramNode Id="read" Title="Read orders"&gt; #nl#
+                        &lt;dev:DiagramNode.Outputs&gt;&lt;dev:DiagramPin Id="text" Name="Text" Type="str" /&gt;&lt;/dev:DiagramNode.Outputs&gt; #nl#
+                        &lt;/dev:DiagramNode&gt; #nl#
+                        &lt;dev:DiagramNode Id="parse" Title="Parse rows"&gt;...&lt;/dev:DiagramNode&gt; #nl#
+                        &lt;/dev:Diagram.Nodes&gt; #nl#
                         &lt;/dev:Diagram&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
@@ -168,11 +168,11 @@
             <local:ControlExample DocPage="controls/diagram" HeaderText="Freeform Board">
                 <local:ControlExample.Xaml>
                     <x:String>
-                        &lt;dev:Diagram Layout="Free" BackgroundPattern="Grid" EdgeStyle="Bezier" ShowMinimap="True"&gt;
-                        &lt;dev:Diagram.Nodes&gt;
-                        &lt;dev:DiagramNode Id="design" Title="Design" CanvasX="80" CanvasY="90" /&gt;
-                        &lt;dev:DiagramNode Id="build" Title="Build" CanvasX="350" CanvasY="190" /&gt;
-                        &lt;/dev:Diagram.Nodes&gt;
+                        &lt;dev:Diagram Layout="Free" BackgroundPattern="Grid" EdgeStyle="Bezier" ShowMinimap="True"&gt; #nl#
+                        &lt;dev:Diagram.Nodes&gt; #nl#
+                        &lt;dev:DiagramNode Id="design" Title="Design" CanvasX="80" CanvasY="90" /&gt; #nl#
+                        &lt;dev:DiagramNode Id="build" Title="Build" CanvasX="350" CanvasY="190" /&gt; #nl#
+                        &lt;/dev:Diagram.Nodes&gt; #nl#
                         &lt;/dev:Diagram&gt;
                     </x:String>
                 </local:ControlExample.Xaml>
