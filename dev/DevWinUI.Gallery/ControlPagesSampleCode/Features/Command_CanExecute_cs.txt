@@ -1,0 +1,12 @@
+private IDelegateCommand CommandWithCanExecute { get; }
+
+CommandWithCanExecute = DelegateCommand.Create(OnCommandWithCanExecute, CanExecuteCommandWithCanExecute);
+
+private void OnCommandWithCanExecute()
+{
+}
+
+private bool CanExecuteCommandWithCanExecute()
+{
+    return true;
+}

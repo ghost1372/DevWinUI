@@ -1,16 +1,13 @@
-﻿using System.Data;
-using Microsoft.UI.Xaml.Media.Imaging;
-using WinRT;
+﻿using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class BarcodePage : Page
 {
-    public ObservableCollection<BarcodeType> BarcodeTypeItems { get; set; } = new ObservableCollection<BarcodeType>(Enum.GetValues<BarcodeType>());
-
     public BarcodePage()
     {
         InitializeComponent();
+        CmbType.Value = BarcodeType.Code128;
         Loaded += OnLoaded;
     }
 
@@ -24,55 +21,40 @@ public sealed partial class BarcodePage : Page
         Generate();
     }
 
-    private void Generate()
-    {
-        if (string.IsNullOrEmpty(TxtInput.Text))
-            return;
-
-        Barcode barcode = null;
-        var item = CmbType.SelectedItem.As<BarcodeType>();
-        switch (item)
-        {
-            case BarcodeType.Code128:
-                barcode = Barcode.CreateCode128(TxtInput.Text);
-                break;
-            case BarcodeType.Code93:
-                barcode = Barcode.CreateCode93(TxtInput.Text);
-                break;
-            case BarcodeType.Code39:
-                barcode = Barcode.CreateCode39(TxtInput.Text);
-                break;
-            case BarcodeType.Ean13:
-                barcode = Barcode.CreateEan13(TxtInput.Text);
-                break;
-            case BarcodeType.Ean8:
-                barcode = Barcode.CreateEan8(TxtInput.Text);
-                break;
-            case BarcodeType.Itf:
-                barcode = Barcode.CreateItf(TxtInput.Text);
-                break;
-            case BarcodeType.Codabar:
-                barcode = Barcode.CreateCodabar(TxtInput.Text);
-                break;
-            case BarcodeType.UpcA:
-                barcode = Barcode.CreateUpcA(TxtInput.Text);
-                break;
-        }
-
-        var png = barcode.ToPng();
-        using (var stream = new MemoryStream(png))
-        {
-            var bitmapImage = new BitmapImage();
-            bitmapImage.SetSource(stream.AsRandomAccessStream());
-            OutPutImg.Source = bitmapImage;
-        }
-    }
-
-    private void CmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbType_ValueChanged(ChoiceOption sender, object value)
     {
         Generate();
     }
+
+    private void Generate()
+    {
+        if (string.IsNullOrEmpty(TxtInput?.Text) || CmbType?.Value is not BarcodeType type)
+            return;
+
+        var text = TxtInput.Text;
+        var barcode = type switch
+        {
+            BarcodeType.Code128 => Barcode.CreateCode128(text),
+            BarcodeType.Code93 => Barcode.CreateCode93(text),
+            BarcodeType.Code39 => Barcode.CreateCode39(text),
+            BarcodeType.Ean13 => Barcode.CreateEan13(text),
+            BarcodeType.Ean8 => Barcode.CreateEan8(text),
+            BarcodeType.Itf => Barcode.CreateItf(text),
+            BarcodeType.Codabar => Barcode.CreateCodabar(text),
+            BarcodeType.UpcA => Barcode.CreateUpcA(text),
+            _ => null
+        };
+
+        if (barcode is null)
+            return;
+
+        using var stream = new MemoryStream(barcode.ToPng());
+        var bitmapImage = new BitmapImage();
+        bitmapImage.SetSource(stream.AsRandomAccessStream());
+        OutPutImg.Source = bitmapImage;
+    }
 }
+
 public enum BarcodeType
 {
     Code128,

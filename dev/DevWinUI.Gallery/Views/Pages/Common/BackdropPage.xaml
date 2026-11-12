@@ -2,22 +2,18 @@
 <Page x:Class="DevWinUIGallery.Views.BackdropPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:dev="using:DevWinUI"
-      xmlns:local="using:DevWinUIGallery"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d">
+      xmlns:local="using:DevWinUIGallery">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="backdrop" DocType="Core">
-                <local:ControlExample.CSharp>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="TransparentBackdrop" Description="Apply a fully transparent system backdrop to a window." Doc="backdrop" DocType="Core">
+                <local:ControlExample2.CSharpCode>
                     <x:String>
                         window.SystemBackdrop = new TransparentBackdrop();
                     </x:String>
-                </local:ControlExample.CSharp>
-                <Button Click="Button_Click">Show sample window</Button>
-            </local:ControlExample>
+                </local:ControlExample2.CSharpCode>
+                <Button Click="Button_Click" Content="Show sample window" />
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>
