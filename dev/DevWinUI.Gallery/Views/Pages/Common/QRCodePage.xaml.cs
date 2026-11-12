@@ -1,16 +1,14 @@
 ﻿using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using WinRT;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class QRCodePage : Page
 {
-    public ObservableCollection<ErrorCorrectionLevel> ErrorCorrectionLevelItems { get; set; } = new ObservableCollection<ErrorCorrectionLevel>(Enum.GetValues<ErrorCorrectionLevel>());
-
     public QRCodePage()
     {
         InitializeComponent();
+        CmbError.Value = ErrorCorrectionLevel.High;
         Loaded += QRCodePage_Loaded;
     }
 
@@ -26,10 +24,9 @@ public sealed partial class QRCodePage : Page
 
     private void Generate()
     {
-        if (string.IsNullOrEmpty(TxtInput.Text))
+        if (string.IsNullOrEmpty(TxtInput.Text) || CmbError.Value is not ErrorCorrectionLevel level)
             return;
 
-        var level = CmbError.SelectedItem.As<ErrorCorrectionLevel>();
         var standardQr = QRCode.Create(TxtInput.Text, level);
 
         var png = standardQr.ToPng();
@@ -41,7 +38,7 @@ public sealed partial class QRCodePage : Page
         }
     }
 
-    private void CmbError_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbError_ValueChanged(ChoiceOption sender, object value)
     {
         Generate();
     }

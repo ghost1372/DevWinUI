@@ -1,0 +1,6 @@
+﻿WindowedContentDialog dialog = new()
+{
+	Header = txtTitle.Text,
+	Content = txtContent.Text,
+};
+ContentDialogResult result = await dialog.ShowAsync();

@@ -1,30 +1,27 @@
-﻿using WinRT;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class ThemeManagerPage : Page
 {
-    public ObservableCollection<ElementTheme> ThemeItems { get; set; } = new ObservableCollection<ElementTheme>(Enum.GetValues<ElementTheme>());
-    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
-
     public ThemeManagerPage()
     {
         this.InitializeComponent();
+        cmbTheme.Value = App.Current.ThemeService.ElementTheme;
+        cmbBackdrop.Value = App.Current.ThemeService.BackdropType;
     }
 
     private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
     {
         var item = sender as RadioButton;
-        cmbTheme.SelectedItem = GeneralHelper.GetEnum<ElementTheme>(item.Tag?.ToString());
+        cmbTheme.Value = GeneralHelper.GetEnum<ElementTheme>(item.Tag?.ToString());
     }
     private void OnBackdropRadioButtonChecked(object sender, RoutedEventArgs e)
     {
         var item = sender as RadioButton;
-        cmbBackdrop.SelectedItem = GeneralHelper.GetEnum<BackdropType>(item.Tag?.ToString());
+        cmbBackdrop.Value = GeneralHelper.GetEnum<BackdropType>(item.Tag?.ToString());
     }
-    private async void cmbTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void cmbTheme_ValueChanged(ChoiceOption sender, object value)
     {
-        var theme = cmbTheme.SelectedItem.As<ElementTheme>();
+        var theme = (ElementTheme)value;
         await App.Current.ThemeService.SetElementThemeAsync(theme);
         foreach (RadioButton item in themePanel.Children)
         {
@@ -35,9 +32,9 @@ public sealed partial class ThemeManagerPage : Page
             }
         }
     }
-    private async void cmbBackdrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void cmbBackdrop_ValueChanged(ChoiceOption sender, object value)
     {
-        var backdrop = cmbBackdrop.SelectedItem.As<BackdropType>();
+        var backdrop = (BackdropType)value;
         await App.Current.ThemeService.SetBackdropTypeAsync(backdrop);
         foreach (RadioButton item in backdropPanel.Children)
         {

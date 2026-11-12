@@ -1,10 +1,7 @@
-﻿using WinRT;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class TextBlockHelperPage : Page
 {
-    public ObservableCollection<TextBlockSlideDirection> TextBlockSlideDirectionItems { get; set; } = new ObservableCollection<TextBlockSlideDirection>(Enum.GetValues<TextBlockSlideDirection>());
     private readonly string[] _demoTexts =
     {
         "Welcome to DevWinUI",
@@ -22,6 +19,7 @@ public sealed partial class TextBlockHelperPage : Page
     public TextBlockHelperPage()
     {
         InitializeComponent();
+        CmbType.Value = TextBlockSlideDirection.BottomToTop;
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -45,7 +43,7 @@ public sealed partial class TextBlockHelperPage : Page
 
         while (!token.IsCancellationRequested)
         {
-            var direction = CmbType.SelectedItem.As<TextBlockSlideDirection>();
+            var direction = (TextBlockSlideDirection)CmbType.Value;
             await TextBlockHelper.AnimateTextChangeAsync(TextBlockSample, _demoTexts[index], direction);
             index = (index + 1) % _demoTexts.Length;
 

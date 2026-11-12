@@ -1,24 +1,22 @@
 ﻿using Microsoft.UI.Xaml.Media;
-using WinRT;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class WindowedContentDialogPage : Page
 {
-    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
-    public ObservableCollection<FlowDirection> FlowDirectionItems { get; set; } = new ObservableCollection<FlowDirection>(Enum.GetValues<FlowDirection>());
-    public ObservableCollection<Orientation> ButtonOrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
-
     public WindowedContentDialogPage()
     {
         InitializeComponent();
+        CmbUnderlayBackdrops.Value = BackdropType.Mica;
+        CmbFlow.Value = FlowDirection.LeftToRight;
+        CmbButtonOrientation.Value = Orientation.Vertical;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
-        var flow = CmbFlow.SelectedItem.As<FlowDirection>();
-        var orientation = CmbButtonOrientation.SelectedItem.As<Orientation>();
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
+        var flow = (FlowDirection)CmbFlow.Value;
+        var orientation = (Orientation)CmbButtonOrientation.Value;
 
         WindowedContentDialog dialog = new()
         {

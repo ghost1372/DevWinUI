@@ -1,0 +1,6 @@
+﻿UacStyleDialogWindow dialog = new()
+{
+	Header = txtTitle.Text,
+	Content = txtContent.Text,
+};
+dialog.ShowDialog();

@@ -1,23 +1,21 @@
 ﻿using Microsoft.UI.Xaml.Media;
-using WinRT;
 
 namespace DevWinUIGallery.Views;
 public sealed partial class UacStyleDialogWindowPage : Page
 {
-    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
-    public ObservableCollection<FlowDirection> FlowDirectionItems { get; set; } = new ObservableCollection<FlowDirection>(Enum.GetValues<FlowDirection>());
-    public ObservableCollection<InfoBarSeverity> SeverityItems { get; set; } = new ObservableCollection<InfoBarSeverity>(Enum.GetValues<InfoBarSeverity>());
-
     public UacStyleDialogWindowPage()
     {
         InitializeComponent();
+        CmbUnderlayBackdrops.Value = BackdropType.Mica;
+        CmbFlow.Value = FlowDirection.LeftToRight;
+        CmbSeverity.Value = InfoBarSeverity.Success;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
-        var flow = CmbFlow.SelectedItem.As<FlowDirection>();
-        var severity = CmbSeverity.SelectedItem.As<InfoBarSeverity>();
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
+        var flow = (FlowDirection)CmbFlow.Value;
+        var severity = (InfoBarSeverity)CmbSeverity.Value;
 
         UacStyleDialogWindow dialog = new()
         {

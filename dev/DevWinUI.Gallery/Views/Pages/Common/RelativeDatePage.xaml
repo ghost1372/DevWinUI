@@ -3,27 +3,28 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="common/relativeDate" DocType="Core">
-                <local:ControlExample.CSharp>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="RelativeDate" Doc="common/relativeDate" DocType="Core">
+                <local:ControlExample2.CSharpCode>
                     <x:String>
                         var relativeDate = RelativeDate.Get(dateTime).ToString();
                     </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <DatePicker x:Name="DatePickerSample" SelectedDateChanged="DatePickerSample_SelectedDateChanged" />
-                </local:ControlExample.Pane>
+                </local:ControlExample2.CSharpCode>
+                <local:ControlExample2.Options>
+                    <local:OptionPanel>
+                        <DatePicker x:Name="DatePickerSample" SelectedDateChanged="DatePickerSample_SelectedDateChanged" />
+                    </local:OptionPanel>
+                </local:ControlExample2.Options>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                     <TextBlock x:Name="TextBlockSample" Style="{ThemeResource TitleTextBlockStyle}" />
                     <TextBlock x:Name="TextBlockSample2" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 

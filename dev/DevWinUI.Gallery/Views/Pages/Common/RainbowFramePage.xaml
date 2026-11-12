@@ -3,13 +3,12 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/RainbowFramePage_cs.txt" DocPage="common/rainbowFrame" DocType="Core">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="RainbowFrame" CSharp="Features/RainbowFramePage_cs.txt" Doc="common/rainbowFrame" DocType="Core">
                 <StackPanel Margin="10" Spacing="10">
                     <Button x:Name="btnFixed" Click="btnFixed_Click" Content="Change Window Frame Color to Red" />
                     <Button x:Name="btnRainbow" Click="btnRainbow_Click" Content="Start Rainbow" />
@@ -17,7 +16,7 @@
                     <MenuFlyoutSeparator Margin="0,10" />
                     <Button x:Name="btnReset" Click="btnReset_Click" Content="Reset Frame to Default" />
                 </StackPanel>
-            </local:ControlExample>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>
