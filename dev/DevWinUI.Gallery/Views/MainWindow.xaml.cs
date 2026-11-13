@@ -23,8 +23,7 @@ public sealed partial class MainWindow : Window
 
         new ModernSystemMenu(this);
 
-        var NavService = App.GetService<IJsonNavigationService>() as JsonNavigationService;
-        if (NavService != null)
+        if (App.GetService<IJsonNavigationService>() is JsonNavigationService NavService)
         {
             NavService.Initialize(NavView, NavFrame, NavigationPageMappings.PageDictionary)
                 .ConfigureDefaultPage(typeof(HomeLandingPage))
@@ -39,7 +38,7 @@ public sealed partial class MainWindow : Window
 
     private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
     {
-        PointerPointProperties props = e.GetCurrentPoint(null).Properties;
+        var props = e.GetCurrentPoint(null).Properties;
 
         if (props.IsXButton1Pressed)
         {
