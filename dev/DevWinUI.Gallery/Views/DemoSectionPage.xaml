@@ -115,7 +115,11 @@
                             <AdaptiveTrigger MinWindowWidth="0" />
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
+                            <Setter Target="HeroRoot.Height" Value="260" />
                             <Setter Target="HeroContent.Margin" Value="20,0,20,24" />
+                            <Setter Target="StatsPill.(Grid.Column)" Value="0" />
+                            <Setter Target="StatsPill.(Grid.Row)" Value="1" />
+                            <Setter Target="StatsPill.HorizontalAlignment" Value="Left" />
                             <Setter Target="TitleText.FontSize" Value="28" />
                             <Setter Target="ContentPanel.Padding" Value="20,8,20,48" />
                         </VisualState.Setters>
@@ -157,11 +161,22 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <StackPanel x:Name="HeroContent" Margin="40,0,40,24" VerticalAlignment="Bottom" Spacing="8">
-                    <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
-                    <TextBlock x:Name="TitleText" FontSize="36" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" TextWrapping="Wrap" />
+                <Grid x:Name="HeroContent" Margin="40,0,40,24" VerticalAlignment="Bottom" ColumnSpacing="24" RowSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                    <Border Margin="0,4,0,0" Padding="4" HorizontalAlignment="Left" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
+                    <StackPanel Spacing="8">
+                        <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
+                        <TextBlock x:Name="TitleText" FontSize="36" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <Border x:Name="StatsPill" Grid.Column="1" Padding="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Padding="12,5,14,5" Orientation="Horizontal" Spacing="8">
                                 <Border Style="{StaticResource StatIconStyle}">
@@ -194,7 +209,7 @@
                             </StackPanel>
                         </StackPanel>
                     </Border>
-                </StackPanel>
+                </Grid>
             </Grid>
 
             <StackPanel x:Name="ContentPanel" Padding="40,8,40,64">
