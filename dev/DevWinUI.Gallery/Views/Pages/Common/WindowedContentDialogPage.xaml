@@ -18,7 +18,7 @@
                         <local:OptionPanel>
                             <TextBox x:Name="txtTitle" Header="Header" PlaceholderText="Header" Text="Header" />
                             <TextBox x:Name="txtContent" Header="Content" PlaceholderText="Content" Text="Content" />
-                            <local:ChoiceOption x:Name="CmbButtonOrientation" Header="Button Orientation" Value="{x:Bind muxc:Orientation.Vertical}" />
+                            <local:ChoiceOption x:Name="CmbButtonOrientation" Header="Button Orientation" Value="{x:Bind muxc:Orientation.Horizontal}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
 
