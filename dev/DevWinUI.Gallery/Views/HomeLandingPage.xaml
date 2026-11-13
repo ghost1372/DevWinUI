@@ -11,12 +11,23 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="HeroChipStyle" TargetType="Border">
-            <Setter Property="Background" Value="#26FFFFFF" />
-            <Setter Property="BorderBrush" Value="#33FFFFFF" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="16" />
-            <Setter Property="Padding" Value="12,6" />
+        <Style x:Key="StatIconStyle" TargetType="Border">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{ThemeResource ControlFillColorSecondaryBrush}" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+
+        <Style x:Key="StatValueStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        </Style>
+
+        <Style x:Key="StatLabelStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
         </Style>
 
         <Style x:Key="CardButtonStyle" TargetType="Button">
@@ -134,13 +145,26 @@
             </VisualStateManager.VisualStateGroups>
 
             <Grid x:Name="HeroRoot" Height="300" Tag="{ThemeResource HeaderCover}">
-                <Image x:Name="HeroImage" Stretch="UniformToFill" />
+                <Rectangle Opacity="0.22">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="{ThemeResource SystemAccentColor}" />
+                            <GradientStop Offset="1" Color="#00000000" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
 
                 <Rectangle>
                     <Rectangle.Fill>
+                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="UniformToFill" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Rectangle Opacity="0.9">
+                    <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                            <GradientStop Offset="0" Color="#99000000" />
-                            <GradientStop Offset="0.7" Color="#00000000" />
+                            <GradientStop Offset="0" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+                            <GradientStop Offset="0.65" Color="#00000000" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -154,33 +178,52 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <StackPanel x:Name="HeroContent" Margin="40,0,40,32" VerticalAlignment="Bottom" RequestedTheme="Dark" Spacing="8">
+                <StackPanel x:Name="HeroContent" Margin="40,0,40,32" VerticalAlignment="Bottom" Spacing="8">
                     <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
                     <TextBlock x:Name="TitleText" FontSize="40" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" TextWrapping="Wrap" />
                     <TextBlock MaxWidth="560" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Browse controls, effects and features, each with live examples." TextWrapping="Wrap" />
-                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal" Spacing="8">
-                        <Border Style="{StaticResource HeroChipStyle}">
-                            <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon FontSize="14" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE71D;" />
-                                <TextBlock x:Name="TotalText" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="0" />
-                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="samples" />
+
+                    <Button x:Name="ExploreAllButton" Margin="0,8,0,0" Padding="16,8" AutomationProperties.Name="Explore all" Click="OnExploreAllClick" Style="{StaticResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontSize="14" Glyph="&#xE71D;" />
+                            <TextBlock Text="Explore all" />
+                            <FontIcon FontSize="10" Glyph="&#xE70D;" />
+                        </StackPanel>
+                    </Button>
+
+                    <Border Margin="0,4,0,0" Padding="4" HorizontalAlignment="Left" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Padding="12,5,14,5" Orientation="Horizontal" Spacing="8">
+                                <Border Style="{StaticResource StatIconStyle}">
+                                    <FontIcon FontSize="12" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE71D;" />
+                                </Border>
+                                <TextBlock x:Name="TotalText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                <TextBlock Style="{StaticResource StatLabelStyle}" Text="samples" />
                             </StackPanel>
-                        </Border>
-                        <Border x:Name="NewChip" Style="{StaticResource HeroChipStyle}" Visibility="Collapsed">
-                            <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon FontSize="14" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE734;" />
-                                <TextBlock x:Name="NewText" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="0" />
-                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="new" />
+
+                            <StackPanel x:Name="NewChip" Orientation="Horizontal" Visibility="Collapsed">
+                                <Rectangle Width="1" Margin="0,6" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                <StackPanel Padding="14,5" Orientation="Horizontal" Spacing="8">
+                                    <Border Background="{ThemeResource AccentFillColorDefaultBrush}" Style="{StaticResource StatIconStyle}">
+                                        <FontIcon FontSize="12" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Glyph="&#xE734;" />
+                                    </Border>
+                                    <TextBlock x:Name="NewText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                    <TextBlock Style="{StaticResource StatLabelStyle}" Text="new" />
+                                </StackPanel>
                             </StackPanel>
-                        </Border>
-                        <Border x:Name="UpdatedChip" Style="{StaticResource HeroChipStyle}" Visibility="Collapsed">
-                            <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon FontSize="14" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE777;" />
-                                <TextBlock x:Name="UpdatedText" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="0" />
-                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="updated" />
+
+                            <StackPanel x:Name="UpdatedChip" Orientation="Horizontal" Visibility="Collapsed">
+                                <Rectangle Width="1" Margin="0,6" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                <StackPanel Padding="14,5,12,5" Orientation="Horizontal" Spacing="8">
+                                    <Border Style="{StaticResource StatIconStyle}">
+                                        <FontIcon FontSize="12" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE777;" />
+                                    </Border>
+                                    <TextBlock x:Name="UpdatedText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                    <TextBlock Style="{StaticResource StatLabelStyle}" Text="updated" />
+                                </StackPanel>
                             </StackPanel>
-                        </Border>
-                    </StackPanel>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Grid>
 

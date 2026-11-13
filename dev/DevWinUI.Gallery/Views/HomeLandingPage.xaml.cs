@@ -61,7 +61,7 @@ public sealed partial class HomeLandingPage : Page
     {
         if (HeroRoot.Tag is string path && !string.IsNullOrEmpty(path))
         {
-            HeroImage.Source = new BitmapImage(new Uri(path));
+            HeroBrush.ImageSource = new BitmapImage(new Uri(path));
         }
     }
 
@@ -102,6 +102,15 @@ public sealed partial class HomeLandingPage : Page
         {
             sections.Add(new GroupInfoList(items) { Key = key, Title = title });
         }
+    }
+
+    private void OnExploreAllClick(object sender, RoutedEventArgs e)
+    {
+        ContentPanel.StartBringIntoView(new BringIntoViewOptions
+        {
+            AnimationDesired = true,
+            VerticalAlignmentRatio = 0.0
+        });
     }
 
     private void OnCardClick(object sender, RoutedEventArgs e)

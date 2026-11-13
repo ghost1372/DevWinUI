@@ -8,5 +8,208 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <dev:SectionPage x:Name="sectionPage" OnItemClick="SectionPage_OnItemClick" />
+    <Page.Resources>
+        <Style x:Key="StatIconStyle" TargetType="Border">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{ThemeResource ControlFillColorSecondaryBrush}" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+
+        <Style x:Key="StatValueStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+        </Style>
+
+        <Style x:Key="StatLabelStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        </Style>
+
+        <Style x:Key="CardButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FocusVisualMargin" Value="-3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" CornerRadius="{TemplateBinding CornerRadius}" Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter.BackgroundTransition>
+                                <BrushTransition Duration="0:0:0.1" />
+                            </ContentPresenter.BackgroundTransition>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentPresenter.Background" Value="{ThemeResource CardBackgroundFillColorSecondaryBrush}" />
+                                            <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ControlStrokeColorSecondaryBrush}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentPresenter.Background" Value="{ThemeResource ControlFillColorTertiaryBrush}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentPresenter.Opacity" Value="0.5" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="CardTemplate" x:DataType="dev:DataItem">
+            <Button AutomationProperties.Name="{x:Bind Title}" Click="OnCardClick" IsEnabled="{x:Bind IncludedInBuild}" Style="{StaticResource CardButtonStyle}" Tag="{x:Bind}">
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Width="56" Height="56" VerticalAlignment="Top" Background="{ThemeResource ControlFillColorSecondaryBrush}" CornerRadius="12">
+                        <Image Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{x:Bind ImagePath}" />
+                    </Border>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock FontWeight="SemiBold" Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" />
+                            <Border Padding="8,1" VerticalAlignment="Center" Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="10" Visibility="{x:Bind local:HomeLandingPage.ToVisibility(IsPreview)}">
+                                <TextBlock FontSize="11" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Text="Preview" />
+                            </Border>
+                        </StackPanel>
+                        <TextBlock FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" MaxLines="3" Text="{x:Bind Subtitle}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <InfoBadge Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{x:Bind DataInfoBadge.LandingPageInfoBadgeStyle, Converter={StaticResource StringToStyleConverter}}" Tag="{x:Bind DataInfoBadge.InfoBadgeValue}" Visibility="{x:Bind DataInfoBadge.IsLandingPageInfoBadgeHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Grid>
+            </Button>
+        </DataTemplate>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState x:Name="WideLayout">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="640" />
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                    <VisualState x:Name="NarrowLayout">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="0" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="HeroContent.Margin" Value="20,0,20,24" />
+                            <Setter Target="TitleText.FontSize" Value="28" />
+                            <Setter Target="ContentPanel.Padding" Value="20,8,20,48" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Grid x:Name="HeroRoot" Height="200" Tag="{ThemeResource HeaderCover}">
+                <Rectangle Opacity="0.22">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="{ThemeResource SystemAccentColor}" />
+                            <GradientStop Offset="1" Color="#00000000" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Rectangle>
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="UniformToFill" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Rectangle Opacity="0.9">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Offset="0" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+                            <GradientStop Offset="0.65" Color="#00000000" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Rectangle Height="110" VerticalAlignment="Bottom">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Offset="0" Color="#00000000" />
+                            <GradientStop Offset="1" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <StackPanel x:Name="HeroContent" Margin="40,0,40,24" VerticalAlignment="Bottom" Spacing="8">
+                    <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
+                    <TextBlock x:Name="TitleText" FontSize="36" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" TextWrapping="Wrap" />
+
+                    <Border Margin="0,4,0,0" Padding="4" HorizontalAlignment="Left" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Padding="12,5,14,5" Orientation="Horizontal" Spacing="8">
+                                <Border Style="{StaticResource StatIconStyle}">
+                                    <FontIcon FontSize="12" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE71D;" />
+                                </Border>
+                                <TextBlock x:Name="TotalText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                <TextBlock Style="{StaticResource StatLabelStyle}" Text="samples" />
+                            </StackPanel>
+
+                            <StackPanel x:Name="NewChip" Orientation="Horizontal" Visibility="Collapsed">
+                                <Rectangle Width="1" Margin="0,6" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                <StackPanel Padding="14,5" Orientation="Horizontal" Spacing="8">
+                                    <Border Background="{ThemeResource AccentFillColorDefaultBrush}" Style="{StaticResource StatIconStyle}">
+                                        <FontIcon FontSize="12" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Glyph="&#xE734;" />
+                                    </Border>
+                                    <TextBlock x:Name="NewText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                    <TextBlock Style="{StaticResource StatLabelStyle}" Text="new" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel x:Name="UpdatedChip" Orientation="Horizontal" Visibility="Collapsed">
+                                <Rectangle Width="1" Margin="0,6" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                <StackPanel Padding="14,5,12,5" Orientation="Horizontal" Spacing="8">
+                                    <Border Style="{StaticResource StatIconStyle}">
+                                        <FontIcon FontSize="12" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Glyph="&#xE777;" />
+                                    </Border>
+                                    <TextBlock x:Name="UpdatedText" Style="{StaticResource StatValueStyle}" Text="0" />
+                                    <TextBlock Style="{StaticResource StatLabelStyle}" Text="updated" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel x:Name="ContentPanel" Padding="40,8,40,64">
+                <StackPanel x:Name="LoadingPanel" Margin="0,48" HorizontalAlignment="Center" Spacing="12">
+                    <Image Width="64" Height="64" Source="ms-appx:///Assets/AppIcon.png" />
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Loading, please wait..." />
+                    <ProgressRing Width="32" Height="32" IsActive="True" />
+                </StackPanel>
+
+                <ItemsRepeater x:Name="ItemsRepeater" ItemTemplate="{StaticResource CardTemplate}">
+                    <ItemsRepeater.Layout>
+                        <UniformGridLayout ItemsStretch="Fill" MinColumnSpacing="12" MinItemHeight="96" MinItemWidth="340" MinRowSpacing="12" />
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
