@@ -15,8 +15,8 @@
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtContent" Header="Content" Text="Get started" />
-                            <ComboBox x:Name="CmbTone" Header="Tone" ItemsSource="{x:Bind ToneItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbTone" Header="Tone" Value="{x:Bind dev:FillButtonTone.Soft}" />
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:FillButtonSize.Default}" />
                             <ToggleSwitch x:Name="TglIcon" Header="Custom Icon" IsOn="False" />
                         </local:OptionPanel>
                     </local:OptionGroup>

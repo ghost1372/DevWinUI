@@ -7,9 +7,6 @@ public sealed partial class WindowedContentDialogPage : Page
     public WindowedContentDialogPage()
     {
         InitializeComponent();
-        CmbUnderlayBackdrops.Value = BackdropType.Mica;
-        CmbFlow.Value = FlowDirection.LeftToRight;
-        CmbButtonOrientation.Value = Orientation.Vertical;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)

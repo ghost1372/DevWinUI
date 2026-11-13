@@ -21,8 +21,8 @@
                     </local:OptionGroup>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:HoldToConfirmKind.Default}" />
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:HoldToConfirmSize.Default}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">

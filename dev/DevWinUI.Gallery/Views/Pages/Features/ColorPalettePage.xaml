@@ -14,8 +14,8 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbColorSet" MinWidth="200" Header="Color Set" ItemsSource="{x:Bind ColorSetItems, Mode=OneWay}" SelectedIndex="1" />
-                            <ComboBox x:Name="CmbItemShape" MinWidth="200" Header="Item Shape" ItemsSource="{x:Bind ColorItemShapeItems, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbColorSet" Header="Color Set" Value="{x:Bind dev:ColorSetType.Basic}" />
+                            <local:ChoiceOption x:Name="CmbItemShape" Header="Item Shape" Value="{x:Bind dev:ColorItemShape.Rectangle}" />
                             <StackPanel Orientation="Horizontal" Spacing="5">
                                 <NumberBox x:Name="NBWidth" Header="Item Width" Maximum="200" Minimum="4" SpinButtonPlacementMode="Inline" Value="32" />
                                 <NumberBox x:Name="NBHeight" Header="Item Height" Maximum="200" Minimum="4" SpinButtonPlacementMode="Inline" Value="32" />

@@ -2,9 +2,6 @@
 
 public sealed partial class DiffViewPage : Page
 {
-    public ObservableCollection<DiffViewMode> ViewModeItems { get; set; } = new ObservableCollection<DiffViewMode>(Enum.GetValues<DiffViewMode>());
-    public ObservableCollection<DiffUnifiedMode> UnifiedModeItems { get; set; } = new ObservableCollection<DiffUnifiedMode>(Enum.GetValues<DiffUnifiedMode>());
-
     public string OldSample { get; } = """
         using System;
         using System.Collections.Generic;

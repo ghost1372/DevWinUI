@@ -5,8 +5,6 @@ public sealed partial class ThemeManagerPage : Page
     public ThemeManagerPage()
     {
         this.InitializeComponent();
-        cmbTheme.Value = App.Current.ThemeService.ElementTheme;
-        cmbBackdrop.Value = App.Current.ThemeService.BackdropType;
     }
 
     private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)

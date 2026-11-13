@@ -6,9 +6,6 @@ public sealed partial class UacStyleDialogWindowPage : Page
     public UacStyleDialogWindowPage()
     {
         InitializeComponent();
-        CmbUnderlayBackdrops.Value = BackdropType.Mica;
-        CmbFlow.Value = FlowDirection.LeftToRight;
-        CmbSeverity.Value = InfoBarSeverity.Success;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)

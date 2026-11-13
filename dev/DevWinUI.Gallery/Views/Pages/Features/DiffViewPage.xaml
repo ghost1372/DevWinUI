@@ -15,8 +15,8 @@
                     <local:OptionGroup Title="Content">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtFilename" Header="Filename" Text="OrderService.cs" />
-                            <ComboBox x:Name="CmbViewMode" Header="View Mode" ItemsSource="{x:Bind ViewModeItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbUnifiedMode" Header="Unified Mode" ItemsSource="{x:Bind UnifiedModeItems, Mode=OneWay}" SelectedIndex="0" />
+                            <local:ChoiceOption x:Name="CmbViewMode" Header="View Mode" Value="{x:Bind dev:DiffViewMode.Unified}" />
+                            <local:ChoiceOption x:Name="CmbUnifiedMode" Header="Unified Mode" Value="{x:Bind dev:DiffUnifiedMode.Inline}" />
                             <Slider x:Name="SliderContext" Header="Context Lines" Maximum="10" Minimum="0" Value="3" />
                             <Slider x:Name="SliderMaxHeight" Header="Max Body Height" Maximum="800" Minimum="150" StepFrequency="10" Value="480" />
                         </local:OptionPanel>

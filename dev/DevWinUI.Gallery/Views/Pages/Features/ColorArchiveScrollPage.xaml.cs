@@ -2,8 +2,6 @@
 
 public sealed partial class ColorArchiveScrollPage : Page
 {
-    public ObservableCollection<ColorArchivePreviewSize> PreviewSizeItems { get; set; } = new ObservableCollection<ColorArchivePreviewSize>(Enum.GetValues<ColorArchivePreviewSize>());
-
     public ObservableCollection<ColorArchiveProject> Projects { get; } = new()
     {
         ColorArchiveProject.Make("aurora", "Aurora Identity", "Branding", "2026", "#F4E4D4", "ms-appx:///Assets/BannerView/1.jpg"),

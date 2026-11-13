@@ -28,7 +28,7 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Eyes">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:EyeKind.Realistic}" />
                             <Slider x:Name="SliderEyeCount" Header="Eye Count" Maximum="6" Minimum="1" Value="2" />
                             <Slider x:Name="SliderEyeSize" Header="Eye Size" Maximum="240" Minimum="40" Value="120" />
                             <Slider x:Name="SliderGap" Header="Gap" Maximum="120" Minimum="0" Value="40" />

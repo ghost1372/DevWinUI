@@ -7,7 +7,6 @@ public sealed partial class QRCodePage : Page
     public QRCodePage()
     {
         InitializeComponent();
-        CmbError.Value = ErrorCorrectionLevel.High;
     }
 
     private BitmapImage GenerateImage(string text, object value)

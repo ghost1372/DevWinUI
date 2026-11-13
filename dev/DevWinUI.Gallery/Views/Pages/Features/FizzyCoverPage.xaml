@@ -14,8 +14,8 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="General">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbTrigger" Header="Trigger" ItemsSource="{x:Bind Triggers}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbShape" Header="Particle Shape" ItemsSource="{x:Bind Shapes}" SelectedIndex="0" />
+                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:FizzyTrigger.Hover}" />
+                            <local:ChoiceOption x:Name="CmbShape" Header="Particle Shape" Value="{x:Bind dev:FizzyShape.Mixed}" />
                             <Slider x:Name="SliderRadius" Header="Radius" Maximum="40" Minimum="0" Value="24" />
                         </local:OptionPanel>
                     </local:OptionGroup>

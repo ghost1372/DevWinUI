@@ -7,12 +7,6 @@ public sealed partial class MessageBoxPage : Page
     public MessageBoxPage()
     {
         InitializeComponent();
-        CmbMessageBoxButtons.Value = MessageBoxButtons.OK;
-        CmbMessageBoxDefaultButton.Value = MessageBoxDefaultButton.Button1;
-        CmbMessageBoxIcon.Value = MessageBoxIcon.None;
-        CmbFlow.Value = FlowDirection.LeftToRight;
-        CmbWindowStartupLocation.Value = WindowStartupLocation.CenterOwner;
-        CmbUnderlayBackdrops.Value = BackdropType.Mica;
     }
 
     private async void OnMessageBox(object sender, RoutedEventArgs e)

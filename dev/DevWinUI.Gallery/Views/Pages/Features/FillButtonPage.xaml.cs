@@ -4,9 +4,6 @@ public sealed partial class FillButtonPage : Page
 {
     private static readonly Uri SampleUri = new Uri("https://github.com/Ghost1372/DevWinUI");
 
-    public ObservableCollection<FillButtonTone> ToneItems { get; set; } = new ObservableCollection<FillButtonTone>(Enum.GetValues<FillButtonTone>());
-    public ObservableCollection<FillButtonSize> SizeItems { get; set; } = new ObservableCollection<FillButtonSize>(Enum.GetValues<FillButtonSize>());
-
     public FillButtonPage()
     {
         InitializeComponent();

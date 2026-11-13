@@ -14,7 +14,7 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Preview">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbPreviewSize" HorizontalAlignment="Stretch" Header="Preview Size" ItemsSource="{x:Bind PreviewSizeItems, Mode=OneWay}" SelectedIndex="2" />
+                            <local:ChoiceOption x:Name="CmbPreviewSize" Header="Preview Size" Value="{x:Bind dev:ColorArchivePreviewSize.Large}" />
                             <ToggleSwitch x:Name="TsShowPreview" Header="Show Preview" IsOn="True" />
                             <ToggleSwitch x:Name="TsShowRuler" Header="Show Ruler" IsOn="True" />
                         </local:OptionPanel>

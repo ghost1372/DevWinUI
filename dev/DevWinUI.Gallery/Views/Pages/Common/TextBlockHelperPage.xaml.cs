@@ -19,7 +19,6 @@ public sealed partial class TextBlockHelperPage : Page
     public TextBlockHelperPage()
     {
         InitializeComponent();
-        CmbType.Value = TextBlockSlideDirection.BottomToTop;
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }

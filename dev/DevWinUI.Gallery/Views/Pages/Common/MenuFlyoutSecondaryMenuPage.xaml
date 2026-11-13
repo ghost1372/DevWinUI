@@ -14,7 +14,7 @@
                 <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoClose" Header="Auto Close Flyout" IsOn="True" />
-                        <ComboBox x:Name="CmbPosition" HorizontalAlignment="Stretch" Header="Secondary Menu Position" ItemsSource="{x:Bind SecondaryMenuPlacement, Mode=OneWay}" SelectedIndex="0" />
+                        <local:ChoiceOption x:Name="CmbPosition" Header="Secondary Menu Position" Value="{x:Bind dev:MenuFlyoutSecondaryMenuPlacement.Top}" />
                     </local:OptionPanel>
                 </local:ControlExample.Options>
                 <Button MinWidth="200" HorizontalAlignment="Center" Content="Open Flyout">
