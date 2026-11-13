@@ -49,7 +49,7 @@
                     <local:Sample Title="Variants">
                         <dev:UniformGrid Columns="2">
                             <dev:BankCard BankName="Mellat Bank" CardHolder="Mahdi Hosseini" CardLogo="ms-appx:///Assets/AppIcon.png" CardNumber="4242424242424242" Cvv2="123" Expiration="08/28" ShowCvv="True" />
-                            <dev:BankCard BackgroundImage="ms-appx:///Assets/BannerView/3.jpeg" CardHolder="Mahdi Hosseini" CardNumber="378282246310005" Cvv2="1234" Expiration="12/27" />
+                            <dev:BankCard BackgroundImage="ms-appx:///Assets/BannerView/3.jpg" CardHolder="Mahdi Hosseini" CardNumber="378282246310005" Cvv2="1234" Expiration="12/27" />
                             <dev:BankCard CardHolder="John Smith" CardNumber="5555555555554444" Cvv2="456" Expiration="01/30" MaskNumber="True">
                                 <dev:BankCard.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

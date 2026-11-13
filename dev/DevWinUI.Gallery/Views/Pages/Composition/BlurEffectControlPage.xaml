@@ -39,7 +39,7 @@
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
                 <Grid VerticalAlignment="Top">
-                    <dev:CompositionImage x:Name="BackdropImage" Source="ms-appx:///Assets/Landscapes/Landscape-9.jpg" />
+                    <dev:CompositionImage x:Name="BackdropImage" Source="ms-appx:///Assets/Landscapes/9.jpg" />
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="Black" Text="DevWinUI" TextWrapping="Wrap" />
                     <dev:BlurEffectControl x:Name="BlurEffectControlSample" BlendMode="Multiply" BlurAmount="{x:Bind TGSlider.Value, Mode=OneWay}" BorderMode="Hard" IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}" IsTintEnabled="True" NoiseBlendMode="Screen" NoiseUri="{x:Bind TxtNoiseUri.Text, Mode=OneWay}" Optimization="Balanced" UseNoise="{x:Bind TGUseNoise.IsOn, Mode=OneWay}" />
                 </Grid>

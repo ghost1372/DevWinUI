@@ -62,33 +62,33 @@ public partial class BaseViewModel : ObservableObject
     [ObservableProperty]
     public partial ObservableCollection<SampleItemModel> LandscapeData { get; set; } = new ObservableCollection<SampleItemModel>()
     {
-        new SampleItemModel("Sample 1","Sample Desc 1", "ms-appx:///Assets/Landscapes/Landscape-1.jpg"),
-        new SampleItemModel("Sample 2", "Sample Desc 2","ms-appx:///Assets/Landscapes/Landscape-2.jpg"),
-        new SampleItemModel("Sample 3","Sample Desc 3", "ms-appx:///Assets/Landscapes/Landscape-3.jpg"),
-        new SampleItemModel("Sample 4", "Sample Desc 4","ms-appx:///Assets/Landscapes/Landscape-4.jpg"),
-        new SampleItemModel("Sample 5", "Sample Desc 5","ms-appx:///Assets/Landscapes/Landscape-5.jpg"),
-        new SampleItemModel("Sample 6", "Sample Desc 6","ms-appx:///Assets/Landscapes/Landscape-6.jpg"),
-        new SampleItemModel("Sample 7","Sample Desc 7", "ms-appx:///Assets/Landscapes/Landscape-7.jpg"),
-        new SampleItemModel("Sample 8", "Sample Desc 8","ms-appx:///Assets/Landscapes/Landscape-8.jpg"),
-        new SampleItemModel("Sample 9", "Sample Desc 9","ms-appx:///Assets/Landscapes/Landscape-9.jpg"),
-        new SampleItemModel("Sample 10", "Sample Desc 10","ms-appx:///Assets/Landscapes/Landscape-10.jpg"),
-        new SampleItemModel("Sample 11", "Sample Desc 11","ms-appx:///Assets/Landscapes/Landscape-11.jpg"),
-        new SampleItemModel("Sample 12", "Sample Desc 12","ms-appx:///Assets/Landscapes/Landscape-12.jpg"),
-        new SampleItemModel("Sample 13", "Sample Desc 13","ms-appx:///Assets/Landscapes/Landscape-13.jpg")
+        new SampleItemModel("Sample 1","Sample Desc 1", "ms-appx:///Assets/Landscapes/1.jpg"),
+        new SampleItemModel("Sample 2", "Sample Desc 2","ms-appx:///Assets/Landscapes/2.jpg"),
+        new SampleItemModel("Sample 3","Sample Desc 3", "ms-appx:///Assets/Landscapes/3.jpg"),
+        new SampleItemModel("Sample 4", "Sample Desc 4","ms-appx:///Assets/Landscapes/4.jpg"),
+        new SampleItemModel("Sample 5", "Sample Desc 5","ms-appx:///Assets/Landscapes/5.jpg"),
+        new SampleItemModel("Sample 6", "Sample Desc 6","ms-appx:///Assets/Landscapes/6.jpg"),
+        new SampleItemModel("Sample 7","Sample Desc 7", "ms-appx:///Assets/Landscapes/7.jpg"),
+        new SampleItemModel("Sample 8", "Sample Desc 8","ms-appx:///Assets/Landscapes/8.jpg"),
+        new SampleItemModel("Sample 9", "Sample Desc 9","ms-appx:///Assets/Landscapes/9.jpg"),
+        new SampleItemModel("Sample 10", "Sample Desc 10","ms-appx:///Assets/Landscapes/10.jpg"),
+        new SampleItemModel("Sample 11", "Sample Desc 11","ms-appx:///Assets/Landscapes/11.jpg"),
+        new SampleItemModel("Sample 12", "Sample Desc 12","ms-appx:///Assets/Landscapes/12.jpg"),
+        new SampleItemModel("Sample 13", "Sample Desc 13","ms-appx:///Assets/Landscapes/13.jpg")
     };
 
     [ObservableProperty]
     public partial ObservableCollection<SampleItemModel> BannerViewData { get; set; } = new ObservableCollection<SampleItemModel>()
     {
-        new SampleItemModel("Sample 1","Sample Desc 1", "ms-appx:///Assets/BannerView/1.jpeg"),
-        new SampleItemModel("Sample 2", "Sample Desc 2","ms-appx:///Assets/BannerView/2.png"),
-        new SampleItemModel("Sample 3","Sample Desc 3", "ms-appx:///Assets/BannerView/3.jpeg"),
-        new SampleItemModel("Sample 4", "Sample Desc 4","ms-appx:///Assets/BannerView/4.jpeg"),
-        new SampleItemModel("Sample 5", "Sample Desc 5","ms-appx:///Assets/BannerView/5.jpeg"),
-        new SampleItemModel("Sample 6", "Sample Desc 6","ms-appx:///Assets/BannerView/6.png"),
-        new SampleItemModel("Sample 7","Sample Desc 7", "ms-appx:///Assets/BannerView/7.jpeg"),
-        new SampleItemModel("Sample 8", "Sample Desc 8","ms-appx:///Assets/BannerView/8.jpeg"),
-        new SampleItemModel("Sample 9", "Sample Desc 9","ms-appx:///Assets/BannerView/9.jpeg")
+        new SampleItemModel("Sample 1","Sample Desc 1", "ms-appx:///Assets/BannerView/1.jpg"),
+        new SampleItemModel("Sample 2", "Sample Desc 2","ms-appx:///Assets/BannerView/2.jpg"),
+        new SampleItemModel("Sample 3","Sample Desc 3", "ms-appx:///Assets/BannerView/3.jpg"),
+        new SampleItemModel("Sample 4", "Sample Desc 4","ms-appx:///Assets/BannerView/4.jpg"),
+        new SampleItemModel("Sample 5", "Sample Desc 5","ms-appx:///Assets/BannerView/5.jpg"),
+        new SampleItemModel("Sample 6", "Sample Desc 6","ms-appx:///Assets/BannerView/6.jpg"),
+        new SampleItemModel("Sample 7","Sample Desc 7", "ms-appx:///Assets/BannerView/7.jpg"),
+        new SampleItemModel("Sample 8", "Sample Desc 8","ms-appx:///Assets/BannerView/8.jpg"),
+        new SampleItemModel("Sample 9", "Sample Desc 9","ms-appx:///Assets/BannerView/9.jpg")
     };
 
     [ObservableProperty]

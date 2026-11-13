@@ -13,7 +13,7 @@
             <local:ControlExample Title="FlipToReveal" Doc="controls/flipToReveal" Xaml="Composition/FlipToRevealPage_xaml.txt">
                 <dev:FlipToReveal Margin="0,150,0,0">
                     <dev:FlipToReveal.PrimaryContent>
-                        <Image Width="350" Height="192" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/Landscapes/Landscape-1.jpg" />
+                        <Image Width="350" Height="192" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/Landscapes/1.jpg" />
                     </dev:FlipToReveal.PrimaryContent>
                     <dev:FlipToReveal.SecondaryContent>
                         <Border Width="350" Height="192" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#250E35" BorderBrush="#B91C8D" BorderThickness="2" Opacity="0.8">

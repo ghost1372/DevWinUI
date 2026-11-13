@@ -26,7 +26,7 @@
                 </local:ControlExample.OptionGroups>
                 <local:ControlExample.Samples>
                     <local:Sample Title="ScrollSplitCard" Xaml="Features/Others/ScrollSplitCard_xaml.txt">
-                        <dev:ScrollSplitCard Cards="{x:Bind GetCards(SliderCount.Value), Mode=OneWay}" EndLabel="{x:Bind TxtEndLabel.Text, Mode=OneWay}" Hint="{x:Bind TxtHint.Text, Mode=OneWay}" Image="ms-appx:///Assets/BannerView/7.jpeg" ImageAlt="{x:Bind TxtImageAlt.Text, Mode=OneWay}" IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:ScrollSplitCardSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:ScrollSplitCardTone)CmbTone.Value), Mode=OneWay}" />
+                        <dev:ScrollSplitCard Cards="{x:Bind GetCards(SliderCount.Value), Mode=OneWay}" EndLabel="{x:Bind TxtEndLabel.Text, Mode=OneWay}" Hint="{x:Bind TxtHint.Text, Mode=OneWay}" Image="ms-appx:///Assets/BannerView/7.jpg" ImageAlt="{x:Bind TxtImageAlt.Text, Mode=OneWay}" IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:ScrollSplitCardSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:ScrollSplitCardTone)CmbTone.Value), Mode=OneWay}" />
                     </local:Sample>
                     <local:Sample Title="Chart tone">
                         <local:Sample.XamlCode>
@@ -34,7 +34,7 @@
                                 &lt;dev:ScrollSplitCard Cards="{x:Bind Cards}" Size="Small" Tone="Chart" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:ScrollSplitCard Cards="{x:Bind Cards}" Image="ms-appx:///Assets/BannerView/8.jpeg" Size="Small" Tone="Chart" />
+                        <dev:ScrollSplitCard Cards="{x:Bind Cards}" Image="ms-appx:///Assets/BannerView/8.jpg" Size="Small" Tone="Chart" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>

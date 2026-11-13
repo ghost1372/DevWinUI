@@ -12,9 +12,9 @@
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="CompositionImage" Doc="controls/compositionImage">
                 <local:ControlExample.XamlCode>
-                    <x:String>&lt;dev:CompositionImage Source="ms-appx:///Assets/Landscapes/Landscape-10.jpg" /&gt;</x:String>
+                    <x:String>&lt;dev:CompositionImage Source="ms-appx:///Assets/Landscapes/10.jpg" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
-                <dev:CompositionImage Source="ms-appx:///Assets/Landscapes/Landscape-10.jpg" />
+                <dev:CompositionImage Source="ms-appx:///Assets/Landscapes/10.jpg" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -55,8 +55,8 @@ public sealed partial class MotionPage : Page
     {
         var items = new List<object?>
         {
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/1.jpeg", Title = "Photo 1" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/2.png", Title = "Photo 2" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/1.jpg", Title = "Photo 1" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/2.jpg", Title = "Photo 2" },
             new MotionWallItem
             {
                 Text = "Open docs",
@@ -64,10 +64,10 @@ public sealed partial class MotionPage : Page
                 Href = new Uri("https://ghost1372.github.io")
             },
             new MotionWallItem { Text = "Text tile", Title = "Plain text tile" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/3.jpeg", Title = "Photo 3" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/4.jpeg", Title = "Photo 4" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/7.jpeg", Title = "Photo 5" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/8.jpeg", Title = "Photo 6" }
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/3.jpg", Title = "Photo 3" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/4.jpg", Title = "Photo 4" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/7.jpg", Title = "Photo 5" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/8.jpg", Title = "Photo 6" }
         };
 
         return items;

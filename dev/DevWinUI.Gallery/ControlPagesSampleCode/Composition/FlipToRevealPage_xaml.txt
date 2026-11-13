@@ -4,7 +4,7 @@
                 Height="192"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Source="ms-appx:///Assets/Landscapes/Landscape-1.jpg" />
+                Source="ms-appx:///Assets/Landscapes/1.jpg" />
     </dev:FlipToReveal.PrimaryContent>
     <dev:FlipToReveal.SecondaryContent>
         <Border Width="350"

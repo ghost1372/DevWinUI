@@ -25,10 +25,10 @@
                 <local:ControlExample.Samples>
                     <local:Sample Title="ExpandingCards" Xaml="Features/Others/ExpandingCards_xaml.txt">
                         <dev:ExpandingCards Height="360" CardCornerRadius="{x:Bind ToCornerRadius(SliderCornerRadius.Value), Mode=OneWay}" CollapsedFlex="{x:Bind SliderCollapsedFlex.Value, Mode=OneWay}" DefaultActiveIndex="{x:Bind ToInt(SliderActiveIndex.Value), Mode=OneWay}" ExpandedFlex="{x:Bind SliderExpandedFlex.Value, Mode=OneWay}" ReduceMotion="{x:Bind TglReduceMotion.IsOn, Mode=OneWay}">
-                            <dev:ExpandingCardItem Title="Mountains" Alt="Snowy mountain peaks" Source="ms-appx:///Assets/BannerView/1.jpeg" />
-                            <dev:ExpandingCardItem Title="Forest" Alt="Dense green forest" Source="ms-appx:///Assets/BannerView/3.jpeg" />
-                            <dev:ExpandingCardItem Title="Ocean" Alt="Waves on a beach" Source="ms-appx:///Assets/BannerView/4.jpeg" />
-                            <dev:ExpandingCardItem Title="Desert" Alt="Sand dunes at sunset" Source="ms-appx:///Assets/BannerView/7.jpeg" />
+                            <dev:ExpandingCardItem Title="Mountains" Alt="Snowy mountain peaks" Source="ms-appx:///Assets/BannerView/1.jpg" />
+                            <dev:ExpandingCardItem Title="Forest" Alt="Dense green forest" Source="ms-appx:///Assets/BannerView/3.jpg" />
+                            <dev:ExpandingCardItem Title="Ocean" Alt="Waves on a beach" Source="ms-appx:///Assets/BannerView/4.jpg" />
+                            <dev:ExpandingCardItem Title="Desert" Alt="Sand dunes at sunset" Source="ms-appx:///Assets/BannerView/7.jpg" />
                         </dev:ExpandingCards>
                     </local:Sample>
                 </local:ControlExample.Samples>
