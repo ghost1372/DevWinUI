@@ -15,7 +15,7 @@
                     <local:OptionGroup Title="LoadingState">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
-                            <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:LoadingStateMode.Dots}" />
+                            <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:LoadingStateMode.Drive}" />
                             <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
