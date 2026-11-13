@@ -1,0 +1,28 @@
+<dev:Diagram Layout="Layered"
+             Direction="LeftToRight"
+             EdgeStyle="Orthogonal"
+             ShowLegend="True"
+             ShowPinTypes="True"
+             ShowConflicts="True"
+             AllowConnect="True"
+             AllowConflictingConnections="True"
+             AnimateEdges="True">
+    <dev:Diagram.Nodes>
+        <dev:DiagramNode Id="read" Title="Read orders">
+            <dev:DiagramNode.Outputs>
+                <dev:DiagramPin Id="text" Name="Text" Type="str" />
+            </dev:DiagramNode.Outputs>
+        </dev:DiagramNode>
+        <dev:DiagramNode Id="parse" Title="Parse rows">
+            <dev:DiagramNode.Inputs>
+                <dev:DiagramPin Id="text" Name="Text" Type="str" />
+            </dev:DiagramNode.Inputs>
+            <dev:DiagramNode.Outputs>
+                <dev:DiagramPin Id="rows" Name="Rows" Type="int" />
+            </dev:DiagramNode.Outputs>
+        </dev:DiagramNode>
+    </dev:Diagram.Nodes>
+    <dev:Diagram.Edges>
+        <dev:DiagramEdge From="read" FromPin="text" To="parse" ToPin="text" />
+    </dev:Diagram.Edges>
+</dev:Diagram>

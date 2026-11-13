@@ -9,20 +9,26 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/clock" HeaderText="Analog Clock">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:Clock /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel>
-                        <TextBlock x:Name="Txt" />
-                        <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm:ss" />
-                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:Clock HorizontalAlignment="Left" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" SelectedTimeChanged="Clock_SelectedTimeChanged" TimeFormat="{x:Bind TxtTimeFormat1.Text, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Analog Clock" Doc="controls/clock">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Clock">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm:ss" />
+                            <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
+                            <TextBlock x:Name="Txt" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Analog Clock">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:Clock /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:Clock HorizontalAlignment="Left" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" SelectedTimeChanged="Clock_SelectedTimeChanged" TimeFormat="{x:Bind TxtTimeFormat1.Text, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -9,23 +9,26 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/card" HeaderText="Card">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Card Title="Title" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:Card Title="Title">
-                    <dev:Card.TitleContent>
-                        <Button Margin="0,0,10,0" Content="Title Content" />
-                    </dev:Card.TitleContent>
-                    <dev:Card.Content>
-                        <Button Content="Content" />
-                    </dev:Card.Content>
-                </dev:Card>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Card" Doc="controls/card">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Card">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Card Title="Title" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:Card Title="Title">
+                            <dev:Card.TitleContent>
+                                <Button Margin="0,0,10,0" Content="Title Content" />
+                            </dev:Card.TitleContent>
+                            <dev:Card.Content>
+                                <Button Content="Content" />
+                            </dev:Card.Content>
+                        </dev:Card>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

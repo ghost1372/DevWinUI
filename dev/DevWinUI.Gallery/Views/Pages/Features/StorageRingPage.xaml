@@ -9,27 +9,32 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/storageRing" HeaderText="StorageRing">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:StorageRing Value="25" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="SlValue" Header="Value" Value="26" />
-                        <Slider x:Name="SlValueRingThickness" Header="Value Ring Thickness" Value="3" />
-                        <Slider x:Name="SlTrackRingThickness" Header="Track Ring Thickness" Value="1" />
-                        <Slider x:Name="SlPercentCaution" Header="Percent Caution" Value="75.1" />
-                        <Slider x:Name="SlPercentCritical" Header="Percent Critical" Value="89.9" />
-                        <Slider x:Name="SlMinAngle" Header="Min Angle" Maximum="360" Value="0" />
-                        <Slider x:Name="SlMaxAngle" Header="Max Angle" Maximum="360" Value="360" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:StorageRing MaxAngle="{x:Bind SlMaxAngle.Value, Mode=OneWay}" MinAngle="{x:Bind SlMinAngle.Value, Mode=OneWay}" PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackRingThickness="{x:Bind SlTrackRingThickness.Value, Mode=OneWay}" ValueRingThickness="{x:Bind SlValueRingThickness.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="StorageRing" Doc="controls/storageRing">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="StorageRing">
+                        <local:OptionPanel>
+                            <Slider x:Name="SlValue" Header="Value" Value="26" />
+                            <Slider x:Name="SlValueRingThickness" Header="Value Ring Thickness" Value="3" />
+                            <Slider x:Name="SlTrackRingThickness" Header="Track Ring Thickness" Value="1" />
+                            <Slider x:Name="SlPercentCaution" Header="Percent Caution" Value="75.1" />
+                            <Slider x:Name="SlPercentCritical" Header="Percent Critical" Value="89.9" />
+                            <Slider x:Name="SlMinAngle" Header="Min Angle" Maximum="360" Value="0" />
+                            <Slider x:Name="SlMaxAngle" Header="Max Angle" Maximum="360" Value="360" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="StorageRing">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:StorageRing Value="25" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:StorageRing MaxAngle="{x:Bind SlMaxAngle.Value, Mode=OneWay}" MinAngle="{x:Bind SlMinAngle.Value, Mode=OneWay}" PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackRingThickness="{x:Bind SlTrackRingThickness.Value, Mode=OneWay}" ValueRingThickness="{x:Bind SlValueRingThickness.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

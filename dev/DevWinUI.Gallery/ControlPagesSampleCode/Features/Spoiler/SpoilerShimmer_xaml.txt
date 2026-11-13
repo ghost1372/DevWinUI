@@ -1,0 +1,12 @@
+<dev:Spoiler ShimmerHeight="35" ShimmerWidth="300">
+    <StackPanel Spacing="10">
+        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="DevWinUI Is GREAT!" />
+        <Button Content="DevWinUI Is GREAT!" />
+    </StackPanel>
+</dev:Spoiler>
+<dev:Spoiler ShimmerCornerRadius="180" ShimmerHeight="50" ShimmerWidth="50">
+    <StackPanel Spacing="10">
+        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="DevWinUI Is GREAT!" />
+        <Button Content="DevWinUI Is GREAT!" />
+    </StackPanel>
+</dev:Spoiler>

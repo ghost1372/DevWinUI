@@ -7,36 +7,33 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/waveformTimeline" HeaderText="WaveformTimeline">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
-                        <Button x:Name="BtnOpenBuiltIn" HorizontalAlignment="Stretch" Click="BtnOpenBuiltIn_Click" Content="Open Built In Sample" />
-                        <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
-                        <StackPanel Orientation="Horizontal" Spacing="5">
-                            <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
-                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
-                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
-                        </StackPanel>
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        var soundEngine = new AudioGraphEngine();#nl#
-                        WaveformTimelineSample.RegisterSoundPlayer(soundEngine); #nl#
-                        await soundEngine.OpenFileAsync(@"D:\myfile.wav"); #nl#
-                        soundEngine.Play();
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <dev:WaveformTimeline x:Name="WaveformTimelineSample" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="WaveformTimeline" Doc="controls/waveformTimeline">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Audio">
+                        <local:OptionPanel>
+                            <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
+                            <Button x:Name="BtnOpenBuiltIn" HorizontalAlignment="Stretch" Click="BtnOpenBuiltIn_Click" Content="Open Built In Sample" />
+                            <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
+                                <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
+                                <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
+                            </StackPanel>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="WaveformTimeline" CSharp="Features/Others/WaveformTimeline_cs.txt">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:WaveformTimeline x:Name="WaveformTimelineSample" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

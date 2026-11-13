@@ -9,87 +9,105 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/magicKeyboard" HeaderText="MagicKeyboard">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:MagicKeyboard /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbSkin" Header="Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="4">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbLightSkin" Header="Light Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbDarkSkin" Header="Dark Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="2">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbLayout" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardLayout">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbFormFactor" Header="Form Factor" ItemsSource="{x:Bind FormFactorItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardFormFactor">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbPlatform" Header="Platform" ItemsSource="{x:Bind PlatformItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardPlatform">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbLetterCase" Header="Letter Case" ItemsSource="{x:Bind LetterCaseItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardKeyCase">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbModifierMode" Header="Modifier Mode" ItemsSource="{x:Bind ModifierModeItems, Mode=OneWay}" SelectedIndex="1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:MagicKeyboardKeyModifierMode">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ToggleSwitch x:Name="TsPreview" Header="Is Preview Visible" IsOn="True" />
-                        <ToggleSwitch x:Name="TsLinkModifiers" Header="Link Modifier Keys" IsOn="True" />
-                        <ToggleSwitch x:Name="TsPhysicalKeys" Header="Is Physical Keyboard Enabled" IsOn="True" />
-                        <ToggleSwitch x:Name="TsAlwaysActive" Header="Is Always Active" IsOn="False" />
-                        <ToggleSwitch x:Name="TsFollowLayout" Header="Follow System Keyboard Layout" IsOn="True" />
-                        <ToggleSwitch x:Name="TsSyncCaps" Header="Sync Caps Lock" IsOn="True" />
-                        <ToggleSwitch x:Name="TsSyncNum" Header="Sync Num Lock" IsOn="True" />
-                        <ToggleSwitch x:Name="TsSound" Header="Is Sound Enabled" IsOn="False" />
-                        <Slider x:Name="SliderVolume" Header="Sound Volume" IsEnabled="{x:Bind TsSound.IsOn, Mode=OneWay}" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.55" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="12">
-                    <dev:MagicKeyboard DarkSkin="{x:Bind ((dev:MagicKeyboardSkin)CmbDarkSkin.SelectedItem), Mode=OneWay}" FollowSystemKeyboardLayout="{x:Bind TsFollowLayout.IsOn, Mode=OneWay}" FormFactor="{x:Bind ((dev:MagicKeyboardFormFactor)CmbFormFactor.SelectedItem), Mode=OneWay}" IsAlwaysActive="{x:Bind TsAlwaysActive.IsOn, Mode=OneWay}" IsPhysicalKeyboardEnabled="{x:Bind TsPhysicalKeys.IsOn, Mode=OneWay}" IsPreviewVisible="{x:Bind TsPreview.IsOn, Mode=OneWay}" IsSoundEnabled="{x:Bind TsSound.IsOn, Mode=OneWay}" KeyDownSoundUri="ms-appx:///Assets/key-down.wav" KeyEvent="Keyboard_KeyEvent" KeyUpSoundUri="ms-appx:///Assets/key-up.wav" Layout="{x:Bind ((dev:MagicKeyboardLayout)CmbLayout.SelectedItem), Mode=OneWay}" LetterCase="{x:Bind ((dev:MagicKeyboardKeyCase)CmbLetterCase.SelectedItem), Mode=OneWay}" LightSkin="{x:Bind ((dev:MagicKeyboardSkin)CmbLightSkin.SelectedItem), Mode=OneWay}" LinkModifierKeys="{x:Bind TsLinkModifiers.IsOn, Mode=OneWay}" ModifierMode="{x:Bind ((dev:MagicKeyboardKeyModifierMode)CmbModifierMode.SelectedItem), Mode=OneWay}" Platform="{x:Bind ((dev:MagicKeyboardPlatform)CmbPlatform.SelectedItem), Mode=OneWay}" Skin="{x:Bind ((dev:MagicKeyboardSkin)CmbSkin.SelectedItem), Mode=OneWay}" SoundVolume="{x:Bind SliderVolume.Value, Mode=OneWay}" SyncCapsLock="{x:Bind TsSyncCaps.IsOn, Mode=OneWay}" SyncNumLock="{x:Bind TsSyncNum.IsOn, Mode=OneWay}" />
-                    <TextBlock x:Name="TxtLastKey" HorizontalAlignment="Center" Style="{StaticResource CaptionTextBlockStyle}" Text="Press a key" />
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="MagicKeyboard" Doc="controls/magicKeyboard">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Skin">
+                        <local:OptionPanel>
+                            <ComboBox x:Name="CmbSkin" Header="Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="4">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbLightSkin" Header="Light Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbDarkSkin" Header="Dark Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="2">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Layout">
+                        <local:OptionPanel>
+                            <ComboBox x:Name="CmbLayout" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardLayout">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbFormFactor" Header="Form Factor" ItemsSource="{x:Bind FormFactorItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardFormFactor">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbPlatform" Header="Platform" ItemsSource="{x:Bind PlatformItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardPlatform">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbLetterCase" Header="Letter Case" ItemsSource="{x:Bind LetterCaseItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardKeyCase">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbModifierMode" Header="Modifier Mode" ItemsSource="{x:Bind ModifierModeItems, Mode=OneWay}" SelectedIndex="1">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:MagicKeyboardKeyModifierMode">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Behavior">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TsPreview" Header="Is Preview Visible" IsOn="True" />
+                            <ToggleSwitch x:Name="TsLinkModifiers" Header="Link Modifier Keys" IsOn="True" />
+                            <ToggleSwitch x:Name="TsPhysicalKeys" Header="Is Physical Keyboard Enabled" IsOn="True" />
+                            <ToggleSwitch x:Name="TsAlwaysActive" Header="Is Always Active" IsOn="False" />
+                            <ToggleSwitch x:Name="TsFollowLayout" Header="Follow System Keyboard Layout" IsOn="True" />
+                            <ToggleSwitch x:Name="TsSyncCaps" Header="Sync Caps Lock" IsOn="True" />
+                            <ToggleSwitch x:Name="TsSyncNum" Header="Sync Num Lock" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Sound">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TsSound" Header="Is Sound Enabled" IsOn="False" />
+                            <Slider x:Name="SliderVolume" Header="Sound Volume" IsEnabled="{x:Bind TsSound.IsOn, Mode=OneWay}" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.55" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="MagicKeyboard">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:MagicKeyboard /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="12">
+                            <dev:MagicKeyboard DarkSkin="{x:Bind ((dev:MagicKeyboardSkin)CmbDarkSkin.SelectedItem), Mode=OneWay}" FollowSystemKeyboardLayout="{x:Bind TsFollowLayout.IsOn, Mode=OneWay}" FormFactor="{x:Bind ((dev:MagicKeyboardFormFactor)CmbFormFactor.SelectedItem), Mode=OneWay}" IsAlwaysActive="{x:Bind TsAlwaysActive.IsOn, Mode=OneWay}" IsPhysicalKeyboardEnabled="{x:Bind TsPhysicalKeys.IsOn, Mode=OneWay}" IsPreviewVisible="{x:Bind TsPreview.IsOn, Mode=OneWay}" IsSoundEnabled="{x:Bind TsSound.IsOn, Mode=OneWay}" KeyDownSoundUri="ms-appx:///Assets/key-down.wav" KeyEvent="Keyboard_KeyEvent" KeyUpSoundUri="ms-appx:///Assets/key-up.wav" Layout="{x:Bind ((dev:MagicKeyboardLayout)CmbLayout.SelectedItem), Mode=OneWay}" LetterCase="{x:Bind ((dev:MagicKeyboardKeyCase)CmbLetterCase.SelectedItem), Mode=OneWay}" LightSkin="{x:Bind ((dev:MagicKeyboardSkin)CmbLightSkin.SelectedItem), Mode=OneWay}" LinkModifierKeys="{x:Bind TsLinkModifiers.IsOn, Mode=OneWay}" ModifierMode="{x:Bind ((dev:MagicKeyboardKeyModifierMode)CmbModifierMode.SelectedItem), Mode=OneWay}" Platform="{x:Bind ((dev:MagicKeyboardPlatform)CmbPlatform.SelectedItem), Mode=OneWay}" Skin="{x:Bind ((dev:MagicKeyboardSkin)CmbSkin.SelectedItem), Mode=OneWay}" SoundVolume="{x:Bind SliderVolume.Value, Mode=OneWay}" SyncCapsLock="{x:Bind TsSyncCaps.IsOn, Mode=OneWay}" SyncNumLock="{x:Bind TsSyncNum.IsOn, Mode=OneWay}" />
+                            <TextBlock x:Name="TxtLastKey" HorizontalAlignment="Center" Style="{StaticResource CaptionTextBlockStyle}" Text="Press a key" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -9,14 +9,19 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/tileControl" HeaderText="TileControl">
-                <local:ControlExample.Xaml>
-                    &lt;dev:TileControl ImageSource="ms-appx:///Assets/Icon.png" /&gt;
-                </local:ControlExample.Xaml>
-                <dev:TileControl Height="400" ImageSource="ms-appx:///Assets/cloud.png" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="TileControl" Doc="controls/tileControl">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="TileControl">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:TileControl ImageSource="ms-appx:///Assets/Icon.png" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:TileControl Height="400" ImageSource="ms-appx:///Assets/cloud.png" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

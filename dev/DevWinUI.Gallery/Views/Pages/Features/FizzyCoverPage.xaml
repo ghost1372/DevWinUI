@@ -9,85 +9,61 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/fizzyCover" HeaderText="FizzyCover">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:FizzyCover Content="Hover me" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbTrigger" Header="Trigger" ItemsSource="{x:Bind Triggers}" SelectedIndex="0" />
-                        <ComboBox x:Name="CmbShape" Header="Particle Shape" ItemsSource="{x:Bind Shapes}" SelectedIndex="0" />
-                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="40" Minimum="0" Value="24" />
-
-                        <dev:SettingsExpander Header="Range">
-                            <dev:SettingsExpander.Items>
-                                <dev:SettingsCard Header="Proximity">
-                                    <Slider x:Name="SliderProximity" Width="200" Maximum="400" Minimum="0" Value="160" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Wake Margin">
-                                    <Slider x:Name="SliderWake" Width="200" Maximum="200" Minimum="0" Value="60" />
-                                </dev:SettingsCard>
-                            </dev:SettingsExpander.Items>
-                        </dev:SettingsExpander>
-
-                        <dev:SettingsExpander Header="Particles">
-                            <dev:SettingsExpander.Items>
-                                <dev:SettingsCard Header="Count">
-                                    <Slider x:Name="SliderCount" Width="200" Maximum="300" Minimum="10" Value="80" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Size">
-                                    <Slider x:Name="SliderSize" Width="200" Maximum="6" Minimum="0.5" StepFrequency="0.1" Value="1.5" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Variation">
-                                    <Slider x:Name="SliderVariation" Width="200" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.65" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Rest Alpha">
-                                    <Slider x:Name="SliderRestAlpha" Width="200" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.18" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Active Alpha">
-                                    <Slider x:Name="SliderActiveAlpha" Width="200" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.58" />
-                                </dev:SettingsCard>
-                            </dev:SettingsExpander.Items>
-                        </dev:SettingsExpander>
-
-                        <dev:SettingsExpander Header="Motion">
-                            <dev:SettingsExpander.Items>
-                                <dev:SettingsCard Header="Drift">
-                                    <Slider x:Name="SliderDrift" Width="200" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Spin">
-                                    <Slider x:Name="SliderSpin" Width="200" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Crest">
-                                    <Slider x:Name="SliderCrest" Width="200" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Idle Speed">
-                                    <Slider x:Name="SliderIdleSpeed" Width="200" Maximum="3" Minimum="0" StepFrequency="0.05" Value="0.35" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Active Speed">
-                                    <Slider x:Name="SliderActiveSpeed" Width="200" Maximum="5" Minimum="0" StepFrequency="0.1" Value="1.5" />
-                                </dev:SettingsCard>
-                                <dev:SettingsCard Header="Fill Duration (seconds)">
-                                    <Slider x:Name="SliderFill" Width="200" Maximum="3" Minimum="0.1" StepFrequency="0.1" Value="0.7" />
-                                </dev:SettingsCard>
-                            </dev:SettingsExpander.Items>
-                        </dev:SettingsExpander>
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:FizzyCover x:Name="MyFizzyCover" Width="250" Height="50" HorizontalAlignment="Left" ActiveAlpha="{x:Bind SliderActiveAlpha.Value, Mode=OneWay}" ActiveSpeed="{x:Bind SliderActiveSpeed.Value, Mode=OneWay}" Content="Hover me" Count="{x:Bind ToInt(SliderCount.Value), Mode=OneWay}" Crest="{x:Bind SliderCrest.Value, Mode=OneWay}" Drift="{x:Bind SliderDrift.Value, Mode=OneWay}" FillDuration="{x:Bind SliderFill.Value, Mode=OneWay}" IdleSpeed="{x:Bind SliderIdleSpeed.Value, Mode=OneWay}" ParticleShape="{x:Bind ((dev:FizzyShape)CmbShape.SelectedItem), Mode=OneWay}" Proximity="{x:Bind SliderProximity.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RestAlpha="{x:Bind SliderRestAlpha.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Spin="{x:Bind SliderSpin.Value, Mode=OneWay}" Trigger="{x:Bind ((dev:FizzyTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Variation="{x:Bind SliderVariation.Value, Mode=OneWay}" WakeMargin="{x:Bind SliderWake.Value, Mode=OneWay}" />
-            </local:ControlExample>
-
-            <local:ControlExample DocPage="controls/fizzyCover" HeaderText="Toggle with inverted content">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:FizzyCover Content="Follow" InvertedContent="Following" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:FizzyCover Width="250" HorizontalAlignment="Left" Content="Follow" InvertedContent="Following" ParticleShape="Mixed" Trigger="Toggle" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="FizzyCover" Doc="controls/fizzyCover">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="General">
+                        <local:OptionPanel>
+                            <ComboBox x:Name="CmbTrigger" Header="Trigger" ItemsSource="{x:Bind Triggers}" SelectedIndex="0" />
+                            <ComboBox x:Name="CmbShape" Header="Particle Shape" ItemsSource="{x:Bind Shapes}" SelectedIndex="0" />
+                            <Slider x:Name="SliderRadius" Header="Radius" Maximum="40" Minimum="0" Value="24" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Range">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderProximity" Header="Proximity" Maximum="400" Minimum="0" Value="160" />
+                            <Slider x:Name="SliderWake" Header="Wake Margin" Maximum="200" Minimum="0" Value="60" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Particles">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderCount" Header="Count" Maximum="300" Minimum="10" Value="80" />
+                            <Slider x:Name="SliderSize" Header="Size" Maximum="6" Minimum="0.5" StepFrequency="0.1" Value="1.5" />
+                            <Slider x:Name="SliderVariation" Header="Variation" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.65" />
+                            <Slider x:Name="SliderRestAlpha" Header="Rest Alpha" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.18" />
+                            <Slider x:Name="SliderActiveAlpha" Header="Active Alpha" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.58" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Motion">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderDrift" Header="Drift" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
+                            <Slider x:Name="SliderSpin" Header="Spin" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
+                            <Slider x:Name="SliderCrest" Header="Crest" Maximum="3" Minimum="0" StepFrequency="0.1" Value="1" />
+                            <Slider x:Name="SliderIdleSpeed" Header="Idle Speed" Maximum="3" Minimum="0" StepFrequency="0.05" Value="0.35" />
+                            <Slider x:Name="SliderActiveSpeed" Header="Active Speed" Maximum="5" Minimum="0" StepFrequency="0.1" Value="1.5" />
+                            <Slider x:Name="SliderFill" Header="Fill Duration (seconds)" Maximum="3" Minimum="0.1" StepFrequency="0.1" Value="0.7" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="FizzyCover">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:FizzyCover Content="Hover me" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:FizzyCover x:Name="MyFizzyCover" Width="250" Height="50" HorizontalAlignment="Left" ActiveAlpha="{x:Bind SliderActiveAlpha.Value, Mode=OneWay}" ActiveSpeed="{x:Bind SliderActiveSpeed.Value, Mode=OneWay}" Content="Hover me" Count="{x:Bind ToInt(SliderCount.Value), Mode=OneWay}" Crest="{x:Bind SliderCrest.Value, Mode=OneWay}" Drift="{x:Bind SliderDrift.Value, Mode=OneWay}" FillDuration="{x:Bind SliderFill.Value, Mode=OneWay}" IdleSpeed="{x:Bind SliderIdleSpeed.Value, Mode=OneWay}" ParticleShape="{x:Bind ((dev:FizzyShape)CmbShape.SelectedItem), Mode=OneWay}" Proximity="{x:Bind SliderProximity.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RestAlpha="{x:Bind SliderRestAlpha.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Spin="{x:Bind SliderSpin.Value, Mode=OneWay}" Trigger="{x:Bind ((dev:FizzyTrigger)CmbTrigger.SelectedItem), Mode=OneWay}" Variation="{x:Bind SliderVariation.Value, Mode=OneWay}" WakeMargin="{x:Bind SliderWake.Value, Mode=OneWay}" />
+                    </local:Sample>
+                    <local:Sample Title="Toggle with inverted content">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:FizzyCover Content="Follow" InvertedContent="Following" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:FizzyCover Width="250" HorizontalAlignment="Left" Content="Follow" InvertedContent="Following" ParticleShape="Mixed" Trigger="Toggle" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

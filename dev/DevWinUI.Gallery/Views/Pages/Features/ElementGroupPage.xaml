@@ -9,38 +9,46 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/elementGroup" XamlSource="Features/ElementGroupPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <ComboBox x:Name="CmbOrientation" Header="Orientation" SelectedIndex="0" SelectionChanged="CmbOrientation_SelectionChanged">
-                        <ComboBoxItem Content="Horizontal" Tag="Horizontal" />
-                        <ComboBoxItem Content="Vertical" Tag="Vertical" />
-                    </ComboBox>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="10">
-                    <dev:ElementGroup x:Name="ElementGroupSample">
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                    </dev:ElementGroup>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ElementGroup" Doc="controls/elementGroup">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="ElementGroup">
+                        <local:OptionPanel>
+                            <ComboBox x:Name="CmbOrientation" Header="Orientation" SelectedIndex="0" SelectionChanged="CmbOrientation_SelectionChanged">
+                                <ComboBoxItem Content="Horizontal" Tag="Horizontal" />
+                                <ComboBoxItem Content="Vertical" Tag="Vertical" />
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ElementGroup" Xaml="Features/Others/ElementGroupPage_xaml.txt">
+                        <StackPanel Spacing="10">
+                            <dev:ElementGroup x:Name="ElementGroupSample">
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                            </dev:ElementGroup>
 
-                    <dev:ElementGroup x:Name="ElementGroupSample2">
-                        <Button Height="32" HorizontalAlignment="Stretch">
-                            <SymbolIcon Symbol="Clock" />
-                        </Button>
-                        <TextBox Height="30" HorizontalAlignment="Stretch" BorderBrush="{ThemeResource ControlElevationBorderBrush}" PlaceholderText="TextBox" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                    </dev:ElementGroup>
+                            <dev:ElementGroup x:Name="ElementGroupSample2">
+                                <Button Height="32" HorizontalAlignment="Stretch">
+                                    <SymbolIcon Symbol="Clock" />
+                                </Button>
+                                <TextBox Height="30" HorizontalAlignment="Stretch" BorderBrush="{ThemeResource ControlElevationBorderBrush}" PlaceholderText="TextBox" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                            </dev:ElementGroup>
 
-                    <dev:ElementGroup x:Name="ElementGroupSample3">
-                        <TextBox Height="30" HorizontalAlignment="Stretch" BorderBrush="{ThemeResource ControlElevationBorderBrush}" PlaceholderText="TextBox" />
-                        <Button HorizontalAlignment="Stretch" Content="Button" />
-                        <ToggleButton HorizontalAlignment="Stretch" Content="ToggleButton" />
-                    </dev:ElementGroup>
-                </StackPanel>
-            </local:ControlExample>
+                            <dev:ElementGroup x:Name="ElementGroupSample3">
+                                <TextBox Height="30" HorizontalAlignment="Stretch" BorderBrush="{ThemeResource ControlElevationBorderBrush}" PlaceholderText="TextBox" />
+                                <Button HorizontalAlignment="Stretch" Content="Button" />
+                                <ToggleButton HorizontalAlignment="Stretch" Content="ToggleButton" />
+                            </dev:ElementGroup>
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -9,22 +9,28 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/honeycombPanel" XamlSource="Features/HoneycombPanelPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Button x:Name="BtnAdd" Click="BtnAdd_Click" Content="Add Item" />
-                        <Button x:Name="BtnRemove" Click="BtnRemove_Click" Content="Remove Item" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <ListView ItemsSource="{x:Bind PictureList, Mode=OneWay}" SelectionMode="None">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <dev:HoneycombPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="HoneycombPanel" Doc="controls/honeycombPanel">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="HoneycombPanel">
+                        <local:OptionPanel>
+                            <Button x:Name="BtnAdd" Click="BtnAdd_Click" Content="Add Item" />
+                            <Button x:Name="BtnRemove" Click="BtnRemove_Click" Content="Remove Item" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="HoneycombPanel" Xaml="Features/Others/HoneycombPanelPage_xaml.txt">
+                        <ListView ItemsSource="{x:Bind PictureList, Mode=OneWay}" SelectionMode="None">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <dev:HoneycombPanel />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

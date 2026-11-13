@@ -1,0 +1,5 @@
+<dev:TypeFlow AutoStart="True"
+              BaseDelay="45"
+              FontSize="24"
+              PunctuationDelay="300"
+              Text="This is some awesome placeholder text, watch it render in style!" />

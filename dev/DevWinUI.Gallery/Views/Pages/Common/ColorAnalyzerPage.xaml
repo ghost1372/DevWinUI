@@ -15,7 +15,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ColorAnalyzer" Description="Extract accent, base and weighted colors from an image." Doc="common/colorAnalyzer" DocType="Core" Xaml="Features/ColorAnalyzer_xaml.txt">
+            <local:ControlExample2 Title="ColorAnalyzer" Description="Extract accent, base and weighted colors from an image." Doc="common/colorAnalyzer" DocType="Core" Xaml="Features/Others/ColorAnalyzer_xaml.txt">
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
                         <Button x:Name="BtnChange" HorizontalAlignment="Stretch" Click="BtnChange_Click" Content="Change Image" />

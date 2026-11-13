@@ -9,37 +9,41 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/goToTop" HeaderText="ScrollViewer" XamlSource="Features/GoToTop/GoToTopPage_PART1_xaml.txt">
-                <Grid Height="400" HorizontalAlignment="Center">
-                    <ScrollViewer Name="ScrollViewerSample">
-                        <Border Width="300" Height="2000" Margin="8,0" BorderBrush="{ThemeResource CircleElevationBorderBrush}" BorderThickness="1" CornerRadius="8">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                    <GradientStop Offset="0" Color="White" />
-                                    <GradientStop Offset="1" Color="Black" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
-                    </ScrollViewer>
-                    <dev:GotoTop Margin="0,0,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Animated="True" AutoHiding="True" Target="{x:Bind ScrollViewerSample, Mode=OneWay}" />
-                </Grid>
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/goToTop" HeaderText="ScrollView" XamlSource="Features/GoToTop/GoToTopPage_PART2_xaml.txt">
-                <Grid Height="400" HorizontalAlignment="Center">
-                    <ScrollView Name="ScrollViewSample">
-                        <Border Width="300" Height="2000" Margin="8,0" BorderBrush="{ThemeResource CircleElevationBorderBrush}" BorderThickness="1" CornerRadius="8">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                    <GradientStop Offset="0" Color="White" />
-                                    <GradientStop Offset="1" Color="Black" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
-                    </ScrollView>
-                    <dev:GotoTop Margin="0,0,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Animated="True" AutoHiding="True" Target="{x:Bind ScrollViewSample, Mode=OneWay}" />
-                </Grid>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="GoToTop" Doc="controls/goToTop">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ScrollViewer" Xaml="Features/GoToTop/GoToTopPage_PART1_xaml.txt">
+                        <Grid Height="400" HorizontalAlignment="Center">
+                            <ScrollViewer Name="ScrollViewerSample">
+                                <Border Width="300" Height="2000" Margin="8,0" BorderBrush="{ThemeResource CircleElevationBorderBrush}" BorderThickness="1" CornerRadius="8">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Offset="0" Color="White" />
+                                            <GradientStop Offset="1" Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </ScrollViewer>
+                            <dev:GotoTop Margin="0,0,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Animated="True" AutoHiding="True" Target="{x:Bind ScrollViewerSample, Mode=OneWay}" />
+                        </Grid>
+                    </local:Sample>
+                    <local:Sample Title="ScrollView" Xaml="Features/GoToTop/GoToTopPage_PART2_xaml.txt">
+                        <Grid Height="400" HorizontalAlignment="Center">
+                            <ScrollView Name="ScrollViewSample">
+                                <Border Width="300" Height="2000" Margin="8,0" BorderBrush="{ThemeResource CircleElevationBorderBrush}" BorderThickness="1" CornerRadius="8">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Offset="0" Color="White" />
+                                            <GradientStop Offset="1" Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </ScrollView>
+                            <dev:GotoTop Margin="0,0,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Animated="True" AutoHiding="True" Target="{x:Bind ScrollViewSample, Mode=OneWay}" />
+                        </Grid>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -1,0 +1,10 @@
+<dev:AnimatedToc Title="On this page" SelectedIndex="0">
+    <dev:AnimatedTocItem Label="Introduction" Depth="0" Href="#introduction" />
+    <dev:AnimatedTocItem Label="Getting started" Depth="0" Href="#getting-started" />
+    <dev:AnimatedTocItem Label="Installation" Depth="1" Href="#installation" />
+    <dev:AnimatedTocItem Label="Configuration" Depth="1" Href="#configuration" />
+    <dev:AnimatedTocItem Label="Usage" Depth="0" Href="#usage" />
+    <dev:AnimatedTocItem Label="Basic usage" Depth="1" Href="#basic-usage" />
+    <dev:AnimatedTocItem Label="Theming" Depth="2" Href="#theming" />
+    <dev:AnimatedTocItem Label="API reference" Depth="0" Href="#api-reference" />
+</dev:AnimatedToc>

@@ -7,27 +7,32 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/textBox" HeaderText="TextBox" XamlSource="Features/TextBox/TextBoxPage_Part1_xaml.txt">
-                <dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
-                    <dev:TextBox.Content>
-                        <Button Content="&#xE895;" />
-                    </dev:TextBox.Content>
-                </dev:TextBox>
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/textBox" HeaderText="TextBox" XamlSource="Features/TextBox/TextBoxPage_Part2_xaml.txt">
-                <dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
-                    <dev:TextBox.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="&#xE896;" />
-                            <Button>
-                                <FontIcon Glyph="&#xE895;" />
-                            </Button>
-                        </StackPanel>
-                    </dev:TextBox.Content>
-                </dev:TextBox>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="TextBox" Doc="controls/textBox">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="TextBox" Xaml="Features/TextBox/TextBoxPage_Part1_xaml.txt">
+                        <dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
+                            <dev:TextBox.Content>
+                                <Button Content="&#xE895;" />
+                            </dev:TextBox.Content>
+                        </dev:TextBox>
+                    </local:Sample>
+                    <local:Sample Title="Multiple content" Xaml="Features/TextBox/TextBoxPage_Part2_xaml.txt">
+                        <dev:TextBox Header="TextBox with Content" PlaceholderText="PlaceHolder...">
+                            <dev:TextBox.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="&#xE896;" />
+                                    <Button>
+                                        <FontIcon Glyph="&#xE895;" />
+                                    </Button>
+                                </StackPanel>
+                            </dev:TextBox.Content>
+                        </dev:TextBox>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

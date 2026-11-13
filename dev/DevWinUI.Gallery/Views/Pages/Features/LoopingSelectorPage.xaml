@@ -9,26 +9,31 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/loopingSelector">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:LoopingSelector x:Name="LoopingSelectorSample" Height="270" HorizontalContentAlignment="Center" ItemHeight="40"/&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        LoopingSelectorSample.Items = Enumerable.Range(0, 12).Select(x => new LoopingSelectorItem { PrimaryText = x.ToString() } as object).ToList();
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TgShouldLoop" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:LoopingSelector x:Name="LoopingSelectorSample" Width="150" Height="270" Padding="0,3,0,6" HorizontalContentAlignment="Center" ItemHeight="40" ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="LoopingSelector" Doc="controls/loopingSelector">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="LoopingSelector">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TgShouldLoop" Header="Should Loop?" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="LoopingSelector">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:LoopingSelector x:Name="LoopingSelectorSample" Height="270" HorizontalContentAlignment="Center" ItemHeight="40"/&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <local:Sample.CSharpCode>
+                            <x:String>
+                                LoopingSelectorSample.Items = Enumerable.Range(0, 12).Select(x => new LoopingSelectorItem { PrimaryText = x.ToString() } as object).ToList();
+                            </x:String>
+                        </local:Sample.CSharpCode>
+                        <dev:LoopingSelector x:Name="LoopingSelectorSample" Width="150" Height="270" Padding="0,3,0,6" HorizontalContentAlignment="Center" ItemHeight="40" ShouldLoop="{x:Bind TgShouldLoop.IsOn, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

@@ -9,33 +9,39 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/compareSlider" HeaderText="CompareSlider Horizontal">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:CompareSlider SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg"/&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NBValue" Header="Value" Maximum="100" Minimum="0" PlaceholderText="0-100" SpinButtonPlacementMode="Inline" Value="{x:Bind CompareSlider.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <ToggleSwitch x:Name="TGVisibility" Header="Show Line And Thumb" IsOn="True" />
-                        <Button Click="Button_Click" Content="Change Image" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:CompareSlider x:Name="CompareSlider" Height="600" ShowLineAndThumb="{x:Bind TGVisibility.IsOn, Mode=OneWay}" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg" Value="{x:Bind NBValue.Value, Mode=TwoWay}" />
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/compareSlider" HeaderText="CompareSlider Vertical">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:CompareSlider Orientation="Vertical" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg"/&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NBValue2" Header="Value" Maximum="100" Minimum="0" PlaceholderText="0-100" SpinButtonPlacementMode="Inline" Value="{x:Bind CompareSlider2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <ToggleSwitch x:Name="TGVisibility2" Header="Show Line And Thumb" IsOn="True" />
-                        <Button Click="Button_Click" Content="Change Image" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:CompareSlider x:Name="CompareSlider2" Height="600" Orientation="Vertical" ShowLineAndThumb="{x:Bind TGVisibility2.IsOn, Mode=OneWay}" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg" Value="{x:Bind NBValue2.Value, Mode=TwoWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="CompareSlider" Doc="controls/compareSlider">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Horizontal">
+                        <local:OptionPanel>
+                            <NumberBox x:Name="NBValue" Header="Value" Maximum="100" Minimum="0" PlaceholderText="0-100" SpinButtonPlacementMode="Inline" Value="{x:Bind CompareSlider.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ToggleSwitch x:Name="TGVisibility" Header="Show Line And Thumb" IsOn="True" />
+                            <Button Click="Button_Click" Content="Change Image" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Vertical">
+                        <local:OptionPanel>
+                            <NumberBox x:Name="NBValue2" Header="Value" Maximum="100" Minimum="0" PlaceholderText="0-100" SpinButtonPlacementMode="Inline" Value="{x:Bind CompareSlider2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ToggleSwitch x:Name="TGVisibility2" Header="Show Line And Thumb" IsOn="True" />
+                            <Button Click="Button_Click" Content="Change Image" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="CompareSlider Horizontal">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:CompareSlider SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg"/&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:CompareSlider x:Name="CompareSlider" Height="600" ShowLineAndThumb="{x:Bind TGVisibility.IsOn, Mode=OneWay}" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg" Value="{x:Bind NBValue.Value, Mode=TwoWay}" />
+                    </local:Sample>
+                    <local:Sample Title="CompareSlider Vertical">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:CompareSlider Orientation="Vertical" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg"/&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:CompareSlider x:Name="CompareSlider2" Height="600" Orientation="Vertical" ShowLineAndThumb="{x:Bind TGVisibility2.IsOn, Mode=OneWay}" SourceImage="ms-appx:///Assets/Others/Girl.jpg" TargetImage="ms-appx:///Assets/Others/GirlBlur.jpg" Value="{x:Bind NBValue2.Value, Mode=TwoWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

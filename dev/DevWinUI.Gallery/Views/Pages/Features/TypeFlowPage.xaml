@@ -9,31 +9,28 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/typeFlow" HeaderText="TypeFlow">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:TypeFlow BaseDelay="45"
-                        PunctuationDelay="300"
-                        AutoStart="True"
-                        FontSize="24"
-                        Text="This is some awesome placeholder text, watch it render in style!" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtText" Header="Text" Text="This is some awesome placeholder text, watch it render in style!" TextWrapping="Wrap" />
-                        <Slider x:Name="SldBaseDelay" Header="Base Delay (ms)" Maximum="150" Minimum="5" StepFrequency="5" Value="45" />
-                        <Slider x:Name="SldPunctuationDelay" Header="Punctuation Delay (ms)" Maximum="800" Minimum="0" StepFrequency="20" Value="300" />
-                        <ToggleSwitch x:Name="TglAutoStart" Header="Auto Start" IsOn="True" />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Button Click="OnRestart" Content="Restart" Style="{StaticResource AccentButtonStyle}" />
-                            <Button Click="OnSkip" Content="Skip" />
-                        </StackPanel>
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:TypeFlow x:Name="Flow" AutoStart="{x:Bind TglAutoStart.IsOn, Mode=OneWay}" BaseDelay="{x:Bind SldBaseDelay.Value, Mode=OneWay}" FontSize="24" PunctuationDelay="{x:Bind SldPunctuationDelay.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="TypeFlow" Doc="controls/typeFlow">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="TypeFlow">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtText" Header="Text" Text="This is some awesome placeholder text, watch it render in style!" TextWrapping="Wrap" />
+                            <Slider x:Name="SldBaseDelay" Header="Base Delay (ms)" Maximum="150" Minimum="5" StepFrequency="5" Value="45" />
+                            <Slider x:Name="SldPunctuationDelay" Header="Punctuation Delay (ms)" Maximum="800" Minimum="0" StepFrequency="20" Value="300" />
+                            <ToggleSwitch x:Name="TglAutoStart" Header="Auto Start" IsOn="True" />
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Click="OnRestart" Content="Restart" Style="{StaticResource AccentButtonStyle}" />
+                                <Button Click="OnSkip" Content="Skip" />
+                            </StackPanel>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="TypeFlow" Xaml="Features/Others/TypeFlow_xaml.txt">
+                        <dev:TypeFlow x:Name="Flow" AutoStart="{x:Bind TglAutoStart.IsOn, Mode=OneWay}" BaseDelay="{x:Bind SldBaseDelay.Value, Mode=OneWay}" FontSize="24" PunctuationDelay="{x:Bind SldPunctuationDelay.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

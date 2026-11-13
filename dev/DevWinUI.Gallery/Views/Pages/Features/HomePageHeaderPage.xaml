@@ -9,50 +9,53 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/homePageHeader">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:HomePageHeader HeaderImage="ms-appx:///Assets/Cover.png" HeaderText="Header" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbHeight" Header="Header Image Height" Maximum="400" Minimum="200" SpinButtonPlacementMode="Inline" Value="400" />
-                        <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="DevWinUI" />
-                        <TextBox x:Name="TxtHeaderSubtitle" Header="Header Subtitle" PlaceholderText="Header Subtitle" Text="v9.0.0" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Margin="10" Spacing="10">
-                    <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}" HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}" HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}" HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
-                        <dev:HomePageHeader.HeaderContent>
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <dev:HeaderTile Title="Title" Description="Description">
-                                    <dev:HeaderTile.Source>
-                                        <Image Source="ms-appx:///Assets/Fluent/Clock.png" />
-                                    </dev:HeaderTile.Source>
-                                </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title" Description="Description">
-                                    <dev:HeaderTile.Source>
-                                        <Image Source="ms-appx:///Assets/Fluent/InfoBadge.png" />
-                                    </dev:HeaderTile.Source>
-                                </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title" Description="Description">
-                                    <dev:HeaderTile.Source>
-                                        <Image Source="ms-appx:///Assets/Fluent/RatingControl.png" />
-                                    </dev:HeaderTile.Source>
-                                </dev:HeaderTile>
-                                <dev:HeaderTile Title="Title" Description="Description">
-                                    <dev:HeaderTile.Source>
-                                        <Image Source="ms-appx:///Assets/Fluent/update.png" />
-                                    </dev:HeaderTile.Source>
-                                </dev:HeaderTile>
-                            </StackPanel>
-                        </dev:HomePageHeader.HeaderContent>
-                    </dev:HomePageHeader>
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="HomePageHeader" Doc="controls/homePageHeader">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="HomePageHeader">
+                        <local:OptionPanel>
+                            <NumberBox x:Name="NbHeight" Header="Header Image Height" Maximum="400" Minimum="200" SpinButtonPlacementMode="Inline" Value="400" />
+                            <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="DevWinUI" />
+                            <TextBox x:Name="TxtHeaderSubtitle" Header="Header Subtitle" PlaceholderText="Header Subtitle" Text="v9.0.0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="HomePageHeader">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:HomePageHeader HeaderImage="ms-appx:///Assets/Cover.png" HeaderText="Header" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:HomePageHeader HeaderImage="{ThemeResource HeaderCover}" HeaderImageHeight="{x:Bind NbHeight.Value, Mode=OneWay}" HeaderSubtitleText="{x:Bind TxtHeaderSubtitle.Text, Mode=OneWay}" HeaderText="{x:Bind TxtHeader.Text, Mode=OneWay}">
+                            <dev:HomePageHeader.HeaderContent>
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <dev:HeaderTile Title="Title" Description="Description">
+                                        <dev:HeaderTile.Source>
+                                            <Image Source="ms-appx:///Assets/Fluent/Clock.png" />
+                                        </dev:HeaderTile.Source>
+                                    </dev:HeaderTile>
+                                    <dev:HeaderTile Title="Title" Description="Description">
+                                        <dev:HeaderTile.Source>
+                                            <Image Source="ms-appx:///Assets/Fluent/InfoBadge.png" />
+                                        </dev:HeaderTile.Source>
+                                    </dev:HeaderTile>
+                                    <dev:HeaderTile Title="Title" Description="Description">
+                                        <dev:HeaderTile.Source>
+                                            <Image Source="ms-appx:///Assets/Fluent/RatingControl.png" />
+                                        </dev:HeaderTile.Source>
+                                    </dev:HeaderTile>
+                                    <dev:HeaderTile Title="Title" Description="Description">
+                                        <dev:HeaderTile.Source>
+                                            <Image Source="ms-appx:///Assets/Fluent/update.png" />
+                                        </dev:HeaderTile.Source>
+                                    </dev:HeaderTile>
+                                </StackPanel>
+                            </dev:HomePageHeader.HeaderContent>
+                        </dev:HomePageHeader>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

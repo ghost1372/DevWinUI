@@ -10,135 +10,108 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-
-            <local:ControlExample DocPage="controls/timeline2" HeaderText="Timeline2">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Timeline2 Width="384" ActiveIndex="2" ItemsSource="{x:Bind Entries}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <Slider x:Name="SliderActive" Header="Active Index" Maximum="3" Minimum="-1" StepFrequency="1" TickFrequency="1" TickPlacement="Outside" Value="2" />
-                        <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="4">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2Size">
-                                    <TextBlock Text="{x:Bind}" />
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Timeline2" Doc="controls/timeline2">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Timeline2">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderActive" Header="Active Index" Maximum="3" Minimum="-1" StepFrequency="1" TickFrequency="1" TickPlacement="Outside" Value="2" />
+                            <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="4">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:Timeline2Size">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbColor" Header="Color" ItemsSource="{x:Bind ColorItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:Timeline2Color">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:Timeline2Kind">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Name="CmbMarkerShape" Header="Marker Shape" ItemsSource="{x:Bind MarkerShapeItems, Mode=OneWay}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="dev:Timeline2MarkerShape">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <local:ChoiceOption x:Name="CmbAlign" Header="Align" SelectedIndex="0">
+                                <local:ChoiceOption.Value>
+                                    <dev:Timeline2Align>Alternate</dev:Timeline2Align>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbDatePlacement" Header="Date Placement" SelectedIndex="0">
+                                <local:ChoiceOption.Value>
+                                    <dev:Timeline2DatePlacement>Opposite</dev:Timeline2DatePlacement>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <ToggleSwitch x:Name="TglReverse" Header="Reverse" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Timeline2">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Timeline2 Width="384" ActiveIndex="2" ItemsSource="{x:Bind Entries}" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActiveIndex="{x:Bind (x:Int32)SliderActive.Value, Mode=OneWay}" Align="{x:Bind ((dev:Timeline2Align)CmbAlign.Value), Mode=OneWay}" DatePlacement="{x:Bind ((dev:Timeline2DatePlacement)CmbDatePlacement.Value), Mode=OneWay}" ItemsSource="{x:Bind Entries}" Kind="{x:Bind ((dev:Timeline2Kind)CmbKind.SelectedItem), Mode=OneWay}" MarkerShape="{x:Bind ((dev:Timeline2MarkerShape)CmbMarkerShape.SelectedItem), Mode=OneWay}" Reverse="{x:Bind TglReverse.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:Timeline2Size)CmbSize.SelectedItem), Mode=OneWay}" Color="{x:Bind ((dev:Timeline2Color)CmbColor.SelectedItem), Mode=OneWay}" />
+                    </local:Sample>
+                    <local:Sample Title="Horizontal">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Timeline2 ActiveIndex="2" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="32">
+                            <dev:Timeline2 ActiveIndex="2" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" />
+                            <dev:Timeline2 ActiveIndex="2" Align="Alternate" DatePlacement="Opposite" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" />
+                        </StackPanel>
+                    </local:Sample>
+                    <local:Sample Title="Custom Templates" Xaml="Features/Others/Timeline2CustomTemplates_xaml.txt">
+                        <dev:Timeline2 Align="End" ItemsSource="{x:Bind Orders}">
+                            <dev:Timeline2.MarkerTemplate>
+                                <DataTemplate x:DataType="views:Timeline2OrderEvent">
+                                    <Grid Width="32" Height="32" Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="16">
+                                        <FontIcon FontSize="14" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Glyph="{x:Bind Icon}" />
+                                    </Grid>
                                 </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbColor" Header="Color" ItemsSource="{x:Bind ColorItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2Color">
-                                    <TextBlock Text="{x:Bind}" />
+                            </dev:Timeline2.MarkerTemplate>
+                            <dev:Timeline2.OppositeTemplate>
+                                <DataTemplate x:DataType="views:Timeline2OrderEvent">
+                                    <TextBlock Text="{x:Bind Date}" />
                                 </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2Kind">
-                                    <TextBlock Text="{x:Bind}" />
+                            </dev:Timeline2.OppositeTemplate>
+                            <dev:Timeline2.ItemTemplate>
+                                <DataTemplate x:DataType="views:Timeline2OrderEvent">
+                                    <TextBlock FontWeight="Medium" Text="{x:Bind Status}" />
                                 </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbMarkerShape" Header="Marker Shape" ItemsSource="{x:Bind MarkerShapeItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2MarkerShape">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbAlign" Header="Align" ItemsSource="{x:Bind AlignItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2Align">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbDatePlacement" Header="Date Placement" ItemsSource="{x:Bind DatePlacementItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:Timeline2DatePlacement">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ToggleSwitch x:Name="TglReverse" Header="Reverse" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActiveIndex="{x:Bind (x:Int32)SliderActive.Value, Mode=OneWay}" Align="{x:Bind ((dev:Timeline2Align)CmbAlign.SelectedItem), Mode=OneWay}" DatePlacement="{x:Bind ((dev:Timeline2DatePlacement)CmbDatePlacement.SelectedItem), Mode=OneWay}" ItemsSource="{x:Bind Entries}" Kind="{x:Bind ((dev:Timeline2Kind)CmbKind.SelectedItem), Mode=OneWay}" MarkerShape="{x:Bind ((dev:Timeline2MarkerShape)CmbMarkerShape.SelectedItem), Mode=OneWay}" Reverse="{x:Bind TglReverse.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:Timeline2Size)CmbSize.SelectedItem), Mode=OneWay}" Color="{x:Bind ((dev:Timeline2Color)CmbColor.SelectedItem), Mode=OneWay}" />
-            </local:ControlExample>
-
-            <local:ControlExample HeaderText="Horizontal">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Timeline2 ActiveIndex="2" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Spacing="32">
-                    <dev:Timeline2 ActiveIndex="2" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" />
-                    <dev:Timeline2 ActiveIndex="2" Align="Alternate" DatePlacement="Opposite" ItemsSource="{x:Bind Entries}" Orientation="Horizontal" />
-                </StackPanel>
-            </local:ControlExample>
-
-            <local:ControlExample HeaderText="Custom Templates">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Timeline2 Align="End" ItemsSource="{x:Bind Orders}"&gt; #nl#
-                        &lt;dev:Timeline2.MarkerTemplate&gt; #nl#
-                        &lt;DataTemplate x:DataType="views:Timeline2OrderEvent"&gt; #nl#
-                        &lt;Grid Width="32" Height="32" #nl#
-                        Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="16"&gt; #nl#
-                        &lt;FontIcon FontSize="14" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Glyph="{x:Bind Icon}" /&gt; #nl#
-                        &lt;/Grid&gt; #nl#
-                        &lt;/DataTemplate&gt; #nl#
-                        &lt;/dev:Timeline2.MarkerTemplate&gt; #nl#
-                        &lt;dev:Timeline2.OppositeTemplate&gt; #nl#
-                        &lt;DataTemplate x:DataType="views:Timeline2OrderEvent"&gt; #nl#
-                        &lt;TextBlock Text="{x:Bind Date}" /&gt; #nl#
-                        &lt;/DataTemplate&gt; #nl#
-                        &lt;/dev:Timeline2.OppositeTemplate&gt; #nl#
-                        &lt;dev:Timeline2.ItemTemplate&gt; #nl#
-                        &lt;DataTemplate x:DataType="views:Timeline2OrderEvent"&gt; #nl#
-                        &lt;TextBlock FontWeight="Medium" Text="{x:Bind Status}" /&gt; #nl#
-                        &lt;/DataTemplate&gt; #nl#
-                        &lt;/dev:Timeline2.ItemTemplate&gt; #nl#
-                        &lt;/dev:Timeline2&gt; #nl#
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:Timeline2 Align="End" ItemsSource="{x:Bind Orders}">
-                    <dev:Timeline2.MarkerTemplate>
-                        <DataTemplate x:DataType="views:Timeline2OrderEvent">
-                            <Grid Width="32" Height="32" Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="16">
-                                <FontIcon FontSize="14" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" Glyph="{x:Bind Icon}" />
-                            </Grid>
-                        </DataTemplate>
-                    </dev:Timeline2.MarkerTemplate>
-                    <dev:Timeline2.OppositeTemplate>
-                        <DataTemplate x:DataType="views:Timeline2OrderEvent">
-                            <TextBlock Text="{x:Bind Date}" />
-                        </DataTemplate>
-                    </dev:Timeline2.OppositeTemplate>
-                    <dev:Timeline2.ItemTemplate>
-                        <DataTemplate x:DataType="views:Timeline2OrderEvent">
-                            <TextBlock FontWeight="Medium" Text="{x:Bind Status}" />
-                        </DataTemplate>
-                    </dev:Timeline2.ItemTemplate>
-                </dev:Timeline2>
-            </local:ControlExample>
-
-            <local:ControlExample HeaderText="Clickable">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Timeline2 Width="384" ActivateOnClick="True" ActiveValue="kickoff" IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind Entries}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Spacing="12">
-                    <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActivateOnClick="True" ActiveValue="kickoff" IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind Entries}" />
-                    <TextBlock x:Name="SelectionText" Text="Select an item" />
-                </StackPanel>
-            </local:ControlExample>
-
+                            </dev:Timeline2.ItemTemplate>
+                        </dev:Timeline2>
+                    </local:Sample>
+                    <local:Sample Title="Clickable">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Timeline2 Width="384" ActivateOnClick="True" ActiveValue="kickoff" IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind Entries}" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="12">
+                            <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActivateOnClick="True" ActiveValue="kickoff" IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind Entries}" />
+                            <TextBlock x:Name="SelectionText" Text="Select an item" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

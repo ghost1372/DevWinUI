@@ -9,28 +9,32 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/dropdownColorPicker" HeaderText="DropdownColorPicker">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:DropdownColorPicker /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Spacing="10">
-                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample" ColorChanged="DropdownColorPickerSample_ColorChanged" />
-                    <TextBlock x:Name="TxtResult" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                </StackPanel>
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/dropdownColorPicker" HeaderText="DropdownColorPicker|ColorPalette" XamlSource="Features/DropdownColorPickerPage_xaml.txt">
-                <StackPanel Spacing="10">
-                    <dev:DropdownColorPicker x:Name="DropdownColorPickerSample2" ColorChanged="DropdownColorPickerSample2_ColorChanged">
-                        <dev:DropdownColorPicker.ColorPalette>
-                            <dev:ColorPalette />
-                        </dev:DropdownColorPicker.ColorPalette>
-                    </dev:DropdownColorPicker>
-                    <TextBlock x:Name="TxtResult2" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="DropdownColorPicker" Doc="controls/dropdownColorPicker">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="DropdownColorPicker">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:DropdownColorPicker /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="10">
+                            <dev:DropdownColorPicker x:Name="DropdownColorPickerSample" ColorChanged="DropdownColorPickerSample_ColorChanged" />
+                            <TextBlock x:Name="TxtResult" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        </StackPanel>
+                    </local:Sample>
+                    <local:Sample Title="DropdownColorPicker|ColorPalette" Xaml="Features/Others/DropdownColorPickerPage_xaml.txt">
+                        <StackPanel Spacing="10">
+                            <dev:DropdownColorPicker x:Name="DropdownColorPickerSample2" ColorChanged="DropdownColorPickerSample2_ColorChanged">
+                                <dev:DropdownColorPicker.ColorPalette>
+                                    <dev:ColorPalette />
+                                </dev:DropdownColorPicker.ColorPalette>
+                            </dev:DropdownColorPicker>
+                            <TextBlock x:Name="TxtResult2" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

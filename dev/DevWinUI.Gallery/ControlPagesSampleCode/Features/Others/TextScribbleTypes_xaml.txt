@@ -1,0 +1,6 @@
+<dev:TextScribble MarkText="Scribble" Text="Scribble over a word" Type="Scribble" />
+<dev:TextScribble MarkText="Underline" Text="Underline a word" Type="Underline" />
+<dev:TextScribble MarkText="Strike" Text="Strike through a word" Type="StrikeThrough" />
+<dev:TextScribble MarkText="Circle" Text="Circle a word" Type="Circle" />
+<dev:TextScribble MarkText="Box" Text="Box a word" Type="Box" />
+<dev:TextScribble MarkText="Hover" Text="Hover to draw the mark" Trigger="Hover" Type="Circle" />

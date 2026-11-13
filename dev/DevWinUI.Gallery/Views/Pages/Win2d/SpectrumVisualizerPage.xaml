@@ -24,12 +24,12 @@
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbSpectrumType" Header="Spectrum Type">
                                 <local:ChoiceOption.Value>
-                                    <dev:SpectrumType>Circular</dev:SpectrumType>
+                                    <dev:SpectrumType>Plain</dev:SpectrumType>
                                 </local:ChoiceOption.Value>
                             </local:ChoiceOption>
                             <local:ChoiceOption x:Name="CmbColorType" Header="Color Type">
                                 <local:ChoiceOption.Value>
-                                    <dev:SpectrumColorType>Rainbow</dev:SpectrumColorType>
+                                    <dev:SpectrumColorType>GradientLoop</dev:SpectrumColorType>
                                 </local:ChoiceOption.Value>
                             </local:ChoiceOption>
                             <Slider x:Name="SldRotationSpeed" Header="Rotation Speed" Value="10" />

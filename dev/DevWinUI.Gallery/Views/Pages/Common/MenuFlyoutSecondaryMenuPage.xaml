@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Secondary Menu" CSharp="Features/MenuFlyoutSecondaryMenuPage_cs.txt" Doc="attach/menuFlyoutAttach" DocType="Core">
+            <local:ControlExample2 Title="Secondary Menu" CSharp="Features/Others/MenuFlyoutSecondaryMenuPage_cs.txt" Doc="attach/menuFlyoutAttach" DocType="Core">
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoClose" Header="Auto Close Flyout" IsOn="True" />

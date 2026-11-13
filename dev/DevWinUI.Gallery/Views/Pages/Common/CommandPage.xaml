@@ -12,7 +12,7 @@
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample2 Title="DelegateCommand" Doc="delegateCommand" DocType="Core">
                 <local:ControlExample2.Samples>
-                    <local:Sample Title="Simple" CSharp="Features\Command_Simple_cs.txt">
+                    <local:Sample Title="Simple" CSharp="Features\Command\Command_Simple_cs.txt">
                         <local:Sample.XamlCode>
                             <x:String>
                                 &lt;Button Command="{x:Bind SimpleCommand}" Content="Click Me" /&gt;
@@ -21,7 +21,7 @@
                         <Button Command="{x:Bind SimpleCommand}" Content="Click Me" />
                     </local:Sample>
 
-                    <local:Sample Title="CanExecute" CSharp="Features\Command_CanExecute_cs.txt">
+                    <local:Sample Title="CanExecute" CSharp="Features\Command\Command_CanExecute_cs.txt">
                         <local:Sample.XamlCode>
                             <x:String>
                                 &lt;Button Command="{x:Bind CommandWithCanExecute}" Content="Click Me" /&gt;
@@ -30,7 +30,7 @@
                         <Button Command="{x:Bind CommandWithCanExecute}" Content="Click Me" />
                     </local:Sample>
 
-                    <local:Sample Title="Parameter" CSharp="Features\Command_Parameter_cs.txt">
+                    <local:Sample Title="Parameter" CSharp="Features\Command\Command_Parameter_cs.txt">
                         <local:Sample.XamlCode>
                             <x:String>
                                 &lt;Button Command="{x:Bind CommandWithParameter}" CommandParameter="My Parameter" Content="Click Me" /&gt;

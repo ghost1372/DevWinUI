@@ -1,0 +1,10 @@
+<StackPanel Orientation="Horizontal" Spacing="5">
+    <TextBlock VerticalAlignment="Center" Text="Here is some text before the spoiler." />
+    <dev:Spoiler Height="20"
+                 VerticalAlignment="Center"
+                 ShimmerHeight="20"
+                 ShimmerWidth="100">
+        <TextBlock Text="DevWinUI Is GREAT!" />
+    </dev:Spoiler>
+    <TextBlock VerticalAlignment="Center" Text="And here is some text after it." />
+</StackPanel>

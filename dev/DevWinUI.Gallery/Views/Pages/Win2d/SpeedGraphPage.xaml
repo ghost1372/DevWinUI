@@ -28,7 +28,7 @@
                             <ToggleSwitch x:Name="TGAutoUpdate" Header="Auto Update Speed Text" IsOn="True" />
                             <local:ChoiceOption x:Name="CmbBackgroundMode" Header="Background Mode">
                                 <local:ChoiceOption.Value>
-                                    <dev:SpeedGraphBackgroundMode>Gradient</dev:SpeedGraphBackgroundMode>
+                                    <dev:SpeedGraphBackgroundMode>Dot</dev:SpeedGraphBackgroundMode>
                                 </local:ChoiceOption.Value>
                             </local:ChoiceOption>
                         </local:OptionPanel>

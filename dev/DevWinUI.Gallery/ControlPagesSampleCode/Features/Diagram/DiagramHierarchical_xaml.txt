@@ -1,0 +1,14 @@
+<dev:Diagram Layout="Layered"
+             Direction="TopToBottom"
+             Collapsible="True"
+             AutoFit="True"
+             ShowMinimap="True">
+    <dev:Diagram.Root>
+        <dev:DiagramNode Id="submitted" Title="Order submitted">
+            <dev:DiagramNode Id="validate" Title="Validate order">
+                <dev:DiagramNode Id="approved" Title="Approved" />
+                <dev:DiagramNode Id="review" Title="Needs review" />
+            </dev:DiagramNode>
+        </dev:DiagramNode>
+    </dev:Diagram.Root>
+</dev:Diagram>

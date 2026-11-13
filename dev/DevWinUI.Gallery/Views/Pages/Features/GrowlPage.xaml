@@ -7,216 +7,221 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part1_cs.txt" DocPage="controls/growl" HeaderText="In-App Growl" XamlSource="Features/Growl/GrowlPage_xaml.txt">
-                <Grid ColumnSpacing="12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Default host" />
-                        <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
-                            <dev:GrowlHost x:Name="DefaultHost" MinWidth="320" MinHeight="400" HostKey="Main" />
-                        </Border>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Spacing="6">
-                        <TextBlock Text="Host with key &quot;Test&quot;" />
-                        <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
-                            <dev:GrowlHost x:Name="TestHost" MinWidth="320" MinHeight="400" HostKey="Test" />
-                        </Border>
-                    </StackPanel>
-                </Grid>
-                <local:ControlExample.Pane>
-                    <StackPanel Margin="10" Spacing="10">
-                        <Button Click="Success_Click" Content="Success (default host)" />
-                        <Button Click="AllSeverities_Click" Content="All severities" />
-                        <Button Click="AutoCloseBySeverity_Click" Content="Auto-close by severity (Default)" />
-                        <Button Click="Download_Click" Content="Downloading (progress)" />
-                        <Button Click="Key_Click" Content="Update by key" />
-                        <Button Click="Rainbow_Click" Content="Rainbow" />
-                        <Button Click="Action_Click" Content="With action button" />
-                        <Button Click="TestHost_Click" Content="Show on host &quot;Test&quot;" />
-                        <ToggleSwitch Header="Stacked layout" OffContent="List" OnContent="Stacked" Toggled="Stacked_Toggled" />
-                        <ComboBox x:Name="ShowAnimationBox" HorizontalAlignment="Stretch" Header="Show animation" SelectionChanged="ShowAnimation_SelectionChanged" />
-                        <ComboBox x:Name="CloseAnimationBox" HorizontalAlignment="Stretch" Header="Close animation" SelectionChanged="CloseAnimation_SelectionChanged" />
-                        <Button Click="ClearAll_Click" Content="Clear All" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Growl" Doc="controls/growl">
+                <local:ControlExample2.OptionGroups>
 
-            <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part2_cs.txt" DocPage="controls/growl" HeaderText="Growl Global">
-                <StackPanel Orientation="Horizontal">
-                    <InfoBar Title="Growl will be shown outside the app" IsClosable="False" IsOpen="True" Severity="Informational" />
-                </StackPanel>
-                <local:ControlExample.Pane>
-                    <StackPanel Margin="10" Spacing="10">
-                        <Button Click="Global_Click" Content="Growl Global" />
-                        <Button Click="GlobalOptions_Click" Content="Growl Global with GrowlOptions" />
-                        <ComboBox x:Name="GlobalShowAnimationBox" HorizontalAlignment="Stretch" Header="Show animation" SelectionChanged="GlobalShowAnimation_SelectionChanged" />
-                        <ComboBox x:Name="GlobalCloseAnimationBox" HorizontalAlignment="Stretch" Header="Close animation" SelectionChanged="GlobalCloseAnimation_SelectionChanged" />
-                        <Button Click="ClearGlobal_Click" Content="Clear All" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
+                    <!--  In-App Growl  -->
+                    <local:OptionGroup Title="In-App Actions">
+                        <local:OptionPanel>
+                            <Button Click="Success_Click" Content="Success (default host)" />
+                            <Button Click="AllSeverities_Click" Content="All severities" />
+                            <Button Click="AutoCloseBySeverity_Click" Content="Auto-close by severity (Default)" />
+                            <Button Click="Download_Click" Content="Downloading (progress)" />
+                            <Button Click="Key_Click" Content="Update by key" />
+                            <Button Click="Rainbow_Click" Content="Rainbow" />
+                            <Button Click="Action_Click" Content="With action button" />
+                            <Button Click="TestHost_Click" Content="Show on host &quot;Test&quot;" />
+                            <Button Click="ClearAll_Click" Content="Clear All" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="In-App Settings">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="Stacked layout" OffContent="List" OnContent="Stacked" Toggled="Stacked_Toggled" />
+                            <ComboBox x:Name="ShowAnimationBox" HorizontalAlignment="Stretch" Header="Show animation" SelectionChanged="ShowAnimation_SelectionChanged" />
+                            <ComboBox x:Name="CloseAnimationBox" HorizontalAlignment="Stretch" Header="Close animation" SelectionChanged="CloseAnimation_SelectionChanged" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
 
-            <local:ControlExample CSharpSource="Features/Growl/GrowlPage_Part3_cs.txt" DocPage="controls/growl" HeaderText="GrowlCard" XamlSource="Features/Growl/GrowlPage_Card_xaml.txt">
-                <Grid Height="400">
-                    <dev:GrowlCard x:Name="Card" Title="{x:Bind TitleBox.Text, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Bind ContentBox.Text, Mode=OneWay}" Progress="64" ShowProgress="True" SubTitle="{x:Bind SubTitleBox.Text, Mode=OneWay}">
-                        <dev:GrowlCard.ActionContent>
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Content="Later" />
-                                <Button Content="Install now" Style="{StaticResource AccentButtonStyle}" />
-                            </StackPanel>
-                        </dev:GrowlCard.ActionContent>
-                    </dev:GrowlCard>
-                </Grid>
-                <local:ControlExample.Pane>
-                    <ScrollViewer Height="500">
-                        <StackPanel Margin="10" Spacing="8">
+                    <!--  Growl Global  -->
+                    <local:OptionGroup Title="Global Growl">
+                        <local:OptionPanel>
+                            <Button Click="Global_Click" Content="Growl Global" />
+                            <Button Click="GlobalOptions_Click" Content="Growl Global with GrowlOptions" />
+                            <ComboBox x:Name="GlobalShowAnimationBox" HorizontalAlignment="Stretch" Header="Show animation" SelectionChanged="GlobalShowAnimation_SelectionChanged" />
+                            <ComboBox x:Name="GlobalCloseAnimationBox" HorizontalAlignment="Stretch" Header="Close animation" SelectionChanged="GlobalCloseAnimation_SelectionChanged" />
+                            <Button Click="ClearGlobal_Click" Content="Clear All" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+
+                    <!--  GrowlCard  -->
+                    <local:OptionGroup Title="Card Text">
+                        <local:OptionPanel>
                             <Button Click="ShowAgain_Click" Content="Show again" />
+                            <TextBox x:Name="TitleBox" Header="Title" Text="Update available" />
+                            <TextBox x:Name="SubTitleBox" Header="SubTitle" Text="Version 2.4.0 is ready to install" />
+                            <TextBox x:Name="ContentBox" MinHeight="80" AcceptsReturn="True" Header="Content" Text="This release includes performance improvements and a refreshed settings page." TextWrapping="Wrap" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Progress">
+                        <local:OptionPanel>
+                            <Slider Header="Progress" Maximum="{x:Bind Card.ProgressMaximum, Mode=OneWay}" Minimum="0" Value="{x:Bind Card.Progress, Mode=TwoWay}" />
+                            <NumberBox Header="ProgressMaximum" Minimum="1" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.ProgressMaximum, Mode=TwoWay}" />
+                            <ComboBox HorizontalAlignment="Stretch" Header="ProgressType" SelectedIndex="0" SelectionChanged="ProgressType_SelectionChanged">
+                                <ComboBoxItem Content="Bar" />
+                                <ComboBoxItem Content="Ring" />
+                            </ComboBox>
+                            <ToggleSwitch Header="ShowProgress" IsOn="{x:Bind Card.ShowProgress, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowProgressText" IsOn="{x:Bind Card.ShowProgressText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="IsProgressIndeterminate" IsOn="{x:Bind Card.IsProgressIndeterminate, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="IsProgressError" IsOn="{x:Bind Card.IsProgressError, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="IsProgressPaused" IsOn="{x:Bind Card.IsProgressPaused, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Auto Close">
+                        <local:OptionPanel>
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="AutoClose" />
+                                <CheckBox x:Name="AutoCloseAttention" Click="AutoCloseFlag_Click" Content="Attention" />
+                                <CheckBox x:Name="AutoCloseSuccess" Click="AutoCloseFlag_Click" Content="Success" />
+                                <CheckBox x:Name="AutoCloseWarning" Click="AutoCloseFlag_Click" Content="Warning" />
+                                <CheckBox x:Name="AutoCloseError" Click="AutoCloseFlag_Click" Content="Error" />
+                                <CheckBox x:Name="AutoCloseInfo" Click="AutoCloseFlag_Click" Content="Info" />
+                            </StackPanel>
+                            <NumberBox Header="AutoCloseDuration (seconds)" Maximum="120" Minimum="1" SpinButtonPlacementMode="Inline" ValueChanged="DurationBox_ValueChanged" Value="5" />
+                            <ToggleSwitch Header="ShowCountdown" IsOn="{x:Bind Card.ShowCountdown, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowCountdownText" IsOn="{x:Bind Card.ShowCountdownText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="PauseAutoCloseOnPointerOver" IsOn="{x:Bind Card.PauseAutoCloseOnPointerOver, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ComboBox HorizontalAlignment="Stretch" Header="CountdownSeverity" SelectedIndex="0" SelectionChanged="CountdownSeverity_SelectionChanged">
+                                <ComboBoxItem Content="Default" />
+                                <ComboBoxItem Content="FollowCardSeverity" />
+                                <ComboBoxItem Content="Attention" />
+                                <ComboBoxItem Content="Success" />
+                                <ComboBoxItem Content="Warning" />
+                                <ComboBoxItem Content="Error" />
+                                <ComboBoxItem Content="Info" />
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="CountdownColorStyle" SelectedIndex="0" SelectionChanged="CountdownColorStyle_SelectionChanged">
+                                <ComboBoxItem Content="Default" />
+                                <ComboBoxItem Content="Solid" />
+                                <ComboBoxItem Content="Gradient" />
+                                <ComboBoxItem Content="Vivid" />
+                                <ComboBoxItem Content="Rainbow" />
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="CountdownPlacement" SelectedIndex="0" SelectionChanged="CountdownPlacement_SelectionChanged">
+                                <ComboBoxItem Content="Default" />
+                                <ComboBoxItem Content="Top" />
+                                <ComboBoxItem Content="Bottom" />
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Sent Time">
+                        <local:OptionPanel>
+                            <ComboBox HorizontalAlignment="Stretch" Header="SentTimeVisibility" SelectedIndex="1" SelectionChanged="SentTimeVisibility_SelectionChanged">
+                                <ComboBoxItem Content="Visible" />
+                                <ComboBoxItem Content="Hidden" />
+                                <ComboBoxItem Content="OnHover" />
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="SentAt" SelectedIndex="0" SelectionChanged="SentAt_SelectionChanged">
+                                <ComboBoxItem Content="Creation time (default)" />
+                                <ComboBoxItem Content="40 minutes ago" />
+                                <ComboBoxItem Content="3 hours ago" />
+                                <ComboBoxItem Content="8 days ago" />
+                                <ComboBoxItem Content="2 months ago" />
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Indicator">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="ShowIndicator" IsOn="{x:Bind Card.ShowIndicator, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ComboBox HorizontalAlignment="Stretch" Header="IndicatorPlacement" SelectedIndex="0" SelectionChanged="Placement_SelectionChanged">
+                                <ComboBoxItem Content="Top" />
+                                <ComboBoxItem Content="Left" />
+                                <ComboBoxItem Content="Right" />
+                                <ComboBoxItem Content="Bottom" />
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="IconStyle" SelectedIndex="0" SelectionChanged="IconStyle_SelectionChanged">
+                                <ComboBoxItem Content="Filled" />
+                                <ComboBoxItem Content="Outline" />
+                                <ComboBoxItem Content="Ring" />
+                            </ComboBox>
+                            <ToggleSwitch Header="ShowIconContainer" IsOn="{x:Bind Card.ShowIconContainer, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <Slider Header="IndicatorThickness" Maximum="16" Minimum="1" StepFrequency="1" Value="{x:Bind Card.IndicatorThickness, Mode=TwoWay}" />
+                            <ComboBox HorizontalAlignment="Stretch" Header="ColorStyle" SelectedIndex="0" SelectionChanged="ColorStyle_SelectionChanged">
+                                <ComboBoxItem Content="Solid" />
+                                <ComboBoxItem Content="Gradient" />
+                                <ComboBoxItem Content="Vivid" />
+                                <ComboBoxItem Content="Rainbow" />
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="Severity" SelectedIndex="0" SelectionChanged="Severity_SelectionChanged">
+                                <ComboBoxItem Content="Attention" />
+                                <ComboBoxItem Content="Success" />
+                                <ComboBoxItem Content="Warning" />
+                                <ComboBoxItem Content="Error" />
+                                <ComboBoxItem Content="Info" />
+                            </ComboBox>
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Size">
+                        <local:OptionPanel>
+                            <ComboBox HorizontalAlignment="Stretch" Header="DisplayMode" SelectedIndex="0" SelectionChanged="DisplayMode_SelectionChanged">
+                                <ComboBoxItem Content="Card" />
+                                <ComboBoxItem Content="Banner" />
+                            </ComboBox>
+                            <NumberBox Header="Width" Maximum="1200" Minimum="240" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.Width, Mode=TwoWay}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Card Visibility">
+                        <local:OptionPanel>
+                            <ToggleSwitch Header="ShowGradientBackground" IsOn="{x:Bind Card.ShowGradientBackground, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ComboBox HorizontalAlignment="Stretch" Header="GradientIntensity" SelectedIndex="0" SelectionChanged="GradientIntensity_SelectionChanged">
+                                <ComboBoxItem Content="Normal" />
+                                <ComboBoxItem Content="Light" />
+                            </ComboBox>
+                            <ToggleSwitch Header="ShowIcon" IsOn="{x:Bind Card.ShowIcon, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowTitle" IsOn="{x:Bind Card.ShowTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowSubTitle" IsOn="{x:Bind Card.ShowSubTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowContent" IsOn="{x:Bind Card.ShowContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowCloseButton" IsOn="{x:Bind Card.ShowCloseButton, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                            <ToggleSwitch Header="ShowActionContent" IsOn="{x:Bind Card.ShowActionContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
 
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Text" IsExpanded="True">
-                                <StackPanel Spacing="12">
-                                    <TextBox x:Name="TitleBox" Header="Title" Text="Update available" />
-                                    <TextBox x:Name="SubTitleBox" Header="SubTitle" Text="Version 2.4.0 is ready to install" />
-                                    <TextBox x:Name="ContentBox" MinHeight="80" AcceptsReturn="True" Header="Content" Text="This release includes performance improvements and a refreshed settings page." TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Expander>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="In-App Growl" CSharp="Features/Growl/GrowlPage_Part1_cs.txt" Xaml="Features/Growl/GrowlPage_xaml.txt">
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Default host" />
+                                <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
+                                    <dev:GrowlHost x:Name="DefaultHost" MinWidth="320" MinHeight="400" HostKey="Main" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Text="Host with key &quot;Test&quot;" />
+                                <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
+                                    <dev:GrowlHost x:Name="TestHost" MinWidth="320" MinHeight="400" HostKey="Test" />
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </local:Sample>
 
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Progress">
-                                <StackPanel Spacing="12">
-                                    <Slider Header="Progress" Maximum="{x:Bind Card.ProgressMaximum, Mode=OneWay}" Minimum="0" Value="{x:Bind Card.Progress, Mode=TwoWay}" />
-                                    <NumberBox Header="ProgressMaximum" Minimum="1" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.ProgressMaximum, Mode=TwoWay}" />
-                                    <ComboBox HorizontalAlignment="Stretch" Header="ProgressType" SelectedIndex="0" SelectionChanged="ProgressType_SelectionChanged">
-                                        <ComboBoxItem Content="Bar" />
-                                        <ComboBoxItem Content="Ring" />
-                                    </ComboBox>
-                                    <ToggleSwitch Header="ShowProgress" IsOn="{x:Bind Card.ShowProgress, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowProgressText" IsOn="{x:Bind Card.ShowProgressText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressIndeterminate" IsOn="{x:Bind Card.IsProgressIndeterminate, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressError" IsOn="{x:Bind Card.IsProgressError, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="IsProgressPaused" IsOn="{x:Bind Card.IsProgressPaused, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Auto close">
-                                <StackPanel Spacing="12">
-                                    <StackPanel Spacing="4">
-                                        <TextBlock Text="AutoClose" />
-                                        <CheckBox x:Name="AutoCloseAttention" Click="AutoCloseFlag_Click" Content="Attention" />
-                                        <CheckBox x:Name="AutoCloseSuccess" Click="AutoCloseFlag_Click" Content="Success" />
-                                        <CheckBox x:Name="AutoCloseWarning" Click="AutoCloseFlag_Click" Content="Warning" />
-                                        <CheckBox x:Name="AutoCloseError" Click="AutoCloseFlag_Click" Content="Error" />
-                                        <CheckBox x:Name="AutoCloseInfo" Click="AutoCloseFlag_Click" Content="Info" />
-                                    </StackPanel>
-                                    <NumberBox Header="AutoCloseDuration (seconds)" Maximum="120" Minimum="1" SpinButtonPlacementMode="Inline" ValueChanged="DurationBox_ValueChanged" Value="5" />
-                                    <ToggleSwitch Header="ShowCountdown" IsOn="{x:Bind Card.ShowCountdown, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowCountdownText" IsOn="{x:Bind Card.ShowCountdownText, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="PauseAutoCloseOnPointerOver" IsOn="{x:Bind Card.PauseAutoCloseOnPointerOver, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ComboBox HorizontalAlignment="Stretch" Header="CountdownSeverity" SelectedIndex="0" SelectionChanged="CountdownSeverity_SelectionChanged">
-                                        <ComboBoxItem Content="Default" />
-                                        <ComboBoxItem Content="FollowCardSeverity" />
-                                        <ComboBoxItem Content="Attention" />
-                                        <ComboBoxItem Content="Success" />
-                                        <ComboBoxItem Content="Warning" />
-                                        <ComboBoxItem Content="Error" />
-                                        <ComboBoxItem Content="Info" />
-                                    </ComboBox>
-                                    <ComboBox HorizontalAlignment="Stretch" Header="CountdownColorStyle" SelectedIndex="0" SelectionChanged="CountdownColorStyle_SelectionChanged">
-                                        <ComboBoxItem Content="Default" />
-                                        <ComboBoxItem Content="Solid" />
-                                        <ComboBoxItem Content="Gradient" />
-                                        <ComboBoxItem Content="Vivid" />
-                                        <ComboBoxItem Content="Rainbow" />
-                                    </ComboBox>
-                                    <ComboBox HorizontalAlignment="Stretch" Header="CountdownPlacement" SelectedIndex="0" SelectionChanged="CountdownPlacement_SelectionChanged">
-                                        <ComboBoxItem Content="Default" />
-                                        <ComboBoxItem Content="Top" />
-                                        <ComboBoxItem Content="Bottom" />
-                                    </ComboBox>
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Sent time">
-                                <StackPanel Spacing="12">
-                                    <ComboBox HorizontalAlignment="Stretch" Header="SentTimeVisibility" SelectedIndex="1" SelectionChanged="SentTimeVisibility_SelectionChanged">
-                                        <ComboBoxItem Content="Visible" />
-                                        <ComboBoxItem Content="Hidden" />
-                                        <ComboBoxItem Content="OnHover" />
-                                    </ComboBox>
-                                    <ComboBox HorizontalAlignment="Stretch" Header="SentAt" SelectedIndex="0" SelectionChanged="SentAt_SelectionChanged">
-                                        <ComboBoxItem Content="Creation time (default)" />
-                                        <ComboBoxItem Content="40 minutes ago" />
-                                        <ComboBoxItem Content="3 hours ago" />
-                                        <ComboBoxItem Content="8 days ago" />
-                                        <ComboBoxItem Content="2 months ago" />
-                                    </ComboBox>
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Indicator">
-                                <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="ShowIndicator" IsOn="{x:Bind Card.ShowIndicator, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ComboBox HorizontalAlignment="Stretch" Header="IndicatorPlacement" SelectedIndex="0" SelectionChanged="Placement_SelectionChanged">
-                                        <ComboBoxItem Content="Top" />
-                                        <ComboBoxItem Content="Left" />
-                                        <ComboBoxItem Content="Right" />
-                                        <ComboBoxItem Content="Bottom" />
-                                    </ComboBox>
-                                    <ComboBox HorizontalAlignment="Stretch" Header="IconStyle" SelectedIndex="0" SelectionChanged="IconStyle_SelectionChanged">
-                                        <ComboBoxItem Content="Filled" />
-                                        <ComboBoxItem Content="Outline" />
-                                        <ComboBoxItem Content="Ring" />
-                                    </ComboBox>
-                                    <ToggleSwitch Header="ShowIconContainer" IsOn="{x:Bind Card.ShowIconContainer, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <Slider Header="IndicatorThickness" Maximum="16" Minimum="1" StepFrequency="1" Value="{x:Bind Card.IndicatorThickness, Mode=TwoWay}" />
-                                    <ComboBox HorizontalAlignment="Stretch" Header="ColorStyle" SelectedIndex="0" SelectionChanged="ColorStyle_SelectionChanged">
-                                        <ComboBoxItem Content="Solid" />
-                                        <ComboBoxItem Content="Gradient" />
-                                        <ComboBoxItem Content="Vivid" />
-                                        <ComboBoxItem Content="Rainbow" />
-                                    </ComboBox>
-                                    <ComboBox HorizontalAlignment="Stretch" Header="Severity" SelectedIndex="0" SelectionChanged="Severity_SelectionChanged">
-                                        <ComboBoxItem Content="Attention" />
-                                        <ComboBoxItem Content="Success" />
-                                        <ComboBoxItem Content="Warning" />
-                                        <ComboBoxItem Content="Error" />
-                                        <ComboBoxItem Content="Info" />
-                                    </ComboBox>
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Size">
-                                <StackPanel Spacing="12">
-                                    <ComboBox HorizontalAlignment="Stretch" Header="DisplayMode" SelectedIndex="0" SelectionChanged="DisplayMode_SelectionChanged">
-                                        <ComboBoxItem Content="Card" />
-                                        <ComboBoxItem Content="Banner" />
-                                    </ComboBox>
-                                    <NumberBox Header="Width" Maximum="1200" Minimum="240" SpinButtonPlacementMode="Inline" Value="{x:Bind Card.Width, Mode=TwoWay}" />
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Visibility">
-                                <StackPanel Spacing="12">
-                                    <ToggleSwitch Header="ShowGradientBackground" IsOn="{x:Bind Card.ShowGradientBackground, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ComboBox HorizontalAlignment="Stretch" Header="GradientIntensity" SelectedIndex="0" SelectionChanged="GradientIntensity_SelectionChanged">
-                                        <ComboBoxItem Content="Normal" />
-                                        <ComboBoxItem Content="Light" />
-                                    </ComboBox>
-                                    <ToggleSwitch Header="ShowIcon" IsOn="{x:Bind Card.ShowIcon, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowTitle" IsOn="{x:Bind Card.ShowTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowSubTitle" IsOn="{x:Bind Card.ShowSubTitle, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowContent" IsOn="{x:Bind Card.ShowContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowCloseButton" IsOn="{x:Bind Card.ShowCloseButton, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                    <ToggleSwitch Header="ShowActionContent" IsOn="{x:Bind Card.ShowActionContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                                </StackPanel>
-                            </Expander>
+                    <local:Sample Title="Growl Global" CSharp="Features/Growl/GrowlPage_Part2_cs.txt">
+                        <StackPanel Orientation="Horizontal">
+                            <InfoBar Title="Growl will be shown outside the app" IsClosable="False" IsOpen="True" Severity="Informational" />
                         </StackPanel>
-                    </ScrollViewer>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
+                    </local:Sample>
+
+                    <local:Sample Title="GrowlCard" CSharp="Features/Growl/GrowlPage_Part3_cs.txt" Xaml="Features/Growl/GrowlPage_Card_xaml.txt">
+                        <Grid Height="400">
+                            <dev:GrowlCard x:Name="Card" Title="{x:Bind TitleBox.Text, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Bind ContentBox.Text, Mode=OneWay}" Progress="64" ShowProgress="True" SubTitle="{x:Bind SubTitleBox.Text, Mode=OneWay}">
+                                <dev:GrowlCard.ActionContent>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Button Content="Later" />
+                                        <Button Content="Install now" Style="{StaticResource AccentButtonStyle}" />
+                                    </StackPanel>
+                                </dev:GrowlCard.ActionContent>
+                            </dev:GrowlCard>
+                        </Grid>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

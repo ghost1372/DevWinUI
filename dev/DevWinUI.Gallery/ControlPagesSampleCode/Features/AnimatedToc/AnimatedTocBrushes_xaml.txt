@@ -1,0 +1,9 @@
+<dev:AnimatedToc Title="Release notes"
+                 ProgressBrush="{ThemeResource SystemFillColorSuccessBrush}"
+                 RailBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                 SelectedIndex="1">
+    <dev:AnimatedTocItem Label="Overview" />
+    <dev:AnimatedTocItem Label="New features" />
+    <dev:AnimatedTocItem Label="Breaking changes" />
+    <dev:AnimatedTocItem Depth="1" Label="Migration" />
+</dev:AnimatedToc>

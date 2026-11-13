@@ -2,8 +2,6 @@
 
 public sealed partial class TableOfContentsPage : Page
 {
-    public ObservableCollection<TableOfContentsKind> KindItems { get; set; } = new ObservableCollection<TableOfContentsKind>(Enum.GetValues<TableOfContentsKind>());
-
     public IReadOnlyList<TableOfContentsItem> TocItems { get; } = new TableOfContentsItem[]
     {
         new("intro", "Introduction"),

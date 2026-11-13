@@ -1,0 +1,6 @@
+<StackPanel Orientation="Horizontal" Spacing="24">
+    <dev:UnderlineAnimation Active="True" Click="OnTabClick" FontSize="20" Rest="True" Text="Overview" />
+    <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Features" />
+    <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Pricing" />
+    <dev:UnderlineAnimation Click="OnTabClick" FontSize="20" Rest="True" Text="Support" />
+</StackPanel>

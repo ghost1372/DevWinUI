@@ -7,7 +7,7 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="First you must create a new release tag in github repository, tag version must be in this format : 1.0.0.0 now we can check for update with github username and github repository" IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample2 Title="UpdateHelper" CSharp="Features/CheckUpdatePage_cs.txt" Description="Check a GitHub repository for a newer stable or pre-release version." Doc="helpers/updateHelper" DocType="Core">
+            <local:ControlExample2 Title="UpdateHelper" CSharp="Features/Others/CheckUpdatePage_cs.txt" Description="Check a GitHub repository for a newer stable or pre-release version." Doc="helpers/updateHelper" DocType="Core">
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="txtUser" Header="GitHub Username" PlaceholderText="Ghost1372" />

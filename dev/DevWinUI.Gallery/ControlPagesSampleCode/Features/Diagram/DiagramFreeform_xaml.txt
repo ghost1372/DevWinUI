@@ -1,0 +1,12 @@
+<dev:Diagram Layout="Free"
+             BackgroundPattern="Grid"
+             EdgeStyle="Bezier"
+             ShowMinimap="True">
+    <dev:Diagram.Nodes>
+        <dev:DiagramNode Id="design" Title="Design" CanvasX="80" CanvasY="90" />
+        <dev:DiagramNode Id="build" Title="Build" CanvasX="350" CanvasY="190" />
+    </dev:Diagram.Nodes>
+    <dev:Diagram.Edges>
+        <dev:DiagramEdge From="design" To="build" Label="handoff" />
+    </dev:Diagram.Edges>
+</dev:Diagram>

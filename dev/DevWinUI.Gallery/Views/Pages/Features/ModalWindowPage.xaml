@@ -9,15 +9,19 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/modalWindow">
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        var window = new ModalWindow(WindowNative.GetWindowHandle(MainWindow.Instance));#nl#window.Activate();
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <Button Click="OnCreateModalWindowClick" Content="Create a New ModalWindow" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ModalWindow" Doc="controls/modalWindow">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ModalWindow">
+                        <local:Sample.CSharpCode>
+                            <x:String>
+                                var window = new ModalWindow(WindowNative.GetWindowHandle(MainWindow.Instance));#nl#window.Activate();
+                            </x:String>
+                        </local:Sample.CSharpCode>
+                        <Button Click="OnCreateModalWindowClick" Content="Create a New ModalWindow" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

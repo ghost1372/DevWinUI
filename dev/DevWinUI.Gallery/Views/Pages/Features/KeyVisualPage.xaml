@@ -9,44 +9,52 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/keyVisual" HeaderText="KeyVisual">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:KeyVisual Content="Ctrl+F5" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtContent" Header="Content" PlaceholderText="Win or 92" Text="Win" />
-                        <TextBox x:Name="TxtContent2" Header="Content" PlaceholderText="Ctrl" Text="Ctrl" />
-                        <TextBox x:Name="TxtContent3" Header="Content" PlaceholderText="F5" Text="F5" />
-                        <ToggleSwitch x:Name="TGIsError" Header="IsError" IsOn="False" />
-                        <ComboBox x:Name="VisualTypePicker" Header="Pick a VisualType" ItemsSource="{x:Bind VisualTypeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="OnSelectionChanged" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="10">
-                    <InfoBar Title="Supported VirtualKey" IsClosable="False" IsOpen="True" Message="8 (Backspace), 13 (Enter), 16 (Shift), 37 (Left), 38 (Up), 39 (Right), 40 (Left), 91 (Windows), 92 (Windows), 160 (Shift), 161 (Shift)" Severity="Informational" />
-                    <InfoBar Title="Supported VirtualKey" IsClosable="False" IsOpen="True" Message="Instead of 16, 160, 161 you can use Shift, and instead of 91 and 92 you can use Win" Severity="Informational" />
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <dev:KeyVisual x:Name="MainKeyVisual" Content="{x:Bind TxtContent.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
-                        <dev:KeyVisual x:Name="MainKeyVisual2" Content="{x:Bind TxtContent2.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
-                        <dev:KeyVisual x:Name="MainKeyVisual3" Content="{x:Bind TxtContent3.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
-                    </StackPanel>
-                </StackPanel>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="KeyVisual" Doc="controls/keyVisual">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="KeyVisual">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtContent" Header="Content" PlaceholderText="Win or 92" Text="Win" />
+                            <TextBox x:Name="TxtContent2" Header="Content" PlaceholderText="Ctrl" Text="Ctrl" />
+                            <TextBox x:Name="TxtContent3" Header="Content" PlaceholderText="F5" Text="F5" />
+                            <ToggleSwitch x:Name="TGIsError" Header="IsError" IsOn="False" />
+                            <ComboBox x:Name="VisualTypePicker" Header="Pick a VisualType" ItemsSource="{x:Bind VisualTypeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="OnSelectionChanged" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="KeyVisual">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:KeyVisual Content="Ctrl+F5" /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="10">
+                            <InfoBar Title="Supported VirtualKey" IsClosable="False" IsOpen="True" Message="8 (Backspace), 13 (Enter), 16 (Shift), 37 (Left), 38 (Up), 39 (Right), 40 (Left), 91 (Windows), 92 (Windows), 160 (Shift), 161 (Shift)" Severity="Informational" />
+                            <InfoBar Title="Supported VirtualKey" IsClosable="False" IsOpen="True" Message="Instead of 16, 160, 161 you can use Shift, and instead of 91 and 92 you can use Win" Severity="Informational" />
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <dev:KeyVisual x:Name="MainKeyVisual" Content="{x:Bind TxtContent.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
+                                <dev:KeyVisual x:Name="MainKeyVisual2" Content="{x:Bind TxtContent2.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
+                                <dev:KeyVisual x:Name="MainKeyVisual3" Content="{x:Bind TxtContent3.Text, Mode=OneWay}" IsError="{x:Bind TGIsError.IsOn, Mode=OneWay}" IsTabStop="False" />
+                            </StackPanel>
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
 
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/keyVisual2" HeaderText="KeyVisual2">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:KeyVisual2 Content="Ctrl+F5" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Spacing="10">
-                    <dev:KeyVisual2 Content="{x:Bind TxtContent.Text, Mode=OneWay}" State="Error" />
-                    <dev:KeyVisual2 Content="{x:Bind TxtContent2.Text, Mode=OneWay}" State="Warning" />
-                    <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource AccentKeyVisualStyle}" />
-                    <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource SubtleKeyVisualStyle}" />
-                </StackPanel>
-
-            </local:ControlExample>
+            <local:ControlExample2 Title="KeyVisual2" Doc="controls/keyVisual2">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="KeyVisual2">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:KeyVisual2 Content="Ctrl+F5" /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <StackPanel Spacing="10">
+                            <dev:KeyVisual2 Content="{x:Bind TxtContent.Text, Mode=OneWay}" State="Error" />
+                            <dev:KeyVisual2 Content="{x:Bind TxtContent2.Text, Mode=OneWay}" State="Warning" />
+                            <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource AccentKeyVisualStyle}" />
+                            <dev:KeyVisual2 Content="{x:Bind TxtContent3.Text, Mode=OneWay}" Style="{StaticResource SubtleKeyVisualStyle}" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

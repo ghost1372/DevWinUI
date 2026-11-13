@@ -9,50 +9,64 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/orbitCardStack" HeaderText="OrbitCardStack">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:OrbitCardStack Items="{x:Bind Team}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbLayout" HorizontalAlignment="Stretch" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0" />
-                        <ComboBox x:Name="CmbSize" HorizontalAlignment="Stretch" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
-                        <Slider x:Name="SliderSpread" Header="Spread" Maximum="260" Minimum="40" Value="168" />
-                        <Slider x:Name="SliderLift" Header="Lift" Maximum="80" Minimum="0" Value="34" />
-                        <TextBox x:Name="TxtLinkLabel" Header="Link Label" Text="Open" />
-                        <ToggleSwitch x:Name="TsAnimation" Header="Is Animation Enabled" IsOn="True" />
-                        <TextBlock x:Name="TxtActive" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Active: Ava Chen" />
-                        <TextBlock x:Name="TxtInvoked" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Invoked: none" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:OrbitCardStack IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" ItemInvoked="OnItemInvoked" Items="{x:Bind Team}" Labels="{x:Bind GetLabels(TxtLinkLabel.Text), Mode=OneWay}" Layout="{x:Bind ((dev:OrbitCardLayout)CmbLayout.SelectedItem), Mode=OneWay}" Lift="{x:Bind SliderLift.Value, Mode=OneWay}" Size="{x:Bind ((dev:OrbitCardSize)CmbSize.SelectedItem), Mode=OneWay}" Spread="{x:Bind SliderSpread.Value, Mode=OneWay}" ValueChanged="OnValueChanged" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="OrbitCardStack" Doc="controls/orbitCardStack">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="Layout">
+                        <local:OptionPanel>
+                            <ComboBox x:Name="CmbLayout" HorizontalAlignment="Stretch" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0" />
+                            <ComboBox x:Name="CmbSize" HorizontalAlignment="Stretch" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
+                            <Slider x:Name="SliderSpread" Header="Spread" Maximum="260" Minimum="40" Value="168" />
+                            <Slider x:Name="SliderLift" Header="Lift" Maximum="80" Minimum="0" Value="34" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Behavior">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtLinkLabel" Header="Link Label" Text="Open" />
+                            <ToggleSwitch x:Name="TsAnimation" Header="Is Animation Enabled" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Status">
+                        <local:OptionPanel>
+                            <TextBlock x:Name="TxtActive" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Active: Ava Chen" />
+                            <TextBlock x:Name="TxtInvoked" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Invoked: none" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="OrbitCardStack">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:OrbitCardStack Items="{x:Bind Team}" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:OrbitCardStack IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" ItemInvoked="OnItemInvoked" Items="{x:Bind Team}" Labels="{x:Bind GetLabels(TxtLinkLabel.Text), Mode=OneWay}" Layout="{x:Bind ((dev:OrbitCardLayout)CmbLayout.SelectedItem), Mode=OneWay}" Lift="{x:Bind SliderLift.Value, Mode=OneWay}" Size="{x:Bind ((dev:OrbitCardSize)CmbSize.SelectedItem), Mode=OneWay}" Spread="{x:Bind SliderSpread.Value, Mode=OneWay}" ValueChanged="OnValueChanged" />
+                    </local:Sample>
 
-            <local:ControlExample DocPage="controls/orbitCardStack" HeaderText="Grid layout, open by default">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:OrbitCardStack DefaultOpen="True" Items="{x:Bind Team}" Layout="Grid" Size="Small" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:OrbitCardStack DefaultOpen="True" Items="{x:Bind Team}" Layout="Grid" Size="Small" />
-            </local:ControlExample>
+                    <local:Sample Title="Grid layout, open by default">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:OrbitCardStack DefaultOpen="True" Items="{x:Bind Team}" Layout="Grid" Size="Small" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:OrbitCardStack DefaultOpen="True" Items="{x:Bind Team}" Layout="Grid" Size="Small" />
+                    </local:Sample>
 
-            <local:ControlExample DocPage="controls/orbitCardStack" HeaderText="Custom card visuals">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:OrbitCardStack x:Name="IconStack" Items="{x:Bind Team}" Layout="Row" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        IconStack.ImageFactory = (item, index) =&gt; new FontIcon { Glyph = glyphs[index % glyphs.Length], FontSize = 40 };
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <dev:OrbitCardStack x:Name="IconStack" Items="{x:Bind Team}" Layout="Row" />
-            </local:ControlExample>
+                    <local:Sample Title="Custom card visuals">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:OrbitCardStack x:Name="IconStack" Items="{x:Bind Team}" Layout="Row" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <local:Sample.CSharpCode>
+                            <x:String>
+                                IconStack.ImageFactory = (item, index) =&gt; new FontIcon { Glyph = glyphs[index % glyphs.Length], FontSize = 40 };
+                            </x:String>
+                        </local:Sample.CSharpCode>
+                        <dev:OrbitCardStack x:Name="IconStack" Items="{x:Bind Team}" Layout="Row" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

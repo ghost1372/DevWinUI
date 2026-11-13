@@ -1,0 +1,11 @@
+<dev:MorphingWizard>
+    <dev:MorphingWizardStep Id="account" Label="Account">
+        <StackPanel Spacing="8">
+            <TextBlock Text="Create your account" />
+            <TextBox Header="Email" />
+        </StackPanel>
+    </dev:MorphingWizardStep>
+    <dev:MorphingWizardStep Id="done" Label="Done">
+        <TextBlock Text="All set!" />
+    </dev:MorphingWizardStep>
+</dev:MorphingWizard>

@@ -1,0 +1,4 @@
+var soundEngine = new AudioGraphEngine();
+SpectrumAnalyzerSample.RegisterSoundPlayer(soundEngine);
+await soundEngine.OpenFileAsync(@"D:\myfile.mp3");
+soundEngine.Play();

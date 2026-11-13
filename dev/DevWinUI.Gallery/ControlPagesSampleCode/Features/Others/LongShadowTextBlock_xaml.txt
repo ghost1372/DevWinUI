@@ -1,0 +1,7 @@
+<dev:LongShadowTextBlock Depth="100"
+                        TextOpacity="0.3"
+                        Color="GreenYellow">
+    <dev:LongShadowTextBlock.TextBlock>
+        <TextBlock FontSize="148" Text="00:10:45" />
+    </dev:LongShadowTextBlock.TextBlock>
+</dev:LongShadowTextBlock>

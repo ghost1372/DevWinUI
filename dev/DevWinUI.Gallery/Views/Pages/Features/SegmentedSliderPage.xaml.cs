@@ -2,7 +2,6 @@
 
 public sealed partial class SegmentedSliderPage : Page
 {
-    public ObservableCollection<HorizontalAlignment> TitleHorizontalAlignment { get; set; } = new ObservableCollection<HorizontalAlignment>(Enum.GetValues<HorizontalAlignment>());
     public ObservableCollection<SegmentedSliderTitleVisibility> SegmentedSliderTitleVisibility { get; set; } = new ObservableCollection<SegmentedSliderTitleVisibility>(Enum.GetValues<SegmentedSliderTitleVisibility>());
 
     public SegmentedSliderPage()

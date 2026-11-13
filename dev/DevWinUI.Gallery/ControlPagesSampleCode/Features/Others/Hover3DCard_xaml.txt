@@ -1,0 +1,5 @@
+<dev:Hover3DCard>
+    <Border>
+        <TextBlock Text="Hover me" />
+    </Border>
+</dev:Hover3DCard>

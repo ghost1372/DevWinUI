@@ -1,0 +1,5 @@
+<dev:SegmentedMeter>
+    <dev:MeterSegment Label="Apps" Value="30" />
+    <dev:MeterSegment Label="Media" Value="20" />
+    <dev:MeterSegment Label="System" Value="10" />
+</dev:SegmentedMeter>

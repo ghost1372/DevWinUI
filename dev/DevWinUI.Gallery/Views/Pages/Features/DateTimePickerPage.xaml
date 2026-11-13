@@ -9,45 +9,51 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/dateTimePicker" HeaderText="DateTimePicker with Analog Clock">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:DateTimePicker /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGShowAccentBorderOnHeader" Header="ShowAccentBorderOnHeader" IsOn="True" />
-                        <ToggleSwitch x:Name="ShowConfirmButton" Header="ShowConfirmButton" IsOn="True" />
-                        <TextBox x:Name="TxtConfirm" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
-                        <TextBox x:Name="TxtDateTimeFormat" Header="DateTimeFormat" PlaceholderText="e.g. yyyy-MM-dd HH:mm:ss" />
-                        <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
-                        <Button Click="ShowDateTimeForOne" Content="Show Selected DateTime" />
-                        <TextBlock x:Name="TxtDateTime1" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:DateTimePicker x:Name="DateTimePickerSample" HorizontalAlignment="Center" VerticalAlignment="Top" ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}" DateTimeFormat="{x:Bind TxtDateTimeFormat.Text, Mode=OneWay}" Description="Choose your Date and Time from CalendarView and Clock" Header="Select a Date and Time" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" ShowConfirmButton="{x:Bind ShowConfirmButton.IsOn, Mode=OneWay}" />
-            </local:ControlExample>
-            <local:ControlExample DocPage="controls/dateTimePicker" HeaderText="DateTimePicker with TimePicker">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:DateTimePicker ClockMode="TimePicker" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <RadioButtons x:Name="RBDisplayMode" Header="TimePicker DisplayMode" SelectedIndex="2">
-                            <RadioButton Checked="RadioButton_Checked" Content="Left" Tag="Left" Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked" Content="Top" Tag="Top" Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked" Content="Right" Tag="Right" Unchecked="RadioButton_Checked" />
-                            <RadioButton Checked="RadioButton_Checked" Content="Bottom" Tag="Bottom" Unchecked="RadioButton_Checked" />
-                        </RadioButtons>
-                        <ToggleSwitch x:Name="ShowConfirmButton2" Header="ShowConfirmButton" IsOn="True" />
-                        <TextBox x:Name="TxtConfirm2" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
-                        <NumberBox x:Name="MinuteIncrementNB2" Header="Minute Increment" Maximum="15" Value="1" />
-                        <Button Click="ShowDateTimeForTwo" Content="Show selected DateTime" />
-                        <TextBlock x:Name="TxtDateTime2" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:DateTimePicker x:Name="DateTimePickerSample2" HorizontalAlignment="Center" VerticalAlignment="Top" ClockMode="TimePicker" ConfirmButtonContent="{x:Bind TxtConfirm2.Text, Mode=OneWay}" Description="Choose your Date and Time from CalendarView and TimePicker" Header="Select a Date and Time" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB2.Value, Mode=OneWay}" ShowConfirmButton="{x:Bind ShowConfirmButton2.IsOn, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="DateTimePicker" Doc="controls/dateTimePicker">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="With Analog Clock">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TGShowAccentBorderOnHeader" Header="ShowAccentBorderOnHeader" IsOn="True" />
+                            <ToggleSwitch x:Name="ShowConfirmButton" Header="ShowConfirmButton" IsOn="True" />
+                            <TextBox x:Name="TxtConfirm" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
+                            <TextBox x:Name="TxtDateTimeFormat" Header="DateTimeFormat" PlaceholderText="e.g. yyyy-MM-dd HH:mm:ss" />
+                            <NumberBox x:Name="MinuteIncrementNB1" Header="Minute Increment" Maximum="15" Value="1" />
+                            <Button Click="ShowDateTimeForOne" Content="Show Selected DateTime" />
+                            <TextBlock x:Name="TxtDateTime1" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="With TimePicker">
+                        <local:OptionPanel>
+                            <RadioButtons x:Name="RBDisplayMode" Header="TimePicker DisplayMode" SelectedIndex="2">
+                                <RadioButton Checked="RadioButton_Checked" Content="Left" Tag="Left" Unchecked="RadioButton_Checked" />
+                                <RadioButton Checked="RadioButton_Checked" Content="Top" Tag="Top" Unchecked="RadioButton_Checked" />
+                                <RadioButton Checked="RadioButton_Checked" Content="Right" Tag="Right" Unchecked="RadioButton_Checked" />
+                                <RadioButton Checked="RadioButton_Checked" Content="Bottom" Tag="Bottom" Unchecked="RadioButton_Checked" />
+                            </RadioButtons>
+                            <ToggleSwitch x:Name="ShowConfirmButton2" Header="ShowConfirmButton" IsOn="True" />
+                            <TextBox x:Name="TxtConfirm2" Header="Confirm Button Content" PlaceholderText="Confirm" Text="Confirm" />
+                            <NumberBox x:Name="MinuteIncrementNB2" Header="Minute Increment" Maximum="15" Value="1" />
+                            <Button Click="ShowDateTimeForTwo" Content="Show selected DateTime" />
+                            <TextBlock x:Name="TxtDateTime2" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="DateTimePicker with Analog Clock">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:DateTimePicker /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:DateTimePicker x:Name="DateTimePickerSample" HorizontalAlignment="Center" VerticalAlignment="Top" ConfirmButtonContent="{x:Bind TxtConfirm.Text, Mode=OneWay}" DateTimeFormat="{x:Bind TxtDateTimeFormat.Text, Mode=OneWay}" Description="Choose your Date and Time from CalendarView and Clock" Header="Select a Date and Time" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB1.Value, Mode=OneWay}" ShowAccentBorderOnHeader="{x:Bind TGShowAccentBorderOnHeader.IsOn, Mode=OneWay}" ShowConfirmButton="{x:Bind ShowConfirmButton.IsOn, Mode=OneWay}" />
+                    </local:Sample>
+                    <local:Sample Title="DateTimePicker with TimePicker">
+                        <local:Sample.XamlCode>
+                            <x:String>&lt;dev:DateTimePicker ClockMode="TimePicker" /&gt;</x:String>
+                        </local:Sample.XamlCode>
+                        <dev:DateTimePicker x:Name="DateTimePickerSample2" HorizontalAlignment="Center" VerticalAlignment="Top" ClockMode="TimePicker" ConfirmButtonContent="{x:Bind TxtConfirm2.Text, Mode=OneWay}" Description="Choose your Date and Time from CalendarView and TimePicker" Header="Select a Date and Time" MinuteIncrement="{x:Bind (x:Int32)MinuteIncrementNB2.Value, Mode=OneWay}" ShowConfirmButton="{x:Bind ShowConfirmButton2.IsOn, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

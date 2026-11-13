@@ -9,7 +9,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="WindowedContentDialog" CSharp="Features/WindowedContentDialogPage_cs.txt" Doc="controls/windowedContentDialog" DocType="Controls">
+            <local:ControlExample2 Title="WindowedContentDialog" CSharp="Features/Others/WindowedContentDialogPage_cs.txt" Doc="controls/windowedContentDialog" DocType="Controls">
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Dialog">
                         <local:OptionPanel>

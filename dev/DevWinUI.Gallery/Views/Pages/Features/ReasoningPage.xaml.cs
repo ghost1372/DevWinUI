@@ -6,8 +6,6 @@ public sealed partial class ReasoningPage : Page
 {
     private CancellationTokenSource? _simulation;
 
-    public ObservableCollection<ReasoningKind> KindItems { get; set; } = new ObservableCollection<ReasoningKind>(Enum.GetValues<ReasoningKind>());
-
     public Uri SampleImage { get; } = new("ms-appx:///Assets/AppIcon.png");
 
     public IReadOnlyList<ReasoningSource> Sources { get; } = new[]

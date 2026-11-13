@@ -8,7 +8,7 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="RainbowFrame" CSharp="Features/RainbowFramePage_cs.txt" Doc="common/rainbowFrame" DocType="Core">
+            <local:ControlExample2 Title="RainbowFrame" CSharp="Features/Others/RainbowFramePage_cs.txt" Doc="common/rainbowFrame" DocType="Core">
                 <StackPanel Margin="10" Spacing="10">
                     <Button x:Name="btnFixed" Click="btnFixed_Click" Content="Change Window Frame Color to Red" />
                     <Button x:Name="btnRainbow" Click="btnRainbow_Click" Content="Start Rainbow" />

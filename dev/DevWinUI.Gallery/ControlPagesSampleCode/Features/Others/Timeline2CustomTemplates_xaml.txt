@@ -1,0 +1,24 @@
+<dev:Timeline2 Align="End" ItemsSource="{x:Bind Orders}">
+    <dev:Timeline2.MarkerTemplate>
+        <DataTemplate x:DataType="views:Timeline2OrderEvent">
+            <Grid Width="32"
+                  Height="32"
+                  Background="{ThemeResource AccentFillColorDefaultBrush}"
+                  CornerRadius="16">
+                <FontIcon FontSize="14"
+                          Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                          Glyph="{x:Bind Icon}" />
+            </Grid>
+        </DataTemplate>
+    </dev:Timeline2.MarkerTemplate>
+    <dev:Timeline2.OppositeTemplate>
+        <DataTemplate x:DataType="views:Timeline2OrderEvent">
+            <TextBlock Text="{x:Bind Date}" />
+        </DataTemplate>
+    </dev:Timeline2.OppositeTemplate>
+    <dev:Timeline2.ItemTemplate>
+        <DataTemplate x:DataType="views:Timeline2OrderEvent">
+            <TextBlock FontWeight="Medium" Text="{x:Bind Status}" />
+        </DataTemplate>
+    </dev:Timeline2.ItemTemplate>
+</dev:Timeline2>

@@ -9,30 +9,27 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/longShadowTextBlock">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:LongShadowTextBlock Depth="100" TextOpacity="0.3" Color="GreenYellow"&gt; #nl#
-                        &lt;dev:LongShadowTextBlock.TextBlock&gt; #nl#
-                        &lt;TextBlock FontSize="148" Text="00:10:45" /&gt; #nl#
-                        &lt;/dev:LongShadowTextBlock.TextBlock&gt; #nl#
-                        &lt;/dev:LongShadowTextBlock&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="00:10:45" />
-                        <Slider x:Name="slOpacity" Header="Opacity" Maximum="1.0" Minimum="0" TickFrequency="0.1" Value="0.3" />
-                        <Slider x:Name="slDepth" Header="Depth" Maximum="500" Minimum="0" TickFrequency="1" Value="100" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:LongShadowTextBlock Depth="{x:Bind (x:Int32)slDepth.Value, Mode=OneWay}" TextOpacity="{x:Bind slOpacity.Value, Mode=OneWay}" Color="GreenYellow">
-                    <dev:LongShadowTextBlock.TextBlock>
-                        <TextBlock FontSize="100" Text="{x:Bind txt.Text, Mode=OneWay}" />
-                    </dev:LongShadowTextBlock.TextBlock>
-                </dev:LongShadowTextBlock>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="LongShadowTextBlock" Doc="controls/longShadowTextBlock">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="LongShadowTextBlock">
+                        <local:OptionPanel>
+                            <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="00:10:45" />
+                            <Slider x:Name="slOpacity" Header="Opacity" Maximum="1.0" Minimum="0" TickFrequency="0.1" Value="0.3" />
+                            <Slider x:Name="slDepth" Header="Depth" Maximum="500" Minimum="0" TickFrequency="1" Value="100" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="LongShadowTextBlock" Xaml="Features/Others/LongShadowTextBlock_xaml.txt">
+                        <dev:LongShadowTextBlock Depth="{x:Bind (x:Int32)slDepth.Value, Mode=OneWay}" TextOpacity="{x:Bind slOpacity.Value, Mode=OneWay}" Color="GreenYellow">
+                            <dev:LongShadowTextBlock.TextBlock>
+                                <TextBlock FontSize="100" Text="{x:Bind txt.Text, Mode=OneWay}" />
+                            </dev:LongShadowTextBlock.TextBlock>
+                        </dev:LongShadowTextBlock>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

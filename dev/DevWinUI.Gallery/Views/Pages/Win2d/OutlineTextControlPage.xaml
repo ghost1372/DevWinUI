@@ -13,11 +13,7 @@
             <local:ControlExample2 Title="OutlineTextControl" Doc="controls/outlineTextControl">
                 <local:ControlExample2.XamlCode>
                     <x:String>
-                        &lt;dev:OutlineTextControl DashStyle="Solid"
-                        FontSize="100"
-                        OutlineColor="Purple"
-                        StrokeWidth="4"
-                        Text="DevWinUI" /&gt;
+                        &lt;dev:OutlineTextControl DashStyle="Solid" FontSize="100" OutlineColor="Purple" StrokeWidth="4" Text="DevWinUI" /&gt;
                     </x:String>
                 </local:ControlExample2.XamlCode>
                 <local:ControlExample2.OptionGroups>

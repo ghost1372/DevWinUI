@@ -1,0 +1,13 @@
+<Grid ColumnDefinitions="*,220" ColumnSpacing="24">
+    <ScrollViewer x:Name="ContentScroller">
+        <StackPanel>
+            <TextBlock dev:TableOfContents.HeadingId="intro" Text="Introduction" />
+            <TextBlock dev:TableOfContents.HeadingId="usage" Text="Usage" />
+        </StackPanel>
+    </ScrollViewer>
+    <dev:TableOfContents Grid.Column="1"
+                         Items="{x:Bind TocItems}"
+                         Kind="Curve"
+                         Root="{x:Bind ContentScroller}"
+                         ScrollOffset="24" />
+</Grid>

@@ -1,0 +1,4 @@
+<dev:ScrambledText Effect="Scramble" FontSize="28" Text="Scramble the letters" />
+<dev:ScrambledText Effect="Lift" FontSize="28" Text="Lift the letters" />
+<dev:ScrambledText Effect="Blur" FontSize="28" Text="Blur the letters" />
+<dev:ScrambledText Effect="Magnify" FontSize="28" Text="Magnify the letters" />

@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="DependencyObject Extensions" CSharp="Features/DependencyObjectExtensions_cs.txt" Doc="extensions/dependencyObjectExtension" DocType="Core">
+            <local:ControlExample2 Title="DependencyObject Extensions" CSharp="Features/Extension/DependencyObjectExtensions_cs.txt" Doc="extensions/dependencyObjectExtension" DocType="Core">
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Basic">
                         <local:OptionPanel>
@@ -36,7 +36,7 @@
                 </Grid>
             </local:ControlExample2>
 
-            <local:ControlExample2 Title="Enum values" CSharp="Features\EnumValues_cs.txt" Doc="markupExtensions/enumValueExtension" DocType="Core">
+            <local:ControlExample2 Title="Enum values" CSharp="Features\Extension\EnumValues_cs.txt" Doc="markupExtensions/enumValueExtension" DocType="Core">
                 <local:ControlExample2.XamlCode>
                     <x:String>
                         &lt;ComboBox ItemsSource="{dev:EnumValues Type=enum:Animal}"/&gt;

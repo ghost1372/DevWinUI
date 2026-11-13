@@ -10,26 +10,24 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/parallaxTilt" HeaderText="ParallaxTilt">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:ParallaxTilt &gt; #nl#
-                        &lt;Button Content="Button" /&gt; #nl#
-                        &lt;/dev:ParallaxTilt&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NBAngle" Header="MaxTiltAngle" SpinButtonPlacementMode="Inline" Value="15" />
-                        <NumberBox x:Name="NBDepth" Header="ParallaxDepth" SpinButtonPlacementMode="Inline" Value="10" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:ParallaxTilt Height="300" MaxTiltAngle="{x:Bind NBAngle.Value, Mode=OneWay}" ParallaxDepth="{x:Bind NBDepth.Value, Mode=OneWay}">
-                    <Image Source="ms-appx:///Assets/Profile/6.jpg" />
-                </dev:ParallaxTilt>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ParallaxTilt" Doc="controls/parallaxTilt">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="ParallaxTilt">
+                        <local:OptionPanel>
+                            <NumberBox x:Name="NBAngle" Header="MaxTiltAngle" SpinButtonPlacementMode="Inline" Value="15" />
+                            <NumberBox x:Name="NBDepth" Header="ParallaxDepth" SpinButtonPlacementMode="Inline" Value="10" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ParallaxTilt" Xaml="Features/Others/ParallaxTilt_xaml.txt">
+                        <dev:ParallaxTilt Height="300" MaxTiltAngle="{x:Bind NBAngle.Value, Mode=OneWay}" ParallaxDepth="{x:Bind NBDepth.Value, Mode=OneWay}">
+                            <Image Source="ms-appx:///Assets/Profile/6.jpg" />
+                        </dev:ParallaxTilt>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

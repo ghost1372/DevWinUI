@@ -18,8 +18,6 @@ public sealed partial class Timeline2Page : Page
     public ObservableCollection<Timeline2Color> ColorItems { get; set; } = new ObservableCollection<Timeline2Color>(Enum.GetValues<Timeline2Color>());
     public ObservableCollection<Timeline2Kind> KindItems { get; set; } = new ObservableCollection<Timeline2Kind>(Enum.GetValues<Timeline2Kind>());
     public ObservableCollection<Timeline2MarkerShape> MarkerShapeItems { get; set; } = new ObservableCollection<Timeline2MarkerShape>(Enum.GetValues<Timeline2MarkerShape>());
-    public ObservableCollection<Timeline2Align> AlignItems { get; set; } = new ObservableCollection<Timeline2Align>(Enum.GetValues<Timeline2Align>());
-    public ObservableCollection<Timeline2DatePlacement> DatePlacementItems { get; set; } = new ObservableCollection<Timeline2DatePlacement>(Enum.GetValues<Timeline2DatePlacement>());
 
     public List<Timeline2Entry> Entries { get; } = new()
     {

@@ -9,29 +9,34 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/bruteForce">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:BruteForce x:Name="BruteForceSample" Password="DevWinUI" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        BruteForceSample.UpdateCharacterState(index, BruteForceState.Success);
-                    </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtPassword" PlaceholderText="Password" Text="DevWinUI" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="10">
-                    <dev:BruteForce x:Name="BruteForceSample" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" />
-                    <dev:BruteForce x:Name="BruteForceSample2" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" RenderDelay="00:00:00.001" />
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="BruteForce" Doc="controls/bruteForce">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="BruteForce">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtPassword" Header="Password" PlaceholderText="Password" Text="DevWinUI" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="BruteForce">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:BruteForce x:Name="BruteForceSample" Password="DevWinUI" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <local:Sample.CSharpCode>
+                            <x:String>
+                                BruteForceSample.UpdateCharacterState(index, BruteForceState.Success);
+                            </x:String>
+                        </local:Sample.CSharpCode>
+                        <StackPanel Spacing="10">
+                            <dev:BruteForce x:Name="BruteForceSample" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" />
+                            <dev:BruteForce x:Name="BruteForceSample2" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" RenderDelay="00:00:00.001" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

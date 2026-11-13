@@ -9,30 +9,33 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="brushes/themeBrushes" HeaderText="Brushes" XamlSource="Features/BrushPage_xaml.txt">
-                <StackPanel Margin="10" Spacing="10">
-                    <Border Height="80" Background="{ThemeResource CardGradient3Brush}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient3Brush" />
-                    </Border>
-                    <Border Height="80" Background="{ThemeResource CardGradient2Brush}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient2Brush" />
-                    </Border>
-                    <Border Height="80" Background="{ThemeResource CardGradient1Brush}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient1Brush" />
-                    </Border>
-                    <Border Height="80" Background="{ThemeResource GlassAcrylicBackground}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GlassAcrylicBackground" />
-                    </Border>
-                    <Border Height="80" Background="{ThemeResource GlassAcrylicBorderBrush}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GlassAcrylicBorderBrush" />
-                    </Border>
-                    <Border Height="80" Background="{ThemeResource OverlayRadialGradient}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="OverlayRadialGradient" />
-                    </Border>
-                </StackPanel>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Brushes" Doc="brushes/themeBrushes">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Theme Brushes" Xaml="Features/Others/BrushPage_xaml.txt">
+                        <StackPanel Margin="10" Spacing="10">
+                            <Border Height="80" Background="{ThemeResource CardGradient3Brush}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient3Brush" />
+                            </Border>
+                            <Border Height="80" Background="{ThemeResource CardGradient2Brush}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient2Brush" />
+                            </Border>
+                            <Border Height="80" Background="{ThemeResource CardGradient1Brush}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient1Brush" />
+                            </Border>
+                            <Border Height="80" Background="{ThemeResource GlassAcrylicBackground}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GlassAcrylicBackground" />
+                            </Border>
+                            <Border Height="80" Background="{ThemeResource GlassAcrylicBorderBrush}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="GlassAcrylicBorderBrush" />
+                            </Border>
+                            <Border Height="80" Background="{ThemeResource OverlayRadialGradient}">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="OverlayRadialGradient" />
+                            </Border>
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

@@ -9,35 +9,43 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/scrollSplitCard" HeaderText="ScrollSplitCard">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:ScrollSplitCard Cards="{x:Bind Cards}" EndLabel="Thanks for scrolling" Hint="Scroll" Size="Medium" Tone="Card" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbSize" HorizontalAlignment="Stretch" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
-                        <ComboBox x:Name="CmbTone" HorizontalAlignment="Stretch" Header="Tone" ItemsSource="{x:Bind ToneItems, Mode=OneWay}" SelectedIndex="0" />
-                        <Slider x:Name="SliderCount" Header="Card Count" Maximum="5" Minimum="1" Value="3" />
-                        <TextBox x:Name="TxtImageAlt" Header="Image Alt" />
-                        <TextBox x:Name="TxtHint" Header="Hint" Text="Scroll" />
-                        <TextBox x:Name="TxtEndLabel" Header="End Label" Text="Thanks for scrolling" />
-                        <ToggleSwitch x:Name="TsAnimation" Header="Is Animation Enabled" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:ScrollSplitCard Cards="{x:Bind GetCards(SliderCount.Value), Mode=OneWay}" EndLabel="{x:Bind TxtEndLabel.Text, Mode=OneWay}" Hint="{x:Bind TxtHint.Text, Mode=OneWay}" Image="ms-appx:///Assets/BannerView/7.jpeg" ImageAlt="{x:Bind TxtImageAlt.Text, Mode=OneWay}" IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:ScrollSplitCardSize)CmbSize.SelectedItem), Mode=OneWay}" Tone="{x:Bind ((dev:ScrollSplitCardTone)CmbTone.SelectedItem), Mode=OneWay}" />
-            </local:ControlExample>
-
-            <local:ControlExample DocPage="controls/scrollSplitCard" HeaderText="Chart tone">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:ScrollSplitCard Cards="{x:Bind Cards}" Size="Small" Tone="Chart" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:ScrollSplitCard Cards="{x:Bind Cards}" Image="ms-appx:///Assets/BannerView/8.jpeg" Size="Small" Tone="Chart" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="ScrollSplitCard" Doc="controls/scrollSplitCard">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="ScrollSplitCard">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size">
+                                <local:ChoiceOption.Value>
+                                    <dev:ScrollSplitCardSize>Medium</dev:ScrollSplitCardSize>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbTone" Header="Tone">
+                                <local:ChoiceOption.Value>
+                                    <dev:ScrollSplitCardTone>Card</dev:ScrollSplitCardTone>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <Slider x:Name="SliderCount" Header="Card Count" Maximum="5" Minimum="1" Value="3" />
+                            <TextBox x:Name="TxtImageAlt" Header="Image Alt" />
+                            <TextBox x:Name="TxtHint" Header="Hint" Text="Scroll" />
+                            <TextBox x:Name="TxtEndLabel" Header="End Label" Text="Thanks for scrolling" />
+                            <ToggleSwitch x:Name="TsAnimation" Header="Is Animation Enabled" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="ScrollSplitCard" Xaml="Features/Others/ScrollSplitCard_xaml.txt">
+                        <dev:ScrollSplitCard Cards="{x:Bind GetCards(SliderCount.Value), Mode=OneWay}" EndLabel="{x:Bind TxtEndLabel.Text, Mode=OneWay}" Hint="{x:Bind TxtHint.Text, Mode=OneWay}" Image="ms-appx:///Assets/BannerView/7.jpeg" ImageAlt="{x:Bind TxtImageAlt.Text, Mode=OneWay}" IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:ScrollSplitCardSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:ScrollSplitCardTone)CmbTone.Value), Mode=OneWay}" />
+                    </local:Sample>
+                    <local:Sample Title="Chart tone">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:ScrollSplitCard Cards="{x:Bind Cards}" Size="Small" Tone="Chart" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:ScrollSplitCard Cards="{x:Bind Cards}" Image="ms-appx:///Assets/BannerView/8.jpeg" Size="Small" Tone="Chart" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

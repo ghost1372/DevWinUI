@@ -9,29 +9,33 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="Can't see the icons?" IsClosable="False" IsOpen="True" Message="If the layered icons don't show up, your project probably has IconNoGridOptimization enabled in EnabledXamlOptionalChanges. That option removes the internal Grid from FontIcon, so LayeredFontIcons has nowhere to place its icons and fails to show them. Remove IconNoGridOptimization from the list and the icons will work again." Severity="Warning" />
-            <local:ControlExample DocPage="controls/layeredFontIcons" HeaderText="LayeredFontIcons" XamlSource="Features/LayeredFontIconsPage_xaml.txt">
-                <dev:LayeredFontIcons>
-                    <dev:LayeredFontIcons.FontIcons>
-                        <FontIcon Margin="0,0,15,0" Glyph="&#xE973;" RenderTransformOrigin="0.5,0.5">
-                            <FontIcon.RenderTransform>
-                                <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
-                            </FontIcon.RenderTransform>
-                        </FontIcon>
-                        <FontIcon Margin="15,0,0,0" Glyph="&#xE974;" RenderTransformOrigin="0.5,0.5">
-                            <FontIcon.RenderTransform>
-                                <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
-                            </FontIcon.RenderTransform>
-                        </FontIcon>
-                        <FontIcon Glyph="&#xE949;" RenderTransformOrigin="0.5,0.5">
-                            <FontIcon.RenderTransform>
-                                <RotateTransform Angle="-70" />
-                            </FontIcon.RenderTransform>
-                        </FontIcon>
-                    </dev:LayeredFontIcons.FontIcons>
-                </dev:LayeredFontIcons>
-            </local:ControlExample>
+            <local:ControlExample2 Title="LayeredFontIcons" Doc="controls/layeredFontIcons">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="LayeredFontIcons" Xaml="Features/Others/LayeredFontIconsPage_xaml.txt">
+                        <dev:LayeredFontIcons>
+                            <dev:LayeredFontIcons.FontIcons>
+                                <FontIcon Margin="0,0,15,0" Glyph="&#xE973;" RenderTransformOrigin="0.5,0.5">
+                                    <FontIcon.RenderTransform>
+                                        <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                                    </FontIcon.RenderTransform>
+                                </FontIcon>
+                                <FontIcon Margin="15,0,0,0" Glyph="&#xE974;" RenderTransformOrigin="0.5,0.5">
+                                    <FontIcon.RenderTransform>
+                                        <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                                    </FontIcon.RenderTransform>
+                                </FontIcon>
+                                <FontIcon Glyph="&#xE949;" RenderTransformOrigin="0.5,0.5">
+                                    <FontIcon.RenderTransform>
+                                        <RotateTransform Angle="-70" />
+                                    </FontIcon.RenderTransform>
+                                </FontIcon>
+                            </dev:LayeredFontIcons.FontIcons>
+                        </dev:LayeredFontIcons>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

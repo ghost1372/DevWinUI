@@ -1,0 +1,7 @@
+<dev:SegmentedMeter Height="240"
+                    HorizontalAlignment="Left"
+                    LegendOrientation="Vertical"
+                    Orientation="Vertical">
+    <dev:MeterSegment Label="Apps" Value="30" />
+    <dev:MeterSegment Label="Media" Value="20" />
+</dev:SegmentedMeter>

@@ -10,32 +10,35 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/accordion" HeaderText="Accordion">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.LandscapeData}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:Accordion Height="500" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
-                    <dev:Accordion.ItemTemplate>
-                        <DataTemplate x:DataType="model:SampleItemModel">
-                            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
-                        </DataTemplate>
-                    </dev:Accordion.ItemTemplate>
-                    <dev:Accordion.HeaderTemplate>
-                        <DataTemplate x:DataType="model:SampleItemModel">
-                            <Grid>
-                                <Grid.Background>
-                                    <SolidColorBrush Opacity="0.25" Color="{ThemeResource CardBackgroundFillColorDefault}" />
-                                </Grid.Background>
-                                <TextBlock Margin="0,0,0,4" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Title}" />
-                            </Grid>
-                        </DataTemplate>
-                    </dev:Accordion.HeaderTemplate>
-                </dev:Accordion>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="Accordion" Doc="controls/accordion">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="Accordion">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.LandscapeData}" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:Accordion Height="500" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
+                            <dev:Accordion.ItemTemplate>
+                                <DataTemplate x:DataType="model:SampleItemModel">
+                                    <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
+                                </DataTemplate>
+                            </dev:Accordion.ItemTemplate>
+                            <dev:Accordion.HeaderTemplate>
+                                <DataTemplate x:DataType="model:SampleItemModel">
+                                    <Grid>
+                                        <Grid.Background>
+                                            <SolidColorBrush Opacity="0.25" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+                                        </Grid.Background>
+                                        <TextBlock Margin="0,0,0,4" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Title}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </dev:Accordion.HeaderTemplate>
+                        </dev:Accordion>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

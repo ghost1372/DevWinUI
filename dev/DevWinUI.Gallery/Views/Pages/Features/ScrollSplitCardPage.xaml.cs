@@ -11,9 +11,6 @@ public sealed partial class ScrollSplitCardPage : Page
         new("Learn from the data", "Understand usage and refine every detail.", "Measure"),
     };
 
-    public ObservableCollection<ScrollSplitCardSize> SizeItems { get; set; } = new ObservableCollection<ScrollSplitCardSize>(Enum.GetValues<ScrollSplitCardSize>());
-    public ObservableCollection<ScrollSplitCardTone> ToneItems { get; set; } = new ObservableCollection<ScrollSplitCardTone>(Enum.GetValues<ScrollSplitCardTone>());
-
     public IReadOnlyList<ScrollSplitCardItem> Cards { get; } = AllCards[..3];
 
     public ScrollSplitCardPage()

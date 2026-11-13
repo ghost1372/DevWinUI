@@ -11,16 +11,19 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/animatedImage" HeaderText="AnimatedImage">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:AnimatedImage ImageUrl="ms-appx:///Assets/Others/Girl.jpg" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <dev:AnimatedImage Height="400" ImageUrl="{x:Bind ViewModel.AnimatedImageImagePath, Mode=OneWay}" Visibility="Visible" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="AnimatedImage" Doc="controls/animatedImage">
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="AnimatedImage">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:AnimatedImage ImageUrl="ms-appx:///Assets/Others/Girl.jpg" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:AnimatedImage Height="400" ImageUrl="{x:Bind ViewModel.AnimatedImageImagePath, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

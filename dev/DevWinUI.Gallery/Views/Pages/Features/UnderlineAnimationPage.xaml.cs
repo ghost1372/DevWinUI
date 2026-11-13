@@ -2,8 +2,6 @@
 
 public sealed partial class UnderlineAnimationPage : Page
 {
-    public ObservableCollection<UnderlineKind> KindItems { get; set; } = new ObservableCollection<UnderlineKind>(Enum.GetValues<UnderlineKind>());
-
     public UnderlineAnimationPage()
     {
         InitializeComponent();

@@ -9,21 +9,26 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/wanderingParticles" HeaderText="WanderingParticles">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:WanderingParticles ParticleCount="2000" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="2000" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:WanderingParticles Height="400" ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="WanderingParticles" Doc="controls/wanderingParticles">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="WanderingParticles">
+                        <local:OptionPanel>
+                            <NumberBox x:Name="NbValue" Header="Particle Count" Minimum="0" SpinButtonPlacementMode="Inline" Value="2000" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="WanderingParticles">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:WanderingParticles ParticleCount="2000" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <dev:WanderingParticles Height="400" ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

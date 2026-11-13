@@ -9,35 +9,51 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/stepBar" XamlSource="Features/StepBar_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Button x:Name="BtnNext" MinWidth="120" Click="BtnNext_Click" Content="Next" />
-                            <Button x:Name="BtnPrev" MinWidth="120" Click="BtnPrev_Click" Content="Prev" />
-                        </StackPanel>
-                        <ComboBox x:Name="CmbStatus" Header="Status" ItemsSource="{x:Bind StepStatusItems, Mode=OneWay}" SelectedIndex="0" />
-                        <ComboBox x:Name="CmbOrientation" Header="Orientation" ItemsSource="{x:Bind OrientationItems, Mode=OneWay}" SelectedIndex="1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="Orientation">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbHeaderDisplayMode" Header="Header Display Mode" ItemsSource="{x:Bind StepBarHeaderDisplayModeItems, Mode=OneWay}" SelectedIndex="1" />
-                        <ComboBox x:Name="CmbDisplayMode" Header="Display Mode" ItemsSource="{x:Bind StepBarDisplayModeItems, Mode=OneWay}" SelectedIndex="0" />
-                        <ToggleSwitch x:Name="TGShowStepIndex" Header="Show StepIndex" IsOn="True" />
-                        <ToggleSwitch x:Name="TGAutoSelectOnItemClick" Header="Auto Select On Item Click" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:StepBar x:Name="StepBarSample" AutoSelectOnItemClick="{x:Bind TGAutoSelectOnItemClick.IsOn, Mode=OneWay}" DisplayMode="{x:Bind ((dev:StepBarDisplayMode)CmbDisplayMode.SelectedItem), Mode=OneWay}" HeaderDisplayMode="{x:Bind ((dev:StepBarHeaderDisplayMode)CmbHeaderDisplayMode.SelectedItem), Mode=OneWay}" Orientation="{x:Bind ((Orientation)CmbOrientation.SelectedItem), Mode=OneWay}" ShowStepIndex="{x:Bind TGShowStepIndex.IsOn, Mode=OneWay}" Status="{x:Bind ((dev:StepStatus)CmbStatus.SelectedItem), Mode=OneWay}">
-                    <dev:StepBarItem Content="Register" />
-                    <dev:StepBarItem Content="BasicInfo" />
-                    <dev:StepBarItem Content="UploadFile" />
-                    <dev:StepBarItem Content="Complete" />
-                </dev:StepBar>
-            </local:ControlExample>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample2 Title="StepBar" Doc="controls/stepBar">
+                <local:ControlExample2.OptionGroups>
+                    <local:OptionGroup Title="StepBar">
+                        <local:OptionPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="BtnNext" MinWidth="120" Click="BtnNext_Click" Content="Next" />
+                                <Button x:Name="BtnPrev" MinWidth="120" Click="BtnPrev_Click" Content="Prev" />
+                            </StackPanel>
+                            <local:ChoiceOption x:Name="CmbStatus" Header="Status">
+                                <local:ChoiceOption.Value>
+                                    <dev:StepStatus>Info</dev:StepStatus>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation">
+                                <local:ChoiceOption.Value>
+                                    <Orientation>Horizontal</Orientation>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbHeaderDisplayMode" Header="Header Display Mode">
+                                <local:ChoiceOption.Value>
+                                    <dev:StepBarHeaderDisplayMode>Bottom</dev:StepBarHeaderDisplayMode>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbDisplayMode" Header="Display Mode">
+                                <local:ChoiceOption.Value>
+                                    <dev:StepBarDisplayMode>Index</dev:StepBarDisplayMode>
+                                </local:ChoiceOption.Value>
+                            </local:ChoiceOption>
+                            <ToggleSwitch x:Name="TGShowStepIndex" Header="Show StepIndex" IsOn="True" />
+                            <ToggleSwitch x:Name="TGAutoSelectOnItemClick" Header="Auto Select On Item Click" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample2.OptionGroups>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="StepBar" Xaml="Features/Others/StepBar_xaml.txt">
+                        <dev:StepBar x:Name="StepBarSample" AutoSelectOnItemClick="{x:Bind TGAutoSelectOnItemClick.IsOn, Mode=OneWay}" DisplayMode="{x:Bind ((dev:StepBarDisplayMode)CmbDisplayMode.Value), Mode=OneWay}" HeaderDisplayMode="{x:Bind ((dev:StepBarHeaderDisplayMode)CmbHeaderDisplayMode.Value), Mode=OneWay}" Orientation="{x:Bind ((Orientation)CmbOrientation.Value), Mode=OneWay}" ShowStepIndex="{x:Bind TGShowStepIndex.IsOn, Mode=OneWay}" Status="{x:Bind ((dev:StepStatus)CmbStatus.Value), Mode=OneWay}">
+                            <dev:StepBarItem Content="Register" />
+                            <dev:StepBarItem Content="BasicInfo" />
+                            <dev:StepBarItem Content="UploadFile" />
+                            <dev:StepBarItem Content="Complete" />
+                        </dev:StepBar>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>
 </Page>

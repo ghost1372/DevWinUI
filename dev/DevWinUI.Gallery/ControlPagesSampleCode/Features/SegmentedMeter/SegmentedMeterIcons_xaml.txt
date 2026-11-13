@@ -1,0 +1,5 @@
+<dev:SegmentedMeter LegendPosition="Start">
+    <dev:MeterSegment Fill="#34D399" Icon="&#xE71D;" Label="Apps" Value="25" />
+    <dev:MeterSegment Fill="#FBBF24" Icon="&#xE715;" Label="Messages" Value="15" />
+    <dev:MeterSegment Fill="#60A5FA" Icon="&#xE8B2;" Label="Media" Value="20" />
+</dev:SegmentedMeter>
