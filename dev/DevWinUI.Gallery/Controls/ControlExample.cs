@@ -149,7 +149,7 @@ public sealed partial class ControlExample : Control
     private CanvasControl _backgroundCanvas;
     private CanvasControl _glowCanvas;
     private CanvasControl _headerCanvas;
-    private CornerRadius _previewCorner = new CornerRadius(8, 0, 0, 0);
+    private CornerRadius _previewCorner = new(8, 0, 0, 0);
     private bool _isLoaded;
     private bool _isNear;
     private bool _isResizing;
@@ -1423,7 +1423,7 @@ public sealed partial class ControlExample : Control
         }
     }
 
-    private static Color Scale(Color color, float factor)
+    private static new Color Scale(Color color, float factor)
     {
         return Color.FromArgb((byte)Math.Clamp(color.A * factor, 0, 255), color.R, color.G, color.B);
     }
