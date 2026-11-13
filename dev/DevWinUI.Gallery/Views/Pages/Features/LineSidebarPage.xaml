@@ -42,7 +42,7 @@
                             </x:String>
                         </local:Sample.XamlCode>
                         <StackPanel Spacing="16">
-                            <dev:LineSidebar x:Name="MySidebar" Padding="24" HorizontalAlignment="Left" Falloff="{x:Bind ((dev:LineSidebarFalloff)CmbFalloff.SelectedItem), Mode=OneWay}" ItemClick="OnItemClick" ItemGap="{x:Bind SliderItemGap.Value, Mode=OneWay}" Items="{x:Bind Items}" MarkerLength="{x:Bind SliderMarkerLength.Value, Mode=OneWay}" MaxShift="{x:Bind SliderMaxShift.Value, Mode=OneWay}" ProximityRadius="{x:Bind SliderRadius.Value, Mode=OneWay}" ScaleTick="{x:Bind TgScaleTick.IsOn, Mode=OneWay}" ShowIndex="{x:Bind TgShowIndex.IsOn, Mode=OneWay}" ShowMarker="{x:Bind TgShowMarker.IsOn, Mode=OneWay}" Smoothing="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
+                            <dev:LineSidebar x:Name="MySidebar" Padding="24" HorizontalAlignment="Left" Falloff="{x:Bind ((dev:LineSidebarFalloff)CmbFalloff.Value), Mode=OneWay}" ItemClick="OnItemClick" ItemGap="{x:Bind SliderItemGap.Value, Mode=OneWay}" Items="{x:Bind Items}" MarkerLength="{x:Bind SliderMarkerLength.Value, Mode=OneWay}" MaxShift="{x:Bind SliderMaxShift.Value, Mode=OneWay}" ProximityRadius="{x:Bind SliderRadius.Value, Mode=OneWay}" ScaleTick="{x:Bind TgScaleTick.IsOn, Mode=OneWay}" ShowIndex="{x:Bind TgShowIndex.IsOn, Mode=OneWay}" ShowMarker="{x:Bind TgShowMarker.IsOn, Mode=OneWay}" Smoothing="{x:Bind SliderSmoothing.Value, Mode=OneWay}" />
                             <TextBlock x:Name="TxtClicked" Opacity="0.7" Text="Clicked: none" />
                         </StackPanel>
                     </local:Sample>

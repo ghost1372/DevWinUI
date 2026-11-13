@@ -15,7 +15,7 @@
                     <local:OptionGroup Title="Issue Label">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtTitle" Header="Title" Text="Bug" />
-                            <ComboBox x:Name="CmbSeverity" Header="Severity" ItemsSource="{x:Bind SeverityItems, Mode=OneWay}" SelectedIndex="2" />
+                            <local:ChoiceOption x:Name="CmbSeverity" Header="Severity" Value="{x:Bind dev:IssueLabelSeverity.Error}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
@@ -25,8 +25,8 @@
                             <x:String>&lt;dev:IssueLabel Title="Bug" Severity="Error" /&gt;</x:String>
                         </local:Sample.XamlCode>
                         <StackPanel Spacing="10">
-                            <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.SelectedItem), Mode=OneWay}" />
-                            <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" HorizontalAlignment="Left" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.SelectedItem), Mode=OneWay}" />
+                            <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.Value), Mode=OneWay}" />
+                            <dev:IssueLabel Title="{x:Bind TxtTitle.Text, Mode=OneWay}" HorizontalAlignment="Left" Severity="{x:Bind ((dev:IssueLabelSeverity)CmbSeverity.Value), Mode=OneWay}" />
                         </StackPanel>
                     </local:Sample>
                     <local:Sample Title="Severity Variants">

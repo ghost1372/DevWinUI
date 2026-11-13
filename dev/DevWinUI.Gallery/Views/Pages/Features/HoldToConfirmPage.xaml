@@ -41,7 +41,7 @@
                             </x:String>
                         </local:Sample.XamlCode>
                         <StackPanel HorizontalAlignment="Center" Spacing="12">
-                            <dev:HoldToConfirm x:Name="Sample" Confirm="Sample_Confirm" ConfirmedLabel="{x:Bind TxtConfirmedLabel.Text, Mode=OneWay}" IconGlyph="{x:Bind GetGlyph(TglIcon.IsOn), Mode=OneWay}" IsAnimationEnabled="{x:Bind TglAnimation.IsOn, Mode=OneWay}" Kind="{x:Bind ((dev:HoldToConfirmKind)CmbKind.SelectedItem), Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Size="{x:Bind ((dev:HoldToConfirmSize)CmbSize.SelectedItem), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+                            <dev:HoldToConfirm x:Name="Sample" Confirm="Sample_Confirm" ConfirmedLabel="{x:Bind TxtConfirmedLabel.Text, Mode=OneWay}" IconGlyph="{x:Bind GetGlyph(TglIcon.IsOn), Mode=OneWay}" IsAnimationEnabled="{x:Bind TglAnimation.IsOn, Mode=OneWay}" Kind="{x:Bind ((dev:HoldToConfirmKind)CmbKind.Value), Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Size="{x:Bind ((dev:HoldToConfirmSize)CmbSize.Value), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
                             <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Press and hold the button" />
                         </StackPanel>
                     </local:Sample>

@@ -27,7 +27,7 @@
                                 &lt;dev:LoadingState Label="Working" Mode="Drive" ShowElapsed="True" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.SelectedItem), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
+                        <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.Value), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>

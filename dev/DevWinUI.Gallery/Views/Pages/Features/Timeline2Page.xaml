@@ -33,7 +33,7 @@
                                 &lt;dev:Timeline2 Width="384" ActiveIndex="2" ItemsSource="{x:Bind Entries}" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActiveIndex="{x:Bind (x:Int32)SliderActive.Value, Mode=OneWay}" Align="{x:Bind ((dev:Timeline2Align)CmbAlign.Value), Mode=OneWay}" DatePlacement="{x:Bind ((dev:Timeline2DatePlacement)CmbDatePlacement.Value), Mode=OneWay}" ItemsSource="{x:Bind Entries}" Kind="{x:Bind ((dev:Timeline2Kind)CmbKind.SelectedItem), Mode=OneWay}" MarkerShape="{x:Bind ((dev:Timeline2MarkerShape)CmbMarkerShape.SelectedItem), Mode=OneWay}" Reverse="{x:Bind TglReverse.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:Timeline2Size)CmbSize.SelectedItem), Mode=OneWay}" Color="{x:Bind ((dev:Timeline2Color)CmbColor.SelectedItem), Mode=OneWay}" />
+                        <dev:Timeline2 Width="384" HorizontalAlignment="Left" ActiveIndex="{x:Bind (x:Int32)SliderActive.Value, Mode=OneWay}" Align="{x:Bind ((dev:Timeline2Align)CmbAlign.Value), Mode=OneWay}" DatePlacement="{x:Bind ((dev:Timeline2DatePlacement)CmbDatePlacement.Value), Mode=OneWay}" ItemsSource="{x:Bind Entries}" Kind="{x:Bind ((dev:Timeline2Kind)CmbKind.Value), Mode=OneWay}" MarkerShape="{x:Bind ((dev:Timeline2MarkerShape)CmbMarkerShape.Value), Mode=OneWay}" Reverse="{x:Bind TglReverse.IsOn, Mode=OneWay}" Size="{x:Bind ((dev:Timeline2Size)CmbSize.Value), Mode=OneWay}" Color="{x:Bind ((dev:Timeline2Color)CmbColor.Value), Mode=OneWay}" />
                     </local:Sample>
                     <local:Sample Title="Horizontal">
                         <local:Sample.XamlCode>

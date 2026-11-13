@@ -19,7 +19,7 @@
                 </local:ControlExample.Options>
                 <Button MinWidth="200" HorizontalAlignment="Center" Content="Open Flyout">
                     <Button.Flyout>
-                        <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}" dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.SelectedItem), Mode=OneWay}">
+                        <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}" dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.Value), Mode=OneWay}">
                             <dev:MenuFlyoutAttach.SecondaryMenu>
                                 <dev:MenuFlyoutSecondaryItems>
                                     <AppBarButton Icon="Cut" Label="Cut" />

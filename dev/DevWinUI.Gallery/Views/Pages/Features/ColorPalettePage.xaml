@@ -39,7 +39,7 @@
                             </x:String>
                         </local:Sample.XamlCode>
                         <StackPanel Spacing="10">
-                            <dev:ColorPalette ColorChanged="ColorPalette_ColorChanged" ColorSet="{x:Bind ((dev:ColorSetType)CmbColorSet.SelectedItem), Mode=OneWay}" IsCopyColorCodeOnClickEnabled="{x:Bind TGIsCopyEnabled.IsOn, Mode=OneWay}" ItemHeight="{x:Bind NBHeight.Value, Mode=OneWay}" ItemShape="{x:Bind ((dev:ColorItemShape)CmbItemShape.SelectedItem), Mode=OneWay}" ItemWidth="{x:Bind NBWidth.Value, Mode=OneWay}" ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}" ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}" ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
+                            <dev:ColorPalette ColorChanged="ColorPalette_ColorChanged" ColorSet="{x:Bind ((dev:ColorSetType)CmbColorSet.Value), Mode=OneWay}" IsCopyColorCodeOnClickEnabled="{x:Bind TGIsCopyEnabled.IsOn, Mode=OneWay}" ItemHeight="{x:Bind NBHeight.Value, Mode=OneWay}" ItemShape="{x:Bind ((dev:ColorItemShape)CmbItemShape.Value), Mode=OneWay}" ItemWidth="{x:Bind NBWidth.Value, Mode=OneWay}" ShowColorName="{x:Bind TGShowColorName.IsOn, Mode=OneWay}" ShowHexCode="{x:Bind TGShowHexCode.IsOn, Mode=OneWay}" ShowToolTip="{x:Bind TGShowToolTip.IsOn, Mode=OneWay}">
                                 <dev:ColorPalette.Colors>
                                     <dev:ColorPaletteItem Color="Red" />
                                     <dev:ColorPaletteItem Color="Green" />

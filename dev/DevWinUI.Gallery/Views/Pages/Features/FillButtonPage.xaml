@@ -35,7 +35,7 @@
                             </x:String>
                         </local:Sample.XamlCode>
                         <StackPanel HorizontalAlignment="Center" Spacing="12">
-                            <dev:FillButton Click="Sample_Click" Content="{x:Bind TxtContent.Text, Mode=OneWay}" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.SelectedItem), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.SelectedItem), Mode=OneWay}" />
+                            <dev:FillButton Click="Sample_Click" Content="{x:Bind TxtContent.Text, Mode=OneWay}" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.Value), Mode=OneWay}" />
                             <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Hover or focus the button" />
                         </StackPanel>
                     </local:Sample>

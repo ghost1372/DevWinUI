@@ -29,7 +29,7 @@
                                 &lt;dev:ProgressStepper Align="Left" Current="1" CurrentChild="1" ShowStepLabel="True" Steps="{x:Bind Steps}" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:ProgressStepper x:Name="Stepper" MinWidth="320" HorizontalAlignment="Left" Align="{x:Bind ((dev:ProgressStepperStepperAlign)CmbAlign.SelectedItem), Mode=OneWay}" Current="1" CurrentChild="1" ShowStepLabel="{x:Bind TglShowStepLabel.IsOn, Mode=OneWay}" Steps="{x:Bind Steps}" />
+                        <dev:ProgressStepper x:Name="Stepper" MinWidth="320" HorizontalAlignment="Left" Align="{x:Bind ((dev:ProgressStepperStepperAlign)CmbAlign.Value), Mode=OneWay}" Current="1" CurrentChild="1" ShowStepLabel="{x:Bind TglShowStepLabel.IsOn, Mode=OneWay}" Steps="{x:Bind Steps}" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>

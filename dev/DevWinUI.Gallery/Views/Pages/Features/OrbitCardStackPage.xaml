@@ -40,7 +40,7 @@
                                 &lt;dev:OrbitCardStack Items="{x:Bind Team}" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:OrbitCardStack IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" ItemInvoked="OnItemInvoked" Items="{x:Bind Team}" Labels="{x:Bind GetLabels(TxtLinkLabel.Text), Mode=OneWay}" Layout="{x:Bind ((dev:OrbitCardLayout)CmbLayout.SelectedItem), Mode=OneWay}" Lift="{x:Bind SliderLift.Value, Mode=OneWay}" Size="{x:Bind ((dev:OrbitCardSize)CmbSize.SelectedItem), Mode=OneWay}" Spread="{x:Bind SliderSpread.Value, Mode=OneWay}" ValueChanged="OnValueChanged" />
+                        <dev:OrbitCardStack IsAnimationEnabled="{x:Bind TsAnimation.IsOn, Mode=OneWay}" ItemInvoked="OnItemInvoked" Items="{x:Bind Team}" Labels="{x:Bind GetLabels(TxtLinkLabel.Text), Mode=OneWay}" Layout="{x:Bind ((dev:OrbitCardLayout)CmbLayout.Value), Mode=OneWay}" Lift="{x:Bind SliderLift.Value, Mode=OneWay}" Size="{x:Bind ((dev:OrbitCardSize)CmbSize.Value), Mode=OneWay}" Spread="{x:Bind SliderSpread.Value, Mode=OneWay}" ValueChanged="OnValueChanged" />
                     </local:Sample>
 
                     <local:Sample Title="Grid layout, open by default">

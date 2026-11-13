@@ -15,7 +15,6 @@
                     <local:OptionGroup Title="FlipCards">
                         <local:OptionPanel>
                             <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="1" />
-                            <ComboBox x:Name="CmbSources" Header="Sources" ItemsSource="{x:Bind FlipCardsSourceItems, Mode=OneWay}" SelectedIndex="1" />
                             <local:ChoiceOption x:Name="CmbSources" Header="Sources" Value="{x:Bind dev:FlipCardsSourceType.Time}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
@@ -27,7 +26,7 @@
                                 &lt;dev:FlipCards /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:FlipCards Source="{x:Bind (dev:FlipCardsSourceType)CmbSources.SelectedItem, Mode=OneWay}" Value="{x:Bind NbValue.Value, Mode=OneWay}" />
+                        <dev:FlipCards Source="{x:Bind (dev:FlipCardsSourceType)CmbSources.Value, Mode=OneWay}" Value="{x:Bind NbValue.Value, Mode=OneWay}" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>

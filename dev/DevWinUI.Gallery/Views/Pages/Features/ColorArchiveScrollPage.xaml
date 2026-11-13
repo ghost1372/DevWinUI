@@ -46,7 +46,7 @@
                                 &lt;dev:ColorArchiveScroll Projects="{x:Bind Projects}" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:ColorArchiveScroll x:Name="Archive" Height="560" ActiveAnchor="{x:Bind SliderActiveAnchor.Value, Mode=OneWay}" ActiveChanged="OnActiveChanged" EnableSound="{x:Bind TsEnableSound.IsOn, Mode=OneWay}" InfiniteScroll="{x:Bind TsInfiniteScroll.IsOn, Mode=OneWay}" PreviewSize="{x:Bind ((dev:ColorArchivePreviewSize)CmbPreviewSize.SelectedItem), Mode=OneWay}" Projects="{x:Bind Projects}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" RowLeading="{x:Bind SliderRowLeading.Value, Mode=OneWay}" ScrollThreshold="{x:Bind SliderScrollThreshold.Value, Mode=OneWay}" ShowPreview="{x:Bind TsShowPreview.IsOn, Mode=OneWay}" ShowRuler="{x:Bind TsShowRuler.IsOn, Mode=OneWay}" />
+                        <dev:ColorArchiveScroll x:Name="Archive" Height="560" ActiveAnchor="{x:Bind SliderActiveAnchor.Value, Mode=OneWay}" ActiveChanged="OnActiveChanged" EnableSound="{x:Bind TsEnableSound.IsOn, Mode=OneWay}" InfiniteScroll="{x:Bind TsInfiniteScroll.IsOn, Mode=OneWay}" PreviewSize="{x:Bind ((dev:ColorArchivePreviewSize)CmbPreviewSize.Value), Mode=OneWay}" Projects="{x:Bind Projects}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" RowLeading="{x:Bind SliderRowLeading.Value, Mode=OneWay}" ScrollThreshold="{x:Bind SliderScrollThreshold.Value, Mode=OneWay}" ShowPreview="{x:Bind TsShowPreview.IsOn, Mode=OneWay}" ShowRuler="{x:Bind TsShowRuler.IsOn, Mode=OneWay}" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>
