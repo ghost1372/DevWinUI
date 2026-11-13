@@ -87,7 +87,6 @@ public sealed partial class SpeedGraph2 : Control
 
         InitGraph();
 
-        // added *after* first load
         this.Loaded -= OnLoaded;
         this.Loaded += OnLoaded;
         AttachHandlers();
@@ -142,7 +141,6 @@ public sealed partial class SpeedGraph2 : Control
 
     private void OnAppThemeModeChanged(object? sender, EventArgs e)
     {
-        // this seemingly doesn't fire? leaving it here in case it does in the future (if it's ever used outside of the flyout)
         ApplyGraphState();
     }
 
@@ -202,7 +200,6 @@ public sealed partial class SpeedGraph2 : Control
 
         container = compositor.CreateSpriteVisual();
         container.Size = rootVisual.Size;
-        // container is also the graph background
         container.Brush = backgroundBrush;
 
         graphVisual = compositor.CreateShapeVisual();
@@ -271,7 +268,7 @@ public sealed partial class SpeedGraph2 : Control
         if (points == null || points.Count == 0)
         {
             highestValue = 0;
-            graphGeometry.Path = null;
+            graphVisual.IsVisible = false;
 
             line.StopAnimation("Offset.Y");
             line.Offset = new(0f, height - 4f, 0);
@@ -280,6 +277,8 @@ public sealed partial class SpeedGraph2 : Control
             graphClip.RightInset = width;
             return;
         }
+
+        graphVisual.IsVisible = true;
 
         var last = points[points.Count - 1];
 
@@ -306,13 +305,11 @@ public sealed partial class SpeedGraph2 : Control
         for (int i = 0; i < count; i++)
         {
             var point = points[i];
-            // no smooth curve for now. a little ugly but maybe for the best performance-wise, we'll see before this gets merged
             pathBuilder.AddLine(width * point.X / 100f, YValue(point.Y));
         }
         var last = points[count - 1];
         float lastX = width * last.X / 100f + 2;
         float lastY = YValue(last.Y);
-        // little extra part so that steep lines don't get cut off
         pathBuilder.AddLine(lastX, lastY);
         pathBuilder.AddLine(lastX, height);
         pathBuilder.EndFigure(CanvasFigureLoop.Closed);
