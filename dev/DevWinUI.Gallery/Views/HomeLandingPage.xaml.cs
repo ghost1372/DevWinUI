@@ -22,7 +22,7 @@ public sealed partial class HomeLandingPage : Page
 
     public static Visibility ToVisibility(bool value) => value ? Visibility.Visible : Visibility.Collapsed;
 
-    public static string GetGlyph(object key) => key as string switch
+    public static string GetGlyph(object key) => (key as string) switch
     {
         "New" => "\uE734",
         "Updated" => "\uE777",
