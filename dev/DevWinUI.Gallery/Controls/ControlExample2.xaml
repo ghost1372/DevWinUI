@@ -66,7 +66,7 @@
                                             <Grid x:Name="PART_BackgroundHost" IsHitTestVisible="False" />
                                             <ScrollViewer x:Name="PART_PreviewScrollViewer" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
                                                 <Grid x:Name="PART_PreviewHost" MinHeight="260" Padding="24">
-                                                    <dev:SwitchPresenter x:Name="PART_SamplePresenter" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                                    <dev:SwitchPresenter x:Name="PART_SamplePresenter" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                                                 </Grid>
                                             </ScrollViewer>
                                             <dev:SelectorBarSegmented x:Name="PART_SampleSelector" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top" />
