@@ -139,7 +139,7 @@
 
                 <Rectangle>
                     <Rectangle.Fill>
-                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="UniformToFill" />
+                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="Uniform" />
                     </Rectangle.Fill>
                 </Rectangle>
 
@@ -147,7 +147,7 @@
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
                             <GradientStop Offset="0" Color="{ThemeResource SolidBackgroundFillColorBase}" />
-                            <GradientStop Offset="0.65" Color="#00000000" />
+                            <GradientStop Offset="0.55" Color="#00000000" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -171,7 +171,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Spacing="8">
+                    <StackPanel Grid.ColumnSpan="2" Spacing="8">
                         <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
                         <TextBlock x:Name="TitleText" FontSize="36" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" TextWrapping="Wrap" />
                     </StackPanel>
