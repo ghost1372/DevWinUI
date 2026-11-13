@@ -4,9 +4,6 @@ public sealed partial class OrbitCardStackPage : Page
 {
     private static readonly string[] Glyphs = { "\uE716", "\uE70F", "\uE774", "\uE8F1", "\uE9D9", "\uE713" };
 
-    public ObservableCollection<OrbitCardLayout> LayoutItems { get; set; } = new ObservableCollection<OrbitCardLayout>(Enum.GetValues<OrbitCardLayout>());
-    public ObservableCollection<OrbitCardSize> SizeItems { get; set; } = new ObservableCollection<OrbitCardSize>(Enum.GetValues<OrbitCardSize>());
-
     public IReadOnlyList<OrbitCardItem> Team { get; } = new[]
     {
         new OrbitCardItem("Ava Chen", "Design Lead", "Shapes the visual language and keeps every control consistent.", Stat: "24 projects", Href: new Uri("https://github.com/Ghost1372/DevWinUI")),

@@ -14,11 +14,6 @@ public sealed partial class Timeline2OrderEvent
 }
 public sealed partial class Timeline2Page : Page
 {
-    public ObservableCollection<Timeline2Size> SizeItems { get; set; } = new ObservableCollection<Timeline2Size>(Enum.GetValues<Timeline2Size>());
-    public ObservableCollection<Timeline2Color> ColorItems { get; set; } = new ObservableCollection<Timeline2Color>(Enum.GetValues<Timeline2Color>());
-    public ObservableCollection<Timeline2Kind> KindItems { get; set; } = new ObservableCollection<Timeline2Kind>(Enum.GetValues<Timeline2Kind>());
-    public ObservableCollection<Timeline2MarkerShape> MarkerShapeItems { get; set; } = new ObservableCollection<Timeline2MarkerShape>(Enum.GetValues<Timeline2MarkerShape>());
-
     public List<Timeline2Entry> Entries { get; } = new()
     {
         new() { Date = "Mar 15, 2025", Title = "Project Kickoff", Icon = "\uE7C1", Value = "kickoff", Description = "Kicked off the project with team alignment." },

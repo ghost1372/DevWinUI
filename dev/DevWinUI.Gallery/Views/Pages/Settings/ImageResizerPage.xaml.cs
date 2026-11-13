@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using DevWinUIGallery.Models;
+﻿using DevWinUIGallery.Models;
 
 namespace DevWinUIGallery.Views;
 

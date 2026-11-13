@@ -2,8 +2,6 @@
 
 public sealed partial class LoadingStatePage : Page
 {
-    public ObservableCollection<LoadingStateMode> Modes { get; set; } = new ObservableCollection<LoadingStateMode>(Enum.GetValues<LoadingStateMode>());
-
     public LoadingStatePage()
     {
         InitializeComponent();

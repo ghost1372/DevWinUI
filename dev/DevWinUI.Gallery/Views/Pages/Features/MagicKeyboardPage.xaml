@@ -14,66 +14,18 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Skin">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbSkin" Header="Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="4">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbLightSkin" Header="Light Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbDarkSkin" Header="Dark Skin" ItemsSource="{x:Bind SkinItems, Mode=OneWay}" SelectedIndex="2">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardSkin">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <local:ChoiceOption x:Name="CmbSkin" Header="Skin" Value="{x:Bind dev:MagicKeyboardSkin.System}" />
+                            <local:ChoiceOption x:Name="CmbLightSkin" Header="Light Skin" Value="{x:Bind dev:MagicKeyboardSkin.Silver}" />
+                            <local:ChoiceOption x:Name="CmbDarkSkin" Header="Dark Skin" Value="{x:Bind dev:MagicKeyboardSkin.Midnight}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Layout">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbLayout" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardLayout">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbFormFactor" Header="Form Factor" ItemsSource="{x:Bind FormFactorItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardFormFactor">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbPlatform" Header="Platform" ItemsSource="{x:Bind PlatformItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardPlatform">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbLetterCase" Header="Letter Case" ItemsSource="{x:Bind LetterCaseItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardKeyCase">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbModifierMode" Header="Modifier Mode" ItemsSource="{x:Bind ModifierModeItems, Mode=OneWay}" SelectedIndex="1">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:MagicKeyboardKeyModifierMode">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <local:ChoiceOption x:Name="CmbLayout" Header="Layout" Value="{x:Bind dev:MagicKeyboardLayout.Ansi}" />
+                            <local:ChoiceOption x:Name="CmbFormFactor" Header="Form Factor" Value="{x:Bind dev:MagicKeyboardFormFactor.Full}" />
+                            <local:ChoiceOption x:Name="CmbPlatform" Header="Platform" Value="{x:Bind dev:MagicKeyboardPlatform.Windows}" />
+                            <local:ChoiceOption x:Name="CmbLetterCase" Header="Letter Case" Value="{x:Bind dev:MagicKeyboardKeyCase.Lower}" />
+                            <local:ChoiceOption x:Name="CmbModifierMode" Header="Modifier Mode" Value="{x:Bind dev:MagicKeyboardKeyModifierMode.Sticky}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">

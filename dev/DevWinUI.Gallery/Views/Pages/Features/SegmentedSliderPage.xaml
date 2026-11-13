@@ -18,7 +18,7 @@
                             <NumberBox x:Name="NBSegCount" Header="Segment Count" PlaceholderText="Segment Count" SpinButtonPlacementMode="Inline" Value="5" />
                             <NumberBox x:Name="NBSpacing" Header="Spacing" PlaceholderText="Spacing" SpinButtonPlacementMode="Inline" Value="5" />
                             <local:ChoiceOption x:Name="CmbTitleHorizontalAlignment" Header="Title Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
-                            <ComboBox x:Name="CmbSegmentedSliderTitleVisibility" Header="Title Visibility" ItemsSource="{x:Bind SegmentedSliderTitleVisibility, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbSegmentedSliderTitleVisibility" Header="Title Visibility" Value="{x:Bind dev:SegmentedSliderTitleVisibility.AlwaysVisible}" />
                             <Slider x:Name="SldValue" Header="Value" Maximum="100" Minimum="0" />
                         </local:OptionPanel>
                     </local:OptionGroup>

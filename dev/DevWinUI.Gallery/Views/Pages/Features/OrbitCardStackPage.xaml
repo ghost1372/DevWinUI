@@ -14,8 +14,8 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Layout">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbLayout" HorizontalAlignment="Stretch" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0" />
-                            <ComboBox x:Name="CmbSize" HorizontalAlignment="Stretch" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbLayout" Header="Layout" Value="{x:Bind dev:OrbitCardLayout.Arc}" />
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:OrbitCardSize.Medium}" />
                             <Slider x:Name="SliderSpread" Header="Spread" Maximum="260" Minimum="40" Value="168" />
                             <Slider x:Name="SliderLift" Header="Lift" Maximum="80" Minimum="0" Value="34" />
                         </local:OptionPanel>

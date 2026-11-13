@@ -18,7 +18,7 @@
                             <TextBox x:Name="TxtContent2" Header="Content" PlaceholderText="Ctrl" Text="Ctrl" />
                             <TextBox x:Name="TxtContent3" Header="Content" PlaceholderText="F5" Text="F5" />
                             <ToggleSwitch x:Name="TGIsError" Header="IsError" IsOn="False" />
-                            <ComboBox x:Name="VisualTypePicker" Header="Pick a VisualType" ItemsSource="{x:Bind VisualTypeItems, Mode=OneWay}" SelectedIndex="0" SelectionChanged="OnSelectionChanged" />
+                            <local:ChoiceOption x:Name="VisualTypePicker" Header="Pick a VisualType" ValueChanged="VisualTypePicker_ValueChanged" Value="{x:Bind dev:VisualType.Small}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>

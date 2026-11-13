@@ -2,8 +2,6 @@
 
 public sealed partial class SegmentedSliderPage : Page
 {
-    public ObservableCollection<SegmentedSliderTitleVisibility> SegmentedSliderTitleVisibility { get; set; } = new ObservableCollection<SegmentedSliderTitleVisibility>(Enum.GetValues<SegmentedSliderTitleVisibility>());
-
     public SegmentedSliderPage()
     {
         InitializeComponent();

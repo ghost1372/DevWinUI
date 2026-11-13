@@ -14,7 +14,7 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <ComboBox x:Name="CmbFalloff" Header="Falloff" ItemsSource="{x:Bind Falloffs}" SelectedIndex="1" />
+                            <local:ChoiceOption x:Name="CmbFalloff" Header="Falloff" Value="{x:Bind dev:LineSidebarFalloff.Smooth}" />
                             <ToggleSwitch x:Name="TgShowMarker" Header="Show Marker" IsOn="True" />
                             <ToggleSwitch x:Name="TgShowIndex" Header="Show Index" IsOn="True" />
                             <ToggleSwitch x:Name="TgScaleTick" Header="Scale Tick" IsOn="True" />

@@ -16,34 +16,10 @@
                     <local:OptionGroup Title="Timeline2">
                         <local:OptionPanel>
                             <Slider x:Name="SliderActive" Header="Active Index" Maximum="3" Minimum="-1" StepFrequency="1" TickFrequency="1" TickPlacement="Outside" Value="2" />
-                            <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="4">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:Timeline2Size">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbColor" Header="Color" ItemsSource="{x:Bind ColorItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:Timeline2Color">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:Timeline2Kind">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Name="CmbMarkerShape" Header="Marker Shape" ItemsSource="{x:Bind MarkerShapeItems, Mode=OneWay}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="dev:Timeline2MarkerShape">
-                                        <TextBlock Text="{x:Bind}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:Timeline2Size.MD}" />
+                            <local:ChoiceOption x:Name="CmbColor" Header="Color" Value="{x:Bind dev:Timeline2Color.Primary}" />
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:Timeline2Kind.Solid}" />
+                            <local:ChoiceOption x:Name="CmbMarkerShape" Header="Marker Shape" Value="{x:Bind dev:Timeline2MarkerShape.Circle}" />
                             <local:ChoiceOption x:Name="CmbAlign" Header="Align" Value="{x:Bind dev:Timeline2Align.Alternate}" />
                             <local:ChoiceOption x:Name="CmbDatePlacement" Header="Date Placement" Value="{x:Bind dev:Timeline2DatePlacement.Opposite}" />
                             <ToggleSwitch x:Name="TglReverse" Header="Reverse" />
