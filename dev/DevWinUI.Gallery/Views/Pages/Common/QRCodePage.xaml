@@ -20,7 +20,7 @@
                         <local:ChoiceOption x:Name="CmbError" Header="Error Correction Level" />
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
-                <Image Source="{x:Bind GenerateImage(TxtInput.Text, CmbError.Value), Mode=OneWay}" />
+                <Image Width="250" Source="{x:Bind GenerateImage(TxtInput.Text, CmbError.Value), Mode=OneWay}" />
             </local:ControlExample2>
         </StackPanel>
     </ScrollViewer>

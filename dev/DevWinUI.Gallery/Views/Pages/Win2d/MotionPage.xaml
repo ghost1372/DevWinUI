@@ -13,13 +13,11 @@
             <local:ControlExample2 Title="MotionWall" CSharp="Win2d/MotionWall/MotionPage_cs.txt" Doc="controls/motionwall" Xaml="Win2d/MotionWall/MotionPage_xaml.txt">
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Presets">
-                        <local:OptionPanel>
-                            <dev:WrapPanel HorizontalSpacing="10" Orientation="Horizontal" VerticalSpacing="10">
-                                <Button Click="Preset_Click" Content="Default" Tag="default" />
-                                <Button Click="Preset_Click" Content="Marquee" Tag="marquee" />
-                                <Button Click="Preset_Click" Content="DriftWall" Tag="drift" />
-                                <Button Click="Preset_Click" Content="GridMotion" Tag="grid" />
-                            </dev:WrapPanel>
+                        <local:OptionPanel Spacing="10">
+                            <Button HorizontalAlignment="Stretch" Click="Preset_Click" Content="Default" Tag="default" />
+                            <Button HorizontalAlignment="Stretch" Click="Preset_Click" Content="Marquee" Tag="marquee" />
+                            <Button HorizontalAlignment="Stretch" Click="Preset_Click" Content="DriftWall" Tag="drift" />
+                            <Button HorizontalAlignment="Stretch" Click="Preset_Click" Content="GridMotion" Tag="grid" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Layout">

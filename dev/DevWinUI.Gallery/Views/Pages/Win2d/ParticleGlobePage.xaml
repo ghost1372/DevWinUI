@@ -15,16 +15,8 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme">
-                                <local:ChoiceOption.Value>
-                                    <dev:ParticleGlobeTheme>Cyan</dev:ParticleGlobeTheme>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbQuality" Header="Quality">
-                                <local:ChoiceOption.Value>
-                                    <dev:ParticleGlobeQuality>Auto</dev:ParticleGlobeQuality>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme" Value="{x:Bind dev:ParticleGlobeTheme.Cyan}" />
+                            <local:ChoiceOption x:Name="CmbQuality" Header="Quality" Value="{x:Bind dev:ParticleGlobeQuality.Auto}" />
                             <Slider x:Name="SliderParticleCount" Header="Particles" Maximum="50000" Minimum="5000" StepFrequency="5000" Value="26000" />
                             <Slider x:Name="SliderBorderParticleCount" Header="Border Particles" Maximum="40000" Minimum="1000" StepFrequency="1000" Value="12000" />
                         </local:OptionPanel>
@@ -40,11 +32,7 @@
                     <local:OptionGroup Title="Map and countries">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TglFlatMap" Header="Flat Map" />
-                            <local:ChoiceOption x:Name="CmbFlatMapMode" Header="Flat Map Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:ParticleGlobeFlatMapMode>Scroll</dev:ParticleGlobeFlatMapMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbFlatMapMode" Header="Flat Map Mode" Value="{x:Bind dev:ParticleGlobeFlatMapMode.Scroll}" />
                             <local:ChoiceOption x:Name="CmbCountry" Header="Select Country" ItemsSource="{x:Bind CountryItems}" ValueChanged="OnCountryValueChanged">
                                 <local:ChoiceOption.ItemTemplate>
                                     <DataTemplate x:DataType="views:ParticleGlobeCountryOption">

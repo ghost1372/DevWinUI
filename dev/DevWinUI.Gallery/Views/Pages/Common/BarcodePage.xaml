@@ -16,11 +16,7 @@
                 <local:ControlExample2.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="TxtInput" Header="Input" PlaceholderText="Input" Text="DevWinUI" />
-                        <local:ChoiceOption x:Name="CmbType" Header="Barcode Type">
-                            <local:ChoiceOption.Value>
-                                <views:BarcodeType>Code128</views:BarcodeType>
-                            </local:ChoiceOption.Value>
-                        </local:ChoiceOption>
+                        <local:ChoiceOption x:Name="CmbType" Header="Barcode Type" Value="{x:Bind views:BarcodeType.Code128}" />
                     </local:OptionPanel>
                 </local:ControlExample2.Options>
                 <Image Source="{x:Bind GenerateImage(TxtInput.Text, CmbType.Value), Mode=OneWay}" />

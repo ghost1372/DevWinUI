@@ -44,16 +44,8 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <local:ChoiceOption x:Name="CmbAlign" Header="Align" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:Timeline2Align>Alternate</dev:Timeline2Align>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbDatePlacement" Header="Date Placement" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:Timeline2DatePlacement>Opposite</dev:Timeline2DatePlacement>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbAlign" Header="Align" Value="{x:Bind dev:Timeline2Align.Alternate}" />
+                            <local:ChoiceOption x:Name="CmbDatePlacement" Header="Date Placement" Value="{x:Bind dev:Timeline2DatePlacement.Opposite}" />
                             <ToggleSwitch x:Name="TglReverse" Header="Reverse" />
                         </local:OptionPanel>
                     </local:OptionGroup>

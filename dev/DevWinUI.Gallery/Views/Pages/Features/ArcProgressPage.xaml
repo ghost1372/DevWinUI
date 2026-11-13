@@ -6,6 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:media="using:Microsoft.UI.Xaml.Media"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -15,16 +16,8 @@
                     <local:OptionGroup Title="ArcProgress">
                         <local:OptionPanel>
                             <Slider x:Name="SliderSample" Header="Percentage" Maximum="100" Minimum="0" Value="36" />
-                            <local:ChoiceOption x:Name="CmbFillAnim" Header="Fill Status">
-                                <local:ChoiceOption.Value>
-                                    <dev:ArcProgressFillAnimationState>Filling</dev:ArcProgressFillAnimationState>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbSweepDirection" Header="Sweep Direction">
-                                <local:ChoiceOption.Value>
-                                    <SweepDirection>Clockwise</SweepDirection>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbFillAnim" Header="Fill Status" Value="{x:Bind dev:ArcProgressFillAnimationState.Filling}" />
+                            <local:ChoiceOption x:Name="CmbSweepDirection" Header="Sweep Direction" Value="{x:Bind media:SweepDirection.Clockwise}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample2.OptionGroups>

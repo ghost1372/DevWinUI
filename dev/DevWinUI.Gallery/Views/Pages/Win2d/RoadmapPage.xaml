@@ -14,57 +14,25 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Modes and placement">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbMode" Header="Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapMode>Simple</dev:RoadmapMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbPlacement" Header="First item placement">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapPlacement>Above</dev:RoadmapPlacement>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:RoadmapMode.Simple}" />
+                            <local:ChoiceOption x:Name="CmbPlacement" Header="First item placement" Value="{x:Bind dev:RoadmapPlacement.Above}" />
                             <ToggleSwitch x:Name="TglAlternate" Header="Alternate placement" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Status and progress">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbStatus" Header="Status of 'Build'">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapItemStatus>Active</dev:RoadmapItemStatus>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbStatus" Header="Status of 'Build'" Value="{x:Bind dev:RoadmapItemStatus.Active}" />
                             <ToggleSwitch x:Name="TglAnimateActive" Header="Animate active item" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Neon and sci-fi effects">
                         <local:OptionPanel>
                             <Slider x:Name="SliderGlow" Header="Glow radius" Maximum="20" Minimum="0" Value="6" />
-                            <local:ChoiceOption x:Name="CmbScanlines" Header="Scanlines">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapToggle>Auto</dev:RoadmapToggle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbGrid" Header="Grid backdrop">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapToggle>Auto</dev:RoadmapToggle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbAxisFlow" Header="Axis flow">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapToggle>Auto</dev:RoadmapToggle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbScanBeam" Header="Scan beam">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapToggle>On</dev:RoadmapToggle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbFlicker" Header="Flicker">
-                                <local:ChoiceOption.Value>
-                                    <dev:RoadmapToggle>Auto</dev:RoadmapToggle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbScanlines" Header="Scanlines" Value="{x:Bind dev:RoadmapToggle.Auto}" />
+                            <local:ChoiceOption x:Name="CmbGrid" Header="Grid backdrop" Value="{x:Bind dev:RoadmapToggle.Auto}" />
+                            <local:ChoiceOption x:Name="CmbAxisFlow" Header="Axis flow" Value="{x:Bind dev:RoadmapToggle.Auto}" />
+                            <local:ChoiceOption x:Name="CmbScanBeam" Header="Scan beam" Value="{x:Bind dev:RoadmapToggle.On}" />
+                            <local:ChoiceOption x:Name="CmbFlicker" Header="Flicker" Value="{x:Bind dev:RoadmapToggle.Auto}" />
                             <Button Click="OnReplayBootClick" Content="Replay boot animation" />
                         </local:OptionPanel>
                     </local:OptionGroup>
@@ -104,6 +72,10 @@
                             </ScrollViewer>
                         </Border>
                     </local:Sample>
+                </local:ControlExample2.Samples>
+            </local:ControlExample2>
+            <local:ControlExample2 Title="Roadmap Lanes and Icons" Doc="controls/roadmap">
+                <local:ControlExample2.Samples>
                     <local:Sample Title="Proportional spacing with lanes" Xaml="Win2d/Roadmap/RoadmapProportional_xaml.txt">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                             <dev:Roadmap Distribution="Proportional" LaneHeaderWidth="130" Mode="Boxed">

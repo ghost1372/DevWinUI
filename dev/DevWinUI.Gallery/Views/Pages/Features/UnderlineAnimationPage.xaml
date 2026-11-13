@@ -21,11 +21,7 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="UnderlineAnimation">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:UnderlineKind>Wavy</dev:UnderlineKind>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:UnderlineKind.Wavy}" />
                             <TextBox x:Name="TxtText" Header="Text" Text="Animated underline for any text" />
                             <TextBox x:Name="TxtUnderlineText" Header="Underline Text" PlaceholderText="Empty underlines the whole text" Text="any text" />
                             <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />

@@ -14,11 +14,7 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="TextHighlight">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:TextHighlightTrigger>Hover</dev:TextHighlightTrigger>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextHighlightTrigger.Hover}" />
                             <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
                                 <x:String>Auto (use Trigger)</x:String>
                                 <x:String>Drawn</x:String>

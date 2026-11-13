@@ -6,6 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xaml="using:Microsoft.UI.Xaml"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -14,21 +15,9 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Spoiler">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbHeaderVerticalAlignment" Header="Header Vertical Alignment">
-                                <local:ChoiceOption.Value>
-                                    <VerticalAlignment>Center</VerticalAlignment>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbHeaderHorizontalAlignment" Header="Header Horizontal Alignment">
-                                <local:ChoiceOption.Value>
-                                    <HorizontalAlignment>Left</HorizontalAlignment>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbRevealMode" Header="Reveal Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:SpoilerRevealMode>Once</dev:SpoilerRevealMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbHeaderVerticalAlignment" Header="Header Vertical Alignment" Value="{x:Bind xaml:VerticalAlignment.Center}" />
+                            <local:ChoiceOption x:Name="CmbHeaderHorizontalAlignment" Header="Header Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
+                            <local:ChoiceOption x:Name="CmbRevealMode" Header="Reveal Mode" Value="{x:Bind dev:SpoilerRevealMode.Once}" />
                             <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="Click to Show Content" />
                             <ToggleSwitch x:Name="TgIsActiveShimmer" Header="Is Active Shimmer" IsOn="True" />
                             <ToggleSwitch x:Name="TgIsRevealed" Header="Is Revealed" />

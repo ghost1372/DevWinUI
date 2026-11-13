@@ -2,6 +2,7 @@
 <Page x:Class="DevWinUIGallery.Views.StepBarPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="using:Microsoft.UI.Xaml.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
@@ -18,26 +19,10 @@
                                 <Button x:Name="BtnNext" MinWidth="120" Click="BtnNext_Click" Content="Next" />
                                 <Button x:Name="BtnPrev" MinWidth="120" Click="BtnPrev_Click" Content="Prev" />
                             </StackPanel>
-                            <local:ChoiceOption x:Name="CmbStatus" Header="Status">
-                                <local:ChoiceOption.Value>
-                                    <dev:StepStatus>Info</dev:StepStatus>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation">
-                                <local:ChoiceOption.Value>
-                                    <Orientation>Horizontal</Orientation>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbHeaderDisplayMode" Header="Header Display Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:StepBarHeaderDisplayMode>Bottom</dev:StepBarHeaderDisplayMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbDisplayMode" Header="Display Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:StepBarDisplayMode>Index</dev:StepBarDisplayMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbStatus" Header="Status" Value="{x:Bind dev:StepStatus.Info}" />
+                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
+                            <local:ChoiceOption x:Name="CmbHeaderDisplayMode" Header="Header Display Mode" Value="{x:Bind dev:StepBarHeaderDisplayMode.Bottom}" />
+                            <local:ChoiceOption x:Name="CmbDisplayMode" Header="Display Mode" Value="{x:Bind dev:StepBarDisplayMode.Index}" />
                             <ToggleSwitch x:Name="TGShowStepIndex" Header="Show StepIndex" IsOn="True" />
                             <ToggleSwitch x:Name="TGAutoSelectOnItemClick" Header="Auto Select On Item Click" IsOn="True" />
                         </local:OptionPanel>

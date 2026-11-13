@@ -2,6 +2,7 @@
 <Page x:Class="DevWinUIGallery.Views.SegmentedMeterPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="using:Microsoft.UI.Xaml.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
@@ -18,26 +19,10 @@
                             <Slider x:Name="SliderMedia" Header="Media" Maximum="60" Minimum="0" Value="20" />
                             <Slider x:Name="SliderSystem" Header="System" Maximum="60" Minimum="0" Value="10" />
                             <Slider x:Name="SliderGap" Header="Gap" Maximum="12" Minimum="0" Value="2" />
-                            <local:ChoiceOption x:Name="CmbBarSize" Header="Bar Size" SelectedIndex="1">
-                                <local:ChoiceOption.Value>
-                                    <dev:MeterBarSize>Large</dev:MeterBarSize>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation">
-                                <local:ChoiceOption.Value>
-                                    <Orientation>Horizontal</Orientation>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbLegendPosition" Header="Legend Position" SelectedIndex="1">
-                                <local:ChoiceOption.Value>
-                                    <dev:MeterLegendPosition>Start</dev:MeterLegendPosition>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbLegendOrientation" Header="Legend Orientation">
-                                <local:ChoiceOption.Value>
-                                    <Orientation>Vertical</Orientation>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbBarSize" Header="Bar Size" SelectedIndex="1" Value="{x:Bind dev:MeterBarSize.Large}" />
+                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
+                            <local:ChoiceOption x:Name="CmbLegendPosition" Header="Legend Position" SelectedIndex="1" Value="{x:Bind dev:MeterLegendPosition.Start}" />
+                            <local:ChoiceOption x:Name="CmbLegendOrientation" Header="Legend Orientation" Value="{x:Bind controls:Orientation.Vertical}" />
                             <ToggleSwitch x:Name="TglShowLegend" Header="Show Legend" IsOn="True" />
                             <ToggleSwitch x:Name="TglShowValue" Header="Show Value" IsOn="True" />
                         </local:OptionPanel>

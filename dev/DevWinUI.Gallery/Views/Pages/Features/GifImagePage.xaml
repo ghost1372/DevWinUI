@@ -29,7 +29,7 @@
                                 &lt;dev:GifImage x:Name="control" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:GifImage x:Name="GifImageSample" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" />
+                        <dev:GifImage x:Name="GifImageSample" Width="350" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" />
                     </local:Sample>
                 </local:ControlExample2.Samples>
             </local:ControlExample2>

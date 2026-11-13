@@ -16,7 +16,7 @@
         <TabViewItem Header="General" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Padding="24" Spacing="16">
-                    <local:ControlExample2 Title="SelectorBar" Doc="styles/#SelectorBar">
+                    <local:ControlExample2 Title="Selection and Input" Doc="styles">
                         <local:ControlExample2.Samples>
                             <local:Sample Title="SelectorBar" Xaml="Features/Styles/Styles_SelectorBar_xaml.txt">
                                 <StackPanel Spacing="10">
@@ -32,10 +32,6 @@
                                     </SelectorBar>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="RadioButton" Doc="styles/#PillRadioButton">
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="RadioButton" Xaml="Features/Styles/Styles_RadioButton_xaml.txt">
                                 <StackPanel Spacing="10">
                                     <RadioButtons HorizontalAlignment="Left" MaxColumns="3">
@@ -50,10 +46,6 @@
                                     </RadioButtons>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="ComboBox" Doc="styles/#ComboBox">
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="ComboBox">
                                 <local:Sample.XamlCode>
                                     <x:String>
@@ -68,7 +60,14 @@
                             </local:Sample>
                         </local:ControlExample2.Samples>
                     </local:ControlExample2>
-                    <local:ControlExample2 Title="Buttons" Doc="styles/#Buttons">
+                    <local:ControlExample2 Title="Buttons, Text and Badges" Doc="styles">
+                        <local:ControlExample2.OptionGroups>
+                            <local:OptionGroup Title="StringInfoBadgeStyle">
+                                <local:OptionPanel>
+                                    <TextBox x:Name="TxtInfoBadge" Header="Tag" PlaceholderText="BETA, NEW,..." Text="BETA" />
+                                </local:OptionPanel>
+                            </local:OptionGroup>
+                        </local:ControlExample2.OptionGroups>
                         <local:ControlExample2.Samples>
                             <local:Sample Title="Buttons" Xaml="Features/Styles/Styles_Button_xaml.txt">
                                 <StackPanel Spacing="10">
@@ -93,10 +92,6 @@
                                     </StackPanel>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="Text and InfoBar" Doc="styles">
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="Text and InfoBar" Xaml="Features/Styles/Styles_xaml.txt">
                                 <StackPanel Spacing="10">
                                     <TextBlock Style="{StaticResource OobeSubtitleStyle}" Text="OobeSubtitleStyle" />
@@ -108,17 +103,6 @@
                                     </InfoBar>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="StringInfoBadgeStyle" Doc="styles/#InfoBadge">
-                        <local:ControlExample2.OptionGroups>
-                            <local:OptionGroup Title="StringInfoBadgeStyle">
-                                <local:OptionPanel>
-                                    <TextBox x:Name="TxtInfoBadge" Header="Tag" PlaceholderText="BETA, NEW,..." Text="BETA" />
-                                </local:OptionPanel>
-                            </local:OptionGroup>
-                        </local:ControlExample2.OptionGroups>
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="StringInfoBadgeStyle">
                                 <local:Sample.XamlCode>
                                     <x:String>
@@ -135,7 +119,7 @@
         <TabViewItem Header="Panels" IsClosable="False">
             <ScrollViewer>
                 <StackPanel Padding="24" Spacing="16">
-                    <local:ControlExample2 Title="Border" Doc="styles/#Border">
+                    <local:ControlExample2 Title="Panels" Doc="styles">
                         <local:ControlExample2.Samples>
                             <local:Sample Title="Border" Xaml="Features/Styles/Styles_Border_xaml.txt">
                                 <StackPanel Spacing="10">
@@ -159,10 +143,6 @@
                                     </Border>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="Grid" Doc="styles/#Grid">
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="Grid" Xaml="Features/Styles/Styles_Grid_xaml.txt">
                                 <StackPanel Spacing="10">
                                     <Grid Height="80" Style="{ThemeResource GridPanel}">
@@ -182,10 +162,6 @@
                                     </Grid>
                                 </StackPanel>
                             </local:Sample>
-                        </local:ControlExample2.Samples>
-                    </local:ControlExample2>
-                    <local:ControlExample2 Title="StackPanel" Doc="styles/#StackPanel">
-                        <local:ControlExample2.Samples>
                             <local:Sample Title="StackPanel" Xaml="Features/Styles/Styles_StackPanel_xaml.txt">
                                 <StackPanel Spacing="10">
                                     <StackPanel Height="80" Style="{ThemeResource StackPanelStyle}">

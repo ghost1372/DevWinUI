@@ -15,11 +15,7 @@
                     <local:OptionGroup Title="Status">
                         <local:OptionPanel>
                             <Button Click="OnSimulateClick" Content="Simulate task" />
-                            <local:ChoiceOption x:Name="CmbStatus" Header="Status">
-                                <local:ChoiceOption.Value>
-                                    <dev:StatusMarkStatus>Running</dev:StatusMarkStatus>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbStatus" Header="Status" Value="{x:Bind dev:StatusMarkStatus.Running}" />
                             <ToggleSwitch x:Name="TgDeterminate" Header="Determinate Progress" />
                             <Slider x:Name="SliderProgress" Header="Progress" IsEnabled="{x:Bind TgDeterminate.IsOn, Mode=OneWay}" Maximum="100" Minimum="0" Value="40" />
                         </local:OptionPanel>

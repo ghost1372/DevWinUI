@@ -14,7 +14,7 @@
                 <local:ControlExample2.Samples>
                     <local:Sample Title="Magnifier" Xaml="Features/Others/MagnifierPage_xaml.txt">
                         <Grid>
-                            <Image dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}" Source="ms-appx:///Assets/Others/Girl.jpg" />
+                            <Image Width="350" dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}" Source="ms-appx:///Assets/Others/Girl.jpg" />
 
                             <dev:Magnifier x:Name="MyMagnifier" />
                         </Grid>

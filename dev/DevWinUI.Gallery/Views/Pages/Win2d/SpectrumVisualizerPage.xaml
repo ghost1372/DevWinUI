@@ -22,16 +22,8 @@
                     </local:OptionGroup>
                     <local:OptionGroup Title="Spectrum">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbSpectrumType" Header="Spectrum Type">
-                                <local:ChoiceOption.Value>
-                                    <dev:SpectrumType>Plain</dev:SpectrumType>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbColorType" Header="Color Type">
-                                <local:ChoiceOption.Value>
-                                    <dev:SpectrumColorType>GradientLoop</dev:SpectrumColorType>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbSpectrumType" Header="Spectrum Type" Value="{x:Bind dev:SpectrumType.Round}" />
+                            <local:ChoiceOption x:Name="CmbColorType" Header="Color Type" Value="{x:Bind dev:SpectrumColorType.GradientLoop}" />
                             <Slider x:Name="SldRotationSpeed" Header="Rotation Speed" Value="10" />
                             <Slider x:Name="SldSensitivity" Header="Sensitivity" Value="20" />
                         </local:OptionPanel>

@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BlurEffectManager" CSharp="Composition/BlurEffectManager/BlurEffectManagerPage_cs.txt" Doc="common/blurEffectManager" DocType="Core">
+            <local:ControlExample2 Title="BlurEffectManager" Doc="common/blurEffectManager" DocType="Core">
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Blur">
                         <local:OptionPanel>
@@ -34,13 +34,17 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample2.OptionGroups>
-                <Image x:Name="BackdropImage" MaxHeight="500" VerticalAlignment="Top" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
-            </local:ControlExample2>
-            <local:ControlExample2 Title="Blur animation" CSharp="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt" Doc="common/blurEffectManager" DocType="Core">
-                <StackPanel Spacing="10">
-                    <InfoBar Title="Hover over the image to start blur animation; move away to reverse it." IsClosable="False" IsOpen="True" Severity="Informational" />
-                    <Image x:Name="BackdropImage2" MaxHeight="500" VerticalAlignment="Top" PointerEntered="BackdropImage_PointerEntered" PointerExited="BackdropImage_PointerExited" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
-                </StackPanel>
+                <local:ControlExample2.Samples>
+                    <local:Sample Title="BlurEffectManager" CSharp="Composition/BlurEffectManager/BlurEffectManagerPage_cs.txt">
+                        <Image x:Name="BackdropImage" MaxHeight="500" VerticalAlignment="Top" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
+                    </local:Sample>
+                    <local:Sample Title="Blur animation" CSharp="Composition/BlurEffectManager/BlurEffectManagerPage2_cs.txt">
+                        <StackPanel Spacing="10">
+                            <InfoBar Title="Hover over the image to start blur animation; move away to reverse it." IsClosable="False" IsOpen="True" Severity="Informational" />
+                            <Image x:Name="BackdropImage2" MaxHeight="500" VerticalAlignment="Top" PointerEntered="BackdropImage_PointerEntered" PointerExited="BackdropImage_PointerExited" Source="ms-appx:///Assets/Others/Girl.jpg" Stretch="Uniform" />
+                        </StackPanel>
+                    </local:Sample>
+                </local:ControlExample2.Samples>
             </local:ControlExample2>
 
         </StackPanel>

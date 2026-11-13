@@ -17,11 +17,7 @@
                             <Slider x:Name="SliderDuration" Header="Duration (seconds)" Maximum="12" Minimum="0.5" StepFrequency="0.5" Value="4" />
                             <Slider x:Name="SliderStars" Header="Stars" Maximum="6" Minimum="1" StepFrequency="1" Value="1" />
                             <Slider x:Name="SliderTrailLength" Header="Trail Length" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.3" />
-                            <local:ChoiceOption x:Name="CmbDirection" Header="Direction">
-                                <local:ChoiceOption.Value>
-                                    <dev:StarDirection>Clockwise</dev:StarDirection>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbDirection" Header="Direction" Value="{x:Bind dev:StarDirection.Clockwise}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Shape">
@@ -33,16 +29,8 @@
                     </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbHoverMode" Header="Hover Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:StarHoverMode>None</dev:StarHoverMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme">
-                                <local:ChoiceOption.Value>
-                                    <dev:StarBorderTheme>Dark</dev:StarBorderTheme>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbHoverMode" Header="Hover Mode" Value="{x:Bind dev:StarHoverMode.None}" />
+                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme" Value="{x:Bind dev:StarBorderTheme.Dark}" />
                             <ToggleSwitch x:Name="TgSparkle" Header="Sparkle" />
                             <ToggleSwitch x:Name="TgClickPulse" Header="Click Pulse" IsOn="True" />
                         </local:OptionPanel>

@@ -14,16 +14,8 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="TextScribble">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbType" Header="Type" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:TextScribbleType>Scribble</dev:TextScribbleType>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:TextScribbleTrigger>Hover</dev:TextScribbleTrigger>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbType" Header="Type" Value="{x:Bind dev:TextScribbleType.Scribble}" />
+                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextScribbleTrigger.Hover}" />
                             <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
                                 <x:String>Auto (use Trigger)</x:String>
                                 <x:String>Drawn</x:String>

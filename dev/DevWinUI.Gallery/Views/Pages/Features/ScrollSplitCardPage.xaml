@@ -14,16 +14,8 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="ScrollSplitCard">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbSize" Header="Size">
-                                <local:ChoiceOption.Value>
-                                    <dev:ScrollSplitCardSize>Medium</dev:ScrollSplitCardSize>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbTone" Header="Tone">
-                                <local:ChoiceOption.Value>
-                                    <dev:ScrollSplitCardTone>Card</dev:ScrollSplitCardTone>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:ScrollSplitCardSize.Medium}" />
+                            <local:ChoiceOption x:Name="CmbTone" Header="Tone" Value="{x:Bind dev:ScrollSplitCardTone.Card}" />
                             <Slider x:Name="SliderCount" Header="Card Count" Maximum="5" Minimum="1" Value="3" />
                             <TextBox x:Name="TxtImageAlt" Header="Image Alt" />
                             <TextBox x:Name="TxtHint" Header="Hint" Text="Scroll" />

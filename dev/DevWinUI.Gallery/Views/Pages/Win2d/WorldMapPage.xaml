@@ -14,25 +14,13 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Selection">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbSelectionMode" Header="Selection Mode">
-                                <local:ChoiceOption.Value>
-                                    <dev:WorldMapSelectionMode>Multiple</dev:WorldMapSelectionMode>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
-                            <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color">
-                                <local:ChoiceOption.Value>
-                                    <dev:WorldMapHighlightColor>Cyan</dev:WorldMapHighlightColor>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbSelectionMode" Header="Selection Mode" Value="{x:Bind dev:WorldMapSelectionMode.Multiple}" />
+                            <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color" Value="{x:Bind dev:WorldMapHighlightColor.Cyan}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Borders">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbBorderStyle" Header="Border Style">
-                                <local:ChoiceOption.Value>
-                                    <dev:WorldMapBorderStyle>Dashed</dev:WorldMapBorderStyle>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbBorderStyle" Header="Border Style" Value="{x:Bind dev:WorldMapBorderStyle.Dashed}" />
                             <Slider x:Name="SliderStrokeThickness" Header="Border Thickness" Maximum="2" Minimum="0.25" StepFrequency="0.25" Value="0.75" />
                         </local:OptionPanel>
                     </local:OptionGroup>

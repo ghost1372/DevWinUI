@@ -14,11 +14,7 @@
                 <local:ControlExample2.OptionGroups>
                     <local:OptionGroup Title="Reasoning">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbKind" Header="Kind">
-                                <local:ChoiceOption.Value>
-                                    <dev:ReasoningKind>Outline</dev:ReasoningKind>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:ReasoningKind.Outline}" />
                             <ToggleSwitch Header="Thinking" IsOn="{x:Bind ReasoningMain.Thinking, Mode=TwoWay}" />
                             <TextBox x:Name="TxtThinkingLabel" Header="Thinking Label" Text="Thinking" />
                             <TextBox x:Name="TxtDurationLabel" Header="Completed Duration Label" Text="Thought for {0}" />

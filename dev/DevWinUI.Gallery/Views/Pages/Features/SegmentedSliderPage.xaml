@@ -6,6 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xaml="using:Microsoft.UI.Xaml"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -16,11 +17,7 @@
                         <local:OptionPanel>
                             <NumberBox x:Name="NBSegCount" Header="Segment Count" PlaceholderText="Segment Count" SpinButtonPlacementMode="Inline" Value="5" />
                             <NumberBox x:Name="NBSpacing" Header="Spacing" PlaceholderText="Spacing" SpinButtonPlacementMode="Inline" Value="5" />
-                            <local:ChoiceOption x:Name="CmbTitleHorizontalAlignment" Header="Title Horizontal Alignment">
-                                <local:ChoiceOption.Value>
-                                    <HorizontalAlignment>Left</HorizontalAlignment>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbTitleHorizontalAlignment" Header="Title Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
                             <ComboBox x:Name="CmbSegmentedSliderTitleVisibility" Header="Title Visibility" ItemsSource="{x:Bind SegmentedSliderTitleVisibility, Mode=OneWay}" SelectedIndex="1" />
                             <Slider x:Name="SldValue" Header="Value" Maximum="100" Minimum="0" />
                         </local:OptionPanel>
@@ -28,11 +25,7 @@
                     <local:OptionGroup Title="Time Segment">
                         <local:OptionPanel>
                             <NumberBox x:Name="NBSpacing2" Header="Spacing" PlaceholderText="Spacing" SpinButtonPlacementMode="Inline" Value="5" />
-                            <local:ChoiceOption x:Name="CmbTitleHorizontalAlignment2" Header="Title Horizontal Alignment">
-                                <local:ChoiceOption.Value>
-                                    <HorizontalAlignment>Left</HorizontalAlignment>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbTitleHorizontalAlignment2" Header="Title Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
                             <ComboBox x:Name="CmbSegmentedSliderTitleVisibility2" Header="Title Visibility" ItemsSource="{x:Bind SegmentedSliderTitleVisibility, Mode=OneWay}" SelectedIndex="1" />
                             <Slider x:Name="SldValue2" Header="Value" Maximum="100" Minimum="0" />
                         </local:OptionPanel>

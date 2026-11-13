@@ -53,10 +53,10 @@
                                 &lt;dev:BorderBeam BorderWidth="2" ColorFrom="#FF38BDF8" ColorTo="#FFA855F7" CornerRadius="28" Size="120" Duration="4" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <Grid Width="420" Height="56" HorizontalAlignment="Center">
+                        <Grid Width="420" Height="56" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="28">
+                            <dev:BorderBeam BorderWidth="2" ColorFrom="#FF38BDF8" ColorTo="#FFA855F7" CornerRadius="28" Size="120" Duration="4" />
                             <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="28" />
                             <TextBox Margin="24,0" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" PlaceholderText="Ask anything..." />
-                            <dev:BorderBeam BorderWidth="2" ColorFrom="#FF38BDF8" ColorTo="#FFA855F7" CornerRadius="28" Size="120" Duration="4" />
                         </Grid>
                     </local:Sample>
                 </local:ControlExample2.Samples>

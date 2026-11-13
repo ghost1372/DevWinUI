@@ -22,11 +22,7 @@
                     <local:OptionGroup Title="TableOfContents">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtLabel" Header="Label" Text="On this page" />
-                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" SelectedIndex="0">
-                                <local:ChoiceOption.Value>
-                                    <dev:TableOfContentsKind>Curve</dev:TableOfContentsKind>
-                                </local:ChoiceOption.Value>
-                            </local:ChoiceOption>
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:TableOfContentsKind.Curve}" />
                             <Slider x:Name="SliderOffset" Header="Scroll Offset" Maximum="120" Minimum="0" Value="24" />
                             <Slider x:Name="SliderFontSize" Header="Link Font Size" Maximum="20" Minimum="10" Value="13" />
                             <ToggleSwitch x:Name="TglIndicator" Header="Indicator" IsOn="True" />

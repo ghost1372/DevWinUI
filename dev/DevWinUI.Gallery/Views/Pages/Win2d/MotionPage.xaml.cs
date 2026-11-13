@@ -158,12 +158,15 @@ public sealed partial class MotionPage : Page
 
     private void LanesSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
+        if (Wall == null)
+            return;
+
         Wall.Lanes = (int)e.NewValue;
     }
 
     private void ItemsPerLaneBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
     {
-        if (double.IsNaN(args.NewValue))
+        if (double.IsNaN(args.NewValue) || Wall == null)
         {
             return;
         }
