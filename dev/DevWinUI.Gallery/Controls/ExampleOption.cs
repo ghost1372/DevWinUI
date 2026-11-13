@@ -74,6 +74,20 @@ public sealed partial class OptionPanel : StackPanel
         Spacing = 16;
         HorizontalAlignment = HorizontalAlignment.Stretch;
     }
+
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        foreach (var child in Children)
+        {
+            if (child is FrameworkElement element &&
+                element.ReadLocalValue(FrameworkElement.HorizontalAlignmentProperty) == DependencyProperty.UnsetValue)
+            {
+                element.HorizontalAlignment = HorizontalAlignment.Stretch;
+            }
+        }
+
+        return base.MeasureOverride(availableSize);
+    }
 }
 
 public sealed partial class BrushItem : DependencyObject
@@ -706,6 +720,7 @@ public sealed partial class ChoiceOption : ExampleOption
 
     protected override void CaptureDefault()
     {
+        Sync();
         ApplyIndex();
         _default = Value;
         _tracking = true;
