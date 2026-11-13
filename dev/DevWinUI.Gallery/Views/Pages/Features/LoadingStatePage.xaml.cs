@@ -9,7 +9,7 @@ public sealed partial class LoadingStatePage : Page
         InitializeComponent();
     }
 
-    private void Restart_Click(object sender, RoutedEventArgs e)
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
     {
         MyLoadingState.Restart();
     }

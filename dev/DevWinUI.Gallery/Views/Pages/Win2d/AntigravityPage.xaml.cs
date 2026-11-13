@@ -7,5 +7,8 @@ public sealed partial class AntigravityPage : Page
         InitializeComponent();
     }
 
-    private void Replay_Click(object sender, RoutedEventArgs e) => AntigravitySample.Replay();
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
+    {
+        AntigravitySample.Replay();
+    }
 }

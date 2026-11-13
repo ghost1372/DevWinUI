@@ -7,7 +7,10 @@ public sealed partial class TypeFlowPage : Page
         InitializeComponent();
     }
 
-    private void OnRestart(object sender, RoutedEventArgs e) => Flow.Restart();
-
     private void OnSkip(object sender, RoutedEventArgs e) => Flow.Skip();
+
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
+    {
+        Flow.Restart();
+    }
 }

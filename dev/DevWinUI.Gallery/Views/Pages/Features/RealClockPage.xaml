@@ -11,18 +11,12 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="RealClock" Doc="controls/realClock">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Local Time">
-                        <local:OptionPanel>
-                            <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Time Zone">
-                        <local:OptionPanel>
-                            <TextBox x:Name="TxtTimeZoneId" Header="TimeZoneId" Text="Tokyo Standard Time" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtTimeFormat1" Header="TimeFormat" Text="HH:mm" />
+                        <TextBox x:Name="TxtTimeZoneId" Header="TimeZoneId" Text="Tokyo Standard Time" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="Real Clock (Local Time)">
                         <local:Sample.XamlCode>

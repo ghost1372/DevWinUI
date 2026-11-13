@@ -137,7 +137,7 @@ public sealed partial class ControlExample
     }
 
     public static readonly DependencyProperty IsResetInHeaderProperty =
-        DependencyProperty.Register(nameof(IsResetInHeader), typeof(bool), typeof(ControlExample), new PropertyMetadata(false, OnChromeChanged));
+        DependencyProperty.Register(nameof(IsResetInHeader), typeof(bool), typeof(ControlExample), new PropertyMetadata(true, OnChromeChanged));
 
     public bool IsCodeExpanded
     {

@@ -47,7 +47,7 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <dev:LiveGraph x:Name="LiveGraphSample" Height="250" VerticalAlignment="Top" CreateResources="LiveGraphSample_CreateResources" CrossSpacing="{x:Bind NBCrossSpacing.Value, Mode=OneWay}" DotSpacing="{x:Bind NBDotSpacing.Value, Mode=OneWay}" Draw="LiveGraphSample_Draw" HighlightLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalScrollDistance="{x:Bind NBHorizontalScrollDistance.Value, Mode=OneWay}">
+                <dev:LiveGraph x:Name="LiveGraphSample" CreateResources="LiveGraphSample_CreateResources" CrossSpacing="{x:Bind NBCrossSpacing.Value, Mode=OneWay}" DotSpacing="{x:Bind NBDotSpacing.Value, Mode=OneWay}" Draw="LiveGraphSample_Draw" HighlightLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalScrollDistance="{x:Bind NBHorizontalScrollDistance.Value, Mode=OneWay}">
                     <dev:LiveGraph.HighlightLineContent>
                         <Grid>
                             <Line Opacity="0.4" Stroke="{ThemeResource SystemControlForegroundBaseHighBrush}" X1="0" X2="10000" />

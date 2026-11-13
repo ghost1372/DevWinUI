@@ -9,7 +9,7 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Doc="landingPages/mainLandingPage" DocType="Controls" Xaml="LandingsPage/HomeLandingsPage_xaml.txt">
-                <dev:MainLandingPage HeaderImage="{ThemeResource HeaderCover}" HeaderImageHeight="400" HeaderSubtitleText="Windows App SDK 1.8+" HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}" JsonNavigationService="{x:Bind local:App.Current.NavService}">
+                <dev:MainLandingPage MaxHeight="600" HeaderImage="{ThemeResource HeaderCover}" HeaderImageHeight="400" HeaderSubtitleText="Windows App SDK 1.8+" HeaderText="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersion}" JsonNavigationService="{x:Bind local:App.Current.NavService}">
                     <dev:MainLandingPage.HeaderContent>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <dev:HeaderTile Title="Documentation Center" Description="Learn how to work with controls and styles." Link="https://Ghost1372.github.io/DevWinUI">

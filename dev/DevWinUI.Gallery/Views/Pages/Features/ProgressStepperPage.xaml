@@ -11,23 +11,17 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="ProgressStepper" Doc="controls/progressStepper">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Appearance">
-                        <local:OptionPanel>
-                            <ComboBox x:Name="CmbAlign" Header="Align" ItemsSource="{x:Bind AlignItems, Mode=OneWay}" SelectedIndex="1" />
-                            <ToggleSwitch x:Name="TglShowStepLabel" Header="Show Step Label" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Navigation">
-                        <local:OptionPanel>
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Click="OnBack" Content="Back" />
-                                <Button Click="OnNext" Content="Next" Style="{StaticResource AccentButtonStyle}" />
-                                <Button Click="OnReset" Content="Reset" />
-                            </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ComboBox x:Name="CmbAlign" Header="Align" ItemsSource="{x:Bind AlignItems, Mode=OneWay}" SelectedIndex="1" />
+                        <ToggleSwitch x:Name="TglShowStepLabel" Header="Show Step Label" IsOn="True" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Click="OnBack" Content="Back" />
+                            <Button Click="OnNext" Content="Next" Style="{StaticResource AccentButtonStyle}" />
+                            <Button Click="OnReset" Content="Reset" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="ProgressStepper">
                         <local:Sample.XamlCode>

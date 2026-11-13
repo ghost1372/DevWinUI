@@ -14,18 +14,15 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Actions">
                         <local:OptionPanel>
+                            <TextBox Header="PlaceholderText" Text="{x:Bind Search.PlaceholderText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Header="NoResultsText" Text="{x:Bind Search.NoResultsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Header="NoResultsDescription" Text="{x:Bind Search.NoResultsDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ToggleSwitch Header="ShowPreviousSearch" IsOn="{x:Bind Search.ShowPreviousSearch, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <Button Click="Show_Click" Content="Show" />
                                 <Button Click="Hide_Click" Content="Hide" />
                                 <Button Click="ResetItems_Click" Content="Reset items" />
                             </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Text">
-                        <local:OptionPanel>
-                            <TextBox Header="PlaceholderText" Text="{x:Bind Search.PlaceholderText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <TextBox Header="NoResultsText" Text="{x:Bind Search.NoResultsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <TextBox Header="NoResultsDescription" Text="{x:Bind Search.NoResultsDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Flyout">
@@ -40,11 +37,6 @@
                                 <ComboBoxItem Content="Right" />
                             </ComboBox>
                             <ToggleSwitch Header="ConstrainToAppBounds" IsOn="{x:Bind Search.ConstrainToAppBounds, Mode=TwoWay}" OffContent="Off" OnContent="On" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                    <local:OptionGroup Title="Behavior">
-                        <local:OptionPanel>
-                            <ToggleSwitch Header="ShowPreviousSearch" IsOn="{x:Bind Search.ShowPreviousSearch, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>

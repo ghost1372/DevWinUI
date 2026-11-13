@@ -10,14 +10,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="Antigravity" Doc="controls/antigravity">
+            <local:ControlExample Title="Antigravity" Doc="controls/antigravity" ResetRequested="ControlExample_ResetRequested">
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Antigravity Height="480" ColorMode="Conic" ParticleCount="1500" ParticleShape="Capsule" MagnetRadius="170" RingRadius="120" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Playback">
                         <local:OptionPanel>
-                            <Button HorizontalAlignment="Stretch" Click="Replay_Click" Content="Replay" />
                             <ToggleSwitch x:Name="TglAutoAnimate" Header="Auto Animate" IsOn="True" />
                             <ToggleSwitch x:Name="TglIntro" Header="Intro" IsOn="True" />
                             <ToggleSwitch x:Name="TglPaused" Header="Is Paused" IsOn="False" />

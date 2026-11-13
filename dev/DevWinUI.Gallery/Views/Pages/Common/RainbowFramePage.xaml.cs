@@ -16,11 +16,6 @@ public sealed partial class RainbowFramePage : Page
         rainbowFrameHelper.ChangeFrameColor(Colors.Red);
     }
 
-    private void btnReset_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-    {
-        rainbowFrameHelper?.ResetFrameColorToDefault();
-    }
-
     private void btnRainbow_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         rainbowFrameHelper?.StopRainbowFrame();
@@ -30,5 +25,10 @@ public sealed partial class RainbowFramePage : Page
     private void nbEffectSpeed_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
     {
         rainbowFrameHelper?.UpdateEffectSpeed((int)args.NewValue);
+    }
+
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
+    {
+        rainbowFrameHelper?.ResetFrameColorToDefault();
     }
 }

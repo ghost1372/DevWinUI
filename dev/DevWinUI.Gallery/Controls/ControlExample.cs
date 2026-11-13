@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using CommunityToolkit.WinUI.Animations;
+using Microsoft.UI.Dispatching;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Geometry;
@@ -13,6 +14,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Windows.Foundation;
 using Windows.System;
 using Windows.UI;
+using DispatcherQueueTimer = Microsoft.UI.Dispatching.DispatcherQueueTimer;
 
 namespace DevWinUIGallery;
 
@@ -88,6 +90,9 @@ public sealed partial class ControlExample : Control
 
     private const double CompactWidth = 660;
     private const float GlowInset = 12f;
+    private const double PrefetchDistance = 1500;
+    private const double MaxCanvasPixels = 16000;
+    private static readonly TimeSpan ResizeSettleDelay = TimeSpan.FromMilliseconds(120);
     private const double SegmentChrome = 8;
     private const double SegmentPadding = 32;
     private const double OverflowButtonWidth = 34;
@@ -146,6 +151,9 @@ public sealed partial class ControlExample : Control
     private CanvasControl _headerCanvas;
     private CornerRadius _previewCorner = new CornerRadius(8, 0, 0, 0);
     private bool _isLoaded;
+    private bool _isNear;
+    private bool _isResizing;
+    private DispatcherQueueTimer _resizeTimer;
     private bool _isTemplateApplied;
     private bool _isCompact;
     private int _selectedSampleIndex;
@@ -171,6 +179,10 @@ public sealed partial class ControlExample : Control
     private bool IsReady => _isLoaded && _isTemplateApplied;
 
     private bool HasOptions => Options != null || OptionGroups?.Count > 0;
+
+    private double SafePaneWidth => double.IsFinite(PaneWidth) && PaneWidth > 0 ? PaneWidth : 300;
+
+    private double SafePaneMaxHeight => double.IsNaN(PaneMaxHeight) || PaneMaxHeight <= 0 ? 480 : PaneMaxHeight;
 
     private Sample CurrentSample => _selectedSampleIndex >= 0 && _selectedSampleIndex < _samples.Count ? _samples[_selectedSampleIndex] : null;
 
@@ -199,6 +211,7 @@ public sealed partial class ControlExample : Control
         Loaded += ControlExample_Loaded;
         Unloaded += ControlExample_Unloaded;
         SizeChanged += ControlExample_SizeChanged;
+        EffectiveViewportChanged += ControlExample_EffectiveViewportChanged;
         ActualThemeChanged += (_, _) => InvalidateCanvases();
     }
 
@@ -352,14 +365,14 @@ public sealed partial class ControlExample : Control
     private void ControlExample_Unloaded(object sender, RoutedEventArgs e)
     {
         _isLoaded = false;
-        DestroyCanvases();
+        _isResizing = false;
+        _resizeTimer?.Stop();
+        UpdateCanvasState();
     }
 
     private void Initialize()
     {
-        _backgroundCanvas ??= CreateCanvas(_backgroundHost, BackgroundCanvas_Draw);
-        _headerCanvas ??= CreateCanvas(_headerTintHost, HeaderCanvas_Draw);
-        _glowCanvas ??= CreateCanvas(_glowHost, GlowCanvas_Draw);
+        UpdateCanvasState();
 
         UpdateDocButton();
         RebuildOptions();
@@ -402,8 +415,70 @@ public sealed partial class ControlExample : Control
         _glowCanvas?.Invalidate();
     }
 
+    private void ControlExample_EffectiveViewportChanged(FrameworkElement sender, EffectiveViewportChangedEventArgs args)
+    {
+        var near = Math.Abs(args.BringIntoViewDistanceY) < PrefetchDistance;
+        if (near == _isNear)
+        {
+            return;
+        }
+
+        _isNear = near;
+        UpdateCanvasState();
+    }
+
+    private void UpdateCanvasState()
+    {
+        var scale = XamlRoot?.RasterizationScale ?? 1;
+        var fits = (ActualWidth + GlowInset * 2) * scale <= MaxCanvasPixels && (ActualHeight + GlowInset * 2) * scale <= MaxCanvasPixels;
+
+        if (IsReady && _isNear && !_isResizing && fits)
+        {
+            _backgroundCanvas ??= CreateCanvas(_backgroundHost, BackgroundCanvas_Draw);
+            _headerCanvas ??= CreateCanvas(_headerTintHost, HeaderCanvas_Draw);
+            _glowCanvas ??= CreateCanvas(_glowHost, GlowCanvas_Draw);
+        }
+        else
+        {
+            DestroyCanvases();
+        }
+    }
+
+    private void BeginResize()
+    {
+        if (_resizeTimer == null)
+        {
+            _resizeTimer = DispatcherQueue.CreateTimer();
+            _resizeTimer.Interval = ResizeSettleDelay;
+            _resizeTimer.IsRepeating = false;
+            _resizeTimer.Tick += (_, _) =>
+            {
+                _isResizing = false;
+                UpdateCanvasState();
+            };
+        }
+
+        _resizeTimer.Stop();
+        _resizeTimer.Start();
+
+        if (!_isResizing)
+        {
+            _isResizing = true;
+            UpdateCanvasState();
+        }
+    }
+
     private void ControlExample_SizeChanged(object sender, SizeChangedEventArgs e)
     {
+        if (e.PreviousSize.Width > 0 && Math.Abs(e.NewSize.Width - e.PreviousSize.Width) > 0.5)
+        {
+            BeginResize();
+        }
+        else
+        {
+            UpdateCanvasState();
+        }
+
         var compact = e.NewSize.Width < CompactWidth;
         if (compact == _isCompact)
         {
@@ -619,7 +694,7 @@ public sealed partial class ControlExample : Control
         var resetInPane = _resetButton.Visibility == Visibility.Visible && !_resetInHeader;
         var resetFull = resetInPane ? MeasureText("Reset") + 36 : 0;
         var resetCompact = resetInPane ? 32 : 0;
-        var paneWidth = double.IsNaN(PaneWidth) ? 300 : PaneWidth;
+        var paneWidth = SafePaneWidth;
         var available = paneWidth - 32 + 6 - 4;
 
         var widths = new double[count];
@@ -948,13 +1023,13 @@ public sealed partial class ControlExample : Control
 
     private void ApplyPaneMaxHeight()
     {
-        _paneContent.MaxHeight = _isCompact ? PaneMaxHeight : Math.Max(PaneMaxHeight, _previewHeight);
+        _paneContent.MaxHeight = _isCompact ? SafePaneMaxHeight : Math.Max(SafePaneMaxHeight, _previewHeight);
     }
 
     private void UpdatePaneHost()
     {
         ApplyPaneMaxHeight();
-        _panePanel.Width = PaneWidth;
+        _panePanel.Width = SafePaneWidth;
 
         if (_isCompact)
         {
@@ -968,7 +1043,7 @@ public sealed partial class ControlExample : Control
                 _paneFlyout.Content = _paneContent;
             }
 
-            _paneContent.Width = PaneWidth;
+            _paneContent.Width = SafePaneWidth;
             _paneToggleButton.Flyout = _paneFlyout;
             return;
         }

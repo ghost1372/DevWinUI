@@ -10,14 +10,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="LoadingState" Doc="controls/loadingState">
+            <local:ControlExample Title="LoadingState" Doc="controls/loadingState" ResetRequested="ControlExample_ResetRequested">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="LoadingState">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
                             <ComboBox x:Name="CmbMode" Header="Mode" ItemsSource="{x:Bind Modes}" SelectedIndex="0" />
                             <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
-                            <Button Click="Restart_Click" Content="Restart timer" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
