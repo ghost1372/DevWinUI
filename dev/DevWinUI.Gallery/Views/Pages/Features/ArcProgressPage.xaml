@@ -17,12 +17,12 @@
                             <Slider x:Name="SliderSample" Header="Percentage" Maximum="100" Minimum="0" Value="36" />
                             <local:ChoiceOption x:Name="CmbFillAnim" Header="Fill Status">
                                 <local:ChoiceOption.Value>
-                                    <dev:ArcProgressFillAnimationState>Idle</dev:ArcProgressFillAnimationState>
+                                    <dev:ArcProgressFillAnimationState>Filling</dev:ArcProgressFillAnimationState>
                                 </local:ChoiceOption.Value>
                             </local:ChoiceOption>
                             <local:ChoiceOption x:Name="CmbSweepDirection" Header="Sweep Direction">
                                 <local:ChoiceOption.Value>
-                                    <dev:SweepDirection>Counterclockwise</dev:SweepDirection>
+                                    <SweepDirection>Clockwise</SweepDirection>
                                 </local:ChoiceOption.Value>
                             </local:ChoiceOption>
                         </local:OptionPanel>
