@@ -124,32 +124,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState x:Name="WideLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="900" />
-                        </VisualState.StateTriggers>
-                    </VisualState>
-                    <VisualState x:Name="NarrowLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="0" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="HeroRoot.Height" Value="380" />
-                            <Setter Target="HeroContent.Margin" Value="20,0,20,28" />
-                            <Setter Target="StatsPill.(Grid.Column)" Value="0" />
-                            <Setter Target="StatsPill.(Grid.Row)" Value="1" />
-                            <Setter Target="StatsPill.HorizontalAlignment" Value="Left" />
-                            <Setter Target="TitleText.FontSize" Value="28" />
-                            <Setter Target="TitleText.TextWrapping" Value="Wrap" />
-                            <Setter Target="ContentPanel.Padding" Value="20,8,20,48" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-
-            <Grid x:Name="HeroRoot" Height="300" Tag="{ThemeResource HeaderCover}">
+            <Grid x:Name="HeroRoot" Height="240" Tag="{ThemeResource HeaderCover}">
                 <Rectangle Opacity="0.22">
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -161,7 +136,7 @@
 
                 <Rectangle>
                     <Rectangle.Fill>
-                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="Uniform" />
+                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="UniformToFill" />
                     </Rectangle.Fill>
                 </Rectangle>
 
@@ -183,31 +158,31 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <Grid x:Name="HeroContent" Margin="40,0,40,32" VerticalAlignment="Bottom" ColumnSpacing="24" RowSpacing="16">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                <Grid x:Name="HeroContent" Margin="40,0,40,0" VerticalAlignment="Center" RowSpacing="16">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.ColumnSpan="2" Spacing="8">
-                        <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
-                        <TextBlock x:Name="TitleText" FontSize="40" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" TextWrapping="NoWrap" />
-                        <TextBlock MaxWidth="560" HorizontalAlignment="Left" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Browse controls, effects and features, each with live examples." TextWrapping="Wrap" />
-
-                        <Button x:Name="ExploreAllButton" Margin="0,8,0,0" Padding="16,8" HorizontalAlignment="Left" AutomationProperties.Name="Explore all" Click="OnExploreAllClick" Style="{StaticResource AccentButtonStyle}">
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <FontIcon FontSize="14" Glyph="&#xE71D;" />
-                                <TextBlock Text="Explore all" />
-                                <FontIcon FontSize="10" Glyph="&#xE70D;" />
-                            </StackPanel>
-                        </Button>
+                        <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind WASDKVersion}" />
+                        <TextBlock x:Name="TitleText" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" TextWrapping="NoWrap" />
+                        <TextBlock MaxWidth="560" HorizontalAlignment="Left" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{ThemeResource BaseTextBlockStyle}" Text="Browse controls, effects and features, each with live examples." TextWrapping="Wrap" />
                     </StackPanel>
 
-                    <Border x:Name="StatsPill" Grid.Column="1" Padding="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
+                    <Button x:Name="ExploreAllButton" Grid.Row="1" Margin="0,0,10,0" Padding="16,8" HorizontalAlignment="Left" AutomationProperties.Name="Explore all" Click="OnExploreAllClick" Style="{StaticResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontSize="14" Glyph="&#xE71D;" />
+                            <TextBlock Text="Explore all" />
+                            <FontIcon FontSize="10" Glyph="&#xE70D;" />
+                        </StackPanel>
+                    </Button>
+
+                    <Border x:Name="StatsPill" Grid.Row="1" Grid.Column="1" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="20">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Padding="12,5,14,5" Orientation="Horizontal" Spacing="8">
                                 <Border Style="{StaticResource StatIconStyle}">
