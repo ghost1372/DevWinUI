@@ -68,6 +68,7 @@ jobs:
       with:
         dotnet-version: |
             10.x.x
+            11.x.x
 
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v3
