@@ -128,7 +128,7 @@
                 <VisualStateGroup>
                     <VisualState x:Name="WideLayout">
                         <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="640" />
+                            <AdaptiveTrigger MinWindowWidth="900" />
                         </VisualState.StateTriggers>
                     </VisualState>
                     <VisualState x:Name="NarrowLayout">
@@ -142,6 +142,7 @@
                             <Setter Target="StatsPill.(Grid.Row)" Value="1" />
                             <Setter Target="StatsPill.HorizontalAlignment" Value="Left" />
                             <Setter Target="TitleText.FontSize" Value="28" />
+                            <Setter Target="TitleText.TextWrapping" Value="Wrap" />
                             <Setter Target="ContentPanel.Padding" Value="20,8,20,48" />
                         </VisualState.Setters>
                     </VisualState>
@@ -160,7 +161,7 @@
 
                 <Rectangle>
                     <Rectangle.Fill>
-                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="UniformToFill" />
+                        <ImageBrush x:Name="HeroBrush" AlignmentX="Right" AlignmentY="Center" Stretch="Uniform" />
                     </Rectangle.Fill>
                 </Rectangle>
 
@@ -168,7 +169,7 @@
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
                             <GradientStop Offset="0" Color="{ThemeResource SolidBackgroundFillColorBase}" />
-                            <GradientStop Offset="0.65" Color="#00000000" />
+                            <GradientStop Offset="0.55" Color="#00000000" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -192,9 +193,9 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Spacing="8">
+                    <StackPanel Grid.ColumnSpan="2" Spacing="8">
                         <TextBlock FontSize="16" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind WASDKVersion}" />
-                        <TextBlock x:Name="TitleText" FontSize="40" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TitleText" FontSize="40" FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="{x:Bind dev:ProcessInfoHelper.ProductNameAndVersionDisplay}" TextWrapping="NoWrap" />
                         <TextBlock MaxWidth="560" HorizontalAlignment="Left" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Browse controls, effects and features, each with live examples." TextWrapping="Wrap" />
 
                         <Button x:Name="ExploreAllButton" Margin="0,8,0,0" Padding="16,8" HorizontalAlignment="Left" AutomationProperties.Name="Explore all" Click="OnExploreAllClick" Style="{StaticResource AccentButtonStyle}">
