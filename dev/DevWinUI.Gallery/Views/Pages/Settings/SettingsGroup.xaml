@@ -8,8 +8,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 1" XamlSource="Features/Settings/SettingsGroup_Part1_xaml.txt">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="Example 1" Doc="controls/settingsGroup" Xaml="Features/Settings/SettingsGroup_Part1_xaml.txt">
                 <dev:SettingsGroup Description="Recent and commonly used settings" Header="Recommended settings">
                     <dev:SettingsGroup.Items>
                         <dev:SettingsCard Header="Installed apps" HeaderIcon="{dev:SymbolIcon Symbol=AllApps}" IsClickEnabled="True" />
@@ -18,14 +18,14 @@
                     </dev:SettingsGroup.Items>
                 </dev:SettingsGroup>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 2" XamlSource="Features/Settings/SettingsGroup_Part2_xaml.txt">
+            <local:ControlExample Title="Example 2" Doc="controls/settingsGroup" Xaml="Features/Settings/SettingsGroup_Part2_xaml.txt">
                 <dev:SettingsGroup Description="Make sure OneDrive is installed on your PC so you can see your storage details here" Header="Cloud storage" HeaderIcon="{dev:BitmapIcon Source=Assets/Fluent/OneDrive.png}">
                     <dev:SettingsGroup.Content>
                         <Button Content="Install OneDrive" />
                     </dev:SettingsGroup.Content>
                 </dev:SettingsGroup>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsGroup" HeaderText="Example 3" XamlSource="Features/Settings/SettingsGroup_Part3_xaml.txt">
+            <local:ControlExample Title="Example 3" Doc="controls/settingsGroup" Xaml="Features/Settings/SettingsGroup_Part3_xaml.txt">
                 <dev:SettingsGroup Description="Manage, add, and remove devices" Header="Bluetooth devices">
                     <dev:SettingsGroup.Items>
                         <dev:SettingsCard Description="Discoverable as 'DESKTOP-NJVNLK0'" Header="Bluetooth" HeaderIcon="{dev:SymbolIcon Symbol=DisconnectDrive}" />

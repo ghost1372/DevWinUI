@@ -17,8 +17,8 @@
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="SettingsPage" XamlSource="Features/Settings/SettingsControl_Part1_xaml.txt">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="SettingsPage" Doc="controls/settingsCard" Xaml="Features/Settings/SettingsControl_Part1_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="Section 1" />
                     <dev:SettingsCard Description="This is a default card, with the Header, HeaderIcon, Description and Content set" Header="This is the Header">
@@ -86,7 +86,7 @@
                     <HyperlinkButton Margin="0,8,0,0" Content="Send feedback" />
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="Clickable SettingsCard" XamlSource="Features/Settings/SettingsControl_Part2_xaml.txt">
+            <local:ControlExample Title="Clickable SettingsCard" Doc="controls/settingsCard" Xaml="Features/Settings/SettingsControl_Part2_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsCard x:Name="settingsCard1" Description="A SettingsCard can be made clickable and you can leverage the Command property or Click event." Header="A clickable SettingsCard" IsClickEnabled="True" IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
                         <dev:SettingsCard.HeaderIcon>
@@ -104,7 +104,7 @@
                     </dev:SettingsCard>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="SettingsCard" XamlSource="Features/Settings/SettingsControl_Part3_xaml.txt">
+            <local:ControlExample Title="SettingsCard" Doc="controls/settingsCard" Xaml="Features/Settings/SettingsControl_Part3_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <TextBlock Margin="1,0,0,4" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Group of settings" />
                     <dev:SettingsCard x:Name="settingsCard2" Description="This is a default card, with the Header, HeaderIcon, Description and Content set." Header="This is the Header" IsEnabled="{x:Bind IsCardEnabled, Mode=OneWay}">
@@ -144,7 +144,7 @@
                     </dev:SettingsCard>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="SettingsExpander ItemsSource" XamlSource="Features/Settings/SettingsControl_Part4_xaml.txt">
+            <local:ControlExample Title="SettingsExpander ItemsSource" Doc="controls/settingsCard" Xaml="Features/Settings/SettingsControl_Part4_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsExpander Margin="20" Description="The SettingsExpander can use ItemsSource to define its Items." Header="Settings Expander with ItemsSource" ItemsSource="{x:Bind MyDataSet}">
                         <dev:SettingsExpander.HeaderIcon>
@@ -174,7 +174,7 @@
                     </dev:SettingsExpander>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="SettingsExpander" XamlSource="Features/Settings/SettingsControl_Part5_xaml.txt">
+            <local:ControlExample Title="SettingsExpander" Doc="controls/settingsCard" Xaml="Features/Settings/SettingsControl_Part5_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <dev:SettingsExpander x:Name="settingsCard" Description="The SettingsExpander has the same properties as a Card, and you can set SettingsCard as part of the Items collection." Header="SettingsExpander" IsExpanded="{x:Bind IsCardExpanded, Mode=OneWay}">
                         <dev:SettingsExpander.HeaderIcon>
@@ -221,7 +221,7 @@
                     </dev:SettingsExpander>
                 </StackPanel>
             </local:ControlExample>
-            <local:ControlExample DocPage="controls/settingsCard" HeaderText="Nested SettingsExpander">
+            <local:ControlExample Title="Nested SettingsExpander" Doc="controls/settingsCard">
                 <dev:SettingsExpander Description="Test Setting Expander Description" Header="Test Setting Expander Header" ItemContainerStyleSelector="{StaticResource CustomSettingsExpanderItemStyleSelector}">
                     <dev:SettingsExpander.Items>
                         <dev:SettingsCard Description="Test Setting Card Description" Header="Test Setting Card Header" />
