@@ -706,9 +706,9 @@ public sealed partial class SearchBox : Control
             }
 
             var menuItem = new MenuFlyoutItem { Text = entry.Text, Tag = entry.Tag };
-            if (!string.IsNullOrEmpty(entry.Glyph))
+            if (entry.IconSource is not null)
             {
-                menuItem.Icon = new FontIcon { Glyph = entry.Glyph };
+                menuItem.Icon = entry.IconSource.CreateIconElement();
             }
 
             menuItem.Click += (_, _) =>

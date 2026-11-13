@@ -6,13 +6,29 @@ namespace DevWinUI;
 public sealed partial class SearchResultItem : INotifyPropertyChanged
 {
     private bool _isSelected;
+    private static readonly IconSource DefaultIconSource = new FontIconSource { Glyph = "\uE8A5" };
+    private IconSource? _iconSource = DefaultIconSource;
     private IList<SearchBoxDetailRow> _details = new List<SearchBoxDetailRow>();
 
     public string Title { get; set; } = string.Empty;
     public string Subtitle { get; set; } = string.Empty;
-    public string Glyph { get; set; } = "\uE8A5";
     public Brush? IconBrush { get; set; }
     public ImageSource? Preview { get; set; }
+
+    public IconSource? IconSource
+    {
+        get => _iconSource;
+        set
+        {
+            if (ReferenceEquals(_iconSource, value)) return;
+            _iconSource = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IconVisibility));
+        }
+    }
+
+    public Visibility IconVisibility => _iconSource is null ? Visibility.Collapsed : Visibility.Visible;
+
     public IList<SearchBoxDetailRow> Details
     {
         get => _details;

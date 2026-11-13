@@ -11,7 +11,7 @@ public sealed partial class SearchBoxTemplates : ResourceDictionary
     {
         if (args.NewValue is SearchResultItem { IconBrush: { } brush })
         {
-            ((FontIcon)sender).Foreground = brush;
+            ((IconElement)sender).Foreground = brush;
         }
         else
         {
