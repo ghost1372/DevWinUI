@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BreadcrumbBar" Doc="controls/breadcrumbBar">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="BreadcrumbBar" Doc="controls/breadcrumbBar">
+                <local:ControlExample.Samples>
                     <local:Sample Title="BreadcrumbBar">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -20,8 +20,8 @@
                         </local:Sample.XamlCode>
                         <dev:BreadcrumbBar EllipsisButtonToolTip="More folders" ItemsSource="{x:Bind Items, Mode=OneWay}" RootItemToolTip="Root Folder" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

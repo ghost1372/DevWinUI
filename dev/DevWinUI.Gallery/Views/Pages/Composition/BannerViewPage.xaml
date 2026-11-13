@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BannerView" CSharp="Composition/BannerView/BannerViewPage_cs.txt" Doc="controls/bannerView" Xaml="Composition/BannerView/BannerViewPage_xaml.txt">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="BannerView" CSharp="Composition/BannerView/BannerViewPage_cs.txt" Doc="controls/bannerView" Xaml="Composition/BannerView/BannerViewPage_xaml.txt">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TgPerspective" Header="Is Perspective Enable" />
@@ -29,7 +29,7 @@
                             </StackPanel>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:BannerView x:Name="BannerViewSample" MinWidth="400" MinHeight="150" MaxWidth="600" MaxHeight="300" VerticalContentAlignment="Center" AutoShuffle="{x:Bind TgShuffle.IsOn, Mode=OneWay}" IsPerspectiveEnable="{x:Bind TgPerspective.IsOn, Mode=OneWay}" IsScaleEnable="{x:Bind TgScale.IsOn, Mode=OneWay}" ItemsSource="{x:Bind CycleList, Mode=OneWay}" ItemsSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}">
                     <dev:BannerView.ItemTemplate>
                         <DataTemplate x:DataType="x:String">
@@ -37,7 +37,7 @@
                         </DataTemplate>
                     </dev:BannerView.ItemTemplate>
                 </dev:BannerView>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

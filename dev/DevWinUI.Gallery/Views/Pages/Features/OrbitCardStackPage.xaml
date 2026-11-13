@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="OrbitCardStack" Doc="controls/orbitCardStack">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="OrbitCardStack" Doc="controls/orbitCardStack">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Layout">
                         <local:OptionPanel>
                             <ComboBox x:Name="CmbLayout" HorizontalAlignment="Stretch" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="0" />
@@ -32,8 +32,8 @@
                             <TextBlock x:Name="TxtInvoked" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Invoked: none" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="OrbitCardStack">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -65,8 +65,8 @@
                         </local:Sample.CSharpCode>
                         <dev:OrbitCardStack x:Name="IconStack" Items="{x:Bind Team}" Layout="Row" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

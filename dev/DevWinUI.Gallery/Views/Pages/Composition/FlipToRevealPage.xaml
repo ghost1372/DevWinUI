@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="FlipToReveal" Doc="controls/flipToReveal" Xaml="Composition/FlipToRevealPage_xaml.txt">
+            <local:ControlExample Title="FlipToReveal" Doc="controls/flipToReveal" Xaml="Composition/FlipToRevealPage_xaml.txt">
                 <dev:FlipToReveal Margin="0,150,0,0">
                     <dev:FlipToReveal.PrimaryContent>
                         <Image Width="350" Height="192" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/Landscapes/Landscape-1.jpg" />
@@ -24,7 +24,7 @@
                         </Border>
                     </dev:FlipToReveal.SecondaryContent>
                 </dev:FlipToReveal>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

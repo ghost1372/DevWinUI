@@ -10,17 +10,17 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="CarouselView" CSharp="Composition/CarouselViewPage_cs.txt" Doc="controls/carouselView">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="CarouselView" CSharp="Composition/CarouselViewPage_cs.txt" Doc="controls/carouselView">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:CarouselView ItemImageSource="{x:Bind ViewModel.CarouselViewData, Mode=OneWay}" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.Options>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoShift" Header="Auto Shift" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <dev:CarouselView x:Name="CarouselSample" MaxHeight="300" VerticalAlignment="Center" IsAutoSwitchEnabled="{x:Bind TgAutoShift.IsOn, Mode=OneWay}" ItemClick="CarouselSample_ItemClick" ItemImageSource="{x:Bind ViewModel.CarouselViewData, Mode=OneWay}" ItemWidth="500" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

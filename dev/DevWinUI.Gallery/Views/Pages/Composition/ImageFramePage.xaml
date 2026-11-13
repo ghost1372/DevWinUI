@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ImageFrame" Doc="controls/imageFrame">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="ImageFrame" Doc="controls/imageFrame">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:ImageFrame Source="ms-appx:///Assets/Others/RainbowRose.png" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Image">
                         <local:OptionPanel>
                             <Button x:Name="BtnChange" HorizontalAlignment="Stretch" Click="BtnChange_Click" Content="Change Image" />
@@ -35,9 +35,9 @@
                             <local:ColorOption x:Name="ColorOptionSample" Header="Shadow Color" Value="Yellow" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:ImageFrame x:Name="ImageFrame" HorizontalAlignment="Stretch" VerticalAlignment="Top" AlignX="Center" AlignY="Center" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{x:Bind SldCornerRadius.Value, Mode=OneWay, Converter={StaticResource DoubleToCornerRadiusConverter}}" DisplayShadow="{x:Bind TgShowShadow.IsOn, Mode=OneWay}" FrameBackground="{ThemeResource CardStrokeColorDefaultSolid}" ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}" ShadowColor="{x:Bind ColorOptionSample.Value, Mode=OneWay}" ShadowOffsetX="{x:Bind SldShadowOffsetX.Value, Mode=OneWay}" ShadowOffsetY="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}" ShadowOpacity="{x:Bind SldShadowOpacity.Value, Mode=OneWay}" ShowPlaceholder="{x:Bind TgShowPlaceholder.IsOn, Mode=OneWay}" Stretch="Fill" TransitionMode="SlideLeft" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

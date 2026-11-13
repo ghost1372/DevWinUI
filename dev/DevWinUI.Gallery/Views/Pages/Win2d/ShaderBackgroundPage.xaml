@@ -11,8 +11,8 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="Note: Most features can be configured and customized. Please refer to the documentation." IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample2 Title="ShaderBackground" Doc="controls/shaderBackground">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="ShaderBackground" Doc="controls/shaderBackground">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Edge feathering">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TGIsEdgeFeatheringEnabled" Header="Feathering" />
@@ -53,8 +53,8 @@
                             </dev:UniformGrid>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="ShaderBackground" Xaml="Win2d/ShaderBackground_xaml.txt">
                         <dev:ShaderBackground x:Name="ShaderBackgroundSample" Draw="ShaderBackgroundSample_Draw" EdgeFeatheringBottom="{x:Bind (x:Int32)SldEdgeBottom.Value, Mode=OneWay}" EdgeFeatheringLeft="{x:Bind (x:Int32)SldEdgeLeft.Value, Mode=OneWay}" EdgeFeatheringRight="{x:Bind (x:Int32)SldEdgeRight.Value, Mode=OneWay}" EdgeFeatheringTop="{x:Bind (x:Int32)SldEdgeTop.Value, Mode=OneWay}" IsEdgeFeatheringEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" Update="ShaderBackgroundSample_Update">
                             <dev:ShaderBackground.Renderers>
@@ -85,8 +85,8 @@
                             </dev:ShaderBackground.Renderers>
                         </dev:ShaderBackground>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

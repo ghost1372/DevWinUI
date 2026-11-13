@@ -9,8 +9,8 @@
       mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ImageEffectBrush" Doc="brushes/imageEffectBrush">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="ImageEffectBrush" Doc="brushes/imageEffectBrush">
+                <local:ControlExample.Samples>
                     <local:Sample Title="ImageEffectBrush" Xaml="Composition/CompositionBrush/CompositionBrushPage_ImageEffectBrush_xaml.txt">
                         <Grid>
                             <Grid.Background>
@@ -65,8 +65,8 @@
                             </Grid>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

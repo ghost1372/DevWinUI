@@ -10,15 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="FlipSide" Doc="controls/flipSide">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="FlipSide" Doc="controls/flipSide">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="FlipSide">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="tg" Header="IsFlipped" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="FlipSide" Xaml="Features/Others/FlipSide_xaml.txt">
                         <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
                             <dev:FlipSide.Side1>
@@ -33,8 +33,8 @@
                             </dev:FlipSide.Side2>
                         </dev:FlipSide>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

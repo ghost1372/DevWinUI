@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="EdgeLighting" Doc="controls/edgeLighting">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="EdgeLighting" Doc="controls/edgeLighting">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:EdgeLighting Width="200" Height="200" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Lighting">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TGIsRound" Header="Is Rounded?" />
@@ -39,9 +39,9 @@
                             <local:ColorOption x:Name="DpColorTail" Header="Tail Color" Value="Transparent" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:EdgeLighting Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" BorderStrokeColor="{x:Bind DpColorBorder.Value, Mode=OneWay}" CornerRadius="{x:Bind SldRadius.Value, Mode=OneWay}" FadeColor="{x:Bind DpColorFade.Value, Mode=OneWay}" FadeOffset="{x:Bind SldFadeOffset.Value, Mode=OneWay}" HighlightColor="{x:Bind DpColorHighlight.Value, Mode=OneWay}" HighlightOffset="{x:Bind SldHighlightOffset.Value, Mode=OneWay}" IsLighting="{x:Bind TGIsLighting.IsOn, Mode=OneWay}" IsRounded="{x:Bind TGIsRound.IsOn, Mode=OneWay}" MidColor="{x:Bind DpColorMid.Value, Mode=OneWay}" MidOffset="{x:Bind SldMidOffset.Value, Mode=OneWay}" StrokeThickness="{x:Bind SldStrokeThickness.Value, Mode=OneWay}" TailColor="{x:Bind DpColorTail.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

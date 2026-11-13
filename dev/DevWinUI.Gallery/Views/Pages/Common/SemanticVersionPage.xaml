@@ -9,13 +9,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SemanticVersion" Doc="common/semanticVersion" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="SemanticVersion" Doc="common/semanticVersion" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         SemanticVersion.TryParse("1.2.3-apha.1+build.1.2", out SemanticVersion version);
                     </x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.Options>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="SampleTextBox" Header="Enter Version string" PlaceholderText="1.2.3" TextChanged="SampleTextBox_TextChanged" />
                         <ComboBox x:Name="SampleComboBox" HorizontalAlignment="Stretch" Header="Choose Predefined Versions" SelectionChanged="SampleComboBox_SelectionChanged">
@@ -29,7 +29,7 @@
                             <ComboBoxItem Content="1.2.3+build.1.2" />
                         </ComboBox>
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <StackPanel Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="HasMetadata:" />
@@ -60,7 +60,7 @@
                         <TextBlock x:Name="SampleTextBlock7" Margin="0,5,0,0" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
                     </StackPanel>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

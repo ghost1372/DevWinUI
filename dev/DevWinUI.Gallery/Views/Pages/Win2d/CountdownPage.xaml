@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Countdown" Doc="controls/countdown">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Countdown" Doc="controls/countdown">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Countdown CountdownSeconds="0" MaxSeconds="60" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Countdown">
                         <local:OptionPanel>
                             <Slider x:Name="SldSec" Header="Countdown Seconds" Maximum="{x:Bind SldMaxSec.Value, Mode=OneWay}" Value="0" />
@@ -22,9 +22,9 @@
                             <local:ChoiceOption Header="State" Value="{x:Bind CountdownSample.State, Mode=TwoWay}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:Countdown x:Name="CountdownSample" CountdownSeconds="{x:Bind (x:Int32)SldSec.Value, Mode=OneWay}" MaxSeconds="{x:Bind (x:Int32)SldMaxSec.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

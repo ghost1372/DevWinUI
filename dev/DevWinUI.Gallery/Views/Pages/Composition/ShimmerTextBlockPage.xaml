@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ShimmerTextBlock" Doc="controls/shimmerTextBlock" Xaml="Composition/ShimmerTextBlockPage_xaml.txt">
+            <local:ControlExample Title="ShimmerTextBlock" Doc="controls/shimmerTextBlock" Xaml="Composition/ShimmerTextBlockPage_xaml.txt">
                 <dev:ShimmerTextBlock>
                     <TextBlock FontSize="72" Text="Loading..." />
                 </dev:ShimmerTextBlock>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

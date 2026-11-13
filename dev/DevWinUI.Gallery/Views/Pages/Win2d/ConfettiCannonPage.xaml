@@ -10,14 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Confetti Cannon" Doc="controls/confettiCannon">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Confetti Cannon" Doc="controls/confettiCannon">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:ConfettiCannon x:Name="ConfettiCannonSample" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.CSharpCode>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
                     <x:String>ConfettiCannonSample.FireBasic();</x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Fire">
                         <local:OptionPanel>
                             <StackPanel Spacing="8">
@@ -31,7 +31,7 @@
                             </StackPanel>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <Grid MinHeight="300">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -43,7 +43,7 @@
                     </StackPanel>
                     <dev:ConfettiCannon x:Name="ConfettiCannonSample" Grid.Row="1" AnimationCompleted="ConfettiCannonSample_AnimationCompleted" AnimationStarted="ConfettiCannonSample_AnimationStarted" />
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

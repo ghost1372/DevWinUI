@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BankCard" Doc="controls/bankCard">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="BankCard" Doc="controls/bankCard">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Card">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtBankName" Header="Bank Name" Text="DevWinUI Bank" />
@@ -36,8 +36,8 @@
                             <ToggleSwitch x:Name="TglChip" Header="Show Chip" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="BankCard">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -60,8 +60,8 @@
                             </dev:BankCard>
                         </dev:UniformGrid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

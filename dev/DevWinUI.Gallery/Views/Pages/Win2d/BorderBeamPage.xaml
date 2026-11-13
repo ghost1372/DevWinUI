@@ -11,8 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BorderBeam" Doc="controls/borderBeam">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="BorderBeam" Doc="controls/borderBeam">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Beam">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbPreset" Header="Colors" ItemsSource="{x:Bind Presets}" SelectedIndex="0">
@@ -33,8 +33,8 @@
                             <Slider x:Name="SliderRadius" Header="Corner Radius" Maximum="100" Minimum="0" Value="12" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Card">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -59,8 +59,8 @@
                             <TextBox Margin="24,0" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" PlaceholderText="Ask anything..." />
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

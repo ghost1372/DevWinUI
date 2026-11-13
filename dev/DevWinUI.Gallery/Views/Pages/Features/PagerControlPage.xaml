@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="PagerControl" Doc="controls/pagerControl">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="PagerControl" Doc="controls/pagerControl">
+                <local:ControlExample.Samples>
                     <local:Sample Title="PagerControl/Auto (NumberBox)">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -36,8 +36,8 @@
                         </local:Sample.XamlCode>
                         <dev:PagerControl DisplayMode="ComboBox" NumberOfPages="10" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

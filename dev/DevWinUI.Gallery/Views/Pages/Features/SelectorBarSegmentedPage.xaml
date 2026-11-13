@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SelectorBarSegmented">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="SelectorBarSegmented">
+                <local:ControlExample.Samples>
                     <local:Sample Title="SelectorBarSegmented" Xaml="Features/Others/SelectorBarSegmented_xaml.txt">
                         <dev:SelectorBarSegmented>
                             <SelectorBarItem Icon="Find" IsSelected="True" Text="Item 1" />
@@ -19,8 +19,8 @@
                             <SelectorBarItem Icon="Home" Text="Item 3" />
                         </dev:SelectorBarSegmented>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

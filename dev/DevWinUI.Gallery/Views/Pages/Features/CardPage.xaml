@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Card" Doc="controls/card">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="Card" Doc="controls/card">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Card">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -27,8 +27,8 @@
                             </dev:Card.Content>
                         </dev:Card>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

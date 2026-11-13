@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Blinking Squares" Doc="controls/blinkingSquares">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Blinking Squares" Doc="controls/blinkingSquares">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:BlinkingSquares Direction="Right" GridSize="52" SquareColor="Red" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <local:ChoiceOption Header="Direction" Value="{x:Bind Preview.Direction, Mode=TwoWay}" />
@@ -29,9 +29,9 @@
                             <Slider x:Name="SldTwinkleStrength" Header="Twinkle Strength" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.94" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:BlinkingSquares x:Name="Preview" GridSize="{x:Bind (x:Int32)SldGridSize.Value, Mode=OneWay}" Intensity="{x:Bind SldIntensity.Value, Mode=OneWay}" SquareDensity="{x:Bind SldSquareDensity.Value, Mode=OneWay}" TwinkleSpeed="{x:Bind SldTwinkleSpeed.Value, Mode=OneWay}" TwinkleStrength="{x:Bind SldTwinkleStrength.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

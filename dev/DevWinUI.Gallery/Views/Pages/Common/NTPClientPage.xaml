@@ -9,20 +9,20 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="NTPClient" CSharp="Features/Others/NTPClientPage_cs.txt" Doc="common/ntpClient" DocType="Core">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="NTPClient" CSharp="Features/Others/NTPClientPage_cs.txt" Doc="common/ntpClient" DocType="Core">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox Name="TxtServer" PlaceholderText="NTP Server" Text="pool.ntp.org" />
                         <Button x:Name="BtnGet" Click="BtnGet_Click" Content="Query" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <StackPanel Spacing="10">
                     <TextBlock x:Name="TxtTime" Style="{ThemeResource BaseTextBlockStyle}" />
                     <TextBlock x:Name="TxtOffset" Style="{ThemeResource BaseTextBlockStyle}" />
                     <TextBlock x:Name="TxtDelay" Style="{ThemeResource BaseTextBlockStyle}" />
                     <TextBlock x:Name="TxtStratum" Style="{ThemeResource BaseTextBlockStyle}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

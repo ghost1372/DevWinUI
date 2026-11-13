@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="CompositionShadow" Doc="controls/compositionShadow" Xaml="Composition/CompositionShadowPage_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="CompositionShadow" Doc="controls/compositionShadow" Xaml="Composition/CompositionShadowPage_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TGMask" Header="Toggle Mask" Toggled="TGMask_Toggled" />
                         <ToggleSwitch x:Name="TGBreath" Header="Breath" />
@@ -22,7 +22,7 @@
                         <Slider x:Name="ShadowSlider" Header="Shadow Opacity" Maximum="1" Minimum="0" TickFrequency="0.1" Value="1" />
                         <Slider x:Name="BlurSlider" Header="Blur Radius" Maximum="100" Minimum="0" Value="16" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <StackPanel Spacing="10">
                     <dev:CompositionShadow BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" IsBreathing="{x:Bind TGBreath.IsOn, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}">
                         <TextBlock FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap">
@@ -38,7 +38,7 @@
                     <dev:CompositionShadow Width="100" Height="100" BlurRadius="{x:Bind BlurSlider.Value, Mode=OneWay}" IsBreathing="{x:Bind TGBreath.IsOn, Mode=OneWay}" IsRounded="{x:Bind TGIsRounded.IsOn, Mode=OneWay}" OffsetX="{x:Bind OffsetXSlider.Value, Mode=OneWay}" OffsetY="{x:Bind OffsetYSlider.Value, Mode=OneWay}" ShadowOpacity="{x:Bind ShadowSlider.Value, Mode=OneWay}" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}" />
                 </StackPanel>
 
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

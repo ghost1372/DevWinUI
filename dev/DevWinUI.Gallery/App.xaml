@@ -12,7 +12,7 @@
 
                 <ResourceDictionary Source="Themes/Styles.xaml" />
                 <ResourceDictionary Source="Themes/ThemeResources.xaml" />
-                <ResourceDictionary Source="/Controls/ControlExample2.xaml" />
+                <ResourceDictionary Source="/Controls/ControlExample.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <common:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
             <common:DoubleToCornerRadiusConverter x:Key="DoubleToCornerRadiusConverter" />

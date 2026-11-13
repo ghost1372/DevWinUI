@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TextHighlight" Doc="controls/textHighlight">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TextHighlight" Doc="controls/textHighlight">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TextHighlight">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextHighlightTrigger.Hover}" />
@@ -30,8 +30,8 @@
                             <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextHighlight">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -48,8 +48,8 @@
                         </local:Sample.XamlCode>
                         <dev:TextHighlight HorizontalAlignment="Left" FontSize="24" HighlightBrush="{ThemeResource AccentFillColorDefaultBrush}" HighlightText="Hover me" Text="Hover me to sweep the highlight" Trigger="Hover" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

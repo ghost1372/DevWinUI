@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="PinBox" Doc="controls/pinBox">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="PinBox" Doc="controls/pinBox">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Text">
                         <local:OptionPanel>
                             <TextBox x:Name="txtHeader" Header="Header" PlaceholderText="Header" />
@@ -51,8 +51,8 @@
                             <ToggleSwitch x:Name="tgShowError" Header="Show Error" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="PinBox">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -61,8 +61,8 @@
                         </local:Sample.XamlCode>
                         <dev:PinBox x:Name="pinBox" HorizontalAlignment="{x:Bind GetHorizontalAlignment(cmbHorizontalAlignment.SelectedIndex), Mode=OneWay}" Description="{x:Bind txtDesc.Text, Mode=OneWay}" FocusMode="{x:Bind GetFocusMode(cmbFocusMode.SelectedIndex), Mode=OneWay}" Header="{x:Bind txtHeader.Text, Mode=OneWay}" Orientation="{x:Bind GetOrientation(cmbOrientation.SelectedIndex), Mode=OneWay}" PasswordChar="{x:Bind txtPassChar.Text, Mode=OneWay}" PasswordRevealMode="{x:Bind GetPasswordRevealMode(cmbPassReveal.SelectedIndex), Mode=OneWay}" PlaceholderText="{x:Bind txtPlaceholder.Text, Mode=OneWay}" ShowError="{x:Bind tgShowError.IsOn, Mode=OneWay}" ShowSuccess="{x:Bind tgShowSuccess.IsOn, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

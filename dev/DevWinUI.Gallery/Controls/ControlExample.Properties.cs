@@ -2,7 +2,7 @@
 
 namespace DevWinUIGallery;
 
-public sealed partial class ControlExample2
+public sealed partial class ControlExample
 {
     public string Title
     {
@@ -11,7 +11,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register(nameof(Title), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnChromeChanged));
+        DependencyProperty.Register(nameof(Title), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnChromeChanged));
 
     public string Description
     {
@@ -20,7 +20,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty DescriptionProperty =
-        DependencyProperty.Register(nameof(Description), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnChromeChanged));
+        DependencyProperty.Register(nameof(Description), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnChromeChanged));
 
     public DocType DocType
     {
@@ -29,7 +29,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty DocTypeProperty =
-        DependencyProperty.Register(nameof(DocType), typeof(DocType), typeof(ControlExample2), new PropertyMetadata(DocType.Controls));
+        DependencyProperty.Register(nameof(DocType), typeof(DocType), typeof(ControlExample), new PropertyMetadata(DocType.Controls));
 
     public string Doc
     {
@@ -38,7 +38,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty DocProperty =
-        DependencyProperty.Register(nameof(Doc), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnDocChanged));
+        DependencyProperty.Register(nameof(Doc), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnDocChanged));
 
     public string Xaml
     {
@@ -47,7 +47,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty XamlProperty =
-        DependencyProperty.Register(nameof(Xaml), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnCodeChanged));
+        DependencyProperty.Register(nameof(Xaml), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnCodeChanged));
 
     public string XamlCode
     {
@@ -56,7 +56,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty XamlCodeProperty =
-        DependencyProperty.Register(nameof(XamlCode), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnCodeChanged));
+        DependencyProperty.Register(nameof(XamlCode), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnCodeChanged));
 
     public string CSharp
     {
@@ -65,7 +65,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty CSharpProperty =
-        DependencyProperty.Register(nameof(CSharp), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnCodeChanged));
+        DependencyProperty.Register(nameof(CSharp), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnCodeChanged));
 
     public string CSharpCode
     {
@@ -74,7 +74,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty CSharpCodeProperty =
-        DependencyProperty.Register(nameof(CSharpCode), typeof(string), typeof(ControlExample2), new PropertyMetadata(null, OnCodeChanged));
+        DependencyProperty.Register(nameof(CSharpCode), typeof(string), typeof(ControlExample), new PropertyMetadata(null, OnCodeChanged));
 
     public object Example
     {
@@ -83,7 +83,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty ExampleProperty =
-        DependencyProperty.Register(nameof(Example), typeof(object), typeof(ControlExample2), new PropertyMetadata(null, OnSamplesSourceChanged));
+        DependencyProperty.Register(nameof(Example), typeof(object), typeof(ControlExample), new PropertyMetadata(null, OnSamplesSourceChanged));
 
     public DependencyObjectCollection Samples
     {
@@ -92,7 +92,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty SamplesProperty =
-        DependencyProperty.Register(nameof(Samples), typeof(DependencyObjectCollection), typeof(ControlExample2), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Samples), typeof(DependencyObjectCollection), typeof(ControlExample), new PropertyMetadata(null));
 
     public object Options
     {
@@ -101,7 +101,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty OptionsProperty =
-        DependencyProperty.Register(nameof(Options), typeof(object), typeof(ControlExample2), new PropertyMetadata(null, OnOptionsChanged));
+        DependencyProperty.Register(nameof(Options), typeof(object), typeof(ControlExample), new PropertyMetadata(null, OnOptionsChanged));
 
     public DependencyObjectCollection OptionGroups
     {
@@ -110,7 +110,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty OptionGroupsProperty =
-        DependencyProperty.Register(nameof(OptionGroups), typeof(DependencyObjectCollection), typeof(ControlExample2), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(OptionGroups), typeof(DependencyObjectCollection), typeof(ControlExample), new PropertyMetadata(null));
 
     public double PaneMaxHeight
     {
@@ -119,7 +119,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty PaneMaxHeightProperty =
-        DependencyProperty.Register(nameof(PaneMaxHeight), typeof(double), typeof(ControlExample2), new PropertyMetadata(480d, OnChromeChanged));
+        DependencyProperty.Register(nameof(PaneMaxHeight), typeof(double), typeof(ControlExample), new PropertyMetadata(480d, OnChromeChanged));
 
     public double PaneWidth
     {
@@ -128,7 +128,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty PaneWidthProperty =
-        DependencyProperty.Register(nameof(PaneWidth), typeof(double), typeof(ControlExample2), new PropertyMetadata(300d, OnChromeChanged));
+        DependencyProperty.Register(nameof(PaneWidth), typeof(double), typeof(ControlExample), new PropertyMetadata(300d, OnChromeChanged));
 
     public bool IsResetInHeader
     {
@@ -137,7 +137,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty IsResetInHeaderProperty =
-        DependencyProperty.Register(nameof(IsResetInHeader), typeof(bool), typeof(ControlExample2), new PropertyMetadata(false, OnChromeChanged));
+        DependencyProperty.Register(nameof(IsResetInHeader), typeof(bool), typeof(ControlExample), new PropertyMetadata(false, OnChromeChanged));
 
     public bool IsCodeExpanded
     {
@@ -146,7 +146,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty IsCodeExpandedProperty =
-        DependencyProperty.Register(nameof(IsCodeExpanded), typeof(bool), typeof(ControlExample2), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsCodeExpanded), typeof(bool), typeof(ControlExample), new PropertyMetadata(false));
 
     public bool IsPaneOpen
     {
@@ -155,7 +155,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty IsPaneOpenProperty =
-        DependencyProperty.Register(nameof(IsPaneOpen), typeof(bool), typeof(ControlExample2), new PropertyMetadata(true, OnChromeChanged));
+        DependencyProperty.Register(nameof(IsPaneOpen), typeof(bool), typeof(ControlExample), new PropertyMetadata(true, OnChromeChanged));
 
     public ExampleToolbarPlacement ToolbarPlacement
     {
@@ -164,7 +164,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty ToolbarPlacementProperty =
-        DependencyProperty.Register(nameof(ToolbarPlacement), typeof(ExampleToolbarPlacement), typeof(ControlExample2), new PropertyMetadata(ExampleToolbarPlacement.Header, OnChromeChanged));
+        DependencyProperty.Register(nameof(ToolbarPlacement), typeof(ExampleToolbarPlacement), typeof(ControlExample), new PropertyMetadata(ExampleToolbarPlacement.Header, OnChromeChanged));
 
     public PreviewBackgroundPattern BackgroundPattern
     {
@@ -173,7 +173,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty BackgroundPatternProperty =
-        DependencyProperty.Register(nameof(BackgroundPattern), typeof(PreviewBackgroundPattern), typeof(ControlExample2), new PropertyMetadata(PreviewBackgroundPattern.Dotted, OnBackgroundPatternChanged));
+        DependencyProperty.Register(nameof(BackgroundPattern), typeof(PreviewBackgroundPattern), typeof(ControlExample), new PropertyMetadata(PreviewBackgroundPattern.Dotted, OnBackgroundPatternChanged));
 
     public Brush GradientBrush
     {
@@ -182,7 +182,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty GradientBrushProperty =
-        DependencyProperty.Register(nameof(GradientBrush), typeof(Brush), typeof(ControlExample2), new PropertyMetadata(null, OnVisualChanged));
+        DependencyProperty.Register(nameof(GradientBrush), typeof(Brush), typeof(ControlExample), new PropertyMetadata(null, OnVisualChanged));
 
     public double GradientOpacity
     {
@@ -191,7 +191,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty GradientOpacityProperty =
-        DependencyProperty.Register(nameof(GradientOpacity), typeof(double), typeof(ControlExample2), new PropertyMetadata(0.25, OnVisualChanged));
+        DependencyProperty.Register(nameof(GradientOpacity), typeof(double), typeof(ControlExample), new PropertyMetadata(0.25, OnVisualChanged));
 
     public ExampleTintSource TintSource
     {
@@ -200,7 +200,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty TintSourceProperty =
-        DependencyProperty.Register(nameof(TintSource), typeof(ExampleTintSource), typeof(ControlExample2), new PropertyMetadata(ExampleTintSource.Default, OnVisualChanged));
+        DependencyProperty.Register(nameof(TintSource), typeof(ExampleTintSource), typeof(ControlExample), new PropertyMetadata(ExampleTintSource.Default, OnVisualChanged));
 
     public double HeaderTintOpacity
     {
@@ -209,7 +209,7 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty HeaderTintOpacityProperty =
-        DependencyProperty.Register(nameof(HeaderTintOpacity), typeof(double), typeof(ControlExample2), new PropertyMetadata(0.35, OnVisualChanged));
+        DependencyProperty.Register(nameof(HeaderTintOpacity), typeof(double), typeof(ControlExample), new PropertyMetadata(0.35, OnVisualChanged));
 
     public bool IsGlowEnabled
     {
@@ -218,5 +218,5 @@ public sealed partial class ControlExample2
     }
 
     public static readonly DependencyProperty IsGlowEnabledProperty =
-        DependencyProperty.Register(nameof(IsGlowEnabled), typeof(bool), typeof(ControlExample2), new PropertyMetadata(true, OnIsGlowEnabledChanged));
+        DependencyProperty.Register(nameof(IsGlowEnabled), typeof(bool), typeof(ControlExample), new PropertyMetadata(true, OnIsGlowEnabledChanged));
 }

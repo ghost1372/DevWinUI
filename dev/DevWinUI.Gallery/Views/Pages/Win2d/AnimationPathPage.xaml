@@ -10,24 +10,24 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="AnimationPath" Doc="controls/animationPath">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="AnimationPath" Doc="controls/animationPath">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:AnimationPath Data="{StaticResource GithubGeometry}" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Playback">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TgIsPlay" Header="IsPlaying" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="5">
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorSuccessBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorCautionBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorCriticalBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

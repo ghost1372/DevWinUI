@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TiledImageBrush" Doc="brushes/tiledImageBrush">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="TiledImageBrush" Doc="brushes/tiledImageBrush">
+                <local:ControlExample.Samples>
                     <local:Sample Title="TiledImageBrush" Xaml="Win2d/TiledImageBrush_xaml.txt">
                         <Rectangle Height="400">
                             <Rectangle.Fill>
@@ -19,8 +19,8 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

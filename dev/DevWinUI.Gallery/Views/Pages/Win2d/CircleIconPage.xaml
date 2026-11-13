@@ -10,20 +10,20 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="CircleIcon" Doc="controls/circleIcon">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="CircleIcon" Doc="controls/circleIcon">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:CircleIcon /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <Slider x:Name="SldBorderThickness" Header="Border Thickness" Value="2" />
                             <TextBox x:Name="TxtContent" Header="Content (Can be any object)" PlaceholderText="D" Text="D" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:CircleIcon BorderStrokeThickness="{x:Bind SldBorderThickness.Value, Mode=OneWay}" Content="{x:Bind TxtContent.Text, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

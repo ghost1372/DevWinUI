@@ -10,12 +10,12 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BrushAttach" Doc="attach/brushAttach" DocType="Core">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="BrushAttach" Doc="attach/brushAttach" DocType="Core">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;SolidColorBrush dev:BrushAttach.ColorCorrectionFactor="-0.4" Color="{ThemeResource SystemAccentColor}" /&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <Rectangle Width="40" Height="40">
                         <Rectangle.Fill>
@@ -43,14 +43,14 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="ColorBrightness Markup Extension" Doc="markupExtensions/colorBrightnessExtension" DocType="Core">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="ColorBrightness Markup Extension" Doc="markupExtensions/colorBrightnessExtension" DocType="Core">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;SolidColorBrush Color="{dev:ColorBrightness Color={StaticResource SystemAccentColor}, CorrectionFactor=-0.4}" /&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <Rectangle Width="40" Height="40">
                         <Rectangle.Fill>
@@ -78,7 +78,7 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

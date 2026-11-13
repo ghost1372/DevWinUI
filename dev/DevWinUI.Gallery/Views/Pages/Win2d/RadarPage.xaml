@@ -34,8 +34,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Radar" Doc="controls/radar">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="Radar" Doc="controls/radar">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Scan">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:RadarMode.Sweep}" />
@@ -61,8 +61,8 @@
                             <local:ChoiceOption x:Name="CmbMarker" Header="Marker (Alpha contact)" Value="{x:Bind dev:RadarMarker.Diamond}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Radar">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -83,10 +83,10 @@
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
-            <local:ControlExample2 Title="Radar Visibility, Zones and Effects" Doc="controls/radar">
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
+            <local:ControlExample Title="Radar Visibility, Zones and Effects" Doc="controls/radar">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Scan-only visibility">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbTargetVisibility" Header="Target visibility" Value="{x:Bind dev:RadarVisibility.ScanOnly}" />
@@ -118,8 +118,8 @@
                             <ToggleSwitch x:Name="TglLight" Header="Light mode" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Scan-only visibility" Xaml="Win2d/Radar/RadarScanOnly_xaml.txt">
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
                             <dev:Radar Height="380" BlipVisibility="{x:Bind ((dev:RadarVisibility)CmbBlipVisibility.Value), Mode=OneWay}" Clutter="0.1" Mode="{x:Bind ((dev:RadarMode)CmbScanMode.Value), Mode=OneWay}" ScanFade="{x:Bind SliderScanFade.Value, Mode=OneWay}" TargetBrush="{ThemeResource FriendlyBrush}" TargetVisibility="{x:Bind ((dev:RadarVisibility)CmbTargetVisibility.Value), Mode=OneWay}" Targets="5" Trail="{x:Bind SliderScanTrail.Value, Mode=OneWay}">
@@ -156,10 +156,10 @@
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
-            <local:ControlExample2 Title="Radar Data Binding" Doc="controls/radar">
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
+            <local:ControlExample Title="Radar Data Binding" Doc="controls/radar">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Data binding">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TglLive" Header="Live movement" IsOn="True" />
@@ -168,15 +168,15 @@
                             <Button Click="ToggleAlert_Click" Content="Toggle alert on first aircraft" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Data binding" CSharp="Win2d/Radar/RadarBinding_cs.txt" Xaml="Win2d/Radar/RadarBinding_xaml.txt">
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
                             <dev:Radar Height="380" Clutter="0.1" ItemMapper="{x:Bind Mapper}" ItemsSource="{x:Bind Aircraft}" Targets="0" />
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -10,24 +10,24 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="DragMoveHelper" Doc="helpers/dragMoveHelper" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="DragMoveHelper" Doc="helpers/dragMoveHelper" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         new DragMoveHelper(myWindow).SetDragMove(DragElement);
                     </x:String>
-                </local:ControlExample2.CSharpCode>
+                </local:ControlExample.CSharpCode>
 
-                <local:ControlExample2.Options>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="SampleTG" Header="IsDraggable" IsOn="True" Toggled="SampleTG_Toggled" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
 
                 <Grid x:Name="DragElement">
                     <Rectangle Width="400" Height="200" Fill="{ThemeResource SystemAccentColor}" />
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Text="Drag And Move Me!" />
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

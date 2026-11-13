@@ -15,14 +15,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ColorAnalyzer" Description="Extract accent, base and weighted colors from an image." Doc="common/colorAnalyzer" DocType="Core" Xaml="Features/Others/ColorAnalyzer_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="ColorAnalyzer" Description="Extract accent, base and weighted colors from an image." Doc="common/colorAnalyzer" DocType="Core" Xaml="Features/Others/ColorAnalyzer_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <Button x:Name="BtnChange" HorizontalAlignment="Stretch" Click="BtnChange_Click" Content="Change Image" />
                         <Image x:Name="ImageSample" Width="200" Height="200" HorizontalAlignment="Center" ImageOpened="ImageSample_ImageOpened" Source="ms-appx:///Assets/Carousel/5.jpg" Stretch="Uniform" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.Options>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Accent">
                         <Grid Width="400" Height="250">
                             <Grid.ColumnDefinitions>
@@ -143,8 +143,8 @@
                             </Rectangle>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

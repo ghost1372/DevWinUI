@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="WaveformTimeline" CSharp="Features/Others/WaveformTimeline_cs.txt" Doc="controls/waveformTimeline">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="WaveformTimeline" CSharp="Features/Others/WaveformTimeline_cs.txt" Doc="controls/waveformTimeline">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Audio">
                         <local:OptionPanel>
                             <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
@@ -24,12 +24,12 @@
                             </StackPanel>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.XamlCode>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <dev:WaveformTimeline x:Name="WaveformTimelineSample" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

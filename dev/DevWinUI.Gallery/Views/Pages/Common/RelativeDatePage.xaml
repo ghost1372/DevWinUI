@@ -9,22 +9,22 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="RelativeDate" Doc="common/relativeDate" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="RelativeDate" Doc="common/relativeDate" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         var relativeDate = RelativeDate.Get(dateTime).ToString();
                     </x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.Options>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <DatePicker x:Name="DatePickerSample" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                     <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind GetPersian(DatePickerSample.SelectedDate), Mode=OneWay}" />
                     <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind GetDefault(DatePickerSample.SelectedDate), Mode=OneWay}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="StatusMark" Doc="controls/statusMark">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="StatusMark" Doc="controls/statusMark">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Status">
                         <local:OptionPanel>
                             <Button Click="OnSimulateClick" Content="Simulate task" />
@@ -42,8 +42,8 @@
                             <Slider x:Name="SliderStrikeDelay" Header="Strike Delay (ms)" IsEnabled="{x:Bind TgStrike.IsOn, Mode=OneWay}" Maximum="1000" Minimum="0" StepFrequency="20" Value="60" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="StatusMark">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -62,8 +62,8 @@
                             <dev:StatusMark Label="Cancelled task" Status="Cancelled" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

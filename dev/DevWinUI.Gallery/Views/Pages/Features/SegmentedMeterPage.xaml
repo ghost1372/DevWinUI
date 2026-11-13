@@ -11,8 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SegmentedMeter" Doc="controls/segmentedMeter">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="SegmentedMeter" Doc="controls/segmentedMeter">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="SegmentedMeter">
                         <local:OptionPanel>
                             <Slider x:Name="SliderApps" Header="Apps" Maximum="60" Minimum="0" Value="30" />
@@ -27,8 +27,8 @@
                             <ToggleSwitch x:Name="TglShowValue" Header="Show Value" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="SegmentedMeter" Xaml="Features/SegmentedMeter/SegmentedMeter_xaml.txt">
                         <dev:SegmentedMeter BarSize="{x:Bind ((dev:MeterBarSize)CmbBarSize.Value), Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" LegendOrientation="{x:Bind ((Orientation)CmbLegendOrientation.Value), Mode=OneWay}" LegendPosition="{x:Bind ((dev:MeterLegendPosition)CmbLegendPosition.Value), Mode=OneWay}" Orientation="{x:Bind ((Orientation)CmbOrientation.Value), Mode=OneWay}" ShowLegend="{x:Bind TglShowLegend.IsOn, Mode=OneWay}" ShowValue="{x:Bind TglShowValue.IsOn, Mode=OneWay}">
                             <dev:MeterSegment Label="Apps" Value="{x:Bind SliderApps.Value, Mode=OneWay}" />
@@ -68,8 +68,8 @@
                             <dev:MeterSegment Label="Docs" Value="40" />
                         </dev:SegmentedMeter>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

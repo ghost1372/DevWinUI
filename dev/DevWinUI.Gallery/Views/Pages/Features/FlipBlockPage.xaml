@@ -10,15 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="FlipBlock" Doc="controls/flipBlock">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="FlipBlock" Doc="controls/flipBlock">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="FlipBlock">
                         <local:OptionPanel>
                             <Slider x:Name="NbValue" Header="Value" Maximum="9" Minimum="0" Value="1" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="FlipBlock">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -30,8 +30,8 @@
                             <dev:FlipBlock Value="{x:Bind NbValue.Value, Mode=OneWay}" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

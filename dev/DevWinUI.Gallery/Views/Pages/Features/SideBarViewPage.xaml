@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SidebarView" Doc="controls/sidebarView">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="SidebarView" Doc="controls/sidebarView">
+                <local:ControlExample.Samples>
                     <local:Sample Title="SidebarView" CSharp="Features\Others\SideBarViewPage_cs.txt">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -20,8 +20,8 @@
                         </local:Sample.XamlCode>
                         <dev:SidebarView MenuItemsSource="{x:Bind ViewModel.SidebarViewItems, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

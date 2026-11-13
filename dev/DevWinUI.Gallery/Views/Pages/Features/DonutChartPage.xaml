@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="DonutChart" Doc="controls/donutChart">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="DonutChart" Doc="controls/donutChart">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Shape">
                         <local:OptionPanel>
                             <Slider x:Name="SliderDiameter" Header="Diameter" Maximum="320" Minimum="120" Value="220" />
@@ -32,15 +32,15 @@
                             <Button HorizontalAlignment="Stretch" Click="RemoveSlice_Click" Content="Remove slice" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.XamlCode>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:DonutChart Data="{x:Bind Data}" /&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <dev:DonutChart CenterLabel="{x:Bind TxtCenterLabel.Text, Mode=OneWay}" Data="{x:Bind Data}" Diameter="{x:Bind SliderDiameter.Value, Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" ShowLegend="{x:Bind TgShowLegend.IsOn, Mode=OneWay}" SliceCornerRadius="{x:Bind SliderCorner.Value, Mode=OneWay}" Thickness="{x:Bind SliderThickness.Value, Mode=OneWay}" />
 
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

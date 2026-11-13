@@ -10,14 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="AudioWave" Doc="controls/audioWave">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="AudioWave" Doc="controls/audioWave">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:AudioWave x:Name="AudioWaveSample" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.CSharpCode>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
                     <x:String>AudioWaveSample.WaveDataProvider = OnWaveDataProvider;</x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Data">
                         <local:OptionPanel>
                             <StackPanel Spacing="8">
@@ -36,9 +36,9 @@
                             <Slider x:Name="SldProgress" Header="Progress" Maximum="100" Minimum="0" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:AudioWave x:Name="AudioWaveSample" Height="100" CanSelectedByMouse="True" Progress="{x:Bind (x:Int32)SldProgress.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

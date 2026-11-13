@@ -10,15 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="MorphingAnimation" Doc="controls/morphingAnimation">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="MorphingAnimation" Doc="controls/morphingAnimation">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:MorphingAnimation PrimaryData="{StaticResource TwitterGeometry}" SecondaryData="{StaticResource FaceBookGeometry}" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
                     <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemFillColorSuccess}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemFillColorCritical}" SecondaryData="{StaticResource FaceBookGeometry}" />
                     <dev:MorphingAnimation PrimaryColor="{ThemeResource SystemAccentColor}" PrimaryData="{StaticResource TwitterGeometry}" SecondaryColor="{ThemeResource SystemAccentColorDark1}" SecondaryData="{StaticResource FaceBookGeometry}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

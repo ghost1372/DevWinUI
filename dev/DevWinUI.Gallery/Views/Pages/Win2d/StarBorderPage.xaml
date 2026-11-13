@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="StarBorder" Doc="controls/starBorder">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="StarBorder" Doc="controls/starBorder">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Animation">
                         <local:OptionPanel>
                             <Slider x:Name="SliderDuration" Header="Duration (seconds)" Maximum="12" Minimum="0.5" StepFrequency="0.5" Value="4" />
@@ -35,8 +35,8 @@
                             <ToggleSwitch x:Name="TgClickPulse" Header="Click Pulse" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="StarBorder" Xaml="Win2d/StarBorder_xaml.txt">
                         <dev:StarBorder Width="220" Height="64" Margin="40" HorizontalAlignment="Center" ClickPulse="{x:Bind TgClickPulse.IsOn, Mode=OneWay}" Direction="{x:Bind ((dev:StarDirection)CmbDirection.Value), Mode=OneWay}" Glow="{x:Bind SliderGlow.Value, Mode=OneWay}" HoverMode="{x:Bind ((dev:StarHoverMode)CmbHoverMode.Value), Mode=OneWay}" LineThickness="{x:Bind SliderLineThickness.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" Sparkle="{x:Bind TgSparkle.IsOn, Mode=OneWay}" StarColor="Gold" Stars="{x:Bind (x:Int32)SliderStars.Value, Mode=OneWay}" Theme="{x:Bind ((dev:StarBorderTheme)CmbTheme.Value), Mode=OneWay}" TrailColor="DeepSkyBlue" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Star Border" />
@@ -55,8 +55,8 @@
                             </dev:StarBorder>
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -7,20 +7,20 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Barcode" Description="Generate barcode images from text in several formats." Doc="common/barcode" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="Barcode" Description="Generate barcode images from text in several formats." Doc="common/barcode" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         var barcode = Barcode.CreateCode128(TxtInput.Text);
                     </x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.Options>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="TxtInput" Header="Input" PlaceholderText="Input" Text="DevWinUI" />
                         <local:ChoiceOption x:Name="CmbType" Header="Barcode Type" Value="{x:Bind views:BarcodeType.Code128}" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <Image Source="{x:Bind GenerateImage(TxtInput.Text, CmbType.Value), Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="BetterLyric" Doc="controls/betterLyric">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="BetterLyric" Doc="controls/betterLyric">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:BetterLyric x:Name="MyBetterLyric" CurrentLyricsData="{x:Bind CurrentLyricData}" CurrentIsPlaying="True" IsLyricsVisible="True" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Playback">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TgIsLyricVisible" Header="Is Lyric Visible" IsOn="True" />
@@ -99,7 +99,7 @@
                             <Slider Header="Scroll Bottom Delay" Maximum="2000" Minimum="0" StepFrequency="50" Value="{x:Bind MyBetterLyric.LyricsScrollBottomDelay, Mode=TwoWay}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <Grid Height="400">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -111,7 +111,7 @@
                         <TextBlock x:Name="PositionText" HorizontalAlignment="Center" FontSize="12" Opacity="0.7" />
                     </StackPanel>
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

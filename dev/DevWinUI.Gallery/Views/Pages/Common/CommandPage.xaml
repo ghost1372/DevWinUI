@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="DelegateCommand" Doc="delegateCommand" DocType="Core">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="DelegateCommand" Doc="delegateCommand" DocType="Core">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Simple" CSharp="Features\Command\Command_Simple_cs.txt">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -38,15 +38,15 @@
                         </local:Sample.XamlCode>
                         <Button Command="{x:Bind CommandWithParameter}" CommandParameter="My Parameter" Content="Click Me" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
+                </local:ControlExample.Samples>
 
-                <local:ControlExample2.Options>
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TGCommandWithCanExecute" Header="CanExecute sample: can execute?" IsOn="True" Toggled="TGCommandWithParameter_Toggled" />
                         <ToggleSwitch x:Name="TGCommandWithParameter" Header="Parameter sample: can execute?" IsOn="True" Toggled="TGCommandWithParameter_Toggled" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
-            </local:ControlExample2>
+                </local:ControlExample.Options>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

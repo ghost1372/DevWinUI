@@ -50,7 +50,7 @@ namespace DevWinUIGallery;
 [TemplatePart(Name = CSharpHostPart, Type = typeof(ContentControl))]
 [TemplatePart(Name = GlowHostPart, Type = typeof(Grid))]
 [ContentProperty(Name = nameof(Example))]
-public sealed partial class ControlExample2 : Control
+public sealed partial class ControlExample : Control
 {
     private const string HeaderTintHostPart = "PART_HeaderTintHost";
     private const string HeaderPanelPart = "PART_HeaderPanel";
@@ -174,9 +174,9 @@ public sealed partial class ControlExample2 : Control
 
     private Sample CurrentSample => _selectedSampleIndex >= 0 && _selectedSampleIndex < _samples.Count ? _samples[_selectedSampleIndex] : null;
 
-    public ControlExample2()
+    public ControlExample()
     {
-        DefaultStyleKey = typeof(ControlExample2);
+        DefaultStyleKey = typeof(ControlExample);
 
         Samples = new DependencyObjectCollection();
         Samples.VectorChanged += (_, _) =>
@@ -285,12 +285,12 @@ public sealed partial class ControlExample2 : Control
 
     private static void OnChromeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((ControlExample2)d).UpdateChrome();
+        ((ControlExample)d).UpdateChrome();
     }
 
     private static void OnOptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (ControlExample2)d;
+        var ctl = (ControlExample)d;
         if (ctl.IsReady)
         {
             ctl.RebuildOptions();
@@ -301,12 +301,12 @@ public sealed partial class ControlExample2 : Control
 
     private static void OnDocChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((ControlExample2)d).UpdateDocButton();
+        ((ControlExample)d).UpdateDocButton();
     }
 
     private static void OnCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (ControlExample2)d;
+        var ctl = (ControlExample)d;
         if (ctl.IsReady)
         {
             ctl.UpdateCode();
@@ -315,7 +315,7 @@ public sealed partial class ControlExample2 : Control
 
     private static void OnSamplesSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (ControlExample2)d;
+        var ctl = (ControlExample)d;
         if (ctl.IsReady)
         {
             ctl.RebuildSamples();
@@ -324,19 +324,19 @@ public sealed partial class ControlExample2 : Control
 
     private static void OnVisualChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((ControlExample2)d).InvalidateCanvases();
+        ((ControlExample)d).InvalidateCanvases();
     }
 
     private static void OnBackgroundPatternChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (ControlExample2)d;
+        var ctl = (ControlExample)d;
         ctl.UpdateBackgroundIcon();
         ctl.InvalidateCanvases();
     }
 
     private static void OnIsGlowEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((ControlExample2)d).UpdateGlowState();
+        ((ControlExample)d).UpdateGlowState();
     }
 
     private void ControlExample_Loaded(object sender, RoutedEventArgs e)

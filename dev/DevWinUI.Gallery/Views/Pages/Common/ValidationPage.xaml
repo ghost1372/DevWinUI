@@ -14,8 +14,8 @@
     </Page.Resources>
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Validation" CSharp="Features/Validation/ValidationPage_cs.txt" Doc="validation" DocType="Core" Xaml="Features/Validation/ValidationPage_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="Validation" CSharp="Features/Validation/ValidationPage_cs.txt" Doc="validation" DocType="Core" Xaml="Features/Validation/ValidationPage_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="NameBox" dev:Validation.ErrorTemplate="{StaticResource ValidationTemplate}" dev:Validation.ValidationPropertyName="Name" dev:Validation.ValidationProvider="{x:Bind UserInfo}" Header="Easy boxes with validation" PlaceholderText="Name" Style="{StaticResource ValidatingTextBoxStyle}" Text="{x:Bind UserInfo.Name, Mode=TwoWay}" />
 
@@ -23,9 +23,9 @@
 
                         <Button x:Name="CoolButton" HorizontalAlignment="Stretch" Click="CoolButton_Click" Content="Cool button" IsEnabled="{x:Bind UserInfo.HasErrors.Equals(x:False), Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <Frame Name="frame" Grid.Column="1" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

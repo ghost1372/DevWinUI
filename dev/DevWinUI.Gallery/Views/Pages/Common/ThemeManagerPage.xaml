@@ -6,8 +6,8 @@
         <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="You can simplify the operation of saving, retrieving and selecting the Application theme, All operations are performed automatically." IsClosable="False" IsOpen="True" Severity="Informational" />
             <InfoBar Title="Dont forget to Initialize `ThemeService` in your App.cs" IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample2 Title="ThemeManager" Doc="themeService" DocType="Core">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="ThemeManager" Doc="themeService" DocType="Core">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Theme" CSharp="Features/ThemeManager/ThemeManagerPage_Theme_cs.txt" Xaml="Features/ThemeManager/ThemeManagerPage_Theme_xaml.txt">
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <StackPanel x:Name="themePanel" Margin="10">
@@ -34,8 +34,8 @@
                             <local:ChoiceOption x:Name="cmbBackdrop" Header="Backdrop" ValueChanged="cmbBackdrop_ValueChanged" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -31,8 +31,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="GitHubActivityGrid" Doc="controls/gitHubActivityGrid">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="GitHubActivityGrid" Doc="controls/gitHubActivityGrid">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Size">
                         <local:OptionPanel>
                             <Slider x:Name="SliderCellSize" Header="Cell Size" Maximum="24" Minimum="8" Value="12" />
@@ -54,8 +54,8 @@
                             <Button HorizontalAlignment="Stretch" Click="OnRegenerateClick" Content="Regenerate Data" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="GitHubActivityGrid">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -67,8 +67,8 @@
                     <local:Sample Title="Custom Palette">
                         <dev:GitHubActivityGrid x:Name="PaletteGrid" Days="{x:Bind Days}" Level0Brush="{ThemeResource OceanActivityLevel0Brush}" Level1Brush="{ThemeResource OceanActivityLevel1Brush}" Level2Brush="{ThemeResource OceanActivityLevel2Brush}" Level3Brush="{ThemeResource OceanActivityLevel3Brush}" Level4Brush="{ThemeResource OceanActivityLevel4Brush}" UnitPlural="commits" UnitSingular="commit" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

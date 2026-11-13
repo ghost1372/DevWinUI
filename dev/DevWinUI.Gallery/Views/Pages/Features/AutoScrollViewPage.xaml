@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="AutoScrollView" Doc="controls/autoScrollView">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="AutoScrollView" Doc="controls/autoScrollView">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TextBlock">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="tgPlay" Header="IsPlay" IsOn="True" />
@@ -33,8 +33,8 @@
                             <ToggleSwitch x:Name="tgPlay4" Header="IsPlay" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextBlock" Xaml="Features/AutoScrollView/AutoScrollViewPage_Part1_xaml.txt">
                         <dev:AutoScrollView IsPlaying="{x:Bind tgPlay.IsOn, Mode=OneWay}">
                             <TextBlock Text="{StaticResource LoremText2}" TextTrimming="None" />
@@ -72,8 +72,8 @@
                             <TextBlock Text="{StaticResource LoremText2}" TextTrimming="CharacterEllipsis" />
                         </dev:AutoScrollView>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

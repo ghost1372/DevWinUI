@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="CirclePanel" Doc="controls/circlePanel">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="CirclePanel" Doc="controls/circlePanel">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Static items">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TGKeepVertical" Header="KeepVertical" IsOn="True" Toggled="TGKeepVertical_Toggled" />
@@ -28,8 +28,8 @@
                             <Button x:Name="BtnRemove" Click="BtnRemove_Click" Content="Remove Item" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="CirclePanel">
                         <local:Sample.XamlCode>
                             <x:String>&lt;dev:CirclePanel /&gt;</x:String>
@@ -55,8 +55,8 @@
                         </local:Sample.XamlCode>
                         <dev:CirclePanel x:Name="CirclePanelSample2" Diameter="{x:Bind NBDiameter2.Value, Mode=OneWay}" KeepVertical="{x:Bind TGKeepVertical2.IsOn, Mode=OneWay}" OffsetAngle="{x:Bind NBOffset2.Value, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

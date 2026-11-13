@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="GoToTop" Doc="controls/goToTop">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="GoToTop" Doc="controls/goToTop">
+                <local:ControlExample.Samples>
                     <local:Sample Title="ScrollViewer" Xaml="Features/GoToTop/GoToTopPage_PART1_xaml.txt">
                         <Grid Height="400" HorizontalAlignment="Center">
                             <ScrollViewer Name="ScrollViewerSample">
@@ -42,8 +42,8 @@
                             <dev:GotoTop Margin="0,0,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Animated="True" AutoHiding="True" Target="{x:Bind ScrollViewSample, Mode=OneWay}" />
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

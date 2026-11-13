@@ -11,14 +11,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="AnimatedTextBlock" Doc="controls/animatedTextBlock">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="AnimatedTextBlock" Doc="controls/animatedTextBlock">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Text="DevWinUI" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.CSharpCode>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
                     <x:String>AnimatedTextBlockSample.TextEffect = new TextMotionBlurEffect();</x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Content">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
@@ -31,9 +31,9 @@
                             </local:ChoiceOption>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Margin="10" Text="{x:Bind CmbText.Value, Mode=OneWay}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

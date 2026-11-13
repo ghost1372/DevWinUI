@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="CompositionAnimationController" CSharp="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt" Doc="common/compositionAnimationController" DocType="Core" Xaml="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="CompositionAnimationController" CSharp="Composition/CompositionAnimationController/CompositionAnimationControllerPage_cs.txt" Doc="common/compositionAnimationController" DocType="Core" Xaml="Composition/CompositionAnimationController/CompositionAnimationControllerPage_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <StackPanel Spacing="10">
                             <StackPanel Orientation="Horizontal" Spacing="8">
@@ -31,11 +31,11 @@
                         </StackPanel>
                     </local:OptionPanel>
 
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <Canvas Height="300">
                     <Rectangle x:Name="Rectangle" Canvas.Left="20" Canvas.Top="20" Width="50" Height="50" Fill="Blue" />
                 </Canvas>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

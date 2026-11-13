@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SpeedGraph" Doc="controls/speedGraph">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="SpeedGraph" Doc="controls/speedGraph">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Simulation">
                         <local:OptionPanel>
                             <Button Click="BtnCopy_Click" Content="Starting file copy simulation" />
@@ -29,8 +29,8 @@
                             <local:ChoiceOption x:Name="CmbBackgroundMode" Header="Background Mode" Value="{x:Bind dev:SpeedGraphBackgroundMode.Dot}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="SpeedGraph">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -44,10 +44,10 @@
                         </local:Sample.CSharpCode>
                         <dev:SpeedGraph x:Name="SpeedGraphSample" AutoUpdateSpeedText="{x:Bind TGAutoUpdate.IsOn, Mode=OneWay}" BackgroundMode="{x:Bind ((dev:SpeedGraphBackgroundMode)CmbBackgroundMode.Value), Mode=OneWay}" SpeedLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" SpeedTextVisibility="{x:Bind TGShowText.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
-            <local:ControlExample2 Title="SpeedGraph2" Doc="controls/speedGraph2">
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
+            <local:ControlExample Title="SpeedGraph2" Doc="controls/speedGraph2">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Simulation">
                         <local:OptionPanel>
                             <Button Click="BtnCopy_Click2" Content="Starting file copy simulation" />
@@ -58,8 +58,8 @@
                             <NumberBox x:Name="NBFileSize2" Header="File Size (MB)" Maximum="5000" Minimum="100" Value="500" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="SpeedGraph2">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -73,8 +73,8 @@
                         </local:Sample.CSharpCode>
                         <dev:SpeedGraph2 x:Name="SpeedGraphSample2" MinHeight="200" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

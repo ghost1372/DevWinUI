@@ -10,18 +10,18 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Stars" Doc="controls/stars">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="Stars" Doc="controls/stars">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <Slider x:Name="SldNumberOfBigMovingStars" Header="Number Of Big Moving Stars" Maximum="300" Minimum="10" Value="150" />
                         <Slider x:Name="SldNumberOfSmallTwinklingStars" Header="Number Of Small Twinkling Stars" Maximum="2000" Minimum="100" Value="600" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
-                <local:ControlExample2.XamlCode>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Stars /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <dev:Stars Height="300" NumberOfBigMovingStars="{x:Bind (x:Int32)SldNumberOfBigMovingStars.Value, Mode=OneWay}" NumberOfSmallTwinklingStars="{x:Bind (x:Int32)SldNumberOfSmallTwinklingStars.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

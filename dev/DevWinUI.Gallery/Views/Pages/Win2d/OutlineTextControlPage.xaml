@@ -10,21 +10,21 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="OutlineTextControl" Doc="controls/outlineTextControl">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="OutlineTextControl" Doc="controls/outlineTextControl">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:OutlineTextControl DashStyle="Solid" FontSize="100" OutlineColor="Purple" StrokeWidth="4" Text="DevWinUI" /&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Content">
                         <local:OptionPanel>
                             <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:OutlineTextControl Height="200" DashStyle="Solid" FontSize="90" OutlineColor="Purple" StrokeWidth="4" Text="{x:Bind txt.Text, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

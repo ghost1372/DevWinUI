@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TextMorphEffect" Doc="controls/textMorphEffect">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TextMorphEffect" Doc="controls/textMorphEffect">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Text morph">
                         <local:OptionPanel>
                             <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI,Controls,ContextMenu,Core" />
@@ -19,8 +19,8 @@
                             <NumberBox x:Name="nbBlur" Header="Blur Amount" Maximum="10" Minimum="0" PlaceholderText="Blur Amount" SpinButtonPlacementMode="Inline" Value="1" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextMorphEffect">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -29,8 +29,8 @@
                         </local:Sample.XamlCode>
                         <dev:TextMorphEffect BlurAmount="{x:Bind nbBlur.Value, Mode=OneWay}" Delimiter="{x:Bind delimiter.Text, Mode=OneWay}" FontSize="32" Text="{x:Bind txt.Text, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

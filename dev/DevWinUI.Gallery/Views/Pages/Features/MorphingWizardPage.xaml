@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="MorphingWizard" Doc="controls/morphingWizard">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="MorphingWizard" Doc="controls/morphingWizard">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Text">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtBack" Header="Back Text" Text="Back" />
@@ -26,8 +26,8 @@
                             <Button Click="GoToStep3_Click" Content="Go to step 3" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="MorphingWizard" Xaml="Features/Others/MorphingWizard_xaml.txt">
                         <StackPanel MinHeight="500" HorizontalAlignment="Center" Spacing="12">
                             <dev:MorphingWizard x:Name="Sample" Width="440" BackText="{x:Bind TxtBack.Text, Mode=OneWay}" Completed="Sample_Completed" ContinueText="{x:Bind TxtContinue.Text, Mode=OneWay}" CounterFormat="{x:Bind TxtCounter.Text, Mode=OneWay}" FinishText="{x:Bind TxtFinish.Text, Mode=OneWay}" ResetOnCompleted="{x:Bind TglReset.IsOn, Mode=OneWay}" StepChanged="Sample_StepChanged">
@@ -63,8 +63,8 @@
                             <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Step 1" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

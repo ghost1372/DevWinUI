@@ -10,13 +10,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Secondary Menu" CSharp="Features/Others/MenuFlyoutSecondaryMenuPage_cs.txt" Doc="attach/menuFlyoutAttach" DocType="Core">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="Secondary Menu" CSharp="Features/Others/MenuFlyoutSecondaryMenuPage_cs.txt" Doc="attach/menuFlyoutAttach" DocType="Core">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoClose" Header="Auto Close Flyout" IsOn="True" />
                         <ComboBox x:Name="CmbPosition" HorizontalAlignment="Stretch" Header="Secondary Menu Position" ItemsSource="{x:Bind SecondaryMenuPlacement, Mode=OneWay}" SelectedIndex="0" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <Button MinWidth="200" HorizontalAlignment="Center" Content="Open Flyout">
                     <Button.Flyout>
                         <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}" dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.SelectedItem), Mode=OneWay}">
@@ -61,7 +61,7 @@
                         </MenuFlyout>
                     </Button.Flyout>
                 </Button>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

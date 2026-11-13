@@ -9,8 +9,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="RichTextFormatter" Doc="helpers/richTextFormatter" DocType="Core">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="RichTextFormatter" Doc="helpers/richTextFormatter" DocType="Core">
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextBlock">
                         <local:Sample.CSharpCode>
                             <x:String>RichTextFormatterHelper.FormatTextBlock(text, textBlock);</x:String>
@@ -24,9 +24,9 @@
                         </local:Sample.CSharpCode>
                         <RichTextBlock x:Name="txtRichBlock" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
+                </local:ControlExample.Samples>
 
-                <local:ControlExample2.OptionGroups>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TextBlock">
                         <local:OptionPanel>
                             <TextBox x:Name="Txt" Header="Input" PlaceholderText="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular" Text="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular" TextChanged="Txt_TextChanged" />
@@ -38,8 +38,8 @@
                             <TextBox x:Name="Txt2" Header="Input" PlaceholderText="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular" Text="Test of &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;underline&lt;/u&gt;&lt;br&gt;larger &lt;font size='20'&gt;font&lt;/font&gt;||&lt;font color='00c600'&gt;Forecolor&lt;/font&gt; &lt;font bgcolor='00c600'&gt; Background &lt;/font&gt;||&lt;font colors='cb3d00,004500'&gt; Both combined &lt;/font&gt;||regular" TextChanged="Txt2_TextChanged" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-            </local:ControlExample2>
+                </local:ControlExample.OptionGroups>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

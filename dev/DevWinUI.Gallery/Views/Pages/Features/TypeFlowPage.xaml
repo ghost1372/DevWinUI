@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TypeFlow" Doc="controls/typeFlow">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TypeFlow" Doc="controls/typeFlow">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TypeFlow">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtText" Header="Text" Text="This is some awesome placeholder text, watch it render in style!" TextWrapping="Wrap" />
@@ -24,13 +24,13 @@
                             </StackPanel>
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TypeFlow" Xaml="Features/Others/TypeFlow_xaml.txt">
                         <dev:TypeFlow x:Name="Flow" AutoStart="{x:Bind TglAutoStart.IsOn, Mode=OneWay}" BaseDelay="{x:Bind SldBaseDelay.Value, Mode=OneWay}" FontSize="24" PunctuationDelay="{x:Bind SldPunctuationDelay.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

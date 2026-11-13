@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Growl" Doc="controls/growl">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="Growl" Doc="controls/growl">
+                <local:ControlExample.OptionGroups>
 
                     <!--  In-App Growl  -->
                     <local:OptionGroup Title="In-App Actions">
@@ -178,9 +178,9 @@
                             <ToggleSwitch Header="ShowActionContent" IsOn="{x:Bind Card.ShowActionContent, Mode=TwoWay}" OffContent="Off" OnContent="On" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
 
-                <local:ControlExample2.Samples>
+                <local:ControlExample.Samples>
                     <local:Sample Title="In-App Growl" CSharp="Features/Growl/GrowlPage_Part1_cs.txt" Xaml="Features/Growl/GrowlPage_xaml.txt">
                         <Grid ColumnSpacing="12">
                             <Grid.ColumnDefinitions>
@@ -220,8 +220,8 @@
                             </dev:GrowlCard>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

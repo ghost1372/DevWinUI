@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Antigravity" Doc="controls/antigravity">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Antigravity" Doc="controls/antigravity">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Antigravity Height="480" ColorMode="Conic" ParticleCount="1500" ParticleShape="Capsule" MagnetRadius="170" RingRadius="120" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Playback">
                         <local:OptionPanel>
                             <Button HorizontalAlignment="Stretch" Click="Replay_Click" Content="Replay" />
@@ -58,9 +58,9 @@
                             <Slider x:Name="SliderColorSpeed" Header="Color Speed" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.05" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:Antigravity x:Name="AntigravitySample" Height="480" VerticalAlignment="Top" Ambient="{x:Bind SliderAmbient.Value, Mode=OneWay}" AutoAnimate="{x:Bind TglAutoAnimate.IsOn, Mode=OneWay}" ClickBurst="{x:Bind TglClickBurst.IsOn, Mode=OneWay}" ColorSpeed="{x:Bind SliderColorSpeed.Value, Mode=OneWay}" DepthFactor="{x:Bind SliderDepth.Value, Mode=OneWay}" FieldStrength="{x:Bind SliderFieldStrength.Value, Mode=OneWay}" Intro="{x:Bind TglIntro.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsPaused="{x:Bind TglPaused.IsOn, Mode=OneWay}" LerpSpeed="{x:Bind SliderLerp.Value, Mode=OneWay}" MagnetRadius="{x:Bind SliderMagnet.Value, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderCount.Value, Mode=OneWay}" ParticleSize="{x:Bind SliderSize.Value, Mode=OneWay}" ParticleVariance="{x:Bind SliderVariance.Value, Mode=OneWay}" PulseSpeed="{x:Bind SliderPulse.Value, Mode=OneWay}" RingRadius="{x:Bind SliderRing.Value, Mode=OneWay}" RotationSpeed="{x:Bind SliderRotation.Value, Mode=OneWay}" WaveAmplitude="{x:Bind SliderWaveAmplitude.Value, Mode=OneWay}" WaveCount="{x:Bind (x:Int32)SliderWaveCount.Value, Mode=OneWay}" WaveSpeed="{x:Bind SliderWaveSpeed.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

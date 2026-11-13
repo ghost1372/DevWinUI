@@ -9,13 +9,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="MessageBox" Doc="controls/messageBox" DocType="Controls">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="MessageBox" Doc="controls/messageBox" DocType="Controls">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         await MessageBox.ShowAsync("Content", "Title");
                     </x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Message">
                         <local:OptionPanel>
                             <TextBox x:Name="txtTitle" Header="Title" PlaceholderText="Title" Text="Title" />
@@ -37,7 +37,7 @@
                             <local:ChoiceOption x:Name="CmbUnderlayBackdrops" Header="Backdrop" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <StackPanel Spacing="10">
                     <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show MessageBox" Tag="None" />
                     <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Info MessageBox" Tag="Info" />
@@ -47,7 +47,7 @@
                     <Button HorizontalAlignment="Stretch" Click="OnMessageBox" Content="Show Question MessageBox" Tag="Question" />
                     <TextBlock x:Name="TxtResult" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

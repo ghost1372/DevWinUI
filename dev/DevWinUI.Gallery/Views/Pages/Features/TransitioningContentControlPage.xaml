@@ -10,15 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TransitioningContentControl" Doc="controls/transitioningContentControl">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TransitioningContentControl" Doc="controls/transitioningContentControl">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TransitioningContentControl">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TGVisibility" Header="Button Visibility" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TransitioningContentControl">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -90,8 +90,8 @@
                             </dev:TransitioningContentControl>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -11,8 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="DependencyObject Extensions" CSharp="Features/Extension/DependencyObjectExtensions_cs.txt" Doc="extensions/dependencyObjectExtension" DocType="Core">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="DependencyObject Extensions" CSharp="Features/Extension/DependencyObjectExtensions_cs.txt" Doc="extensions/dependencyObjectExtension" DocType="Core">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Basic">
                         <local:OptionPanel>
                             <Button HorizontalAlignment="Stretch" Click="OnFadeIn" Content="Fade In" />
@@ -29,24 +29,24 @@
                             <Button HorizontalAlignment="Stretch" Click="OnSkew" Content="Skew" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
 
                 <Grid Width="450" Height="350">
                     <Grid x:Name="SampleGrid" Width="200" Height="200" Margin="25,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red" />
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="Enum values" CSharp="Features\Extension\EnumValues_cs.txt" Doc="markupExtensions/enumValueExtension" DocType="Core">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Enum values" CSharp="Features\Extension\EnumValues_cs.txt" Doc="markupExtensions/enumValueExtension" DocType="Core">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;ComboBox ItemsSource="{dev:EnumValues Type=enum:Animal}"/&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <ComboBox MinWidth="200" ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}" SelectedIndex="0" />
-            </local:ControlExample2>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="TextBoxExtensions" Doc="extensions/textBoxExtension" DocType="Core">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="TextBoxExtensions" Doc="extensions/textBoxExtension" DocType="Core">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Regex">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -121,11 +121,11 @@
                             </TextBlock>
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="Mask" Doc="extensions/textBoxExtension/#Text-mask" DocType="Core">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="Mask" Doc="extensions/textBoxExtension/#Text-mask" DocType="Core">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Mask">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -170,8 +170,8 @@
                         </local:Sample.XamlCode>
                         <TextBox Width="400" dev:TextBoxExtensions.CustomMask="5:[1-5],c:[a-c]" dev:TextBoxExtensions.Mask="a5c-5c*9" Header="Text box with CustomMask in case you want to define your own variable character like a, 9 and *. Mask: a5c-5c*9, 5: [1-5], c: [a-c]" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -11,12 +11,12 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ForegroundFocusEffects" CSharp="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt" Doc="controls/foregroundFocusEffects" Xaml="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="ForegroundFocusEffects" CSharp="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_cs.txt" Doc="controls/foregroundFocusEffects" Xaml="Composition/ForegroundFocusEffect/ForegroundFocusEffectPage_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <local:ChoiceOption Header="Foreground Focus Effect" Value="{x:Bind ForegroundFocusEffectsSample.Effect, Mode=TwoWay}" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <dev:ForegroundFocusEffects x:Name="ForegroundFocusEffectsSample" Effect="Blur">
                     <ListView IsItemClickEnabled="True" ItemClick="OnItemClick" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                         <ListView.ItemsPanel>
@@ -33,7 +33,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </dev:ForegroundFocusEffects>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

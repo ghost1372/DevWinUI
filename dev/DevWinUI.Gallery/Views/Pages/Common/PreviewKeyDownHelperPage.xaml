@@ -10,12 +10,12 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="PreviewKeyDownHelper" Doc="helpers/previewKeyDownHelper" DocType="Core">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="PreviewKeyDownHelper" Doc="helpers/previewKeyDownHelper" DocType="Core">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;TextBox PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersOnly}"/&gt;
                     </x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <StackPanel Spacing="10">
                     <TextBox Header="AcceptNumbersOnly" PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersOnly}" />
                     <TextBox Header="AcceptNumbersAndOperators" PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptNumbersAndOperators}" />
@@ -24,7 +24,7 @@
                     <TextBox Header="RejectLetters" PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.RejectLetters}" />
                     <TextBox Header="AcceptLettersOnly" PreviewKeyDown="{x:Bind dev:PreviewKeyDownHelper.AcceptLettersOnly}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

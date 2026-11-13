@@ -9,15 +9,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="LegacyMessageBox" Doc="common/messageBox" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="LegacyMessageBox" Doc="common/messageBox" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         LegacyMessageBox.Show(window, "Message", "Title", MessageBoxStyle.IconInformation);
                     </x:String>
-                </local:ControlExample2.CSharpCode>
+                </local:ControlExample.CSharpCode>
 
                 <Button x:Name="BtnMessageBox" Click="BtnMessageBox_Click" Content="Show MessageBox" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

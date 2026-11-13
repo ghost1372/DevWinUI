@@ -10,11 +10,11 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ColorShadow" Doc="controls/colorShadow">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="ColorShadow" Doc="controls/colorShadow">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:ColorShadow ImageUri="ms-appx:///Assets/Others/RainbowRose.png" /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Color">
                         <local:OptionPanel>
                             <Slider x:Name="SldColorShadowBlurRadius" Header="Color Shadow Blur Radius" Value="12" />
@@ -43,9 +43,9 @@
                             <Slider x:Name="SldImageOffsetY" Header="Image Offset Y" Value="0" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:ColorShadow x:Name="ColorShadowCtrl" Width="400" Height="400" ColorMaskBlurRadius="{x:Bind SldColorMaskBlur.Value, Mode=OneWay}" ColorMaskPadding="{x:Bind SldColorMaskPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}" ColorShadowBlurRadius="{x:Bind SldColorShadowBlurRadius.Value, Mode=OneWay}" ColorShadowOpacity="{x:Bind SldColorShadowOpacity.Value, Mode=OneWay}" ColorShadowPadding="{x:Bind SldColorShadowPadding.Value, Mode=OneWay, Converter={StaticResource DoubleToThicknessConverter}}" ImageLayoutOffsetX="{x:Bind SldImageLayoutOffsetX.Value, Mode=OneWay}" ImageLayoutOffsetY="{x:Bind SldImageLayoutOffsetY.Value, Mode=OneWay}" ImageLayoutOffsetZ="{x:Bind SldImageLayoutOffsetZ.Value, Mode=OneWay}" ImageOffsetX="{x:Bind SldImageOffsetX.Value, Mode=OneWay}" ImageOffsetY="{x:Bind SldImageOffsetY.Value, Mode=OneWay}" IsRounded="{x:Bind TgIsRound.IsOn, Mode=OneWay}" IsShadowEnabled="{x:Bind TgShowShadow.IsOn, Mode=OneWay}" ShadowBlurRadius="{x:Bind SldShadowBlurRadius.Value, Mode=OneWay}" ShadowOffsetX="{x:Bind SldShadowOffsetX.Value, Mode=OneWay}" ShadowOffsetY="{x:Bind SldShadowOffsetY.Value, Mode=OneWay}" ShadowOpacity="{x:Bind SldShadowOpacity.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

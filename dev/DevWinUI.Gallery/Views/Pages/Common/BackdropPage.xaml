@@ -6,14 +6,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TransparentBackdrop" Description="Apply a fully transparent system backdrop to a window." Doc="backdrop" DocType="Core">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="TransparentBackdrop" Description="Apply a fully transparent system backdrop to a window." Doc="backdrop" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         window.SystemBackdrop = new TransparentBackdrop();
                     </x:String>
-                </local:ControlExample2.CSharpCode>
+                </local:ControlExample.CSharpCode>
                 <Button Click="Button_Click" Content="Show sample window" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

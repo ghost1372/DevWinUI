@@ -11,8 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Album Covers" Doc="controls/carouselView2">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="Album Covers" Doc="controls/carouselView2">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Layout">
                         <local:OptionPanel>
                             <local:ChoiceOption Header="Carousel Type" ToolTipService.ToolTip="Change the layout style of the carousel." Value="{x:Bind AlbumCarousel.CarouselType, Mode=TwoWay}" />
@@ -37,8 +37,8 @@
                             <Slider x:Name="SldWarpCurve" Header="Warp Curve" Maximum="0.01" Minimum="0.0001" StepFrequency="0.0001" ToolTipService.ToolTip="Curve of all protruding items. Use this and Warp Intensity" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Album Carousel" CSharp="Composition/CarouselView2/CarouselView2Page_cs.txt" Xaml="Composition/CarouselView2/CarouselView2Page_Part2_xaml.txt">
                         <dev:CarouselView2 x:Name="AlbumCarousel" Height="100" AdditionalItemsToScale="{x:Bind (x:Int32)SldAdditionalItemsToScale.Value, Mode=OneWay}" AdditionalItemsToWarp="{x:Bind (x:Int32)SldAdditionalItemsToWarp.Value, Mode=OneWay}" CarouselType="Row" Density="{x:Bind (x:Int32)SldDensity.Value, Mode=OneWay}" FliptychDegrees="{x:Bind SldFliptychDegrees.Value, Mode=OneWay}" ItemGap="{x:Bind (x:Int32)SldItemGap.Value, Mode=OneWay}" ItemsSource="{x:Bind ViewModel.CarouselData, Mode=OneWay}" NavigationSpeed="{x:Bind (x:Int32)SldNavigationSpeed.Value, Mode=OneWay}" SelectedIndex="0" SelectedItemScale="{x:Bind SldSelectedItemScale.Value, Mode=OneWay}" WarpCurve="{x:Bind SldWarpCurve.Value, Mode=OneWay}" WarpIntensity="{x:Bind (x:Int32)SldWarpIntensity.Value, Mode=OneWay}" WheelAlignment="Right" ZIndexUpdateWaitsForAnimation="{x:Bind TgZIndexUpdateWaitsForAnimation.IsOn, Mode=OneWay}">
                             <dev:CarouselView2.ItemTemplate>
@@ -71,8 +71,8 @@
                             </dev:CarouselView2.ItemTemplate>
                         </dev:CarouselView2>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

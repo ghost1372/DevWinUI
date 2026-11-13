@@ -10,19 +10,19 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Hatch" Doc="controls/hatch">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Hatch" Doc="controls/hatch">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Hatch /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <local:ChoiceOption Header="Pick a Hatch" Value="{x:Bind HatchSample.HatchStyle, Mode=TwoWay}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:Hatch x:Name="HatchSample" Height="400" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

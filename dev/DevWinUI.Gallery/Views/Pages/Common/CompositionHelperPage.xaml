@@ -10,18 +10,18 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="MakeLongShadow" Doc="helpers/compositionHelper" DocType="Core" Xaml="Features\Others\CompositionHelper_MakeLongShadow_xaml.txt">
-                <local:ControlExample2.CSharpCode>
+            <local:ControlExample Title="MakeLongShadow" Doc="helpers/compositionHelper" DocType="Core" Xaml="Features\Others\CompositionHelper_MakeLongShadow_xaml.txt">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         CompositionHelper.MakeLongShadow(188, 0.3f, TextBlockElement, ShadowElement, Color.FromArgb(255, 250, 110, 93));
                     </x:String>
-                </local:ControlExample2.CSharpCode>
+                </local:ControlExample.CSharpCode>
 
                 <Grid Background="DarkRed">
                     <Rectangle x:Name="ShadowElement" />
                     <TextBlock x:Name="TextBlockElement" FontSize="148" FontWeight="Bold" Foreground="Orange" Text="00:10:15" />
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

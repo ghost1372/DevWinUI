@@ -28,9 +28,6 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Controls\ControlExample2.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -72,7 +69,7 @@
     <CompilerVisibleProperty Include="BreadcrumbMappingsNamespace" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Controls\ControlExample2.xaml">
+    <Page Update="Controls\ControlExample.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

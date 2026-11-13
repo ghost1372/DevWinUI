@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TextGlitchEffect" Doc="controls/textGlitchEffect">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TextGlitchEffect" Doc="controls/textGlitchEffect">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TextGlitchEffect">
                         <local:OptionPanel>
                             <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
@@ -28,8 +28,8 @@
                             <TextBox x:Name="txt4" Header="Delimiter" PlaceholderText="Delimiter" Text="," />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextGlitchEffect">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -54,8 +54,8 @@
                         </local:Sample.XamlCode>
                         <dev:TextGlitchEffect3 MinHeight="110" Delimiter="{x:Bind txt4.Text, Mode=OneWay}" Text="{x:Bind txt3.Text, Mode=OneWay}" />
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

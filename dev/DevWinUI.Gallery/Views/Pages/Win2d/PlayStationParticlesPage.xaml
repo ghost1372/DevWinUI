@@ -10,15 +10,15 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="PlayStationParticles" Doc="controls/playStationParticles">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="PlayStationParticles" Doc="controls/playStationParticles">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Particles">
                         <local:OptionPanel>
                             <Slider x:Name="SliderSpeed" Header="Speed" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Welcome" Xaml="Win2d/PlayStationParticles_xaml.txt">
                         <Grid MinHeight="360" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="{StaticResource OverlayCornerRadius}">
                             <dev:PlayStationParticles Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" />
@@ -28,8 +28,8 @@
                             </StackPanel>
                         </Grid>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

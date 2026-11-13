@@ -10,10 +10,10 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="AnimatedGradient" Doc="controls/animatedGradient">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="AnimatedGradient" Doc="controls/animatedGradient">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:AnimatedGradient ColorScheme="CoolReversed"&gt;&lt;TextBlock FontSize="68" Text="About" /&gt;&lt;/dev:AnimatedGradient&gt;</x:String>
-                </local:ControlExample2.XamlCode>
+                </local:ControlExample.XamlCode>
                 <StackPanel Spacing="16">
                     <dev:AnimatedGradient HorizontalAlignment="Left" ColorScheme="CoolReversed">
                         <TextBlock FontSize="68" Text="About" />
@@ -28,7 +28,7 @@
                         <TextBlock FontSize="72" Text="Awards" />
                     </dev:AnimatedGradient>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

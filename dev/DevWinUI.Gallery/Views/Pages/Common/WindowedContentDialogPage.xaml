@@ -9,8 +9,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="WindowedContentDialog" CSharp="Features/Others/WindowedContentDialogPage_cs.txt" Doc="controls/windowedContentDialog" DocType="Controls">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="WindowedContentDialog" CSharp="Features/Others/WindowedContentDialogPage_cs.txt" Doc="controls/windowedContentDialog" DocType="Controls">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Dialog">
                         <local:OptionPanel>
                             <TextBox x:Name="txtTitle" Header="Header" PlaceholderText="Header" Text="Header" />
@@ -28,12 +28,12 @@
                             <local:ChoiceOption x:Name="CmbFlow" Header="FlowDirection" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <StackPanel Spacing="10">
                     <Button Click="Button_Click" Content="Show Dialog" />
                     <TextBlock x:Name="TxtResult" Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

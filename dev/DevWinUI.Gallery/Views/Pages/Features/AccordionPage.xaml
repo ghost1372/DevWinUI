@@ -11,8 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Accordion" Doc="controls/accordion">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="Accordion" Doc="controls/accordion">
+                <local:ControlExample.Samples>
                     <local:Sample Title="Accordion">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -37,8 +37,8 @@
                             </dev:Accordion.HeaderTemplate>
                         </dev:Accordion>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

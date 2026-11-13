@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ShowMore" Doc="controls/showMore">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="ShowMore" Doc="controls/showMore">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="ShowMore">
                         <local:OptionPanel>
                             <ToggleSwitch Header="Is Expanded" IsOn="{x:Bind Show.IsExpanded, Mode=TwoWay}" />
@@ -22,8 +22,8 @@
                             <TextBox x:Name="TxtLabel" Header="Label (automation name)" Text="Release notes" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="ShowMore" Xaml="Features/ShowMore/ShowMore_xaml.txt">
                         <dev:ShowMore x:Name="Show" MaxWidth="560" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LessLabel="{x:Bind TxtLessLabel.Text, Mode=OneWay}" Lines="{x:Bind GetLines(SliderLines.Value), Mode=OneWay}" MaxExpandedHeight="{x:Bind SliderMaxHeight.Value, Mode=OneWay}" MoreLabel="{x:Bind TxtMoreLabel.Text, Mode=OneWay}">
                             <TextBlock Text="{x:Bind LongText}" TextWrapping="Wrap" />
@@ -34,8 +34,8 @@
                             <TextBlock Text="This content fits within the line limit, so no toggle is shown." TextWrapping="Wrap" />
                         </dev:ShowMore>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

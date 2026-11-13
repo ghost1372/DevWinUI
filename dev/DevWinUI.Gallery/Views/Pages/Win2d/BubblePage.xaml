@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Bubble" Doc="controls/bubble">
-                <local:ControlExample2.Samples>
+            <local:ControlExample Title="Bubble" Doc="controls/bubble">
+                <local:ControlExample.Samples>
                     <local:Sample Title="BubbleButton">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -35,8 +35,8 @@
                             <dev:BubbleProgressButton x:Name="FavoriteButton" Content="{dev:FontIcon GlyphName=Favicon}" GestureRecognizerHolding="OnGestureRecognizerHolding" GestureRecognizerTapped="OnGestureRecognizerTapped" Value="{x:Bind LikeButton.Value, Mode=OneWay}" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

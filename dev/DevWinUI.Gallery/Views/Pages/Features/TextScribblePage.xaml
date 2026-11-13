@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TextScribble" Doc="controls/textScribble">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TextScribble" Doc="controls/textScribble">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="TextScribble">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbType" Header="Type" Value="{x:Bind dev:TextScribbleType.Scribble}" />
@@ -31,8 +31,8 @@
                             <NumberBox x:Name="NbIterations" Header="Iterations" Maximum="4" Minimum="1" PlaceholderText="Auto" SpinButtonPlacementMode="Compact" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextScribble">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -51,8 +51,8 @@
                             <dev:TextScribble FontSize="24" MarkBrush="{ThemeResource SystemFillColorCriticalBrush}" MarkText="Hover" Text="Hover to draw the mark" Trigger="Hover" Type="Circle" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="GoToCard" Doc="controls/goToCard">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="GoToCard" Doc="controls/goToCard">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Text">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtTitle" Header="Title" PlaceholderText="Title" Text="Syncfusion Collaborates with Microsoft to Advance .NET MAUI" />
@@ -28,8 +28,8 @@
                             <ToggleSwitch x:Name="TgIsOpen" Header="Is Open?" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="GoToCard">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -47,8 +47,8 @@
                             <dev:GoToCard Title="Update Your Profile Information" ActionIcon="{dev:FontIconSource GlyphName=Info}" ActionTitle="Open Settings" Background="{ThemeResource CardGradient2Brush}" Icon="{dev:BitmapIconSource Source=ms-appx:///Assets/Fluent/update.png}" IsOpen="{x:Bind TgIsOpen.IsOn, Mode=OneWay}" LaunchUri="{x:Bind TxtUri.Text, Mode=OneWay}" ShowActionButton="{x:Bind TgShowActionButton.IsOn, Mode=OneWay}" ShowActionIcon="{x:Bind TgShowActionIcon.IsOn, Mode=OneWay}" ShowCloseButton="{x:Bind TgShowClose.IsOn, Mode=OneWay}" ShowIcon="{x:Bind TgShowIcon.IsOn, Mode=OneWay}" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

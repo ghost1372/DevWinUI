@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="MotionWall" CSharp="Win2d/MotionWall/MotionPage_cs.txt" Doc="controls/motionwall" Xaml="Win2d/MotionWall/MotionPage_xaml.txt">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="MotionWall" CSharp="Win2d/MotionWall/MotionPage_cs.txt" Doc="controls/motionwall" Xaml="Win2d/MotionWall/MotionPage_xaml.txt">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Presets">
                         <local:OptionPanel Spacing="10">
                             <Button HorizontalAlignment="Stretch" Click="Preset_Click" Content="Default" Tag="default" />
@@ -77,14 +77,14 @@
                             <Slider Header="EdgeFadeStrength" Maximum="1" Minimum="0" StepFrequency="0.05" Value="{x:Bind Wall.EdgeFadeStrength, Mode=TwoWay}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <StackPanel Spacing="8">
                     <TextBlock x:Name="StatusText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Enable IsInteractive, then click a tile or focus the wall and use the arrow keys." TextWrapping="Wrap" />
                     <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
                         <dev:MotionWall x:Name="Wall" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" />
                     </Border>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

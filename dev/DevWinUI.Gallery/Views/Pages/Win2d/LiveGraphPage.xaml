@@ -10,14 +10,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Live Graph" Doc="controls/liveGraph">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="Live Graph" Doc="controls/liveGraph">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:LiveGraph /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.CSharpCode>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
                     <x:String>LiveGraph.AddStaticGraph("Key", points);</x:String>
-                </local:ControlExample2.CSharpCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Brush">
                         <local:OptionPanel>
                             <StackPanel Spacing="8">
@@ -46,7 +46,7 @@
                             <NumberBox x:Name="NBHorizontalScrollDistance" Header="Horizontal Scroll Distance" SpinButtonPlacementMode="Inline" Value="1" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:LiveGraph x:Name="LiveGraphSample" Height="250" VerticalAlignment="Top" CreateResources="LiveGraphSample_CreateResources" CrossSpacing="{x:Bind NBCrossSpacing.Value, Mode=OneWay}" DotSpacing="{x:Bind NBDotSpacing.Value, Mode=OneWay}" Draw="LiveGraphSample_Draw" HighlightLineVisibility="{x:Bind TGShowLine.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalScrollDistance="{x:Bind NBHorizontalScrollDistance.Value, Mode=OneWay}">
                     <dev:LiveGraph.HighlightLineContent>
                         <Grid>
@@ -55,7 +55,7 @@
                         </Grid>
                     </dev:LiveGraph.HighlightLineContent>
                 </dev:LiveGraph>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

@@ -7,14 +7,14 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="First you must create a new release tag in github repository, tag version must be in this format : 1.0.0.0 now we can check for update with github username and github repository" IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample2 Title="UpdateHelper" CSharp="Features/Others/CheckUpdatePage_cs.txt" Description="Check a GitHub repository for a newer stable or pre-release version." Doc="helpers/updateHelper" DocType="Core">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="UpdateHelper" CSharp="Features/Others/CheckUpdatePage_cs.txt" Description="Check a GitHub repository for a newer stable or pre-release version." Doc="helpers/updateHelper" DocType="Core">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="txtUser" Header="GitHub Username" PlaceholderText="Ghost1372" />
                         <TextBox x:Name="txtRepo" Header="GitHub Repository" PlaceholderText="DevWinUI" />
                         <Button HorizontalAlignment="Stretch" Click="Button_Click" Content="Check for Update" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <StackPanel MaxWidth="560" Spacing="8">
                     <TextBlock x:Name="txtReleaseUrl" TextWrapping="Wrap" />
                     <TextBlock x:Name="txtCreatedAt" TextWrapping="Wrap" />
@@ -24,7 +24,7 @@
                     <TextBlock x:Name="txtChangelog" TextWrapping="Wrap" />
                     <ListView x:Name="listView" />
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

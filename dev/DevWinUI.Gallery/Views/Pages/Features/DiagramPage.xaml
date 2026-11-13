@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="Diagram" Doc="controls/diagram">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="Diagram" Doc="controls/diagram">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Workflow Layout">
                         <local:OptionPanel>
                             <ComboBox x:Name="CmbLayout" Header="Layout" ItemsSource="{x:Bind LayoutItems, Mode=OneWay}" SelectedIndex="1">
@@ -92,8 +92,8 @@
                             <ToggleSwitch x:Name="TglColorEdgesByType" Header="Color Edges by Type" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="Hierarchical Workflow" Xaml="Features/Diagram/DiagramHierarchical_xaml.txt">
                         <dev:Diagram Height="460" VerticalAlignment="Top" AllowDrag="{x:Bind TglAllowDrag.IsOn, Mode=OneWay}" AutoFit="{x:Bind TglAutoFit.IsOn, Mode=OneWay}" BackgroundPattern="{x:Bind ((dev:DiagramBackground)CmbBackground.SelectedItem), Mode=OneWay}" Collapsible="{x:Bind TglCollapsible.IsOn, Mode=OneWay}" Direction="{x:Bind ((dev:DiagramDirection)CmbDirection.SelectedItem), Mode=OneWay}" EdgeStyle="{x:Bind ((dev:DiagramEdgeStyle)CmbEdgeStyle.SelectedItem), Mode=OneWay}" Layout="{x:Bind ((dev:DiagramLayout)CmbLayout.SelectedItem), Mode=OneWay}" LevelSpacing="{x:Bind SliderLevelSpacing.Value, Mode=OneWay}" SelectionMode="{x:Bind ((dev:DiagramSelectionMode)CmbSelectionMode.SelectedItem), Mode=OneWay}" ShowArrows="{x:Bind TglShowArrows.IsOn, Mode=OneWay}" ShowControls="{x:Bind TglShowControls.IsOn, Mode=OneWay}" ShowMinimap="{x:Bind TglShowMinimap.IsOn, Mode=OneWay}" SnapToGrid="{x:Bind TglSnapToGrid.IsOn, Mode=OneWay}">
                             <dev:Diagram.Root>
@@ -168,8 +168,8 @@
                             </dev:Diagram.Edges>
                         </dev:Diagram>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

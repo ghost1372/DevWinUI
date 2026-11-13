@@ -9,14 +9,14 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="SystemTrayIcon" CSharp="Features/Others/SystemTrayIconPage_cs.txt" Doc="common/systemTrayIcon" DocType="Core">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="SystemTrayIcon" CSharp="Features/Others/SystemTrayIconPage_cs.txt" Doc="common/systemTrayIcon" DocType="Core">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <TextBox x:Name="TxtToolTip" Header="ToolTip" PlaceholderText="AppName" Text="ToolTip" TextChanged="TxtToolTip_TextChanged" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <ToggleSwitch x:Name="TGIsVisible" Header="IsVisible" IsOn="True" Toggled="TGIsVisible_Toggled" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

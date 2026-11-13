@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="WaveProgressBar" Doc="controls/waveProgressBar">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="WaveProgressBar" Doc="controls/waveProgressBar">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="WaveProgressBar">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TglText" Header="Show Text" IsOn="True" />
@@ -19,8 +19,8 @@
                             <Slider x:Name="SliderThickness" Header="Wave Thickness" Value="2" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="WaveProgressBar">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -32,8 +32,8 @@
                             <dev:WaveProgressBar ShowText="{x:Bind TglText.IsOn, Mode=OneWay}" WaveFill="{ThemeResource SystemFillColorCriticalBrush}" WaveThickness="{x:Bind SliderThickness.Value, Mode=OneWay}" Value="{x:Bind SliderProgress.Value, Mode=OneWay}" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

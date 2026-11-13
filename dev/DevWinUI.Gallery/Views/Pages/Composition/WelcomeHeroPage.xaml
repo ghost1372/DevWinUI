@@ -8,11 +8,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <local:ControlExample2 Title="WelcomeHero" Margin="24" Doc="controls/welcomeHero">
-        <local:ControlExample2.XamlCode>
+    <local:ControlExample Title="WelcomeHero" Margin="24" Doc="controls/welcomeHero">
+        <local:ControlExample.XamlCode>
             <x:String>&lt;Frame x:Name="MainFrame" /&gt;</x:String>
-        </local:ControlExample2.XamlCode>
+        </local:ControlExample.XamlCode>
         <Frame x:Name="MainFrame" />
-    </local:ControlExample2>
+    </local:ControlExample>
 
 </Page>

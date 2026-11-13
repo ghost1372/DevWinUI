@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="GooeyButton" CSharp="Win2d/GooeyPage_cs.txt" Doc="controls/gooey" Xaml="Win2d/GooeyPage_xaml.txt">
+            <local:ControlExample Title="GooeyButton" CSharp="Win2d/GooeyPage_cs.txt" Doc="controls/gooey" Xaml="Win2d/GooeyPage_xaml.txt">
                 <Grid Height="250">
                     <dev:GooeyButton x:Name="gooeyButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Invoked="gooeyButton_Invoked" ItemInvoked="gooeyButton_ItemInvoked" ItemsSource="{x:Bind strings}">
                         <dev:GooeyButton.Content>
@@ -23,13 +23,13 @@
                         </dev:GooeyButton.ItemTemplate>
                     </dev:GooeyButton>
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="GooeyEffect" Doc="controls/gooey">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="GooeyEffect" Doc="controls/gooey">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:GooeyEffect /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Primary">
                         <local:OptionPanel>
                             <Slider x:Name="PrimaryRadius" Header="PrimaryRadius" Maximum="500" Minimum="-500" Value="30" />
@@ -54,15 +54,15 @@
                             <NumberBox x:Name="BlurAmount" Header="BlurAmount" Minimum="1" SpinButtonPlacementMode="Inline" Value="10" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:GooeyEffect BlurAmount="{x:Bind BlurAmount.Value, Mode=OneWay}" PrimaryRadius="{x:Bind PrimaryRadius.Value, Mode=OneWay}" PrimaryTimeLineFromX="{x:Bind PrimaryTimeLineFromX.Value, Mode=OneWay}" PrimaryTimeLineFromY="{x:Bind PrimaryTimeLineFromY.Value, Mode=OneWay}" PrimaryTimeLineToX="{x:Bind PrimaryTimeLineToX.Value, Mode=OneWay}" PrimaryTimeLineToY="{x:Bind PrimaryTimeLineToY.Value, Mode=OneWay}" SecondaryRadius="{x:Bind SecondaryRadius.Value, Mode=OneWay}" SecondaryTimeLineFromX="{x:Bind SecondaryTimeLineFromX.Value, Mode=OneWay}" SecondaryTimeLineFromY="{x:Bind SecondaryTimeLineFromY.Value, Mode=OneWay}" SecondaryTimeLineToX="{x:Bind SecondaryTimeLineToX.Value, Mode=OneWay}" SecondaryTimeLineToY="{x:Bind SecondaryTimeLineToY.Value, Mode=OneWay}" Duration="{x:Bind Duration.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
 
-            <local:ControlExample2 Title="GooeyFooter" Doc="controls/gooey">
-                <local:ControlExample2.XamlCode>
+            <local:ControlExample Title="GooeyFooter" Doc="controls/gooey">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:GooeyFooterEffect /&gt;</x:String>
-                </local:ControlExample2.XamlCode>
-                <local:ControlExample2.OptionGroups>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Timeline">
                         <local:OptionPanel>
                             <Slider x:Name="TimeLineFrom" Header="TimeLineFrom" Maximum="500" Minimum="-500" Value="30" />
@@ -87,9 +87,9 @@
                             <NumberBox x:Name="BlurAmount2" Header="BlurAmount" Minimum="1" SpinButtonPlacementMode="Inline" Value="10" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
+                </local:ControlExample.OptionGroups>
                 <dev:GooeyFooterEffect x:Name="gooeyFooter" BlurAmount="{x:Bind BlurAmount2.Value, Mode=OneWay}" H="{x:Bind H.Value, Mode=OneWay}" SizeDuration="{x:Bind SizeDuration.Value, Mode=OneWay}" SizeTimeLineFrom="{x:Bind SizeTimeLineFrom.Value, Mode=OneWay}" SizeTimeLineTo="{x:Bind SizeTimeLineTo.Value, Mode=OneWay}" TimeLineFrom="{x:Bind TimeLineFrom.Value, Mode=OneWay}" TimeLineTo="{x:Bind TimeLineTo.Value, Mode=OneWay}" W="{x:Bind W.Value, Mode=OneWay}" X="{x:Bind X.Value, Mode=OneWay}" Y="{x:Bind Y.Value, Mode=OneWay}" Duration="{x:Bind Duration2.Value, Mode=OneWay}" />
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

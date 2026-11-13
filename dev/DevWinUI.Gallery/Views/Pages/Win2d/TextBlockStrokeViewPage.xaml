@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="TextBlockStrokeView" Doc="controls/textBlockStrokeView">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="TextBlockStrokeView" Doc="controls/textBlockStrokeView">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Text stroke">
                         <local:OptionPanel>
                             <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="{StaticResource LoremText}" />
@@ -19,15 +19,15 @@
                             <NumberBox x:Name="nbStroke" Header="Stroke Thickness" Minimum="0" PlaceholderText="Stroke Thickness" SpinButtonPlacementMode="Inline" Value="1" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="TextBlockStrokeView" Xaml="Win2d/TextBlockStrokeViewPage_xaml.txt">
                         <dev:TextBlockStrokeView Animate="{x:Bind tgAnimate.IsOn, Mode=OneWay}" StrokeThickness="{x:Bind nbStroke.Value, Mode=OneWay}">
                             <TextBlock FontSize="16" Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind txt.Text, Mode=OneWay}" TextWrapping="Wrap" />
                         </dev:TextBlockStrokeView>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="EyeDropper" CSharp="Features\Others\EyeDropper_cs.txt" Doc="common/eyeDropper" DocType="Core">
+            <local:ControlExample Title="EyeDropper" CSharp="Features\Others\EyeDropper_cs.txt" Doc="common/eyeDropper" DocType="Core">
                 <StackPanel Spacing="10">
                     <Button x:Name="BtnPick" HorizontalAlignment="Stretch" Click="BtnPick_Click" Content="Pick a Color" />
                     <Grid Width="300" Height="40" Padding="2" HorizontalAlignment="Center" Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}" BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{StaticResource OverlayCornerRadius}">
@@ -24,7 +24,7 @@
                         <TextBlock x:Name="TxtHex" Grid.Column="1" Margin="5,0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="#FFFFFFFF" />
                     </Grid>
                 </StackPanel>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>

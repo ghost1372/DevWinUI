@@ -10,17 +10,17 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="ColorBloomControl" CSharp="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt" Doc="controls/colorBloomControl" Xaml="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
-                <local:ControlExample2.Options>
+            <local:ControlExample Title="ColorBloomControl" CSharp="Composition/ColorBloomControl/ColorBloomControlPage_cs.txt" Doc="controls/colorBloomControl" Xaml="Composition/ColorBloomControl/ColorBloomControlPage_xaml.txt">
+                <local:ControlExample.Options>
                     <local:OptionPanel>
                         <local:ColorOption x:Name="ColorOptionSample" Header="Bloom Color" IsAlphaEnabled="False" Value="Red" />
                     </local:OptionPanel>
-                </local:ControlExample2.Options>
+                </local:ControlExample.Options>
                 <Grid Height="200" VerticalAlignment="Top" SizeChanged="OnSizeChanged">
                     <Button x:Name="BtnStart" Width="170" Margin="0,0,0,10" VerticalAlignment="Top" Click="OnClick" Content="Start" />
                     <dev:ColorBloomControl x:Name="ColorBloomSample" Color="{x:Bind ColorOptionSample.Value, Mode=OneWay}" />
                 </Grid>
-            </local:ControlExample2>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 

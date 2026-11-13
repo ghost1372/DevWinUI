@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample2 Title="HoldToConfirm" Doc="controls/holdToConfirm">
-                <local:ControlExample2.OptionGroups>
+            <local:ControlExample Title="HoldToConfirm" Doc="controls/holdToConfirm">
+                <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Content">
                         <local:OptionPanel>
                             <TextBox x:Name="TxtLabel" Header="Label" Text="Hold to confirm" />
@@ -32,8 +32,8 @@
                             <Button Click="ResetButton_Click" Content="Reset" />
                         </local:OptionPanel>
                     </local:OptionGroup>
-                </local:ControlExample2.OptionGroups>
-                <local:ControlExample2.Samples>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Samples>
                     <local:Sample Title="HoldToConfirm">
                         <local:Sample.XamlCode>
                             <x:String>
@@ -45,8 +45,8 @@
                             <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Press and hold the button" />
                         </StackPanel>
                     </local:Sample>
-                </local:ControlExample2.Samples>
-            </local:ControlExample2>
+                </local:ControlExample.Samples>
+            </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
 </Page>
