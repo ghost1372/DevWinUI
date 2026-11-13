@@ -18,8 +18,6 @@ public sealed partial class EyeDropper
     private int isUpdateQueued;
     private volatile bool isRunning;
 
-    private bool isPreviewFrameRemoved;
-
     public void Start()
     {
         if (isRunning)
