@@ -3,7 +3,7 @@
 
 namespace DevWinUI;
 
-public sealed partial class StatusCenterStateToBrushConverter : DependencyObject, IValueConverter
+internal sealed partial class StatusCenterStateToBrushConverter : DependencyObject, IValueConverter
 {
 	public static readonly DependencyProperty InProgressBackgroundBrushProperty =
 		DependencyProperty.Register(nameof(InProgressBackgroundBrush), typeof(SolidColorBrush), typeof(StatusCenterStateToBrushConverter), new PropertyMetadata(null));

@@ -2,7 +2,6 @@
 <UserControl x:Class="DevWinUI.StatusCenterButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="using:DevWinUI"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:DevWinUI"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,7 +14,7 @@
                 <ResourceDictionary Source="ms-appx:///DevWinUI/Controls/Ported/StatusCenter/Styles/StatusCenterInfoBadgeStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <converters:VisibilityInvertConverter x:Key="VisibilityInvertConverter" />
+            <local:VisibilityInvertConverter x:Key="VisibilityInvertConverter" />
 
             <Style x:Key="StatusCenterButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
                 <Setter Property="Padding" Value="0" />
