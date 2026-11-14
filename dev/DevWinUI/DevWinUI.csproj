@@ -13,7 +13,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="ByteSize" Version="2.1.2" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Converters" Version="8.3.260402-preview2" />
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" Version="8.3.260402-preview2" />
