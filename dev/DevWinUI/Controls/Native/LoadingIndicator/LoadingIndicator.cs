@@ -210,6 +210,7 @@ public partial class LoadingIndicator : Control
         LoadingIndicatorMode.LoopingRhombuses => (0, 2500),
         LoadingIndicatorMode.BreedingRhombus => (65, 2000),
         LoadingIndicatorMode.ProgressRing => (50, 4305),
+        LoadingIndicatorMode.IndeterminateBar => (200, 4400),
         _ => (60, 1000),
     };
 
@@ -226,6 +227,7 @@ public partial class LoadingIndicator : Control
         LoadingIndicatorMode.HollowDots => new Windows.Foundation.Size(N * D * 1.5, D * 3),
         LoadingIndicatorMode.CirclesToRhombuses => new Windows.Foundation.Size(N * D + (N - 1) * D * 1.125, D),
         LoadingIndicatorMode.LoopingRhombuses => new Windows.Foundation.Size(D * 4, D * 1.5),
+        LoadingIndicatorMode.IndeterminateBar => new Windows.Foundation.Size(S, BarDot),
         _ => new Windows.Foundation.Size(S, S),
     };
 
@@ -316,6 +318,7 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.LoopingRhombuses: BuildLoopingRhombuses(); break;
             case LoadingIndicatorMode.BreedingRhombus: BuildBreedingRhombus(); break;
             case LoadingIndicatorMode.ProgressRing: BuildProgressRing(); break;
+            case LoadingIndicatorMode.IndeterminateBar: BuildIndeterminateBar(); break;
         }
     }
 
@@ -344,6 +347,7 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.LoopingRhombuses: UpdateLoopingRhombuses(t); break;
             case LoadingIndicatorMode.BreedingRhombus: UpdateBreedingRhombus(t); break;
             case LoadingIndicatorMode.ProgressRing: UpdateProgressRing(t); break;
+            case LoadingIndicatorMode.IndeterminateBar: UpdateIndeterminateBar(t); break;
         }
     }
 
@@ -888,7 +892,72 @@ public partial class LoadingIndicator : Control
         return angles[^1];
     }
 
+    // ---- Indeterminate bar ----
+
+    private const int BarDots = 5;
+    private const double BarCycle = 4.4;
+    private const double BarStagger = 0.1;
+    private const double BarEaseOutEnd = 0.5;
+    private const double BarLinearEnd = 2.0;
+    private const double BarEaseInEnd = 2.5;
+    private const double BarKeyA = 0.33;
+    private const double BarKeyB = 0.63;
+
+    private double BarDot => Math.Max(2, S / 50);
+
+    private void BuildIndeterminateBar()
+    {
+        double d = BarDot;
+        for (int i = 0; i < BarDots; i++)
+        {
+            AddRect(_root, 0, 0, d, d, 0, d / 2).Opacity = 0;
+        }
+    }
+
+    private void UpdateIndeterminateBar(double t)
+    {
+        double overshoot = S * 0.05;
+        double start = -overshoot;
+        double a = S * BarKeyA;
+        double b = S * BarKeyB;
+        double end = S + overshoot;
+
+        for (int i = 0; i < _rects.Count; i++)
+        {
+            double tau = t * BarCycle - i * BarStagger;
+            var r = _rects[i];
+            if (tau < 0 || tau >= BarEaseInEnd)
+            {
+                r.Opacity = 0;
+                continue;
+            }
+
+            double x;
+            if (tau < BarEaseOutEnd)
+            {
+                x = Lerp(start, a, ExpEaseOut(tau / BarEaseOutEnd));
+            }
+            else if (tau < BarLinearEnd)
+            {
+                x = Lerp(a, b, (tau - BarEaseOutEnd) / (BarLinearEnd - BarEaseOutEnd));
+            }
+            else
+            {
+                x = Lerp(b, end, ExpEaseIn((tau - BarLinearEnd) / (BarEaseInEnd - BarLinearEnd)));
+            }
+
+            r.Opacity = 1;
+            Xf(r).TranslateX = x;
+        }
+    }
+
     // ---- Math ----
+
+    private static double ExpEaseIn(double u, double exponent = 2)
+        => (Math.Exp(exponent * u) - 1) / (Math.Exp(exponent) - 1);
+
+    private static double ExpEaseOut(double u, double exponent = 2)
+        => 1 - ExpEaseIn(1 - u, exponent);
 
     private static double Rad(double deg) => deg * Math.PI / 180;
 

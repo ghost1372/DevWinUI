@@ -531,12 +531,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.IndeterminateProgressBarPage",
-          "Title": "Indeterminate ProgressBar",
-          "Subtitle": "An animated bar where dots move from left to right to indicate ongoing, indeterminate progress.",
-          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
           "Title": "Halo",
           "Subtitle": "The Halo is a set of interconnected UI components for circular or arc-based interfaces.",

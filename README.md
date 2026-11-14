@@ -862,9 +862,6 @@ dotnet add package DevWinUI.Shader
 ### PagerControl
 ![PagerControl](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/PagerControl.png)
 
-### IndeterminateProgressBar
-![IndeterminateProgressBar](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/IndeterminateProgressBar.gif)
-
 ### ThemeService / Backdrop TintColor
 ![ThemeService](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/TintColor.gif)
 
@@ -875,9 +872,6 @@ dotnet add package DevWinUI.Shader
 ### AutoScrollView
 ![AutoScrollView](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AutoScrollView.gif)
 ![AutoScrollView](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/AutoScrollView2.gif)
-
-### ProgressRing
-![ProgressRing](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/ProgressRing.gif)
 
 ### WaveProgressBar
 ![WaveProgressBar](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/WaveProgressBar.gif)

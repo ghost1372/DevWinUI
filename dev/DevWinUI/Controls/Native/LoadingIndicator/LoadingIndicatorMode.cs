@@ -114,4 +114,7 @@ public enum LoadingIndicatorMode
 
     [Description("LoadingIndicatorEpicStyle")]
     ProgressRing,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    IndeterminateBar,
 }
