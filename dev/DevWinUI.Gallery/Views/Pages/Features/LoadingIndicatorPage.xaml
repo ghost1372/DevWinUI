@@ -21,7 +21,7 @@
                         <GridView ItemsSource="{x:Bind ModesItems}" SelectionMode="None">
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="dev:LoadingIndicatorMode">
-                                    <StackPanel Width="130" Height="120" Spacing="8">
+                                    <StackPanel Width="200" Height="120" Spacing="8">
                                         <Grid Height="80">
                                             <dev:LoadingIndicator HorizontalAlignment="Center" VerticalAlignment="Center" Mode="{x:Bind}" />
                                         </Grid>
