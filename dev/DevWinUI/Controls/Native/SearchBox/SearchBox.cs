@@ -1,10 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Windows.Foundation;
 using Windows.System;
 using DispatcherQueuePriority = Microsoft.UI.Dispatching.DispatcherQueuePriority;
 

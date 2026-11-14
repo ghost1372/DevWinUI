@@ -1,6 +1,6 @@
-﻿using Microsoft.UI.Xaml.Automation;
+﻿using System.Collections.Specialized;
+using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Markup;
-using System.Collections.Specialized;
 
 namespace DevWinUI;
 

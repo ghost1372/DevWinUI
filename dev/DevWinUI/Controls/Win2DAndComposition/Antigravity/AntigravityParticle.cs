@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 internal struct AntigravityParticle
 {

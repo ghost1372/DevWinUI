@@ -1,7 +1,7 @@
-﻿using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Input;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Globalization;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
 

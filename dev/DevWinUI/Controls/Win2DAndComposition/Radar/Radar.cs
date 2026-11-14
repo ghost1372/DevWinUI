@@ -1,10 +1,9 @@
-﻿using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Markup;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using Windows.Graphics.DirectX;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Markup;
 using WinRT;
 using DirectXPixelFormat = Windows.Graphics.DirectX.DirectXPixelFormat;
 

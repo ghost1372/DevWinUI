@@ -1,6 +1,5 @@
 ﻿// https://github.com/jayfunc/BetterLyrics
 
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;

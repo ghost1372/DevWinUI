@@ -189,6 +189,7 @@ Themes\Styles\Controls\OutOfBoxPage.xaml
 Themes\Styles\Controls\OverviewPageHeader.xaml
 Themes\Styles\Controls\ParallaxTilt.xaml
 Themes\Styles\Controls\Particle.xaml
+Themes\Styles\Controls\ParticleGlobe.xaml
 Themes\Styles\Controls\PerspectiveHost.xaml
 Themes\Styles\Controls\PerspectiveZoom.xaml
 Themes\Styles\Controls\PinBox.xaml
@@ -250,6 +251,7 @@ Themes\Styles\Controls\Watermark.xaml
 Themes\Styles\Controls\WaveformTimeline.xaml
 Themes\Styles\Controls\WaveProgressBar.xaml
 Themes\Styles\Controls\WelcomeHero.xaml
+Themes\Styles\Controls\WorldMap.xaml
 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" xmlns:local="using:DevWinUI" xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives" xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)">
   <ResourceDictionary.ThemeDictionaries>
@@ -804,6 +806,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="#1D4ED8" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="#BE185D" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
+      <SolidColorBrush x:Key="ParticleGlobeBackgroundBrush" Color="#FF03060F" />
+      <SolidColorBrush x:Key="ParticleGlobeLandBrush" Color="#FF4DF2FF" />
+      <SolidColorBrush x:Key="ParticleGlobeOceanBrush" Color="#FF1A73D9" />
+      <SolidColorBrush x:Key="ParticleGlobeAtmosphereBrush" Color="#FF3399FF" />
+      <SolidColorBrush x:Key="ParticleGlobeGridBrush" Opacity="0.22" Color="#FF4DB3FF" />
+      <SolidColorBrush x:Key="ParticleGlobeArcBrush" Color="#FFFF8C33" />
+      <SolidColorBrush x:Key="ParticleGlobeAccentBrush" Color="#FF8CFFD9" />
+      <SolidColorBrush x:Key="ParticleGlobeStarBrush" Color="#FFCCE6FF" />
       <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="#FFFFFFFF" />
@@ -978,6 +988,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="ControlFillColorDefaultBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
+      <LinearGradientBrush x:Key="WorldMapOceanBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#141A24" />
+        <GradientStop Offset="1" Color="#0E131B" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="WorldMapCountryFill" Color="#3F4B5C" />
+      <SolidColorBrush x:Key="WorldMapCountryStroke" Color="#262F3B" />
+      <StaticResource x:Key="WorldMapCountryHoverFill" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="WorldMapCountrySelectedFill" ResourceKey="AccentFillColorDefaultBrush" />
     </ResourceDictionary>
     <ResourceDictionary x:Key="Light">
       <StaticResource x:Key="ContentDialogViewTopOverlay" ResourceKey="LayerFillColorDefaultBrush" />
@@ -1533,6 +1551,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="#1D4ED8" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="#BE185D" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="#4D7C0F" />
+      <SolidColorBrush x:Key="ParticleGlobeBackgroundBrush" Color="#FF050B1A" />
+      <SolidColorBrush x:Key="ParticleGlobeLandBrush" Color="#FF5CFFC8" />
+      <SolidColorBrush x:Key="ParticleGlobeOceanBrush" Color="#FF2A8CE0" />
+      <SolidColorBrush x:Key="ParticleGlobeAtmosphereBrush" Color="#FF4DA6FF" />
+      <SolidColorBrush x:Key="ParticleGlobeGridBrush" Opacity="0.22" Color="#FF66C2FF" />
+      <SolidColorBrush x:Key="ParticleGlobeArcBrush" Color="#FFFF7A59" />
+      <SolidColorBrush x:Key="ParticleGlobeAccentBrush" Color="#FFA6FFE6" />
+      <SolidColorBrush x:Key="ParticleGlobeStarBrush" Color="#FFD9ECFF" />
       <SolidColorBrush x:Key="PlayStationParticlesBrush" Color="#FFFFA848" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="ControlAAFillColorDefaultBrush" />
       <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="#E4000000" />
@@ -1690,6 +1716,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="ControlElevationBorderBrush" />
+      <LinearGradientBrush x:Key="WorldMapOceanBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#EAF2FA" />
+        <GradientStop Offset="1" Color="#D6E4F2" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="WorldMapCountryFill" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="WorldMapCountryStroke" Color="#C3D0DE" />
+      <StaticResource x:Key="WorldMapCountryHoverFill" ResourceKey="AccentFillColorSecondaryBrush" />
+      <StaticResource x:Key="WorldMapCountrySelectedFill" ResourceKey="AccentFillColorDefaultBrush" />
     </ResourceDictionary>
     <ResourceDictionary x:Key="HighContrast">
       <StaticResource x:Key="ContentDialogViewTopOverlay" ResourceKey="SystemControlTransparentBrush" />
@@ -2151,6 +2185,14 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <SolidColorBrush x:Key="OrbitCardPalette3" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="OrbitCardPalette4" Color="{ThemeResource SystemColorHighlightColor}" />
       <SolidColorBrush x:Key="OrbitCardPalette5" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeLandBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeOceanBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeAtmosphereBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeGridBrush" Opacity="0.4" Color="{ThemeResource SystemColorWindowTextColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeArcBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeAccentBrush" Color="{ThemeResource SystemColorHotlightColor}" />
+      <SolidColorBrush x:Key="ParticleGlobeStarBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
       <StaticResource x:Key="PlayStationParticlesBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="ProgressForeground" ResourceKey="CardStrokeColorDefaultSolidBrush" />
       <SolidColorBrush x:Key="ProgressStepperPrimaryBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
@@ -2308,6 +2350,11 @@ Themes\Styles\Controls\WelcomeHero.xaml
       <StaticResource x:Key="VisualStepperDescriptionForegroundBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="WaveProgressBarBackground" ResourceKey="SystemColorButtonFaceColorBrush" />
       <StaticResource x:Key="WaveProgressBarBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
+      <StaticResource x:Key="WorldMapOceanBrush" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="WorldMapCountryFill" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="WorldMapCountryStroke" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="WorldMapCountryHoverFill" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="WorldMapCountrySelectedFill" ResourceKey="SystemColorHighlightColorBrush" />
     </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
   <x:Double x:Key="BreadcrumbBarHeight">34</x:Double>
@@ -7857,6 +7904,28 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style x:Key="DefaultParticleGlobeStyle" TargetType="local:ParticleGlobe">
+    <Setter Property="Background" Value="{ThemeResource ParticleGlobeBackgroundBrush}" />
+    <Setter Property="LandBrush" Value="{ThemeResource ParticleGlobeLandBrush}" />
+    <Setter Property="OceanBrush" Value="{ThemeResource ParticleGlobeOceanBrush}" />
+    <Setter Property="AtmosphereBrush" Value="{ThemeResource ParticleGlobeAtmosphereBrush}" />
+    <Setter Property="GridBrush" Value="{ThemeResource ParticleGlobeGridBrush}" />
+    <Setter Property="ArcBrush" Value="{ThemeResource ParticleGlobeArcBrush}" />
+    <Setter Property="AccentBrush" Value="{ThemeResource ParticleGlobeAccentBrush}" />
+    <Setter Property="StarBrush" Value="{ThemeResource ParticleGlobeStarBrush}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="MinWidth" Value="240" />
+    <Setter Property="MinHeight" Value="240" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ParticleGlobe">
+          <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <win2d:CanvasAnimatedControl x:Name="PART_Canvas" ClearColor="Transparent" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="DefaultPerspectiveHostStyle" TargetType="local:PerspectiveHost">
     <Setter Property="Template">
       <Setter.Value>
@@ -9663,6 +9732,38 @@ Themes\Styles\Controls\WelcomeHero.xaml
               <Canvas Name="PART_Progress" Grid.Row="0" Grid.RowSpan="2" />
             </Grid>
           </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DefaultWorldMapStyle" TargetType="local:WorldMap">
+    <Setter Property="Background" Value="{ThemeResource WorldMapOceanBrush}" />
+    <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="CountryFill" Value="{ThemeResource WorldMapCountryFill}" />
+    <Setter Property="CountryStroke" Value="{ThemeResource WorldMapCountryStroke}" />
+    <Setter Property="CountryHoverFill" Value="{ThemeResource WorldMapCountryHoverFill}" />
+    <Setter Property="CountrySelectedFill" Value="{ThemeResource WorldMapCountrySelectedFill}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:WorldMap">
+          <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <win2d:CanvasControl x:Name="PART_Canvas" ClearColor="Transparent" />
+            <Border x:Name="PART_ToolTip" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{ThemeResource ToolTipBackground}" BorderBrush="{ThemeResource ToolTipBorderBrush}" BorderThickness="1" CornerRadius="{ThemeResource OverlayCornerRadius}" IsHitTestVisible="False" Visibility="Collapsed">
+              <TextBlock x:Name="PART_ToolTipText" Foreground="{ThemeResource ToolTipForeground}" TextWrapping="NoWrap" />
+            </Border>
+            <StackPanel x:Name="PART_ZoomPanel" Margin="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Spacing="4">
+              <Button x:Name="PART_ZoomInButton" Width="32" Height="32" Padding="0" AutomationProperties.Name="Zoom in">
+                <FontIcon FontSize="14" Glyph="" />
+              </Button>
+              <Button x:Name="PART_ZoomOutButton" Width="32" Height="32" Padding="0" AutomationProperties.Name="Zoom out">
+                <FontIcon FontSize="14" Glyph="" />
+              </Button>
+              <Button x:Name="PART_ResetButton" Width="32" Height="32" Padding="0" AutomationProperties.Name="Reset view">
+                <FontIcon FontSize="14" Glyph="" />
+              </Button>
+            </StackPanel>
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -21741,6 +21842,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultParallaxTiltStyle}" TargetType="local:ParallaxTilt" />
   <Style BasedOn="{StaticResource DefaultParticleStyle}" TargetType="local:Particle" />
+  <Style BasedOn="{StaticResource DefaultParticleGlobeStyle}" TargetType="local:ParticleGlobe" />
   <Style BasedOn="{StaticResource DefaultPerspectiveHostStyle}" TargetType="local:PerspectiveHost" />
   <Style BasedOn="{StaticResource DefaultPerspectiveZoomStyle}" TargetType="local:PerspectiveZoom" />
   <Style x:Key="PinBoxPasswordBoxStyle" BasedOn="{StaticResource DefaultPasswordBoxStyle}" TargetType="PasswordBox">
@@ -24351,6 +24453,7 @@ Themes\Styles\Controls\WelcomeHero.xaml
       </Setter.Value>
     </Setter>
   </Style>
+  <Style BasedOn="{StaticResource DefaultWorldMapStyle}" TargetType="local:WorldMap" />
   <Style BasedOn="{StaticResource DefaultBreadcrumbBarStyle}" TargetType="local:BreadcrumbBar" />
   <Style x:Key="DefaultBreadcrumbBarItemStyle" TargetType="local:BreadcrumbBarItem">
     <Setter Property="Background" Value="{ThemeResource BreadcrumbBarBackgroundBrush}" />
