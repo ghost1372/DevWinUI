@@ -13,6 +13,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="$(Win2dVersion)" />
     <PackageReference Include="XAMLTools.MSBuild" Version="$(XAMLToolsVersion)">
       <PrivateAssets>all</PrivateAssets>
@@ -28,7 +29,7 @@
       <TargetFile>Themes\Generic.xaml</TargetFile>
       <Visible>True</Visible>
     </XAMLCombineItems>
-    <XAMLCombineItems Include="Controls\Ported\**\*.xaml" Exclude="Controls\Ported\Sidebar\SidebarView.xaml">
+    <XAMLCombineItems Include="Controls\Ported\**\*.xaml" Exclude="Controls\Ported\Sidebar\SidebarView.xaml;Controls\Ported\StatusCenter\StatusCenter.xaml;Controls\Ported\StatusCenter\StatusCenterButton.xaml;Controls\Ported\StatusCenter\Styles\StatusCenterStyles.xaml;Controls\Ported\StatusCenter\Styles\StatusCenterInfoBadgeStyles.xaml">
       <TargetFile>Themes\Generic.xaml</TargetFile>
       <Visible>True</Visible>
     </XAMLCombineItems>

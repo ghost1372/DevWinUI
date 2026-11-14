@@ -1,0 +1,67 @@
+﻿<!--  Copyright (c) Files Community. SPDX-License-Identifier: MPL-2.0  -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="ToggleButtonBackgroundChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPressed" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedDisabled" ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundChecked" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPointerOver" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <StaticResource x:Key="ToggleButtonBackgroundChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPointerOver" ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPressed" ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedDisabled" ResourceKey="ControlFillColorDisabledBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundChecked" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedDisabled" ResourceKey="TextFillColorDisabledBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushChecked" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPointerOver" ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="ToggleButtonBackgroundChecked" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPointerOver" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="ToggleButtonBackgroundCheckedDisabled" ResourceKey="SystemControlBackgroundBaseLowBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundChecked" ResourceKey="SystemControlForegroundBaseHighBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPointerOver" ResourceKey="SystemControlHighlightBaseHighBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedPressed" ResourceKey="SystemControlHighlightBaseHighBrush" />
+            <StaticResource x:Key="ToggleButtonForegroundCheckedDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPointerOver" ResourceKey="SystemControlHighlightBaseMediumLowBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="ToggleButtonBorderBrushCheckedDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <SolidColorBrush x:Key="StatusCenterInProgressBrush" Color="{ThemeResource App.Theme.FillColorAttention}" />
+    <SolidColorBrush x:Key="StatusCenterSuccessfulBackgroundBrush" Color="{ThemeResource SystemFillColorSuccessBackground}" />
+    <SolidColorBrush x:Key="StatusCenterSuccessfulBrush" Color="{ThemeResource SystemFillColorSuccess}" />
+    <SolidColorBrush x:Key="StatusCenterErrorBackgroundBrush" Color="{ThemeResource SystemFillColorCriticalBackground}" />
+    <SolidColorBrush x:Key="StatusCenterErrorBrush" Color="{ThemeResource SystemFillColorCritical}" />
+    <SolidColorBrush x:Key="StatusCenterPausedBackgroundBrush" Color="{ThemeResource SystemFillColorCautionBackground}" />
+    <SolidColorBrush x:Key="StatusCenterPausedBrush" Color="{ThemeResource SystemFillColorCaution}" />
+    <SolidColorBrush x:Key="StatusCenterCanceledBrush" Color="{ThemeResource TextFillColorSecondary}" />
+
+    <local:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{StaticResource StatusCenterCanceledBrush}" CanceledForegroundBrush="{StaticResource StatusCenterCanceledBrush}" ErrorBackgroundBrush="{StaticResource StatusCenterErrorBackgroundBrush}" ErrorForegroundBrush="{StaticResource StatusCenterErrorBrush}" InProgressBackgroundBrush="{StaticResource StatusCenterInProgressBrush}" InProgressForegroundBrush="{StaticResource StatusCenterInProgressBrush}" PausedBackgroundBrush="{StaticResource StatusCenterPausedBackgroundBrush}" PausedForegroundBrush="{StaticResource StatusCenterPausedBrush}" SuccessfulBackgroundBrush="{StaticResource StatusCenterSuccessfulBackgroundBrush}" SuccessfulForegroundBrush="{StaticResource StatusCenterSuccessfulBrush}" />
+
+    <local:BoolNegationConverter x:Key="BoolNegationConverter" />
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <local:BoolToObjectConverter x:Key="NegateBoolToVisibilityConverter" FalseValue="Visible" TrueValue="Collapsed" />
+    <local:EmptyStringToObjectConverter x:Key="EmptyStringToBoolConverter" EmptyValue="False" NotEmptyValue="True" />
+
+</ResourceDictionary>
