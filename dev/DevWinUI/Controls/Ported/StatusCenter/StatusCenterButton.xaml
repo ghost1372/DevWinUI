@@ -13,7 +13,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///DevWinUI/Controls/Ported/StatusCenter/Styles/StatusCenterInfoBadgeStyles.xaml" />
-                <ResourceDictionary Source="ms-appx:///DevWinUI/Controls/Ported/StatusCenter/Styles/StatusCenterStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:VisibilityInvertConverter x:Key="VisibilityInvertConverter" />
