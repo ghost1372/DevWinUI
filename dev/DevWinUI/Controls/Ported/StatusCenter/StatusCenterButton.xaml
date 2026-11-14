@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:DevWinUI"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:triggers="using:CommunityToolkit.WinUI"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -56,7 +55,7 @@
             <VisualStateGroup x:Name="StatusIconStates">
                 <VisualState x:Name="TasksSuccess">
                     <VisualState.StateTriggers>
-                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="0" />
+                        <local:IsEqualStateTrigger Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MedianOperationProgressRing.Background" Value="{ThemeResource SystemFillColorSuccessBrush}" />
@@ -65,7 +64,7 @@
                 </VisualState>
                 <VisualState x:Name="TasksOnging">
                     <VisualState.StateTriggers>
-                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="1" />
+                        <local:IsEqualStateTrigger Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="1" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MedianOperationProgressRing.Foreground" Value="{ThemeResource SystemFillColorAttentionBrush}" />
@@ -75,7 +74,7 @@
                 </VisualState>
                 <VisualState x:Name="TasksFailure">
                     <VisualState.StateTriggers>
-                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="2" />
+                        <local:IsEqualStateTrigger Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="2" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MedianOperationProgressRing.Foreground" Value="{ThemeResource SystemFillColorAttentionBrush}" />
@@ -85,7 +84,7 @@
                 </VisualState>
                 <VisualState x:Name="TasksPaused">
                     <VisualState.StateTriggers>
-                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="4" />
+                        <local:IsEqualStateTrigger Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="4" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MedianOperationProgressRing.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
@@ -96,7 +95,7 @@
                 </VisualState>
                 <VisualState x:Name="TasksCompletionWithFailure">
                     <VisualState.StateTriggers>
-                        <triggers:CompareStateTrigger Comparison="Equal" Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="3" />
+                        <local:IsEqualStateTrigger Value="{x:Bind ViewModel.InfoBadgeState, Mode=OneWay}" To="3" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MedianOperationProgressRing.Background" Value="{ThemeResource SystemFillColorCriticalBrush}" />
