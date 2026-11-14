@@ -1,13 +1,10 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using WinRT;
-
 namespace DevWinUI;
 
 internal sealed partial class VisibilityInvertConverter : IValueConverter
 {
-	[DynamicWindowsRuntimeCast(typeof(Visibility))]
 	public object Convert(object value, Type targetType, object parameter, string language)
 	{
 		if (value is bool isVisible)

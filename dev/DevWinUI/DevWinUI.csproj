@@ -16,7 +16,6 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Converters" Version="8.3.260402-preview2" />
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" Version="8.3.260402-preview2" />
-    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.1" PrivateAssets="all" ExcludeAssets="build;buildTransitive" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="$(Win2dVersion)" />
     <PackageReference Include="XAMLTools.MSBuild" Version="$(XAMLToolsVersion)">
       <PrivateAssets>all</PrivateAssets>

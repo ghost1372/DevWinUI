@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Markup;
 using System.Windows.Input;
-using WinRT;
 
 namespace DevWinUI;
 
@@ -267,7 +266,6 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 	public ICommand CancelCommand { get; }
 
-	[DynamicWindowsRuntimeCast(typeof(SolidColorBrush))]
 	public StatusCenterItem(
 		string header,
 		string subHeader,
