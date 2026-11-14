@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Shapes;
@@ -210,6 +209,7 @@ public partial class LoadingIndicator : Control
         LoadingIndicatorMode.Spring => (60, 3000),
         LoadingIndicatorMode.LoopingRhombuses => (0, 2500),
         LoadingIndicatorMode.BreedingRhombus => (65, 2000),
+        LoadingIndicatorMode.ProgressRing => (50, 4305),
         _ => (60, 1000),
     };
 
@@ -315,6 +315,7 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.Spring: BuildSpring(); break;
             case LoadingIndicatorMode.LoopingRhombuses: BuildLoopingRhombuses(); break;
             case LoadingIndicatorMode.BreedingRhombus: BuildBreedingRhombus(); break;
+            case LoadingIndicatorMode.ProgressRing: BuildProgressRing(); break;
         }
     }
 
@@ -342,6 +343,7 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.Spring: UpdateSpring(t); break;
             case LoadingIndicatorMode.LoopingRhombuses: UpdateLoopingRhombuses(t); break;
             case LoadingIndicatorMode.BreedingRhombus: UpdateBreedingRhombus(t); break;
+            case LoadingIndicatorMode.ProgressRing: UpdateProgressRing(t); break;
         }
     }
 
@@ -812,6 +814,78 @@ public partial class LoadingIndicator : Control
         var big = Xf(_rects[SmallRhombi]);
         big.Rotation = 45;
         big.ScaleX = big.ScaleY = Keys(Frac(t - 0.25), true, (0, 0), (0.5, 1), (1, 0));
+    }
+
+    // ---- Progress ring ----
+
+    private const int RingDots = 5;
+    private const double RingCycle = 4.305;
+    private const double RingStagger = 0.167;
+    private const double RingFadeOut = 3.22;
+
+    private static readonly double[] RingKeyTimes = { 0, 0.433, 1.2, 1.617, 2.017, 2.783, 3.217 };
+
+    private static readonly double[][] RingSplines =
+    {
+        null,
+        new[] { 0.02, 0.33, 0.38, 0.77 },
+        null,
+        new[] { 0.57, 0.17, 0.95, 0.75 },
+        new[] { 0, 0.19, 0.07, 0.72 },
+        null,
+        new[] { 0, 0, 0.95, 0.37 },
+    };
+
+    private static readonly double[][] RingAngles =
+    {
+        new double[] { -110, 10, 93, 205, 357, 439, 585 },
+        new double[] { -116, 4, 87, 199, 351, 433, 579 },
+        new double[] { -122, -2, 81, 193, 345, 427, 573 },
+        new double[] { -128, -8, 75, 187, 339, 421, 567 },
+        new double[] { -134, -14, 69, 181, 331, 415, 561 },
+    };
+
+    private void BuildProgressRing()
+    {
+        double d = S <= 40 ? S / 10 + 1 : S / 10;
+        double side = S - d;
+        for (int i = 0; i < RingDots; i++)
+        {
+            var layer = AddLayer(_root, side, side, d / 2, d / 2);
+            AddEllipse(layer, 0, d * 2.5, d, d).Opacity = 0;
+        }
+    }
+
+    private void UpdateProgressRing(double t)
+    {
+        double cycle = t * RingCycle;
+        for (int i = 0; i < _ellipses.Count; i++)
+        {
+            double tau = cycle - i * RingStagger;
+            _ellipses[i].Opacity = tau >= 0 && tau < RingFadeOut ? 1 : 0;
+            Xf(_layers[i]).Rotation = RingAngle(i, Math.Clamp(tau, 0, RingKeyTimes[^1]));
+        }
+    }
+
+    private static double RingAngle(int dot, double tau)
+    {
+        var angles = RingAngles[dot];
+        for (int i = 1; i < RingKeyTimes.Length; i++)
+        {
+            if (tau <= RingKeyTimes[i])
+            {
+                double u = (tau - RingKeyTimes[i - 1]) / (RingKeyTimes[i] - RingKeyTimes[i - 1]);
+                var s = RingSplines[i];
+                if (s != null)
+                {
+                    u = CubicBezier(s[0], s[1], s[2], s[3], u);
+                }
+
+                return Lerp(angles[i - 1], angles[i], u);
+            }
+        }
+
+        return angles[^1];
     }
 
     // ---- Math ----

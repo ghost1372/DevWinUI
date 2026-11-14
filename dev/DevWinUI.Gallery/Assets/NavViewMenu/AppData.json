@@ -920,12 +920,6 @@
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
         },
         {
-          "UniqueId": "DevWinUIGallery.Views.ProgressRingPage",
-          "Title": "Progress Ring",
-          "Subtitle": "Represents a control that indicates the progress of an operation",
-          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
-        },
-        {
           "UniqueId": "DevWinUIGallery.Views.DividerPage",
           "Title": "Divider",
           "Subtitle": "A visual element used to separate content or sections",
