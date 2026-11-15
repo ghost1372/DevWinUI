@@ -15,9 +15,9 @@ namespace DevWinUI;
 [ContentProperty(Name = "InnerContent")]
 public sealed partial class SidebarView : UserControl
 {
-    private static readonly SidebarItemTemplate DefaultItemTemplateResources = new();
-    private static readonly DataTemplate DefaultSidebarViewItemTemplate =
-        (DataTemplate)DefaultItemTemplateResources["DefaultSidebarItemTemplate"];
+    private static DataTemplate? _defaultSidebarViewItemTemplate;
+    private static DataTemplate DefaultSidebarViewItemTemplate =>
+        _defaultSidebarViewItemTemplate ??= (DataTemplate)new SidebarItemTemplate()["DefaultSidebarItemTemplate"];
     private const double COMPACT_MAX_WIDTH = 200;
 
 	public event EventHandler<ItemInvokedEventArgs>? ItemInvoked;
@@ -33,12 +33,14 @@ public sealed partial class SidebarView : UserControl
 
 	internal bool IsReorderDragActive { get; set; }
 
-	public SidebarView()
-	{
-		InitializeComponent();
-	}
+    public SidebarView()
+    {
+        InitializeComponent();
+        if (ItemTemplate is null)
+            ItemTemplate = DefaultSidebarViewItemTemplate;
+    }
 
-	internal void UpdateSelectedItemContainer(SidebarItem container)
+    internal void UpdateSelectedItemContainer(SidebarItem container)
 	{
 		SelectedItemContainer = container;
 	}
