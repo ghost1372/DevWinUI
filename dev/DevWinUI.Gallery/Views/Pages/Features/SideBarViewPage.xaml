@@ -18,11 +18,10 @@
                 </local:ControlExample.XamlCode>
                 <local:ControlExample.Options>
                     <local:OptionPanel>
-                        <ToggleSwitch x:Name="TGSupportsExpansion" Header="Supports Expansion" IsOn="True" />
                         <local:ChoiceOption x:Name="CmbStyle" Header="Expander Style" Value="{x:Bind dev:SidebarExpanderStyle.Group}" />
                     </local:OptionPanel>
                 </local:ControlExample.Options>
-                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" PaneBackgroundBrush="{ThemeResource LayerFillColorDefaultBrush}" SupportsExpansion="{x:Bind TGSupportsExpansion.IsOn, Mode=OneWay}" />
+                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" PaneBackgroundBrush="{ThemeResource LayerFillColorDefaultBrush}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -15,9 +15,8 @@ namespace DevWinUI;
 [ContentProperty(Name = "InnerContent")]
 public sealed partial class SidebarView : UserControl
 {
-    private static DataTemplate? _defaultSidebarViewItemTemplate;
     private static DataTemplate DefaultSidebarViewItemTemplate =>
-        _defaultSidebarViewItemTemplate ??= (DataTemplate)new SidebarItemTemplate()["DefaultSidebarItemTemplate"];
+        field ??= (DataTemplate)new SidebarItemTemplate()["DefaultSidebarItemTemplate"];
     private const double COMPACT_MAX_WIDTH = 200;
 
 	public event EventHandler<ItemInvokedEventArgs>? ItemInvoked;
@@ -36,8 +35,7 @@ public sealed partial class SidebarView : UserControl
     public SidebarView()
     {
         InitializeComponent();
-        if (ItemTemplate is null)
-            ItemTemplate = DefaultSidebarViewItemTemplate;
+        ItemTemplate ??= DefaultSidebarViewItemTemplate;
     }
 
     internal void UpdateSelectedItemContainer(SidebarItem container)
