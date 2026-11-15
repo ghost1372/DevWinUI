@@ -8,7 +8,7 @@
 
     var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-    StatusCenterViewModel.Instance.RemoveItem(banner);
+    StatusCenterHelper.RemoveItem(banner);
     AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
 }
 
