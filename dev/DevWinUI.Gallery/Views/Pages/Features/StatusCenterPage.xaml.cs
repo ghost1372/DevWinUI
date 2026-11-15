@@ -33,7 +33,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
@@ -47,7 +47,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Move(result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
@@ -59,7 +59,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Delete(result, source, banner.TotalItemsCount);
     }
 
@@ -71,7 +71,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Recycle(result, source, banner.TotalItemsCount);
     }
 
@@ -85,7 +85,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Compress(source, destination, result, banner.TotalItemsCount, totalSize);
     }
 
@@ -99,7 +99,7 @@ public sealed partial class StatusCenterPage : Page
         string[] entries = FilePaths(@"C:\Users\Public\Downloads\Archive", Random.Shared.Next(12, 37));
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, entries, totalSize, banner.CancellationToken, banner, simulateDiscovery: false);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_Decompress(source, destination, result, 1, totalSize);
     }
 
@@ -111,7 +111,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_InstallFont([@"C:\Users\Public\Documents"], result, fontCount);
     }
 
@@ -121,7 +121,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken, banner);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_EmptyRecycleBin(result);
     }
 
@@ -151,7 +151,7 @@ public sealed partial class StatusCenterPage : Page
 
         var result = await SimulateGitOperationAsync(operationKind, banner.ProgressEventSource, itemsCount, banner.CancellationToken);
 
-        StatusCenterViewModel.Instance.RemoveItem(banner);
+        StatusCenterHelper.RemoveItem(banner);
         AddCard_GitOperation(operationKind, @"C:\Users\Public\Documents\DevWinUI", result, false, operationTarget, itemsCount);
     }
 

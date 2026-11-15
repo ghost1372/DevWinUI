@@ -7,25 +7,17 @@ namespace DevWinUI;
 
 public sealed partial class StatusCenterButton : UserControl
 {
-	private bool _isOpen;
-
 	public static readonly DependencyProperty FlyoutPlacementProperty =
 		DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacementMode), typeof(StatusCenterButton), new PropertyMetadata(FlyoutPlacementMode.BottomEdgeAlignedRight, OnFlyoutPlacementChanged));
 
-	public StatusCenterViewModel ViewModel { get; } = StatusCenterViewModel.Instance;
+	private bool _isOpen;
+
+	private StatusCenterViewModel ViewModel { get; } = StatusCenterViewModel.Instance;
 
 	public FlyoutPlacementMode FlyoutPlacement
 	{
 		get => (FlyoutPlacementMode)GetValue(FlyoutPlacementProperty);
 		set => SetValue(FlyoutPlacementProperty, value);
-	}
-
-	public void Open()
-	{
-		if (_isOpen)
-			StatusCenterFlyout.Hide();
-		else
-			StatusCenterFlyout.ShowAt(ShowStatusCenterButton);
 	}
 
 	public StatusCenterButton()
@@ -37,6 +29,14 @@ public sealed partial class StatusCenterButton : UserControl
 		StatusCenterFlyout.Closed += (_, _) => _isOpen = false;
 
 		Loaded += (_, _) => ViewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
+	}
+
+	public void Open()
+	{
+		if (_isOpen)
+			StatusCenterFlyout.Hide();
+		else
+			StatusCenterFlyout.ShowAt(ShowStatusCenterButton);
 	}
 
 	private static void OnFlyoutPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

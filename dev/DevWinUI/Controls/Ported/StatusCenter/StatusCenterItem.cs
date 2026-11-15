@@ -260,11 +260,13 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 	private readonly CancellationTokenSource? _operationCancellationToken;
 
-	public readonly ObservableCollection<Vector2> SpeedGraphValues;
+	public ObservableCollection<Vector2> SpeedGraphValues { get; } = [];
 
 	public ICommand PauseCommand { get; }
 
 	public ICommand CancelCommand { get; }
+
+	public ICommand RemoveCommand { get; }
 
 	public StatusCenterItem(
 		string header,
@@ -286,9 +288,9 @@ public sealed partial class StatusCenterItem : ObservableObject
 		TotalSize = totalSize;
 		IconBackgroundCircleBorderOpacity = 1;
 		AnimatedIconState = "NormalOff";
-		SpeedGraphValues = [];
 		PauseCommand = new AsyncRelayCommand(ExecutePauseCommandAsync);
 		CancelCommand = new RelayCommand(ExecuteCancelCommand);
+		RemoveCommand = new RelayCommand(ExecuteRemoveCommand);
 
 		// Get the graph color
 		if (Application.Current.Resources["App.Theme.FillColorAttentionBrush"] is not SolidColorBrush accentBrush)
@@ -478,5 +480,10 @@ public sealed partial class StatusCenterItem : ObservableObject
 			IsSpeedAndProgressAvailable = false;
 			Header = $"Canceling - {Header}";
 		}
+	}
+
+	private void ExecuteRemoveCommand()
+	{
+		_viewModel.RemoveItem(this);
 	}
 }

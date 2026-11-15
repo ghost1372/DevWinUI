@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DevWinUI;
 
-public sealed partial class StatusCenterViewModel : ObservableObject
+internal sealed partial class StatusCenterViewModel : ObservableObject
 {
 	public static StatusCenterViewModel Instance { get; } = new();
 

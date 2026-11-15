@@ -43,6 +43,12 @@ public static class StatusCenterHelper
         return item;
     }
 
+    public static bool RemoveItem(StatusCenterItem item)
+        => StatusCenterViewModel.Instance.RemoveItem(item);
+
+    public static void RemoveAllCompletedItems()
+        => StatusCenterViewModel.Instance.RemoveAllCompletedItems();
+
     public static void UpdateCardStrings(StatusCenterItem card, StatusCenterItemProgressModel? progressValue = null)
     {
         if (card.UpdateStrings is not { } update || progressValue is null)
