@@ -39,7 +39,8 @@
 
     <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
 
-    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
+    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\$(MSBuildProjectName)\</OutputPath>
+    <PackageOutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</PackageOutputPath>
     
     <RootNamespace>$(BaseNamespace)</RootNamespace>
     
