@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Windows.Graphics.DirectX.Direct3D11;
 using WinRT;
 

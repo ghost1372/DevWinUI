@@ -41,7 +41,7 @@ public sealed partial class SidebarItemAutomationPeer : FrameworkElementAutomati
 
 	protected override string GetNameCore()
 	{
-		return Owner.Item?.Text ?? "";
+		return Owner?.Text ?? string.Empty;
 	}
 
 	protected override object GetPatternCore(PatternInterface patternInterface)
@@ -93,11 +93,19 @@ public sealed partial class SidebarItemAutomationPeer : FrameworkElementAutomati
 
 	protected override int GetSizeOfSetCore()
 	{
+		var baseValue = base.GetSizeOfSetCore();
+		if (baseValue != -1)
+			return baseValue;
+
 		return GetOwnerCollection().Count;
 	}
 
 	protected override int GetPositionInSetCore()
 	{
+		var baseValue = base.GetPositionInSetCore();
+		if (baseValue != -1)
+			return baseValue;
+
 		return GetOwnerCollection().IndexOf(Owner.DataContext) + 1;
 	}
 

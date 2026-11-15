@@ -5,22 +5,24 @@ using System.ComponentModel;
 
 namespace DevWinUI;
 
+public interface ISidebarItemPresentationModel
+{
+	string? Text { get; }
+
+	object? ToolTip { get; }
+
+	FrameworkElement? IconElement { get; }
+
+	FrameworkElement? ItemDecorator { get; }
+}
+
 public interface ISidebarItemModel : INotifyPropertyChanged
 {
+
 	/// <summary>
 	/// The children of this item that will be rendered as child elements of the SidebarItem
 	/// </summary>
 	object? Children { get; }
-
-	/// <summary>
-	/// The icon source used to generate the icon for the SidebarItem
-	/// </summary>
-	IconSource? IconSource { get; }
-
-	/// <summary>
-	/// Item decorator for the given item.
-	/// </summary>
-	FrameworkElement? ItemDecorator { get => null; }
 
 	/// <summary>
 	/// Determines whether the SidebarItem is expanded and the children are visible 
@@ -29,17 +31,22 @@ public interface ISidebarItemModel : INotifyPropertyChanged
 	bool IsExpanded { get; set; }
 
 	/// <summary>
-	/// The text of this item that will be rendered as the label of the SidebarItem
+	/// Optional path associated with this sidebar item for drag/drop scenarios.
 	/// </summary>
-	string Text { get; }
+	string? Path { get; }
 
 	/// <summary>
-	/// The tooltip used when hovering over this item in the sidebar
+	/// Renders as expandable even when Children is empty (children load lazily on first expansion).
 	/// </summary>
-	object ToolTip { get; }
+	bool HasUnrealizedChildren => false;
 
 	/// <summary>
-	/// Indicates whether the children should have an indentation or not.
+	/// Expansion participant that keeps the regular row appearance (icon + normal text) instead of the section-header style.
 	/// </summary>
-	bool PaddedItem { get; }
+	bool IsLeafWithChildren => false;
+
+	/// <summary>
+	/// Indicates whether the item can be reordered via drag and drop.
+	/// </summary>
+	bool CanReorder => false;
 }

@@ -10,17 +10,19 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="SidebarView" Doc="controls/sidebarView">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SidebarView" CSharp="Features\Others\SideBarViewPage_cs.txt">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:SidebarView MenuItemsSource="{x:Bind ViewModel.SidebarViewItems, Mode=OneWay}" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:SidebarView MenuItemsSource="{x:Bind ViewModel.SidebarViewItems, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="SidebarView" CSharp="Features\Others\SideBarViewPage_cs.txt" Doc="controls/sidebarView">
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:SidebarView MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TGSupportsExpansion" Header="Supports Expansion" IsOn="True" />
+                        <local:ChoiceOption x:Name="CmbStyle" Header="Expander Style" Value="{x:Bind dev:SidebarExpanderStyle.Group}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" SupportsExpansion="{x:Bind TGSupportsExpansion.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

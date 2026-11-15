@@ -1,39 +1,41 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using System.ComponentModel;
+using System.Runtime.InteropServices;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
+using WinRT;
 
 namespace DevWinUI;
 
 [ContentProperty(Name = "InnerContent")]
-public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
+public sealed partial class SidebarView : UserControl
 {
-	private const double COMPACT_MAX_WIDTH = 200;
+    private static readonly SidebarItemTemplate DefaultItemTemplateResources = new();
+    private static readonly DataTemplate DefaultSidebarViewItemTemplate =
+        (DataTemplate)DefaultItemTemplateResources["DefaultSidebarItemTemplate"];
+    private const double COMPACT_MAX_WIDTH = 200;
 
 	public event EventHandler<ItemInvokedEventArgs>? ItemInvoked;
 	public event EventHandler<ItemContextInvokedArgs>? ItemContextInvoked;
 	public event EventHandler<ItemDragOverEventArgs>? ItemDragOver;
 	public event EventHandler<ItemDroppedEventArgs>? ItemDropped;
-#pragma warning disable IDE0079 // Remove unnecessary suppression
-#pragma warning disable CS8632, CS0067
-    public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore IDE0079 // Remove unnecessary suppression
-#pragma warning restore CS8632, CS0067
-
-    internal SidebarItem? SelectedItemContainer = null;
+	internal SidebarItem? SelectedItemContainer = null;
 
 	private bool draggingSidebarResizer;
 	private double preManipulationSidebarWidth = 0;
 
+	internal long LastDragOverTick { get; set; }
+
+	internal bool IsReorderDragActive { get; set; }
+
 	public SidebarView()
 	{
-        Application.Current.Resources.MergedDictionaries.AddIfNotExists(new SidebarItemTemplate());
-        InitializeComponent();
+		InitializeComponent();
 	}
 
 	internal void UpdateSelectedItemContainer(SidebarItem container)
@@ -43,8 +45,8 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 
 	internal void RaiseItemInvoked(SidebarItem item, PointerUpdateKind pointerUpdateKind)
 	{
-		// Only leaves can be selected
-		if (item.Item is null || item.IsGroupHeader) return;
+		// Only true group headers (e.g. Pinned, Drives) suppress selection; leaves-with-children (tree-view folder rows) navigate AND get selected.
+		if (item.Item is null || (item.IsGroupHeader && item.Item.IsLeafWithChildren != true)) return;
 
 		SelectedItem = item.Item;
 		ItemInvoked?.Invoke(item, new(pointerUpdateKind));
@@ -58,13 +60,33 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 	internal void RaiseItemDropped(SidebarItem sideBarItem, SidebarItemDropPosition dropPosition, DragEventArgs rawEvent)
 	{
 		if (sideBarItem.Item is null) return;
-		ItemDropped?.Invoke(this, new(sideBarItem.Item, rawEvent.DataView, dropPosition, rawEvent));
+
+		if (TryGetDataView(rawEvent) is not { } dataView) return;
+
+		ItemDropped?.Invoke(this, new(sideBarItem.Item, dataView, dropPosition, rawEvent));
 	}
 
-	internal void RaiseItemDragOver(SidebarItem sideBarItem, SidebarItemDropPosition dropPosition, DragEventArgs rawEvent)
+	internal Task RaiseItemDragOver(SidebarItem sideBarItem, SidebarItemDropPosition dropPosition, DragEventArgs rawEvent)
 	{
-		if (sideBarItem.Item is null) return;
-		ItemDragOver?.Invoke(this, new(sideBarItem.Item, rawEvent.DataView, dropPosition, rawEvent));
+		if (sideBarItem.Item is null) return Task.CompletedTask;
+
+		if (TryGetDataView(rawEvent) is not { } dataView) return Task.CompletedTask;
+
+		var args = new ItemDragOverEventArgs(sideBarItem.Item, dataView, dropPosition, rawEvent);
+		ItemDragOver?.Invoke(this, args);
+		return args.WhenDeferralsCompleted();
+	}
+
+	private static DataPackageView? TryGetDataView(DragEventArgs rawEvent)
+	{
+		try
+		{
+			return rawEvent.DataView;
+		}
+		catch (COMException)
+		{
+			return null;
+		}
 	}
 
 	private void UpdateMinimalMode()
@@ -87,15 +109,18 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 		{
 			case SidebarDisplayMode.Compact:
 				VisualStateManager.GoToState(this, "Compact", true);
-				return;
+				break;
 			case SidebarDisplayMode.Expanded:
+				UpdateOpenPaneLengthColumn();
 				VisualStateManager.GoToState(this, "Expanded", true);
-				return;
+				break;
 			case SidebarDisplayMode.Minimal:
 				IsPaneOpen = false;
 				UpdateMinimalMode();
-				return;
+				break;
 		}
+
+		UpdateResizerAvailability();
 	}
 
 	private void UpdateDisplayModeForPaneWidth(double newPaneWidth)
@@ -113,18 +138,45 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 
 	private void UpdateOpenPaneLengthColumn()
 	{
+		if (DisplayMode != SidebarDisplayMode.Expanded)
+			return;
+
 		PaneColumnDefinition.Width = new GridLength(OpenPaneLength);
+	}
+
+	private void UpdateResizerAvailability()
+	{
+		if (!CanResizePane)
+		{
+			SidebarResizer.Visibility = Visibility.Collapsed;
+			SidebarResizer.IsHitTestVisible = false;
+			return;
+		}
+
+		SidebarResizer.IsHitTestVisible = true;
+		if (DisplayMode != SidebarDisplayMode.Minimal)
+			SidebarResizer.Visibility = Visibility.Visible;
 	}
 
 	private void SidebarView_Loaded(object sender, RoutedEventArgs e)
 	{
 		UpdateDisplayMode();
-		UpdateOpenPaneLengthColumn();
+		UpdateResizerAvailability();
 		PaneColumnGrid.Translation = new System.Numerics.Vector3(0, 0, 32);
+	}
+
+	public double VerticalScrollOffset => MenuItemHostScrollViewer?.VerticalOffset ?? 0;
+
+	public void ScrollToVerticalOffset(double offset)
+	{
+		MenuItemHostScrollViewer?.ChangeView(null, offset, null, true);
 	}
 
 	private void SidebarResizer_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
 	{
+		if (!CanResizePane)
+			return;
+
 		draggingSidebarResizer = true;
 		preManipulationSidebarWidth = PaneColumnGrid.ActualWidth;
 		VisualStateManager.GoToState(this, "ResizerPressed", true);
@@ -140,6 +192,9 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 
 	private void SidebarResizerControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
+		if (!CanResizePane)
+			return;
+
 		if
 		(
 			e.Key != VirtualKey.Space &&
@@ -195,6 +250,9 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 
 	private void SidebarResizer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
 	{
+		if (!CanResizePane)
+			return;
+
 		if (DisplayMode == SidebarDisplayMode.Expanded)
 		{
 			DisplayMode = SidebarDisplayMode.Compact;
@@ -207,22 +265,28 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 		}
 	}
 
+	[DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
 	private void SidebarResizer_PointerEntered(object sender, PointerRoutedEventArgs e)
 	{
+		if (!CanResizePane)
+			return;
+
 		var sidebarResizer = (FrameworkElement)sender;
-        GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.SizeWestEast));
+    GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.SizeWestEast));
 		VisualStateManager.GoToState(this, "ResizerPointerOver", true);
 		e.Handled = true;
 	}
 
+	[DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
 	private void SidebarResizer_PointerExited(object sender, PointerRoutedEventArgs e)
 	{
-		if (draggingSidebarResizer)
+		if (!CanResizePane || draggingSidebarResizer)
 			return;
 
 		var sidebarResizer = (FrameworkElement)sender;
-        GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.Arrow));
-        VisualStateManager.GoToState(this, "ResizerNormal", true);
+    GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.Arrow));
+
+		VisualStateManager.GoToState(this, "ResizerNormal", true);
 		e.Handled = true;
 	}
 
@@ -239,12 +303,12 @@ public sealed partial class SidebarView : UserControl, INotifyPropertyChanged
 		e.Handled = true;
 	}
 
-#pragma warning disable CA1822 // Mark members as static
-    private void MenuItemsHost_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
-#pragma warning restore CA1822 // Mark members as static
-    {
+	private void MenuItemsHost_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
+	{
 		if (args.Element is SidebarItem sidebarItem)
 		{
+			// Assign Owner from the hosting SidebarView rather than letting the row's HookupOwners FindAscendant walk resolve it: that walk picks up the WRONG SidebarView when this view is the nested SettingsSidebar inside SidebarControl.InnerContent (and a stale Owner from a prior realization can persist across container recycling). Owner drives both the click-routing target and the chevron-column visual state.
+			sidebarItem.Owner = this;
 			sidebarItem.HandleItemChange();
 		}
 	}
