@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Composition.SystemBackdrops;
+﻿using System.Runtime.InteropServices.Marshalling;
+using Microsoft.UI.Composition.SystemBackdrops;
 using Windows.UI.Composition.Desktop;
 using WinRT;
 
@@ -57,10 +58,9 @@ public partial class SmoothWindowResizer
     }
 }
 
-[ComImport]
+[GeneratedComInterface]
 [Guid("29E691FA-4567-4DCA-B319-D0F207EB6807")]
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-public interface ICompositorDesktopInterop
+public partial interface ICompositorDesktopInterop
 {
-    void CreateDesktopWindowTarget(IntPtr hwndTarget, bool isTopmost, out IntPtr result);
+    void CreateDesktopWindowTarget(IntPtr hwndTarget, [MarshalAs(UnmanagedType.Bool)] bool isTopmost, out IntPtr result);
 }

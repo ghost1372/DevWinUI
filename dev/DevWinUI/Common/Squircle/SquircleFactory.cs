@@ -378,21 +378,21 @@ internal static partial class SquircleFactory
     private static IReadOnlyDictionary<Adjacent.CornerType, IReadOnlyList<Adjacent>>? adjacentsByCorner;
     private static IReadOnlyDictionary<Adjacent.CornerType, IReadOnlyList<Adjacent>> AdjacentsByCorner => adjacentsByCorner ??= new Dictionary<Adjacent.CornerType, IReadOnlyList<Adjacent>>
     {
-        [Adjacent.CornerType.TopLeft] = [
-                new Adjacent(Adjacent.SideType.Top, Adjacent.CornerType.TopRight),
-                new Adjacent(Adjacent.SideType.Left, Adjacent.CornerType.BottomLeft)],
+        [Adjacent.CornerType.TopLeft] = (Adjacent[])[
+         new Adjacent(Adjacent.SideType.Top, Adjacent.CornerType.TopRight),
+        new Adjacent(Adjacent.SideType.Left, Adjacent.CornerType.BottomLeft)],
 
-        [Adjacent.CornerType.TopRight] = [
-                new Adjacent(Adjacent.SideType.Top, Adjacent.CornerType.TopLeft),
-                new Adjacent(Adjacent.SideType.Right, Adjacent.CornerType.BottomRight)],
+        [Adjacent.CornerType.TopRight] = (Adjacent[])[
+         new Adjacent(Adjacent.SideType.Top, Adjacent.CornerType.TopLeft),
+        new Adjacent(Adjacent.SideType.Right, Adjacent.CornerType.BottomRight)],
 
-        [Adjacent.CornerType.BottomLeft] = [
-                new Adjacent(Adjacent.SideType.Bottom, Adjacent.CornerType.BottomRight),
-                new Adjacent(Adjacent.SideType.Left, Adjacent.CornerType.TopLeft)],
+        [Adjacent.CornerType.BottomLeft] = (Adjacent[])[
+         new Adjacent(Adjacent.SideType.Bottom, Adjacent.CornerType.BottomRight),
+        new Adjacent(Adjacent.SideType.Left, Adjacent.CornerType.TopLeft)],
 
-        [Adjacent.CornerType.BottomRight] = [
-                new Adjacent(Adjacent.SideType.Bottom, Adjacent.CornerType.BottomLeft),
-                new Adjacent(Adjacent.SideType.Right, Adjacent.CornerType.TopRight)],
+        [Adjacent.CornerType.BottomRight] = (Adjacent[])[
+         new Adjacent(Adjacent.SideType.Bottom, Adjacent.CornerType.BottomLeft),
+        new Adjacent(Adjacent.SideType.Right, Adjacent.CornerType.TopRight)],
     };
     private struct CornerMap<TValue>
     {

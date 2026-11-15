@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Windows.Graphics.DirectX.Direct3D11;
+using WinRT;
 
 namespace DevWinUI;
 
@@ -20,109 +22,120 @@ internal sealed partial class DeviceLostEventArgs : EventArgs
 
 internal delegate void DeviceLostEventHandler(DeviceLostHelper sender, DeviceLostEventArgs args);
 
-internal sealed partial class DeviceLostHelper : IDisposable
+internal sealed unsafe partial class DeviceLostHelper : IDisposable
 {
+    private static readonly Guid IID_DxgiInterfaceAccess = new("A9B3D012-3DF2-4EE3-B8D1-8695F457D3C1");
+    private static readonly Guid IID_ID3D11Device4 = new("8992AB71-02E6-4B8D-BA48-B056DCDA42C4");
+
+    private const int RegisterDeviceRemovedEventIndex = 65;
+    private const int UnregisterDeviceRemovedIndex = 66;
+
+    private readonly object _lock = new();
     private IDirect3DDevice _device;
-    private Task _monitorTask;
-    private CancellationTokenSource _cts;
-    private IntPtr _cookie;
-    private ManualResetEvent _deviceRemovedEvent;
+    private nint _d3dDevice4;
+    private uint _cookie;
+    private ManualResetEvent _removedEvent;
+    private RegisteredWaitHandle _waitHandle;
 
     public event DeviceLostEventHandler DeviceLost;
 
     public IDirect3DDevice CurrentlyWatchedDevice => _device;
 
-    public DeviceLostHelper()
-    {
-    }
-
     public void WatchDevice(IDirect3DDevice device)
     {
-        StopWatchingCurrentDevice();
+        lock (_lock)
+        {
+            StopWatchingCurrentDevice();
 
-        _device = device;
+            nint abi = 0, access = 0, d3d = 0;
+            ManualResetEvent removedEvent = null;
 
-        _deviceRemovedEvent = new ManualResetEvent(false);
-        _cts = new CancellationTokenSource();
+            try
+            {
+                abi = MarshalInterface<IDirect3DDevice>.FromManaged(device);
+                Marshal.ThrowExceptionForHR(Marshal.QueryInterface(abi, in IID_DxgiInterfaceAccess, out access));
 
-        _monitorTask = Task.Run(() => MonitorDeviceRemovedAsync(device, _cts.Token));
+                var iid = IID_ID3D11Device4;
+                int hr = ((delegate* unmanaged[Stdcall]<nint, Guid*, nint*, int>)(*(void***)access)[3])(access, &iid, &d3d);
+                Marshal.ThrowExceptionForHR(hr);
+
+                removedEvent = new ManualResetEvent(false);
+                uint cookie;
+                hr = ((delegate* unmanaged[Stdcall]<nint, nint, uint*, int>)(*(void***)d3d)[RegisterDeviceRemovedEventIndex])(
+                    d3d, removedEvent.SafeWaitHandle.DangerousGetHandle(), &cookie);
+                Marshal.ThrowExceptionForHR(hr);
+
+                _device = device;
+                _d3dDevice4 = d3d;
+                _cookie = cookie;
+                _removedEvent = removedEvent;
+                d3d = 0;
+                removedEvent = null;
+
+                _waitHandle = ThreadPool.RegisterWaitForSingleObject(
+                    _removedEvent,
+                    static (state, _) => ((DeviceLostHelper)state).OnDeviceLost(),
+                    this,
+                    Timeout.Infinite,
+                    true);
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (d3d != 0) Marshal.Release(d3d);
+                if (access != 0) Marshal.Release(access);
+                if (abi != 0) Marshal.Release(abi);
+                removedEvent?.Dispose();
+            }
+        }
     }
 
     public void StopWatchingCurrentDevice()
     {
-        try
+        lock (_lock)
         {
-            _cts?.Cancel();
-            _monitorTask?.Wait(50);
+            _waitHandle?.Unregister(null);
+            _waitHandle = null;
 
-            if (_device != null && _cookie != IntPtr.Zero)
+            if (_d3dDevice4 != 0)
             {
-                var nativeDevice = Marshal.GetIUnknownForObject(_device);
-                var d3d11Device4 = Marshal.GetObjectForIUnknown(nativeDevice) as ID3D11Device4Native;
-                Marshal.Release(nativeDevice);
+                try
+                {
+                    ((delegate* unmanaged[Stdcall]<nint, uint, void>)(*(void***)_d3dDevice4)[UnregisterDeviceRemovedIndex])(_d3dDevice4, _cookie);
+                }
+                catch
+                {
+                }
 
-                d3d11Device4?.UnregisterDeviceRemoved(_cookie);
-                _cookie = IntPtr.Zero;
+                Marshal.Release(_d3dDevice4);
+                _d3dDevice4 = 0;
+                _cookie = 0;
             }
-        }
-        catch { }
-        finally
-        {
-            _deviceRemovedEvent?.Dispose();
-            _deviceRemovedEvent = null;
 
-            _cts?.Dispose();
-            _cts = null;
-
+            _removedEvent?.Dispose();
+            _removedEvent = null;
             _device = null;
         }
     }
 
-    private async Task MonitorDeviceRemovedAsync(IDirect3DDevice device, CancellationToken token)
+    private void OnDeviceLost()
     {
-        try
+        IDirect3DDevice oldDevice;
+
+        lock (_lock)
         {
-            var nativeDevice = Marshal.GetIUnknownForObject(device);
-            var d3d11Device4 = Marshal.GetObjectForIUnknown(nativeDevice) as ID3D11Device4Native;
-            Marshal.Release(nativeDevice);
-
-            if (d3d11Device4 != null)
-            {
-                _cookie = d3d11Device4.RegisterDeviceRemoved(_deviceRemovedEvent.SafeWaitHandle.DangerousGetHandle());
-
-                while (!token.IsCancellationRequested)
-                {
-                    if (_deviceRemovedEvent.WaitOne(10))
-                    {
-                        OnDeviceLost(device);
-                        break;
-                    }
-                    await Task.Delay(10, token);
-                }
-
-                d3d11Device4.UnregisterDeviceRemoved(_cookie);
-                _cookie = IntPtr.Zero;
-            }
+            oldDevice = _device;
+            if (oldDevice == null) return;
+            StopWatchingCurrentDevice();
         }
-        catch { }
-    }
 
-    private void OnDeviceLost(IDirect3DDevice oldDevice)
-    {
-        StopWatchingCurrentDevice();
         DeviceLost?.Invoke(this, DeviceLostEventArgs.Create(oldDevice));
     }
 
     public void Dispose()
     {
         StopWatchingCurrentDevice();
-    }
-
-    // WinRT Native interface for ID3D11Device4
-    [ComImport, Guid("3B1A6840-16F2-4F46-8E0D-2BEE8CA5F978"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    private interface ID3D11Device4Native
-    {
-        IntPtr RegisterDeviceRemoved(IntPtr eventHandle);
-        void UnregisterDeviceRemoved(IntPtr cookie);
     }
 }

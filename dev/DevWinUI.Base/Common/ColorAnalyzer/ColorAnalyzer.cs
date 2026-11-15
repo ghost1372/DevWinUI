@@ -53,8 +53,7 @@ public partial class ColorAnalyzer : DependencyObject
 
         // Update analyzer property
         // Not a dependency property, so no need to update from the UI Thread
-        AnalyzedColors = [.. colorData];
-
+        AnalyzedColors = (AnalyzedColor[])[.. colorData];
 
         // Invoke analyzer updated event from the UI thread
         DispatcherQueue.TryEnqueue(() =>
@@ -73,7 +72,7 @@ public partial class ColorAnalyzer : DependencyObject
         // If actualSize is 0, replace with 1:1 aspect ratio
         var sourceSize = Source.ActualSize;
         sourceSize = sourceSize != Vector2.Zero ? sourceSize : Vector2.One;
-        
+
         // Calculate size of scaled rerender using the actual size
         // scaled down to the sample count, maintaining aspect ration
         var sourceArea = sourceSize.X * sourceSize.Y;
