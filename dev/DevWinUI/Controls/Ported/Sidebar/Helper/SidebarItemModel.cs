@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace DevWinUI;
 
-public sealed partial class SidebarViewSampleItem : ISidebarItemModel, ISidebarItemPresentationModel
+public sealed partial class SidebarItemModel : ISidebarItemModel, ISidebarItemPresentationModel
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -58,8 +58,8 @@ public sealed partial class SidebarViewSampleItem : ISidebarItemModel, ISidebarI
         set => Set(ref _itemDecorator, value);
     }
 
-    private ObservableCollection<SidebarViewSampleItem>? _children;
-    public ObservableCollection<SidebarViewSampleItem>? Children
+    private ObservableCollection<SidebarItemModel>? _children;
+    public ObservableCollection<SidebarItemModel>? Children
     {
         get => _children;
         set => Set(ref _children, value);
