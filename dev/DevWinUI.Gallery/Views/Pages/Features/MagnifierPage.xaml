@@ -10,16 +10,12 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="Magnifier" Doc="controls/magnifier">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Magnifier" Xaml="Features/Others/MagnifierPage_xaml.txt">
-                        <Grid>
-                            <Image Width="350" dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}" Source="ms-appx:///Assets/Others/Girl.jpg" />
+            <local:ControlExample Title="Magnifier" Doc="controls/magnifier" Xaml="Features/Others/MagnifierPage_xaml.txt">
+                <Grid>
+                    <Image Width="350" dev:Magnifier.Instance="{x:Bind MyMagnifier, Mode=OneWay}" Source="ms-appx:///Assets/Others/Girl.jpg" />
 
-                            <dev:Magnifier x:Name="MyMagnifier" />
-                        </Grid>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                    <dev:Magnifier x:Name="MyMagnifier" />
+                </Grid>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

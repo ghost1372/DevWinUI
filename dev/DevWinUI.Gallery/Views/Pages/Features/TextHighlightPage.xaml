@@ -11,26 +11,24 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="TextHighlight" Doc="controls/textHighlight">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="TextHighlight">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextHighlightTrigger.Hover}" />
-                            <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
-                                <x:String>Auto (use Trigger)</x:String>
-                                <x:String>Drawn</x:String>
-                                <x:String>Hidden</x:String>
-                            </ComboBox>
-                            <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="A marker-style highlight wraps across lines and sweeps in from the left." TextWrapping="Wrap" />
-                            <TextBox x:Name="TxtHighlightText" Header="Highlight Text" PlaceholderText="Empty highlights the whole text" Text="highlight wraps across lines" />
-                            <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="48" Minimum="14" Value="24" />
-                            <Slider x:Name="SliderOpacity" Header="Band Opacity" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.4" />
-                            <Slider x:Name="SliderPadding" Header="Band Padding" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
-                            <Slider x:Name="SliderRadius" Header="Band Corner Radius" Maximum="16" Minimum="0" StepFrequency="0.5" Value="4" />
-                            <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
-                            <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextHighlightTrigger.Hover}" />
+                        <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
+                            <x:String>Auto (use Trigger)</x:String>
+                            <x:String>Drawn</x:String>
+                            <x:String>Hidden</x:String>
+                        </ComboBox>
+                        <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="A marker-style highlight wraps across lines and sweeps in from the left." TextWrapping="Wrap" />
+                        <TextBox x:Name="TxtHighlightText" Header="Highlight Text" PlaceholderText="Empty highlights the whole text" Text="highlight wraps across lines" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="48" Minimum="14" Value="24" />
+                        <Slider x:Name="SliderOpacity" Header="Band Opacity" Maximum="1" Minimum="0.1" StepFrequency="0.05" Value="0.4" />
+                        <Slider x:Name="SliderPadding" Header="Band Padding" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderRadius" Header="Band Corner Radius" Maximum="16" Minimum="0" StepFrequency="0.5" Value="4" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
+                        <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="TextHighlight">
                         <local:Sample.XamlCode>

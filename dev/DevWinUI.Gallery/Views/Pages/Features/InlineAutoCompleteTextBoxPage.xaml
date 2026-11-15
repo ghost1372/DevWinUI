@@ -5,7 +5,7 @@
       xmlns:local="using:DevWinUIGallery">
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="InlineAutoCompleteTextBox" Doc="controls/inlineAutoCompleteTextBox">
+            <local:ControlExample Title="InlineAutoCompleteTextBox" Doc="controls/inlineAutoCompleteTextBox" CSharp="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_cs.txt" Xaml="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_xaml.txt">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Matching">
                         <local:OptionPanel>
@@ -22,11 +22,7 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="InlineAutoCompleteTextBox" CSharp="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_cs.txt" Xaml="Features/InlineAutoComplete/InlineAutoCompleteTextBoxPage_xaml.txt">
-                        <dev:InlineAutoCompleteTextBox VerticalAlignment="Top" IsSuggestionCaseSensitive="{x:Bind (x:Boolean)IsCaseSensitive.IsChecked, Mode=OneWay}" PlaceholderText="Enter your text here..." SuggestionPrefix="{x:Bind SuggestionPrefix.Text, Mode=OneWay}" SuggestionSuffix="{x:Bind SuggestionSuffix.Text, Mode=OneWay}" SuggestionsSource="{x:Bind DemoSuggestions, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <dev:InlineAutoCompleteTextBox VerticalAlignment="Top" IsSuggestionCaseSensitive="{x:Bind (x:Boolean)IsCaseSensitive.IsChecked, Mode=OneWay}" PlaceholderText="Enter your text here..." SuggestionPrefix="{x:Bind SuggestionPrefix.Text, Mode=OneWay}" SuggestionSuffix="{x:Bind SuggestionSuffix.Text, Mode=OneWay}" SuggestionsSource="{x:Bind DemoSuggestions, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

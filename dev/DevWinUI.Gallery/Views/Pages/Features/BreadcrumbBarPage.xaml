@@ -11,16 +11,12 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="BreadcrumbBar" Doc="controls/breadcrumbBar">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="BreadcrumbBar">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:BreadcrumbBar ItemsSource="{x:Bind Items}" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:BreadcrumbBar EllipsisButtonToolTip="More folders" ItemsSource="{x:Bind Items, Mode=OneWay}" RootItemToolTip="Root Folder" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:BreadcrumbBar ItemsSource="{x:Bind Items}" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:BreadcrumbBar EllipsisButtonToolTip="More folders" ItemsSource="{x:Bind Items, Mode=OneWay}" RootItemToolTip="Root Folder" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

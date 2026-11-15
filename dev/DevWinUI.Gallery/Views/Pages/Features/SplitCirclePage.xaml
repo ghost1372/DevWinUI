@@ -12,31 +12,25 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="SplitCircle" Doc="controls/splitCircle">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="SplitCircle">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TGShowMica" Header="Show Mica Layer" IsOn="True" />
-                            <local:ChoiceOption x:Name="CmbSplitOrientation" Header="Split Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SplitCircle">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:SplitCircle FirstColor="Red" SecondColor="Green" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Viewbox Stretch="Uniform">
-                                <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}" SecondColor="{ThemeResource SystemFillColorCaution}" ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.Value), Mode=OneWay}" />
-                            </Viewbox>
-                            <Viewbox>
-                                <dev:SplitCircle ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.Value), Mode=OneWay}" />
-                            </Viewbox>
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TGShowMica" Header="Show Mica Layer" IsOn="True" />
+                        <local:ChoiceOption x:Name="CmbSplitOrientation" Header="Split Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:SplitCircle FirstColor="Red" SecondColor="Green" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Viewbox Stretch="Uniform">
+                        <dev:SplitCircle FirstColor="{ThemeResource SystemFillColorCaution}" SecondColor="{ThemeResource SystemFillColorCaution}" ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.Value), Mode=OneWay}" />
+                    </Viewbox>
+                    <Viewbox>
+                        <dev:SplitCircle ShowMicaLayer="{x:Bind TGShowMica.IsOn, Mode=OneWay}" SplitOrientation="{x:Bind ((Orientation)CmbSplitOrientation.Value), Mode=OneWay}" />
+                    </Viewbox>
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

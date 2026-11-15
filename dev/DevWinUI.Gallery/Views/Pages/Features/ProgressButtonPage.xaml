@@ -31,21 +31,17 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="ProgressButton">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:ProgressButton CheckedContent="Downloading..." Content="Click Here" IsIndeterminateProgressRing="true" ProgressRingVisibility="Visible" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Spacing="10">
-                            <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" Unchecked="ProgressButton_Checked" />
-                            <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminateProgressRing="{x:Bind IsIndeterminateProgressRingTG.IsOn, Mode=OneWay}" ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Unchecked="ProgressButton_Checked" />
-                            <dev:ProgressButton Width="200" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminateProgressRing="True" ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            <dev:ProgressButton Width="200" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminate="{x:Bind IsIndeterminateTG.IsOn, Mode=OneWay}" ShowError="{x:Bind ShowErrorTG.IsOn, Mode=OneWay}" ShowPaused="{x:Bind ShowPausedTG.IsOn, Mode=OneWay}" />
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:ProgressButton CheckedContent="Downloading..." Content="Click Here" IsIndeterminateProgressRing="true" ProgressRingVisibility="Visible" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="10">
+                    <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" Unchecked="ProgressButton_Checked" />
+                    <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminateProgressRing="{x:Bind IsIndeterminateProgressRingTG.IsOn, Mode=OneWay}" ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Unchecked="ProgressButton_Checked" />
+                    <dev:ProgressButton Width="200" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminateProgressRing="True" ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <dev:ProgressButton Width="200" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminate="{x:Bind IsIndeterminateTG.IsOn, Mode=OneWay}" ShowError="{x:Bind ShowErrorTG.IsOn, Mode=OneWay}" ShowPaused="{x:Bind ShowPausedTG.IsOn, Mode=OneWay}" />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

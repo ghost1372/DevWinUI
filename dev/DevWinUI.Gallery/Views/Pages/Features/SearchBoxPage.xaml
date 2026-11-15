@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="SearchBox" Doc="controls/searchBox">
+            <local:ControlExample Title="SearchBox" Doc="controls/searchBox" Xaml="Features/SearchBox/SearchBoxPage_xaml.txt">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Actions">
                         <local:OptionPanel>
@@ -40,14 +40,10 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SearchBox" Xaml="Features/SearchBox/SearchBoxPage_xaml.txt">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="5">
-                            <dev:SearchBox x:Name="Search" Width="260" MenuItemInvoked="Search_MenuItemInvoked" QueryChanged="Search_QueryChanged" ResultInvoked="Search_ResultInvoked" />
-                            <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Click the search box" />
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="5">
+                    <dev:SearchBox x:Name="Search" Width="260" MenuItemInvoked="Search_MenuItemInvoked" QueryChanged="Search_QueryChanged" ResultInvoked="Search_ResultInvoked" />
+                    <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Click the search box" />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

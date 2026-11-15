@@ -35,16 +35,12 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="DigitalSegment">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:DigitalSegment Text="DevWinUI" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:DigitalSegment Angle="{x:Bind SldAngle.Value, Mode=OneWay}" IsColonBlink="{x:Bind TGColonBlink.IsOn, Mode=OneWay}" IsMatrixSquare="{x:Bind TGMatrixSquare.IsOn, Mode=OneWay}" IsScrolling="{x:Bind TGScrolling.IsOn, Mode=OneWay}" Model="{x:Bind ViewModel.DigitalSegmentSelectedModel.Value, Mode=OneWay}" SymbolCount="{x:Bind ((x:Int32)NbSymbolCount.Value), Mode=OneWay}" Text="{x:Bind Txt.Text, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:DigitalSegment Text="DevWinUI" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:DigitalSegment Angle="{x:Bind SldAngle.Value, Mode=OneWay}" IsColonBlink="{x:Bind TGColonBlink.IsOn, Mode=OneWay}" IsMatrixSquare="{x:Bind TGMatrixSquare.IsOn, Mode=OneWay}" IsScrolling="{x:Bind TGScrolling.IsOn, Mode=OneWay}" Model="{x:Bind ViewModel.DigitalSegmentSelectedModel.Value, Mode=OneWay}" SymbolCount="{x:Bind ((x:Int32)NbSymbolCount.Value), Mode=OneWay}" Text="{x:Bind Txt.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

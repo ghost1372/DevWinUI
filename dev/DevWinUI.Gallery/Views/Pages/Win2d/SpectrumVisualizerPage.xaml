@@ -29,21 +29,17 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SpectrumVisualizer">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <local:Sample.CSharpCode>
-                            <x:String>
-                                SpectrumVisualizerSample.Analyzer = new MyAnalyzer();
-                            </x:String>
-                        </local:Sample.CSharpCode>
-                        <dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" ColorType="{x:Bind ((dev:SpectrumColorType)CmbColorType.Value), Mode=OneWay}" RotationSpeed="{x:Bind SldRotationSpeed.Value, Mode=OneWay}" Sensitivity="{x:Bind SldSensitivity.Value, Mode=OneWay}" ShowAlbumArt="{x:Bind TgShowAlbumArt.IsOn, Mode=OneWay}" ShowArtist="{x:Bind TgShowArtist.IsOn, Mode=OneWay}" ShowTitle="{x:Bind TgShowTitle.IsOn, Mode=OneWay}" SpectrumType="{x:Bind ((dev:SpectrumType)CmbSpectrumType.Value), Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
+                    <x:String>
+                        SpectrumVisualizerSample.Analyzer = new MyAnalyzer();
+                    </x:String>
+                </local:ControlExample.CSharpCode>
+                <dev:SpectrumVisualizer x:Name="SpectrumVisualizerSample" ColorType="{x:Bind ((dev:SpectrumColorType)CmbColorType.Value), Mode=OneWay}" RotationSpeed="{x:Bind SldRotationSpeed.Value, Mode=OneWay}" Sensitivity="{x:Bind SldSensitivity.Value, Mode=OneWay}" ShowAlbumArt="{x:Bind TgShowAlbumArt.IsOn, Mode=OneWay}" ShowArtist="{x:Bind TgShowArtist.IsOn, Mode=OneWay}" ShowTitle="{x:Bind TgShowTitle.IsOn, Mode=OneWay}" SpectrumType="{x:Bind ((dev:SpectrumType)CmbSpectrumType.Value), Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

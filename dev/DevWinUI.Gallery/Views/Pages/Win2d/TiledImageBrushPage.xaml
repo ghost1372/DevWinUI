@@ -10,16 +10,12 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="TiledImageBrush" Doc="brushes/tiledImageBrush">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="TiledImageBrush" Xaml="Win2d/TiledImageBrush_xaml.txt">
-                        <Rectangle Height="400">
-                            <Rectangle.Fill>
-                                <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="TiledImageBrush" Doc="brushes/tiledImageBrush" Xaml="Win2d/TiledImageBrush_xaml.txt">
+                <Rectangle Height="400">
+                    <Rectangle.Fill>
+                        <dev:TiledImageBrush Source="ms-appx:///Assets/cloud.png" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -11,20 +11,18 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="WaveformTimeline" CSharp="Features/Others/WaveformTimeline_cs.txt" Doc="controls/waveformTimeline">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Audio">
-                        <local:OptionPanel>
-                            <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
-                            <Button x:Name="BtnOpenBuiltIn" HorizontalAlignment="Stretch" Click="BtnOpenBuiltIn_Click" Content="Open Built In Sample" />
-                            <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
-                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
-                                <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
-                                <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
-                            </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
+                        <Button x:Name="BtnOpenBuiltIn" HorizontalAlignment="Stretch" Click="BtnOpenBuiltIn_Click" Content="Open Built In Sample" />
+                        <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
+                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
+                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;</x:String>
                 </local:ControlExample.XamlCode>

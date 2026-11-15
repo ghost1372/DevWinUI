@@ -10,33 +10,27 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="VisualStepper" Doc="controls/visualStepper">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="VisualStepper">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TglAutoplay" Header="Autoplay" IsOn="False" />
-                            <Slider x:Name="SldInterval" Header="Interval (ms)" Maximum="6000" Minimum="500" StepFrequency="100" Value="2500" />
-                            <ToggleSwitch x:Name="TglPauseOnHover" Header="Pause On Hover" IsOn="True" />
-                            <ToggleSwitch x:Name="TglShowCard" Header="Show Card" IsOn="True" />
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Click="OnBack" Content="Back" />
-                                <Button Click="OnNext" Content="Next" Style="{StaticResource AccentButtonStyle}" />
-                            </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="VisualStepper" Xaml="Features/Others/VisualStepper_xaml.txt">
-                        <dev:VisualStepper x:Name="Stepper" Height="320" Autoplay="{x:Bind TglAutoplay.IsOn, Mode=OneWay}" Interval="{x:Bind SldInterval.Value, Mode=OneWay}" PauseOnHover="{x:Bind TglPauseOnHover.IsOn, Mode=OneWay}" ShowCard="{x:Bind TglShowCard.IsOn, Mode=OneWay}">
-                            <dev:VisualStepper.Steps>
-                                <dev:VisualStepperStep Title="Pick a Skill" Description="Choose a curated style" />
-                                <dev:VisualStepperStep Title="Copy Skill Expression" Description="Customize &amp; copy" />
-                                <dev:VisualStepperStep Title="Prompt in Codex" Description="Type the visual you want" />
-                                <dev:VisualStepperStep Title="Use Visual Asset" Description="App-ready asset is ready" />
-                            </dev:VisualStepper.Steps>
-                        </dev:VisualStepper>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="VisualStepper" Doc="controls/visualStepper" Xaml="Features/Others/VisualStepper_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TglAutoplay" Header="Autoplay" IsOn="False" />
+                        <Slider x:Name="SldInterval" Header="Interval (ms)" Maximum="6000" Minimum="500" StepFrequency="100" Value="2500" />
+                        <ToggleSwitch x:Name="TglPauseOnHover" Header="Pause On Hover" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowCard" Header="Show Card" IsOn="True" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Click="OnBack" Content="Back" />
+                            <Button Click="OnNext" Content="Next" Style="{StaticResource AccentButtonStyle}" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:VisualStepper x:Name="Stepper" Height="320" Autoplay="{x:Bind TglAutoplay.IsOn, Mode=OneWay}" Interval="{x:Bind SldInterval.Value, Mode=OneWay}" PauseOnHover="{x:Bind TglPauseOnHover.IsOn, Mode=OneWay}" ShowCard="{x:Bind TglShowCard.IsOn, Mode=OneWay}">
+                    <dev:VisualStepper.Steps>
+                        <dev:VisualStepperStep Title="Pick a Skill" Description="Choose a curated style" />
+                        <dev:VisualStepperStep Title="Copy Skill Expression" Description="Customize &amp; copy" />
+                        <dev:VisualStepperStep Title="Prompt in Codex" Description="Type the visual you want" />
+                        <dev:VisualStepperStep Title="Use Visual Asset" Description="App-ready asset is ready" />
+                    </dev:VisualStepper.Steps>
+                </dev:VisualStepper>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

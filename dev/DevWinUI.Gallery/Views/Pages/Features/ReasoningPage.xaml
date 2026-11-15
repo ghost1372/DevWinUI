@@ -11,18 +11,16 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Reasoning" Doc="controls/reasoning">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Reasoning">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:ReasoningKind.Outline}" />
-                            <ToggleSwitch Header="Thinking" IsOn="{x:Bind ReasoningMain.Thinking, Mode=TwoWay}" />
-                            <TextBox x:Name="TxtThinkingLabel" Header="Thinking Label" Text="Thinking" />
-                            <TextBox x:Name="TxtDurationLabel" Header="Completed Duration Label" Text="Thought for {0}" />
-                            <ToggleSwitch Header="Animations" IsOn="True" Toggled="OnAnimationToggled" />
-                            <Button HorizontalAlignment="Stretch" Click="OnSimulateClick" Content="Run Simulation" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:ReasoningKind.Outline}" />
+                        <ToggleSwitch Header="Thinking" IsOn="{x:Bind ReasoningMain.Thinking, Mode=TwoWay}" />
+                        <TextBox x:Name="TxtThinkingLabel" Header="Thinking Label" Text="Thinking" />
+                        <TextBox x:Name="TxtDurationLabel" Header="Completed Duration Label" Text="Thought for {0}" />
+                        <ToggleSwitch Header="Animations" IsOn="True" Toggled="OnAnimationToggled" />
+                        <Button HorizontalAlignment="Stretch" Click="OnSimulateClick" Content="Run Simulation" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="Reasoning" Xaml="Features/Reasoning/Reasoning_xaml.txt">
                         <dev:Reasoning x:Name="ReasoningMain" MaxWidth="640" CompletedDurationLabel="{x:Bind TxtDurationLabel.Text, Mode=OneWay}" Kind="{x:Bind ((dev:ReasoningKind)CmbKind.Value), Mode=OneWay}" ThinkingLabel="{x:Bind TxtThinkingLabel.Text, Mode=OneWay}" Duration="12">

@@ -10,23 +10,17 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="TypeFlow" Doc="controls/typeFlow" ResetRequested="ControlExample_ResetRequested">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="TypeFlow">
-                        <local:OptionPanel>
-                            <TextBox x:Name="TxtText" Header="Text" Text="This is some awesome placeholder text, watch it render in style!" TextWrapping="Wrap" />
-                            <Slider x:Name="SldBaseDelay" Header="Base Delay (ms)" Maximum="150" Minimum="5" StepFrequency="5" Value="45" />
-                            <Slider x:Name="SldPunctuationDelay" Header="Punctuation Delay (ms)" Maximum="800" Minimum="0" StepFrequency="20" Value="300" />
-                            <ToggleSwitch x:Name="TglAutoStart" Header="Auto Start" IsOn="True" />
-                            <Button Click="OnSkip" Content="Skip" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="TypeFlow" Xaml="Features/Others/TypeFlow_xaml.txt">
-                        <dev:TypeFlow x:Name="Flow" AutoStart="{x:Bind TglAutoStart.IsOn, Mode=OneWay}" BaseDelay="{x:Bind SldBaseDelay.Value, Mode=OneWay}" FontSize="24" PunctuationDelay="{x:Bind SldPunctuationDelay.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="TypeFlow" Doc="controls/typeFlow" ResetRequested="ControlExample_ResetRequested" Xaml="Features/Others/TypeFlow_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtText" Header="Text" Text="This is some awesome placeholder text, watch it render in style!" TextWrapping="Wrap" />
+                        <Slider x:Name="SldBaseDelay" Header="Base Delay (ms)" Maximum="150" Minimum="5" StepFrequency="5" Value="45" />
+                        <Slider x:Name="SldPunctuationDelay" Header="Punctuation Delay (ms)" Maximum="800" Minimum="0" StepFrequency="20" Value="300" />
+                        <ToggleSwitch x:Name="TglAutoStart" Header="Auto Start" IsOn="True" />
+                        <Button Click="OnSkip" Content="Skip" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:TypeFlow x:Name="Flow" AutoStart="{x:Bind TglAutoStart.IsOn, Mode=OneWay}" BaseDelay="{x:Bind SldBaseDelay.Value, Mode=OneWay}" FontSize="24" PunctuationDelay="{x:Bind SldPunctuationDelay.Value, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

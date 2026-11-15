@@ -28,16 +28,12 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="CheckUpdateControl">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:CheckUpdateControl /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:CheckUpdateControl Click="CheckUpdateControl_Click" IsUpdateAvailable="{x:Bind TGIsUpdateAvailable.IsOn, Mode=OneWay}" LastUpdateCheckDate="{x:Bind DatePickerSample.Date, Mode=OneWay}" LastUpdateCheckTitle="{x:Bind TxtLastUpdateCheckTitle.Text, Mode=OneWay}" UpdateAvailableTitle="{x:Bind TxtUpdateAvailableTitle.Text, Mode=OneWay}" UpdateAvailableVersion="{x:Bind TxtNewVersion.Text, Mode=OneWay}" UpdateAvailableVersionTitle="{x:Bind TxtUpdateAvailableVersionTitle.Text, Mode=OneWay}" UpdateNotAvailableTitle="{x:Bind TxtUpdateNotAvailableTitle.Text, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:CheckUpdateControl /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:CheckUpdateControl Click="CheckUpdateControl_Click" IsUpdateAvailable="{x:Bind TGIsUpdateAvailable.IsOn, Mode=OneWay}" LastUpdateCheckDate="{x:Bind DatePickerSample.Date, Mode=OneWay}" LastUpdateCheckTitle="{x:Bind TxtLastUpdateCheckTitle.Text, Mode=OneWay}" UpdateAvailableTitle="{x:Bind TxtUpdateAvailableTitle.Text, Mode=OneWay}" UpdateAvailableVersion="{x:Bind TxtNewVersion.Text, Mode=OneWay}" UpdateAvailableVersionTitle="{x:Bind TxtUpdateAvailableVersionTitle.Text, Mode=OneWay}" UpdateNotAvailableTitle="{x:Bind TxtUpdateNotAvailableTitle.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

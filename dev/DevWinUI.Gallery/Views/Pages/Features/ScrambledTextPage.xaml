@@ -11,23 +11,21 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="ScrambledText" Doc="controls/scrambledText">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="ScrambledText">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbEffect" Header="Effect" Value="{x:Bind dev:ScrambledTextEffect.Scramble}" />
-                            <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="Move your pointer across this text" TextWrapping="Wrap" />
-                            <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="64" Minimum="14" Value="32" />
-                            <Slider x:Name="SliderRadius" Header="Radius" Maximum="300" Minimum="20" Value="100" />
-                            <Slider x:Name="SliderStrength" Header="Strength" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1" />
-                            <Slider x:Name="SliderTrail" Header="Trail (s)" Maximum="2" Minimum="0.1" StepFrequency="0.1" Value="0.6" />
-                            <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1.2" />
-                            <Slider x:Name="SliderSpeed" Header="Speed" Maximum="3" Minimum="0.1" StepFrequency="0.1" Value="0.5" />
-                            <TextBox x:Name="TxtScrambleChars" Header="Scramble Chars" Text=".:" />
-                            <ToggleSwitch x:Name="TsClickBurst" Header="Click Burst" IsOn="True" />
-                            <ToggleSwitch x:Name="TsIntro" Header="Intro" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbEffect" Header="Effect" Value="{x:Bind dev:ScrambledTextEffect.Scramble}" />
+                        <TextBox x:Name="TxtText" AcceptsReturn="True" Header="Text" Text="Move your pointer across this text" TextWrapping="Wrap" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="64" Minimum="14" Value="32" />
+                        <Slider x:Name="SliderRadius" Header="Radius" Maximum="300" Minimum="20" Value="100" />
+                        <Slider x:Name="SliderStrength" Header="Strength" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1" />
+                        <Slider x:Name="SliderTrail" Header="Trail (s)" Maximum="2" Minimum="0.1" StepFrequency="0.1" Value="0.6" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="1.2" />
+                        <Slider x:Name="SliderSpeed" Header="Speed" Maximum="3" Minimum="0.1" StepFrequency="0.1" Value="0.5" />
+                        <TextBox x:Name="TxtScrambleChars" Header="Scramble Chars" Text=".:" />
+                        <ToggleSwitch x:Name="TsClickBurst" Header="Click Burst" IsOn="True" />
+                        <ToggleSwitch x:Name="TsIntro" Header="Intro" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="ScrambledText">
                         <local:Sample.XamlCode>

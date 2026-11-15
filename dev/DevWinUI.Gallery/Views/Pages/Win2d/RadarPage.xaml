@@ -158,24 +158,18 @@
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>
-            <local:ControlExample Title="Radar Data Binding" Doc="controls/radar">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Data binding">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TglLive" Header="Live movement" IsOn="True" />
-                            <Button Click="AddAircraft_Click" Content="Add aircraft" />
-                            <Button Click="RemoveAircraft_Click" Content="Remove last aircraft" />
-                            <Button Click="ToggleAlert_Click" Content="Toggle alert on first aircraft" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Data binding" CSharp="Win2d/Radar/RadarBinding_cs.txt" Xaml="Win2d/Radar/RadarBinding_xaml.txt">
-                        <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
-                            <dev:Radar Height="380" Clutter="0.1" ItemMapper="{x:Bind Mapper}" ItemsSource="{x:Bind Aircraft}" Targets="0" />
-                        </Grid>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="Radar Data Binding" Doc="controls/radar" CSharp="Win2d/Radar/RadarBinding_cs.txt" Xaml="Win2d/Radar/RadarBinding_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TglLive" Header="Live movement" IsOn="True" />
+                        <Button Click="AddAircraft_Click" Content="Add aircraft" />
+                        <Button Click="RemoveAircraft_Click" Content="Remove last aircraft" />
+                        <Button Click="ToggleAlert_Click" Content="Toggle alert on first aircraft" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
+                    <dev:Radar Height="380" Clutter="0.1" ItemMapper="{x:Bind Mapper}" ItemsSource="{x:Bind Aircraft}" Targets="0" />
+                </Grid>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

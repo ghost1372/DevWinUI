@@ -11,16 +11,12 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="TileControl" Doc="controls/tileControl">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="TileControl">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:TileControl ImageSource="ms-appx:///Assets/Icon.png" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:TileControl Height="400" ImageSource="ms-appx:///Assets/cloud.png" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:TileControl ImageSource="ms-appx:///Assets/Icon.png" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:TileControl Height="400" ImageSource="ms-appx:///Assets/cloud.png" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

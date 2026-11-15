@@ -17,21 +17,19 @@
                 <local:ControlExample.CSharpCode>
                     <x:String>ConfettiCannonSample.FireBasic();</x:String>
                 </local:ControlExample.CSharpCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Fire">
-                        <local:OptionPanel>
-                            <StackPanel Spacing="8">
-                                <Button HorizontalAlignment="Stretch" Click="OnFireBasicClick" Content="Fire Basic" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireRandomClick" Content="Fire Random Direction" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireRealisticClick" Content="Fire Realistic" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireFireworksClick" Content="Fire Fireworks" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireStarsClick" Content="Fire Stars" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireSnowClick" Content="Fire Snow" />
-                                <Button HorizontalAlignment="Stretch" Click="OnFireSchoolPrideClick" Content="SchoolPride" />
-                            </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <StackPanel Spacing="8">
+                            <Button HorizontalAlignment="Stretch" Click="OnFireBasicClick" Content="Fire Basic" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireRandomClick" Content="Fire Random Direction" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireRealisticClick" Content="Fire Realistic" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireFireworksClick" Content="Fire Fireworks" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireStarsClick" Content="Fire Stars" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireSnowClick" Content="Fire Snow" />
+                            <Button HorizontalAlignment="Stretch" Click="OnFireSchoolPrideClick" Content="SchoolPride" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <Grid MinHeight="300">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

@@ -58,22 +58,18 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Globe">
-                        <local:Sample.XamlCode>
-                            <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" IsCountrySelectionEnabled="True" SelectedCountryCode="USA" IsFlatMapEnabled="True" FlatMapMode="Scroll" ShowCountryBorders="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Spacing="8">
-                            <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" BorderParticleCount="{x:Bind (x:Int32)SliderBorderParticleCount.Value, Mode=OneWay}" BorderScanOnly="{x:Bind TglBorderScanOnly.IsOn, Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" FlatMapMode="{x:Bind ((dev:ParticleGlobeFlatMapMode)CmbFlatMapMode.Value), Mode=OneWay}" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsFlatMapEnabled="{x:Bind TglFlatMap.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsTourLooping="{x:Bind TglTourLoop.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.Value), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowCountryBorders="{x:Bind TglCountryBorders.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.Value), Mode=OneWay}" TourEnded="OnGlobeTourEnded" TourMarkerReached="OnGlobeTourMarkerReached" />
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Click="OnAddSampleEventClick" Content="Add sample event" />
-                                <Button Click="OnStartTourClick" Content="Start tour" />
-                                <Button Click="OnStopTourClick" Content="Stop tour" />
-                                <TextBlock x:Name="GlobeStatusText" VerticalAlignment="Center" Text="Drag to rotate and click a country to select it." />
-                            </StackPanel>
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" IsCountrySelectionEnabled="True" SelectedCountryCode="USA" IsFlatMapEnabled="True" FlatMapMode="Scroll" ShowCountryBorders="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="8">
+                    <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" BorderParticleCount="{x:Bind (x:Int32)SliderBorderParticleCount.Value, Mode=OneWay}" BorderScanOnly="{x:Bind TglBorderScanOnly.IsOn, Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" FlatMapMode="{x:Bind ((dev:ParticleGlobeFlatMapMode)CmbFlatMapMode.Value), Mode=OneWay}" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsFlatMapEnabled="{x:Bind TglFlatMap.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsTourLooping="{x:Bind TglTourLoop.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.Value), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowCountryBorders="{x:Bind TglCountryBorders.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.Value), Mode=OneWay}" TourEnded="OnGlobeTourEnded" TourMarkerReached="OnGlobeTourMarkerReached" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Click="OnAddSampleEventClick" Content="Add sample event" />
+                        <Button Click="OnStartTourClick" Content="Start tour" />
+                        <Button Click="OnStopTourClick" Content="Stop tour" />
+                        <TextBlock x:Name="GlobeStatusText" VerticalAlignment="Center" Text="Drag to rotate and click a country to select it." />
+                    </StackPanel>
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

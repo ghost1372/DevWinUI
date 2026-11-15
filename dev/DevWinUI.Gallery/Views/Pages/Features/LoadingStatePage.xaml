@@ -11,25 +11,19 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="LoadingState" Doc="controls/loadingState" ResetRequested="ControlExample_ResetRequested">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="LoadingState">
-                        <local:OptionPanel>
-                            <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
-                            <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:LoadingStateMode.Drive}" />
-                            <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="LoadingState">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:LoadingState Label="Working" Mode="Drive" ShowElapsed="True" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.Value), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
+                        <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:LoadingStateMode.Drive}" />
+                        <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:LoadingState Label="Working" Mode="Drive" ShowElapsed="True" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.Value), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

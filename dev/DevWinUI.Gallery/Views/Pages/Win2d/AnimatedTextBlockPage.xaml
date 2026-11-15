@@ -18,20 +18,18 @@
                 <local:ControlExample.CSharpCode>
                     <x:String>AnimatedTextBlockSample.TextEffect = new TextMotionBlurEffect();</x:String>
                 </local:ControlExample.CSharpCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Content">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
-                            <local:ChoiceOption x:Name="CmbEffects" Header="Effect" ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}" SelectedIndex="0" ValueChanged="CmbEffects_ValueChanged">
-                                <local:ChoiceOption.ItemTemplate>
-                                    <DataTemplate x:DataType="views:BuiltInEffect">
-                                        <TextBlock Text="{x:Bind Name}" />
-                                    </DataTemplate>
-                                </local:ChoiceOption.ItemTemplate>
-                            </local:ChoiceOption>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbText" Header="Text" ItemsSource="{x:Bind SampleText, Mode=OneWay}" SelectedIndex="0" />
+                        <local:ChoiceOption x:Name="CmbEffects" Header="Effect" ItemsSource="{x:Bind BuiltInEffects, Mode=OneWay}" SelectedIndex="0" ValueChanged="CmbEffects_ValueChanged">
+                            <local:ChoiceOption.ItemTemplate>
+                                <DataTemplate x:DataType="views:BuiltInEffect">
+                                    <TextBlock Text="{x:Bind Name}" />
+                                </DataTemplate>
+                            </local:ChoiceOption.ItemTemplate>
+                        </local:ChoiceOption>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:AnimatedTextBlock x:Name="AnimatedTextBlockSample" Margin="10" Text="{x:Bind CmbText.Value, Mode=OneWay}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
             </local:ControlExample>
         </StackPanel>

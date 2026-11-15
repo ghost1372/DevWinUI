@@ -11,7 +11,7 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <InfoBar Title="Note: Most features can be configured and customized. Please refer to the documentation." IsClosable="False" IsOpen="True" Severity="Warning" />
-            <local:ControlExample Title="ShaderBackground" Doc="controls/shaderBackground">
+            <local:ControlExample Title="ShaderBackground" Doc="controls/shaderBackground" Xaml="Win2d/ShaderBackground_xaml.txt">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Edge feathering">
                         <local:OptionPanel>
@@ -54,38 +54,34 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="ShaderBackground" Xaml="Win2d/ShaderBackground_xaml.txt">
-                        <dev:ShaderBackground x:Name="ShaderBackgroundSample" Draw="ShaderBackgroundSample_Draw" EdgeFeatheringBottom="{x:Bind (x:Int32)SldEdgeBottom.Value, Mode=OneWay}" EdgeFeatheringLeft="{x:Bind (x:Int32)SldEdgeLeft.Value, Mode=OneWay}" EdgeFeatheringRight="{x:Bind (x:Int32)SldEdgeRight.Value, Mode=OneWay}" EdgeFeatheringTop="{x:Bind (x:Int32)SldEdgeTop.Value, Mode=OneWay}" IsEdgeFeatheringEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" Update="ShaderBackgroundSample_Update">
-                            <dev:ShaderBackground.Renderers>
-                                <dev:CosmicRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCosmic.IsOn, Mode=OneWay}" />
-                                <dev:CoverBackgroundRenderer BassEnergy="5" CoverImage="ms-appx:///Assets/Profile/3.jpg" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCover.IsOn, Mode=OneWay}" />
-                                <dev:FireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFire.IsOn, Mode=OneWay}" />
-                                <dev:FluidBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFluid.IsOn, Mode=OneWay}" />
-                                <dev:FogRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFog.IsOn, Mode=OneWay}" />
-                                <dev:IceAndFireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGIceAndFire.IsOn, Mode=OneWay}" />
-                                <dev:MatrixRainRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGMatrix.IsOn, Mode=OneWay}" />
-                                <dev:PureColorBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPureColor.IsOn, Mode=OneWay}" Opacity="50" Color="Pink" />
-                                <dev:RaindropRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGRaindrop.IsOn, Mode=OneWay}" />
-                                <dev:SeventiesMeltRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSeventiesMelt.IsOn, Mode=OneWay}" />
-                                <dev:SnowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSnow.IsOn, Mode=OneWay}" />
-                                <dev:SparkRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpark.IsOn, Mode=OneWay}" />
-                                <dev:SpectrumRenderer x:Name="SpectrumRendererSample" BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpectrum.IsOn, Mode=OneWay}" />
-                                <dev:StarNestRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNest.IsOn, Mode=OneWay}" />
-                                <dev:StarNoiseRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNoise.IsOn, Mode=OneWay}" />
-                                <dev:AbstractMovementBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGAbstractMove.IsOn, Mode=OneWay}" />
-                                <dev:ColourfulBubblesRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGColourfulBubbles.IsOn, Mode=OneWay}" />
-                                <dev:GradientFlowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGGradientFlow.IsOn, Mode=OneWay}" />
-                                <dev:PS3XMBBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPS3XMB.IsOn, Mode=OneWay}" />
-                                <dev:ResidualBackgroundRadiationRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGResidual.IsOn, Mode=OneWay}" />
-                                <dev:TriangleGradientBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGTriangleGradient.IsOn, Mode=OneWay}" />
-                                <dev:WallpaperRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWallpaper.IsOn, Mode=OneWay}" />
-                                <dev:WavyBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWavyBackground.IsOn, Mode=OneWay}" />
-                                <dev:CrystalizedBallRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCrystalizedBall.IsOn, Mode=OneWay}" />
-                            </dev:ShaderBackground.Renderers>
-                        </dev:ShaderBackground>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <dev:ShaderBackground x:Name="ShaderBackgroundSample" Draw="ShaderBackgroundSample_Draw" EdgeFeatheringBottom="{x:Bind (x:Int32)SldEdgeBottom.Value, Mode=OneWay}" EdgeFeatheringLeft="{x:Bind (x:Int32)SldEdgeLeft.Value, Mode=OneWay}" EdgeFeatheringRight="{x:Bind (x:Int32)SldEdgeRight.Value, Mode=OneWay}" EdgeFeatheringTop="{x:Bind (x:Int32)SldEdgeTop.Value, Mode=OneWay}" IsEdgeFeatheringEnabled="{x:Bind TGIsEdgeFeatheringEnabled.IsOn, Mode=OneWay}" Update="ShaderBackgroundSample_Update">
+                    <dev:ShaderBackground.Renderers>
+                        <dev:CosmicRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCosmic.IsOn, Mode=OneWay}" />
+                        <dev:CoverBackgroundRenderer BassEnergy="5" CoverImage="ms-appx:///Assets/Profile/3.jpg" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCover.IsOn, Mode=OneWay}" />
+                        <dev:FireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFire.IsOn, Mode=OneWay}" />
+                        <dev:FluidBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFluid.IsOn, Mode=OneWay}" />
+                        <dev:FogRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGFog.IsOn, Mode=OneWay}" />
+                        <dev:IceAndFireRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGIceAndFire.IsOn, Mode=OneWay}" />
+                        <dev:MatrixRainRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGMatrix.IsOn, Mode=OneWay}" />
+                        <dev:PureColorBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPureColor.IsOn, Mode=OneWay}" Opacity="50" Color="Pink" />
+                        <dev:RaindropRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGRaindrop.IsOn, Mode=OneWay}" />
+                        <dev:SeventiesMeltRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSeventiesMelt.IsOn, Mode=OneWay}" />
+                        <dev:SnowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSnow.IsOn, Mode=OneWay}" />
+                        <dev:SparkRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpark.IsOn, Mode=OneWay}" />
+                        <dev:SpectrumRenderer x:Name="SpectrumRendererSample" BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGSpectrum.IsOn, Mode=OneWay}" />
+                        <dev:StarNestRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNest.IsOn, Mode=OneWay}" />
+                        <dev:StarNoiseRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGStarNoise.IsOn, Mode=OneWay}" />
+                        <dev:AbstractMovementBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGAbstractMove.IsOn, Mode=OneWay}" />
+                        <dev:ColourfulBubblesRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGColourfulBubbles.IsOn, Mode=OneWay}" />
+                        <dev:GradientFlowRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGGradientFlow.IsOn, Mode=OneWay}" />
+                        <dev:PS3XMBBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGPS3XMB.IsOn, Mode=OneWay}" />
+                        <dev:ResidualBackgroundRadiationRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGResidual.IsOn, Mode=OneWay}" />
+                        <dev:TriangleGradientBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGTriangleGradient.IsOn, Mode=OneWay}" />
+                        <dev:WallpaperRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWallpaper.IsOn, Mode=OneWay}" />
+                        <dev:WavyBackgroundRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGWavyBackground.IsOn, Mode=OneWay}" />
+                        <dev:CrystalizedBallRenderer BassEnergy="5" IsBreathingEffectEnabled="{x:Bind TGBreathing.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TGCrystalizedBall.IsOn, Mode=OneWay}" />
+                    </dev:ShaderBackground.Renderers>
+                </dev:ShaderBackground>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

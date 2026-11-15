@@ -16,13 +16,11 @@
                         &lt;dev:OutlineTextControl DashStyle="Solid" FontSize="100" OutlineColor="Purple" StrokeWidth="4" Text="DevWinUI" /&gt;
                     </x:String>
                 </local:ControlExample.XamlCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Content">
-                        <local:OptionPanel>
-                            <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:OutlineTextControl Height="200" DashStyle="Solid" FontSize="90" OutlineColor="Purple" StrokeWidth="4" Text="{x:Bind txt.Text, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>

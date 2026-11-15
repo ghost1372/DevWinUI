@@ -18,21 +18,19 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="UnderlineAnimation" Doc="controls/underlineAnimation">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="UnderlineAnimation">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:UnderlineKind.Wavy}" />
-                            <TextBox x:Name="TxtText" Header="Text" Text="Animated underline for any text" />
-                            <TextBox x:Name="TxtUnderlineText" Header="Underline Text" PlaceholderText="Empty underlines the whole text" Text="any text" />
-                            <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
-                            <Slider x:Name="SliderThickness" Header="Line Thickness" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
-                            <Slider x:Name="SliderOffset" Header="Line Offset" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
-                            <Slider x:Name="SliderDuration" Header="Duration (ms)" Maximum="1500" Minimum="100" StepFrequency="10" Value="420" />
-                            <ToggleSwitch x:Name="TsRest" Header="Rest" IsOn="False" />
-                            <ToggleSwitch x:Name="TsActive" Header="Active" IsOn="False" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:UnderlineKind.Wavy}" />
+                        <TextBox x:Name="TxtText" Header="Text" Text="Animated underline for any text" />
+                        <TextBox x:Name="TxtUnderlineText" Header="Underline Text" PlaceholderText="Empty underlines the whole text" Text="any text" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
+                        <Slider x:Name="SliderThickness" Header="Line Thickness" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderOffset" Header="Line Offset" Maximum="12" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderDuration" Header="Duration (ms)" Maximum="1500" Minimum="100" StepFrequency="10" Value="420" />
+                        <ToggleSwitch x:Name="TsRest" Header="Rest" IsOn="False" />
+                        <ToggleSwitch x:Name="TsActive" Header="Active" IsOn="False" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="UnderlineAnimation">
                         <local:Sample.XamlCode>

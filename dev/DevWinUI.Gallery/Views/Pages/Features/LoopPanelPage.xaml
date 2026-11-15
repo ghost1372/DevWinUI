@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="LoopPanel" Doc="controls/loopPanel">
+            <local:ControlExample Title="LoopPanel" Doc="controls/loopPanel" Xaml="Features/Others/LoopPanelPage_xaml.txt">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Behavior">
                         <local:OptionPanel>
@@ -29,25 +29,21 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="LoopPanel" Xaml="Features/Others/LoopPanelPage_xaml.txt">
-                        <ItemsControl x:Name="loopingList" Height="200" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <dev:LoopPanel x:Name="LoopPanelSample" Background="Transparent" BringChildrenIntoView="{Binding ElementName=TgBringChildrenIntoView, Path=IsOn}" DragScrollFactor="{Binding ElementName=SldDragScrollFactor, Path=Value}" IsInertiaEnabled="{Binding ElementName=TgIsInertiaEnabled, Path=IsOn}" MouseWheelScrollFactor="{Binding ElementName=SldMouseWheelScrollFactor, Path=Value}" Orientation="Horizontal" RelativeOffset="{Binding ElementName=SldRelativeOffset, Path=Value}" Spacing="{Binding ElementName=SldSpacing, Path=Value}" Offset="{Binding ElementName=SldOffset, Path=Value}" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
+                <ItemsControl x:Name="loopingList" Height="200" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dev:LoopPanel x:Name="LoopPanelSample" Background="Transparent" BringChildrenIntoView="{Binding ElementName=TgBringChildrenIntoView, Path=IsOn}" DragScrollFactor="{Binding ElementName=SldDragScrollFactor, Path=Value}" IsInertiaEnabled="{Binding ElementName=TgIsInertiaEnabled, Path=IsOn}" MouseWheelScrollFactor="{Binding ElementName=SldMouseWheelScrollFactor, Path=Value}" Orientation="Horizontal" RelativeOffset="{Binding ElementName=SldRelativeOffset, Path=Value}" Spacing="{Binding ElementName=SldSpacing, Path=Value}" Offset="{Binding ElementName=SldOffset, Path=Value}" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="models:SampleItemModel">
-                                    <Border Margin="10,10,0,0" Padding="5" Background="Purple" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
-                                        <Image Source="{x:Bind ImagePath}" Stretch="Uniform" />
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:SampleItemModel">
+                            <Border Margin="10,10,0,0" Padding="5" Background="Purple" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                                <Image Source="{x:Bind ImagePath}" Stretch="Uniform" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

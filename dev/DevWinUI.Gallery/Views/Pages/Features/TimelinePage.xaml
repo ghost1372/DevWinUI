@@ -11,26 +11,20 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Timeline" Doc="controls/timeline">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Timeline">
-                        <local:OptionPanel>
-                            <TimePicker x:Name="StartTimePicker" Header="Start Time" Time="08:00:00" />
-                            <TimePicker x:Name="EndTimePicker" Header="End Time" Time="18:00:00" />
-                            <TimePicker x:Name="SunrisePicker" Header="Sunrise" Time="06:00:00" />
-                            <TimePicker x:Name="SunsetPicker" Header="Sunset" Time="20:00:00" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Timeline">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:Timeline /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:Timeline EndTime="{x:Bind EndTimePicker.Time, Mode=OneWay}" StartTime="{x:Bind StartTimePicker.Time, Mode=OneWay}" Sunrise="{x:Bind SunrisePicker.Time, Mode=OneWay}" Sunset="{x:Bind SunsetPicker.Time, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TimePicker x:Name="StartTimePicker" Header="Start Time" Time="08:00:00" />
+                        <TimePicker x:Name="EndTimePicker" Header="End Time" Time="18:00:00" />
+                        <TimePicker x:Name="SunrisePicker" Header="Sunrise" Time="06:00:00" />
+                        <TimePicker x:Name="SunsetPicker" Header="Sunset" Time="20:00:00" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:Timeline /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:Timeline EndTime="{x:Bind EndTimePicker.Time, Mode=OneWay}" StartTime="{x:Bind StartTimePicker.Time, Mode=OneWay}" Sunrise="{x:Bind SunrisePicker.Time, Mode=OneWay}" Sunset="{x:Bind SunsetPicker.Time, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -12,25 +12,20 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="ArcProgress" Doc="controls/arcProgress">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="ArcProgress">
-                        <local:OptionPanel>
-                            <Slider x:Name="SliderSample" Header="Percentage" Maximum="100" Minimum="0" Value="36" />
-                            <local:ChoiceOption x:Name="CmbFillAnim" Header="Fill Status" Value="{x:Bind dev:ArcProgressFillAnimationState.Filling}" />
-                            <local:ChoiceOption x:Name="CmbSweepDirection" Header="Sweep Direction" Value="{x:Bind media:SweepDirection.Clockwise}" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="ArcProgress">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:ArcProgress Percentage="36" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:ArcProgress FillStatus="{x:Bind ((dev:ArcProgressFillAnimationState)CmbFillAnim.Value), Mode=OneWay}" Percentage="{x:Bind SliderSample.Value, Mode=OneWay}" SweepDirection="{x:Bind ((SweepDirection)CmbSweepDirection.Value), Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SliderSample" Header="Percentage" Maximum="100" Minimum="0" Value="36" />
+                        <local:ChoiceOption x:Name="CmbFillAnim" Header="Fill Status" Value="{x:Bind dev:ArcProgressFillAnimationState.Filling}" />
+                        <local:ChoiceOption x:Name="CmbSweepDirection" Header="Sweep Direction" Value="{x:Bind media:SweepDirection.Clockwise}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:ArcProgress Percentage="36" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:ArcProgress FillStatus="{x:Bind ((dev:ArcProgressFillAnimationState)CmbFillAnim.Value), Mode=OneWay}" Percentage="{x:Bind SliderSample.Value, Mode=OneWay}" SweepDirection="{x:Bind ((SweepDirection)CmbSweepDirection.Value), Mode=OneWay}" />
+
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

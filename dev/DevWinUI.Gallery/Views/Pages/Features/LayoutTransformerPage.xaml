@@ -10,24 +10,18 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="LayoutTransformer" Doc="controls/layoutTransformer">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="LayoutTransformer">
-                        <local:OptionPanel>
-                            <Slider x:Name="SliderSample" Header="Rotation" Maximum="360" Minimum="-360" Value="0" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="LayoutTransformer" Xaml="Features/Others/LayoutTransformer_xaml.txt">
-                        <dev:LayoutTransformer x:Name="LayoutTransformerSample" Height="300" RenderTransformOrigin="0.5,0.5">
-                            <Rectangle Width="200" Height="100" Fill="{ThemeResource SystemFillColorCriticalBrush}" />
-                            <dev:LayoutTransformer.RenderTransform>
-                                <CompositeTransform Rotation="{x:Bind SliderSample.Value, Mode=OneWay}" />
-                            </dev:LayoutTransformer.RenderTransform>
-                        </dev:LayoutTransformer>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="LayoutTransformer" Doc="controls/layoutTransformer" Xaml="Features/Others/LayoutTransformer_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SliderSample" Header="Rotation" Maximum="360" Minimum="-360" Value="0" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:LayoutTransformer x:Name="LayoutTransformerSample" Height="300" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle Width="200" Height="100" Fill="{ThemeResource SystemFillColorCriticalBrush}" />
+                    <dev:LayoutTransformer.RenderTransform>
+                        <CompositeTransform Rotation="{x:Bind SliderSample.Value, Mode=OneWay}" />
+                    </dev:LayoutTransformer.RenderTransform>
+                </dev:LayoutTransformer>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

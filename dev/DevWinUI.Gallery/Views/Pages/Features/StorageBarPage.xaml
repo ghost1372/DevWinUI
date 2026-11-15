@@ -11,27 +11,21 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="StorageBar" Doc="controls/storageBar">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="StorageBar">
-                        <local:OptionPanel>
-                            <Slider x:Name="SlValue" Header="Value" Value="26" />
-                            <Slider x:Name="SlValueBarHeight" Header="Value Bar Height" Value="6" />
-                            <Slider x:Name="SlTrackBarHeight" Header="Track Bar Height" Value="3" />
-                            <Slider x:Name="SlPercentCaution" Header="Percent Caution" Value="75.1" />
-                            <Slider x:Name="SlPercentCritical" Header="Percent Critical" Value="89.9" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="StorageBar">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:StorageBar Value="25" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:StorageBar PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackBarHeight="{x:Bind SlTrackBarHeight.Value, Mode=OneWay}" ValueBarHeight="{x:Bind SlValueBarHeight.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SlValue" Header="Value" Value="26" />
+                        <Slider x:Name="SlValueBarHeight" Header="Value Bar Height" Value="6" />
+                        <Slider x:Name="SlTrackBarHeight" Header="Track Bar Height" Value="3" />
+                        <Slider x:Name="SlPercentCaution" Header="Percent Caution" Value="75.1" />
+                        <Slider x:Name="SlPercentCritical" Header="Percent Critical" Value="89.9" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:StorageBar Value="25" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:StorageBar PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackBarHeight="{x:Bind SlTrackBarHeight.Value, Mode=OneWay}" ValueBarHeight="{x:Bind SlValueBarHeight.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

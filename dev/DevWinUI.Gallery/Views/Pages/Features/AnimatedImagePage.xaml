@@ -13,16 +13,12 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="AnimatedImage" Doc="controls/animatedImage">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="AnimatedImage">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:AnimatedImage ImageUrl="ms-appx:///Assets/Others/Girl.jpg" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:AnimatedImage Height="400" ImageUrl="{x:Bind ViewModel.AnimatedImageImagePath, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:AnimatedImage ImageUrl="ms-appx:///Assets/Others/Girl.jpg" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:AnimatedImage Height="400" ImageUrl="{x:Bind ViewModel.AnimatedImageImagePath, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

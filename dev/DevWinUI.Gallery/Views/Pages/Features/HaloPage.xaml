@@ -10,119 +10,85 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="HaloDisc" Doc="controls/haloDisc">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Halo" Xaml="Features/Halo/HaloPage_HaloDisc_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloDisc dev:HaloPanel.Band="2" dev:HaloPanel.Thickness="10" Fill="{ThemeResource SystemAccentColor}" />
-                            <dev:HaloDisc dev:HaloPanel.Band="1" dev:HaloPanel.Thickness="20" Fill="{ThemeResource SystemAccentColorDark3}" />
-                            <dev:HaloDisc dev:HaloPanel.Thickness="10" Fill="{ThemeResource CardStrokeColorDefaultSolidBrush}" />
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloDisc" Doc="controls/haloDisc" Xaml="Features/Halo/HaloPage_HaloDisc_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloDisc dev:HaloPanel.Band="2" dev:HaloPanel.Thickness="10" Fill="{ThemeResource SystemAccentColor}" />
+                    <dev:HaloDisc dev:HaloPanel.Band="1" dev:HaloPanel.Thickness="20" Fill="{ThemeResource SystemAccentColorDark3}" />
+                    <dev:HaloDisc dev:HaloPanel.Thickness="10" Fill="{ThemeResource CardStrokeColorDefaultSolidBrush}" />
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloRingPanel" Doc="controls/haloRingPanel">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloRing" Xaml="Features/Halo/HaloPage_HaloRing_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloRingPanel>
-                                <Ellipse Width="30" Height="30" Fill="{ThemeResource SystemAccentColor}" />
-                                <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="90" Fill="{ThemeResource SystemAccentColor}" />
-                                <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="180" Fill="{ThemeResource SystemAccentColor}" />
-                                <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="270" Fill="{ThemeResource SystemAccentColor}" />
-                            </dev:HaloRingPanel>
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloRingPanel" Doc="controls/haloRingPanel" Xaml="Features/Halo/HaloPage_HaloRing_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloRingPanel>
+                        <Ellipse Width="30" Height="30" Fill="{ThemeResource SystemAccentColor}" />
+                        <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="90" Fill="{ThemeResource SystemAccentColor}" />
+                        <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="180" Fill="{ThemeResource SystemAccentColor}" />
+                        <Ellipse Width="30" Height="30" dev:HaloRingPanel.Angle="270" Fill="{ThemeResource SystemAccentColor}" />
+                    </dev:HaloRingPanel>
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloChain" Doc="controls/haloChain">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloChain" Xaml="Features/Halo/HaloPage_HaloChain_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloChain Spacing="10" Tension="0.5">
-                                <TextBlock FontSize="30" Text="D" />
-                                <TextBlock FontSize="30" Text="E" />
-                                <TextBlock FontSize="30" Text="V" />
-                                <TextBlock FontSize="30" Text="W" />
-                                <TextBlock FontSize="30" Text="I" />
-                                <TextBlock FontSize="30" Text="N" />
-                                <TextBlock FontSize="30" Text="U" />
-                                <TextBlock FontSize="30" Text="I" />
-                            </dev:HaloChain>
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloChain" Doc="controls/haloChain" Xaml="Features/Halo/HaloPage_HaloChain_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloChain Spacing="10" Tension="0.5">
+                        <TextBlock FontSize="30" Text="D" />
+                        <TextBlock FontSize="30" Text="E" />
+                        <TextBlock FontSize="30" Text="V" />
+                        <TextBlock FontSize="30" Text="W" />
+                        <TextBlock FontSize="30" Text="I" />
+                        <TextBlock FontSize="30" Text="N" />
+                        <TextBlock FontSize="30" Text="U" />
+                        <TextBlock FontSize="30" Text="I" />
+                    </dev:HaloChain>
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloArc" Doc="controls/haloArc">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloArc" Xaml="Features/Halo/HaloPage_HaloArc_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloArc Spread="180" Stroke="{ThemeResource SystemFillColorSuccessBrush}" StrokeThickness="30" Tension="0.5" />
-                            <dev:HaloArc Angle="180" Spread="180" Stroke="{ThemeResource SystemFillColorCriticalBrush}" StrokeThickness="30" Tension="0.5" />
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloArc" Doc="controls/haloArc" Xaml="Features/Halo/HaloPage_HaloArc_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloArc Spread="180" Stroke="{ThemeResource SystemFillColorSuccessBrush}" StrokeThickness="30" Tension="0.5" />
+                    <dev:HaloArc Angle="180" Spread="180" Stroke="{ThemeResource SystemFillColorCriticalBrush}" StrokeThickness="30" Tension="0.5" />
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloSlice" Doc="controls/haloSlice">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloSlice" Xaml="Features/Halo/HaloPage_HaloSlice_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloSlice Fill="{ThemeResource SystemFillColorCautionBrush}" Spread="180" Offset="90" />
-                            <dev:HaloSlice Angle="180" Fill="{ThemeResource SystemFillColorSuccessBrush}" Spread="180" Offset="90" />
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloSlice" Doc="controls/haloSlice" Xaml="Features/Halo/HaloPage_HaloSlice_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloSlice Fill="{ThemeResource SystemFillColorCautionBrush}" Spread="180" Offset="90" />
+                    <dev:HaloSlice Angle="180" Fill="{ThemeResource SystemFillColorSuccessBrush}" Spread="180" Offset="90" />
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloRingLabel" Doc="controls/haloRingLabel">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloRingLabel" Xaml="Features/Halo/HaloPage_HaloRingLabel_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloRingLabel dev:HaloPanel.Band="1" FontSize="30" Text="DevWinUI" />
-                            <dev:HaloRingLabel dev:HaloPanel.Band="1" Flip="True" FontSize="25" Text="DevWinUI" />
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloRingLabel" Doc="controls/haloRingLabel" Xaml="Features/Halo/HaloPage_HaloRingLabel_xaml.txt">
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloRingLabel dev:HaloPanel.Band="1" FontSize="30" Text="DevWinUI" />
+                    <dev:HaloRingLabel dev:HaloPanel.Band="1" Flip="True" FontSize="25" Text="DevWinUI" />
+                </dev:HaloPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloTimePicker" Doc="controls/haloTimePicker">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloTimePicker" Xaml="Features/Halo/HaloPage_HaloTimePicker_xaml.txt">
-                        <StackPanel Spacing="10">
-                            <dev:HaloPanel Width="220" Height="250" Margin="5">
-                                <dev:HaloTimePicker TimeChanged="HaloTimePicker_TimeChanged" />
-                            </dev:HaloPanel>
-                            <TextBlock x:Name="TxtTime" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloTimePicker" Doc="controls/haloTimePicker" Xaml="Features/Halo/HaloPage_HaloTimePicker_xaml.txt">
+                <StackPanel Spacing="10">
+                    <dev:HaloPanel Width="220" Height="250" Margin="5">
+                        <dev:HaloTimePicker TimeChanged="HaloTimePicker_TimeChanged" />
+                    </dev:HaloPanel>
+                    <TextBlock x:Name="TxtTime" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                </StackPanel>
             </local:ControlExample>
 
-            <local:ControlExample Title="HaloSlider" Doc="controls/haloSlider">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="HaloSlider">
-                        <local:OptionPanel>
-                            <Slider x:Name="SldAngle" Header="Angle" Maximum="360" Minimum="-360" Value="10" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="HaloSlider" Xaml="Features/Halo/HaloPage_HaloSlider_xaml.txt">
-                        <dev:HaloPanel Height="150" Margin="5">
-                            <dev:HaloSlider Angle="{x:Bind SldAngle.Value, Mode=OneWay}">
-                                <dev:HaloSlider.Thumb>
-                                    <ControlTemplate>
-                                        <Rectangle Width="30" Height="30" Fill="{ThemeResource SystemAccentColor}" RadiusX="4" RadiusY="4" />
-                                    </ControlTemplate>
-                                </dev:HaloSlider.Thumb>
-                            </dev:HaloSlider>
-                        </dev:HaloPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="HaloSlider" Doc="controls/haloSlider" Xaml="Features/Halo/HaloPage_HaloSlider_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SldAngle" Header="Angle" Maximum="360" Minimum="-360" Value="10" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:HaloPanel Height="150" Margin="5">
+                    <dev:HaloSlider Angle="{x:Bind SldAngle.Value, Mode=OneWay}">
+                        <dev:HaloSlider.Thumb>
+                            <ControlTemplate>
+                                <Rectangle Width="30" Height="30" Fill="{ThemeResource SystemAccentColor}" RadiusX="4" RadiusY="4" />
+                            </ControlTemplate>
+                        </dev:HaloSlider.Thumb>
+                    </dev:HaloSlider>
+                </dev:HaloPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -11,18 +11,16 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="ShowMore" Doc="controls/showMore">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="ShowMore">
-                        <local:OptionPanel>
-                            <ToggleSwitch Header="Is Expanded" IsOn="{x:Bind Show.IsExpanded, Mode=TwoWay}" />
-                            <Slider x:Name="SliderLines" Header="Lines" Maximum="8" Minimum="1" Value="3" />
-                            <Slider x:Name="SliderMaxHeight" Header="Max Expanded Height" Maximum="600" Minimum="100" StepFrequency="10" Value="320" />
-                            <TextBox x:Name="TxtMoreLabel" Header="More Label" Text="Show more" />
-                            <TextBox x:Name="TxtLessLabel" Header="Less Label" Text="Show less" />
-                            <TextBox x:Name="TxtLabel" Header="Label (automation name)" Text="Release notes" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch Header="Is Expanded" IsOn="{x:Bind Show.IsExpanded, Mode=TwoWay}" />
+                        <Slider x:Name="SliderLines" Header="Lines" Maximum="8" Minimum="1" Value="3" />
+                        <Slider x:Name="SliderMaxHeight" Header="Max Expanded Height" Maximum="600" Minimum="100" StepFrequency="10" Value="320" />
+                        <TextBox x:Name="TxtMoreLabel" Header="More Label" Text="Show more" />
+                        <TextBox x:Name="TxtLessLabel" Header="Less Label" Text="Show less" />
+                        <TextBox x:Name="TxtLabel" Header="Label (automation name)" Text="Release notes" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="ShowMore" Xaml="Features/ShowMore/ShowMore_xaml.txt">
                         <dev:ShowMore x:Name="Show" MaxWidth="560" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LessLabel="{x:Bind TxtLessLabel.Text, Mode=OneWay}" Lines="{x:Bind GetLines(SliderLines.Value), Mode=OneWay}" MaxExpandedHeight="{x:Bind SliderMaxHeight.Value, Mode=OneWay}" MoreLabel="{x:Bind TxtMoreLabel.Text, Mode=OneWay}">

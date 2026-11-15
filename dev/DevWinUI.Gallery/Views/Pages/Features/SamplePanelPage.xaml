@@ -11,23 +11,19 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="SamplePanel" Doc="controls/samplePanel">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SamplePanel">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:SamplePanel /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:SamplePanel Header="Header">
-                            <dev:SamplePanel.MainContent>
-                                <TextBlock Text="Main Content" />
-                            </dev:SamplePanel.MainContent>
-                            <dev:SamplePanel.SideContent>
-                                <TextBlock Text="Side Content" />
-                            </dev:SamplePanel.SideContent>
-                        </dev:SamplePanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:SamplePanel /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:SamplePanel Header="Header">
+                    <dev:SamplePanel.MainContent>
+                        <TextBlock Text="Main Content" />
+                    </dev:SamplePanel.MainContent>
+                    <dev:SamplePanel.SideContent>
+                        <TextBlock Text="Side Content" />
+                    </dev:SamplePanel.SideContent>
+                </dev:SamplePanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -11,22 +11,16 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="ParallaxTilt" Doc="controls/parallaxTilt">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="ParallaxTilt">
-                        <local:OptionPanel>
-                            <NumberBox x:Name="NBAngle" Header="MaxTiltAngle" SpinButtonPlacementMode="Inline" Value="15" />
-                            <NumberBox x:Name="NBDepth" Header="ParallaxDepth" SpinButtonPlacementMode="Inline" Value="10" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="ParallaxTilt" Xaml="Features/Others/ParallaxTilt_xaml.txt">
-                        <dev:ParallaxTilt Height="300" MaxTiltAngle="{x:Bind NBAngle.Value, Mode=OneWay}" ParallaxDepth="{x:Bind NBDepth.Value, Mode=OneWay}">
-                            <Image Source="ms-appx:///Assets/Profile/6.jpg" />
-                        </dev:ParallaxTilt>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="ParallaxTilt" Doc="controls/parallaxTilt" Xaml="Features/Others/ParallaxTilt_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <NumberBox x:Name="NBAngle" Header="MaxTiltAngle" SpinButtonPlacementMode="Inline" Value="15" />
+                        <NumberBox x:Name="NBDepth" Header="ParallaxDepth" SpinButtonPlacementMode="Inline" Value="10" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:ParallaxTilt Height="300" MaxTiltAngle="{x:Bind NBAngle.Value, Mode=OneWay}" ParallaxDepth="{x:Bind NBDepth.Value, Mode=OneWay}">
+                    <Image Source="ms-appx:///Assets/Profile/6.jpg" />
+                </dev:ParallaxTilt>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

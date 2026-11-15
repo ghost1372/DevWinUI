@@ -10,30 +10,24 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="FlipSide" Doc="controls/flipSide">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="FlipSide">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="tg" Header="IsFlipped" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="FlipSide" Xaml="Features/Others/FlipSide_xaml.txt">
-                        <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
-                            <dev:FlipSide.Side1>
-                                <Grid Background="Red">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 1" />
-                                </Grid>
-                            </dev:FlipSide.Side1>
-                            <dev:FlipSide.Side2>
-                                <Grid Background="Blue">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 2" />
-                                </Grid>
-                            </dev:FlipSide.Side2>
-                        </dev:FlipSide>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="FlipSide" Doc="controls/flipSide" Xaml="Features/Others/FlipSide_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="tg" Header="IsFlipped" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
+                    <dev:FlipSide.Side1>
+                        <Grid Background="Red">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 1" />
+                        </Grid>
+                    </dev:FlipSide.Side1>
+                    <dev:FlipSide.Side2>
+                        <Grid Background="Blue">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Side 2" />
+                        </Grid>
+                    </dev:FlipSide.Side2>
+                </dev:FlipSide>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

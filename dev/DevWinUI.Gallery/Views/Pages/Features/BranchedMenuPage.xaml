@@ -42,20 +42,16 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="BranchedMenu">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:BranchedMenu Items="{x:Bind MenuItems}" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Spacing="12">
-                            <dev:BranchedMenu x:Name="MyBranchedMenu" HorizontalAlignment="Left" DefaultActive="install" DrawDuration="{x:Bind ToInt(SliderDraw.Value), Mode=OneWay}" FoldDuration="{x:Bind ToInt(SliderFold.Value), Mode=OneWay}" Indent="{x:Bind SliderIndent.Value, Mode=OneWay}" Items="{x:Bind MenuItems}" LineWidth="{x:Bind SliderLineWidth.Value, Mode=OneWay}" MenuMaxWidth="{x:Bind SliderMaxWidth.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RowHeight="{x:Bind SliderRowHeight.Value, Mode=OneWay}" Trunk="{x:Bind SliderTrunk.Value, Mode=OneWay}" />
-                            <TextBlock x:Name="TxtSelected" Opacity="0.7" Text="Selected: install" />
-                            <TextBlock x:Name="TxtToggled" Opacity="0.7" Text="Toggled: none" />
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:BranchedMenu Items="{x:Bind MenuItems}" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="12">
+                    <dev:BranchedMenu x:Name="MyBranchedMenu" HorizontalAlignment="Left" DefaultActive="install" DrawDuration="{x:Bind ToInt(SliderDraw.Value), Mode=OneWay}" FoldDuration="{x:Bind ToInt(SliderFold.Value), Mode=OneWay}" Indent="{x:Bind SliderIndent.Value, Mode=OneWay}" Items="{x:Bind MenuItems}" LineWidth="{x:Bind SliderLineWidth.Value, Mode=OneWay}" MenuMaxWidth="{x:Bind SliderMaxWidth.Value, Mode=OneWay}" Radius="{x:Bind SliderRadius.Value, Mode=OneWay}" RowHeight="{x:Bind SliderRowHeight.Value, Mode=OneWay}" Trunk="{x:Bind SliderTrunk.Value, Mode=OneWay}" />
+                    <TextBlock x:Name="TxtSelected" Opacity="0.7" Text="Selected: install" />
+                    <TextBlock x:Name="TxtToggled" Opacity="0.7" Text="Toggled: none" />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

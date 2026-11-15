@@ -14,13 +14,11 @@
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Hatch /&gt;</x:String>
                 </local:ControlExample.XamlCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Appearance">
-                        <local:OptionPanel>
-                            <local:ChoiceOption Header="Pick a Hatch" Value="{x:Bind HatchSample.HatchStyle, Mode=TwoWay}" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption Header="Pick a Hatch" Value="{x:Bind HatchSample.HatchStyle, Mode=TwoWay}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:Hatch x:Name="HatchSample" Height="400" />
             </local:ControlExample>
         </StackPanel>

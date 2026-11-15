@@ -10,17 +10,13 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="Toolbar" Doc="controls/toolbar">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Toolbar" CSharp="Features/Others/ToolbarPage_cs.txt">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:Toolbar Items="{x:Bind Items}" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:Toolbar x:Name="ToolbarSample" VerticalAlignment="Center" Items="{x:Bind Items, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="Toolbar" Doc="controls/toolbar" CSharp="Features/Others/ToolbarPage_cs.txt">
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:Toolbar Items="{x:Bind Items}" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:Toolbar x:Name="ToolbarSample" VerticalAlignment="Center" Items="{x:Bind Items, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

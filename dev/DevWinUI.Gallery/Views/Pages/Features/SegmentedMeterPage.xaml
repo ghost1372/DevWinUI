@@ -12,22 +12,20 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="SegmentedMeter" Doc="controls/segmentedMeter">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="SegmentedMeter">
-                        <local:OptionPanel>
-                            <Slider x:Name="SliderApps" Header="Apps" Maximum="60" Minimum="0" Value="30" />
-                            <Slider x:Name="SliderMedia" Header="Media" Maximum="60" Minimum="0" Value="20" />
-                            <Slider x:Name="SliderSystem" Header="System" Maximum="60" Minimum="0" Value="10" />
-                            <Slider x:Name="SliderGap" Header="Gap" Maximum="12" Minimum="0" Value="2" />
-                            <local:ChoiceOption x:Name="CmbBarSize" Header="Bar Size" SelectedIndex="1" Value="{x:Bind dev:MeterBarSize.Large}" />
-                            <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
-                            <local:ChoiceOption x:Name="CmbLegendPosition" Header="Legend Position" SelectedIndex="1" Value="{x:Bind dev:MeterLegendPosition.Start}" />
-                            <local:ChoiceOption x:Name="CmbLegendOrientation" Header="Legend Orientation" Value="{x:Bind controls:Orientation.Vertical}" />
-                            <ToggleSwitch x:Name="TglShowLegend" Header="Show Legend" IsOn="True" />
-                            <ToggleSwitch x:Name="TglShowValue" Header="Show Value" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SliderApps" Header="Apps" Maximum="60" Minimum="0" Value="30" />
+                        <Slider x:Name="SliderMedia" Header="Media" Maximum="60" Minimum="0" Value="20" />
+                        <Slider x:Name="SliderSystem" Header="System" Maximum="60" Minimum="0" Value="10" />
+                        <Slider x:Name="SliderGap" Header="Gap" Maximum="12" Minimum="0" Value="2" />
+                        <local:ChoiceOption x:Name="CmbBarSize" Header="Bar Size" SelectedIndex="1" Value="{x:Bind dev:MeterBarSize.Large}" />
+                        <local:ChoiceOption x:Name="CmbOrientation" Header="Orientation" Value="{x:Bind controls:Orientation.Horizontal}" />
+                        <local:ChoiceOption x:Name="CmbLegendPosition" Header="Legend Position" SelectedIndex="1" Value="{x:Bind dev:MeterLegendPosition.Start}" />
+                        <local:ChoiceOption x:Name="CmbLegendOrientation" Header="Legend Orientation" Value="{x:Bind controls:Orientation.Vertical}" />
+                        <ToggleSwitch x:Name="TglShowLegend" Header="Show Legend" IsOn="True" />
+                        <ToggleSwitch x:Name="TglShowValue" Header="Show Value" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="SegmentedMeter" Xaml="Features/SegmentedMeter/SegmentedMeter_xaml.txt">
                         <dev:SegmentedMeter BarSize="{x:Bind ((dev:MeterBarSize)CmbBarSize.Value), Mode=OneWay}" Gap="{x:Bind SliderGap.Value, Mode=OneWay}" LegendOrientation="{x:Bind ((Orientation)CmbLegendOrientation.Value), Mode=OneWay}" LegendPosition="{x:Bind ((dev:MeterLegendPosition)CmbLegendPosition.Value), Mode=OneWay}" Orientation="{x:Bind ((Orientation)CmbOrientation.Value), Mode=OneWay}" ShowLegend="{x:Bind TglShowLegend.IsOn, Mode=OneWay}" ShowValue="{x:Bind TglShowValue.IsOn, Mode=OneWay}">

@@ -33,19 +33,15 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="WorldMap">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Spacing="8">
-                            <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.Value), Mode=OneWay}" CountryClicked="OnMapCountryClicked" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.Value), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.Value), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" />
-                            <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="8">
+                    <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.Value), Mode=OneWay}" CountryClicked="OnMapCountryClicked" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.Value), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.Value), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" />
+                    <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

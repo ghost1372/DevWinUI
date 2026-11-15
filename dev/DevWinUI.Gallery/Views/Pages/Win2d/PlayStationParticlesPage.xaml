@@ -10,25 +10,19 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="PlayStationParticles" Doc="controls/playStationParticles">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Particles">
-                        <local:OptionPanel>
-                            <Slider x:Name="SliderSpeed" Header="Speed" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Welcome" Xaml="Win2d/PlayStationParticles_xaml.txt">
-                        <Grid MinHeight="360" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="{StaticResource OverlayCornerRadius}">
-                            <dev:PlayStationParticles Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" />
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
-                                <TextBlock HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Text="Welcome" />
-                                <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Drifting, twinkling particles" />
-                            </StackPanel>
-                        </Grid>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="PlayStationParticles" Doc="controls/playStationParticles" Xaml="Win2d/PlayStationParticles_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SliderSpeed" Header="Speed" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <Grid MinHeight="360" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="{StaticResource OverlayCornerRadius}">
+                    <dev:PlayStationParticles Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" />
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Text="Welcome" />
+                        <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Drifting, twinkling particles" />
+                    </StackPanel>
+                </Grid>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

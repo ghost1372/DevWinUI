@@ -11,42 +11,36 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Shimmer" Doc="controls/shimmer">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Shimmer">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TGIsActive" Header="IsActive" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="Shimmer">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:Shimmer /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <StackPanel Spacing="5">
-                            <Border Width="300" Height="30">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                            <Border Width="280" Height="30">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                            <Border Width="200" Height="30">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                            <Border Width="150" Height="30">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                            <Border Width="260" Height="30">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                            <Border Width="50" Height="50" CornerRadius="180">
-                                <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
-                            </Border>
-                        </StackPanel>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TGIsActive" Header="IsActive" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:Shimmer /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="5">
+                    <Border Width="300" Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                    <Border Width="280" Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                    <Border Width="200" Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                    <Border Width="150" Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                    <Border Width="260" Height="30">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                    <Border Width="50" Height="50" CornerRadius="180">
+                        <dev:Shimmer IsActive="{x:Bind TGIsActive.IsOn, Mode=OneWay}" />
+                    </Border>
+                </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

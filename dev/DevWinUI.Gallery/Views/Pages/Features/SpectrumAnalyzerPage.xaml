@@ -10,30 +10,24 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="SpectrumAnalyzer" Doc="controls/spectrumAnalyzer">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="SpectrumAnalyzer">
-                        <local:OptionPanel>
-                            <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
-                            <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
-                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
-                                <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
-                                <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
-                            </StackPanel>
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="SpectrumAnalyzer" CSharp="Features/Others/SpectrumAnalyzer_cs.txt">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:SpectrumAnalyzer x:Name="SpectrumAnalyzerSample" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:SpectrumAnalyzer x:Name="SpectrumAnalyzerSample" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="SpectrumAnalyzer" Doc="controls/spectrumAnalyzer" CSharp="Features/Others/SpectrumAnalyzer_cs.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
+                        <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button x:Name="BtnPlay" Click="BtnPlay_Click" Content="Play" />
+                            <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
+                            <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:SpectrumAnalyzer x:Name="SpectrumAnalyzerSample" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:SpectrumAnalyzer x:Name="SpectrumAnalyzerSample" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

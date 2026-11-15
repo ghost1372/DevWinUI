@@ -14,15 +14,13 @@
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:Countdown CountdownSeconds="0" MaxSeconds="60" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Countdown">
-                        <local:OptionPanel>
-                            <Slider x:Name="SldSec" Header="Countdown Seconds" Maximum="{x:Bind SldMaxSec.Value, Mode=OneWay}" Value="0" />
-                            <Slider x:Name="SldMaxSec" Header="Max Second" Value="60" />
-                            <local:ChoiceOption Header="State" Value="{x:Bind CountdownSample.State, Mode=TwoWay}" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SldSec" Header="Countdown Seconds" Maximum="{x:Bind SldMaxSec.Value, Mode=OneWay}" Value="0" />
+                        <Slider x:Name="SldMaxSec" Header="Max Second" Value="60" />
+                        <local:ChoiceOption Header="State" Value="{x:Bind CountdownSample.State, Mode=TwoWay}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:Countdown x:Name="CountdownSample" CountdownSeconds="{x:Bind (x:Int32)SldSec.Value, Mode=OneWay}" MaxSeconds="{x:Bind (x:Int32)SldMaxSec.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>

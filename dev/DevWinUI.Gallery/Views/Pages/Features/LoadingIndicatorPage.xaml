@@ -11,27 +11,23 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="LoadingIndicator" Doc="controls/loadingIndicator">
-                <local:ControlExample.Samples>
-                    <local:Sample Title="LoadingIndicator">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:LoadingIndicator Mode="DoubleBounce" /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <GridView ItemsSource="{x:Bind ModesItems}" SelectionMode="None">
-                            <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="dev:LoadingIndicatorMode">
-                                    <StackPanel Width="200" Height="120" Spacing="8">
-                                        <Grid Height="80">
-                                            <dev:LoadingIndicator HorizontalAlignment="Center" VerticalAlignment="Center" Mode="{x:Bind}" />
-                                        </Grid>
-                                        <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{x:Bind}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:LoadingIndicator Mode="DoubleBounce" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <GridView ItemsSource="{x:Bind ModesItems}" SelectionMode="None">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="dev:LoadingIndicatorMode">
+                            <StackPanel Width="200" Height="120" Spacing="8">
+                                <Grid Height="80">
+                                    <dev:LoadingIndicator HorizontalAlignment="Center" VerticalAlignment="Center" Mode="{x:Bind}" />
+                                </Grid>
+                                <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{x:Bind}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

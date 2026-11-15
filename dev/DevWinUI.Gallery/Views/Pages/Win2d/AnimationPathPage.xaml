@@ -14,13 +14,11 @@
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:AnimationPath Data="{StaticResource GithubGeometry}" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Playback">
-                        <local:OptionPanel>
-                            <ToggleSwitch x:Name="TgIsPlay" Header="IsPlaying" IsOn="True" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TgIsPlay" Header="IsPlaying" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="5">
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorSuccessBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />

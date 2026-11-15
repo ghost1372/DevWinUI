@@ -11,27 +11,25 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="TextScribble" Doc="controls/textScribble">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="TextScribble">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbType" Header="Type" Value="{x:Bind dev:TextScribbleType.Scribble}" />
-                            <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextScribbleTrigger.Hover}" />
-                            <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
-                                <x:String>Auto (use Trigger)</x:String>
-                                <x:String>Drawn</x:String>
-                                <x:String>Hidden</x:String>
-                            </ComboBox>
-                            <TextBox x:Name="TxtText" Header="Text" Text="Draw attention to what matters" />
-                            <TextBox x:Name="TxtMarkText" Header="Mark Text" PlaceholderText="Empty marks the whole text" Text="what matters" />
-                            <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
-                            <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
-                            <Slider x:Name="SliderMarkPadding" Header="Mark Padding" Maximum="16" Minimum="0" StepFrequency="0.5" Value="2" />
-                            <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
-                            <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
-                            <NumberBox x:Name="NbIterations" Header="Iterations" Maximum="4" Minimum="1" PlaceholderText="Auto" SpinButtonPlacementMode="Compact" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbType" Header="Type" Value="{x:Bind dev:TextScribbleType.Scribble}" />
+                        <local:ChoiceOption x:Name="CmbTrigger" Header="Trigger" Value="{x:Bind dev:TextScribbleTrigger.Hover}" />
+                        <ComboBox x:Name="CmbDrawn" HorizontalAlignment="Stretch" Header="Drawn" SelectedIndex="0">
+                            <x:String>Auto (use Trigger)</x:String>
+                            <x:String>Drawn</x:String>
+                            <x:String>Hidden</x:String>
+                        </ComboBox>
+                        <TextBox x:Name="TxtText" Header="Text" Text="Draw attention to what matters" />
+                        <TextBox x:Name="TxtMarkText" Header="Mark Text" PlaceholderText="Empty marks the whole text" Text="what matters" />
+                        <Slider x:Name="SliderFontSize" Header="Font Size" Maximum="56" Minimum="14" Value="28" />
+                        <Slider x:Name="SliderStrokeWidth" Header="Stroke Width" Maximum="8" Minimum="1" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderMarkPadding" Header="Mark Padding" Maximum="16" Minimum="0" StepFrequency="0.5" Value="2" />
+                        <Slider x:Name="SliderDuration" Header="Duration (s)" Maximum="3" Minimum="0.2" StepFrequency="0.1" Value="0.9" />
+                        <Slider x:Name="SliderDelay" Header="Delay (s)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0" />
+                        <NumberBox x:Name="NbIterations" Header="Iterations" Maximum="4" Minimum="1" PlaceholderText="Auto" SpinButtonPlacementMode="Compact" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="TextScribble">
                         <local:Sample.XamlCode>

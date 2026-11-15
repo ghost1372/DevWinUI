@@ -12,18 +12,16 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Spoiler" Doc="controls/spoiler">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Spoiler">
-                        <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbHeaderVerticalAlignment" Header="Header Vertical Alignment" Value="{x:Bind xaml:VerticalAlignment.Center}" />
-                            <local:ChoiceOption x:Name="CmbHeaderHorizontalAlignment" Header="Header Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
-                            <local:ChoiceOption x:Name="CmbRevealMode" Header="Reveal Mode" Value="{x:Bind dev:SpoilerRevealMode.Once}" />
-                            <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="Click to Show Content" />
-                            <ToggleSwitch x:Name="TgIsActiveShimmer" Header="Is Active Shimmer" IsOn="True" />
-                            <ToggleSwitch x:Name="TgIsRevealed" Header="Is Revealed" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <local:ChoiceOption x:Name="CmbHeaderVerticalAlignment" Header="Header Vertical Alignment" Value="{x:Bind xaml:VerticalAlignment.Center}" />
+                        <local:ChoiceOption x:Name="CmbHeaderHorizontalAlignment" Header="Header Horizontal Alignment" Value="{x:Bind xaml:HorizontalAlignment.Left}" />
+                        <local:ChoiceOption x:Name="CmbRevealMode" Header="Reveal Mode" Value="{x:Bind dev:SpoilerRevealMode.Once}" />
+                        <TextBox x:Name="TxtHeader" Header="Header" PlaceholderText="Header" Text="Click to Show Content" />
+                        <ToggleSwitch x:Name="TgIsActiveShimmer" Header="Is Active Shimmer" IsOn="True" />
+                        <ToggleSwitch x:Name="TgIsRevealed" Header="Is Revealed" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="Spoiler">
                         <local:Sample.XamlCode>

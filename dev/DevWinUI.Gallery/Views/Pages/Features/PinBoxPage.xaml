@@ -52,16 +52,12 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="PinBox">
-                        <local:Sample.XamlCode>
-                            <x:String>
-                                &lt;dev:PinBox /&gt;
-                            </x:String>
-                        </local:Sample.XamlCode>
-                        <dev:PinBox x:Name="pinBox" HorizontalAlignment="{x:Bind GetHorizontalAlignment(cmbHorizontalAlignment.SelectedIndex), Mode=OneWay}" Description="{x:Bind txtDesc.Text, Mode=OneWay}" FocusMode="{x:Bind GetFocusMode(cmbFocusMode.SelectedIndex), Mode=OneWay}" Header="{x:Bind txtHeader.Text, Mode=OneWay}" Orientation="{x:Bind GetOrientation(cmbOrientation.SelectedIndex), Mode=OneWay}" PasswordChar="{x:Bind txtPassChar.Text, Mode=OneWay}" PasswordRevealMode="{x:Bind GetPasswordRevealMode(cmbPassReveal.SelectedIndex), Mode=OneWay}" PlaceholderText="{x:Bind txtPlaceholder.Text, Mode=OneWay}" ShowError="{x:Bind tgShowError.IsOn, Mode=OneWay}" ShowSuccess="{x:Bind tgShowSuccess.IsOn, Mode=OneWay}" />
-                    </local:Sample>
-                </local:ControlExample.Samples>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:PinBox /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <dev:PinBox x:Name="pinBox" HorizontalAlignment="{x:Bind GetHorizontalAlignment(cmbHorizontalAlignment.SelectedIndex), Mode=OneWay}" Description="{x:Bind txtDesc.Text, Mode=OneWay}" FocusMode="{x:Bind GetFocusMode(cmbFocusMode.SelectedIndex), Mode=OneWay}" Header="{x:Bind txtHeader.Text, Mode=OneWay}" Orientation="{x:Bind GetOrientation(cmbOrientation.SelectedIndex), Mode=OneWay}" PasswordChar="{x:Bind txtPassChar.Text, Mode=OneWay}" PasswordRevealMode="{x:Bind GetPasswordRevealMode(cmbPassReveal.SelectedIndex), Mode=OneWay}" PlaceholderText="{x:Bind txtPlaceholder.Text, Mode=OneWay}" ShowError="{x:Bind tgShowError.IsOn, Mode=OneWay}" ShowSuccess="{x:Bind tgShowSuccess.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

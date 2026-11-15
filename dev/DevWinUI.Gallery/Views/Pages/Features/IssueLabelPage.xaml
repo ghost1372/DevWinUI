@@ -11,14 +11,12 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Issue Label" Doc="controls/issueLabel">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="Issue Label">
-                        <local:OptionPanel>
-                            <TextBox x:Name="TxtTitle" Header="Title" Text="Bug" />
-                            <local:ChoiceOption x:Name="CmbSeverity" Header="Severity" Value="{x:Bind dev:IssueLabelSeverity.Error}" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtTitle" Header="Title" Text="Bug" />
+                        <local:ChoiceOption x:Name="CmbSeverity" Header="Severity" Value="{x:Bind dev:IssueLabelSeverity.Error}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <local:ControlExample.Samples>
                     <local:Sample Title="Issue Label">
                         <local:Sample.XamlCode>

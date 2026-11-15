@@ -11,31 +11,25 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="CoverFlow" Doc="controls/coverFlow">
-                <local:ControlExample.OptionGroups>
-                    <local:OptionGroup Title="CoverFlow">
-                        <local:OptionPanel>
-                            <Slider x:Name="SldRotationAngle" Header="Rotation Angle" Maximum="360" Minimum="-360" Value="160" />
-                            <Slider x:Name="SldSpaceBetweenItems" Header="Space Between Items" Maximum="500" Minimum="0" Value="100" />
-                            <Slider x:Name="SldSpaceBetweenSelectedItemAndItems" Header="Space Between Selected Item And Items" Maximum="500" Minimum="0" Value="100" />
-                            <Slider x:Name="SldZDistance" Header="Z Distance" Maximum="360" Minimum="0" Value="0" />
-                        </local:OptionPanel>
-                    </local:OptionGroup>
-                </local:ControlExample.OptionGroups>
-                <local:ControlExample.Samples>
-                    <local:Sample Title="CoverFlow" CSharp="Features/CoverFlow/CoverFlowPage_cs.txt" Xaml="Features/CoverFlow/CoverFlowPage_xaml.txt">
-                        <dev:CoverFlow x:Name="CoverFlowSample" Width="500" Height="500" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" RotationAngle="{x:Bind SldRotationAngle.Value, Mode=OneWay}" SpaceBetweenItems="{x:Bind SldSpaceBetweenItems.Value, Mode=OneWay}" SpaceBetweenSelectedItemAndItems="{x:Bind SldSpaceBetweenSelectedItemAndItems.Value, Mode=OneWay}" ZDistance="{x:Bind SldZDistance.Value, Mode=OneWay}">
-                            <dev:CoverFlow.ItemTemplate>
-                                <DataTemplate x:DataType="models:SampleItemModel">
-                                    <StackPanel Spacing="5">
-                                        <Image Height="150" Source="{x:Bind ImagePath}" />
-                                        <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </dev:CoverFlow.ItemTemplate>
-                        </dev:CoverFlow>
-                    </local:Sample>
-                </local:ControlExample.Samples>
+            <local:ControlExample Title="CoverFlow" CSharp="Features/CoverFlow/CoverFlowPage_cs.txt" Doc="controls/coverFlow" Xaml="Features/CoverFlow/CoverFlowPage_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <Slider x:Name="SldRotationAngle" Header="Rotation Angle" Maximum="360" Minimum="-360" Value="160" />
+                        <Slider x:Name="SldSpaceBetweenItems" Header="Space Between Items" Maximum="500" Minimum="0" Value="100" />
+                        <Slider x:Name="SldSpaceBetweenSelectedItemAndItems" Header="Space Between Selected Item And Items" Maximum="500" Minimum="0" Value="100" />
+                        <Slider x:Name="SldZDistance" Header="Z Distance" Maximum="360" Minimum="0" Value="0" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:CoverFlow x:Name="CoverFlowSample" Width="500" Height="500" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" RotationAngle="{x:Bind SldRotationAngle.Value, Mode=OneWay}" SpaceBetweenItems="{x:Bind SldSpaceBetweenItems.Value, Mode=OneWay}" SpaceBetweenSelectedItemAndItems="{x:Bind SldSpaceBetweenSelectedItemAndItems.Value, Mode=OneWay}" ZDistance="{x:Bind SldZDistance.Value, Mode=OneWay}">
+                    <dev:CoverFlow.ItemTemplate>
+                        <DataTemplate x:DataType="models:SampleItemModel">
+                            <StackPanel Spacing="5">
+                                <Image Height="150" Source="{x:Bind ImagePath}" />
+                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dev:CoverFlow.ItemTemplate>
+                </dev:CoverFlow>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
