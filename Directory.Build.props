@@ -7,23 +7,23 @@
     <ShaderLibName>DevWinUI.Shader</ShaderLibName>
     
     <!-- Major Version -->
-    <LibraryMajorVersion>10</LibraryMajorVersion>
+    <LibraryMajorVersion>11</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>9</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>9</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_SourceGenerator_MinorVersion>9</DevWinUI_SourceGenerator_MinorVersion>
-    <DevWinUI_Shader_MinorVersion>6</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>9</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
+    <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>1</DevWinUI_PatchVersion>
-    <DevWinUI_Base_PatchVersion>1</DevWinUI_Base_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
     <DevWinUI_Shader_PatchVersion>0</DevWinUI_Shader_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>1</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
