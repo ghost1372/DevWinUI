@@ -107,7 +107,6 @@ public sealed partial class SidebarItem : Control
 
     public FrameworkElement? Icon
     {
-        [DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
         get { return (FrameworkElement?)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
@@ -116,7 +115,6 @@ public sealed partial class SidebarItem : Control
 
     public FrameworkElement? Decorator
     {
-        [DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
         get { return (FrameworkElement?)GetValue(DecoratorProperty); }
         set { SetValue(DecoratorProperty, value); }
     }

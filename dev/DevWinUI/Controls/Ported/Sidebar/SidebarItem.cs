@@ -73,9 +73,6 @@ public sealed partial class SidebarItem : Control
     }
 
     // Template-tied work needs to run *here* (not in Loaded) because Loaded can fire while the control is still not measured; template parts may not exist yet. Sub-rows realized later would otherwise keep isWiredUp=true with no handlers attached.
-    [DynamicWindowsRuntimeCast(typeof(Border))]
-    [DynamicWindowsRuntimeCast(typeof(ItemsRepeater))]
-    [DynamicWindowsRuntimeCast(typeof(TextBlock))]
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -159,8 +156,6 @@ public sealed partial class SidebarItem : Control
         }
     }
 
-    [DynamicWindowsRuntimeCast(typeof(Grid))]
-    [DynamicWindowsRuntimeCast(typeof(TextBlock))]
     private void UpdateElementToolTip()
     {
         if (GetTemplateChild("ElementGrid") is not Grid grid)
@@ -181,7 +176,6 @@ public sealed partial class SidebarItem : Control
         IsExpanded = Item?.IsExpanded ?? true;
     }
 
-    [DynamicWindowsRuntimeCast(typeof(ItemsRepeater))]
     private void UpdateFlyoutChildrenSource()
     {
         if (GetTemplateChild("FlyoutChildrenPresenter") is ItemsRepeater flyoutRepeater)
@@ -350,7 +344,6 @@ public sealed partial class SidebarItem : Control
             Owner.IsReorderDragActive = false;
     }
 
-    [DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
     private void SetFlyoutOpen(bool isOpen = true)
     {
         if (Item?.Children is null) return;
@@ -627,7 +620,6 @@ public sealed partial class SidebarItem : Control
         VisualStateManager.GoToState(this, GetIconStateName(true), true);
     }
 
-    [DynamicWindowsRuntimeCast(typeof(UIElement))]
     private void Item_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
     {
         if (!isClicking)
@@ -809,7 +801,6 @@ public sealed partial class SidebarItem : Control
         Owner?.RaiseItemDropped(this, dropPosition, e);
     }
 
-    [DynamicWindowsRuntimeCast(typeof(Grid))]
     private SidebarItemDropPosition DetermineDropTargetPosition(DragEventArgs args)
     {
         if (UseReorderDrop)

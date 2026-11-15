@@ -17,7 +17,6 @@ public sealed partial class SidebarView
 
     public UIElement InnerContent
     {
-        [DynamicWindowsRuntimeCast(typeof(UIElement))]
         get { return (UIElement)GetValue(InnerContentProperty); }
         set { SetValue(InnerContentProperty, value); }
     }
@@ -26,7 +25,6 @@ public sealed partial class SidebarView
 
     public UIElement SidebarContent
     {
-        [DynamicWindowsRuntimeCast(typeof(UIElement))]
         get { return (UIElement)GetValue(SidebarContentProperty); }
         set { SetValue(SidebarContentProperty, value); }
     }
@@ -35,7 +33,6 @@ public sealed partial class SidebarView
 
     public UIElement Header
     {
-        [DynamicWindowsRuntimeCast(typeof(UIElement))]
         get { return (UIElement)GetValue(HeaderProperty); }
         set { SetValue(HeaderProperty, value); }
     }
@@ -44,7 +41,6 @@ public sealed partial class SidebarView
 
     public UIElement Footer
     {
-        [DynamicWindowsRuntimeCast(typeof(UIElement))]
         get { return (UIElement)GetValue(FooterProperty); }
         set { SetValue(FooterProperty, value); }
     }
@@ -53,7 +49,6 @@ public sealed partial class SidebarView
 
     public Microsoft.UI.Xaml.Media.Brush PaneBackgroundBrush
     {
-        [DynamicWindowsRuntimeCast(typeof(Brush))]
         get { return (Microsoft.UI.Xaml.Media.Brush)GetValue(PaneBackgroundBrushProperty); }
         set { SetValue(PaneBackgroundBrushProperty, value); }
     }

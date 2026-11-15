@@ -265,26 +265,24 @@ public sealed partial class SidebarView : UserControl
 		}
 	}
 
-	[DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
 	private void SidebarResizer_PointerEntered(object sender, PointerRoutedEventArgs e)
 	{
 		if (!CanResizePane)
 			return;
 
 		var sidebarResizer = (FrameworkElement)sender;
-    GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.SizeWestEast));
+        GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.SizeWestEast));
 		VisualStateManager.GoToState(this, "ResizerPointerOver", true);
 		e.Handled = true;
 	}
 
-	[DynamicWindowsRuntimeCast(typeof(FrameworkElement))]
 	private void SidebarResizer_PointerExited(object sender, PointerRoutedEventArgs e)
 	{
 		if (!CanResizePane || draggingSidebarResizer)
 			return;
 
 		var sidebarResizer = (FrameworkElement)sender;
-    GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.Arrow));
+        GeneralHelper.ChangeCursor(sidebarResizer, InputSystemCursor.Create(InputSystemCursorShape.Arrow));
 
 		VisualStateManager.GoToState(this, "ResizerNormal", true);
 		e.Handled = true;
