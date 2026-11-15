@@ -22,7 +22,7 @@
                         <local:ChoiceOption x:Name="CmbStyle" Header="Expander Style" Value="{x:Bind dev:SidebarExpanderStyle.Group}" />
                     </local:OptionPanel>
                 </local:ControlExample.Options>
-                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" SupportsExpansion="{x:Bind TGSupportsExpansion.IsOn, Mode=OneWay}" />
+                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" PaneBackgroundBrush="{ThemeResource LayerFillColorDefaultBrush}" SupportsExpansion="{x:Bind TGSupportsExpansion.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
