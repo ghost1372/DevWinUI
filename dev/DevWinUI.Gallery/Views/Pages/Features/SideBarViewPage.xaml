@@ -21,7 +21,7 @@
                         <local:ChoiceOption x:Name="CmbStyle" Header="Expander Style" Value="{x:Bind dev:SidebarExpanderStyle.Group}" />
                     </local:OptionPanel>
                 </local:ControlExample.Options>
-                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" PaneBackgroundBrush="{ThemeResource LayerFillColorDefaultBrush}" />
+                <dev:SidebarView ExpanderStyle="{x:Bind ((dev:SidebarExpanderStyle)CmbStyle.Value), Mode=OneWay}" MenuItemsSource="{x:Bind SidebarViewItems, Mode=OneWay}" PaneBackgroundBrush="{ThemeResource LayerFillColorDefaultBrush}" SupportsExpansion="True" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
