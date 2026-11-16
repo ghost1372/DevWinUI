@@ -82,6 +82,12 @@ public sealed partial class StatusCenter : Control
         Unloaded += OnUnloaded;
     }
 
+    public SizeUnitTypes SizeUnitFormat
+    {
+        get => _viewModel.SizeUnitFormat;
+        set => _viewModel.SizeUnitFormat = value;
+    }
+
     public StatusCenterItem AddCard(
         ReturnResult status,
         string header,

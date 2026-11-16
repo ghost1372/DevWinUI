@@ -11,9 +11,8 @@ namespace DevWinUI;
 /// Represents a model for file system operation progress.
 /// </summary>
 /// <remarks>
-/// Every instance that have the same <see cref="IProgress{T}"/> instance will update the same progress.
-/// <br/>
-/// Therefore, the storage operation classes can portably instance this class and update progress from everywhere with the same <see cref="IProgress{T}"/> instance.
+/// Multiple instances reporting to the same <see cref="IProgress{T}"/> instance update the same status item.
+/// This allows progress to be reported from anywhere in the operation's call stack.
 /// </remarks>
 public sealed partial class StatusCenterItemProgressModel : INotifyPropertyChanged
 {
@@ -166,7 +165,7 @@ public sealed partial class StatusCenterItemProgressModel : INotifyPropertyChang
 			_Status = ReturnResult.Success;
 		}
 
-		// Set time at completed when succeed
+		// Set the completion time when the operation succeeds
 		if (_Status is ReturnResult.Success)
 			CompletedTime = DateTimeOffset.Now;
 

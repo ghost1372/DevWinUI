@@ -20,7 +20,7 @@ public sealed partial class StatusCenterPage : Page
     private void CmbSizeUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (CmbSizeUnit.SelectedItem is ComboBoxItem { Tag: string sizeUnit } && Enum.TryParse(sizeUnit, out SizeUnitTypes sizeUnitType))
-            StatusCenterHelper.SizeUnitFormat = sizeUnitType;
+            StatusCenterButtonSample.SizeUnitFormat = sizeUnitType;
     }
 
     private async void Copy_Click(object sender, RoutedEventArgs e)
@@ -187,7 +187,7 @@ public sealed partial class StatusCenterPage : Page
         string Message(StatusCenterItemProgressModel progress)
             => progress.Percentage is null
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
-                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+                : $"{progress.ProcessedSize.ToSizeString(statusCenterButton.SizeUnitFormat)} of {progress.TotalSize.ToSizeString(statusCenterButton.SizeUnitFormat)} processed";
 
         var card = statusCenterButton.AddCard(
             returnStatus,
@@ -239,7 +239,7 @@ public sealed partial class StatusCenterPage : Page
         string Message(StatusCenterItemProgressModel progress)
             => progress.Percentage is null
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
-                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+                : $"{progress.ProcessedSize.ToSizeString(statusCenterButton.SizeUnitFormat)} of {progress.TotalSize.ToSizeString(statusCenterButton.SizeUnitFormat)} processed";
 
         var card = statusCenterButton.AddCard(
             returnStatus,
@@ -430,7 +430,7 @@ public sealed partial class StatusCenterPage : Page
         string Message(StatusCenterItemProgressModel progress)
             => progress.Percentage is null
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
-                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+                : $"{progress.ProcessedSize.ToSizeString(statusCenterButton.SizeUnitFormat)} of {progress.TotalSize.ToSizeString(statusCenterButton.SizeUnitFormat)} processed";
 
         var card = statusCenterButton.AddCard(
             returnStatus,
@@ -479,7 +479,7 @@ public sealed partial class StatusCenterPage : Page
         string Message(StatusCenterItemProgressModel progress)
             => progress.Percentage is null
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
-                : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+                : $"{progress.ProcessedSize.ToSizeString(statusCenterButton.SizeUnitFormat)} of {progress.TotalSize.ToSizeString(statusCenterButton.SizeUnitFormat)} processed";
 
         var card = statusCenterButton.AddCard(
             returnStatus,

@@ -21,7 +21,7 @@ internal static class StatusCenterTaskbarProgress
             }
 
             windowProgress.ViewModels.Add(viewModel);
-            Report(viewModel, windowHandle);
+            Report(windowHandle);
         }
     }
 
@@ -34,7 +34,7 @@ internal static class StatusCenterTaskbarProgress
         }
     }
 
-    public static void Report(StatusCenterViewModel viewModel, IntPtr windowHandle)
+    public static void Report(IntPtr windowHandle)
     {
         lock (_sync)
         {

@@ -44,7 +44,7 @@ private StatusCenterItem AddCard_Copy(StatusCenterButton statusCenterButton,
     string Message(StatusCenterItemProgressModel progress)
         => progress.Percentage is null
             ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
-            : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
+            : $"{progress.ProcessedSize.ToSizeString(statusCenterButton.SizeUnitFormat)} of {progress.TotalSize.ToSizeString(statusCenterButton.SizeUnitFormat)} processed";
 
     var card = statusCenterButton.AddCard(
         returnStatus,

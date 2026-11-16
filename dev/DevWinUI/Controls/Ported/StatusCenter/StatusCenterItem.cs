@@ -19,6 +19,8 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 
 	private readonly StatusCenterViewModel _viewModel;
 
+	private StatusCenterItemProgressModel? _lastProgressValue;
+
 	private int _ProgressPercentage;
 	public int ProgressPercentage
 	{
@@ -37,8 +39,8 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		set => SetProperty(ref _Header, value);
 	}
 
-	// Currently, shown on the tooltip
-	private string? _SubHeader;
+    // Currently, shown on the tooltip
+    private string? _SubHeader;
 	public string? SubHeader
 	{
 		get => _SubHeader;
@@ -74,14 +76,6 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		set => SetProperty(ref _CurrentProcessingItemName, value);
 	}
 
-	// TODO: Remove and replace with Message
-	private string? _CurrentProcessedSizeText;
-	public string? CurrentProcessedSizeHumanized
-	{
-		get => _CurrentProcessedSizeText;
-		set => SetProperty(ref _CurrentProcessedSizeText, value);
-	}
-
 	// This property is basically handled by an UI element - ToggleButton
 	private bool _IsExpanded;
 	public bool IsExpanded
@@ -103,7 +97,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		set => SetProperty(ref _AnimatedIconState, value);
 	}
 
-	// If true, the chevron won't be shown.
+	// If true, the expand chevron is shown.
 	// This property will be false basically if the proper progress report is not supported in the operation.
 	private bool _IsSpeedAndProgressAvailable;
 	public bool IsSpeedAndProgressAvailable
@@ -173,7 +167,6 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		}
 	}
 
-	// This property is not updated for now. Should be removed.
 	private StatusCenterItemProgressModel _Progress = null!;
 	public StatusCenterItemProgressModel Progress
 	{
@@ -244,6 +237,8 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 	public bool IsInProgress { get; set; }
 
 	public Func<StatusCenterItem, StatusCenterItemProgressModel, (string Header, string SubHeader, string Message)>? UpdateStrings { get; set; }
+
+	public SizeUnitTypes SizeUnitFormat => _viewModel.SizeUnitFormat;
 
 	private double _IconBackgroundCircleBorderOpacity;
 	public double IconBackgroundCircleBorderOpacity
@@ -364,6 +359,8 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 
 	private void ReportProgress(StatusCenterItemProgressModel value)
 	{
+		_lastProgressValue = value;
+
 		// The operation has been canceled or paused.
 		// Do update neither progress value nor text.
 		if (CancellationToken.IsCancellationRequested || IsPaused)
@@ -409,20 +406,9 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		// Set speed text and percentage
 		switch (value.TotalSize, value.ItemsCount)
 		{
-			// In progress, displaying items count & processed size
-			case (not 0, not 0):
-				ProgressPercentage = Math.Clamp((int)(value.ProcessedSize * 100.0 / value.TotalSize), 0, 100);
-
-				SpeedText = $"{value.ProcessingSizeSpeed.ToSizeString()}/s";
-
-				point = new((float)(value.ProcessedSize * 100.0 / value.TotalSize), (float)value.ProcessingSizeSpeed);
-
-				break;
 			// In progress, displaying processed size
 			case (not 0, _):
 				ProgressPercentage = Math.Clamp((int)(value.ProcessedSize * 100.0 / value.TotalSize), 0, 100);
-
-				SpeedText = $"{value.ProcessingSizeSpeed.ToSizeString()}/s";
 
 				point = new((float)(value.ProcessedSize * 100.0 / value.TotalSize), (float)value.ProcessingSizeSpeed);
 
@@ -431,23 +417,15 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 			case (_, not 0):
 				ProgressPercentage = Math.Clamp((int)(value.ProcessedItemsCount * 100.0 / value.ItemsCount), 0, 100);
 
-				SpeedText = $"{value.ProcessingItemsCountSpeed:0} items/s";
-
 				point = new((float)(value.ProcessedItemsCount * 100.0 / value.ItemsCount), (float)value.ProcessingItemsCountSpeed);
 
 				break;
 			default:
 				point = new(ProgressPercentage, (float)value.ProcessingItemsCountSpeed);
-
-				SpeedText = (value.ProcessedSize, value.ProcessedItemsCount) switch
-				{
-					(not 0, not 0) => $"{value.ProcessingSizeSpeed.ToSizeString()}/s",
-					(not 0, _) => $"{value.ProcessingSizeSpeed.ToSizeString()}/s",
-					(_, not 0) => $"{value.ProcessingItemsCountSpeed:0} items/s",
-					_ => "N/A",
-				};
 				break;
 		}
+
+		UpdateSpeedText(value);
 
 		// 'debounce' updates a bit so the graph isn't too noisy
 		if (SpeedGraphValues.Count == 0 || (point.X - SpeedGraphValues[^1].X) > 0.5)
@@ -457,7 +435,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		if (!IsIndeterminateProgress && value.EnumerationCompleted)
 			Header = $"{Header} ({ProgressPercentage}%)";
 
-		// Update UI of the address bar
+		// Update the status center UI
 		_viewModel.NotifyChanges();
 	}
 
@@ -472,6 +450,25 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		SubHeader = subHeader;
 		Message = message;
 	}
+
+	internal void RefreshSizeStrings()
+	{
+		if (_lastProgressValue is not { } progress)
+			return;
+
+		UpdateSpeedText(progress);
+		UpdateCardStrings(progress);
+	}
+
+	private void UpdateSpeedText(StatusCenterItemProgressModel value)
+		=> SpeedText = (value.TotalSize, value.ItemsCount, value.ProcessedSize, value.ProcessedItemsCount) switch
+		{
+			(not 0, _, _, _) => $"{value.ProcessingSizeSpeed.ToSizeString(_viewModel.SizeUnitFormat)}/s",
+			(0, not 0, _, _) => $"{value.ProcessingItemsCountSpeed:0} items/s",
+			(_, _, not 0, _) => $"{value.ProcessingSizeSpeed.ToSizeString(_viewModel.SizeUnitFormat)}/s",
+			(_, _, _, not 0) => $"{value.ProcessingItemsCountSpeed:0} items/s",
+			_ => "N/A",
+		};
 
 	public async Task ExecutePauseCommandAsync()
 	{

@@ -73,6 +73,12 @@ public sealed partial class StatusCenterButton : Control
         InfoBadgeState = ViewModel.InfoBadgeState;
     }
 
+	public SizeUnitTypes SizeUnitFormat
+	{
+		get => ViewModel.SizeUnitFormat;
+		set => ViewModel.SizeUnitFormat = value;
+	}
+
 	public StatusCenterItem AddCard(
 		ReturnResult status,
 		string header,

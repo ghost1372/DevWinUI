@@ -65,8 +65,7 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 	}
 
 	public bool HasAnyItem
-		=> StatusCenterItems.Any();
-
+		=> StatusCenterItems.Count != 0;
 
 	private bool _ShowProgressRing = false;
 	public bool ShowProgressRing
@@ -100,6 +99,23 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 
 	public int InfoBadgeValue
 		=> InProgressItemCount > 0 ? InProgressItemCount : -1;
+
+	private SizeUnitTypes _sizeUnitFormat = SizeUnitTypes.BinaryUnits;
+
+	public SizeUnitTypes SizeUnitFormat
+	{
+		get => _sizeUnitFormat;
+		set
+		{
+			if (_sizeUnitFormat == value)
+				return;
+
+			_sizeUnitFormat = value;
+
+			foreach (var item in StatusCenterItems)
+				item.RefreshSizeStrings();
+		}
+	}
 
 	public event EventHandler<StatusCenterItem>? NewItemAdded;
 
@@ -215,7 +231,7 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 	}
 
 	private void UpdateTaskbarProgress()
-		=> StatusCenterTaskbarProgress.Report(this, WindowHandle);
+		=> StatusCenterTaskbarProgress.Report(WindowHandle);
 
 	private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
 		=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
