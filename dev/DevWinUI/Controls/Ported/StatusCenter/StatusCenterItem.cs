@@ -218,7 +218,7 @@ public sealed partial class StatusCenterItem : ObservableObject
 		}
 	}
 
-	public IconElement? IconElement
+	internal IconElement? IconElement
 	{
 		get
 		{
