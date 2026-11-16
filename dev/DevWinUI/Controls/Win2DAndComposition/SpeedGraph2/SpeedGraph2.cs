@@ -4,6 +4,7 @@ namespace DevWinUI;
 
 public sealed partial class SpeedGraph2 : Control
 {
+    private const string accentColor = "SystemAccentColor";
     private const string successColor = "SystemFillColorSuccess";
     private const string criticalColor = "SystemFillColorCritical";
     private const string cautionColor = "SystemFillColorCaution";
@@ -34,51 +35,6 @@ public sealed partial class SpeedGraph2 : Control
         ctl.graphState = (GraphState)e.NewValue;
         ctl.ApplyGraphState();
     }
-
-    public Color? NormalColor
-    {
-        get => (Color?)GetValue(NormalColorProperty);
-        set => SetValue(NormalColorProperty, value);
-    }
-
-    public static readonly DependencyProperty NormalColorProperty =
-        DependencyProperty.Register(nameof(NormalColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
-
-    public Color? WarningColor
-    {
-        get => (Color?)GetValue(WarningColorProperty);
-        set => SetValue(WarningColorProperty, value);
-    }
-
-    public static readonly DependencyProperty WarningColorProperty =
-        DependencyProperty.Register(nameof(WarningColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
-
-    public Color? SuccessColor
-    {
-        get => (Color?)GetValue(SuccessColorProperty);
-        set => SetValue(SuccessColorProperty, value);
-    }
-
-    public static readonly DependencyProperty SuccessColorProperty =
-        DependencyProperty.Register(nameof(SuccessColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
-
-    public Color? ErrorColor
-    {
-        get => (Color?)GetValue(ErrorColorProperty);
-        set => SetValue(ErrorColorProperty, value);
-    }
-
-    public static readonly DependencyProperty ErrorColorProperty =
-        DependencyProperty.Register(nameof(ErrorColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
-
-    public Color? CustomColor
-    {
-        get => (Color?)GetValue(CustomColorProperty);
-        set => SetValue(CustomColorProperty, value);
-    }
-
-    public static readonly DependencyProperty CustomColorProperty =
-        DependencyProperty.Register(nameof(CustomColor), typeof(Color?), typeof(SpeedGraph2), new PropertyMetadata(null, static (d, e) => ((SpeedGraph2)d).ApplyGraphState()));
 
     private static void OnPointsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -147,7 +103,6 @@ public sealed partial class SpeedGraph2 : Control
 
         InitGraph();
 
-        // added *after* first load
         this.Loaded -= OnLoaded;
         this.Loaded += OnLoaded;
         AttachHandlers();
@@ -202,7 +157,6 @@ public sealed partial class SpeedGraph2 : Control
 
     private void OnAppThemeModeChanged(object? sender, EventArgs e)
     {
-        // this seemingly doesn't fire? leaving it here in case it does in the future (if it's ever used outside of the flyout)
         ApplyGraphState();
     }
 
@@ -213,16 +167,14 @@ public sealed partial class SpeedGraph2 : Control
 
     private void ApplyGraphState()
     {
-        var resources = Application.Current.Resources;
-
         SetGraphColors(graphState switch
         {
-            GraphState.Warning => WarningColor ?? resources[cautionColor] as Color?,
-            GraphState.Success => SuccessColor ?? resources[successColor] as Color?,
-            GraphState.Error => ErrorColor ?? resources[criticalColor] as Color?,
-            GraphState.Custom => CustomColor ?? resources[customColor] as Color?,
-            _ => NormalColor
-        } ?? GetNormalAccentColor());
+            GraphState.Warning => cautionColor,
+            GraphState.Success => successColor,
+            GraphState.Error => criticalColor,
+            GraphState.Custom => customColor,
+            _ => accentColor
+        });
     }
 
     private void InitGraph()
@@ -264,7 +216,6 @@ public sealed partial class SpeedGraph2 : Control
 
         container = compositor.CreateSpriteVisual();
         container.Size = rootVisual.Size;
-        // container is also the graph background
         container.Brush = backgroundBrush;
 
         graphVisual = compositor.CreateShapeVisual();
@@ -343,9 +294,10 @@ public sealed partial class SpeedGraph2 : Control
             return;
         }
 
+        graphVisual.IsVisible = true;
+
         var last = points[points.Count - 1];
 
-        graphVisual.IsVisible = true;
         graphGeometry.Path = CreatePathFromPoints(points);
 
         lineAnim.InsertKeyFrame(1f, YValue(last.Y), linearEasing);
@@ -369,13 +321,11 @@ public sealed partial class SpeedGraph2 : Control
         for (int i = 0; i < count; i++)
         {
             var point = points[i];
-            // no smooth curve for now. a little ugly but maybe for the best performance-wise, we'll see before this gets merged
             pathBuilder.AddLine(width * point.X / 100f, YValue(point.Y));
         }
         var last = points[count - 1];
         float lastX = width * last.X / 100f + 2;
         float lastY = YValue(last.Y);
-        // little extra part so that steep lines don't get cut off
         pathBuilder.AddLine(lastX, lastY);
         pathBuilder.AddLine(lastX, height);
         pathBuilder.EndFigure(CanvasFigureLoop.Closed);
@@ -385,52 +335,45 @@ public sealed partial class SpeedGraph2 : Control
 
     public void SetGraphNormal()
     {
-        graphState = GraphState.Normal;
-        ApplyGraphState();
+        State = GraphState.Normal;
     }
     public void SetGraphSuccess()
     {
-        graphState = GraphState.Success;
-        ApplyGraphState();
+        State = GraphState.Success;
     }
     public void SetGraphError()
     {
-        graphState = GraphState.Error;
-        ApplyGraphState();
+        State = GraphState.Error;
     }
     public void SetGraphWarning()
     {
-        graphState = GraphState.Warning;
-        ApplyGraphState();
+        State = GraphState.Warning;
     }
     public void SetGraphColor(string colorResourceKey)
     {
         customColor = colorResourceKey;
-        graphState = GraphState.Custom;
-        ApplyGraphState();
+        State = GraphState.Custom;
     }
 
-    private Color GetNormalAccentColor()
-    {
-        return ActualTheme switch
-        {
-            ElementTheme.Light => (Color)Application.Current.Resources["SystemAccentColorDark1"],
-            ElementTheme.Dark => (Color)Application.Current.Resources["SystemAccentColorLight2"],
-            ElementTheme.Default or _ => (Application.Current.Resources["AccentFillColorDefaultBrush"] as SolidColorBrush)!.Color
-        };
-    }
-
-    private void SetGraphColors(Color accentColor)
+    private void SetGraphColors(string colorResourceKey)
     {
         if (backgroundBrush == null)
             return;
 
-        var veryLightColor = accentColor with { A = 0x0f };
+        var themeKey = ActualTheme == ElementTheme.Light ? "Light" : "Default";
+
+        if (colorResourceKey == accentColor)
+            colorResourceKey = ActualTheme == ElementTheme.Light ? "SystemAccentColorDark1" : "SystemAccentColorLight2";
+
+        if (FindThemedColor(Application.Current.Resources, themeKey, colorResourceKey) is not { } color)
+            return;
+
+        var veryLightColor = color with { A = 0x0f };
 
         var slightlyDarkerColor = this.ActualTheme switch
         {
-            ElementTheme.Light => accentColor with { A = 0x55 },
-            _ => accentColor with { A = 0x7f }
+            ElementTheme.Light => color with { A = 0x55 },
+            _ => color with { A = 0x7f }
         };
 
         backgroundBrush.Color = veryLightColor;
@@ -438,7 +381,27 @@ public sealed partial class SpeedGraph2 : Control
         graphFillTop.Color = slightlyDarkerColor;
         graphFillBottom.Color = veryLightColor;
 
-        graphStrokeBrush.Color = accentColor;
+        graphStrokeBrush.Color = color;
+    }
+
+    private static Color? FindThemedColor(ResourceDictionary dictionary, string themeKey, string key)
+    {
+        foreach (var candidate in new[] { themeKey, "Default" })
+        {
+            if (dictionary.ThemeDictionaries.TryGetValue(candidate, out var themeDictionary)
+                && themeDictionary is ResourceDictionary themedDict
+                && themedDict.TryGetValue(key, out var themedResource)
+                && themedResource is Color themedColor)
+                return themedColor;
+        }
+
+        foreach (var mergedDictionary in dictionary.MergedDictionaries)
+        {
+            if (FindThemedColor(mergedDictionary, themeKey, key) is { } mergedColor)
+                return mergedColor;
+        }
+
+        return dictionary.TryGetValue(key, out var resource) && resource is Color color ? color : null;
     }
 }
 public enum GraphState
