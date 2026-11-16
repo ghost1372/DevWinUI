@@ -2,9 +2,6 @@
 
 public sealed partial class TextScribblePage : Page
 {
-    public ObservableCollection<TextScribbleType> TypeItems { get; set; } = new ObservableCollection<TextScribbleType>(Enum.GetValues<TextScribbleType>());
-    public ObservableCollection<TextScribbleTrigger> TriggerItems { get; set; } = new ObservableCollection<TextScribbleTrigger>(Enum.GetValues<TextScribbleTrigger>());
-
     public TextScribblePage()
     {
         InitializeComponent();

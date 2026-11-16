@@ -1,0 +1,5 @@
+<dev:ScrollSplitCard Cards="{x:Bind Cards}"
+                     EndLabel="Thanks for scrolling"
+                     Hint="Scroll"
+                     Size="Medium"
+                     Tone="Card" />

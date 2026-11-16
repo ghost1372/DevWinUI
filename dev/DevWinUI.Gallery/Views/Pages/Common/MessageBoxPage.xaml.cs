@@ -1,17 +1,9 @@
 ﻿using Microsoft.UI.Xaml.Media;
-using WinRT;
 
 namespace DevWinUIGallery.Views;
 
 public sealed partial class MessageBoxPage : Page
 {
-    public ObservableCollection<MessageBoxIcon> MessageBoxIconItems { get; set; } = new ObservableCollection<MessageBoxIcon>(Enum.GetValues<MessageBoxIcon>());
-    public ObservableCollection<MessageBoxButtons> MessageBoxButtonItems { get; set; } = new ObservableCollection<MessageBoxButtons>(Enum.GetValues<MessageBoxButtons>());
-    public ObservableCollection<MessageBoxDefaultButton> MessageBoxDefaultButtonItems { get; set; } = new ObservableCollection<MessageBoxDefaultButton>(Enum.GetValues<MessageBoxDefaultButton>());
-    public ObservableCollection<BackdropType> BackdropItems { get; set; } = new ObservableCollection<BackdropType>(Enum.GetValues<BackdropType>());
-    public ObservableCollection<FlowDirection> FlowDirectionItems { get; set; } = new ObservableCollection<FlowDirection>(Enum.GetValues<FlowDirection>());
-    public ObservableCollection<WindowStartupLocation> WindowStartupLocationItems { get; set; } = new ObservableCollection<WindowStartupLocation>(Enum.GetValues<WindowStartupLocation>());
-
     public MessageBoxPage()
     {
         InitializeComponent();
@@ -20,13 +12,13 @@ public sealed partial class MessageBoxPage : Page
     private async void OnMessageBox(object sender, RoutedEventArgs e)
     {
         var element = sender as Button;
-        var underlayBackdrop = CmbUnderlayBackdrops.SelectedItem.As<BackdropType>();
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
 
-        var button = CmbMessageBoxButtons.SelectedItem.As<MessageBoxButtons>();
-        var defaultButton = CmbMessageBoxDefaultButton.SelectedItem.As<MessageBoxDefaultButton>();
-        var icon = CmbMessageBoxIcon.SelectedItem.As<MessageBoxIcon>();
-        var flow = CmbFlow.SelectedItem.As<FlowDirection>();
-        var location = CmbWindowStartupLocation.SelectedItem.As<WindowStartupLocation>();
+        var button = (MessageBoxButtons)CmbMessageBoxButtons.Value;
+        var defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultButton.Value;
+        var icon = (MessageBoxIcon)CmbMessageBoxIcon.Value;
+        var flow = (FlowDirection)CmbFlow.Value;
+        var location = (WindowStartupLocation)CmbWindowStartupLocation.Value;
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
 

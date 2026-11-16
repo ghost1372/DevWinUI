@@ -2,8 +2,6 @@
 
 public sealed partial class ProgressStepperPage : Page
 {
-    public ObservableCollection<ProgressStepperStepperAlign> AlignItems { get; set; } = new ObservableCollection<ProgressStepperStepperAlign>(Enum.GetValues<ProgressStepperStepperAlign>());
-
     public ObservableCollection<ProgressStep> Steps { get; set; } = new ObservableCollection<ProgressStep>
     {
         new()

@@ -10,19 +10,25 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/loopPanel" HeaderText="LoopPanel" XamlSource="Features/LoopPanelPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TgBringChildrenIntoView" Header="Bring Children Into View" />
-                        <ToggleSwitch x:Name="TgIsInertiaEnabled" Header="Is Inertia Enabled" IsOn="True" />
-                        <Slider x:Name="SldSpacing" Header="Spacing" Maximum="100" Minimum="0" Value="5" />
-                        <Slider x:Name="SldMouseWheelScrollFactor" Header="Mouse Wheel Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.25" />
-                        <Slider x:Name="SldDragScrollFactor" Header="Drag Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="1.0" />
-                        <Slider x:Name="SldOffset" Header="Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
-                        <Slider x:Name="SldRelativeOffset" Header="Relative Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="LoopPanel" Doc="controls/loopPanel" Xaml="Features/Others/LoopPanelPage_xaml.txt">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Behavior">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TgBringChildrenIntoView" Header="Bring Children Into View" />
+                            <ToggleSwitch x:Name="TgIsInertiaEnabled" Header="Is Inertia Enabled" IsOn="True" />
+                            <Slider x:Name="SldMouseWheelScrollFactor" Header="Mouse Wheel Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.25" />
+                            <Slider x:Name="SldDragScrollFactor" Header="Drag Scroll Factor" Maximum="1" Minimum="0" StepFrequency="0.01" Value="1.0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Layout">
+                        <local:OptionPanel>
+                            <Slider x:Name="SldSpacing" Header="Spacing" Maximum="100" Minimum="0" Value="5" />
+                            <Slider x:Name="SldOffset" Header="Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
+                            <Slider x:Name="SldRelativeOffset" Header="Relative Offset" Maximum="1" Minimum="0" StepFrequency="0.01" Value="0.5" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
                 <ItemsControl x:Name="loopingList" Height="200" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -33,9 +39,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:SampleItemModel">
                             <Border Margin="10,10,0,0" Padding="5" Background="Purple" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
-                                <Image Source="{x:Bind ImagePath}" Stretch="Uniform">
-
-                                </Image>
+                                <Image Source="{x:Bind ImagePath}" Stretch="Uniform" />
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

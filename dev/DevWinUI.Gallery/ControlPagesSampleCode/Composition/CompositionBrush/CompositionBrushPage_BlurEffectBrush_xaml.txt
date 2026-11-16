@@ -1,6 +1,6 @@
 ﻿<Grid>
     <Grid.Background>
-        <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/Landscape-12.jpg"
+        <ImageBrush ImageSource="ms-appx:///Assets/Landscapes/12.jpg"
                     Stretch="UniformToFill" />
     </Grid.Background>
     <Grid Padding="10">

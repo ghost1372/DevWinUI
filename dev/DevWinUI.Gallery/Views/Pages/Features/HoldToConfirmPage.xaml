@@ -9,27 +9,37 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/holdToConfirm" HeaderText="HoldToConfirm">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="HoldToConfirm" Doc="controls/holdToConfirm">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Content">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtLabel" Header="Label" Text="Hold to confirm" />
+                            <TextBox x:Name="TxtConfirmedLabel" Header="Confirmed Label" Text="Confirmed" />
+                            <ToggleSwitch x:Name="TglIcon" Header="Show Icon" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Appearance">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbKind" Header="Kind" Value="{x:Bind dev:HoldToConfirmKind.Default}" />
+                            <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:HoldToConfirmSize.Default}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Behavior">
+                        <local:OptionPanel>
+                            <Slider x:Name="SliderDuration" Header="Duration (ms)" Maximum="5000" Minimum="200" StepFrequency="100" Value="1200" />
+                            <ToggleSwitch x:Name="TglAnimation" Header="Is Animation Enabled" IsOn="True" />
+                            <Button Click="ResetButton_Click" Content="Reset" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:HoldToConfirm Label="Hold to confirm" ConfirmedLabel="Confirmed" Duration="1200" IconGlyph="&amp;#xE72E;" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtLabel" Header="Label" Text="Hold to confirm" />
-                        <TextBox x:Name="TxtConfirmedLabel" Header="Confirmed Label" Text="Confirmed" />
-                        <ComboBox x:Name="CmbKind" Header="Kind" ItemsSource="{x:Bind KindItems, Mode=OneWay}" SelectedIndex="0" />
-                        <ComboBox x:Name="CmbSize" Header="Size" ItemsSource="{x:Bind SizeItems, Mode=OneWay}" SelectedIndex="1" />
-                        <Slider x:Name="SliderDuration" Header="Duration (ms)" Maximum="5000" Minimum="200" StepFrequency="100" Value="1200" />
-                        <ToggleSwitch x:Name="TglIcon" Header="Show Icon" IsOn="True" />
-                        <ToggleSwitch x:Name="TglAnimation" Header="Is Animation Enabled" IsOn="True" />
-                        <Button Click="ResetButton_Click" Content="Reset" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample.XamlCode>
                 <StackPanel HorizontalAlignment="Center" Spacing="12">
-                    <dev:HoldToConfirm x:Name="Sample" Confirm="Sample_Confirm" ConfirmedLabel="{x:Bind TxtConfirmedLabel.Text, Mode=OneWay}" IconGlyph="{x:Bind GetGlyph(TglIcon.IsOn), Mode=OneWay}" IsAnimationEnabled="{x:Bind TglAnimation.IsOn, Mode=OneWay}" Kind="{x:Bind ((dev:HoldToConfirmKind)CmbKind.SelectedItem), Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Size="{x:Bind ((dev:HoldToConfirmSize)CmbSize.SelectedItem), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+                    <dev:HoldToConfirm x:Name="Sample" Confirm="Sample_Confirm" ConfirmedLabel="{x:Bind TxtConfirmedLabel.Text, Mode=OneWay}" IconGlyph="{x:Bind GetGlyph(TglIcon.IsOn), Mode=OneWay}" IsAnimationEnabled="{x:Bind TglAnimation.IsOn, Mode=OneWay}" Kind="{x:Bind ((dev:HoldToConfirmKind)CmbKind.Value), Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Size="{x:Bind ((dev:HoldToConfirmSize)CmbSize.Value), Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
                     <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Press and hold the button" />
                 </StackPanel>
             </local:ControlExample>

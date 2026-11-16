@@ -2,8 +2,6 @@
 
 public sealed partial class StatusMarkPage : Page
 {
-    public ObservableCollection<StatusMarkStatus> StatusItems { get; set; } = new ObservableCollection<StatusMarkStatus>(Enum.GetValues<StatusMarkStatus>());
-
     public StatusMarkPage()
     {
         InitializeComponent();
@@ -15,7 +13,7 @@ public sealed partial class StatusMarkPage : Page
     {
         TgDeterminate.IsOn = true;
         SliderProgress.Value = 0;
-        CmbStatus.SelectedItem = StatusMarkStatus.Running;
+        CmbStatus.Value = StatusMarkStatus.Running;
 
         for (int i = 0; i <= 100; i += 4)
         {
@@ -23,6 +21,6 @@ public sealed partial class StatusMarkPage : Page
             await Task.Delay(60);
         }
 
-        CmbStatus.SelectedItem = StatusMarkStatus.Done;
+        CmbStatus.Value = StatusMarkStatus.Done;
     }
 }

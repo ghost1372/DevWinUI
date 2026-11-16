@@ -6,51 +6,71 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:DevWinUIGallery.Views"
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/particleGlobe" HeaderText="ParticleGlobe">
-                <local:ControlExample.Xaml>
-                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ComboBox x:Name="CmbTheme" Header="Theme" ItemsSource="{x:Bind ThemeItems, Mode=OneWay}" SelectedIndex="1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:ParticleGlobeTheme">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Name="CmbQuality" Header="Quality" ItemsSource="{x:Bind QualityItems, Mode=OneWay}" SelectedIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate x:DataType="dev:ParticleGlobeQuality">
-                                    <TextBlock Text="{x:Bind}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <Slider x:Name="SliderParticleCount" Header="Particles" Maximum="50000" Minimum="5000" StepFrequency="5000" Value="26000" />
-                        <Slider x:Name="SliderRotationSpeed" Header="Rotation Speed" Maximum="0.5" Minimum="0" StepFrequency="0.05" Value="0.12" />
-                        <ToggleSwitch x:Name="TglAutoRotate" Header="Auto Rotate" IsOn="True" />
-                        <ToggleSwitch x:Name="TglInteractive" Header="Interactive" IsOn="True" />
-                        <ToggleSwitch x:Name="TglStars" Header="Stars" IsOn="True" />
-                        <ToggleSwitch x:Name="TglGrid" Header="Grid" IsOn="True" />
-                        <ToggleSwitch x:Name="TglArcs" Header="Arcs" IsOn="True" />
-                        <ToggleSwitch x:Name="TglOrbits" Header="Orbit Rings" IsOn="True" />
-                        <ToggleSwitch x:Name="TglHud" Header="HUD" IsOn="True" />
-                        <ToggleSwitch x:Name="TglEvents" Header="Events" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="ParticleGlobe" Doc="controls/particleGlobe">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Appearance">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme" Value="{x:Bind dev:ParticleGlobeTheme.Cyan}" />
+                            <local:ChoiceOption x:Name="CmbQuality" Header="Quality" Value="{x:Bind dev:ParticleGlobeQuality.Auto}" />
+                            <Slider x:Name="SliderParticleCount" Header="Particles" Maximum="50000" Minimum="5000" StepFrequency="5000" Value="26000" />
+                            <Slider x:Name="SliderBorderParticleCount" Header="Border Particles" Maximum="40000" Minimum="1000" StepFrequency="1000" Value="12000" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Rotation and tour">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TglAutoRotate" Header="Auto Rotate" IsOn="True" />
+                            <Slider x:Name="SliderRotationSpeed" Header="Rotation Speed" Maximum="0.5" Minimum="0" StepFrequency="0.05" Value="0.12" />
+                            <ToggleSwitch x:Name="TglInteractive" Header="Interactive" IsOn="True" />
+                            <ToggleSwitch x:Name="TglTourLoop" Header="Loop Tour" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Map and countries">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TglFlatMap" Header="Flat Map" />
+                            <local:ChoiceOption x:Name="CmbFlatMapMode" Header="Flat Map Mode" Value="{x:Bind dev:ParticleGlobeFlatMapMode.Scroll}" />
+                            <local:ChoiceOption x:Name="CmbCountry" Header="Select Country" ItemsSource="{x:Bind CountryItems}" ValueChanged="OnCountryValueChanged">
+                                <local:ChoiceOption.ItemTemplate>
+                                    <DataTemplate x:DataType="views:ParticleGlobeCountryOption">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <TextBlock Text="{x:Bind Name}" />
+                                            <TextBlock Opacity="0.65" Text="{x:Bind Code}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </local:ChoiceOption.ItemTemplate>
+                            </local:ChoiceOption>
+                            <ToggleSwitch x:Name="TglCountryBorders" Header="Country Borders" />
+                            <ToggleSwitch x:Name="TglBorderScanOnly" Header="Scan Borders Only" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Layers">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TglStars" Header="Stars" IsOn="True" />
+                            <ToggleSwitch x:Name="TglGrid" Header="Grid" IsOn="True" />
+                            <ToggleSwitch x:Name="TglArcs" Header="Arcs" IsOn="True" />
+                            <ToggleSwitch x:Name="TglOrbits" Header="Orbit Rings" IsOn="True" />
+                            <ToggleSwitch x:Name="TglHud" Header="HUD" IsOn="True" />
+                            <ToggleSwitch x:Name="TglEvents" Header="Events" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" IsCountrySelectionEnabled="True" SelectedCountryCode="USA" IsFlatMapEnabled="True" FlatMapMode="Scroll" ShowCountryBorders="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
                 <StackPanel Spacing="8">
-                    <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.SelectedItem), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.SelectedItem), Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" />
+                    <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" BorderParticleCount="{x:Bind (x:Int32)SliderBorderParticleCount.Value, Mode=OneWay}" BorderScanOnly="{x:Bind TglBorderScanOnly.IsOn, Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" FlatMapMode="{x:Bind ((dev:ParticleGlobeFlatMapMode)CmbFlatMapMode.Value), Mode=OneWay}" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsFlatMapEnabled="{x:Bind TglFlatMap.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsTourLooping="{x:Bind TglTourLoop.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.Value), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowCountryBorders="{x:Bind TglCountryBorders.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.Value), Mode=OneWay}" TourEnded="OnGlobeTourEnded" TourMarkerReached="OnGlobeTourMarkerReached" />
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Button Content="Add sample event" Click="OnAddSampleEventClick" />
+                        <Button Click="OnAddSampleEventClick" Content="Add sample event" />
+                        <Button Click="OnStartTourClick" Content="Start tour" />
+                        <Button Click="OnStopTourClick" Content="Stop tour" />
                         <TextBlock x:Name="GlobeStatusText" VerticalAlignment="Center" Text="Drag to rotate and click a country to select it." />
                     </StackPanel>
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

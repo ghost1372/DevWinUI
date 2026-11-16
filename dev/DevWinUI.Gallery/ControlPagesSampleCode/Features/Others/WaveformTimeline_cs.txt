@@ -1,0 +1,4 @@
+var soundEngine = new AudioGraphEngine();
+WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
+await soundEngine.OpenFileAsync(@"D:\myfile.wav");
+soundEngine.Play();

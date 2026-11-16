@@ -1,0 +1,5 @@
+<dev:Reasoning Duration="21" DefaultOpen="True">
+    <dev:ReasoningRows Kind="Coding"
+                       Rows="{x:Bind CodingRows}"
+                       SelectedIndex="0" />
+</dev:Reasoning>

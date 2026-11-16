@@ -9,8 +9,8 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="brushes/themeBrushes" HeaderText="Brushes" XamlSource="Features/BrushPage_xaml.txt">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="Brushes" Doc="brushes/themeBrushes" Xaml="Features/Others/BrushPage_xaml.txt">
                 <StackPanel Margin="10" Spacing="10">
                     <Border Height="80" Background="{ThemeResource CardGradient3Brush}">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="CardGradient3Brush" />
@@ -34,5 +34,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

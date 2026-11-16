@@ -1,0 +1,3 @@
+<dev:Reasoning DefaultOpen="True" Duration="75" Kind="Inline">
+    <TextBlock Text="Any content can be used as the body." TextWrapping="Wrap" />
+</dev:Reasoning>

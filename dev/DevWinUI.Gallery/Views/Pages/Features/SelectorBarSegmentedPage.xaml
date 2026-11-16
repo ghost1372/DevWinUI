@@ -9,15 +9,8 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample HeaderText="SelectorBarSegmented">
-                <local:ControlExample.Xaml>
-                    &lt;dev:SelectorBarSegmented&gt;#nl#
-                    &lt;SelectorBarItem Icon="Find" IsSelected="True" Text="Item 1" /&gt;#nl#
-                    &lt;SelectorBarItem Icon="Home" Text="Item 2" /&gt;#nl#
-                    &lt;SelectorBarItem Icon="Home" Text="Item 3" /&gt;#nl#
-                    &lt;/dev:SelectorBarSegmented&gt;#nl#
-                </local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="SelectorBarSegmented" Xaml="Features/Others/SelectorBarSegmented_xaml.txt">
                 <dev:SelectorBarSegmented>
                     <SelectorBarItem Icon="Find" IsSelected="True" Text="Item 1" />
                     <SelectorBarItem Icon="Home" Text="Item 2" />
@@ -26,5 +19,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

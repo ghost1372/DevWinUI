@@ -15,7 +15,7 @@
 	  <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
 	  <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
 	  <Version>$(LibraryMajorVersion).$(DevWinUI_Gallery_MinorVersion).$(DevWinUI_Gallery_PatchVersion)$(PreviewBuildSuffix)</Version>
-	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900</NoWarn>
+	  <NoWarn>NU1903;NU1902;CS8632;WMC1506;WMC1006;NU1900;WMC0011;WMC1510</NoWarn>
 	  <!--Remove git hash from assembly informational version in .NET >= 8, Example: false = 1.0.0, true = 1.0.0+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 	  <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <EnabledXamlOptionalChanges>DefaultStyleOptimizations,OptimizeApplyStyles,DeferContextFlyoutInit,IconNoGridOptimization</EnabledXamlOptionalChanges>
@@ -33,10 +33,10 @@
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
-    <PackageReference Include="DevWinUI.SourceGenerator" Version="10.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2957" />
+    <PackageReference Include="DevWinUI.SourceGenerator" Version="10.9.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Media" Version="8.3.260402-preview2" />
@@ -63,11 +63,15 @@
 
   <ItemGroup>
     <AdditionalFiles Include="Assets\NavViewMenu\AppData.json" Link="%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
-    <AdditionalFiles Include="@(Page)" />
   </ItemGroup>
   <ItemGroup>
     <CompilerVisibleProperty Include="NavigationMappingsNamespace" />
     <CompilerVisibleProperty Include="BreadcrumbMappingsNamespace" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\ControlExample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution

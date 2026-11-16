@@ -22,7 +22,7 @@ public sealed partial class SearchBox : Control
     private const string NoResultsPresenterPartName = "PART_NoResultsPresenter";
     private const string FlyoutRootPartName = "PART_FlyoutRoot";
 
-    private static readonly SearchBoxTemplates DefaultItemTemplateResources = new();
+    private static readonly SearchBoxTemplates DefaultItemTemplateResources = [];
 
     private static readonly DataTemplate DefaultItemTemplate =
         (DataTemplate)DefaultItemTemplateResources["SearchResultTemplate"];
@@ -134,9 +134,9 @@ public sealed partial class SearchBox : Control
     public static readonly DependencyProperty NoResultsDescriptionProperty =
         DependencyProperty.Register(nameof(NoResultsDescription), typeof(string), typeof(SearchBox), new PropertyMetadata("Try a different search term"));
 
-    public ObservableCollection<SearchResultItem> Results { get; } = new();
+    public ObservableCollection<SearchResultItem> Results { get; } = [];
 
-    public ObservableCollection<SearchMenuItem> DefaultMenuItems { get; } = new();
+    public ObservableCollection<SearchMenuItem> DefaultMenuItems { get; } = [];
 
     public event EventHandler<SearchEventArgs>? QueryChanged;
     public event EventHandler<SearchResultEventArgs>? ResultInvoked;
@@ -224,7 +224,7 @@ public sealed partial class SearchBox : Control
             }
         }
 
-        if ((_flyout as Flyout)?.Content is DependencyObject content)
+        if (_flyout is Flyout { Content: DependencyObject content })
         {
             yield return content;
         }
@@ -375,10 +375,7 @@ public sealed partial class SearchBox : Control
             _resultsList.Tag = null;
         }
 
-        if (_openButton is not null)
-        {
-            _openButton.Click -= OpenButton_Click;
-        }
+        _openButton?.Click -= OpenButton_Click;
 
         _triggerButton = null;
         _flyout = null;
@@ -431,20 +428,11 @@ public sealed partial class SearchBox : Control
 
     private void ApplyFlyoutContentOptions()
     {
-        if (_flyoutRoot is not null)
-        {
-            _flyoutRoot.Width = FlyoutWidth;
-        }
+        _flyoutRoot?.Width = FlyoutWidth;
 
-        if (_resultsList is not null)
-        {
-            _resultsList.MaxHeight = ResultsMaxHeight;
-        }
+        _resultsList?.MaxHeight = ResultsMaxHeight;
 
-        if (_searchTextBox is not null)
-        {
-            _searchTextBox.PlaceholderText = PlaceholderText;
-        }
+        _searchTextBox?.PlaceholderText = PlaceholderText;
     }
 
     private void Results_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -579,10 +567,7 @@ public sealed partial class SearchBox : Control
     {
         _suppressQueryChanged = true;
 
-        if (_searchTextBox is not null)
-        {
-            _searchTextBox.Text = string.Empty;
-        }
+        _searchTextBox?.Text = string.Empty;
 
         _updatingQueryText = true;
         QueryText = string.Empty;
@@ -594,10 +579,7 @@ public sealed partial class SearchBox : Control
             item.IsSelected = false;
         }
 
-        if (_resultsList is not null)
-        {
-            _resultsList.SelectedItem = null;
-        }
+        _resultsList?.SelectedItem = null;
 
         QueryChanged?.Invoke(this, new SearchEventArgs(string.Empty));
     }
@@ -689,7 +671,7 @@ public sealed partial class SearchBox : Control
 
     internal void ShowItemMenu(FrameworkElement anchor, SearchResultItem item)
     {
-        IList<SearchMenuItem> source = item.MenuItems.Count > 0 ? item.MenuItems : DefaultMenuItems;
+        var source = item.MenuItems.Count > 0 ? item.MenuItems : DefaultMenuItems;
         if (source.Count == 0)
         {
             return;
@@ -706,9 +688,9 @@ public sealed partial class SearchBox : Control
             }
 
             var menuItem = new MenuFlyoutItem { Text = entry.Text, Tag = entry.Tag };
-            if (!string.IsNullOrEmpty(entry.Glyph))
+            if (entry.IconSource is not null)
             {
-                menuItem.Icon = new FontIcon { Glyph = entry.Glyph };
+                menuItem.Icon = entry.IconSource.CreateIconElement();
             }
 
             menuItem.Click += (_, _) =>

@@ -9,21 +9,20 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/wanderingParticles" HeaderText="WanderingParticles">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="WanderingParticles" Doc="controls/wanderingParticles">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <NumberBox x:Name="NbValue" Header="Particle Count" Minimum="0" SpinButtonPlacementMode="Inline" Value="2000" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:WanderingParticles ParticleCount="2000" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="2000" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample.XamlCode>
                 <dev:WanderingParticles Height="400" ParticleCount="{x:Bind (x:Int32)NbValue.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

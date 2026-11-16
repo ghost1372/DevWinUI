@@ -8,20 +8,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="common/qRCode" DocType="Core" HeaderText="QRCode">
-                <local:ControlExample.CSharp>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="QRCode" Doc="common/qRCode" DocType="Core">
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         var standardQr = QRCode.Create("DevWinUI", ErrorCorrectionLevel.High);
                     </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox Name="TxtInput" PlaceholderText="Input" Text="DevWinUI" TextChanged="TxtInput_TextChanged" />
-                        <ComboBox x:Name="CmbError" Header="Error Correction Level" ItemsSource="{x:Bind ErrorCorrectionLevelItems, Mode=OneWay}" SelectedIndex="3" SelectionChanged="CmbError_SelectionChanged" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <Image x:Name="OutPutImg" />
+                </local:ControlExample.CSharpCode>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox Name="TxtInput" PlaceholderText="Input" Text="DevWinUI" />
+                        <local:ChoiceOption x:Name="CmbError" Header="Error Correction Level" Value="{x:Bind dev:ErrorCorrectionLevel.High}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <Image Width="250" Source="{x:Bind GenerateImage(TxtInput.Text, CmbError.Value), Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

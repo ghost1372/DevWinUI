@@ -5,9 +5,6 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class LiveGraphPage : Page
 {
-    public ObservableCollection<LiveGraphBackgroundMode> LiveGraphBackgroundModeItems { get; set; } = new ObservableCollection<LiveGraphBackgroundMode>(Enum.GetValues<LiveGraphBackgroundMode>());
-    public ObservableCollection<HighlightLineBehavior> HighlightLineBehaviorItems { get; set; } = new ObservableCollection<HighlightLineBehavior>(Enum.GetValues<HighlightLineBehavior>());
-
     private Random random = new Random();
 
     private string liveGraphKey;
@@ -42,7 +39,7 @@ public sealed partial class LiveGraphPage : Page
             brush.OpacityBrush.StartPoint = new Vector2(0, (float)e.NewSize.Height);
             brush.OpacityBrush.EndPoint = new Vector2(0, 0);
         }
-        
+
 
         void LiveGraphPage_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -57,7 +54,7 @@ public sealed partial class LiveGraphPage : Page
 
     private void UpdateBrush()
     {
-        if(TGBorderLess == null || TGFillLess == null || TGDashDot == null || NBStrokeWidth == null || LiveGraphSample == null)
+        if (TGBorderLess == null || TGFillLess == null || TGDashDot == null || NBStrokeWidth == null || LiveGraphSample == null)
         {
             return;
         }
@@ -66,7 +63,7 @@ public sealed partial class LiveGraphPage : Page
             Brush = brush.Brush,
             OpacityBrush = brush.OpacityBrush,
             BorderBrush = brush.BorderBrush,
-            StrokeWidth = (float)NBStrokeWidth?.Value,            
+            StrokeWidth = (float)NBStrokeWidth?.Value,
         };
 
         if (!TGBorderLess.IsOn)

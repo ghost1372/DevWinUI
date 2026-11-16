@@ -9,23 +9,33 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/progressButton" HeaderText="ProgressButton">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="ProgressButton" Doc="controls/progressButton">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Content">
+                        <local:OptionPanel>
+                            <TextBox x:Name="CheckedContentTextBox" Header="Checked Content" PlaceholderText="Downloading..." Text="Downloading..." />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Progress">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="IsIndeterminateTG" Header="IsIndeterminate" IsOn="True" />
+                            <ToggleSwitch x:Name="ShowErrorTG" Header="ShowError" />
+                            <ToggleSwitch x:Name="ShowPausedTG" Header="ShowPaused" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Progress Ring">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="ProgressRingVisibilityTG" Header="ProgressRingVisibility" IsOn="True" />
+                            <ToggleSwitch x:Name="IsIndeterminateProgressRingTG" Header="IsIndeterminateProgressRing" IsOn="True" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:ProgressButton CheckedContent="Downloading..." Content="Click Here" IsIndeterminateProgressRing="true" ProgressRingVisibility="Visible" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="CheckedContentTextBox" Header="Checked Content" PlaceholderText="Downloading..." Text="Downloading..." />
-                        <ToggleSwitch x:Name="IsIndeterminateTG" Header="IsIndeterminate" IsOn="True" />
-                        <ToggleSwitch x:Name="ShowErrorTG" Header="ShowError" />
-                        <ToggleSwitch x:Name="ShowPausedTG" Header="ShowPaused" />
-                        <ToggleSwitch x:Name="ProgressRingVisibilityTG" Header="ProgressRingVisibility" IsOn="True" />
-                        <ToggleSwitch x:Name="IsIndeterminateProgressRingTG" Header="IsIndeterminateProgressRing" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample.XamlCode>
                 <StackPanel Spacing="10">
                     <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" Unchecked="ProgressButton_Checked" />
                     <dev:ProgressButton Width="200" Checked="ProgressButton_Checked" CheckedContent="{x:Bind CheckedContentTextBox.Text, Mode=OneWay}" Content="Click Here" IsIndeterminateProgressRing="{x:Bind IsIndeterminateProgressRingTG.IsOn, Mode=OneWay}" ProgressRingVisibility="{x:Bind ProgressRingVisibilityTG.IsOn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" Unchecked="ProgressButton_Checked" />
@@ -35,5 +45,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

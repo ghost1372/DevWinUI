@@ -1,0 +1,7 @@
+private IDelegateCommand SimpleCommand { get; }
+
+SimpleCommand = DelegateCommand.Create(OnSimpleCommand);
+
+private void OnSimpleCommand()
+{
+}

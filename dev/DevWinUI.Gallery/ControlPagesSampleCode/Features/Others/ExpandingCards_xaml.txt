@@ -1,0 +1,5 @@
+<dev:ExpandingCards>
+    <dev:ExpandingCardItem Title="Mountains" Source="ms-appx:///Assets/mountains.jpg" />
+    <dev:ExpandingCardItem Title="Forest" Source="ms-appx:///Assets/forest.jpg" />
+    <dev:ExpandingCardItem Title="Ocean" Source="ms-appx:///Assets/ocean.jpg" />
+</dev:ExpandingCards>

@@ -160,7 +160,7 @@ public partial class Roadmap : ItemsControl
         UpdateAnimation();
     }
 
-    internal bool IsEnabled(RoadmapToggle toggle, bool autoValue)
+    internal new bool IsEnabled(RoadmapToggle toggle, bool autoValue)
     {
         return toggle == RoadmapToggle.On || (toggle == RoadmapToggle.Auto && autoValue);
     }

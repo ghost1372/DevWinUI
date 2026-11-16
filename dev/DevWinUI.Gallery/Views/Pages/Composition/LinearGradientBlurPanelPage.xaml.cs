@@ -19,6 +19,11 @@ public sealed partial class LinearGradientBlurPanelPage : Page
     {
         InitializeComponent();
     }
+
+    private Point GetStartPoint(object value) => (value as PointModel ?? PointList[0]).StartPoint;
+
+    private Point GetEndPoint(object value) => (value as PointModel ?? PointList[0]).EndPoint;
+
     private void StartAnimationButton_Click(object sender, RoutedEventArgs e)
     {
         ((Button)sender).IsEnabled = false;
@@ -41,15 +46,6 @@ public sealed partial class LinearGradientBlurPanelPage : Page
         {
             ((Button)sender).IsEnabled = true;
         };
-    }
-
-    private void PointRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (PointRadioButtons.SelectedItem is PointModel pointModel)
-        {
-            LinearGradientBlurPanelSample.StartPoint = pointModel.StartPoint;
-            LinearGradientBlurPanelSample.EndPoint = pointModel.EndPoint;
-        }
     }
 
     private record class PointModel(Point StartPoint, Point EndPoint)

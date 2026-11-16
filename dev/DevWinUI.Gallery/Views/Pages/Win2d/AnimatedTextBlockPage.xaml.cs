@@ -1,6 +1,4 @@
-﻿using WinRT;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class AnimatedTextBlockPage : Page
 {
@@ -41,10 +39,12 @@ public sealed partial class AnimatedTextBlockPage : Page
         InitializeComponent();
     }
 
-    private void CmbEffects_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbEffects_ValueChanged(ChoiceOption sender, object args)
     {
-        var effect = CmbEffects.SelectedItem.As<BuiltInEffect>();
-        AnimatedTextBlockSample.TextEffect = effect.Effect;
+        if (args is BuiltInEffect effect)
+        {
+            AnimatedTextBlockSample.TextEffect = effect.Effect;
+        }
     }
 }
 public partial class BuiltInEffect

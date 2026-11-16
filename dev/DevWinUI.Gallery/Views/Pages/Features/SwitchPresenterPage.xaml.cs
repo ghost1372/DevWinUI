@@ -1,8 +1,7 @@
 ﻿namespace DevWinUIGallery.Views;
+
 public sealed partial class SwitchPresenterPage : Page
 {
-    public ObservableCollection<Animal> SwitchPresenterItems { get; set; } = new ObservableCollection<Animal>(Enum.GetValues<Animal>());
-
     public BaseViewModel ViewModel { get; }
     public SwitchPresenterPage()
     {

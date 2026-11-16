@@ -9,18 +9,13 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/offsetBox" HeaderText="OffsetBox">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:OffsetBox&gt;#nl#
-                        &lt;Button Content="Hello"/&gt;#nl#
-                        &lt;/dev:OffsetBox&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TgShadow" Header="Show Shadow on Hover" IsOn="True" />
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="OffsetBox" Doc="controls/offsetBox" Xaml="Features/Others/OffsetBox_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TgShadow" Header="Show Shadow on Hover" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:OffsetBox HorizontalAlignment="Center" VerticalAlignment="Center" ShowShadowOnHover="{x:Bind TgShadow.IsOn, Mode=OneWay}">
                     <Button MinWidth="200" Content="Hover Me!" />
                 </dev:OffsetBox>

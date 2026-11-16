@@ -9,20 +9,30 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/headerCarousel" HeaderText="HeaderCarousel" XamlSource="Features/HeaderCarouselPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <ToggleSwitch x:Name="TGIsAutoScrollEnabled" Header="IsAutoScrollEnabled" IsOn="True" />
-                        <ToggleSwitch x:Name="TGIsBlurEnabled" Header="IsBlurEnabled" IsOn="True" />
-                        <Slider x:Name="SliderAmount" Header="Blur Amount" Maximum="100" Minimum="0" Value="100" />
-                        <TextBox x:Name="TxtTitle" Header="Title" PlaceholderText="Title" Text="AI Dev Gallery" />
-                        <TextBox x:Name="TxtSubTitle" Header="SubTitle" PlaceholderText="SubTitle" Text="Build next-gen experiences with on-device AI." />
-                        <TextBox x:Name="TxtSubTitle2" Header="SubTitle" PlaceholderText="SubTitle" Text="This app is in" />
-                        <TextBox x:Name="TxtSubTitle3" Header="SubTitle" PlaceholderText="SubTitle" Text="preview" />
-                        <TextBlock x:Name="TxtResult" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="HeaderCarousel" Doc="controls/headerCarousel" Xaml="Features/Others/HeaderCarouselPage_xaml.txt">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Behavior">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TGIsAutoScrollEnabled" Header="IsAutoScrollEnabled" IsOn="True" />
+                            <ToggleSwitch x:Name="TGIsBlurEnabled" Header="IsBlurEnabled" IsOn="True" />
+                            <Slider x:Name="SliderAmount" Header="Blur Amount" Maximum="100" Minimum="0" Value="100" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Text">
+                        <local:OptionPanel>
+                            <TextBox x:Name="TxtTitle" Header="Title" PlaceholderText="Title" Text="AI Dev Gallery" />
+                            <TextBox x:Name="TxtSubTitle" Header="SubTitle" PlaceholderText="SubTitle" Text="Build next-gen experiences with on-device AI." />
+                            <TextBox x:Name="TxtSubTitle2" Header="SubTitle" PlaceholderText="SubTitle" Text="This app is in" />
+                            <TextBox x:Name="TxtSubTitle3" Header="SubTitle" PlaceholderText="SubTitle" Text="preview" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Result">
+                        <local:OptionPanel>
+                            <TextBlock x:Name="TxtResult" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
                 <dev:HeaderCarousel BlurAmount="{x:Bind SliderAmount.Value, Mode=OneWay}" IsAutoScrollEnabled="{x:Bind TGIsAutoScrollEnabled.IsOn, Mode=OneWay}" IsBlurEnabled="{x:Bind TGIsBlurEnabled.IsOn, Mode=OneWay}" ItemClick="HeaderCarousel_ItemClick">
                     <dev:HeaderCarousel.Header>
                         <TextBlock HorizontalAlignment="Center" CharacterSpacing="48" FontSize="40" FontWeight="Bold" Opacity="0.8" Text="{x:Bind TxtTitle.Text, Mode=OneWay}" TextAlignment="Center" TextWrapping="Wrap">
@@ -59,5 +69,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

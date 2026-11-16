@@ -1,0 +1,5 @@
+<dev:SegmentedMeter Animated="True" BarSize="Large" ShowValue="False">
+    <dev:MeterSegment Kind="Success" Label="Done" Value="30" />
+    <dev:MeterSegment Kind="Accent" Label="In progress" Value="15" />
+    <dev:MeterSegment Kind="Danger" Label="Closed" Value="5" />
+</dev:SegmentedMeter>

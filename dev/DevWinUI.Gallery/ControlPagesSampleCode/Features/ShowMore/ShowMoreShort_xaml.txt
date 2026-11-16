@@ -1,0 +1,3 @@
+<dev:ShowMore Lines="3">
+    <TextBlock Text="This content fits within the line limit, so no toggle is shown." TextWrapping="Wrap" />
+</dev:ShowMore>

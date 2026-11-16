@@ -1,0 +1,8 @@
+<dev:FlipSide IsFlipped="True">
+    <dev:FlipSide.Side1>
+        <TextBlock Text="Side 1" />
+    </dev:FlipSide.Side1>
+    <dev:FlipSide.Side2>
+        <TextBlock Text="Side 2" />
+    </dev:FlipSide.Side2>
+</dev:FlipSide>

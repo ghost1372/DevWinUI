@@ -1,14 +1,14 @@
 ﻿public CycleCollection<Uri> CycleList { get; set; }
 private ObservableCollection<Uri> list = new ObservableCollection<Uri>();
 
-list.Add(new Uri("ms-appx:///Assets/BannerView/1.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/2.png"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/3.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/4.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/5.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/6.png"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/7.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/8.jpeg"));
-list.Add(new Uri("ms-appx:///Assets/BannerView/9.jpeg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/1.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/2.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/3.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/4.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/5.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/6.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/7.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/8.jpg"));
+list.Add(new Uri("ms-appx:///Assets/BannerView/9.jpg"));
 
 CycleList = new CycleCollection<Uri>(list);

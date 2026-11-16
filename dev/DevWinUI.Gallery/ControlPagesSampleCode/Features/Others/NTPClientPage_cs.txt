@@ -1,0 +1,2 @@
+﻿using var client = new NtpClient(TxtServer.Text);
+var response = await client.QueryAsync();

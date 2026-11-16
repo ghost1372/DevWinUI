@@ -22,8 +22,8 @@ public enum LoadingIndicatorMode
     [Description("LoadingIndicatorPulseStyle")]
     Pulse,
 
-    [Description("LoadingIndicatorRingStyle")]
-    Ring,
+    [Description("LoadingIndicatorPulseRingStyle")]
+    PulseRing,
 
     [Description("LoadingIndicatorThreeDotsStyle")]
     ThreeDots,
@@ -45,9 +45,6 @@ public enum LoadingIndicatorMode
 
     [Description("LoadingIndicatorPistonStyle")]
     Piston,
-
-    [Description("LoadingIndicatorRing2Style")]
-    Ring2,
 
     [Description("LoadingIndicatorSwirlStyle")]
     Swirl,
@@ -114,4 +111,10 @@ public enum LoadingIndicatorMode
 
     [Description("LoadingIndicatorEpicStyle")]
     BreedingRhombus,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    ProgressRing,
+
+    [Description("LoadingIndicatorEpicStyle")]
+    IndeterminateBar,
 }

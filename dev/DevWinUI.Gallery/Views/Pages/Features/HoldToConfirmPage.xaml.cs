@@ -2,9 +2,6 @@
 
 public sealed partial class HoldToConfirmPage : Page
 {
-    public ObservableCollection<HoldToConfirmKind> KindItems { get; set; } = new ObservableCollection<HoldToConfirmKind>(Enum.GetValues<HoldToConfirmKind>());
-    public ObservableCollection<HoldToConfirmSize> SizeItems { get; set; } = new ObservableCollection<HoldToConfirmSize>(Enum.GetValues<HoldToConfirmSize>());
-
     public HoldToConfirmPage()
     {
         InitializeComponent();

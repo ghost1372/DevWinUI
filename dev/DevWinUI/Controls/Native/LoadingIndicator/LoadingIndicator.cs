@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Shapes;
@@ -210,6 +209,8 @@ public partial class LoadingIndicator : Control
         LoadingIndicatorMode.Spring => (60, 3000),
         LoadingIndicatorMode.LoopingRhombuses => (0, 2500),
         LoadingIndicatorMode.BreedingRhombus => (65, 2000),
+        LoadingIndicatorMode.ProgressRing => (50, 4305),
+        LoadingIndicatorMode.IndeterminateBar => (200, 4400),
         _ => (60, 1000),
     };
 
@@ -226,6 +227,7 @@ public partial class LoadingIndicator : Control
         LoadingIndicatorMode.HollowDots => new Windows.Foundation.Size(N * D * 1.5, D * 3),
         LoadingIndicatorMode.CirclesToRhombuses => new Windows.Foundation.Size(N * D + (N - 1) * D * 1.125, D),
         LoadingIndicatorMode.LoopingRhombuses => new Windows.Foundation.Size(D * 4, D * 1.5),
+        LoadingIndicatorMode.IndeterminateBar => new Windows.Foundation.Size(S, BarDot),
         _ => new Windows.Foundation.Size(S, S),
     };
 
@@ -315,6 +317,8 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.Spring: BuildSpring(); break;
             case LoadingIndicatorMode.LoopingRhombuses: BuildLoopingRhombuses(); break;
             case LoadingIndicatorMode.BreedingRhombus: BuildBreedingRhombus(); break;
+            case LoadingIndicatorMode.ProgressRing: BuildProgressRing(); break;
+            case LoadingIndicatorMode.IndeterminateBar: BuildIndeterminateBar(); break;
         }
     }
 
@@ -342,6 +346,8 @@ public partial class LoadingIndicator : Control
             case LoadingIndicatorMode.Spring: UpdateSpring(t); break;
             case LoadingIndicatorMode.LoopingRhombuses: UpdateLoopingRhombuses(t); break;
             case LoadingIndicatorMode.BreedingRhombus: UpdateBreedingRhombus(t); break;
+            case LoadingIndicatorMode.ProgressRing: UpdateProgressRing(t); break;
+            case LoadingIndicatorMode.IndeterminateBar: UpdateIndeterminateBar(t); break;
         }
     }
 
@@ -814,7 +820,144 @@ public partial class LoadingIndicator : Control
         big.ScaleX = big.ScaleY = Keys(Frac(t - 0.25), true, (0, 0), (0.5, 1), (1, 0));
     }
 
+    // ---- Progress ring ----
+
+    private const int RingDots = 5;
+    private const double RingCycle = 4.305;
+    private const double RingStagger = 0.167;
+    private const double RingFadeOut = 3.22;
+
+    private static readonly double[] RingKeyTimes = { 0, 0.433, 1.2, 1.617, 2.017, 2.783, 3.217 };
+
+    private static readonly double[][] RingSplines =
+    {
+        null,
+        new[] { 0.02, 0.33, 0.38, 0.77 },
+        null,
+        new[] { 0.57, 0.17, 0.95, 0.75 },
+        new[] { 0, 0.19, 0.07, 0.72 },
+        null,
+        new[] { 0, 0, 0.95, 0.37 },
+    };
+
+    private static readonly double[][] RingAngles =
+    {
+        new double[] { -110, 10, 93, 205, 357, 439, 585 },
+        new double[] { -116, 4, 87, 199, 351, 433, 579 },
+        new double[] { -122, -2, 81, 193, 345, 427, 573 },
+        new double[] { -128, -8, 75, 187, 339, 421, 567 },
+        new double[] { -134, -14, 69, 181, 331, 415, 561 },
+    };
+
+    private void BuildProgressRing()
+    {
+        double d = S <= 40 ? S / 10 + 1 : S / 10;
+        double side = S - d;
+        for (int i = 0; i < RingDots; i++)
+        {
+            var layer = AddLayer(_root, side, side, d / 2, d / 2);
+            AddEllipse(layer, 0, d * 2.5, d, d).Opacity = 0;
+        }
+    }
+
+    private void UpdateProgressRing(double t)
+    {
+        double cycle = t * RingCycle;
+        for (int i = 0; i < _ellipses.Count; i++)
+        {
+            double tau = cycle - i * RingStagger;
+            _ellipses[i].Opacity = tau >= 0 && tau < RingFadeOut ? 1 : 0;
+            Xf(_layers[i]).Rotation = RingAngle(i, Math.Clamp(tau, 0, RingKeyTimes[^1]));
+        }
+    }
+
+    private static double RingAngle(int dot, double tau)
+    {
+        var angles = RingAngles[dot];
+        for (int i = 1; i < RingKeyTimes.Length; i++)
+        {
+            if (tau <= RingKeyTimes[i])
+            {
+                double u = (tau - RingKeyTimes[i - 1]) / (RingKeyTimes[i] - RingKeyTimes[i - 1]);
+                var s = RingSplines[i];
+                if (s != null)
+                {
+                    u = CubicBezier(s[0], s[1], s[2], s[3], u);
+                }
+
+                return Lerp(angles[i - 1], angles[i], u);
+            }
+        }
+
+        return angles[^1];
+    }
+
+    // ---- Indeterminate bar ----
+
+    private const int BarDots = 5;
+    private const double BarCycle = 4.4;
+    private const double BarStagger = 0.1;
+    private const double BarEaseOutEnd = 0.5;
+    private const double BarLinearEnd = 2.0;
+    private const double BarEaseInEnd = 2.5;
+    private const double BarKeyA = 0.33;
+    private const double BarKeyB = 0.63;
+
+    private double BarDot => Math.Max(2, S / 50);
+
+    private void BuildIndeterminateBar()
+    {
+        double d = BarDot;
+        for (int i = 0; i < BarDots; i++)
+        {
+            AddRect(_root, 0, 0, d, d, 0, d / 2).Opacity = 0;
+        }
+    }
+
+    private void UpdateIndeterminateBar(double t)
+    {
+        double overshoot = S * 0.05;
+        double start = -overshoot;
+        double a = S * BarKeyA;
+        double b = S * BarKeyB;
+        double end = S + overshoot;
+
+        for (int i = 0; i < _rects.Count; i++)
+        {
+            double tau = t * BarCycle - i * BarStagger;
+            var r = _rects[i];
+            if (tau < 0 || tau >= BarEaseInEnd)
+            {
+                r.Opacity = 0;
+                continue;
+            }
+
+            double x;
+            if (tau < BarEaseOutEnd)
+            {
+                x = Lerp(start, a, ExpEaseOut(tau / BarEaseOutEnd));
+            }
+            else if (tau < BarLinearEnd)
+            {
+                x = Lerp(a, b, (tau - BarEaseOutEnd) / (BarLinearEnd - BarEaseOutEnd));
+            }
+            else
+            {
+                x = Lerp(b, end, ExpEaseIn((tau - BarLinearEnd) / (BarEaseInEnd - BarLinearEnd)));
+            }
+
+            r.Opacity = 1;
+            Xf(r).TranslateX = x;
+        }
+    }
+
     // ---- Math ----
+
+    private static double ExpEaseIn(double u, double exponent = 2)
+        => (Math.Exp(exponent * u) - 1) / (Math.Exp(exponent) - 1);
+
+    private static double ExpEaseOut(double u, double exponent = 2)
+        => 1 - ExpEaseIn(1 - u, exponent);
 
     private static double Rad(double deg) => deg * Math.PI / 180;
 

@@ -7,15 +7,16 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/shield">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="Shield" Doc="controls/shield">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:Shield Status="Controls" Subject="DevWinUI" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <StackPanel Margin="10" Spacing="10">
+                </local:ControlExample.XamlCode>
+                <StackPanel Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <dev:Shield Click="Shield_Click" Status="Controls" Subject="DevWinUI" />
                         <dev:Shield Click="Shield_Click" Status="Core" Subject="DevWinUI" Color="Green" />

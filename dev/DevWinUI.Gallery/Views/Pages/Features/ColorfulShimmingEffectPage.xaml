@@ -9,24 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/colorfulShimmingEffect" XamlSource="Features/ColorfulShimmingEffectPage_cs.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="ColorfulShimmingEffect" Doc="controls/colorfulShimmingEffect" Xaml="Features/Others/ColorfulShimmingEffectPage_cs.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <TextBox x:Name="txt" Header="Text" PlaceholderText="Text" Text="DevWinUI" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:ColorfulShimmingEffect>
+                    <dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
+                        <dev:ColorfulShimmingEffectItem DelayTimeSpan="0" DurationTimeSpan="0:0:10" Z="50.0" Color="Yellow" />
+                        <dev:ColorfulShimmingEffectItem DelayTimeSpan="0:0:0.25" DurationTimeSpan="0:0:10" Z="50.0" Color="Green" />
+                    </dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
+                    <TextBlock HorizontalAlignment="Center" FontSize="80" FontWeight="Bold" Foreground="White" Text="{x:Bind txt.Text, Mode=OneWay}" />
+                </dev:ColorfulShimmingEffect>
             </local:ControlExample>
-
-            <dev:ColorfulShimmingEffect>
-                <dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
-                    <dev:ColorfulShimmingEffectItem DelayTimeSpan="0" DurationTimeSpan="0:0:10" Z="50.0" Color="Yellow" />
-                    <dev:ColorfulShimmingEffectItem DelayTimeSpan="0:0:0.25" DurationTimeSpan="0:0:10" Z="50.0" Color="Green" />
-                </dev:ColorfulShimmingEffect.ColorfulShimmingEffectItems>
-                <TextBlock HorizontalAlignment="Center" FontSize="80" FontWeight="Bold" Foreground="White" Text="{x:Bind txt.Text, Mode=OneWay}" />
-            </dev:ColorfulShimmingEffect>
-
         </StackPanel>
     </ScrollViewer>
-
 </Page>

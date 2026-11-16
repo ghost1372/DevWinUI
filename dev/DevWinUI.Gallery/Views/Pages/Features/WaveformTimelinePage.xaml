@@ -7,11 +7,12 @@
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/waveformTimeline" HeaderText="WaveformTimeline">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="WaveformTimeline" CSharp="Features/Others/WaveformTimeline_cs.txt" Doc="controls/waveformTimeline">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <Button x:Name="BtnOpen" HorizontalAlignment="Stretch" Click="BtnOpen_Click" Content="Open Audio" />
                         <Button x:Name="BtnOpenBuiltIn" HorizontalAlignment="Stretch" Click="BtnOpenBuiltIn_Click" Content="Open Built In Sample" />
                         <TextBox x:Name="TxtPath" HorizontalAlignment="Stretch" IsReadOnly="True" PlaceholderText="File Path" />
@@ -20,21 +21,11 @@
                             <Button x:Name="BtnPause" Click="BtnPause_Click" Content="Pause" />
                             <Button x:Name="BtnStop" Click="BtnStop_Click" Content="Stop" />
                         </StackPanel>
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
-                    <x:String>
-                        var soundEngine = new AudioGraphEngine();#nl#
-                        WaveformTimelineSample.RegisterSoundPlayer(soundEngine); #nl#
-                        await soundEngine.OpenFileAsync(@"D:\myfile.wav"); #nl#
-                        soundEngine.Play();
-                    </x:String>
-                </local:ControlExample.CSharp>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:WaveformTimeline x:Name="WaveformTimelineSample" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
                 <dev:WaveformTimeline x:Name="WaveformTimelineSample" />
             </local:ControlExample>
         </StackPanel>

@@ -10,13 +10,13 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/accordion" HeaderText="Accordion">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="Accordion" Doc="controls/accordion">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:Accordion ItemsSource="{x:Bind ViewModel.LandscapeData}" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
+                </local:ControlExample.XamlCode>
                 <dev:Accordion Height="500" ItemsSource="{x:Bind ViewModel.LandscapeData, Mode=OneWay}">
                     <dev:Accordion.ItemTemplate>
                         <DataTemplate x:DataType="model:SampleItemModel">
@@ -37,5 +37,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

@@ -44,6 +44,7 @@ Ensure that you have following installed:
 - .NET **8.x**
 - .NET **9.x**
 - .Net **10.x**
+- .Net **11.x**
 - Windows 10 SDK (10.0.19041)
 
 Windows 10 SDK 10.0.19041 does not exist in Visual Studio Installer, you need to download and install it manually from [here](https://learn.microsoft.com/en-us/windows/apps/windows-sdk/downloads)
@@ -71,7 +72,6 @@ DevWinUI/
     DevWinUI.Gallery/ # Demo app for controls
   VSIX/ # Source code for Visual Studio item templates
   Output/ # Generated NuGet packages
-  Clean-obj-bin.bat # Helper script to clear build artifacts
   Directory.Build.props # Central project configuration
 ```
 
@@ -85,18 +85,10 @@ DevWinUI/
 
 ---
 
-## 🧹 Cleaning Build Artifacts
-
-To fix certain Visual Studio issues when switching between `Debug` and `Release`:
-
-- After Switching, Close Visual Studio and Use the `Clean-obj-bin.bat` script to clean all `bin/` and `obj/` folders.
-
----
-
 ## 🚀 Debug and Release Configuration
 
-- **Debug** builds target only `.NET 10` for faster development.
-- **Release** builds target both `.NET 8`, `.Net 9` and `.NET 10`, and will automatically generate a NuGet package in `Output/`.
+- **Debug** builds target only `.NET 11` for faster development.
+- **Release** builds target both `.NET 8`, `.Net 9`, `.Net 10` and `.NET 11`, and will automatically generate a NuGet package in `Output/`.
 
 ---
 
@@ -211,7 +203,7 @@ namespace DevWinUIGallery.Views;
   <StackPanel Margin="10"
             dev:PanelAttach.ChildrenTransitions="Default"
             Spacing="10">
-    <local:ControlExample DocPage="yourcontrol" HeaderText="YourControl">
+    <local:ControlExample Doc="yourcontrol" Title="YourControl">
         <local:ControlExample.Xaml>
             <x:String>
                 <dev:YourControl Property="Value" />
@@ -246,17 +238,17 @@ Versions are controlled centrally in `Directory.Build.props` with properties lik
 
 ```xml
 <!-- Major Version -->
-<LibraryMajorVersion>8</LibraryMajorVersion>
+<LibraryMajorVersion>11</LibraryMajorVersion>
 
 <!-- Minor Version -->
-<DevWinUI_MinorVersion>4</DevWinUI_MinorVersion>
-<DevWinUI_Base_MinorVersion>4</DevWinUI_Base_MinorVersion>
-<DevWinUI_ContextMenu_MinorVersion>3</DevWinUI_ContextMenu_MinorVersion>
-<DevWinUI_Gallery_MinorVersion>4</DevWinUI_Gallery_MinorVersion>
+<DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
+<DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
+<DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
+<DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
 <!-- Patch Version -->
-<DevWinUI_PatchVersion>1</DevWinUI_PatchVersion>
-<DevWinUI_Base_PatchVersion>1</DevWinUI_Base_PatchVersion>
+<DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+<DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
 <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
 <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
 

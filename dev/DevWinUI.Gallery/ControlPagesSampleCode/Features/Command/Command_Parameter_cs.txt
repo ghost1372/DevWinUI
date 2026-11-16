@@ -1,0 +1,12 @@
+private IDelegateCommand CommandWithParameter { get; }
+
+CommandWithParameter = DelegateCommand.Create(OnCommandWithParameter, CanExecuteCommandWithParameter);
+
+private void OnCommandWithParameter(object? parameter)
+{
+}
+
+private bool CanExecuteCommandWithParameter(object? parameter)
+{
+    return true;
+}

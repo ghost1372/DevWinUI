@@ -1,0 +1,8 @@
+<dev:VisualStepper Height="320">
+    <dev:VisualStepper.Steps>
+        <dev:VisualStepperStep Title="Pick a Skill" Description="Choose a curated style" />
+        <dev:VisualStepperStep Title="Copy Skill Expression" Description="Customize &amp; copy" />
+        <dev:VisualStepperStep Title="Prompt in Codex" Description="Type the visual you want" />
+        <dev:VisualStepperStep Title="Use Visual Asset" Description="App-ready asset is ready" />
+    </dev:VisualStepper.Steps>
+</dev:VisualStepper>

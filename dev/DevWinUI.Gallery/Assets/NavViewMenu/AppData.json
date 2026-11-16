@@ -209,6 +209,13 @@
       "IsSpecialSection": false,
       "Items": [
         {
+          "UniqueId": "DevWinUIGallery.Views.DiagramPage",
+          "Title": "Diagram",
+          "Subtitle": "Interactive diagrams with hierarchical and freeform layouts, typed pin connections, conflict diagnostics, selection, zoom, minimap and adjustable options.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/Graph.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.Timeline2Page",
           "Title": "Timeline2",
           "Subtitle": "A vertical or horizontal event timeline with progress state, icon or avatar markers, and templated content.",
@@ -529,12 +536,6 @@
           "Subtitle": "Loading Indicator",
           "IsUpdated": true,
           "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.IndeterminateProgressBarPage",
-          "Title": "Indeterminate ProgressBar",
-          "Subtitle": "An animated bar where dots move from left to right to indicate ongoing, indeterminate progress.",
-          "ImagePath": "ms-appx:///Assets/Fluent/ProgressBar.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.HaloPage",
@@ -918,12 +919,6 @@
           "Title": "OpacityMaskView",
           "Subtitle": "A control that applies an opacity mask to its content, enabling gradient fades, shape-based transparency, or custom visual effects.",
           "ImagePath": "ms-appx:///Assets/Fluent/Acrylic.png"
-        },
-        {
-          "UniqueId": "DevWinUIGallery.Views.ProgressRingPage",
-          "Title": "Progress Ring",
-          "Subtitle": "Represents a control that indicates the progress of an operation",
-          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
         },
         {
           "UniqueId": "DevWinUIGallery.Views.DividerPage",

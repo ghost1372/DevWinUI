@@ -16,7 +16,7 @@ public partial class ThemeService
     {
         var currentTheme = ElementTheme.ToString();
         var item = themeComboBox.Items.OfType<ComboBoxItem>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme);
-        if (item != null && themeComboBox.SelectedItem != item)
+        if (item != null && !ReferenceEquals(themeComboBox.SelectedItem, item))
         {
             themeComboBox.SelectedItem = item;
         }
@@ -38,7 +38,7 @@ public partial class ThemeService
         var currentBackdrop = FixAcrylicBackdropTag(BackdropType.ToString());
 
         var item = backdropComboBox.Items.OfType<ComboBoxItem>().FirstOrDefault(c => FixAcrylicBackdropTag(c?.Tag?.ToString()) == currentBackdrop);
-        if (item != null && backdropComboBox.SelectedItem != item)
+        if (item != null && !ReferenceEquals(backdropComboBox.SelectedItem, item))
         {
             backdropComboBox.SelectedItem = item;
         }

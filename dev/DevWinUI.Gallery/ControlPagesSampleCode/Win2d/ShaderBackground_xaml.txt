@@ -1,0 +1,6 @@
+<dev:ShaderBackground>
+    <dev:ShaderBackground.Renderers>
+        <dev:FogRenderer />
+        <dev:SnowRenderer />
+    </dev:ShaderBackground.Renderers>
+</dev:ShaderBackground>

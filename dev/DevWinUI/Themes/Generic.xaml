@@ -25,7 +25,6 @@ Controls\Ported\SettingsCard\SettingsCard.xaml
 Controls\Ported\SettingsCardAndExpander\SettingsCardAndExpander.xaml
 Controls\Ported\SettingsExpander\SettingsExpander.xaml
 Controls\Ported\Sidebar\SidebarStyles.xaml
-Controls\Ported\Sidebar\SidebarView.ThemeResources.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Action.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Common.xaml
 Controls\Ported\ThemedIcon\Styles\Icons.Favorite.xaml
@@ -121,6 +120,7 @@ Themes\Styles\Controls\Countdown.xaml
 Themes\Styles\Controls\CoverFlow.xaml
 Themes\Styles\Controls\DateTimePicker.xaml
 Themes\Styles\Controls\DepthLayerView.xaml
+Themes\Styles\Controls\Diagram.xaml
 Themes\Styles\Controls\DiffView.xaml
 Themes\Styles\Controls\DigitalSegment.xaml
 Themes\Styles\Controls\Divider.xaml
@@ -163,7 +163,6 @@ Themes\Styles\Controls\HomePageHeader.xaml
 Themes\Styles\Controls\HorizontalScrollContainer.xaml
 Themes\Styles\Controls\ImageEx.xaml
 Themes\Styles\Controls\ImageFrame.xaml
-Themes\Styles\Controls\IndeterminateProgressBar.xaml
 Themes\Styles\Controls\InfoCard.xaml
 Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml
 Themes\Styles\Controls\IsEnabledTextBlock.xaml
@@ -196,7 +195,6 @@ Themes\Styles\Controls\PinBox.xaml
 Themes\Styles\Controls\PlayStationParticles.xaml
 Themes\Styles\Controls\ProfileControl.xaml
 Themes\Styles\Controls\ProgressButton.xaml
-Themes\Styles\Controls\ProgressRing.xaml
 Themes\Styles\Controls\ProgressStepper.xaml
 Themes\Styles\Controls\Radar.xaml
 Themes\Styles\Controls\RealClock.xaml
@@ -297,7 +295,6 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
       <Color x:Key="ThemedIconBaseColor">#DBF0F0F0</Color>
       <Color x:Key="ThemedIconAltColor">#66161616</Color>
       <StaticResource x:Key="ThemedIconBaseBrush" ResourceKey="ThemedIconBaseColor" />
@@ -501,6 +498,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="DiagramPatternBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramConnectorBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBackground" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeCaptionBrush" Color="{ThemeResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBackground" Color="{ThemeResource SystemFillColorAttentionBackground}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBorderBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramTogglerBackground" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+      <SolidColorBrush x:Key="DiagramTogglerBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramTogglerForeground" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="DiagramViewportStrokeBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.12" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramConflictBrush" Color="{ThemeResource SystemFillColorCritical}" />
       <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#202020" />
       <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#113A1B" />
       <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#450C0F" />
@@ -1039,7 +1049,6 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
-      <SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="{StaticResource LayerOnMicaBaseAltFillColorDefault}" />
       <Color x:Key="ThemedIconBaseColor">#DB161616</Color>
       <Color x:Key="ThemedIconAltColor">#66F0F0F0</Color>
       <StaticResource x:Key="ThemedIconBaseBrush" ResourceKey="ThemedIconBaseColor" />
@@ -1243,6 +1252,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="TextOnAccentForegroundBrush" ResourceKey="TextOnAccentAAFillColorPrimary" />
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="AccentAAFillColorDefaultBrush" />
+      <SolidColorBrush x:Key="DiagramPatternBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramConnectorBrush" Color="{ThemeResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBackground" Color="{ThemeResource CardBackgroundFillColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeBorderBrush" Color="{ThemeResource CardStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramNodeCaptionBrush" Color="{ThemeResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBackground" Color="{ThemeResource SystemFillColorAttentionBackground}" />
+      <SolidColorBrush x:Key="DiagramSelectedNodeBorderBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramTogglerBackground" Color="{ThemeResource SolidBackgroundFillColorBase}" />
+      <SolidColorBrush x:Key="DiagramTogglerBorderBrush" Color="{ThemeResource ControlStrokeColorDefault}" />
+      <SolidColorBrush x:Key="DiagramTogglerForeground" Color="{ThemeResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="DiagramViewportStrokeBrush" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.12" Color="{ThemeResource SystemAccentColor}" />
+      <SolidColorBrush x:Key="DiagramConflictBrush" Color="{ThemeResource SystemFillColorCritical}" />
       <SolidColorBrush x:Key="FileDiffSelectionBaseBrush" Color="#FFFFFF" />
       <SolidColorBrush x:Key="FileDiffAddedBackgroundBrush" Color="#E6FFEC" />
       <SolidColorBrush x:Key="FileDiffRemovedBackgroundBrush" Color="#FFEBE9" />
@@ -1765,7 +1787,6 @@ Themes\Styles\Controls\WorldMap.xaml
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
-      <SolidColorBrush x:Key="App.Theme.Sidebar.BackgroundBrush" Color="Transparent" />
       <Color x:Key="ThemedIconBaseColor">#FF000000</Color>
       <Color x:Key="ThemedIconAltColor">#00000000</Color>
       <StaticResource x:Key="ThemedIconBaseBrush" ResourceKey="SystemColorButtonTextColorBrush" />
@@ -1946,6 +1967,19 @@ Themes\Styles\Controls\WorldMap.xaml
       <Color x:Key="TextOnAccentForegroundBrush">Transparent</Color>
       <StaticResource x:Key="ClockCircleBackgroundBrush" ResourceKey="ControlFillColorTertiaryBrush" />
       <StaticResource x:Key="SysemAccentControlBackgroundBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="DiagramPatternBrush" ResourceKey="SystemControlForegroundBaseMediumBrush" />
+      <StaticResource x:Key="DiagramConnectorBrush" ResourceKey="SystemControlForegroundBaseHighBrush" />
+      <StaticResource x:Key="DiagramNodeBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramNodeBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramNodeCaptionBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramSelectedNodeBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramSelectedNodeBorderBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <StaticResource x:Key="DiagramTogglerBackground" ResourceKey="SystemColorWindowColorBrush" />
+      <StaticResource x:Key="DiagramTogglerBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramTogglerForeground" ResourceKey="SystemColorWindowTextColorBrush" />
+      <StaticResource x:Key="DiagramViewportStrokeBrush" ResourceKey="SystemColorHighlightColorBrush" />
+      <SolidColorBrush x:Key="DiagramViewportFillBrush" Opacity="0.2" Color="{ThemeResource SystemColorHighlightColor}" />
+      <StaticResource x:Key="DiagramConflictBrush" ResourceKey="SystemColorWindowTextColorBrush" />
       <StaticResource x:Key="FileDiffSelectionBaseBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="FileDiffAddedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
       <StaticResource x:Key="FileDiffRemovedBackgroundBrush" ResourceKey="SystemColorWindowColorBrush" />
@@ -5546,8 +5580,6 @@ Themes\Styles\Controls\WorldMap.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <ExponentialEase x:Key="ProgressBarEaseOut" EasingMode="EaseOut" Exponent="2" />
-  <ExponentialEase x:Key="ProgressBarEaseIn" EasingMode="EaseIn" Exponent="2" />
   <Style x:Key="DefaultIsEnabledTextBlockStyle" TargetType="local:IsEnabledTextBlock">
     <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
     <Setter Property="IsTabStop" Value="False" />
@@ -6086,7 +6118,7 @@ Themes\Styles\Controls\WorldMap.xaml
       </Setter.Value>
     </Setter>
   </Style>
-  <Style x:Key="LoadingIndicatorRingStyle" TargetType="local:LoadingIndicator">
+  <Style x:Key="LoadingIndicatorPulseRingStyle" TargetType="local:LoadingIndicator">
     <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -7266,160 +7298,6 @@ Themes\Styles\Controls\WorldMap.xaml
                     <TranslateTransform />
                   </Ellipse.RenderTransform>
                 </Ellipse>
-              </Canvas>
-            </Grid>
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  <Style x:Key="LoadingIndicatorRing2Style" TargetType="local:LoadingIndicator">
-    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="HorizontalAlignment" Value="Center" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:LoadingIndicator">
-          <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="ActiveStates">
-                <VisualState x:Name="Active">
-                  <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever">
-                    <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6" Storyboard.TargetProperty="Opacity">
-                      <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <LinearDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-110" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="10" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="93" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="205" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="357" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="439" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="585" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-116" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="4" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="87" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="199" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="351" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="433" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="579" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-122" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-2" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="81" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="193" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="345" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="427" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="573" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-128" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-8" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="75" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="187" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="339" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="421" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="567" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-134" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-14" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="69" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="181" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="331" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="415" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="561" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-140" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-20" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="63" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="175" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="325" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="409" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="555" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.3" Value="555" />
-                    </DoubleAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Inactive" />
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid RenderTransformOrigin="0.5 0.5">
-              <Grid.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1" />
-              </Grid.RenderTransform>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E1R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E1" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E2R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E2" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E3R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E3" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E4R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E4" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E5R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E5" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5" Visibility="Visible">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E6R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E6" Width="8" Height="8" Margin="11" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Opacity="0" />
               </Canvas>
             </Grid>
           </Border>
@@ -10628,127 +10506,113 @@ Themes\Styles\Controls\WorldMap.xaml
                     <Setter Target="ItemDecoratorPresenter.Visibility" Value="Visible" />
                   </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NoExpansionWithPadding">
-                  <VisualState.Setters>
-                    <Setter Target="RootPanel.Margin" Value="0,0,0,12" />
-                    <Setter Target="ItemDecoratorPresenter.Visibility" Value="Visible" />
-                  </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="NoChildren">
                   <VisualState.Setters>
-                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
                     <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,0" />
-                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
                     <Setter Target="ItemNameTextBlock.FontWeight" Value="SemiBold" />
-                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Expanded">
                   <VisualState.Setters>
-                    <Setter Target="RootPanel.Margin" Value="0,0,0,12" />
-                    <Setter Target="ChildrenPresenter.Visibility" Value="Visible" />
-                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
                     <Setter Target="ExpandCollapseChevron.Visibility" Value="Visible" />
                     <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,0" />
-                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
                     <Setter Target="ItemNameTextBlock.FontWeight" Value="SemiBold" />
-                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Collapsed">
                   <VisualState.Setters>
-                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
                     <Setter Target="ExpandCollapseChevron.Visibility" Value="Visible" />
                     <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,0" />
-                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
                     <Setter Target="ItemNameTextBlock.FontWeight" Value="SemiBold" />
-                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
                   </VisualState.Setters>
                 </VisualState>
-                <VisualStateGroup.Transitions>
-                  <VisualTransition From="Collapsed" To="Expanded">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="MaxHeight">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-                        <SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0" KeyTime="0:0:0.35" Value="{Binding ChildrenPresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootPanel" Storyboard.TargetProperty="Margin">
-                        <DiscreteObjectKeyFrame Value="0,0,0,12" />
-                      </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition From="Expanded">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="MaxHeight">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding ChildrenPresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                        <SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0" KeyTime="0:0:0.35" Value="0" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition From="NoExpansion" To="Expanded">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="MaxHeight">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-                        <SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0" KeyTime="0:0:0.35" Value="{Binding ChildrenPresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                      </DoubleAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IconPresenter" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Collapsed" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandCollapseChevron" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemNameTextBlock" Storyboard.TargetProperty="Margin">
-                        <DiscreteObjectKeyFrame Value="8,0,12,0" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemNameTextBlock" Storyboard.TargetProperty="FontWeight">
-                        <DiscreteObjectKeyFrame Value="Semibold" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemNameTextBlock" Storyboard.TargetProperty="Foreground">
-                        <DiscreteObjectKeyFrame Value="{ThemeResource TextFillColorTertiaryBrush}" />
-                      </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition From="NoExpansion" To="Compact">
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame Value="Visible" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="ChildrenPresenter" Storyboard.TargetProperty="MaxHeight">
-                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-                        <SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0" KeyTime="0:0:0.35" Value="{Binding ChildrenPresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                </VisualStateGroup.Transitions>
+                <!--  Tree-view folder rows: chevron toggle but keep regular item styling (icon visible, normal text). Children render in the outer flat list, not nested.  -->
+                <VisualState x:Name="LeafWithChildren">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevron.Visibility" Value="Visible" />
+                  </VisualState.Setters>
+                </VisualState>
+                <!--  Group expander style: chevron on the right, muted heading text, no chevron column.  -->
+                <VisualState x:Name="GroupNoExpansion">
+                  <VisualState.Setters>
+                    <Setter Target="ItemDecoratorPresenter.Visibility" Value="Visible" />
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Margin" Value="8,0,0,0" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupNoChildren">
+                  <VisualState.Setters>
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
+                    <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,2" />
+                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
+                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupExpanded">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevron.Visibility" Value="Visible" />
+                    <Setter Target="ChevronContainer.(Grid.Column)" Value="5" />
+                    <Setter Target="ChevronContainer.Width" Value="28" />
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
+                    <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,2" />
+                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
+                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupCollapsed">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevron.Visibility" Value="Visible" />
+                    <Setter Target="ChevronContainer.(Grid.Column)" Value="5" />
+                    <Setter Target="ChevronContainer.Width" Value="28" />
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Visibility" Value="Collapsed" />
+                    <Setter Target="ItemNameTextBlock.Margin" Value="8,0,12,2" />
+                    <Setter Target="ItemNameTextBlock.FontSize" Value="12" />
+                    <Setter Target="ItemNameTextBlock.Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                  </VisualState.Setters>
+                </VisualState>
               </VisualStateGroup>
               <VisualStateGroup x:Name="ExpansionIconStates">
                 <VisualState x:Name="ExpandedIconNormal">
                   <VisualState.Setters>
-                    <Setter Target="ExpandCollapseChevron.(AnimatedIcon.State)" Value="NormalOn" />
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="ExpandedIconPressed">
                   <VisualState.Setters>
-                    <Setter Target="ExpandCollapseChevron.(AnimatedIcon.State)" Value="PressedOn" />
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="CollapsedIconNormal">
                   <VisualState.Setters>
-                    <Setter Target="ExpandCollapseChevron.(AnimatedIcon.State)" Value="NormalOff" />
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="0" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="CollapsedIconPressed">
                   <VisualState.Setters>
-                    <Setter Target="ExpandCollapseChevron.(AnimatedIcon.State)" Value="PressedOff" />
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="0" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupExpandedIconNormal">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="-90" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupExpandedIconPressed">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="-90" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupCollapsedIconNormal">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
+                  </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GroupCollapsedIconPressed">
+                  <VisualState.Setters>
+                    <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
@@ -10757,8 +10621,6 @@ Themes\Styles\Controls\WorldMap.xaml
                 <VisualState x:Name="Selected">
                   <VisualState.Setters>
                     <Setter Target="SelectionIndicator.Opacity" Value="1" />
-                    <Setter Target="ElementGrid.BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
-                    <Setter Target="ElementGrid.Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
@@ -10794,23 +10656,25 @@ Themes\Styles\Controls\WorldMap.xaml
                     <Setter Target="ElementGrid.BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
                   </VisualState.Setters>
                 </VisualState>
+                <VisualState x:Name="DragOnTop">
+                  <VisualState.Setters>
+                    <Setter Target="ElementGrid.Background" Value="{ThemeResource ControlFillColorTertiaryBrush}" />
+                    <Setter Target="DragOnTopIndicator.Visibility" Value="Visible" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="DragInsertStates">
+                <VisualState x:Name="DragInsertNone" />
                 <VisualState x:Name="DragInsertAbove">
                   <VisualState.Setters>
                     <Setter Target="DragTargetIndicator.Visibility" Value="Visible" />
                     <Setter Target="DragTargetIndicator.VerticalAlignment" Value="Top" />
-                    <Setter Target="ElementGrid.Margin" Value="4,-2" />
-                    <Setter Target="ElementGrid.Height" Value="34" />
                   </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="DragInsertBelow">
                   <VisualState.Setters>
                     <Setter Target="DragTargetIndicator.Visibility" Value="Visible" />
                     <Setter Target="DragTargetIndicator.VerticalAlignment" Value="Bottom" />
-                  </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="DragOnTop">
-                  <VisualState.Setters>
-                    <Setter Target="ElementGrid.Background" Value="{ThemeResource ControlFillColorTertiaryBrush}" />
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
@@ -10821,18 +10685,34 @@ Themes\Styles\Controls\WorldMap.xaml
                     <Setter Target="RootPanel.MaxWidth" Value="48" />
                     <Setter Target="ItemNameTextBlock.Visibility" Value="Collapsed" />
                     <Setter Target="ItemDecoratorPresenter.Width" Value="0" />
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Margin" Value="8,0,0,0" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+              <!--  Owner-level toggle. Separate from per-row ExpansionStates so a leaf inside a tree (which is NoExpansion) still reserves the 16px chevron column for alignment with expandable siblings, while a Settings-style sidebar (SupportsExpansion=false) collapses it for every row.  -->
+              <VisualStateGroup x:Name="OwnerExpansionSupport">
+                <VisualState x:Name="OwnerSupportsExpansion" />
+                <VisualState x:Name="OwnerDoesNotSupportExpansion">
+                  <VisualState.Setters>
+                    <Setter Target="ChevronColumnDefinition.Width" Value="0" />
+                    <Setter Target="IconPresenter.Margin" Value="8,0,0,0" />
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <!--  Drag Target Indicator  -->
-            <Rectangle x:Name="DragTargetIndicator" Grid.ColumnSpan="3" Height="2" Margin="4,-2" HorizontalAlignment="Stretch" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" RadiusX="4" RadiusY="4" Visibility="Collapsed" />
+            <Rectangle x:Name="DragTargetIndicator" Grid.ColumnSpan="3" Height="2" Margin="4,-1" HorizontalAlignment="Stretch" VerticalAlignment="Top" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" IsHitTestVisible="False" RadiusX="4" RadiusY="4" Visibility="Collapsed" />
             <!--  Focusable Visual  -->
             <Border x:Name="ElementBorder" Grid.Row="0" Height="32" Background="Transparent">
-              <Grid x:Name="ElementGrid" Margin="0,2,0,2" HorizontalAlignment="Stretch" Background="{ThemeResource SubtleFillColorTransparentBrush}" BackgroundSizing="InnerBorderEdge" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" IsTabStop="True" TabFocusNavigation="Once" ToolTipService.ToolTip="{Binding ToolTipValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" UseSystemFocusVisuals="True">
+              <Grid x:Name="ElementGrid" Margin="0,2,0,2" HorizontalAlignment="Stretch" Background="{ThemeResource SubtleFillColorTransparentBrush}" BackgroundSizing="InnerBorderEdge" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}" IsTabStop="True" TabFocusNavigation="Once" UseSystemFocusVisuals="True">
                 <Grid.ColumnDefinitions>
                   <!--  Selection Indicator  -->
                   <ColumnDefinition Width="3" />
+                  <!--  Tree-view depth indent (content-only; row background still spans full width)  -->
+                  <ColumnDefinition Width="Auto" />
+                  <!--  Chevron. Fixed 16px so expandable and non-expandable rows stay aligned; the OwnerDoesNotSupportExpansion and Compact visual states collapse it to 0 when the chevron isn't applicable.  -->
+                  <ColumnDefinition x:Name="ChevronColumnDefinition" Width="16" />
                   <!--  Icon  -->
                   <ColumnDefinition Width="Auto" />
                   <!--  Text  -->
@@ -10842,22 +10722,25 @@ Themes\Styles\Controls\WorldMap.xaml
                 </Grid.ColumnDefinitions>
                 <!--  Selection Rectangle  -->
                 <Rectangle x:Name="SelectionIndicator" Grid.Column="0" Width="3" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Fill="{ThemeResource AccentFillColorDefaultBrush}" Opacity="0" RadiusX="2" RadiusY="2" />
+                <!--  Depth indent spacer (width = NestingLevel * 16)  -->
+                <Border Grid.Column="1" Width="{TemplateBinding IndentWidth}" />
+                <!--  Own pointer surface so chevron clicks only toggle expansion (no row invoke / selection).  -->
+                <Border x:Name="ChevronContainer" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Opacity="{TemplateBinding ContentOpacity}">
+                  <!--  Chevron (rotates from right → down on expand).  -->
+                  <FontIcon x:Name="ExpandCollapseChevron" Width="12" Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Glyph="" IsTextScaleFactorEnabled="False" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                    <FontIcon.RenderTransform>
+                      <RotateTransform x:Name="ExpandCollapseChevronRotateTransform" Angle="0" />
+                    </FontIcon.RenderTransform>
+                  </FontIcon>
+                </Border>
                 <!--  Icon  -->
-                <ContentPresenter x:Name="IconPresenter" Grid.Column="1" Width="16" Height="16" Margin="8,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                <ContentPresenter x:Name="IconPresenter" Grid.Column="3" Width="16" Height="16" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Opacity="{TemplateBinding ContentOpacity}" />
                 <!--  Text  -->
-                <TextBlock x:Name="ItemNameTextBlock" Grid.Column="2" Margin="12,0,12,2" HorizontalAlignment="Stretch" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource ContentControlThemeFontFamily}" LineHeight="16" Text="{Binding TextValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                <TextBlock x:Name="ItemNameTextBlock" Grid.Column="4" Margin="12,0,12,2" HorizontalAlignment="Stretch" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" FontFamily="{ThemeResource ContentControlThemeFontFamily}" LineHeight="16" Opacity="{TemplateBinding ContentOpacity}" Text="{TemplateBinding Text}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
                 <!--  Decorator  -->
-                <ContentPresenter x:Name="ItemDecoratorPresenter" Grid.Column="3" Width="28" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding Decorator, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
-                <!--  Chevron  -->
-                <AnimatedIcon x:Name="ExpandCollapseChevron" Grid.Column="3" Width="{StaticResource ExpanderChevronGlyphSize}" Height="{StaticResource ExpanderChevronGlyphSize}" Margin="0,0,8,0" HorizontalAlignment="Center" VerticalAlignment="Center" AnimatedIcon.State="NormalOff" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextFillColorSecondaryBrush}" RenderTransformOrigin="0.5, 0.5" Visibility="Collapsed">
-                  <animatedvisuals:AnimatedChevronUpDownSmallVisualSource />
-                  <AnimatedIcon.FallbackIconSource>
-                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="12" Glyph="{StaticResource ExpanderChevronDownGlyph}" IsTextScaleFactorEnabled="False" />
-                  </AnimatedIcon.FallbackIconSource>
-                  <AnimatedIcon.RenderTransform>
-                    <RotateTransform x:Name="ExpandCollapseChevronRotateTransform" Angle="0" />
-                  </AnimatedIcon.RenderTransform>
-                </AnimatedIcon>
+                <ContentPresenter x:Name="ItemDecoratorPresenter" Grid.Column="5" Width="28" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{TemplateBinding Decorator}" Opacity="{TemplateBinding ContentOpacity}" Visibility="Collapsed" />
+                <!--  Drop-into target highlight  -->
+                <Border x:Name="DragOnTopIndicator" Grid.ColumnSpan="6" Margin="-1" BorderBrush="{ThemeResource AccentFillColorDefaultBrush}" BorderThickness="2" CornerRadius="{ThemeResource ControlCornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" />
                 <!--  Overflow  -->
                 <FlyoutBase.AttachedFlyout>
                   <Flyout x:Name="ChildrenFlyout" Placement="Right">
@@ -10868,17 +10751,17 @@ Themes\Styles\Controls\WorldMap.xaml
                         <Setter Target="MinHeight" Value="20" />
                       </Style>
                     </Flyout.FlyoutPresenterStyle>
-                    <ItemsRepeater x:Name="FlyoutChildrenPresenter" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemInFlyoutTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" XYFocusKeyboardNavigation="Enabled" />
+                    <ItemsRepeater x:Name="FlyoutChildrenPresenter" HorizontalAlignment="Stretch" AutomationProperties.AccessibilityView="Content" XYFocusKeyboardNavigation="Enabled">
+                      <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                          <local:SidebarItem IsInFlyout="True" Item="{Binding}" UseItemPresentation="True" />
+                        </DataTemplate>
+                      </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
                   </Flyout>
                 </FlyoutBase.AttachedFlyout>
               </Grid>
             </Border>
-            <!--  Children  -->
-            <ItemsRepeater x:Name="ChildrenPresenter" Grid.Row="2" Margin="-4,2" HorizontalAlignment="Stretch" local:SidebarItem.TemplateRoot="{Binding ElementName=RootPanel}" AutomationProperties.AccessibilityView="Content" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{Binding ChildrenValue, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="Collapsed" XYFocusKeyboardNavigation="Enabled">
-              <ItemsRepeater.Layout>
-                <StackLayout />
-              </ItemsRepeater.Layout>
-            </ItemsRepeater>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -20203,6 +20086,82 @@ Themes\Styles\Controls\WorldMap.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultDepthLayerViewStyle}" TargetType="local:DepthLayerView" />
+  <Style x:Key="DefaultDiagramStyle" TargetType="local:Diagram">
+    <Setter Property="PatternBrush" Value="{ThemeResource DiagramPatternBrush}" />
+    <Setter Property="ConnectorBrush" Value="{ThemeResource DiagramConnectorBrush}" />
+    <Setter Property="NodeBackground" Value="{ThemeResource DiagramNodeBackground}" />
+    <Setter Property="NodeBorderBrush" Value="{ThemeResource DiagramNodeBorderBrush}" />
+    <Setter Property="NodeCaptionForeground" Value="{ThemeResource DiagramNodeCaptionBrush}" />
+    <Setter Property="SelectedNodeBackground" Value="{ThemeResource DiagramSelectedNodeBackground}" />
+    <Setter Property="SelectedNodeBorderBrush" Value="{ThemeResource DiagramSelectedNodeBorderBrush}" />
+    <Setter Property="TogglerBackground" Value="{ThemeResource DiagramTogglerBackground}" />
+    <Setter Property="TogglerBorderBrush" Value="{ThemeResource DiagramTogglerBorderBrush}" />
+    <Setter Property="TogglerForeground" Value="{ThemeResource DiagramTogglerForeground}" />
+    <Setter Property="ViewportStroke" Value="{ThemeResource DiagramViewportStrokeBrush}" />
+    <Setter Property="ViewportFill" Value="{ThemeResource DiagramViewportFillBrush}" />
+    <Setter Property="ConflictBrush" Value="{ThemeResource DiagramConflictBrush}" />
+    <Setter Property="IsTabStop" Value="True" />
+    <Setter Property="UseSystemFocusVisuals" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:Diagram">
+          <Grid x:Name="PART_Root" Background="Transparent">
+            <Canvas x:Name="PART_Back" IsHitTestVisible="False" />
+            <Grid x:Name="PART_World">
+              <Canvas x:Name="PART_Edges" />
+              <Canvas x:Name="PART_Nodes" />
+            </Grid>
+            <Grid x:Name="PART_Dock">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <StackPanel x:Name="PART_DockTopLeft" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockTopCenter" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockTopRight" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" />
+              <StackPanel x:Name="PART_DockBottomLeft" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+              <StackPanel x:Name="PART_DockBottomCenter" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              <StackPanel x:Name="PART_DockBottomRight" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+            </Grid>
+            <StackPanel x:Name="PART_Stash" Visibility="Collapsed">
+              <Border x:Name="PART_Controls" Margin="12" Padding="2" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8">
+                <StackPanel Orientation="Horizontal" Spacing="2">
+                  <Button x:Name="PART_ZoomOut" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Zoom out">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <TextBlock x:Name="PART_ZoomText" MinWidth="40" VerticalAlignment="Center" FontSize="12" HorizontalTextAlignment="Center" Text="100%" />
+                  <Button x:Name="PART_ZoomIn" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Zoom in">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <Button x:Name="PART_Fit" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Fit to content">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                  <Button x:Name="PART_Arrange" Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Auto arrange">
+                    <FontIcon FontSize="12" Glyph="" />
+                  </Button>
+                </StackPanel>
+              </Border>
+              <Border x:Name="PART_Minimap" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8">
+                <Canvas x:Name="PART_MiniCanvas" Width="200" Height="140" Background="Transparent" />
+              </Border>
+              <Border x:Name="PART_Legend" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="8" Visibility="Collapsed" />
+              <Border x:Name="PART_Conflicts" MaxWidth="360" Margin="12" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding ConflictBrush}" BorderThickness="1" CornerRadius="8" Visibility="Collapsed" />
+              <Border x:Name="PART_Hint" Margin="12" Padding="16,8" Background="{TemplateBinding NodeBackground}" BorderBrush="{TemplateBinding NodeBorderBrush}" BorderThickness="1" CornerRadius="20" IsHitTestVisible="False" Visibility="Collapsed">
+                <TextBlock x:Name="PART_HintText" FontSize="12" Foreground="{TemplateBinding NodeCaptionForeground}" TextTrimming="CharacterEllipsis" />
+              </Border>
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style BasedOn="{StaticResource DefaultDiagramStyle}" TargetType="local:Diagram" />
   <Style x:Key="DefaultDiffViewStyle" TargetType="local:DiffView">
     <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -21043,99 +21002,6 @@ Themes\Styles\Controls\WorldMap.xaml
   </Style>
   <Style BasedOn="{StaticResource DefaultImageExStyle}" TargetType="local:ImageEx" />
   <Style BasedOn="{StaticResource DefaultImageFrameStyle}" TargetType="local:ImageFrame" />
-  <Style x:Key="DefaultIndeterminateProgressBarStyle" TargetType="local:IndeterminateProgressBar">
-    <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
-    <Setter Property="DotRadiusX" Value="8" />
-    <Setter Property="DotRadiusY" Value="8" />
-    <Setter Property="IsActive" Value="True" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:IndeterminateProgressBar">
-          <Grid x:Name="PART_RootGrid">
-            <Grid.Resources>
-              <Storyboard x:Key="RootStoryboard" AutoReverse="False" RepeatBehavior="Forever" Duration="00:00:04.4">
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="TransDot1" Storyboard.TargetProperty="X">
-                  <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.0" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="0.0" />
-                  <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="0.0" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="0.0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1" Storyboard.TargetName="TransDot2" Storyboard.TargetProperty="X">
-                  <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
-                  <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="TransDot3" Storyboard.TargetProperty="X">
-                  <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
-                  <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="TransDot4" Storyboard.TargetProperty="X">
-                  <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
-                  <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="TransDot5" Storyboard.TargetProperty="X">
-                  <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseOut}" KeyTime="00:00:00.5" Value="300.1" />
-                  <LinearDoubleKeyFrame KeyTime="00:00:02.0" Value="500.1" />
-                  <EasingDoubleKeyFrame EasingFunction="{StaticResource ProgressBarEaseIn}" KeyTime="00:00:02.5" Value="800.1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.0" Storyboard.TargetName="Dot1" Storyboard.TargetProperty="Opacity">
-                  <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                  <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.1" Storyboard.TargetName="Dot2" Storyboard.TargetProperty="Opacity">
-                  <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                  <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="Dot3" Storyboard.TargetProperty="Opacity">
-                  <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                  <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.3" Storyboard.TargetName="Dot4" Storyboard.TargetProperty="Opacity">
-                  <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                  <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.4" Storyboard.TargetName="Dot5" Storyboard.TargetProperty="Opacity">
-                  <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                  <DiscreteDoubleKeyFrame KeyTime="00:00:02.5" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-              </Storyboard>
-            </Grid.Resources>
-            <Rectangle x:Name="Dot1" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
-              <Rectangle.RenderTransform>
-                <TranslateTransform x:Name="TransDot1" />
-              </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle x:Name="Dot2" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
-              <Rectangle.RenderTransform>
-                <TranslateTransform x:Name="TransDot2" />
-              </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle x:Name="Dot3" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
-              <Rectangle.RenderTransform>
-                <TranslateTransform x:Name="TransDot3" />
-              </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle x:Name="Dot4" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
-              <Rectangle.RenderTransform>
-                <TranslateTransform x:Name="TransDot4" />
-              </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle x:Name="Dot5" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" RadiusX="{TemplateBinding DotRadiusX}" RadiusY="{TemplateBinding DotRadiusY}">
-              <Rectangle.RenderTransform>
-                <TranslateTransform x:Name="TransDot5" />
-              </Rectangle.RenderTransform>
-            </Rectangle>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
   <Style x:Key="DefaultInfoCardStyle" TargetType="local:InfoCard">
     <Setter Property="Width" Value="350" />
     <Setter Property="Height" Value="96" />
@@ -22373,190 +22239,6 @@ Themes\Styles\Controls\WorldMap.xaml
             <ProgressBar x:Name="PART_ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding ProgressBackground}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="{ThemeResource ControlCornerRadius}" Foreground="{TemplateBinding ProgressForeground}" IsIndeterminate="{TemplateBinding IsIndeterminate}" ShowError="{TemplateBinding ShowError}" ShowPaused="{TemplateBinding ShowPaused}" Visibility="Collapsed" Value="{TemplateBinding Progress}" />
             <TextBlock x:Name="CheckedText" Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{ThemeResource ToggleButtonForegroundChecked}" Text="{Binding CheckedContent, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
           </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  <Style x:Key="DefaultProgressRingStyle" TargetType="local:ProgressRing">
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{ThemeResource AccentAAFillColorDefaultBrush}" />
-    <Setter Property="IsHitTestVisible" Value="False" />
-    <Setter Property="HorizontalAlignment" Value="Center" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="Width" Value="50" />
-    <Setter Property="Height" Value="50" />
-    <Setter Property="IsTabStop" Value="False" />
-    <Setter Property="IsActive" Value="True" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="local:ProgressRing">
-          <Border x:Name="ProgressRingRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-            <Border.Resources>
-              <Style x:Key="ProgressRingEllipseStyle" TargetType="Ellipse">
-                <Setter Property="Opacity" Value="0" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Top" />
-              </Style>
-            </Border.Resources>
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="SizeStates">
-                <VisualState x:Name="Large">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SixthCircle" Storyboard.TargetProperty="Visibility" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Visible</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Small" />
-              </VisualStateGroup>
-              <VisualStateGroup x:Name="ActiveStates">
-                <VisualState x:Name="Inactive" />
-                <VisualState x:Name="Active">
-                  <Storyboard RepeatBehavior="Forever">
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ring" Storyboard.TargetProperty="Visibility" Duration="0">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Visible</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6" Storyboard.TargetProperty="Opacity">
-                      <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.21" Value="1" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.22" Value="0" />
-                      <DiscreteDoubleKeyFrame KeyTime="0:0:3.47" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="E1R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-110" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="10" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="93" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="205" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="357" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="439" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="585" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.167" Storyboard.TargetName="E2R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-116" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="4" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="87" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="199" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="351" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="433" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="579" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.334" Storyboard.TargetName="E3R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-122" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-2" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="81" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="193" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="345" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="427" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="573" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.501" Storyboard.TargetName="E4R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-128" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-8" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="75" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="187" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="339" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="421" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="567" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.668" Storyboard.TargetName="E5R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-134" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-14" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="69" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="181" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="331" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="415" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="561" />
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.835" Storyboard.TargetName="E6R" Storyboard.TargetProperty="Angle">
-                      <SplineDoubleKeyFrame KeySpline="0.13,0.21,0.1,0.7" KeyTime="0" Value="-140" />
-                      <SplineDoubleKeyFrame KeySpline="0.02,0.33,0.38,0.77" KeyTime="0:0:0.433" Value="-20" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:1.2" Value="63" />
-                      <SplineDoubleKeyFrame KeySpline="0.57,0.17,0.95,0.75" KeyTime="0:0:1.617" Value="175" />
-                      <SplineDoubleKeyFrame KeySpline="0,0.19,0.07,0.72" KeyTime="0:0:2.017" Value="325" />
-                      <SplineDoubleKeyFrame KeyTime="0:0:2.783" Value="409" />
-                      <SplineDoubleKeyFrame KeySpline="0,0,0.95,0.37" KeyTime="0:0:3.217" Value="555" />
-                    </DoubleAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="Ring" MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}" MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MaxSideLength}" Background="{TemplateBinding Background}" FlowDirection="LeftToRight" RenderTransformOrigin=".5,.5" Visibility="Collapsed">
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E1R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E1" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E2R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E2" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E3R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E3" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E4R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E4" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-              <Canvas RenderTransformOrigin=".5,.5">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E5R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E5" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-              <Canvas x:Name="SixthCircle" RenderTransformOrigin=".5,.5" Visibility="Collapsed">
-                <Canvas.RenderTransform>
-                  <RotateTransform x:Name="E6R" />
-                </Canvas.RenderTransform>
-                <Ellipse x:Name="E6" Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseDiameter}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.EllipseOffset}" Fill="{TemplateBinding Foreground}" Style="{StaticResource ProgressRingEllipseStyle}" />
-              </Canvas>
-            </Grid>
-          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -25367,7 +25049,6 @@ Themes\Styles\Controls\WorldMap.xaml
   <Style BasedOn="{StaticResource DefaultHeaderTileStyle}" TargetType="local:HeaderTile" />
   <Style BasedOn="{StaticResource DefaultHomePageHeaderStyle}" TargetType="local:HomePageHeader" />
   <Style BasedOn="{StaticResource DefaultHorizontalScrollContainerStyle}" TargetType="local:HorizontalScrollContainer" />
-  <Style BasedOn="{StaticResource DefaultIndeterminateProgressBarStyle}" TargetType="local:IndeterminateProgressBar" />
   <Style BasedOn="{StaticResource DefaultInfoCardStyle}" TargetType="local:InfoCard" />
   <Style BasedOn="{StaticResource DefaultLoopingListStyle}" TargetType="local:LoopingList" />
   <Style BasedOn="{StaticResource DefaultMorphingWizardStyle}" TargetType="local:MorphingWizard" />
@@ -25435,7 +25116,6 @@ Themes\Styles\Controls\WorldMap.xaml
     </Setter>
   </Style>
   <Style BasedOn="{StaticResource DefaultProgressButtonStyle}" TargetType="local:ProgressButton" />
-  <Style BasedOn="{StaticResource DefaultProgressRingStyle}" TargetType="local:ProgressRing" />
   <Style BasedOn="{StaticResource DefaultReasoningRowItemStyle}" TargetType="local:ReasoningRowItem" />
   <Style BasedOn="{StaticResource DefaultRichButtonStyle}" TargetType="local:RichButton" />
   <Style BasedOn="{StaticResource DefaultSegmentedMeterStyle}" TargetType="local:SegmentedMeter" />

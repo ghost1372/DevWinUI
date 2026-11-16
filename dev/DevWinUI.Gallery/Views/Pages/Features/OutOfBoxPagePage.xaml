@@ -9,21 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/outOfBoxPage" HeaderText="OutOfBoxPage">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:OutOfBoxPage Title="Title" Description="Description" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="OutOfBoxPage" Doc="controls/outOfBoxPage">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <ToggleSwitch x:Name="TGTopHeroImage" Header="Use Top HeroImage" />
                         <TextBox x:Name="TxtTitle" Header="Title" PlaceholderText="Title" Text="FileExplorer Preview" />
                         <TextBox x:Name="TxtDescription" Header="Description" PlaceholderText="Description" Text="These settings allow you to manage your Windows File Explorer custom preview handlers." />
                         <TextBox x:Name="TxtSecondaryLinksHeader" Header="Secondary Links Header" PlaceholderText="Attribution" Text="Attribution" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:OutOfBoxPage Title="Title" Description="Description" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
                 <dev:OutOfBoxPage Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Description="{x:Bind TxtDescription.Text, Mode=OneWay}" HeroImage="ms-appx:///Assets/Modules/OOBE/FileExplorer.png" SecondaryLinksHeader="{x:Bind TxtSecondaryLinksHeader.Text, Mode=OneWay}" UseTopHeroImage="{x:Bind TGTopHeroImage.IsOn, Mode=OneWay}">
                     <dev:OutOfBoxPage.ActionContent>
                         <dev:CheckUpdateControl />
@@ -41,17 +41,13 @@
                         <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake" Text="FileExplorer" />
                         <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake" Text="FileExplorer" />
                         <dev:OutOfBoxPageLink Link="https://aka.ms/PowerToysOverview_Awake" Text="FileExplorer" />
-
                     </dev:OutOfBoxPage.PrimaryLinks>
                     <dev:OutOfBoxPage.SecondaryLinks>
                         <dev:OutOfBoxPageLink Link="https://Awake.den.dev" Text="File Explorer add-ons" />
                         <dev:OutOfBoxPageLink Link="https://Awake.den.dev" Text="File Explorer add-ons" />
-
                     </dev:OutOfBoxPage.SecondaryLinks>
                 </dev:OutOfBoxPage>
-
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

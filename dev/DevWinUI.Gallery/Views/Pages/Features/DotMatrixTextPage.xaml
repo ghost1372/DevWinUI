@@ -9,21 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/dotMatrixText" HeaderText="DotMatrixText">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:DotMatrixText Text="HELLO" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="DotMatrixText" Doc="controls/dotMatrixText">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <TextBox x:Name="TxtText" Header="Text" MaxLength="16" Text="HELLO" />
                         <Slider x:Name="SliderDotSize" Header="Dot Size" Maximum="12" Minimum="2" StepFrequency="0.5" Value="5.5" />
                         <Slider x:Name="SliderDotSpacing" Header="Dot Spacing" Maximum="8" Minimum="0" StepFrequency="0.5" Value="2.5" />
                         <ToggleSwitch x:Name="ToggleGlow" Header="Is Glowing" IsOn="True" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:DotMatrixText Text="HELLO" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
                     <StackPanel Spacing="20">
                         <dev:DotMatrixText DotSize="{x:Bind SliderDotSize.Value, Mode=OneWay}" DotSpacing="{x:Bind SliderDotSpacing.Value, Mode=OneWay}" IsGlowing="{x:Bind ToggleGlow.IsOn, Mode=OneWay}" Text="{x:Bind TxtText.Text, Mode=OneWay}" />

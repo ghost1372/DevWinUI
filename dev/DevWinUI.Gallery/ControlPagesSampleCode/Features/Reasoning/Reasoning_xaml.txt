@@ -1,0 +1,11 @@
+<dev:Reasoning Duration="12" Kind="Outline">
+    <dev:ReasoningSteps>
+        <dev:ReasoningStep Label="Understand the request" Status="Done">
+            <dev:ReasoningStepDetails Text="Identify the controls and the pages they need." />
+        </dev:ReasoningStep>
+        <dev:ReasoningStep Label="Search for references" Status="Done">
+            <dev:ReasoningStepSources Sources="{x:Bind Sources}" />
+        </dev:ReasoningStep>
+        <dev:ReasoningStep Label="Write the answer" Status="Active" />
+    </dev:ReasoningSteps>
+</dev:Reasoning>

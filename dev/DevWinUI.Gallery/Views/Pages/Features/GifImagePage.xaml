@@ -9,23 +9,24 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/gifImage" HeaderText="GifImage">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="GifImage" Doc="controls/gifImage">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <AppBarButton Click="OnStop" Icon="Stop" Label="Stop" />
+                            <AppBarButton Click="OnPlay" Icon="Play" Label="Play" />
+                            <AppBarButton Click="OnPause" Icon="Pause" Label="Pause" />
+                        </StackPanel>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:GifImage x:Name="control" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <AppBarButton Click="OnStop" Icon="Stop" Label="Stop" />
-                        <AppBarButton Click="OnPlay" Icon="Play" Label="Play" />
-                        <AppBarButton Click="OnPause" Icon="Pause" Label="Pause" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:GifImage x:Name="GifImageSample" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" />
+                </local:ControlExample.XamlCode>
+                <dev:GifImage x:Name="GifImageSample" Width="350" AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/Others/CatGif.gif" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

@@ -1,0 +1,5 @@
+<dev:Reasoning Duration="8" Kind="Card" DefaultOpen="True">
+    <dev:ReasoningRows Kind="Search"
+                       Query="WinUI 3 animation performance"
+                       Rows="{x:Bind SearchRows}" />
+</dev:Reasoning>

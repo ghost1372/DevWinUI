@@ -165,6 +165,20 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
         KeyDown -= Carousel_KeyDown;
         KeyDown += Carousel_KeyDown;
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        Refresh();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _delayedRefreshTimer.Stop();
+        _delayedZIndexUpdateTimer.Stop();
     }
 
     private void Carousel_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -250,7 +264,12 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     {
         _inputAllowed = false;
         AreItemsLoaded = false;
-        _delayedRefreshTimer.Start();
+        _delayedRefreshTimer.Stop();
+
+        if (IsLoaded)
+        {
+            _delayedRefreshTimer.Start();
+        }
     }
 
     void LoadNewCarousel()
@@ -481,6 +500,19 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     private void _delayedRefreshTimer_Tick(object sender, object e)
     {
         _delayedRefreshTimer.Stop();
+
+        if (!IsLoaded)
+            return;
+
+        var width = Double.IsNaN(Width) ? ActualWidth : Width;
+        var height = Double.IsNaN(Height) ? ActualHeight : Height;
+
+        if (width <= 0 || height <= 0)
+        {
+            _delayedRefreshTimer.Start();
+            return;
+        }
+
         LoadNewCarousel();
     }
 
@@ -634,7 +666,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
         }
 
-        if (useFliptych && CarouselType != CarouselView2CarouselTypes.Wheel) 
+        if (useFliptych && CarouselType != CarouselView2CarouselTypes.Wheel)
         {
             UIElement child = null;
 

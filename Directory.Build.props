@@ -7,23 +7,23 @@
     <ShaderLibName>DevWinUI.Shader</ShaderLibName>
     
     <!-- Major Version -->
-    <LibraryMajorVersion>10</LibraryMajorVersion>
+    <LibraryMajorVersion>11</LibraryMajorVersion>
 
     <!-- Minor Version -->
-    <DevWinUI_MinorVersion>9</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>9</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
-    <DevWinUI_SourceGenerator_MinorVersion>9</DevWinUI_SourceGenerator_MinorVersion>
-    <DevWinUI_Shader_MinorVersion>6</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>9</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
+    <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
     <!-- Patch Version -->
-    <DevWinUI_PatchVersion>1</DevWinUI_PatchVersion>
-    <DevWinUI_Base_PatchVersion>1</DevWinUI_Base_PatchVersion>
+    <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
+    <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
     <DevWinUI_Shader_PatchVersion>0</DevWinUI_Shader_PatchVersion>
-    <DevWinUI_Gallery_PatchVersion>1</DevWinUI_Gallery_PatchVersion>
+    <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
     
     <!-- -Preview -->
     <IsPreviewBuild>false</IsPreviewBuild>
@@ -32,14 +32,15 @@
     
     <!-- The NuGet package version -->
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
-    <CsWin32Version>0.3.367</CsWin32Version>
+    <CsWin32Version>0.3.371</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.3.6</WASDKWinUIVersion>
 
     <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
 
-    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</OutputPath>
+    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
+    <PackageOutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</PackageOutputPath>
     
     <RootNamespace>$(BaseNamespace)</RootNamespace>
     
@@ -81,7 +82,12 @@
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     <UseWinUI Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">true</UseWinUI>
     <WinUISDKReferences Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">false</WinUISDKReferences>
+  </PropertyGroup>
 
+  <PropertyGroup Condition="'$(MSBuildProjectName)' != '$(GalleryAppName)'">
+    <TfmFolder>Single</TfmFolder>
+    <TfmFolder Condition="$(TargetFrameworks.Contains(';'))">Multi</TfmFolder>
+    <MSBuildProjectExtensionsPath>$(MSBuildProjectDirectory)\obj\$(TfmFolder)\</MSBuildProjectExtensionsPath>
   </PropertyGroup>
 
   <!-- The NuGet versions of dependencies to build against. -->
@@ -90,9 +96,9 @@
   </ItemGroup>
   
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
-    <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" />
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" Visible="false" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false"/>
+    <None Include="README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
   <Target Name="GetVersion">
     <Message Text="$(Version)" Importance="High" />

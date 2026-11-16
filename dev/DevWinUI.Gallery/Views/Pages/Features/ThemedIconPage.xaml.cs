@@ -4,9 +4,6 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class ThemedIconPage : Page
 {
-    public ObservableCollection<ThemedIconTypes> ThemedIconTypes { get; set; } = new ObservableCollection<ThemedIconTypes>(Enum.GetValues<ThemedIconTypes>());
-    public ObservableCollection<ThemedIconColorType> ThemedIconColorType { get; set; } = new ObservableCollection<ThemedIconColorType>(Enum.GetValues<ThemedIconColorType>());
-
     public ObservableCollection<ThemedIconItem> ThemedIconStyles { get; set; } = new ObservableCollection<ThemedIconItem>
     {
         new ThemedIconItem("App.ThemedIcons.Actions.Copying", Application.Current.Resources["App.ThemedIcons.Actions.Copying"] as Style),

@@ -9,13 +9,13 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/richButton">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="RichButton" Doc="controls/richButton">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:RichButton Title="Title" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
+                </local:ControlExample.XamlCode>
                 <StackPanel Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <dev:RichButton Title="Decima" IsEnabled="True" SubTitle="Connected, secured">
@@ -37,7 +37,6 @@
                                     <FontIcon Foreground="{ThemeResource SystemAccentColor}" Glyph="&#xE701;" />
                                 </Viewbox>
                             </dev:RichButton.Icon>
-
                             <dev:RichButton.Title>
                                 <TextBlock FontSize="18" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Wi-Fi (Decima)" />
                             </dev:RichButton.Title>
@@ -95,7 +94,6 @@
                             <dev:RichButton.Icon>
                                 <Border Width="110" Height="60" Background="Purple" CornerRadius="{ThemeResource ControlCornerRadius}" />
                             </dev:RichButton.Icon>
-
                             <dev:RichButton.Title>
                                 <TextBlock FontSize="18" Style="{ThemeResource SubtitleTextBlockStyle}" Text="DESKTOP-3R39MPM" />
                             </dev:RichButton.Title>
@@ -111,5 +109,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

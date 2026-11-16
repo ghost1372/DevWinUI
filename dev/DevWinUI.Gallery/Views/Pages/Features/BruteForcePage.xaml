@@ -9,23 +9,23 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/bruteForce">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="BruteForce" Doc="controls/bruteForce">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtPassword" Header="Password" PlaceholderText="Password" Text="DevWinUI" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:BruteForce x:Name="BruteForceSample" Password="DevWinUI" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.CSharp>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.CSharpCode>
                     <x:String>
                         BruteForceSample.UpdateCharacterState(index, BruteForceState.Success);
                     </x:String>
-                </local:ControlExample.CSharp>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtPassword" PlaceholderText="Password" Text="DevWinUI" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                </local:ControlExample.CSharpCode>
                 <StackPanel Spacing="10">
                     <dev:BruteForce x:Name="BruteForceSample" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" />
                     <dev:BruteForce x:Name="BruteForceSample2" Password="{x:Bind TxtPassword.Text, Mode=OneWay}" RenderDelay="00:00:00.001" />
@@ -33,5 +33,4 @@
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

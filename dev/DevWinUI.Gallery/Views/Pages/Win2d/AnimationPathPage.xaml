@@ -9,17 +9,17 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/animationPath">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:AnimationPath Data="{StaticResource GithubGeometry}" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <ToggleSwitch x:Name="TgIsPlay" Header="IsPlaying" IsOn="True" />
-                </local:ControlExample.Pane>
-                <StackPanel Orientation="Horizontal" Spacing="5">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="AnimationPath" Doc="controls/animationPath">
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:AnimationPath Data="{StaticResource GithubGeometry}" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <ToggleSwitch x:Name="TgIsPlay" Header="IsPlaying" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="5">
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorSuccessBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />
                     <dev:AnimationPath Data="{StaticResource GithubGeometry}" Foreground="{ThemeResource SystemFillColorCautionBrush}" IsPlaying="{x:Bind TgIsPlay.IsOn, Mode=OneWay}" />

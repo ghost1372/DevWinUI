@@ -161,7 +161,7 @@ public partial class JsonNavigationService
 
             if (string.IsNullOrEmpty(_autoSuggestBoxNotFoundImagePath))
             {
-                _autoSuggestBoxNotFoundImagePath = "ms-appx:///Assets/icon.png";
+                _autoSuggestBoxNotFoundImagePath = "ms-appx:///Assets/AppIcon.png";
             }
 
             _autoSuggestBox.TextChanged -= OnAutoSuggestBox_TextChanged;

@@ -1,0 +1,10 @@
+<dev:SegmentedMeter Maximum="200" Minimum="0">
+    <dev:SegmentedMeter.StartContent>
+        <TextBlock FontWeight="SemiBold" Text="Storage" />
+    </dev:SegmentedMeter.StartContent>
+    <dev:SegmentedMeter.EndContent>
+        <TextBlock Text="Total: 200 GB" />
+    </dev:SegmentedMeter.EndContent>
+    <dev:MeterSegment Label="Photos" Value="60" />
+    <dev:MeterSegment Label="Docs" Value="40" />
+</dev:SegmentedMeter>

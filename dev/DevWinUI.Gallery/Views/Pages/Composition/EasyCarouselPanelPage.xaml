@@ -10,27 +10,27 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Composition/EasyCarouselPanel/EasyCarouselPanelPage_cs.txt" DocPage="controls/easyCarouselPanel" XamlSource="Composition/EasyCarouselPanel/EasyCarouselPanelPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="EasyCarouselPanel" CSharp="Composition/EasyCarouselPanel/EasyCarouselPanelPage_cs.txt" Doc="controls/easyCarouselPanel" Xaml="Composition/EasyCarouselPanel/EasyCarouselPanelPage_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoShift" Header="Auto Shift" />
                         <Slider x:Name="SldSpacing" Header="Item Spacing" Maximum="200" Minimum="0" Value="30" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-            </local:ControlExample>
-            <dev:EasyCarouselPanel x:Name="EasyCarouselPanelSample" Height="150" Margin="10" VerticalAlignment="Top" AutoShift="{x:Bind TgAutoShift.IsOn, Mode=OneWay}" ItemSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}" ItemTapped="EasyCarouselPanelSample_ItemTapped" ItemWidth="300" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" SelectedIndex="0">
-                <dev:EasyCarouselPanel.ItemTemplate>
-                    <DataTemplate x:DataType="models:SampleItemModel">
-                        <Grid>
-                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="#88000000">
-                                <TextBlock Margin="6" Foreground="White" Text="{x:Bind Title}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <dev:EasyCarouselPanel x:Name="EasyCarouselPanelSample" Height="150" Margin="10" VerticalAlignment="Top" AutoShift="{x:Bind TgAutoShift.IsOn, Mode=OneWay}" ItemSpacing="{x:Bind SldSpacing.Value, Mode=OneWay}" ItemTapped="EasyCarouselPanelSample_ItemTapped" ItemWidth="300" ItemsSource="{x:Bind ViewModel.BannerViewData, Mode=OneWay}" SelectedIndex="0">
+                    <dev:EasyCarouselPanel.ItemTemplate>
+                        <DataTemplate x:DataType="models:SampleItemModel">
+                            <Grid>
+                                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="{x:Bind ImagePath}" Stretch="UniformToFill" />
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="#88000000">
+                                    <TextBlock Margin="6" Foreground="White" Text="{x:Bind Title}" />
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </dev:EasyCarouselPanel.ItemTemplate>
-            </dev:EasyCarouselPanel>
+                        </DataTemplate>
+                    </dev:EasyCarouselPanel.ItemTemplate>
+                </dev:EasyCarouselPanel>
+            </local:ControlExample>
 
         </StackPanel>
     </ScrollViewer>

@@ -40,10 +40,6 @@ public sealed partial class MotionPage : Page
         MotionWall.EdgeFadeSizeProperty,
         MotionWall.EdgeFadeStrengthProperty
     };
-    public ObservableCollection<Orientation> OrientationItems { get; set; } = new ObservableCollection<Orientation>(Enum.GetValues<Orientation>());
-    public ObservableCollection<MotionWallDirection> DirectionItems { get; set; } = new ObservableCollection<MotionWallDirection>(Enum.GetValues<MotionWallDirection>());
-    public ObservableCollection<MotionWallDistribution> DistributionItems { get; set; } = new ObservableCollection<MotionWallDistribution>(Enum.GetValues<MotionWallDistribution>());
-    public ObservableCollection<MotionWallVarianceStyle> VarianceStyleItems { get; set; } = new ObservableCollection<MotionWallVarianceStyle>(Enum.GetValues<MotionWallVarianceStyle>());
 
     public MotionPage()
     {
@@ -59,8 +55,8 @@ public sealed partial class MotionPage : Page
     {
         var items = new List<object?>
         {
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/1.jpeg", Title = "Photo 1" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/2.png", Title = "Photo 2" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/1.jpg", Title = "Photo 1" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/2.jpg", Title = "Photo 2" },
             new MotionWallItem
             {
                 Text = "Open docs",
@@ -68,10 +64,10 @@ public sealed partial class MotionPage : Page
                 Href = new Uri("https://ghost1372.github.io")
             },
             new MotionWallItem { Text = "Text tile", Title = "Plain text tile" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/3.jpeg", Title = "Photo 3" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/4.jpeg", Title = "Photo 4" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/7.jpeg", Title = "Photo 5" },
-            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/8.jpeg", Title = "Photo 6" }
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/3.jpg", Title = "Photo 3" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/4.jpg", Title = "Photo 4" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/7.jpg", Title = "Photo 5" },
+            new MotionWallItem { Source = "ms-appx:///Assets/BannerView/8.jpg", Title = "Photo 6" }
         };
 
         return items;
@@ -87,10 +83,6 @@ public sealed partial class MotionPage : Page
     {
         LanesSlider.Value = Wall.Lanes;
         ItemsPerLaneBox.Value = Wall.ItemsPerLane;
-        OrientationBox.SelectedItem = Wall.Orientation;
-        DirectionBox.SelectedItem = Wall.Direction;
-        DistributionBox.SelectedItem = Wall.ItemDistribution;
-        VarianceStyleBox.SelectedItem = Wall.VarianceStyle;
     }
 
     private void Preset_Click(object sender, RoutedEventArgs e)
@@ -166,12 +158,15 @@ public sealed partial class MotionPage : Page
 
     private void LanesSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
+        if (Wall == null)
+            return;
+
         Wall.Lanes = (int)e.NewValue;
     }
 
     private void ItemsPerLaneBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
     {
-        if (double.IsNaN(args.NewValue))
+        if (double.IsNaN(args.NewValue) || Wall == null)
         {
             return;
         }

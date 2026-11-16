@@ -9,14 +9,15 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/breadcrumbBar">
-                <local:ControlExample.Xaml>
-                    &lt;dev:BreadcrumbBar ItemsSource="{x:Bind Items}" /&gt;
-                </local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="BreadcrumbBar" Doc="controls/breadcrumbBar">
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;dev:BreadcrumbBar ItemsSource="{x:Bind Items}" /&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
                 <dev:BreadcrumbBar EllipsisButtonToolTip="More folders" ItemsSource="{x:Bind Items, Mode=OneWay}" RootItemToolTip="Root Folder" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

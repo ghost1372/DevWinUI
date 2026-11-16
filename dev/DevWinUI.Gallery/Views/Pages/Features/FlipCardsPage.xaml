@@ -9,24 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/flipCards" HeaderText="FlipCards">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="FlipCards" Doc="controls/flipCards">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="1" />
+                        <local:ChoiceOption x:Name="CmbSources" Header="Sources" Value="{x:Bind dev:FlipCardsSourceType.Time}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:FlipCards /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <NumberBox x:Name="NbValue" Header="Value" Minimum="0" SpinButtonPlacementMode="Inline" Value="1" />
-                        <ComboBox x:Name="CmbSources" Header="Sources" ItemsSource="{x:Bind FlipCardsSourceItems, Mode=OneWay}" SelectedIndex="1" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <StackPanel Spacing="10">
-                    <dev:FlipCards Source="{x:Bind (dev:FlipCardsSourceType)CmbSources.SelectedItem, Mode=OneWay}" Value="{x:Bind NbValue.Value, Mode=OneWay}" />
-                </StackPanel>
+                </local:ControlExample.XamlCode>
+                <dev:FlipCards Source="{x:Bind (dev:FlipCardsSourceType)CmbSources.Value, Mode=OneWay}" Value="{x:Bind NbValue.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
-
 </Page>

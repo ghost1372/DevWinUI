@@ -1,17 +1,9 @@
 ﻿using Microsoft.Graphics.Canvas.Effects;
-using Microsoft.UI.Composition;
-using Microsoft.UI.Xaml.Hosting;
-using Microsoft.UI.Xaml.Media;
-
+using Windows.UI;
 namespace DevWinUIGallery.Views;
 
 public sealed partial class BlurEffectManagerPage : Page
 {
-    public ObservableCollection<BlurSourceType> BlurSourceTypeItems { get; set; } = new ObservableCollection<BlurSourceType>(Enum.GetValues<BlurSourceType>());
-    public ObservableCollection<EffectBorderMode> EffectBorderModeItems { get; set; } = new ObservableCollection<EffectBorderMode>(Enum.GetValues<EffectBorderMode>());
-    public ObservableCollection<EffectOptimization> EffectOptimizationItems { get; set; } = new ObservableCollection<EffectOptimization>(Enum.GetValues<EffectOptimization>());
-    public ObservableCollection<BlendEffectMode> BlendEffectModeItems { get; set; } = new ObservableCollection<BlendEffectMode>(Enum.GetValues<BlendEffectMode>());
-
     private BlurEffectManager _blurEffectManager;
     private BlurEffectManager _blurEffectManager2;
     public BlurEffectManagerPage()
@@ -19,6 +11,10 @@ public sealed partial class BlurEffectManagerPage : Page
         InitializeComponent();
         _blurEffectManager = new BlurEffectManager(BackdropImage) { IsTintEnabled = true };
         _blurEffectManager2 = new BlurEffectManager(BackdropImage2);
+        CmbEffectBorderMode.Value = Enum.GetValues<EffectBorderMode>()[1];
+        CmbEffectOptimization.Value = Enum.GetValues<EffectOptimization>()[1];
+        CmbBlendEffectMode.Value = Enum.GetValues<BlendEffectMode>()[0];
+        CmbNoiseBlendMode.Value = Enum.GetValues<BlendEffectMode>()[1];
         Loaded += BlurEffectManagerPage_Loaded;
     }
 
@@ -52,11 +48,11 @@ public sealed partial class BlurEffectManagerPage : Page
         }
     }
 
-    private void CpTintColor_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
+    private void CpTintColor_ValueChanged(ColorOption sender, Color value)
     {
         if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            _blurEffectManager.TintColor = args.NewColor;
+            _blurEffectManager.TintColor = value;
         }
     }
 
@@ -72,34 +68,34 @@ public sealed partial class BlurEffectManagerPage : Page
         }
     }
 
-    private void CmbEffectBorderMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbEffectBorderMode_ValueChanged(ChoiceOption sender, object value)
     {
-        if (_blurEffectManager != null && CmbEffectBorderMode != null && TGIsBlurEnabled.IsOn)
+        if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            _blurEffectManager.BorderMode = (EffectBorderMode)CmbEffectBorderMode.SelectedIndex;
+            _blurEffectManager.BorderMode = (EffectBorderMode)value;
         }
     }
 
-    private void CmbEffectOptimization_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbEffectOptimization_ValueChanged(ChoiceOption sender, object value)
     {
-        if (_blurEffectManager != null && CmbEffectOptimization != null && TGIsBlurEnabled.IsOn)
+        if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            _blurEffectManager.Optimization = (EffectOptimization)CmbEffectOptimization.SelectedIndex;
+            _blurEffectManager.Optimization = (EffectOptimization)value;
         }
     }
 
-    private void CmbBlendEffectMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbBlendEffectMode_ValueChanged(ChoiceOption sender, object value)
     {
-        if (_blurEffectManager != null && CmbBlendEffectMode != null && TGIsBlurEnabled.IsOn)
+        if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            _blurEffectManager.BlendMode = (BlendEffectMode)CmbBlendEffectMode.SelectedIndex;
+            _blurEffectManager.BlendMode = (BlendEffectMode)value;
         }
     }
-    private void CmbNoiseBlendMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CmbNoiseBlendMode_ValueChanged(ChoiceOption sender, object value)
     {
-        if (_blurEffectManager != null && CmbNoiseBlendMode != null && TGIsBlurEnabled.IsOn)
+        if (_blurEffectManager != null && TGIsBlurEnabled.IsOn)
         {
-            _blurEffectManager.NoiseBlendMode = (BlendEffectMode)CmbNoiseBlendMode.SelectedIndex;
+            _blurEffectManager.NoiseBlendMode = (BlendEffectMode)value;
         }
     }
 

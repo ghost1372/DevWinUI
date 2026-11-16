@@ -2,8 +2,6 @@
 
 public sealed partial class TextHighlightPage : Page
 {
-    public ObservableCollection<TextHighlightTrigger> TriggerItems { get; set; } = new ObservableCollection<TextHighlightTrigger>(Enum.GetValues<TextHighlightTrigger>());
-
     public TextHighlightPage()
     {
         InitializeComponent();

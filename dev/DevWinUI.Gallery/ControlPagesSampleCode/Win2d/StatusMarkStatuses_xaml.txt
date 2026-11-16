@@ -1,0 +1,6 @@
+<dev:StatusMark Label="Pending task" Status="Pending" />
+<dev:StatusMark Label="Running task" Status="Running" />
+<dev:StatusMark Label="Uploading" Progress="65" Status="Running" />
+<dev:StatusMark Label="Completed task" Status="Done" />
+<dev:StatusMark Label="Failed task" Status="Failed" />
+<dev:StatusMark Label="Cancelled task" Status="Cancelled" />

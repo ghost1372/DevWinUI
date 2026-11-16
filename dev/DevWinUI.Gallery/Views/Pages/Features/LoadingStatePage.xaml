@@ -9,22 +9,21 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/loadingState" HeaderText="LoadingState">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="LoadingState" Doc="controls/loadingState" ResetRequested="ControlExample_ResetRequested">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
+                        <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
+                        <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:LoadingStateMode.Drive}" />
+                        <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:LoadingState Label="Working" Mode="Drive" ShowElapsed="True" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
-                        <TextBox x:Name="TxtLabel" Header="Label" Text="Working" />
-                        <ComboBox x:Name="CmbMode" Header="Mode" ItemsSource="{x:Bind Modes}" SelectedIndex="0" />
-                        <ToggleSwitch x:Name="TgShowElapsed" Header="Show Elapsed" IsOn="True" />
-                        <Button Click="Restart_Click" Content="Restart timer" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
-                <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.SelectedItem), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
+                </local:ControlExample.XamlCode>
+                <dev:LoadingState x:Name="MyLoadingState" HorizontalAlignment="Left" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" Mode="{x:Bind ((dev:LoadingStateMode)CmbMode.Value), Mode=OneWay}" ShowElapsed="{x:Bind TgShowElapsed.IsOn, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

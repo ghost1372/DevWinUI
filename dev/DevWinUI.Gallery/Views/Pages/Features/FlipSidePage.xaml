@@ -9,25 +9,13 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/flipSide">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:FlipSide IsFlipped="True" &gt; #nl#
-                        &lt;dev:FlipSide.Side1&gt; #nl#
-                        &lt;TextBlock Text="Side 1" /&gt; #nl#
-                        &lt;/dev:FlipSide.Side1&gt; #nl#
-                        &lt;dev:FlipSide.Side2&gt; #nl#
-                        &lt;TextBlock Text="Side 2" /&gt; #nl#
-                        &lt;/dev:FlipSide.Side2&gt; #nl#
-                        &lt;/dev:FlipSide &gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="FlipSide" Doc="controls/flipSide" Xaml="Features/Others/FlipSide_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <ToggleSwitch x:Name="tg" Header="IsFlipped" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:FlipSide IsFlipped="{x:Bind tg.IsOn, Mode=OneWay}">
                     <dev:FlipSide.Side1>
                         <Grid Background="Red">

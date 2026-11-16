@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Input;
-using WinRT;
 
 namespace DevWinUIGallery.Views;
 
@@ -17,9 +16,6 @@ public sealed partial class BetterLyricPage : Page
         MyBetterLyric.LineClicked += OnLineClicked;
         ApplyLyricsDataToSlider();
         StartPlaybackTimer();
-
-        Loaded -= OnLoaded;
-        Loaded += OnLoaded;
     }
 
     private void OnLineClicked(object? sender, int lineIndex)
@@ -79,57 +75,5 @@ public sealed partial class BetterLyricPage : Page
     private void ProgressSlider_PointerReleased(object sender, PointerRoutedEventArgs e)
     {
         _isDraggingSlider = false;
-    }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        CmbLyricsAlignment.SelectedIndex = (int)MyBetterLyric.LyricsAlignmentType;
-        CmbLyricsLineContentOrientation.SelectedIndex = (int)MyBetterLyric.LyricsLineContentOrientation;
-        CmbWordByWord.SelectedIndex = (int)MyBetterLyric.WordByWordEffectMode;
-        CmbLyricsGlowEffectScope.SelectedIndex = (int)MyBetterLyric.LyricsGlowEffectScope;
-        CmbLyricsScrollEasingType.SelectedIndex = (int)MyBetterLyric.LyricsScrollEasingType;
-        CmbLyricsScrollEasingMode.SelectedIndex = (int)MyBetterLyric.LyricsScrollEasingMode;
-    }
-
-    private void CmbLyricsAlignment_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var cmbItem = CmbLyricsAlignment.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<LyricsTextAlignmentType>(cmbItem.Tag.ToString());
-        MyBetterLyric.LyricsAlignmentType = item;
-    }
-
-    private void CmbLyricsLineContentOrientation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {        
-        var cmbItem = CmbLyricsLineContentOrientation.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<LyricsContentOrientation>(cmbItem.Tag.ToString());
-        MyBetterLyric.LyricsLineContentOrientation = item;
-    }
-
-    private void CmbWordByWord_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var cmbItem = CmbWordByWord.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<LyricsWordByWordEffectMode>(cmbItem.Tag.ToString());
-        MyBetterLyric.WordByWordEffectMode = item;
-    }
-
-    private void CmbLyricsGlowEffectScope_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var cmbItem = CmbLyricsGlowEffectScope.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<LyricEffectScope>(cmbItem.Tag.ToString());
-        MyBetterLyric.LyricsGlowEffectScope = item;
-    }
-
-    private void CmbLyricsScrollEasingType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var cmbItem = CmbLyricsScrollEasingType.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<AnimationEasingType>(cmbItem.Tag.ToString());
-        MyBetterLyric.LyricsScrollEasingType = item;
-    }
-
-    private void CmbLyricsScrollEasingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var cmbItem = CmbLyricsScrollEasingMode.SelectedItem.As<ComboBoxItem>();
-        var item = GeneralHelper.GetEnum<AnimationEaseMode>(cmbItem.Tag.ToString());
-        MyBetterLyric.LyricsScrollEasingMode = item;
     }
 }

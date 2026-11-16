@@ -9,17 +9,17 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/loadingIndicator" HeaderText="LoadingIndicator">
-                <local:ControlExample.Xaml>
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="LoadingIndicator" Doc="controls/loadingIndicator">
+                <local:ControlExample.XamlCode>
                     <x:String>
                         &lt;dev:LoadingIndicator Mode="DoubleBounce" /&gt;
                     </x:String>
-                </local:ControlExample.Xaml>
+                </local:ControlExample.XamlCode>
                 <GridView ItemsSource="{x:Bind ModesItems}" SelectionMode="None">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="dev:LoadingIndicatorMode">
-                            <StackPanel Width="130" Height="120" Spacing="8">
+                            <StackPanel Width="200" Height="120" Spacing="8">
                                 <Grid Height="80">
                                     <dev:LoadingIndicator HorizontalAlignment="Center" VerticalAlignment="Center" Mode="{x:Bind}" />
                                 </Grid>

@@ -1,0 +1,6 @@
+﻿var icon = WindowHelper.GetCurrentIcon(window);
+uint iconId = 123;
+var trayIcon = new SystemTrayIcon(iconId, icon, "ToolTip");
+trayIcon.LeftClick += TrayIcon_LeftClick;
+trayIcon.RightClick += TrayIcon_RightClick;
+trayIcon.IsVisible = true;

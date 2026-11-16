@@ -1,0 +1,4 @@
+<Grid>
+    <Rectangle x:Name="ShadowElement" />
+    <TextBlock x:Name="TextBlockElement" FontSize="148" FontWeight="Bold" Text="00:10:15" />
+</Grid>

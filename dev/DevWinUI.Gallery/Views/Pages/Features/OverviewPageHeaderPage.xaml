@@ -9,14 +9,14 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/overviewPageHeader" HeaderText="OverviewPageHeader" XamlSource="Features/OverviewPageHeaderPage_xaml.txt">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="OverviewPageHeader" Doc="controls/overviewPageHeader" Xaml="Features/Others/OverviewPageHeaderPage_xaml.txt">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <TextBox x:Name="TxtTitle" Header="Title" PlaceholderText="Title" Text="Overview" />
                         <TextBox x:Name="TxtDesc" Header="Description" PlaceholderText="Description" Text="Windows AI APIs enable seamless integration of AI capabilities into Windows applications without the need to find, run, or optimize your own machine learning model." />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:OverviewPageHeader Title="{x:Bind TxtTitle.Text, Mode=OneWay}" Background="{ThemeResource CardGradient2Brush}" Description="{x:Bind TxtDesc.Text}">
                     <dev:OverviewPageHeader.ActionContent>
                         <Button AutomationProperties.Name="Learn more about Windows AI APIs">
@@ -26,7 +26,6 @@
                                     <TextBlock Text="Learn more about Windows AI APIs" />
                                 </StackPanel>
                             </Button.Content>
-
                         </Button>
                     </dev:OverviewPageHeader.ActionContent>
                     <dev:OverviewPageHeader.ImageContent>

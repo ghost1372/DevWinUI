@@ -9,17 +9,17 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/MenuFlyoutSecondaryMenuPage_cs.txt" DocPage="attach/menuFlyoutAttach" DocType="Core">
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="Secondary Menu" CSharp="Features/Others/MenuFlyoutSecondaryMenuPage_cs.txt" Doc="attach/menuFlyoutAttach" DocType="Core">
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <ToggleSwitch x:Name="TgAutoClose" Header="Auto Close Flyout" IsOn="True" />
-                        <ComboBox x:Name="CmbPosition" Header="Secondary Menu Position" ItemsSource="{x:Bind SecondaryMenuPlacement, Mode=OneWay}" SelectedIndex="0" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                        <local:ChoiceOption x:Name="CmbPosition" Header="Secondary Menu Position" Value="{x:Bind dev:MenuFlyoutSecondaryMenuPlacement.Top}" />
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <Button MinWidth="200" HorizontalAlignment="Center" Content="Open Flyout">
                     <Button.Flyout>
-                        <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}" dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.SelectedItem), Mode=OneWay}">
+                        <MenuFlyout dev:MenuFlyoutAttach.AutoCloseByClickOnSecondaryMenuItems="{x:Bind TgAutoClose.IsOn, Mode=OneWay}" dev:MenuFlyoutAttach.SecondaryMenuPlacement="{x:Bind ((dev:MenuFlyoutSecondaryMenuPlacement)CmbPosition.Value), Mode=OneWay}">
                             <dev:MenuFlyoutAttach.SecondaryMenu>
                                 <dev:MenuFlyoutSecondaryItems>
                                     <AppBarButton Icon="Cut" Label="Cut" />

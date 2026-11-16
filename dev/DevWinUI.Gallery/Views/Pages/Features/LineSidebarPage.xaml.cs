@@ -11,8 +11,6 @@ public sealed partial class LineSidebarPage : Page
         "Contact",
     };
 
-    public ObservableCollection<LineSidebarFalloff> Falloffs { get; set; } = new ObservableCollection<LineSidebarFalloff>(Enum.GetValues<LineSidebarFalloff>());
-
     public LineSidebarPage()
     {
         InitializeComponent();

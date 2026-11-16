@@ -13,9 +13,7 @@ public sealed partial class RelativeDatePage : Page
         DatePickerSample.SelectedDate = DateTime.Now;
     }
 
-    private void DatePickerSample_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
-    {
-        TextBlockSample.Text = RelativeDate.Get(args.NewDate.Value).ToString("fa-IR");
-        TextBlockSample2.Text = RelativeDate.Get(args.NewDate.Value).ToString();
-    }
+    private string GetPersian(DateTimeOffset? date) => date is { } value ? RelativeDate.Get(value).ToString("fa-IR") : string.Empty;
+
+    private string GetDefault(DateTimeOffset? date) => date is { } value ? RelativeDate.Get(value).ToString() : string.Empty;
 }

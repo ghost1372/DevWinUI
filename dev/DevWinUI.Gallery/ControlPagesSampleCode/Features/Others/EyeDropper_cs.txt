@@ -1,0 +1,6 @@
+var eyeDropper = new EyeDropper();
+eyeDropper.Start();
+eyeDropper.ColorPicked += (s, color) =>
+{
+    // Do something with the color
+};

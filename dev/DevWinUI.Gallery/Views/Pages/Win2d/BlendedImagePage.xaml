@@ -9,19 +9,17 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample DocPage="controls/blendedImage" HeaderText="BlendedImage">
-                <local:ControlExample.Xaml>
-                    <x:String>
-                        &lt;dev:BlendedImage PrimaryImageSource="ms-appx:///Assets/Image1.png" SecondaryImageSource="ms-appx:///Assets/Image2.png" /&gt;
-                    </x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="10">
+        <StackPanel Padding="24" Spacing="16">
+            <local:ControlExample Title="BlendedImage" Doc="controls/blendedImage">
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:BlendedImage PrimaryImageSource="ms-appx:///Assets/Image1.png" SecondaryImageSource="ms-appx:///Assets/Image2.png" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <Slider x:Name="SldBlur" Header="Blur Radius" Value="100" />
                         <Slider x:Name="SldSplit" Header="Split Value" Value="50" />
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <dev:BlendedImage x:Name="BlendedImageSample" Width="500" Height="400" BlurRadius="{x:Bind SldBlur.Value, Mode=OneWay}" SplitValue="{x:Bind SldSplit.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
