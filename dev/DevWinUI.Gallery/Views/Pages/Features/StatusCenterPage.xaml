@@ -10,12 +10,12 @@
 
     <ScrollViewer>
         <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
-            <local:ControlExample CSharpSource="Features/StatusCenterPage_cs.txt" DocPage="controls/statusCenter" HeaderText="Status center">
-                <local:ControlExample.Xaml>
+            <local:ControlExample Title="Status center" CSharp="Features/StatusCenterPage_cs.txt" Doc="controls/statusCenter">
+                <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:StatusCenterButton x:Name="StatusCenterButtonSample" /&gt;</x:String>
-                </local:ControlExample.Xaml>
-                <local:ControlExample.Pane>
-                    <StackPanel Spacing="8">
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.Options>
+                    <local:OptionPanel>
                         <ComboBox x:Name="CmbFlyoutPlacement" HorizontalAlignment="Stretch" Header="Flyout placement" SelectionChanged="CmbFlyoutPlacement_SelectionChanged">
                             <ComboBoxItem Content="BottomEdgeAlignedRight" Tag="BottomEdgeAlignedRight" />
                             <ComboBoxItem Content="BottomEdgeAlignedLeft" Tag="BottomEdgeAlignedLeft" />
@@ -65,8 +65,8 @@
                             <Button Grid.Row="6" HorizontalAlignment="Stretch" Click="GitSync_Click" Content="Git sync" />
                             <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Click="GitCheckout_Click" Content="Git checkout" />
                         </Grid>
-                    </StackPanel>
-                </local:ControlExample.Pane>
+                    </local:OptionPanel>
+                </local:ControlExample.Options>
                 <Grid>
                     <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Right" VerticalAlignment="Top" />
                 </Grid>
