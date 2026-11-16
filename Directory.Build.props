@@ -84,7 +84,7 @@
     <WinUISDKReferences Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">false</WinUISDKReferences>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' != '$(GalleryAppName)'">
     <TfmFolder>Single</TfmFolder>
     <TfmFolder Condition="$(TargetFrameworks.Contains(';'))">Multi</TfmFolder>
     <MSBuildProjectExtensionsPath>$(MSBuildProjectDirectory)\obj\$(TfmFolder)\</MSBuildProjectExtensionsPath>
@@ -96,9 +96,9 @@
   </ItemGroup>
   
   <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
-    <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" />
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" Visible="false" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false"/>
+    <None Include="README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
   <Target Name="GetVersion">
     <Message Text="$(Version)" Importance="High" />
