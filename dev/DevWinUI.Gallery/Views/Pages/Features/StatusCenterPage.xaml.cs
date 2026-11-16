@@ -7,7 +7,7 @@ public sealed partial class StatusCenterPage : Page
     public StatusCenterPage()
     {
         InitializeComponent();
-        CmbFlyoutPlacement.SelectedIndex = 0;
+        CmbFlyoutPlacement.SelectedIndex = 6;
         CmbSizeUnit.SelectedIndex = 0;
     }
 

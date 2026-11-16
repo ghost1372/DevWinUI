@@ -68,7 +68,7 @@
                     </local:OptionPanel>
                 </local:ControlExample.Options>
                 <Grid>
-                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>
