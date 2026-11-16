@@ -175,12 +175,4 @@ public sealed partial class SidebarView
             control.UpdateResizerAvailability();
         }
     }
-    public DataTemplate ItemTemplate
-    {
-        get { return (DataTemplate)GetValue(ItemTemplateProperty); }
-        set { SetValue(ItemTemplateProperty, value); }
-    }
-
-    public static readonly DependencyProperty ItemTemplateProperty =
-        DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(SidebarView), new PropertyMetadata(DefaultSidebarViewItemTemplate));
 }

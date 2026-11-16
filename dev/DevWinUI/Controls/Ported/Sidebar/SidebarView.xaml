@@ -9,6 +9,11 @@
              Loaded="SidebarView_Loaded"
              TabFocusNavigation="Local"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DefaultSidebarItemTemplate" x:DataType="local:FlatSidebarItem">
+            <local:SidebarItem Margin="{x:Bind SectionGapMargin, Mode=OneWay}" ContentOpacity="{x:Bind RowOpacity}" DataContext="{x:Bind}" Item="{x:Bind Item}" NestingLevel="{x:Bind Depth}" UseItemPresentation="True" />
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="PaneColumnDefinition" Width="240" MaxWidth="480" />
@@ -240,7 +245,7 @@
             <!--  Menu Items  -->
             <ItemsRepeaterScrollHost Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ScrollViewer x:Name="MenuItemHostScrollViewer" Padding="0,8,0,0" ContextRequested="MenuItemHostScrollViewer_ContextRequested" HorizontalScrollBarVisibility="Visible" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Auto" XYFocusKeyboardNavigation="Enabled">
-                    <ItemsRepeater x:Name="MenuItemsHost" Margin="4,0,4,16" AutomationProperties.AccessibilityView="Content" AutomationProperties.Name="Sidebar pane" ElementPrepared="MenuItemsHost_ElementPrepared" IsTabStop="True" ItemTemplate="{x:Bind ItemTemplate, Mode=OneWay}" ItemsSource="{x:Bind MenuItemsSource, Mode=OneWay}" XYFocusKeyboardNavigation="Enabled" />
+                    <ItemsRepeater x:Name="MenuItemsHost" Margin="4,0,4,16" AutomationProperties.AccessibilityView="Content" AutomationProperties.Name="Sidebar pane" ElementPrepared="MenuItemsHost_ElementPrepared" IsTabStop="True" ItemTemplate="{StaticResource DefaultSidebarItemTemplate}" ItemsSource="{x:Bind MenuItemsSource, Mode=OneWay}" XYFocusKeyboardNavigation="Enabled" />
                 </ScrollViewer>
             </ItemsRepeaterScrollHost>
 
