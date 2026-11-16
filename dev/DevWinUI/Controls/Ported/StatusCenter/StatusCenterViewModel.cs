@@ -7,7 +7,23 @@ namespace DevWinUI;
 
 internal sealed partial class StatusCenterViewModel : ObservableObject
 {
-	internal IntPtr WindowHandle { get; set; }
+	private IntPtr _windowHandle;
+
+	internal IntPtr WindowHandle
+	{
+		get => _windowHandle;
+		set
+		{
+			if (_windowHandle == value)
+				return;
+
+			StatusCenterTaskbarProgress.Unregister(this, _windowHandle);
+			_windowHandle = value;
+
+			if (value != IntPtr.Zero)
+				StatusCenterTaskbarProgress.Register(this, value);
+		}
+	}
 
 	public ObservableCollection<StatusCenterItem> StatusCenterItems { get; } = [];
 
@@ -196,22 +212,5 @@ internal sealed partial class StatusCenterViewModel : ObservableObject
 	}
 
 	private void UpdateTaskbarProgress()
-	{
-		try
-		{
-			if (HasAnyItemInProgress)
-			{
-				TaskbarHelper.SetProgressState(WindowHandle, TaskbarStates.Normal);
-				TaskbarHelper.SetProgressValue(WindowHandle, Math.Clamp(AverageOperationProgressValue, 0, 100), 100);
-			}
-			else
-			{
-				TaskbarHelper.SetProgressState(WindowHandle, TaskbarStates.NoProgress);
-			}
-		}
-		catch
-		{
-			// Ignore taskbar update failures to avoid interrupting status updates.
-		}
-	}
+		=> StatusCenterTaskbarProgress.Report(this, WindowHandle);
 }
