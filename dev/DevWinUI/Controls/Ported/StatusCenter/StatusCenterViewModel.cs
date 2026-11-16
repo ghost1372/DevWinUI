@@ -1,12 +1,15 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace DevWinUI;
 
-internal sealed partial class StatusCenterViewModel : ObservableObject
+internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 {
+	public event PropertyChangedEventHandler? PropertyChanged;
+
 	private IntPtr _windowHandle;
 
 	internal IntPtr WindowHandle
@@ -213,4 +216,17 @@ internal sealed partial class StatusCenterViewModel : ObservableObject
 
 	private void UpdateTaskbarProgress()
 		=> StatusCenterTaskbarProgress.Report(this, WindowHandle);
+
+	private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+		=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+	private bool SetProperty<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+	{
+		if (EqualityComparer<T>.Default.Equals(field, value))
+			return false;
+
+		field = value;
+		OnPropertyChanged(propertyName);
+		return true;
+	}
 }

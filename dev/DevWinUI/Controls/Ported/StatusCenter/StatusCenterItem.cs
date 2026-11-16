@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Markup;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace DevWinUI;
@@ -13,8 +13,10 @@ namespace DevWinUI;
 /// <br/>
 /// Handles all operation's functionality and UI.
 /// </summary>
-public sealed partial class StatusCenterItem : ObservableObject
+public sealed partial class StatusCenterItem : INotifyPropertyChanged
 {
+	public event PropertyChangedEventHandler? PropertyChanged;
+
 	private readonly StatusCenterViewModel _viewModel;
 
 	private int _ProgressPercentage;
@@ -290,9 +292,9 @@ public sealed partial class StatusCenterItem : ObservableObject
 		TotalSize = totalSize;
 		IconBackgroundCircleBorderOpacity = 1;
 		AnimatedIconState = "NormalOff";
-		PauseCommand = new AsyncRelayCommand(ExecutePauseCommandAsync);
-		CancelCommand = new RelayCommand(ExecuteCancelCommand);
-		RemoveCommand = new RelayCommand(ExecuteRemoveCommand);
+		PauseCommand = DelegateCommand.Create(ExecutePauseCommandAsync);
+		CancelCommand = DelegateCommand.Create(ExecuteCancelCommand);
+		RemoveCommand = DelegateCommand.Create(ExecuteRemoveCommand);
 
 		// Get the graph color
 		if (Application.Current.Resources["App.Theme.FillColorAttentionBrush"] is not SolidColorBrush accentBrush)
@@ -499,5 +501,18 @@ public sealed partial class StatusCenterItem : ObservableObject
 	private void ExecuteRemoveCommand()
 	{
 		_viewModel.RemoveItem(this);
+	}
+
+	private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+		=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+	private bool SetProperty<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+	{
+		if (EqualityComparer<T>.Default.Equals(field, value))
+			return false;
+
+		field = value;
+		OnPropertyChanged(propertyName);
+		return true;
 	}
 }

@@ -13,7 +13,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="$(Win2dVersion)" />
     <PackageReference Include="XAMLTools.MSBuild" Version="$(XAMLToolsVersion)">
       <PrivateAssets>all</PrivateAssets>
