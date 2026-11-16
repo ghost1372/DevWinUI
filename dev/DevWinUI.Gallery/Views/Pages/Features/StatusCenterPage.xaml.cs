@@ -29,12 +29,12 @@ public sealed partial class StatusCenterPage : Page
         string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
         string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
         var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
-        var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, 0, totalSize);
+        var banner = AddCard_Copy(StatusCenterButtonSample, ReturnResult.InProgress, source, destination, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Copy(StatusCenterButtonSample, result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
     private async void Move_Click(object sender, RoutedEventArgs e)
@@ -43,36 +43,36 @@ public sealed partial class StatusCenterPage : Page
         string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
         string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
         var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
-        var banner = AddCard_Move(ReturnResult.InProgress, source, destination, 0, totalSize);
+        var banner = AddCard_Move(StatusCenterButtonSample, ReturnResult.InProgress, source, destination, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Move(result, source, destination, banner.TotalItemsCount, totalSize);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Move(StatusCenterButtonSample, result, source, destination, banner.TotalItemsCount, totalSize);
     }
 
     private async void Delete_Click(object sender, RoutedEventArgs e)
     {
         var fileCount = Random.Shared.Next(4, 11);
         string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
-        var banner = AddCard_Delete(ReturnResult.InProgress, source, 0);
+        var banner = AddCard_Delete(StatusCenterButtonSample, ReturnResult.InProgress, source, 0);
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Delete(result, source, banner.TotalItemsCount);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Delete(StatusCenterButtonSample, result, source, banner.TotalItemsCount);
     }
 
     private async void Recycle_Click(object sender, RoutedEventArgs e)
     {
         var fileCount = Random.Shared.Next(6, 15);
         string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
-        var banner = AddCard_Recycle(ReturnResult.InProgress, source, 0);
+        var banner = AddCard_Recycle(StatusCenterButtonSample, ReturnResult.InProgress, source, 0);
 
         var result = await SimulateItemOperationAsync(banner.ProgressEventSource, source, banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Recycle(result, source, banner.TotalItemsCount);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Recycle(StatusCenterButtonSample, result, source, banner.TotalItemsCount);
     }
 
     private async void Compress_Click(object sender, RoutedEventArgs e)
@@ -81,12 +81,12 @@ public sealed partial class StatusCenterPage : Page
         string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
         string[] destination = [@"C:\Users\Public\Downloads\Archive.zip"];
         var totalSize = fileCount * Random.Shared.NextInt64(24, 81) * 1024 * 1024;
-        var banner = AddCard_Compress(source, destination, ReturnResult.InProgress, 0, totalSize);
+        var banner = AddCard_Compress(StatusCenterButtonSample, source, destination, ReturnResult.InProgress, 0, totalSize);
 
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Compress(source, destination, result, banner.TotalItemsCount, totalSize);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Compress(StatusCenterButtonSample, source, destination, result, banner.TotalItemsCount, totalSize);
     }
 
     private async void Extract_Click(object sender, RoutedEventArgs e)
@@ -94,35 +94,35 @@ public sealed partial class StatusCenterPage : Page
         string[] source = [@"C:\Users\Public\Documents\Archive.zip"];
         string[] destination = [@"C:\Users\Public\Downloads\Archive"];
         var totalSize = Random.Shared.NextInt64(128, 513) * 1024 * 1024;
-        var banner = AddCard_Decompress(source, destination, ReturnResult.InProgress, 0, totalSize);
+        var banner = AddCard_Decompress(StatusCenterButtonSample, source, destination, ReturnResult.InProgress, 0, totalSize);
 
         string[] entries = FilePaths(@"C:\Users\Public\Downloads\Archive", Random.Shared.Next(12, 37));
         var result = await SimulateFileOperationAsync(banner.ProgressEventSource, entries, totalSize, banner.CancellationToken, banner, simulateDiscovery: false);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_Decompress(source, destination, result, 1, totalSize);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_Decompress(StatusCenterButtonSample, source, destination, result, 1, totalSize);
     }
 
     private async void InstallFont_Click(object sender, RoutedEventArgs e)
     {
         const int fontCount = 2;
 
-        var banner = AddCard_InstallFont([@"C:\Users\Public\Documents"], ReturnResult.InProgress, fontCount);
+        var banner = AddCard_InstallFont(StatusCenterButtonSample, [@"C:\Users\Public\Documents"], ReturnResult.InProgress, fontCount);
 
         var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_InstallFont([@"C:\Users\Public\Documents"], result, fontCount);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_InstallFont(StatusCenterButtonSample, [@"C:\Users\Public\Documents"], result, fontCount);
     }
 
     private async void EmptyRecycleBin_Click(object sender, RoutedEventArgs e)
     {
-        var banner = AddCard_EmptyRecycleBin(ReturnResult.InProgress);
+        var banner = AddCard_EmptyRecycleBin(StatusCenterButtonSample, ReturnResult.InProgress);
 
         var result = await SimulateIndeterminateOperationAsync(banner.CancellationToken, banner);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_EmptyRecycleBin(result);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_EmptyRecycleBin(StatusCenterButtonSample, result);
     }
 
     private async void GitClone_Click(object sender, RoutedEventArgs e)
@@ -143,19 +143,19 @@ public sealed partial class StatusCenterPage : Page
     private async void GitCheckout_Click(object sender, RoutedEventArgs e)
         => await RunGitAsync(GitStatusCenterOperationKind.Checkout, "main");
 
-    private static async Task RunGitAsync(GitStatusCenterOperationKind operationKind, string? operationTarget)
+    private async Task RunGitAsync(GitStatusCenterOperationKind operationKind, string? operationTarget)
     {
         var itemsCount = operationKind is GitStatusCenterOperationKind.Clone ? 1024 : 0;
 
-        var banner = AddCard_GitOperation(operationKind, @"C:\Users\Public\Documents\DevWinUI", ReturnResult.InProgress, true, operationTarget, itemsCount);
+        var banner = AddCard_GitOperation(StatusCenterButtonSample, operationKind, @"C:\Users\Public\Documents\DevWinUI", ReturnResult.InProgress, true, operationTarget, itemsCount);
 
         var result = await SimulateGitOperationAsync(operationKind, banner.ProgressEventSource, itemsCount, banner.CancellationToken);
 
-        StatusCenterHelper.RemoveItem(banner);
-        AddCard_GitOperation(operationKind, @"C:\Users\Public\Documents\DevWinUI", result, false, operationTarget, itemsCount);
+        StatusCenterButtonSample.RemoveItem(banner);
+        AddCard_GitOperation(StatusCenterButtonSample, operationKind, @"C:\Users\Public\Documents\DevWinUI", result, false, operationTarget, itemsCount);
     }
 
-    private static StatusCenterItem AddCard_Copy(
+    private StatusCenterItem AddCard_Copy(StatusCenterButton statusCenterButton,
         ReturnResult returnStatus,
         string[] source,
         string[] destination,
@@ -189,7 +189,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             SubHeader(itemsCount),
@@ -207,7 +207,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_Move(
+    private StatusCenterItem AddCard_Move(StatusCenterButton statusCenterButton,
         ReturnResult returnStatus,
         string[] source,
         string[] destination,
@@ -241,7 +241,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             SubHeader(itemsCount),
@@ -259,7 +259,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_Delete(
+    private StatusCenterItem AddCard_Delete(StatusCenterButton statusCenterButton,
         ReturnResult returnStatus,
         string[]? source,
         long itemsCount = 0,
@@ -287,7 +287,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             SubHeader(itemsCount),
@@ -305,7 +305,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_Recycle(
+    private StatusCenterItem AddCard_Recycle(StatusCenterButton statusCenterButton,
         ReturnResult returnStatus,
         string[]? source,
         long itemsCount = 0,
@@ -329,7 +329,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             string.Empty,
@@ -347,7 +347,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_Compress(
+    private StatusCenterItem AddCard_Compress(StatusCenterButton statusCenterButton,
         string[] source,
         string[] destination,
         ReturnResult returnStatus,
@@ -381,7 +381,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             SubHeader(itemsCount),
@@ -399,7 +399,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_Decompress(
+    private StatusCenterItem AddCard_Decompress(StatusCenterButton statusCenterButton,
         string[] source,
         string[] destination,
         ReturnResult returnStatus,
@@ -432,7 +432,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(),
             SubHeader(),
@@ -450,7 +450,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_InstallFont(
+    private StatusCenterItem AddCard_InstallFont(StatusCenterButton statusCenterButton,
         string[] source,
         ReturnResult returnStatus,
         long itemsCount = 0,
@@ -481,7 +481,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(itemsCount),
             SubHeader(itemsCount),
@@ -498,7 +498,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_EmptyRecycleBin(
+    private StatusCenterItem AddCard_EmptyRecycleBin(StatusCenterButton statusCenterButton,
         ReturnResult returnStatus,
         long itemsCount = 0,
         long totalSize = 0)
@@ -522,7 +522,7 @@ public sealed partial class StatusCenterPage : Page
                 ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
                 : $"{progress.ProcessedItemsCount}/{ItemsText(progress.ItemsCount)} processed";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(),
             SubHeader(),
@@ -539,7 +539,7 @@ public sealed partial class StatusCenterPage : Page
         return card;
     }
 
-    private static StatusCenterItem AddCard_GitOperation(
+    private StatusCenterItem AddCard_GitOperation(StatusCenterButton statusCenterButton,
         GitStatusCenterOperationKind operationKind,
         string repositoryPath,
         ReturnResult returnStatus,
@@ -613,7 +613,7 @@ public sealed partial class StatusCenterPage : Page
         string Message(StatusCenterItemProgressModel progress)
             => $"{(int)(progress.Percentage ?? 0)}% complete";
 
-        var card = StatusCenterHelper.AddCard(
+        var card = statusCenterButton.AddCard(
             returnStatus,
             Header(),
             SubHeader(itemsCount),

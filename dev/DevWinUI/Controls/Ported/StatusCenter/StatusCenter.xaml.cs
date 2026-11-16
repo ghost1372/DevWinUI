@@ -11,7 +11,34 @@ public sealed partial class StatusCenter : Control
     private static readonly StatusCenterItemTemplates ItemTemplateResources = new();
     private static readonly DataTemplate StatusCenterItemDataTemplate = (DataTemplate)ItemTemplateResources["StatusCenterItemTemplate"];
 
-    private readonly StatusCenterViewModel _viewModel = StatusCenterViewModel.Instance;
+    private StatusCenterViewModel _viewModel = new();
+
+    internal StatusCenterViewModel ViewModel
+    {
+        get => _viewModel;
+        set
+        {
+            if (_viewModel == value)
+                return;
+
+            if (_isViewModelSubscribed)
+            {
+                _viewModel.PropertyChanged -= OnViewModelPropertyChanged;
+                _isViewModelSubscribed = false;
+            }
+
+            _viewModel = value;
+            StatusCenterItems = value.StatusCenterItems;
+            RefreshHasAnyItem();
+
+            if (IsLoaded)
+            {
+                _viewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
+                _isViewModelSubscribed = true;
+                _viewModel.PropertyChanged += OnViewModelPropertyChanged;
+            }
+        }
+    }
 
     private Button? _closeAllItemsButton;
     private bool _isViewModelSubscribed;
@@ -54,6 +81,27 @@ public sealed partial class StatusCenter : Control
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
+
+    public StatusCenterItem AddCard(
+        ReturnResult status,
+        string header,
+        string subHeader,
+        string message,
+        StatusCenterItemIconKind iconKind,
+        bool canProvideProgress = true,
+        long itemsCount = 0,
+        long totalSize = 0,
+        Func<StatusCenterItem, StatusCenterItemProgressModel, (string Header, string SubHeader, string Message)>? update = null)
+        => _viewModel.AddCard(status, header, subHeader, message, iconKind, canProvideProgress, itemsCount, totalSize, update);
+
+    public bool RemoveItem(StatusCenterItem item)
+        => _viewModel.RemoveItem(item);
+
+    public void RemoveAllCompletedItems()
+        => _viewModel.RemoveAllCompletedItems();
+
+    public static void UpdateCardStrings(StatusCenterItem card, StatusCenterItemProgressModel? progressValue = null)
+        => card.UpdateCardStrings(progressValue);
 
     protected override void OnApplyTemplate()
     {

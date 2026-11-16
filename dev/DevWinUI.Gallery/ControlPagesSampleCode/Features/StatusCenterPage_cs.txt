@@ -4,15 +4,15 @@
     string[] source = FilePaths(@"C:\Users\Public\Documents", fileCount);
     string[] destination = FilePaths(@"C:\Users\Public\Downloads", fileCount);
     var totalSize = fileCount * Random.Shared.NextInt64(24, 97) * 1024 * 1024;
-    var banner = AddCard_Copy(ReturnResult.InProgress, source, destination, 0, totalSize);
+    var banner = AddCard_Copy(StatusCenterButtonSample, ReturnResult.InProgress, source, destination, 0, totalSize);
 
     var result = await SimulateFileOperationAsync(banner.ProgressEventSource, source, totalSize, banner.CancellationToken, banner);
 
-    StatusCenterHelper.RemoveItem(banner);
-    AddCard_Copy(result, source, destination, banner.TotalItemsCount, totalSize);
+    StatusCenterButtonSample.RemoveItem(banner);
+    AddCard_Copy(StatusCenterButtonSample, result, source, destination, banner.TotalItemsCount, totalSize);
 }
 
-private static StatusCenterItem AddCard_Copy(
+private StatusCenterItem AddCard_Copy(StatusCenterButton statusCenterButton,
     ReturnResult returnStatus,
     string[] source,
     string[] destination,
@@ -46,7 +46,7 @@ private static StatusCenterItem AddCard_Copy(
             ? progress.EnumerationCompleted ? "Processing items..." : "Discovering items..."
             : $"{StatusCenterHelper.ToSizeString(progress.ProcessedSize)} of {StatusCenterHelper.ToSizeString(progress.TotalSize)} processed";
 
-    var card = StatusCenterHelper.AddCard(
+    var card = statusCenterButton.AddCard(
         returnStatus,
         Header(itemsCount),
         SubHeader(itemsCount),

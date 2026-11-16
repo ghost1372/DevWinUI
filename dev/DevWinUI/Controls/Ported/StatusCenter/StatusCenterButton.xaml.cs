@@ -12,7 +12,7 @@ public sealed partial class StatusCenterButton : UserControl
 
 	private bool _isOpen;
 
-	private StatusCenterViewModel ViewModel { get; } = StatusCenterViewModel.Instance;
+	private StatusCenterViewModel ViewModel { get; } = new();
 
 	public FlyoutPlacementMode FlyoutPlacement
 	{
@@ -27,9 +27,30 @@ public sealed partial class StatusCenterButton : UserControl
 		StatusCenterFlyout.Placement = FlyoutPlacement;
 		StatusCenterFlyout.Opened += (_, _) => _isOpen = true;
 		StatusCenterFlyout.Closed += (_, _) => _isOpen = false;
-
-		Loaded += (_, _) => ViewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
+        OngoingTasksControl?.ViewModel = ViewModel;
+        Loaded += (_, _) => ViewModel.WindowHandle = WindowHelper.GetWindowHandle(this);
 	}
+
+	public StatusCenterItem AddCard(
+		ReturnResult status,
+		string header,
+		string subHeader,
+		string message,
+		StatusCenterItemIconKind iconKind,
+		bool canProvideProgress = true,
+		long itemsCount = 0,
+		long totalSize = 0,
+		Func<StatusCenterItem, StatusCenterItemProgressModel, (string Header, string SubHeader, string Message)>? update = null)
+		=> ViewModel.AddCard(status, header, subHeader, message, iconKind, canProvideProgress, itemsCount, totalSize, update);
+
+	public bool RemoveItem(StatusCenterItem item)
+		=> ViewModel.RemoveItem(item);
+
+	public void RemoveAllCompletedItems()
+		=> ViewModel.RemoveAllCompletedItems();
+
+	public void UpdateCardStrings(StatusCenterItem card, StatusCenterItemProgressModel? progressValue = null)
+		=> card.UpdateCardStrings(progressValue);
 
 	public void Open()
 	{

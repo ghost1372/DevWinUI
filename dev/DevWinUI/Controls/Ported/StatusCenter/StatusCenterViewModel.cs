@@ -7,8 +7,6 @@ namespace DevWinUI;
 
 internal sealed partial class StatusCenterViewModel : ObservableObject
 {
-	public static StatusCenterViewModel Instance { get; } = new();
-
 	internal IntPtr WindowHandle { get; set; }
 
 	public ObservableCollection<StatusCenterItem> StatusCenterItems { get; } = [];
@@ -96,6 +94,37 @@ internal sealed partial class StatusCenterViewModel : ObservableObject
 		ShowProgressRing = HasAnyItemInProgress || InfoBadgeState == 3;
 	}
 
+	public StatusCenterItem AddCard(
+		ReturnResult status,
+		string header,
+		string subHeader,
+		string message,
+		StatusCenterItemIconKind iconKind,
+		bool canProvideProgress = true,
+		long itemsCount = 0,
+		long totalSize = 0,
+		Func<StatusCenterItem, StatusCenterItemProgressModel, (string Header, string SubHeader, string Message)>? update = null)
+	{
+		var item = AddItem(
+			header,
+			subHeader,
+			status,
+			canProvideProgress,
+			itemsCount,
+			totalSize,
+			status is ReturnResult.InProgress ? new CancellationTokenSource() : null);
+
+		if (status is ReturnResult.InProgress or ReturnResult.Cancelled)
+			item.ItemIconKind = iconKind;
+
+		item.Message = message;
+		item.Progress.ItemsCount = itemsCount;
+		item.Progress.TotalSize = totalSize;
+		item.UpdateStrings = update;
+
+		return item;
+	}
+
 	public StatusCenterItem AddItem(
 		string header,
 		string subHeader,
@@ -106,6 +135,7 @@ internal sealed partial class StatusCenterViewModel : ObservableObject
 		CancellationTokenSource? cancellationTokenSource = null)
 	{
 		var banner = new StatusCenterItem(
+			this,
 			header,
 			subHeader,
 			status,

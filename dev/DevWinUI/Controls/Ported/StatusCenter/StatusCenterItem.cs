@@ -15,7 +15,7 @@ namespace DevWinUI;
 /// </summary>
 public sealed partial class StatusCenterItem : ObservableObject
 {
-	private readonly StatusCenterViewModel _viewModel = StatusCenterViewModel.Instance;
+	private readonly StatusCenterViewModel _viewModel;
 
 	private int _ProgressPercentage;
 	public int ProgressPercentage
@@ -268,7 +268,8 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 	public ICommand RemoveCommand { get; }
 
-	public StatusCenterItem(
+	internal StatusCenterItem(
+		StatusCenterViewModel viewModel,
 		string header,
 		string subHeader,
 		ReturnResult status,
@@ -277,6 +278,7 @@ public sealed partial class StatusCenterItem : ObservableObject
 		long totalSize = 0,
 		CancellationTokenSource? operationCancellationToken = default)
 	{
+		_viewModel = viewModel;
 		_operationCancellationToken = operationCancellationToken;
 		Header = header;
 		SubHeader = subHeader;
@@ -387,7 +389,7 @@ public sealed partial class StatusCenterItem : ObservableObject
 		if (TotalSize < value.TotalSize)
 			TotalSize = value.TotalSize;
 
-		StatusCenterHelper.UpdateCardStrings(this, value);
+		UpdateCardStrings(value);
 		OnPropertyChanged(nameof(HeaderTooltip));
 
 		if (!IsSpeedAndProgressAvailable)
@@ -455,6 +457,18 @@ public sealed partial class StatusCenterItem : ObservableObject
 
 		// Update UI of the address bar
 		_viewModel.NotifyChanges();
+	}
+
+	public void UpdateCardStrings(StatusCenterItemProgressModel? progressValue = null)
+	{
+		if (UpdateStrings is not { } update || progressValue is null)
+			return;
+
+		var (header, subHeader, message) = update(this, progressValue);
+
+		Header = header;
+		SubHeader = subHeader;
+		Message = message;
 	}
 
 	public async Task ExecutePauseCommandAsync()
