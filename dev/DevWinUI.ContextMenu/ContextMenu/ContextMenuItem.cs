@@ -5,10 +5,10 @@ namespace DevWinUI;
 public partial class ContextMenuItem : ContextMenuBaseModel
 {
     [JsonIgnore]
-    public StorageFile File { get; set; }
+    public StorageFile? File { get; set; }
 
     [JsonIgnore]
-    public string FileName
+    public string? FileName
     {
         get => File?.Name;
         set
@@ -25,32 +25,32 @@ public partial class ContextMenuItem : ContextMenuBaseModel
         set => SetProperty(ref _enabled, value);
     }
 
-    private string _title;
+    private string? _title;
     private int _index;
-    private string _exe;
-    private string _param;
-    private string _icon;
-    private string _iconDark;
+    private string? _exe;
+    private string? _param;
+    private string? _icon;
+    private string? _iconDark;
 
     private bool _acceptDirectory;
     private int _acceptDirectoryFlag;
 
     private bool _acceptFile;
     private int _acceptFileFlag;
-    private string _acceptExts;
-    private string _acceptFileRegex;
+    private string? _acceptExts;
+    private string? _acceptFileRegex;
 
     private int _acceptMultipleFilesFlag;
     private int _acceptMultipleFilesRuleFlag;
-    private string _pathDelimiter;
-    private string _paramForMultipleFiles;
+    private string? _pathDelimiter;
+    private string? _paramForMultipleFiles;
 
     private int _showWindowFlag;
-    private string _workingDirectory;
+    private string? _workingDirectory;
     private int _runAsFlag;
 
     [JsonPropertyOrder(0)]
-    public string Title
+    public string? Title
     {
         get => _title;
         set => SetProperty(ref _title, value);
@@ -64,28 +64,28 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     }
 
     [JsonPropertyOrder(4)]
-    public string Exe
+    public string? Exe
     {
         get => _exe;
         set => SetProperty(ref _exe, value);
     }
 
     [JsonPropertyOrder(6)]
-    public string Param
+    public string? Param
     {
         get => _param;
         set => SetProperty(ref _param, value);
     }
 
     [JsonPropertyOrder(8)]
-    public string Icon
+    public string? Icon
     {
         get => _icon;
         set => SetProperty(ref _icon, value);
     }
 
     [JsonPropertyOrder(10)]
-    public string IconDark
+    public string? IconDark
     {
         get => _iconDark;
         set => SetProperty(ref _iconDark, value);
@@ -126,14 +126,14 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     }
 
     [JsonPropertyOrder(34)]
-    public string AcceptExts
+    public string? AcceptExts
     {
         get => _acceptExts;
         set => SetProperty(ref _acceptExts, string.IsNullOrEmpty(value) ? value : value.ToLower());
     }
 
     [JsonPropertyOrder(36)]
-    public string AcceptFileRegex
+    public string? AcceptFileRegex
     {
         get => _acceptFileRegex;
         set => SetProperty(ref _acceptFileRegex, value);
@@ -154,14 +154,14 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     }
 
     [JsonPropertyOrder(42)]
-    public string PathDelimiter
+    public string? PathDelimiter
     {
         get => _pathDelimiter;
         set => SetProperty(ref _pathDelimiter, value);
     }
 
     [JsonPropertyOrder(44)]
-    public string ParamForMultipleFiles
+    public string? ParamForMultipleFiles
     {
         get => _paramForMultipleFiles;
         set => SetProperty(ref _paramForMultipleFiles, value);
@@ -182,13 +182,13 @@ public partial class ContextMenuItem : ContextMenuBaseModel
     }
 
     [JsonPropertyOrder(52)]
-    public string WorkingDirectory
+    public string? WorkingDirectory
     {
         get => _workingDirectory;
         set => SetProperty(ref _workingDirectory, value);
     }
 
-    public void CopyMenuFrom(ContextMenuItem other)
+    public void CopyMenuFrom(ContextMenuItem? other)
     {
         if (other == null)
         {
