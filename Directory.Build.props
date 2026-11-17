@@ -1,15 +1,22 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
     <GalleryAppName>DevWinUI.Gallery</GalleryAppName>
     <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
-    <BaseNamespace>DevWinUI</BaseNamespace>
     <SourceGeneratorLibName>DevWinUI.SourceGenerator</SourceGeneratorLibName>
     <ShaderLibName>DevWinUI.Shader</ShaderLibName>
-    
-    <!-- Major Version -->
+    <BaseNamespace>DevWinUI</BaseNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsGallery>$([System.String]::Equals('$(MSBuildProjectName)', '$(GalleryAppName)'))</IsGallery>
+    <IsContextMenu>$([System.String]::Equals('$(MSBuildProjectName)', '$(ContextMenuLibName)'))</IsContextMenu>
+    <IsSourceGenerator>$([System.String]::Equals('$(MSBuildProjectName)', '$(SourceGeneratorLibName)'))</IsSourceGenerator>
+    <IsShader>$([System.String]::Equals('$(MSBuildProjectName)', '$(ShaderLibName)'))</IsShader>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <LibraryMajorVersion>11</LibraryMajorVersion>
 
-    <!-- Minor Version -->
     <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
     <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
@@ -17,89 +24,96 @@
     <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
     <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
 
-    <!-- Patch Version -->
     <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
     <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
     <DevWinUI_ContextMenu_PatchVersion>0</DevWinUI_ContextMenu_PatchVersion>
     <DevWinUI_SourceGenerator_PatchVersion>0</DevWinUI_SourceGenerator_PatchVersion>
     <DevWinUI_Shader_PatchVersion>0</DevWinUI_Shader_PatchVersion>
     <DevWinUI_Gallery_PatchVersion>0</DevWinUI_Gallery_PatchVersion>
-    
-    <!-- -Preview -->
+
     <IsPreviewBuild>false</IsPreviewBuild>
     <PreviewLabel>-Preview2</PreviewLabel>
     <PreviewBuildSuffix Condition="'$(IsPreviewBuild)' == 'true'">$(PreviewLabel)</PreviewBuildSuffix>
-    
-    <!-- The NuGet package version -->
+
     <XAMLToolsVersion>1.0.0-alpha.189</XAMLToolsVersion>
     <CsWin32Version>0.3.371</CsWin32Version>
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.3.6</WASDKWinUIVersion>
+  </PropertyGroup>
 
-    <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
-
-    <OutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
-    <PackageOutputPath Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">$(SolutionDir)Output\</PackageOutputPath>
-    
+  <PropertyGroup>
     <RootNamespace>$(BaseNamespace)</RootNamespace>
-    
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>Latest</LangVersion>
-    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
-    <CsWinRTAotWarningLevel Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">2</CsWinRTAotWarningLevel>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    
-    <!-- The NuGet package options -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <IsAotCompatible>true</IsAotCompatible>
+    <CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Authors>Mahdi Hosseini</Authors>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug' And '$(MSBuildProjectName)' != $(GalleryAppName)">True</GeneratePackageOnBuild>
     <Copyright>Copyright (c) 2021-$([System.DateTime]::Now.Year) - Mahdi Hosseini</Copyright>
     <PackageProjectUrl>https://github.com/ghost1372/DevWinUI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ghost1372/DevWinUI</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/ghost1372/DevWinUI/releases</PackageReleaseNotes>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="$(MSBuildProjectName) != $(SourceGeneratorLibName) ">
-    
-    <!-- TargetFramework version -->
-    <DebugTargetFramework>net10.0-windows10.0.19041.0</DebugTargetFramework>
-    <DebugShaderAndGalleryTargetFramework>net10.0-windows10.0.26100.0</DebugShaderAndGalleryTargetFramework>
-
-    <GalleryTargetFramework>$(DebugShaderAndGalleryTargetFramework)</GalleryTargetFramework>
-
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) != $(GalleryAppName) ">net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0;net10.0-windows10.0.19041.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) != $(GalleryAppName)">$(DebugTargetFramework)</TargetFrameworks>
-
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Release' And $(MSBuildProjectName) == $(ShaderLibName) ">net8.0-windows10.0.22621.0;net9.0-windows10.0.22621.0;net10.0-windows10.0.22621.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(Configuration)' == 'Debug' And $(MSBuildProjectName) == $(ShaderLibName)">$(DebugShaderAndGalleryTargetFramework)</TargetFrameworks>
-
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-    <UseWinUI Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">true</UseWinUI>
-    <WinUISDKReferences Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName)">false</WinUISDKReferences>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(MSBuildProjectName)' != '$(GalleryAppName)'">
-    <TfmFolder>Single</TfmFolder>
+  <PropertyGroup Condition="'$(IsGallery)' == 'false'">
+    <OutputPath>$(SolutionDir)Output\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
+    <PackageOutputPath>$(SolutionDir)Output\</PackageOutputPath>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug'">true</GeneratePackageOnBuild>
     <TfmFolder Condition="$(TargetFrameworks.Contains(';'))">Multi</TfmFolder>
+    <TfmFolder Condition="'$(TfmFolder)' == ''">Single</TfmFolder>
     <MSBuildProjectExtensionsPath>$(MSBuildProjectDirectory)\obj\$(TfmFolder)\</MSBuildProjectExtensionsPath>
   </PropertyGroup>
 
-  <!-- The NuGet versions of dependencies to build against. -->
-  <ItemGroup Condition="'$(MSBuildProjectName)' != $(ContextMenuLibName) And '$(MSBuildProjectName)' != $(SourceGeneratorLibName) And '$(MSBuildProjectName)' != $(GalleryAppName)">
+  <PropertyGroup Condition="'$(IsSourceGenerator)' == 'false'">
+    <WinSdkVersion>10.0.19041.0</WinSdkVersion>
+    <WinSdkVersion Condition="'$(IsShader)' == 'true'">10.0.22621.0</WinSdkVersion>
+    <DebugWinSdkVersion>$(WinSdkVersion)</DebugWinSdkVersion>
+    <DebugWinSdkVersion Condition="'$(IsShader)' == 'true'">10.0.26100.0</DebugWinSdkVersion>
+
+    <GalleryTargetFramework>net10.0-windows10.0.26100.0</GalleryTargetFramework>
+
+    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Release'">net8.0-windows$(WinSdkVersion);net9.0-windows$(WinSdkVersion);net10.0-windows$(WinSdkVersion)</TargetFrameworks>
+    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Debug'">net10.0-windows$(DebugWinSdkVersion)</TargetFrameworks>
+
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsSourceGenerator)' == 'false' And '$(IsContextMenu)' == 'false'">
+    <UseWinUI>true</UseWinUI>
+    <WinUISDKReferences>false</WinUISDKReferences>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsSourceGenerator)' == 'false' And '$(IsContextMenu)' == 'false'">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX" Version="1.7.261102100">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsSourceGenerator)' == 'false' And '$(IsContextMenu)' == 'false' And '$(IsGallery)' == 'false'">
     <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="$(WASDKWinUIVersion)" />
   </ItemGroup>
-  
-  <ItemGroup Condition="'$(MSBuildProjectName)' != $(GalleryAppName)">
+
+  <ItemGroup Condition="'$(IsGallery)' == 'false'">
     <None Include="..\..\tools\Assets\DevWinUI.png" Pack="true" PackagePath="Icon.png" Visible="false" />
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false"/>
-    <None Include="README.md" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+    <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
   <Target Name="GetVersion">
     <Message Text="$(Version)" Importance="High" />
   </Target>
