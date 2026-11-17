@@ -40,6 +40,7 @@
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.3.6</WASDKWinUIVersion>
+    <BuildToolsMSIXVersion>1.7.261102100</BuildToolsMSIXVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -98,7 +99,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsSourceGenerator)' == 'false' And '$(IsContextMenu)' == 'false'">
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX" Version="1.7.261102100">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX" Version="$(BuildToolsMSIXVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
