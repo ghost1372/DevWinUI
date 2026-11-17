@@ -53,7 +53,8 @@ https://learn.microsoft.com/en-us/windows/apps/windows-sdk/downloads
 
 
 ### 3. Installed the **XAML Styler** extension (Optional for Building, Required for Contribute):  
-  [XAML Styler for Visual Studio](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
+- Install Custom Modified VSIX from Tools folder [Custom XAML Styler for Visual Studio](https://github.com/ghost1372/DevWinUI/blob/main/tools/XamlStyler.Extension.Windows.VS2022.vsix)
+- Download XamlStyler config file from Tools folder and apply it in XamlStyler Settings [settings.xamlstyler](https://github.com/ghost1372/DevWinUI/blob/main/tools/settings.xamlstyler)
 
 Make sure your environment matches these requirements to avoid issues during compilation.
 
