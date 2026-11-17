@@ -14,11 +14,11 @@ namespace DevWinUI;
 public partial class ShaderBackground : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private CanvasAnimatedControl canvas;
+    private CanvasAnimatedControl? canvas;
 
-    public event EventHandler<CanvasAnimatedUpdateEventArgs> Update;
-    public event EventHandler<CanvasAnimatedDrawEventArgs> Draw;
-    public event EventHandler<CanvasCreateResourcesEventArgs> CreateResources;
+    public event EventHandler<CanvasAnimatedUpdateEventArgs>? Update;
+    public event EventHandler<CanvasAnimatedDrawEventArgs>? Draw;
+    public event EventHandler<CanvasCreateResourcesEventArgs>? CreateResources;
 
     private readonly EdgeFadeMaskRenderer _edgeFadeMaskRenderer = new();
     public ObservableCollection<RendererBase> Renderers { get; }
@@ -38,7 +38,7 @@ public partial class ShaderBackground : Control
             item.ApplyHostTheme(ActualTheme);
         }
     }
-    private void OnRenderersChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnRenderersChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.NewItems != null)
             foreach (RendererBase r in e.NewItems)
@@ -54,23 +54,21 @@ public partial class ShaderBackground : Control
 
         canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
 
-        canvas.CreateResources -= OnCreateResources;
-        canvas.CreateResources += OnCreateResources;
-
-        canvas.Draw -= OnDraw;
-        canvas.Draw += OnDraw;
-
-        canvas.Update -= OnUpdate;
-        canvas.Update += OnUpdate;
-
-        canvas.PointerMoved -= OnPointerMoved;
-        canvas.PointerMoved += OnPointerMoved;
-
-        canvas.PointerExited -= OnPointerExited;
-        canvas.PointerExited += OnPointerExited;
-
-        canvas.PointerPressed -= OnPointerPressed;
-        canvas.PointerPressed += OnPointerPressed;
+        if (canvas is not null)
+        {
+            canvas.CreateResources -= OnCreateResources;
+            canvas.CreateResources += OnCreateResources;
+            canvas.Draw -= OnDraw;
+            canvas.Draw += OnDraw;
+            canvas.Update -= OnUpdate;
+            canvas.Update += OnUpdate;
+            canvas.PointerMoved -= OnPointerMoved;
+            canvas.PointerMoved += OnPointerMoved;
+            canvas.PointerExited -= OnPointerExited;
+            canvas.PointerExited += OnPointerExited;
+            canvas.PointerPressed -= OnPointerPressed;
+            canvas.PointerPressed += OnPointerPressed;
+        }
 
         Unloaded -= OnUnloaded;
         Unloaded += OnUnloaded;
@@ -84,6 +82,8 @@ public partial class ShaderBackground : Control
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
+        if (canvas is null) return;
+
         var pt = e.GetCurrentPoint(canvas).Position;
         var position = new Vector2((float)pt.X, (float)pt.Y);
 
@@ -103,6 +103,8 @@ public partial class ShaderBackground : Control
 
     private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
     {
+        if (canvas is null) return;
+
         var pt = e.GetCurrentPoint(canvas).Position;
         var position = new Vector2((float)pt.X, (float)pt.Y);
 
@@ -114,18 +116,21 @@ public partial class ShaderBackground : Control
 
     private void OnUnloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        canvas.PointerMoved -= OnPointerMoved;
-        canvas.PointerExited -= OnPointerExited;
-        canvas.PointerPressed -= OnPointerPressed;
+        if (canvas is not null)
+        {
+            canvas.PointerMoved -= OnPointerMoved;
+            canvas.PointerExited -= OnPointerExited;
+            canvas.PointerPressed -= OnPointerPressed;
 
-        canvas.Draw -= OnDraw;
-        canvas.Update -= OnUpdate;
-        canvas.CreateResources -= OnCreateResources;
+            canvas.Draw -= OnDraw;
+            canvas.Update -= OnUpdate;
+            canvas.CreateResources -= OnCreateResources;
 
-        canvas.Paused = true;
+            canvas.Paused = true;
 
-        canvas.RemoveFromVisualTree();
-        canvas = null;
+            canvas.RemoveFromVisualTree();
+            canvas = null;
+        }
 
         foreach (var item in Renderers)
         {

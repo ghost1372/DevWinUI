@@ -7,6 +7,7 @@
       A high-performance WinUI shader library powered by ComputeSharp and Win2D, enabling GPU-accelerated animated procedural backgrounds using custom HLSL compute shaders with smooth real-time rendering.
     </Description>
     <PackageTags>winui winui3 win11 xaml shader shaders computesharp DevWinUI DevWinUI.Controls projectreunion winappsdk windowsappsdk wasdk reunion win2d composition</PackageTags>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <ItemGroup>

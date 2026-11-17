@@ -7,7 +7,7 @@ public partial class CoverBackgroundRenderer
     private int coverOverlayOpacity = 100;
     private int coverOverlayBlurAmount = 50;
     private int coverOverlaySpeed = 100;
-    private string coverImage = null;
+    private string? coverImage;
 
     public int Opacity
     {
@@ -62,10 +62,10 @@ public partial class CoverBackgroundRenderer
             ctl._needsCacheUpdate = true;
         }
     }
-   
-    public string CoverImage
+
+    public string? CoverImage
     {
-        get { return (string)GetValue(CoverImageProperty); }
+        get { return (string?)GetValue(CoverImageProperty); }
         set { SetValue(CoverImageProperty, value); }
     }
 
