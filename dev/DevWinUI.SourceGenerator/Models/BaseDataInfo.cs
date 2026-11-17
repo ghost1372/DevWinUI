@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 
 namespace DevWinUI;
+
 internal partial class BaseDataInfo
 {
-    public string UniqueId { get; set; }
+    public string UniqueId { get; set; } = string.Empty;
 }
 internal partial class DataGroup : BaseDataInfo
 {

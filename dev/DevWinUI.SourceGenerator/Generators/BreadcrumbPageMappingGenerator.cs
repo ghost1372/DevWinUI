@@ -44,7 +44,7 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
         });
     }
 
-    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
+    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string? @namespace, string? projectDir, string? rootNamespace)
     {
         if (compilation.GetTypeByMetadataName("DevWinUI.BreadcrumbPageConfig") is null)
             return;
@@ -110,7 +110,8 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
         }
 
         var sb = new StringBuilder();
-        var sourceFiles = fileNamesStringBuilder.ToString().Replace(projectDir, "");
+        var allSources = fileNamesStringBuilder.ToString();
+        var sourceFiles = string.IsNullOrEmpty(projectDir) ? allSources : allSources.Replace(projectDir, "");
 
         _ = sb.AppendFullHeader(sourceFiles);
         sb.AppendLine();
@@ -146,7 +147,7 @@ internal sealed class BreadcrumbPageMappingGenerator : IIncrementalGenerator
     private static bool? GetAttachedPropertyNullableBool(XElement element, string propertyName)
     {
         var val = GetAttachedProperty(element, propertyName);
-        if (string.IsNullOrEmpty(val)) return null;
+        if (val is null || val.Length == 0) return null;
 
         return val.Equals("True", StringComparison.OrdinalIgnoreCase);
     }

@@ -42,7 +42,7 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
         });
     }
 
-    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
+    private void Execute(SourceProductionContext ctx, ImmutableArray<AdditionalText> files, Compilation compilation, string? @namespace, string? projectDir, string? rootNamespace)
     {
         var parsedFiles = new List<(AdditionalText File, Root Root)>();
         foreach (var file in files
@@ -112,7 +112,7 @@ internal sealed partial class NavigationPageMapperGenerator : IIncrementalGenera
             }
 
             var sb = new StringBuilder();
-            var sourceFiles = file.Path.Replace(projectDir, "");
+            var sourceFiles = string.IsNullOrEmpty(projectDir) ? file.Path : file.Path.Replace(projectDir, "");
 
             _ = sb.AppendFullHeader($"//{sourceFiles}");
             sb.AppendLine();

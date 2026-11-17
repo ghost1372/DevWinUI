@@ -19,7 +19,7 @@ internal sealed class StringsPropertyGenerator : IIncrementalGenerator
     {
         var additionalFiles = context
             .AdditionalTextsProvider.Where(af => af.Path.Contains("en-US\\Resources"));
-        
+
         var compilationProvider = context.CompilationProvider;
 
         var buildProperties = context.AnalyzerConfigOptionsProvider
@@ -66,7 +66,7 @@ internal sealed class StringsPropertyGenerator : IIncrementalGenerator
     /// </summary>
     /// <param name="ctx">The source production context.</param>
     /// <param name="file">The additional text file with its hash.</param>
-    private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string @namespace, string projectDir, string rootNamespace)
+    private void Execute(SourceProductionContext ctx, AdditionalText file, Compilation compilation, string? @namespace, string? projectDir, string? rootNamespace)
     {
         var fileName = SystemIO.Path.GetFileNameWithoutExtension(file.Path);
 
@@ -82,7 +82,7 @@ internal sealed class StringsPropertyGenerator : IIncrementalGenerator
         }
 
         var sb = new StringBuilder(8000);
-        var sourceFiles = file.Path.Replace(projectDir, "");
+        var sourceFiles = string.IsNullOrEmpty(projectDir) ? file.Path : file.Path.Replace(projectDir, "");
         _ = sb.AppendFullHeader($"//{sourceFiles}");
         _ = sb.AppendLine();
         _ = sb.AppendLine($"namespace {projectNamespace};");
