@@ -35,7 +35,8 @@ public partial class NavigationServiceEx
         {
             _mainBreadcrumb.Visibility = Visibility.Collapsed;
             breadcrumbNavigator.SettingsPageType = _settingsPage;
-            _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
+            var frame = Frame ?? throw new InvalidOperationException("The navigation service must be initialized with a Frame before configuring the breadcrumb bar.");
+            _mainBreadcrumb.Initialize(frame, _navigationView, pageDictionary);
 
             _useBreadcrumbBar = true;
             _mainBreadcrumb.ChangeBreadcrumbVisibility(false);
@@ -83,7 +84,7 @@ public partial class NavigationServiceEx
         _autoManageBackButtonVisibility = autoManageBackButtonVisibility;
         if (_autoManageBackButtonVisibility)
         {
-            _titleBar.IsBackButtonVisible = _frame.CanGoBack;
+            _titleBar.IsBackButtonVisible = _frame?.CanGoBack ?? false;
         }
 
         _isTitlebarConfigured = true;
@@ -94,7 +95,10 @@ public partial class NavigationServiceEx
     }
     private void OnPaneToggleRequested(TitleBar sender, object args)
     {
-        _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+        if (_navigationView != null)
+        {
+            _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+        }
     }
     public NavigationServiceEx ConfigureTitleBar(TitleBar titleBar)
     {

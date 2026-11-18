@@ -14,7 +14,7 @@ public static partial class SecurityHelper
     public static string GetHash(string value, HashAlgorithm hashAlgorithm, EncodeType encodeType = EncodeType.Hex)
     {
         var bytes = Encoding.UTF8.GetBytes(value);
-        byte[] result = null;
+        byte[]? result = null;
         switch (hashAlgorithm)
         {
             case HashAlgorithm.MD5:
@@ -33,6 +33,11 @@ public static partial class SecurityHelper
                 result = SHA512.HashData(bytes);
                 break;
         }
+        if (result == null)
+        {
+            throw new ArgumentOutOfRangeException(nameof(hashAlgorithm));
+        }
+
         return encodeType == EncodeType.Hex
             ? Convert.ToHexString(result).ToUpper()
             : Convert.ToBase64String(result).ToUpper();
@@ -48,9 +53,9 @@ public static partial class SecurityHelper
     public static async Task<string> GetHashFromFileAsync(string filePath, HashAlgorithm hashAlgorithm, EncodeType encodeType = EncodeType.Hex)
     {
         var file = await FileHelper.GetStorageFile(filePath, PathType.Absolute);
-        var stream = await file.OpenStreamForReadAsync();
+        var stream = await (file ?? throw new FileNotFoundException("The file could not be found.", filePath)).OpenStreamForReadAsync();
 
-        byte[] result = null;
+        byte[]? result = null;
         switch (hashAlgorithm)
         {
             case HashAlgorithm.MD5:
@@ -69,6 +74,11 @@ public static partial class SecurityHelper
                 result = await SHA512.HashDataAsync(stream);
                 break;
         }
+        if (result == null)
+        {
+            throw new ArgumentOutOfRangeException(nameof(hashAlgorithm));
+        }
+
         return encodeType == EncodeType.Hex
             ? Convert.ToHexString(result).ToUpper()
             : Convert.ToBase64String(result).ToUpper();

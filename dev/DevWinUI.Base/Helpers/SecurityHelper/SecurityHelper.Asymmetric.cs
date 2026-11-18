@@ -5,10 +5,10 @@ using Windows.Storage.Streams;
 namespace DevWinUI;
 public static partial class SecurityHelper
 {
-    private static string EncryptStringAsymmetricBase(string plainText, string publicKey, IBuffer publicKeyBuffer, AsymmetricAlgorithm asymmetricAlgorithm, EncodeType encodeType)
+    private static string EncryptStringAsymmetricBase(string plainText, string? publicKey, IBuffer? publicKeyBuffer, AsymmetricAlgorithm asymmetricAlgorithm, EncodeType encodeType)
     {
         IBuffer keyBuffer = CryptographicBuffer.ConvertStringToBinary(plainText, BinaryStringEncoding.Utf8);
-        CryptographicKey key = null;
+        CryptographicKey? key = null;
 
         if (publicKeyBuffer == null)
         {
@@ -28,7 +28,7 @@ public static partial class SecurityHelper
                    ? CryptographicBuffer.EncodeToHexString(encryptedData)
                    : CryptographicBuffer.EncodeToBase64String(encryptedData);
     }
-    private static string DecryptStringAsymmetricBase(string encryptedString, string privateKey, IBuffer privateKeyBuffer, AsymmetricAlgorithm asymmetricAlgorithm, EncodeType encodeType)
+    private static string DecryptStringAsymmetricBase(string encryptedString, string? privateKey, IBuffer? privateKeyBuffer, AsymmetricAlgorithm asymmetricAlgorithm, EncodeType encodeType)
     {
         var keyBuffer = encodeType == EncodeType.Hex
             ? CryptographicBuffer.DecodeFromHexString(encryptedString)

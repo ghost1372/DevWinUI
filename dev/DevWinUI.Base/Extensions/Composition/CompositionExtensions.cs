@@ -5,7 +5,7 @@ public static partial class CompositionExtensions
     extension (Compositor compositor)
     {
         public ScalarKeyFrameAnimation CreateScalarKeyFrameAnimation(float? from, float to,
-        double duration, double delay, CompositionEasingFunction easing, AnimationIterationBehavior iterationBehavior)
+        double duration, double delay, CompositionEasingFunction? easing, AnimationIterationBehavior iterationBehavior)
         {
             var animation = compositor.CreateScalarKeyFrameAnimation();
 
@@ -19,7 +19,7 @@ public static partial class CompositionExtensions
         }
 
         public Vector2KeyFrameAnimation CreateVector2KeyFrameAnimation(Vector2? from, Vector2 to,
-            double duration, double delay, CompositionEasingFunction easing, AnimationIterationBehavior iterationBehavior)
+            double duration, double delay, CompositionEasingFunction? easing, AnimationIterationBehavior iterationBehavior)
         {
             var animation = compositor.CreateVector2KeyFrameAnimation();
 
@@ -33,7 +33,7 @@ public static partial class CompositionExtensions
         }
 
         public Vector3KeyFrameAnimation CreateVector3KeyFrameAnimation(Vector2? from, Vector2 to,
-            double duration, double delay, CompositionEasingFunction easing, AnimationIterationBehavior iterationBehavior)
+            double duration, double delay, CompositionEasingFunction? easing, AnimationIterationBehavior iterationBehavior)
         {
             var animation = compositor.CreateVector3KeyFrameAnimation();
 
@@ -47,7 +47,7 @@ public static partial class CompositionExtensions
         }
 
         public Vector3KeyFrameAnimation CreateVector3KeyFrameAnimation(Vector3? from, Vector3 to,
-            double duration, double delay, CompositionEasingFunction easing, AnimationIterationBehavior iterationBehavior)
+            double duration, double delay, CompositionEasingFunction? easing, AnimationIterationBehavior iterationBehavior)
         {
             var animation = compositor.CreateVector3KeyFrameAnimation();
 
@@ -185,8 +185,8 @@ public static partial class CompositionExtensions
             return compositor.CreateCubicBezierEasingFunction(new Vector2(0.755f, 0.050f), new Vector2(0.855f, 0.060f));
         }
 
-        internal KeyFrameAnimation CreateAnimationByType(CompositionVisualPropertyType type,
-        double duration = 800, double delay = 0, CompositionEasingFunction easing = null)
+        internal KeyFrameAnimation? CreateAnimationByType(CompositionVisualPropertyType type,
+        double duration = 800, double delay = 0, CompositionEasingFunction? easing = null)
         {
             KeyFrameAnimation animation;
 

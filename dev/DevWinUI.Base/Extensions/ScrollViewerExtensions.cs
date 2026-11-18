@@ -59,7 +59,7 @@ public static partial class ScrollViewerExtensions
         {
             var taskSource = new TaskCompletionSource<bool>();
 
-            void OnViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+            void OnViewChanged(object? sender, ScrollViewerViewChangedEventArgs e)
             {
                 if (e.IsIntermediate) return;
 

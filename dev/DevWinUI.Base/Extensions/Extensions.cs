@@ -7,9 +7,9 @@ public static partial class Extensions
     public static void StartShadowBlurRadiusAnimation(this DropShadow shadow, Color? shadowColor = null,
         Vector3? shadowOffset = null, float? fromShadowOpacity = null, float toShadowOpacity = 1.0f,
         float? fromBlurRadius = null, float toBlurRadius = 16.0f, int duration = 800, int delay = 0,
-        UIElement maskingElement = null, Action completed = null)
+        UIElement? maskingElement = null, Action? completed = null)
     {
-        CompositionScopedBatch batch = null;
+        CompositionScopedBatch? batch = null;
 
         var compositor = shadow.Compositor;
 
@@ -70,7 +70,7 @@ public static partial class Extensions
         batch?.End();
     }
     public static int Create(this Random random, int min, int max,
-        Func<int, bool> regenerateIfMet = null, int regenrationMaxCount = 5)
+        Func<int, bool>? regenerateIfMet = null, int regenrationMaxCount = 5)
     {
         var value = random.Next(min, max);
 

@@ -59,16 +59,16 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         }
     }
 
-    private NavigationView MainNavigation { get; set; }
-    private Frame MainFrame { get; set; }
-    private Dictionary<Type, BreadcrumbPageConfig> PageDictionary;
+    private NavigationView? MainNavigation { get; set; }
+    private Frame MainFrame { get; set; } = null!;
+    private Dictionary<Type, BreadcrumbPageConfig> PageDictionary = new();
     private bool? _lastVisible;
     private bool _settingsDelayApplied = false;
     private bool _applySettingsDelayNextNavigation = false;
 
-    public Type SettingsPageType
+    public Type? SettingsPageType
     {
-        get => (Type)GetValue(SettingsPageTypeProperty);
+        get => (Type?)GetValue(SettingsPageTypeProperty);
         set => SetValue(SettingsPageTypeProperty, value);
     }
     public static readonly DependencyProperty SettingsPageTypeProperty =
@@ -102,7 +102,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
     {
         Initialize(frame, null, pageDictionary);
     }
-    public void Initialize(Frame frame, NavigationView navigationView, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
+    public void Initialize(Frame frame, NavigationView? navigationView, Dictionary<Type, BreadcrumbPageConfig> pageDictionary)
     {
         this.MainNavigation = navigationView;
         this.MainFrame = frame;
@@ -122,7 +122,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
     {
         // Fix BreadCrumbs when navigating back
         var currentItem = BreadCrumbs?.FirstOrDefault(x => x.Page == e.SourcePageType);
-        if (currentItem != null)
+        if (currentItem != null && BreadCrumbs != null)
         {
             int currentIndex = BreadCrumbs.IndexOf(currentItem);
 
@@ -151,7 +151,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         AddNewItem(targetPageType, null);
     }
 
-    public void AddNewItem(Type targetPageType, object parameter)
+    public void AddNewItem(Type targetPageType, object? parameter)
     {
         string pageTitle = string.Empty;
         string pageTitleAttached = string.Empty;
@@ -181,7 +181,7 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
             }
             else if (parameter is BaseDataInfo dataInfo)
             {
-                pageTitle = dataInfo.Title;
+                pageTitle = dataInfo.Title ?? string.Empty;
             }
         }
 
@@ -242,10 +242,11 @@ public sealed partial class BreadcrumbNavigator : BreadcrumbBar
         {
         }
 
-        string pageTitle = (args.Item as BreadcrumbStep).Label;
+        var step = args.Item as BreadcrumbStep ?? throw new InvalidOperationException("The clicked item is not a BreadcrumbStep.");
+        string pageTitle = step.Label;
         bool isHeaderVisibile = false;
-        object parameter = (args.Item as BreadcrumbStep).Parameter;
-        Type targetPageType = (args.Item as BreadcrumbStep).Page;
+        object? parameter = step.Parameter;
+        Type targetPageType = step.Page;
 
         if (targetPageType != null && PageDictionary.TryGetValue(targetPageType, out var item) && item != null)
         {

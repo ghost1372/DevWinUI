@@ -6,19 +6,19 @@ public interface IJsonNavigationService
 {
     void UnregisterEvents();
 
-    event NavigatedEventHandler FrameNavigated;
+    event NavigatedEventHandler? FrameNavigated;
     IList<object>? MenuItems { get; }
     object? SettingsItem { get; }
     bool CanGoBack { get; }
     Frame? Frame { get; set; }
-    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
-    bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
+    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null);
+    bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null);
     bool GoBack();
     Task GetMenuItemsAsync(string jsonFilePath, PathType pathType = PathType.Relative);
     Task WhenReadyAsync();
     void Reset();
     void ReInitialize();
-    void EnsureNavigationSelection(string id);
+    void EnsureNavigationSelection(string? id);
     JsonNavigationService Initialize(NavigationView navigationView, Frame frame, Dictionary<string, Type> pages);
     JsonNavigationService ConfigureJsonFile();
     JsonNavigationService ConfigureJsonFile(bool useTaskForDeserialization);

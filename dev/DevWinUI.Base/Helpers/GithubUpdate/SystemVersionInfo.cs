@@ -23,7 +23,7 @@ public readonly struct SystemVersionInfo
         return Major == other.Major && Minor == other.Minor && Build == other.Build && Revision == other.Revision;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return obj is SystemVersionInfo other && Equals(other);
     }

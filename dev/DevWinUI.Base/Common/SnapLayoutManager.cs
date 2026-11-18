@@ -4,9 +4,9 @@ public partial class SnapLayoutManager
 {
     private const int HTMAXBUTTON = 9;
 
-    private Window window;
-    private FrameworkElement snapElement;
-    private WindowMessageMonitor monitor;
+    private Window? window;
+    private FrameworkElement? snapElement;
+    private WindowMessageMonitor? monitor;
     private IntPtr hwnd;
     public bool IsEnabled { get; set; } = true;
 
@@ -93,7 +93,7 @@ public partial class SnapLayoutManager
         if (element == null)
             return Rect.Empty;
 
-        var root = window.Content as UIElement;
+        var root = window?.Content as UIElement;
         if (root == null)
             return Rect.Empty;
 

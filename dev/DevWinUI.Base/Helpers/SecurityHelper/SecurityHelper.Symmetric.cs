@@ -15,7 +15,7 @@ public static partial class SecurityHelper
         aes.GenerateIV();
         return (Key: aes.Key, IV: aes.IV);
     }
-    private static byte[] EncryptStringAesBase(string plainText, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
+    private static byte[] EncryptStringAesBase(string plainText, string? aes_Key, string? aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
         byte[] encrypted;
 
@@ -153,9 +153,9 @@ public static partial class SecurityHelper
         }
     }
 
-    private static string DecryptStringAesBase(byte[] cipherText, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
+    private static string DecryptStringAesBase(byte[] cipherText, string? aes_Key, string? aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
-        string plaintext = null;
+        string? plaintext = null;
         using var aesAlg = GetAESSymmetricAlgorithm(aes_Key, aes_IV, out aes_KeyOut, out aes_IVOut, encodeType);
 
         ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
@@ -231,7 +231,7 @@ public static partial class SecurityHelper
         return DecryptStringAesBase(cipherText, aes_Key, aes_IV, out _, out _, encodeType);
     }
 
-    private static System.Security.Cryptography.SymmetricAlgorithm GetAESSymmetricAlgorithm(string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
+    private static System.Security.Cryptography.SymmetricAlgorithm GetAESSymmetricAlgorithm(string? aes_Key, string? aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
         System.Security.Cryptography.SymmetricAlgorithm symmetricAlgorithm;
         symmetricAlgorithm = Aes.Create();
@@ -273,7 +273,7 @@ public static partial class SecurityHelper
         return symmetricAlgorithm;
     }
 
-    private static void CryptoFileAESBase(CryptoMode cryptoMode, string inputFilePath, string outputFilePath, string aes_Key, string aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
+    private static void CryptoFileAESBase(CryptoMode cryptoMode, string inputFilePath, string outputFilePath, string? aes_Key, string? aes_IV, out string aes_KeyOut, out string aes_IVOut, EncodeType encodeType)
     {
         using FileStream inputStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read);
         using FileStream outputStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write);
@@ -287,7 +287,7 @@ public static partial class SecurityHelper
 
         using var symmetricAlgorithm = GetAESSymmetricAlgorithm(aes_Key, aes_IV, out aes_KeyOut, out aes_IVOut, encodeType);
 
-        ICryptoTransform cryptoTransform = null;
+        ICryptoTransform? cryptoTransform = null;
         switch (cryptoMode)
         {
             case CryptoMode.Encrypt:
@@ -298,7 +298,7 @@ public static partial class SecurityHelper
                 break;
         }
 
-        using CryptoStream cryptoStream = new CryptoStream(outputStream, cryptoTransform, CryptoStreamMode.Write);
+        using CryptoStream cryptoStream = new CryptoStream(outputStream, cryptoTransform ?? throw new ArgumentOutOfRangeException(nameof(cryptoMode)), CryptoStreamMode.Write);
         while (rdlen < totlen)
         {
             len = inputStream.Read(bin, 0, 100);

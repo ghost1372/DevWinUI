@@ -13,7 +13,7 @@ public sealed partial class GlobalMouseHook : IDisposable
     public HookLevel Level { get; set; } = HookLevel.Global;
     public IntPtr TargetWindowHandle { get; set; } = IntPtr.Zero;
     private uint _hookThreadId;
-    private HookProc _HookProcedure;
+    private HookProc? _HookProcedure;
     public GlobalMouseHook() => Init(IntPtr.Zero, HookLevel.Global);
 
     public GlobalMouseHook(IntPtr hwnd) => Init(hwnd, HookLevel.Application);

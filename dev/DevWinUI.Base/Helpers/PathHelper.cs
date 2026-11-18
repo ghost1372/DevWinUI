@@ -23,7 +23,7 @@ public partial class PathHelper
     {
         var file = await FileHelper.GetStorageFile(filePath, pathType);
 
-        return file.Path;
+        return file?.Path ?? string.Empty;
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public partial class PathHelper
     {
         if (input == null) throw new ArgumentNullException(nameof(input));
 
-        Uri uri = input as Uri ?? new Uri(input.ToString(), UriKind.RelativeOrAbsolute);
+        Uri uri = input as Uri ?? new Uri(input.ToString() ?? string.Empty, UriKind.RelativeOrAbsolute);
 
         // Case 1: Absolute file path (C:\...) or remote URLs (http/https)
         if (uri.IsAbsoluteUri)
@@ -101,7 +101,7 @@ public partial class PathHelper
     /// <returns></returns>
     public static string GetFullPathToExe()
     {
-        return Path.Combine(AppContext.BaseDirectory, ProcessInfoHelper.GetProcess().MainModule.ModuleName);
+        return Path.Combine(AppContext.BaseDirectory, ProcessInfoHelper.GetProcess().MainModule!.ModuleName);
     }
 
     /// <summary>

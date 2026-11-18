@@ -4,7 +4,7 @@ public static partial class UIElementExtensions
 {
     extension(UIElement element)
     {
-        public Storyboard FadeIn(double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? FadeIn(double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element == null)
             {
@@ -16,7 +16,7 @@ public static partial class UIElementExtensions
             }
             return null;
         }
-        public async Task FadeInAsync(double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task FadeInAsync(double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.Opacity < 1.0)
             {
@@ -24,7 +24,7 @@ public static partial class UIElementExtensions
             }
         }
 
-        public Storyboard FadeOut(double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? FadeOut(double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element == null)
             {
@@ -37,7 +37,7 @@ public static partial class UIElementExtensions
             return null;
         }
 
-        public async Task FadeOutAsync(double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task FadeOutAsync(double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.Opacity > 0.0)
             {

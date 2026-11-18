@@ -4,9 +4,9 @@ namespace DevWinUI;
 public sealed partial class AcrylicSystemBackdrop : SystemBackdrop
 {
     public readonly DesktopAcrylicKind Kind;
-    internal DesktopAcrylicController acrylicController;
+    internal DesktopAcrylicController? acrylicController;
 
-    public SystemBackdropConfiguration BackdropConfiguration { get; private set; }
+    public SystemBackdropConfiguration? BackdropConfiguration { get; private set; }
 
     private Color? _color;
     public Color? TintColor

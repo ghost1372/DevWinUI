@@ -4,13 +4,13 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 namespace DevWinUI;
 public partial class ModernSystemMenu : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     private const int SC_MOUSEMENU = 0xF090;
     private const int SC_KEYMENU = 0xF100;
 
     private Microsoft.UI.Xaml.Window window;
-    private MenuFlyout titleBarMenuFlyout;
+    private MenuFlyout titleBarMenuFlyout = null!;
     private readonly ContentCoordinateConverter contentCoordinateConverter;
     private readonly OverlappedPresenter overlappedPresenter;
     private WindowMessageMonitor? mainMonitor;
@@ -65,7 +65,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         CloseCommand = DelegateCommand.Create(Close, CanExecuteClose);
 
         contentCoordinateConverter = ContentCoordinateConverter.CreateForWindowId(this.window.AppWindow.Id);
-        overlappedPresenter = this.window.AppWindow.Presenter as OverlappedPresenter;
+        overlappedPresenter = this.window.AppWindow.Presenter as OverlappedPresenter ?? throw new InvalidOperationException("The window must use an OverlappedPresenter.");
 
         if (titleBarMenuFlyout == null)
         {
@@ -89,7 +89,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
             Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft
         };
 
-        Style menuFlyoutItemStyle = null;
+        Style? menuFlyoutItemStyle = null;
         if (Application.Current.Resources.TryGetValue("ModernSystemMenuFlyoutItemStyle", out var styleObj) && styleObj is Style style)
         {
             menuFlyoutItemStyle = style;
@@ -157,13 +157,13 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         titleBarMenuFlyout.Items.Add(closeItem);
     }
 
-    private void OnSizeClicked(MenuFlyoutItem menuItem)
+    private void OnSizeClicked(MenuFlyoutItem? menuItem)
     {
         HideMenuFlyout();
         PInvoke.SendMessage(new HWND((IntPtr)window.AppWindow.Id.Value), (uint)NativeValues.WindowMessage.WM_SYSCOMMAND, 0xF000, 0);
     }
 
-    private void OnMoveClicked(MenuFlyoutItem menuItem)
+    private void OnMoveClicked(MenuFlyoutItem? menuItem)
     {
         HideMenuFlyout();
         PInvoke.SendMessage(new HWND((IntPtr)window.AppWindow.Id.Value), (uint)NativeValues.WindowMessage.WM_SYSCOMMAND, 0xF010, 0);
@@ -212,7 +212,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         }
     }
 
-    private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
+    private void OnWindowMessageReceived(object? sender, WindowMessageEventArgs e)
     {
         if (IsModernSystemMenuEnabled)
         {
@@ -257,7 +257,7 @@ public partial class ModernSystemMenu : INotifyPropertyChanged
         }
     }
 
-    private void OnWindowMessageReceivedNonClient(object sender, WindowMessageEventArgs e)
+    private void OnWindowMessageReceivedNonClient(object? sender, WindowMessageEventArgs e)
     {
         if (IsModernSystemMenuEnabled)
         {

@@ -9,7 +9,7 @@ public interface ICycleCollection : IList
     int ConvertToItemIndex(int index);
 
     int ConvertFromItemIndex(int index);
-    object GetItem(int index);
+    object? GetItem(int index);
 
     bool IsCycleItem(int index);
     bool IsCycleItem(object item);

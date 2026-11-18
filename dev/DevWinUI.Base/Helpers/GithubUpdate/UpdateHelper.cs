@@ -15,7 +15,7 @@ public static partial class UpdateHelper
     /// <param name="currentVersion">Represents the current version of the software to compare against available releases.</param>
     /// <returns>Returns a tuple containing information about the latest stable and pre-release updates.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the username or repository is null or empty.</exception>
-    public static async Task<(UpdateInfo StableRelease, UpdateInfo PreRelease)> CheckUpdateAsync(string username, string repository, Version currentVersion = null)
+    public static async Task<(UpdateInfo StableRelease, UpdateInfo PreRelease)> CheckUpdateAsync(string username, string repository, Version? currentVersion = null)
     {
         if (string.IsNullOrEmpty(username))
             throw new ArgumentNullException(nameof(username));
@@ -41,7 +41,7 @@ public static partial class UpdateHelper
         var responseBody = await response.Content.ReadAsStringAsync();
         var releases = JsonSerializer.Deserialize<List<UpdateInfo>>(responseBody, UpdateHelperJsonContext.Default.ListUpdateInfo);
 
-        if (releases == null || releases?.Count == 0)
+        if (releases == null || releases.Count == 0)
         {
             return (notFoundUpdate, notFoundUpdate);
         }

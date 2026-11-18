@@ -33,9 +33,14 @@ public partial class NavigationServiceEx : INavigationServiceEx
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
+        if (_navigationView == null)
+        {
+            return;
+        }
+
         _navigationView.IsBackEnabled = CanGoBack;
 
-        if (_isTitlebarConfigured && _autoManageBackButtonVisibility)
+        if (_isTitlebarConfigured && _autoManageBackButtonVisibility && _titleBar != null && _frame != null)
         {
             _titleBar.IsBackButtonVisible = _frame.CanGoBack;
         }
@@ -78,7 +83,7 @@ public partial class NavigationServiceEx : INavigationServiceEx
             var item = SettingsItem as NavigationViewItem;
             if (item != null && item.Content != null)
             {
-                pageTitle = item.Content.ToString();
+                pageTitle = item.Content.ToString() ?? string.Empty;
             }
             // Inform breadcrumb navigator to prepare the special entrance behavior for settings
             _mainBreadcrumb?.PrepareForSettingsEntrance();
@@ -106,6 +111,11 @@ public partial class NavigationServiceEx : INavigationServiceEx
 
     public void EnsureNavigationSelection(Type type)
     {
+        if (_navigationView == null)
+        {
+            return;
+        }
+
         foreach (object rawGroup in this.AllMenuItems)
         {
             if (rawGroup is NavigationViewItem group)
@@ -135,6 +145,11 @@ public partial class NavigationServiceEx : INavigationServiceEx
 
     private bool EnsureNavigationSelectionBase(object rawItem, Type type, NavigationViewItem parentGroup)
     {
+        if (_navigationView == null)
+        {
+            return false;
+        }
+
         if (rawItem is NavigationViewItem item)
         {
             if (item.GetValue(NavigateToProperty).Equals(type))

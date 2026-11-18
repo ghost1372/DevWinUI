@@ -32,7 +32,10 @@ public static partial class FlipViewAttach
 
     private static void OnIsLoopingChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
     {
-        var flipView = dependencyObject as FlipView;
+        if (dependencyObject is not FlipView flipView)
+        {
+            return;
+        }
 
         if ((bool)args.NewValue)
         {
@@ -81,7 +84,7 @@ public static partial class FlipViewAttach
 
         if (collectionChanged != null)
         {
-            collectionChanged.CollectionChanged += delegate (object sender, NotifyCollectionChangedEventArgs e)
+            collectionChanged.CollectionChanged += delegate (object? sender, NotifyCollectionChangedEventArgs e)
             {
                 UpdateList(flipView, sender as IEnumerable);
             };
@@ -116,13 +119,23 @@ public static partial class FlipViewAttach
     /// </summary>
     /// <param name="flipView">the FlipView</param>
     /// <param name="enumerable">the enumerable collection</param>
-    private static void UpdateList(FlipView flipView, IEnumerable enumerable)
+    private static void UpdateList(FlipView flipView, IEnumerable? enumerable)
     {
+        if (enumerable == null)
+        {
+            return;
+        }
+
         var selection = flipView.SelectedItem;
 
         var enumerableObjects = enumerable.OfType<object>();
 
         var flipViewList = flipView.ItemsSource as FlipViewList;
+
+        if (flipViewList == null)
+        {
+            return;
+        }
 
         flipViewList.Clear();
         flipViewList.Add(enumerableObjects.Last());
@@ -139,7 +152,10 @@ public static partial class FlipViewAttach
     /// <param name="e">the selection changed event arguments</param>
     private static void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var flipView = sender as FlipView;
+        if (sender is not FlipView flipView)
+        {
+            return;
+        }
 
         var list = flipView.ItemsSource as FlipViewList;
 

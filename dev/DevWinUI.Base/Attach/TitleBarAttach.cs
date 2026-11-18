@@ -19,6 +19,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             ((OverlappedPresenter)appWindow.Presenter).IsMaximizable = (bool)e.NewValue;
         }
@@ -43,6 +47,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             ((OverlappedPresenter)appWindow.Presenter).IsMinimizable = (bool)e.NewValue;
         }
@@ -67,6 +75,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             ((OverlappedPresenter)appWindow.Presenter).IsAlwaysOnTop = (bool)e.NewValue;
         }
@@ -91,6 +103,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             ((OverlappedPresenter)appWindow.Presenter).IsResizable = (bool)e.NewValue;
         }
@@ -114,6 +130,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             var value = (bool)e.NewValue;
 
@@ -148,6 +168,10 @@ public partial class TitleBarAttach
         if (d is UIElement appTitleBar && appTitleBar != null)
         {
             var appWindow = WindowHelper.GetAppWindow(appTitleBar);
+            if (appWindow == null)
+            {
+                return;
+            }
 
             appWindow.TitleBar.PreferredHeightOption = (TitleBarHeightOption)e.NewValue;
         }

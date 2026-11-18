@@ -14,7 +14,7 @@ public sealed partial class GlobalKeyboardHook : IDisposable
     private uint _threadId;
     private bool _running;
     private IntPtr _hookId = IntPtr.Zero;
-    private HookProc _HookProcedure;
+    private HookProc? _HookProcedure;
     public void Start()
     {
         if (_running)

@@ -4,12 +4,12 @@ public interface INavigationServiceEx
 {
     void UnregisterEvents();
 
-    event NavigatedEventHandler FrameNavigated;
+    event NavigatedEventHandler? FrameNavigated;
     IList<object>? MenuItems { get; }
     object? SettingsItem { get; }
     bool CanGoBack { get; }
     Frame? Frame { get; set; }
-    bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null);
+    bool NavigateTo(Type? pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null);
     bool GoBack();
     void Reset();
     void EnsureNavigationSelection(Type type);

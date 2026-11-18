@@ -6,9 +6,9 @@ using WinRT;
 namespace DevWinUI;
 internal partial class PopupBackdropManager
 {
-    private MicaController _micaController;
-    private DesktopAcrylicController _acrylicController;
-    private SystemBackdropConfiguration _backdropConfig;
+    private MicaController? _micaController;
+    private DesktopAcrylicController? _acrylicController;
+    private SystemBackdropConfiguration? _backdropConfig;
 
     public bool TrySetSystemBackdrop(Popup targetPopup, BackdropType backdropType)
     {

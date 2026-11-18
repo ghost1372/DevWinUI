@@ -83,18 +83,18 @@ public static partial class AutoSuggestBoxHelper
         HandleITitleBarAutoSuggestBoxEvents(sender, args, null, frame, true);
     }
 
-    private static void HandleITitleBarAutoSuggestBoxEvents(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs textChangedArgs, AutoSuggestBoxQuerySubmittedEventArgs querySubmittedArgs, Frame frame, bool isTextChangedEvent)
+    private static void HandleITitleBarAutoSuggestBoxEvents(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs? textChangedArgs, AutoSuggestBoxQuerySubmittedEventArgs? querySubmittedArgs, Frame frame, bool isTextChangedEvent)
     {
         var frameContentAOTSafe = frame?.Content;
         if (frameContentAOTSafe is Page page && page?.DataContext is ITitleBarAutoSuggestBoxAware viewModelAOTSafe)
         {
             if (isTextChangedEvent)
             {
-                viewModelAOTSafe.OnAutoSuggestBoxTextChanged(sender, textChangedArgs);
+                viewModelAOTSafe.OnAutoSuggestBoxTextChanged(sender, textChangedArgs!);
             }
             else
             {
-                viewModelAOTSafe.OnAutoSuggestBoxQuerySubmitted(sender, querySubmittedArgs);
+                viewModelAOTSafe.OnAutoSuggestBoxQuerySubmitted(sender, querySubmittedArgs!);
             }
         }
     }

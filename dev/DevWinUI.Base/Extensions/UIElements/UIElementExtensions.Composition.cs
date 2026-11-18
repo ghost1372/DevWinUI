@@ -13,12 +13,12 @@ public static partial class UIElementExtensions
             var compositor = elementVisual.Compositor;
             ElementCompositionPreview.SetIsTranslationEnabled(element, true);
 
-            ScalarKeyFrameAnimation hideOpacityAnimation = null;
-            ScalarKeyFrameAnimation showOpacityAnimation = null;
-            ScalarKeyFrameAnimation hideOffsetAnimation = null;
-            ScalarKeyFrameAnimation showOffsetAnimation = null;
-            Vector2KeyFrameAnimation hideScaleAnimation = null;
-            Vector2KeyFrameAnimation showeScaleAnimation = null;
+            ScalarKeyFrameAnimation? hideOpacityAnimation = null;
+            ScalarKeyFrameAnimation? showOpacityAnimation = null;
+            ScalarKeyFrameAnimation? hideOffsetAnimation = null;
+            ScalarKeyFrameAnimation? showOffsetAnimation = null;
+            Vector2KeyFrameAnimation? hideScaleAnimation = null;
+            Vector2KeyFrameAnimation? showeScaleAnimation = null;
 
             if (animateOpacity)
             {
@@ -127,7 +127,7 @@ public static partial class UIElementExtensions
         }
 
         public void EnableImplicitAnimation(CompositionVisualPropertyType typeToAnimate,
-            double duration = 800, double delay = 0, CompositionEasingFunction easing = null)
+            double duration = 800, double delay = 0, CompositionEasingFunction? easing = null)
         {
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -150,10 +150,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartOffsetAnimation(CompositionAnimationAxis axis, float? from = null, float to = 0,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -171,10 +171,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartOffsetAnimation(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -197,7 +197,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartOffsetAnimationAsync(CompositionAnimationAxis axis, float? from = null, float to = 0,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -225,7 +225,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartOffsetAnimationAsync(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -258,10 +258,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartOpacityAnimation(float? from = null, float to = 1.0f,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -278,7 +278,7 @@ public static partial class UIElementExtensions
             batch?.End();
         }
         public Task StartOpacityAnimationAsync(float? from = null, float to = 1.0f,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -307,10 +307,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartRotationAnimation(Vector3? rotationAxis = null, Vector3? centerPoint = null,
-        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -339,7 +339,7 @@ public static partial class UIElementExtensions
             batch?.End();
         }
         public Task StartRotationAnimationAsync(Vector3? rotationAxis = null, Vector3? centerPoint = null,
-        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -379,10 +379,10 @@ public static partial class UIElementExtensions
             return taskSource.Task;
         }
         public void StartScaleAnimation(Vector2? from = null, Vector2? to = null,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -405,10 +405,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartScaleAnimation(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -431,10 +431,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartScaleAnimation(CompositionAnimationAxis axis, float? from = null, float to = 0,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -451,7 +451,7 @@ public static partial class UIElementExtensions
             batch?.End();
         }
         public Task StartScaleAnimationAsync(Vector2? from = null, Vector2? to = null,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -484,7 +484,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartScaleAnimationAsync(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -517,7 +517,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartScaleAnimationAsync(CompositionAnimationAxis axis, float? from = null, float to = 0,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -544,10 +544,10 @@ public static partial class UIElementExtensions
             return taskSource.Task;
         }
         public void StartSizeAnimation(Vector2? from = null, Vector2? to = null,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             var visual = element.Visual();
             var compositor = visual.Compositor;
@@ -569,7 +569,7 @@ public static partial class UIElementExtensions
             batch?.End();
         }
         public Task StartSizeAnimationAsync(Vector2? from = null, Vector2? to = null,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -601,10 +601,10 @@ public static partial class UIElementExtensions
             return taskSource.Task;
         }
         public void StartTranslationAnimation(CompositionAnimationAxis axis, float? from = null, float to = 0,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             ElementCompositionPreview.SetIsTranslationEnabled(element, true);
             var visual = element.Visual();
@@ -622,10 +622,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartTranslationAnimation(Vector2? from = null, Vector2? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             ElementCompositionPreview.SetIsTranslationEnabled(element, true);
             var visual = element.Visual();
@@ -648,10 +648,10 @@ public static partial class UIElementExtensions
         }
 
         public void StartTranslationAnimation(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             ElementCompositionPreview.SetIsTranslationEnabled(element, true);
             var visual = element.Visual();
@@ -674,7 +674,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartTranslationAnimationAsync(CompositionAnimationAxis axis, float? from = null, float to = 0,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -702,7 +702,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartTranslationAnimationAsync(Vector2? from = null, Vector2? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -735,7 +735,7 @@ public static partial class UIElementExtensions
         }
 
         public Task StartTranslationAnimationAsync(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;

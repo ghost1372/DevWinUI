@@ -9,13 +9,13 @@ public static partial class ProcessInfoHelper
     static ProcessInfoHelper()
     {
         _process = Process.GetCurrentProcess();
-        _fileVersionInfo = _process.MainModule.FileVersionInfo;
+        _fileVersionInfo = _process.MainModule!.FileVersionInfo;
     }
 
     /// <summary>
     /// Returns the version string.
     /// </summary>
-    public static string Version => GetVersion()?.ToString();
+    public static string Version => GetVersion().ToString();
 
     /// <summary>
     /// Returns "Dev" if compiled in Debug mode; otherwise, returns the version string.
@@ -30,7 +30,7 @@ public static partial class ProcessInfoHelper
             }
             else
             {
-                return GetVersion()?.ToString();
+                return GetVersion().ToString();
             }
         }
     }

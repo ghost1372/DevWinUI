@@ -3,7 +3,7 @@
 namespace DevWinUI;
 public static partial class ContentDialogExtensions
 {
-    private static TaskCompletionSource<ContentDialog> _contentDialogShowRequest;
+    private static TaskCompletionSource<ContentDialog>? _contentDialogShowRequest;
 
     extension(ContentDialog dialog)
     {

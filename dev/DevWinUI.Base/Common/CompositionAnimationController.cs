@@ -9,7 +9,7 @@ public partial class CompositionAnimationController
     private readonly KeyFrameAnimation _animation;
     private readonly TimeSpan _interval = TimeSpan.FromMilliseconds(16);
     private readonly DispatcherTimer _sliderAnimator = new();
-    private AnimationController _controller;
+    private AnimationController _controller = null!;
     private double _delta;
     private DateTimeOffset _lastTime;
     private bool _isPaused = true;
@@ -109,7 +109,7 @@ public partial class CompositionAnimationController
         _controller.Progress = (float)(Slider?.Value ?? 0) * 0.01f;
     }
 
-    private void OnSliderTick(object sender, object e)
+    private void OnSliderTick(object? sender, object e)
     {
         DateTimeOffset now = DateTimeOffset.Now;
         double ticks = (now - _lastTime).TotalMilliseconds / _interval.TotalMilliseconds;

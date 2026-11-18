@@ -78,7 +78,7 @@ public partial class WindowManager : IDisposable
         _monitor.WindowMessageReceived += OnWindowMessageReceived;
     }
 
-    private unsafe void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
+    private unsafe void OnWindowMessageReceived(object? sender, WindowMessageEventArgs e)
     {
         if (e.MessageType == (uint)NativeValues.WindowMessage.WM_GETMINMAXINFO)
         {

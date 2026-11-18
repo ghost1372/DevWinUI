@@ -60,18 +60,18 @@ public partial class PersianDateTime : IConvertible
         throw new NotImplementedException();
     }
 
-    public DateTime ToDateTime(IFormatProvider provider)
+    public DateTime ToDateTime(IFormatProvider? provider)
     {
         return DateTime;
     }
 
-    public decimal ToDecimal(IFormatProvider provider)
+    public decimal ToDecimal(IFormatProvider? provider)
     {
         return Convert.ToDecimal(
             $"{Year}{Month.ToString("00")}{Day.ToString("00")}{Hour.ToString("00")}{Minute.ToString("00")}{Second.ToString("00")}");
     }
 
-    public double ToDouble(IFormatProvider provider)
+    public double ToDouble(IFormatProvider? provider)
     {
         return Convert.ToDouble(
             $"{Year.ToString("00")}{Month.ToString("00")}{Day.ToString("00")}{Hour.ToString("00")}{Minute.ToString("00")}{Second.ToString("00")}");
@@ -82,12 +82,12 @@ public partial class PersianDateTime : IConvertible
         throw new NotImplementedException();
     }
 
-    public int ToInt32(IFormatProvider provider)
+    public int ToInt32(IFormatProvider? provider)
     {
         return Convert.ToInt32($"{Year.ToString("00")}{Month.ToString("00")}{Day.ToString("00")}");
     }
 
-    public long ToInt64(IFormatProvider provider)
+    public long ToInt64(IFormatProvider? provider)
     {
         return Convert.ToInt32($"{Year.ToString("00")}{Month.ToString("00")}{Day.ToString("00")}");
     }
@@ -102,7 +102,7 @@ public partial class PersianDateTime : IConvertible
         throw new NotImplementedException();
     }
 
-    public string ToString(IFormatProvider provider)
+    public string ToString(IFormatProvider? provider)
     {
         return
             $"{Year}/{Month.ToString("00")}/{Day.ToString("00")} {Hour.ToString("00")}:{Minute.ToString("00")}:{Second.ToString("00")}";

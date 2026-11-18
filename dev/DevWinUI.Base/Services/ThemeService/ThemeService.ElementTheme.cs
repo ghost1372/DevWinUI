@@ -114,7 +114,7 @@ public partial class ThemeService
             var result = applicationData.LocalSettings.Values[ElementThemeSettingKey];
             if (result != null)
             {
-                return GeneralHelper.GetEnum<ElementTheme>(result.ToString());
+                return GeneralHelper.GetEnum<ElementTheme>(result.ToString() ?? string.Empty);
             }
         }
         catch { }

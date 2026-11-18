@@ -5,7 +5,7 @@ public static partial class VisualExtensions
     extension(Visual visual)
     {
         public Task StartClipAnimationAsync(CompositionClipAnimationDirection direction, float to,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -43,10 +43,10 @@ public static partial class VisualExtensions
         }
 
         public void StartClipAnimation(CompositionClipAnimationDirection direction, float to,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
 
             if (visual.Size.X.Equals(0) || visual.Size.Y.Equals(0))
             {
@@ -74,7 +74,7 @@ public static partial class VisualExtensions
         }
 
         public void EnableImplicitAnimation(CompositionVisualPropertyType typeToAnimate,
-        double duration = 800, double delay = 0, CompositionEasingFunction easing = null)
+        double duration = 800, double delay = 0, CompositionEasingFunction? easing = null)
         {
             var compositor = visual.Compositor;
 
@@ -96,10 +96,10 @@ public static partial class VisualExtensions
         }
 
         public void StartOffsetAnimation(CompositionAnimationAxis axis, float? from = null, float to = 0,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -115,10 +115,10 @@ public static partial class VisualExtensions
         }
 
         public void StartOffsetAnimation(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -139,7 +139,7 @@ public static partial class VisualExtensions
         }
 
         public Task StartOffsetAnimationAsync(CompositionAnimationAxis axis, float? from = null, float to = 0,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -165,7 +165,7 @@ public static partial class VisualExtensions
         }
 
         public Task StartOffsetAnimationAsync(Vector3? from = null, Vector3? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -196,10 +196,10 @@ public static partial class VisualExtensions
         }
 
         public void StartOpacityAnimation(float? from = null, float to = 1.0f,
-       double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+       double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
        AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -216,7 +216,7 @@ public static partial class VisualExtensions
 
 
         public Task StartOpacityAnimationAsync(float? from = null, float to = 1.0f,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -243,10 +243,10 @@ public static partial class VisualExtensions
         }
 
         public void StartRotationAnimation(Vector3 rotationAxis, Vector3? centerPoint = null,
-        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (centerPoint == null)
@@ -269,7 +269,7 @@ public static partial class VisualExtensions
             batch?.End();
         }
         public Task StartRotationAnimationAsync(Vector3 rotationAxis, Vector3? centerPoint = null,
-                float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                float? from = null, float to = 0, double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -303,10 +303,10 @@ public static partial class VisualExtensions
             return taskSource.Task;
         }
         public void StartScaleAnimation(Vector3? from = null, Vector3? to = null,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -327,10 +327,10 @@ public static partial class VisualExtensions
         }
 
         public void StartScaleAnimation(Vector2? from = null, Vector2? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -351,10 +351,10 @@ public static partial class VisualExtensions
         }
 
         public void StartScaleAnimation(CompositionAnimationAxis axis, float? from = null, float to = 0,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -369,7 +369,7 @@ public static partial class VisualExtensions
             batch?.End();
         }
         public Task StartScaleAnimationAsync(Vector3? from = null, Vector3? to = null,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -400,7 +400,7 @@ public static partial class VisualExtensions
         }
 
         public Task StartScaleAnimationAsync(Vector2? from = null, Vector2? to = null,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -431,7 +431,7 @@ public static partial class VisualExtensions
         }
 
         public Task StartScaleAnimationAsync(CompositionAnimationAxis axis, float? from = null, float to = 0,
-            double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+            double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
             AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;
@@ -457,10 +457,10 @@ public static partial class VisualExtensions
             return taskSource.Task;
         }
         public void StartSizeAnimation(Vector2? from = null, Vector2? to = null,
-        double duration = 800, int delay = 0, CompositionEasingFunction easing = null, Action completed = null,
+        double duration = 800, int delay = 0, CompositionEasingFunction? easing = null, Action? completed = null,
         AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
-            CompositionScopedBatch batch = null;
+            CompositionScopedBatch? batch = null;
             var compositor = visual.Compositor;
 
             if (completed != null)
@@ -480,7 +480,7 @@ public static partial class VisualExtensions
             batch?.End();
         }
         public Task StartSizeAnimationAsync(Vector2? from = null, Vector2? to = null,
-                double duration = 800, int delay = 0, CompositionEasingFunction easing = null,
+                double duration = 800, int delay = 0, CompositionEasingFunction? easing = null,
                 AnimationIterationBehavior iterationBehavior = AnimationIterationBehavior.Count)
         {
             CompositionScopedBatch batch;

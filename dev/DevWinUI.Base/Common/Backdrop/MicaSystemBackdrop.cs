@@ -4,9 +4,9 @@ namespace DevWinUI;
 public sealed partial class MicaSystemBackdrop : SystemBackdrop
 {
     public readonly MicaKind Kind;
-    internal MicaController micaController;
+    internal MicaController? micaController;
 
-    public SystemBackdropConfiguration BackdropConfiguration { get; private set; }
+    public SystemBackdropConfiguration? BackdropConfiguration { get; private set; }
 
     private Color? tintColor;
     public Color? TintColor

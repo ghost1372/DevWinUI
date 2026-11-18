@@ -103,9 +103,9 @@ public partial class FileHelper
     /// <param name="filePath">Specifies the location of the file to be retrieved.</param>
     /// <param name="pathType">Indicates whether the file path is relative to the application or an absolute path.</param>
     /// <returns>Returns the requested storage file or null if not found.</returns>
-    public static async Task<StorageFile> GetStorageFile(string filePath, PathType pathType = PathType.Relative)
+    public static async Task<StorageFile?> GetStorageFile(string filePath, PathType pathType = PathType.Relative)
     {
-        StorageFile file = null;
+        StorageFile? file = null;
         if (PackageHelper.IsPackaged)
         {
             switch (pathType)
@@ -143,7 +143,7 @@ public partial class FileHelper
     /// <returns></returns>
     public static async Task<StorageFile?> GetStorageFile(Uri uri)
     {
-        StorageFile file = null;
+        StorageFile? file = null;
         try
         {
             if (uri.IsFile)
@@ -227,9 +227,9 @@ public partial class FileHelper
         return null;
     }
 
-    public static Stream? GetFileFromEmbededResourcesOrUri(Uri uri, Assembly assembly = null)
+    public static Stream? GetFileFromEmbededResourcesOrUri(Uri uri, Assembly? assembly = null)
     {
-        var stream = GetFileFromEmbededResources(assembly, uri);
+        var stream = assembly is null ? null : GetFileFromEmbededResources(assembly, uri);
         if (stream != null)
             return stream;
 

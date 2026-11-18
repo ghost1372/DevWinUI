@@ -26,7 +26,7 @@ public partial class GeneralHelper
     {
         var settings = GetApplicationData().LocalSettings;
 
-        if (settings.Values.TryGetValue(firstRunKey, out object keyExist) &&
+        if (settings.Values.TryGetValue(firstRunKey, out object? keyExist) &&
                 keyExist is bool isFirstRun && isFirstRun)
         {
             return false;
@@ -172,7 +172,7 @@ public partial class GeneralHelper
     /// </summary>
     /// <param name="key">Example: EA6A</param>
     /// <returns></returns>
-    public static string GetGlyph(string key)
+    public static string? GetGlyph(string key)
     {
         // Try parsing the key as a hexadecimal number
         if (int.TryParse(key, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var codePoint))
@@ -270,9 +270,9 @@ public partial class GeneralHelper
         return len > 0 ? new string(buffer[..len]) : $"[{id}]";
     }
 
-    public static Uri GetUriFromObjectSource(object value)
+    public static Uri? GetUriFromObjectSource(object value)
     {
-        Uri result = null;
+        Uri? result = null;
 
         switch (value)
         {

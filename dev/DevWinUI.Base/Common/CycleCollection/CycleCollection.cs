@@ -27,21 +27,21 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
 
     }
 
-    private void InnerHeader_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void InnerHeader_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems, e.NewStartingIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems!, e.NewStartingIndex));
                 break;
             case NotifyCollectionChangedAction.Move:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems, e.OldStartingIndex, e.NewStartingIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems!, e.OldStartingIndex, e.NewStartingIndex));
                 break;
             case NotifyCollectionChangedAction.Remove:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems, e.OldStartingIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems!, e.OldStartingIndex));
                 break;
             case NotifyCollectionChangedAction.Replace:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems, e.OldItems, e.NewStartingIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems!, e.OldItems!, e.NewStartingIndex));
                 break;
             case NotifyCollectionChangedAction.Reset:
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
@@ -49,21 +49,21 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
         }
     }
 
-    private void InnerFooter_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void InnerFooter_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems, e.NewStartingIndex + headers.Count + ItemsCount));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems!, e.NewStartingIndex + headers.Count + ItemsCount));
                 break;
             case NotifyCollectionChangedAction.Move:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems, e.OldStartingIndex + headers.Count + collection.Count, e.NewStartingIndex + headers.Count + collection.Count));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems!, e.OldStartingIndex + headers.Count + collection.Count, e.NewStartingIndex + headers.Count + collection.Count));
                 break;
             case NotifyCollectionChangedAction.Remove:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems, e.OldStartingIndex + headers.Count + ItemsCount));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems!, e.OldStartingIndex + headers.Count + ItemsCount));
                 break;
             case NotifyCollectionChangedAction.Replace:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems, e.OldItems, e.NewStartingIndex + headers.Count + collection.Count));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems!, e.OldItems!, e.NewStartingIndex + headers.Count + collection.Count));
                 break;
             case NotifyCollectionChangedAction.Reset:
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
@@ -74,7 +74,7 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
     #region ICycleCollectionProvider
     public int ItemsCount => collection.Count;
 
-    object ICycleCollection.GetItem(int index)
+    object? ICycleCollection.GetItem(int index)
     {
         return collection[index];
     }
@@ -260,8 +260,8 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
 
     #region INotifyChanged
 
-    public event NotifyCollectionChangedEventHandler CollectionChanged;
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event NotifyCollectionChangedEventHandler? CollectionChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
@@ -318,21 +318,21 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
     }
 
 
-    private void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void ItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems, ConvertFromItemIndex(e.NewStartingIndex)));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems!, ConvertFromItemIndex(e.NewStartingIndex)));
                 break;
             case NotifyCollectionChangedAction.Move:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems, ConvertFromItemIndex(e.OldStartingIndex), ConvertFromItemIndex(e.NewStartingIndex)));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.OldItems!, ConvertFromItemIndex(e.OldStartingIndex), ConvertFromItemIndex(e.NewStartingIndex)));
                 break;
             case NotifyCollectionChangedAction.Remove:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems, ConvertFromItemIndex(e.OldStartingIndex)));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, e.OldItems!, ConvertFromItemIndex(e.OldStartingIndex)));
                 break;
             case NotifyCollectionChangedAction.Replace:
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems, e.OldItems, ConvertFromItemIndex(e.NewStartingIndex)));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, e.NewItems!, e.OldItems!, ConvertFromItemIndex(e.NewStartingIndex)));
                 break;
             case NotifyCollectionChangedAction.Reset:
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
@@ -350,18 +350,18 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
 
     bool ICollection.IsSynchronized => false;
 
-    object ICollection.SyncRoot => null;
+    object ICollection.SyncRoot => this;
 
-    object IList.this[int index]
+    object? IList.this[int index]
     {
         get => this[index];
-        set => this[index] = (T)value;
+        set => this[index] = (T)value!;
     }
 
 
-    int IList.Add(object value)
+    int IList.Add(object? value)
     {
-        this.Add((T)value);
+        this.Add((T)value!);
         return ConvertFromItemIndex(ItemsCount - 1);
     }
 
@@ -370,24 +370,24 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
         this.Clear();
     }
 
-    bool IList.Contains(object value)
+    bool IList.Contains(object? value)
     {
-        return this.Contains((T)value);
+        return this.Contains((T)value!);
     }
 
-    int IList.IndexOf(object value)
+    int IList.IndexOf(object? value)
     {
-        return this.IndexOf((T)value);
+        return this.IndexOf((T)value!);
     }
 
-    void IList.Insert(int index, object value)
+    void IList.Insert(int index, object? value)
     {
-        this.Insert(index, (T)value);
+        this.Insert(index, (T)value!);
     }
 
-    void IList.Remove(object value)
+    void IList.Remove(object? value)
     {
-        this.Remove((T)value);
+        this.Remove((T)value!);
     }
 
     void IList.RemoveAt(int index)
@@ -432,7 +432,7 @@ public partial class CycleCollection<T> : IList<T>, INotifyCollectionChanged, IN
             }
         }
 
-        object IEnumerator.Current => Current;
+        object? IEnumerator.Current => Current;
 
         public void Dispose()
         {
