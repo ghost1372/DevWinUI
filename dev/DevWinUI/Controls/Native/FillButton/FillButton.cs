@@ -24,7 +24,7 @@ namespace DevWinUI;
 [TemplatePart(Name = PartRingOffset, Type = typeof(Border))]
 [TemplateVisualState(GroupName = ToneStates, Name = SoftState)]
 [TemplateVisualState(GroupName = ToneStates, Name = OutlineState)]
-public sealed partial class FillButton : Button
+public sealed partial class FillButton : Button, ICommandBarElement
 {
     private const string PartRoot = "PART_Root";
     private const string PartSurface = "PART_Surface";
@@ -97,10 +97,16 @@ public sealed partial class FillButton : Button
     private bool _keyboardFocus;
     private bool _filled;
 
+    private CommandBar? _commandBar;
+    private long _defaultLabelPositionToken;
+    private bool _ownsToolTip;
+
     public FillButton()
     {
         DefaultStyleKey = typeof(FillButton);
         Click += OnClickInternal;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     protected override void OnApplyTemplate()
@@ -166,6 +172,7 @@ public sealed partial class FillButton : Button
         ApplyIcon();
         ApplyLinkBehavior();
         ApplySize();
+        UpdateLabelVisibility();
         UpdateRing();
     }
 
@@ -256,6 +263,86 @@ public sealed partial class FillButton : Button
 
         icon.Width = _metrics.Icon;
         icon.Height = _metrics.Icon;
+    }
+
+    protected override void OnContentChanged(object oldContent, object newContent)
+    {
+        base.OnContentChanged(oldContent, newContent);
+        UpdateLabelVisibility();
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        AttachCommandBar(FindCommandBar());
+        IsInOverflow = _commandBar?.SecondaryCommands.Contains(this) ?? false;
+        UpdateLabelVisibility();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e) => AttachCommandBar(null);
+
+    private CommandBar? FindCommandBar()
+    {
+        DependencyObject? current = VisualTreeHelper.GetParent(this);
+        while (current is not null)
+        {
+            if (current is CommandBar bar) return bar;
+            current = VisualTreeHelper.GetParent(current);
+        }
+
+        return null;
+    }
+
+    private void AttachCommandBar(CommandBar? bar)
+    {
+        if (ReferenceEquals(bar, _commandBar)) return;
+
+        _commandBar?.UnregisterPropertyChangedCallback(CommandBar.DefaultLabelPositionProperty, _defaultLabelPositionToken);
+        _commandBar = bar;
+
+        if (bar is not null)
+        {
+            _defaultLabelPositionToken = bar.RegisterPropertyChangedCallback(
+                CommandBar.DefaultLabelPositionProperty, OnBarDefaultLabelPositionChanged);
+        }
+    }
+
+    private void OnBarDefaultLabelPositionChanged(DependencyObject sender, DependencyProperty dp) =>
+        UpdateLabelVisibility();
+
+    private bool ShouldShowLabel()
+    {
+        if (IsInOverflow) return true;
+        if (LabelPosition == CommandBarLabelPosition.Collapsed || IsCompact) return false;
+
+        return _commandBar is null || _commandBar.DefaultLabelPosition != CommandBarDefaultLabelPosition.Collapsed;
+    }
+
+    private void UpdateLabelVisibility()
+    {
+        bool show = ShouldShowLabel();
+        UpdateToolTip(show);
+
+        if (!_templated) return;
+
+        var visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        _label.Visibility = visibility;
+        _fillLabel.Visibility = visibility;
+    }
+
+    private void UpdateToolTip(bool showLabel)
+    {
+        string? text = showLabel ? null : Label ?? Content as string;
+
+        if (text is not null && (_ownsToolTip || ToolTipService.GetToolTip(this) is null))
+        {
+            ToolTipService.SetToolTip(this, text);
+            _ownsToolTip = true;
+        }
+        else if (_ownsToolTip)
+        {
+            ToolTipService.SetToolTip(this, null);
+            _ownsToolTip = false;
+        }
     }
 
     private void UpdateRing()
