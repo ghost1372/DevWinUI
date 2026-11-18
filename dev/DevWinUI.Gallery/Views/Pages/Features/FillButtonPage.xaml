@@ -2,6 +2,7 @@
 <Page x:Class="DevWinUIGallery.Views.FillButtonPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="using:Microsoft.UI.Xaml.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
@@ -14,10 +15,16 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <TextBox x:Name="TxtContent" Header="Content" Text="Get started" />
+                            <TextBox x:Name="TxtLabel" Header="Label" Text="Get started" />
                             <local:ChoiceOption x:Name="CmbTone" Header="Tone" Value="{x:Bind dev:FillButtonTone.Soft}" />
                             <local:ChoiceOption x:Name="CmbSize" Header="Size" Value="{x:Bind dev:FillButtonSize.Default}" />
                             <ToggleSwitch x:Name="TglIcon" Header="Custom Icon" IsOn="False" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Label">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbLabelPosition" Header="Label Position" Value="{x:Bind controls:CommandBarLabelPosition.Default}" />
+                            <ToggleSwitch x:Name="TglCompact" Header="Is Compact" IsOn="False" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">
@@ -29,12 +36,54 @@
                 </local:ControlExample.OptionGroups>
                 <local:ControlExample.XamlCode>
                     <x:String>
-                        &lt;dev:FillButton Content="Get started" /&gt;
+                        &lt;dev:FillButton Label="Get started" LabelPosition="Default" IsCompact="False" /&gt;
                     </x:String>
                 </local:ControlExample.XamlCode>
                 <StackPanel HorizontalAlignment="Center" Spacing="12">
-                    <dev:FillButton Click="Sample_Click" Content="{x:Bind TxtContent.Text, Mode=OneWay}" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.Value), Mode=OneWay}" />
+                    <dev:FillButton Click="Sample_Click" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsCompact="{x:Bind TglCompact.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LabelPosition="{x:Bind ((controls:CommandBarLabelPosition)CmbLabelPosition.Value), Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.Value), Mode=OneWay}" />
                     <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Hover or focus the button" />
+                </StackPanel>
+            </local:ControlExample>
+
+            <local:ControlExample Title="FillButton in CommandBar" Doc="controls/fillButton">
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="CommandBar">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbDefaultLabelPosition" Header="Default Label Position" Value="{x:Bind controls:CommandBarDefaultLabelPosition.Right}" />
+                            <ToggleSwitch x:Name="TglCollapseSave" Header="Collapse Save Label" IsOn="False" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
+                <local:ControlExample.XamlCode>
+                    <x:String>
+                        &lt;CommandBar DefaultLabelPosition="Right"&gt;
+                        &lt;dev:FillButton Label="Save" LabelPosition="Collapsed" /&gt;
+                        &lt;dev:FillButton Label="Share" /&gt;
+                        &lt;CommandBar.SecondaryCommands&gt;
+                        &lt;dev:FillButton Label="Export" /&gt;
+                        &lt;/CommandBar.SecondaryCommands&gt;
+                        &lt;/CommandBar&gt;
+                    </x:String>
+                </local:ControlExample.XamlCode>
+                <StackPanel HorizontalAlignment="Stretch" Spacing="12">
+                    <CommandBar DefaultLabelPosition="{x:Bind ((controls:CommandBarDefaultLabelPosition)CmbDefaultLabelPosition.Value), Mode=OneWay}" IsOpen="True" IsSticky="True">
+                        <dev:FillButton Click="CommandBarSample_Click" Label="Save" LabelPosition="{x:Bind GetSaveLabelPosition(TglCollapseSave.IsOn), Mode=OneWay}">
+                            <dev:FillButton.Icon>
+                                <FontIcon Glyph="&#xE74E;" />
+                            </dev:FillButton.Icon>
+                        </dev:FillButton>
+                        <dev:FillButton Click="CommandBarSample_Click" Label="Share" Tone="Outline">
+                            <dev:FillButton.Icon>
+                                <FontIcon Glyph="&#xE72D;" />
+                            </dev:FillButton.Icon>
+                        </dev:FillButton>
+                        <AppBarSeparator />
+                        <AppBarButton Click="CommandBarSample_Click" Icon="Delete" Label="Delete" />
+                        <CommandBar.SecondaryCommands>
+                            <dev:FillButton Click="CommandBarSample_Click" Label="Export" />
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                    <TextBlock x:Name="CommandStatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Click a command" />
                 </StackPanel>
             </local:ControlExample>
         </StackPanel>
