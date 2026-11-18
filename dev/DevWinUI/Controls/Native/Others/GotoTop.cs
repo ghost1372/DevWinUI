@@ -1,8 +1,10 @@
 ﻿namespace DevWinUI;
+
 public partial class GotoTop : Button
 {
     private Action _gotoTopAction;
 
+    private FrameworkElement _targetElement;
     private ScrollViewer _scrollViewer;
     private ScrollView _scrollView;
 
@@ -66,42 +68,64 @@ public partial class GotoTop : Button
 
     public virtual void CreateGotoAction(DependencyObject obj)
     {
+        if (_targetElement != null)
+        {
+            _targetElement.Loaded -= TargetElement_Loaded;
+            _targetElement = null;
+        }
+
         if (_scrollViewer != null)
         {
             _scrollViewer.ViewChanged -= ScrollViewer_ViewChanged;
+            _scrollViewer = null;
         }
+
         if (_scrollView != null)
         {
             _scrollView.ViewChanged -= ScrollView_ViewChanged;
+            _scrollView = null;
         }
 
-        if (obj is ScrollViewer viewer && viewer != null)
+        _gotoTopAction = null;
+
+        // Resolve the scrolling element from any FrameworkElement.
+        if (obj is FrameworkElement element && obj is not ScrollViewer && obj is not ScrollView)
+        {
+            _targetElement = element;
+            _targetElement.Loaded += TargetElement_Loaded;
+
+            if (element is Control control)
+            {
+                control.ApplyTemplate();
+            }
+
+            obj = element.FindDescendant<DependencyObject>(static child => child is ScrollViewer or ScrollView);
+        }
+
+        if (obj is ScrollViewer viewer)
         {
             _scrollViewer = viewer;
             _scrollViewer.ViewChanged += ScrollViewer_ViewChanged;
 
-            if (Animated)
-            {
-                _gotoTopAction = () => _scrollViewer.ChangeView(null, 0, null, false);
-            }
-            else
-            {
-                _gotoTopAction = () => _scrollViewer.ChangeView(null, 0, null, true);
-            }
+            _gotoTopAction = () => viewer.ChangeView(null, 0, null, !Animated);
         }
-        else if (obj is ScrollView view && view != null)
+        else if (obj is ScrollView view)
         {
             _scrollView = view;
             _scrollView.ViewChanged += ScrollView_ViewChanged;
 
-            if (Animated)
-            {
-                _gotoTopAction = () => _scrollView?.ScrollTo(0, 0, new ScrollingScrollOptions(ScrollingAnimationMode.Auto));
-            }
-            else
-            {
-                _gotoTopAction = () => _scrollView?.ScrollTo(0, 0, new ScrollingScrollOptions(ScrollingAnimationMode.Disabled));
-            }
+            _gotoTopAction = () => view.ScrollTo(0, 0,
+                new ScrollingScrollOptions(Animated
+                    ? ScrollingAnimationMode.Auto
+                    : ScrollingAnimationMode.Disabled));
+        }
+    }
+
+    private void TargetElement_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (ReferenceEquals(sender, _targetElement))
+        {
+            CreateGotoAction(Target);
         }
     }
 
