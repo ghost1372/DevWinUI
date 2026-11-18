@@ -312,9 +312,15 @@ public sealed partial class FillButton : Button, ICommandBarElement
     private bool ShouldShowLabel()
     {
         if (IsInOverflow) return true;
-        if (LabelPosition == CommandBarLabelPosition.Collapsed || IsCompact) return false;
+        if (LabelPosition == CommandBarLabelPosition.Collapsed) return false;
+        if (_commandBar is null) return !IsCompact;
 
-        return _commandBar is null || _commandBar.DefaultLabelPosition != CommandBarDefaultLabelPosition.Collapsed;
+        return _commandBar.DefaultLabelPosition switch
+        {
+            CommandBarDefaultLabelPosition.Collapsed => false,
+            CommandBarDefaultLabelPosition.Right => true,
+            _ => !IsCompact,
+        };
     }
 
     private void UpdateLabelVisibility()
