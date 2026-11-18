@@ -12,5 +12,5 @@ internal sealed partial class HoldToConfirmPeer : FrameworkElementAutomationPeer
 
     protected override string GetClassNameCore() => nameof(HoldToConfirm);
 
-    protected override bool IsEnabledCore() => base.IsEnabledCore() && !_owner.IsDone;
+    protected override bool IsEnabledCore() => base.IsEnabledCore() && (!_owner.IsDone || _owner.CanBeCanceled);
 }
