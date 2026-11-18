@@ -49,6 +49,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
 
     private const float PressScale = 0.97f;
     private const double LabelInset = 4;
+    private const double LayerInset = 4;
     private const double RingOffsetGrowth = 2;
     private const double RingGrowth = 4;
 
@@ -83,6 +84,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
     private Compositor _compositor = null!;
     private CubicBezierEasingFunction _ease = null!;
     private Visual _rootVisual = null!;
+    private Visual _fillVisual = null!;
     private Visual _trackVisual = null!;
     private Visual _labelVisual = null!;
     private Visual _fillLabelVisual = null!;
@@ -96,6 +98,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
     private bool _pressed;
     private bool _keyboardFocus;
     private bool _filled;
+    private bool _labelShown = true;
 
     private CommandBar? _commandBar;
     private long _defaultLabelPositionToken;
@@ -146,7 +149,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
         _compositor = _rootVisual.Compositor;
         _ease = _compositor.CreateCubicBezierEasingFunction(EaseP1, EaseP2);
 
-        var fillVisual = ElementCompositionPreview.GetElementVisual(_fill);
+        _fillVisual = ElementCompositionPreview.GetElementVisual(_fill);
         _trackVisual = ElementCompositionPreview.GetElementVisual(_track);
         _labelVisual = ElementCompositionPreview.GetElementVisual(_label);
         _fillLabelVisual = ElementCompositionPreview.GetElementVisual(_fillLabel);
@@ -155,7 +158,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
         ElementCompositionPreview.SetIsTranslationEnabled(_fillLabel, true);
 
         _fillGeometry = _compositor.CreateRoundedRectangleGeometry();
-        fillVisual.Clip = _compositor.CreateGeometricClip(_fillGeometry);
+        _fillVisual.Clip = _compositor.CreateGeometricClip(_fillGeometry);
 
         _clipHost.Clip = _clipGeometry;
 
@@ -326,6 +329,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
     private void UpdateLabelVisibility()
     {
         bool show = ShouldShowLabel();
+        _labelShown = show;
         UpdateToolTip(show);
 
         if (!_templated) return;
@@ -333,6 +337,7 @@ public sealed partial class FillButton : Button, ICommandBarElement
         var visibility = show ? Visibility.Visible : Visibility.Collapsed;
         _label.Visibility = visibility;
         _fillLabel.Visibility = visibility;
+        ApplyFillState(animate: false);
     }
 
     private void UpdateToolTip(bool showLabel)
@@ -457,6 +462,15 @@ public sealed partial class FillButton : Button, ICommandBarElement
         float tile = (float)_metrics.Tile;
         float labelWidth = (float)_label.ActualWidth;
         float fillLabelWidth = (float)_fillLabel.ActualWidth;
+
+        bool grow = _filled && !_labelShown && IsIconOnlyFillEnabled;
+        float scaleX = grow ? (width + 2f * (float)LayerInset) / width : 1f;
+        float scaleY = grow ? (height + 2f * (float)LayerInset) / height : 1f;
+        float fillRadius = grow ? (float)_metrics.Radius / scaleX : (float)_metrics.FillRadius;
+
+        _fillVisual.CenterPoint = new Vector3(width / 2f, height / 2f, 0f);
+        StartVector3(_fillVisual, "Scale", new Vector3(scaleX, scaleY, 1f), duration);
+        StartVector2(_fillGeometry, "CornerRadius", new Vector2(fillRadius), duration);
 
         StartVector2(_fillGeometry, "Size", _filled ? new Vector2(width, height) : new Vector2(tile, height), duration);
         StartVector3(_trackVisual, "Translation", new Vector3(_filled ? width - tile : 0f, 0f, 0f), duration);

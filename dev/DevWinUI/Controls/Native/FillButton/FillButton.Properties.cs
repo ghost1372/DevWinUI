@@ -83,6 +83,15 @@ public sealed partial class FillButton
     public static readonly DependencyProperty DynamicOverflowOrderProperty =
         DependencyProperty.Register(nameof(DynamicOverflowOrder), typeof(int), typeof(FillButton), new PropertyMetadata(0));
 
+    public bool IsIconOnlyFillEnabled
+    {
+        get { return (bool)GetValue(IsIconOnlyFillEnabledProperty); }
+        set { SetValue(IsIconOnlyFillEnabledProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsIconOnlyFillEnabledProperty =
+        DependencyProperty.Register(nameof(IsIconOnlyFillEnabled), typeof(bool), typeof(FillButton), new PropertyMetadata(true, OnIsIconOnlyFillEnabledChanged));
+
     private static void OnToneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
         ((FillButton)d).ApplyTone();
 
@@ -97,6 +106,9 @@ public sealed partial class FillButton
 
     private static void OnLabelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
         ((FillButton)d).Content = e.NewValue;
+
+    private static void OnIsIconOnlyFillEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
+        ((FillButton)d).ApplyFillState(animate: false);
 
     private static void OnLabelVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
         ((FillButton)d).UpdateLabelVisibility();

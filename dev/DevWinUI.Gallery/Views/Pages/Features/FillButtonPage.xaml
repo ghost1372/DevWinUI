@@ -25,6 +25,7 @@
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbLabelPosition" Header="Label Position" Value="{x:Bind controls:CommandBarLabelPosition.Default}" />
                             <ToggleSwitch x:Name="TglCompact" Header="Is Compact" IsOn="False" />
+                            <ToggleSwitch x:Name="TglIconFill" Header="Is Icon Only Fill Enabled" IsOn="True" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">
@@ -40,7 +41,7 @@
                     </x:String>
                 </local:ControlExample.XamlCode>
                 <StackPanel HorizontalAlignment="Center" Spacing="12">
-                    <dev:FillButton Click="Sample_Click" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsCompact="{x:Bind TglCompact.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LabelPosition="{x:Bind ((controls:CommandBarLabelPosition)CmbLabelPosition.Value), Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.Value), Mode=OneWay}" />
+                    <dev:FillButton Click="Sample_Click" Icon="{x:Bind GetIcon(TglIcon.IsOn), Mode=OneWay}" IsCompact="{x:Bind TglCompact.IsOn, Mode=OneWay}" IsEnabled="{x:Bind TglEnabled.IsOn, Mode=OneWay}" IsIconOnlyFillEnabled="{x:Bind TglIconFill.IsOn, Mode=OneWay}" Label="{x:Bind TxtLabel.Text, Mode=OneWay}" LabelPosition="{x:Bind ((controls:CommandBarLabelPosition)CmbLabelPosition.Value), Mode=OneWay}" NavigateUri="{x:Bind GetUri(TglLink.IsOn), Mode=OneWay}" Size="{x:Bind ((dev:FillButtonSize)CmbSize.Value), Mode=OneWay}" Tone="{x:Bind ((dev:FillButtonTone)CmbTone.Value), Mode=OneWay}" />
                     <TextBlock x:Name="StatusText" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Hover or focus the button" />
                 </StackPanel>
             </local:ControlExample>
@@ -66,7 +67,7 @@
                     </x:String>
                 </local:ControlExample.XamlCode>
                 <StackPanel HorizontalAlignment="Stretch" Spacing="12">
-                    <CommandBar DefaultLabelPosition="{x:Bind ((controls:CommandBarDefaultLabelPosition)CmbDefaultLabelPosition.Value), Mode=OneWay}" IsOpen="True" IsSticky="True">
+                    <CommandBar DefaultLabelPosition="{x:Bind ((controls:CommandBarDefaultLabelPosition)CmbDefaultLabelPosition.Value), Mode=OneWay}">
                         <dev:FillButton Click="CommandBarSample_Click" Label="Save" LabelPosition="{x:Bind GetSaveLabelPosition(TglCollapseSave.IsOn), Mode=OneWay}">
                             <dev:FillButton.Icon>
                                 <FontIcon Glyph="&#xE74E;" />
