@@ -30,7 +30,11 @@
                         <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
 
                             <Grid Margin="-16">
-                                <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibilityInvertConverter}, Mode=OneWay}" />
+                                <Grid Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibilityInvertConverter}, Mode=OneWay}">
+                                    <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityConverter}, Mode=OneWay}" />
+
+                                    <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityReConverter}, Mode=OneWay}" />
+                                </Grid>
 
                                 <ProgressRing x:Name="MedianOperationProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.Name="Status center progress ring" IsIndeterminate="False" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding AverageOperationProgressValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 

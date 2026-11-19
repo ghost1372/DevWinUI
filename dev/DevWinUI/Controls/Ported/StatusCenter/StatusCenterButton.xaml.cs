@@ -23,6 +23,9 @@ public sealed partial class StatusCenterButton : Control
 	public static readonly DependencyProperty InfoBadgeStateProperty =
 		DependencyProperty.Register(nameof(InfoBadgeState), typeof(int), typeof(StatusCenterButton), new PropertyMetadata(0));
 
+	public static readonly DependencyProperty IconProperty =
+		DependencyProperty.Register(nameof(Icon), typeof(UIElement), typeof(StatusCenterButton), new PropertyMetadata(null));
+
 	private bool _isOpen;
 
 	private Button? _showStatusCenterButton;
@@ -58,6 +61,12 @@ public sealed partial class StatusCenterButton : Control
 	{
 		get => (int)GetValue(InfoBadgeStateProperty);
 		private set => SetValue(InfoBadgeStateProperty, value);
+	}
+
+	public UIElement? Icon
+	{
+		get => (UIElement?)GetValue(IconProperty);
+		set => SetValue(IconProperty, value);
 	}
 
 	public StatusCenterButton()
