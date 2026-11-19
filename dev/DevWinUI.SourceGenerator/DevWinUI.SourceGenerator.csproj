@@ -15,7 +15,6 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <PublishAot>false</PublishAot>
     <NoWarn>$(NoWarn);NU5128;RS1038</NoWarn>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.3.0">

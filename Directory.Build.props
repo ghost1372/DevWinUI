@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
     <GalleryAppName>DevWinUI.Gallery</GalleryAppName>
     <ContextMenuLibName>DevWinUI.ContextMenu</ContextMenuLibName>
@@ -48,7 +48,8 @@
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>Latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <NoWarn>CS8632;WIN2D0001;WMC1510;WMC0001</NoWarn>
+    <Nullable>enable</Nullable>
+    <NoWarn>WIN2D0001;WMC1510;WMC0001</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
