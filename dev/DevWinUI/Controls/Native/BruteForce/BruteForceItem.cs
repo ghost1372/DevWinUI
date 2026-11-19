@@ -108,7 +108,7 @@ public partial class BruteForceItem : Control
         _isRenderingSubscribed = false;
     }
 
-    private void OnCompositionTargetRendering(object sender, object e)
+    private void OnCompositionTargetRendering(object? sender, object e)
     {
         var now = Environment.TickCount64;
         if (now - _lastRenderTick < RenderDelay.TotalMilliseconds)

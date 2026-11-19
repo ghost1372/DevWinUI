@@ -1018,7 +1018,7 @@ internal sealed partial class WelcomeHeroScene : IDisposable
         return (gradient, stops);
     }
 
-    private Tile CreateTile(WelcomeHeroSlot slot, LoadedImageSurface icon, CompositionBrush tileFill, CompositionBrush highlightBrush, float highlightExtent)
+    private Tile CreateTile(WelcomeHeroSlot slot, LoadedImageSurface? icon, CompositionBrush tileFill, CompositionBrush highlightBrush, float highlightExtent)
     {
         const float size = WelcomeHeroLayout.TileSize;
         var isGhost = icon is null;
@@ -1059,7 +1059,7 @@ internal sealed partial class WelcomeHeroScene : IDisposable
         highlight.Opacity = 0f;
         highlight.Shapes.Add(highlightShape);
 
-        if (!isGhost)
+        if (icon is not null)
         {
             const float iconSize = WelcomeHeroLayout.IconSize;
             var iconVisual = Track(_compositor.CreateSpriteVisual());
@@ -1133,7 +1133,7 @@ internal sealed partial class WelcomeHeroScene : IDisposable
         }
     }
 
-    private ScalarKeyFrameAnimation Scalar(float durationMs, float delayMs, params (float Progress, float Value, CompositionEasingFunction Easing)[] frames)
+    private ScalarKeyFrameAnimation Scalar(float durationMs, float delayMs, params (float Progress, float Value, CompositionEasingFunction? Easing)[] frames)
     {
         var animation = CreateAnimation<ScalarKeyFrameAnimation>(durationMs, delayMs);
         foreach (var (progress, value, easing) in frames)
@@ -1144,7 +1144,7 @@ internal sealed partial class WelcomeHeroScene : IDisposable
         return animation;
     }
 
-    private Vector3KeyFrameAnimation Vector(float durationMs, float delayMs, params (float Progress, Vector3 Value, CompositionEasingFunction Easing)[] frames)
+    private Vector3KeyFrameAnimation Vector(float durationMs, float delayMs, params (float Progress, Vector3 Value, CompositionEasingFunction? Easing)[] frames)
     {
         var animation = CreateAnimation<Vector3KeyFrameAnimation>(durationMs, delayMs);
         foreach (var (progress, value, easing) in frames)
@@ -1155,7 +1155,7 @@ internal sealed partial class WelcomeHeroScene : IDisposable
         return animation;
     }
 
-    private Vector2KeyFrameAnimation Vector2D(float durationMs, float delayMs, params (float Progress, Vector2 Value, CompositionEasingFunction Easing)[] frames)
+    private Vector2KeyFrameAnimation Vector2D(float durationMs, float delayMs, params (float Progress, Vector2 Value, CompositionEasingFunction? Easing)[] frames)
     {
         var animation = CreateAnimation<Vector2KeyFrameAnimation>(durationMs, delayMs);
         foreach (var (progress, value, easing) in frames)

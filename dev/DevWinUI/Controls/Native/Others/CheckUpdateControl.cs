@@ -22,18 +22,18 @@ public partial class CheckUpdateControl : Control
     private const string PART_UpdateNotAvailableIconPresenter = "PART_UpdateNotAvailableIconPresenter";
     private const string PART_UpdateNotAvailableIconBorder = "PART_UpdateNotAvailableIconBorder";
 
-    private ContentPresenter iconAvailablePresenter;
-    private Border IconAvailableBorder;
-    private ContentPresenter iconNotAvailablePresenter;
-    private Border iconNotAvailableBorder;
-    private ContentPresenter titleAvailablePresenter;
-    private StackPanel titleAvailableStackPanel;
-    private ContentPresenter titleNotAvailablePresenter;
-    private StackPanel titleNotAvailableStackPanel;
+    private ContentPresenter iconAvailablePresenter = null!;
+    private Border IconAvailableBorder = null!;
+    private ContentPresenter iconNotAvailablePresenter = null!;
+    private Border iconNotAvailableBorder = null!;
+    private ContentPresenter titleAvailablePresenter = null!;
+    private StackPanel titleAvailableStackPanel = null!;
+    private ContentPresenter titleNotAvailablePresenter = null!;
+    private StackPanel titleNotAvailableStackPanel = null!;
 
-    private Button updateAvailableButton;
+    private Button updateAvailableButton = null!;
 
-    public event EventHandler<RoutedEventArgs> Click;
+    public event EventHandler<RoutedEventArgs>? Click;
 
     public bool IsUpdateAvailable
     {
@@ -157,17 +157,17 @@ public partial class CheckUpdateControl : Control
     {
         base.OnApplyTemplate();
 
-        titleAvailablePresenter = GetTemplateChild(PART_UpdateAvailableTitlePresenter) as ContentPresenter;
-        titleAvailableStackPanel = GetTemplateChild(PART_UpdateAvailableTitleStackPanel) as StackPanel;
-        iconAvailablePresenter = GetTemplateChild(PART_UpdateAvailableIconPresenter) as ContentPresenter;
-        IconAvailableBorder = GetTemplateChild(PART_UpdateAvailableIconBorder) as Border;
+        titleAvailablePresenter = (GetTemplateChild(PART_UpdateAvailableTitlePresenter) as ContentPresenter)!;
+        titleAvailableStackPanel = (GetTemplateChild(PART_UpdateAvailableTitleStackPanel) as StackPanel)!;
+        iconAvailablePresenter = (GetTemplateChild(PART_UpdateAvailableIconPresenter) as ContentPresenter)!;
+        IconAvailableBorder = (GetTemplateChild(PART_UpdateAvailableIconBorder) as Border)!;
 
-        titleNotAvailablePresenter = GetTemplateChild(PART_UpdateNotAvailableTitlePresenter) as ContentPresenter;
-        titleNotAvailableStackPanel = GetTemplateChild(PART_UpdateNotAvailableTitleStackPanel) as StackPanel;
-        iconNotAvailablePresenter = GetTemplateChild(PART_UpdateNotAvailableIconPresenter) as ContentPresenter;
-        iconNotAvailableBorder = GetTemplateChild(PART_UpdateNotAvailableIconBorder) as Border;
+        titleNotAvailablePresenter = (GetTemplateChild(PART_UpdateNotAvailableTitlePresenter) as ContentPresenter)!;
+        titleNotAvailableStackPanel = (GetTemplateChild(PART_UpdateNotAvailableTitleStackPanel) as StackPanel)!;
+        iconNotAvailablePresenter = (GetTemplateChild(PART_UpdateNotAvailableIconPresenter) as ContentPresenter)!;
+        iconNotAvailableBorder = (GetTemplateChild(PART_UpdateNotAvailableIconBorder) as Border)!;
 
-        updateAvailableButton = GetTemplateChild(PART_UpdateAvailableButton) as Button;
+        updateAvailableButton = (GetTemplateChild(PART_UpdateAvailableButton) as Button)!;
         updateAvailableButton.Click -= OnUpdateAvailableButton;
         updateAvailableButton.Click += OnUpdateAvailableButton;
 

@@ -7,12 +7,12 @@ public partial class StepBarItem : ContentControl
     private const string ContentPresenterElement = "PART_Content";
     private const string BorderElement = "PART_Border";
     private const string PanelElement = "PART_Panel";
-    private ContentPresenter contentPresenter;
-    private Border border;
-    private StackPanel panel;
-    private FontIconSource _completeIcon;
-    private FontIconSource _waitingIcon;
-    private FontIconSource _underWayIcon;
+    private ContentPresenter contentPresenter = null!;
+    private Border border = null!;
+    private StackPanel panel = null!;
+    private FontIconSource _completeIcon = null!;
+    private FontIconSource _waitingIcon = null!;
+    private FontIconSource _underWayIcon = null!;
 
     internal bool ShowStepIndex
     {
@@ -164,9 +164,9 @@ public partial class StepBarItem : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        contentPresenter = GetTemplateChild(ContentPresenterElement) as ContentPresenter;
-        border = GetTemplateChild(BorderElement) as Border;
-        panel = GetTemplateChild(PanelElement) as StackPanel;
+        contentPresenter = (GetTemplateChild(ContentPresenterElement) as ContentPresenter)!;
+        border = (GetTemplateChild(BorderElement) as Border)!;
+        panel = (GetTemplateChild(PanelElement) as StackPanel)!;
         UpdateHeaderDisplayMode();
         UpdateVisualStates();
     }

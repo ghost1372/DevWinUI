@@ -7,22 +7,22 @@ namespace DevWinUI;
 public partial class SpectrumAnalyzer : Control
 {
     private const string PART_SpectrumCanvas = "PART_SpectrumCanvas";
-    private Canvas spectrumCanvas;
+    private Canvas spectrumCanvas = null!;
 
     private readonly DispatcherTimer animationTimer;
-    private ISpectrumPlayer soundPlayer;
+    private ISpectrumPlayer soundPlayer = null!;
     private readonly List<Shape> barShapes = new List<Shape>();
     private readonly List<Shape> peakShapes = new List<Shape>();
-    private double[] barHeights;
-    private double[] peakHeights;
+    private double[] barHeights = null!;
+    private double[] peakHeights = null!;
     private float[] channelData = new float[2048];
-    private float[] channelPeakData;
+    private float[] channelPeakData = null!;
     private double bandWidth = 1.0;
     private double barWidth = 1;
     private int maximumFrequencyIndex = 2047;
     private int minimumFrequencyIndex;
-    private int[] barIndexMax;
-    private int[] barLogScaleIndexMax;
+    private int[] barIndexMax = null!;
+    private int[] barLogScaleIndexMax = null!;
 
     private const int scaleFactorLinear = 9;
     private const int scaleFactorSqr = 2;
@@ -47,7 +47,7 @@ public partial class SpectrumAnalyzer : Control
             spectrumCanvas.Children.Clear();
         }
         
-        spectrumCanvas = GetTemplateChild(PART_SpectrumCanvas) as Canvas;
+        spectrumCanvas = (GetTemplateChild(PART_SpectrumCanvas) as Canvas)!;
         spectrumCanvas.SizeChanged -= OnSpectrumCanvasSizeChanged;
         spectrumCanvas.SizeChanged += OnSpectrumCanvasSizeChanged;
 
@@ -225,7 +225,7 @@ public partial class SpectrumAnalyzer : Control
         ActualBarWidth = barWidth;
     }
 
-    private void soundPlayer_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void soundPlayer_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {
@@ -236,7 +236,7 @@ public partial class SpectrumAnalyzer : Control
         }
     }
 
-    private void animationTimer_Tick(object sender, object e)
+    private void animationTimer_Tick(object? sender, object e)
     {
         UpdateSpectrum();
     }

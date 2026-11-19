@@ -18,8 +18,8 @@ internal partial class CalendarViewAttach
     {
         if (d is CalendarView calendarView && calendarView != null)
         {
-            FrameworkElement headerBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_HeaderBorder");
-            FrameworkElement topBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_TopBorder");
+            FrameworkElement? headerBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_HeaderBorder");
+            FrameworkElement? topBorder = DependencyObjectExtensions.FindDescendant(calendarView, "PART_TopBorder");
             var headerButton = DependencyObjectExtensions.FindDescendant(calendarView, "HeaderButton") as Button;
             var nextButton = DependencyObjectExtensions.FindDescendant(calendarView, "NextButton") as Button;
             var previousButton = DependencyObjectExtensions.FindDescendant(calendarView, "PreviousButton") as Button;

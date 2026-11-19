@@ -4,7 +4,7 @@
 public partial class AccordionItem : ContentControl
 {
     private const string PART_Header = "PART_Header";
-    private ContentControl _header = null;
+    private ContentControl? _header = null;
     public int Index { get; set; }
     public bool IsUp { get; set; }
     public double HeaderHeight

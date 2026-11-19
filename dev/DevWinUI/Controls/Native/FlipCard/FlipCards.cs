@@ -43,7 +43,7 @@ public partial class FlipCards : StackPanel
         {
             Interval = TimeSpan.FromMilliseconds(250)
         };
-        timer.Tick += (object s, object args) =>
+        timer.Tick += (object? s, object args) =>
         {
             if (Source != FlipCardsSourceType.Value)
             {
@@ -69,7 +69,7 @@ public partial class FlipCards : StackPanel
         }
     }
 
-    private void AddElement(string name)
+    private void AddElement(string? name)
     {
         FrameworkElement element = name == null
             ? new Canvas

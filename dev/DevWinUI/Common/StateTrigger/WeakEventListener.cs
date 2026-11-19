@@ -32,12 +32,12 @@ public sealed partial class WeakEventListener<TInstance, TSource, TEventArgs>
     /// <summary>
     /// Gets or sets the method to call when the event fires.
     /// </summary>
-    public Action<TInstance, TSource, TEventArgs> OnEventAction { get; set; }
+    public Action<TInstance, TSource, TEventArgs>? OnEventAction { get; set; }
 
     /// <summary>
     /// Gets or sets the method to call when detaching from the event.
     /// </summary>
-    public Action<WeakEventListener<TInstance, TSource, TEventArgs>> OnDetachAction { get; set; }
+    public Action<WeakEventListener<TInstance, TSource, TEventArgs>>? OnDetachAction { get; set; }
 
     /// <summary>
     /// Handler for the subscribed event calls OnEventAction to handle it.

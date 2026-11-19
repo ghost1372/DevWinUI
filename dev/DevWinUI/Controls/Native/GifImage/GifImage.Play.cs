@@ -4,14 +4,14 @@ using Windows.Storage.Streams;
 namespace DevWinUI;
 public partial class GifImage
 {
-    private DispatcherTimer _timer = null;
+    private DispatcherTimer _timer = null!;
 
     private int _index = 0;
-    List<BitmapFrame> _frames = null;
+    List<BitmapFrame> _frames = null!;
 
     private int _width;
     private int _height;
-    private byte[] _pixels = null;
+    private byte[] _pixels = null!;
 
     private void InitializeTimer()
     {
@@ -19,7 +19,7 @@ public partial class GifImage
         _timer.Tick += OnTimerTick;
     }
 
-    private async void OnTimerTick(object sender, object e)
+    private async void OnTimerTick(object? sender, object e)
     {
         if (_frames != null && _frames.Count > 0)
         {
@@ -80,7 +80,7 @@ public partial class GifImage
             else
             {
                 var file = await FileHelper.GetStorageFile(uri);
-                using (var stream = await file.OpenReadAsync())
+                using (var stream = await file!.OpenReadAsync())
                 {
                     _frames = await LoadFramesAsync(stream);
                 }

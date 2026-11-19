@@ -3,8 +3,8 @@
 namespace DevWinUI;
 internal partial class IndicatorVisualStateGroupNames : MarkupExtension
 {
-    private static IndicatorVisualStateGroupNames _internalActiveStates;
-    private static IndicatorVisualStateGroupNames _sizeStates;
+    private static IndicatorVisualStateGroupNames? _internalActiveStates;
+    private static IndicatorVisualStateGroupNames? _sizeStates;
 
     public static IndicatorVisualStateGroupNames ActiveStates =>
         _internalActiveStates ?? (_internalActiveStates = new IndicatorVisualStateGroupNames("ActiveStates"));

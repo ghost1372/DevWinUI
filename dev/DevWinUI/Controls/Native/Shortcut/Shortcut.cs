@@ -7,22 +7,22 @@ namespace DevWinUI;
 public partial class Shortcut : BaseShortcut
 {
     private const string PART_OpenDialog = "PART_OpenDialog";
-    private Button openDialog;
+    private Button openDialog = null!;
 
-    private ShortcutPreview shortcut;
-    private ContentDialog contentDialog;
+    private ShortcutPreview shortcut = null!;
+    private ContentDialog contentDialog = null!;
     private bool canCloseDialog = false;
-    private List<object> defaultKeys;
+    private List<object> defaultKeys = null!;
     private readonly HashSet<VirtualKey> _pressedKeys = new();
     private readonly List<VirtualKey> _keyOrder = new();
     private bool _windowsKeyPressed = false;
 
-    public event EventHandler<ContentDialogButtonClickEventArgs> CloseButtonClick;
-    public event EventHandler<ContentDialogButtonClickEventArgs> PrimaryButtonClick;
-    public event EventHandler<ContentDialogButtonClickEventArgs> SecondaryButtonClick;
-    public event EventHandler<ContentDialogOpenedEventArgs> OpenedContentDialog;
-    public event EventHandler<ContentDialogClosedEventArgs> ClosedContentDialog;
-    public event EventHandler<ContentDialogClosingEventArgs> ClosingContentDialog;
+    public event EventHandler<ContentDialogButtonClickEventArgs>? CloseButtonClick;
+    public event EventHandler<ContentDialogButtonClickEventArgs>? PrimaryButtonClick;
+    public event EventHandler<ContentDialogButtonClickEventArgs>? SecondaryButtonClick;
+    public event EventHandler<ContentDialogOpenedEventArgs>? OpenedContentDialog;
+    public event EventHandler<ContentDialogClosedEventArgs>? ClosedContentDialog;
+    public event EventHandler<ContentDialogClosingEventArgs>? ClosingContentDialog;
     public event EventHandler<ShortcutValidationEventArgs>? ValidateShortcut;
 
     public Func<VirtualKey, string>? KeyNameProvider { get; set; }
@@ -165,7 +165,7 @@ public partial class Shortcut : BaseShortcut
         }
     }
     
-    private string GetContentDialogTitle()
+    private string? GetContentDialogTitle()
     {
         return string.IsNullOrEmpty(ContentDialogTitle) ? null : ContentDialogTitle;
     }
@@ -183,7 +183,7 @@ public partial class Shortcut : BaseShortcut
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        openDialog = GetTemplateChild(PART_OpenDialog) as Button;
+        openDialog = (GetTemplateChild(PART_OpenDialog) as Button)!;
 
         if (openDialog != null)
         {
@@ -204,7 +204,7 @@ public partial class Shortcut : BaseShortcut
         shortcut.LostFocus -= OnLostFocus;
         shortcut.LostFocus += OnLostFocus;
 
-        shortcut.Keys = null;
+        shortcut.Keys = null!;
         shortcut.Keys = Keys;
         shortcut.KeysMargin = KeysMargin;
 
@@ -306,8 +306,8 @@ public partial class Shortcut : BaseShortcut
         // A UIElement title or footer can only have one parent, so release it before the next dialog creates a new preview
         if (sender.Content is ShortcutPreview preview)
         {
-            preview.Title = null;
-            preview.Footer = null;
+            preview.Title = null!;
+            preview.Footer = null!;
         }
 
         ClosedContentDialog?.Invoke(this, args);
@@ -402,7 +402,7 @@ public partial class Shortcut : BaseShortcut
 
     public void UpdatePreviewKeys()
     {
-        Keys = shortcut?.Keys;
+        Keys = shortcut?.Keys!;
     }
     public void CanCloseContentDialog(bool canClose)
     {

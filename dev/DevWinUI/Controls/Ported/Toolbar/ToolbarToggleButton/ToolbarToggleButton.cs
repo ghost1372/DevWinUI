@@ -58,7 +58,7 @@ public partial class ToolbarToggleButton : ToggleButton, IToolbarItemSet
 
 
 
-	private void UpdateContent(object newContent)
+	private void UpdateContent(object? newContent)
 	{
 		if (CheckHasContent() == false)
 		{

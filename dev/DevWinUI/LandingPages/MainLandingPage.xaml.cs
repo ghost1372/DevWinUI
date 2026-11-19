@@ -2,7 +2,7 @@
 
 public sealed partial class MainLandingPage : ItemsPageBase
 {
-    internal static MainLandingPage Instance { get; private set; }
+    internal static MainLandingPage? Instance { get; private set; }
     public string PreviewGroupText
     {
         get => (string)GetValue(PreviewGroupTextProperty);
@@ -109,7 +109,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
     {
         GetData(useOrder, useOrderByDescending, null);
     }
-    private void GetData(bool useOrder, bool useOrderByDescending, Func<DataItem, object> orderby)
+    private void GetData(bool useOrder, bool useOrderByDescending, Func<DataItem, object>? orderby)
     {
         var allItems = DataSource.Instance.Groups
             .Where(group => !group.HideGroup)
@@ -148,7 +148,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
 
         GetCollectionViewSource().Source = FormatData();
     }
-    public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder, bool useOrderByDescending, Func<DataItem, object> orderby)
+    public async Task GetDataAsync(string jsonFilePath, PathType pathType, bool useOrder, bool useOrderByDescending, Func<DataItem, object>? orderby)
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
         GetData(useOrder, useOrderByDescending, orderby);
@@ -171,7 +171,7 @@ public sealed partial class MainLandingPage : ItemsPageBase
         return itemsCVS;
     }
 
-    public ObservableCollection<GroupInfoList> FormatData()
+    public ObservableCollection<GroupInfoList>? FormatData()
     {
         if (Items == null)
         {

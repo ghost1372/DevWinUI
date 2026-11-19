@@ -6,14 +6,14 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
 {
     public bool CanExecuteInternalCommand { get; set; } = true;
 
-    public event EventHandler<RoutedEventArgs> OnItemClick;
+    public event EventHandler<RoutedEventArgs>? OnItemClick;
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-    private string _itemId;
-    private IEnumerable<DataItem> _items;
+    private string? _itemId;
+    private IEnumerable<DataItem>? _items;
 
-    public IEnumerable<DataItem> Items
+    public IEnumerable<DataItem>? Items
     {
         get => _items;
         set
@@ -102,7 +102,7 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
         }
     }
 
-    protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+    protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
     {
         if (Equals(storage, value)) return false;
 
@@ -111,7 +111,7 @@ public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
         return true;
     }
 
-    protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+    protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

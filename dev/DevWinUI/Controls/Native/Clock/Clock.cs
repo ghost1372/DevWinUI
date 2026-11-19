@@ -21,27 +21,27 @@ public partial class Clock : Control
     private const string ElementGrid = "PART_Grid";
     private const string ElementMinuteFocus = "PART_MinuteFocus";
 
-    public event EventHandler<DateTime> SelectedTimeChanged;
+    public event EventHandler<DateTime>? SelectedTimeChanged;
 
-    private ClockRadioButton _buttonAm;
+    private ClockRadioButton _buttonAm = null!;
 
-    private ClockRadioButton _buttonPm;
+    private ClockRadioButton _buttonPm = null!;
 
-    private Border _borderTitle;
+    private Border _borderTitle = null!;
 
-    private Line _minuteHandLine;
+    private Line _minuteHandLine = null!;
 
-    private ClockRadioButton _selectedHourButton;
+    private ClockRadioButton? _selectedHourButton;
 
-    private RotateTransform _rotateTransformClock;
+    private RotateTransform _rotateTransformClock = null!;
 
-    private CirclePanel _circlePanel;
+    private CirclePanel _circlePanel = null!;
 
-    private List<ClockRadioButton> _hourButtonList;
+    private List<ClockRadioButton> _hourButtonList = null!;
 
-    private TextBlock _blockTime;
-    private Grid _grid;
-    private ContentControl _minuteFocus;
+    private TextBlock _blockTime = null!;
+    private Grid _grid = null!;
+    private ContentControl _minuteFocus = null!;
 
     private int _secValue;
     private bool _isDraggingHand;
@@ -112,14 +112,14 @@ public partial class Clock : Control
 
         base.OnApplyTemplate();
 
-        _buttonAm = GetTemplateChild(ElementButtonAm) as ClockRadioButton;
-        _buttonPm = GetTemplateChild(ElementButtonPm) as ClockRadioButton;
-        _borderTitle = GetTemplateChild(ElementBorderTitle) as Border;
-        _minuteHandLine = GetTemplateChild(ElementMinuteHandLine) as Line;
-        _circlePanel = GetTemplateChild(ElementPanelNum) as CirclePanel;
-        _blockTime = GetTemplateChild(ElementTimeStr) as TextBlock;
-        _grid = GetTemplateChild(ElementGrid) as Grid;
-        _minuteFocus = GetTemplateChild(ElementMinuteFocus) as ContentControl;
+        _buttonAm = (GetTemplateChild(ElementButtonAm) as ClockRadioButton)!;
+        _buttonPm = (GetTemplateChild(ElementButtonPm) as ClockRadioButton)!;
+        _borderTitle = (GetTemplateChild(ElementBorderTitle) as Border)!;
+        _minuteHandLine = (GetTemplateChild(ElementMinuteHandLine) as Line)!;
+        _circlePanel = (GetTemplateChild(ElementPanelNum) as CirclePanel)!;
+        _blockTime = (GetTemplateChild(ElementTimeStr) as TextBlock)!;
+        _grid = (GetTemplateChild(ElementGrid) as Grid)!;
+        _minuteFocus = (GetTemplateChild(ElementMinuteFocus) as ContentControl)!;
 
         if (!CheckNull()) return;
 
@@ -269,7 +269,7 @@ public partial class Clock : Control
         _isDraggingHand = false;
     }
 
-    private bool IsInsideHourButton(DependencyObject source)
+    private bool IsInsideHourButton(DependencyObject? source)
     {
         while (source != null && source != _grid)
         {
@@ -353,7 +353,7 @@ public partial class Clock : Control
     private void Update()
     {
         if (!isTemplateApplied) return;
-        var hourValue = _selectedHourButton.Num;
+        var hourValue = _selectedHourButton!.Num;
         if (_buttonPm.IsChecked == true)
         {
             hourValue += 12;
@@ -419,7 +419,7 @@ public partial class Clock : Control
 
     private DateTime GetDisplayTime()
     {
-        var hourValue = _selectedHourButton.Num;
+        var hourValue = _selectedHourButton!.Num;
         var minuteValue = (int)Math.Abs(_rotateTransformClock.Angle) % 360 / 6;
         if (_buttonPm.IsChecked == true)
         {

@@ -6,7 +6,7 @@ public partial class WaveProgressBarValueToPercentConverter : IValueConverter
     {
         if (value == null)
         {
-            return value;
+            return value!;
         }
         var percent = string.Format("{0:F0} %", (double)value);
         return percent;

@@ -81,14 +81,14 @@ public partial class IsEqualStateTrigger : StateTriggerBase
     private static bool ConvertTypeEquals(object value1, object value2)
     {
         // Let's see if we can convert:
-        value1 = value2 is Enum
+        object? converted = value2 is Enum
             ? ConvertToEnum(value2.GetType(), value1)
             : Convert.ChangeType(value1, value2.GetType(), CultureInfo.InvariantCulture);
 
-        return value2.Equals(value1);
+        return value2.Equals(converted);
     }
 
-    private static object ConvertToEnum(Type enumType, object value)
+    private static object? ConvertToEnum(Type enumType, object value)
     {
         // value cannot be the same type of enum now
         return value switch

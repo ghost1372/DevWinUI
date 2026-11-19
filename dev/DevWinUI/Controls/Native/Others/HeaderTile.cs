@@ -6,9 +6,9 @@ namespace DevWinUI;
 public partial class HeaderTile : Control
 {
     private const string PART_HyperLink = "PART_HyperLink";
-    private HyperlinkButton _HyperLinkButton;
+    private HyperlinkButton _HyperLinkButton = null!;
 
-    public event EventHandler<RoutedEventArgs> OnItemClick;
+    public event EventHandler<RoutedEventArgs>? OnItemClick;
 
     public string Title
     {
@@ -54,7 +54,7 @@ public partial class HeaderTile : Control
     {
         base.OnApplyTemplate();
 
-        _HyperLinkButton = GetTemplateChild(PART_HyperLink) as HyperlinkButton;
+        _HyperLinkButton = (GetTemplateChild(PART_HyperLink) as HyperlinkButton)!;
 
         _HyperLinkButton.Click -= OnHyperLinkButtonClick;
         _HyperLinkButton.Click += OnHyperLinkButtonClick;

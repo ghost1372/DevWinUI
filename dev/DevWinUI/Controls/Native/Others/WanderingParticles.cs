@@ -4,11 +4,11 @@
 public partial class WanderingParticles : Control
 {
     private const string PART_Container = "PART_Container";
-    private Grid grid;
+    private Grid grid = null!;
 
-    private Compositor _compositor;
-    private CompositionGraphicsDevice _graphicsDevice;
-    private VisualCollection _particles;
+    private Compositor _compositor = null!;
+    private CompositionGraphicsDevice _graphicsDevice = null!;
+    private VisualCollection _particles = null!;
     private Random _random = new();
     private bool _isDisposed = false;
 
@@ -64,7 +64,7 @@ public partial class WanderingParticles : Control
     {
         base.OnApplyTemplate();
 
-        grid = GetTemplateChild(PART_Container) as Grid;
+        grid = (GetTemplateChild(PART_Container) as Grid)!;
 
         _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
@@ -235,11 +235,11 @@ public partial class WanderingParticles : Control
 
             _particles.RemoveAll();
             _particles.Dispose();
-            _particles = null;
+            _particles = null!;
         }
 
         _graphicsDevice?.Dispose();
-        _graphicsDevice = null;
+        _graphicsDevice = null!;
     }
 }
 

@@ -4,15 +4,15 @@
 public partial class SelectorBarSegmented : SelectorBar
 {
     private const string PART_ItemsView = "PART_ItemsView";
-    private ItemsView _ItemsView { get; set; }
+    private ItemsView _ItemsView { get; set; } = null!;
 
-    private IEnumerable<object> _backupItems;
+    private IEnumerable<object> _backupItems = null!;
 
-    private List<int> _selectedIndex;
+    private List<int> _selectedIndex = null!;
 
     private bool _syncingIndex;
 
-    public IReadOnlyList<object> SelectedItems { get; internal set; }
+    public IReadOnlyList<object> SelectedItems { get; internal set; } = null!;
 
     public int SelectedIndex
     {
@@ -38,7 +38,7 @@ public partial class SelectorBarSegmented : SelectorBar
         if (items == null)
             return;
 
-        SelectorBarItem target = null;
+        SelectorBarItem? target = null;
         var i = 0;
         foreach (var item in items)
         {
@@ -101,10 +101,10 @@ public partial class SelectorBarSegmented : SelectorBar
             switch ((Orientation)e.NewValue)
             {
                 case Orientation.Vertical:
-                    style = Application.Current.Resources["SelectorBarItemVerticalStyle"] as Style;
+                    style = (Application.Current.Resources["SelectorBarItemVerticalStyle"] as Style)!;
                     break;
                 case Orientation.Horizontal:
-                    style = Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style;
+                    style = (Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style)!;
                     break;
             }
 
@@ -120,7 +120,7 @@ public partial class SelectorBarSegmented : SelectorBar
         this.DefaultStyleKey = typeof(SelectorBarSegmented);
 
         Style style = new Style(typeof(SelectorBarItem));
-        style = Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style;
+        style = (Application.Current.Resources["SelectorBarItemHorizontalStyle"] as Style)!;
         Resources.Remove(typeof(SelectorBarItem));
         Resources.Add(typeof(SelectorBarItem), style);
 
@@ -179,7 +179,7 @@ public partial class SelectorBarSegmented : SelectorBar
     {
         base.OnApplyTemplate();
 
-        _ItemsView = GetTemplateChild(PART_ItemsView) as ItemsView;
+        _ItemsView = (GetTemplateChild(PART_ItemsView) as ItemsView)!;
 
         if (_ItemsView != null)
         {
@@ -200,7 +200,7 @@ public partial class SelectorBarSegmented : SelectorBar
         if (_ItemsView != null)
         {
             _selectedIndex = new List<int>();
-            _backupItems = _ItemsView.ItemsSource as IEnumerable<object>;
+            _backupItems = (_ItemsView.ItemsSource as IEnumerable<object>)!;
 
             var itemsRepeater = _ItemsView.FindChild<ItemsRepeater>();
             if (itemsRepeater != null)

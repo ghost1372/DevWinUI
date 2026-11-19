@@ -68,9 +68,9 @@ internal partial class LoopingSelectorItemDataAutomationPeer : AutomationPeer
 	//void SetItem( DependencyObject pItem);
 	//void GetContainerAutomationPeer(out xaml.Automation.Peers.IAutomationPeer ppContainer);
 
-	DependencyObject _tpItem;
+	DependencyObject _tpItem = null!;
 
 	//wrl.WeakRef _wrParent;
-	private WeakReference<LoopingSelectorAutomationPeer> _wrParent;
+	private WeakReference<LoopingSelectorAutomationPeer>? _wrParent;
 	int _itemIndex;
 };

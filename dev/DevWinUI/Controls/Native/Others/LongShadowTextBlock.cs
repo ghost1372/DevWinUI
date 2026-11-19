@@ -10,7 +10,7 @@ public partial class LongShadowTextBlock : Control
 {
     private const string PART_ShadowElement = "PART_ShadowElement";
     private const string PART_TextBlock = "PART_TextBlock";
-    private Rectangle _shadowElement;
+    private Rectangle _shadowElement = null!;
     private long _textblockTextChanged;
     public TextBlock TextBlock
     {
@@ -83,7 +83,7 @@ public partial class LongShadowTextBlock : Control
     {
         base.OnApplyTemplate();
 
-        _shadowElement = GetTemplateChild(PART_ShadowElement) as Rectangle;
+        _shadowElement = (GetTemplateChild(PART_ShadowElement) as Rectangle)!;
         SizeChanged -= LongShadowTextBlock_SizeChanged;
         SizeChanged += LongShadowTextBlock_SizeChanged;
 

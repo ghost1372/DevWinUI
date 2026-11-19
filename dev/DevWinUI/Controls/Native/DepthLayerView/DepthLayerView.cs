@@ -8,12 +8,12 @@ namespace DevWinUI;
 public partial class DepthLayerView : ContentControl
 {
     private const string PART_CompositionHostPanel = "PART_CompositionHostPanel";
-    private Grid compositionHostPanel;
+    private Grid compositionHostPanel = null!;
 
     private Compositor _compositor;
-    private ContainerVisual _rootVisual;
-    private CompositionPropertySet _animationPropertySet;
-    public event EventHandler<DepthLayerViewEventArgs> SelectedIndexChanged;
+    private ContainerVisual _rootVisual = null!;
+    private CompositionPropertySet _animationPropertySet = null!;
+    public event EventHandler<DepthLayerViewEventArgs>? SelectedIndexChanged;
     public CompositionStretch Stretch
     {
         get { return (CompositionStretch)GetValue(StretchProperty); }
@@ -80,7 +80,7 @@ public partial class DepthLayerView : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        compositionHostPanel = GetTemplateChild(PART_CompositionHostPanel) as Grid;
+        compositionHostPanel = (GetTemplateChild(PART_CompositionHostPanel) as Grid)!;
 
         compositionHostPanel.LayoutUpdated -= OnCompositionHostPanelLayoutUpdated;
         compositionHostPanel.LayoutUpdated += OnCompositionHostPanelLayoutUpdated;
@@ -89,7 +89,7 @@ public partial class DepthLayerView : ContentControl
         Loaded += OnLoaded;
     }
 
-    private void OnCompositionHostPanelLayoutUpdated(object sender, object e)
+    private void OnCompositionHostPanelLayoutUpdated(object? sender, object e)
     {
         UpdateVisualLayout();
     }

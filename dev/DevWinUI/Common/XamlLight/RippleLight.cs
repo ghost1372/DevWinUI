@@ -4,13 +4,11 @@ namespace DevWinUI;
 
 public partial class RippleLight : XamlLight
 {
-    private static readonly string Id = typeof(RippleLight).FullName;
-
-    private Compositor _compositor;
+    private static readonly string Id = typeof(RippleLight).FullName!;
 
     private const float OffsetZRatio = 2.0f;
     private float _rippleOffsetZ;
-    private Vector3KeyFrameAnimation _lightRippleOffsetAnimation;
+    private Vector3KeyFrameAnimation? _lightRippleOffsetAnimation;
 
     public Color Color
     {
@@ -32,12 +30,12 @@ public partial class RippleLight : XamlLight
 
     protected override void OnConnected(UIElement newElement)
     {
-        _compositor = CompositionTarget.GetCompositorForCurrentThread();
+        var compositor = CompositionTarget.GetCompositorForCurrentThread();
 
         var spotLight = CreateSpotLight();
         CompositionLight = spotLight;
 
-        _lightRippleOffsetAnimation = CreateLightRippleOffsetAnimation();
+        _lightRippleOffsetAnimation = CreateLightRippleOffsetAnimation(compositor);
 
         SubscribeToPointerEvents();
 
@@ -45,7 +43,7 @@ public partial class RippleLight : XamlLight
 
         SpotLight CreateSpotLight()
         {
-            var light = _compositor.CreateSpotLight();
+            var light = compositor.CreateSpotLight();
 
             light.InnerConeColor = light.OuterConeColor = Color;
             light.InnerConeAngleInDegrees = 90.0f;
@@ -75,7 +73,7 @@ public partial class RippleLight : XamlLight
         RemoveTargetElement(GetId(), oldElement);
         CompositionLight.Dispose();
 
-        _lightRippleOffsetAnimation.Dispose();
+        _lightRippleOffsetAnimation?.Dispose();
 
         void UnsubscribeFromPointerEvents()
         {
@@ -99,9 +97,9 @@ public partial class RippleLight : XamlLight
     private void OnPointerPressed(object sender, PointerRoutedEventArgs e) =>
         StartLightRippleOffsetAnimation(e.GetCurrentPoint((UIElement)sender).Position.ToVector2());
 
-    private Vector3KeyFrameAnimation CreateLightRippleOffsetAnimation()
+    private static Vector3KeyFrameAnimation CreateLightRippleOffsetAnimation(Compositor compositor)
     {
-        var offsetAnimation = _compositor.CreateVector3KeyFrameAnimation();
+        var offsetAnimation = compositor.CreateVector3KeyFrameAnimation();
         offsetAnimation.Duration = TimeSpan.FromMilliseconds(1200);
 
         return offsetAnimation;

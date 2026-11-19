@@ -5,16 +5,16 @@ public partial class EdgeLighting : ContentControl
 {
     private const string PART_Border = "PART_Border";
 
-    private Border border;
+    private Border? border;
 
-    private Compositor _compositor;
-    private CompositionRadialGradientBrush brush;
-    private ExpressionAnimation expression;
-    private CompositionPropertySet props;
+    private Compositor? _compositor;
+    private CompositionRadialGradientBrush? brush;
+    private ExpressionAnimation? expression;
+    private CompositionPropertySet? props;
     private ScalarKeyFrameAnimation? progressAnimation;
-    private CompositionSpriteShape bgShape;
-    private CompositionSpriteShape glowShape;
-    private ShapeVisual shapeVisual;
+    private CompositionSpriteShape? bgShape;
+    private CompositionSpriteShape? glowShape;
+    private ShapeVisual? shapeVisual;
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -97,8 +97,8 @@ public partial class EdgeLighting : ContentControl
         float cornerRadius = IsRounded ? maxRadius : Math.Clamp((float)CornerRadius, 0f, maxRadius);
 
         // Geometry        
-        CompositionRoundedRectangleGeometry roundedRectangleGeometry = null;
-        CompositionEllipseGeometry ellipseGeometry = null;
+        CompositionRoundedRectangleGeometry? roundedRectangleGeometry = null;
+        CompositionEllipseGeometry? ellipseGeometry = null;
         if (IsRounded)
         {
             ellipseGeometry = _compositor.CreateEllipseGeometry();

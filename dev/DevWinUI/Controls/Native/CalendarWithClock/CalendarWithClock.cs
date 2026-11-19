@@ -16,12 +16,12 @@ public partial class CalendarWithClock : DateTimeBase
     private const string PART_Clock = "PART_Clock";
     private const string PART_Root = "PART_Root";
 
-    public event EventHandler<DateTimeOffset> SelectedTimeChanged;
+    public event EventHandler<DateTimeOffset>? SelectedTimeChanged;
 
-    private CalendarView calendarView;
-    private TimePicker timePicker;
-    private Clock clock;
-    private Grid rootGrid;
+    private CalendarView calendarView = null!;
+    private TimePicker timePicker = null!;
+    private Clock clock = null!;
+    private Grid rootGrid = null!;
     private bool isUpdating;
     public string SelectedDateFormatted
     {
@@ -64,10 +64,10 @@ public partial class CalendarWithClock : DateTimeBase
             SelectedTime = TimeNow;
         }
 
-        rootGrid = GetTemplateChild(PART_Root) as Grid;
-        timePicker = GetTemplateChild(PART_TimePicker) as TimePicker;
-        clock = GetTemplateChild(PART_Clock) as Clock;
-        calendarView = GetTemplateChild(PART_CalendarView) as CalendarView;
+        rootGrid = (GetTemplateChild(PART_Root) as Grid)!;
+        timePicker = (GetTemplateChild(PART_TimePicker) as TimePicker)!;
+        clock = (GetTemplateChild(PART_Clock) as Clock)!;
+        calendarView = (GetTemplateChild(PART_CalendarView) as CalendarView)!;
         if (calendarView != null)
         {
             calendarView.SelectedDatesChanged -= OnCalendarViewSelectedDatesChanged;
@@ -94,7 +94,7 @@ public partial class CalendarWithClock : DateTimeBase
         OnShowAccentBorderOnHeader(ShowAccentBorderOnHeader);
     }
 
-    private void OnClockSelectedTimeChanged(object sender, DateTime e)
+    private void OnClockSelectedTimeChanged(object? sender, DateTime e)
     {
         if (!isUpdating && clock.SelectedTime is DateTime selectedTime)
         {

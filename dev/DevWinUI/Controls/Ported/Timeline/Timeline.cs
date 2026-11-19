@@ -17,9 +17,9 @@ public partial class Timeline : Control
     private const string PART_TimelineCanvas = "PART_TimelineCanvas";
     private const string PART_AnnotationCanvas = "PART_AnnotationCanvas";
 
-    private Canvas headerCanvas;
-    private Canvas timelineCanvas;
-    private Canvas annotationCanvas;
+    private Canvas headerCanvas = null!;
+    private Canvas timelineCanvas = null!;
+    private Canvas annotationCanvas = null!;
 
     private readonly List<int> _tickHours = new();
 
@@ -33,17 +33,17 @@ public partial class Timeline : Control
     private readonly List<Border> _darkRects = new(); // up to 2 (wrap)
     private readonly List<Border> _lightRects = new(); // up to 2 (complement)
 
-    private TextBlock _startEdgeLabel; // top-of-chart
-    private TextBlock _endEdgeLabel;
+    private TextBlock? _startEdgeLabel; // top-of-chart
+    private TextBlock? _endEdgeLabel;
 
-    private Line _sunriseTick;
-    private Line _sunsetTick;
+    private Line? _sunriseTick;
+    private Line? _sunsetTick;
 
     // Add/replace these constants (top of your class)
     private const int TickHourStep = 2; // <-- every 2 hours
 
-    private StackPanel _sunrisePanel;  // icon + time (below chart)
-    private StackPanel _sunsetPanel;
+    private StackPanel? _sunrisePanel;  // icon + time (below chart)
+    private StackPanel? _sunsetPanel;
 
     public TimeSpan StartTime
     {
@@ -94,9 +94,9 @@ public partial class Timeline : Control
     {
         base.OnApplyTemplate();
 
-        timelineCanvas = GetTemplateChild(PART_TimelineCanvas) as Canvas;
-        headerCanvas = GetTemplateChild(PART_HeaderCanvas) as Canvas;
-        annotationCanvas = GetTemplateChild(PART_AnnotationCanvas) as Canvas;
+        timelineCanvas = (Canvas)GetTemplateChild(PART_TimelineCanvas);
+        headerCanvas = (Canvas)GetTemplateChild(PART_HeaderCanvas);
+        annotationCanvas = (Canvas)GetTemplateChild(PART_AnnotationCanvas);
 
         // SizeChanged wiring here (as requested)
         headerCanvas.SizeChanged -= (_, __) => UpdateAll();

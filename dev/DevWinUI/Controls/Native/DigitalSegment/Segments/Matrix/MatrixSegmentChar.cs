@@ -5,7 +5,7 @@ namespace DevWinUI;
 public abstract partial class MatrixSegmentChar : SegmentChar
 {
     private const string PART_Canvas = "PART_Canvas";
-    private Canvas canvas;
+    private Canvas canvas = null!;
 
     protected abstract int MatrixColumns { get; }
     protected abstract int MatrixRows { get; }
@@ -20,7 +20,7 @@ public abstract partial class MatrixSegmentChar : SegmentChar
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        canvas = GetTemplateChild(PART_Canvas) as Canvas;
+        canvas = (GetTemplateChild(PART_Canvas) as Canvas)!;
 
         Columns = MatrixColumns;
         Rows = MatrixRows;

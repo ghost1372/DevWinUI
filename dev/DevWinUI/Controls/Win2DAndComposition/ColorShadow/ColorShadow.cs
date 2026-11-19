@@ -22,24 +22,24 @@ public partial class ColorShadow : Control
     private const double DefaultShadowOpacity = 0.7f;
     private static readonly Color DefaultShadowColor = Colors.Black;
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private IImageSurface _imageSurface;
-    private ContainerVisual _rootVisual;
-    private SpriteVisual _colorShadowVisual;
-    private SpriteVisual _imageVisual;
-    private CompositionEffectBrush _colorShadowBrush;
-    private DropShadow _dropShadow;
-    private ScalarKeyFrameAnimation _colorShadowBlurAnimation;
+    private Compositor _compositor = null!;
+    private ICompositionGenerator _generator = null!;
+    private IImageSurface? _imageSurface;
+    private ContainerVisual? _rootVisual;
+    private SpriteVisual? _colorShadowVisual;
+    private SpriteVisual? _imageVisual;
+    private CompositionEffectBrush _colorShadowBrush = null!;
+    private DropShadow _dropShadow = null!;
+    private ScalarKeyFrameAnimation _colorShadowBlurAnimation = null!;
     private readonly ImageSurfaceOptions _maskOptions = ImageSurfaceOptions.DefaultImageMaskOptions;
 
-    private Grid _renderGrid;
+    private Grid? _renderGrid;
     private bool _imageSourceLoaded;
     private readonly SemaphoreSlim _syncObject = new SemaphoreSlim(1);
     private bool _isLoading;
-    private IImageMaskSurface _imageMaskSurface;
+    private IImageMaskSurface? _imageMaskSurface;
     private bool forceUpdateMask = false;
-    private ScalarKeyFrameAnimation _breathAnimation;
+    private ScalarKeyFrameAnimation? _breathAnimation;
     public ColorShadow()
     {
         // Set the default Style Key
@@ -58,7 +58,7 @@ public partial class ColorShadow : Control
         UpdateIsBreathing();
     }
 
-    private async Task<bool> OnImageUriChangedAsync(Uri imageUri)
+    private async Task<bool> OnImageUriChangedAsync(Uri? imageUri)
     {
         return await LoadImageAsync(imageUri);
     }
@@ -108,7 +108,7 @@ public partial class ColorShadow : Control
 
             if (_rootVisual == null)
             {
-                _rootVisual = _compositor.CreateContainerVisual();
+                _rootVisual = _compositor!.CreateContainerVisual();
             }
 
             _rootVisual.Size = targetSize;
@@ -117,17 +117,17 @@ public partial class ColorShadow : Control
             // Image Layer
             if (_imageVisual == null)
             {
-                _imageVisual = _compositor.CreateSpriteVisual();
+                _imageVisual = _compositor!.CreateSpriteVisual();
             }
 
             _imageVisual.Size = targetSize;
             _imageVisual.Offset = new Vector3((float)ImageLayoutOffsetX, (float)ImageLayoutOffsetY, (float)ImageLayoutOffsetZ);
 
-            var imageBrush = _compositor.CreateSurfaceBrush(_imageSurface);
+            var imageBrush = _compositor!.CreateSurfaceBrush(_imageSurface);
             imageBrush.Stretch = ImageStretch;
             imageBrush.Offset = new Vector2((float)ImageOffsetX, (float)ImageOffsetY);
 
-            IImageSurface maskSurface = await ApplyMaskAsync(imageBrush);
+            IImageSurface? maskSurface = await ApplyMaskAsync(imageBrush);
 
             // Color Shadow Layer
             if (_colorShadowVisual == null)
@@ -177,7 +177,7 @@ public partial class ColorShadow : Control
 
                 // Create the ImageMaskSurface 
 
-                _imageMaskSurface = _generator.CreateImageMaskSurface(maskSurface ?? _imageSurface, _colorShadowVisual.Size.ToSize(), ColorMaskPadding, _maskOptions);
+                _imageMaskSurface = _generator.CreateImageMaskSurface(maskSurface ?? _imageSurface!, _colorShadowVisual!.Size.ToSize(), ColorMaskPadding, _maskOptions);
 
                 // Create SurfaceBrush
                 var mask = _compositor.CreateSurfaceBrush(_imageMaskSurface);
@@ -240,7 +240,7 @@ public partial class ColorShadow : Control
         }
     }
 
-    private async Task<bool> LoadImageAsync(Uri uri)
+    private async Task<bool> LoadImageAsync(Uri? uri)
     {
         if (uri == null)
         {
@@ -317,7 +317,7 @@ public partial class ColorShadow : Control
         _dropShadow.SourcePolicy = CompositionDropShadowSourcePolicy.InheritFromVisualContent;
     }
 
-    private async Task<IImageSurface> ApplyMaskAsync(CompositionBrush imageBrush)
+    private async Task<IImageSurface?> ApplyMaskAsync(CompositionBrush imageBrush)
     {
         if (IsRounded)
         {
@@ -328,7 +328,7 @@ public partial class ColorShadow : Control
             maskBrush.Source = imageBrush;
             maskBrush.Mask = _compositor.CreateSurfaceBrush(circleSurface);
 
-            _imageVisual.Brush = maskBrush;
+            _imageVisual!.Brush = maskBrush;
             return circleSurface;
         }
 
@@ -341,13 +341,13 @@ public partial class ColorShadow : Control
             maskBrush.Source = imageBrush;
             maskBrush.Mask = _compositor.CreateSurfaceBrush(userSurface);
 
-            _imageVisual.Brush = maskBrush;
+            _imageVisual!.Brush = maskBrush;
             return userSurface;
         }
         else
         {
             // No mask at all
-            _imageVisual.Brush = imageBrush;
+            _imageVisual!.Brush = imageBrush;
             return null;
         }
     }
@@ -367,7 +367,7 @@ public partial class ColorShadow : Control
 
         var stream = FileHelper.GetFileFromEmbededResourcesOrUri(uri, assembly);
 
-        CanvasBitmap canvasBitmap = null;
+        CanvasBitmap? canvasBitmap = null;
         var canvasDevice = CanvasDevice.GetSharedDevice();
 
         if (stream != null)
@@ -382,7 +382,7 @@ public partial class ColorShadow : Control
         return _generator.CreateImageSurface(canvasBitmap, canvasBitmap.Size, ImageSurfaceOptions.Default);
     }
 
-    public void StartBreath(CompositionEasingFunction breathEasing = null, TimeSpan? breathDuration = null)
+    public void StartBreath(CompositionEasingFunction? breathEasing = null, TimeSpan? breathDuration = null)
     {
         if (_colorShadowBrush == null || _breathAnimation != null)
             return;

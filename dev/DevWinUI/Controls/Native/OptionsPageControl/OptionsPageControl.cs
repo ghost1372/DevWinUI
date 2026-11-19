@@ -9,8 +9,8 @@ public partial class OptionsPageControl : Control
 {
     private const string PART_FooterExpander = "PART_FooterExpander";
     private const string PART_HeaderTextPresenter = "PART_HeaderTextPresenter";
-    private Expander _footerExpander;
-    private TextBlock _headerTextBlock;
+    private Expander _footerExpander = null!;
+    private TextBlock _headerTextBlock = null!;
 
     public OptionsPageControl()
     {
@@ -20,8 +20,8 @@ public partial class OptionsPageControl : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _footerExpander = GetTemplateChild(PART_FooterExpander) as Expander;
-        _headerTextBlock = GetTemplateChild(PART_HeaderTextPresenter) as TextBlock;
+        _footerExpander = (GetTemplateChild(PART_FooterExpander) as Expander)!;
+        _headerTextBlock = (GetTemplateChild(PART_HeaderTextPresenter) as TextBlock)!;
 
         if (_headerTextBlock != null)
         {

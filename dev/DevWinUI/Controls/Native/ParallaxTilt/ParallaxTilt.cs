@@ -8,9 +8,9 @@ public partial class ParallaxTilt : ContentControl
 {
     private const string PART_RootGrid = "PART_RootGrid";
     private const string PART_ParallaxTransform = "PART_ParallaxTransform";
-    private Grid rootGrid;
+    private Grid rootGrid = null!;
     private readonly PlaneProjection planeProjection = new PlaneProjection();
-    private CompositeTransform compositeTransform;
+    private CompositeTransform compositeTransform = null!;
 
     public static readonly DependencyProperty MaxTiltAngleProperty =
         DependencyProperty.Register(nameof(MaxTiltAngle), typeof(double), typeof(ParallaxTilt), new PropertyMetadata(15.0));
@@ -50,8 +50,8 @@ public partial class ParallaxTilt : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        rootGrid = GetTemplateChild(PART_RootGrid) as Grid;
-        compositeTransform = GetTemplateChild(PART_ParallaxTransform) as CompositeTransform;
+        rootGrid = (GetTemplateChild(PART_RootGrid) as Grid)!;
+        compositeTransform = (GetTemplateChild(PART_ParallaxTransform) as CompositeTransform)!;
 
         rootGrid.Projection = planeProjection;
 

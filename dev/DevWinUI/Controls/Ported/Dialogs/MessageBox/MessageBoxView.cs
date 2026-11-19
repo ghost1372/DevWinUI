@@ -108,7 +108,7 @@ public partial class MessageBoxView : Control
         }
     }
 
-    private UacStyleDialogView PART_UacStyleDialogView;
+    private UacStyleDialogView PART_UacStyleDialogView = null!;
 
     protected override void OnApplyTemplate()
     {

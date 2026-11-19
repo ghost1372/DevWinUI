@@ -5,11 +5,11 @@ public partial class TiledImageBrush : XamlCompositionBrushBase
     public static readonly DependencyProperty SourceProperty =
         DependencyProperty.Register(nameof(Source), typeof(ImageSource), typeof(TiledImageBrush), new PropertyMetadata(default(ImageSource), OnImageSourceUriChanged));
 
-    private BorderEffect _borderEffect;
-    private CompositionEffectBrush _borderEffectBrush;
-    private CompositionEffectFactory _borderEffectFactory;
-    private LoadedImageSurface _surface;
-    private CompositionSurfaceBrush _surfaceBrush;
+    private BorderEffect? _borderEffect;
+    private CompositionEffectBrush? _borderEffectBrush;
+    private CompositionEffectFactory? _borderEffectFactory;
+    private LoadedImageSurface? _surface;
+    private CompositionSurfaceBrush? _surfaceBrush;
 
     public ImageSource Source
     {

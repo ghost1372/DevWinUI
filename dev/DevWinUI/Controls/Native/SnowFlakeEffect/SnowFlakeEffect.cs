@@ -7,7 +7,7 @@ namespace DevWinUI;
 public partial class SnowFlakeEffect : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private Canvas _canvas;
+    private Canvas _canvas = null!;
 
     private readonly Random _random = new(); 
     private readonly List<SnowFlake> _snowFlakes = []; 
@@ -50,7 +50,7 @@ public partial class SnowFlakeEffect : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _canvas = GetTemplateChild(PART_Canvas) as Canvas;
+        _canvas = (GetTemplateChild(PART_Canvas) as Canvas)!;
 
         PointerMoved -= OnPointerMove;
         PointerMoved += OnPointerMove;
@@ -67,7 +67,7 @@ public partial class SnowFlakeEffect : Control
         }
     }
 
-    private void SnowFlakeEffect_LayoutUpdated(object sender, object e)
+    private void SnowFlakeEffect_LayoutUpdated(object? sender, object e)
     {
         LayoutUpdated -= SnowFlakeEffect_LayoutUpdated;
 
@@ -152,7 +152,7 @@ public partial class SnowFlakeEffect : Control
         _snowFlakes.Add(flake);
     }
 
-    private void UpdateSnowFlakes(object sender, object e)
+    private void UpdateSnowFlakes(object? sender, object e)
     {
         if (_canvas.ActualWidth == 0 || _canvas.ActualHeight == 0)
         {

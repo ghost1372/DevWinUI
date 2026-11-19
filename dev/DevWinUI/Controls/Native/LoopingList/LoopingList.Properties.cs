@@ -83,7 +83,7 @@ public partial class LoopingList
     public static readonly DependencyProperty TertiarySelectedIndexProperty =
         DependencyProperty.Register(nameof(TertiarySelectedIndex), typeof(int), typeof(LoopingList), new PropertyMetadata(-1));
 
-    public string PrimarySelectedItem
+    public string? PrimarySelectedItem
     {
         get { return (string)GetValue(PrimarySelectedItemProperty); }
         set { SetValue(PrimarySelectedItemProperty, value); }
@@ -92,7 +92,7 @@ public partial class LoopingList
     public static readonly DependencyProperty PrimarySelectedItemProperty =
         DependencyProperty.Register(nameof(PrimarySelectedItem), typeof(string), typeof(LoopingList), new PropertyMetadata(null));
 
-    public string SecondarySelectedItem
+    public string? SecondarySelectedItem
     {
         get { return (string)GetValue(SecondarySelectedItemProperty); }
         set { SetValue(SecondarySelectedItemProperty, value); }
@@ -101,7 +101,7 @@ public partial class LoopingList
     public static readonly DependencyProperty SecondarySelectedItemProperty =
         DependencyProperty.Register(nameof(SecondarySelectedItem), typeof(string), typeof(LoopingList), new PropertyMetadata(null));
 
-    public string TertiarySelectedItem
+    public string? TertiarySelectedItem
     {
         get { return (string)GetValue(TertiarySelectedItemProperty); }
         set { SetValue(TertiarySelectedItemProperty, value); }

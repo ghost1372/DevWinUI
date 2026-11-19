@@ -9,8 +9,8 @@ public partial class GoToCard : Control
     private const string PART_Button = "PART_Button";
     private const string PART_CloseButton = "PART_CloseButton";
 
-    private Button actionButton;
-    private Button closeButton;
+    private Button actionButton = null!;
+    private Button closeButton = null!;
 
     public IconSource Icon
     {
@@ -107,8 +107,8 @@ public partial class GoToCard : Control
         ((GoToCard)d).UpdateVisibility();
     }
 
-    public event EventHandler<RoutedEventArgs> ActionClick;
-    public event EventHandler<RoutedEventArgs> CloseRequested;
+    public event EventHandler<RoutedEventArgs>? ActionClick;
+    public event EventHandler<RoutedEventArgs>? CloseRequested;
 
     public GoToCard()
     {
@@ -124,8 +124,8 @@ public partial class GoToCard : Control
         if (closeButton != null)
             closeButton.Click -= OnCloseButtonClicked;
 
-        actionButton = GetTemplateChild(PART_Button) as Button;
-        closeButton = GetTemplateChild(PART_CloseButton) as Button;
+        actionButton = (GetTemplateChild(PART_Button) as Button)!;
+        closeButton = (GetTemplateChild(PART_CloseButton) as Button)!;
 
         if (actionButton != null)
             actionButton.Click += OnButtonClicked;

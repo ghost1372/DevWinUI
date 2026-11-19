@@ -51,7 +51,7 @@ internal partial class SelectorBarSegmentedMarginConverter : DependencyObject, I
         var segmentedItem = value as SelectorBarItem;
         if (segmentedItem != null)
         {
-            ItemsRepeater parent = segmentedItem.Parent as ItemsRepeater;
+            ItemsRepeater? parent = segmentedItem.Parent as ItemsRepeater;
 
             if (parent != null)
             {

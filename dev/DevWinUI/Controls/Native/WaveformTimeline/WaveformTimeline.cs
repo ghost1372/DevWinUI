@@ -16,12 +16,12 @@ public partial class WaveformTimeline : Control
     private const string PART_Progress = "PART_Progress";
     private const string PART_Timeline = "PART_Timeline";
 
-    private Canvas waveformCanvas;
-    private Canvas repeatCanvas;
-    private Canvas timelineCanvas;
-    private Canvas progressCanvas;
+    private Canvas waveformCanvas = null!;
+    private Canvas repeatCanvas = null!;
+    private Canvas timelineCanvas = null!;
+    private Canvas progressCanvas = null!;
 
-    private IWaveformPlayer soundPlayer;
+    private IWaveformPlayer soundPlayer = null!;
     private readonly Path leftPath = new Path();
     private readonly Path rightPath = new Path();
     private readonly Line centerLine = new Line();
@@ -71,7 +71,7 @@ public partial class WaveformTimeline : Control
             progressCanvas.Children.Clear();
         }
 
-        waveformCanvas = GetTemplateChild(PART_Waveform) as Canvas;
+        waveformCanvas = (GetTemplateChild(PART_Waveform) as Canvas)!;
         waveformCanvas.CacheMode = new BitmapCache();
 
         // Used to make the transparent regions clickable.
@@ -81,16 +81,16 @@ public partial class WaveformTimeline : Control
         waveformCanvas.Children.Add(leftPath);
         waveformCanvas.Children.Add(rightPath);
 
-        timelineCanvas = GetTemplateChild(PART_Timeline) as Canvas;
+        timelineCanvas = (GetTemplateChild(PART_Timeline) as Canvas)!;
         timelineCanvas.Children.Add(timelineBackgroundRegion);
 
         timelineCanvas.SizeChanged -= OnTimelineCanvasSizeChanged;
         timelineCanvas.SizeChanged += OnTimelineCanvasSizeChanged;
 
-        repeatCanvas = GetTemplateChild(PART_Repeat) as Canvas;
+        repeatCanvas = (GetTemplateChild(PART_Repeat) as Canvas)!;
         repeatCanvas.Children.Add(repeatRegion);
 
-        progressCanvas = GetTemplateChild(PART_Progress) as Canvas;
+        progressCanvas = (GetTemplateChild(PART_Progress) as Canvas)!;
         progressCanvas.Children.Add(progressIndicator);
         progressCanvas.Children.Add(progressLine);
 
@@ -110,7 +110,7 @@ public partial class WaveformTimeline : Control
         soundPlayer.PropertyChanged += OnSoundPlayerPropertyChanged;
     }
 
-    private void OnSoundPlayerPropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void OnSoundPlayerPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {

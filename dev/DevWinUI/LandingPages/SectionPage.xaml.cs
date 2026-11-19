@@ -7,7 +7,7 @@ public sealed partial class SectionPage : ItemsPageBase
         this.InitializeComponent();
     }
 
-    public void OrderBy(Func<DataItem, object> orderby = null)
+    public void OrderBy(Func<DataItem, object>? orderby = null)
     {
         if (orderby != null)
         {
@@ -19,7 +19,7 @@ public sealed partial class SectionPage : ItemsPageBase
         }
     }
 
-    public void OrderByDescending(Func<DataItem, object> orderByDescending = null)
+    public void OrderByDescending(Func<DataItem, object>? orderByDescending = null)
     {
         if (orderByDescending != null)
         {
@@ -63,9 +63,9 @@ public sealed partial class SectionPage : ItemsPageBase
         }
     }
 
-    private static DataGroup FindUniqueGroup(string uniqueId, string sectionId)
+    private static DataGroup? FindUniqueGroup(string uniqueId, string sectionId)
     {
-        DataGroup match = null;
+        DataGroup? match = null;
         foreach (var group in DataSource.Instance.Groups)
         {
             if (string.IsNullOrEmpty(group.UniqueId) || string.IsNullOrEmpty(group.SectionId) ||
@@ -86,13 +86,13 @@ public sealed partial class SectionPage : ItemsPageBase
         return match;
     }
 
-    private void GetItems(DataGroup group, Func<DataItem, object> orderBy = null, bool descending = false)
+    private void GetItems(DataGroup group, Func<DataItem, object>? orderBy = null, bool descending = false)
     {
         if (group != null)
         {
             TitleTxt.Text = group?.Title;
 
-            var items = group.Items?.Where(i => !i.HideItem);
+            IEnumerable<DataItem>? items = group.Items?.Where(i => !i.HideItem);
 
             if (items != null && orderBy != null)
             {

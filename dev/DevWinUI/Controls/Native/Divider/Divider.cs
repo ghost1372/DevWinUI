@@ -19,12 +19,12 @@ public partial class Divider : Control
     private const string PART_RightLine = "PART_RightLine";
     private const string PART_Content = "PART_Content";
 
-    private ColumnDefinition _PART_ColumnStart;
-    private ColumnDefinition _PART_ColumnEnd;
-    private Line _PART_StretchLine;
-    private Line _PART_LeftLine;
-    private Line _PART_RightLine;
-    private ContentPresenter _PART_Content;
+    private ColumnDefinition _PART_ColumnStart = null!;
+    private ColumnDefinition _PART_ColumnEnd = null!;
+    private Line _PART_StretchLine = null!;
+    private Line _PART_LeftLine = null!;
+    private Line _PART_RightLine = null!;
+    private ContentPresenter _PART_Content = null!;
 
     private long _horizontalContentAlignmentPropertyToken;
     private Thickness _oldContentPadding;
@@ -110,12 +110,12 @@ public partial class Divider : Control
     {
         base.OnApplyTemplate();
 
-        _PART_ColumnStart = GetTemplateChild(PART_ColumnStart) as ColumnDefinition;
-        _PART_ColumnEnd = GetTemplateChild(PART_ColumnEnd) as ColumnDefinition;
-        _PART_StretchLine = GetTemplateChild(PART_StretchLine) as Line;
-        _PART_LeftLine = GetTemplateChild(PART_LeftLine) as Line;
-        _PART_RightLine = GetTemplateChild(PART_RightLine) as Line;
-        _PART_Content = GetTemplateChild(PART_Content) as ContentPresenter;
+        _PART_ColumnStart = (GetTemplateChild(PART_ColumnStart) as ColumnDefinition)!;
+        _PART_ColumnEnd = (GetTemplateChild(PART_ColumnEnd) as ColumnDefinition)!;
+        _PART_StretchLine = (GetTemplateChild(PART_StretchLine) as Line)!;
+        _PART_LeftLine = (GetTemplateChild(PART_LeftLine) as Line)!;
+        _PART_RightLine = (GetTemplateChild(PART_RightLine) as Line)!;
+        _PART_Content = (GetTemplateChild(PART_Content) as ContentPresenter)!;
 
         UnRegisterHorizontalContentAlignmentChangedCallback();
         RegisterHorizontalContentAlignmentChangedCallback();

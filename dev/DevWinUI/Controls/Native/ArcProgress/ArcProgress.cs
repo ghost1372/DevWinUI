@@ -13,17 +13,17 @@ public partial class ArcProgress : Control
     private const string PART_LineSegment = "PART_LineSegment";
     private const string PART_Ellipse = "PART_Ellipse";
 
-    private Storyboard storyboard;
-    private PathFigure pathFigure;
-    private ArcSegment arcSegment;
-    private LineSegment lineSegment;
-    private Ellipse ellipse;
+    private Storyboard storyboard = null!;
+    private PathFigure pathFigure = null!;
+    private ArcSegment arcSegment = null!;
+    private LineSegment lineSegment = null!;
+    private Ellipse ellipse = null!;
 
     private double _radius;
     private double _centerX;
     private double _centerY;
     private double _lastAngle;
-    public event EventHandler PercentageChanged;
+    public event EventHandler? PercentageChanged;
     public ArcProgressInitialPosition InitialPosition
     {
         get { return (ArcProgressInitialPosition)GetValue(InitialPositionProperty); }
@@ -124,10 +124,10 @@ public partial class ArcProgress : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        pathFigure = GetTemplateChild(PART_PathFigure) as PathFigure;
-        arcSegment = GetTemplateChild(PART_ArcSegment) as ArcSegment;
-        lineSegment = GetTemplateChild(PART_LineSegment) as LineSegment;
-        ellipse = GetTemplateChild(PART_Ellipse) as Ellipse;
+        pathFigure = (GetTemplateChild(PART_PathFigure) as PathFigure)!;
+        arcSegment = (GetTemplateChild(PART_ArcSegment) as ArcSegment)!;
+        lineSegment = (GetTemplateChild(PART_LineSegment) as LineSegment)!;
+        ellipse = (GetTemplateChild(PART_Ellipse) as Ellipse)!;
 
         UpdateMetrics();
         UpdateDirection();

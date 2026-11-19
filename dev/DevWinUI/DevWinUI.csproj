@@ -10,6 +10,7 @@
     <!-- Remove trailing .0 from Windows TFM -->
     <CleanTargetFramework>$([System.Text.RegularExpressions.Regex]::Replace('$(TargetFramework)','\.0$',''))</CleanTargetFramework>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackCustomContent</TargetsForTfmSpecificContentInPackage>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <ItemGroup>

@@ -15,8 +15,8 @@ namespace DevWinUI;
 public partial class SimpleSettingsGroup : ItemsControl
 {
     private const string PartDescriptionPresenter = "DescriptionPresenter";
-    private ContentPresenter _descriptionPresenter;
-    private SimpleSettingsGroup _SimpleSettingsGroup;
+    private ContentPresenter _descriptionPresenter = null!;
+    private SimpleSettingsGroup _SimpleSettingsGroup = null!;
 
     public SimpleSettingsGroup()
     {

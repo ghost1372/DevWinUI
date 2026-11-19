@@ -12,18 +12,18 @@ public abstract partial class SegmentChar : Control
     private bool requiresCharacterUpdate;
     private bool requiresMatrixRedraw;
 
-    private List<(string Name, Shape Segment)> segments;
-    private Shape colonTop;
-    private Shape colonBottom;
-    private ScalarKeyFrameAnimation _blinkAnimation;
+    private List<(string Name, Shape Segment)> segments = null!;
+    private Shape colonTop = null!;
+    private Shape colonBottom = null!;
+    private ScalarKeyFrameAnimation _blinkAnimation = null!;
 
-    public event PointerEventHandler SegmentPointerPressed;
-    public event PointerEventHandler SegmentPointerReleased;
-    public event PointerEventHandler SegmentPointerEntered;
-    public event PointerEventHandler SegmentPointerExited;
-    public event PointerEventHandler SegmentPointerMoved;
+    public event PointerEventHandler? SegmentPointerPressed;
+    public event PointerEventHandler? SegmentPointerReleased;
+    public event PointerEventHandler? SegmentPointerEntered;
+    public event PointerEventHandler? SegmentPointerExited;
+    public event PointerEventHandler? SegmentPointerMoved;
 
-    public event EventHandler<SegmentEventArgs> PatternChanged;
+    public event EventHandler<SegmentEventArgs>? PatternChanged;
 
     public abstract SegmentChar Clone();
 
@@ -58,8 +58,8 @@ public abstract partial class SegmentChar : Control
 
     private void CacheColonShapes()
     {
-        colonTop = null;
-        colonBottom = null;
+        colonTop = null!;
+        colonBottom = null!;
 
         if (segments == null)
             return;
@@ -185,7 +185,7 @@ public abstract partial class SegmentChar : Control
     {
         var key = character ?? string.Empty;
 
-        if (!PatternTable.TryGetValue(key, out string pattern) &&
+        if (!PatternTable.TryGetValue(key, out string? pattern) &&
             !PatternTable.TryGetValue(key.ToUpperInvariant(), out pattern))
         {
             pattern = DefaultPattern;

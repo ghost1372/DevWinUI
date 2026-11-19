@@ -17,7 +17,7 @@ internal static partial class VisualStateUtilities
     {
         if (visualStateGroup is null)
         {
-            return null;
+            return null!;
         }
 
         var visualStates = visualStateGroup.GetVisualStates();
@@ -32,7 +32,7 @@ internal static partial class VisualStateUtilities
 
         if (groups is null)
         {
-            return null;
+            return null!;
         }
 
         IEnumerable<VisualStateGroup> castedVisualStateGroups;
@@ -42,12 +42,12 @@ internal static partial class VisualStateUtilities
             castedVisualStateGroups = groups.Cast<VisualStateGroup>().ToArray();
             if (!castedVisualStateGroups.Any())
             {
-                return null;
+                return null!;
             }
         }
         catch (InvalidCastException)
         {
-            return null;
+            return null!;
         }
 
         return string.IsNullOrWhiteSpace(name)
@@ -59,10 +59,10 @@ internal static partial class VisualStateUtilities
     {
         if (visualStateGroup is null)
         {
-            return null;
+            return null!;
         }
 
-        return visualStateGroup.States.Count == 0 ? null : visualStateGroup.States.Cast<VisualState>();
+        return visualStateGroup.States.Count == 0 ? null! : visualStateGroup.States.Cast<VisualState>();
     }
 }
 

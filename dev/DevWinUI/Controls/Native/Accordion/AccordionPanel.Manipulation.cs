@@ -7,7 +7,7 @@ public partial class AccordionPanel
     private bool _isBusy = false;
     private int _lastDeltaSign = 0;
 
-    private AccordionItem _current = null;
+    private AccordionItem? _current = null;
 
     private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
@@ -120,6 +120,6 @@ public partial class AccordionPanel
                 index = this.SelectedIndex - 1;
             }
         }
-        return base.Children[base.Children.Count - index - 1] as AccordionItem;
+        return (base.Children[base.Children.Count - index - 1] as AccordionItem)!;
     }
 }

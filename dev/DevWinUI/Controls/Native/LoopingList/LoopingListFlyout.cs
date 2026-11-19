@@ -2,10 +2,10 @@
 
 internal partial class LoopingListFlyout : Flyout
 {
-    public event EventHandler<LoopingListEventArgs> Accepted;
-    public event EventHandler<RoutedEventArgs> Dismissed;
+    public event EventHandler<LoopingListEventArgs>? Accepted;
+    public event EventHandler<RoutedEventArgs>? Dismissed;
 
-    private LoopingListFlyoutPresenter _presenter;
+    private LoopingListFlyoutPresenter _presenter = null!;
     public LoopingListFlyoutPresenter Presenter => _presenter;
 
     private LoopingSelector primarySelector;
@@ -30,12 +30,12 @@ internal partial class LoopingListFlyout : Flyout
         return _presenter;
     }
 
-    private void OnDismissButton(object sender, RoutedEventArgs e)
+    private void OnDismissButton(object? sender, RoutedEventArgs e)
     {
-        Dismissed?.Invoke(this, null);
+        Dismissed?.Invoke(this, null!);
     }
 
-    private void OnAcceptButton(object sender, LoopingListEventArgs e)
+    private void OnAcceptButton(object? sender, LoopingListEventArgs e)
     {
         Accepted?.Invoke(this, e);
     }

@@ -12,8 +12,8 @@ public partial class Toolbar : Control
 	private ToolbarItemList? _toolbarItemsList;
 	private ToolbarItemOverflowList? _toolbarItemsOverflowList;
 
-	private ToolbarItemList _tempToolbarItemsList;
-	private ToolbarItemOverflowList _tempToolbarItemsOverflowList;
+	private ToolbarItemList? _tempToolbarItemsList;
+	private ToolbarItemOverflowList? _tempToolbarItemsOverflowList;
 
 
 	private double _smallMinWidth = 24; // I have set default values, but we pull from resources
@@ -48,9 +48,8 @@ public partial class Toolbar : Control
 
 		SetItemsRepeater(GetTemplateChild(ToolbarItemsRepeaterPartName) as ItemsRepeater);
 
-		if (GetItemsRepeater() != null)
+		if (GetItemsRepeater() is { } itemsRepeater)
 		{
-			ItemsRepeater itemsRepeater = GetItemsRepeater();
 			itemsRepeater.ItemsSource = GetToolbarItemsList();
 		}
 	}
@@ -62,17 +61,17 @@ public partial class Toolbar : Control
 		return _availableSize;
 	}
 
-	private ItemsRepeater GetItemsRepeater()
+	private ItemsRepeater? GetItemsRepeater()
 	{
 		return _itemsRepeater;
 	}
 
-	private ToolbarItemList GetToolbarItemsList()
+	private ToolbarItemList? GetToolbarItemsList()
 	{
 		return _toolbarItemsList;
 	}
 
-	private ToolbarItemOverflowList GetToolbarItemsOverflowList()
+	private ToolbarItemOverflowList? GetToolbarItemsOverflowList()
 	{
 		return _toolbarItemsOverflowList;
 	}
@@ -126,17 +125,17 @@ public partial class Toolbar : Control
 		_availableSize = newValue;
 	}
 
-	private void SetItemsRepeater(ItemsRepeater itemsRepeater)
+	private void SetItemsRepeater(ItemsRepeater? itemsRepeater)
 	{
 		_itemsRepeater = itemsRepeater;
 	}
 
-	private void SetToolbarItemsList(ToolbarItemList toolbarItemsList)
+	private void SetToolbarItemsList(ToolbarItemList? toolbarItemsList)
 	{
 		_toolbarItemsList = toolbarItemsList;
 	}
 
-	private void SetToolbarItemsOverflowList(ToolbarItemOverflowList toolbarItemsOverflowList)
+	private void SetToolbarItemsOverflowList(ToolbarItemOverflowList? toolbarItemsOverflowList)
 	{
 		_toolbarItemsOverflowList = toolbarItemsOverflowList;
 	}
@@ -293,7 +292,7 @@ public partial class Toolbar : Control
 	/// Updates the Private ToolbarItemList
 	/// </summary>
 	/// <param name="newList"></param>
-	private void UpdatePrivateItemList(ToolbarItemList newList)
+	private void UpdatePrivateItemList(ToolbarItemList? newList)
 	{
 		SetToolbarItemsList(newList);
 	}
@@ -304,7 +303,7 @@ public partial class Toolbar : Control
 	/// Updates the Private ToolbarItemOverflowList
 	/// </summary>
 	/// <param name="newOverflowList"></param>
-	private void UpdatePrivateItemOverflowList(ToolbarItemOverflowList newOverflowList)
+	private void UpdatePrivateItemOverflowList(ToolbarItemOverflowList? newOverflowList)
 	{
 		SetToolbarItemsOverflowList(newOverflowList);
 	}
@@ -417,7 +416,7 @@ public partial class Toolbar : Control
 	/// private ItemList
 	/// </summary>
 	/// <param name="item"></param>
-	private IToolbarItemSet SortByItemTypeForItemList(ToolbarItem item)
+	private IToolbarItemSet? SortByItemTypeForItemList(ToolbarItem item)
 	{
 		switch (item.ItemType)
 		{
@@ -461,7 +460,7 @@ public partial class Toolbar : Control
 	/// private OverflowItemList
 	/// </summary>
 	/// <param name="item"></param>
-	private IToolbarOverflowItemSet SortByItemTypeForOverflowItemList(ToolbarItem item)
+	private IToolbarOverflowItemSet? SortByItemTypeForOverflowItemList(ToolbarItem item)
 	{
 		switch (item.ItemType)
 		{
@@ -517,9 +516,9 @@ public partial class Toolbar : Control
 		/// remove that value from the availableSize + Spacing value
 		/// 
 
-		ItemsRepeater itemsRepeater = GetItemsRepeater();
+		ItemsRepeater? itemsRepeater = GetItemsRepeater();
 
-		foreach (ToolbarItem item in GetToolbarItemsList())
+		foreach (ToolbarItem item in GetToolbarItemsList() ?? new ToolbarItemList())
 		{
 			/// We can get the AvailableSize
 			/// 
@@ -571,7 +570,7 @@ public partial class Toolbar : Control
 			/// Once we have gone over the items and there is no more
 			/// items to add, then we set the ItemsRepeater's ItemsSource
 			///
-			itemsRepeater.ItemsSource = itemsSource;
+			itemsRepeater?.ItemsSource = itemsSource;
 		}
 
 		/// We do this for each item until there is no more space
@@ -589,7 +588,7 @@ public partial class Toolbar : Control
 		/// is what we need to add to the Overflow Menu
 		/// 
 
-		foreach (ToolbarItem item in GetToolbarItemsOverflowList())
+		foreach (ToolbarItem item in GetToolbarItemsOverflowList() ?? new ToolbarItemOverflowList())
 		{
 			if (item != null)
 			{
@@ -698,7 +697,7 @@ public partial class Toolbar : Control
 	/// Adds the given Item into the ToolbarItemOverflowList
 	/// </summary>
 	/// <param name="item"></param>
-	private void AddItemToOverflowList(IToolbarOverflowItemSet item)
+	private void AddItemToOverflowList(IToolbarOverflowItemSet? item)
 	{
 		if (item != null && _tempToolbarItemsOverflowList != null)
 		{
@@ -712,7 +711,7 @@ public partial class Toolbar : Control
 	/// Adds the given Item into the ToolbarItemList
 	/// </summary>
 	/// <param name="item"></param>
-	private void AddItemToItemList(IToolbarItemSet item)
+	private void AddItemToItemList(IToolbarItemSet? item)
 	{
 		if (item != null && _tempToolbarItemsList != null)
 		{

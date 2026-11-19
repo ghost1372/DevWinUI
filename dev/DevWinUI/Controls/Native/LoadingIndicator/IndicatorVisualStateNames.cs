@@ -3,8 +3,8 @@
 namespace DevWinUI;
 internal partial class IndicatorVisualStateNames : MarkupExtension
 {
-    private static IndicatorVisualStateNames _activeState;
-    private static IndicatorVisualStateNames _inactiveState;
+    private static IndicatorVisualStateNames? _activeState;
+    private static IndicatorVisualStateNames? _inactiveState;
 
     public static IndicatorVisualStateNames ActiveState =>
         _activeState ?? (_activeState = new IndicatorVisualStateNames("Active"));

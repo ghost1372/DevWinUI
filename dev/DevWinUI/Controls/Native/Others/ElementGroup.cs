@@ -50,7 +50,7 @@ public partial class ElementGroup : ItemsControl
         UpdateElements();
     }
 
-    private void OnPanelLayoutUpdated(object sender, object e)
+    private void OnPanelLayoutUpdated(object? sender, object e)
     {
         LayoutUpdated -= OnPanelLayoutUpdated;
 

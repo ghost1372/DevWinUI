@@ -6,15 +6,15 @@ namespace DevWinUI;
 
 public sealed partial class EasyCarouselPanel : Panel
 {
-    private DataTemplate _itemTemplate;
+    private DataTemplate _itemTemplate = null!;
 
-    private RectangleGeometry _viewportRect;
+    private RectangleGeometry? _viewportRect;
 
     private Compositor _carouselCompositor;
 
     private DispatcherTimer _timer;
 
-    public event EventHandler<FrameworkElement> ItemTapped;
+    public event EventHandler<FrameworkElement>? ItemTapped;
 
     public int SelectedIndex
     {
@@ -25,7 +25,7 @@ public sealed partial class EasyCarouselPanel : Panel
     public static readonly DependencyProperty SelectedIndexProperty =
         DependencyProperty.Register(nameof(SelectedIndex), typeof(int), typeof(EasyCarouselPanel), new PropertyMetadata(0, OnSelectedIndexChanged));
 
-    public object SelectedItem
+    public object? SelectedItem
     {
         get { return (int)GetValue(SelectedItemProperty); }
         private set { SetValue(SelectedItemProperty, value); }
@@ -151,8 +151,8 @@ public sealed partial class EasyCarouselPanel : Panel
 
     private void OnTapped(object sender, TappedRoutedEventArgs args)
     {
-        FrameworkElement fxElement = args.OriginalSource as FrameworkElement;
-        ItemTapped?.Invoke(sender, fxElement);
+        FrameworkElement? fxElement = args.OriginalSource as FrameworkElement;
+        ItemTapped?.Invoke(sender, fxElement!);
     }
 
     private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -192,7 +192,7 @@ public sealed partial class EasyCarouselPanel : Panel
         if (e.NewValue == e.OldValue)
             return;
 
-        EasyCarouselPanel instance = d as EasyCarouselPanel;
+        EasyCarouselPanel? instance = d as EasyCarouselPanel;
 
         if (instance == null)
             return;
@@ -213,7 +213,7 @@ public sealed partial class EasyCarouselPanel : Panel
         if (e.NewValue == e.OldValue)
             return;
 
-        EasyCarouselPanel instance = d as EasyCarouselPanel;
+        EasyCarouselPanel? instance = d as EasyCarouselPanel;
 
         if (instance == null)
             return;
@@ -231,7 +231,7 @@ public sealed partial class EasyCarouselPanel : Panel
         if (e.NewValue == e.OldValue)
             return;
 
-        EasyCarouselPanel instance = d as EasyCarouselPanel;
+        EasyCarouselPanel? instance = d as EasyCarouselPanel;
 
         if (instance == null)
             return;
@@ -247,7 +247,7 @@ public sealed partial class EasyCarouselPanel : Panel
         if (e.NewValue == e.OldValue)
             return;
 
-        EasyCarouselPanel instance = d as EasyCarouselPanel;
+        EasyCarouselPanel? instance = d as EasyCarouselPanel;
 
         if (instance == null)
             return;
@@ -271,7 +271,7 @@ public sealed partial class EasyCarouselPanel : Panel
         if (e.NewValue == e.OldValue)
             return;
 
-        EasyCarouselPanel instance = d as EasyCarouselPanel;
+        EasyCarouselPanel? instance = d as EasyCarouselPanel;
 
         if (instance == null)
             return;
@@ -292,7 +292,7 @@ public sealed partial class EasyCarouselPanel : Panel
 
     private void CreateElement(object item)
     {
-        FrameworkElement element;
+        FrameworkElement? element;
 
         if (this.ItemTemplate != null)
         {

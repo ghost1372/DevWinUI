@@ -28,14 +28,14 @@ public partial class ImageEx
     /// <inheritdoc/>
     public override CompositionBrush GetAlphaMask()
     {
-        return IsInitialized && Image is Image image ? image.GetAlphaMask() : null;
+        return IsInitialized && Image is Image image ? image.GetAlphaMask() : null!;
     }
 
     /// <summary>
     /// Returns the image as a <see cref="CastingSource"/>.
     /// </summary>
     /// <returns>The image as a <see cref="CastingSource"/>.</returns>
-    public CastingSource GetAsCastingSource()
+    public CastingSource? GetAsCastingSource()
     {
         return IsInitialized && Image is Image image ? image.GetAsCastingSource() : null;
     }

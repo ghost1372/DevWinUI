@@ -15,7 +15,7 @@ public static partial class MaterialAttach
             if (popup?.Child != null)
             {
                 var border = DependencyObjectExtensions.FindDescendant<Border>(popup.Child);
-                if (border.Child is Grid grid)
+                if (border?.Child is Grid grid)
                 {
                     border.Child = null;
                     var listView = grid.Children[1];
@@ -36,7 +36,7 @@ public static partial class MaterialAttach
         popup.Opened -= Popup_Opened;
         popup.Opened += Popup_Opened;
 
-        void Popup_Opened(object s, object args)
+        void Popup_Opened(object? s, object args)
         {
             var popupInstance = s as Popup;
             if (popupInstance?.Child == null) return;

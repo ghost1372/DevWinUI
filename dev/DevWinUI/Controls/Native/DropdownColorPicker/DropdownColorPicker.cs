@@ -15,13 +15,13 @@ public partial class DropdownColorPicker : Control
     private const string PART_ContentPresenter = "PART_ContentPresenter";
     private const string PART_Flyout = "PART_Flyout";
 
-    private Rectangle tintBox;
-    private ColorPicker colorPicker;
-    private ContentPresenter contentPresenter;
-    private Flyout flyout;
+    private Rectangle tintBox = null!;
+    private ColorPicker colorPicker = null!;
+    private ContentPresenter contentPresenter = null!;
+    private Flyout flyout = null!;
     private bool isRaisingColorChanged;
 
-    public event EventHandler<DropdownColorPickerColorChangedEventArgs> ColorChanged;
+    public event EventHandler<DropdownColorPickerColorChangedEventArgs>? ColorChanged;
 
     public DropdownColorPicker()
     {
@@ -39,10 +39,10 @@ public partial class DropdownColorPicker : Control
         if (flyout != null)
             flyout.Closed -= OnFlyoutClosed;
 
-        tintBox = GetTemplateChild(PART_Rectangle) as Rectangle;
-        colorPicker = GetTemplateChild(PART_ColorPicker) as ColorPicker;
-        contentPresenter = GetTemplateChild(PART_ContentPresenter) as ContentPresenter;
-        flyout = GetTemplateChild(PART_Flyout) as Flyout;
+        tintBox = (GetTemplateChild(PART_Rectangle) as Rectangle)!;
+        colorPicker = (GetTemplateChild(PART_ColorPicker) as ColorPicker)!;
+        contentPresenter = (GetTemplateChild(PART_ContentPresenter) as ContentPresenter)!;
+        flyout = (GetTemplateChild(PART_Flyout) as Flyout)!;
 
         if (colorPicker != null)
             colorPicker.ColorChanged += OnColorPickerColorChanged;
@@ -76,7 +76,7 @@ public partial class DropdownColorPicker : Control
             ColorPalette.ColorChanged -= OnColorPaletteColorChanged;
     }
 
-    private void OnFlyoutClosed(object sender, object e)
+    private void OnFlyoutClosed(object? sender, object e)
     {
         UpdateFlyoutOptions();
     }
@@ -110,7 +110,7 @@ public partial class DropdownColorPicker : Control
         RaiseColorChanged(new DropdownColorPickerColorChangedEventArgs(args.NewColor, args.NewColor.ToString(), null));
     }
 
-    private void OnColorPaletteColorChanged(object sender, ColorPaletteColorChangedEventArgs e)
+    private void OnColorPaletteColorChanged(object? sender, ColorPaletteColorChangedEventArgs e)
     {
         if (isRaisingColorChanged)
             return;

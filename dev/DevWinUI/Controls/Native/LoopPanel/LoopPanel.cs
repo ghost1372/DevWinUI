@@ -107,7 +107,7 @@ public partial class LoopPanel : Panel
 
         e.Handled = true;
     }
-    private void OnInertiaRendering(object sender, object e)
+    private void OnInertiaRendering(object? sender, object e)
     {
         if (Math.Abs(_inertiaVelocity) < MinInertiaThreshold)
         {
@@ -429,7 +429,7 @@ public partial class LoopPanel : Panel
         var target = e.TargetElement as DependencyObject;
         if (target == null || target == this) return;
 
-        UIElement child = null;
+        UIElement? child = null;
         DependencyObject current = target;
         while (current != null)
         {

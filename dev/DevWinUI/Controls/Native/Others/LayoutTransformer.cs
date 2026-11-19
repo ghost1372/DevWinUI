@@ -48,7 +48,7 @@ public sealed partial class LayoutTransformer : ContentControl
             // Preferred child is the content; fall back to the presenter itself
             return (null != _contentPresenter) ?
                 (_contentPresenter.Content as FrameworkElement ?? _contentPresenter) :
-                null;
+                null!;
         }
     }
 
@@ -58,11 +58,11 @@ public sealed partial class LayoutTransformer : ContentControl
 
     private const int DecimalsAfterRound = 4;
 
-    private Panel _transformRoot;
+    private Panel _transformRoot = null!;
 
-    private ContentPresenter _contentPresenter;
+    private ContentPresenter _contentPresenter = null!;
 
-    private MatrixTransform _matrixTransform;
+    private MatrixTransform _matrixTransform = null!;
 
     private Matrix _transformation;
 
@@ -86,8 +86,8 @@ public sealed partial class LayoutTransformer : ContentControl
         // Apply new template
         base.OnApplyTemplate();
         // Find template parts
-        _transformRoot = GetTemplateChild(TransformRootName) as Grid;
-        _contentPresenter = GetTemplateChild(PresenterName) as ContentPresenter;
+        _transformRoot = (GetTemplateChild(TransformRootName) as Grid)!;
+        _contentPresenter = (GetTemplateChild(PresenterName) as ContentPresenter)!;
         _matrixTransform = new MatrixTransform();
         if (null != _transformRoot)
         {
@@ -150,7 +150,7 @@ public sealed partial class LayoutTransformer : ContentControl
             // return transform.Value;
 
             // Process the TransformGroup
-            TransformGroup transformGroup = transform as TransformGroup;
+            TransformGroup? transformGroup = transform as TransformGroup;
             if (null != transformGroup)
             {
                 Matrix groupMatrix = Matrix.Identity;
@@ -162,7 +162,7 @@ public sealed partial class LayoutTransformer : ContentControl
             }
 
             // Process the RotateTransform
-            RotateTransform rotateTransform = transform as RotateTransform;
+            RotateTransform? rotateTransform = transform as RotateTransform;
             if (null != rotateTransform)
             {
                 double angle = rotateTransform.Angle;
@@ -173,7 +173,7 @@ public sealed partial class LayoutTransformer : ContentControl
             }
 
             // Process the ScaleTransform
-            ScaleTransform scaleTransform = transform as ScaleTransform;
+            ScaleTransform? scaleTransform = transform as ScaleTransform;
             if (null != scaleTransform)
             {
                 double scaleX = scaleTransform.ScaleX;
@@ -182,7 +182,7 @@ public sealed partial class LayoutTransformer : ContentControl
             }
 
             // Process the SkewTransform
-            SkewTransform skewTransform = transform as SkewTransform;
+            SkewTransform? skewTransform = transform as SkewTransform;
             if (null != skewTransform)
             {
                 double angleX = skewTransform.AngleX;
@@ -193,7 +193,7 @@ public sealed partial class LayoutTransformer : ContentControl
             }
 
             // Process the MatrixTransform
-            MatrixTransform matrixTransform = transform as MatrixTransform;
+            MatrixTransform? matrixTransform = transform as MatrixTransform;
             if (null != matrixTransform)
             {
                 return matrixTransform.Matrix;

@@ -5,25 +5,25 @@ public partial class CompositionImage : Control
 {
     private bool _unloaded;
     private Compositor _compositor;
-    private SpriteVisual _sprite;
-    private Uri _uri;
-    private ManagedSurface _surface;
+    private SpriteVisual? _sprite;
+    private Uri _uri = null!;
+    private ManagedSurface? _surface;
     private CompositionSurfaceBrush _surfaceBrush;
-    private CompositionBrush _brush;
-    private LoadTimeEffectHandler _loadEffectDelegate;
+    private CompositionBrush _brush = null!;
+    private LoadTimeEffectHandler _loadEffectDelegate = null!;
     private CompositionStretch _stretchMode;
-    private DispatcherTimer _timer;
-    public event RoutedEventHandler ImageOpened;
-    public event RoutedEventHandler ImageFailed;
+    private DispatcherTimer? _timer;
+    public event RoutedEventHandler? ImageOpened;
+    public event RoutedEventHandler? ImageFailed;
     private TimeSpan _placeholderDelay;
-    private CompositionBrush _placeholderBrush;
+    private CompositionBrush _placeholderBrush = null!;
     private bool _sharedSurface;
 
-    static private CompositionBrush _defaultPlaceholderBrush;
+    static private CompositionBrush _defaultPlaceholderBrush = null!;
     static private ScalarKeyFrameAnimation
-                                        _fadeOutAnimation;
+                                        _fadeOutAnimation = null!;
     static private Vector2KeyFrameAnimation
-                                        _scaleAnimation;
+                                        _scaleAnimation = null!;
     static bool _staticsInitialized;
 
     public CompositionImage()
@@ -165,7 +165,7 @@ public partial class CompositionImage : Control
             _sprite.Size = size;
 
             // Update the loading sprite if set
-            Visual loadingSprite = _sprite.Children.FirstOrDefault();
+            Visual? loadingSprite = _sprite.Children.FirstOrDefault();
             if (loadingSprite != null)
             {
                 loadingSprite.Size = size;
@@ -416,11 +416,11 @@ public partial class CompositionImage : Control
         }
     }
 
-    private void Timer_Tick(object sender, object e)
+    private void Timer_Tick(object? sender, object e)
     {
         if (_timer != null)
         {
-            Debug.Assert(_sprite.Children.Count == 0, "Should not be any children");
+            Debug.Assert(_sprite!.Children.Count == 0, "Should not be any children");
 
             // Create a second sprite to show while the image is still loading
             SpriteVisual loadingSprite = _compositor.CreateSpriteVisual();
@@ -437,15 +437,15 @@ public partial class CompositionImage : Control
 
     private void StartCrossFade()
     {
-        Debug.Assert(_sprite.Children.Count > 0, "Unexpected number of children");
+        Debug.Assert(_sprite!.Children.Count > 0, "Unexpected number of children");
 
         // Start a batch so we can cleanup the loading sprite
         CompositionScopedBatch batch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
         batch.Completed += EndCrossFade;
 
         // Animate the opacity of the loading sprite to fade it out and the texture scale just for effect
-        Visual loadingVisual = _sprite.Children.LastOrDefault();
-        loadingVisual.StartAnimation("Opacity", _fadeOutAnimation);
+        Visual? loadingVisual = _sprite.Children.LastOrDefault();
+        loadingVisual!.StartAnimation("Opacity", _fadeOutAnimation);
 
         Vector2 visualSize = _sprite.Size;
         _surfaceBrush.CenterPoint = new Vector2(visualSize.X * .5f, visualSize.Y * .5f);
@@ -485,7 +485,7 @@ public partial class CompositionImage : Control
             if (_sprite != null)
             {
                 // Update the loading sprite if set
-                SpriteVisual loadingSprite = (SpriteVisual)_sprite.Children.FirstOrDefault();
+                SpriteVisual? loadingSprite = (SpriteVisual?)_sprite.Children.FirstOrDefault();
                 if (loadingSprite != null)
                 {
                     loadingSprite.Brush = _placeholderBrush;
@@ -499,7 +499,7 @@ public partial class CompositionImage : Control
         get { return _surfaceBrush; }
     }
 
-    public SpriteVisual SpriteVisual
+    public SpriteVisual? SpriteVisual
     {
         get { return _sprite; }
     }

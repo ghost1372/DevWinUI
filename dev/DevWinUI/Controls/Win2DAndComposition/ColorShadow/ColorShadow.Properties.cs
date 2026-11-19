@@ -93,7 +93,7 @@ public partial class ColorShadow
     private static async void OnImageUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var target = (ColorShadow)d;
-        Uri uri = null;
+        Uri? uri = null;
 
         switch (e.NewValue)
         {

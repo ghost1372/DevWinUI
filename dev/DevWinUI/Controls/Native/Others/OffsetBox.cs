@@ -4,8 +4,8 @@ namespace DevWinUI;
 
 public partial class OffsetBox : ContentControl
 {
-    private Visual _visual;
-    private Compositor _compositor;
+    private Visual _visual = null!;
+    private Compositor _compositor = null!;
 
     public bool ShowShadowOnHover
     {

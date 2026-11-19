@@ -15,17 +15,17 @@ public partial class StepBar : ItemsControl
     private const string ElementProgressBarBorder = "PART_ProgressBarBorder";
     private const string ElementRootGridVertical = "PART_RootGridVertical";
 
-    private ProgressBar progressBar;
-    private Border progressBarBorder;
-    private Grid rootGridVertical;
+    private ProgressBar progressBar = null!;
+    private Border progressBarBorder = null!;
+    private Grid rootGridVertical = null!;
     private int ItemsCount => Items.Count;
     private ControlTemplate? HorizontalTemplate { get; set; }
     private ControlTemplate? VerticalTemplate { get; set; }
     private Style? HorizontalItemContainerStyle { get; set; }
     private Style? VerticalItemContainerStyle { get; set; }
-    private ItemsPanelTemplate HorizontalItemsPanelTemplate { get; set; }
-    private ItemsPanelTemplate VerticalItemsPanelTemplate { get; set; }
-    public event EventHandler<int> StepChanged;
+    private ItemsPanelTemplate? HorizontalItemsPanelTemplate { get; set; }
+    private ItemsPanelTemplate? VerticalItemsPanelTemplate { get; set; }
+    public event EventHandler<int>? StepChanged;
     public event EventHandler<StepBarItemClickEventArgs>? ItemClick;
 
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ItemsPanelTemplate))]
@@ -63,9 +63,9 @@ public partial class StepBar : ItemsControl
     {
         base.OnApplyTemplate();
 
-        progressBar = GetTemplateChild(ElementProgressBar) as ProgressBar;
-        progressBarBorder = GetTemplateChild(ElementProgressBarBorder) as Border;
-        rootGridVertical = GetTemplateChild(ElementRootGridVertical) as Grid;
+        progressBar = (GetTemplateChild(ElementProgressBar) as ProgressBar)!;
+        progressBarBorder = (GetTemplateChild(ElementProgressBarBorder) as Border)!;
+        rootGridVertical = (GetTemplateChild(ElementRootGridVertical) as Grid)!;
 
         SetProgressBarMaximumValue();
         UpdateItemsPanel();

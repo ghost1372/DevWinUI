@@ -2,7 +2,7 @@
 
 internal sealed partial class CustomSettingsExpanderItemStyleSelector : SettingsExpanderItemStyleSelector
 {
-    public Style ExpanderStyle { get; set; }
+    public Style ExpanderStyle { get; set; } = null!;
 
     protected override Style SelectStyleCore(object item, DependencyObject container)
     {
@@ -14,6 +14,6 @@ internal sealed partial class CustomSettingsExpanderItemStyleSelector : Settings
                 return ExpanderStyle;
         }
 
-        return null;
+        return null!;
     }
 }

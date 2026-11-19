@@ -457,20 +457,20 @@ public partial class ContentDialogView : ContentControl, IContentDialog
         switch (DefaultButton)
         {
             case ContentDialogButton.Primary:
-                PrimaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                PrimaryButton.Focus(FocusState.Programmatic);
+                PrimaryButton?.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                PrimaryButton?.Focus(FocusState.Programmatic);
                 DefaultButtonState = "PrimaryAsDefaultButton";
                 break;
 
             case ContentDialogButton.Secondary:
-                SecondaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                SecondaryButton.Focus(FocusState.Programmatic);
+                SecondaryButton?.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                SecondaryButton?.Focus(FocusState.Programmatic);
                 DefaultButtonState = "SecondaryAsDefaultButton";
                 break;
 
             case ContentDialogButton.Close:
-                CloseButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                CloseButton.Focus(FocusState.Programmatic);
+                CloseButton?.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                CloseButton?.Focus(FocusState.Programmatic);
                 DefaultButtonState = "CloseAsDefaultButton";
                 break;
 

@@ -2,7 +2,7 @@
 
 public partial class WindowedContentDialog
 {
-    private DragMoveHelper dragMoveHelper;
+    private DragMoveHelper? dragMoveHelper;
     public bool HasTitleBar
     {
         get => (bool)GetValue(HasTitleBarProperty);

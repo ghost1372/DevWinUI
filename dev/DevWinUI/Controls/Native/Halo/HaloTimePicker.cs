@@ -6,11 +6,11 @@ public partial class HaloTimePicker : Control
     private const string PART_Minutes = "PART_Minutes";
     private const string PART_Display = "PART_Display";
 
-    private HaloArcSlider hours;
-    private HaloArcSlider minutes;
-    private TextBlock display;
+    private HaloArcSlider hours = null!;
+    private HaloArcSlider minutes = null!;
+    private TextBlock display = null!;
 
-    public event EventHandler TimeChanged;
+    public event EventHandler? TimeChanged;
 
     public Brush MinutesArcBrush
     {
@@ -92,9 +92,9 @@ public partial class HaloTimePicker : Control
     {
         base.OnApplyTemplate();
 
-        hours = GetTemplateChild(PART_Hours) as HaloArcSlider;
-        minutes = GetTemplateChild(PART_Minutes) as HaloArcSlider;
-        display = GetTemplateChild(PART_Display) as TextBlock;
+        hours = (GetTemplateChild(PART_Hours) as HaloArcSlider)!;
+        minutes = (GetTemplateChild(PART_Minutes) as HaloArcSlider)!;
+        display = (GetTemplateChild(PART_Display) as TextBlock)!;
 
         BindingOperations.SetBinding(hours, HaloArcSlider.AngleProperty, new Binding
         {

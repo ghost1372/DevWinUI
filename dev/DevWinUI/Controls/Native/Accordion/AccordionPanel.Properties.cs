@@ -12,7 +12,7 @@ public partial class AccordionPanel
        DependencyProperty.Register(nameof(SelectedIndex), typeof(int), typeof(AccordionPanel), new PropertyMetadata(0, SelectedIndexChanged));
     private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as AccordionPanel;
+        var control = (d as AccordionPanel)!;
         control.InvalidateMeasure();
     }
    
@@ -26,7 +26,7 @@ public partial class AccordionPanel
         DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(AccordionPanel), new PropertyMetadata(null, ItemsSourceChanged));
     private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as AccordionPanel;
+        var control = (d as AccordionPanel)!;
         control.SetItemsSource(e.NewValue);
     }
     public DataTemplate ItemTemplate
@@ -39,7 +39,7 @@ public partial class AccordionPanel
         DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(AccordionPanel), new PropertyMetadata(null, ItemTemplateChanged));
     private static void ItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as AccordionPanel;
+        var control = (d as AccordionPanel)!;
         control.SetItemTemplate(e.NewValue as DataTemplate);
     }
     public DataTemplate HeaderTemplate
@@ -53,7 +53,7 @@ public partial class AccordionPanel
 
     private static void HeaderTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as AccordionPanel;
+        var control = (d as AccordionPanel)!;
         control.SetHeaderTemplate(e.NewValue as DataTemplate);
     }
 
@@ -86,7 +86,7 @@ public partial class AccordionPanel
             }
         }
     }
-    private void SetItemTemplate(DataTemplate itemTemplate)
+    private void SetItemTemplate(DataTemplate? itemTemplate)
     {
         foreach (ContentControl item in base.Children)
         {
@@ -94,7 +94,7 @@ public partial class AccordionPanel
         }
     }
 
-    private void SetHeaderTemplate(DataTemplate headerTemplate)
+    private void SetHeaderTemplate(DataTemplate? headerTemplate)
     {
         foreach (AccordionItem item in base.Children)
         {

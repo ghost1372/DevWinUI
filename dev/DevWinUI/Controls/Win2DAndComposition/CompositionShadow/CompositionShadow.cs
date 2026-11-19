@@ -8,7 +8,7 @@ namespace DevWinUI;
 public partial class CompositionShadow : Control
 {
     private const string PART_ShadowElement = "PART_ShadowElement";
-    private Border _shadowElement;
+    private Border? _shadowElement;
 
     private DropShadow _dropShadow;
     private SpriteVisual _shadowVisual;
@@ -16,9 +16,9 @@ public partial class CompositionShadow : Control
 
     public SpriteVisual Visual => _shadowVisual;
     public Compositor compositor;
-    private ScalarKeyFrameAnimation breathAnimation;
+    private ScalarKeyFrameAnimation? breathAnimation;
     private bool _isCustomMask;
-    public CompositionBrush Mask
+    public CompositionBrush? Mask
     {
         get => _dropShadow?.Mask;
         set
@@ -157,7 +157,7 @@ public partial class CompositionShadow : Control
         // Only auto-generate mask if user hasn't set a custom mask
         if (!_isCustomMask && Content != null)
         {
-            CompositionBrush mask = null;
+            CompositionBrush? mask = null;
             if (Content is Image image)
                 mask = image.GetAlphaMask();
             else if (Content is Shape shape)
@@ -208,7 +208,7 @@ public partial class CompositionShadow : Control
             return;
         }
 
-        Uri uri = GeneralHelper.GetUriFromObjectSource(ImageSourceForEdgeColor);
+        Uri? uri = GeneralHelper.GetUriFromObjectSource(ImageSourceForEdgeColor);
         if (uri != null)
         {
             var device = CanvasDevice.GetSharedDevice();
@@ -269,7 +269,7 @@ public partial class CompositionShadow : Control
     {
         return _dropShadow;
     }
-    public void StartBreath(CompositionEasingFunction breathEasing = null, TimeSpan? breathDuration = null)
+    public void StartBreath(CompositionEasingFunction? breathEasing = null, TimeSpan? breathDuration = null)
     {
         if (breathAnimation != null)
             return;

@@ -5,7 +5,7 @@ namespace DevWinUI;
 
 public partial class Spoiler : ContentControl
 {
-    public event EventHandler<SpoilerRevealChangedEventArgs> RevealChanged;
+    public event EventHandler<SpoilerRevealChangedEventArgs>? RevealChanged;
     public string Header
     {
         get { return (string)GetValue(HeaderProperty); }

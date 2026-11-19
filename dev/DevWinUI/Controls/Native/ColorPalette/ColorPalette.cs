@@ -4,8 +4,8 @@ namespace DevWinUI;
 
 public partial class ColorPalette : GridView
 {
-    public event EventHandler<ColorPaletteColorChangedEventArgs> ColorChanged;
-    private ObservableCollection<ColorPaletteItem> internalColors;
+    public event EventHandler<ColorPaletteColorChangedEventArgs>? ColorChanged;
+    private ObservableCollection<ColorPaletteItem> internalColors = null!;
 
     internal readonly ObservableCollection<ColorPaletteItem> BasicColors = new()
     {

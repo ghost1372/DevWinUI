@@ -10,8 +10,8 @@ public partial class SegmentedSlider : Control
     private const string PART_ItemsRepeater = "PART_ItemsRepeater";
     private const string PART_HorizontalThumb = "PART_HorizontalThumb";
 
-    private ItemsRepeater itemsRepeater;
-    private Thumb horizontalThumb;
+    private ItemsRepeater itemsRepeater = null!;
+    private Thumb horizontalThumb = null!;
 
     public event EventHandler<SegmentChangedEventArgs>? SegmentChanged;
     public event EventHandler<double>? ValueChanged;
@@ -53,8 +53,8 @@ public partial class SegmentedSlider : Control
             itemsRepeater.ElementIndexChanged -= ItemsRepeater_ElementIndexChanged;
         }
 
-        itemsRepeater = GetTemplateChild(PART_ItemsRepeater) as ItemsRepeater;
-        horizontalThumb = GetTemplateChild(PART_HorizontalThumb) as Thumb;
+        itemsRepeater = (GetTemplateChild(PART_ItemsRepeater) as ItemsRepeater)!;
+        horizontalThumb = (GetTemplateChild(PART_HorizontalThumb) as Thumb)!;
 
         if (horizontalThumb != null)
         {
@@ -228,14 +228,14 @@ public partial class SegmentedSlider : Control
 
     private static bool TryGetRectangles(Grid hostGrid, out Rectangle trackRect, out Rectangle fillRect)
     {
-        trackRect = null;
-        fillRect = null;
+        trackRect = null!;
+        fillRect = null!;
 
         if (hostGrid.Children.Count < 2)
             return false;
 
-        trackRect = hostGrid.Children[0] as Rectangle;
-        fillRect = hostGrid.Children[1] as Rectangle;
+        trackRect = (hostGrid.Children[0] as Rectangle)!;
+        fillRect = (hostGrid.Children[1] as Rectangle)!;
         return trackRect != null && fillRect != null;
     }
 
@@ -319,7 +319,7 @@ public partial class SegmentedSlider : Control
         {
             for (int i = 0; i < SegmentCount; i++)
             {
-                labels.Add(SegmentTitles != null && i < SegmentTitles.Count ? SegmentTitles[i] : null);
+                labels.Add(SegmentTitles != null && i < SegmentTitles.Count ? SegmentTitles[i] : null!);
                 segmentWidths.Add(1.0 / SegmentCount);
             }
         }
@@ -442,7 +442,7 @@ public partial class SegmentedSlider : Control
                 if (currentSegment != null)
                 {
                     var timeInfo = currentIndex < internalSegments.Count ? internalSegments[currentIndex] : null;
-                    SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment, timeInfo));
+                    SegmentChanged?.Invoke(this, new SegmentChangedEventArgs(currentIndex, currentSegment, timeInfo!));
                 }
 
                 UpdateSegmentLabelsVisibility();
@@ -586,13 +586,13 @@ public partial class SegmentedSlider : Control
     {
         return new SegmentedSliderSegment
         {
-            TrackRectangle = hostGrid.Children[0] as Rectangle,
-            FillSegmentRectangle = hostGrid.Children[1] as Rectangle,
-            TitleTextBlock = hostGrid.Children[2] as TextBlock
+            TrackRectangle = (hostGrid.Children[0] as Rectangle)!,
+            FillSegmentRectangle = (hostGrid.Children[1] as Rectangle)!,
+            TitleTextBlock = (hostGrid.Children[2] as TextBlock)!
         };
     }
 
-    private SegmentedSliderSegment GetSegment(int index)
+    private SegmentedSliderSegment? GetSegment(int index)
     {
         if (itemsRepeater?.ItemsSource is not System.Collections.ICollection collection || index < 0 || index >= collection.Count)
             return null;
@@ -602,7 +602,7 @@ public partial class SegmentedSlider : Control
             : null;
     }
 
-    public List<SegmentedSliderSegment> GetSegments()
+    public List<SegmentedSliderSegment>? GetSegments()
     {
         if (itemsRepeater?.ItemsSource is not System.Collections.ICollection { Count: > 0 })
             return null;

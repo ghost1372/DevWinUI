@@ -19,20 +19,20 @@ public partial class RealClock : Control
     private const string ElementPanelNum = "PART_PanelNum";
     private const string ElementTimeStr = "PART_TimeStr";
 
-    private ClockRadioButton _buttonAm;
-    private ClockRadioButton _buttonPm;
-    private Line _secondHandLine;
-    private Line _minuteHandLine;
-    private RotateTransform _secondHandRotateTransform;
-    private RotateTransform _rotateTransformClock;
-    private CirclePanel _circlePanel;
-    private List<ClockRadioButton> _hourButtonList;
-    private TextBlock _blockTime;
+    private ClockRadioButton _buttonAm = null!;
+    private ClockRadioButton _buttonPm = null!;
+    private Line _secondHandLine = null!;
+    private Line _minuteHandLine = null!;
+    private RotateTransform _secondHandRotateTransform = null!;
+    private RotateTransform _rotateTransformClock = null!;
+    private CirclePanel _circlePanel = null!;
+    private List<ClockRadioButton> _hourButtonList = null!;
+    private TextBlock _blockTime = null!;
     private bool _isRenderingSubscribed;
     private int _selectedHourIndex = -1;
     private bool? _isPm;
-    private string _lastTimeText;
-    private string _resolvedTimeZoneId;
+    private string _lastTimeText = null!;
+    private string _resolvedTimeZoneId = null!;
     private TimeZoneInfo _resolvedTimeZone = TimeZoneInfo.Local;
 
     protected bool isTemplateApplied;
@@ -50,12 +50,12 @@ public partial class RealClock : Control
 
         base.OnApplyTemplate();
 
-        _buttonAm = GetTemplateChild(ElementButtonAm) as ClockRadioButton;
-        _buttonPm = GetTemplateChild(ElementButtonPm) as ClockRadioButton;
-        _secondHandLine = GetTemplateChild(ElementSecondHandLine) as Line;
-        _minuteHandLine = GetTemplateChild(ElementMinuteHandLine) as Line;
-        _circlePanel = GetTemplateChild(ElementPanelNum) as CirclePanel;
-        _blockTime = GetTemplateChild(ElementTimeStr) as TextBlock;
+        _buttonAm = (GetTemplateChild(ElementButtonAm) as ClockRadioButton)!;
+        _buttonPm = (GetTemplateChild(ElementButtonPm) as ClockRadioButton)!;
+        _secondHandLine = (GetTemplateChild(ElementSecondHandLine) as Line)!;
+        _minuteHandLine = (GetTemplateChild(ElementMinuteHandLine) as Line)!;
+        _circlePanel = (GetTemplateChild(ElementPanelNum) as CirclePanel)!;
+        _blockTime = (GetTemplateChild(ElementTimeStr) as TextBlock)!;
 
         if (!CheckNull()) return;
 
@@ -82,7 +82,7 @@ public partial class RealClock : Control
 
         _selectedHourIndex = -1;
         _isPm = null;
-        _lastTimeText = null;
+        _lastTimeText = null!;
 
         isTemplateApplied = true;
         Update();
@@ -115,7 +115,7 @@ public partial class RealClock : Control
         _isRenderingSubscribed = false;
     }
 
-    private void OnCompositionTargetRendering(object sender, object e)
+    private void OnCompositionTargetRendering(object? sender, object e)
     {
         Update();
     }
@@ -176,7 +176,7 @@ public partial class RealClock : Control
     {
         if (string.IsNullOrWhiteSpace(TimeZoneId))
         {
-            _resolvedTimeZoneId = null;
+            _resolvedTimeZoneId = null!;
             _resolvedTimeZone = TimeZoneInfo.Local;
             return _resolvedTimeZone;
         }

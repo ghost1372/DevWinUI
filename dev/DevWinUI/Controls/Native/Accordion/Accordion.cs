@@ -5,7 +5,7 @@ public partial class Accordion : Control
 {
     private const string PART_RectangleGeometry = "PART_RectangleGeometry";
 
-    private RectangleGeometry _clip = null;
+    private RectangleGeometry? _clip = null;
 
     public Accordion()
     {

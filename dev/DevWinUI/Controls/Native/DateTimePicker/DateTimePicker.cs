@@ -16,14 +16,14 @@ public partial class DateTimePicker : DateTimeBase
     private const string PART_ConfirmButton = "PART_ConfirmButton";
     private const string PART_CalendarWithClockView = "PART_CalendarWithClockView";
 
-    public event EventHandler<RoutedEventArgs> ConfirmClick;
-    public event EventHandler<DateTimeOffset> SelectedTimeChanged;
+    public event EventHandler<RoutedEventArgs>? ConfirmClick;
+    public event EventHandler<DateTimeOffset>? SelectedTimeChanged;
 
-    private ContentPresenter headerContentPresenter;
-    private ContentPresenter descriptionContentPresenter;
-    private Grid rootGrid;
-    private Button confirmButton;
-    private CalendarWithClock calendarWithClock;
+    private ContentPresenter headerContentPresenter = null!;
+    private ContentPresenter descriptionContentPresenter = null!;
+    private Grid rootGrid = null!;
+    private Button confirmButton = null!;
+    private CalendarWithClock calendarWithClock = null!;
     private bool isUpdating;
 
     public DateTimePicker()
@@ -34,15 +34,15 @@ public partial class DateTimePicker : DateTimeBase
     {
         base.OnApplyTemplate();
 
-        headerContentPresenter = GetTemplateChild(nameof(HeaderContentPresenter)) as ContentPresenter;
-        descriptionContentPresenter = GetTemplateChild(nameof(DescriptionPresenter)) as ContentPresenter;
+        headerContentPresenter = (GetTemplateChild(nameof(HeaderContentPresenter)) as ContentPresenter)!;
+        descriptionContentPresenter = (GetTemplateChild(nameof(DescriptionPresenter)) as ContentPresenter)!;
 
         UpdateHeaderVisibility();
         UpdateDescriptionVisibility();
 
-        rootGrid = GetTemplateChild(PART_Root) as Grid;
-        confirmButton = GetTemplateChild(PART_ConfirmButton) as Button;
-        calendarWithClock = GetTemplateChild(PART_CalendarWithClockView) as CalendarWithClock;
+        rootGrid = (GetTemplateChild(PART_Root) as Grid)!;
+        confirmButton = (GetTemplateChild(PART_ConfirmButton) as Button)!;
+        calendarWithClock = (GetTemplateChild(PART_CalendarWithClockView) as CalendarWithClock)!;
 
         if (rootGrid != null)
         {
@@ -89,7 +89,7 @@ public partial class DateTimePicker : DateTimeBase
         UpdateTemplate();
     }
 
-    private void CalendarWithClock_SelectedTimeChanged(object sender, DateTimeOffset e)
+    private void CalendarWithClock_SelectedTimeChanged(object? sender, DateTimeOffset e)
     {
         if (!isUpdating && calendarWithClock != null)
         {
@@ -143,7 +143,7 @@ public partial class DateTimePicker : DateTimeBase
         }
     }
 
-    private void Flyout_Closed(object sender, object e)
+    private void Flyout_Closed(object? sender, object e)
     {
         UpdatePlaceholder();
     }
